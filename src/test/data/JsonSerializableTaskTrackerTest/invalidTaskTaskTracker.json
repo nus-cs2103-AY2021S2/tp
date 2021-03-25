@@ -1,0 +1,12 @@
+{
+  "tasks": [ {
+    "taskName" : "Weekly Quiz",
+    "moduleCode" : "CS21033",
+    "deadlineDate" : "10-04-20201",
+    "deadlineTime" : "10:101",
+    "status" : "Unfinished",
+    "weightage" : -10,
+    "remark" : "",
+    "tagged" : [ "core" ]
+  } ]
+}

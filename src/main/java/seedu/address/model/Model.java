@@ -5,14 +5,26 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Task;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
+    Predicate<Task> PREDICATE_SHOW_ALL_TASKS = task -> true;
+
+    /**
+     * {@code Predicate} that returns true if the task is unfinished
+     */
+    Predicate<Task> PREDICATE_SHOW_UNFINISHED_TASKS = task -> !task.hasFinished();
+
+    /**
+     * {@code Predicate} that returns true if the task is finished
+     */
+    Predicate<Task> PREDICATE_SHOW_FINISHED_TASKS = task -> task.hasFinished();
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -35,53 +47,69 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' task tracker file path.
      */
-    Path getAddressBookFilePath();
+    Path getTaskTrackerFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' task tracker file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setTaskTrackerFilePath(Path taskTrackerFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces task tracker data with the data in {@code taskTracker}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
-
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    void setTaskTracker(ReadOnlyTaskTracker taskTracker);
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns the TaskTracker
      */
-    boolean hasPerson(Person person);
+    ReadOnlyTaskTracker getTaskTracker();
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Returns true if a task with the same identity as {@code task} exists in the task tracker.
      */
-    void deletePerson(Person target);
+    boolean hasTask(Task task);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Deletes the given task.
+     * The task must exist in the task tracker.
      */
-    void addPerson(Person person);
+    void deleteTask(Task target);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Finishes the given task.
+     * The task must exist in the task tracker.
      */
-    void setPerson(Person target, Person editedPerson);
-
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    void finishTask(Task target);
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Adds the given task.
+     * {@code task} must not already exist in the task tracker.
+     */
+    void addTask(Task task);
+
+    /**
+     * Replaces the given task {@code target} with {@code editedTask}.
+     * {@code target} must exist in the task tracker.
+     * The task identity of {@code editedTask} must not be the same as another existing task in the task tracker.
+     */
+    void setTask(Task target, Task editedTask);
+
+    /**
+     * Returns an unmodifiable view of the filtered task list
+     */
+    ObservableList<Task> getFilteredTaskList();
+
+    /**
+     * Returns an unmodifiable view of the finisehed task list
+     */
+    ObservableList<Task> getFinishedTaskList();
+
+    /**
+     * Updates the filter of the filtered task list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredTaskList(Predicate<Task> predicate);
 }

@@ -1,0 +1,58 @@
+{
+  "_comment": "TaskTracker save file which contains the same Task values as in TypicalTasks#getTypicalTaskTracker()",
+  "tasks" : [ {
+    "taskName": "Week 10 Quiz",
+    "moduleCode": "CS2103",
+    "deadlineDate" : "10-10-2020",
+    "deadlineTime" : "10:10",
+    "status" : "Unfinished",
+    "weightage" : 0,
+    "remark" : "Being a software engineer is fun",
+    "tagged" : [ "friends" ]
+  }, {
+    "taskName": "Take Home lab 1",
+    "moduleCode": "CS2040",
+    "deadlineDate" : "10-10-2020",
+    "deadlineTime" : "10:10",
+    "status" : "Unfinished",
+    "weightage" : 0,
+    "remark" : "Favourite pastime: Kattis",
+    "tagged" : [ "owesMoney", "friends" ]
+  }, {
+    "taskName": "Tutorial 6",
+    "moduleCode": "CS1010",
+    "deadlineDate" : "10-10-2020",
+    "deadlineTime" : "10:10",
+    "status" : "Unfinished",
+    "weightage" : 0,
+    "remark" : "PE1",
+    "tagged" : [ ]
+  }, {
+    "taskName": "Tutorial 5",
+    "moduleCode": "CS2030",
+    "deadlineDate" : "10-10-2020",
+    "deadlineTime" : "10:10",
+    "status" : "Unfinished",
+    "weightage" : 0,
+    "remark" : "PE2",
+    "tagged" : [ "friends" ]
+  }, {
+    "taskName": "Weekly Readings",
+    "moduleCode": "CS3243",
+    "deadlineDate" : "10-10-2020",
+    "deadlineTime" : "10:10",
+    "status" : "Unfinished",
+    "weightage" : 0,
+    "remark" : "",
+    "tagged" : [ ]
+  }, {
+    "taskName": "Write Tests",
+    "moduleCode": "CS2100",
+    "deadlineDate" : "10-10-2020",
+    "deadlineTime" : "10:10",
+    "status" : "Unfinished",
+    "weightage" : 0,
+    "remark" : "",
+    "tagged" : [ ]
+  } ]
+}

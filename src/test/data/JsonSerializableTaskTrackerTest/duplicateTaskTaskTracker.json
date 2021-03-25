@@ -1,0 +1,21 @@
+{
+  "tasks": [ {
+    "taskName" : "Weekly Quiz",
+    "moduleCode" : "CS2103",
+    "deadlineDate" : "10-04-2020",
+    "deadlineTime" : "10:10",
+    "status" : "Unfinished",
+    "weightage" : 0,
+    "remark" : "",
+    "tagged" : [ "core" ]
+  }, {
+    "taskName" : "Weekly Quiz",
+    "moduleCode" : "CS2103",
+    "deadlineDate" : "10-04-2020",
+    "deadlineTime" : "10:10",
+    "status" : "Unfinished",
+    "weightage" : 0,
+    "remark" : "",
+    "tagged" : [ "core" ]
+  } ]
+}
