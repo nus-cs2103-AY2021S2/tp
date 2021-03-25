@@ -17,7 +17,9 @@ import seedu.address.model.group.Group;
 public class Meeting {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "The start date time of a meeting should be strictly earlier than the terminate date time.";
+            "The start date time of a meeting should be strictly earlier than the terminate date time."
+                    + "The meeting must start and end on the same date";
+
 
     // Identity fields
     private final MeetingName meetingName;
@@ -93,7 +95,8 @@ public class Meeting {
      * Returns true if a given date time for the meeting is valid.
      */
     public static boolean isValidStartTerminate(DateTime start, DateTime terminate) {
-        return start.compareTo(terminate) == -1;
+        boolean isSameDate = start.toLocalDate().equals(terminate.toLocalDate());
+        return start.compareTo(terminate) == -1 && isSameDate;
     }
 
     /**
