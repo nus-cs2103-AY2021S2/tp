@@ -3,14 +3,48 @@ layout: page
 title: User Guide
 ---
 
-CoLAB (Command Line Address Book) is a **desktop app for students currently enrolled in a university to manage their school projects.** It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CoLAB can get your project management tasks done faster than traditional GUI apps.
+## Table of Contents
+<!-- TOC adapted from
+https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2c67d7c407fcabb376191ff
+-->
+<div class="toc-no-bullet-points">
+  * Table of Contents
+  {:toc}
+</div>
 
-* Table of Contents
-{:toc}
+## 1. **Introduction**
+
+![Ui](images/logo.png)
+
+Welcome and thank you for downloading CoLAB! Are you a university student in search of a reliable app to keep track of your school projects? You have come to the right place!
+
+CoLAB (Collaboration Lab) is a **desktop app for students currently enrolled in a university to manage their school projects.** It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CoLAB can get your project management tasks done faster than traditional GUI apps. CoLAB's main features include:
+
+1. Project management
+2. Groupmate management
+2. Today View
+
+With CoLAB, you can efficiently manage all your school projects through our comprehensive project management tools. We have put in a lot of time and effort into designing a user-friendly User Interface (UI) such that CoLAB remains intuitive to both first-time users and seasoned ones. We look forward to seeing what you accomplish with CoLAB with a clean and inviting UI. What are you waiting for? Get your journey started with the [Quick Start section](#3-quick-start)!
+
+## 2. **About**
+
+### 2.1 Structure of this Document
+
+### 2.2 Reading this Document
+
+#### 2.2.1 Sections of the Application Window
+
+#### 2.2.2 Special Formats
+
+#### 2.2.3 Command Format
+
+
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Quick start**
+## 3. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
