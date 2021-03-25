@@ -103,7 +103,9 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
+* stores the event book data.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<Event>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
@@ -122,6 +124,7 @@ The `Model`,
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the address book data in json format and read it back.
+* can save the event book data in json format and read it back.
 
 ### Common classes
 
@@ -132,6 +135,46 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Help feature
+
+#### Current Implementation
+
+When called as `help`, the user will be given the concise command-line syntax of all implemented commands and their arguments following the conventions listed in https://developers.google.com/style/code-syntax
+
+This is facilitated by `MESSAGE_USAGE_CONCISE` in each `Command` that the user is able to use.
+
+When called as `help [COMMAND]`, the user will be given the detailed description of the usage of the specified `COMMAND`.
+
+This is facilitated by `MESSAGE_USAGE` in each `Command`.
+
+Given below is an example usage scenario and how the `HelpCommand` mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The user is unsure of the syntax and attempts to type
+in the CLI a command that is unlikely to fit the syntax of implemented commands. `AddressBookParser#ParseCommand()` throws a `ParseException` and the user receives a prompt "Unknown command, try the command: help".
+
+Step 2. The user executes `help`. `AddressBookParser#ParseCommand()` instantiates a `HelpCommandParser` to parse the arguments for `help`. Since there are no arguments, the default constructor for `HelpCommand` is called, and the user receives a concise description of the complete set of implemented commands.
+
+Step 3. The user executes `help add`. `AddressBookParser#ParseCommand()` instantiates a `HelpCommandParser` to parse the arguments for `help add`. The constructor taking in a `commandWord` is called, and when `HelpCommand#execute` is run, the `MESSAGE_USAGE` of the `Command` matching the `commandWord` is shown to the user.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the subsequent arguments are not successfully parsed, `help` is called instead. If multiple arguments are found, only the first one is parsed.
+
+</div>
+
+#### Design consideration:
+
+##### Aspect: How HelpCommand executes
+
+* **Alternative 1 (current choice):** Entire help message is composed of `MESSAGE_USAGE_CONCISE` of the various commands in `SHOWING_HELP_MESSAGE`, which is printed.
+    * Pros: Each `Command` takes care of its own syntax, only needs to be updated at one place for changes to take effect.
+    * Cons: The list of commands is still hard coded into `SHOWING_HELP_MESSAGE`, and needs to be manually updated every time a new `Command` is implemented.
+
+* **Alternative 2:** Maintain a list of Commands, which `HelpCommand` will iterate over to print the concise syntax for each command when printing the help message.
+    * Pros: Need not hard code the possible commands, only have to update the list of commands
+    * Cons: Possible reduced performance, especially later if a large number of commands is added.
+
+_{more aspects and alternatives to be added}_
+
 
 ### \[Proposed\] Undo/redo feature
 
@@ -213,6 +256,131 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### [Feature] Adding Persons
+The Persons stored inside PartyPlanet should not have any compulsory fields except for name. This is to allow
+for addition of contacts where the user is unable to, or does not need to fill up all fields.
+
+One example of such case is a vendor's contact. The user does not need to store information on a vendor's birthday.
+
+Additionally, the user should also be able to store remarks for that contact.
+
+#### Implementation
+* The remark is a new class that stores a String containing the specific remark
+* Each `Person` class contains fields `Name`, `Address`, `Phone`, `Birthday`, `Email` and `Remark`
+    * To allow for optional fields `Address`, `Phone`, `Birthday`, `Email` and `Remark`, each class has an attribute
+  `isEmpty` that indicates whether the field in the person is empty.
+    * The empty fields will then be stored as an empty string `""` in the `addressbook.json` folder and be read as an
+  empty field accordingly.
+* Syntax for adding Person: `add -n NAME [-a ADDRESS] [-p PHONE] [-b BIRTHDAY] [-e EMAIL] [-r REMARK]`
+
+Given below is an example usage scenario and how the `add` mechanism behaves at each step.
+
+1. The user executes `add -n James -r Loves sweets` command to add a person with name `James` and remark `Loves
+   sweets`, represented by `execute("add -n James -r Loves sweets"")`. Note that fields `Address`, `Phone`,
+   `Birthday` and `Email` are not specified and hence are empty fields.
+2. `LogicManager` uses the `AddressBookParser` class to parse the user command, represented by `parseCommand("add -n
+   James -r Loves sweets")`
+
+Below is the partial sequence diagram for steps 1 and 2.
+
+![Interactions Inside the Logic Component for the `add -n James -r Loves sweets` Command p1](images/AddSequenceDiagram1.png)
+
+3. `AddressBookParser` creates an `AddCommandParser` which is used to parse the arguments provided by the user. This
+   is represented by `parse("-n James -r Loves sweets")`.
+4. `AddCommandParser` calls the constructor of a `Person` with the given arguments as input and creates a `Person`
+   This is represented by `Person("James", "", "", "", "", "Loves sweets", [])`. Note empty
+   string `""` and `[]` represent empty fields.
+5. The `AddCommandParser` then passes this newly created `Person` as input to create an `AddCommand` which will be
+   returned to the `LogicManager`. This is represented by `AddCommand(p)`
+
+Below is the partial sequence diagram for steps 3, 4 and 5.
+
+![Interactions Inside the Logic Component for the `add -n James -r Loves sweets` Command p2](images/AddSequenceDiagram2.png)
+
+
+
+6. The `LogicManager` executes the `AddCommand` by calling `AddCommand#execute()` and passes the `CommandResult`
+   back to the `UI`.
+
+![Interactions Inside the Logic Component for the `add -n James -r Loves sweets` Command p3](images/AddSequenceDiagram3.png)
+
+Given below is the full Sequence Diagram for interactions within the `Logic` component for the `execute("add -n
+James -r Loves sweets")` API call.
+
+![Interactions Inside the Logic Component for the `add -n James -r Loves sweets` Command](images/AddSequenceDiagram.png)
+
+### [Feature] Marking `Event` as Done
+
+We want to allow `Event` to be marked as done. So that the user can easily keep track of what events have been completed,
+and what events are upcoming.
+
+`Event` titles could include a tick to represent completion.
+
+#### Implementation
+* Syntax for EDoneCommand: `edone INDEX [INDEX]...`
+* Modification to `Event` class
+  * New attribute `isDone` should be added to represent a done and not done event.
+  * A `setDone()` method to return a new `Event` object that is done.
+  * A `getStatus()` method that returns a tick if the `Event` is done (for UI display).
+
+Given below is an example usage scenario and how `edone` will work.
+
+1. The user executes `edone 1 2 3` command to mark event at index 1, 2 and 3 as done.
+
+2. `LogicManager` calls `parseCommand("edone 1 2 3")` of `AddressBookParser` to parse the input.
+
+3. `AddressBookParser` detects command word `edone` and creates an `EDoneCommandParser`.
+
+4. `AddressBookParser` calls `parse("1 2 3")` of `EDoneCommandParser`.
+
+5. `EDoneCommandParser` processes the input and compiles the valid indexes into a list `List<Index>`.
+
+6. `EDoneCommandParser` creates an `EDoneCommand(List<Index>)` and returns it to `LogicManager`.
+
+7. `LogicManger` excutes the `EDoneCommand`.
+
+8. `EDoneCommand` loops through the list of index, and set the events, at the given index, as a done event.
+
+9. `EDoneCommand` creates an `CommandResult` containing the output message and returns it to `LogicManager`.
+
+Given below is the full Sequence Diagram for interactions for the `execute("edone 1 2 3")` API call.
+
+![Interactions Inside the Logic Component for the `add -n James -r Loves sweets` Command](images/EDoneSequenceDiagram.png)
+
+### [Feature] Autocompleting `Edit` Command (Remark)
+
+Since `Remark`s are intended to be capable of containing long sentences or paragraphs,
+it brings an unintended chore of a User having to retype an entire `Remark` in order to edit it.
+
+The Autocomplete feature allows the user to autocomplete a current `Person`'s remark into the
+command box once the correct `Person` id and remark prefix has been keyed.
+
+#### Implementation
+* Syntax for EditAutocomplete: `edit INDEX -r` + `TAB`
+* The user is expected to keypress the TAB key after typing the command in order to activate the autocomplete feature.
+* The feature is implemented with the help of a new `EditAutocompleteUtil` class that handles parsing and retrieving the
+relavant remark from the `Model`.
+
+Given below is an example usage scenario and how `EditAutocomplete` will work.
+
+1. The user executes `edit 1 -r` + `TAB` command to autocomplete `Person` 1's Remark.
+
+2. `UI` calls `autocomplete("edit 1 -r")` of `LogicManager` to handle the input.
+
+3. `LogicManager` calls `parseEditCommand("edit 1 -r", model)` of `EditAutocompleteUtil` to parse the input.
+
+4. `EditAutocompleteUtil` processes the input and retrieves the relevant `Person`'s `Remark` from the `Model`.
+
+5. `EditAutocompleteUtil` creates the autocompleted output String and returns it to `LogicManager`.
+
+7. `LogicManger` returns the autocompleted output String to `UI`.
+
+8. `UI` updates `CommandBox` to reflect the autocompleted command input.
+
+Given below is the full Sequence Diagram for interactions for the `edit 1 -r` + `TAB` API call.
+
+![Sequence Diagram for Autocomplete Edit Remark](images/AutocompleteSequenceDiagram.png)
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
@@ -280,6 +448,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `**` | Night owl | Enable dark mode | Use the app safely in dark environments |
 | `*` | Overworked welfare IC | See all upcoming birthdays as a weekly view / monthly calendar | Prioritize birthdays to plan |
 | `*` | Satisfied user | Share the application with my family and friends | Encourage close contacts to use the application |
+| `***` | Returning user | Delete events | Reduce clutter on PartyPlanet |
+| `***` | Welfare IC | Add a birthday plan (event) to the app | Keep track of the celebration planning progress |
+| `***` | Welfare IC | Set a date for a birthday plan (event) | Ensure details are planned on time |
+| `**` | Busy Welfare IC | Sort through the list of events | Look at upcoming events  |
+| `*` | Busy Welfare IC | Search for events by details | Find similar events to refer to for planning |
+| `**` | Busy Welfare IC | Search for events by title | Filter out particular events with that title  |
 
 ### Use cases
 
