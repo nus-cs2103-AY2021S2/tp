@@ -108,4 +108,10 @@ public interface Model {
 
     /** Returns an unmodifiable view of the transformed person list */
     ObservableList<Person> getTransformedPersonList();
+
+    /** Filters the transformed person list by the given {@code predicate} then sorts the
+     * transformed person list by the given {@code comparator}.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void filterThenSortPersonList(Predicate<Person> predicate, Comparator<Person> comparator);
 }

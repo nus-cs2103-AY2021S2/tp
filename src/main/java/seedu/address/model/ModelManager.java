@@ -150,7 +150,7 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
-        return transformedPersons;
+        return filteredPersons;
     }
 
     @Override
@@ -177,8 +177,23 @@ public class ModelManager implements Model {
         transformedPersons.setAll(sortedPersons);
     }
 
+    //=========== Transformed Person List Accessors =============================================================
+
+    @Override
     public ObservableList<Person> getTransformedPersonList() {
         return transformedPersons;
+    }
+
+    @Override
+    public void filterThenSortPersonList(Predicate<Person> predicate, Comparator<Person> comparator)
+            throws NullPointerException {
+
+        requireNonNull(comparator);
+        filteredPersons.setPredicate(predicate);
+        transformedPersons.setAll(filteredPersons);
+        SortedList<Person> newSortedPersons = transformedPersons.sorted(comparator);
+        newSortedPersons.setComparator(comparator);
+        transformedPersons.setAll(newSortedPersons);
     }
 
     @Override

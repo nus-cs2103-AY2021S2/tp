@@ -1,18 +1,13 @@
 package seedu.address.model.person;
 
-import seedu.address.commons.util.StringUtil;
-import seedu.address.model.lesson.Lesson;
-
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.function.Predicate;
 
-public class HasLessonPredicate implements Predicate<Person> {
-    private final Person person;
+import seedu.address.model.lesson.Lesson;
 
-    public HasLessonPredicate(Person person) {
-        this.person = person;
+public class HasLessonPredicate implements Predicate<Person> {
+
+    public HasLessonPredicate() {
     }
 
     @Override
@@ -24,7 +19,7 @@ public class HasLessonPredicate implements Predicate<Person> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof HasLessonPredicate // instanceof handles nulls
-                && person.equals(((HasLessonPredicate) other).person)); // state check
+                || (other instanceof HasLessonPredicate); // instanceof handles nulls
     }
+
 }

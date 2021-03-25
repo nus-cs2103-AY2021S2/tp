@@ -1,15 +1,10 @@
 package seedu.address.model.person;
 
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.LogicManager;
-import seedu.address.model.lesson.Lesson;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import java.util.logging.Logger;
-
+import seedu.address.model.lesson.Lesson;
 
 /**
  * Compares two {@code Person}s according to the order of their {@code Lesson}.
