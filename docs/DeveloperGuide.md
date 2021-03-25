@@ -275,7 +275,7 @@ An alternative would be to store them as separate String and Double values, howe
 
 Two constructors were used to get-around the restrictions by the Food name field. By default, the Food name can only contain alphabets and spaces, however, when adding a new FoodIntake item to the FoodIntakeList, duplicate Food names are appended with a numerical duplicate count (e.g. Chicken rice 2). As such, the second constructor allows for Food names with numerical values and is used when loading the FoodIntake list from file, and when adding a duplicate FoodIntake with a duplicate Food name.
 
-FoodIntakeList Class
+### FoodIntakeList Class
 
 [Work in progress]
 
