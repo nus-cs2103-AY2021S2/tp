@@ -26,16 +26,19 @@ retention.
         * [Undoing a command](#undoing-a-command--undo): `undo`
         * [Redoing a command](#redoing-a-command--redo): `redo`
         * [Entering review mode](#entering-review-mode-review): `review`
-        * [Sort all cards](#sort-all-cards--sort): `sort`
+        * [Sorting all cards](#sorting-all-cards--sort): `sort`
+        * [Viewing statistics of cards](#viewing-statistics-of-cards-stats): `stats`
         * [Exiting the program](#exiting-the-program--exit): `exit`
         * [Saving data](#saving-the-data)
         * [Editing the data file](#editing-the-data-file)
     * [Review mode](#review-mode)
-        * [Showingnext card](#showing-next-card-n): `n`
-        * [Showing previous card](#showing-previous-card-p): `p`
-        * [Showing answer](#showing-answer-a): `a`
-        * [Hiding answer](#hiding-answer-h): `h`
-        * [Quitting review mode](#quitting-review-mode-q): `q`
+        * [Showing next card](#showing-next-card--n): `n`
+        * [Showing previous card](#showing-previous-card--p): `p`
+        * [Showing answer](#showing-answer--a): `a`
+        * [Hiding answer](#hiding-answer--h): `h`
+        * [Review flashcard as correct](#review-flashcard-as-correct--t): `t`
+        * [Review flashcard as wrong](#review-flashcard-as-wrong--f): `f` 
+        * [Quitting review mode](#quitting-review-mode--q): `q`
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
     * [Main mode command](#main-mode-command)
@@ -218,7 +221,7 @@ Examples:
 
 ### Filtering cards: `filter`
 
-Filter flashcards based on field(s) (e.g. question, category, priority, tag) input.
+Filter flashcards based on field(s) (e.g. question, category, priority, and tag) input.
 
 Format: `filter [q/QUESTION] [c/CATEGORY] [p/PRIORITY] [t/TAG]`
 
@@ -296,11 +299,42 @@ Examples:
 `sort question -a` will sort the flashcards by ascending question. <br><br>
 `sort question -d` will sort the flashcards by descending question. <br><br>
 
+![UiBeforeSort](./images/UiBeforeSort.png)
+
+`sort priority -a`
+
+![UiAfterSort](./images/UiAfterSort.png)
+
 ### Entering review mode: `review`
 Reviews the current list of flashcards.<br>
 When the user enters `review` in the command box, this new window will appear. <br><br>
 ![UiReview](./images/UiReviewModeWindow.png) <br><br>
 Format: `review`
+
+### Viewing statistics of cards: `stats`
+Shows the statistics of an individual flashcard, or the statistics of all flashcards.
+
+The following statistics are displayed:
+* Number of times the user reviewed the flashcard(s).
+* Number of times the user reviewed the flashcard(s) and got the correct answers.
+* The correct rate of the flashcard(s). i.e The number of correct answer reviews over the total number of reviews.
+* The wrong rate of the flashcard(s). i.e The number of wrong answer reviews over the total number of reviews.
+
+Format: `stats INDEX` <br>
+Note: If a valid INDEX is provided, the statistics of the flashcard identified by the provided index is shown.
+If the INDEX field is omitted, Flashback will display overall statistics for all flashcards in the current list.
+
+Examples:
+
+When user enters `stats 2` in the command box and presses `enter`, the statistics of the <br>
+2nd flashcard in the list is displayed.
+
+![UiStats](./images/UiStatsIndex.png) <br><br>
+
+When user enters `stats` in the command box and presses `enter`, the overall statistics of <br>
+the current flashcard list is displayed.
+
+![UiStats](./images/UiStatsNoIndex.png) <br><br>
 
 ### Exiting the program : `exit`
 
@@ -348,6 +382,18 @@ Format: `a`
 Hides the answer of the current flashcard. <br>
 Format: `h`
 
+### Review flashcard as correct : `t`
+
+Marks that the user got the answer correct for the current flashcard. <br>
+Note: This command can only be executed if the answer of the current flash card is shown. <br>
+Format: `t`
+
+### Review flashcard as wrong : `f`
+
+Marks that the user got the answer wrong for the current flashcard. <br>
+Note: This command can only be executed if the answer of the current flash card is shown. <br>
+Format: `f`
+
 ### Quitting review mode : `q`
 
 Quits the review mode and goes back to the main window. <br>
@@ -381,6 +427,7 @@ Action | Format, Examples
 **Redo** | `redo`
 **Sort** | `sort OPTION ORDER` <br> e.g, `sort priority -a`
 **Review** | `review`
+**Statistics** | `stats [INDEX]` <br> e.g, `stats 4` `stats`
 **List** | `list`
 **Help** | `help`
 **Exit** | `exit`
@@ -392,5 +439,7 @@ Action          | Format
 **Next card**   | `n`
 **Previous card** | `p`
 **Show answer** | `a`
+**Review card as correct** | `t`
+**Review card as wrong** | `f`
 **Hide answer** | `h`
 **Quit review** | `q`

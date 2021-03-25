@@ -2,9 +2,32 @@
 layout: page
 title: Developer Guide
 ---
+## Table of Contents
 
-* Appendix: Requirements
-    * Use cases
+* [Setting up, getting started](#setting-up-getting-started)
+* [Design](#design)
+    * [Architecture](#architecture)
+    * [UI component](#ui-component)
+    * [Logic component](#logic-component)
+    * [Model component](#model-component)
+    * [Storage component](#storage-component)
+* [Implementation](#implementation)
+    * [Sort feature](#implemented-sort-feature)
+    * [Filter feature](#implemented-filter-feature)
+* [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+* [Appendix: Requirements](#appendix-requirements)
+    * [Product scope](#product-scope)
+    * [User stories](#user-stories)
+    * [Use cases](#use-cases)
+    * [Non-Functional Requirements](#non-functional-requirements)
+    * [Glossary](#glossary)
+* [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+    * [Launch and shutdown](#launch-and-shutdown)
+    * [Finding flashcards](#finding-flashcards)
+    * [Filtering flashcards](#filtering-flashcards)
+* [Appendix: Effort](#appendix-effort)
+    * [Find feature](#find-feature)
+    * [Filter feature](#filter-feature)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -33,8 +56,8 @@ diagrams.
 </div>
 
 **`Main`** has two classes
-called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java)
-and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It
+called [`Main`](https://github.com/AY2021S2-CS2103T-T13-3/tp/blob/master/src/main/java/seedu/address/Main.java)
+and [`MainApp`](https://github.com/AY2021S2-CS2103T-T13-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It
 is responsible for,
 
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
@@ -65,7 +88,7 @@ exposes its functionality using the `LogicManager.java` class which implements t
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
 the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+![Architecture Sequence Diagram](images/ArchitectureSequenceDiagram.png)
 
 The sections below give more details of each component.
 
@@ -74,16 +97,18 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S2-CS2103T-T13-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`
-, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `FlashcardListPanel`
+, `StatusBarFooter` etc and a `ReviewMode` that is made up of parts `CommandBox`, `ResultDisplay` and `FlashcardViewCard` . All these, including the `MainWindow` and `ReviewMode`, inherit from the abstract `UiPart` class.
+
+The `ReviewMode` can be accessed from `MainWindow` through `review` command. The `MainWindow` can be accessed from `ReviewMode` through `q` command.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are
 in the `src/main/resources/view` folder. For example, the layout of
-the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
+the [`MainWindow`](https://github.com/AY2021S2-CS2103T-T13-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
 is specified
-in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-T13-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -95,11 +120,11 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S2-CS2103T-T13-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `FlashBackParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a new card).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying
    help to the user.
@@ -116,37 +141,33 @@ call.
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**
-API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-The `Model`,
-
+The `Model`
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that
+* stores the FlashBack data.
+* exposes an unmodifiable `ObservableList<Flashcard>` that can be 'observed' e.g. the UI can be bound to this list so that
   the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
+<div markdown="span" class="alert-alert-info">
+:information_source: Due to plantUML automatic placement of elements, some multiplicities are in the wrong position.
 </div>
 
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**
-API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-T13-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the FlashBack data in json format and read it back.
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.flashback.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -155,8 +176,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 ### \[Implemented\] Sort feature
-The sort mechanism is managed by `ModelManager`. As `Flashcard` contains
-`Question` and `Priority`, these are utilised along with the enum `SortOptions` which
+The sort mechanism is managed by `ModelManager`. As `Flashcard` contains `Question` and `Priority`, these are utilised along with the enum `SortOptions` which
 comprises comparators needed for respective sort options.
 
 It implements the following operations:
@@ -165,8 +185,103 @@ It implements the following operations:
 according to an option and shows the updated list.
 * `SortOptions#getOption(String option)` - Returns the enum according to the specified option
 
-The following diagram illustrates how the sort function operates:
+Given below is an example usage scenario and how the sort mechanism behaves at each step.
+
+Step 1. User launches the application.
+
+Step 2. User executes `sort priority -d`. This command get parsed and 
+`Model#sortFilteredFlashcardList` is called with the respective comparator, 
+resulting in flashcards sorted by decreasing priority.
+
+<div markdown="span" class="alert-alert-info">
+:information_source: The lifeline of s should end at the X marker, but due to plantUML limitation, it reaches
+the end of the diagram.
+</div>
+
+The following sequence diagram illustrates how the sort function operates:
+
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
+
+
+### \[Implemented\] Review feature
+The review mechanism is managed by `ReviewManager`. It 
+maintains a list of `Flashcard` and `currentIndex` internally. In addition, it involves the UI through `ReviewMode` that handles user inputs and displays flashcards to users.
+ 
+ `ReviewManager` implements the following operations:
+ * `ReviewManager#getFlashcardDeckSize()` - Returns the size of the current list of flashcards.
+ * `ReviewManager#hasNextFlashcard()` - Checks if there is a flashcard after the current flashcard.
+ * `ReviewManager#hasPreviousFlashcard()` - Checks if there is a flashcard before the current flashcard.
+ * `ReviewManager#getCurrentFlashcard()` - Returns the flashcard at `currentIndex` of the flashcard list.
+ * `ReviewManager#updateCardCorrect(Flashcard cardToUpdate)` - Updates the statistics of a specified `cardToUpdate` when user answers the question correctly.
+ * `ReviewManager#updateCardWrong(Flashcard cardToUpdate)` - Updates the statistics of a specified `cardToUpdate` when user answers the question wrongly.
+ 
+ The following class diagram illustrates how classes involved in this feature interact with each other: <br><br>
+ ![ReviewClassDiagram](images/ReviewClassDiagram.png) <br><br>
+Given below is an example usage scenario and how the review mechanism behaves at each step:
+
+Step 1: The user launches the application.
+
+Step 2: The user enters `review` command in `CommandBox`. After the logic executes the command, it returns a `CommandResult` to the `MainWindow` where the `CommandResult#isReviewMode()` method returns true. After that, a `MainWindow#enterReviewMode()` method is called and user enters `ReviewMode`.
+
+Step 3: Depending on the command that user enters in the `CommandBox` of `ReviewMode`, different methods in `ReviewManager` are called to handle user inputs.
+
+Step 4: If the user enters `q` in the `CommandBox`, `ReviewMode#handleQuitCommand` method is called, and the user returns back to the `MainWindow`.
+
+The following sequence diagram illustrates how the user enter `ReviewMode`: <br>
+![ReviewSequenceDiagram](images/ReviewSequenceDiagram.png) <br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CommandResult` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+#### Design consideration:
+
+##### Aspect: How user interacts in Review Mode.
+
+* **Alternative 1 (current choice):** interacts via `CommandBox` similar to the `MainWindow`
+    * Pros: Easy to implement.
+    * Cons: User experience might not be good since user needs to type many commands.
+
+* **Alternative 2:** interacts via keyboard
+    * Pros: Better user experience since user can move to next/previous flashcard a lot faster.
+    * Cons: Harder to implement.
+
+### \[Implemented\] Statistics feature
+
+The statistics feature is supported by `LogicManager` and `ModelManager`.
+
+To show flashcard statistics, `LogicManager` first calls `FlashBackParser#parseCommand` to parse through user input.
+If user input is recognized as a command to display statistics, `StatsCommandParser#parse` is invoked to create
+a new `StatsCommand` object.
+
+The `StatsCommand` is then executed:
+* The current flashcard list is obtained from the `ModelManager`.
+
+
+* If a valid flashcard index is included in the user input, the flashcard
+identified by the provided index is retrieved from the current flashcard list, and the statistics associated with the card is obtained by
+`Flashcard#getStats()`.
+
+
+* If the flashcard index is omitted from the user input. A new `Statistics` object is created, representing the
+overall statistics of the current flashcard list.
+
+
+A `CommandResult` is created with the generated flashcard `Statistics`. It is then passed to `MainWindow`, where
+the UI is updated to display the retrieved statistics.
+
+Example: `stats 3` is entered by the user
+
+It implements the following operations:
+
+* `StatsCommandParser.parse(String command)` - Parses through user input and returns an executable `StatsCommand`.
+* `ModelManager#getFilteredFlashcardList()` - Retrieves the current flashcard list.
+* `Flashcard#getStats()` - Retrieves statistics of the flashcard at index 3 of the list.
+
+The following sequence diagram illustrates this scenario.
+
+![StatsSequenceDiagram](images/StatsSequenceDiagram.png)
+ℹ️ **Note:** The lifeline for `StatsCommandParser` should end at the destroy marker (X) 
+but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 ### \[Implemented\] Undo/redo feature
 The proposed undo/redo mechanism is facilitated by `VersionedFlashBack`. It extends `FlashBack` with an undo/redo
@@ -246,9 +361,72 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
 
-### \[Proposed\] Data archiving
+#### Design consideration:
 
-_{Explain here how the data archiving feature will be implemented}_
+##### Aspect: How undo & redo executes
+
+* **Alternative 1 (current choice):** Saves the entire address book.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
+
+* **Alternative 2:** Individual command knows how to undo/redo by itself.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
+
+### \[Implemented\] Filter feature
+
+The implemented filter mechanism is facilitated by `LogicManager` and `ModelManager`. The user inputs the filter 
+command with specified fields (e.g. question, category, priority, and tag), the `LogicManager` receives and parse this 
+input, and the `ModelManager` updates FlashBack with a list of filtered flashcards matching all specified fields.
+
+The filter command is executed by parsing the user input through `FlashBackParser#parseCommand(String userInput)`, which 
+continues to parse the user input through `FilterCommandParser#parse(String args)`. This creates a new `FilterCommand` 
+object that takes in a `FlashcardFilterPredicate` object.
+
+The `FlashcardFilterPredicate` class implements `Predicate<Flashcard>` and takes in:
+* `List<String> questions` — List of question keywords to filter by.
+* `List<String> categories` — List of category keywords to filter by.
+* `List<String> priorities` — List of priority keywords to filter by.
+* `List<String> tags` — List of tag keywords to filter by.
+  
+The filter feature implements the following operations:
+* `FilterCommand#execute(Model model)` — executes filter function to update `Model` to display filtered flashcards.
+* `FlashcardFilterPredicate#test(Flashcard flashcard)` — Compares the flashcard fields with user specified filter fields
+  and returns true only if the flashcard fields matches all the user specified filter fields.
+* `ModelManager#updateFilteredFlashcardList(Predicate<Flashcard> predicate)` — Updates the predicate of 
+  `FilteredList<Flashcard> filteredFlashcards` field in `ModelManager`.
+  
+Given below is an example usage scenario and how the filter mechanism behaves at each step.
+
+Step 1. The user launches the application that contains existing flashcards.
+
+Step 2. The user executes `filter q/formula p/mid` command to filter and display all flashcards that have both `formula`
+contained in its question field and `mid` in its priority field. The `LogicManager#execute(String commandText)` is
+called, which then calls the `FlashBackParser#parseCommand(String userInput)` to parse the user input. This would result
+in calling `FilterCommandParser#parse(String args)` to further parse the user input.
+
+Step 3. `FilterCommandParser#parse(String args)` parse the user input, creating four lists of keywords, one for
+each specified field. A `FlashcardFilterPredicate` object would be created using these four lists, and this 
+`FlashcardFilterPredicate` would be used to create and return a `FilterCommand` object.
+
+Step 4. After returning the `FilterCommand` object to the `LogicManager`, `FilterCommand#execute(Model model)` is called.
+
+Step 5. `FilterCommand#execute(Model model)` then calls 
+`ModelManager#updateFilteredFlashcardList(Predicate<Flashcard> predicate)` which will update the predicate of 
+`FilteredList<Flashcard> filteredFlashcards` field in `ModelManager`.
+
+Step 6. FlashBack is then updated with the new filtered flashcard list.
+
+The following sequence diagram shows how the filter operation works:
+![FilterSequenceDiagram](images/FilterSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The lifeline for `FilterCommandParser` and `FilterCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes the filter command:
+![FilterActivityDiagram](images/FilterActivityDiagram.png)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -293,16 +471,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | student                                    | view the question and answer of a specific card | check if I remember the concepts correctly
 | `* * * ` | careless user | modify the details of a flash card | avoid having to delete and add a new card when I wish to update card information
 | `* *` | multi-discipline student | put my notes under different tags and categories | easily organize them
-| `* *`     | angry student   | undo my actions| my emotion will not cloud my judgements
+| `* *`     | angry student   | undo/redo my actions| my emotion will not cloud my judgements
 | `* *` | student | review my own performance after each study session | know what to improve on
+| `* *` | student | sort the cards based on priority | know which cards I should focus on
 | `* *` | long-time user | find what I need easily | search through the list of decks without doing it manually
+| `* *` | student studying many modules | Filter cards according to subjects | it is easier to learn|
 | `*`   | student | export a part of my materials | share it with others
 | `*`   | experienced user | define my own aliases for commands | use them faster
 | `*`   | chemistry/biology Student | use subscripts | see the chemical formula easier
 | `*`   | careless student | archive my notes | easily restore them
 | `*`   | student | look at the statistics | focus on topics that I am not good at
-
-*{More to be added}*
 
 ### Use cases
 
@@ -393,12 +571,12 @@ otherwise) <br /><br />
 
       Use case resumes at step 1.
 
-**Use case: UC05 - Find cards by search criteria**
+**Use case: UC05 - Find flashcards**
 
 **MSS**
 
-1. User requests to find cards by criteria with given keywords.
-1. FlashBack shows a list of flashcards matching given keywords according to search criteria.
+1. User requests to find flashcards with given keywords.
+1. FlashBack shows a list of flashcards matching given keywords.
 
    Use case ends.
 
@@ -408,10 +586,15 @@ otherwise) <br /><br />
 
   Use case ends.
 
-* 1b. The search criteria is invalid or empty keywords.
+* 1b. The input format is invalid.
     * 1b1. FlashBack shows an error message.
 
-      Use case ends
+      Use case ends.
+    
+* 1c. The keywords are empty.
+    * 1c1. FlashBack shows an error message.
+    
+      Use case ends.
 
 **Use case: UC06 - List all flash cards**
 
@@ -426,12 +609,85 @@ otherwise) <br /><br />
 
 **MSS**
 
-1. User requests to delete a flash card from the list.
+1. User requests to delete a flashcard from the list.
 1. FlashBack deletes the specified flashcard.
 1. User requests to undo delete command.
 1. FlashBack reverts to its previous state before delete command.
 
    Use case ends.
+   
+**Use case: UC08 - Enter review mode**
+
+**MSS**
+1. User requests to review flashcard.
+1. FlashBack enters review mode.
+1. User requests to show/hide answer, go to next/previous flashcard.
+1. FlashBack handles user input.
+
+Step 3 and 4 are repeated until `q` command is entered.<br>
+Use case ends.
+
+**Extension**
+* 1a. The list is empty.<br>
+Use case ends.
+* 3a. User enters invalid command.
+    * 3a1. FlashBack shows an error message <br>
+    Use case resumes at step 3
+* 3b. User enters `h` command when the answer is currently hidden.
+    * 3b1. FlashBack shows an error message <br>
+    Use case resumes at step 3
+* 3c. User enters `a` command when the answer is currently shown.
+    * 3c1. FlashBack shows an error message <br>
+    Use case resumes at step 3
+* 3d. User enters `t` or `f` command when the answer is currently hidden.
+    * 3d1. FlashBack shows an error message <br>
+    Use case resumes at step 3
+    
+**Use case: UC09 - Display flashcard statistics**
+
+**MSS**
+
+1. FlashBack shows a list of flash cards.
+1. User requests to display statistics of a flash card.
+1. FlashBack displays the statistics of the requested flash card.
+
+    Use case ends
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 2a. The given index is invalid.
+    * 2a1. FlashBack shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC08 - Filter flashcards**
+
+**MSS**
+
+1. User requests to filter flashcards according to keywords of specified fields.
+1. FlashBack shows a list of flashcards matching keywords of specified fields.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+  
+  Use case ends.
+  
+* 1b. The input format is invalid.
+  * 1b1. FlashBack shows an error message.
+    
+    Use case ends.
+    
+* 1c. The keywords of specified fields are empty.
+  * 1c1. FlashBack shows an error message.
+    
+    Use case ends.
 
 **Use case: UC08 - Redo an undoable command**
 
@@ -455,7 +711,92 @@ otherwise) <br /><br />
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Flash card**: A card that contains study materials with its topic name
+* **Flashcard**: A card that contains study materials with its topic name
 * **Undoable Command**: A command that modifies the content of FlashBack
 
 --------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Instructions for manual testing**
+
+Given below are instructions to test the app manually.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** 
+These instructions only provide a starting point for testers to work on;
+testers are expected to do more *exploratory* testing.
+
+</div>
+
+### Launch and shutdown
+
+1. Initial launch
+
+    1. Download the jar file and copy into an empty folder
+
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+
+1. Saving window preferences
+
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+
+    1. Re-launch the app by double-clicking the jar file.<br>
+       Expected: The most recent window size and location is retained.
+
+1. Exiting the application
+
+    1. Prerequisites: The application is already launched.
+    
+    1. Test case: `exit`<br>
+       Expected: The application exits and window closes.
+
+### Finding flashcards
+
+1. Finding flashcards in FlashBack
+
+    1. Prerequisites: There must be at least one flashcard in the list.
+       
+    1. Test case: `find`<br>
+       Expected: The list will not be updated, and an invalid command format error will be displayed in the result display.
+       
+    1. Test case: `find equa`<br>
+       Expected: The list will be updated, listing the flashcards that have `equa` contained any of its fields (e.g. question, answer, category, priority, tags). The result display will state the number of flashcards listed.
+       
+    1. Test case: `find newton random`<br>
+       Expected: The list will be updated, listing the flashcards that have either `newton` or `random` contained in any of its fields. The result display will state the number of flashcards listed.
+       
+### Filtering flashcards
+
+1. Filtering flashcards in FlashBack
+
+    1. Prerequisites: There must be at least one flashcard in the list.
+    
+    1. Test case: `filter`<br>
+       Expected: The list will not be updated, and an invalid command format error will be displayed in the result display.
+       
+    1. Test case: `filter q/newton`<br>
+       Expected: The list will be updated, listing the flashcards that have `newton` contained in its question. The result display will state the number of flashcards listed.
+       
+    1. Test case: `filter q/new p/mid t/formula`<br>
+       Expected: The list will be updated, listing the flashcards that have `new` contained in its question, `mid` contained in its priority, and `formula` contained in any of its tags. The result display will state the number of flashcards listed.
+       
+    1. Test case: `filter c/math physics p/mid`<br>
+       Expected: The list will be updated, listing the flashcards that have either `math` or `physics` contained in its question, and `mid` containted in its priority. The result display will state the number of flashcards listed.
+       
+------------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
+
+### Find feature
+
+* Challenge was to use multiple keywords provided by user, look through every field of the flashcard, and displaying any flashcards that have any fields (e.g. question, answer, category, priority, tags) matching any of the provided keywords.
+* AB3 have a `find` feature, but it was only able to search by names and did not have the ability to search through all fields.
+* Enhanced the feature to allow users to search for flashcards using multiple keywords matching any of its fields.
+* With reference from the `find` feature available in AB3, learnt and implemented the feature to search through all fields.
+
+### Filter feature
+
+* Challenge was to parse user input with multiple specified fields (e.g. question, category, priority, tags) regardless of order with multiple keywords, and only displaying flashcards that matched the keywords of all specified fields.
+* AB3 did not have a `filter` feature.
+* Implemented the `filter` feature to allow users to filter flashcards matching the specified fields with multiple keywords.
+* With little reference from the `find` and `add` feature available in AB3, learnt and implemented the feature to match all specified fields.
