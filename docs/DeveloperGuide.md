@@ -266,19 +266,19 @@ Additionally, the user should also be able to store remarks for that contact.
 
 #### Implementation
 * The remark is a new class that stores a String containing the specific remark
-* Each `Person` class contains fields `Name`, `Address`, `Phone`, `Birthday`, `Email` and `Remark`
-    * To allow for optional fields `Address`, `Phone`, `Birthday`, `Email` and `Remark`, each class has an attribute
+* Each `Person` class contains fields `Name`, `Address`, `Phone`, `Birthday`, `Email` , `Tag` and `Remark`
+    * To allow for optional fields `Address`, `Phone`, `Birthday`, `Email`, `Tag` and `Remark`, each class has an attribute
   `isEmpty` that indicates whether the field in the person is empty.
     * The empty fields will then be stored as an empty string `""` in the `addressbook.json` folder and be read as an
   empty field accordingly.
-* Syntax for adding Person: `add -n NAME [-a ADDRESS] [-p PHONE] [-b BIRTHDAY] [-e EMAIL] [-r REMARK]`
+* Syntax for adding Person: `add -n NAME [-a ADDRESS] [-p PHONE] [-b BIRTHDAY] [-e EMAIL] [-t TAG]... [-r REMARK]` 
 
 Given below is an example usage scenario and how the `add` mechanism behaves at each step.
 
-1. The user executes `add -n James -r Loves sweets` command to add a person with name `James` and remark `Loves
-   sweets`, represented by `execute("add -n James -r Loves sweets"")`. Note that fields `Address`, `Phone`,
-   `Birthday` and `Email` are not specified and hence are empty fields.
-2. `LogicManager` uses the `AddressBookParser` class to parse the user command, represented by `parseCommand("add -n
+1. The user executes `add -n James -r Loves sweets` command to add a person with name `James` and remark `Loves 
+   sweets`, represented by `execute("add -n James -r Loves sweets"")`. Note that fields `Address`, `Phone`, 
+   `Birthday`, `Tag` and `Email` are not specified and hence are empty fields.
+2. `LogicManager` uses the `AddressBookParser` class to parse the user command, represented by `parseCommand("add -n 
    James -r Loves sweets")`
 
 Below is the partial sequence diagram for steps 1 and 2.
@@ -309,6 +309,45 @@ James -r Loves sweets")` API call.
 
 ![Interactions Inside the Logic Component for the `add -n James -r Loves sweets` Command](images/AddSequenceDiagram.png)
 
+### [Feature] Editing Persons
+
+Information about a person can change overtime, and user can edit contacts without having to delete and add a new replacement.
+
+Edit allows modification of any target field and thus requires just one input parameter to work. 
+The updated contact is then displayed in-place of the old one.
+
+Coupled with flag `--remove`, edit can remove all specified tags from all contacts in displayed list.
+
+#### Implementation
+
+* Syntax for editing individual Persons:
+  `edit INDEX [-n NAME] [-a ADDRESS] [-p PHONE] [-b BIRTHDAY] [-e EMAIL] [-t TAG]... [-r REMARK]`
+  
+* Syntax for removing tags for all Persons in displayed list: 
+  `edit --remove -t TAG [-t TAG]...`
+  
+Given below is an example usage scenario and how the `edit` mechanism behaves.
+
+1. The user executes `edit --remove -t friends -t pilot` command to edit all persons with `friends` and/ or `pilot` tags by removing it from their list of tags.
+
+2. `LogicManager` calls `parseCommand("edit --remove -t friends -t pilot")` of `AddressBookParser` to parse this user command.
+
+3. `AddressBookParser` recognises the command word `edit` and creates an `EditCommandParser`.
+
+4. `AddressBookParser` calls `parse(--remove -t friends -t pilot)` of `EditCommandParser`.
+
+5. `EditCommandParser` detects flag `--remove` and calls `parseTags(argMultimap.getAllValues(PREFIX_TAG)` of `ParserUtil` 
+   to processes the input tags into a `Set<Tag>`.
+   
+6. `EditCommandParser` then passes this `Set<Tag>` as input to create an `EditToRemoveTagCommand` which is returned to the `LogicManager`.
+
+7. `LogicManager` executes the `EditToRemoveTagCommand` by calling `execute(model)`.
+
+8. `EditToRemoveTagCommand` loops through the set of tags and persons in displayed list to remove the `friends` and `pilot` tags from each person in the displayed list.
+
+9. `EditToRemoveTagCommand` creates a `CommandResult` with the success output message and returns it to `LogicManager`.
+
+
 ### [Feature] Marking `Event` as Done
 
 We want to allow `Event` to be marked as done. So that the user can easily keep track of what events have been completed,
@@ -337,11 +376,11 @@ Given below is an example usage scenario and how `edone` will work.
 
 6. `EDoneCommandParser` creates an `EDoneCommand(List<Index>)` and returns it to `LogicManager`.
 
-7. `LogicManger` excutes the `EDoneCommand`.
+7. `LogicManger` executes the `EDoneCommand`.
 
 8. `EDoneCommand` loops through the list of index, and set the events, at the given index, as a done event.
 
-9. `EDoneCommand` creates an `CommandResult` containing the output message and returns it to `LogicManager`.
+9. `EDoneCommand` creates a `CommandResult` containing the output message and returns it to `LogicManager`.
 
 Given below is the full Sequence Diagram for interactions for the `execute("edone 1 2 3")` API call.
 
