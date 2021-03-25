@@ -11,7 +11,7 @@ if () then ([else])
     :Find command;
     :Update enpoint list;
 else ([has prefix])
-    :creates predicate related 
+    :creates predicate related
     to that prefix/s;
     :Find command;
     :Update enpoint list;
