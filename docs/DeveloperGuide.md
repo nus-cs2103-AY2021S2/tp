@@ -153,6 +153,15 @@ Below is an example activity diagram for a valid add command from the user, it i
 
 ![AddDeleteActivityDiagram](images/AddDeleteActivityDiagram.png)
 
+### Edit feature
+Pawbook allows the user to `edit` an entity. For instance, the user may want to `edit`  some features of an owner. By entering the edit command with the correct identification number of the owner to be edited, the specified features of the owner will be modified accordingly.
+
+In order to generate the respective commands, the raw input needs to be parsed first. It is required that the user provide a second keyword right after the `edit` command keyword to indicate the correct entity type to be edited. Using this information, the arguments can be forwarded to the correct parser from within `PawbookParser` to be further processed.
+
+Below is an example activitiy diagram for a valid view command from the user.
+
+![EditActivityDiagram](images/EditActivityDiagram.png)
+
 ### View feature 
 Pawbook allows the user to `view` an entity and all its related entities. For instance, the user may want to `view` all the dogs of one particular owner or all the dogs enrolled in a program. By entering the correct view command with the correct identification number, the entire list will be generated. 
 
@@ -166,6 +175,7 @@ This list is subsequently passed on to the `RelatedEntityPredicate` that will la
 
 
 Below is an example activitiy diagram for a valid view command from the user. 
+
 ![ViewActivityDiagram](images/ViewActivityDiagram.png)
 
 ### Drop feature
