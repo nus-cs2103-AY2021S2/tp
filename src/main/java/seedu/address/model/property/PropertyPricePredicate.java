@@ -1,14 +1,18 @@
 package seedu.address.model.property;
 
-import java.text.NumberFormat;
-import java.text.ParseException;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.util.Arrays;
 import java.util.function.Predicate;
+
+import seedu.address.model.property.client.AskingPrice;
 
 /**
  * Tests that a {@code Property}'s {@code Client} {@code AskingPrice} is within the range given.
  */
 public class PropertyPricePredicate implements Predicate<Property> {
-    private final int price;
+    private final int priceInt;
+    private final int priceDecimal;
     private final boolean isLess;
 
     /**
@@ -19,8 +23,39 @@ public class PropertyPricePredicate implements Predicate<Property> {
      *               that is equals to the given price will return true
      */
     public PropertyPricePredicate(String price, boolean isLess) {
-        this.price = Integer.parseInt(price);
+        checkArgument(AskingPrice.isValidAskingPrice(price));
+        int[] priceParts = parseCurrency(price);
+        this.priceInt = priceParts[0];
+        this.priceDecimal = priceParts[1];
         this.isLess = isLess;
+    }
+
+    private int parseIntPart(String firstPart) {
+        if (firstPart.contains("$")) {
+            firstPart = firstPart.substring(1);
+        }
+        if (firstPart.contains(",")) {
+            firstPart = Arrays.stream(firstPart.split(","))
+                              .reduce((a, b) -> a + b)
+                              .get();
+        }
+        return Integer.parseInt(firstPart);
+    }
+
+    private int parseCents(String secondPart) {
+        return Integer.parseInt(secondPart);
+    }
+
+    private int[] parseCurrency(String price) {
+        int[] priceParts = new int[2];
+        if (price.contains(".")) {
+            String[] priceComponents = price.split(".");
+            priceParts[0] = parseIntPart(priceComponents[0]);
+            priceParts[1] = parseCents(priceComponents[1]);
+        } else {
+            priceParts[0] = parseIntPart(price);
+        }
+        return priceParts;
     }
 
     @Override
@@ -28,18 +63,22 @@ public class PropertyPricePredicate implements Predicate<Property> {
         if (property.getAskingPrice() == null) {
             return false;
         }
-        NumberFormat format = NumberFormat.getCurrencyInstance();
-        int otherPrice;
+        // NumberFormat format = NumberFormat.getCurrencyInstance();
+        int[] otherPrice;
         try {
-            otherPrice = format.parse(property.getAskingPrice().askingPrice).intValue();
-        } catch (ParseException e) {
+            otherPrice = parseCurrency(property.getAskingPrice().askingPrice);
+        } catch (NumberFormatException e) {
             return false;
         }
 
         if (isLess) {
-            return otherPrice <= this.price;
+            return otherPrice[0] < this.priceInt
+                    || (otherPrice[0] == this.priceInt
+                    && otherPrice[1] <= this.priceDecimal);
         } else {
-            return otherPrice >= this.price;
+            return otherPrice[0] > this.priceInt
+                    || (otherPrice[0] == this.priceInt
+                    && otherPrice[1] >= this.priceDecimal);
         }
     }
 
@@ -47,7 +86,8 @@ public class PropertyPricePredicate implements Predicate<Property> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof PropertyPricePredicate // instanceof handles nulls
-                && price == ((PropertyPricePredicate) other).price
+                && priceDecimal == ((PropertyPricePredicate) other).priceDecimal
+                && priceInt == ((PropertyPricePredicate) other).priceInt
                 && isLess == ((PropertyPricePredicate) other).isLess); // state check
     }
 

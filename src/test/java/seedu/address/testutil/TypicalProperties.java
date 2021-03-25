@@ -26,6 +26,12 @@ public class TypicalProperties {
             .withPostal("123456").withDeadline(LocalDate.parse("2021-07-31"))
             .withTags("99 year leasehold").build();
 
+    public static final Property JURONG = new PropertyBuilder().withName("Jurong")
+            .withType("Hdb").withAddress("Jurong Ave 1, #01-01")
+            .withPostal("640111").withDeadline(LocalDate.parse("2021-08-31"))
+            .withTags("3 bedrooms", "100 square metres")
+            .withClient(TypicalClients.CLIENT_BOB).build(); //asking price 2000000
+
     private TypicalProperties() {} // prevents instantiation
 
     /**
@@ -36,6 +42,18 @@ public class TypicalProperties {
         for (Property property : getTypicalProperties()) {
             propertyBook.addProperty(property);
         }
+        return propertyBook;
+    }
+
+    /**
+     * Returns a {@code PropertyBook} with all the typical properties and client.
+     */
+    public static PropertyBook getTypicalPropertyBookWithClient() {
+        PropertyBook propertyBook = new PropertyBook();
+        for (Property property : getTypicalProperties()) {
+            propertyBook.addProperty(property);
+        }
+        propertyBook.addProperty(JURONG);
         return propertyBook;
     }
 
