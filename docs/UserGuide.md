@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-DocBob is a **desktop app for managing patient's information, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Bob can get your patient's medical information faster than any other patient's information management app in the market. 
+DocBob is a **desktop app for managing patient's information, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Bob can get your patient's medical information faster than any other patient's information management app in the market.
 
 * Table of Contents
 {:toc}
@@ -68,7 +68,7 @@ Format: `help`
 
 Example: `help`
 
-Output: 
+Output:
 
 `1) add n/Name p/phoneNumber a/Age l/Location`<br>
 `2) delete Name`<br>
@@ -118,7 +118,7 @@ Format: `list`
 
 Example: `list`
 
-Output: 
+Output:
 
 `1) Shrek`<br>
 `2) Fiona`<br>
