@@ -131,8 +131,6 @@ Examples:
 * `findreader alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'findreader alex david'](images/findAlexDavidResult.png)
 
-## The contents from here onwards are to be removed by the last editor
-
 ### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
@@ -185,7 +183,6 @@ Examples:
 Tip:
 * `listreader` followed by `deletereader 2` deletes the 2nd reader in the displayed reader list.
 
-
 ### Borrowing a book : `borrow`
 
 Records a borrowing activity.
@@ -233,10 +230,6 @@ SmartLib data are saved as a JSON file `[JAR file location]/data/smartlib.json`.
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, SmartLib will discard all data and start with an empty data file at the next run.
 </div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
