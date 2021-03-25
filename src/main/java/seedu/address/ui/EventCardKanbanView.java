@@ -85,7 +85,7 @@ public class EventCardKanbanView extends UiPart<Region> {
     private void setDescription() {
         description.setText(event.getDescription().description);
         description.setWrapText(true);
-        description.setPadding(new Insets(3,0,3,0));
+        description.setPadding(new Insets(3, 0, 3, 0));
     }
 
     @Override
