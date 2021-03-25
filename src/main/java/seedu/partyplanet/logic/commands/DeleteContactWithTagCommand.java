@@ -16,22 +16,24 @@ import seedu.partyplanet.model.tag.Tag;
  */
 public class DeleteContactWithTagCommand extends DeleteCommand {
 
-    public static final String MESSAGE_PERSON_NOT_REMOVED =
+    public static final String MESSAGE_PERSON_NOT_REMOVED_ANY =
             "These tags do not exist in persons listed. No person removed.";
+    public static final String MESSAGE_PERSON_NOT_REMOVED_ALL =
+            "These combination of tags do not exist in persons listed. No person removed.";
 
     private final Set<Tag> targetTags;
 
     private final List<Person> deletedPersons;
-    private final boolean isExact;
+    private final boolean isAny;
 
     /**
      * Creates an DeleteContactWithTagCommand to delete the {@code Person} with specified {@code Tag}
      */
-    public DeleteContactWithTagCommand(Set<Tag> targetTags, boolean isExact) {
+    public DeleteContactWithTagCommand(Set<Tag> targetTags, boolean isAny) {
         assert targetTags.size() > 0;
         this.targetTags = targetTags;
         deletedPersons = new ArrayList<>();
-        this.isExact = isExact;
+        this.isAny = isAny;
     }
 
     @Override
@@ -40,15 +42,15 @@ public class DeleteContactWithTagCommand extends DeleteCommand {
 
         List<Person> personList = model.getFilteredPersonList();
 
-        if (isExact) {
+        if (isAny) {
             for (Person person : personList) {
-                if (containsExactTags(person)) {
+                if (containsAnyTags(person)) {
                     deletedPersons.add(person);
                 }
             }
         } else {
             for (Person person : personList) {
-                if (containsAnyTags(person)) {
+                if (containsAllTags(person)) {
                     deletedPersons.add(person);
                 }
             }
@@ -64,14 +66,14 @@ public class DeleteContactWithTagCommand extends DeleteCommand {
 
             return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, displayPersons()));
         } else {
-            return new CommandResult(MESSAGE_PERSON_NOT_REMOVED);
+            return new CommandResult(isAny ? MESSAGE_PERSON_NOT_REMOVED_ANY : MESSAGE_PERSON_NOT_REMOVED_ALL);
         }
     }
 
     /**
      * Return true only if the person contains all of the tags
      */
-    private boolean containsExactTags(Person person) {
+    private boolean containsAllTags(Person person) {
         for (Tag t : targetTags) {
             if (!person.getTags().contains(t)) {
                 return false;

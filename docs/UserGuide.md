@@ -72,7 +72,7 @@ Format: `clear`
 
 Deletes person(s) from the PartyPlanet's Contact List.
 
-Format: `delete [{INDEX [INDEX]... | [{--any | --exact}] -t TAG [-t TAG]...}]`
+Format: `delete [{INDEX [INDEX]... | [--any] -t TAG [-t TAG]...}]`
 * If no parameters:
   * Deletes all persons in the displayed person list
 * If provided with index(es)
@@ -80,15 +80,14 @@ Format: `delete [{INDEX [INDEX]... | [{--any | --exact}] -t TAG [-t TAG]...}]`
   * All indexes refers to the index number shown in the displayed person list (without sorting).
   * All indexes must be a positive integer valid in the list.
 * If provided with tags
-  * Delete every person who is tagged with (any/exactly all) of the specified tags, in the displayed person list.
-  * If unstated, uses `--any` flag by default.
+  * Delete every person who is tagged with all/any (`--any` specified) of the specified tags, in the displayed person list.
 
 Examples:
 * `delete` deletes all contacts in current filtered list
 * `delete 3` deletes contact at 3rd index.
 * `delete 3 4 5` deletes contacts at 3rd, 4th and 5th index.
-* `delete -t colleague` deletes contact with tag "colleague".
-* `delete --exact -t colleague -t cs2103` deletes contacts with exactly both tag "colleague" and tag "cs2103"
+* `delete -t colleague -t cs2103` deletes contact with both tag "colleague" and "cs2103".
+* `delete --any -t colleague -t cs2103` deletes contacts with either tag "colleague" or tag "cs2103"
 
 ### Editing contacts : `edit`
 
@@ -213,7 +212,7 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add -n NAME [-p PHONE_NUM] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK]` <br> e.g., `add -n James Ho -p 96280000 -t friend -t colleague -r allergic to nuts`
 **Clear** | `clear`
-**Delete** | `delete [{INDEX [INDEX]... | -t TAG [-t TAG]...}]`<br> e.g., `delete` <br> e.g., `delete 3 4 5` <br> e.g., `delete -t colleague`
+**Delete** | `delete [{INDEX [INDEX]... | [--any] -t TAG [-t TAG]...}]`<br> e.g., `delete` <br> e.g., `delete 3 4 5` <br> e.g., `delete -t colleague`
 **Edit** | `edit INDEX [-n NAME] [-p PHONE_NUMBER] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK]`<br> e.g.,`edit 2 -n James Lee -e jameslee@example.com`<br> e.g., `edit 2 -n Betsy Crower -t colleague`
 **Find** | `find [-n NAME] [-t TAG]`<br> e.g., `find -n Bob -t cs2103`
 **List** | `list [-s SORT_ORDER]`<br> e.g., `list`<br> e.g., `list -s asc`
