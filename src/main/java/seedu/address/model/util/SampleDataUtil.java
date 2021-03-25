@@ -2,6 +2,8 @@ package seedu.address.model.util;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -101,7 +103,17 @@ public class SampleDataUtil {
             new Appointment(new Name("Meet Simon"),
                 new Remark("At Queenstown MRT station"),
                 new Date(LocalDate.parse("20-09-2021", DateTimeFormat.INPUT_DATE_FORMAT)),
-                new Time(LocalTime.parse("1200", DateTimeFormat.INPUT_TIME_FORMAT)))
+                new Time(LocalTime.parse("1200", DateTimeFormat.INPUT_TIME_FORMAT))),
+            new Appointment(new Name("Meet Darren"),
+                new Remark("At MBS Starbucks"),
+                new Date(LocalDate.parse("12-10-2021",
+                    DateTimeFormatter.ofPattern("d-M-u").withResolverStyle(ResolverStyle.STRICT))),
+                new Time(LocalTime.parse("1400", DateTimeFormatter.ofPattern("HHmm")))),
+            new Appointment(new Name("Meet Emily"),
+                    new Remark("At MayFair Gardens"),
+                    new Date(LocalDate.parse("15-06-2021",
+                        DateTimeFormatter.ofPattern("d-M-u").withResolverStyle(ResolverStyle.STRICT))),
+                    new Time(LocalTime.parse("1100", DateTimeFormatter.ofPattern("HHmm"))))
         };
     }
 
