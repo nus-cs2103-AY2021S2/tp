@@ -41,7 +41,10 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
-    /** Returns an unmodifiable view of the transformed list of persons */
+    /** Returns an unmodifiable view of the sorted list of persons */
+    ObservableList<Person> getSortedPersonList();
+
+    /** Returns an unmodifiable view of the transformed list of persons after filtering or sorting */
     public ObservableList<Person> getTransformedPersonList();
 
     /**
