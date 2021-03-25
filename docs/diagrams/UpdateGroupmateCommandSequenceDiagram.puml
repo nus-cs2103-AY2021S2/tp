@@ -5,7 +5,7 @@ Actor User as user USER_COLOR
 Participant ":UI" as ui UI_COLOR
 Participant ":Logic" as logic LOGIC_COLOR
 Participant ":Project" as project PROJECT_COLOR
-Participant ":Storage" as storage STORAGE_COLOR
+Participant ":GroupmateList" as groupmatelist GROUPMATELIST_COLOR
 
 user -[USER_COLOR]> ui : "updateG 1 n/Alice"
 activate ui UI_COLOR
@@ -16,19 +16,14 @@ activate logic LOGIC_COLOR
 logic -[LOGIC_COLOR]> project : setGroupmate(targetIndex, editedGroupmate)
 activate project PROJECT_COLOR
 
+project -[LOGIC_COLOR]> groupmatelist : setGroupmate(targetIndex, editedGroupmate)
+activate groupmatelist GROUPMATELIST_COLOR
+
+groupmatelist --[GROUPMATELIST_COLOR]> project
+deactivate groupmatelist
+
 project -[PROJECT_COLOR]-> logic
 deactivate project
-
-logic -[LOGIC_COLOR]> storage : saveProjectsFolder(projectsFolder)
-activate storage STORAGE_COLOR
-
-storage -[STORAGE_COLOR]> storage : Save to file
-activate storage STORAGE_COLOR_T1
-storage --[STORAGE_COLOR]> storage
-deactivate storage
-
-storage --[STORAGE_COLOR]> logic
-deactivate storage
 
 logic --[LOGIC_COLOR]> ui
 deactivate logic

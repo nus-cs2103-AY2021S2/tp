@@ -210,7 +210,7 @@ Step 4. The `Ui` calls `UiCommand#execute(MainWindow)`, which will result in a c
 
 CoLAB has several update commands for projects, events, deadlines, tasks and groupmates. They are used to edit details of entities that have already been created.
 
-The update project command and the update contact command are relatively straight forward. Below is a sequence diagram of how an update projecct command is executed.
+Below is a sequence diagram of how an `updateP` command is executed.
 
 ![UpdateP command sequence diagram](images/UpdateProjectCommandSequenceDiagram.png)
 
@@ -224,7 +224,7 @@ Step 4. Since the `ModelManager` is passed to `UpdateProjectCommand#execute`, it
 
 Step 5. After the project gets updated, `Model#saveProjectsFolder` is called to save the list of projects to files.
 
-The other update commands require some more work because events, deadlines, tasks abd groupmates are sub-components of a project. It is therefore necessary to specify a project in the command so that edits can be applied to that project. Below is a sequence diagram of how an update groupmate command is executed.
+The other update commands require some more work because events, deadlines, tasks and groupmates are sub-components of a project. It is therefore necessary to specify a project in the command so that edits can be applied to that project. Below is a sequence diagram of how an `updateG` (update groupmate) command is executed.
 
 ![UpdateP command sequence diagram](images/UpdateGroupmateCommandSequenceDiagram.png)
 
@@ -250,7 +250,7 @@ Step 5. After the project gets updated, `Model#saveProjectsFolder` is called to 
 
 * **Alternative 2 (implementation used in AB3):** Pass the target `Person` object to be edited to `UniquePersonList#setPerson`.
     * Pros: Lower coupling since `Index` is not a dependency of `UniquePersonList`.
-    * Cons: We must ensure that the implementation of each individual command are correct.
+    * Cons: Extra computation of index from the `Person` object since the index is already provided in the command. Passing the original project around does not provide more information than passing only the index.
 
 * **Alternative 3:** Pass the zero-based index as an integer down to `UniquePersonList#setPerson`.
     * Pros: Will use less memory (only needs memory for an integer instead of a `Person` object or an `Index` object), no reliance on `Index`.

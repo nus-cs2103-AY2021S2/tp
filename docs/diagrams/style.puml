@@ -35,6 +35,13 @@
 
 !define PROJECT_COLOR #595954
 
+!define PROJECTSFOLDER_COLOR #595974
+
+!define UNIQUEPROJECTLIST_COLOR #597974
+
+!define GROUPMATELIST_COLOR #797974
+
+
 skinparam BackgroundColor #FFFFFFF
 
 skinparam Shadowing false
