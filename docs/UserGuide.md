@@ -54,7 +54,7 @@ PartyPlanet can get the planning of your birthday celebrations done faster than 
 Adds a person to PartyPlanet's Contacts List.
 
 Format: `add -n NAME [-p PHONE_NUM] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY]​ [-r REMARK]​`<br>
-* The birthday must be in a valid date format, with or without year, and must be in the past, e.g. 13 Jan
+* The birthday must be in a valid date format, with or without year, and must be in the past if the year is specified, e.g. 13 Jan, 13 Mar 1997
 
 Examples:
 * `add -n James Ho -p 22224444 -e jamesho@example.com -a 123, Clementi Rd, 1234665 -t friend -t colleague -b 1 Jan
