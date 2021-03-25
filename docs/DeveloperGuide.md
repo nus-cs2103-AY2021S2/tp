@@ -4,12 +4,11 @@ title: Developer Guide
 ---
 
 * Table of Contents
-  {:toc}  
+{:toc}  
   
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Introduction**
-
 ### Purpose
 
 The purpose of this document is to cover the multi-level design architecture of Dictionote, so that the 
