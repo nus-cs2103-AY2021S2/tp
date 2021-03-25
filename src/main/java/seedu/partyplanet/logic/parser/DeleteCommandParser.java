@@ -57,10 +57,10 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         }
     }
 
-    private DeleteContactWithTagCommand createDeleteContactWithTagCommand(List<String> tags, boolean isExact)
+    private DeleteContactWithTagCommand createDeleteContactWithTagCommand(List<String> tags, boolean isAny)
             throws ParseException {
         Set<Tag> tagList = ParserUtil.parseTags(tags);
-        return new DeleteContactWithTagCommand(tagList, isExact);
+        return new DeleteContactWithTagCommand(tagList, isAny);
     }
 
     private DeleteContactCommand createDeleteContactCommand(String args) throws ParseException {
