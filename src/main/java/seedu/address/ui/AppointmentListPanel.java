@@ -43,24 +43,9 @@ public class AppointmentListPanel extends UiPart<Region> {
     public AppointmentListPanel(ObservableList<Patient> patientList, ObservableList<Appointment> appointmentList) {
         super(FXML);
 
+        // maintain a hashmap to improve speed of searching
         final Map<UUID, Patient> patientHashMap = new HashMap<>();
         ObservableList<AppointmentDisplay> displayAppointmentList = FXCollections.observableArrayList();
-        // for (int i = 0; i < appointmentList.size(); i++) {
-        //     Appointment appt = appointmentList.get(i);
-        //     Patient patient = patientList
-        //             .stream()
-        //             .filter(
-        //                 pt -> {
-        //                     return pt.getUuid().equals(appt.getPatientUuid());
-        //                 }
-        //             ).filter(pt -> {
-        //                 System.out.println("Found match: " + pt);
-        //                 return true;
-        //             })
-        //             .findFirst()
-        //             .get();
-        //     displayAppointmentList.add(new Appointment(appt.getPatientUuid(), appt.getDoctor(), appt.getTimeslot(), appt.getTags()));
-        // }
 
         for (int i = 0; i < appointmentList.size(); i++) {
             displayAppointmentList.add(mapToDisplayAppointment(patientHashMap, patientList, appointmentList.get(i)));
@@ -70,46 +55,22 @@ public class AppointmentListPanel extends UiPart<Region> {
             // maintain a hashmap to improve speed of searching
             @Override
             public void onChanged(Change<? extends Appointment> change) {
-                while (change.next()) {
-                    if (change.wasReplaced()) {
-                        System.out.println("replaced");
-
-                    } else if (change.wasPermutated()) {
-                        System.out.println("permutated");
-                        displayAppointmentList.clear();
-                        for (int i = 0; i < change.getList().size(); i++) {
-                            displayAppointmentList.add(mapToDisplayAppointment(
-                                    patientHashMap, patientList, change.getList().get(i)));
-                        }
-
-                    } else if (change.wasRemoved()) {
-                        System.out.println("removed");
-                        System.out.println(change.getFrom() + "    " + change.getTo() + "    " + change.getRemovedSize());
-                        displayAppointmentList.remove(mapToDisplayAppointment(
-                                patientHashMap, patientList, change.getRemoved().get(0)));
-
-                    } else if (change.wasAdded()) {
-                        System.out.println("added");
-                        displayAppointmentList.clear();
-                        System.out.println(change.getFrom() + "    " + change.getTo() + "    " + change.getAddedSize());
-                        for (int i = 0; i < change.getAddedSize(); i++) {
-                            displayAppointmentList.add(mapToDisplayAppointment(
-                                    patientHashMap, patientList, change.getAddedSubList().get(i)));
-                        }
-
-                    } else if (change.wasUpdated()) {
-                        System.out.println("updated");
+                while (change.next());
+                // everything can be handled with just 1 clear and add of all appointments.
+                displayAppointmentList.clear();
+                    for (Appointment appt: change.getList()) {
+                        displayAppointmentList.add(mapToDisplayAppointment(
+                            patientHashMap, patientList, appt));
                     }
-                }
             }
         });
         appointmentListView.setItems(FXCollections.unmodifiableObservableList(displayAppointmentList));
         appointmentListView.setCellFactory(listView -> new AppointmentListViewCell());
     }
 
-    public AppointmentDisplay mapToDisplayAppointment(Map<UUID, Patient> patientHashMap, ObservableList<Patient> patientList, Appointment appt) {
+    public AppointmentDisplay mapToDisplayAppointment(Map<UUID, Patient> patientHashMap, 
+            ObservableList<Patient> patientList, Appointment appt) {
         // mutates hashmap
-        System.out.println("size of hashmap is: " + patientHashMap.size());
         if (patientHashMap.containsKey(appt.getPatientUuid())) {
             return new AppointmentDisplay(patientHashMap.get(appt.getPatientUuid()),
                     appt.getDoctor(), appt.getTimeslot(), appt.getTags());
@@ -121,7 +82,6 @@ public class AppointmentListPanel extends UiPart<Region> {
                             return pt.getUuid().equals(appt.getPatientUuid());
                         }
                     ).filter(pt -> {
-                        System.out.println("Found match: " + pt);
                         return true;
                     })
                     .findFirst()
@@ -141,9 +101,6 @@ public class AppointmentListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                System.out.println("in updateItem with " + appointment);
-                // assert appointment instanceof AppointmentDisplay;
-                // AppointmentDisplay appointmentDisplay = (AppointmentDisplay) appointment;
                 setGraphic(new AppointmentCard(appointment, getIndex() + 1).getRoot());
             }
         }

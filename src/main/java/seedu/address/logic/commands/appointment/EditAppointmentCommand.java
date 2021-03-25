@@ -91,12 +91,12 @@ public class EditAppointmentCommand extends Command {
                 throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
             }
             // assign patient
-            patientUuid = displayedPatientRecords.get(editAppointmentDescriptor.patientIndex.getZeroBased());
+            patientUuid = displayedPatientRecords.get(editAppointmentDescriptor.patientIndex.getZeroBased()).getUuid();
             // if patient index is not present
         } else {
             patientUuid = appointmentToEdit.getPatientUuid();
         }
-        Appointment editedAppointment = createEditedAppointment(patient, appointmentToEdit, editAppointmentDescriptor);
+        Appointment editedAppointment = createEditedAppointment(patientUuid, appointmentToEdit, editAppointmentDescriptor);
         if (model.hasConflictingAppointmentExcludingTarget(appointmentToEdit, editedAppointment)) {
             throw new CommandException(MESSAGE_APPOINTMENT_CONFLICT);
         }
@@ -109,14 +109,14 @@ public class EditAppointmentCommand extends Command {
      * Creates and returns a {@code Appointment} with the details of {@code appointmentToEdit}
      * edited with {@code editAppointmentDescriptor}.
      */
-    private static Appointment createEditedAppointment(Patient patient, Appointment appointmentToEdit,
+    private static Appointment createEditedAppointment(UUID patientUuid, Appointment appointmentToEdit,
                                                        EditAppointmentDescriptor editAppointmentDescriptor) {
         assert appointmentToEdit != null;
         String updatedDoctor = editAppointmentDescriptor.getDoctor().orElse(appointmentToEdit.getDoctor());
         Timeslot updatedTimeslot = editAppointmentDescriptor.getTimeslot().orElse(appointmentToEdit.getTimeslot());
         Set<Tag> updatedTags = editAppointmentDescriptor.getTags().orElse(appointmentToEdit.getTags());
 
-        return new Appointment(patient, updatedDoctor, updatedTimeslot, updatedTags);
+        return new Appointment(patientUuid, updatedDoctor, updatedTimeslot, updatedTags);
     }
 
     @Override

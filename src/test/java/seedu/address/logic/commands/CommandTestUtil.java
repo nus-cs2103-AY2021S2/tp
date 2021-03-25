@@ -137,10 +137,10 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredAppointmentList().size());
 
         Appointment appointment = model.getFilteredAppointmentList().get(targetIndex.getZeroBased());
-        final String[] splitName = appointment.getPatientUuid().getName().fullName.split("\\s+");
+        final String patientUuid = appointment.getPatientUuid().toString();
         model.updateFilteredAppointmentList(
                 new AppointmentContainsKeywordsPredicate(
-                        Arrays.asList(splitName[0]),
+                        Arrays.asList(patientUuid),
                         new ArrayList<>(),
                         new ArrayList<>(),
                         new ArrayList<>()));

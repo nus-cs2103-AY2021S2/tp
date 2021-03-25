@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Timeslot;
@@ -18,7 +19,7 @@ public class AppointmentBuilder {
     public static final String DEFAULT_DOCTOR = "Dr. Grey";
     public static final Timeslot DEFAULT_TIMESLOT = new TimeslotBuilder().build();
 
-    private Patient patient;
+    private UUID patientUuid;
     private String doctor;
     private Timeslot timeslot;
     private Set<Tag> tags;
@@ -27,7 +28,7 @@ public class AppointmentBuilder {
      * Creates a {@code AppointmentBuilder} with the default details.
      */
     public AppointmentBuilder() {
-        patient = new PatientBuilder(DEFAULT_PATIENT).build();
+        patientUuid = new PatientBuilder(DEFAULT_PATIENT).build().getUuid();
         doctor = DEFAULT_DOCTOR;
         timeslot = new TimeslotBuilder(DEFAULT_TIMESLOT).build();
         tags = new HashSet<>();
@@ -37,7 +38,7 @@ public class AppointmentBuilder {
      * Initializes the AppointmentBuilder with the data of {@code appointmentToCopy}.
      */
     public AppointmentBuilder(Appointment appointmentToCopy) {
-        patient = new PatientBuilder(appointmentToCopy.getPatientUuid()).build();
+        patientUuid = appointmentToCopy.getPatientUuid();
         doctor = appointmentToCopy.getDoctor();
         timeslot = new TimeslotBuilder(appointmentToCopy.getTimeslot()).build();
         tags = new HashSet<>(appointmentToCopy.getTags());
@@ -47,7 +48,7 @@ public class AppointmentBuilder {
      * Sets the {@code patient} of the {@code Appointment} that we are building.
      */
     public AppointmentBuilder withPatient(Patient patient) {
-        this.patient = new PatientBuilder(patient).build();
+        this.patientUuid = new PatientBuilder(patient).build().getUuid();
         return this;
     }
 
@@ -77,7 +78,7 @@ public class AppointmentBuilder {
 
 
     public Appointment build() {
-        return new Appointment(patient, doctor, timeslot, tags);
+        return new Appointment(patientUuid, doctor, timeslot, tags);
     }
 
 }

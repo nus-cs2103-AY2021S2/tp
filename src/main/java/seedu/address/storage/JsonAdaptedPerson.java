@@ -17,7 +17,7 @@ import seedu.address.model.person.Person;
 public abstract class JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Patient's %s field is missing!";
 
-    protected final UUID uuid;
+    protected final String uuid;
     protected final String name;
     protected final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -25,7 +25,7 @@ public abstract class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("uuid") UUID uuid ,@JsonProperty("name") String name,
+    public JsonAdaptedPerson(@JsonProperty("uuid") String uuid ,@JsonProperty("name") String name,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.uuid = uuid;
         this.name = name;
@@ -38,7 +38,7 @@ public abstract class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
-        uuid = source.getUuid();
+        uuid = source.getUuid().toString();
         name = source.getName().fullName;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)

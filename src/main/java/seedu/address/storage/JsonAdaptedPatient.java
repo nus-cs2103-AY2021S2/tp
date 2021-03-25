@@ -19,6 +19,7 @@ import seedu.address.model.tag.Tag;
 
 public class JsonAdaptedPatient extends JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Patient's %s field is missing!";
+    public static final String UUID_MESSAGE_CONSTRAINTS = "This is not a valid UUID field";
 
     private final String phone;
     private final String email;
@@ -28,7 +29,7 @@ public class JsonAdaptedPatient extends JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPatient} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPatient(@JsonProperty("uuid") UUID uuid, @JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedPatient(@JsonProperty("uuid") String uuid, @JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         super(uuid, name, tagged);
@@ -62,7 +63,12 @@ public class JsonAdaptedPatient extends JsonAdaptedPerson {
         if (uuid == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, UUID.class.getSimpleName()));
         }
-        final UUID modelUuid = uuid;
+        final UUID modelUuid;
+        try {
+            modelUuid = UUID.fromString(uuid);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalValueException(UUID_MESSAGE_CONSTRAINTS);
+        }
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
