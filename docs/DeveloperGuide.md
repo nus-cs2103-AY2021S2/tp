@@ -45,10 +45,15 @@ The arguments will be parsed by the `ListEntryCommandParser` to determine the be
 Then, `updateFilteredEntryList` method in the `Model` interface is called, passing in the `ListEntryFormatPredicate` as 
 an argument.
 
-The following sequence diagram (Fig 2.3.1) shows how the list entry operation works:
+The following activity diagram (Fig 2.3.1) summarizes what happens when a user executes the list command.
+
+![Listing entries activity diagram](images/ListEntryActivityDiagram.png)
+Fig 2.3.1
+
+The following sequence diagram (Fig 2.3.2) shows how the list entry operation works:
 
 ![Listing entries](images/ListEntrySequenceDiagram.png)
-Fig 2.2.1
+Fig 2.3.2
 
 # Appendix: Requirements
 

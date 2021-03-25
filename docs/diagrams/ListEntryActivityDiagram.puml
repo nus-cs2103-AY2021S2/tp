@@ -2,15 +2,14 @@
 start
 :User executes "elist" and specifies arguments;
 
-'Since the beta syntax does not support placing the condition outside the
-'diamond we place it as the true branch instead.
-
-if () then ([argument is "day"])
-    :GUI lists user's schedules by day;
-elseif () then ([argument is "week])
-    :GUI lists user's schedules by week;
+if () then ([argument is empty])
+    :GUI lists all user's schedules;
 else ([else])
-    :GUI lists all of user's schedules;
+    if () then ([argument is "day"])
+        :GUI lists user's schedules by day;
+    else ([else])
+        :GUI lists user's schedules by week;
+    endif
 endif
 stop
 @enduml
