@@ -5,6 +5,7 @@ import static seedu.weeblingo.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 
 import seedu.weeblingo.commons.core.Messages;
 import seedu.weeblingo.logic.commands.exceptions.CommandException;
+import seedu.weeblingo.model.Mode;
 import seedu.weeblingo.model.Model;
 
 /**
@@ -20,7 +21,8 @@ public class EndCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        if (model.getMode().getCurrentMode() != 1) {
+        int currentMode = model.getMode().getCurrentMode();
+        if (currentMode != Mode.MODE_MENU) {
             requireNonNull(model);
             model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
             model.getMode().switchModeMenu();
