@@ -133,89 +133,22 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### \[Proposed\] Archiving certain contacts
 
-#### Proposed Implementation
+_{Coming soon}_
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+### \[Proposed\] Adding Medical Information such as Appointments and Medical Records
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+_{Coming soon}_
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+### \[Proposed\] Viewing all upcoming appointments the doctor has
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+_{Coming soon}_
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+### \[Proposed\] Viewing a person's medical history through his/her medical records
 
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -236,17 +169,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* Insurance agents specialising in medical insurance
-* has manu contacts to manage
-* has a need to edit and share contacts information
+* Clinics where patient information is managed in a written medium such as pen and paper
+* has many patients to manage
+* has a need to edit and maintain patients personal and medical information
 * well versed in CLI
 * prefers typing to mouse interactions
 
 
 **Value proposition**: 
 
-* Ease insurance agents with details as its centralised
-* Can share information to medical officers and clients involved
+* Ease the job of clinics with a centralised record of its patients
+* Doctors can easily access patient's personal and medical information without having to go through stacks of paper
+* Helps the clinic doctor to keep track of his appointments
 * For those proficient in typing, ease management of assets 
 
 
@@ -257,55 +191,75 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | user                                       | add clients contact.           | have a seperate place to store domain specific information.            |
-| `* * *`  | user                                       | delete client's contact        | remove unwanted contacts                                               |
-| `* * *`  | user                                       | view all my contacts           | view a list of all my contacts.                                        |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
+| `* * *`  | user                                       | add patient's contact.         | have a separate place to store patient-specific information            |
+| `* * *`  | user                                       | delete patient's contact       | remove unwanted patients                                               |
+| `* * *`  | user                                       | view all my patients           | view a list of all my patients                                        |
+| `* * *`  | user                                       | find a patient by name         | locate details of patients without having to go through the entire list |
+| `* * *`  | user                                       | add appointments to a patient  | know when is my next appointment with the specific patient                               |
+| `* * *`  | user                                       | view all my upcoming appointments | know when is my next appointment |
+| `* * `  | user                                       | archive a patient's contact information | reduce clutter |
 | `* *`    | user                                       | see all the commands available | know what commands to use                |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Bob` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Adding a new user**
+**Use case: Adding a new patient**
 
 **MSS**
 
-  1. User chooses to add a client.
-  2. Bob requests for details of the client.
-  3. User enters the requested details.
-  4. Bob requests for confirmation.
-  5. User confirms.
-  6. Bob adds the client and displays the new log of clients.
+  1. User chooses to add a patient.
+  2. User enters the requested details of patient.
+  3. Bob adds the client and displays the new log of clients.
 
     Use case ends.
 
 **Extensions**
 
-  *3a. Bob detects an error in the entered data.
-  *    3a1. Bob requests for the correct data.
-  *    3a2. User enters new data.
-  *    Steps 3a1-3a2 are repeated until the data entered are correct.
+  *2a. Bob detects an error in the format of the entered data.
+  *    2a1. Bob requests for the correct format of the data.
+  *    2a2. User enters new data.
+  *    Steps 2a1-2a2 are repeated until the data entered are correct.
   
-      Use case resumes from step 4.
+      Use case resumes from step 3.
 
       Use case ends.
 
-  *3b. User requests to edit the data of the client in a future date.
-  *    3b1. Bob requests for confirmation.
-  *    3b2. User confirms future transfer.
-  
-      Use case ends.
-      
- *3c At any time, User chooses to delete the client.
- *     3c1. OBS requests to confirm the deletion.
- *     3c2. User confirms the deletion.
- 
- 
+**Use case: Listing all patients**
+
+**MSS**
+
+1. User requests to list all patients.
+2. Bob shows a list of patients.
+
+    Use case ends.
+
+**Extensions**
+
+*2a. The list is empty
+
       Use case ends.
 
+**Use case: Deleting a patient's information**
+
+**Pre-requisite:** Use 'list' to list out the index of all the patients
+
+**MSS**
+
+1. User requests to delete a specific patient in the list.
+2. Bob deletes the patient.
+
+
+      Use case ends.
+
+**Extensions**
+
+  *1a. The given index is invalid
+  *    1a1. Bob shows an error message.
+        
+      Use case resumes at step 1.
 
 *{More to be added}*
 
@@ -327,7 +281,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
