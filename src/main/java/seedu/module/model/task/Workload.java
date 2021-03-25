@@ -49,6 +49,10 @@ public class Workload implements Comparable<Workload> {
         }
     }
 
+    public int getWorkloadLevel() {
+        return workloadLevel;
+    }
+
     /**
      * Converts workloadLevel into a string for display on Ui.
      *

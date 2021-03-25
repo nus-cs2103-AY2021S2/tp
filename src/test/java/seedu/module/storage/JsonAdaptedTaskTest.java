@@ -32,7 +32,7 @@ public class JsonAdaptedTaskTest {
     private static final String VALID_DEADLINE = MIDTERM.getDeadline().toString();
     private static final String VALID_MODULE = MIDTERM.getModule().toString();
     private static final String VALID_DESCRIPTION = MIDTERM.getDescription().toString();
-    private static final String VALID_WORKLOAD = Integer.toString(MIDTERM.getWorkload().workloadLevel);
+    private static final String VALID_WORKLOAD = Integer.toString(MIDTERM.getWorkload().getWorkloadLevel());
     private static final String VALID_DONE_STATUS = MIDTERM.getDoneStatus().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = MIDTERM.getTags().stream()
             .map(JsonAdaptedTag::new)
