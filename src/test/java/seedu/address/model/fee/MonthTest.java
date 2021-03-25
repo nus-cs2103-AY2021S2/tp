@@ -1,11 +1,11 @@
 package seedu.address.model.fee;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
 
 public class MonthTest {
 
@@ -26,7 +26,7 @@ public class MonthTest {
 
     @Test
     public void isValidMonth() {
-        // Invalid Month: int 0 or below and above 12 should fail
+        // Invalid Month: int 0 or below or above 12 should fail
         assertFalse(Month.isValidMonth(-999));
         assertFalse(Month.isValidMonth(0));
         assertFalse(Month.isValidMonth(13));
