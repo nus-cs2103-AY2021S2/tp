@@ -66,9 +66,9 @@ public class SessionDate {
     }
 
     /**
-     * Returns the number of calendar days between s1 inclusive, s2 exclusive.
-     * @param sessionDate
-     * @return number of days between this (inclusive) and given (exclusive) SesisonDate
+     * Returns the number of calendar days between this inclusive, sessionDate exclusive.
+     * @param sessionDate the other sessionDate
+     * @return number of calendar days
      */
     public int numOfDayTo(SessionDate sessionDate) {
         return (int) ChronoUnit.DAYS.between(getDate(), sessionDate.getDate());
