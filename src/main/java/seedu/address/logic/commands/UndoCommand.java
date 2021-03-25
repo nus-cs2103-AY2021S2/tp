@@ -54,8 +54,8 @@ public class UndoCommand extends Command {
         requireNonNull(model);
 
         if (commandHistory.empty()) {
-            Logger julLogger = LogsCenter.getLogger(UndoCommand.class);
-            julLogger.info(MESSAGE_NO_COMMAND_TO_UNDO);
+            Logger emptyCommandHistoryLogger = LogsCenter.getLogger(UndoCommand.class);
+            emptyCommandHistoryLogger.info(MESSAGE_NO_COMMAND_TO_UNDO);
             throw new CommandException(MESSAGE_NO_COMMAND_TO_UNDO);
         }
 
