@@ -32,8 +32,8 @@ public class JsonDatabaseReader {
             JSONArray flashcardsJsonArr = (JSONArray) jsonObject.get("flashcards");
             return flashcardsJsonArr;
         } catch (ParseException e) {
-            e.printStackTrace();
-            throw new RuntimeException();
+            throw new RuntimeException("Database file accidentally modified from external operations;"
+                    + "please keep your data file with you and re-download the application.");
         }
     }
 }
