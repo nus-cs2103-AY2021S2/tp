@@ -8,7 +8,7 @@ elseif () then ([dog])
 else ([program])
 :AddProgramCommandParser processes;
 endif
-:returns AddCommand;
+:Return AddCommand;
 stop
 
 @enduml
