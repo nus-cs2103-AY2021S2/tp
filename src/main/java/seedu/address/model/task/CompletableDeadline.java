@@ -60,15 +60,6 @@ public abstract class CompletableDeadline {
     }
 
     /**
-     * Returns a status icon dependent on the status of the CompletableDeadline.
-     * @return A string representing the CompletableDeadline's status.
-     */
-    public String getStatusIcon() {
-        assert isDone != null;
-        return (isDone ? "[X]" : "[ ]");
-    }
-
-    /**
      * Returns the CompletableDeadline description.
      * @return A String representing the CompletableDeadline description.
      */

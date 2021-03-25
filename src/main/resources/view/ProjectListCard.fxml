@@ -5,24 +5,28 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <GridPane HBox.hgrow="ALWAYS" minHeight="45">
+  <GridPane minHeight="45" HBox.hgrow="ALWAYS">
     <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="200"/>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="190" />
     </columnConstraints>
     <VBox alignment="CENTER_LEFT" GridPane.columnIndex="0">
       <padding>
-        <Insets top="5" right="5" bottom="5" left="15"/>
+        <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
-      <HBox spacing="5" alignment="CENTER_LEFT">
-        <Label fx:id="id" styleClass="cell_big_label"/>
-        <Label fx:id="name" text="\$first" styleClass="cell_big_label"/>
+      <HBox alignment="CENTER_LEFT" spacing="5">
+        <Label fx:id="id" minHeight="-Infinity" minWidth="-Infinity" styleClass="cell_big_label" />
+        <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
       </HBox>
     </VBox>
     <padding>
-      <Insets bottom="10.0" left="5.0" right="5.0" top="10.0"/>
+      <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
     </padding>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
   </GridPane>
 </HBox>
