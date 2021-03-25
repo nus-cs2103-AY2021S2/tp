@@ -18,6 +18,7 @@ public class KanbanPanel extends UiPart<Region> {
     private static final String FXML = "KanbanPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(EventListPaneKanbanView.class);
     private final Logic logic;
+    private int statusSize;
 
     @FXML
     private VBox backlogColumn;
@@ -55,7 +56,8 @@ public class KanbanPanel extends UiPart<Region> {
         EventListPaneKanbanView eventListPanel = new EventListPaneKanbanView(logic.getFilteredListByStatus(status));
         VBox.setVgrow(eventListPanel.getRoot(), Priority.ALWAYS);
 
-        Label label = new Label(title + String.format(" (%d)", eventListPanel.getNumberOfTasks()));
+
+        Label label = new Label(title + String.format(" (%d)", logic.getFilteredListByStatus(status).size()));
         label.getStyleClass().add("status");
 
         column.getChildren().addAll(label, eventListPanel.getRoot());

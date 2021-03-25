@@ -86,8 +86,6 @@ public class ParserUtil {
             return EventPriority.MEDIUM;
         case ("LOW"):
             return EventPriority.LOW;
-        case ("NONE"):
-            return EventPriority.NONE;
         default:
             throw new ParseException(EventPriority.MESSAGE_CONSTRAINTS);
         }

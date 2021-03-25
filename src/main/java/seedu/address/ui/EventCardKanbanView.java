@@ -57,10 +57,7 @@ public class EventCardKanbanView extends UiPart<Region> {
         setId();
         setEventName();
         setDescription();
-        priority.setText("HIGH");
-        String styleClassName = "high-priority";
-
-        priority.getStyleClass().add(styleClassName);
+        setPriority();
     }
 
     private void setId() {
@@ -70,22 +67,23 @@ public class EventCardKanbanView extends UiPart<Region> {
     }
 
     private void setEventName() {
-//        eventName.setText(event.getName().eventName + event.getName().eventName.length());
         eventName.setText(event.getName().eventName);
-
         eventName.setWrapText(true);
     }
 
-    /*
-    private void setPriority() {
-        priority.setText(event.getPriority().name());
-    }*/
 
-    private void setDescription() {
-        description.setText(event.getDescription().description + event.getDescription().description.length());
-        description.setWrapText(true);
+    private void setPriority() {
+            priority.setText(event.getPriority().name());
+
+            String styleClassName = event.getPriority().name().toLowerCase() + "-priority";
+            priority.getStyleClass().add(styleClassName);
+
     }
 
+    private void setDescription() {
+        description.setText(event.getDescription().description);
+        description.setWrapText(true);
+    }
 
     @Override
     public boolean equals(Object other) {

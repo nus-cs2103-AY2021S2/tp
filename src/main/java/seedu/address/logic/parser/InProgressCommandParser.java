@@ -40,7 +40,7 @@ public class InProgressCommandParser implements Parser<InProgressCommand> {
             EventPriority priority = ParserUtil.parseEventPriority(argMultimap.getValue(PREFIX_PRIORITY).get());
             event = new Event(eventName, IN_PROGRESS_EVENT_STATUS, priority, description);
         } else {
-            event = new Event(eventName, IN_PROGRESS_EVENT_STATUS, EventPriority.NONE, description);
+            event = new Event(eventName, IN_PROGRESS_EVENT_STATUS, EventPriority.LOW, description);
         }
 
         return new InProgressCommand(event);

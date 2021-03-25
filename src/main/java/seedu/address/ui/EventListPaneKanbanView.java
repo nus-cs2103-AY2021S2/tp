@@ -4,9 +4,12 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.Event;
 
@@ -18,6 +21,7 @@ public class EventListPaneKanbanView extends UiPart<Region> {
 
     private final Logger logger = LogsCenter.getLogger(EventListPaneKanbanView.class);
     private ObservableList<Event> eventList;
+
 
     @FXML
     private ListView<Event> eventListView;
@@ -32,14 +36,11 @@ public class EventListPaneKanbanView extends UiPart<Region> {
         eventListView.setCellFactory(listView -> new EventListViewCell());
     }
 
-    public int getNumberOfTasks() {
-        return eventList.size();
-    }
-
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Event} using a {@code EventCardKanbanView}.
      */
     class EventListViewCell extends ListCell<Event> {
+
         @Override
         protected void updateItem(Event event, boolean empty) {
             super.updateItem(event, empty);
