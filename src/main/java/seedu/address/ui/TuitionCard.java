@@ -14,6 +14,7 @@ import seedu.address.model.tuition.Tuition;
  * An UI component that displays information of a {@code Tuition}.
  */
 public class TuitionCard extends UiPart<Region> {
+    // TODO: Some Ui to differentiate recurring sessions from others.
 
     private static final String FXML = "TuitionListCard.fxml";
 
