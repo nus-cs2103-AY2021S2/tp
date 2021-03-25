@@ -42,7 +42,6 @@ public class WeeblingoParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        System.out.println("args:" + arguments);
         switch (commandWord) {
 
         case EndCommand.COMMAND_WORD:
@@ -57,7 +56,6 @@ public class WeeblingoParser {
         case StartCommand.COMMAND_WORD:
             if (!arguments.isBlank()) {
                 int numberOfQuestions = Integer.parseInt(arguments.replaceAll("\\s+", ""));
-                System.out.println("num:" + numberOfQuestions);
                 return new StartCommand(numberOfQuestions);
             }
             return new StartCommand();
