@@ -1,0 +1,9 @@
+{
+	"recommendations": [
+		"vscjava.vscode-java-pack",
+    "richardwillis.vscode-gradle-extension-pack",
+		"shengchen.vscode-checkstyle"
+	],
+	"unwantedRecommendations": [
+	]
+}

@@ -84,7 +84,7 @@ The `UI` component,
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
-1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+1. In addition, the `CommandResult` object also contains a `UiCommand` object, which encapsulates information needed to instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -132,6 +132,163 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Model for Tasks (Todos, Deadlines & Events)
+
+The classes and implementations used to model various Tasks (e.g. Todos, Deadlines & Events) are facilitated by `CompletableTodo`, `CompletableDeadline` and '`Repeatable` abstract classes. This design is similar to the Person model from AB3.
+
+The client creates a concrete `Todo`, `Deadline` or `Event` that encapsulates all information related to these Tasks. Each concrete `Todo`, `Deadline` or `Event` implements the `CompletableTodo`, `CompletableDeadline` and '`Repeatable` abstract classes respectively. Each `Completable` and `Repeatable` abstract class specifies specific behaviors.
+
+Given below is an example usage scenario and how the mechanism behaves at each step.
+
+Step 1. The user executes the command `addD`, which adds a Deadline to a project specified in the command.
+
+Step 2. The `Deadline` object is created during  the parsing of a user's command. The `Deadline` object requires a description & LocalDate.
+
+Step 3. The `Deadline` object is then passed as a parameter in a created `AddDeadlineCommand` that would be executed.
+
+Step 4. During it's execution, the `Deadline` object would be added to a `DeadlineList` that is stored in a `Project`.
+
+#### Design Considerations
+
+##### Aspect: How to store and pass around UI related instructions
+
+* **Alternative 1 (current choice):** Implement  `Todo`, `Deadline` or `Event` each with independent abstract classes (`CompletableTodo`, `CompletableDeadline` and `Repeatable` ).
+    * Pros:
+        * Design allows the behaviour of `CompletableTodo`, `CompletableDeadline` and `Repeatable` to be extended without (or with minimal) changes to `Todo`, `Deadline` or `Event`.
+        * Each `CompletableTodo`, `CompletableDeadline` and `Repeatable` encapsulates all information needed for that specific Task. For example, `Event` which implements `Repeatable` has a specific implementation that allows it to repeat in a specified interval. (Note: The intervals are defined in an `Interval` enumeration.)
+        * Design allows `TodoList`, `DeadlineList` and `EventList` to hold specifically and only `CompletableTodo`, `CompletableDeadline` and `Repeatable` respectively. This ensures that implementation errors with respect to how `CompletableTodo`, `CompletableDeadline` and `Repeatable` are stored, can be minimised.
+
+    * Cons:
+        * Many classes required.
+
+* **Alternative 2 (implementation used in AB3):** Implement  `Todo`, `Deadline` or `Event` with a common `Task` abstract class.
+    * Pros:
+        * Easy to implement.
+        * Minimal changes needed if a new implementation of `Task` needs to extend behaviors already defined in `Task`.
+        * Fewer classes required.
+    * Cons:
+        * `Task` is not closed to modification. A new implementation of `Task` might require the addition of fields to store additional behaviours and attributes.
+        * Risk of having a `Todo` added to a `DeadlineList` is heightened during implementation. This is in contrast to alternative 2, where each `TodoList`, `DeadlineList` and `EventList` holds only `CompletableTodo`, `CompletableDeadline` and `Repeatable` respectively.
+
+### UI Commands
+
+The mechanism to issue commands to change some aspect of the `Ui` (e.g. displaying a new panel) is facilitated by `UiCommand` abstract class. This mechanism is similar to the command pattern. 
+
+The client creates a concrete `UiCommand` that encapsulates all information needed to make a change to the Ui. Each concrete `UiCommand` implements the `UiCommand#execute(MainWindow)` method, which calls the appropriate method(s) in `MainWindow` to make a change to the UI.
+
+Given below is an example usage scenario and how the mechanism behaves at each step.
+
+Step 1. The user issues executes the command `viewP 1`, which displays a panel containing information about the first project in the project list. 
+
+Step 2. A `CommandResult` object is created (see section on [Logic Component](#logic-component)) containing a `ViewProjectUiCommand` object, a concrete implementation of `UiCommand`.
+
+Step 3. The `CommandResult` is passed to the `Ui`, which gets the `UiCommand` by calling `CommandResult#getUiCommand()`.
+
+Step 4. The `Ui` calls `UiCommand#execute(MainWindow)`, which will result in a call to the overridden method `ViewProjectUiCommand#execute(MainWindow)`. Execution of this method will result in calls to the relevant method(s) in `MainWindow` required to display the new project.
+
+#### Design Considerations
+
+##### Aspect: How to store and pass around UI related instructions
+
+* **Alternative 1 (current choice):** Encapsulate instructions using `UiCommand` Object.
+    * Pros: 
+        * Design allows behaviour of `Ui` to be extended without (or with minimal) changes to the `Ui` and `CommandResult`.
+        * `UiCommand` encapsulates all information needed to execute the instruction (e.g. index of project).
+        
+    * Cons:
+        * Many classes required.
+
+* **Alternative 2 (implementation used in AB3):** Store instructions in `CommandResult` as boolean fields.
+    * Pros: 
+        * Easy to implement.
+        * Minimal changes needed if the new instruction is a combination of already existing instructions as the already existing boolean fields can be set to true.  
+    * Cons: 
+        * `Ui` and `CommandResult` are not closed to modification. A new instruction might require the addition of fields to `CommandResult` (to store instructions and related data) as well as a new conditional statement in `Ui` to handle the new instruction.
+
+### Update Commands [Coming soon in v1.3]
+
+CoLAB has several update commands for projects, events, deadlines, tasks and groupmates. They are used to edit details of entities that have already been created.
+
+Below is a sequence diagram of how an `updateP` command is executed.
+
+![UpdateP command sequence diagram](images/UpdateProjectCommandSequenceDiagram.png)
+
+Step 1. The user types an update project command `updateP 1 n/Group Project`.
+
+Step 2. User input is passed to the `addressBookParser`, which creates a new `UpdateProjectCommand`.
+
+Step 3. The `UpdateProjectCommand` will then be executed by calling its `execute` method.
+
+Step 4. Since the `ModelManager` is passed to `UpdateProjectCommand#execute`, it is able to call a method `ModelManager#setProject` to change an existing project of a given `Index` in the `ProjectsFolder` to the modified version.
+
+Step 5. After the project gets updated, `Model#saveProjectsFolder` is called to save the list of projects to files.
+
+The other update commands require some more work because events, deadlines, tasks and groupmates are sub-components of a project. It is therefore necessary to specify a project in the command so that edits can be applied to that project. Below is a sequence diagram of how an `updateG` (update groupmate) command is executed.
+
+![UpdateP command sequence diagram](images/UpdateGroupmateCommandSequenceDiagram.png)
+
+Step 1. The user types an update project command `updateG 1 n/Alice`.
+
+Step 2. User input is passed to the `addressBookParser`, which creates a new `UpdateGroupmateCommand`.
+
+Step 3. The `UpdateGroupmateCommand` will then be executed by calling its `execute` method.
+
+Step 4. It will then get the list of projects through `Model#getFilteredProjectList`, and use the project `Index` to get the project to be updated.
+
+Step 5. It will then call a method `Project#setGroupmate` to change an existing groupmate of a given `Index` in the `GroupmateList` to the modified version.
+
+Step 5. After the project gets updated, `Model#saveProjectsFolder` is called to save the list of projects to files.
+
+#### Design consideration:
+
+##### Aspect: How the target contact is specified when updating contacts
+
+* **Alternative 1 (current choice):** Pass the `Index` object down to `UniquePersonList#setPerson`.
+    * Pros: More Consistent in how to pass indexes and locate an element in a `List` throughout the codebase.
+    * Cons: Higher coupling since `UniquePersonList` now relies on `Index`.
+
+* **Alternative 2 (implementation used in AB3):** Pass the target `Person` object to be edited to `UniquePersonList#setPerson`.
+    * Pros: Lower coupling since `Index` is not a dependency of `UniquePersonList`.
+    * Cons: Extra computation of index from the `Person` object since the index is already provided in the command. Passing the original project around does not provide more information than passing only the index.
+
+* **Alternative 3:** Pass the zero-based index as an integer down to `UniquePersonList#setPerson`.
+    * Pros: Will use less memory (only needs memory for an integer instead of a `Person` object or an `Index` object), no reliance on `Index`.
+    * Cons: May be confusing for new developers since some other parts of the code use one-based indexes instead.
+
+### Add Event to Project Command [Implemented in v1.2]
+
+The mechanism is used to add an event to the `EventList` of `Project` specified by the index in the project list shown.
+
+The client creates a concrete `AddEventCommand` that contains the specified index of project and a valid Event object. Each concrete `AddEventCommand` implements the `AddEventCommand#execute` method, which calls the appropriate method(s) in `Project` to update its `EventList` and appropriate method(s) in `Model` to update the Project List.
+
+Given below is an example usage scenario and how the mechanism behaves at each step.
+
+Step 1. The user executes the command `addEto 1 d/Tutorial i/WEEKLY at/25-03-2021`, which adds an `Event` with description, interval and date specified to `Project` 1 in Project List.
+
+Step 2: The input is parsed by `AddEventCommandParser`. It checks if `Event` provided is valid or not. If input is invalid, an exception will be throw and `Ui` will help print out the exception message. Otherwise, an `AddEventCommand` will be created.
+
+Step 3: The `AddEventCommand#execute` is called. It checks whether `Index` provided is valid or not and if `Event` provided is duplicated. If check fails, an exception will be thrown, `Ui` will help print out the exception message. Otherwise, the change will be made to `Project`and `Model` in the next step.
+
+Step 4: The `Project` specified by Index will call addEvent function to add the given `Event` to its `EventList`. `Model` updates its Project List based on the change.
+
+Step 5: A `CommandResult` object is created (see section on [Logic Component](#logic-component)) containing the Event added. The `Ui` will help print out the success message. 
+
+#### Design Considerations
+
+##### Aspect: How to add a new `Event` to a `Project`.
+
+* **Alternative 1 (current choice):** `Project` tells its `EventList` to update the list of Events stored.
+    * Pros: 
+        * This implementation requires no additional time and space (for creation of new 'Project` and `EventList` object).
+    * Cons:
+        * This implementation will not work with an immutable implementation of `EventList` 
+
+* **Alternative 2:** A new `Project` object is initialized with a new `EventList` object containing the added `Event`.
+    * Pros: 
+        * If the implementation of `EventList` becomes immutable. This implementaion still works.
+    * Cons: 
+        * This implementation requires more time and space (for creation of new 'Project` and `EventList` object).
 
 ### \[Proposed\] Undo/redo feature
 
@@ -203,13 +360,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 ##### Aspect: How undo & redo executes
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -236,70 +393,188 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* student currently enrolled in a university
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+
+* supports only features a university student needs without additional clutter
+* information organised by categories relevant to university students (e.g. tag by modules)
+* manage contacts faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                 | I want to …​                | So that I can…​                                                     |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
+| `* * *`  | user                                       | add a new person               | keep track of details from peers I have crossed paths with             |
+| `* * *`  | user                                       | edit a person's details        | update their details when there is change                              |
 | `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
 | `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | user                                       | tag a person with tags         | easily keep track of who the contact is                                |
+| `* *`    | University Student                         | find contacts by modules taken | easily find contacts who take the same module as me                    |
+| `* *`    | Student Teaching Assistant                 | find contacts by tutorial group| easily find contacts of students in my class                           |
+| `* *`    | user                                       | purge all data in the app      | start my address book from fresh                                       |
+| `*`      | long time user                             | archive data files             | refer to old address books when needed                                 |
+
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `CoLAB` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+#### UC1 - Add a person
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add a person
+2. CoLAB adds the person
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The given arguments are invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
+
+#### UC2 - Find details of a specific person
+
+**MSS**
+
+1. User requests to find a person.
+2. CoLAB shows a list of persons that match user's query.
+3. User requests to view more details about a specific person in the list.
+4. CoLAB shows more information about the person in the list.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list of persons is empty.
 
   Use case ends.
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. CoLAB shows an error message.
 
       Use case resumes at step 2.
+
+
+#### UC3 - Delete a person
+
+**MSS**
+
+1. User requests to list persons.
+2. CoLAB shows a list of persons.
+3. User requests to delete a specific person in the list.
+4. CoLAB deletes the person.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list of persons is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. CoLAB shows an error message.
+
+      Use case resumes at step 2.
+
+#### UC4 - Purge all entries from the app
+
+**MSS**
+
+1. User requests to delete all entries from the app.
+2. CoLAB asks user to confirm request.
+3. User confirms that they want to delete all entries.
+4. CoLAB deletes all data from the app.
+
+   Use case ends.
+
+**Extensions**
+
+* 3a. User decides not to delete all entries.
+
+  Use case ends.
+
+#### UC5 - Find all persons that take a certain module
+
+**MSS**
+
+1. User requests to list all persons by modules taken.
+2. CoLAB lists all entries who have taken the modules.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given modules are invalid
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 2a. The list of persons is empty.
+
+  Use case ends.
+
+#### UC6 - Adding or Modifying information about a person
+
+**MSS**
+
+1. User requests to edit information about a person.
+2. CoLAB updates entry with new information.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given arguments are invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+* Technical requirements:
+    * CoLAB should work on any _mainstream OS_ on both 32-bit and 64-bit architectures as long as it has Java `11` or above installed.
+    * CoLAB should work under _common screen resolutions_. (i.e. the window should not be out of boundary)
+* Performance requirements:
+    * CoLAB should be able to hold _up to 1000 persons_ without a noticeable sluggishness in performance for typical usage.
+    * The response to any command should be shown _within 1 second_.
+* Constraints:
+    * CoLAB should be _backward compatible_ with data files produced by earlier versions as much as possible. If one release is not compatible with earlier versions, a migration guide should be provided.
+    * CoLAB must be open source under [the MIT License](https://raw.githubusercontent.com/AY2021S2-CS2103T-T11-2/tp/master/LICENSE).
+* Quality requirements:
+    * A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+    * A user familiar with CLI tools should find CoLAB commands very intuitive.
+    * A user who has no experience with CLI tools should be able to find CoLAB easy to use with the help of the [_User Guide_](UserGuide.md).
+* Process requirements:
+    * the project is expected to adhere to a schedule that delivers a feature set every two weeks.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Common screen resolutions**: minimum _640×480_, maximum _3840×2160_
+* **Mainstream OS**: Windows, Linux, Unix, macOS
+* **MSS**: Main Success Scenario
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
@@ -317,15 +592,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
@@ -334,16 +609,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -351,6 +626,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_

@@ -1,3 +1,5 @@
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+
 plugins {
     id 'java'
     id 'checkstyle'
@@ -20,29 +22,10 @@ checkstyle {
     toolVersion = '8.29'
 }
 
-test {
-    useJUnitPlatform()
-    finalizedBy jacocoTestReport
-}
-
-task coverage(type: JacocoReport) {
-    sourceDirectories.from files(sourceSets.main.allSource.srcDirs)
-    classDirectories.from files(sourceSets.main.output)
-    executionData.from files(jacocoTestReport.executionData)
-    afterEvaluate {
-        classDirectories.from files(classDirectories.files.collect {
-            fileTree(dir: it, exclude: ['**/*.jar'])
-        })
-    }
-    reports {
-        html.enabled = true
-        xml.enabled = true
-    }
-}
-
 dependencies {
     String jUnitVersion = '5.4.0'
     String javaFxVersion = '11'
+    String testFxVersion = '4.0.16-alpha'
 
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'mac'
@@ -61,12 +44,71 @@ dependencies {
     implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.7.4'
 
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
-
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
+
+    testImplementation group: 'org.testfx', name: 'testfx-core', version: testFxVersion
+    testImplementation group: 'org.testfx', name: 'testfx-junit5', version: testFxVersion
+    testRuntimeOnly group: 'org.testfx', name: 'openjfx-monocle', version: 'jdk-11+26'
 }
 
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveFileName = 'CoLAB.jar'
 }
 
-defaultTasks 'clean', 'test'
+test {
+    useJUnitPlatform()
+
+    systemProperty 'testfx.setup.timeout', '60000'
+
+    testLogging {
+        events TestLogEvent.FAILED, TestLogEvent.SKIPPED
+
+        // Prints the currently running test's name in the CI's build log,
+        // so that we can check if tests are being silently skipped or
+        // stalling the build.
+        if (System.env.'CI') {
+            events << TestLogEvent.STARTED
+        }
+    }
+
+    finalizedBy jacocoTestReport
+}
+
+task headless {
+    doFirst {
+        println 'Setting headless mode properties.'
+        test {
+            systemProperties = [
+                    'java.awt.headless': 'true',
+                    'testfx.robot': 'glass',
+                    'testfx.headless': 'true',
+                    'prism.order': 'sw',
+                    'prism.text': 't2k',
+            ]
+        }
+    }
+}
+
+// Makes sure that headless properties are set before running tests
+test.mustRunAfter headless
+
+task coverage(type: JacocoReport) {
+    sourceDirectories.from files(sourceSets.main.allSource.srcDirs)
+    classDirectories.from files(sourceSets.main.output)
+    executionData.from files(jacocoTestReport.executionData)
+    afterEvaluate {
+        classDirectories.from files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: ['**/*.jar'])
+        })
+    }
+    reports {
+        html.enabled = true
+        xml.enabled = true
+    }
+}
+
+run {
+    enableAssertions = true
+}
+
+defaultTasks 'clean', 'headless', 'test'

@@ -88,7 +88,11 @@ public class PersonBuilder {
         this.email = new Email(email);
         return this;
     }
-
+    /**
+     * Builds the {@code Person} object.
+     *
+     * @return {@code Person}.
+     */
     public Person build() {
         return new Person(name, phone, email, address, tags);
     }

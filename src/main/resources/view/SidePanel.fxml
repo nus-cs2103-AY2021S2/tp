@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Separator?>
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="side-panel">
+  <stylesheets>
+    <URL value="@SidePanel.css"/>
+  </stylesheets>
+  <StackPane id="colab-logo" prefHeight="200" maxHeight="200" prefWidth="200" maxWidth="200" VBox.vgrow="NEVER"/>
+  <Button text="Today" onAction="#openTodayPanel" prefWidth="200" maxWidth="200" prefHeight="45"/>
+  <Button id="contacts-button" onAction="#openContactsPanel" text="Contacts" prefWidth="200" maxWidth="200" prefHeight="45"/>
+  <Separator/>
+  <StackPane fx:id="projectsListPanelPlaceholder"/>
+</VBox>

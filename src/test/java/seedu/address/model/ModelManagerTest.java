@@ -7,6 +7,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalProjects.getTypicalProjectsFolder;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,6 +16,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.exceptions.DateConversionException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 
@@ -94,14 +96,38 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getProjectsFolderFilePath_success() {
+        assertEquals(modelManager.getProjectsFolderFilePath(), modelManager.getUserPrefs().getProjectsFolderFilePath());
+    }
+
+    @Test
+    public void setProjectsFolderFilePath_success() {
+        Path path = Paths.get("data" , "test.json");
+        modelManager.setProjectsFolderFilePath(path);
+        assertEquals(path, modelManager.getUserPrefs().getProjectsFolderFilePath());
+    }
+
+    @Test
+    public void setProjectsFolder_success() {
+        try {
+            ProjectsFolder pf = getTypicalProjectsFolder();
+            modelManager.setProjectsFolder(pf);
+            assertEquals(pf, modelManager.getProjectsFolder());
+        } catch (DateConversionException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
+        ProjectsFolder projectsFolder = new ProjectsFolder();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+        modelManager = new ModelManager(addressBook, projectsFolder, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(addressBook, projectsFolder, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -114,12 +140,12 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, projectsFolder, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, projectsFolder, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -127,6 +153,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, projectsFolder, differentUserPrefs)));
     }
 }

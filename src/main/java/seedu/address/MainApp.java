@@ -18,13 +18,17 @@ import seedu.address.logic.LogicManager;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.ProjectsFolder;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyProjectsFolder;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonProjectsFolderStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.ProjectsFolderStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
@@ -36,7 +40,7 @@ import seedu.address.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(0, 6, 0, true);
+    public static final Version VERSION = new Version(1, 2, 1, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
@@ -57,7 +61,9 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        ProjectsFolderStorage projectsFolderStorage =
+                new JsonProjectsFolderStorage(userPrefs.getProjectsFolderFilePath());
+        storage = new StorageManager(addressBookStorage, projectsFolderStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -75,22 +81,39 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        ReadOnlyAddressBook initialAddressBookData;
+        Optional<ReadOnlyProjectsFolder> projectsOptional;
+        ReadOnlyProjectsFolder initialProjectsData;
+
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialAddressBookData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialAddressBookData = new AddressBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialAddressBookData = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        try {
+            projectsOptional = storage.readProjectsFolder();
+            if (!projectsOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample ProjectsFolder");
+            }
+            initialProjectsData = projectsOptional.orElseGet(SampleDataUtil::getSampleProjectsFolder);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty ProjectsFolder");
+            initialProjectsData = new ProjectsFolder();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty ProjectsFolder");
+            initialProjectsData = new ProjectsFolder();
+        }
+
+        return new ModelManager(initialAddressBookData, initialProjectsData, userPrefs);
     }
 
     private void initLogging(Config config) {

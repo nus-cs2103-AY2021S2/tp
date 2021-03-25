@@ -1,0 +1,119 @@
+.project-display-panel-vbox {
+    -fx-alignment: center;
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+
+.project-display-panel-section {
+    -fx-background-color: -DP_1_ELEVATION;
+    -fx-padding: 10 20 15 20;
+    -fx-background-insets: 5 10 5 10;
+}
+
+.cell_huge_label {
+    -fx-padding: 0 0 10px 0;
+}
+
+.label-header {
+    -fx-text-fill: white;
+    -fx-font-size: 24;
+    -fx-text-alignment: center;
+    -fx-padding: 0 0 10px 0;
+    -fx-pref-height: 50px;
+    -fx-border-radius: 0;
+}
+
+/* tabs */
+.tab {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0.0 0;
+    -fx-padding: 5px 5px;
+    -fx-border-width: 0;
+    -fx-border-color: -DP_3_ELEVATION;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+}
+
+.tab .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-translate-x: 10px;
+}
+
+.tab:selected .focus-indicator {
+    -fx-border-color: transparent;
+}
+
+.tab:selected .tab-label {
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-border-radius: 0;
+    -fx-border-insets: 0;
+}
+
+.tab:selected {
+    -fx-border-color: -COLOR_ACCENT;
+    -fx-border-width: 0 0 0 0;
+    -fx-border-radius: 0;
+    -fx-background-color: -COLOR_ACCENT;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
+}
+
+.tab-pane .tab-header-area .tab {
+    -fx-pref-height: 150;
+    -fx-pref-width: 50;
+}
+
+.tab-pane .tab-header-area {
+    -fx-padding: 50px 0 0 0;
+    -fx-min-height: 0;
+    -fx-max-height: 0;
+    -fx-border-width: 0px;
+    -fx-background-color: -DP_3_ELEVATION;
+}
+
+.tab-pane {
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+}
+
+/* list view */
+.list-view {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-background-color: -DP_1_ELEVATION;
+}
+
+.list-view .list-cell {
+    -fx-label-padding: 0 0 0 0;
+    -fx-graphic-text-gap: 0;
+    -fx-padding: 0;
+}
+
+.list-view .list-cell:filled:even,
+.list-view .list-cell:filled:odd,
+.list-view .list-cell:filled #cardPane {
+    -fx-background-color: transparent;
+}
+
+.list-view .list-cell:filled:selected #cardPane {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+}
+
+.list-view .list-cell .label {
+    -fx-text-fill: white;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}

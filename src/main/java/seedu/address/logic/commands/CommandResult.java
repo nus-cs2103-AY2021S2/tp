@@ -1,8 +1,11 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
+
+import seedu.address.logic.uicommands.UiCommand;
 
 /**
  * Represents the result of a command execution.
@@ -11,39 +14,43 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    /** Help information should be shown to the user. */
-    private final boolean showHelp;
-
-    /** The application should exit. */
-    private final boolean exit;
+    /** Information on which UI command to execute **/
+    private final UiCommand uiCommand;
 
     /**
-     * Constructs a {@code CommandResult} with the specified fields.
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser} and {@code uiCommand}.
+     * All other fields are set to their default value.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
-        this.exit = exit;
+    public CommandResult (String feedbackToUser, UiCommand uiCommand) {
+        requireAllNonNull(feedbackToUser, uiCommand);
+        this.feedbackToUser = feedbackToUser;
+        this.uiCommand = uiCommand;
     }
 
     /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * and other fields set to their default value.
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}.
+     * All other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        requireNonNull(feedbackToUser);
+        this.feedbackToUser = feedbackToUser;
+        this.uiCommand = null;
     }
 
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
 
-    public boolean isShowHelp() {
-        return showHelp;
+    public UiCommand getUiCommand() {
+        return uiCommand;
     }
 
-    public boolean isExit() {
-        return exit;
+    /**
+     * Returns true if there is a UiCommand.
+     * @return true if UiCommand is not null and false otherwise.
+     */
+    public boolean hasUiCommand() {
+        return getUiCommand() != null;
     }
 
     @Override
@@ -58,14 +65,19 @@ public class CommandResult {
         }
 
         CommandResult otherCommandResult = (CommandResult) other;
-        return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+
+        if (uiCommand == null || otherCommandResult.getUiCommand() == null) {
+            return feedbackToUser.equals(otherCommandResult.feedbackToUser)
+                    && uiCommand == otherCommandResult.getUiCommand();
+        } else {
+            return feedbackToUser.equals(otherCommandResult.feedbackToUser)
+                    && uiCommand.equals(otherCommandResult.getUiCommand());
+        }
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, uiCommand);
     }
 
 }

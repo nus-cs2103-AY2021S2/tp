@@ -4,8 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -19,6 +20,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Interval;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -26,6 +28,9 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_DESCRIPTION = " ";
+    private static final String INVALID_INTERVAL = "Sometimes";
+    private static final String INVALID_DATE = "01012021";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -33,6 +38,9 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_DESCRIPTION = " Tutorial ";
+    private static final String VALID_INTERVAL = "WEEKLY";
+    private static final String VALID_DATE = "01-01-2021";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -50,10 +58,10 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("1"));
+        assertEquals(INDEX_FIRST, ParserUtil.parseIndex("1"));
 
         // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+        assertEquals(INDEX_FIRST, ParserUtil.parseIndex("  1  "));
     }
 
     @Test
@@ -193,4 +201,50 @@ public class ParserUtilTest {
 
         assertEquals(expectedTagSet, actualTagSet);
     }
+
+    @Test
+    public void parseDescription_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDescription(null));
+    }
+
+    @Test
+    public void parseDescription_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDescription(INVALID_DESCRIPTION));
+    }
+
+    @Test
+    public void parseDescription_validValue_returnsTrimmedDescription() throws Exception {
+        assertEquals("Tutorial", ParserUtil.parseDescription(VALID_DESCRIPTION));
+    }
+
+    @Test
+    public void parseInterval_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseInterval(null));
+    }
+
+    @Test
+    public void parseInterval_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseInterval(INVALID_INTERVAL));
+    }
+
+    @Test
+    public void parseInterval_validValue_returnsTrimmedInterval() throws Exception {
+        assertEquals(Interval.WEEKLY, ParserUtil.parseInterval(VALID_INTERVAL));
+    }
+
+    @Test
+    public void parseDate_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDate(null));
+    }
+
+    @Test
+    public void parseDate_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE));
+    }
+
+    @Test
+    public void parseDate_validValue_returnsTrimmedDate() throws Exception {
+        assertEquals(LocalDate.of(2021, 1, 1), ParserUtil.parseDate(VALID_DATE));
+    }
+
 }
