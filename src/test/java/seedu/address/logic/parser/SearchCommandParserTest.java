@@ -9,7 +9,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.SearchCommand;
-import seedu.address.model.person.NameAndSchoolContainsKeywordsPredicate;
+import seedu.address.model.person.NameSchoolAndTagContainsKeywordsPredicate;
 
 public class SearchCommandParserTest {
 
@@ -24,7 +24,7 @@ public class SearchCommandParserTest {
     public void parse_validArgs_returnsSearchCommand() {
         // no leading and trailing whitespaces
         SearchCommand expectedSearchCommand =
-                new SearchCommand(new NameAndSchoolContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"),
+                new SearchCommand(new NameSchoolAndTagContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"),
                         Arrays.asList("simei", "jurong"), Arrays.asList("abc", "def")));
         assertParseSuccess(parser, " n/Alice Bob s/simei jurong t/abc def", expectedSearchCommand);
 

@@ -11,7 +11,7 @@ import java.util.List;
 
 import seedu.address.logic.commands.SearchCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameAndSchoolContainsKeywordsPredicate;
+import seedu.address.model.person.NameSchoolAndTagContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new SearchCommand object
@@ -56,7 +56,7 @@ public class SearchCommandParser implements Parser<SearchCommand> {
         List<String> schoolKeywordsList = schoolKeywords == null ? null : Arrays.asList(schoolKeywords);
         List<String> tagKeywordsList = tagKeywords == null ? null : Arrays.asList(tagKeywords);
 
-        return new SearchCommand(new NameAndSchoolContainsKeywordsPredicate(
+        return new SearchCommand(new NameSchoolAndTagContainsKeywordsPredicate(
                 nameKeywordsList, schoolKeywordsList, tagKeywordsList));
     }
 

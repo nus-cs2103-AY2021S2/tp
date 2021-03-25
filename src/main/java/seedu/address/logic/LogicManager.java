@@ -3,7 +3,9 @@ package seedu.address.logic;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -14,6 +16,7 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.person.LessonDayPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -52,6 +55,20 @@ public class LogicManager implements Logic {
         }
 
         return commandResult;
+    }
+
+    @Override
+    public ObservableList<String> getLessonsForDay(String keyword) {
+        ObservableList<String> lessonsForDay = FXCollections.observableArrayList();
+        this.model.updateFilteredPersonList(new LessonDayPredicate(keyword));
+        ObservableList<Person> peopleWithLesson = this.model.getFilteredPersonList();
+        for (Person p : peopleWithLesson) {
+            p.getLessons().stream().filter(lesson -> lesson.getDayInString()
+                    .compareToIgnoreCase(keyword) == 0).map(lesson -> lessonsForDay
+                    .add(lesson.getTime().timeOfTuition + " " + p.getName().fullName))
+                    .collect(Collectors.toList());
+        }
+        return lessonsForDay;
     }
 
     @Override

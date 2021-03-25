@@ -35,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonDetails personDetails;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ScheduleWindow scheduleWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -132,6 +133,10 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+
+        scheduleWindow = new ScheduleWindow(logic);
+
     }
 
     /**
@@ -155,6 +160,18 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.show();
         } else {
             helpWindow.focus();
+        }
+    }
+
+    /**
+     * Opens the schedule window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleSchedule() {
+        if (!scheduleWindow.isShowing()) {
+            scheduleWindow.show();
+        } else {
+            scheduleWindow.focus();
         }
     }
 
@@ -188,22 +205,19 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            logger.info("is error here: 1");
-            personDetails.setPerson(logic.getSelectedPerson());
-            logger.info("is error here: 1");
+
+            if (logic.getSelectedPerson() != null) {
+                personDetails.setPerson(logic.getSelectedPerson());
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
-                logger.info("is error here: 1");
             }
-            logger.info("is error here: 1.5");
 
             if (commandResult.isExit()) {
                 handleExit();
-                logger.info("is error here: 2");
             }
-            logger.info("is error here: 2.5");
-            logger.info("is error here: 3");
+         
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
