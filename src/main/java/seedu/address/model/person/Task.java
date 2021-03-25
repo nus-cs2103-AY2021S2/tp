@@ -5,8 +5,9 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 import java.util.Iterator;
+import java.util.Set;
+
 
 import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.tag.Tag;
@@ -179,14 +180,24 @@ public class Task {
     }
 
 
+    /**
+     *
+     * Method that finds if there is a priority tag associated
+     * with the tags
+     *
+     * @param tags data containing all the tags in String
+     * @return boolean whether the pt is found
+     */
+
     public boolean findPriorityTag(Set<Tag> tags) {
 
         Iterator<Tag> it = tags.iterator();
 
-        while(it.hasNext()) {
+        while (it.hasNext()) {
             Tag hold = it.next();
-            if (hold.tagName.equals("LOW") || hold.tagName.equals("MEDIUM") ||
-                    hold.tagName.equals("HIGH")) {
+            if (hold.tagName.equals("LOW")
+                    || hold.tagName.equals("MEDIUM")
+                    || hold.tagName.equals("HIGH")) {
                 return true;
             }
         }
@@ -196,11 +207,20 @@ public class Task {
     }
 
 
+    /**
+     *
+     * Method that returns a priority tag associated
+     * with the task
+     *
+     * @param tags data containing all the tags in String
+     * @return the priority tag to be stored
+     */
+
     public PriorityTag obtainPriorityTag(Set<Tag> tags) {
 
         Iterator<Tag> it = tags.iterator();
 
-        while(it.hasNext()) {
+        while (it.hasNext()) {
             Tag hold = it.next();
             if (hold.tagName.equals("LOW") || hold.tagName.equals("MEDIUM") ||
                     hold.tagName.equals("HIGH")) {
