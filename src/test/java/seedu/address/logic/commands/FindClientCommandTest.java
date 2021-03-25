@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.getClientFindSuccessMessage;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalAppointments.MEET_ALEX;
 import static seedu.address.testutil.TypicalAppointments.MEET_BOB;
 import static seedu.address.testutil.TypicalProperties.JURONG;
 
@@ -68,7 +69,7 @@ public class FindClientCommandTest {
     }
 
     @Test
-    public void keyWordSuccessTest() {
+    public void keywordSuccessTest() {
         AppointmentContainsKeywordsPredicate predicate = preparePredicateAppointment("bob");
         PropertyClientNamePredicate predicate2 = preparePredicateProperty("bob");
         FindClientCommand command = new FindClientCommand(predicate2, predicate);
@@ -77,6 +78,18 @@ public class FindClientCommandTest {
         assertCommandSuccess(command, model, getClientFindSuccessMessage(1, 1), expectedModel);
         assertEquals(Collections.singletonList(MEET_BOB), model.getFilteredAppointmentList());
         assertEquals(Collections.singletonList(JURONG), model.getFilteredPropertyList());
+    }
+
+    @Test
+    public void unequalSuccessTest() {
+        AppointmentContainsKeywordsPredicate predicate = preparePredicateAppointment("alex");
+        PropertyClientNamePredicate predicate2 = preparePredicateProperty("alex");
+        FindClientCommand command = new FindClientCommand(predicate2, predicate);
+        expectedModel.updateFilteredAppointmentList(predicate);
+        expectedModel.updateFilteredPropertyList(predicate2);
+        assertCommandSuccess(command, model, getClientFindSuccessMessage(0, 1), expectedModel);
+        assertEquals(Collections.singletonList(MEET_ALEX), model.getFilteredAppointmentList());
+        assertEquals(Collections.emptyList(), model.getFilteredPropertyList());
     }
 
     @Test
