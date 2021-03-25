@@ -1,0 +1,89 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":PolicyCommandParser" as PolicyCommandParser LOGIC_COLOR
+participant "p:PolicyCommand" as PolicyCommand LOGIC_COLOR
+participant "result :CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Person PERSON_COLOR_T1
+participant ":Person" as Person PERSON_COLOR
+end box
+
+[-> LogicManager : execute("policy 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("policy 1")
+activate AddressBookParser
+
+create PolicyCommandParser
+AddressBookParser -> PolicyCommandParser
+activate PolicyCommandParser
+
+PolicyCommandParser --> AddressBookParser
+deactivate PolicyCommandParser
+
+AddressBookParser -> PolicyCommandParser : parse("1")
+activate PolicyCommandParser
+
+create PolicyCommand
+PolicyCommandParser -> PolicyCommand
+activate PolicyCommand
+
+PolicyCommand --> PolicyCommandParser : p
+deactivate PolicyCommand
+
+PolicyCommandParser --> AddressBookParser : p
+deactivate PolicyCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+PolicyCommandParser -[hidden]-> AddressBookParser
+destroy PolicyCommandParser
+
+AddressBookParser --> LogicManager : p
+deactivate AddressBookParser
+
+LogicManager -> PolicyCommand : execute()
+activate PolicyCommand
+
+PolicyCommand -> Person : hasPolicies( )
+activate Person
+
+Person --> PolicyCommand
+deactivate Person
+
+alt Person has no policies
+    create CommandResult
+    PolicyCommand -> CommandResult
+    activate CommandResult
+
+    CommandResult --> PolicyCommand
+    deactivate CommandResult
+
+else Person has policies
+    PolicyCommand -> Person : getPersonNameAndAllPoliciesInString( )
+    activate Person
+
+    Person --> PolicyCommand : policiesAndUrls
+    deactivate Person
+
+    create CommandResult
+    PolicyCommand -> CommandResult
+    activate CommandResult
+
+    CommandResult --> PolicyCommand
+    deactivate CommandResult
+
+end
+
+deactivate CommandResult
+
+PolicyCommand --> LogicManager : result
+deactivate PolicyCommand
+destroy PolicyCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

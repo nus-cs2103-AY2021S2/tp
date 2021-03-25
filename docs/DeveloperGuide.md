@@ -2,37 +2,115 @@
 layout: page
 title: Developer Guide
 ---
+
+
+
+## **Overview**
+
+ClientBook is an application for managing client contacts, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
+Aimed at insurance agents who are always on the move, ClientBook aims to provide the following utilities:
+* Minimise usage of the trackpad
+* Minimise resource consumption of ClientBook
+* Provide minimal yet essential functionalities to ClientBook
+
+### Minimise usage of trackpad
+ClientBook aims to minimise the use of the trackpad and process commands essential to contact management purely through keyboard inputs. 
+We believe that minimising the use of the trackpad can improve the efficiency of the user.
+
+### Minimise resource consumption of ClientBook
+As an application that is meant to be used on the go, our end-users might not necessarily have easy access to power plugs. 
+Hence, the application should be kept lightweight and not consume significant resources (e.g. battery, RAM).
+
+### Provide minimal yet essential functionalities to ClientBook
+ClientBook would not be complete without a set of features that help our end-users be more productive while not at their office desks. 
+We have also seen the problems that come with overly complicated user interfaces - users tend to get confused easily and might hence not take full advantage of what the program can do for them.
+ClientBook thus aims to keep things simple, by only providing what is essential, so as not to confused our end-users.
+
+### Going forward,
+These 3 design ideals should be adhered to as much as possible when implementing new features for your version of the application.
+This Developer Guide aims to provide insights for other developers on how the initial functionalities and system architecture were designed and implemented.
+
+### Table of Contents
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+<br><br>
+
+------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
---------------------------------------------------------------------------------------------------------------------
+<br><br>
+
+------------------------------------------------------------------------
+
+## **Definitions**
+
+1. **API** (Application Programming Interface) A set of function declarations as well as explanations on their usage.
+
+
+2. **Architecture diagram** A type of UML diagram that shows the overall organization of the system and how components are connected with each other.
+
+
+3. **CLI** (Command Line Interface) A text box like interface which allows a user to enter commands.
+
+
+4. **GUI** (Graphical user interface) A form of user interface with graphical features such as icons that allows a user to interact with our program.
+
+
+5. **JavaFx** A software platform for creating and delivering desktop applications, as well as rich Internet applications that can run across a wide variety of devices. We use it to construct our graphical user interface.
+
+
+6. **Mainstream OS** Windows, Linux, Unix, OS-X
+
+
+6. **MSS** (Main Success Scenario) The expected flow of events when a use case goes as expected. 
+
+
+8. **Private contact detail**: A contact detail that is not meant to be shared with others
+
+
+7. **Sequence diagram** A type of UML diagram that describes a particular instance of components interacting with each other.
+
+
+8. **UML** (Unified Modeling Language) A standard for creating models and diagrams to visualize the design of a system.
+
+
+9. **UI** (User Interface) An interface for a user to interact with the program.
+
+<br><br>
+
+------------------------------------------------------------------------
 
 ## **Design**
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="450" />
+ClientBook consists of 4 primary components which are the UI, Logic, Model, and Storage. The components interact with one another to form a cohesive system.
 
-The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
+<p align="center"><img src="images/ArchitectureDiagram.png" width="450" /></p>
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S2-CS2103T-W15-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
+The architecture diagram given above explains the high-level design of the App. Given below is a quick overview of each component.
+
+<br>
+
 **`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103T-W15-2/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103T-W15-2/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+<br>
 
+**`Commons`** represents a collection of classes used by multiple other components.
+
+<br>
 The rest of the App consists of four components.
 
 * [**`UI`**](#ui-component): The UI of the App.
@@ -40,26 +118,31 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-Each of the four components,
+<br>
+Each of the four components
 
-* defines its *API* in an `interface` with the same name as the Component.
-* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
+* defines its *API* in an interface with the same name as the Component.
+* exposes its functionality using a concrete `{Component Name}Manager` class which implements the corresponding API interface mentioned in the previous point.
+
+<br>
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
+<p align="center"><img src="images/LogicClassDiagram.png"></p>
 
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+<br>
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The sequence diagram below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<p align="center"><img src="images/ArchitectureSequenceDiagram.png" width="574" /></p>
 
 The sections below give more details of each component.
 
-### UI component
+<br>
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+### UI component
+<p align="center"><img src="images/UiClassDiagram.png"></p>
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S2-CS2103T-W15-2/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -73,29 +156,31 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
+<br>
+
 ### Logic component
 
-![Structure of the Logic Component](images/LogicClassDiagram.png)
+<p align="center"><img src="images/LogicClassDiagram.png"></p>
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S2-CS2103T-W15-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a client contact).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<p align="center"><img src="images/DeleteSequenceDiagram.png"></p>
+<div markdown="span" class="alert alert-secondary">
+:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+<br>
 
 ### Model component
-
-![Structure of the Model Component](images/ModelClassDiagram.png)
+<p align="center"><img src="images/ModelClassDiagram.png"></p>
 
 **API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-W15-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -106,32 +191,80 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-</div>
-
+<br>
 
 ### Storage component
 
-![Structure of the Storage Component](images/StorageClassDiagram.png)
+<p align="center"><img src="images/StorageClassDiagram.png"></p>
 
 **API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-W15-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
-* can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save `UserPref` objects in JSON format and read it back.
+* can save the address book data in JSON format and read it back.
 
-### Common classes
+<br><br>
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
-
---------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------
 
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Feature to display the insurance policies associated with a selected client
+
+#### Motivation
+
+It would not be a good user experience if there was no easy way for the user to quickly retrieve the insurance policy URLs 
+from ClientBook. Since the application's contact card interface does not support direct copy-paste functionality, a new approach 
+to display and facilitate retrieval of this essential information had to be implemented. Below is a succinct but complete 
+explanation of how the chosen approach, which is to implement a `PolicyCommand` `Command`, works. Other alternatives 
+we considered and the design considerations are further elaborated below.
+
+#### Implementation
+
+A new command `PolicyCommand` was created. It extends the abstract class `Command`, overriding and implementing its `execute` 
+method. When `PolicyCommand#execute()` is called, all the insurance policies and their associated policy URLs are fetched from the 
+selected `Person` client through `Person#getPersonNameAndAllPoliciesInString()`.
+
+Below is an example usage scenario and how the information and data are passed around at each step.
+
+**Step 1.** The user types `policy 1` into the input box.
+
+**Step 2.** `MainWindow` receives the `commandText` (`policy 1`), which is then executed by `LogicManager`.
+
+**Step 3.** `AddressBookParser` then parses the full `commandText`, returning a `Command`. In this case, it would return a 
+`PolicyCommand`, which would contain the index of the selected client in the displayed list (which in this case is 1).
+
+**Step 4.** `PolicyCommand`then executes, returning a `CommandResult`. This `CommandResult` contains the concatenated string 
+of all the insurance policies and their associated URLs as the feedback. The `CommandResult` also contains a `boolean` value 
+indicating whether a popup window is to be displayed. This `boolean` value can be retrieved using the method `CommandResult#isShowPolicies()`.
+
+**Step 5.** This `CommandResult` is passed back to `MainWindow`, which then checks if the method `CommandResult#isShowPolicies()` 
+returns true, and launches the insurance policy window if so.
+
+Below is a sequence diagram illustrating the flow of this entire process.
+
+<p align="center"><img src="images/PolicyCommandDiagram.png"></p>
+
+#### Design Considerations
+
+Since `PolicyCommand` is just one of the many `Commands`, conscious effort had to be made to ensure that the behaviour of 
+its methods strictly resembled those of its fellow `Command` classes. 
+
+#### Alternatives considered
+
+* **Alternative 1 (current choice):** Display the insurance policies and their URLs in a popup window, retrieve URL through a 'Copy URL button'
+  * Have a popup window to display the insurance policies and their associated URLs.
+  * The window should also have a 'Copy URL' button similar to that in the 'help' window that appears then `help` is called.
+  * Pros: Easy to implement a button.
+  * Cons: Not the best way to display a hyperlink/URL.
+    
+
+* **Alternative 2:** Display the insurance policies and their URls in a popup window, where the URLs upon click launches the browser
+  * Pros: More intuitive in terms of user experience.
+  * Cons: Harder to implement.
+
 
 ### \[Proposed\] Undo/redo feature
 
@@ -145,60 +278,71 @@ The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It ex
 
 These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
 
+<br>
+
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+**Step 1**. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+<p align="center"><img src="images/UndoRedoState0.png"></p>
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+<br>
 
-![UndoRedoState1](images/UndoRedoState1.png)
+**Step 2**. The user executes `delete 5` command to delete the 5th client contacts in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+<p align="center"><img src="images/UndoRedoState1.png"></p>
 
-![UndoRedoState2](images/UndoRedoState2.png)
+<br>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+**Step 3**. The user executes `add n/David …​` to add a new client contacts. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
+<p align="center"><img src="images/UndoRedoState2.png"></p>
+<div markdown="span" class="alert alert-secondary">
+:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
 </div>
+<br>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+**Step 4**. The user now decides that adding the client contacts was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+<p align="center"><img src="images/UndoRedoState3.png"></p>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-secondary">
+:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
-
 </div>
+<br>
 
 The following sequence diagram shows how the undo operation works:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
+<p align="center"><img src="images/UndoSequenceDiagram.png" width="90%"></p>
+<div markdown="span" class="alert alert-secondary">
+:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
+<div markdown="span" class="alert alert-secondary">
+:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
 
-![UndoRedoState4](images/UndoRedoState4.png)
+**Step 5**. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+<p align="center"><img src="images/UndoRedoState4.png"></p>
 
-![UndoRedoState5](images/UndoRedoState5.png)
+<br>
+
+**Step 6**. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+
+<p align="center"><img src="images/UndoRedoState5.png"></p>
+
+<br>
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
+<p align="center"><img src="images/CommitActivityDiagram.png" height="90%"></p>
 
-#### Design consideration:
+#### Design consideration
 
 ##### Aspect: How undo & redo executes
 
@@ -208,17 +352,12 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the client contact being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
+<br><br>
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
---------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -228,7 +367,9 @@ _{Explain here how the data archiving feature will be implemented}_
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+<br><br>
+
+------------------------------------------------------------------------
 
 ## **Appendix: Requirements**
 
@@ -259,35 +400,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                                       | add a new client               |                                                                        |
-| `* * *`  | user                                       | delete a client                | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | delete a client                | remove the contact of a client that I no longer serve                                   |
 | `* * *`  | user                                       | find a client by name          | locate details of clients without having to go through the entire list |
-| `* * *`  | forgetful user                             | store many clients details     | remember them easily                                                   |
-| `* * *`  | first time user                            | find out how to use ClientBook | familiarise myself with the app                                        |
-| `* * *`  | insurance agent                            | filter clients by details      | find my clients who share the same insurance policy                    |
-| `* * *`  | insurance agent                            | link contact to portfolio      | access them easily                                                     |
-| `* * *`  | insurance agent                            | edit individual client details | update their particulars if they change                                |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `* *`    | impatient user                             | access specific client quickly | spend less time searching through my list                              |
-| `* *`    | disorganised user                          | display only properties queried| avoid cluttering the screen with unnecessary information               |
+| `* * *`  | forgetful user                             | store many clients details     | so that I do not have to remember them                                                   |
+| `* * *`  | first time user                            | find out how to use ClientBook | familiarise myself with the application                                        |
+| `* * *`  | insurance agent                            | find clients by insurance policy    | find my clients who share the same insurance policy                    |
+| `* * *`  | insurance agent                            | link contact to portfolio      | access my clients' portfolio  easily                                                     |
+| `* * *`  | insurance agent                            | edit individual client details |                               |
+| `* *`    | disorganised user                          | display only certain attributes queried| avoid cluttering the screen with unnecessary information               |
 | `* *`    | insurance agent                            | sort my clients                | see my clients in a more organized way                                 |
-| `* *`    | impatient user                             | access specific client quickly | spend less time searching through my list                              |
-| `* *`    | disorganised user                          | display only properties queried| avoid cluttering the screen with unnecessary information               |
 | `* *`    | insurance agent on the go                  | lock ClientBook with a password| prevent the leakage of my clients' information                         |
-
-*{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is the `ClientBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a client**
+**Use case 1: Delete a client**
 
 **MSS**
 
-1.  User requests to list clients
-2.  ClientBook shows a list of clients
-3.  User requests to delete a specific client in the list
-4.  ClientBook deletes the client
+1.  User requests to list clients.
+    
+1.  ClientBook shows a list of clients.
+    
+1.  User requests to delete a specific client in the list.
+    
+1.  ClientBook deletes the client.
 
     Use case ends.
 
@@ -302,13 +440,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. ClientBook shows an error message.
 
       Use case resumes at step 3.
+    
+<br>
 
-**Use case: Add a client**
+**Use case 2: Add a client**
 
 **MSS**
 
-1.  User requests to add a client
-2.  ClientBook adds the client.
+1.  User requests to add a client.
+    
+1.  ClientBook adds the client.
 
     Use case ends.
 
@@ -320,29 +461,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 1.
 
-**Use case: List all clients**
+<br>
+
+**Use case 3: List all clients**
 
 **MSS**
 
-1.  User requests to list clients
-2.  ClientBook shows a list of clients
+1.  User requests to list clients.
+    
+2.  ClientBook shows a list of clients.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+2a. The list is empty.
 
   Use case ends.
 
-**Use case: Edit a client**
+<br>
+
+**Use case 4: Edit a client**
 
 **MSS**
 
-1.  User requests to list clients
-2.  ClientBook shows a list of clients
-3.  User requests to edit a specific client in the list
-4.  ClientBook edits the client
+1.  User requests to list clients.
+    
+2.  ClientBook shows a list of clients.
+    
+3.  User requests to edit a specific client in the list.
+    
+4.  ClientBook edits the client.
 
     Use case ends.
 
@@ -358,12 +507,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 3.
 
-**Use case: Find a client**
+<br>
+
+**Use case 5: Find a client**
 
 **MSS**
 
-1.  User requests to find clients with keywords
-2.  ClientBook shows a list of clients that matches keywords
+1.  User requests to find clients with keywords.
+    
+2.  ClientBook shows a list of clients that matches keywords.
 
     Use case ends.
 
@@ -373,12 +525,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: Filter list of clients**
+<br>
+
+**Use case 6: Filter list of clients**
 
 **MSS**
 
-1.  User requests to filter clients with details
-2.  ClientBook shows a list of clients that matches details
+1.  User requests to filter clients with details.
+    
+2.  ClientBook shows a list of clients that matches details.
 
     Use case ends.
 
@@ -388,11 +543,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: Sort list of clients**
+<br>
+
+**Use case 7: Sort list of clients**
 
 **MSS**
 
-1.  User requests to sort clients with the specified attribute and direction
+1.  User requests to sort clients with the specified attribute and direction.
+    
 2.  ClientBook shows the sorted list of clients.
 
     Use case ends.
@@ -403,10 +561,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: Lock ClientBook**
+<br>
+
+**Use case 8: Lock ClientBook**
 
 **MSS**
+
 1. User requests to lock ClientBook.
+   
 2. ClientBook is locked.
 
     Use case ends.
@@ -414,50 +576,56 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. ClientBook is already locked but user did not enter the current password.
-    * 1a1. ClientBook shows an error message. Use case resumes at step 1.
+  
+    * 1a1. ClientBook shows an error message. Use case resumes at step 1. <br><br>
+    
 * 1b. ClientBook is already locked and user entered the incorrect current password.
+  
     * 1b1. ClientBook shows an error message. Use case resumes at step 1.
 
-**Use case: Unlock ClientBook**
+<br>
+
+**Use case 9: Unlock ClientBook**
 
 **MSS**
+
 1. User requests to unlock ClientBook.
+   
 2. ClientBook is unlocked.
 
     Use case ends.
 
 **Extensions**
-* 1a. User enters the incorrect current password that is used to lock ClientBook.
-    * 1a1. ClientBook shows an error message. Use case resumes at step 1.
 
-*{More to be added}*
+* 1a. User enters the incorrect current password that is used to lock ClientBook.
+  
+    * 1a1. ClientBook shows an error message. Use case resumes at step 1.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+    
 2.  Should be able to hold up to 1000 clients without a noticeable sluggishness in performance for typical usage.
+    
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  Should be able to have the client information stored in a file that can easily transfer/share between computers
+    
+4.  Should be able to have the client information stored in a file that can easily transfer/share between computers.
+    
 5.  Should be able to use ClientBook even if there is no internet around the vicinity.
+    
 6.  Should be able to have ClientBook stay on for a long period of time.
 
-*{More to be added}*
+<br><br>
 
-### Glossary
-
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-
---------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
-</div>
 
 ### Launch and shutdown
 
@@ -473,30 +641,59 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
+      
+### Viewing a client's policies
 
-1. _{ more test cases …​ }_
+1. Displaying all policies associated with a selected client who has no insurance policies
 
-### Deleting a person
+    *  Prerequisites: 
+       * List all client contacts using the list command. 
+       * Multiple client contacts in the list.
+    
+    * Test case: `policy 2`
+       * Expected: A small window pops up, with a message that says the selected client has no policies currently.
 
-1. Deleting a person while all persons are being shown
+1. Displaying all policies associated with a selected client who has insurance policies
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    * Prerequisites: 
+       * List all client contacts using the list command. 
+       * Multiple client contacts in the list. 
+       * Client to be selected should have at least 1 insurance policy.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    * Test case: `policy 3`
+       * Expected: A small window pops up, displaying the insurance policies associated with the selected client. If the insurance policies have URLs, a "Copy URL" button will be displayed beside the URL.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    * Test case: `policy 0`
+       * Expected: No display window appears. Error details shown in the status message.
+ 
+    * Other incorrect policy commands to try: `policy`, `policy x`, `...` (where x is larger than the list size)
+       * Expected: Similar to previous.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+### Deleting a client contact
 
-1. _{ more test cases …​ }_
+1. Deleting a client contact while all client contacts are being shown
+
+   * Prerequisites: 
+      * List all client contacts using the `list` command. 
+      * Multiple client contacts in the list.
+
+   * Test case: `delete 1`
+      * Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+
+   * Test case: `delete 0`
+      * Expected: No client contact is deleted. Error details shown in the status message. Status bar remains the sameass
+
+   * Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)
+      * Expected: Similar to previous.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   * Prerequisites: 
+      * Remove the clientbook.zip file from the folder with name 'data' in the same directory as your clientbook.jar file. 
+      * Ensure that the data folder is empty.
+    
+   * Test case: Launch ClientBook
+      * Expected: ClientBook launches and loads the data of the sample contacts.
 
-1. _{ more test cases …​ }_
