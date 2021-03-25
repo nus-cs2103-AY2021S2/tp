@@ -17,7 +17,7 @@ public class JsonSerializableColabFolderTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
             "JsonSerializableColabFolderTest");
-    private static final Path TYPICAL_DATA_FILE = TEST_DATA_FOLDER.resolve("typicalPersonsColabFolder.json");
+    private static final Path TYPICAL_DATA_FILE = TEST_DATA_FOLDER.resolve("typicalColabFolder.json");
     private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidPersonColabFolder.json");
     private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicatePersonColabFolder.json");
     private static final Path INVALID_PROJECT_FILE = TEST_DATA_FOLDER.resolve("invalidProjectColabFolder.json");
