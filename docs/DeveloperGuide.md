@@ -243,11 +243,11 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 
 
-**Value proposition**: 
+**Value proposition**:
 
 * Ease insurance agents with details as its centralised
 * Can share information to medical officers and clients involved
-* For those proficient in typing, ease management of assets 
+* For those proficient in typing, ease management of assets
 
 
 
@@ -288,7 +288,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   *    3a1. Bob requests for the correct data.
   *    3a2. User enters new data.
   *    Steps 3a1-3a2 are repeated until the data entered are correct.
-  
+ 
       Use case resumes from step 4.
 
       Use case ends.
@@ -296,14 +296,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   *3b. User requests to edit the data of the client in a future date.
   *    3b1. Bob requests for confirmation.
   *    3b2. User confirms future transfer.
-  
+
       Use case ends.
-      
+
  *3c At any time, User chooses to delete the client.
  *     3c1. OBS requests to confirm the deletion.
  *     3c2. User confirms the deletion.
- 
- 
+
+
       Use case ends.
 
 
