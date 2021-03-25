@@ -178,16 +178,28 @@ Example: `dealloc n/John Tan r/03-100`
 
 The following implementation alternatives were considered: 
 * **Alternative 1 (current choice):** Resident-Room solely keeps track of resident and room allocation
-  performed through `alloc` and `dealloc` commands. Any allocated resident and occupied rooms cannot be edited
-  and deleted to ensure synchronicity between the room number field in resident and occupancy status in rooms. 
+  performed through `alloc` and `dealloc` commands. Any allocated resident and occupied rooms 
+  cannot be edited.
+  * Pros: 
+    * Simpler to implement.
+    * Better testability for synchronicity between fields.
+  * Cons: 
+    * Less user control.  
 * **Alternative 2:** Resident-Room allocation is modelled as a Parent-Child where the parent is the 
-  `Room` and the child is the `Resident`. The disadvantage of this implementation is that
-  the room number of the `Resident` cannot be updated. The problem is reversed if the 
-  parent-child roles are swapped.
+  `Room` and the child is the `Resident`.
+  *Pros:
+    * Simpler to implement.
+  * Cons:
+    * Lack of 2-way updates. Room number of the `Resident` cannot be updated and viewed. 
+      The problem is reversed if the parent-child roles are swapped where the occupancy 
+      of `Room` cannot be updated and viewed.
 * **Alternative 3:** Resident-Room interface as a lookup. `Room` and `Resident` would look up the 
-`residentRoom` class every time to get its `OCCUPANCY STATUS` and `ROOM NUMBER`. 
-  This implementation creates a lot of dependencies and has a cascading 
-  impact on regular commands e.g. `redit`, `rdel`, `oedit`, `odel`.
+`residentRoom` class every time to get its `OCCUPANCY STATUS` and `ROOM NUMBER`.
+  * Pros: 
+    * User has more control and flexibility. 
+  * Cons: 
+    * Creates cascading effect with a lot of dependencies between regular commands
+    such as `redit`, `rdel`, `oedit`, `odel`.
 
 
 
