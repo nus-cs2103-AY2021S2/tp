@@ -294,6 +294,47 @@ after all an attribute of a `Person`. No other such attribute has its own dedica
 ultimately implemented as a field to the `add`/`edit` commands, which is consistent with all the other Person 
 attributes.
 
+### Fuzzy Find
+
+The current implementation of `find` command uses the Java port of Python's 
+[fuzzywuzzy algorithm](https://github.com/xdrop/fuzzywuzzy). Current implementation matches using partial match of more
+than 60% similarity. The `find` command also sorts the search result in decrementing order of similarity.
+
+#### Considerations
+
+Key requirements for fuzzy search is the following
+
+- 3 character name matches 
+  - Fuzzy matching should support 3 character names with delta of 1 character
+    - `Eva` and `Iva` - 66% similarity
+    - `Tim` and `Tom` - 66% similarity
+- Partial name matches
+  - Name matching should support partial matches where shortened nicknames are used
+    - `Ben` and `Benjamin`
+    - `Sam` and `Samantha`
+    - `Jon` and `Jonathan`
+    
+#### Side Effects and Missed Matches
+
+Due to the above considerations, partial matching is chosen for partial name matches and 60% threshold is chosen for 3 
+character names. However, side effects occur with these design choices.
+
+- Middle of name matches
+  - `Sam` matches with `Benjamin` with 66% partial similarity due to `jam` in `benjamin` being 1 character delta from 
+    `sam`
+    
+Additionally, there are also some missed out features
+
+- Phonetically similar name matches
+  - `Shawn` doesnt match with `Sean` due to it below the 60% simiarity threshold
+    
+#### Potential changes
+
+In the future, a combination of full word and partial matches can be used with weighted metrics to avoid middle of name
+matches. To avoid both issue, string fuzzy search may not be sufficient. Levenshtein distance is not able to account for
+phonetic differences in names and expected result when doing name searches.
+    
+
 ### [Proposed] Selecting Persons
 
 A proposed implementation of `SelectCommand` will be similar to `Alias` feature.
