@@ -142,7 +142,7 @@ public class EventBuilder {
      * @return Event built with EventBuilder attributes and identifier
      */
     public Event buildWithID() {
-        return new Event(eventName, status, description, identifier);
+        return new Event(eventName, status, priority, description, identifier);
     }
 
     /**

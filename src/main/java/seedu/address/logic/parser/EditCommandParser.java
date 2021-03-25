@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import java.util.Collection;
@@ -30,7 +31,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_STATUS);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_STATUS, PREFIX_PRIORITY);
 
         Index index;
 
@@ -50,6 +51,11 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
             editEventDescriptor.setEventStatus(ParserUtil.parseEventStatus(argMultimap.getValue(PREFIX_STATUS).get()));
+        }
+
+        if (argMultimap.getValue(PREFIX_PRIORITY).isPresent()) {
+            editEventDescriptor.setEventPriority(ParserUtil.parseEventPriority(
+                    argMultimap.getValue(PREFIX_PRIORITY).get()));
         }
         // parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editEventDescriptor::setTags);
         // Commented out for v1.2

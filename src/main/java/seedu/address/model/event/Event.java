@@ -53,10 +53,11 @@ public class Event {
     /**
      * Every field must be filled. Used for edit events where the identifier should not increase.
      */
-    public Event(EventName name, EventStatus status, Description description, int identifier) {
-        requireAllNonNull(name, status, description, identifier);
+    public Event(EventName name, EventStatus status, EventPriority priority, Description description, int identifier) {
+        requireAllNonNull(name, status, priority, description, identifier);
         this.eventName = name;
         this.status = status;
+        this.priority = priority;
         this.description = description;
         this.identifier = identifier;
     }
