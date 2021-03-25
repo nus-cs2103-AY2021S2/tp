@@ -1,6 +1,8 @@
 package seedu.partyplanet.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.partyplanet.model.date.Date.EMPTY_MONTH;
+import static seedu.partyplanet.model.date.Date.MONTH_NAME_MAPPING;
 
 import java.time.DateTimeException;
 import java.util.Collection;
@@ -10,6 +12,7 @@ import java.util.Set;
 import seedu.partyplanet.commons.core.index.Index;
 import seedu.partyplanet.commons.util.StringUtil;
 import seedu.partyplanet.logic.parser.exceptions.ParseException;
+import seedu.partyplanet.model.date.Date;
 import seedu.partyplanet.model.event.EventDate;
 import seedu.partyplanet.model.person.Address;
 import seedu.partyplanet.model.person.Birthday;
@@ -25,6 +28,8 @@ import seedu.partyplanet.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_MONTH =
+            "Number is not a valid month, or an integer ranging from [0, 12].";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -37,6 +42,40 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code input} into an {@code int} month value and returns it.
+     * Leading and trailing whitespaces will be trimmed.
+     * If no input is specified (or 0 is specified), the method will return an empty month value.
+     *
+     * @throws ParseException if the specified number is not a valid month nor integer in [0, 12].
+     */
+    public static int parseMonthInteger(String input) throws ParseException {
+        String trimmedInput = input.trim().toLowerCase();
+        if (trimmedInput.isEmpty()) {
+            return Date.EMPTY_MONTH;
+        }
+
+        // Check if is month name
+        if (MONTH_NAME_MAPPING.containsKey(trimmedInput)) {
+            return MONTH_NAME_MAPPING.get(trimmedInput);
+        }
+
+        // Most general, check if is integer
+        int monthValue;
+        try {
+            monthValue = Integer.parseInt(trimmedInput);
+            if (monthValue == 0) {
+                return EMPTY_MONTH;
+            }
+        } catch (NumberFormatException e) {
+            throw new ParseException(MESSAGE_INVALID_MONTH);
+        }
+        if (!((1 <= monthValue) && (monthValue <= 12))) {
+            throw new ParseException(MESSAGE_INVALID_MONTH);
+        }
+        return monthValue;
     }
 
     /**

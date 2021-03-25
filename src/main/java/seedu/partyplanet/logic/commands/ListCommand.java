@@ -22,13 +22,13 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists people in PartyPlanet "
             + "according to specified prefix combinations, with optional sort order.\n"
-            + "Parameters: [--exact] [--any] [-n NAME]... [-t TAG]... [-s SORT_FIELD] [-o SORT_ORDER]\n"
+            + "Parameters: [--exact] [--any] [-n NAME]... [-t TAG]... [-b MONTH]... [-s SORT_FIELD] [-o SORT_ORDER]\n"
             + "Sort fields: 'n' (name, default), 'b' (birthday)\n"
             + "Sort orders: 'asc' (ascending, default), 'desc' (descending)\n"
-            + "Example: list --exact -n alice -t friend -s n -o desc\n";
+            + "Example: list --exact -n alice -t friend -b 1 -s n -o desc\n";
 
     public static final String MESSAGE_USAGE_CONCISE =
-            COMMAND_WORD + " [--exact] [--any] [-n NAME]... [-t TAG]... [-s SORT_FIELD] [-o SORT_ORDER]";
+            COMMAND_WORD + " [--exact] [--any] [-n NAME]... [-t TAG]... [-b MONTH]... [-s SORT_FIELD] [-o SORT_ORDER]";
 
     public static final Comparator<Person> SORT_NAME = Comparator.comparing(x -> x.getName().fullName);
     public static final Comparator<Person> SORT_BIRTHDAY =
