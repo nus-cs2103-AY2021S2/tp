@@ -77,7 +77,8 @@ public class MainApp extends Application {
         FoodIntakeListStorage foodIntakeListStorage =
                 new JsonFoodIntakeListStorage(userPrefs.getFoodIntakeListFilePath());
         DietPlanListStorage dietPlanListStorage = new JsonDietPlanListStorage(userPrefs.getDietPlanListFilePath());
-        UserStorage userStorage = new JsonUserStorage(userPrefs.getAddressBookFilePath());
+        UserStorage userStorage = new JsonUserStorage(userPrefs.getUserFilePath());
+
         storage = new StorageManager(addressBookStorage, uniqueFoodListStorage,
                 foodIntakeListStorage, dietPlanListStorage, userPrefsStorage, userStorage);
 

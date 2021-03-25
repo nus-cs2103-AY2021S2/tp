@@ -67,6 +67,10 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return dietPlanListFilePath;
     }
 
+    public Path getUserFilePath() {
+        return userFilePath;
+    }
+
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         this.addressBookFilePath = addressBookFilePath;
@@ -87,6 +91,11 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.dietPlanListFilePath = dietPlanListFilePath;
     }
 
+    public void setUserFilePath(Path userFilePath) {
+        requireNonNull(userFilePath);
+        this.userFilePath = userFilePath;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -102,13 +111,14 @@ public class UserPrefs implements ReadOnlyUserPrefs {
                 && addressBookFilePath.equals(o.addressBookFilePath)
                 && uniqueFoodListFilePath.equals(o.uniqueFoodListFilePath)
                 && foodIntakeListFilePath.equals(o.foodIntakeListFilePath)
-                && dietPlanListFilePath.equals(o.dietPlanListFilePath);
+                && dietPlanListFilePath.equals(o.dietPlanListFilePath)
+                && userFilePath.equals(o.userFilePath);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(guiSettings, addressBookFilePath, uniqueFoodListFilePath,
-                foodIntakeListFilePath, dietPlanListFilePath);
+                foodIntakeListFilePath, dietPlanListFilePath, userFilePath);
     }
 
     @Override
@@ -119,6 +129,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         sb.append("\nLocal unique food list file location : " + uniqueFoodListFilePath);
         sb.append("\nLocal data file location : " + foodIntakeListFilePath);
         sb.append("\nLocal diet plan list file location : " + dietPlanListFilePath);
+        sb.append("\nUser file location : " + userFilePath);
         return sb.toString();
     }
 
