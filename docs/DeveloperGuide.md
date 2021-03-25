@@ -151,6 +151,46 @@ Classes used by multiple components are in the `seedu.dictionote.commons` packag
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Contact features
+
+#### Sending an email to a contact
+
+##### Implementation
+
+This feature is implemented as a command, `EmailCommand`, that extends `Command`. It is an index-dependent command, meaning that the user must provide an index number when typing the command as a reference to a specific contact on the contacts list.
+
+The index number was selected to refer to a particular contact. This is due to its character length being shorter in most cases than any other field of information in `Contact` objects, making it both simple and sufficient.
+
+The `execute()` method attempts to open a new window of the user's operating system (OS) default mail client. This is done by navigating to a `mailto` link with the contact's email address added to the end.
+
+As an example, consider running Dictionote on a Windows 10 machine with Microsoft Outlook as the OS default mail client:
+
+* Assume that the current state of the application is as follows (note the exisiting contacts on the left-side of the application's window):
+
+![ContactEmailFeatureInitState](images/ContactEmailFeatureInitState.png)
+
+* After typing in `emailcontact 2` and executing it, the result would be:
+
+![ContactEmailFeatureExecute](images/ContactEmailFeatureExecute.png)
+
+* A new window, belonging to Microsoft Outlook's `New Message` function, will pop up:
+
+![ContactEmailFeatureOSClient](images/ContactEmailFeatureOSClient.png)
+
+* Note that the email of the selected contact, Bob (referred to in the command by his index number), is automatically written in the `To...` field of the email's header information.
+
+Note that if the user does not have a mail client software set as default in their OS, then Dictionote will try to navigate to the `mailto` link through the user's default browser (i.e., the `mailto` link will be treated as an ordinary URL link).
+
+##### Design Considerations
+
+* **Alternative 1 (current choice):** make use of the OS mail client to facilitate email features.
+	* Pros: Easy to implement; utilizes a pre-existing and standardized system for invoking mail xyz.
+	* Cons: Requires the user to have a mail client installed on their OS, which is then set to be the default mail client of the system.
+	
+* **Alternative 2:** implement basic email features directly into Dictionote.
+	* Pros: Does not depened on the existence of external software in the OS.
+	* Cons: Much harder to implement, as it requires the implementation of network-related functions to handle the connections to email servers.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -347,14 +387,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 
 
-**Use case: Delete a person**
+**Use case: Delete a contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  Dictionote shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  Dictionote deletes the person
+1.  User requests to list contacts
+2.  Dictionote shows a list of contacts
+3.  User requests to delete a specific contact in the list
+4.  Dictionote deletes the contact
 
     Use case ends.
 
