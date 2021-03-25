@@ -48,15 +48,21 @@ You can also easily sift through CoLAB's various commands and features by referr
 
 ### 2.2 Reading this Document
 
+This subsection serves to provide explanations on the symbols, syntax and technical terms  used throughout this User Guide. Familiarisation with this subsection would make the user guide easier to read.
+
 #### 2.2.1 Sections of the Application Window
+
+Different sections of the application window will be referred to by the names described in the image shown below:
+
+[TODO]
 
 #### 2.2.2 Special Formats
 
+[TODO]
+
 #### 2.2.3 Command Format
 
-
-
-
+[TODO]
 
 --------------------------------------------------------------------------------------------------------------------
 
