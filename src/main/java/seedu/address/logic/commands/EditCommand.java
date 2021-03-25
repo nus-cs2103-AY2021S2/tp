@@ -141,6 +141,7 @@ public class EditCommand extends Command {
         private Weightage weightage;
         private Remark remark;
         private Set<Tag> tags;
+        private Status status;
 
         public EditTaskDescriptor() {
         }
@@ -199,6 +200,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(deadlineTime);
         }
 
+        public void setStatus(Status status) {
+            this.status = status;
+        }
+
+        public Optional<Status> getStatus() {
+            return Optional.ofNullable(status);
+        }
+
         public void setWeightage(Weightage weightage) {
             this.weightage = weightage;
         }
@@ -253,6 +262,7 @@ public class EditCommand extends Command {
                 && getRemark().equals(e.getRemark())
                 && getDeadlineDate().equals(e.getDeadlineDate())
                 && getDeadlineTime().equals(e.getDeadlineTime())
+                && getStatus().equals(e.getStatus())
                 && getTags().equals(e.getTags());
         }
 

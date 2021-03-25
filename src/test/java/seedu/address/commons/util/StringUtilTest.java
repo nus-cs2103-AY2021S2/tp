@@ -76,6 +76,11 @@ public class StringUtilTest {
         assertThrows(NullPointerException.class, () -> StringUtil.containsWordIgnoreCase(null, "abc"));
     }
 
+    @Test
+    public void containsWordIgnoreCase_nullWordAndSentence_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.containsWordIgnoreCase(null, null));
+    }
+
     /*
      * Valid equivalence partitions for word:
      *   - any word

@@ -80,9 +80,8 @@ public class Task {
      * Finish a task and return a new Task with status finished
      */
     public Task finishTask() {
-        status.finish();
         return new Task(this.taskName, this.moduleCode, this.deadlineDate,
-                this.deadlineTime, this.status, this.weightage, this.remark, this.tags);
+                this.deadlineTime, new Status("Finished"), this.weightage, this.remark, this.tags);
     }
 
     /**

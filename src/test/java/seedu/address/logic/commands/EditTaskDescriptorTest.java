@@ -4,8 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_AMY;
 
 import org.junit.jupiter.api.Test;
 
@@ -34,6 +37,18 @@ public class EditTaskDescriptorTest {
 
         // different name -> returns false
         EditTaskDescriptor editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different date -> returns false
+        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withDeadlineDate(VALID_DATE_AMY).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different time -> returns false
+        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withDeadlineTime(VALID_TIME_AMY).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        //different status -> returns false
+        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withStatus(VALID_STATUS_AMY).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
