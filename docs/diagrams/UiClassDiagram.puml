@@ -15,6 +15,7 @@ Class EndpointListPanel
 Class EndpointCard
 Class StatusBarFooter
 Class CommandBox
+Class Theme
 }
 
 package Model <<Rectangle>> {
@@ -35,6 +36,7 @@ MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
 MainWindow *-down-> EndpointListPanel
 MainWindow *-down-> StatusBarFooter
+MainWindow *-down-> Theme
 
 EndpointListPanel -down-> EndpointCard
 
