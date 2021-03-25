@@ -326,17 +326,19 @@ A quick overview of all supported commands, their formats and examples are given
 
 ### 6.2 Endpoint
 
-| Action     | Format                                | Example                                |
-| ---------- | ------------------------------------- | -------------------------------------- |
-| **Add**    | `add -x METHOD -u URL [-d DATA] [-h HEADER]… [-t TAG]…` <br>  | `add -x GET -u http://localhost:3000/ -d {"some": "data"} -h "key: value1" -h "key: value2" -t local -t data` |
-| **Edit**   | `edit INDEX [-x METHOD] [-u URL] [-d DATA] [-h HEADER]… [-t TAG]…`<br> | `edit 1 -x GET -u http://localhost:3000/ -d {"some": "data"} -h "key: value" -h "key: value" -t local -t data` |
-| **Show**   | `show INDEX`<br>                      | `show 1`                             |
-| **Remove** | `remove INDEX`<br>                    | `remove 3`                             |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]…`<br> OR <br>`find -x KEYWORD [MORE_KEYWORDS]…`<br> | `find maps`<br> `find -x get`                            |
-| **List**   | `list`                                | `list`                                 |
-| **Clear**  | `clear`                               | `clear`                                |
-| **Send**   | `send INDEX` <br>                     | `send 1`                               |
-| **Run**    | `run -x METHOD -u URL [-d DATA] [-h HEADER]…` <br> OR <br>`run URL`  | `run -x GET -u https://api.data.gov.sg/v1/environment/uv-index -d {"some": "data"} -h "key: value"` <br> `run https://api.data.gov.sg/v1/environment/uv-index` |
+| Action     | Format                                | 
+| ---------- | ------------------------------------- |
+| **Add**    | `add -x METHOD -u URL [-d DATA] [-h HEADER]… [-t TAG]…` <br>  |
+| **Edit**   | `edit INDEX [-x METHOD] [-u URL] [-d DATA] [-h HEADER]… [-t TAG]…`<br> |
+| **Show**   | `show INDEX`<br>                      |
+| **Remove** | `remove INDEX`<br>                    |
+| **Find (Specific)**   | `find -x KEYWORD [MORE_KEYWORDS]…`<br> |
+| **Find (General)**   | `find KEYWORD [MORE_KEYWORDS]…`<br> |
+| **List**   | `list`                                |
+| **Clear**  | `clear`                               |
+| **Send**   | `send INDEX` <br>                     |
+| **Run (Quick)**    | `run URL`  |
+| **Run (Detailed)**    | `run -x METHOD -u URL [-d DATA] [-h HEADER]…` <br> |
 
 ## 7. Glossary
 - **API (Application Programming Interface):** An interface for two systems to interact with each other
