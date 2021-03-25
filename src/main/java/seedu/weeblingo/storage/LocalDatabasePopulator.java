@@ -18,7 +18,7 @@ import seedu.weeblingo.model.tag.Tag;
  * Reads from local database, populates the flashcards read into user's data storage.
  */
 public class LocalDatabasePopulator {
-//ss
+
     /**
      * Gets the database of flashcards, as an array of flashcards.
      *
