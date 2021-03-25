@@ -4,7 +4,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.weeblingo.model.flashcard.exceptions.DuplicateAttemptScoreException;
 import seedu.weeblingo.model.flashcard.exceptions.DuplicateFlashcardException;
-import seedu.weeblingo.model.flashcard.exceptions.FlashcardNotFoundException;
 import seedu.weeblingo.model.score.Score;
 
 import java.util.Iterator;
@@ -53,18 +52,18 @@ public class UniqueScoreHistoryList implements Iterable<Score> {
      * Replaces the UniqueScoreHistoryList with {@code replacement}.
      * {@code replacement} is meant to contain unique score histories.
      */
-    public void setFlashcards(UniqueScoreHistoryList replacement) {
+    public void setScores(UniqueScoreHistoryList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
 
     /**
-     * Replaces the contents of this list with {@code flashcards}.
-     * {@code flashcards} must not contain duplicate flashcards.
+     * Replaces the contents of this list with {@code scores}.
+     * {@code scores} must not contain duplicate scores.
      */
-    public void setFlashcards(List<Score> scores) {
+    public void setScores(List<Score> scores) {
         requireAllNonNull(scores);
-        if (!flashcardsAreUnique(scores)) {
+        if (!scoresAreUnique(scores)) {
             throw new DuplicateFlashcardException();
         }
 
@@ -98,7 +97,7 @@ public class UniqueScoreHistoryList implements Iterable<Score> {
     /**
      * Returns true if {@code scores} contains only unique attempt Scores.
      */
-    private boolean flashcardsAreUnique(List<Score> scores) {
+    private boolean scoresAreUnique(List<Score> scores) {
         for (int i = 0; i < scores.size() - 1; i++) {
             for (int j = i + 1; j < scores.size(); j++) {
                 if (scores.get(i).isSameAttempt(scores.get(j))) {
