@@ -18,7 +18,7 @@ The target user profile are dog school managers that own and manage the daily op
 
 ## **Value Proposition**
 
-In Singapore, dog schools are popular among dog owners. Besides day care, they also provide training, grooming and workshops. With many moving parts daily, managing operations  can get overwhelming. PawBook is an all-in-one management system to help dog school managers keep track of attendance, scheduling and services and maintain organisation.
+In Singapore, dog schools are popular among dog owners. Besides day care, they also provide training, grooming and workshops. With many moving parts daily, managing operations  can get overwhelming. Pawbook is an all-in-one management system to help dog school managers keep track of attendance, scheduling and services and maintain organisation.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -152,6 +152,16 @@ In order to generate the respective commands, the raw input needs to be parsed f
 Below is an example activity diagram for a valid add command from the user, it is similar for the delete command as well.
 
 ![AddDeleteActivityDiagram](images/AddDeleteActivityDiagram.png)
+
+### Drop feature
+While Pawbook allows the enrolling of dogs into programs, conversely it supports dropping previously-enrolled dogs from the programs.
+
+To drop a dog from a program, the raw input is parsed and goes through several checks to ensure that the provided dog and program IDs are both valid and are indeed referring to dog and program objects respectively. Subsequently, the arguments will be forwarded to `DropCommandParser` followed by `PawbookParser` where they are converted from the String input to int.
+
+Below is an example activity diagram for a valid drop command from the user.
+
+![DropActivityDiagram](images/DropActivityDiagram.png)
+
 
 #### Alternate implementations
 
