@@ -52,7 +52,7 @@ ModuleBook 3.5 is the go-to tool for busy students/professionals who are confide
 
    * **`list`** : List out tasks
 
-   * **`add`**` : Add a task
+   * **`add`** : Add a task
 
    * **`delete`** : Delete a task
 
@@ -89,7 +89,9 @@ Format: `list`
 
 Adds a task to ModuleBook3.5.
 
-Format: `add n/TASK NAME m/MODULE d/DESCRIPTION b/DEADLINE w/WORKLOAD [t/TAG]…​`
+Format: `add n/TASK NAME m/MODULE d/DESCRIPTION [a/START TIME] b/DEADLINE w/WORKLOAD [t/TAG]…​`
+
+* If you wish to include a start time for your task, the start time should not be later than deadline.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Enter the time you wish to complete your task in the format: yyyy-MM-dd HH:mm or yyyy-MM-dd (HH:mm taken as current time)
@@ -212,11 +214,12 @@ Examples:
 
 Edits an existing task in the module book.
 
-Format: `edit INDEX [n/NAME] [m/MODULE] [d/DESCRIPTION] [b/DEADLINE] [w/WORKLOAD] [t/TAG] …​`
+Format: `edit INDEX [n/NAME] [m/MODULE] [d/DESCRIPTION] [a/START TIME] [b/DEADLINE] [w/WORKLOAD] [t/TAG] …​`
 
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* If you wish to include a start time for your task, the start time should not be later than deadline.
 
 Examples:
 *  `edit 1 d/Eat Biscuits` Edits the description of the 1st task to `Eat Biscuits`.
