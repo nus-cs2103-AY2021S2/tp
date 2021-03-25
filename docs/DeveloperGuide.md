@@ -239,6 +239,10 @@ The activity diagram shows the workflow when a delete command is executed:
     * Pros: Able to user to multi-task.
     * Cons: GUI space restriction.
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 70e6eefbe8e8eb05d21b4959a3eb9066386ca241
 ### Search feature
 
 #### Implementation
@@ -292,7 +296,6 @@ The activity diagram shows the workflow when a `search` command is executed:
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
-
 
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
