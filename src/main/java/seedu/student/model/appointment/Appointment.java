@@ -13,7 +13,7 @@ import seedu.student.model.student.MatriculationNumber;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Appointment {
+public class Appointment implements Comparable<Appointment> {
 
     // Identity fields
     private final MatriculationNumber matriculationNumber;
@@ -114,4 +114,12 @@ public class Appointment {
         return builder.toString();
     }
 
+    @Override
+    public int compareTo(Appointment o) {
+        int dateDifference = date.compareTo(o.date);
+        if (dateDifference != 0) {
+            return dateDifference;
+        }
+        return startTime.compareTo(o.startTime);
+    }
 }

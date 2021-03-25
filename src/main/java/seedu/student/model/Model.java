@@ -14,7 +14,6 @@ import seedu.student.model.student.Student;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
-    Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -37,17 +36,17 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' student book file path.
+     * Returns the user prefs' address book file path.
      */
     Path getStudentBookFilePath();
 
     /**
-     * Sets the user prefs' student book file path.
+     * Sets the user prefs' address book file path.
      */
     void setStudentBookFilePath(Path studentBookFilePath);
 
     /**
-     * Replaces student book data with the data in {@code studentBook}.
+     * Replaces address book data with the data in {@code studentBook}.
      */
     void setStudentBook(ReadOnlyStudentBook studentBook);
 
@@ -55,27 +54,27 @@ public interface Model {
     ReadOnlyStudentBook getStudentBook();
 
     /**
-     * Returns true if a student with the same identity as {@code student} exists in the student book.
+     * Returns true if a student with the same identity as {@code student} exists in the address book.
      */
     boolean hasStudent(Student student);
 
     /**
      * Deletes the given student.
-     * The student must exist in the student book.
+     * The student must exist in the address book.
      */
     void deleteStudent(Student target);
 
     /**
      * Adds the given student.
-     * {@code student} must not already exist in the student book.
+     * {@code student} must not already exist in the address book.
      */
     void addStudent(Student student);
 
     /**
      * Replaces the given student {@code target} with {@code editedStudent}.
-     * {@code target} must exist in the student book.
+     * {@code target} must exist in the address book.
      * The student identity of {@code editedStudent} must not be the same as another existing student in
-     * the student book.
+     * the address book.
      */
     void setStudent(Student target, Student editedStudent);
 
@@ -94,6 +93,8 @@ public interface Model {
 
     void addAppointment(Appointment appointment);
 
+    ObservableList<Appointment> getFilteredAppointmentList();
+
     /**
      * Replaces the given appointment {@code target} with {@code editedAppointment}.
      * {@code target} must exist in the appointment book.
@@ -108,5 +109,4 @@ public interface Model {
      */
     void updateFilteredAppointmentList(Predicate<Appointment> predicate);
 
-    ObservableList<Appointment> getFilteredAppointmentList();
 }

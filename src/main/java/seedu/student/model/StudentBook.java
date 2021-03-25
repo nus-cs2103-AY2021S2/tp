@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.student.model.appointment.Appointment;
+import seedu.student.model.appointment.SameDateAppointmentList;
 import seedu.student.model.appointment.UniqueAppointmentList;
 import seedu.student.model.student.Student;
 import seedu.student.model.student.UniqueStudentList;
@@ -152,7 +153,7 @@ public class StudentBook implements ReadOnlyStudentBook {
     }
 
     @Override
-    public ObservableList<Appointment> getAppointmentList() {
+    public ObservableList<SameDateAppointmentList> getAppointmentList() {
         return appointments.asUnmodifiableObservableList();
     }
 
