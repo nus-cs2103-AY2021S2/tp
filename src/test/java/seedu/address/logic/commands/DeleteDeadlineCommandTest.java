@@ -154,7 +154,7 @@ public class DeleteDeadlineCommandTest {
         // null -> returns false
         assertNotEquals(deleteDeadlineFromProject1Command, null);
 
-        // different person -> returns false
+        // different deadline -> returns false
         assertNotEquals(deleteDeadlineFromProject1Command, deleteDeadlineFromProject2Command);
     }
 
