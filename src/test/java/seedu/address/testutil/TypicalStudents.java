@@ -31,7 +31,7 @@ public class TypicalStudents {
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withStudyLevel("Sec 2").withGuardianPhone("82813844")
             .withRelationship("Mother")
-                        .withSession(
+                        .addSession(
                                 new SessionBuilder().withSessionDate("2020-01-01", "12:00").build()
                         )
             .build();
@@ -39,7 +39,7 @@ public class TypicalStudents {
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withStudyLevel("Primary 2").withGuardianPhone("81902144").withRelationship("Father")
-                        .withSession(
+                        .addSession(
                                 new SessionBuilder().withSessionDate("2020-01-02", "12:00").build()
                         )
             .build();
