@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.BOB;
+import static seedu.address.testutil.TypicalStudents.HOON;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -53,7 +54,7 @@ public class AddSessionCommandTest {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Session validSession = new SessionBuilder().build();
 
-        AddSessionCommand addSessionCommand = new AddSessionCommand(validSession, ALICE.getName());
+        AddSessionCommand addSessionCommand = new AddSessionCommand(validSession, HOON.getName());
         assertThrows(CommandException.class, () -> addSessionCommand.execute(model));
     }
 
