@@ -450,6 +450,16 @@ otherwise) <br /><br />
 
    Use case ends.
 
+**Use case: UC08 - Redo an undoable command**
+
+**MSS**
+
+1. User undo an undoable command (UC07).
+1. User requests to redo the command.
+1. FlashBack reverts to its previous state before undo command.
+
+   Use case ends.
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
