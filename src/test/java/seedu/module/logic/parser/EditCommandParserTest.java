@@ -1,34 +1,7 @@
 package seedu.module.logic.parser;
 
 import static seedu.module.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.module.logic.commands.CommandTestUtil.DEADLINE_DESC_LAB;
-import static seedu.module.logic.commands.CommandTestUtil.DEADLINE_DESC_PRACTICAL;
-import static seedu.module.logic.commands.CommandTestUtil.DESCRIPTION_DESC_LAB;
-import static seedu.module.logic.commands.CommandTestUtil.DESCRIPTION_DESC_PRACTICAL;
-import static seedu.module.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
-import static seedu.module.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
-import static seedu.module.logic.commands.CommandTestUtil.INVALID_MODULE_DESC;
-import static seedu.module.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.module.logic.commands.CommandTestUtil.INVALID_TASK_NAME_DESC;
-import static seedu.module.logic.commands.CommandTestUtil.INVALID_WORKLOAD_DESC;
-import static seedu.module.logic.commands.CommandTestUtil.MODULE_DESC_LAB;
-import static seedu.module.logic.commands.CommandTestUtil.MODULE_DESC_PRACTICAL;
-import static seedu.module.logic.commands.CommandTestUtil.TAG_DESC_HIGH;
-import static seedu.module.logic.commands.CommandTestUtil.TAG_DESC_LOW;
-import static seedu.module.logic.commands.CommandTestUtil.TASK_NAME_DESC_LAB;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_DEADLINE_LAB;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_DEADLINE_PRACTICAL;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_DESCRIPTION_LAB;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_DESCRIPTION_PRACTICAL;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_LAB;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_PRACTICAL;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_PRIORITY_HIGH;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_PRIORITY_LOW;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_TASK_NAME_LAB;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_WORKLOAD_1;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_WORKLOAD_2;
-import static seedu.module.logic.commands.CommandTestUtil.WORKLOAD_DESC_1;
-import static seedu.module.logic.commands.CommandTestUtil.WORKLOAD_DESC_2;
+import static seedu.module.logic.commands.CommandTestUtil.*;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.module.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.module.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -87,21 +60,39 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_TASK_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC, Time.MESSAGE_CONSTRAINTS); // invalid deadline
-        assertParseFailure(parser, "1" + INVALID_MODULE_DESC, Module.MESSAGE_CONSTRAINTS); // invalid module
+        // invalid name
+        assertParseFailure(parser, "1" + INVALID_TASK_NAME_DESC, Name.MESSAGE_CONSTRAINTS);
+
+        // invalid deadline
+        assertParseFailure(parser, "1" + INVALID_START_TIME_DESC, Time.MESSAGE_CONSTRAINTS);
+
+        // invalid deadline
+        assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC, Time.MESSAGE_CONSTRAINTS);
+
+        // invalid module
+        assertParseFailure(parser, "1" + INVALID_MODULE_DESC, Module.MESSAGE_CONSTRAINTS);
+
         // invalid workload
         assertParseFailure(parser, "1" + INVALID_WORKLOAD_DESC, Workload.MESSAGE_CONSTRAINTS);
+
         // invalid description
         assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC, Description.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
+
+        // invalid startTime followed by valid module
+        assertParseFailure(parser, "1" + INVALID_START_TIME_DESC + MODULE_DESC_LAB, Time.MESSAGE_CONSTRAINTS);
+
+        // valid startTime followed by invalid deadline.
+        assertParseFailure(parser, "1" + START_TIME_DESC_PRACTICAL
+                + INVALID_START_TIME_DESC, Time.MESSAGE_CONSTRAINTS);
 
         // invalid deadline followed by valid module
         assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC + MODULE_DESC_LAB, Time.MESSAGE_CONSTRAINTS);
 
         // valid deadline followed by invalid deadline. The test case for invalid deadline followed by valid deadline
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + DEADLINE_DESC_PRACTICAL + INVALID_DEADLINE_DESC, Time.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + DEADLINE_DESC_PRACTICAL
+                + INVALID_DEADLINE_DESC, Time.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Task} being edited,
         // parsing it together with a valid tag results in error

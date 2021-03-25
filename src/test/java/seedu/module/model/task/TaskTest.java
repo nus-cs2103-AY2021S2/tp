@@ -2,6 +2,7 @@ package seedu.module.model.task;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_DEADLINE_LAB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_DEADLINE_PRACTICAL;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_DESCRIPTION_PRACTICAL;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_LAB;
@@ -27,6 +28,30 @@ public class TaskTest {
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Task task = new TaskBuilder().build();
         assertThrows(UnsupportedOperationException.class, () -> task.getTags().remove(0));
+    }
+
+    @Test
+    public void isTimeInvalidTest() {
+        // QUIZ is valid
+        assertFalse(QUIZ.isTimeInvalid());
+
+        // Compare time with time field and time without time field, valid
+        Task editedQuiz = new TaskBuilder(QUIZ)
+                .withDeadline(VALID_DEADLINE_PRACTICAL)
+                .build();
+        assertFalse(editedQuiz.isTimeInvalid());
+
+        // Compare two time, invalid
+        editedQuiz = new TaskBuilder(QUIZ)
+                .withDeadline(VALID_DEADLINE_LAB)
+                .build();
+        assertTrue(editedQuiz.isTimeInvalid());
+
+        // Quiz without startTime is always valid
+        editedQuiz = new TaskBuilder(QUIZ)
+                .deactivateStartTime()
+                .build();
+        assertFalse(editedQuiz.isTimeInvalid());
     }
 
     @Test
