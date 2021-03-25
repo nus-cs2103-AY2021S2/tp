@@ -149,7 +149,7 @@ public class ParserUtil {
     public static int parseOwnerId(String ownerID) {
         requireNonNull(ownerID);
         String trimmedOwnerId = ownerID.trim();
-        return java.lang.Integer.parseInt(trimmedOwnerId);
+        return Integer.parseInt(trimmedOwnerId);
     }
 
     /**
