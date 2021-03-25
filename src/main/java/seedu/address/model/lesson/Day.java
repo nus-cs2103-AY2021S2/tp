@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Locale;
 
-public class Day implements Comparable<Day> {
+public class Day {
 
     public static final String VALIDATION_REGEX = "^(monday|tuesday|wednesday|thursday|friday|saturday|sunday)";
     public static final String MESSAGE_CONSTRAINTS = "Days should take on one of the following: Monday, "
@@ -28,59 +28,6 @@ public class Day implements Comparable<Day> {
      */
     public static boolean isValidDay(String test) {
         return test.toLowerCase(Locale.ROOT).matches(VALIDATION_REGEX);
-    }
-
-    int dayToInt(String day) {
-        int value = 0;
-
-        switch (day.toLowerCase()) {
-
-        case "monday":
-            value = 1;
-            break;
-
-        case "tuesday":
-            value = 2;
-            break;
-
-        case "wednesday":
-            value = 3;
-            break;
-
-        case "thursday":
-            value = 4;
-            break;
-
-        case "friday":
-            value = 5;
-            break;
-
-        case "saturday":
-            value = 6;
-            break;
-
-        case "sunday":
-            value = 7;
-            break;
-
-
-        default:
-            break;
-        }
-
-        return value;
-    }
-    @Override
-    public int compareTo(Day other) {
-        int thisValue = dayToInt(dayOfTuition);
-        int otherValue = dayToInt(other.dayOfTuition);
-        if (thisValue < otherValue) {
-            return -1;
-        } else if (thisValue > otherValue) {
-            return 1;
-        } else {
-            return 0;
-        }
     }
 
     @Override
