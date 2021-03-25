@@ -14,17 +14,23 @@ import java.time.temporal.ChronoUnit;
  * Guarantees: immutable; is always valid.
  */
 public class Date implements Comparable<Date> {
-    public static final String MESSAGE_CONSTRAINTS = "    - yyyy-mm-dd (ISO format)\n"
+
+    public static final String MESSAGE_YEAR_FORMATS = "    - yyyy-mm-dd (ISO format)\n"
             + "    - dd.mm.yyyy\n"
             + "    - dd/mm/yyyy\n"
             + "    - dd mmm yyyy\n"
             + "    - mmm dd yyyy";
-
+    public static final String MESSAGE_NOYEAR_FORMATS = "    - --mm-dd (ISO format)\n"
+            + "    - dd/mm\n"
+            + "    - dd mmm\n"
+            + "    - mmm dd";
+    public static final String MESSAGE_CONSTRAINTS = "Dates should be in one of the following formats:"
+            + MESSAGE_YEAR_FORMATS + "\n" + MESSAGE_NOYEAR_FORMATS;
     public static final String MESSAGE_YEAR_CONSTRAINTS = "A year is required for the input\n";
     public static final String EMPTY_DATE_STRING = "";
 
-    private static int MIN_YEAR = 0;
-    private static int NON_YEAR = -1;
+    protected static int MIN_YEAR = 0;
+    protected static int NON_YEAR = -1;
 
     protected static final DateTimeFormatter[] VALID_FORMATS = new DateTimeFormatter[] {
             DateTimeFormatter.ofPattern("yyyy-MM-dd"),
@@ -43,12 +49,10 @@ public class Date implements Comparable<Date> {
             DateTimeFormatter.ofPattern("MMM d"),
             DateTimeFormatter.ofPattern("MMMM d"),
     };
-    protected static final DateTimeFormatter ISO_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    protected static final DateTimeFormatter ISO_FORMAT_WITHOUT_YEAR = DateTimeFormatter.ofPattern("--MM-dd");
     protected static final DateTimeFormatter READABLE_FORMAT = DateTimeFormatter.ofPattern("d MMM yyyy");
     protected static final DateTimeFormatter READABLE_FORMAT_WITHOUT_YEAR = DateTimeFormatter.ofPattern("d MMM");
 
-    /** In "dd mmm yyyy" formatted string for human-readable display */
+     /** In "dd mmm yyyy" formatted string for human-readable display */
     public final String value;
     protected LocalDate date;
     protected boolean isEmpty = false;
@@ -168,8 +172,12 @@ public class Date implements Comparable<Date> {
      * Returns the number of days left till the date, relative to {@code reference}.
      * If {@code ignoreYear} is set to 'true', the number of days to the next month and day
      * is returned, i.e. the date is treated as a yearly event.
+     * If date is empty, the maximum possible days remaining value is returned (LONG_MAX).
      */
     public long getDaysLeft(boolean ignoreYear, LocalDate reference) {
+        if (isEmpty) {
+            return Long.MAX_VALUE;
+        }
         if (!ignoreYear) {
             return ChronoUnit.DAYS.between(reference, date);
         }

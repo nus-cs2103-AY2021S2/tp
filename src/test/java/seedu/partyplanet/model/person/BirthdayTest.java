@@ -55,8 +55,7 @@ public class BirthdayTest {
             assertTrue(Birthday.isValidBirthdayDate(validInput));
         }
         assertEquals(1, Arrays.stream(validInputs)
-                .map(Date::parseDate)
-                .map(x -> (LocalDate) x)
+                .map(Birthday::new)
                 .distinct()
                 .count());
     }
@@ -75,8 +74,7 @@ public class BirthdayTest {
             assertTrue(Birthday.isValidBirthdayDate(validInput));
         }
         assertEquals(1, Arrays.stream(validInputs)
-                .map(Date::parseDate)
-                .map(x -> (MonthDay) x)
+                .map(Birthday::new)
                 .distinct()
                 .count());
     }
