@@ -1,9 +1,4 @@
----
-layout: page
-title: User Guide
----
-
-DocBob is a **desktop app for managing patient's information, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Bob can get your patient's medical information faster than any other patient's information management app in the market. 
+DocBob is a **desktop app for managing your patient's information, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Bob can get your patient's medical information and scheduled appointments faster than any other patient's information management app in the market.
 
 * Table of Contents
 {:toc}
@@ -24,11 +19,11 @@ DocBob is a **desktop app for managing patient's information, optimised for use 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will list out all available commands.<br>
    Some example commands you can try:
 
-   * **`list`** : List out all patients or appointment information available.
+   * **`list`** : List out all patients in DocBob's contact list.
 
-   * **`add`**`/nShrek p/66666666 a/69 l/Swamp` : Adds a patient named `Shrek` to the patient list.
+   * **`add`**`/nShrek p/66666666 a/69 l/Swamp` : Adds a patient named `Shrek` to DocBob's contact list.
 
-   * **`delete`**`Lord Farquaad` : Deletes a patient named `Lord Farquaad` from the patient list.
+   * **`appt`** : Adds a scheduled upcoming appointment with a patient in DocBob's contact list.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -62,20 +57,18 @@ DocBob is a **desktop app for managing patient's information, optimised for use 
 
 ### List out all available commands : `help`
 
-Shows a list of all available commands for use in the app, with format example.
+Opens a help window containing a link to this User Guide and a list of all available commands for use in the app, with format example.
 
 Format: `help`
 
 Example: `help`
 
-Output: 
+Output:
 
-`1) add n/Name p/phoneNumber a/Age l/Location`<br>
-`2) delete Name`<br>
-`3) list`<br>
-`4) help`
+DocBob will open up a help window with the help information.
+![image](https://user-images.githubusercontent.com/48408342/112430286-e1463a00-8d78-11eb-87bd-baa45a0b52ba.png)
 
-### Adding a patinet's contact: `add`
+### Adding a patients' contact: `add`
 
 Adds a patient to DocBob's contact list.
 
@@ -84,25 +77,9 @@ Format: `add n/Name p/phoneNumber a/Age l/Location`
 Examples:
 * `add /nShrek p/66666666 a/69 l/Swamp`
 
-Can also add a patient by appointment
+### Deleting a patients' contact : `delete`
 
-Format: `appt INDEX /dDATE`
-where DATE is DDMMYYYYhhmm or DDMMhhmm
-
-Examples:
-* `appt 12 200420210930`
-
-
-### Deleting a patient's contact: `delete`
-
-Deletes a patient from DocBob's contact list.
-
-Format: `delete Name`
-
-Examples:
-* `delete Lord Farquaad`
-
-Deleting can also be done by index
+Deletes a patient from DocBob's contact list, identified by their index number displayed when when the `list` command is entered.
 
 Format : `delete INDEX`
 where INDEX must be a positive integer (1,2,3,...)
@@ -110,22 +87,53 @@ where INDEX must be a positive integer (1,2,3,...)
 Examples:
 * `delete 1`
 
-### Listing out all patients contacts : `list`
+### Listing out all patients' contacts : `list`
 
-Shows a list of all your saved patients information.
+Shows a list of all your saved patients information, with their next scheduled appointment beside their name.
 
 Format: `list`
 
 Example: `list`
 
+Output:
+
+![image](https://user-images.githubusercontent.com/48408342/112432500-f7092e80-8d7b-11eb-85b9-2aaab776d47d.png)
+
+### Adding an appointment to a patient : `appt`
+
+Adds a scheduled upcoming appointment with a patient in DocBob's contact list. Add an appointment to a patient by their index, which is shown when the `list` command is entered, as well as the date and time of the appointment.
+
+Format: `appt INDEX /dDATE`
+where INDEX must be a positive integer (1,2,3,...)
+and DATE is DDMMYYYYhhmm or DDMMhhmm
+
+Examples:
+* `appt 12 d/200420210930`
+* `appt 3 d/25120800`
+
+### Listing out your upcoming appointments : `listappt`
+
+Shows a list of all your upcoming appointments with the patients in DocBob's contact list, sorted by nearest date and time.
+
+Format: `listappt`
+
+Example: `listappt`
+
 Output: 
 
-`1) Shrek`<br>
-`2) Fiona`<br>
-`3) Lord Farquaad`<br>
-`4) Donkey`<br>
-`5) Onions`<br>
-`6) Dragon`
+`Hey Doc, here are your upcoming appointments!`<br> 
+`Thu, 25 Mar, 14:00 - Bernice Yu`<br>
+`Fri, 11 Jun, 14:00 - David Li`<br>
+`Thu, 11 Nov, 12:00 - Alex Yeoh`<br>
+`Thu, 11 Nov, 12:00 - Roy Balakrishnan`<br>
+`Sun, 12 Dec, 12:00 - Alex Yeoh`<br>
+`Sun, 12 Dec, 12:12 - Charlotte Oliveiro`<br>
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
 
 ### Editing a patient information[Coming soon] : `edit`
 
@@ -146,7 +154,7 @@ Examples:
 
 ### Locating patient by name[Coming soon] : `find`
 
-Finds patiets whose names contain any of the given keywords.
+Finds patients whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -169,12 +177,6 @@ Clears all entries from DocBob.
 
 Format: `clear`
 
-### Exiting the program[Coming soon] : `exit`
-
-Exits the program.
-
-Format: `exit`
-
 ### Saving the data
 
 Client contact data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -192,7 +194,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous DocBob home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -200,8 +202,10 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 Action | Format, Examples
 --------|------------------
-**Help** | `help`
-**Add** | `add n/Name p/phoneNumber a/Age l/Location` <br> e.g., `add /nShrek p/66666666 a/69 l/Swamp`<br> `appt INDEX /dDATE` <br> e.g., `appt 12 200420210930`
-**Delete** | `delete Name`<br> e.g., `delete Lord Farquaad` <br> `delete INDEX` <br> e.g., `delete 1`
-**List** | `list`
-
+**help** | `help`
+**add** | `add n/Name p/phoneNumber a/Age l/Location` <br> e.g., `add /nShrek p/66666666 a/69 l/Swamp`
+**delete** | `delete INDEX` <br> e.g., `delete 1`
+**list** | `list`
+**appt** | `appt 1 d/010120211200`
+**listappt** | `listappt`
+**exit** | `exit`
