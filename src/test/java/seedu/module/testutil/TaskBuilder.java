@@ -1,5 +1,7 @@
 package seedu.module.testutil;
 
+import static seedu.module.model.task.Time.DATE_TIME_FORMATTER_WITH_TIME;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,7 +21,6 @@ import seedu.module.model.util.SampleDataUtil;
 public class TaskBuilder {
 
     public static final String DEFAULT_NAME = "Assignment 6";
-    public static final String DEFAULT_START_TIME = "2021-03-07 12:00";
     public static final String DEFAULT_DEADLINE = "2021-03-07 14:00";
     public static final String DEFAULT_MODULE = "CS3243";
     public static final String DEFAULT_DONE = String.valueOf(Boolean.FALSE);
@@ -70,7 +71,19 @@ public class TaskBuilder {
      * Activate the {@code StartTime} of the {@code Task} that we are building.
      */
     public TaskBuilder activateStartTime() {
-        this.startTime = new Time(DEFAULT_START_TIME);
+        this.startTime = new Time(this.deadline.time.minusHours(1).format(DATE_TIME_FORMATTER_WITH_TIME));
+        this.isDeadline = false;
+        return this;
+    }
+
+    /**
+     * Activate the {@code StartTime} of the {@code Task} that we are building.
+     *
+     * @param validTime a validTime that before the deadline.
+     * @return a TaskBuilder with startTime field.
+     */
+    public TaskBuilder activateStartTime(String validTime) {
+        this.startTime = new Time(validTime);
         this.isDeadline = false;
         return this;
     }

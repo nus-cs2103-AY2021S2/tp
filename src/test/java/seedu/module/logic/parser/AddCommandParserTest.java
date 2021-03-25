@@ -127,15 +127,29 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_optionalFieldsMissing_success() {
-        // zero tags
-        Task expectedTask = new TaskBuilder(LAB).withTags().build();
+        // missing startTime
+        Task expectedTaskWithoutStartTime = new TaskBuilder(LAB)
+                .withTags(CommandTestUtil.VALID_TAG_PRIORITY_HIGH).build();
         assertParseSuccess(parser,
                 CommandTestUtil.TASK_NAME_DESC_LAB
                         + CommandTestUtil.DEADLINE_DESC_LAB
                         + CommandTestUtil.MODULE_DESC_LAB
                         + CommandTestUtil.DESCRIPTION_DESC_LAB
+                        + CommandTestUtil.WORKLOAD_DESC_1
+                        + CommandTestUtil.TAG_DESC_HIGH,
+                new AddCommand(expectedTaskWithoutStartTime));
+
+        // zero tags
+        Task expectedTaskWithStartTime = new TaskBuilder(LAB).activateStartTime(CommandTestUtil.VALID_START_TIME_LAB)
+                .withTags().build();
+        assertParseSuccess(parser,
+                CommandTestUtil.TASK_NAME_DESC_LAB
+                        + CommandTestUtil.START_TIME_DESC_LAB
+                        + CommandTestUtil.DEADLINE_DESC_LAB
+                        + CommandTestUtil.MODULE_DESC_LAB
+                        + CommandTestUtil.DESCRIPTION_DESC_LAB
                         + CommandTestUtil.WORKLOAD_DESC_1,
-                new AddCommand(expectedTask));
+                new AddCommand(expectedTaskWithStartTime));
     }
 
     @Test
