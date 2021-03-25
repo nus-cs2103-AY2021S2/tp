@@ -51,16 +51,16 @@ PartyPlanet can get the planning of your birthday celebrations done faster than 
 
 ### Adding contacts : `add`
 
-Adds a person to the PartyPlanet's Contacts List.
+Adds a person to PartyPlanet's Contacts List.
 
 Format: `add -n NAME [-p PHONE_NUM] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY]​ [-r REMARK]​`<br>
-* The birthday must be in a valid date format, e.g. 13 Jan
+* The birthday must be in a valid date format, with or without year, and must be in the past, e.g. 13 Jan
 
 Examples:
 * `add -n James Ho -p 22224444 -e jamesho@example.com -a 123, Clementi Rd, 1234665 -t friend -t colleague -b 1 Jan
   -r allergic to nuts` Adds a new person James Ho with specified details.
 
-### Clearing all data : `clear`
+### Clearing all contacts : `clear`
 
 Deprecated: essentially same function as `delete`
 
@@ -70,7 +70,7 @@ Format: `clear`
 
 ### Deleting contacts : `delete`
 
-Deletes person(s) from the PartyPlanet's Contact List.
+Deletes person(s) from PartyPlanet's Contact List.
 
 Format: `delete [{INDEX [INDEX]... | -t TAG [-t TAG]...}]`
 * If no parameters:
@@ -92,18 +92,21 @@ Examples:
 
 ### Editing contacts : `edit`
 
-Edits an existing person in the PartyPlanet's Contact List.
+Edits an existing person in PartyPlanet's Contact List.
 
-Format: `edit INDEX [-n NAME] [-p PHONE_NUMBER] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK]`
+Format: `edit {INDEX [-n NAME] [-p PHONE_NUMBER] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] | --remove -t TAG [-t TAG}…​}`
+
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list (not sorted). The index must be a positive integer that is a valid number in the list.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `-t` without specifying any tags after it.
+* If `--remove` flag is used instead of `INDEX`, all specified tags will be removed from all persons in displayed list.
 
 Examples:
-*  `edit 2 -n James Lee -e jameslee@example.com` edits the contact name to be “James Lee” and email address to be “jameslee@example.com”.
+*  `edit 2 -n James Lee -e jameslee@example.com` Edits the contact name to be “James Lee” and email address to be “jameslee@example.com”.
 *  `edit 2 -n Betsy Crower -t` Edits the name of the 2nd person to be Betsy Crower and clears all existing tags.
+* `edit --remove -t friends` Removes the `friends` tag from Alex Yeoh and Charlotte Oliveiro.
 
 ### Finding contacts : `find`
 
@@ -123,19 +126,21 @@ Examples:
 
 ### Listing contacts : `list`
 
-Shows a list of all persons in the PartyPlanet's Contact List.
+Shows a list of all persons in PartyPlanet's Contact List.
 
-Format: `list [--exact] [--any] [-n NAME]... [-t TAG]... [-s SORT_ORDER]`
+Format: `list [--exact] [--any] [-n NAME]... [-t TAG]... [-s SORT_FIELD] [-o SORT_ORDER]`
 * List out all contacts by default if no arguments specified.
 * `-n` and `-t` can be specified to filter the list by name and/or tag.
   * Search is case-insensitive, e.g. `hans` will match `Hans`.
   * Partial matches to names and tags are performed by default, e.g. `lliam` will match `williams`.
   * If exact match is desired, specify an additional `--exact` flag.
   * If multiple names/tags are specified, specifying `--any` filters contacts that fulfill any prefix match.
-* `-s` list out all contacts sorted according to `SORT_ORDER`. Possible values of `SORT_ORDER`:
+* `-s` list out all contacts sorted according to `SORT_FIELD`. Possible values of `SORT_FIELD`:
+  * `n`: names in ascending lexicographical order
+  * `b`: birthdays from oldest to youngest
+* `-o` list out all contacts sorted according to `SORT_ORDER`. Possible values of `SORT_ORDER`:
   * `asc`: ascending lexicographical order
   * `desc`: descending lexicographical order
-  * `bday`: in ascending order from Jan-01 to Dec-31
 
 Examples:
 * `list` Lists out all the contacts in PartyPlanet.
@@ -155,6 +160,65 @@ Format: `tags [-f KEYWORD]`
 Examples:
 * `tags` lists out all tags available.
 * `tags -f cs2103` lists out all tags that contain `cs2103`.
+
+### Undoing actions : `undo`
+
+Undoes the most recent action that changed PartyPlanet's Contact List.
+Can be invoked repeated until there is no more history from that session.
+
+Format: `undo`
+
+### Adding events : `eadd`
+
+Adds an event to PartyPlanet's Events list. Similar to `add` for person contacts.
+
+Format: `eadd -n NAME [-d DATE] [-r REMARK]`
+
+* The date must be in a valid date format with year, e.g. 2022-05-07
+
+Examples:
+* eadd `-n April Fools -d 2021-04-01 -r Prank the april babies!` Adds a new event April Fools with specified details.
+
+### Editing events : `eedit`
+
+Edits an existing event in PartyPlanet's Events List. Similar to `edit`.
+
+Format: `eedit INDEX [-n NAME] [-d DATE] [-r REMARK]`
+
+* Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed events list.
+  The index must be a positive integer that is a valid number in the list.
+* Existing values will be updated to the input values.
+
+Examples:
+* `eedit 3 -r Celebrate during first combined practice` Edits the remark of the 3rd event to specified remark.
+
+### Marking events as done : `edone`
+
+Marks event(s) in PartyPlanet's Events List as done.
+
+Format: `edone INDEX [INDEX]…​`
+
+* `INDEX` must be a positive integer within the number of events in Events List.
+
+Examples:
+* `edone 2 3 5` Marks the 2nd, 3rd and 5th events as done.
+
+### Deleting events : `edelete`
+
+Deletes event(s) from PartyPlanet's Events List. Similar to `delete`.
+
+Format: `edelete [INDEX (must be a positive integer) [INDEX]...]`
+
+* If no parameters:
+  * Deletes all events in the current events list.
+* If provided with index(es)
+  * Deletes the event(s) at the specified `INDEX`.
+  * All indexes must be a positive integer valid in the list.
+  
+Examples:
+
+* `edelete` deletes all events in the current Events List.
+* `edelete 1 2 3` deletes events at 1st, 2nd and 3rd indexes.
 
 ### Showing help : `help`
 
