@@ -17,7 +17,6 @@ import seedu.address.logic.ReviewManager;
 import seedu.address.model.flashcard.Flashcard;
 
 
-//TODO: REFACTOR THE CODE IN V1.3.
 public class ReviewMode extends UiPart<Region> {
     public static final String EXIT_REVIEW_MODE = "Exit review mode";
     public static final String ENTER_REVIEW_MODE = "Enter review mode";

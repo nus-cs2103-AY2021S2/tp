@@ -1,0 +1,42 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+
+Actor User as user USER_COLOR
+Participant ":UI" as ui UI_COLOR
+Participant ":Logic" as logic LOGIC_COLOR
+Participant ":Model" as model MODEL_COLOR
+
+user -> ui : "review"
+activate ui
+
+ui -> ui : executeCommand("review")
+activate ui
+
+ui -> logic : execute("review")
+activate logic
+
+logic -> logic : parseCommand("review")
+activate logic
+logic -> model : new ReviewCommand()
+activate model
+model --> logic
+deactivate model
+deactivate logic
+
+logic -> logic : execute(model)
+activate logic
+
+logic --> ui
+deactivate logic
+
+ui--> user
+deactivate ui
+
+ui -> ui : enterReviewMode()
+activate ui
+ui --> user
+deactivate ui
+
+@enduml
