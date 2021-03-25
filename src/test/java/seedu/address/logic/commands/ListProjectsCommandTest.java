@@ -2,9 +2,8 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showProjectAtIndex;
+import static seedu.address.testutil.TypicalColabFolder.getTypicalColabFolder;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalProjects.getTypicalProjectsFolder;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,8 +23,8 @@ public class ListProjectsCommandTest {
 
     @BeforeEach
     public void setUp() throws DateConversionException {
-        model = new ModelManager(getTypicalAddressBook(), getTypicalProjectsFolder(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), model.getProjectsFolder(), new UserPrefs());
+        model = new ModelManager(getTypicalColabFolder(), new UserPrefs());
+        expectedModel = new ModelManager(model.getColabFolder(), new UserPrefs());
     }
 
     @Test

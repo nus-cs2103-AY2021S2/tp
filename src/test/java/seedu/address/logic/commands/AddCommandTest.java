@@ -16,10 +16,9 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.ColabFolder;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyProjectsFolder;
+import seedu.address.model.ReadOnlyColabFolder;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
@@ -101,12 +100,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getColabFolderFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setColabFolderFilePath(Path colabFolderFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -116,12 +115,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setColabFolder(ReadOnlyColabFolder newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyColabFolder getColabFolder() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -147,26 +146,6 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public Path getProjectsFolderFilePath() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setProjectsFolderFilePath(Path projectsFolderFilePath) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setProjectsFolder(ReadOnlyProjectsFolder projectsFolder) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyProjectsFolder getProjectsFolder() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -238,8 +217,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyColabFolder getColabFolder() {
+            return new ColabFolder();
         }
     }
 
