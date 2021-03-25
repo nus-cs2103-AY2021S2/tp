@@ -5,8 +5,8 @@
     "deadlineDate" : "10-04-2020",
     "deadlineTime" : "10:10",
     "status" : "Unfinished",
-    "weightage" : 50,
-    "remark" : "bye",
+    "weightage" : 90,
+    "remark" : "",
     "tagged" : [ "core" ]
   }, {
     "taskName" : "Take Home lab 1",
@@ -15,7 +15,7 @@
     "deadlineTime" : "10:10",
     "status" : "Unfinished",
     "weightage" : 10,
-    "remark" : "hello",
+    "remark" : "",
     "tagged" : [ "core", "difficult" ]
   }, {
     "taskName" : "Tutorial 6",
