@@ -7,9 +7,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalColabFolder.getTypicalColabFolder;
 import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -21,27 +22,31 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.project.Project;
+import seedu.address.model.project.exceptions.DuplicateProjectException;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.ProjectBuilder;
 
-public class AddressBookTest {
-
-    private final AddressBook addressBook = new AddressBook();
+public class ColabFolderTest {
+    private static final Project TEST_PROJECT = new ProjectBuilder().build();
+    private final ColabFolder colabFolder = new ColabFolder();
 
     @Test
-    public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+    public void constructor_listsAreEmpty_success() {
+        assertEquals(Collections.emptyList(), colabFolder.getPersonList());
+        assertEquals(Collections.emptyList(), colabFolder.getProjectsList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> colabFolder.resetData(null));
     }
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+        ColabFolder newData = getTypicalColabFolder();
+        colabFolder.resetData(newData);
+        assertEquals(newData, colabFolder);
     }
 
     @Test
@@ -50,71 +55,107 @@ public class AddressBookTest {
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons);
+        ColabFolderStub newData = new ColabFolderStub(newPersons, new ArrayList<>());
 
-        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicatePersonException.class, () -> colabFolder.resetData(newData));
+    }
+
+    @Test
+    public void resetData_withDuplicateProjects_throwsDuplicateProjectException() {
+        List<Project> newProjects = Arrays.asList(TEST_PROJECT, TEST_PROJECT);
+        ColabFolderStub newData = new ColabFolderStub(new ArrayList<>(), newProjects);
+
+        assertThrows(DuplicateProjectException.class, () -> colabFolder.resetData(newData));
     }
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> colabFolder.hasPerson(null));
+    }
+
+    @Test
+    public void hasProject_nullProject_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> colabFolder.hasProject(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+        assertFalse(colabFolder.hasPerson(ALICE));
+    }
+
+    @Test
+    public void hasProject_projectNotInProjectsFolder_returnsFalse() {
+        assertFalse(colabFolder.hasProject(TEST_PROJECT));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+        colabFolder.addPerson(ALICE);
+        assertTrue(colabFolder.hasPerson(ALICE));
+    }
+
+    @Test
+    public void hasProject_projectInProjectsFolder_returnsTrue() {
+        colabFolder.addProject(TEST_PROJECT);
+        assertTrue(colabFolder.hasProject(TEST_PROJECT));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
+        colabFolder.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(colabFolder.hasPerson(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> colabFolder.getPersonList().remove(0));
+    }
+
+    @Test
+    public void getProjectList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> colabFolder.getProjectsList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyColabFolder whose lists can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class ColabFolderStub implements ReadOnlyColabFolder {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Project> projects = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons) {
+        ColabFolderStub(Collection<Person> persons, Collection<Project> projects) {
             this.persons.setAll(persons);
+            this.projects.setAll(projects);
         }
 
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
         }
+
+        @Override
+        public ObservableList<Project> getProjectsList() {
+            return projects;
+        }
     }
 
     @Test
     public void hashCode_success() {
-        AddressBook addressBook1 = getTypicalAddressBook();
-        int hashcode1 = addressBook1.hashCode();
+        ColabFolder colabFolder1 = getTypicalColabFolder();
+        int hashcode1 = colabFolder1.hashCode();
 
         // invoked on the same object: _must_ be equal
-        assertEquals(hashcode1, addressBook1.hashCode());
+        assertEquals(hashcode1, colabFolder1.hashCode());
 
-        AddressBook addressBook2 = getTypicalAddressBook();
+        ColabFolder colabFolder2 = getTypicalColabFolder();
 
         // objects are equal according to equals(): _must_ be equal
-        assertEquals(hashcode1, addressBook2.hashCode());
+        assertEquals(hashcode1, colabFolder2.hashCode());
 
-        addressBook1.removePerson(ALICE);
-        int hashcode3 = addressBook1.hashCode();
+        colabFolder1.removePerson(ALICE);
+        int hashcode3 = colabFolder1.hashCode();
 
         // objects are unequal according to equals(): _should_ be distinct
         assertNotEquals(hashcode1, hashcode3);
