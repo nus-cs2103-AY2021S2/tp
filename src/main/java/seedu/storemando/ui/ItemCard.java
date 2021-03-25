@@ -7,14 +7,15 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import seedu.storemando.model.expirydate.ItemExpiringPredicate;
 import seedu.storemando.model.item.Item;
 
 /**
  * An UI component that displays information of a {@code Item}.
  */
 public class ItemCard extends UiPart<Region> {
-
-    private static final String FXML = "ItemListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -24,7 +25,12 @@ public class ItemCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/storeMando-level4/issues/336">The issue on StoreMando level 4</a>
      */
 
+    private static final String FXML = "ItemListCard.fxml";
+
     public final Item item;
+
+    private ItemExpiringPredicate expiredItemPredicate = new ItemExpiringPredicate((long) 0);
+    private ItemExpiringPredicate itemExpireInThreeDaysPredicate = new ItemExpiringPredicate((long) 3);
 
     @FXML
     private HBox cardPane;
@@ -37,7 +43,7 @@ public class ItemCard extends UiPart<Region> {
     @FXML
     private Label locations;
     @FXML
-    private Label expiryDate;
+    private Text expiryDate;
     @FXML
     private FlowPane tags;
 
@@ -53,10 +59,21 @@ public class ItemCard extends UiPart<Region> {
         quantity.setText("Quantity: " + item.getQuantity().value);
         if (item.getExpiryDate().getExpiryDate() != null) {
             expiryDate.setText("Expiry Date: " + item.getExpiryDate().toFormattedString());
+            expiryDate.setFill(expiryDateColorCode(item));
         }
         item.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))
             .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    private Color expiryDateColorCode(Item item) {
+        if (expiredItemPredicate.test(item)) {
+            return new Color(1, 0, 0, 1);
+        }
+        if (itemExpireInThreeDaysPredicate.test(item)) {
+            return Color.DARKORANGE;
+        }
+        return Color.BLACK;
     }
 
     @Override

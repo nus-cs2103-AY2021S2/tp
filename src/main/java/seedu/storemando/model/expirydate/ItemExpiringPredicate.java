@@ -18,7 +18,7 @@ public class ItemExpiringPredicate implements Predicate<Item> {
      * @param numOfDays  The input number used to filter the expiry date
      */
     public ItemExpiringPredicate(Long numOfDays) {
-        assert numOfDays > 0 : "Input number must be a positive number";
+        assert numOfDays >= 0 : "Input number must be a positive number";
         this.numOfDays = numOfDays;
     }
 
