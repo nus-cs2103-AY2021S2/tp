@@ -11,16 +11,19 @@ title: Developer Guide
 ## **Introduction**
 
 ### Purpose
+
 The purpose of this document is to cover the multi-level design architecture of Dictionote, so that the 
 intended audience of this document can understand the relationship between components that make up Dictionote.
 
 ### Audience
+
 This developer guide is for anyone who wants to understand the internal software architecture of Dictionote.
 The following groups of people are the intended audience:
 * Dictionote developers: anyone who wish to upgrade Dictionote to support more functions.
 * CS2103/T students: students of CS2103/T who want to improve their efficiency and productivity in learning.
 
 ### Dictionote Overview
+
 Dictionote is a desktop app for CS2103/T Students, optimized for use via a Command Line Interface (CLI)
 while still having the benefits of a Graphical User Interface (GUI). Dictionote in general helps to organise content and
 definitions from the CS2103/T textbook, provide Note-keeping functions to facilitate learning, and enhance the ability
