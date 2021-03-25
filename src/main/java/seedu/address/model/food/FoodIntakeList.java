@@ -1,5 +1,7 @@
 package seedu.address.model.food;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
@@ -34,6 +36,7 @@ public class FoodIntakeList {
      * @param foodIntake FoodIntake object to add to list
      */
     public void addFoodIntake(FoodIntake foodIntake) {
+        assert foodIntake != null : "FoodIntake cannot be null";
         Food originalFood = foodIntake.getFood();
         String originalName = getOriginalFoodName(originalFood.getName());
         int foodIntakeItemCount = getFoodIntakeItemCount(foodIntake.getDate(), originalName);
@@ -53,6 +56,8 @@ public class FoodIntakeList {
      * @param name name of food intake
      */
     public void deleteFoodIntake(LocalDate date, String name) throws FoodIntakeNotFoundException {
+        requireNonNull(date);
+        requireNonNull(name);
         FoodIntake foodIntake;
         boolean found = false;
         for (int i = 0; i < this.getFoodIntakeList().size(); i++) {
@@ -77,6 +82,8 @@ public class FoodIntakeList {
      * @param foodIntake FoodIntake object to replace
      */
     public void updateFoodIntake(int index, FoodIntake foodIntake) throws FoodIntakeNotFoundException {
+        requireNonNull(index);
+        assert foodIntake != null : "FoodIntake cannot be null";
         this.foodIntakeList.set(index, foodIntake);
     }
 
@@ -103,6 +110,8 @@ public class FoodIntakeList {
      * @return count of matching FoodIntakes
      */
     public int getFoodIntakeItemCount(LocalDate date, String name) {
+        requireNonNull(date);
+        requireNonNull(name);
         int count = 0;
         FoodIntake foodIntake;
         for (int i = 0; i < this.foodIntakeList.size(); i++) {
@@ -119,6 +128,7 @@ public class FoodIntakeList {
      * Gets the raw food name without the duplicate count.
      */
     public String getOriginalFoodName(String name) {
+        requireNonNull(name);
         Pattern pattern = Pattern.compile(MATCH_DUPLICATE_COUNT_REGEX);
         Matcher matcher = pattern.matcher(name);
 
@@ -133,6 +143,8 @@ public class FoodIntakeList {
      * Reorders duplicate food name counts for the given date and food name.
      */
     public void reorderDuplicateFoodNames(LocalDate date, String name) {
+        requireNonNull(date);
+        requireNonNull(name);
         String originalFoodName = getOriginalFoodName(name);
         FoodIntake foodIntake;
         int count = 1;
@@ -199,6 +211,7 @@ public class FoodIntakeList {
      * @return all FoodIntake object that are created for that date in String output
      */
     public String getFoodIntakeListByDate(LocalDate date) {
+        requireNonNull(date);
         StringBuilder stringBuilder = new StringBuilder();
         Collections.sort(this.foodIntakeList, new FoodIntakeComparator());
         stringBuilder.append("Summary Food Intake for the Day ("
@@ -229,6 +242,8 @@ public class FoodIntakeList {
      * @return all FoodIntake object that lies within the date range in String output
      */
     public String getFoodIntakeListByDateRange(LocalDate from, LocalDate to) {
+        requireNonNull(from);
+        requireNonNull(to);
         Collections.sort(this.foodIntakeList, new FoodIntakeComparator());
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Summary Food Intake from ("
