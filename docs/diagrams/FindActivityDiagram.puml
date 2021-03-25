@@ -9,12 +9,12 @@ if () then ([else])
     :creates general endpoint
     predicate;
     :Find command;
-    :Update enpoint list;
+    :Update endpoint list;
 else ([has prefix])
     :creates predicate related
     to that prefix/s;
     :Find command;
-    :Update enpoint list;
+    :Update endpoint list;
 endif
 stop
 @enduml

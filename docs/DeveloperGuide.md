@@ -116,8 +116,8 @@ The `Model`,
 * does not depend on any of the other three components.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model
-is given below. It has a `Tag` list in the `imPoster`, which `Method` references. This allows `imPoster` to only 
-require one `Tag` object per unique `Tag`, instead of each `Method` needing their own `Tag` object.<br>
+is given below. It has a `Tag` list in the `imPoster`, which `Endpoint` references. This allows `imPoster` to only 
+require one `Tag` object per unique `Tag`, instead of each `Endpoint` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 </div>
 
@@ -218,7 +218,7 @@ Step 3. `Model#updateFilteredEndpointList` will be called and model will be upda
 <div markdown="span" class="alert alert-info">:information_source: **Note:** `find get` will work as well, but will look through all fields instead of just one
 </div>
 
-The following activity diagram summarizes what happens when a user executes a run command:
+The following activity diagram summarizes what happens when a user executes a find command:
 ![FindActivityDiagram](images/FindActivityDiagram.png)
 
 ### Send/run command feature
