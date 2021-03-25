@@ -40,7 +40,6 @@ class AddMeetingCommandTest {
         Meeting validMeeting = new MeetingBuilder().build();
 
         CommandResult commandResult = new AddMeetingCommand(validMeeting).execute(modelStub);
-
         assertEquals(String.format(AddMeetingCommand.MESSAGE_SUCCESS, validMeeting), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validMeeting), modelStub.meetingsAdded);
     }
