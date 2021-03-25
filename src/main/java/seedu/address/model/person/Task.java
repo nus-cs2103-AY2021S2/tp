@@ -4,10 +4,9 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.Set;
-
 
 import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.tag.Tag;
@@ -222,8 +221,9 @@ public class Task {
 
         while (it.hasNext()) {
             Tag hold = it.next();
-            if (hold.tagName.equals("LOW") || hold.tagName.equals("MEDIUM") ||
-                    hold.tagName.equals("HIGH")) {
+            if (hold.tagName.equals("LOW")
+                    || hold.tagName.equals("MEDIUM")
+                    || hold.tagName.equals("HIGH")) {
                 return new PriorityTag(hold.tagName);
             }
         }
