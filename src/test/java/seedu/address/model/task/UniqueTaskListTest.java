@@ -1,5 +1,6 @@
 package seedu.address.model.task;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -22,10 +23,17 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 import seedu.address.testutil.TaskBuilder;
+import seedu.address.testutil.TypicalTasks;
 
 public class UniqueTaskListTest {
 
     private final UniqueTaskList uniqueTaskList = new UniqueTaskList();
+
+    private UniqueTaskList repopulatedTaskList() {
+        UniqueTaskList populatedTaskList = new UniqueTaskList();
+        populatedTaskList.setTasks(TypicalTasks.getTypicalTasks());
+        return populatedTaskList;
+    }
 
     @Test
     public void contains_nullTask_throwsNullPointerException() {
@@ -175,5 +183,31 @@ public class UniqueTaskListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> uniqueTaskList.asUnmodifiableObservableList()
                 .remove(0));
+    }
+
+    @Test
+    public void sortTasks_nullList_nothingThrown() {
+        assertDoesNotThrow(() ->
+                uniqueTaskList.sort(TaskComparator.getAcceptedVar().get(0)));
+    }
+
+    @Test
+    public void sortTasks_populatedList_allVariables() {
+        for (String comparingVar : TaskComparator.getAcceptedVar()) {
+            TaskComparator tc = new TaskComparator();
+            tc.setComparingVar(comparingVar);
+
+            //build expected UniqueTaskList
+            List<Task> originalTasks = TypicalTasks.getTypicalTasks();
+            Collections.sort(originalTasks, tc);
+            UniqueTaskList expected = new UniqueTaskList();
+            expected.setTasks(originalTasks);
+
+            //build actual UniqueTaskList
+            UniqueTaskList actual = repopulatedTaskList();
+            actual.sort(comparingVar);
+
+            assertEquals(actual, expected);
+        }
     }
 }
