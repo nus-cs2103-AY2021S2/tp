@@ -24,7 +24,6 @@ import org.junit.jupiter.api.Test;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.model.UserPrefs;
-import seedu.dictionote.model.contact.Email;
 import seedu.dictionote.model.contact.EmailContainsKeywordsPredicate;
 import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
 import seedu.dictionote.model.contact.TagsContainKeywordsPredicate;
@@ -126,7 +125,7 @@ public class FindContactCommandTest {
 
     @Test
     public void execute_tagKeywords_multipleContactsFound() {
-        String expectedMessage = String.format(MESSAGE_CONTACTS_LISTED_OVERVIEW, 3);
+        String expectedMessage = String.format(MESSAGE_CONTACTS_LISTED_OVERVIEW, 4);
 
         NameContainsKeywordsPredicate namePredicate = prepareNamePredicate(" ");
         EmailContainsKeywordsPredicate emailPredicate = prepareEmailPredicate(" ");
@@ -173,7 +172,7 @@ public class FindContactCommandTest {
 
     @Test
     public void execute_emailAndTagKeywords_multipleContactsFound() {
-        String expectedMessage = String.format(MESSAGE_CONTACTS_LISTED_OVERVIEW, 1);
+        String expectedMessage = String.format(MESSAGE_CONTACTS_LISTED_OVERVIEW, 2);
 
         NameContainsKeywordsPredicate namePredicate = prepareNamePredicate(" ");
         EmailContainsKeywordsPredicate emailPredicate = prepareEmailPredicate("@bexample.com");
