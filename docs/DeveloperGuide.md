@@ -1,6 +1,33 @@
 # Implementation
 This section describes some noteworthy details on how certain features are implemented.
 
+### [Proposed] Enquire if time interval is free
+
+The proposed enquiry mechanism provides users a quick way to find out if certain time intervals are available.
+
+An outline of the proposed implementation is as follows:
+
+The `AddressBookParser` should accept another case of command word `free` which eventually returns `CheckFreeCommand`
+back to Logic Manager.
+
+This command is then executed to return `CommandResult` which is either shown on the command result field of the GUI as:
+* "Free"
+* Or the task that is occupying that time interval
+
+The following activity diagram summarizes what happens when a user executes the new command:
+
+![Free Intervals Activity Diagram](images/FreeIntervalActivityDiagram.png)
+
+The `ModelManager` class will be required to implement `checkIfFree` method which eventually checks the interval
+provided by the user against all tasks' `LocalDateTime` attribute in
+`UniqueTaskList#checkIfFree(start, end)`.
+
+The following sequence diagram outlines how the enquiry operation works:
+
+![Free Intervals Sequence Diagram](images/FreeIntervalSequenceDiagram.png)
+
+Note: Details in Model class and `CheckFreeCommandParser` have been omitted for simplicity.
+
 ### [Proposed] Merge Schedule and Task
 The proposed merger attempts to combine the functionalities of both the Task and Schedule classes. \
 As the Task and Schedule classes are similar in features, we can merge them into an Entry class for maintainability.
@@ -44,13 +71,15 @@ The following diagram omits the parser object created, namely `FilterEntryComman
 * Do not have their schedules and students' contacts digitalised
 * Prefer to use typing over mouse/voice commands
 
-**Value proposition**: efficient tool to keep track of schedules and tasks as well as find and add student contact information easily.
+**Value proposition**: efficient tool to keep track of schedules and tasks as well as find and add student contact
+information easily.
 
 ---
 
 ## User Stories
 
 ### Contacts
+
 Priority | As a... | I want to... | So that I can...
 --- | --- | --- | ---
 high | teacher | add a contact | have a consolidated list of contacts that I require
@@ -61,6 +90,7 @@ high | teacher | list all contacts | keep track of the contacts of all the peopl
 medium | teacher | filter contacts via tags | categorise and find a group of contacts easily
 
 ### Schedules
+
 Priority | As a... | I want to... | So that I can...
 --- | --- | --- | ---
 high | teacher | add an event into my schedule | have a consolidated list of events
@@ -76,22 +106,24 @@ medium | teacher | link a contact with my schedule if necessary | easily access 
 low | teacher | get notified of upcoming schedules on the same day | be reminded of upcoming events
 
 ### Tasks
+
 Priority | As a... | I want to... | So that I can...
----------|---------|--------------|-----------------
-high|teacher|add a task into my tasks list|have a consolidated list of my tasks
-high|teacher|delete a task from my tasks list| I can remove tasks that I no longer have to do
-medium|teacher|edit a task in my tasks list|modify task details without going through the tedious process of removing and re-adding it
-high|teacher| list my tasks according to module/week/day|view my tasks in a more organised way
-high|teacher|find and view a task by name|see the details of a task I have saved
-medium|teacher|filter for tasks via tags|categorise and find tasks easily
+--------- | --------- | -------------- | -----------------
+high | teacher | add a task into my tasks list | have a consolidated list of my tasks
+high | teacher | delete a task from my tasks list | I can remove tasks that I no longer have to do
+medium | teacher | edit a task in my tasks list | modify task details without going through the tedious process of removing and re-adding it
+high | teacher | list my tasks according to module/week/day | view my tasks in a more organised way
+high | teacher | find and view a task by name | see the details of a task I have saved
+medium | teacher | filter for tasks via tags | categorise and find tasks easily
 
 ### Others
+
 Priority | As a... | I want to... | So that I can...
----------|---------|--------------|-----------------
-high|forgetful user|be prompted for the commands’ syntax|type all commands without memorising their syntax
-medium|teacher|access the guide or the commands list|eliminate the need to memorise all the commands
-low|teacher|confirm crucial commands with a confirmation message|avoid entering the wrong command
-low|user adopting this products|clear all my contacts from the address book|clear dummy data easily when I use the app for testing
+--------- | --------- | -------------- | -----------------
+high | forgetful user | be prompted for the commands’ syntax | type all commands without memorising their syntax
+medium | teacher | access the guide or the commands list | eliminate the need to memorise all the commands
+low | teacher | confirm crucial commands with a confirmation message | avoid entering the wrong command
+low | user adopting this products | clear all my contacts from the address book | clear dummy data easily when I use the app for testing
 
 ---
 
@@ -133,6 +165,7 @@ low|user adopting this products|clear all my contacts from the address book|clea
    Use case ends.
 
 **Extensions**
+
 * 2a. The given date(s) are invalid.
 
     * 2a1. Teaching Assistant shows an error message.
@@ -169,7 +202,8 @@ low|user adopting this products|clear all my contacts from the address book|clea
 ## Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java 11 or above installed.
-2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
+   able to accomplish most of the tasks faster using commands than using the mouse.
 3. The system should be usable by a novice who has never used virtual management applications.
 4. The user interface should be intuitive enough for users who are not IT-savvy.
 5. The product is offered as an open source software.

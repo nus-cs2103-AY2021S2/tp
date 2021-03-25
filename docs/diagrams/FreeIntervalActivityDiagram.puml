@@ -1,0 +1,13 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User executes "free" and specifies interval;
+if () then ([free])
+    :GUI shows "Free" to user;
+else ([not free])
+    :GUI shows task occupying interval;
+endif
+stop
+
+@enduml
