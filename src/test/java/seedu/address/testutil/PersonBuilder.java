@@ -5,6 +5,7 @@ import java.util.Set;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Favourite;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -22,6 +23,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_TIME_ADDED = "2021-03-21 06:55:40.11";
+    public static final String DEFAULT_FAVOURITE = "false";
 
     private Name name;
     private Phone phone;
@@ -29,6 +31,7 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private TimeAdded timeAdded;
+    private Favourite favourite;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -40,6 +43,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         timeAdded = new TimeAdded(DEFAULT_TIME_ADDED);
+        favourite = new Favourite(DEFAULT_FAVOURITE);
     }
 
     /**
@@ -52,6 +56,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         timeAdded = new TimeAdded(personToCopy.getTimeAdded().toString());
+        favourite = new Favourite(personToCopy.getFavourite().toString());
     }
 
     /**
@@ -102,8 +107,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Favourite} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withFavourite(String favourite) {
+        this.favourite = new Favourite(favourite);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, tags, timeAdded);
+        return new Person(name, phone, email, address, tags, timeAdded, favourite);
     }
 
 }

@@ -86,5 +86,8 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    /**
+     * Sets the person list to the given {@code persons}.
+     */
     void setPersons(List<Person> persons);
 }

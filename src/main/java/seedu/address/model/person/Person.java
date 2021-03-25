@@ -25,18 +25,21 @@ public class Person implements Comparable<Person> {
     private final Set<Tag> tags = new HashSet<>();
 
     private final TimeAdded timeAdded;
+    private final Favourite favourite;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, TimeAdded timeAdded) {
-        requireAllNonNull(name, phone, email, address, tags, timeAdded);
+    public Person(Name name, Phone phone, Email email, Address address,
+                  Set<Tag> tags, TimeAdded timeAdded, Favourite favourite) {
+        requireAllNonNull(name, phone, email, address, tags, timeAdded, favourite);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
         this.timeAdded = timeAdded;
+        this.favourite = favourite;
     }
 
     public Name getName() {
@@ -65,6 +68,10 @@ public class Person implements Comparable<Person> {
 
     public TimeAdded getTimeAdded() {
         return timeAdded;
+    }
+
+    public Favourite getFavourite() {
+        return favourite;
     }
 
     /**
@@ -99,13 +106,14 @@ public class Person implements Comparable<Person> {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getFavourite().equals(getFavourite());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, favourite);
     }
 
     @Override
@@ -124,6 +132,7 @@ public class Person implements Comparable<Person> {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
         return builder.toString();
     }
 

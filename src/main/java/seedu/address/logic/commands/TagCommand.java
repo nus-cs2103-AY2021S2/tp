@@ -16,6 +16,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Favourite;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -101,8 +102,9 @@ public class TagCommand extends Command {
         Set<Tag> updatedTags = new HashSet<>(personToTag.getTags());
         updatedTags.addAll(tags);
         TimeAdded timeAdded = personToTag.getTimeAdded();
+        Favourite favourite = personToTag.getFavourite();
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, timeAdded);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, timeAdded, favourite);
     }
 
     /**
@@ -118,7 +120,8 @@ public class TagCommand extends Command {
         Address updatedAddress = personToTag.getAddress();
         Set<Tag> updatedTags = tags;
         TimeAdded timeAdded = personToTag.getTimeAdded();
+        Favourite favourite = personToTag.getFavourite();
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, timeAdded);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, timeAdded, favourite);
     }
 }
