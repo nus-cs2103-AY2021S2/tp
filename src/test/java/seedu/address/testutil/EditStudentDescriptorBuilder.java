@@ -1,7 +1,10 @@
 package seedu.address.testutil;
 
+import java.util.List;
+
 import seedu.address.logic.commands.EditStudentCommand;
 import seedu.address.logic.commands.EditStudentCommand.EditStudentDescriptor;
+import seedu.address.model.session.Session;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
@@ -35,6 +38,7 @@ public class EditStudentDescriptorBuilder {
         descriptor.setStudyLevel(student.getStudyLevel());
         descriptor.setGuardianPhone(student.getGuardianPhone());
         descriptor.setRelationship(student.getRelationship());
+        descriptor.setSessions(student.getListOfSessions());
     }
 
     /**
@@ -90,6 +94,14 @@ public class EditStudentDescriptorBuilder {
      */
     public EditStudentDescriptorBuilder withRelationship(String relationship) {
         descriptor.setStudyLevel(relationship);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Sessions} of the {@code EditStudentDescriptor} that we are building.
+     */
+    public EditStudentDescriptorBuilder withSessions(List<Session> sessions) {
+        descriptor.setSessions(sessions);
         return this;
     }
 
