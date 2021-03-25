@@ -26,7 +26,7 @@ App-Ointment is a desktop app for for managing and scheduling patient appointmen
 
    * **`list`** : [Coming Soon]
 
-   * **`add`** `n/John Doe dr/Grey d/2021-01-01 1200 t/brain surgery p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : [Coming Soon]
+   * **`add-patient`** `n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a patient.
 
    * **`delete`** `3` : [Coming Soon]
 
@@ -64,36 +64,29 @@ App-Ointment is a desktop app for for managing and scheduling patient appointmen
 
 </div>
 
-### Adding an appointment: `add`
-[Coming Soon]
+### *Patient Commands*:
 
-Adds an appointment to the schedule.<br>
+### Adding a patient: `add-patient`
 
-Format: `add n/PATIENT dr/DOCTOR d/DATETIME [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Adds a patient to the patient records.<br>
 
-* Raises an exception if there are conflicts in schedule for the patient and the doctor.<br>
-
-* Automatically fills empty optional fields if there is a previous record of the patient.<br>
+Format: `add-patient n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
 
-* The appointment can have any number of tags (including 0). It is recommended to use the tags to define the purpose of the appointment.<br>
+* The patient can have any number of tags (including 0).<br>
 
 </div><br>
 
 Examples:
 
-* `add n/John Doe dr/Grey d/2021-01-01 1200 t/brain surgery p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `add-patient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 
-* `add n/Betsy Crowe dr/Who d/2021-01-01 1800 t/drug screening e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+### Listing all patients : `list-patient`
 
+Changes the displayed patient records to show all patients in the patient records.<br>
 
-### Listing all appointments : `list`
-[Coming Soon]
-
-Changes the displayed appointment list to show all appointments in the appointment schedule.<br>
-
-Format: `list`
+Format: `list-patient`
 
 
 ### Editing a patient : `edit-patient`
@@ -121,13 +114,53 @@ Examples:
 
 * `edit-patient 2 n/Betsy Crower t/` Edits the name of patient under the 2nd appointment to be Betsy Crower and clears all existing tags.
 
+### Cleaning all entries in patient records: `clear-patient`
+Clears all entries from the patient records. <br>
+
+Format: `clear-patient`
+
+### *Appointment Commands*:
+
+### Adding an appointment: `add-appt`
+
+Adds an appointment to the schedule.<br>
+
+Format: `add-appt pt/PATIENT_INDEX dr/DOCTOR at/TIMESLOT_START [to/TIMESLOT_END] [dur/TIMESLOT_DURATION] [t/TAG]…​`
+
+* The `PATIENT_INDEX` corresponds to the patient at the index number in the current displayed patient records.<br>
+
+* The `PATIENT_INDEX` must be a <strong>positive integer</strong> 1, 2, 3, …​<br>
+
+* The `TIMESLOT_START` and `TIMESLOT_END` must be in the format YYYY-MM-DD HH:mm<br>
+
+* Either and only one, `TIMESLOT_END` or `TIMESLOT_DURATION`, must be provided.<br>
+
+* Raises an exception if there are conflicts in schedule for the patient or the doctor.<br> 
+
+<div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
+
+* The appointment can have any number of tags (including 0). It is recommended to use the tags to define the purpose of the appointment.<br>
+
+</div><br>
+
+Examples:
+
+* `add-appt pt/1 dr/Dr. Grey at/2021-01-01 00:00 to/2021-01-01 01:30 t/severe t/brainDamage`
+
+* `add-appt pt/2 dr/Dr. Who at/2021-01-01 00:00 dur/1H 30M t/exhaustion`
+
+### Listing all appointments : `list-appt`
+
+Changes the displayed appointment list to show all appointments in the appointment schedule.<br>
+
+Format: `list-appt`
 
 ### Editing an appointment : `edit-appt`
 [Coming Soon]
 
 Edits an existing appointment in the appointment schedule.<br>
 
-Format: `edit-appt [pt/PATIENTINDEX] [dr/DOCTOR] [at/TIMESLOT START] [at/TIMESLOT END] [at/TIMESLOT DURATION] [t/TAG]…​`
+Format: `edit-appt [pt/PATIENTINDEX] [dr/DOCTOR] [at/TIMESLOT START] [to/TIMESLOT END] [dur/TIMESLOT DURATION] [t/TAG]…​`
 
 * Edits the appointment for the patient specified by the `PATIENTINDEX`.  The `PATIENTINDEX` refers to the index number shown in the displayed patient list. The index must be a <strong>positive integer</strong> 1, 2, 3, …​<br>
 
@@ -148,7 +181,7 @@ Examples:
 * `edit-appt pt/2 dr/Dr.Phon t/` Edits the assigned doctor for patient with index 2 to Dr.Phon, and all the tags for the patient is removed.
 
 
-### Locating appointments by fields : `find`
+### Locating appointments by fields : `find-patient`
 [Coming Soon]
 
 Format: `find [n/PATIENT KEYWORDS] [dr/DOCTOR_KEYWORDS] [d/DATETIME] [p/PHONE] [e/EMAIL] [a/ADDRESS_KEYWORDS] [t/TAG KEYWORDS]`
@@ -173,6 +206,10 @@ Examples:
 
 * `find dr/Grey Who t/brain surgery` returns appointments with doctors `grey` or `who` and are tagged as `brain surgery`.
 
+### Cleaning all entries in appointment schedule: `clear-appt`
+Clears all entries from the appointment schedule.<br>
+
+Format: `clear-patient`
 
 ### Deleting an appointment : `delete`
 [Coming Soon]
@@ -193,6 +230,10 @@ Examples:
 
 * `find Betsy` followed by `delete 1 ` deletes the 1st appointment in the results of the `find` command.
 
+
+
+### *Overall Commands*
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -205,13 +246,6 @@ Format: `exit`
 Format: `help`
 
 Showing a message containing the url to the User Guide page
-
-### Cleaning all entries: `clear`
-[Coming soon]
-
-Format: `clear`
-
-Clearing all entries from the record
 
 ### Saving the data
 

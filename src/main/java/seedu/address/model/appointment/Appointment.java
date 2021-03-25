@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Patient;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -18,7 +18,7 @@ import seedu.address.model.tag.Tag;
  */
 public class Appointment implements Comparable<Appointment> {
     // Data fields
-    private final Person patient;
+    private final Patient patient;
     private final String doctor;
     private final Timeslot timeslot;
     private final Set<Tag> tags = new HashSet<>();
@@ -26,7 +26,7 @@ public class Appointment implements Comparable<Appointment> {
     /**
      * Every field must be present and not null.
      */
-    public Appointment(Person patient, String doctor, Timeslot timeslot, Set<Tag> tags) {
+    public Appointment(Patient patient, String doctor, Timeslot timeslot, Set<Tag> tags) {
         requireAllNonNull(patient, doctor, timeslot, tags);
         this.patient = patient;
         this.doctor = doctor;
@@ -35,7 +35,7 @@ public class Appointment implements Comparable<Appointment> {
     }
 
     //// Accessors
-    public Person getPatient() {
+    public Patient getPatient() {
         return patient;
     }
 
@@ -61,6 +61,15 @@ public class Appointment implements Comparable<Appointment> {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Remove brackets from Tags and converting the Set of Tags to Strings
+     */
+    public Set<String> convertToStringSet(Set<Tag> setTag) {
+        HashSet<String> stringSet = new HashSet<>();
+        setTag.forEach(tag -> stringSet.add(tag.toRawString()));
+        return stringSet;
     }
 
     //// Boolean checks

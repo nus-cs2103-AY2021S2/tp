@@ -8,27 +8,27 @@ import seedu.address.model.person.Person;
  * Example usage: <br>
  *     {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
  */
-public class AddressBookBuilder {
+public class AddressBookBuilder<T extends Person> {
 
-    private AddressBook addressBook;
+    private AddressBook<T> addressBook;
 
     public AddressBookBuilder() {
-        addressBook = new AddressBook();
+        addressBook = new AddressBook<>();
     }
 
-    public AddressBookBuilder(AddressBook addressBook) {
+    public AddressBookBuilder(AddressBook<T> addressBook) {
         this.addressBook = addressBook;
     }
 
     /**
      * Adds a new {@code Person} to the {@code AddressBook} that we are building.
      */
-    public AddressBookBuilder withPerson(Person person) {
+    public AddressBookBuilder<T> withPerson(T person) {
         addressBook.addPerson(person);
         return this;
     }
 
-    public AddressBook build() {
+    public AddressBook<T> build() {
         return addressBook;
     }
 }

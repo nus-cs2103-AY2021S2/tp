@@ -23,11 +23,12 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAppointmentSchedule;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Patient;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.AppointmentScheduleStorage;
-import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonAppointmentScheduleStorage;
+import seedu.address.storage.JsonPatientRecordsStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
@@ -40,7 +41,7 @@ import seedu.address.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(0, 6, 0, true);
+    public static final Version VERSION = new Version(1, 3, 0, true);
 
     private static final Logger LOGGER = LogsCenter.getLogger(MainApp.class);
 
@@ -52,7 +53,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        LOGGER.info("=============================[ Initializing AddressBook ]===========================");
+        LOGGER.info("=============================[ Initializing App-Ointment ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -60,11 +61,12 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
+        AddressBookStorage<Patient> patientRecordsStorage = new JsonPatientRecordsStorage(
+                userPrefs.getPatientRecordsFilePath());
         AppointmentScheduleStorage appointmentScheduleStorage = new JsonAppointmentScheduleStorage(
                 userPrefs.getAppointmentScheduleFilePath());
 
-        storage = new StorageManager(appointmentScheduleStorage, addressBookStorage, userPrefsStorage);
+        storage = new StorageManager(appointmentScheduleStorage, patientRecordsStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -76,34 +78,36 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s appointment schedule, patient records and
+     * {@code userPrefs}. <br>
+     * The data from the sample patient records will be used instead if {@code storage}'s patient records are not
+     * found, or an empty address book will be used instead if errors occur when reading {@code storage}'s patient
+     * records.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         return new ModelManager(initAppointmentSchedule(), initPatientRecords(), userPrefs);
     }
 
-    private ReadOnlyAddressBook initPatientRecords() {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook patientRecords;
+    private ReadOnlyAddressBook<Patient> initPatientRecords() {
+        Optional<ReadOnlyAddressBook<Patient>> patientRecordsOptional;
+        ReadOnlyAddressBook<Patient> patientRecords;
 
         // non-existent patient records with start with sample address book for now.
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
+            patientRecordsOptional = storage.readPatientRecords();
+            if (!patientRecordsOptional.isPresent()) {
                 LOGGER.info("Patient data file not found. Will be starting with a sample Patient AddressBook");
             }
 
-            patientRecords = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            patientRecords = patientRecordsOptional.orElseGet(SampleDataUtil::getSamplePatientRecords);
         } catch (DataConversionException e) {
             LOGGER.warning("Patient data file not in the correct format. Will be starting with an empty"
                     + " Patient AddressBook");
-            patientRecords = new AddressBook();
+            patientRecords = new AddressBook<>();
         } catch (IOException e) {
             LOGGER.warning("Problem while reading from the patient data file. Will be starting with an empty"
                     + " Patient AddressBook");
-            patientRecords = new AddressBook();
+            patientRecords = new AddressBook<>();
         }
 
         return patientRecords;
