@@ -32,4 +32,11 @@ public class CliSyntax {
     public static final Prefix PREFIX_TIME_FROM = new Prefix("fr/");
     public static final Prefix PREFIX_TIME_TO = new Prefix("to/");
     public static final Prefix PREFIX_LOCATION = new Prefix("l/");
+
+    /*
+     * Grade prefix definitions
+     * Reference: s/SUBJECT gi/Final Exam gr/A
+     */
+    public static final Prefix PREFIX_GRADED_ITEM = new Prefix("gi/");
+    public static final Prefix PREFIX_GRADE = new Prefix("gr/");
 }
