@@ -113,6 +113,27 @@ public class ParserUtil {
     }
 
     /**
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static String parseCriteria(String criteria) throws ParseException {
+        requireNonNull(criteria);
+        String trimmedCriteria = criteria.trim();
+        return trimmedCriteria;
+    }
+
+    /**
+     * Returns true if the input string is ascending, and false otherwise.
+     */
+    public static boolean parseIsAscending(String isAscending) throws ParseException {
+        requireNonNull(isAscending);
+        String trimmedIsAscending = isAscending.trim();
+        if (!trimmedIsAscending.equals("ascending") && !trimmedIsAscending.equals("descending")) {
+            throw new ParseException("Direction should either be ascending or descending");
+        }
+        return trimmedIsAscending.equals("ascending");
+    }
+
+    /**
      * Parses a {@code String modeOfContact} into an {@code ModeOfContact}.
      * Leading and trailing whitespaces will be trimmed.
      *

@@ -100,11 +100,16 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
-     * Sorts the list by name in ascending alphabetical order
+     * Sorts the list by name.
+     * @param isAscending The list will be sorted by ascending order if true and descending
+     * order otherwise.
      */
-    public void sortByAscendingAlphabeticalOrder() {
+    public void sortByName(boolean isAscending) {
         NameComparator nameComparator = new NameComparator();
         Collections.sort(internalList, nameComparator);
+        if (!isAscending) {
+            Collections.reverse(internalList);
+        }
     }
 
     /**

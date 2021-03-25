@@ -86,7 +86,9 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
-     * Sorts the list by name in ascending alphabetical order.
+     * Sorts the list by name.
+     * @param isAscending The list will be sorted by ascending order if true and descending
+     * otherwise.
      */
-    void sortByAscendingAlphabeticalOrder();
+    void sortByName(boolean isAscending);
 }

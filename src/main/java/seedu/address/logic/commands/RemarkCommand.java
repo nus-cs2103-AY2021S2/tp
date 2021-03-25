@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -23,8 +24,8 @@ public class RemarkCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds or replaces the remark of the"
             + " person identified by the index number used in the last person listing.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "r/ [REMARK]\n"
+            + "Parameters: INDEX (must be a positive integer) + "
+            + "[" + PREFIX_REMARK + "REMARK]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + "r/Currently in Quarantine.";
 
@@ -45,6 +46,7 @@ public class RemarkCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        assert (this.remark != null) : "Remark cannot be null";
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
@@ -76,8 +78,8 @@ public class RemarkCommand extends Command {
         }
 
         // state check
-        RemarkCommand e = (RemarkCommand) other;
-        return index.equals(e.index)
-                && remark.equals(e.remark);
+        RemarkCommand remarkCommand = (RemarkCommand) other;
+        return index.equals(remarkCommand.index)
+                && remark.equals(remarkCommand.remark);
     }
 }

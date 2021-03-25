@@ -133,6 +133,94 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Blacklist feature
+The blacklist mechanism is facilitated by `Person`.
+It represents if a `Person` is blacklisted or not, stored internally by adding a `Blacklist` object to the parameters of `Person`.
+Blacklist status is displayed externally via `PersonListCard#blacklist`.
+
+Given below is an example usage scenario.
+
+Step 1. The user executes `add n/David …​` to add a new person.
+A new `Person` is created, with the default status of un-blacklisted.
+It is then added to `AddressBook`.
+
+![BlacklistState1](images/BlacklistState1.png)
+
+Step 2. The user decides to blacklist the person, and executes the `blist INDEX` command.
+The `blist INDEX` command will create a new `Person` with the same information as the person at `INDEX` in `AddressBook`,
+but with a new `Blacklist` with a different blacklist status, which then replaces the original person.
+
+![BlacklistState1](images/BlacklistState2.png)
+
+The following sequence diagram shows how the blacklist operation works:
+
+![BlacklistSequenceDiagram](images/BlacklistSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a blacklist command:
+
+![BlacklistActivityDiagram](images/BlacklistActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: The command format of blacklist
+
+* **Alternative 1 (current choice):** `blist INDEX` to toggle blacklist status.
+    * Pros: Easier to remember, faster to type.
+            More straightforward and logical for a value with only 2 states.
+    * Cons: Requires checking current blacklist status.
+
+* **Alternative 2:** `+blist INDEX` to blacklist, `-blist INDEX` to un-blacklist.
+    * Pros: Able to directly set blacklist status without checking current status.
+    * Cons: More commands to remember.
+### Sort feature
+The sort feature is implemented in the `SortCommand` class.
+Below is an example usage scenario.
+
+Step 1: The user executes `sort c/...` to sort the contact list according to some specific criteria.
+The `UI` component passes the string to the `LogicManager` class in the `Logic` component.
+
+Step 2: The `Logic` component parses the string and creates a corresponding `SortCommand` object.
+
+Step 3: The `LogicManager` executes the `SortCommand` object. This calls the appropriate `sort` method in
+the `Model` component.
+
+Step 4: The `Model` component sorts the internal contact list. After sorting, the appropriate method in the `Storage`
+component is called to update the file.
+
+Step 5: Finally, the `Model` component passes the `CommandResult` back to the `Logic` component, which in turn passes
+it back to the `UI` component to display it to the user.
+
+The following sequence diagram illustrates how the sort operation works:
+![SortSequenceDiagram](images/SortSequenceDiagram.png)
+
+### Find persons by tag feature
+This feature is built on the current `find` command, which is used to be limited to only finding persons by names. With this change, the format of the `find` command is now modified to `find n/[NAME] t/[TAG]`.
+This command returns the persons with attributes that matches at least one of the attributes of interest (See User Guide for more details).
+Note that users are only required to provide at least one of the parameters to use this command. In other words, commands such as `find n/Alex` and `find t/autistic` are valid commands.
+
+To facilitate the implementation of this feature, two new predicate classes are introduced, namely `PersonTagContainsKeywordsPredicate` and `ReturnTruePredicate`. The former class is to check whether any of the `tag`s contain the keywords. The latter predicate always returns `true`. 
+
+The introduction of `ReturnTruePredicate` may seem pointless, but it is of great use. The key here is to realize that if X is a boolean variable, then X `and` `true` simplifies to X. If both `name` and `tag` keywords are given, the `FindCommand` class will receive `NameContainsKeywordsPredicate` and `PersonTagContainsKeywordsPredicate`. If, say, only `name` keywords are given, then `ReturnTruePredicate` will instead be supplied to `FindCommand`.
+As such, the filter will now solely depend on `NameContainsKeywordsPredicate` since the second predicate always returns true.
+
+The following sequence diagram shows how the `find` command works:
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+The following activity diagram shows what happens when `find` command is executed.
+![FindActivityDiagram](images/FindActivityDiagram.png)
+
+#### Design considerations:
+
+##### Aspect: Command design
+
+* **Alternative 1 (current choice):** `find` command alone supports finding by names and tags.
+    * Pros: More intuitive to use since most commands have similar format. Makes further extensions easier as developers only need to define a new predicate class.
+    * Cons: Can make debugging harder since further extensions are centralized into one class.
+
+* **Alternative 2:** Find by names and find by tags are separate commands.
+    * Pros: Easier to debug as one command is meant for one criterion.
+    * Cons: It is now not possible to combine both criteria together. More commands to remember. Due to similarity of the commands, they can be confused from one another.
+    
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -482,4 +570,3 @@ testers are expected to do more *exploratory* testing.
 
     1. Other incorrect find commands to try: `find n/`, `find t/`, `...` <br>
        Expected: Similar to previous.
-       

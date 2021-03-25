@@ -159,12 +159,6 @@ Labels a contact based on his or her attributes.
 
 Format: tag n/NAME t/TAG
 
-### Assign an additional nickname to a contact : `name`
-
-Adds an optional nickname to the contact.
-
-Format: name INDEX [n/NAME]
-
 ### Blacklist a contact : `blist`
 
 Blocks specific contacts, to specify that they do not want to be contacted.
@@ -206,9 +200,14 @@ Example:
 
 ### Sort entries by name : `sort`
 
-Sort the entries in the contacts list by name in ascending alphabetical order.
+Sort the entries in the contacts list according to a specific criteria.
+The entries can be sorted in both ascending and descending order.
 
-Format: `sort`
+Format: `sort c/CRITERIA d/ASCENDING_OR_DESCENDING`
+
+CRITERIA | Description | Example
+--------|------------------|------
+**name** | Sort by name in alphabetical order| sort c/name d/descending
 
 ### Exiting the program : `exit`
 
@@ -254,6 +253,6 @@ Action | Format, Examples
 **Find** | `find [n/NAME_KEYWORDS] [t/TAG_KEYWORDS]`<br> e.g., `find n/James Jake t/classmates`
 **Help** | `help`
 **List** | `list`
-**Name** | `name INDEX [n/NAME]`<br> e.g., `name 3 [n/Jo]`
 **Remark** | `remark INDEX r/REMARK`<br> e.g., `remark 5 r/Currently on Leave of Absence`
 **Tag** | `tag n/NAME t/TAG`<br> e.g., `tag n/Jane Bo t/Student`
+**Sort** | `sort c/CRITERIA d/ASCENDING_OR_DESCENDING`<br> e.g., `sort c/name d/ascending`
