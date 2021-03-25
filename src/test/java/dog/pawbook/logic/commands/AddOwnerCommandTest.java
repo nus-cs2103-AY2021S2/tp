@@ -14,6 +14,7 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import dog.pawbook.commons.core.GuiSettings;
+import dog.pawbook.commons.core.Messages;
 import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.model.AddressBook;
 import dog.pawbook.model.Model;
@@ -50,7 +51,7 @@ public class AddOwnerCommandTest {
         ModelStub modelStub = new ModelStubWithOwner(validOwner);
 
         assertThrows(CommandException.class,
-                AddOwnerCommand.MESSAGE_DUPLICATE_OWNER, () -> addOwnerCommand.execute(modelStub));
+                Messages.MESSAGE_DUPLICATE_OWNER, () -> addOwnerCommand.execute(modelStub));
     }
 
     @Test

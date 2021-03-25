@@ -83,7 +83,8 @@ public class Owner extends Entity {
         return super.equals(other)
                 && otherOwner.getPhone().equals(getPhone())
                 && otherOwner.getEmail().equals(getEmail())
-                && otherOwner.getAddress().equals(getAddress());
+                && otherOwner.getAddress().equals(getAddress())
+                && otherOwner.getDogIdSet().equals(getDogIdSet());
     }
 
     @Override

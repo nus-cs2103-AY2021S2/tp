@@ -131,11 +131,8 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
         assert editedEntity.getClass() == originalEntity.getClass() : "The entity should not change for the same ID!";
 
         Pair<Integer, Entity> editedPair = new Pair<>(targetID, editedEntity);
-        if (!referencedIdValid(editedPair, internalList)) {
-            throw new BrokenReferencesException();
-        }
 
-        internalList.set(index, new Pair<>(targetID, editedEntity));
+        internalList.set(index, editedPair);
     }
 
     /**

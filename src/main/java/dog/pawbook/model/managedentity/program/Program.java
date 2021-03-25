@@ -41,8 +41,8 @@ public class Program extends Entity {
     public Program(Name name, Set<Session> sessionSet, Set<Tag> tags, Set<Integer> dogIDs) {
         super(name, tags);
         requireAllNonNull(name, tags);
-        this.dogidSet.addAll(dogIDs);
         this.sessionSet.addAll(sessionSet);
+        this.dogidSet.addAll(dogIDs);
     }
 
     public Name getName() {
@@ -61,7 +61,7 @@ public class Program extends Entity {
         return Collections.unmodifiableSet(dogidSet);
     }
 
-    public Set<Session> getSessionSet() {
+    public Set<Session> getSessions() {
         return Collections.unmodifiableSet(sessionSet);
     }
 
@@ -81,7 +81,7 @@ public class Program extends Entity {
 
         Program otherProgram = (Program) other;
         return super.equals(other)
-            && otherProgram.getSessionSet().equals(getSessionSet())
+            && otherProgram.getSessions().equals(getSessions())
             && otherProgram.getDogIdSet().equals(getDogIdSet());
     }
 
@@ -95,7 +95,7 @@ public class Program extends Entity {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName());
-        Set<Session> dates = getSessionSet();
+        Set<Session> dates = getSessions();
         if (!dates.isEmpty()) {
             builder.append("; Sessions: ");
             dates.forEach(builder::append);
@@ -118,7 +118,7 @@ public class Program extends Entity {
 
     @Override
     public String[] getOtherPropertiesAsString() {
-        return new String[]{getSessionSet().toString()};
+        return new String[]{getSessions().toString()};
     }
 
 }

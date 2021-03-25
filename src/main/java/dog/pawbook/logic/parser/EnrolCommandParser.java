@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 import dog.pawbook.logic.commands.EnrolCommand;
 import dog.pawbook.logic.parser.exceptions.ParseException;
 
-public class EnrolCommandParser extends CommandWithPrefixParser<EnrolCommand> {
+public class EnrolCommandParser extends CommandWithCompulsoryPrefixNoPreambleParser<EnrolCommand> {
 
     private static final Prefix[] ENROL_COMPULSORY_PREFIXES = { PREFIX_DOGID, PREFIX_PROGRAMID };
     private static final Prefix[] ENROL_ALL_PREFIXES =
@@ -44,8 +44,8 @@ public class EnrolCommandParser extends CommandWithPrefixParser<EnrolCommand> {
     public EnrolCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = extractArguments(args);
 
-        int dogId = ParserUtil.parseDogId(argMultimap.getValue(PREFIX_DOGID).get());
-        int programId = ParserUtil.parseProgramId(argMultimap.getValue(PREFIX_PROGRAMID).get());
+        int dogId = ParserUtil.parseId(argMultimap.getValue(PREFIX_DOGID).get());
+        int programId = ParserUtil.parseId(argMultimap.getValue(PREFIX_PROGRAMID).get());
 
         return new EnrolCommand(dogId, programId);
     }

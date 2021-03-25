@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -19,7 +20,7 @@ import javafx.util.Pair;
 
 @JsonTypeName(Program.ENTITY_WORD)
 public class JsonAdaptedProgram extends JsonAdaptedEntity {
-    private final List<Session> sessionList = new ArrayList<>();
+    private final List<JsonAdaptedSession> sessions = new ArrayList<>();
     private final List<Integer> enrolledDogs = new ArrayList<>();
 
     /**
@@ -27,15 +28,15 @@ public class JsonAdaptedProgram extends JsonAdaptedEntity {
      */
     @JsonCreator
     public JsonAdaptedProgram(@JsonProperty("id") Integer id, @JsonProperty("name") String name,
-                            @JsonProperty("sessionList") List<Session> sessionList,
-                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                            @JsonProperty("enrolledDogs") List<Integer> enrolledDogs) {
+            @JsonProperty("sessions") List<JsonAdaptedSession> sessions,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("enrolledDogs") List<Integer> enrolledDogs) {
         super(id, name, tagged);
         if (enrolledDogs != null) {
             this.enrolledDogs.addAll(enrolledDogs);
         }
-        if (sessionList != null) {
-            this.sessionList.addAll(sessionList);
+        if (sessions != null) {
+            this.sessions.addAll(sessions);
         }
     }
 
@@ -45,6 +46,10 @@ public class JsonAdaptedProgram extends JsonAdaptedEntity {
     public JsonAdaptedProgram(Pair<Integer, Program> idProgramPair) {
         super(idProgramPair);
         Program source = idProgramPair.getValue();
+        sessions.addAll(source.getSessions().stream()
+                .map(JsonAdaptedSession::new)
+                .collect(Collectors.toList()));
+        enrolledDogs.addAll(source.getDogIdSet());
     }
 
     /**
@@ -58,8 +63,15 @@ public class JsonAdaptedProgram extends JsonAdaptedEntity {
         final int modelID = commonAttributes.id;
         final Name modelName = commonAttributes.name;
         final Set<Tag> modelTags = commonAttributes.tags;
-        Set<Session> modelSession = new HashSet<>(sessionList);
-        Program model = new Program(modelName, modelSession, modelTags);
+
+        final List<Session> sessionList = new ArrayList<>();
+        for (JsonAdaptedSession s : sessions) {
+            sessionList.add(s.toModelType());
+        }
+        final Set<Session> modelSessions = new HashSet<>(sessionList);
+        final Set<Integer> modelDogs = new HashSet<>(enrolledDogs);
+
+        Program model = new Program(modelName, modelSessions, modelTags, modelDogs);
         return new Pair<>(modelID, model);
     }
 }

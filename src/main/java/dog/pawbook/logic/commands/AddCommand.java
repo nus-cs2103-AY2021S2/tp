@@ -2,7 +2,7 @@ package dog.pawbook.logic.commands;
 
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_BREED;
-import static dog.pawbook.logic.parser.CliSyntax.PREFIX_DATEOFBIRTH;
+import static dog.pawbook.logic.parser.CliSyntax.PREFIX_DOB;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_OWNERID;
@@ -32,7 +32,7 @@ public abstract class AddCommand<T extends Entity> extends Command {
             + "Example for Dog: " + COMMAND_WORD + " " + Dog.ENTITY_WORD + " "
             + PREFIX_NAME + "NAME "
             + PREFIX_BREED + "BREED "
-            + PREFIX_DATEOFBIRTH + "DATE OF BIRTH "
+            + PREFIX_DOB + "DATE OF BIRTH "
             + PREFIX_SEX + "SEX "
             + PREFIX_OWNERID + "OWNER ID "
             + "[" + PREFIX_TAG + "TAG]...\n"

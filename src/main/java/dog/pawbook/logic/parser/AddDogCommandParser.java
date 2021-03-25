@@ -1,7 +1,7 @@
 package dog.pawbook.logic.parser;
 
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_BREED;
-import static dog.pawbook.logic.parser.CliSyntax.PREFIX_DATEOFBIRTH;
+import static dog.pawbook.logic.parser.CliSyntax.PREFIX_DOB;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_OWNERID;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_SEX;
@@ -22,9 +22,9 @@ import dog.pawbook.model.managedentity.tag.Tag;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddDogCommandParser extends CommandWithPrefixParser<AddDogCommand> {
+public class AddDogCommandParser extends CommandWithCompulsoryPrefixNoPreambleParser<AddDogCommand> {
     private static final Prefix[] DOG_COMPULSORY_PREFIXES = {
-        PREFIX_NAME, PREFIX_BREED, PREFIX_DATEOFBIRTH, PREFIX_OWNERID, PREFIX_SEX
+        PREFIX_NAME, PREFIX_BREED, PREFIX_DOB, PREFIX_OWNERID, PREFIX_SEX
     };
     private static final Prefix[] DOG_OPTIONAL_PREFIXES = {PREFIX_TAG};
     private static final Prefix[] DOG_ALL_PREFIXES =
@@ -55,8 +55,8 @@ public class AddDogCommandParser extends CommandWithPrefixParser<AddDogCommand> 
         ArgumentMultimap argMultimap = extractArguments(args);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Breed breed = ParserUtil.parseBreed(argMultimap.getValue(PREFIX_BREED).get());
-        DateOfBirth dob = ParserUtil.parseDob(argMultimap.getValue(PREFIX_DATEOFBIRTH).get());
-        int ownerID = ParserUtil.parseOwnerId(argMultimap.getValue(PREFIX_OWNERID).get());
+        DateOfBirth dob = ParserUtil.parseDob(argMultimap.getValue(PREFIX_DOB).get());
+        int ownerID = ParserUtil.parseId(argMultimap.getValue(PREFIX_OWNERID).get());
         Sex sex = ParserUtil.parseSex(argMultimap.getValue(PREFIX_SEX).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 

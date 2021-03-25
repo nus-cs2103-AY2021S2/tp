@@ -27,9 +27,9 @@ import javafx.util.Pair;
         use = JsonTypeInfo.Id.NAME,
         property = "type")
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = JsonAdaptedOwner.class, name = Owner.ENTITY_WORD),
-        @JsonSubTypes.Type(value = JsonAdaptedDog.class, name = Dog.ENTITY_WORD),
-        @JsonSubTypes.Type(value = JsonAdaptedProgram.class, name = Program.ENTITY_WORD)
+    @JsonSubTypes.Type(value = JsonAdaptedOwner.class, name = Owner.ENTITY_WORD),
+    @JsonSubTypes.Type(value = JsonAdaptedDog.class, name = Dog.ENTITY_WORD),
+    @JsonSubTypes.Type(value = JsonAdaptedProgram.class, name = Program.ENTITY_WORD)
 })
 abstract class JsonAdaptedEntity {
 
@@ -75,7 +75,7 @@ abstract class JsonAdaptedEntity {
      * A small data structure used to return multiple values to the derived classes
      * using the {@code checkAndGetCommonAttributes} method.
      */
-    protected class CommonAttributes {
+    protected static class CommonAttributes {
         public final int id;
         public final Name name;
         public final Set<Tag> tags;
@@ -103,11 +103,11 @@ abstract class JsonAdaptedEntity {
         }
         final Name modelName = new Name(name);
 
-        final List<Tag> dogTags = new ArrayList<>();
+        final List<Tag> tags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            dogTags.add(tag.toModelType());
+            tags.add(tag.toModelType());
         }
-        final Set<Tag> modelTags = new HashSet<>(dogTags);
+        final Set<Tag> modelTags = new HashSet<>(tags);
 
         return new CommonAttributes(id, modelName, modelTags);
     }

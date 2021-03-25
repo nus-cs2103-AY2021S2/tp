@@ -7,6 +7,7 @@ import static dog.pawbook.testutil.TypicalOwners.getTypicalAddressBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import dog.pawbook.commons.core.Messages;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.ModelManager;
 import dog.pawbook.model.UserPrefs;
@@ -40,7 +41,7 @@ public class AddCommandIntegrationTest {
     @Test
     public void execute_duplicateOwner_throwsCommandException() {
         Entity entityInList = model.getAddressBook().getEntityList().get(0).getValue();
-        assertCommandFailure(new AddOwnerCommand((Owner) entityInList), model, AddOwnerCommand.MESSAGE_DUPLICATE_OWNER);
+        assertCommandFailure(new AddOwnerCommand((Owner) entityInList), model, Messages.MESSAGE_DUPLICATE_OWNER);
     }
 
 }

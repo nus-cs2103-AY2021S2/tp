@@ -79,7 +79,7 @@ public class EnrolCommand extends Command {
         Set<Integer> editedDogIdSet = new HashSet<>(targetProgram.getDogIdSet());
         editedDogIdSet.add(dogId);
 
-        Program editedProgram = new Program(targetProgram.getName(), targetProgram.getSessionSet(),
+        Program editedProgram = new Program(targetProgram.getName(), targetProgram.getSessions(),
                 targetProgram.getTags(), editedDogIdSet);
 
         model.setEntity(programId, editedProgram);
