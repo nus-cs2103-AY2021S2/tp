@@ -165,7 +165,20 @@ Below is an example activity diagram for a valid drop command from the user.
 
 #### Alternate implementations
 
+### Enrol feature
+Pawbook supports the enrolling of specific dogs into specific programs. 
 
+In order to enrol a dog into a program, the raw input needs to be parsed first. It is required that the user provides 2 parameters, namely `dogId` and `programId`. These inputs have the prefix `/d` and `/p`, and is followed by an integer. Using this information, the arguments will be forwarded to the `EnrolCommandParser` from within `PawbookParser`, which converts the String input to int. 
+
+Below is an example activity diagram for a valid enrol command from the user.
+
+![EnrolActivityDiagram](images/EnrolActivityDiagram.png)
+
+### Alternate implementations
+As dogs and programs can also be identified by their respective names instead of IDs, another implementation could be replacing the parameters of `dogId` and `programId` with their respective names.
+
+However, this requires there to be no duplicate dog or program names.
+ 
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
