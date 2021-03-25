@@ -14,7 +14,7 @@ import seedu.student.model.student.Student;
 import seedu.student.model.student.VaccinationStatus;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code StudentBook} with sample data.
  */
 public class SampleDataUtil {
 
