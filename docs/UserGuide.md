@@ -68,7 +68,7 @@ Output:
 DocBob will open up a help window with the help information.
 ![image](https://user-images.githubusercontent.com/48408342/112430286-e1463a00-8d78-11eb-87bd-baa45a0b52ba.png)
 
-### Adding a patient's contact: `add`
+### Adding a patients' contact: `add`
 
 Adds a patient to DocBob's contact list.
 
@@ -77,7 +77,28 @@ Format: `add n/Name p/phoneNumber a/Age l/Location`
 Examples:
 * `add /nShrek p/66666666 a/69 l/Swamp`
 
-### Adding an appointment to a patient: `appt`
+### Deleting a patients' contact : `delete`
+
+Deletes a patient from DocBob's contact list, identified by their index number displayed when when the `list` command is entered.
+
+Format : `delete INDEX`
+where INDEX must be a positive integer (1,2,3,...)
+
+Examples:
+* `delete 1`
+
+### Listing out all patients' contacts : `list`
+
+Shows a list of all your saved patients information.
+
+Format: `list`
+
+Example: `list`
+
+Output:
+![image](https://user-images.githubusercontent.com/48408342/112432500-f7092e80-8d7b-11eb-85b9-2aaab776d47d.png)
+
+### Adding an appointment to a patient : `appt`
 
 Adds a scheduled upcoming appointment with a patient in DocBob's contact list. Add an appointment to a patient by their index, which is shown when the `list` command is entered, as well as the date and time of the appointment.
 
@@ -89,40 +110,28 @@ Examples:
 * `appt 12 d/200420210930`
 * `appt 3 d/25120800`
 
+### Listing out your upcoming appointments : `listappt`
 
-### Deleting a patient's contact: `delete`
+Shows a list of all your upcoming appointments with the patients in DocBob's contact list, sorted by nearest date and time.
 
-Deletes a patient from DocBob's contact list.
+Format: `listappt`
 
-Format: `delete Name`
+Example: `listappt`
 
-Examples:
-* `delete Lord Farquaad`
+Output: 
+`Hey Doc, here are your upcoming appointments!`<br> 
+`Thu, 25 Mar, 14:00 - Bernice Yu`<br>
+`Fri, 11 Jun, 14:00 - David Li`<br>
+`Thu, 11 Nov, 12:00 - Alex Yeoh`<br>
+`Thu, 11 Nov, 12:00 - Roy Balakrishnan`<br>
+`Sun, 12 Dec, 12:00 - Alex Yeoh`<br>
+`Sun, 12 Dec, 12:12 - Charlotte Oliveiro`<br>
 
-Deleting can also be done by index
+### Exiting the program : `exit`
 
-Format : `delete INDEX`
-where INDEX must be a positive integer (1,2,3,...)
+Exits the program.
 
-Examples:
-* `delete 1`
-
-### Listing out all patients contacts : `list`
-
-Shows a list of all your saved patients information.
-
-Format: `list`
-
-Example: `list`
-
-Output:
-
-`1) Shrek`<br>
-`2) Fiona`<br>
-`3) Lord Farquaad`<br>
-`4) Donkey`<br>
-`5) Onions`<br>
-`6) Dragon`
+Format: `exit`
 
 ### Editing a patient information[Coming soon] : `edit`
 
@@ -143,7 +152,7 @@ Examples:
 
 ### Locating patient by name[Coming soon] : `find`
 
-Finds patiets whose names contain any of the given keywords.
+Finds patients whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -165,12 +174,6 @@ Examples:
 Clears all entries from DocBob.
 
 Format: `clear`
-
-### Exiting the program[Coming soon] : `exit`
-
-Exits the program.
-
-Format: `exit`
 
 ### Saving the data
 
