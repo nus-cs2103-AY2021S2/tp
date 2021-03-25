@@ -5,6 +5,7 @@ import static seedu.smartlib.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -36,6 +37,18 @@ public class StringUtil {
 
         return Arrays.stream(wordsInPreppedSentence)
                 .anyMatch(preppedWord::equalsIgnoreCase);
+    }
+
+    public static boolean containsAnyIgnoreCase(ArrayList<String> searchWords, String word) {
+        boolean isMatched = false;
+
+        for (int i = 0; i < searchWords.size(); i++) {
+            isMatched = containsWordIgnoreCase(searchWords.get(i), word);
+            if (isMatched == true) {
+                break;
+            }
+        }
+        return isMatched;
     }
 
     /**
