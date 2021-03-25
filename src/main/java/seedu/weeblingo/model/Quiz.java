@@ -28,7 +28,6 @@ public class Quiz {
     private Flashcard currentQuiz;
     private int currentQuizIndex = 0;
     private Instant startTime;
-    private Instant endTime;
 
     /**
      * Initializes the quiz session with a queue of all flashcards with randomized order.
@@ -129,14 +128,10 @@ public class Quiz {
         return randomizedQueue;
     }
 
-    /**
-     * Sets the end time of this quiz session.
-     */
-    public void setEndTime() {
-        endTime = Instant.now();
-    }
+
 
     public String getQuizSessionDuration() {
+        Instant endTime = Instant.now();
         Duration duration = Duration.between(startTime, endTime);
         return String.format("%d:%02d:%02d",
                 duration.toHours(),

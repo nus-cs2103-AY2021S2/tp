@@ -195,7 +195,6 @@ public class MainWindow extends UiPart<Stage> {
         flashcardListPanelPlaceholder.getChildren().clear();
         if (Quiz.hasSessionEnded()) {
             Quiz quizInstance = logic.getModel().getQuizInstance();
-            quizInstance.setEndTime();
             String quizSessionTime = quizInstance.getQuizSessionDuration();
             String endOfQuizSessionMessage = "Your quiz session duration is " + quizSessionTime;
             resultDisplay.setFeedbackToUser(Quiz.QUIZ_END_MESSAGE + endOfQuizSessionMessage);
