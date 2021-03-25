@@ -1,11 +1,16 @@
 @startuml
 start
 :User executes send command;
+:Parse command arguments;
 :Retrieve endpoint with given index;
 :Construct an EndpointCaller;
-:Call endpoint and construct a GET request;
+:Call endpoint and construct
+a GET request;
 :Send and execute request;
+if () then ([request performed successfully])
 :Receive and display response;
-
+else ([else])
+    :Display error message;
+endif
 stop
 @enduml

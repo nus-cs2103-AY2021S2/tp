@@ -2,8 +2,6 @@
 !include style.puml
 
 box Logic LOGIC_COLOR_T1
-participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":ImposterParser" as ImposterParser LOGIC_COLOR
 participant "s:SendCommand" as SendCommand LOGIC_COLOR
 participant ":EndpointCaller" as EndpointCaller ENDPOINTCALLER_COLOR
 participant ":GetRequest" as GetRequest GETREQUEST_COLOR
@@ -14,23 +12,7 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute(send)
-activate LogicManager
-
-LogicManager -> ImposterParser : parseCommand(send)
-activate ImposterParser
-
-create SendCommand
-ImposterParser -> SendCommand
-activate SendCommand
-
-SendCommand --> ImposterParser
-deactivate SendCommand
-
-ImposterParser --> LogicManager : u
-deactivate ImposterParser
-
-LogicManager -> SendCommand : execute()
+[-> SendCommand : execute()
 activate SendCommand
 
 SendCommand -> Model : getEndpointAtIndex()
@@ -45,20 +27,20 @@ activate EndpointCaller
 
 return
 
-SendCommand --> EndpointCaller : callEndpoint()
+SendCommand -> EndpointCaller : callEndpoint()
 activate EndpointCaller
-EndpointCaller --> EndpointCaller : sendRequest()
+EndpointCaller -> EndpointCaller : sendRequest()
 activate EndpointCaller
 
 create GetRequest
-EndpointCaller --> GetRequest : new
+EndpointCaller -> GetRequest : new
 activate GetRequest
 
 return
 
-EndpointCaller --> GetRequest : send()
+EndpointCaller -> GetRequest : send()
 activate GetRequest
-GetRequest --> GetRequest : execute()
+GetRequest -> GetRequest : execute()
 return response
 return response
 destroy GetRequest
@@ -66,12 +48,8 @@ return response
 EndpointCaller -[hidden]-> GetRequest : execute
 destroy EndpointCaller
 
-
-SendCommand --> LogicManager : result
+return result
 deactivate SendCommand
-SendCommand -[hidden]-> LogicManager : result
+SendCommand -[hidden]-> GetRequest : execute
 destroy SendCommand
-
-[<--LogicManager
-deactivate LogicManager
 @enduml
