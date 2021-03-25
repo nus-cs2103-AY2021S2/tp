@@ -1,9 +1,9 @@
-## Content List
-* [Introduction](#introduction)
-* [Quick Start](#quick-start)
-* [Features](#features)
-* [FAQ](#faq)
-* [Command Summary](#command-summary)
+---
+layout: page
+title: User Guide
+---
+* Table of Contents
+{:toc}
 
 
 ## Introduction
