@@ -5,14 +5,14 @@
       "phone": "94351253",
       "email": "alice@example.com",
       "year": "1",
-      "room": "01-234"
+      "room": "Room unallocated"
     },
     {
       "name": "Alice Pauline",
       "phone": "94351253",
       "email": "pauline@example.com",
       "year": "1",
-      "room": "01-234"
+      "room": "Room unallocated"
     }
   ],
   "rooms": [],

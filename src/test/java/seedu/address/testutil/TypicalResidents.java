@@ -28,41 +28,41 @@ public class TypicalResidents {
             .withEmail("alice@example.com")
             .withPhone("94351253")
             .withYear("1")
-            .withRoom("01-234")
+            .withRoom(Room.UNALLOCATED_REGEX)
             .build();
     public static final Resident BENSON = new ResidentBuilder().withName("Benson Meier")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withYear("2")
-            .withRoom("02-234")
+            .withRoom(Room.UNALLOCATED_REGEX)
             .build();
     public static final Resident CARL = new ResidentBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withYear("3").withRoom(Room.UNALLOCATED_REGEX).build();
     public static final Resident DANIEL = new ResidentBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com")
             .withYear("4")
-            .withRoom("03-234")
+            .withRoom(Room.UNALLOCATED_REGEX)
             .build();
     public static final Resident ELLE = new ResidentBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com")
             .withYear("5")
-            .withRoom("04-234")
+            .withRoom(Room.UNALLOCATED_REGEX)
             .build();
     public static final Resident FIONA = new ResidentBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com")
             .withYear("1")
-            .withRoom("05-234")
+            .withRoom(Room.UNALLOCATED_REGEX)
             .build();
     public static final Resident GEORGE = new ResidentBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com")
             .withYear("3")
-            .withRoom("06-234")
+            .withRoom(Room.UNALLOCATED_REGEX)
             .build();
 
     // Manually added
     public static final Resident HOON = new ResidentBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withYear("1").withRoom("07-234").build();
+            .withEmail("stefan@example.com").withYear("1").withRoom(Room.UNALLOCATED_REGEX).build();
     public static final Resident IDA = new ResidentBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withYear("2").withRoom("08-234").build();
+            .withEmail("hans@example.com").withYear("2").withRoom(Room.UNALLOCATED_REGEX).build();
 
     // Manually added - Resident's details found in {@code CommandTestUtil}
     public static final Resident AMY = new ResidentBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)

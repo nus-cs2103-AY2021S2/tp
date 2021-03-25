@@ -20,6 +20,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.resident.NameContainsKeywordsPredicate;
 import seedu.address.model.resident.Resident;
+import seedu.address.model.resident.Room;
 import seedu.address.testutil.EditResidentDescriptorBuilder;
 
 /**
@@ -35,8 +36,8 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_YEAR_AMY = "1";
     public static final String VALID_YEAR_BOB = "2";
-    public static final String VALID_ROOM_AMY = "09-234";
-    public static final String VALID_ROOM_BOB = "10-234";
+    public static final String VALID_ROOM_AMY = Room.UNALLOCATED_REGEX;
+    public static final String VALID_ROOM_BOB = Room.UNALLOCATED_REGEX;
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;

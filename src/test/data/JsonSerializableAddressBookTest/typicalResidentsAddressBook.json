@@ -6,14 +6,14 @@
       "phone": "94351253",
       "email": "alice@example.com",
       "year": "1",
-      "room": "01-234"
+      "room": "Room unallocated"
     },
     {
       "name": "Benson Meier",
       "phone": "98765432",
       "email": "johnd@example.com",
       "year": "2",
-      "room": "02-234"
+      "room": "Room unallocated"
     },
     {
       "name": "Carl Kurz",
@@ -27,28 +27,28 @@
       "phone": "87652533",
       "email": "cornelia@example.com",
       "year": "4",
-      "room": "03-234"
+      "room": "Room unallocated"
     },
     {
       "name": "Elle Meyer",
       "phone": "9482224",
       "email": "werner@example.com",
       "year": "5",
-      "room": "04-234"
+      "room": "Room unallocated"
     },
     {
       "name": "Fiona Kunz",
       "phone": "9482427",
       "email": "lydia@example.com",
       "year": "1",
-      "room": "05-234"
+      "room": "Room unallocated"
     },
     {
       "name": "George Best",
       "phone": "9482442",
       "email": "anna@example.com",
       "year": "3",
-      "room": "06-234"
+      "room": "Room unallocated"
     }
   ],
   "rooms": [],
