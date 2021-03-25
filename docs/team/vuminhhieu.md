@@ -31,5 +31,7 @@ Given below are my contributions to the project.
     * Added screenshots of the application for each user input. [#71](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/71)
 * **Contributions to the DG**:
     * Added the User Stories section [#36](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/36), [#53](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/53)
+    * Added implementation details including class diagram and sequence diagram for Review feature [#91](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/91)
+    * Added use case for Review feature [#91](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/91)
 * **Contribution to Team-Based Tasks**:
     * Changed the product name and icon.

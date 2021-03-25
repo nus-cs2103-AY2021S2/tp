@@ -33,8 +33,8 @@ diagrams.
 </div>
 
 **`Main`** has two classes
-called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java)
-and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It
+called [`Main`](https://github.com/AY2021S2-CS2103T-T13-3/tp/blob/master/src/main/java/seedu/address/Main.java)
+and [`MainApp`](https://github.com/AY2021S2-CS2103T-T13-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It
 is responsible for,
 
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
@@ -65,7 +65,7 @@ exposes its functionality using the `LogicManager.java` class which implements t
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
 the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+![Architecture Sequence Diagram](images/ArchitectureSequenceDiagram.png)
 
 The sections below give more details of each component.
 
@@ -74,16 +74,18 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S2-CS2103T-T13-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`
-, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `FlashcardListPanel`
+, `StatusBarFooter` etc and a `ReviewMode` that is made up of parts `CommandBox`, `ResultDisplay` and `FlashcardViewCard` . All these, including the `MainWindow` and `ReviewMode`, inherit from the abstract `UiPart` class.
+
+The `ReviewMode` can be accessed from `MainWindow` through `review` command. The `MainWindow` can be accessed from `ReviewMode` through `q` command.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are
 in the `src/main/resources/view` folder. For example, the layout of
-the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
+the [`MainWindow`](https://github.com/AY2021S2-CS2103T-T13-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
 is specified
-in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-T13-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -95,11 +97,11 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S2-CS2103T-T13-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `FlashBackParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a new card).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying
    help to the user.
@@ -116,11 +118,9 @@ call.
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**
-API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-The `Model`,
-
+The `Model`
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that
@@ -136,17 +136,16 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**
-API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-T13-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the FlashBack data in json format and read it back.
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.flashback.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -155,8 +154,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 ### \[Implemented\] Sort feature
-The sort mechanism is managed by `ModelManager`. As `Flashcard` contains
-`Question` and `Priority`, these are utilised along with the enum `SortOptions` which
+The sort mechanism is managed by `ModelManager`. As `Flashcard` contains `Question` and `Priority`, these are utilised along with the enum `SortOptions` which
 comprises comparators needed for respective sort options.
 
 It implements the following operations:
@@ -165,8 +163,51 @@ It implements the following operations:
 according to an option and shows the updated list.
 * `SortOptions#getOption(String option)` - Returns the enum according to the specified option
 
-The following diagram illustrates how the sort function operates:
+The following sequence diagram illustrates how the sort function operates:
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
+
+
+### \[Implemented\] Review feature
+The review mechanism is managed by `ReviewManager`. It 
+maintains a list of `Flashcard` and `currentIndex` internally. In addition, it involves the UI through `ReviewMode` that handles user inputs and displays flashcards to users.
+ 
+ `ReviewManager` implements the following operations:
+ * `ReviewManager#getFlashcardDeckSize()` - Returns the size of the current list of flashcards.
+ * `ReviewManager#hasNextFlashcard()` - Checks if there is a flashcard after the current flashcard.
+ * `ReviewManager#hasPreviousFlashcard()` - Checks if there is a flashcard before the current flashcard.
+ * `ReviewManager#getCurrentFlashcard()` - Returns the flashcard at `currentIndex` of the flashcard list.
+ * `ReviewManager#updateCardCorrect(Flashcard cardToUpdate)` - Updates the statistics of a specified `cardToUpdate` when user answers the question correctly.
+ * `ReviewManager#updateCardWrong(Flashcard cardToUpdate)` - Updates the statistics of a specified `cardToUpdate` when user answers the question wrongly.
+ 
+ The following class diagram illustrates how classes involved in this feature interact with each other: <br><br>
+ ![ReviewClassDiagram](images/ReviewClassDiagram.png) <br><br>
+Given below is an example usage scenario and how the review mechanism behaves at each step:
+
+Step 1: The user launches the application.
+
+Step 2: The user enters `review` command in `CommandBox`. After the logic executes the command, it returns a `CommandResult` to the `MainWindow` where the `CommandResult#isReviewMode()` method returns true. After that, a `MainWindow#enterReviewMode()` method is called and user enters `ReviewMode`.
+
+Step 3: Depending on the command that user enters in the `CommandBox` of `ReviewMode`, different methods in `ReviewManager` are called to handle user inputs.
+
+Step 4: If the user enters `q` in the `CommandBox`, `ReviewMode#handleQuitCommand` method is called, and the user returns back to the `MainWindow`.
+
+The following sequence diagram illustrates how the user enter `ReviewMode`: <br>
+![ReviewSequenceDiagram](images/ReviewSequenceDiagram.png) <br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CommandResult` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+#### Design consideration:
+
+##### Aspect: How user interacts in Review Mode.
+
+* **Alternative 1 (current choice):** interacts via `CommandBox` similar to the `MainWindow`
+    * Pros: Easy to implement.
+    * Cons: User experience might not be good since user needs to type many commands.
+
+* **Alternative 2:** interacts via keyboard
+    * Pros: Better user experience since user can move to next/previous flashcard a lot faster.
+    * Cons: Harder to implement.
 
 ### \[Implemented\] Statistics feature
 
@@ -206,12 +247,12 @@ The following sequence diagram illustrates this scenario.
 ℹ️ **Note:** The lifeline for `StatsCommandParser` should end at the destroy marker (X) 
 but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo
-history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the
+The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the
 following operations:
 
 * `VersionedAddressBook#commit()` — Saves the current address book state in its history.
@@ -348,16 +389,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | student                                    | view the question and answer of a specific card | check if I remember the concepts correctly
 | `* * * ` | careless user | modify the details of a flash card | avoid having to delete and add a new card when I wish to update card information
 | `* *` | multi-discipline student | put my notes under different tags and categories | easily organize them
-| `* *`     | angry student   | undo my actions| my emotion will not cloud my judgements
+| `* *`     | angry student   | undo/redo my actions| my emotion will not cloud my judgements
 | `* *` | student | review my own performance after each study session | know what to improve on
+| `* *` | student | sort the cards based on priority | know which cards I should focus on
 | `* *` | long-time user | find what I need easily | search through the list of decks without doing it manually
 | `*`   | student | export a part of my materials | share it with others
 | `*`   | experienced user | define my own aliases for commands | use them faster
 | `*`   | chemistry/biology Student | use subscripts | see the chemical formula easier
 | `*`   | careless student | archive my notes | easily restore them
 | `*`   | student | look at the statistics | focus on topics that I am not good at
-
-*{More to be added}*
 
 ### Use cases
 
@@ -481,14 +521,41 @@ otherwise) <br /><br />
 
 **MSS**
 
-1. User requests to delete a flash card from the list.
+1. User requests to delete a flashcard from the list.
 1. FlashBack deletes the specified flashcard.
 1. User requests to undo delete command.
 1. FlashBack reverts to its previous state before delete command.
 
    Use case ends.
+   
+**Use case: UC08 - Enter review mode**
 
-**Use case: UC08 - Display flashcard statistics**
+**MSS**
+1. User requests to review flashcard.
+1. FlashBack enters review mode.
+1. User requests to show/hide answer, go to next/previous flashcard.
+1. FlashBack handles user input.
+
+Step 3 and 4 are repeated until `q` command is entered.<br>
+Use case ends.
+
+**Extension**
+* 1a. The list is empty.<br>
+Use case ends.
+* 3a. User enters invalid command.
+    * 3a1. FlashBack shows an error message <br>
+    Use case resumes at step 3
+* 3b. User enters `h` command when the answer is currently hidden.
+    * 3b1. FlashBack shows an error message <br>
+    Use case resumes at step 3
+* 3c. User enters `a` command when the answer is currently shown.
+    * 3c1. FlashBack shows an error message <br>
+    Use case resumes at step 3
+* 3d. User enters `t` or `f` command when the answer is currently hidden.
+    * 3d1. FlashBack shows an error message <br>
+    Use case resumes at step 3
+    
+**Use case: UC09 - Display flashcard statistics**
 
 **MSS**
 
@@ -509,7 +576,6 @@ otherwise) <br /><br />
 
       Use case resumes at step 1.
 
-
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -522,7 +588,7 @@ otherwise) <br /><br />
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Flash card**: A card that contains study materials with its topic name
+* **Flashcard**: A card that contains study materials with its topic name
 * **Undoable Command**: A command that modifies the content of FlashBack
 
 --------------------------------------------------------------------------------------------------------------------

@@ -55,7 +55,7 @@ public class ReviewManager {
     }
 
     /**
-     * Checks if there is a previous flashcard after the current flashcard.
+     * Checks if there is a previous flashcard before the current flashcard.
      */
     public boolean hasPreviousFlashcard() {
         return currentIndex > 0;
@@ -73,7 +73,7 @@ public class ReviewManager {
     }
 
     /**
-     * Updates the statistics of a flash card when user gets the correct answer.
+     * Updates the statistics of a flashcard when user gets the correct answer.
      *
      * @param cardToUpdate The flash card to update.
      * @return A feedback message to display to user.
