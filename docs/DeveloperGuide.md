@@ -183,7 +183,7 @@ and `Model#redoFlashBack()` respectively.
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `VersionedFlashBack` will be initialized with the
-initial address book state, and the `currentStatePointer` pointing to that single flashback state.
+initial flashback state, and the `currentStatePointer` pointing to that single flashback state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
@@ -223,7 +223,7 @@ The following sequence diagram shows how the undo operation works:
 </div>
 
 The `redo` command does the opposite — it calls `Model#redoFlashBack()`, which shifts the `currentStatePointer` once
-to the right, pointing to the previously undone state, and restores the address book to that state.
+to the right, pointing to the previously undone state, and restores the flashback to that state.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `flashBackStates.size() - 1`, pointing to the latest flashback state, then there are no undone FlashBack states to restore. The `redo` command uses `Model#canRedoFlashBack()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
