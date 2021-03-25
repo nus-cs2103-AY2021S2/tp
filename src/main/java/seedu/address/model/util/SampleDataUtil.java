@@ -6,10 +6,13 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.AppointmentBook;
+import seedu.address.model.GradeBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAppointmentBook;
+import seedu.address.model.ReadOnlyGradeBook;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
+import seedu.address.model.grade.Grade;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
@@ -81,6 +84,13 @@ public class SampleDataUtil {
         };
     }
 
+    public static Grade[] getSampleGrade() {
+        return new Grade[] {
+            new Grade(new SubjectName("English"), "Midterm", "A"),
+            new Grade(new SubjectName("Physics"), "Lab 2", "B+")
+        };
+    }
+
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
@@ -116,6 +126,14 @@ public class SampleDataUtil {
         AppointmentBook sampleAb = new AppointmentBook();
         for (Appointment samplePerson : getSampleAppointment()) {
             sampleAb.addAppointment(samplePerson);
+        }
+        return sampleAb;
+    }
+
+    public static ReadOnlyGradeBook getSampleGradeBook() {
+        GradeBook sampleAb = new GradeBook();
+        for (Grade sampleGrade : getSampleGrade()) {
+            sampleAb.addGrade(sampleGrade);
         }
         return sampleAb;
     }
