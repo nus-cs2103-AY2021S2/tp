@@ -5,11 +5,11 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyRemindMe <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class RemindMe
+Class ReadOnlyRemindMe
 Class Model
 Class ModelManager
 Class UserPrefs
@@ -17,12 +17,33 @@ Class ReadOnlyUserPrefs
 
 Package Person {
 Class Person
-Class Address
-Class Email
 Class Name
-Class Phone
+Class Birthday
 Class UniquePersonList
 }
+
+package Module {
+Class AssignmentList
+Class ExamList
+Class Module
+Class UniqueModuleList
+}
+
+Package GeneralEvent {
+Class GeneralEvent
+}
+
+Package Description {
+Class Description
+}
+
+package Event {
+Class Exam
+Class Assignment
+Class GeneralEvent
+Class UniqueGeneralEventList
+}
+
 
 Package Tag {
 Class Tag
@@ -32,25 +53,32 @@ Class Tag
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+RemindMe .up.|> ReadOnlyRemindMe
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
+ModelManager o--> "1" RemindMe
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
+RemindMe *--> "1" UniquePersonList
+RemindMe *--> "1" UniqueModuleList
+RemindMe *--> "1" UniqueGeneralEventList
 UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+UniqueModuleList o--> "*" Module
+UniqueGeneralEventList o--> "o" GeneralEvent
+Assignment *--> Description
+Assignment *--> "1" Tag
+Exam *--> "1" Tag
+GeneralEvent *--> Description
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Person *--> Name
+Person *--> Birthday
+Person *--> "*" Tag
+AssignmentList *--> "*" Assignment
+ExamList *--> "*" Exam
 
 ModelManager ----->" ~* filtered list" Person
+ModelManager -----> " ~* filtered list" Module
+ModelManager -----> " ~* filtered list" GeneralEvent
 @enduml
