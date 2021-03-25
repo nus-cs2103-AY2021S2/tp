@@ -35,13 +35,15 @@ public class RecurringSession extends Session {
         this.endDateTime = endDateTime;
     }
 
+    // THIS METHOD IS FOR SCHEDULE REMINDER TO RETRIEVE INFO ABOUT SESSION HAPPENING ON GIVEN DATE.
     /**
      * Returns a single non-recurring session on the sessionDate.
      * @param sessionDate A valid sessionDate.
      * @return
      */
     private Session onSessionDate(SessionDate sessionDate) {
-
+        requireAllNonNull(sessionDate);
+        assert(occursAtDate(getSessionDate(), sessionDate, interval));
         return new Session(sessionDate, getDuration(), getSubject(), getFee());
     }
 
@@ -54,6 +56,7 @@ public class RecurringSession extends Session {
 
     // Checks that s1 occurs on the date of s2, upon recurring 0 or more times.
     private static boolean occursAtDate(SessionDate s1, SessionDate s2, Interval interval) {
+        requireAllNonNull(s1, s2, interval);
         int daysBetween = SessionDate.calculateDaysBetween(s1, s2);
         return daysBetween >= 0 && daysBetween % interval.value == 0;
     }
@@ -67,11 +70,13 @@ public class RecurringSession extends Session {
     }
 
     private boolean endBefore(SessionDate sessionDate) {
-        return endDateTime.getDateTime().toLocalDate().isBefore(sessionDate.getDateTime().toLocalDate());
+        requireAllNonNull(sessionDate);
+        return endDateTime.getDate().isBefore(sessionDate.getDate());
     }
 
     private boolean startAfter(SessionDate sessionDate) {
-        return getSessionDate().getDateTime().toLocalDate().isAfter(sessionDate.getDateTime().toLocalDate());
+        requireAllNonNull(sessionDate);
+        return getSessionDate().getDate().isAfter(sessionDate.getDate());
     }
 
     // THIS METHOD IS FOR SCHEDULE REMINDER TO CHECK IF THERE'S SESSION ON THE DAY.
@@ -81,16 +86,18 @@ public class RecurringSession extends Session {
      * @return true if recurring session falls on given sessionDate.
      */
     public boolean hasSessionOnDate(SessionDate sessionDate) {
+        requireAllNonNull(sessionDate);
         return !endBefore(sessionDate) && occursAtDate(getSessionDate(), sessionDate, getInterval());
     }
 
 
     /**
      * Returns a non-recurring, single session that occurred before a given SessionDate.
-     * @param sessionDate A valid sessionDate.
+     * @param sessionDate A valid date, where a session exists on or before the date.
      * @return A non-recurring single session, most recently past sessionDate.
      */
     public Session lastSessionOnOrBefore(SessionDate sessionDate) {
+        requireAllNonNull(sessionDate);
         checkArgument(!startAfter(sessionDate), "There exists no session before.");
         int numOfDaysBetween = SessionDate.calculateDaysBetween(getSessionDate(), sessionDate);
         LocalDate lastLocalDate = sessionDate.getDateTime().minusDays(numOfDaysBetween % interval.value).toLocalDate();
@@ -108,12 +115,15 @@ public class RecurringSession extends Session {
      * @return number of sessions occuring
      */
     public int numOfSessionBetween(SessionDate inclusiveStart, SessionDate inclusiveEnd) {
+        requireAllNonNull(inclusiveStart, inclusiveEnd);
+
         SessionDate lastInSpan;
         if (endBefore(inclusiveEnd)) {
             lastInSpan = endDateTime;
         } else {
             lastInSpan = lastSessionOnOrBefore(inclusiveEnd).getSessionDate();
         }
+
         SessionDate firstInSpan;
         if (startAfter(inclusiveStart)) {
             firstInSpan = getSessionDate();
@@ -125,6 +135,7 @@ public class RecurringSession extends Session {
             LocalDateTime firstInSpanLdt = inclusiveStart.getDateTime().plusDays(plusDays);
             firstInSpan = new SessionDate(firstInSpanLdt.toString());
         }
+
         return SessionDate.calculateDaysBetween(firstInSpan, lastInSpan) / interval.value + 1;
     }
 }

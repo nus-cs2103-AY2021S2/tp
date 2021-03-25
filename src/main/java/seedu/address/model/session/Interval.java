@@ -4,12 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Recurring Session's interval.
+ * Represents the interval, as number of days, between each session of the recurring session,
  * Guarantees: immutable; is valid as declared in {@link #isValidInterval(int)}
  */
 public class Interval {
 
-    public static final String MESSAGE_CONSTRAINTS = "Interval cannot be empty or 0.";
+    public static final String MESSAGE_CONSTRAINTS = "Interval cannot be empty, negative or 0.";
     public static final String VALIDATION_REGEX = "^[1-9]\\d*$";
     public final int value;
 
