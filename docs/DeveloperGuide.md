@@ -547,6 +547,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. ModuleBook 3.5 shows an error message.
 
       Use case ends.
+      
+      
+**Use case 12: Sorts tasks by Deadline**
+
+**MSS**
+
+1.  User request to sorts tasks by deadline.
+
+2.  ModuleBook 3.5 sorts the tasks in descending order of urgency and display them.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Invalid format for the sort command.
+
+    * 2a1. ModuleBook 3.5 shows an error message with the correct format for sort and example.
+
+      Use case resumes at step 2.
     
     
 ### Non-Functional Requirements
