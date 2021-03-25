@@ -9,17 +9,17 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.booking.exceptions.BookingNotFoundException;
-import seedu.address.model.booking.exceptions.DuplicateBookingException;
+import seedu.address.model.booking.exceptions.OverlappingBookingException;
 
 /**
- * A list of bookings that enforces uniqueness between its elements and does not allow nulls.
- * A booking is considered unique by comparing using {@code Booking#isSameBooking(Booking)}. As such, adding and
- * updating of bookings uses Booking#isSameBooking(Booking) for equality so as to ensure that the booking being added or
- * updated is unique in terms of identity in the UniqueBookingList. However, the removal of a booking uses
- * Booking#equals(Object) so as to ensure that the booking with exactly the same fields will be removed.
+ * A list of bookings that enforces no overlapping between its elements and does not allow nulls.
+ * A booking is considered non-overlapping by comparing using {@code Booking#doesOverlap(Booking)}. As such, adding and
+ * updating of bookings uses Booking#doesOverlap(Booking) so as to ensure that the booking being added or
+ * updated does not overlap in timing with another booking in the UniqueBookingList. However, the removal of a booking
+ * uses Booking#equals(Object) so as to ensure that the booking with exactly the same fields will be removed.
  * Supports a minimal set of list operations.
  *
- * @see Booking#isSameBooking(Booking)
+ * @see Booking#doesOverlap(Booking)
  */
 public class UniqueBookingList implements Iterable<Booking> {
 
@@ -28,21 +28,21 @@ public class UniqueBookingList implements Iterable<Booking> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent booking as the given argument.
+     * Returns true if the list contains a booking which overlaps with the given argument.
      */
     public boolean contains(Booking toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameBooking);
+        return internalList.stream().anyMatch(toCheck::doesOverlap);
     }
 
     /**
      * Adds a booking to the list.
-     * The booking must not already exist in the list.
+     * The booking must not overlap with another booking which already exists in the list.
      */
     public void add(Booking toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicateBookingException();
+            throw new OverlappingBookingException();
         }
         internalList.add(toAdd);
     }
@@ -50,7 +50,7 @@ public class UniqueBookingList implements Iterable<Booking> {
     /**
      * Replaces the booking {@code target} in the list with {@code editedBooking}.
      * {@code target} must exist in the list.
-     * The booking identity of {@code editedBooking} must not be the same as another existing booking in the list.
+     * The booking identity of {@code editedBooking} must not overlap with another existing booking in the list.
      */
     public void setBooking(Booking target, Booking editedBooking) {
         requireAllNonNull(target, editedBooking);
@@ -60,8 +60,8 @@ public class UniqueBookingList implements Iterable<Booking> {
             throw new BookingNotFoundException();
         }
 
-        if (!target.isSameBooking(editedBooking) && contains(editedBooking)) {
-            throw new DuplicateBookingException();
+        if (contains(editedBooking)) {
+            throw new OverlappingBookingException();
         }
 
         internalList.set(index, editedBooking);
@@ -85,12 +85,12 @@ public class UniqueBookingList implements Iterable<Booking> {
 
     /**
      * Replaces the contents of this list with {@code bookings}.
-     * {@code bookings} must not contain duplicate bookings.
+     * {@code bookings} must not contain overlapping bookings.
      */
     public void setBookings(List<Booking> bookings) {
         requireAllNonNull(bookings);
         if (!bookingsAreUnique(bookings)) {
-            throw new DuplicateBookingException();
+            throw new OverlappingBookingException();
         }
 
         internalList.setAll(bookings);
@@ -121,12 +121,12 @@ public class UniqueBookingList implements Iterable<Booking> {
     }
 
     /**
-     * Returns true if {@code bookings} contains only unique bookings.
+     * Returns true if {@code bookings} contains only non-overlapping bookings.
      */
     private boolean bookingsAreUnique(List<Booking> bookings) {
         for (int i = 0; i < bookings.size() - 1; i++) {
             for (int j = i + 1; j < bookings.size(); j++) {
-                if (bookings.get(i).isSameBooking(bookings.get(j))) {
+                if (bookings.get(i).doesOverlap(bookings.get(j))) {
                     return false;
                 }
             }
