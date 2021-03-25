@@ -42,51 +42,56 @@ public class FindCommandParser implements Parser<FindCommand> {
                 PREFIX_TAG);
 
         String[] nameKeywords;
+        Boolean hasPrefix = false;
 
-        //Case 1: If no prefix present (general search)
-        if (!argMultimap.arePrefixesPresent
-                (PREFIX_METHOD, PREFIX_ADDRESS, PREFIX_DATA, PREFIX_HEADER, PREFIX_TAG)) {
-            nameKeywords = getNameKeywords(args);
-            return new FindCommand(new EndPointContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-        }
-
-        //Case 2: If there is prefix present (specific search)
         ArrayList<Predicate<Endpoint>> predicateList = new ArrayList<>();
 
         if (argMultimap.arePrefixesPresent(PREFIX_METHOD)) {
+            hasPrefix = true;
             String input = argMultimap.getValue(PREFIX_METHOD).get();
             nameKeywords = getNameKeywords(input);
             predicateList.add(new MethodContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         }
 
         if (argMultimap.arePrefixesPresent(PREFIX_ADDRESS)) {
+            hasPrefix = true;
             String input = argMultimap.getValue(PREFIX_ADDRESS).get();
             nameKeywords = getNameKeywords(input);
             predicateList.add(new AddressContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         }
 
         if (argMultimap.arePrefixesPresent(PREFIX_DATA)) {
+            hasPrefix = true;
             String input = argMultimap.getValue(PREFIX_DATA).get();
             nameKeywords = getNameKeywords(input);
             predicateList.add(new DataContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         }
 
         if (argMultimap.arePrefixesPresent(PREFIX_HEADER)) {
+            hasPrefix = true;
             String input = argMultimap.getValue(PREFIX_HEADER).get();
             nameKeywords = getNameKeywords(input);
             predicateList.add(new HeadersContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         }
 
         if (argMultimap.arePrefixesPresent(PREFIX_TAG)) {
+            hasPrefix = true;
             String input = argMultimap.getValue(PREFIX_TAG).get();
             nameKeywords = getNameKeywords(input);
             predicateList.add(new TagsContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         }
 
-        return new FindCommand(predicateList.stream().reduce(x -> true, Predicate::and));
+        if (!hasPrefix) {
+            nameKeywords = getNameKeywords(args);
+            return new FindCommand(new EndPointContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        } else {
+            return new FindCommand(predicateList.stream().reduce(x -> true, Predicate::and));
+        }
+
     }
 
     public String[] getNameKeywords(String args) throws ParseException {
+        assert args != null;
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(

@@ -10,7 +10,7 @@
            xmlns:fx="http://javafx.com/fxml/1">
   <VBox VBox.vgrow="ALWAYS" >
   <FlowPane fx:id="responseMeta" />
-  <TextArea fx:id="resultDisplay" editable="false" prefHeight="3840" prefWidth="2160" styleClass="result-display" wrapText="true"/>
+  <TextArea fx:id="resultDisplay" editable="false" prefHeight="3840" prefWidth="2160" styleClass="focused, result-display" wrapText="true"/>
   </VBox>
   <children>
     <ImageView fx:id="loadingSpinnerPlaceholder" visible="false" fitWidth="320" fitHeight="320" preserveRatio="true" pickOnBounds="true">

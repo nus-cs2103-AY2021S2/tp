@@ -154,7 +154,7 @@ public class ResultDisplay extends UiPart<Region> {
         requireNonNull(feedbackToUser);
 
         String textFeedback = String.format(
-                "🅴🅽🅳🅿🅾🅸🅽🆃:\n%s\n\n🆁🅴🆂🅿🅾🅽🆂🅴 🅱🅾🅳🆈:\n%s",
+                "Endpoint:\n============\n\n%s\n\n Response Body:\n============\n\n%s",
                         endpoint.getAddress(), feedbackToUser);
 
         if (!Platform.isFxApplicationThread()) {
