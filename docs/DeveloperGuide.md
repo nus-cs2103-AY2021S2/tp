@@ -133,6 +133,48 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Implementation**
+
+This section describes some noteworthy details on how certain features are implemented.
+
+### Food Component
+
+The food component stores the name of the food and its nutrient values (Carbohydrates, Fats and Proteins).
+
+The 'Food' contains the following components:
+1. `name`: Represents the name of the food item stored in the food component
+2. `carbos`: Represents the carbo values that is associated with the food item stored in the food component
+3. `fats`: Represents the fat values that is associated with the food item stored in the food component
+4. `proteins`: Represents the proteins values that is associated with the food item stored in the food component
+5. `kilocalories`: Represents the kilocalories values that is associated with the food item stored in the food component
+
+There are some actions that can be performed with the Food component. 
+1. Update respective nutrients' values.
+2. Calculate total kilocalories' values. 
+
+Below is the Sequence Flow Diagram when a Food gets added to the UniqueFoodList through the Add-Command: to-do
+
+#### Design consideration:
+
+##### Aspect: How the components within `Food` are added or changed
+* Current Choice: The food components are not immutable and its nutrients value will update each time an update command is passed. 
+* Pros: 
+  ** Faster as food objects do not have to be created everytime when a change is done
+  ** Flexible to changes since only an update command is called to change the value
+* Cons:
+  ** More prone to bugs as the components can be changed freely
+  
+* Alternative 1: Make Food components immutable.
+* Pros:
+  ** 
+  Less prone to bugs
+* Cons:
+  ** 
+  More overhead to update items as a new object is created everytime
+
+### Add food item feature
+//TBC!
+
 ### Product Scope
 
 **Target user profile**
