@@ -180,9 +180,20 @@ The component list on the right column will be controlled by any of the respecti
     ...etc.
 
 #### Ian
-**Enhancement**: List command
+**Enhancement**: Component List
 - Implement list command for each component
 - Call GUI to list all items for a component
+
+The `Component List` command mechanism is facilitated in `MainWindow` of the UI with an input format of
+
+	[component] list
+
+`MainWindow` sends the command to `LogicManager` to be parsed by `JJIMYParser`. As outlined in ** **Enhancement**: Component Parser ** it returns the respective `ComponentCommand` to be executed by `LogicManager`. Finally, a `CommandResult` is sent back to MainWindow which changes what is shown in the GUI. Display is outlined in ** **Enhancement**: Visualisation ** of 2 lists concurrently.
+
+The following sequence diagram shows how the parser on a `Menu List` command operation:
+![ShowMenuList Sequence Diagram](images/ShowMenuList.png)
+
+
 
 #### Yang Ze
 **Enhancement**: Add command
