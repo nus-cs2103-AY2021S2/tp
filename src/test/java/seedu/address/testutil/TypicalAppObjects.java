@@ -146,8 +146,7 @@ public class TypicalAppObjects {
     public static final Timeslot TIMESLOT_1HOUR_2PM = new Timeslot(
             LocalDateTime.of(2021, 1, 1, 14, 0, 0), APPOINTMENT_DURATION);
 
-    public static final Appointment ALICE_DRGRAY = new AppointmentBuilder()
-            .withPatient(ALICE).withDoctor(DRGRAY).withTimeslot(TIMESLOT_1HOUR_8AM).build();
+    // Alice should not have an appointment for DeletePatientCommandTest to test
     public static final Appointment BENSON_DRWHO = new AppointmentBuilder()
             .withPatient(BENSON).withDoctor(DRWHO).withTimeslot(TIMESLOT_1HOUR_9AM).build();
     public static final Appointment CARL_DRHOW = new AppointmentBuilder()
@@ -190,7 +189,7 @@ public class TypicalAppObjects {
     }
 
     public static List<Appointment> getTypicalAppointments() {
-        return new ArrayList<>(Arrays.asList(ALICE_DRGRAY, BENSON_DRWHO,
-                CARL_DRHOW, DANIEL_DRSTRANGE, ELLE_DRWHICH, FIONA_DRWHY, GEORGE_DRWHEN));
+        return new ArrayList<>(Arrays.asList(BENSON_DRWHO, CARL_DRHOW, DANIEL_DRSTRANGE, ELLE_DRWHICH,
+                FIONA_DRWHY, GEORGE_DRWHEN));
     }
 }
