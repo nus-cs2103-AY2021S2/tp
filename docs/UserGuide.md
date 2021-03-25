@@ -78,8 +78,8 @@ Components      | Explanation
 ----------------|------------------
 Command Box | This is where you type all the commands.
 Result Display | This is where the result of your input to the command box is displayed.
-View Pane |
-Flashcard List |
+View Pane | This is where the output for `view` and `stats` command is displayed.
+Flashcard List | This is where all the flashcards are displayed to user.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -142,8 +142,7 @@ Examples:
 
 Edits an existing flashcard in the card list.
 
-Format: `edit INDEX [q/NEW QUESTION] [a/NEW ANSWER] [c/NEW CATEGORY]` <br />
-`[p/NEW PRIORITY] [t/TAG]`
+Format: `edit INDEX [q/NEW QUESTION] [a/NEW ANSWER] [c/NEW CATEGORY] [p/NEW PRIORITY] [t/TAG]`
 
 * Edits the card at the specified `INDEX`.
 * The index refers to the index number shown in the displayed card list.
@@ -212,11 +211,11 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 </div>
 
 Examples:
-* `find computer` will return cards with `computer` in any of its fields.
+* `find computer` will return cards with `computer` in any of its fields.<br><br>
 ![result for `find c/ computer`](images/findComputerResult.png) <br><br>
-* `find computer formula` will return cards with `computer` or `formula` in any of its fields.
+* `find computer formula` will return cards with `computer` or `formula` in any of its fields.<br><br>
 ![result for `find c/ computer`](images/findComputerFormulaResult.png) <br><br>
-* `find phy` will return cards with `phy` contained in any of the words in any of its fields.
+* `find phy` will return cards with `phy` contained in any of the words in any of its fields.<br><br>
 ![result for `find c/ computer`](images/findPhyResult.png) <br><br>
 
 ### Filtering cards: `filter`
@@ -234,16 +233,16 @@ Format: `filter [q/QUESTION] [c/CATEGORY] [p/PRIORITY] [t/TAG]`
 * Partial words can be matched when filtering. e.g. `Wh` will match `What?` but `What?` will not match `What`
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** You can list all flashcards again by using `list` command
+:bulb: **Tip:** You can list all flashcards again by using `list` command.
 
 </div>
 
 Examples:
-* `filter q/charles recursion` will return cards with `charles` or `recursion` contained in its question.
+* `filter q/charles recursion` will return cards with `charles` or `recursion` contained in its question.<br><br>
   ![result for `find c/ computer`](images/filterCharlesRecursionResult.png) <br><br>
-* `filter p/mid q/formula` will return cards with `formula` contained in its question and `mid` priority.
+* `filter p/mid q/formula` will return cards with `formula` contained in its question and `mid` priority.<br><br>
   ![result for `find c/ computer`](images/filterMidFormulaResult.png) <br><br>
-* `filter c/com t/ran` will return cards with `com` contained in its category and `ran`contained in any of its tags.
+* `filter c/com t/ran` will return cards with `com` contained in its category and `ran`contained in any of its tags.<br><br>
   ![result for `find c/ computer`](images/filterComRanResult.png) <br><br>
 
 ### Clearing all entries : `clear`
@@ -294,15 +293,15 @@ Sorts all flashcards according to a given option.
 </div>
 
 Examples:
-`sort priority -a` will sort the flashcards by ascending priority. <br><br>
-`sort priority -d` will sort the flashcards by descending priority. <br><br>
-`sort question -a` will sort the flashcards by ascending question. <br><br>
-`sort question -d` will sort the flashcards by descending question. <br><br>
 
-![UiBeforeSort](./images/UiBeforeSort.png)
-
-`sort priority -a`
-
+`sort priority -a` will sort the flashcards by ascending priority. <br>
+`sort priority -d` will sort the flashcards by descending priority. <br>
+`sort question -a` will sort the flashcards by ascending question. <br>
+`sort question -d` will sort the flashcards by descending question. <br>
+Before sort command is executed. <br><br>
+![UiBeforeSort](./images/UiBeforeSort.png) <br><br>
+`sort priority -a`<br><br>
+After sort command is executed. <br><br>
 ![UiAfterSort](./images/UiAfterSort.png)
 
 ### Entering review mode: `review`
@@ -321,18 +320,19 @@ The following statistics are displayed:
 * The wrong rate of the flashcard(s). i.e The number of wrong answer reviews over the total number of reviews.
 
 Format: `stats INDEX` <br>
-Note: If a valid INDEX is provided, the statistics of the flashcard identified by the provided index is shown.
-If the INDEX field is omitted, Flashback will display overall statistics for all flashcards in the current list.
+
+<div markdown="span" class="alert alert-primary">:memo: **Note:**
+If a valid `INDEX` is provided, the statistics of the flashcard identified by the provided index is shown.<br>
+If the `INDEX` is omitted, FlashBack will display overall statistics for all flashcards in the current list.
+</div>
 
 Examples:
 
-When user enters `stats 2` in the command box and presses `enter`, the statistics of the <br>
-2nd flashcard in the list is displayed.
+`stats 2` shows the statistics of the 2nd flashcard in the list.
 
 ![UiStats](./images/UiStatsIndex.png) <br><br>
 
-When user enters `stats` in the command box and presses `enter`, the overall statistics of <br>
-the current flashcard list is displayed.
+`stats` shows the overall statistics of the current flashcard list.
 
 ![UiStats](./images/UiStatsNoIndex.png) <br><br>
 
@@ -427,7 +427,7 @@ Action | Format, Examples
 **Redo** | `redo`
 **Sort** | `sort OPTION ORDER` <br> e.g, `sort priority -a`
 **Review** | `review`
-**Statistics** | `stats [INDEX]` <br> e.g, `stats 4` `stats`
+**Statistics** | `stats [INDEX]` <br> e.g, `stats 4`, `stats`
 **List** | `list`
 **Help** | `help`
 **Exit** | `exit`
