@@ -13,6 +13,8 @@ public class SortingFlag {
 
     public static final String DATE_TIME_FLAG = "dateTime";
 
+    public static final String TASK_NAME_FLAG = "taskName";
+
     public static final String MODULE_CODE_FLAG = "moduleCode";
 
     public static final String PRIORITY_TAG_FLAG = "priorityTag";
@@ -20,7 +22,7 @@ public class SortingFlag {
     public static final String WEIGHTAGE_FLAG = "weightage";
 
     public static final String MESSAGE_CONSTRAINTS = "Sorting flag should be one of either [dateTime],"
-            + " [moduleCode], [priorityTag] or [weightage] (case-sensitive).";
+            + "[taskName], [moduleCode], [priorityTag] or [weightage] (case-sensitive).";
 
     public final SortingFlagType sortingFlagType;
 
@@ -35,6 +37,9 @@ public class SortingFlag {
         switch (sortingFlag) {
         case DATE_TIME_FLAG:
             sortingFlagType = SortingFlagType.DATE_TIME;
+            break;
+        case TASK_NAME_FLAG:
+            sortingFlagType = SortingFlagType.TASK_NAME;
             break;
         case MODULE_CODE_FLAG:
             sortingFlagType = SortingFlagType.MODULE_CODE;
@@ -59,6 +64,7 @@ public class SortingFlag {
      */
     public static boolean isValidSortingTypeFlag(String s) {
         return s.equals(DATE_TIME_FLAG)
+                || s.equals(TASK_NAME_FLAG)
                 || s.equals(MODULE_CODE_FLAG)
                 || s.equals(PRIORITY_TAG_FLAG)
                 || s.equals(WEIGHTAGE_FLAG);

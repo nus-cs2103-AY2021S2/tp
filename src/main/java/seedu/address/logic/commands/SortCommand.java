@@ -6,10 +6,12 @@ import java.util.Comparator;
 
 import seedu.address.logic.comparators.DateTimeComparator;
 import seedu.address.logic.comparators.ModuleCodeComparator;
+import seedu.address.logic.comparators.TaskNameComparator;
 import seedu.address.logic.comparators.WeightageComparator;
 import seedu.address.model.Model;
 import seedu.address.model.person.SortingFlag;
 import seedu.address.model.person.Task;
+import seedu.address.model.person.TaskName;
 
 public class SortCommand extends Command {
 
@@ -28,6 +30,9 @@ public class SortCommand extends Command {
         switch (sortingFlag.getSortingFlagType()) {
         case DATE_TIME:
             sortingComparator = new DateTimeComparator();
+            break;
+        case TASK_NAME:
+            sortingComparator = new TaskNameComparator();
             break;
         case MODULE_CODE:
             sortingComparator = new ModuleCodeComparator();
