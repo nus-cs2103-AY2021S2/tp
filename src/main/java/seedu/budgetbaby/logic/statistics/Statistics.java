@@ -14,7 +14,7 @@ import seedu.budgetbaby.model.record.FinancialRecord;
 
 public class Statistics {
 
-    private final Month currMonth;
+    private final ObservableList<Month> monthList;
     private BudgetBabyModel model;
 
     /**
@@ -23,7 +23,7 @@ public class Statistics {
      */
     public Statistics(BudgetBabyModel model) {
         this.model = model;
-        currMonth = model.getFilteredMonthList().get(0);
+        monthList = model.getFilteredMonthList();
     }
 
     //    /**
@@ -59,6 +59,9 @@ public class Statistics {
     }
 
     private List<CategoryStatistics> allCategories() {
+        assert monthList.size() == 1;
+        Month currMonth = monthList.get(0);
+
         ObservableList<FinancialRecord> list = currMonth.getFinancialRecordList();
         HashMap<Category, CategoryStatistics> map = new HashMap<>();
         for (FinancialRecord fr : list) {

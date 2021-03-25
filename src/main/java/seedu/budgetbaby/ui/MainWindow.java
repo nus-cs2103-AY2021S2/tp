@@ -122,7 +122,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        budgetDisplay = new BudgetDisplay(logic.getFilteredMonthList());
+        budgetDisplay = new BudgetDisplay(logic.getFilteredMonthList(), logic.getTopCategories());
         budgetDisplayPlaceHolder.getChildren().add(budgetDisplay.getRoot());
 
         financialRecordListPanel = new FinancialRecordListPanel(logic.getFilteredFinancialRecordList());
@@ -148,9 +148,9 @@ public class MainWindow extends UiPart<Stage> {
         logic.getFilteredFinancialRecordList().addListener((ListChangeListener.Change<? extends FinancialRecord> c) -> {
             while (c.next()) {
                 if (c.wasAdded() || c.wasRemoved() || c.wasUpdated()) {
-                    budgetDisplay.updateObservableList(logic.getFilteredMonthList());
+                    budgetDisplay.updateBudgetUi(logic.getFilteredMonthList());
+                    budgetDisplay.updateTopCategoriesUi(logic.getTopCategories());
                     financialRecordListPanel.updateObservableList(logic.getFilteredFinancialRecordList());
-                    //TODO: add updates for statistics changed
                 }
             }
         });
@@ -225,7 +225,8 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isMonthChanged()) {
-                budgetDisplay.updateObservableList(logic.getFilteredMonthList());
+                budgetDisplay.updateBudgetUi(logic.getFilteredMonthList());
+                budgetDisplay.updateTopCategoriesUi(logic.getTopCategories());
                 financialRecordListPanel.updateObservableList(logic.getFilteredFinancialRecordList());
             }
 
