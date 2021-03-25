@@ -2,7 +2,9 @@ package seedu.partyplanet.logic.parser;
 
 import static seedu.partyplanet.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.partyplanet.logic.commands.EListCommand.SORT_EVENTDATE;
+import static seedu.partyplanet.logic.commands.EListCommand.SORT_EVENTDATE_UPCOMING;
 import static seedu.partyplanet.logic.commands.EListCommand.SORT_NAME;
+import static seedu.partyplanet.logic.commands.ListCommand.SORT_BIRTHDAY_UPCOMING;
 import static seedu.partyplanet.logic.parser.CliSyntax.FLAG_ANY;
 import static seedu.partyplanet.logic.parser.CliSyntax.FLAG_EXACT;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_NAME;
@@ -127,6 +129,9 @@ public class EListCommandParser implements Parser<EListCommand> {
             case "d": // fallthrough
             case "date":
                 return SORT_EVENTDATE;
+            case "u": // fallthrough
+            case "upcoming":
+                return SORT_EVENTDATE_UPCOMING;
             default:
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, EListCommand.MESSAGE_USAGE));
@@ -140,7 +145,7 @@ public class EListCommandParser implements Parser<EListCommand> {
     private Comparator<Event> applySortDirection(
             Comparator<Event> comparator, ArgumentMultimap argMap) throws ParseException {
         Optional<String> orderType = argMap.getValue(PREFIX_ORDER);
-        if (orderType.isEmpty()) {
+        if (orderType.isEmpty() || comparator == SORT_EVENTDATE_UPCOMING) {
             return comparator; // default
         } else {
             switch (orderType.get().toLowerCase()) {
