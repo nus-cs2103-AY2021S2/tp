@@ -3,9 +3,12 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PRICE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE_STR_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -19,6 +22,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.passenger.AddressContainsKeywordsPredicate;
 import seedu.address.model.person.passenger.NameContainsKeywordsPredicate;
+import seedu.address.model.person.passenger.PriceContainsKeywordsPredicate;
 import seedu.address.model.tag.TagContainsKeywordsPredicate;
 
 
@@ -42,6 +46,12 @@ public class FindCommandParserTest {
     @Test
     public void parse_multiPrefix_throwsParseException() {
         String userInput = FindCommand.COMMAND_WORD + " " + "n/Alice a/Bedok";
+        assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_multiPriceArgs_throwsParseException() {
+        String userInput = FindCommand.COMMAND_WORD + " " + "pr/100.00 pr/55";
         assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
@@ -109,5 +119,17 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, " \n " + TAG_DESC_FRIEND + "\n \t", expectedFindCommand);
 
         assertParseSuccess(parser, TAG_DESC_FRIEND, expectedFindCommand);
+    }
+
+    @Test
+    public void parse_validPriceArgs_returnsFindCommand() {
+        // no leading and trailing whitespaces
+        FindCommand expectedFindCommand =
+                new FindCommand(new PriceContainsKeywordsPredicate(VALID_PRICE_BOB));
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, " \n " + PRICE_DESC_BOB + "\n \t", expectedFindCommand);
+
+        assertParseSuccess(parser, PRICE_DESC_BOB, expectedFindCommand);
     }
 }

@@ -99,12 +99,10 @@ public class FindCommandParser implements Parser<FindCommand> {
                 outputList.add(parsedPhoneAsString.trim());
             }
         } else if (PREFIX_TAG.equals(prefix) && argumentMultimap.getValue(PREFIX_TAG).isPresent()) {
-
             for (String s : argumentMultimap.getAllValues(PREFIX_TAG)) {
                 String parsedTagAsString = ParserUtil.parseTag(s).toString();
                 outputList.add(parsedTagAsString.trim());
             }
-
         } else if (PREFIX_PRICE.equals(prefix)
                 && argumentMultimap.getValue(PREFIX_PRICE).isPresent()
                 && doesPrefixHaveOneValue(argumentMultimap, PREFIX_PRICE)) {
