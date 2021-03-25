@@ -10,7 +10,7 @@ import seedu.address.model.insurancepolicy.InsurancePolicy;
 import seedu.address.model.person.Person;
 
 /**
- * Sorts the current list of clients in the ClientBook.
+ * Sorts the list of clients in the ClientBook.
  * Attribute and direction of the sorting need to be specified.
  */
 public class SortCommand extends Command {
@@ -18,18 +18,22 @@ public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
 
     public static final String SORT_BY_NAME = "-n";
-    public static final String SORT_BY_POLICY = "-p";
+    public static final String SORT_BY_INSURANCE_POLICY = "-i";
 
-    public static final String DIRECTION_ASCENDING = "-a";
-    public static final String DIRECTION_DESCENDING = "-d";
+    public static final String DIRECTION_ASCENDING = "-asc";
+    public static final String DIRECTION_DESCENDING = "-des";
 
-    public static final String MESSAGE_SUCCESS_ASCENDING = "Sorted all clients in ascending order.";
-    public static final String MESSAGE_SUCCESS_DESCENDING = "Sorted all clients in descending order.";
+    public static final String MESSAGE_SUCCESS_NAME_ASCENDING = "Sorted all clients by name in ascending order.";
+    public static final String MESSAGE_SUCCESS_NAME_DESCENDING = "Sorted all clients by name in descending order.";
+    public static final String MESSAGE_SUCCESS_INSURANCE_POLICY_ASCENDING =
+            "Sorted all clients by insurance policy in ascending order.";
+    public static final String MESSAGE_SUCCESS_INSURANCE_POLICY_DESCENDING =
+            "Sorted all clients by insurance policy in descending order.";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the list of clients by "
             + "the specified property in the order of the specified direction.\n"
-            + "Parameters: ATTRIBUTE (-n name, -p policy) DIRECTION (-a ascending, -d descending)\n"
-            + "Example: " + COMMAND_WORD + " -n -a";
+            + "Parameters: ATTRIBUTE (-n name, -i insurance policy) DIRECTION (-asc ascending, -des descending)\n"
+            + "Example: " + COMMAND_WORD + " -n -asc";
 
     private final String attribute;
     private final String direction;
@@ -48,7 +52,10 @@ public class SortCommand extends Command {
         requireNonNull(model);
         Comparator<Person> comparator;
 
-        if (attribute.equals(SORT_BY_POLICY)) {
+        assert(attribute.equals(SORT_BY_NAME) || attribute.equals(SORT_BY_INSURANCE_POLICY));
+        assert(direction.equals(DIRECTION_ASCENDING) || direction.equals(DIRECTION_DESCENDING));
+
+        if (attribute.equals(SORT_BY_INSURANCE_POLICY)) {
             comparator = new PolicyComparator();
         } else {
             comparator = new PersonNameComparator();
@@ -60,9 +67,17 @@ public class SortCommand extends Command {
         model.updateSortedPersonList(comparator);
 
         if (direction.equals(DIRECTION_ASCENDING)) {
-            return new CommandResult(MESSAGE_SUCCESS_ASCENDING);
+            if (attribute.equals(SORT_BY_NAME)) {
+                return new CommandResult(MESSAGE_SUCCESS_NAME_ASCENDING);
+            } else {
+                return new CommandResult(MESSAGE_SUCCESS_INSURANCE_POLICY_ASCENDING);
+            }
         } else {
-            return new CommandResult(MESSAGE_SUCCESS_DESCENDING);
+            if (attribute.equals(SORT_BY_NAME)) {
+                return new CommandResult(MESSAGE_SUCCESS_NAME_DESCENDING);
+            } else {
+                return new CommandResult(MESSAGE_SUCCESS_INSURANCE_POLICY_DESCENDING);
+            }
         }
     }
 

@@ -61,35 +61,26 @@ public class Person {
      * Creates a code{Person} with the specified code{attribute} using the input code{person}.
      * Other than name and tags, other unspecified field is empty.
      */
-    public Person(Person person, Attribute attribute) {
-        requireAllNonNull(person, attribute);
+    public Person(Person person, List<Attribute> attributes) {
+        requireAllNonNull(person, attributes);
         this.name = person.name;
-        switch (attribute) {
-        case POLICY_ID:
-            this.phone = Optional.empty();
-            this.email = Optional.empty();
-            this.address = Optional.empty();
+        if (attributes.contains(Attribute.POLICY_ID)) {
             this.policies.addAll(person.policies);
-            break;
-        case PHONE:
+        }
+        if (attributes.contains(Attribute.PHONE)) {
             this.phone = Optional.of(person.getPhone().get());
-            this.email = Optional.empty();
-            this.address = Optional.empty();
-            break;
-        case ADDRESS:
+        } else {
             this.phone = Optional.empty();
-            this.email = Optional.empty();
+        }
+        if (attributes.contains(Attribute.ADDRESS)) {
             this.address = Optional.of(person.getAddress().get());
-            break;
-        case EMAIL:
-            this.phone = Optional.empty();
+        } else {
+            this.address = Optional.empty();
+        }
+        if (attributes.contains(Attribute.EMAIL)) {
             this.email = Optional.of(person.getEmail().get());
-            this.address = Optional.empty();
-            break;
-        default:
-            this.phone = Optional.empty();
+        } else {
             this.email = Optional.empty();
-            this.address = Optional.empty();
         }
         this.tags.addAll(person.tags);
     }
