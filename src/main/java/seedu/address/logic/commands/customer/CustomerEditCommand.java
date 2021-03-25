@@ -21,12 +21,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -96,11 +91,11 @@ public class CustomerEditCommand extends Command {
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        String updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
+        String updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
+        String updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        String updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        List<String> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
@@ -128,11 +123,11 @@ public class CustomerEditCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
-        private Name name;
-        private Phone phone;
-        private Email email;
-        private Address address;
-        private Set<Tag> tags;
+        private String name;
+        private String phone;
+        private String email;
+        private String address;
+        private List<String> tags;
 
         public EditPersonDescriptor() {}
 
@@ -155,35 +150,35 @@ public class CustomerEditCommand extends Command {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
         }
 
-        public void setName(Name name) {
+        public void setName(String name) {
             this.name = name;
         }
 
-        public Optional<Name> getName() {
+        public Optional<String> getName() {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
+        public void setPhone(String phone) {
             this.phone = phone;
         }
 
-        public Optional<Phone> getPhone() {
+        public Optional<String> getPhone() {
             return Optional.ofNullable(phone);
         }
 
-        public void setEmail(Email email) {
+        public void setEmail(String email) {
             this.email = email;
         }
 
-        public Optional<Email> getEmail() {
+        public Optional<String> getEmail() {
             return Optional.ofNullable(email);
         }
 
-        public void setAddress(Address address) {
+        public void setAddress(String address) {
             this.address = address;
         }
 
-        public Optional<Address> getAddress() {
+        public Optional<String> getAddress() {
             return Optional.ofNullable(address);
         }
 
@@ -191,8 +186,8 @@ public class CustomerEditCommand extends Command {
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setTags(List<String> tags) {
+            this.tags = tags;
         }
 
         /**
@@ -200,8 +195,8 @@ public class CustomerEditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<List<String>> getTags() {
+            return (tags != null) ? Optional.of(Collections.unmodifiableList(tags)) : Optional.empty();
         }
 
         @Override

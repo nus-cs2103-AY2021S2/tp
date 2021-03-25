@@ -126,21 +126,32 @@ public class MainApp extends Application {
 
         try {
             Optional<ReadOnlyIngredientBook> ingredientBookOptional = storage.readIngredientBook();
-            if (ingredientBookOptional.isPresent()) {
-                initialIngredientBook = ingredientBookOptional.get();
-            } else {
-                initialIngredientBook = new IngredientBook();
+            if (!ingredientBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample IngredientBook");
             }
-
-            Optional<ReadOnlyOrderBook> orderBookOptional = storage.readOrderBook();
-            if (orderBookOptional.isPresent()) {
-                initialOrderBook = orderBookOptional.get();
-            } else {
-                initialOrderBook = new OrderBook();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+            initialIngredientBook = ingredientBookOptional.orElseGet(SampleDataUtil::getSampleIngredientBook);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty IngredientBook");
+            initialIngredientBook = new IngredientBook();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty IngredientBook");
+            initialIngredientBook = new IngredientBook();
         }
+
+        try {
+            Optional<ReadOnlyOrderBook> orderBookOptional = storage.readOrderBook();
+            if (!orderBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample OrderBook");
+            }
+            initialOrderBook = orderBookOptional.orElseGet(SampleDataUtil::getSampleOrderBook);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty OrderBook");
+            initialOrderBook = new OrderBook();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty OrderBook");
+            initialOrderBook = new OrderBook();
+        }
+
 
         return new ModelManager(initialPersonBook, initialDishBook, initialIngredientBook, initialOrderBook, userPrefs);
     }
