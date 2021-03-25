@@ -172,15 +172,15 @@ As an example, consider running Dictionote on a Windows 10 machine with Microsof
 
 * Assume that the current state of the application is as follows (note the exisiting contacts on the left-side of the application's window):
 
-![ContactEmailFeatureInitState](images/ContactEmailFeatureInitState.png)
+![ContactEmailFeatureInitState]<!---(images/ContactEmailFeatureInitState.png)-->
 
 * After typing in `emailcontact 2` and executing it, the result would be:
 
-![ContactEmailFeatureExecute](images/ContactEmailFeatureExecute.png)
+![ContactEmailFeatureExecute]<!---(images/ContactEmailFeatureExecute.png)-->
 
 * A new window, belonging to Microsoft Outlook's `New Message` function, will pop up:
 
-![ContactEmailFeatureOSClient](images/ContactEmailFeatureOSClient.png)
+![ContactEmailFeatureOSClient]<!---(images/ContactEmailFeatureOSClient.png)-->
 
 * Note that the email of the selected contact, Bob (referred to in the command by his index number), is automatically written in the `To...` field of the email's header information.
 
