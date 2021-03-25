@@ -6,6 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
+import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -28,8 +29,10 @@ public class ViewCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalAppointmentBook());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getAppointmentBook());
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
+                getTypicalAppointmentBook(), getTypicalGradeBook());
+        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
+                model.getAppointmentBook(), model.getGradeBook());
     }
 
     @Test

@@ -16,13 +16,10 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyAppointmentBook;
-import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.*;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
+import seedu.address.model.grade.Grade;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -147,6 +144,26 @@ public class AddCommandTest {
         }
 
         @Override
+        public ReadOnlyGradeBook getGradeBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setGradeBook(ReadOnlyGradeBook readOnlyGradeBook) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getGradeBookFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setGradeBookFilePath(Path gradeBookFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
@@ -172,12 +189,22 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Grade> getFilteredGradeList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredGradeList(Predicate<Grade> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -208,6 +235,31 @@ public class AddCommandTest {
 
         @Override
         public boolean hasAppointmentDateTime(AppointmentDateTime appointmentDateTime) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasGrade(Grade grade) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addGrade(Grade grade) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteGrade(Grade grade) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setGrade(Grade target, Grade editedGrade) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeGradeIndex(int indexToRemove) {
             throw new AssertionError("This method should not be called.");
         }
     }
