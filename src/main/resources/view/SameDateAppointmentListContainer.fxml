@@ -3,7 +3,8 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.Label?>
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-<!--    <ListView fx:id="appointmentListView" VBox.vgrow="ALWAYS" />-->
-    <ListView fx:id="appointmentsGroupListView" VBox.vgrow="ALWAYS" />
+    <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
+    <ListView fx:id="appointmentListView" VBox.vgrow="ALWAYS" />
 </VBox>

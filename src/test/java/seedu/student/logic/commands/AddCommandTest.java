@@ -21,6 +21,7 @@ import seedu.student.model.ReadOnlyStudentBook;
 import seedu.student.model.ReadOnlyUserPrefs;
 import seedu.student.model.StudentBook;
 import seedu.student.model.appointment.Appointment;
+import seedu.student.model.appointment.SameDateAppointmentList;
 import seedu.student.model.student.Student;
 import seedu.student.testutil.StudentBuilder;
 
@@ -165,7 +166,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Appointment> getFilteredAppointmentList() {
+        public ObservableList<SameDateAppointmentList> getFilteredAppointmentList() {
             throw new AssertionError("This method should not be called.");
         }
     }
