@@ -116,7 +116,7 @@ call.
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : 
+**API** :
 [`Model.java`](https://github.com/AY2021S2-CS2103T-W10-2/tp/blob/master/src/main/java/seedu/storemando/model/Model.java)
 
 The `Model`,
@@ -131,7 +131,7 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : 
+**API** :
 [`Storage.java`](https://github.com/AY2021S2-CS2103T-W10-2/tp/blob/master/src/main/java/seedu/storemando/storage/Storage.java)
 
 The `Storage` component,
@@ -212,16 +212,16 @@ the right, pointing to the previously undone state, and restores the inventory t
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the inventory, such
-as `list`, will usually not call `Model#commitStoreMando()`, `Model#undoStoreMando()` or `Model#redoStoreMando()`. Thus,
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the inventory, such as `list`,
+will usually not call `Model#commitStoreMando()`, `Model#undoStoreMando()` or `Model#redoStoreMando()`. Thus,
 the `storeMandoStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
 Step 6. The user executes `clear`, which calls `Model#commitStoreMando()`. Since the `currentStatePointer` is not
-pointing at the end of the `storeMandoStateList`, all inventory states after the `currentStatePointer` will be
-purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern
-desktop applications follow.
+pointing at the end of the `storeMandoStateList`, all inventory states after the `currentStatePointer` will be purged.
+Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop
+applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
