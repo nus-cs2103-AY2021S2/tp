@@ -1,20 +1,20 @@
 package seedu.address.model.event;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.event.exceptions.DuplicateGeneralEventException;
-import seedu.address.model.event.exceptions.GeneralEventNotFoundException;
-import seedu.address.model.module.Description;
-import seedu.address.model.module.exceptions.ModuleNotFoundException;
-
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.IntStream;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.event.exceptions.DuplicateGeneralEventException;
+import seedu.address.model.event.exceptions.GeneralEventNotFoundException;
+import seedu.address.model.module.Description;
+import seedu.address.model.module.exceptions.ModuleNotFoundException;
 
 public class UniqueGeneralEventListTest {
     private final Description description1 = new Description("Event1");
@@ -105,8 +105,8 @@ public class UniqueGeneralEventListTest {
         assertThrows(GeneralEventNotFoundException.class, () -> list2.getGeneralEvent(0));
 
         // index > size -> throws
-        assertThrows(GeneralEventNotFoundException.class,
-                () -> list2.getGeneralEvent(list2.size() + 1));
+        assertThrows(GeneralEventNotFoundException.class, () -> list2.getGeneralEvent(
+                list2.size() + 1));
     }
 
     @Test
@@ -132,8 +132,8 @@ public class UniqueGeneralEventListTest {
         assertEquals(list1, list2);
 
         // duplicate event -> throws
-        assertThrows(DuplicateGeneralEventException.class,
-                () -> list1.setGeneralEvent(event1, event2));
+        assertThrows(DuplicateGeneralEventException.class, () -> list1.setGeneralEvent(event1,
+                event2));
     }
 
     @Test
