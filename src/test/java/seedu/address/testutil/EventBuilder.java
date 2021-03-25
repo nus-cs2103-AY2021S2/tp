@@ -6,6 +6,7 @@ import java.util.Set;
 import seedu.address.model.event.Description;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventName;
+import seedu.address.model.event.EventPriority;
 import seedu.address.model.event.EventStatus;
 import seedu.address.model.event.EventTime;
 import seedu.address.model.person.Person;
@@ -21,6 +22,7 @@ public class EventBuilder {
     public static final String DEFAULT_TIME_START = "20/12/2022 18:00";
     public static final String DEFAULT_TIME_END = "01/10/2023 19:00";
     public static final EventStatus DEFAULT_STATUS = EventStatus.TODO;
+    public static final EventPriority DEFAULT_PRIORITY = EventPriority.NONE;
     public static final String DEFAULT_DESCRIPTION = "This is the first software engineering module in NUS";
 
     // Identity Fields
@@ -28,6 +30,7 @@ public class EventBuilder {
     private EventTime timeStart;
     private EventTime timeEnd;
     private EventStatus status;
+    private EventPriority priority;
     private int identifier;
 
     // Data Fields
@@ -44,6 +47,7 @@ public class EventBuilder {
         timeEnd = new EventTime(DEFAULT_TIME_END);
         status = DEFAULT_STATUS;
         description = new Description(DEFAULT_DESCRIPTION);
+        priority = DEFAULT_PRIORITY;
         tags = new HashSet<>();
         persons = new HashSet<>();
     }
@@ -56,6 +60,7 @@ public class EventBuilder {
         // timeStart = eventToCopy.getTimeStart(); // Commented out in v1.2
         // timeEnd = eventToCopy.getTimeEnd(); // Commented out in v1.2
         status = eventToCopy.getStatus();
+        priority = eventToCopy.getPriority();
         description = eventToCopy.getDescription();
         tags = new HashSet<>(eventToCopy.getTags());
         persons = new HashSet<>(eventToCopy.getPersons());
@@ -89,6 +94,14 @@ public class EventBuilder {
      */
     public EventBuilder withStatus(EventStatus status) {
         this.status = status;
+        return this;
+    }
+
+    /**
+     * Sets the {@code EventStatus} of the {@code Event} that we are building.
+     */
+    public EventBuilder withPriority(EventPriority priority) {
+        this.priority = priority;
         return this;
     }
 
@@ -129,7 +142,7 @@ public class EventBuilder {
      * @return Event built with EventBuilder attributes and identifier
      */
     public Event buildWithID() {
-        return new Event(eventName, status, description, identifier);
+        return new Event(eventName, status, priority, description, identifier);
     }
 
     /**
@@ -137,7 +150,7 @@ public class EventBuilder {
      * @return Event built with EventBuilder attributes
      */
     public Event build() {
-        return new Event(eventName, status, description);
+        return new Event(eventName, status, priority, description);
     }
 
 }

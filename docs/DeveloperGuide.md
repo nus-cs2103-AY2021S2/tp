@@ -3,8 +3,8 @@ layout: page
 title: Developer Guide
 ---
 
-- Table of Contents
-  {:toc}
+* Table of Contents
+{:toc}
 
 ---
 
@@ -18,7 +18,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<img src="diagrams/ArchitectureDiagram.png" width="450" />
+<img src="images/ArchitectureDiagram.png" width="450" />
 
 The **_Architecture Diagram_** given above explains the high-level design of the App. Given below is a quick overview of each component.
 

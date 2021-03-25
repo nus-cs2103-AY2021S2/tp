@@ -27,13 +27,15 @@ public class Event {
 
     // Data Fields
     private final Description description;
+    private final EventPriority priority;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Person> persons = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Event(EventName eventName, EventStatus status, Description description) {
+    public Event(EventName eventName, EventStatus status, EventPriority priority, Description description) {
+        this.priority = priority;
         requireAllNonNull(eventName, status, description);
         this.identifier = counter;
         this.eventName = eventName;
@@ -51,10 +53,11 @@ public class Event {
     /**
      * Every field must be filled. Used for edit events where the identifier should not increase.
      */
-    public Event(EventName name, EventStatus status, Description description, int identifier) {
-        requireAllNonNull(name, status, description, identifier);
+    public Event(EventName name, EventStatus status, EventPriority priority, Description description, int identifier) {
+        requireAllNonNull(name, status, priority, description, identifier);
         this.eventName = name;
         this.status = status;
+        this.priority = priority;
         this.description = description;
         this.identifier = identifier;
     }
@@ -85,6 +88,10 @@ public class Event {
 
     public Description getDescription() {
         return this.description;
+    }
+
+    public EventPriority getPriority() {
+        return this.priority;
     }
 
     /**

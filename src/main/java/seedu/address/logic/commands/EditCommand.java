@@ -18,6 +18,7 @@ import seedu.address.model.Model;
 import seedu.address.model.event.Description;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventName;
+import seedu.address.model.event.EventPriority;
 import seedu.address.model.event.EventStatus;
 
 /**
@@ -103,11 +104,13 @@ public class EditCommand extends Command {
         EventName updatedName = editEventDescriptor.getEventName().orElse(eventToEdit.getName());
         EventStatus updatedEventStatus = editEventDescriptor.getEventStatus().orElse(eventToEdit.getStatus());
         Description updatedDescription = editEventDescriptor.getDescription().orElse(eventToEdit.getDescription());
+        EventPriority updatedEventPriority = editEventDescriptor.getEventPriority().orElse(eventToEdit.getPriority());
         // commented out for v1.2
         // Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(eventToEdit.getTags());
         // Set<Person> updatedPersons = editPersonDescriptor.getPersons().orElse(eventToEdit.getPersons());
 
-        return new Event(updatedName, updatedEventStatus, updatedDescription, eventToEdit.getIdentifier());
+        return new Event(updatedName, updatedEventStatus, updatedEventPriority,
+                updatedDescription, eventToEdit.getIdentifier());
     }
 
     @Override
@@ -135,6 +138,7 @@ public class EditCommand extends Command {
     public static class EditEventDescriptor {
         private EventName eventName;
         private EventStatus eventStatus;
+        private EventPriority eventPriority;
         private Description description;
         // private EventTime timeStart; // commented out for v1.2
         // private EventTime timeEnd; // commented out for v1.2
@@ -151,6 +155,7 @@ public class EditCommand extends Command {
             setEventName(toCopy.eventName);
             setDescription(toCopy.description);
             setEventStatus(toCopy.eventStatus);
+            setEventPriority(toCopy.eventPriority);
             // setTags(toCopy.tags); // commented out for v1.2
             // setPersons(toCopy.persons); // commented out for v1.2
         }
@@ -159,7 +164,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(eventName, description, eventStatus);
+            return CollectionUtil.isAnyNonNull(eventName, description, eventStatus, eventPriority);
         }
 
         public void setEventName(EventName eventName) {
@@ -201,6 +206,14 @@ public class EditCommand extends Command {
         public Optional<EventStatus> getEventStatus() {
             return Optional.ofNullable(eventStatus);
         }
+
+        public void setEventPriority(EventPriority eventPriority) {
+            this.eventPriority = eventPriority;
+        }
+        public Optional<EventPriority> getEventPriority() {
+            return Optional.ofNullable(eventPriority);
+        }
+
         public void setDescription(Description description) {
             this.description = description;
         }
@@ -259,7 +272,8 @@ public class EditCommand extends Command {
 
             return getEventName().equals(e.getEventName())
                     && getDescription().equals(e.getDescription())
-                    && getEventStatus().equals(e.getEventStatus());
+                    && getEventStatus().equals(e.getEventStatus())
+                    && getEventPriority().equals(e.getEventPriority());
                     //&& getPersons().equals(e.getPersons())
                     //&& getTags().equals(e.getTags());
         }
