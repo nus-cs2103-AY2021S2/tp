@@ -1,7 +1,11 @@
 package seedu.address.logic.commands.medical;
 
 import static java.util.Objects.requireNonNull;
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
@@ -26,16 +30,16 @@ public class ListAppointmentsCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
-        List<Appointment> Appointments = new ArrayList<>();
+        List<Appointment> appointments = new ArrayList<>();
         for (Person p: lastShownList) {
-            List<Appointment> AppointmentList = p.getAppointments();
-            for (Appointment appt : AppointmentList) {
-                Appointments.add(appt.setPerson(p));
+            List<Appointment> appointmentList = p.getAppointments();
+            for (Appointment appt : appointmentList) {
+                appointments.add(appt.setPerson(p));
             }
         }
-        Collections.sort(Appointments);
+        Collections.sort(appointments);
         String allAppointments = "";
-        for (Appointment appt : Appointments) {
+        for (Appointment appt : appointments) {
             allAppointments += appt + "\n";
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, allAppointments));
