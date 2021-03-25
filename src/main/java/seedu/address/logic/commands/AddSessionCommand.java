@@ -67,6 +67,7 @@ public class AddSessionCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddSessionCommand // instanceof handles nulls
+                && name.equals(((AddSessionCommand) other).name)
                 && sessionToAdd.equals(((AddSessionCommand) other).sessionToAdd));
     }
 }

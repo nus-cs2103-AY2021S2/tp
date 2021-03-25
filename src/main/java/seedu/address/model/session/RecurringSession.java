@@ -137,4 +137,31 @@ public class RecurringSession extends Session {
 
         return firstInSpan.numOfDayTo(lastInSpan) / interval.value + 1;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("; Interval: ")
+                .append(getInterval())
+                .append("; End Date: ")
+                .append(getEndDateTime().getDate());
+        return super.toString() + builder.toString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof RecurringSession)) {
+            return false;
+        }
+
+        RecurringSession otherSession = (RecurringSession) other;
+        return super.equals(other)
+                && otherSession.getInterval().equals(otherSession.getInterval())
+                && otherSession.getEndDateTime().equals(otherSession.getEndDateTime());
+
+    }
 }

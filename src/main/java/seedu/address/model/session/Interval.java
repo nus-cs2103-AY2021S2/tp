@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents the interval, as number of days, between each session of the recurring session,
- * Guarantees: immutable; is valid as declared in {@link #isValidInterval(int)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidInterval(String)}
  */
 public class Interval {
 
@@ -18,17 +18,16 @@ public class Interval {
      *
      * @param interval A valid interval.
      */
-    public Interval(int interval) {
+    public Interval(String interval) {
         requireNonNull(interval);
         checkArgument(isValidInterval(interval), MESSAGE_CONSTRAINTS);
-        value = interval;
+        value = Integer.valueOf(interval);
     }
 
     /**
      * Returns true if a given interval int is valid.
      */
-    private Boolean isValidInterval(int interval) {
-        String test = String.valueOf(interval);
+    public static boolean isValidInterval(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

@@ -22,7 +22,7 @@ class RecurringSessionTest {
         SessionDate lastOfMarch = new SessionDate("2021-03-31", "23:59");
 
         int eyeBalledAns1 = 2;
-        Interval interval1 = new Interval(14);
+        Interval interval1 = new Interval("14");
         //first and last must match
         RecurringSession s = new RecurringSession(firstSessionDate, new Duration("100"), new Subject("Math"),
                 new Fee("40"), interval1, lastSessionDate);
@@ -30,7 +30,7 @@ class RecurringSessionTest {
         assertEquals(ans1, eyeBalledAns1);
 
         int eyeBalledAns2 = 31;
-        Interval interval2 = new Interval(1);
+        Interval interval2 = new Interval("1");
         s = new RecurringSession(firstSessionDate, new Duration("100"), new Subject("Math"),
                 new Fee("40"), interval2, lastSessionDate);
         int ans2 = s.numOfSessionBetween(firstOfMarch, lastOfMarch);
