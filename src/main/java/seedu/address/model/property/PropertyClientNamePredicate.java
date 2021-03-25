@@ -17,9 +17,10 @@ public class PropertyClientNamePredicate implements Predicate<Property> {
 
     @Override
     public boolean test(Property property) {
-        return keywords.stream()
-                .anyMatch(keyword ->
-                        StringUtil.containsWordIgnoreCase(property.getClient().getClientName().name, keyword));
+        return property.getClient() != null
+               && keywords.stream()
+                          .anyMatch(keyword ->
+                              StringUtil.containsWordIgnoreCase(property.getClient().getClientName().name, keyword));
     }
 
     @Override
