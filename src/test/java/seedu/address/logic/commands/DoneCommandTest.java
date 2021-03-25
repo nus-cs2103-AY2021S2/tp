@@ -49,8 +49,6 @@ public class DoneCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        //showTaskAtIndex(model, INDEX_FIRST_TASK);
-
         Task taskToFinish = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         DoneCommand doneCommand = new DoneCommand(INDEX_FIRST_TASK);
 
@@ -58,7 +56,6 @@ public class DoneCommandTest {
 
         Model expectedModel = new ModelManager(model.getTaskTracker(), new UserPrefs());
         expectedModel.finishTask(taskToFinish);
-        //showNoTask(expectedModel);
 
         assertCommandSuccess(doneCommand, model, expectedMessage, expectedModel);
     }
