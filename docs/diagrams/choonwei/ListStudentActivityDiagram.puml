@@ -1,0 +1,12 @@
+@startuml
+start
+:User executes list student command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+:Logic executes command;
+:Model filters and updates the student list;
+:UI displays the updated student list;
+stop
+@enduml
