@@ -74,9 +74,9 @@ The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `Re
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that 
 are in the `src/main/resources/view` folder. For example, the layout of the 
-[`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) 
+[`MainWindow`](https://github.com/se-edu/imPoster-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) 
 is specified in 
-[`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+[`MainWindow.fxml`](https://github.com/se-edu/imPoster-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -116,8 +116,8 @@ The `Model`,
 * does not depend on any of the other three components.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model
-is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only 
-require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+is given below. It has a `Tag` list in the `imPoster`, which `Endpoint` references. This allows `imPoster` to only 
+require one `Tag` object per unique `Tag`, instead of each `Endpoint` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 </div>
 
@@ -152,7 +152,7 @@ An `Endpoint`,
 
 An `Endpoint` contains the following attributes:
 1. a `Method`, which represents the type of request an API endpoint will send to the server
-2. a `Address`, which represents the address to which the API request is made
+2. an `Address`, which represents the address to which the API request is made
 3. a `Data`, which represents the data that is to be sent to the server when an API request is made
 4. a Headers Set, which encapsulates a list of zero or more `Header` objects, where each `Header` represents a header that is to be sent to the server
 5. a Tags Set, which encapsulates a list of zero or more `Tags` objects
@@ -217,6 +217,9 @@ Step 3. `Model#updateFilteredEndpointList` will be called and model will be upda
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** `find get` will work as well, but will look through all fields instead of just one
 </div>
+
+The following activity diagram summarizes what happens when a user executes a find command:
+![FindActivityDiagram](images/FindActivityDiagram.png)
 
 ### Send/run command feature
 
@@ -296,6 +299,7 @@ at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reac
 </div>
 
 The following activity diagram summarizes what happens when a user executes a `send` command for an endpoint with a `GET` request:
+<br/>
 ![RequestActivityDiagram](images/RequestActivityDiagram.png)
 #### Design consideration:
 
