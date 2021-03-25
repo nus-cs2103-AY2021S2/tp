@@ -1,5 +1,7 @@
 package seedu.address.model.food;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDate;
 
 /**
@@ -16,6 +18,8 @@ public class FoodIntake {
      * @param temporaryFood The related Food object that was consumed
      */
     public FoodIntake(LocalDate date, Food temporaryFood) {
+        requireNonNull(date);
+        requireNonNull(temporaryFood);
         this.date = date;
         this.food = new Food(temporaryFood.getName(), temporaryFood.getCarbos(), temporaryFood.getFats(),
                 temporaryFood.getProteins());
@@ -26,6 +30,8 @@ public class FoodIntake {
      * Used when loading from file.
      */
     public FoodIntake(LocalDate date, String name, double carbos, double fats, double proteins) {
+        requireNonNull(date);
+        requireNonNull(name);
         this.date = date;
         Food food = new Food("TEMP", carbos, fats, proteins);
         food.setName(name);
