@@ -7,13 +7,17 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.Alias;
 import seedu.address.commons.core.AliasMapping;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.commandhistory.ReadOnlyCommandHistory;
 import seedu.address.model.issue.Issue;
+import seedu.address.model.resident.Name;
 import seedu.address.model.resident.Resident;
+import seedu.address.model.residentroom.ResidentRoom;
 import seedu.address.model.room.Room;
+import seedu.address.model.room.RoomNumber;
 
 /**
  * A default model stub that have all of the methods failing.
@@ -65,12 +69,26 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public boolean hasResident(Name name) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void deleteResident(Resident target) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
     public void addResident(Resident resident) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public Index getIndexOfResidentWithSameName(Name name) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    public Resident getResidentWithSameName(Name name) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -95,12 +113,52 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public boolean hasRoom(RoomNumber roomNumber) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void deleteRoom(Room target) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
     public void addRoom(Room room) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public Room getRoomWithSameRoomNumber(RoomNumber roomNumber) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public Index getIndexOfRoomWithSameRoomNumber(RoomNumber roomNumber) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean hasEitherResidentRoom(ResidentRoom residentRoom) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean hasBothResidentRoom(ResidentRoom residentRoom) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void addResidentRoom(ResidentRoom residentRoom) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void deleteResidentRoom(ResidentRoom target) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setResidentRoom(ResidentRoom target, ResidentRoom editedResidentRoom) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -151,6 +209,16 @@ public class ModelStub implements Model {
 
     @Override
     public void updateFilteredIssueList(Predicate<Issue> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+
+    public void updateFilteredResidentRoomList(Predicate<ResidentRoom> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<ResidentRoom> getFilteredResidentRoomList() {
         throw new AssertionError("This method should not be called.");
     }
 

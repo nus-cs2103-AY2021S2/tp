@@ -84,14 +84,14 @@ public class EditResidentCommand extends Command {
 
         model.setResident(residentToEdit, editedResident);
         model.updateFilteredResidentList(PREDICATE_SHOW_ALL_RESIDENTS);
-        return new CommandResult(String.format(MESSAGE_EDIT_RESIDENT_SUCCESS, editedResident));
+        return new CommandResult(String.format(MESSAGE_EDIT_RESIDENT_SUCCESS, editedResident)).setResidentCommand();
     }
 
     /**
      * Creates and returns a {@code Resident} with the details of {@code residentToEdit}
      * edited with {@code editResidentDescriptor}.
      */
-    private static Resident createEditedResident(Resident residentToEdit,
+    public static Resident createEditedResident(Resident residentToEdit,
             EditResidentDescriptor editResidentDescriptor) {
         assert residentToEdit != null;
 
@@ -100,7 +100,6 @@ public class EditResidentCommand extends Command {
         Email updatedEmail = editResidentDescriptor.getEmail().orElse(residentToEdit.getEmail());
         Year updatedYear = editResidentDescriptor.getYear().orElse(residentToEdit.getYear());
         Room updatedRoom = editResidentDescriptor.getRoom().orElse(residentToEdit.getRoom());
-
 
         return new Resident(updatedName, updatedPhone, updatedEmail, updatedYear, updatedRoom);
     }

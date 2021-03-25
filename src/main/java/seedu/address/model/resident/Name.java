@@ -44,6 +44,11 @@ public class Name {
         return fullName;
     }
 
+
+    boolean isSameResident(Resident resident) {
+        return this.equals(resident.getName());
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

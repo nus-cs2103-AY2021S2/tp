@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.resident.NameContainsKeywordsPredicate;
+import seedu.address.model.resident.Resident;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -74,7 +75,7 @@ public class ModelManagerTest {
 
     @Test
     public void hasResident_nullResident_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasResident(null));
+        assertThrows(NullPointerException.class, () -> modelManager.hasResident((Resident) null));
     }
 
     @Test
