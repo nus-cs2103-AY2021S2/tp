@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.NonConflictingAppointmentList;
+import seedu.address.model.person.Patient;
 
 /**
  * Wraps all data at the appointment-schedule level
@@ -65,6 +66,13 @@ public class AppointmentSchedule implements ReadOnlyAppointmentSchedule {
     public boolean hasAppointment(Appointment appointment) {
         requireNonNull(appointment);
         return appointments.contains(appointment);
+    }
+
+    /**
+     * Returns true if a patient has existing appointments in the appointment schedule.
+     */
+    public boolean hasPatientInSchedule(Patient patient) {
+        return appointments.hasPatientInSchedule(patient);
     }
 
     /**

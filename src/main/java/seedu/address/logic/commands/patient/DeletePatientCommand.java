@@ -24,7 +24,11 @@ public class DeletePatientCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PATIENT_SUCCESS = "Deleted Person: %1$s";
+    public static final String FORCE_DELETE_MESSAGE_USAGE = COMMAND_WORD + " --force"
+            + ": Deletes the person identified by the index number used in the displayed person list,\n"
+            + "along with all the existing appointments associated with the person in the appointment schedule.\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " --force " + " 1";
 
     private final Index targetIndex;
 
@@ -36,14 +40,20 @@ public class DeletePatientCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Patient> lastShownList = model.getFilteredPatientList();
+        Patient patientToDelete = lastShownList.get(targetIndex.getZeroBased());
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
 
-        Patient patientToDelete = lastShownList.get(targetIndex.getZeroBased());
+        // checks if patient has any existing appointments
+        if (model.isPatientInAppointmentSchedule(patientToDelete)) {
+            throw new CommandException(String.format(
+                    Messages.MESSAGE_FORCE_DELETE_REQUIRED, FORCE_DELETE_MESSAGE_USAGE));
+        }
+
         model.deletePatient(patientToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PATIENT_SUCCESS, patientToDelete));
+        return new CommandResult(String.format(Messages.MESSAGE_DELETE_PATIENT_SUCCESS, patientToDelete));
     }
 
     @Override
