@@ -31,127 +31,113 @@ Format: `help`
 ### Adding a contact
 Adds a person's information into the address book.
 
-Format: `add contact`
-
-Prompts: `name`, `number`, `[tags]`
+Format: `add n/NAME p/NUMBER e/EMAIL [t/TAG]`
 
 Example(s):
-* `add contact Danny 00000000`
-* `add contact Amy 11111111 CS2101`
+* `add n/Danny p/98765432 e/danny@email.com`
+* `add n/Amy p/12345678 e/amy@email.com CS2101`
 
 ### Finding a contact
 Finds an existing contact by name in the address book.
 
-Format: `find contact`
-
-Prompts: `name`
+Format: `find KEYWORD [MORE_KEYWORDS]`
+* The search is case-insensitive e.g. amy will match Amy
 
 Example(s):
-* `find contact Amy`
+* `find Amy`
 
 ### Listing contacts
 Lists all the contacts in the address book.
 
-Format: `list contacts`
+Format: `list`
 
 ### Deleting a contact
 Deletes an existing contact with the specified name in the address book.
 
-Format: `delete contact`
-
-Prompts: `name`
+Format: `delete NAME`
 
 Example(s):
-* `delete contact Danny`
+* `delete Danny`
 
 ---
 ### Adding a schedule
 Adds a new schedule into the schedule list.
 
-Format: `add schedule`
-
-Prompts: `start date and time`, `end date and time`, `[tags]`
+Format: `sadd n/NAME sd/START_DATE ed/END_DATE [t/TAG]`
 
 Example(s):
-* `add schedule meeting 2021-02-15,2100 2021-02-15,2300`
-* `add schedule consultation 2021-02-15,2300 2021-02-15,2400 consultation`
+* `sadd n/meeting 2021-02-15T21:00:00 2021-02-15T23:00:00`
+* `sadd n/consultation 2021-02-15T23:00:00 2021-02-15T23:59:59 important`
 
 ### Finding a schedule
 Finds an existing schedule by name in the schedule list.
 
-Format: `find schedule`
+Format: `sfind KEYWORD [MORE_KEYWORDS]`
 * `The search is case-insensitive e.g. meeting will match Meeting`
 
-Prompt: `name`
-
 Example(s):
-* `find schedule meeting`
+* `sfind meeting`
 
 ### Listing schedules today (of the same week)
-List schedules today/this week.
+Lists all the schedules by today/this week.
 
-Format: `list schedule`
-
-Prompt: `by day/week`
+Format: `slist [day/week]`
+- No argument: listing all schedules
+- Day: listing schedules for today
+- Week: listing schedules for the next 7 days
 
 Example(s):
-* `list schedule by day`
-* `list schedule by week`
+* `slist`
+* `slist day`
+* `slist week`
 
 ### Deleting a schedule
 Deletes an existing schedule with the specified name in the schedule list.
 
-Format: `delete schedule`
-
-Prompt: `name`
+Format: `sdelete NAME`
 
 Example(s):
-* `delete schedule meeting`
+* `sdelete meeting`
 
 ---
 
 ### Adding a task
 Adds a task into the task list.
 
-Format: `add task`
-
-Prompts: `name`, `date`, `[tags]`
+Format: `tadd n/NAME d/DATE [t/TAG]`
 
 Example(s):
-* `add task slides 2021-02-15 CS2105T`
+* `tadd slides 2021-02-15 CS2100`
 
 ### Finding a task
 Finds an existing task by name in the task list.
 
-Format: `find task`
+Format: `tfind KEYWORD [MORE_KEYWORDS]`
 * The search is case-insensitive e.g. slides will match Slides
 
-Prompts: `name`
+Example(s):
+* `tfind slides`
+
+### Listing tasks by day/week
+Lists all the tasks by today/this week.
+
+Format: `tlist [day/week]`
+- No argument: listing all schedules
+- Day: listing schedules for today
+- Week: listing schedules for the next 7 days
 
 Example(s):
-* `find task slides`
-
-### Listing tasks by module/day/week
-Lists all the tasks by the specified module/today/this week.
-
-Format: `list tasks`
-
-Prompts: `by module`, `by day`, `by week`
-
-Example(s):
-* `list tasks by CS2103T`
-* `list tasks by day`
-* `list tasks by week`
+* `tlist`
+* `tlist day`
+* `tlist week`
 
 ### Deleting a task
 Deletes an existing task with the specified name in the task list.
 
-Format: `delete task`
-
-Prompt: `name`
+Format: `tdelete NAME`
 
 Examples:
-* `delete task slides`
+* `tdelete slides`
 
 ---
 
