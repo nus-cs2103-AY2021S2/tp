@@ -63,6 +63,12 @@ deactivate RemindMeParser
 LogicManager -> DeleteAssignmentCommand : execute()
 activate DeleteAssignmentCommand
 
+DeleteAssignmentCommand -> Model : getFilteredModuleList()
+activate Model
+
+Model --> DeleteAssignmentCommand : filteredModuleList
+deactivate Model
+
 DeleteAssignmentCommand -> Module : getModule("CS2103")
 
 activate Module
