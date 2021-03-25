@@ -8,10 +8,10 @@ import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import javafx.collections.transformation.TransformationList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
@@ -26,8 +26,10 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final SortedList<Person> sortedPersons;
-    private TransformationList<Person, Person> transformedPersons;
+    private final ObservableList<Person> transformedPersons;
+
     private Person selectedPerson;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -42,8 +44,12 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         sortedPersons = new SortedList<>(this.addressBook.getPersonList());
-        transformedPersons = new SortedList<>(this.addressBook.getPersonList());
+        transformedPersons = FXCollections.observableArrayList(this.addressBook.getPersonList());
+
         selectedPerson = null;
+
+
+
     }
 
     public ModelManager() {
@@ -144,14 +150,14 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+        return transformedPersons;
     }
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
-        this.transformedPersons = this.filteredPersons;
+        transformedPersons.setAll(filteredPersons);
     }
 
     //=========== Sorted Person List Accessors =============================================================
@@ -168,7 +174,7 @@ public class ModelManager implements Model {
     public void updateSortedPersonList(Comparator<Person> comparator) throws NullPointerException {
         requireNonNull(comparator);
         sortedPersons.setComparator(comparator);
-        this.transformedPersons = this.sortedPersons;
+        transformedPersons.setAll(sortedPersons);
     }
 
     public ObservableList<Person> getTransformedPersonList() {

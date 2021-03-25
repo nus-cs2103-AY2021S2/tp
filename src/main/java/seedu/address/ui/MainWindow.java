@@ -189,16 +189,22 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            logger.info("is error here: 1");
             personDetails.setPerson(logic.getSelectedPerson());
+            logger.info("is error here: 1");
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+                logger.info("is error here: 1");
             }
+            logger.info("is error here: 1.5");
 
             if (commandResult.isExit()) {
                 handleExit();
+                logger.info("is error here: 2");
             }
-
+            logger.info("is error here: 2.5");
+            logger.info("is error here: 3");
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
