@@ -143,16 +143,31 @@ Classes used by multiple components are in the `pawbook.commons` package.
 This section describes some noteworthy details on how certain features are implemented.
 
 ### Adding/deleting feature
+
+#### What it is
+
 Pawbook manages more than one type of entity, each with their own unique attributes. An OOP approach is used here whereby both the `AddCommand` and `DeleteCommand` are generic classes that extends the `Command` class. This way any number of other classes extending `Entity` can be added/deleted as well.
+Example: `add owner n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]..`
+
+#### Implementation
 
 The actual execution of these commands are largely the same and can be easily reimplemented to include more verification to the data if necessary, e.g. verifying that the owner ID refers to an actual owner instead of taking in an arbitrary number.
 
 In order to generate the respective commands, the raw input needs to be parsed first. It is required that the user provide a second keyword right after the `add`/`delete` command keyword to indicate the correct entity type to be added. Using this information, the arguments can be forwarded to the correct parser from within `PawbookParser` to be further processed. 
 
-Below is an example activity diagram for a valid add command from the user, it is similar for the delete command as well.
+Given below is an example usage scenario and how the add command behaves at each step.
 
-![AddDeleteActivityDiagram](images/AddDeleteActivityDiagram.png)
+Step 1. The user launches the application and executes `add owner n/BRUCE p/92019201 e/bruce@example.com a/BLK 123 Adam Road t/friendly` to save an owner.
 
+Step 2. The owner  is added to the model.
+
+Below is an example activity diagram for a valid add command from the user.
+
+![AddActivityDiagram](images/AddActivityDiagram.png)
+
+Below is an example activity diagram for a valid delete command from the user.
+
+![DeleteActivityDiagram](diagrams/DeleteActivityDiagram.puml)
 ### Edit feature
 Pawbook allows the user to `edit` an entity. For instance, the user may want to `edit`  some features of an owner. By entering the edit command with the correct identification number of the owner to be edited, the specified features of the owner will be modified accordingly.
 
