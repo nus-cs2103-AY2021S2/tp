@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -78,11 +79,13 @@ public class EventCardKanbanView extends UiPart<Region> {
         String styleClassName = event.getPriority().name().toLowerCase() + "-priority";
         priority.getStyleClass().add(styleClassName);
 
+
     }
 
     private void setDescription() {
         description.setText(event.getDescription().description);
         description.setWrapText(true);
+        description.setPadding(new Insets(3,0,3,0));
     }
 
     @Override
