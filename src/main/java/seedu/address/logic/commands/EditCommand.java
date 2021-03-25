@@ -27,6 +27,7 @@ import seedu.address.model.person.Task;
 import seedu.address.model.person.TaskName;
 import seedu.address.model.person.Weightage;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.PriorityTag;
 
 /**
  * Edits the details of an existing task in the address book.
