@@ -7,7 +7,7 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.MonthDay;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
+import java.time.temporal.ChronoUnit;
 
 
 /** Represents a Date in PartyPlanet.
@@ -22,6 +22,9 @@ public class Date implements Comparable<Date> {
 
     public static final String MESSAGE_YEAR_CONSTRAINTS = "A year is required for the input\n";
     public static final String EMPTY_DATE_STRING = "";
+
+    private static int MIN_YEAR = 0;
+    private static int NON_YEAR = -1;
 
     protected static final DateTimeFormatter[] VALID_FORMATS = new DateTimeFormatter[] {
             DateTimeFormatter.ofPattern("yyyy-MM-dd"),
@@ -46,62 +49,70 @@ public class Date implements Comparable<Date> {
     protected static final DateTimeFormatter READABLE_FORMAT_WITHOUT_YEAR = DateTimeFormatter.ofPattern("d MMM");
 
     /** In "dd mmm yyyy" formatted string for human-readable display */
-    public final String displayValue;
-    /** In ISO-8601 format for easy comparison */
     public final String value;
-    protected int month; // implemented for quick retrieval
-    protected boolean hasYear;
+    protected LocalDate date;
     protected boolean isEmpty = false;
-
-    /**
-     * Constructs a {@code Date}.
-     * Date  can optionally contain a year.
-     * Some invalid dates are mapped to the nearest valid date, e.g. 29 Feb 2021 -> 28 Feb 2021.
-     *
-     * @param inputDate A valid date.
-     */
-    public Date(String inputDate, boolean requiresYear) {
-        requireNonNull(inputDate);
-        TemporalAccessor date = parseDate(toTitleCase(inputDate));
-        hasYear = date instanceof LocalDate;
-        if (hasYear) {
-            value = ISO_FORMAT.format(date);
-            displayValue = READABLE_FORMAT.format(date);
-            month = ((LocalDate) date).getMonthValue();
-        } else {
-            checkArgument(!requiresYear, MESSAGE_YEAR_CONSTRAINTS);
-            value = ISO_FORMAT_WITHOUT_YEAR.format(date);
-            displayValue = READABLE_FORMAT_WITHOUT_YEAR.format(date);
-            month = ((MonthDay) date).getMonthValue();
-        }
-        checkArgument(isValidDate(value), MESSAGE_CONSTRAINTS);
-    }
 
     /**
      * Constructs an empty date.
      */
     public Date() {
         value = EMPTY_DATE_STRING;
-        displayValue = EMPTY_DATE_STRING;
         isEmpty = true;
     }
 
     /**
-     * Attempts to match {@code date} to any parsing rule.
-     * If valid, a LocalDate or MonthDay is returned depending on whether a year exists,
-     * otherwise a DateTimeException will be thrown.
+     * Constructs a {@code Date}.
+     * Date can optionally contain a year.
+     * Some invalid dates are mapped to the nearest valid date, e.g. 29 Feb 2021 -> 28 Feb 2021.
+     *
+     * @param inputDate A valid date string.
      */
-    public static TemporalAccessor parseDate(String date) throws DateTimeException {
+    public Date(String inputDate, boolean requiresYear) {
+        requireNonNull(inputDate);
+        checkArgument(isValidDate(inputDate), MESSAGE_CONSTRAINTS);
+        LocalDate date = parseDate(inputDate);
+        if (date.getYear() == NON_YEAR) {
+            checkArgument(!requiresYear, MESSAGE_YEAR_CONSTRAINTS);
+            value = READABLE_FORMAT_WITHOUT_YEAR.format(date);
+        } else {
+            value = READABLE_FORMAT.format(date);
+        }
+    }
+
+    /**
+     * Returns true if a given string is a valid date, otherwise false.
+     * Implemented for unit testing.
+     */
+    public static boolean isValidDate(String test) {
+        try {
+            parseDate(test);
+            return true;
+        } catch (DateTimeException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Attempts to match {@code date} to any parsing rule.
+     * If valid, a LocalDate is returned, otherwise a DateTimeException will be thrown.
+     */
+    public static LocalDate parseDate(String date) throws DateTimeException {
+        date = toTitleCase(date);
         for (DateTimeFormatter dateFormat: VALID_FORMATS) {
             try {
-                return LocalDate.parse(date, dateFormat);
+                LocalDate parsedDate = LocalDate.parse(date, dateFormat);
+                if (parsedDate.getYear() < MIN_YEAR) {
+                    continue;
+                }
+                return parsedDate;
             } catch (DateTimeException e) {
                 continue;
             }
         }
         for (DateTimeFormatter dateFormat: VALID_FORMATS_WITHOUT_YEAR) {
             try {
-                return MonthDay.parse(date, dateFormat);
+                return MonthDay.parse(date, dateFormat).atYear(NON_YEAR);
             } catch (DateTimeException e) {
                 continue;
             }
@@ -113,7 +124,7 @@ public class Date implements Comparable<Date> {
      * Returns title case for strings.
      * Required for user inputs in arbitrary case, which DateTimeFormatter does not support parsing for.
      */
-    protected static String toTitleCase(String date) {
+    private static String toTitleCase(String date) {
         StringBuilder titleCase = new StringBuilder(date.length());
         boolean nextCapitalize = true;
         for (char c: date.toCharArray()) {
@@ -137,77 +148,71 @@ public class Date implements Comparable<Date> {
         return date.isEmpty;
     }
 
-
     /**
-     * Returns true if a given date string is a valid date not in the future.
+     * Returns the number of days left till the date, relative to current date.
      */
-    public static boolean isFuture(String test) {
-        assert isValidDate(test);
-        return isFuture(test, LocalDate.now());
+    public long getDaysLeft() {
+        return getDaysLeft(false);
     }
 
     /**
-     * Returns true if a given date string is a valid date not after {@code reference}.
-     * Exposes {@reference} date as a parameter for unit testing.
-     * Note: Dates without years which are parsed successfully are always considered not from the future.
+     * Returns the number of days left till the date, relative to current date.
+     * If {@code ignoreYear} is set to 'true', the number of days to the next month and day
+     * is returned, i.e. the date is treated as a yearly event.
      */
-    public static boolean isFuture(String test, LocalDate reference) {
-        assert isValidDate(test);
-        String referenceDate = ISO_FORMAT.format(reference);
-        TemporalAccessor date = parseDate(test);
-        if (date instanceof LocalDate) {
-            String testDate = ISO_FORMAT.format(date);
-            return testDate.compareTo(referenceDate) > 0;
-        } else {
-            return false;
+    public long getDaysLeft(boolean ignoreYear) {
+        return getDaysLeft(ignoreYear, LocalDate.now());
+    }
+
+    /**
+     * Returns the number of days left till the date, relative to {@code reference}.
+     * If {@code ignoreYear} is set to 'true', the number of days to the next month and day
+     * is returned, i.e. the date is treated as a yearly event.
+     */
+    public long getDaysLeft(boolean ignoreYear, LocalDate reference) {
+        if (!ignoreYear) {
+            return ChronoUnit.DAYS.between(reference, date);
         }
-    }
-
-    /**
-     * Returns true if a given string is a valid date, otherwise false.
-     * Implemented for unit testing.
-     */
-    public static boolean isValidDate(String test) {
-        try {
-            parseDate(test);
-            return true;
-        } catch (DateTimeException e) {
-            return false;
+        LocalDate upcomingDate = date.withYear(reference.getYear());
+        if (reference.isAfter(upcomingDate)) {
+            upcomingDate = date.withYear(reference.getYear() + 1);
         }
+        return ChronoUnit.DAYS.between(reference, upcomingDate);
     }
 
     /**
-     * Returns the month value of the date, in the range [1-12].
+     * Returns the month value of the date, in the range [1-12] if the month exists,
+     * otherwise 0 is returned if no month is available.
      * Required for feature to filter contact dates by month.
      */
     public int getMonth() {
         if (isEmpty) {
-            throw new IllegalArgumentException("Date is empty");
+            return 0;
         }
-        return month;
-    }
-
-    @Override
-    public int compareTo(Date other) {
-        return value.compareTo(other.value);
+        return date.getMonthValue();
     }
 
     /**
-     * Returns month and day as "mm-dd" in ISO format.
-     * For easier comparison between Date objects.
-     *
-     * Note: Can consider refactoring this to rely on (month,day) integer pairs instead.
+     * Returns 0 if equal, otherwise positive (negative) integer if date is earlier (later).
+     * Empty dates are always treated as later dates.
      */
-    public String getMonthDayString() {
-        if (isEmpty) {
-            return "";
+    @Override
+    public int compareTo(Date other) {
+        if (isEmpty && isEmptyDate(other)) {
+            return 0;
         }
-        return hasYear ? value.substring(5) : value.substring(2);
+        if (isEmpty) {
+            return 1;
+        }
+        if (isEmptyDate(other)) {
+            return -1;
+        }
+        return date.compareTo(other.date);
     }
 
     @Override
     public String toString() {
-        return displayValue;
+        return value;
     }
 
     @Override
