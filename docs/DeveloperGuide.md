@@ -192,8 +192,8 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2 (current choice):** Saves the entire appointment/property list in the appointment/property book.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
+  * Pros: Easy to implement.
+  * Cons: May have performance issues in terms of memory usage.
     
 * **Alternative 3:** Saves only changes made by previous commands (Similar to commit and restore in version control).
   * Pros: Will use less memory (e.g. for `delete`, may only save the appointment/property being deleted, and the deleted appointment/property is added back if the command is undone).
