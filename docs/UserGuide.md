@@ -48,6 +48,9 @@ tasks with our minimal yet essential set of contact management features.<br>
 
 Consisting of only the **most necessary features** any good insurance agent will need while on the go, ClientBook is extremely easy on your laptop's battery!
 
+If you are a new user, you can start with the [Quick Start](#quick-start) section. 
+If you're an experienced user, we have provided a convenient [Summary of Commands](#summary-of-commands) at the end of this user guide.
+
 
 ## Quick Start
 
@@ -170,7 +173,7 @@ Consisting of only the **most necessary features** any good insurance agent will
 
 
 * **Items with …​ after them can be used multiple times**. 
-  * e.g. `[t/TAG]…​` can be used as   (i.e. 0 times), `t/basic`, `t/basic t/lifeinsurance` etc.
+  * e.g. `[t/TAG]…​` can be used 0 or more times, `t/basic`, `t/basic t/lifeinsurance` etc.
 
 
 * **Parameters can be in any order**. 
