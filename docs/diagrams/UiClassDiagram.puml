@@ -16,7 +16,6 @@ Class FlashbackCard
 Class StatusBarFooter
 Class CommandBox
 Class FlashcardViewCard
-Class FlashbackStats
 Class ReviewMode
 }
 
@@ -31,12 +30,11 @@ Class HiddenLogic #FFFFFF
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Ui
 
-UiManager .left.|> Ui
+UiManager .right.|> Ui
 UiManager -down-> MainWindow
 MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> FlashcardViewCard
-MainWindow *-down-> FlashbackStats
 MainWindow *-down-> ResultDisplay
 MainWindow *-down-> FlashcardListPanel
 MainWindow *-down-> StatusBarFooter
@@ -50,18 +48,16 @@ FlashcardListPanel -down-> FlashbackCard
 
 MainWindow -left-|> UiPart
 
-ResultDisplay -up-|> UiPart
-FlashcardViewCard -up-|> UiPart
+ResultDisplay --|> UiPart
+FlashcardViewCard --|> UiPart
 CommandBox --|> UiPart
 FlashcardListPanel --|> UiPart
 FlashbackCard --|> UiPart
 StatusBarFooter --|> UiPart
-FlashbackStats -left-|> UiPart
-HelpWindow -down-|> UiPart
+HelpWindow --|> UiPart
 ReviewMode --|> UiPart
 
 FlashbackCard ..> Model
-FlashbackStats ..> Model
 FlashcardViewCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
