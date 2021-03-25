@@ -1,6 +1,8 @@
 package seedu.address.model.property;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BURGHLEY_DRIVE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_LOCALDATE_BURGHLEY_DRIVE;
@@ -10,9 +12,11 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_POSTAL_BURGHLEY
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROPERTY_TAG_FREEHOLD;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_BURGHLEY_DRIVE;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalClients.CLIENT_ALICE;
 import static seedu.address.testutil.TypicalProperties.BURGHLEY_DRIVE;
 import static seedu.address.testutil.TypicalProperties.MAYFAIR;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PropertyBuilder;
@@ -54,6 +58,20 @@ public class PropertyTest {
     }
 
     @Test
+    @DisplayName("Test for getAskingPrice method, which checks for existence of client. ")
+    public void getAskingPrice() {
+        // no client
+        Property mayfair = new PropertyBuilder(MAYFAIR).build();
+        assertNull(mayfair.getAskingPrice());
+
+        // with client
+        Property mayFairWithClient = new PropertyBuilder(MAYFAIR)
+                .withClient(CLIENT_ALICE).build();
+        assertEquals(mayFairWithClient.getAskingPrice(), CLIENT_ALICE.getClientAskingPrice());
+    }
+
+    @Test
+    @DisplayName("Tests for equals. ")
     public void equals() {
         // same values -> returns true
         Property mayfairCopy = new PropertyBuilder(MAYFAIR).build();

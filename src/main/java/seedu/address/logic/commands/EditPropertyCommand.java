@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT_ASKING_PRICE;
@@ -45,7 +44,7 @@ public class EditPropertyCommand extends Command {
     public static final String COMMAND_WORD = "edit property";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a property in the app. \n"
-            + "Parameters: INDEX"
+            + "Parameters: INDEX "
             + PREFIX_NAME + "NAME "
             + PREFIX_TYPE + "TYPE "
             + PREFIX_ADDRESS + "ADDRESS "
@@ -90,7 +89,7 @@ public class EditPropertyCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (index.getZeroBased() >= model.getPropertySize()) {
+        if (index.getZeroBased() >= model.getPropertyListSize()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
         }
 
@@ -121,18 +120,8 @@ public class EditPropertyCommand extends Command {
         Deadline updatedDeadline = editPropertyDescriptor.getDeadline().orElse(propertyToEdit.getDeadline());
         Remark updatedRemark = editPropertyDescriptor.getRemarks().orElse(propertyToEdit.getRemarks());
 
-        Client clientToEdit = propertyToEdit.getClient();
-        Optional<EditClientDescriptor> editClientDescriptor = editPropertyDescriptor.getClientDescriptor();
-        Client updatedClient;
-
-        if (editClientDescriptor.isEmpty()) {
-            updatedClient = clientToEdit;
-        } else {
-            if (clientToEdit == null) {
-                clientToEdit = new Client();
-            }
-            updatedClient = createEditedClient(clientToEdit, editClientDescriptor);
-        }
+        Client updatedClient = createEditedClient(propertyToEdit.getClient(),
+                editPropertyDescriptor.getClientDescriptor());
 
         Set<Tag> updatedTags = editPropertyDescriptor.getTags().orElse(propertyToEdit.getTags());
 
@@ -148,6 +137,10 @@ public class EditPropertyCommand extends Command {
                                                  Optional<EditClientDescriptor> clientDescriptor) {
 
         if (clientDescriptor.isPresent()) {
+            if (clientToEdit == null) {
+                clientToEdit = new Client();
+            }
+
             EditClientDescriptor editClientDescriptor = clientDescriptor.get();
 
             Name updatedName = editClientDescriptor.getName().orElse(clientToEdit.getClientName());

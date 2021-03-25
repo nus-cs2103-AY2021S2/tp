@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +13,6 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ClearAppointmentCommand;
-import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindAppointmentCommand;
 import seedu.address.logic.commands.FindPropertyCommand;
@@ -23,22 +21,16 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
 import seedu.address.model.property.PropertyContainsKeywordsPredicate;
+import seedu.address.model.property.PropertyPredicateList;
 
-public class AddressBookParserTest {
+public class PocketEstateParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final PocketEstateParser parser = new PocketEstateParser();
 
     @Test
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ClearAppointmentCommand.COMMAND_WORD) instanceof ClearAppointmentCommand);
         assertTrue(parser.parseCommand(ClearAppointmentCommand.COMMAND_WORD + " 3") instanceof ClearAppointmentCommand);
-    }
-
-    @Test
-    public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
@@ -62,7 +54,9 @@ public class AddressBookParserTest {
         FindPropertyCommand command = (FindPropertyCommand) parser.parseCommand(
                 FindPropertyCommand.COMMAND_WORD + " "
                         + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindPropertyCommand(new PropertyContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindPropertyCommand(new PropertyPredicateList(
+                Arrays.asList(new PropertyContainsKeywordsPredicate[]{
+                    new PropertyContainsKeywordsPredicate(keywords)}))), command);
     }
 
     @Test

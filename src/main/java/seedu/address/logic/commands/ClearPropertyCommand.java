@@ -2,12 +2,11 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.PropertyBook;
 
 /**
- * Clears the sample data in the property book.
+ * Clears the data in the property book.
  */
 public class ClearPropertyCommand extends Command {
 
@@ -18,7 +17,6 @@ public class ClearPropertyCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.setPropertyBook(new PropertyBook());
-        model.setAddressBook(new AddressBook());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

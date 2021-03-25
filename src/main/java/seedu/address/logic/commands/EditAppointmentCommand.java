@@ -19,8 +19,6 @@ import seedu.address.model.appointment.Time;
 import seedu.address.model.name.Name;
 import seedu.address.model.remark.Remark;
 
-
-
 /**
  * Edits an appointment in the app.
  */
@@ -62,7 +60,7 @@ public class EditAppointmentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (index.getZeroBased() >= model.getAppointmentSize()) {
+        if (index.getZeroBased() >= model.getAppointmentListSize()) {
             throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
         }
 
