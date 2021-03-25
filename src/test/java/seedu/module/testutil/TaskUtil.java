@@ -35,7 +35,7 @@ public class TaskUtil {
         sb.append(PREFIX_MODULE + task.getModule().value + " ");
         sb.append(PREFIX_DESCRIPTION + task.getDescription().value + " ");
         sb.append(PREFIX_DEADLINE + task.getDeadline().value + " ");
-        sb.append(PREFIX_WORKLOAD + Integer.toString(task.getWorkload().workloadLevel) + " ");
+        sb.append(PREFIX_WORKLOAD + Integer.toString(task.getWorkload().getWorkloadLevel()) + " ");
         task.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );

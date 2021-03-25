@@ -3,6 +3,7 @@ package seedu.module.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.module.commons.util.AppUtil.checkArgument;
 
+import java.util.InputMismatchException;
 import java.util.List;
 
 import seedu.module.model.ModuleManager;
@@ -29,6 +30,9 @@ public class Module {
     private static final String LAST_CHARACTER_REGEX = "[A-Z]?";
     public static final String VALIDATION_REGEX = MAJOR_REGEX + MODULE_CODE_REGEX + LAST_CHARACTER_REGEX;
     public final String value;
+    private int lowWorkloadCount = 0;
+    private int mediumWorkloadCount = 0;
+    private int highWorkloadCount = 0;
 
     /**
      * Constructs an {@code Module}.
@@ -61,10 +65,57 @@ public class Module {
     }
 
     /**
-     * Returns a list of existing Modules
-     *
-     * @return List of existing Modules
+     * Returns a count of the number of tasks of each workload rating.
      */
+    public String getWorkloadCount() {
+        return String.format("Low workload tasks: %d, medium workload tasks: %d, high workload tasks %d\n",
+                lowWorkloadCount, mediumWorkloadCount, highWorkloadCount);
+    }
+
+    /**
+     * Increases count of number of tasks in the relevant workload rating.
+     */
+    public void incrementWorkload(Workload workload) {
+        requireNonNull(workload);
+        assert !(workload.getWorkloadLevel() < 1 || workload.getWorkloadLevel() > 3);
+        switch (workload.getWorkloadLevel()) {
+        case 1:
+            lowWorkloadCount++;
+            break;
+        case 2:
+            mediumWorkloadCount++;
+            break;
+        case 3:
+            highWorkloadCount++;
+            break;
+        default:
+            throw new InputMismatchException("Illegal workload level detected!");
+        }
+    }
+
+    /**
+     * Decreases count of number of tasks in the relevant workload rating.
+     */
+    public void decrementWorkload(Workload workload) {
+        requireNonNull(workload);
+        assert !(workload.getWorkloadLevel() < 1 || workload.getWorkloadLevel() > 3);
+        switch (workload.getWorkloadLevel()) {
+        case 1:
+            assert lowWorkloadCount - 1 >= 0;
+            lowWorkloadCount--;
+            break;
+        case 2:
+            assert mediumWorkloadCount - 1 >= 0;
+            mediumWorkloadCount--;
+            break;
+        case 3:
+            assert highWorkloadCount - 1 >= 0;
+            highWorkloadCount--;
+            break;
+        default:
+            throw new InputMismatchException("Illegal workload level detected!");
+        }
+    }
 
     @Override
     public String toString() {
