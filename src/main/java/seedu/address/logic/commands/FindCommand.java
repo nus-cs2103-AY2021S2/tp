@@ -27,6 +27,7 @@ public class FindCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
+        assert false;
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
         return new CommandResult(
