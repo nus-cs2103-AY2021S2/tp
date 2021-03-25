@@ -30,10 +30,10 @@ public class FilterBookingByBookerCommand extends Command {
         requireNonNull(model);
         model.updateFilteredBookingList(predicate);
         if (model.getFilteredBookingList().size() == 0) {
-            return new CommandResult(Messages.MESSAGE_BOOKING_FILTER_FAILED + " by " + predicate.getBookerName());
+            return new CommandResult(Messages.MESSAGE_BOOKING_FILTER_FAILED + " by " + predicate.getBookerEmail());
         } else {
             return new CommandResult(
-                    Messages.MESSAGE_BOOKING_PERSON_FILTERED + predicate.getBookerName());
+                    Messages.MESSAGE_BOOKING_PERSON_FILTERED + predicate.getBookerEmail());
         }
     }
 

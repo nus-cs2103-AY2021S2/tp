@@ -18,7 +18,7 @@ public class TypicalVenues {
 
     public static final Venue VENUE1 = new Venue(new VenueName("Venue1"), new Capacity(10),
             "No description provided.");
-    public static final Venue VENUE2 = new Venue(new VenueName("Venue1"), new Capacity(20),
+    public static final Venue VENUE2 = new Venue(new VenueName("Venue2"), new Capacity(20),
             "No description provided.");
     public static final Venue VENUE3 = new Venue(new VenueName("Venue3"), new Capacity(10),
             "No description provided.");

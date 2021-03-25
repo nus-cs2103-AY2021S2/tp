@@ -56,4 +56,7 @@ public class VenueName {
         return venueName.hashCode();
     }
 
+    public boolean isSameVenueName(Venue venue) {
+        return this.venueName.equals(venue.getVenueName());
+    }
 }

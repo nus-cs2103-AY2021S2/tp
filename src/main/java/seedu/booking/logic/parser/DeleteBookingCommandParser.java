@@ -31,7 +31,6 @@ public class DeleteBookingCommandParser implements Parser<DeleteBookingCommand> 
         try {
             bookingId = ParserUtil.parseBookingId(argMultimap.getValue(PREFIX_BOOKING_ID).get());
         } catch (ParseException pe) {
-            System.out.println("Exception throwing\n");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     DeleteBookingCommand.MESSAGE_USAGE), pe);
         }

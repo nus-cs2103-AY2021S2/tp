@@ -4,13 +4,18 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-AddressBook *-right-> "1" UniquePersonList
-AddressBook *-right-> "1" UniqueTagList
+BookingSystem *-right-> "1" UniquePersonList
+BookingSystem *-right-> "1" NonOverlappingBookingList
+BookingSystem *-right-> "1" UniqueVenueList
+BookingSystem *-right-> "1" UniqueTagList
 UniqueTagList -[hidden]down- UniquePersonList
-UniqueTagList -[hidden]down- UniquePersonList
+UniquePersonList -[hidden]down- NonOverlappingBookingList
+NonOverlappingBookingList -[hidden]down- UniqueVenueList
 
 UniqueTagList *-right-> "*" Tag
 UniquePersonList o-right-> Person
+NonOverlappingBookingList o-right-> Booking
+UniqueVenueList o-right-> Venue
 
 Person -up-> "*" Tag
 
@@ -18,4 +23,11 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+
+Booking *--> Person
+Booking *--> Venue
+Booking *--> DateTimeRange
+
+Venue *--> VenueName
+Venue *--> Capacity
 @enduml

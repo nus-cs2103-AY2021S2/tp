@@ -27,7 +27,6 @@ public class CreateVenueCommandParser implements Parser<CreateVenueCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public CreateVenueCommand parse(String args) throws ParseException {
-        System.out.println(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_VENUE, PREFIX_CAPACITY, PREFIX_DESCRIPTION);
 

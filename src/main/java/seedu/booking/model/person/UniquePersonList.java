@@ -134,4 +134,13 @@ public class UniquePersonList implements Iterable<Person> {
         }
         return true;
     }
+
+    /**
+     * Returns true if the list contains an equivalent person as the given email.
+     */
+    public boolean containsEmail(ObservableList<Person> list, Email emailToCheck) {
+        requireNonNull(emailToCheck);
+        return list.stream().anyMatch(x -> x.getEmail().equals(emailToCheck));
+
+    }
 }

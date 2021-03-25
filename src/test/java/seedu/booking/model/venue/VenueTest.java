@@ -6,6 +6,7 @@ import static seedu.booking.testutil.TypicalVenues.VENUE1;
 import static seedu.booking.testutil.TypicalVenues.VENUE2;
 import static seedu.booking.testutil.TypicalVenues.VENUE3;
 import static seedu.booking.testutil.TypicalVenues.VENUE4;
+import static seedu.booking.testutil.TypicalVenues.VENUE5;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +21,7 @@ class VenueTest {
         assertFalse(VENUE1.isSameVenue(null));
 
         // same name -> returns true
-        assertTrue(VENUE1.isSameVenue(VENUE2));
+        assertTrue(VENUE1.isSameVenue(VENUE5));
 
         // different name -> returns false
         assertFalse(VENUE1.isSameVenue(VENUE3));

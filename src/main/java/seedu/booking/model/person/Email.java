@@ -64,4 +64,7 @@ public class Email {
         return value.hashCode();
     }
 
+    public boolean isSameEmail(Person person) {
+        return this.equals(person.getEmail());
+    }
 }
