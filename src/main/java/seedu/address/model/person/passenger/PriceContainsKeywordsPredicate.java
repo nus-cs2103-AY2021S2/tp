@@ -19,7 +19,7 @@ public class PriceContainsKeywordsPredicate implements Predicate<Passenger> {
             Price priceToCompare = passenger.getPrice().get();
             Double userPrice = Double.parseDouble(priceToCompare.toString());
 
-            return userPrice >= userPrice;
+            return userPrice >= this.price;
         } else {
             return false;
         }
