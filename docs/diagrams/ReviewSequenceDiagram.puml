@@ -1,0 +1,72 @@
+@startuml
+!include style.puml
+scale 0.5
+Actor User as user USER_COLOR
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":ReviewMode" as ReviewMode UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":ReviewManager" as ReviewManager LOGIC_COLOR
+end box
+
+user -> MainWindow : "review"
+activate MainWindow
+
+MainWindow -> MainWindow: executeCommand("review")
+activate MainWindow
+MainWindow -> LogicManager : execute(commandText)
+activate LogicManager
+
+LogicManager --> MainWindow
+deactivate LogicManager
+
+MainWindow -> CommandResult : isReviewMode()
+activate CommandResult
+CommandResult --> MainWindow
+deactivate CommandResult
+CommandResult -[hidden]-> MainWindow
+destroy CommandResult
+
+create ReviewMode
+MainWindow -> ReviewMode
+activate ReviewMode
+ReviewMode --> MainWindow
+deactivate ReviewMode
+
+MainWindow -> MainWindow : enterReviewMode(reviewMode)
+MainWindow --> user : feedback
+deactivate MainWindow
+
+create ReviewManager
+ReviewMode -> ReviewManager
+loop until "q" is entered
+    alt "n" is entered
+        ReviewMode -> ReviewManager : hasNextFlashcard()
+        ReviewManager --> ReviewMode
+    else "p" is entered
+        ReviewMode -> ReviewManager : hasPreviousFlashcard()
+        ReviewManager --> ReviewMode
+    else "a" is entered
+        ReviewMode -> ReviewMode : handleShowAnswerCommand()
+    else "h" is entered
+            ReviewMode -> ReviewMode : handleHideAnswerCommand()
+    else "t" is entered
+        ReviewMode -> ReviewManager : updateCardCorrect()
+        ReviewManager --> ReviewMode
+    else "f" is entered
+        ReviewMode -> ReviewManager : updateCardWrong()
+        ReviewManager --> ReviewMode
+    end
+    ReviewMode --> user
+end
+
+ReviewMode --> MainWindow : exitReviewMode()
+
+MainWindow --> user : feedback
+
+@enduml

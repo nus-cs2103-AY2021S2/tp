@@ -191,7 +191,19 @@ Step 3: Depending on the command that user enters in the `CommandBox` of `Review
 Step 4: If the user enters `q` in the `CommandBox`, `ReviewMode#handleQuitCommand` method is called, and the user returns back to the `MainWindow`.
 
 The following sequence diagram illustrates how the user enter `ReviewMode`: <br>
-![ReviewModeSequenceDiagram](images/ReviewModeSequenceDiagram.png) <br><br>
+![ReviewSequenceDiagram](images/ReviewSequenceDiagram.png) <br>
+#### Design consideration:
+
+##### Aspect: How user interacts in Review Mode.
+
+* **Alternative 1 (current choice):** interacts via `CommandBox` similar to the `MainWindow`
+    * Pros: Easy to implement.
+    * Cons: User experience might not be good since user needs to type many commands.
+
+* **Alternative 2:** interacts via keyboard
+    * Pros: Better user experience since user can move to next/previous flashcard a lot faster.
+    * Cons: Harder to implement.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -465,13 +477,39 @@ otherwise) <br /><br />
 
 **MSS**
 
-1. User requests to delete a flash card from the list.
+1. User requests to delete a flashcard from the list.
 1. FlashBack deletes the specified flashcard.
 1. User requests to undo delete command.
 1. FlashBack reverts to its previous state before delete command.
 
    Use case ends.
+   
+**Use case: UC08 - Enter review mode**
 
+**MSS**
+1. User requests to review flashcard.
+1. FlashBack enters review mode.
+1. User requests to show/hide answer, go to next/previous flashcard.
+1. FlashBack handles user input.
+
+Step 3 and 4 are repeated until `q` command is entered.<br>
+Use case ends.
+
+**Extension**
+* 1a. The list is empty.<br>
+Use case ends.
+* 3a. User enters invalid command.
+    * 3a1. FlashBack shows an error message <br>
+    Use case resumes at step 3
+* 3b. User enters `h` command when the answer is currently hidden.
+    * 3b1. FlashBack shows an error message <br>
+    Use case resumes at step 3
+* 3c. User enters `a` command when the answer is currently shown.
+    * 3c1. FlashBack shows an error message <br>
+    Use case resumes at step 3
+* 3d. User enters `t` or `f` command when the answer is currently hidden.
+    * 3d1. FlashBack shows an error message <br>
+    Use case resumes at step 3
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
