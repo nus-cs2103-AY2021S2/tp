@@ -43,7 +43,7 @@ The AddressBookParser should accept another case of command word `elist` which e
 back to `LogicManager`. This command can take in three arguments: an empty string, the string “day” or the string “week”. 
 The arguments will be parsed by the `ListEntryCommandParser` to determine the behaviour of `ListEntryFormatPredicate`.
 Then, `updateFilteredEntryList` method in the `Model` interface is called, passing in the `ListEntryFormatPredicate` as 
-a parameter.
+an argument.
 
 The following sequence diagram (Fig 2.3.1) shows how the list entry operation works:
 
