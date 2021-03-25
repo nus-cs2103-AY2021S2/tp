@@ -4,14 +4,14 @@ This section describes some noteworthy details on how certain features are imple
 
 ### [Proposed] Enquire if time interval is free
 
-The proposed enquiry mechanism provides users a quick way to find out if certain time intervals are available. 
+The proposed enquiry mechanism provides users a quick way to find out if certain time intervals are available.
 
 An outline of the proposed implementation is as follows:
 
-The `AddressBookParser` should accept another case of command word `free` which eventually returns `CheckFreeCommand` 
+The `AddressBookParser` should accept another case of command word `free` which eventually returns `CheckFreeCommand`
 back to Logic Manager.
 
-This command is then executed to return `CommandResult` which is either shown on the command result field of the GUI as: 
+This command is then executed to return `CommandResult` which is either shown on the command result field of the GUI as:
 * "Free"
 * Or the task that is occupying that time interval
 
@@ -19,8 +19,8 @@ The following activity diagram summarizes what happens when a user executes the 
 
 ![Free Intervals Activity Diagram](images/FreeIntervalActivityDiagram.png)
 
-The `ModelManager` class will be required to implement `checkIfFree` method which eventually checks the interval 
-provided by the user against all tasks' `LocalDateTime` attribute in 
+The `ModelManager` class will be required to implement `checkIfFree` method which eventually checks the interval
+provided by the user against all tasks' `LocalDateTime` attribute in
 `UniqueTaskList#checkIfFree(start, end)`.
 
 The following sequence diagram outlines how the enquiry operation works:
