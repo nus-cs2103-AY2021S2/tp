@@ -258,6 +258,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | student                                    | mark a task as undone                         | keep track of tasks that I've yet to complete or need to make edits to            |
 | `*`      | student                                    | tag tasks                                     | filter through my tasks easily and focus on the similar ones with the same tags   |
 | `*`      | user with many tasks in the module book    | modify the deadline without deleting the task | waste less time recreating the whole task     
+| `*`      | user with many tasks in the module book    | sort the tasks by deadline                    | see which tasks need to be addressed as soon as possible
+| `*`      | user with many tasks in the module book    | sort the tasks by workload                    | see which tasks require more effort to complete
 | `*`      | busy student                               | view workload count for each module           | decide which module requires more effort
 | `*`      | busy student                               | search for tags                               | locate my tasks easily                                                            |
 | `*`      | busy student                               | delete tags                                   | edit tags of my tasks without having to recreate them                                                           |
@@ -554,6 +556,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. ModuleBook3.5 shows an error message.
 
       Use case ends.
+      
+      
+**Use case 12: Sorts tasks by Deadline**
+
+**MSS**
+
+1.  User request to sorts tasks by deadline.
+
+2.  ModuleBook 3.5 sorts the tasks in descending order of urgency and display them.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Invalid format for the sort command.
+
+    * 2a1. ModuleBook 3.5 shows an error message with the correct format for sort and example.
+
+      Use case resumes at step 2.
     
     
 ### Non-Functional Requirements
