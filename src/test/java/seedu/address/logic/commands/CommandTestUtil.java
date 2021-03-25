@@ -3,9 +3,11 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -20,7 +22,7 @@ import seedu.address.model.Model;
 import seedu.address.model.event.EventStatus;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditEventDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -29,14 +31,19 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_CS2030 = "CS2030";
     public static final String VALID_NAME_CS2107 = "CS2107";
-    public static final String VALID_DESCRIPTION_CS2030 = "Object-oriented Programming";
+    public static final String VALID_NAME_CS2100 = "CS2100";
+    public static final String VALID_DESCRIPTION_CS2030 = "Object oriented Programming";
     public static final String VALID_DESCRIPTION_CS2107 = "Introduction to Information Security";
+    public static final String VALID_DESCRIPTION_CS2100 = "Computer Organisation";
     public static final EventStatus VALID_STATUS_CS2030 = EventStatus.DONE;
     public static final EventStatus VALID_STATUS_CS2107 = EventStatus.IN_PROGRESS;
+    public static final EventStatus VALID_STATUS_CS2100 = EventStatus.IN_PROGRESS;
     public static final String VALID_TIME_START_CS2030 = "12/12/2021 12:00";
     public static final String VALID_TIME_END_CS2030 = "10/01/2020 10:00";
     public static final String VALID_TIME_START_CS2107 = "10/03/2021 10:00";
     public static final String VALID_TIME_END_CS2107 = "30/01/2022 12:00";
+    public static final String VALID_TIME_START_CS2100 = "23/03/2021 09:00";
+    public static final String VALID_TIME_END_CS2100 = "10/04/2022 15:00";
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
@@ -60,25 +67,36 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
+    //Event
+    public static final String EVENTNAME_DESC_CS2030 = " " + PREFIX_NAME + VALID_NAME_CS2030;
+    public static final String EVENTNAME_DESC_CS2107 = " " + PREFIX_NAME + VALID_NAME_CS2107;
+    public static final String DESCRIPTION_DESC_CS2030 = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_CS2030;
+    public static final String DESCRIPTION_DESC_CS2107 = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_CS2107;
+    public static final String EVENTSTATUS_DESC_CS2030 = " " + PREFIX_STATUS + VALID_STATUS_CS2030;
+    public static final String EVENTSTATUS_DESC_CS2107 = " " + PREFIX_STATUS + VALID_STATUS_CS2107;
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
+    //Event
+    public static final String INVALID_EVENTSTATUS_DESC = " " + PREFIX_STATUS + "tdo"; // eventStatus must be valid
+
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditCommand.EditEventDescriptor DESC_CS2030;
+    public static final EditCommand.EditEventDescriptor DESC_CS2107;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_CS2030 = new EditEventDescriptorBuilder().withName(VALID_NAME_CS2030)
+                .withDescription(VALID_DESCRIPTION_CS2030).withEventStatus(VALID_STATUS_CS2030)
+                .build();
+        DESC_CS2107 = new EditEventDescriptorBuilder().withName(VALID_NAME_CS2107)
+                .withDescription(VALID_DESCRIPTION_CS2107).withEventStatus(VALID_STATUS_CS2107)
+                .build();
     }
 
     /**
