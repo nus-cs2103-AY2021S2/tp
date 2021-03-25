@@ -66,6 +66,11 @@ public class ItemCard extends UiPart<Region> {
             .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
+    /**
+     * Return the color code for each item expiry date
+     * @param item   The item that contains expiry date
+     * @return       The resulting color of the item expiry date text
+     */
     private Color expiryDateColorCode(Item item) {
         if (expiredItemPredicate.test(item)) {
             return new Color(1, 0, 0, 1);
