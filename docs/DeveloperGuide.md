@@ -47,7 +47,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### 3.1 Architecture
 
-<img src="images/ArchitectureDiagram.png" width="450" />
+![Architecture Diagram](images/ArchitectureDiagram.png)
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -83,7 +83,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+![Architecture Sequence Diagram](images/ArchitectureSequenceDiagram.png)
 
 The sections below give more details of each component.
 
@@ -165,11 +165,37 @@ This section describes some noteworthy details on how [Sochedule](#41-sochedule)
 
 ### 4.1 Sochedule
 
+#### 4.1.1 Overview
+
+#### 4.1.2 Implementation
+
+**Implementation of SummaryCommand**  
+The following is a detailed explanation on how SummaryCommand is implemented.
+
+**Step 1**: User executes `summary` command to get a summary of the current completion status of tasks and events.
+An `SummaryCommandParser` object is created, and the `SummaryCommandParser#parse(String args)` method is called.
+A `SummaryCommand` object is returned.
+
+**Step 2**: On `SummaryCommand#execute()`, `Model#getNumCompletedTask()`,
+`Model#getFilteredTaskList()`,
+`Model#getNumOverdueTask()`,
+`Model#getNumIncompleteTask()`,
+`Model#getNumIncomingEvents()` are called.
+This will get different statistics on task and event completion.
+For brevity, lower level implementation is omitted.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message will be appended with `CommandResult#MESSAGE_SUCCESS`.
+
+The sequence diagram for `SummaryCommand` can be found below.
+
+![Sequence Diagram of Summary Command](images/SummaryCommandSequenceDiagram.png)
+
 ### 4.2 Task
 
-#### 4.3.1 Overview
+#### 4.2.1 Overview
 
-#### 4.3.2 Implementation
+#### 4.2.2 Implementation
 
 **Implementation of SortTaskCommand**  
 The following is a detailed explanation on how SortTaskCommand is implemented.
