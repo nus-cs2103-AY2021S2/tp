@@ -20,7 +20,7 @@ public class Trip {
     // Data fields
     private final TripDay tripDay;
     private final TripTime tripTime;
-    private final Set<Passenger> passengers = new HashSet<>();
+    private final Set<Passenger> passengers;
     private final Set<Tag> tags = new HashSet<>();
     private Driver driver;
 
@@ -38,7 +38,7 @@ public class Trip {
         this.tripDay = tripDay;
         this.tripTime = tripTime;
         this.driver = driver;
-        this.passengers.addAll(passengers);
+        this.passengers = new HashSet<>(passengers);
         this.tags.addAll(tags);
     }
 
