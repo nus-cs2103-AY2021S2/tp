@@ -24,7 +24,7 @@ PocketEstate enables easy organization of mass clientele property information th
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all properties and appointments in the app.
+   * **`list all`** : Lists all properties and appointments in the app.
 
    * **`add property`**`n/Mayfair t/Condo a/1 Jurong East Street 32 p/609477 d/31-12-2021` : Adds a property with the corresponding information to the PocketEstate app.
 
@@ -93,12 +93,17 @@ Format: `add appointment n/NAME r/REMARKS d/DATE t/TIME​`
 Examples:
 * `add appointment n/Meet Alex r/At M Hotel d/17-2-2021 t/1500`
 
-### Listing all properties and appointments : `list`
+### Listing all properties and appointments : `list all`
 
 Shows a list of all properties and appointments in the app.
 
-Format: `list`
+### Listing all properties : `list property`
 
+Shows a list of all properties in the app.
+
+### Listing all appointments : `list appointment`
+
+Shows a list of all appointments in the app.
 
 ### Sorting : `sort`
 
@@ -262,7 +267,9 @@ Action | Format, Examples
 **Add new status** | `update INDEX new AMOUNT`<br> e.g.,`update 1 new 600000`
 **Update status** | `update INDEX [proceed][cancel]`<br> e.g. `update 3 proceed`
 **Find** | `find appointment [keywords] [option...]` <br> e.g. `find appointment "fri" r/"come in afternoon"` <br><br> `find property [keywords] [option...]` <br> e.g., `find property "jurong west"`
-**List** | `list`
+**List all** | `list all`
+**List property** | `list property`
+**List appointment** | `list appointment`
 **Sort** | `sort appointment o/<asc or desc> k/<datetime or name>`<br> e.g., `sort appointment o/asc k/datetime`<br><br>`sort property o/<asc or desc> k/<price or address or postalcode or deadline or name>`<br> e.g., `sort property o/asc k/price`
 **Remove an entry** | `delete appointment INDEX` <br> e.g. `delete appointment 7` <br><br> `delete property INDEX` <br> e.g. `delete property 7`
 **Help** | `help`
