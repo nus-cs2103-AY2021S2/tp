@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox id="viewPatientBox" fx:id="viewPatientBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+
+    <SplitPane>
+        <VBox>
+            <Label fx:id="name" text="\$first" styleClass="cell_big_label"/>
+            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone"/>
+            <Label fx:id="address" styleClass="cell_small_label" text="\$address"/>
+            <Label fx:id="email" styleClass="cell_small_label" text="\$email"/>
+        </VBox>
+    </SplitPane>
+
+    <FlowPane fx:id="tags"/>
+    <FlowPane fx:id="appointments"/>
+</VBox>

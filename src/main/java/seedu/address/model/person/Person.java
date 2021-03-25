@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -42,6 +43,19 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<Appointment>appointments) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.appointments.addAll(appointments);
     }
 
     public Name getName() {
@@ -136,8 +150,12 @@ public class Person {
         return builder.toString();
     }
 
+    /**
+     * Adds an appointment to this Patient
+     */
     public void addAppointment(Appointment appointment) {
         this.appointments.add(appointment);
+        this.appointments.sort(Comparator.comparing(Appointment::getDate));
     }
 
     public void addMedicalRecord(MedicalRecord record) {

@@ -4,7 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
@@ -13,47 +13,44 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.medical.AddAppointmentCommand;
-import seedu.address.logic.commands.medical.ListAppointmentsCommand;
 
 /**
  * Controller for a help page
  */
-public class HelpWindow extends UiPart<Stage> {
+public class EditorWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://github.com/AY2021S2-CS2103T-W12-1/"
-                                                + "tp/blob/master/docs/UserGuide.md";
+            + "tp/blob/master/docs/UserGuide.md";
     public static final String HELP_MESSAGE = "Refer to the full user guide here: " + USERGUIDE_URL + "\n";
     public static final String COMMANDGUIDE_MESSAGE = AddCommand.MESSAGE_USAGE + "\n\n" + DeleteCommand.MESSAGE_USAGE
-                                                        + "\n\n" + ListCommand.MESSAGE_USAGE
-                                                        + "\n\n" + AddAppointmentCommand.MESSAGE_USAGE
-                                                        + "\n\n" + ListAppointmentsCommand.MESSAGE_USAGE
-                                                        + "\n\n" + HelpCommand.MESSAGE_USAGE + "\n\n";
+            + "\n\n" + ListCommand.MESSAGE_USAGE + "\n\n"
+            + HelpCommand.MESSAGE_USAGE + "\n\n";
 
-    private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
-    private static final String FXML = "HelpWindow.fxml";
-
-    @FXML
-    private Button copyButton;
+    private static final Logger logger = LogsCenter.getLogger(EditorWindow.class);
+    private static final String FXML = "EditorWindow.fxml";
+    private final String context;
 
     @FXML
-    private Label helpMessage;
+    private Button returnButton;
+
+    @FXML
+    private TextArea textField;
 
     /**
      * Creates a new HelpWindow.
      *
      * @param root Stage to use as the root of the HelpWindow.
      */
-    public HelpWindow(Stage root) {
+    public EditorWindow(Stage root, String context) {
         super(FXML, root);
-        helpMessage.setText(HELP_MESSAGE + "\n" + COMMANDGUIDE_MESSAGE);
+        this.context = context;
     }
 
     /**
      * Creates a new HelpWindow.
      */
-    public HelpWindow() {
-        this(new Stage());
+    public EditorWindow(String context) {
+        this(new Stage(), context);
     }
 
     /**
@@ -110,5 +107,21 @@ public class HelpWindow extends UiPart<Stage> {
         final ClipboardContent url = new ClipboardContent();
         url.putString(USERGUIDE_URL);
         clipboard.setContent(url);
+    }
+
+    /**
+     * Closes the application.
+     */
+    @FXML
+    private void handleExit() {
+        this.hide();
+    }
+
+    /**
+     * Closes the application.
+     */
+    @FXML
+    private void handleReturn() {
+        this.hide();
     }
 }
