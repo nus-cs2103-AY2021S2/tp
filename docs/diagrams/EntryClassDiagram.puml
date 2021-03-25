@@ -1,0 +1,49 @@
+@startuml
+skinparam arrowThickness 1.1
+skinparam arrowColor RED
+skinparam classAttributeIconSize 0
+
+class EntryDescription {
+  + {static} MESSAGE_CONSTRAINTS : String
+  + {static} VALIDATION_REGEX : String
+  + description : String
+
+  + {static} isValidDescription() : boolean
+  + EntryDescription()
+}
+
+class DateTime {
+  + {static} MESSAGE_CONSTRAINTS : String
+  + value : LocalDateTime
+
+  + {static} isValidDateTime() : boolean
+  + DateTime(String)
+  + getDateTime() : LocalDateTime
+}
+
+class Tag {
+  + {static} MESSAGE_CONSTRAINTS : String
+  + {static} VALIDATION_REGEX : String
+  + tagName : string
+
+  + {static} isValidTagName() : boolean
+  + Tag(String)
+}
+
+class Entry {
+  - description : EntryDescription
+  - startDate : LocalDateTime
+  - endDate : LocalDateTime
+  - tags : HashSet<Tag>
+
+  + Schedule(...)
+}
+
+Entry -right-> "1" EntryDescription
+Entry -down-> "2" DateTime
+DateTime -right[hidden]-> Tag
+EntryDescription -down[hidden]-> Tag
+Entry -> "*" Tag
+
+
+@enduml
