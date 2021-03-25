@@ -96,7 +96,6 @@ public class AddOnCommand extends Command {
         List<Review> updatedReviews = new ArrayList<>();
         updatedReviews.addAll(entryToAddOn.getReviews());
         addOnToEntryDescriptor.getReviews().ifPresent(r -> updatedReviews.addAll(r));
-//        List<Review> updatedReviews = addOnToEntryDescriptor.getReviews().orElse(entryToAddOn.getReviews());
         logger.fine("Added additional Review");
 
 
