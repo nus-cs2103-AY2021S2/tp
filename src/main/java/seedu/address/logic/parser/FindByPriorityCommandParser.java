@@ -23,7 +23,7 @@ public class FindByPriorityCommandParser implements Parser<FindByPriorityCommand
         String trimmedArgs = args.trim();
         String[] parsedArgs = trimmedArgs.split(" ");
 
-        if (parsedArgs.length != 1) {
+        if (parsedArgs.length != 1 || parsedArgs[0].equals("")) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     FindByPriorityCommand.MESSAGE_USAGE));
         }
