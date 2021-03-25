@@ -22,10 +22,12 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final PropertyBook propertyBook;
+
     private final FilteredList<Property> filteredProperties;
 
     private final UserPrefs userPrefs;
     private final AppointmentBook appointmentBook;
+
     private final FilteredList<Appointment> filteredAppointments;
 
     /**
@@ -275,6 +277,20 @@ public class ModelManager implements Model {
     public void sortAppointmentList(Comparator<Appointment> comparator) {
         requireNonNull(comparator);
         this.appointmentBook.sortAppointments(comparator);
+    }
+
+    /**
+     * Undos the previous add, delete or edit commands for appointments.
+     */
+    public void undoAppointmentBook() {
+        setAppointmentBook(this.appointmentBook.undo());
+    }
+
+    /**
+     * Undos the previous add, delete or edit commands for properties.
+     */
+    public void undoPropertyBook() {
+        setPropertyBook(this.propertyBook.undo());
     }
 
     // ===========================================================================================================
