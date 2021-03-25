@@ -288,7 +288,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   *    3a1. Bob requests for the correct data.
   *    3a2. User enters new data.
   *    Steps 3a1-3a2 are repeated until the data entered are correct.
- 
+
       Use case resumes from step 4.
 
       Use case ends.
