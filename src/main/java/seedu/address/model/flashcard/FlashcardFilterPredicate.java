@@ -1,5 +1,7 @@
 package seedu.address.model.flashcard;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -26,6 +28,10 @@ public class FlashcardFilterPredicate implements Predicate<Flashcard> {
      */
     public FlashcardFilterPredicate(List<String> questions, List<String> categories,
             List<String> priorities, List<String> tags) {
+        requireNonNull(questions);
+        requireNonNull(categories);
+        requireNonNull(priorities);
+        requireNonNull(tags);
         this.questions = questions;
         this.categories = categories;
         this.priorities = priorities;
@@ -34,6 +40,11 @@ public class FlashcardFilterPredicate implements Predicate<Flashcard> {
 
     @Override
     public boolean test(Flashcard flashcard) {
+        assert (questions != null);
+        assert (categories != null);
+        assert (priorities != null);
+        assert (tags != null);
+
         return testQuestions(flashcard) && testCategories(flashcard)
                 && testPriorities(flashcard) && testTags(flashcard);
     }

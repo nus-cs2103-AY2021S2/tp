@@ -2,9 +2,32 @@
 layout: page
 title: Developer Guide
 ---
+## Table of Contents
 
-* Appendix: Requirements
-    * Use cases
+* [Setting up, getting started](#setting-up-getting-started)
+* [Design](#design)
+    * [Architecture](#architecture)
+    * [UI component](#ui-component)
+    * [Logic component](#logic-component)
+    * [Model component](#model-component)
+    * [Storage component](#storage-component)
+* [Implementation](#implementation)
+    * [Sort feature](#implemented-sort-feature)
+    * [Filter feature](#implemented-filter-feature)
+* [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+* [Appendix: Requirements](#appendix-requirements)
+    * [Product scope](#product-scope)
+    * [User stories](#user-stories)
+    * [Use cases](#use-cases)
+    * [Non-Functional Requirements](#non-functional-requirements)
+    * [Glossary](#glossary)
+* [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+    * [Launch and shutdown](#launch-and-shutdown)
+    * [Finding flashcards](#finding-flashcards)
+    * [Filtering flashcards](#filtering-flashcards)
+* [Appendix: Effort](#appendix-effort)
+    * [Find feature](#find-feature)
+    * [Filter feature](#filter-feature)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -353,11 +376,60 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
+### \[Implemented\] Filter feature
 
-### \[Proposed\] Data archiving
+The implemented filter mechanism is facilitated by `LogicManager` and `ModelManager`. The user inputs the filter 
+command with specified fields (e.g. question, category, priority, and tag), the `LogicManager` receives and parse this 
+input, and the `ModelManager` updates FlashBack with a list of filtered flashcards matching all specified fields.
 
-_{Explain here how the data archiving feature will be implemented}_
+The filter command is executed by parsing the user input through `FlashBackParser#parseCommand(String userInput)`, which 
+continues to parse the user input through `FilterCommandParser#parse(String args)`. This creates a new `FilterCommand` 
+object that takes in a `FlashcardFilterPredicate` object.
+
+The `FlashcardFilterPredicate` class implements `Predicate<Flashcard>` and takes in:
+* `List<String> questions` — List of question keywords to filter by.
+* `List<String> categories` — List of category keywords to filter by.
+* `List<String> priorities` — List of priority keywords to filter by.
+* `List<String> tags` — List of tag keywords to filter by.
+  
+The filter feature implements the following operations:
+* `FilterCommand#execute(Model model)` — executes filter function to update `Model` to display filtered flashcards.
+* `FlashcardFilterPredicate#test(Flashcard flashcard)` — Compares the flashcard fields with user specified filter fields
+  and returns true only if the flashcard fields matches all the user specified filter fields.
+* `ModelManager#updateFilteredFlashcardList(Predicate<Flashcard> predicate)` — Updates the predicate of 
+  `FilteredList<Flashcard> filteredFlashcards` field in `ModelManager`.
+  
+Given below is an example usage scenario and how the filter mechanism behaves at each step.
+
+Step 1. The user launches the application that contains existing flashcards.
+
+Step 2. The user executes `filter q/formula p/mid` command to filter and display all flashcards that have both `formula`
+contained in its question field and `mid` in its priority field. The `LogicManager#execute(String commandText)` is
+called, which then calls the `FlashBackParser#parseCommand(String userInput)` to parse the user input. This would result
+in calling `FilterCommandParser#parse(String args)` to further parse the user input.
+
+Step 3. `FilterCommandParser#parse(String args)` parse the user input, creating four lists of keywords, one for
+each specified field. A `FlashcardFilterPredicate` object would be created using these four lists, and this 
+`FlashcardFilterPredicate` would be used to create and return a `FilterCommand` object.
+
+Step 4. After returning the `FilterCommand` object to the `LogicManager`, `FilterCommand#execute(Model model)` is called.
+
+Step 5. `FilterCommand#execute(Model model)` then calls 
+`ModelManager#updateFilteredFlashcardList(Predicate<Flashcard> predicate)` which will update the predicate of 
+`FilteredList<Flashcard> filteredFlashcards` field in `ModelManager`.
+
+Step 6. FlashBack is then updated with the new filtered flashcard list.
+
+The following sequence diagram shows how the filter operation works:
+![FilterSequenceDiagram](images/FilterSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The lifeline for `FilterCommandParser` and `FilterCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes the filter command:
+![FilterActivityDiagram](images/FilterActivityDiagram.png)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -406,6 +478,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *` | student | review my own performance after each study session | know what to improve on
 | `* *` | student | sort the cards based on priority | know which cards I should focus on
 | `* *` | long-time user | find what I need easily | search through the list of decks without doing it manually
+| `* *` | student studying many modules | Filter cards according to subjects | it is easier to learn|
 | `*`   | student | export a part of my materials | share it with others
 | `*`   | experienced user | define my own aliases for commands | use them faster
 | `*`   | chemistry/biology Student | use subscripts | see the chemical formula easier
@@ -501,12 +574,12 @@ otherwise) <br /><br />
 
       Use case resumes at step 1.
 
-**Use case: UC05 - Find cards by search criteria**
+**Use case: UC05 - Find flashcards**
 
 **MSS**
 
-1. User requests to find cards by criteria with given keywords.
-1. FlashBack shows a list of flashcards matching given keywords according to search criteria.
+1. User requests to find flashcards with given keywords.
+1. FlashBack shows a list of flashcards matching given keywords.
 
    Use case ends.
 
@@ -516,10 +589,15 @@ otherwise) <br /><br />
 
   Use case ends.
 
-* 1b. The search criteria is invalid or empty keywords.
+* 1b. The input format is invalid.
     * 1b1. FlashBack shows an error message.
 
-      Use case ends
+      Use case ends.
+    
+* 1c. The keywords are empty.
+    * 1c1. FlashBack shows an error message.
+    
+      Use case ends.
 
 **Use case: UC06 - List all flash cards**
 
@@ -589,6 +667,31 @@ Use case ends.
 
       Use case resumes at step 1.
 
+**Use case: UC08 - Filter flashcards**
+
+**MSS**
+
+1. User requests to filter flashcards according to keywords of specified fields.
+1. FlashBack shows a list of flashcards matching keywords of specified fields.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+  
+  Use case ends.
+  
+* 1b. The input format is invalid.
+  * 1b1. FlashBack shows an error message.
+    
+    Use case ends.
+    
+* 1c. The keywords of specified fields are empty.
+  * 1c1. FlashBack shows an error message.
+    
+    Use case ends.
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -605,3 +708,88 @@ Use case ends.
 * **Undoable Command**: A command that modifies the content of FlashBack
 
 --------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Instructions for manual testing**
+
+Given below are instructions to test the app manually.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** 
+These instructions only provide a starting point for testers to work on;
+testers are expected to do more *exploratory* testing.
+
+</div>
+
+### Launch and shutdown
+
+1. Initial launch
+
+    1. Download the jar file and copy into an empty folder
+
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+
+1. Saving window preferences
+
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+
+    1. Re-launch the app by double-clicking the jar file.<br>
+       Expected: The most recent window size and location is retained.
+
+1. Exiting the application
+
+    1. Prerequisites: The application is already launched.
+    
+    1. Test case: `exit`<br>
+       Expected: The application exits and window closes.
+
+### Finding flashcards
+
+1. Finding flashcards in FlashBack
+
+    1. Prerequisites: There must be at least one flashcard in the list.
+       
+    1. Test case: `find`<br>
+       Expected: The list will not be updated, and an invalid command format error will be displayed in the result display.
+       
+    1. Test case: `find equa`<br>
+       Expected: The list will be updated, listing the flashcards that have `equa` contained any of its fields (e.g. question, answer, category, priority, tags). The result display will state the number of flashcards listed.
+       
+    1. Test case: `find newton random`<br>
+       Expected: The list will be updated, listing the flashcards that have either `newton` or `random` contained in any of its fields. The result display will state the number of flashcards listed.
+       
+### Filtering flashcards
+
+1. Filtering flashcards in FlashBack
+
+    1. Prerequisites: There must be at least one flashcard in the list.
+    
+    1. Test case: `filter`<br>
+       Expected: The list will not be updated, and an invalid command format error will be displayed in the result display.
+       
+    1. Test case: `filter q/newton`<br>
+       Expected: The list will be updated, listing the flashcards that have `newton` contained in its question. The result display will state the number of flashcards listed.
+       
+    1. Test case: `filter q/new p/mid t/formula`<br>
+       Expected: The list will be updated, listing the flashcards that have `new` contained in its question, `mid` contained in its priority, and `formula` contained in any of its tags. The result display will state the number of flashcards listed.
+       
+    1. Test case: `filter c/math physics p/mid`<br>
+       Expected: The list will be updated, listing the flashcards that have either `math` or `physics` contained in its question, and `mid` containted in its priority. The result display will state the number of flashcards listed.
+       
+------------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
+
+### Find feature
+
+* Challenge was to use multiple keywords provided by user, look through every field of the flashcard, and displaying any flashcards that have any fields (e.g. question, answer, category, priority, tags) matching any of the provided keywords.
+* AB3 have a `find` feature, but it was only able to search by names and did not have the ability to search through all fields.
+* Enhanced the feature to allow users to search for flashcards using multiple keywords matching any of its fields.
+* With reference from the `find` feature available in AB3, learnt and implemented the feature to search through all fields.
+
+### Filter feature
+
+* Challenge was to parse user input with multiple specified fields (e.g. question, category, priority, tags) regardless of order with multiple keywords, and only displaying flashcards that matched the keywords of all specified fields.
+* AB3 did not have a `filter` feature.
+* Implemented the `filter` feature to allow users to filter flashcards matching the specified fields with multiple keywords.
+* With little reference from the `find` and `add` feature available in AB3, learnt and implemented the feature to match all specified fields.

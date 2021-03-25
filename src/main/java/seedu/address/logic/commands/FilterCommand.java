@@ -21,10 +21,10 @@ public class FilterCommand extends Command {
             + "containing any of the specified keywords (case-insensitive and not full word match) "
             + "and displays them as a list with index numbers.\n"
             + "Parameters: "
-            + PREFIX_QUESTION + "QUESTION [MORE QUESTION] "
-            + PREFIX_CATEGORY + "CATEGORY [MORE CATEGORY] "
-            + PREFIX_PRIORITY + "PRIORITY [MORE PRIORITY] "
-            + PREFIX_TAG + "TAG [MORE TAG]\n"
+            + PREFIX_QUESTION + "QUESTION "
+            + PREFIX_CATEGORY + "CATEGORY "
+            + PREFIX_PRIORITY + "PRIORITY "
+            + PREFIX_TAG + "TAG\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_QUESTION + "Einstein "
             + PREFIX_CATEGORY + "Science "
@@ -33,7 +33,11 @@ public class FilterCommand extends Command {
 
     private final FlashcardFilterPredicate predicate;
 
+    /**
+     * Creates a FilterCommand with the provided {@code FlashcardFilterPredicate}
+     */
     public FilterCommand(FlashcardFilterPredicate predicate) {
+        requireNonNull(predicate);
         this.predicate = predicate;
     }
 
