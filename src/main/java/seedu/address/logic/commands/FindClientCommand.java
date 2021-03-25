@@ -46,18 +46,7 @@ public class FindClientCommand extends Command {
         int propertyListSize = model.getFilteredPropertyList().size();
         int appointmentListSize = model.getFilteredAppointmentList().size();
 
-        String propertyMsg = propertyListSize > 1
-            ? Messages.MESSAGE_PROPERTIES_LISTED_OVERVIEW
-            : Messages.MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR;
-
-        String appointmentMsg = appointmentListSize > 1
-            ? Messages.MESSAGE_APPOINTMENT_LISTED_OVERVIEW
-            : Messages.MESSAGE_APPOINTMENT_LISTED_OVERVIEW_SINGULAR;
-
-        propertyMsg = String.format(propertyMsg, propertyListSize);
-        appointmentMsg = String.format(appointmentMsg, appointmentListSize);
-
-        return new CommandResult(appointmentMsg + "\n" + propertyMsg);
+        return new CommandResult(Messages.getClientFindSuccessMessage(propertyListSize, appointmentListSize));
     }
 
     @Override
