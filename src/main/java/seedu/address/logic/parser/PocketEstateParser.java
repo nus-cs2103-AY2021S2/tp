@@ -20,7 +20,9 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindAppointmentCommand;
 import seedu.address.logic.commands.FindPropertyCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListAllCommand;
+import seedu.address.logic.commands.ListAppointmentCommand;
+import seedu.address.logic.commands.ListPropertyCommand;
 import seedu.address.logic.commands.SortAppointmentCommand;
 import seedu.address.logic.commands.SortPropertyCommand;
 import seedu.address.logic.commands.UndoCommand;
@@ -95,14 +97,11 @@ public class PocketEstateParser {
         // To satisfy the condition of "extraneous parameters will be ignored" in command format description
         if (commandWord.startsWith(HelpCommand.COMMAND_WORD)) {
             return new HelpCommand();
-        } else if (commandWord.startsWith(ListCommand.COMMAND_WORD)) {
-            return new ListCommand();
         } else if (commandWord.startsWith(ExitCommand.COMMAND_WORD)) {
             return new ExitCommand();
         }
 
         switch (commandWord) {
-
         case AddPropertyCommand.COMMAND_WORD:
             return new AddPropertyCommandParser().parse(arguments);
 
@@ -147,6 +146,15 @@ public class PocketEstateParser {
 
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
+            
+        case ListAllCommand.COMMAND_WORD:
+            return new ListAllCommand();
+
+        case ListPropertyCommand.COMMAND_WORD:
+            return new ListPropertyCommand();
+
+        case ListAppointmentCommand.COMMAND_WORD:
+            return new ListAppointmentCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

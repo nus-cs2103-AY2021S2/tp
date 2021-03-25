@@ -34,12 +34,14 @@ public class AppointmentBook implements ReadOnlyAppointmentBook {
     }
 
     /**
-     * Creates an Appointment Book using the Appointment in the {@code toBeCopied}
+     * Creates an Appointment Book using the appointments in the {@code toBeCopied}.
      */
     public AppointmentBook(ReadOnlyAppointmentBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
+
+    // =====  List overwrite operations  =========================================================================
 
     /**
      * Replaces the contents of the appointment list with {@code appointments}.
@@ -56,6 +58,8 @@ public class AppointmentBook implements ReadOnlyAppointmentBook {
         requireNonNull(newData);
         setAppointments(newData.getAppointmentList());
     }
+
+    // =====  Appointment-level operations  ======================================================================
 
     /**
      * Returns true if an appointment with the same identity as {@code appointment} exists in the app.
@@ -78,7 +82,6 @@ public class AppointmentBook implements ReadOnlyAppointmentBook {
         previousAppointmentLists.push(new ArrayList<>(appointments.asUnmodifiableObservableList()));
         appointments.add(appointment);
     }
-
 
     /**
      * Replaces the given appointment {@code target} in the list with {@code editedAppointment}.
@@ -118,12 +121,11 @@ public class AppointmentBook implements ReadOnlyAppointmentBook {
         return previousAppointmentBook;
     }
 
-    //// util methods
+    // =====  Utility methods  ===================================================================================
 
     @Override
     public String toString() {
         return appointments.asUnmodifiableObservableList().size() + " appointments";
-        // TODO: refine later
     }
 
     @Override
