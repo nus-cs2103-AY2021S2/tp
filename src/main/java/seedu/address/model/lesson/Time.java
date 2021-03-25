@@ -3,7 +3,7 @@ package seedu.address.model.lesson;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-public class Time implements Comparable<Time> {
+public class Time {
 
     public static final String VALIDATION_REGEX = "^(0[0-9]|1[0-9]|2[0-3])[0-5][0-9]$";
     public static final String MESSAGE_CONSTRAINTS = "Time should be in HHMM format, from 0000 to 2359";
@@ -27,18 +27,6 @@ public class Time implements Comparable<Time> {
         return test.matches(VALIDATION_REGEX);
     }
 
-    @Override
-    public int compareTo(Time other) {
-        int thisTime = Integer.parseInt(timeOfTuition);
-        int otherTime = Integer.parseInt(timeOfTuition);
-        if (thisTime < otherTime) {
-            return -1;
-        } else if (thisTime > otherTime) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
     @Override
     public String toString() {
         return timeOfTuition;
