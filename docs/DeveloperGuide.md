@@ -122,14 +122,13 @@ call.
 
 The `Model`
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that
+* stores the FlashBack data.
+* exposes an unmodifiable `ObservableList<Flashcard>` that can be 'observed' e.g. the UI can be bound to this list so that
   the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
+<div markdown="span" class="alert-alert-info">
+:information_source: Due to plantUML automatic placement of elements, some multiplicities are in the wrong position.
 </div>
 
 ### Storage component
@@ -163,7 +162,21 @@ It implements the following operations:
 according to an option and shows the updated list.
 * `SortOptions#getOption(String option)` - Returns the enum according to the specified option
 
+Given below is an example usage scenario and how the sort mechanism behaves at each step.
+
+Step 1. User launches the application.
+
+Step 2. User executes `sort priority -d`. This command get parsed and 
+`Model#sortFilteredFlashcardList` is called with the respective comparator, 
+resulting in flashcards sorted by decreasing priority.
+
+<div markdown="span" class="alert-alert-info">
+:information_source: The lifeline of s should end at the X marker, but due to plantUML limitation, it reaches
+the end of the diagram.
+</div>
+
 The following sequence diagram illustrates how the sort function operates:
+
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
 
 
