@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -120,6 +121,12 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedTask);
 
         taskTracker.setTask(target, editedTask);
+    }
+
+    @Override
+    public void sortTasks(Comparator<Task> comparator) {
+        requireNonNull(comparator);
+        taskTracker.sortTasks(comparator);
     }
 
     //=========== Filtered Task List Accessors =============================================================
