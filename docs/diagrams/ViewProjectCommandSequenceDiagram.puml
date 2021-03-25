@@ -1,0 +1,57 @@
+@startuml
+!include style.puml
+
+Participant ":MainWindow" as mainWindow UI_COLOR
+Participant ":LogicManager" as logic LOGIC_COLOR_T4
+Participant ":ViewProjectCommand" as command LOGIC_COLOR_T3
+Participant ":ViewProjectUiCommand" as uiCommand LOGIC_COLOR_T2
+Participant ":CommandResult" as commandResult LOGIC_COLOR_T1
+
+
+--> mainWindow
+activate mainWindow UI_COLOR
+
+mainWindow -[UI_COLOR]> logic : execute("viewP 1")
+activate logic LOGIC_COLOR_T4
+
+logic -[LOGIC_COLOR_T4]> command : command.execute(model)
+activate command LOGIC_COLOR_T3
+
+create uiCommand
+command -[LOGIC_COLOR_T3]> uiCommand
+activate uiCommand LOGIC_COLOR_T2
+
+uiCommand --[LOGIC_COLOR_T2]> command
+deactivate uiCommand
+
+create commandResult
+command -[LOGIC_COLOR_T3]> commandResult
+activate commandResult LOGIC_COLOR_T1
+
+commandResult --[LOGIC_COLOR_T1]> command
+deactivate commandResult
+
+command -[LOGIC_COLOR_T3]-> logic
+deactivate command
+
+logic --[LOGIC_COLOR_T4]> mainWindow
+deactivate logic
+
+mainWindow -[UI_COLOR]> commandResult : commandResult.getUiCommand()
+activate commandResult LOGIC_COLOR_T1
+
+commandResult --[LOGIC_COLOR_T1]> mainWindow
+deactivate commandResult
+
+mainWindow -[UI_COLOR]> uiCommand : uiCommand.execute(this)
+activate uiCommand LOGIC_COLOR_T2
+
+uiCommand -[LOGIC_COLOR_T1]> mainWindow : selectProject(projectIndex)
+activate mainWindow UI_COLOR
+
+mainWindow --[UI_COLOR]> uiCommand
+deactivate mainWindow
+
+uiCommand --[LOGIC_COLOR_T1]> mainWindow
+deactivate uiCommand
+@enduml
