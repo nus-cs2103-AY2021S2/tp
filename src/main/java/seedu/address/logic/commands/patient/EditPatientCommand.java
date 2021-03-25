@@ -13,6 +13,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -127,6 +128,7 @@ public class EditPatientCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditPatientDescriptor {
+        private UUID uuid;
         private Name name;
         private Phone phone;
         private Email email;
@@ -149,9 +151,15 @@ public class EditPatientCommand extends Command {
 
         /**
          * Returns true if at least one field is edited.
+         * UUID is not checked since an edited patient can have a different UUID,
+         * since it may be automatically generated.
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+        }
+
+        public void setUuid(UUID uuid) {
+            this.uuid = uuid;
         }
 
         public void setName(Name name) {

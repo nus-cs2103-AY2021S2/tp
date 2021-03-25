@@ -1,42 +1,49 @@
 {
-  "_comment": "AddressBook save file which contains the same Patient values as in TypicalPatients#getTypicalAPatientRecords()",
+  "_comment": "PatientRecords save file which contains the same Patient values as in TypicalPatients#getTypicalAPatientRecords()",
   "patients" : [ {
+    "uuid" : "64ed5bc0-42bb-4e20-ac70-7d1e6683685b",
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "tagged" : [ "friends" ]
   }, {
+    "uuid" : "3fcc89d1-3d68-4a7d-a1f5-17ac202eb83f",
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
+    "uuid" : "89c57cca-54e1-49ca-8b6c-ff0c7a632d20",
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
     "tagged" : [ ]
   }, {
+    "uuid" : "5f71a395-f7a3-460f-b358-937808b8a6dd",
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "tagged" : [ "friends" ]
   }, {
+    "uuid" : "60fe72ad-7d3c-450b-8eb7-16f0d6c78a3c",
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "tagged" : [ ]
   }, {
+    "uuid" : "d90780b1-0f2c-479f-8b81-d46497e2966d",
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "tagged" : [ ]
   }, {
+    "uuid" : "9703d0d9-54a9-462f-937b-8db0bfc74682",
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",

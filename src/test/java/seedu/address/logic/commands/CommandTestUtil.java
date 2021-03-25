@@ -30,6 +30,8 @@ import seedu.address.testutil.EditPatientDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    public static final String VALID_UUID_AMY = "564ae8c3-d0e6-4597-93ae-fe88c21a819f";
+    public static final String VALID_UUID_BOB = "8e80ae4c-6435-408e-918c-3d73bc3df1e4";
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -65,10 +67,12 @@ public class CommandTestUtil {
     public static final EditPatientCommand.EditPatientDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditPatientDescriptorBuilder().withName(VALID_NAME_AMY)
+        DESC_AMY = new EditPatientDescriptorBuilder()
+                .withUuid(VALID_UUID_AMY).withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB)
+        DESC_BOB = new EditPatientDescriptorBuilder()
+                .withUuid(VALID_UUID_BOB).withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
