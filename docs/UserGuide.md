@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-ModuleBook 3.5 is the go-to tool for busy students/professionals who are confident that typing can save them time.
+ModuleBook3.5 is the go-to tool for busy students/professionals who are confident that typing can save them time.
 
 * Table of Contents
 {:toc}
