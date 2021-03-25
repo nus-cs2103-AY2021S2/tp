@@ -29,7 +29,7 @@ import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.NameAndSchoolContainsKeywordsPredicate;
+import seedu.address.model.person.NameSchoolAndTagContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code SearchCommand}.
@@ -40,11 +40,11 @@ public class SearchCommandTest {
 
     @Test
     public void equals() {
-        NameAndSchoolContainsKeywordsPredicate firstPredicate =
-                new NameAndSchoolContainsKeywordsPredicate(Collections.singletonList("first"),
+        NameSchoolAndTagContainsKeywordsPredicate firstPredicate =
+                new NameSchoolAndTagContainsKeywordsPredicate(Collections.singletonList("first"),
                         null, null);
-        NameAndSchoolContainsKeywordsPredicate secondPredicate =
-                new NameAndSchoolContainsKeywordsPredicate(Collections.singletonList("second"),
+        NameSchoolAndTagContainsKeywordsPredicate secondPredicate =
+                new NameSchoolAndTagContainsKeywordsPredicate(Collections.singletonList("second"),
                         Collections.singletonList("Jurong"), Collections.singletonList("B"));
 
         SearchCommand searchFirstCommand = new SearchCommand(firstPredicate);
@@ -70,7 +70,7 @@ public class SearchCommandTest {
     @Test
     public void execute_multipleNameKeywords_multipleStudentsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        NameAndSchoolContainsKeywordsPredicate predicate = preparePredicate(" n/Kurz Elle Kunz");
+        NameSchoolAndTagContainsKeywordsPredicate predicate = preparePredicate(" n/Kurz Elle Kunz");
         SearchCommand command = new SearchCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -80,7 +80,7 @@ public class SearchCommandTest {
     @Test
     public void execute_multipleSchoolKeywords_multipleStudentsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
-        NameAndSchoolContainsKeywordsPredicate predicate = preparePredicate(" s/Clementi Town");
+        NameSchoolAndTagContainsKeywordsPredicate predicate = preparePredicate(" s/Clementi Town");
         SearchCommand command = new SearchCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -90,7 +90,7 @@ public class SearchCommandTest {
     @Test
     public void execute_multipleTagKeywords_multipleStudentsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
-        NameAndSchoolContainsKeywordsPredicate predicate = preparePredicate(" t/sec3 math");
+        NameSchoolAndTagContainsKeywordsPredicate predicate = preparePredicate(" t/sec3 math");
         SearchCommand command = new SearchCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -100,7 +100,7 @@ public class SearchCommandTest {
     @Test
     public void execute_nonMatchingKeywords_zeroStudentsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        NameAndSchoolContainsKeywordsPredicate predicate = preparePredicate(" n/Jade s/abc");
+        NameSchoolAndTagContainsKeywordsPredicate predicate = preparePredicate(" n/Jade s/abc");
         SearchCommand command = new SearchCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -110,7 +110,7 @@ public class SearchCommandTest {
     @Test
     public void execute_keywordsOrderSwitched_success() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
-        NameAndSchoolContainsKeywordsPredicate predicate = preparePredicate(" s/West Jurong");
+        NameSchoolAndTagContainsKeywordsPredicate predicate = preparePredicate(" s/West Jurong");
         SearchCommand command = new SearchCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -120,7 +120,7 @@ public class SearchCommandTest {
     /**
      * Parses {@code userInput} into a {@code NameAndSchoolContainsKeywordsPredicate}.
      */
-    private NameAndSchoolContainsKeywordsPredicate preparePredicate(String userInput) {
+    private NameSchoolAndTagContainsKeywordsPredicate preparePredicate(String userInput) {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(userInput, PREFIX_NAME, PREFIX_SCHOOL, PREFIX_TAG);
         System.out.println(argMultimap);
@@ -142,7 +142,7 @@ public class SearchCommandTest {
         List<String> schoolKeywordsList = schoolKeywords == null ? null : Arrays.asList(schoolKeywords);
         List<String> tagKeywordsList = tagKeywords == null ? null : Arrays.asList(tagKeywords);
 
-        return new NameAndSchoolContainsKeywordsPredicate(
+        return new NameSchoolAndTagContainsKeywordsPredicate(
                 nameKeywordsList, schoolKeywordsList, tagKeywordsList);
     }
 

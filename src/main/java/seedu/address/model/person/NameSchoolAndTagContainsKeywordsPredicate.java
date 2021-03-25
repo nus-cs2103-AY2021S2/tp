@@ -9,7 +9,7 @@ import seedu.address.commons.util.StringUtil;
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
-public class NameAndSchoolContainsKeywordsPredicate implements Predicate<Person> {
+public class NameSchoolAndTagContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> nameKeywords;
     private final List<String> schoolKeywords;
     private final List<String> tagKeywords;
@@ -21,8 +21,8 @@ public class NameAndSchoolContainsKeywordsPredicate implements Predicate<Person>
      * @param schoolKeywords List of keywords to be matched the school
      * @param tagKeywords List of keywords to be matched with tags
      */
-    public NameAndSchoolContainsKeywordsPredicate(List<String> nameKeywords,
-                                                  List<String> schoolKeywords, List<String> tagKeywords) {
+    public NameSchoolAndTagContainsKeywordsPredicate(List<String> nameKeywords,
+                                                     List<String> schoolKeywords, List<String> tagKeywords) {
         this.nameKeywords = nameKeywords;
         this.schoolKeywords = schoolKeywords;
         this.tagKeywords = tagKeywords;
@@ -81,11 +81,11 @@ public class NameAndSchoolContainsKeywordsPredicate implements Predicate<Person>
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof NameAndSchoolContainsKeywordsPredicate // instanceof handles nulls
-                && nameKeywords.equals(((NameAndSchoolContainsKeywordsPredicate) other).nameKeywords)
-                && schoolKeywords.equals(((NameAndSchoolContainsKeywordsPredicate) other)
+                || (other instanceof NameSchoolAndTagContainsKeywordsPredicate // instanceof handles nulls
+                && nameKeywords.equals(((NameSchoolAndTagContainsKeywordsPredicate) other).nameKeywords)
+                && schoolKeywords.equals(((NameSchoolAndTagContainsKeywordsPredicate) other)
                 .schoolKeywords)
-                && tagKeywords.equals(((NameAndSchoolContainsKeywordsPredicate) other)
+                && tagKeywords.equals(((NameSchoolAndTagContainsKeywordsPredicate) other)
                 .tagKeywords)); // state check
     }
 
