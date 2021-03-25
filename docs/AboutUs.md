@@ -28,7 +28,7 @@ We are the team behind HeliBook. We are based in the [School of Computing, Natio
 [[github](http://github.com/clarlzx)] [[portfolio](team/clarlzx.md)]
 
 * Role: Deliverables and deadlines
-* Responsibilities: Search Contacts
+* Responsibilities: UI, Search Contacts
 
 ### Edeline Tenges
 
@@ -38,7 +38,7 @@ We are the team behind HeliBook. We are based in the [School of Computing, Natio
 [[portfolio](team/edelinetenges.md)]
 
 * Role: Graphics and Design
-* Responsibilities: UI, Sorting Contacts
+* Responsibilities: Sorting Contacts
 
 ### Huang Weicong
 
