@@ -25,7 +25,7 @@ CoLAB (Collaboration Lab) is a **desktop app for students currently enrolled in 
 - Contacts management
 - Today View
 
-With CoLAB, you can efficiently manage all your school projects through our comprehensive project management tools. We have put in a lot of time and effort into designing a user-friendly User Interface (UI) such that CoLAB remains intuitive to both first-time users and seasoned ones. We look forward to seeing what you accomplish with CoLAB with a clean and inviting UI. What are you waiting for? Get your journey started with the [Quick Start section](#3-quick-start)!
+With CoLAB, you can efficiently manage all your school projects through our comprehensive project management tools. We have put in a lot of time and effort into designing a user-friendly User Interface (UI) such that CoLAB remains intuitive to both first-time users and seasoned ones. We look forward to seeing what you accomplish with CoLAB with a clean and inviting UI. What are you waiting for? Get your journey started with the [Quick Start section](#3quick-start)!
 
 ## **2.About**
 
@@ -35,15 +35,15 @@ This section serves to familarise you with information and terms that would help
 
 We have included a large set of features in CoLAB to give you the greatest flexibility over what you can do with it. As such, this User Guide has been structured in a manner that allows you to easily find what you are looking for. 
 
-In [Section 2.2: Reading this Document](#2.2-reading-this-document), you will find useful tips on efficiently reading this document.
+In [Section 2.2: Reading this Document](#22-reading-this-document), you will find useful tips on efficiently reading this document.
 
-In [Section 3: Quick Start](#3-quick-start), you will find a quick start guide to get you started with using CoLAB.
+In [Section 3: Quick Start](#3quick-start), you will find a quick start guide to get you started with using CoLAB.
 
-In [Section 4: Features](#4-features), you will find documentation on all of CoLAB's commands and features.
+In [Section 4: Features](#4features), you will find documentation on all of CoLAB's commands and features.
 
-In [Section 5: FAQ](#5-faq), you may find answers to some questions you may have on using CoLAB.
+In [Section 5: FAQ](#5faq), you may find answers to some questions you may have on using CoLAB.
 
-In [Section 6: Command Summary](#6-command-summary), you will a summary on CoLAB's commands and features.
+In [Section 6: Command Summary](#6command-summary), you will a summary on CoLAB's commands and features.
 
 You can also easily sift through CoLAB's various commands and features by referring to the Table of Contents at the beginning of this User Guide.
 
@@ -55,9 +55,7 @@ This subsection serves to provide explanations on the symbols, syntax and techni
 
 Different sections of the application window will be referred to by the names described in the image shown below:
 
-<div align="center">
-  <img alt="logo" src="images/app_window_sections.png">
-</div>
+![App Window Sections](images/app_window_sections.png)
 
 #### 2.2.2 Special Formats
 
@@ -117,7 +115,7 @@ Different sections of the application window will be referred to by the names de
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#4features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
