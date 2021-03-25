@@ -43,7 +43,7 @@ The rest of the App consists of four components.
 Each of the four components,
 
 * defines its *API* in an `interface` with the same name as the Component.
-* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
+* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point).
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
@@ -339,7 +339,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <!-- Updated and maintained by [Yucheng](https://github.com/cheng20010201) -->
 1.  The product should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  The product should be available for download and usage after each release.
-3.  The product'size should not exceed 100MB.
+3.  The product's size should not exceed 100MB.
 4.  The product should be an offline application, which should work either with or without presence of internet
     connection.
 5.  The product should allow one user to have different instances of the application running at the same time.
