@@ -326,7 +326,27 @@ Coupled with flag `--remove`, edit can remove all specified tags from all contac
 * Syntax for removing tags for all Persons in displayed list: 
   `edit --remove -t TAG [-t TAG]...`
   
-* 
+Given below is an example usage scenario and how the `edit` mechanism behaves.
+
+1. The user executes `edit --remove -t friends -t pilot` command to edit all persons with `friends` and/ or `pilot` tags by removing it from their list of tags.
+
+2. `LogicManager` calls `parseCommand("edit --remove -t friends -t pilot")` of `AddressBookParser` to parse this user command.
+
+3. `AddressBookParser` recognises the command word `edit` and creates an `EditCommandParser`.
+
+4. `AddressBookParser` calls `parse(--remove -t friends -t pilot)` of `EditCommandParser`.
+
+5. `EditCommandParser` detects flag `--remove` and calls `parseTags(argMultimap.getAllValues(PREFIX_TAG)` of `ParserUtil` 
+   to processes the input tags into a `Set<Tag>`.
+   
+6. `EditCommandParser` then passes this `Set<Tag>` as input to create an `EditToRemoveTagCommand` which is returned to the `LogicManager`.
+
+7. `LogicManager` executes the `EditToRemoveTagCommand` by calling `execute(model)`.
+
+8. `EditToRemoveTagCommand` loops through the set of tags and persons in displayed list to remove the `friends` and `pilot` tags from each person in the displayed list.
+
+9. `EditToRemoveTagCommand` creates a `CommandResult` with the success output message and returns it to `LogicManager`.
+
 
 ### [Feature] Marking `Event` as Done
 
@@ -356,11 +376,11 @@ Given below is an example usage scenario and how `edone` will work.
 
 6. `EDoneCommandParser` creates an `EDoneCommand(List<Index>)` and returns it to `LogicManager`.
 
-7. `LogicManger` excutes the `EDoneCommand`.
+7. `LogicManger` executes the `EDoneCommand`.
 
 8. `EDoneCommand` loops through the list of index, and set the events, at the given index, as a done event.
 
-9. `EDoneCommand` creates an `CommandResult` containing the output message and returns it to `LogicManager`.
+9. `EDoneCommand` creates a `CommandResult` containing the output message and returns it to `LogicManager`.
 
 Given below is the full Sequence Diagram for interactions for the `execute("edone 1 2 3")` API call.
 
