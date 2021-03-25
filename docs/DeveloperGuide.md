@@ -2,6 +2,11 @@
 layout: page
 title: Developer Guide
 ---
+
+
+
+## **Overview**
+
 ClientBook is an application for managing client contacts, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 Aimed at insurance agents who are always on the move, ClientBook aims to provide the following utilities:
 * Minimise usage of the trackpad
@@ -25,19 +30,21 @@ ClientBook thus aims to keep things simple, by only providing what is essential,
 These 3 design ideals should be adhered to as much as possible when implementing new features for your version of the application.
 This Developer Guide aims to provide insights for other developers on how the initial functionalities and system architecture were designed and implemented.
 
-
+### Table of Contents
 * Table of Contents
 {:toc}
 
-<br>
-<br>
+<br><br>
+
+------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
-<br>
-<br>
+<br><br>
+
+------------------------------------------------------------------------
 
 ## **Definitions**
 
@@ -73,9 +80,9 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 9. **UI** (User Interface) An interface for a user to interact with the program.
 
+<br><br>
 
-<br>
-<br>
+------------------------------------------------------------------------
 
 ## **Design**
 
@@ -160,7 +167,7 @@ The `UI` component,
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a client contact).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -196,12 +203,67 @@ The `Storage` component,
 * can save `UserPref` objects in JSON format and read it back.
 * can save the address book data in JSON format and read it back.
 
-<br>
-<br>
+<br><br>
 
-## **Implementation** TODO
+------------------------------------------------------------------------
+
+## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Feature to display the insurance policies associated with a selected client
+
+#### Motivation
+
+It would not be a good user experience if there was no easy way for the user to quickly retrieve the insurance policy URLs 
+from ClientBook. Since the application's contact card interface does not support direct copy-paste functionality, a new approach 
+to display and facilitate retrieval of this essential information had to be implemented. Below is a succinct but complete 
+explanation of how the chosen approach, which is to implement a `PolicyCommand` `Command`, works. Other alternatives 
+we considered and the design considerations are further elaborated below.
+
+#### Implementation
+
+A new command `PolicyCommand` was created. It extends the abstract class `Command`, overriding and implementing its `execute` 
+method. When `PolicyCommand#execute()` is called, all the insurance policies and their associated policy URLs are fetched from the 
+selected `Person` client through `Person#getPersonNameAndAllPoliciesInString()`.
+
+Below is an example usage scenario and how the information and data are passed around at each step.
+
+**Step 1.** The user types `policy 1` into the input box.
+
+**Step 2.** `MainWindow` receives the `commandText` (`policy 1`), which is then executed by `LogicManager`.
+
+**Step 3.** `AddressBookParser` then parses the full `commandText`, returning a `Command`. In this case, it would return a 
+`PolicyCommand`, which would contain the index of the selected client in the displayed list (which in this case is 1).
+
+**Step 4.** `PolicyCommand`then executes, returning a `CommandResult`. This `CommandResult` contains the concatenated string 
+of all the insurance policies and their associated URLs as the feedback. The `CommandResult` also contains a `boolean` value 
+indicating whether a popup window is to be displayed. This `boolean` value can be retrieved using the method `CommandResult#isShowPolicies()`.
+
+**Step 5.** This `CommandResult` is passed back to `MainWindow`, which then checks if the method `CommandResult#isShowPolicies()` 
+returns true, and launches the insurance policy window if so.
+
+Below is a sequence diagram illustrating the flow of this entire process.
+
+<p align="center"><img src="images/PolicyCommandDiagram.png"></p>
+
+#### Design Considerations
+
+Since `PolicyCommand` is just one of the many `Commands`, conscious effort had to be made to ensure that the behaviour of 
+its methods strictly resembled those of its fellow `Command` classes. 
+
+#### Alternatives considered
+
+* **Alternative 1 (current choice):** Display the insurance policies and their URLs in a popup window, retrieve URL through a 'Copy URL button'
+  * Have a popup window to display the insurance policies and their associated URLs.
+  * The window should also have a 'Copy URL' button similar to that in the 'help' window that appears then `help` is called.
+  * Pros: Easy to implement a button.
+  * Cons: Not the best way to display a hyperlink/URL.
+    
+
+* **Alternative 2:** Display the insurance policies and their URls in a popup window, where the URLs upon click launches the browser
+  * Pros: More intuitive in terms of user experience.
+  * Cons: Harder to implement.
 
 
 ### \[Proposed\] Undo/redo feature
@@ -226,13 +288,13 @@ Given below is an example usage scenario and how the undo/redo mechanism behaves
 
 <br>
 
-**Step 2**. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+**Step 2**. The user executes `delete 5` command to delete the 5th client contacts in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 <p align="center"><img src="images/UndoRedoState1.png"></p>
 
 <br>
 
-**Step 3**. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+**Step 3**. The user executes `add n/David …​` to add a new client contacts. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 <p align="center"><img src="images/UndoRedoState2.png"></p>
 <div markdown="span" class="alert alert-secondary">
@@ -240,7 +302,7 @@ Given below is an example usage scenario and how the undo/redo mechanism behaves
 </div>
 <br>
 
-**Step 4**. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+**Step 4**. The user now decides that adding the client contacts was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 <p align="center"><img src="images/UndoRedoState3.png"></p>
 
@@ -280,7 +342,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <p align="center"><img src="images/CommitActivityDiagram.png" height="90%"></p>
 
-#### Design consideration:
+#### Design consideration
 
 ##### Aspect: How undo & redo executes
 
@@ -290,12 +352,12 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the client contact being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
+<br><br>
 
-<br>
+------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -305,7 +367,9 @@ _{more aspects and alternatives to be added}_
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
-<br>
+<br><br>
+
+------------------------------------------------------------------------
 
 ## **Appendix: Requirements**
 
@@ -348,8 +412,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | insurance agent on the go                  | lock ClientBook with a password| prevent the leakage of my clients' information                         |
 | `* *`    | insurance agent                            | schedule meetings with clients | check what meetings I have with my clients                             |
 
-*{More to be added}*
-
 ### Use cases
 
 (For all use cases below, the **System** is the `ClientBook` and the **Actor** is the `user`, unless specified otherwise)
@@ -358,10 +420,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list clients
-2.  ClientBook shows a list of clients
-3.  User requests to delete a specific client in the list
-4.  ClientBook deletes the client
+1.  User requests to list clients.
+    
+1.  ClientBook shows a list of clients.
+    
+1.  User requests to delete a specific client in the list.
+    
+1.  ClientBook deletes the client.
 
     Use case ends.
 
@@ -383,8 +448,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add a client
-2.  ClientBook adds the client.
+1.  User requests to add a client.
+    
+1.  ClientBook adds the client.
 
     Use case ends.
 
@@ -402,14 +468,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list clients
-2.  ClientBook shows a list of clients
+1.  User requests to list clients.
+    
+2.  ClientBook shows a list of clients.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+2a. The list is empty.
 
   Use case ends.
 
@@ -419,10 +486,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list clients
-2.  ClientBook shows a list of clients
-3.  User requests to edit a specific client in the list
-4.  ClientBook edits the client
+1.  User requests to list clients.
+    
+2.  ClientBook shows a list of clients.
+    
+3.  User requests to edit a specific client in the list.
+    
+4.  ClientBook edits the client.
 
     Use case ends.
 
@@ -444,8 +514,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to find clients with keywords
-2.  ClientBook shows a list of clients that matches keywords
+1.  User requests to find clients with keywords.
+    
+2.  ClientBook shows a list of clients that matches keywords.
 
     Use case ends.
 
@@ -461,8 +532,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to filter clients with details
-2.  ClientBook shows a list of clients that matches details
+1.  User requests to filter clients with details.
+    
+2.  ClientBook shows a list of clients that matches details.
 
     Use case ends.
 
@@ -478,7 +550,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to sort clients with the specified attribute and direction
+1.  User requests to sort clients with the specified attribute and direction.
+    
 2.  ClientBook shows the sorted list of clients.
 
     Use case ends.
@@ -525,7 +598,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case 9: Lock ClientBook**
 
 **MSS**
+
 1. User requests to lock ClientBook.
+   
 2. ClientBook is locked.
 
     Use case ends.
@@ -533,8 +608,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. ClientBook is already locked but user did not enter the current password.
-    * 1a1. ClientBook shows an error message. Use case resumes at step 1.
+  
+    * 1a1. ClientBook shows an error message. Use case resumes at step 1. <br><br>
+    
 * 1b. ClientBook is already locked and user entered the incorrect current password.
+  
     * 1b1. ClientBook shows an error message. Use case resumes at step 1.
 
 <br>
@@ -542,31 +620,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case 10: Unlock ClientBook**
 
 **MSS**
+
 1. User requests to unlock ClientBook.
+   
 2. ClientBook is unlocked.
 
     Use case ends.
 
 **Extensions**
-* 1a. User enters the incorrect current password that is used to lock ClientBook.
-    * 1a1. ClientBook shows an error message. Use case resumes at step 1.
 
-*{More to be added}*
+* 1a. User enters the incorrect current password that is used to lock ClientBook.
+  
+    * 1a1. ClientBook shows an error message. Use case resumes at step 1.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+    
 2.  Should be able to hold up to 1000 clients without a noticeable sluggishness in performance for typical usage.
+    
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  Should be able to have the client information stored in a file that can easily transfer/share between computers
+    
+4.  Should be able to have the client information stored in a file that can easily transfer/share between computers.
+    
 5.  Should be able to use ClientBook even if there is no internet around the vicinity.
+    
 6.  Should be able to have ClientBook stay on for a long period of time.
 
-*{More to be added}*
+<br><br>
 
-
-
---------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
 
@@ -590,30 +673,59 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
+      
+### Viewing a client's policies
 
-1. _{ more test cases …​ }_
+1. Displaying all policies associated with a selected client who has no insurance policies
 
-### Deleting a person
+    *  Prerequisites: 
+       * List all client contacts using the list command. 
+       * Multiple client contacts in the list.
+    
+    * Test case: `policy 2`
+       * Expected: A small window pops up, with a message that says the selected client has no policies currently.
 
-1. Deleting a person while all persons are being shown
+1. Displaying all policies associated with a selected client who has insurance policies
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    * Prerequisites: 
+       * List all client contacts using the list command. 
+       * Multiple client contacts in the list. 
+       * Client to be selected should have at least 1 insurance policy.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    * Test case: `policy 3`
+       * Expected: A small window pops up, displaying the insurance policies associated with the selected client. If the insurance policies have URLs, a "Copy URL" button will be displayed beside the URL.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    * Test case: `policy 0`
+       * Expected: No display window appears. Error details shown in the status message.
+ 
+    * Other incorrect policy commands to try: `policy`, `policy x`, `...` (where x is larger than the list size)
+       * Expected: Similar to previous.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+### Deleting a client contact
 
-1. _{ more test cases …​ }_
+1. Deleting a client contact while all client contacts are being shown
+
+   * Prerequisites: 
+      * List all client contacts using the `list` command. 
+      * Multiple client contacts in the list.
+
+   * Test case: `delete 1`
+      * Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+
+   * Test case: `delete 0`
+      * Expected: No client contact is deleted. Error details shown in the status message. Status bar remains the sameass
+
+   * Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)
+      * Expected: Similar to previous.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   * Prerequisites: 
+      * Remove the clientbook.zip file from the folder with name 'data' in the same directory as your clientbook.jar file. 
+      * Ensure that the data folder is empty.
+    
+   * Test case: Launch ClientBook
+      * Expected: ClientBook launches and loads the data of the sample contacts.
 
-1. _{ more test cases …​ }_
