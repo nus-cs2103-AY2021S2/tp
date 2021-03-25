@@ -13,11 +13,11 @@ public enum Theme {
      */
     public static List<String> getStyleSheets(Theme theme) {
         switch (theme) {
-        case PASTEL:
-            return List.of("view/PinkPastelTheme.css", "view/ExtensionsPinkPastel.css");
-        case DARK: // fallthrough
-        default:
+        case DARK:
             return List.of("view/DarkTheme.css", "view/Extensions.css");
+        case PASTEL: // fallthrough
+        default:
+            return List.of("view/PinkPastelTheme.css", "view/ExtensionsPinkPastel.css");
         }
     }
 }

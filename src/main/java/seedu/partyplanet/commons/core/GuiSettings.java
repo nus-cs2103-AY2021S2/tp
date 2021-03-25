@@ -24,7 +24,7 @@ public class GuiSettings implements Serializable {
      * Constructs a {@code GuiSettings} with the default height, width and position.
      */
     public GuiSettings() {
-        this(Theme.DARK);
+        this(Theme.PASTEL);
     }
 
     /**
