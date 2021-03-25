@@ -12,6 +12,7 @@ import seedu.weeblingo.model.ReadOnlyFlashcardBook;
 import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.flashcard.Flashcard;
 import seedu.weeblingo.model.flashcard.Question;
+import seedu.weeblingo.model.score.Score;
 import seedu.weeblingo.model.tag.Tag;
 
 /**
@@ -44,6 +45,7 @@ public class LocalDatabasePopulator {
         for (Flashcard sampleFlashcard : getDatabaseOfFlashcards(JsonDatabaseReader.readDatabaseAsJsonArray())) {
             sampleFb.addFlashcard(sampleFlashcard);
         }
+        sampleFb.addScore(Score.of(100, 100));
         return sampleFb;
     }
 

@@ -8,6 +8,7 @@ import org.json.simple.JSONObject;
 
 import seedu.weeblingo.MainApp;
 import seedu.weeblingo.commons.core.LogsCenter;
+import seedu.weeblingo.model.exceptions.NullInputException;
 
 /**
  * A score object represents an attempt of the quiz session; coded in a defensive manner.
@@ -42,14 +43,14 @@ public class Score implements Comparable<Score> {
      */
     public static Score of(Integer questionAttempted, Integer questionCorrect) {
         if (questionAttempted == null || questionCorrect == null) {
-            throw new RuntimeException("Null value supplied to Score object");
+            throw new NullInputException("Null value supplied to Score object");
         }
         if (questionAttempted <= 0 || questionCorrect < 0) {
-            throw new RuntimeException("Non-positive value supplied to the number of questions attempted, or "
+            throw new NullInputException("Non-positive value supplied to the number of questions attempted, or "
                 + "negative value supplied to number of questions attempted correctly");
         }
         if (questionAttempted < questionCorrect) {
-            throw new RuntimeException("Questions attempted must be larger or equal to questions correct");
+            throw new NullInputException("Questions attempted must be larger or equal to questions correct");
         }
         Score result = new Score(LocalDateTime.now(), questionAttempted, questionCorrect);
         logger.info(String.format("Attempt record generated: %s.", result.toString()));
@@ -97,7 +98,7 @@ public class Score implements Comparable<Score> {
      */
     public boolean isSameAttempt(Score o) {
         if (o == null) {
-            throw new RuntimeException("Receiving Score object of Score::isSameAttempt cannot be null");
+            throw new NullInputException("Receiving Score object of Score::isSameAttempt cannot be null");
         }
         return this.datetime.equals(o.datetime);
     }
