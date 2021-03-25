@@ -174,7 +174,7 @@ Adds an event to PartyPlanet's Events list. Similar to `add` for person contacts
 
 Format: `eadd -n NAME [-d DATE] [-r REMARK]`
 
-* The date must be in a valid date format with year, e.g. 2022-05-07
+* The date must be in a valid date format with year, e.g. 2022-05-07, 2 feb 2021
 
 Examples:
 * `eadd -n April Fools -d 2021-04-01 -r Prank the april babies!` Adds a new event April Fools with specified details.
