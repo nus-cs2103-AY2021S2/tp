@@ -74,9 +74,9 @@ The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `Re
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that 
 are in the `src/main/resources/view` folder. For example, the layout of the 
-[`MainWindow`](https://github.com/se-edu/imPoster-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) 
+[`MainWindow`](https://github.com/AY2021S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/us/among/ui/MainWindow.java) 
 is specified in 
-[`MainWindow.fxml`](https://github.com/se-edu/imPoster-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+[`MainWindow.fxml`](https://https://github.com/AY2021S2-CS2103T-T12-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -110,7 +110,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 The `Model`,
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
+* stores the Endpoint List data.
 * exposes an unmodifiable `ObservableList<Endpoint>` that can be 'observed' e.g. the UI can be bound to this list so 
   that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
@@ -130,7 +130,7 @@ require one `Tag` object per unique `Tag`, instead of each `Endpoint` needing th
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the Endpoint List data in json format and read it back.
 
 ### Common classes
 
@@ -165,6 +165,9 @@ An `Endpoint` contains the following attributes:
 * Before an API call is made, the `Response` object will be empty
 * Only when a Request#executeTimed(request) is called will a `Response` contain information about the API call response
 
+The following activity diagram summarizes what happens when a user executes an add command:
+![AddActivityDiagram](images/AddActivityDiagram.png)
+
 #### Design consideration:
 ##### Aspect: How the components within `Endpoint` are added or changed
 * **Current Choice**: Attributes within `Endpoint` are immutable, meaning that if there is an attribute that has to be
@@ -193,7 +196,7 @@ Step 1. The user launches the application and executes `add -x get -u https://ap
 
 Step 2. The endpoint is added to the model.
 
-The following sequence diagram shows how the send operation works:
+The following sequence diagram shows how the add operation works:
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
