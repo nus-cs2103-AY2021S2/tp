@@ -253,7 +253,7 @@ Step 2: The food item specified will be deleted from the food list.
 The following sequence diagram shows how the delete operation works:
 <INSERT DIAGRAM FLOW HERE>
 
-### Food Object
+### FoodIntake Object
 
 The FoodIntake class stores a `LocalDate` and `Food` object representing the date and food associated with a particular FoodIntake.
 
