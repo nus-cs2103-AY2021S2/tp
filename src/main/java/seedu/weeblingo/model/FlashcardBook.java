@@ -1,5 +1,6 @@
 package seedu.weeblingo.model;
 
+import static java.util.Objects.hash;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -69,7 +70,7 @@ public class FlashcardBook implements ReadOnlyFlashcardBook {
 
 
     /**
-     * Returns true if a flashcard with the same identity as {@code flashcard} exists in the address book.
+     * Returns true if a flashcard with the same identity as {@code flashcard} exists in the flashcard-book.
      */
     public boolean hasFlashcard(Flashcard flashcard) {
         requireNonNull(flashcard);
@@ -77,11 +78,27 @@ public class FlashcardBook implements ReadOnlyFlashcardBook {
     }
 
     /**
-     * Adds a flashcard to the address book.
-     * The flashcard must not already exist in the address book.
+     * Returns true if a score with the same identity as {@code score} exists in the flashcard-book.
+     */
+    public boolean hasScore(Score score) {
+        requireNonNull(score);
+        return scores.contains(score);
+    }
+
+    /**
+     * Adds a flashcard to the flashcard-book.
+     * The flashcard must not already exist in the flashcard-book.
      */
     public void addFlashcard(Flashcard p) {
         flashcards.add(p);
+    }
+
+    /**
+     * Adds an attempt score to the flashcard-book.
+     * The flashcard must not already exist in the flashcard-book.
+     */
+    public void addScore(Score score) {
+        scores.add(score);
     }
 
     /**
@@ -104,11 +121,11 @@ public class FlashcardBook implements ReadOnlyFlashcardBook {
         flashcards.remove(key);
     }
 
-    //// util methods
-
     @Override
     public String toString() {
-        return flashcards.asUnmodifiableObservableList().size() + " ";
+        return String.format("Flashcards: %d; Scores: %d",
+                flashcards.asUnmodifiableObservableList().size(),
+                scores.asUnmodifiableObservableList().size());
     }
 
     @Override

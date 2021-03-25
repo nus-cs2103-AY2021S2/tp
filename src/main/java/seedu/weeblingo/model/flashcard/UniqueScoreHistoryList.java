@@ -1,16 +1,17 @@
 package seedu.weeblingo.model.flashcard;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.weeblingo.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Iterator;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.weeblingo.model.flashcard.exceptions.DuplicateAttemptScoreException;
 import seedu.weeblingo.model.flashcard.exceptions.DuplicateFlashcardException;
 import seedu.weeblingo.model.score.Score;
 
-import java.util.Iterator;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.weeblingo.commons.util.CollectionUtil.requireAllNonNull;
 
 /*
  * A list of user quiz scores that enforces uniqueness between its elements and does not allow nulls.

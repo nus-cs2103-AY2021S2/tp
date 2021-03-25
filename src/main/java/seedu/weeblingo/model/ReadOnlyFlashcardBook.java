@@ -4,8 +4,6 @@ import javafx.collections.ObservableList;
 import seedu.weeblingo.model.flashcard.Flashcard;
 import seedu.weeblingo.model.score.Score;
 
-import java.util.List;
-
 /**
  * Unmodifiable view of an flashcard book
  */
