@@ -133,37 +133,28 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### \[Proposed\] Undo feature
 
 #### Proposed Implementation
 
-The proposed undo mechanism is facilitated by `PocketEstate`. It implements the undo feature with an undo history,
-stored internally as an `previousAppointmentLists` and `previousPropertyLists`. It implements
+The proposed undo mechanism is facilitated by `PocketEstate`. It implements the undo feature with an undo history, stored internally as an `previousAppointmentLists` and `previousPropertyLists`. It implements
 
 * `AppointmentBook#undo()` — Restores the previous appointment book state from its history.
 * `PropertyBook#undo()` — Restores the previous property book state from its history.
 
-These operations are exposed in the `Model` interface as `Model#undoAppointmentBook()` and 
-`Model#undoPropertyBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#undoAppointmentBook()` and `Model#undoPropertyBook()` respectively.
 
 Given below is an example usage scenario and how the undo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `PocketEstate` will be 
-initialized with the initial appointment book state and property book state, and the currentAppointmentBookStatePointer
-currentPropertyBookStatePointer pointing to the two initial book states respectively.
+Step 1. The user launches the application for the first time. The `PocketEstate` will be initialized with the initial appointment book state and property book state, and the currentAppointmentBookStatePointer currentPropertyBookStatePointer pointing to the two initial book states respectively.
 
 ![UndoState0](images/UndoState0.png)
 
-Step 2. The user executes `delete appointment 1` command to delete the 1st appointment in the appointment book. 
-The `delete appointment` executes `previousAppointmentLists.push(new ArrayList<>(appointments.asUnmodifiableObservableList()))`,
-causing the previous state of the appointment book before the `delete appointment 1` command executes to be saved 
-in the `previousAppointmentLists`, and the currentAppointmentBookStatePointer still points to the current appointment book state.
+Step 2. The user executes `delete appointment 1` command to delete the 1st appointment in the appointment book. The `delete appointment` executes `previousAppointmentLists.push(new ArrayList<>(appointments.asUnmodifiableObservableList()))`, causing the previous state of the appointment book before the `delete appointment 1` command executes to be saved in the `previousAppointmentLists`, and the currentAppointmentBookStatePointer still points to the current appointment book state.
 
 ![UndoState1](images/UndoState1.png)
 
-Step 3. The user executes `add appointment …​` to add a new appointment. The `add appointment` command also executes
-`previousAppointmentLists.push(new ArrayList<>(appointments.asUnmodifiableObservableList()))`, causing a copy of the
-current appointment book state to be saved into the `previousAppointmentLists`.
+Step 3. The user executes `add appointment …​` to add a new appointment. The `add appointment` command also executes `previousAppointmentLists.push(new ArrayList<>(appointments.asUnmodifiableObservableList()))`, causing a copy of the current appointment book state to be saved into the `previousAppointmentLists`.
 
 ![UndoState2](images/UndoState2.png)
 
@@ -173,10 +164,7 @@ appointment book state will not be saved into the `previousAppointmentLists`.
 
 </div>
 
-Step 4. The user now decides that adding the appointment was a mistake, and decides to undo that action by 
-executing the `undo` command. The `undo` command will call `Model#undoAppointmentBook()`, which will shift
-the `currentAppointmentBookStatePointer` to the most recently saved state, pointing it to the previous appointment 
-book state, and restores the appointment book to that state.
+Step 4. The user now decides that adding the appointment was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAppointmentBook()`, which will shift the `currentAppointmentBookStatePointer` to the most recently saved state, pointing it to the previous appointment book state, and restores the appointment book to that state.
 
 ![UndoState3](images/UndoState3.png)
 
@@ -187,9 +175,7 @@ than attempting to perform the undo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the appointment book, 
-such as `list`, will usually not executes `previousAppointmentLists.push(new ArrayList<>(appointments.asUnmodifiableObservableList()))`,
-Thus, the `previousAppointmentLists` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the appointment book, such as `list`, will usually not executes `previousAppointmentLists.push(new ArrayList<>(appointments.asUnmodifiableObservableList()))`. Thus, the `previousAppointmentLists` remains unchanged.
 
 ![UndoRedoState4](images/UndoState4.png)
 
@@ -205,17 +191,13 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
-* **Alternative 2 (current choice):** Saves the entire appointment/property list
-  in the appointment/property book.
+* **Alternative 2 (current choice):** Saves the entire appointment/property list in the appointment/property book.
     * Pros: Easy to implement.
     * Cons: May have performance issues in terms of memory usage.
     
-* **Alternative 3:** Saves only changes made by previous commands
-  (Similar to commit and restore in version control).
-  * Pros: Will use less memory (e.g. for `delete`, may only save the appointment/property
-    being deleted, and the deleted appointment/property is added back if the command is undone).
-  * Cons: Difficult to implement,
-    different implementations are required to restore different changes.
+* **Alternative 3:** Saves only changes made by previous commands (Similar to commit and restore in version control).
+  * Pros: Will use less memory (e.g. for `delete`, may only save the appointment/property being deleted, and the deleted appointment/property is added back if the command is undone).
+  * Cons: Difficult to implement, different implementations are required to restore different changes.
 
 _{more aspects and alternatives to be added}_
 
