@@ -123,10 +123,11 @@ class JsonAdaptedOrder {
                     OrderDate.class.getSimpleName()));
         } else {
             modelCompletedDate = new CompletedDate(completedDate);
-            modelCheeseId.addAll(cheeseIds.stream()
-                    .map(CheeseId::getNextId)
-                    .collect(Collectors.toList()));
         }
+
+        modelCheeseId.addAll(cheeseIds.stream()
+            .map(CheeseId::getNextId)
+            .collect(Collectors.toList()));
 
         if (customerId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

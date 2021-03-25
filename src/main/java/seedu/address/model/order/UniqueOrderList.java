@@ -36,6 +36,14 @@ public class UniqueOrderList implements Iterable<Order> {
     }
 
     /**
+     * Returns first {@code Order} instance with equivalent orderId as the given argument or null if it does not exist.
+     */
+    public Order getOrderWithId(OrderId orderId) {
+        requireNonNull(orderId);
+        return internalList.stream().filter(order -> order.getOrderId().equals(orderId)).findFirst().orElse(null);
+    }
+
+    /**
      * Adds a Order to the list.
      * The order must not already exist in the list.
      */

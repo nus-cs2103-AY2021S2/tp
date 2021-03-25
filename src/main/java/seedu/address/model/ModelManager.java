@@ -16,6 +16,7 @@ import seedu.address.model.cheese.CheeseType;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Phone;
 import seedu.address.model.order.Order;
+import seedu.address.model.order.OrderId;
 import seedu.address.model.order.Quantity;
 import seedu.address.model.util.FilteredSortedList;
 import seedu.address.model.util.predicate.FieldPredicate;
@@ -168,6 +169,12 @@ public class ModelManager implements Model {
         addressBook.setOrder(target, editedOrder);
     }
 
+    @Override
+    public Order getOrderWithId(OrderId orderId) {
+        requireNonNull(orderId);
+        return addressBook.getOrderWithId(orderId);
+    }
+
     //=========== Cheese Operations ==========================================================================
 
     @Override
@@ -192,6 +199,13 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedCheese);
 
         addressBook.setCheese(target, editedCheese);
+    }
+
+    @Override
+    public Cheese getCheeseWithId(CheeseId cheeseId) {
+        requireNonNull(cheeseId);
+
+        return addressBook.getCheeseWithId(cheeseId);
     }
 
     @Override

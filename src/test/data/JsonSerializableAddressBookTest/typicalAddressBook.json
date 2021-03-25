@@ -85,6 +85,13 @@
     "maturityDate": "2021-04-04 07:00",
     "expiryDate": "2022-03-04 06:00",
     "isAssigned": true
+  }, {
+    "cheeseId": 6,
+    "cheeseType": "Gouda",
+    "manufactureDate": "2021-03-12 07:00",
+    "maturityDate": "2021-04-20 08:00",
+    "expiryDate": "2023-05-15 06:00",
+    "isAssigned": false
   } ],
   "orders": [ {
     "orderId": 1,
@@ -94,7 +101,7 @@
     "completedDate": null,
     "customerId": 3,
     "cheeseIds": []
-    }, {
+  }, {
     "orderId": 2,
     "cheeseType": "Camembert",
     "quantity": 1,
@@ -102,15 +109,15 @@
     "completedDate": "2022-02-10 13:00",
     "customerId": 1,
     "cheeseIds": [1]
-    }, {
+  }, {
     "orderId": 3,
     "cheeseType": "Feta",
-    "quantity": 5,
+    "quantity": 1,
     "orderDate": "2021-03-06 08:00",
     "completedDate": "2022-03-06 10:00",
     "customerId": 2,
     "cheeseIds": [2]
-    }, {
+  }, {
     "orderId": 4,
     "cheeseType": "Mozzarella",
     "quantity": 2,
@@ -118,7 +125,7 @@
     "completedDate": null,
     "customerId": 4,
     "cheeseIds": []
-    }, {
+  }, {
     "orderId": 5,
     "cheeseType": "Camembert",
     "quantity": 1,
@@ -126,5 +133,13 @@
     "completedDate": "2022-03-06 10:00",
     "customerId": 2,
     "cheeseIds": [5]
+  }, {
+    "orderId": 6,
+    "cheeseType": "Gouda",
+    "quantity": 1,
+    "orderDate": "2021-03-11 08:00",
+    "completedDate": null,
+    "customerId": 2,
+    "cheeseIds": []
   } ]
 }

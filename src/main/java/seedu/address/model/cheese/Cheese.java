@@ -1,5 +1,6 @@
 package seedu.address.model.cheese;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Optional;
@@ -36,7 +37,8 @@ public class Cheese {
      */
     public Cheese(CheeseType cheeseType, ManufactureDate manufactureDate, MaturityDate maturityDate,
                   ExpiryDate expiryDate, CheeseId cheeseId, boolean isAssigned) {
-        requireAllNonNull(cheeseType, manufactureDate);
+        requireAllNonNull(cheeseType, manufactureDate, cheeseId);
+        checkCheeseArguments(cheeseType, manufactureDate, maturityDate, expiryDate, cheeseId, isAssigned);
         this.cheeseType = cheeseType;
         this.manufactureDate = manufactureDate;
         this.maturityDate = Optional.ofNullable(maturityDate);
@@ -67,6 +69,25 @@ public class Cheese {
 
     public boolean isCheeseAssigned() {
         return isAssigned;
+    }
+
+    /**
+     * Checks whether the given parameters are valid for an order
+     */
+    public static void checkCheeseArguments(CheeseType cheeseType, ManufactureDate manufactureDate,
+                                            MaturityDate maturityDate, ExpiryDate expiryDate,
+                                            CheeseId cheeseId, boolean isAssigned) {
+        if (maturityDate != null) {
+            checkArgument(maturityDate.isAfter(manufactureDate),
+                "The maturity date of the cheese should be after the manufacture date.");
+        }
+
+        if (expiryDate != null) {
+            checkArgument(expiryDate.isAfter(manufactureDate),
+                "The expiry date of the cheese should be after the manufacture date.");
+            checkArgument(expiryDate.isAfter(maturityDate),
+                "The expiry date of the cheese should be after the maturity date.");
+        }
     }
 
     public boolean isSameType(CheeseType cheeseType) {

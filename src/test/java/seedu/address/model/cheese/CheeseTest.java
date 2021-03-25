@@ -2,6 +2,9 @@ package seedu.address.model.cheese;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_EXPIRY_DATE_1;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MANUFACTURE_DATE_1;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MATURITY_DATE_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CHEESE_TYPE_CAMEMBERT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CHEESE_TYPE_FETA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EXPIRY_DATE_1;
@@ -24,6 +27,28 @@ public class CheeseTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new CheeseBuilder().withCheeseType(null).build());
+    }
+
+    @Test
+    public void constructor_maturityDateBeforeManufactureDate_throwsIllegalArgumentException() {
+        CheeseBuilder cheeseBuilder = new CheeseBuilder().withMaturityDate(INVALID_MATURITY_DATE_1);
+        assertThrows(IllegalArgumentException.class,
+            "The maturity date of the cheese should be after the manufacture date.", () -> cheeseBuilder.build());
+    }
+
+    @Test
+    public void constructor_expiryDateBeforeManufactureDate_throwsIllegalArgumentException() {
+        CheeseBuilder cheeseBuilder = new CheeseBuilder().withExpiryDate(INVALID_EXPIRY_DATE_1);
+        assertThrows(IllegalArgumentException.class,
+            "The expiry date of the cheese should be after the manufacture date.", () -> cheeseBuilder.build());
+    }
+
+    @Test
+    public void constructor_expiryDateBeforeMaturityDate_throwsIllegalArgumentException() {
+        CheeseBuilder cheeseBuilder = new CheeseBuilder().withManufactureDate(INVALID_MANUFACTURE_DATE_1)
+                                            .withExpiryDate(INVALID_EXPIRY_DATE_1);
+        assertThrows(IllegalArgumentException.class,
+            "The expiry date of the cheese should be after the maturity date.", () -> cheeseBuilder.build());
     }
 
     @Test

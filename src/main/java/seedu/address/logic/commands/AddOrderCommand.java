@@ -76,7 +76,6 @@ public class AddOrderCommand extends AddCommand {
         return other == this // short circuit if same object
                 || (other instanceof AddOrderCommand // instanceof handles nulls
                 && toAddQuantity.equals(((AddOrderCommand) other).toAddQuantity)
-                && toAddOrderDate.equals(((AddOrderCommand) other).toAddOrderDate)
-                && toAddCheeseType.equals(((AddOrderCommand) other).toAddCheeseType));
+                && toAddOrderDate.equals(((AddOrderCommand) other).toAddOrderDate));
     }
 }

@@ -47,12 +47,14 @@ public class DoneCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_ORDER_COMPLETE);
         }
 
-        Order updatedOrder = createDoneOrder(orderToUpdate, model);
+        Set<CheeseId> unassignedCheeses = model.getUnassignedCheeses(orderToUpdate.getCheeseType(),
+            orderToUpdate.getQuantity());
         Quantity expectedQuantity = orderToUpdate.getQuantity();
-        int numAssignedCheeses = updatedOrder.getCheeses().size();
-        if (!expectedQuantity.isSameQuantity(numAssignedCheeses)) {
+        if (!expectedQuantity.isSameQuantity(unassignedCheeses.size())) {
             throw new CommandException(Messages.MESSAGE_INSUFFICIENT_CHEESES_FOR_ORDER);
         }
+
+        Order updatedOrder = createDoneOrder(orderToUpdate, unassignedCheeses, model);
         model.setOrder(orderToUpdate, updatedOrder);
         model.updateCheesesStatus(updatedOrder.getCheeses());
         model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
@@ -64,11 +66,9 @@ public class DoneCommand extends Command {
      * Creates and returns a {@code order} with the details of {@code orderToUpdate}
      * Only the CompletedDate is updated to current time
      */
-    public static Order createDoneOrder(Order orderToUpdate, Model model) {
+    public static Order createDoneOrder(Order orderToUpdate, Set<CheeseId> unassignedCheeses, Model model) {
         CompletedDate completedDate = new CompletedDate(LocalDateTime.now().format(TO_JSON_STRING_FORMATTER));
-        Set<CheeseId> getUnassignedCheeses = model.getUnassignedCheeses(orderToUpdate.getCheeseType(),
-                orderToUpdate.getQuantity());
-        return new Order(orderToUpdate, completedDate, getUnassignedCheeses);
+        return new Order(orderToUpdate, completedDate, unassignedCheeses);
     }
 
     @Override

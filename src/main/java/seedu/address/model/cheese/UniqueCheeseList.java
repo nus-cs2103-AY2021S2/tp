@@ -41,13 +41,23 @@ public class UniqueCheeseList implements Iterable<Cheese> {
     }
 
     /**
+     * Returns first {@code Cheese} instance with equivalent cheeseId as the given
+     * argument or null if it does not exist.
+     */
+    public Cheese getCheeseWithId(CheeseId cheeseId) {
+        requireNonNull(cheeseId);
+        return internalList.stream().filter(cheese -> cheese.getCheeseId().equals(cheeseId))
+            .findFirst().orElse(null);
+    }
+
+    /**
      * Adds a Cheese to the list.
      * The cheese must not already exist in the list.
      */
     public void add(Cheese toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicateOrderException();
+            throw new DuplicateCheeseException();
         }
         internalList.add(toAdd);
     }

@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showCheeseAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CHEESE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_CHEESE;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_CHEESE;
 import static seedu.address.testutil.TypicalModels.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -28,8 +29,8 @@ public class DeleteCheeseCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Cheese cheeseToDelete = model.getFilteredCheeseList().get(INDEX_FIRST_CHEESE.getZeroBased());
-        DeleteCheeseCommand deleteCheeseCommand = new DeleteCheeseCommand(INDEX_FIRST_CHEESE);
+        Cheese cheeseToDelete = model.getFilteredCheeseList().get(INDEX_THIRD_CHEESE.getZeroBased());
+        DeleteCheeseCommand deleteCheeseCommand = new DeleteCheeseCommand(INDEX_THIRD_CHEESE);
 
         String expectedMessage = String.format(DeleteCheeseCommand.MESSAGE_DELETE_CHEESE_SUCCESS,
                 cheeseToDelete);
@@ -51,7 +52,7 @@ public class DeleteCheeseCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showCheeseAtIndex(model, INDEX_SECOND_CHEESE);
+        showCheeseAtIndex(model, INDEX_THIRD_CHEESE);
 
         Cheese cheeseToDelete = model.getFilteredCheeseList().get(INDEX_FIRST_CHEESE.getZeroBased());
         DeleteCheeseCommand deleteCheeseCommand = new DeleteCheeseCommand(INDEX_FIRST_CHEESE);
@@ -65,6 +66,18 @@ public class DeleteCheeseCommandTest {
         expectedModel.setPanelToCheeseList();
 
         assertCommandSuccess(deleteCheeseCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_invalidAssignedCheese_throwsCommandException() {
+        showCheeseAtIndex(model, INDEX_SECOND_CHEESE);
+
+        Cheese cheeseToDelete = model.getFilteredCheeseList().get(INDEX_FIRST_CHEESE.getZeroBased());
+        DeleteCheeseCommand deleteCheeseCommand = new DeleteCheeseCommand(INDEX_FIRST_CHEESE);
+
+        String expectedMessage = Messages.MESSAGE_INVALID_CHEESE_ASSIGNED_TO_COMPLETED_ORDER;
+
+        assertCommandFailure(deleteCheeseCommand, model, expectedMessage);
     }
 
     @Test

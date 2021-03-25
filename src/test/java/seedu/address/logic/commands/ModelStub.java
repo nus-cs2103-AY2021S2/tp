@@ -14,6 +14,7 @@ import seedu.address.model.cheese.CheeseType;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Phone;
 import seedu.address.model.order.Order;
+import seedu.address.model.order.OrderId;
 import seedu.address.model.order.Quantity;
 import seedu.address.model.util.predicate.FieldPredicate;
 
@@ -107,6 +108,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public Order getOrderWithId(OrderId orderId) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public boolean hasCheese(Cheese cheese) {
         throw new AssertionError("This method should not be called.");
     }
@@ -123,6 +129,11 @@ public class ModelStub implements Model {
 
     @Override
     public void setCheese(Cheese target, Cheese editedCheese) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public Cheese getCheeseWithId(CheeseId cheeseId) {
         throw new AssertionError("This method should not be called.");
     }
 

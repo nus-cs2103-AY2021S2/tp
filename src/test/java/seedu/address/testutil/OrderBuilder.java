@@ -20,7 +20,6 @@ public class OrderBuilder {
     public static final String DEFAULT_CHEESE_TYPE = "Feta";
     public static final int DEFAULT_QUANTITY = 1;
     public static final String DEFAULT_ORDER_DATE = "2021-02-03 12:00";
-    public static final String DEFAULT_COMPLETED_DATE = "2021-03-04 15:00";
     public static final CustomerId DEFAULT_CUSTOMER_ID = CustomerId.getNextId(1);
 
     private CheeseType cheeseType;
@@ -38,7 +37,8 @@ public class OrderBuilder {
         this.cheeseType = CheeseType.getCheeseType(DEFAULT_CHEESE_TYPE);
         this.quantity = new Quantity(DEFAULT_QUANTITY);
         this.orderDate = new OrderDate(DEFAULT_ORDER_DATE);
-        this.completedDate = new CompletedDate(DEFAULT_COMPLETED_DATE);
+        // Set initial completed date to null
+        this.completedDate = null;
         this.orderId = null;
         this.customerId = DEFAULT_CUSTOMER_ID;
         this.cheeses = new HashSet<>();
@@ -132,7 +132,7 @@ public class OrderBuilder {
      */
     public Order build() {
         if (orderId == null) {
-            return new Order(cheeseType, quantity, orderDate, completedDate, customerId);
+            return new Order(cheeseType, quantity, orderDate, completedDate, cheeses, customerId);
         } else {
             return new Order(cheeseType, quantity, orderDate, completedDate, cheeses, orderId, customerId);
         }

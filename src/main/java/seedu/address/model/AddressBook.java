@@ -1,20 +1,27 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.Messages;
 import seedu.address.model.cheese.Cheese;
 import seedu.address.model.cheese.CheeseId;
 import seedu.address.model.cheese.CheeseType;
 import seedu.address.model.cheese.UniqueCheeseList;
 import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.CustomerId;
 import seedu.address.model.customer.Phone;
 import seedu.address.model.customer.UniqueCustomerList;
 import seedu.address.model.order.Order;
+import seedu.address.model.order.OrderId;
 import seedu.address.model.order.Quantity;
 import seedu.address.model.order.UniqueOrderList;
 
@@ -143,6 +150,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
     }
 
+    /**
+     * Returns a order with {@code orderId} if exists in the address book.
+     */
+    public Order getOrderWithId(OrderId orderId) {
+        requireNonNull(orderId);
+        return orders.getOrderWithId(orderId);
+    }
+
     //// customer-level operations
 
     /**
@@ -248,12 +263,73 @@ public class AddressBook implements ReadOnlyAddressBook {
         cheeses.delete(key);
     }
 
+    /**
+     * Returns a cheese with {@code cheeseId} if exists in the address book.
+     */
+    public Cheese getCheeseWithId(CheeseId cheeseId) {
+        requireNonNull(cheeseId);
+        return cheeses.getCheeseWithId(cheeseId);
+    }
+
     public Set<CheeseId> getUnassignedCheeses(CheeseType cheeseType, Quantity quantity) {
         return cheeses.getUnassignedCheeses(cheeseType, quantity);
     }
 
     public void updateCheesesStatus(Set<CheeseId> cheesesAssigned) {
         cheeses.updateCheesesStatus(cheesesAssigned);
+    }
+
+    /**
+     * Checks whether the address book's current state is valid
+     * Includes checking dependencies between models
+     */
+    public void checkAddressBook() {
+        Set<CustomerId> customerIdSet = customers.asUnmodifiableObservableList().stream()
+            .map(x -> x.getId()).collect(Collectors.toSet());
+        Map<CheeseId, Cheese> cheeseIdMap = cheeses.asUnmodifiableObservableList().stream()
+            .collect(Collectors.toMap(x -> x.getCheeseId(), x -> x));
+
+        HashSet<CheeseId> orderCheeseIdSet = new HashSet<>();
+        // Check that each order is valid on the system level
+        for (Order order : orders.asUnmodifiableObservableList()) {
+            CustomerId customerId = order.getCustomerId();
+            CheeseType expectedCheeseType = order.getCheeseType();
+            Set<CheeseId> cheeseIds = order.getCheeses();
+            OrderId orderId = order.getOrderId();
+
+            checkArgument(customerIdSet.contains(customerId),
+                String.format(Messages.MESSAGE_INVALID_ORDER_CUSTOMER_ID, orderId.value));
+
+            if (cheeseIds.size() > 0) {
+                for (CheeseId cheeseId : cheeseIds) {
+                    checkArgument(cheeseIdMap.containsKey(cheeseId),
+                        String.format(Messages.MESSAGE_INVALID_ORDER_CHEESE_ID, orderId.value));
+
+                    // Each assigned cheese should have a one-to-one relation with orders
+                    checkArgument(!orderCheeseIdSet.contains(cheeseId),
+                        String.format(Messages.MESSAGE_INVALID_CHEESE_MULTIPLE_ORDER, orderId.value, cheeseId.value));
+                    orderCheeseIdSet.add(cheeseId);
+
+                    // Cheese should have been marked assigned
+                    checkArgument(cheeseIdMap.get(cheeseId).isCheeseAssigned(),
+                        String.format(Messages.MESSAGE_INVALID_CHEESE_NOT_ASSIGNED, orderId.value, cheeseId.value));
+
+                    // Cheese should match the order by type
+                    checkArgument(cheeseIdMap.get(cheeseId).getCheeseType().equals(expectedCheeseType),
+                        String.format(Messages.MESSAGE_INVALID_ORDER_CHEESE_CHEESE_TYPE,
+                            orderId.value, cheeseId.value));
+                }
+            }
+        }
+
+        for (Cheese cheese: cheeseIdMap.values()) {
+            if (cheese.isCheeseAssigned()) {
+                CheeseId cheeseId = cheese.getCheeseId();
+                // Cheeses that are assigned must have an order attached to it
+                checkArgument(orderCheeseIdSet.contains(cheese.getCheeseId()),
+                    String.format(Messages.MESSAGE_INVALID_ASSIGNED_CHEESE, cheeseId.value));
+            }
+        }
     }
 
     //// util methods
