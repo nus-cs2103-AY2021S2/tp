@@ -42,11 +42,20 @@ public class SelectCommandParser implements Parser<SelectCommand> {
 
     @Override
     public boolean isValidCommandToAlias(String args) {
-        try {
-            parse(args);
+        if (args.trim().isEmpty()) {
             return true;
-        } catch (ParseException e) {
-            return false;
+        }
+
+        final Matcher matcher = SELECT_COMMAND_FORMAT.matcher(args.trim());
+        matcher.matches();
+        final String subCommandWord = matcher.group("subCommandWord");
+
+        switch (subCommandWord) {
+        case SelectCommand.CLEAR_SUB_COMMAND_WORD:
+        case SelectCommand.SHOW_SUB_COMMAND_WORD:
+            return true;
+        default:
+            return new SelectIndexCommandParser().isValidCommandToAlias(args.trim());
         }
     }
 }

@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAliases.getTypicalAlias;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.VALID_INDEXES;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddAliasCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
@@ -30,6 +32,10 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListAliasCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SelectClearCommand;
+import seedu.address.logic.commands.SelectCommand;
+import seedu.address.logic.commands.SelectIndexCommand;
+import seedu.address.logic.commands.SelectShowCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.DisplayFilterPredicate;
 import seedu.address.model.UniqueAliasMap;
@@ -143,9 +149,28 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_select() throws Exception {
+        String inputIndexes = VALID_INDEXES.stream()
+                .map(Index::getOneBased).map(String::valueOf)
+                .collect(Collectors.joining(" "));
+        assertTrue(parser.parseCommand(
+                SelectCommand.COMMAND_WORD + " " + SelectIndexCommandParser.SPECIAL_INDEX,
+                emptyAliases) instanceof SelectIndexCommand);
+        assertTrue(parser.parseCommand(
+                SelectCommand.COMMAND_WORD + " " + inputIndexes,
+                emptyAliases) instanceof SelectIndexCommand);
+        assertTrue(parser.parseCommand(
+                SelectCommand.COMMAND_WORD + " " + SelectCommand.CLEAR_SUB_COMMAND_WORD,
+                emptyAliases) instanceof SelectClearCommand);
+        assertTrue(parser.parseCommand(
+                SelectCommand.COMMAND_WORD + " " + SelectCommand.SHOW_SUB_COMMAND_WORD,
+                emptyAliases) instanceof SelectShowCommand);
+    }
+
+    @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand("", emptyAliases));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                HelpCommand.MESSAGE_USAGE), () -> parser.parseCommand("", emptyAliases));
     }
 
     @Test
