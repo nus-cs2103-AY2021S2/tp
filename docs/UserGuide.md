@@ -19,11 +19,11 @@ DocBob is a **desktop app for managing your patient's information, optimised for
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will list out all available commands.<br>
    Some example commands you can try:
 
-   * **`list`** : List out all patients or appointment information available.
+   * **`list`** : List out all patients in DocBob's contact list.
 
-   * **`add`**`/nShrek p/66666666 a/69 l/Swamp` : Adds a patient named `Shrek` to the patient list.
+   * **`add`**`/nShrek p/66666666 a/69 l/Swamp` : Adds a patient named `Shrek` to DocBob's contact list.
 
-   * **`delete`**`Lord Farquaad` : Deletes a patient named `Lord Farquaad` from the patient list.
+   * **`appt`** : Adds a scheduled upcoming appointment with a patient in DocBob's contact list.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -96,6 +96,7 @@ Format: `list`
 Example: `list`
 
 Output:
+
 ![image](https://user-images.githubusercontent.com/48408342/112432500-f7092e80-8d7b-11eb-85b9-2aaab776d47d.png)
 
 ### Adding an appointment to a patient : `appt`
@@ -119,6 +120,7 @@ Format: `listappt`
 Example: `listappt`
 
 Output: 
+
 `Hey Doc, here are your upcoming appointments!`<br> 
 `Thu, 25 Mar, 14:00 - Bernice Yu`<br>
 `Fri, 11 Jun, 14:00 - David Li`<br>
@@ -192,7 +194,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous DocBob home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -200,8 +202,10 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 Action | Format, Examples
 --------|------------------
-**Help** | `help`
-**Add** | `add n/Name p/phoneNumber a/Age l/Location` <br> e.g., `add /nShrek p/66666666 a/69 l/Swamp`<br> `appt INDEX /dDATE` <br> e.g., `appt 12 200420210930`
-**Delete** | `delete Name`<br> e.g., `delete Lord Farquaad` <br> `delete INDEX` <br> e.g., `delete 1`
-**List** | `list`
-
+**help** | `help`
+**add** | `add n/Name p/phoneNumber a/Age l/Location` <br> e.g., `add /nShrek p/66666666 a/69 l/Swamp`
+**delete** | `delete INDEX` <br> e.g., `delete 1`
+**list** | `list`
+**appt** | `appt 1 d/010120211200`
+**listappt** | `listappt`
+**exit** | `exit`
