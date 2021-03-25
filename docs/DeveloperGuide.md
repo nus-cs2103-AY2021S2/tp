@@ -1,5 +1,5 @@
 ---
-layout: page 
+layout: page
 title: Developer Guide
 ---
 
@@ -104,13 +104,18 @@ The `UI` component,
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying
    help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API
-call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for a typical Command.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component](images/CommandSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+
+#### Command Implementations
+The diagram below further explains the implementation of individual commands.
+1. AddGroup Command
+![](images/AddGroupSequenceDiagram.png)
 
 ### Model component
 
@@ -196,6 +201,22 @@ command's `CommandResult`, which is then parsed by the `MainWindow` UI component
 `MainWindow` calls `DetailsPanel#toggleTab()` and `DetailsPanel` will switch to the new tab accordingly.
 
 [comment]: <> (Todo: add sequence diagram)
+
+### Add Picture
+
+FriendDex allows users to add a picture to their contact. This section details the implementation of that feature.
+
+#### Implementation
+
+1. The user will first supply the index of the contact to edit and the path to an image file.
+2. `AddPictureCommand` will take the file path and validate it.
+3. If everything looks good, the image file will be renamed to a random UUID and copied to `[JAR file location]/data`. The renaming is done to avoid problems with two image files having the same file name.
+4. A `Picture` object will then be created, storing the file path of the copied image file.
+5. Lastly, it will be attached to the `Person` being edited and saved to `Model`.
+
+The below sequence diagram depicts the execution path when a `AddPictureCommand` is executed.
+
+![AddPictureSequenceDiagram](images/AddPictureSequenceDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
