@@ -4,7 +4,6 @@ import static seedu.partyplanet.commons.core.Messages.MESSAGE_INVALID_COMMAND_FO
 import static seedu.partyplanet.logic.commands.EListCommand.SORT_EVENTDATE;
 import static seedu.partyplanet.logic.commands.EListCommand.SORT_EVENTDATE_UPCOMING;
 import static seedu.partyplanet.logic.commands.EListCommand.SORT_NAME;
-import static seedu.partyplanet.logic.commands.ListCommand.SORT_BIRTHDAY_UPCOMING;
 import static seedu.partyplanet.logic.parser.CliSyntax.FLAG_ANY;
 import static seedu.partyplanet.logic.parser.CliSyntax.FLAG_EXACT;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_NAME;

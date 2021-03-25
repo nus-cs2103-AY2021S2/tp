@@ -8,10 +8,7 @@ import java.util.function.Predicate;
 
 import seedu.partyplanet.commons.core.Messages;
 import seedu.partyplanet.model.Model;
-import seedu.partyplanet.model.date.Date;
 import seedu.partyplanet.model.event.Event;
-import seedu.partyplanet.model.event.EventDate;
-import seedu.partyplanet.model.person.Person;
 
 /**
  * Lists all events in PartyPlanet to the user.
@@ -31,19 +28,18 @@ public class EListCommand extends Command {
 
     public static final Comparator<Event> SORT_NAME = Comparator.comparing(x -> x.getName().fullName);
     public static final Comparator<Event> SORT_EVENTDATE = Comparator.comparing(Event::getEventDate);
-    public static final Comparator<Event> SORT_EVENTDATE_UPCOMING =
-            (Event x, Event y) -> {
-                // Sort done events at the end
-                if (x.isDone() && !y.isDone()) {
-                    return 1;
-                }
-                if (!x.isDone() && y.isDone()) {
-                    return -1;
-                }
-                Long xDaysLeft = x.getEventDate().getDaysLeft();
-                Long yDaysLeft = y.getEventDate().getDaysLeft();
-                return xDaysLeft.compareTo(yDaysLeft);
-            };
+    public static final Comparator<Event> SORT_EVENTDATE_UPCOMING = (Event x, Event y) -> {
+        // Sort done events at the end
+        if (x.isDone() && !y.isDone()) {
+            return 1;
+        }
+        if (!x.isDone() && y.isDone()) {
+            return -1;
+        }
+        Long xDaysLeft = x.getEventDate().getDaysLeft();
+        Long yDaysLeft = y.getEventDate().getDaysLeft();
+        return xDaysLeft.compareTo(yDaysLeft);
+    };
 
     private final Comparator<Event> comparator;
     private final Predicate<Event> predicate;
