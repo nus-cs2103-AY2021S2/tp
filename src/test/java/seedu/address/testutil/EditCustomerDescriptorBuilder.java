@@ -4,11 +4,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditCustomerDescriptor;
+import seedu.address.logic.commands.EditCustomerCommand;
+import seedu.address.logic.commands.EditCustomerCommand.EditCustomerDescriptor;
 import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Customer;
-import seedu.address.model.customer.CustomerId;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Name;
 import seedu.address.model.customer.Phone;
@@ -19,27 +18,26 @@ import seedu.address.model.tag.Tag;
  */
 public class EditCustomerDescriptorBuilder {
 
-    private EditCommand.EditCustomerDescriptor descriptor;
+    private EditCustomerCommand.EditCustomerDescriptor descriptor;
 
     public EditCustomerDescriptorBuilder() {
         descriptor = new EditCustomerDescriptor();
     }
 
-    public EditCustomerDescriptorBuilder(EditCommand.EditCustomerDescriptor descriptor) {
-        this.descriptor = new EditCommand.EditCustomerDescriptor(descriptor);
+    public EditCustomerDescriptorBuilder(EditCustomerCommand.EditCustomerDescriptor descriptor) {
+        this.descriptor = new EditCustomerCommand.EditCustomerDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditCustomerDescriptor} with fields containing {@code customer}'s details
      */
     public EditCustomerDescriptorBuilder(Customer customer) {
-        descriptor = new EditCommand.EditCustomerDescriptor();
+        descriptor = new EditCustomerCommand.EditCustomerDescriptor();
         descriptor.setName(customer.getName());
         descriptor.setPhone(customer.getPhone());
         descriptor.setEmail(customer.getEmail());
         descriptor.setAddress(customer.getAddress());
         descriptor.setTags(customer.getTags());
-        descriptor.setId(customer.getId());
     }
 
     /**
@@ -75,14 +73,6 @@ public class EditCustomerDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code customerId} of the {@code EditCustomerDescriptor} that we are building.
-     */
-    public EditCustomerDescriptorBuilder withId(int customerId) {
-        descriptor.setId(CustomerId.getNextId(customerId));
-        return this;
-    }
-
-    /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditCustomerDescriptor}
      * that we are building.
      */
@@ -92,7 +82,7 @@ public class EditCustomerDescriptorBuilder {
         return this;
     }
 
-    public EditCommand.EditCustomerDescriptor build() {
+    public EditCustomerCommand.EditCustomerDescriptor build() {
         return descriptor;
     }
 }
