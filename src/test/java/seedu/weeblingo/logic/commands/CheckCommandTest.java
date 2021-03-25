@@ -17,7 +17,7 @@ public class CheckCommandTest {
         model.startQuiz();
         model.getMode().switchModeQuizSession();
         CommandResult expectedCommandResult = new CommandResult(
-                MESSAGE_SUCCESS, false, false, true);
+                MESSAGE_SUCCESS, false, false, true, true);
         assertCommandSuccess(new CheckCommand(), model, expectedCommandResult, expectedModel);
     }
 }

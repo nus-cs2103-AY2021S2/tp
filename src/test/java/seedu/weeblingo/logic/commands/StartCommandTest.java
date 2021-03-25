@@ -16,7 +16,7 @@ public class StartCommandTest {
     public void execute_start_success() {
         model.getMode().switchModeQuiz();
         CommandResult expectedCommandResult = new CommandResult(
-                MESSAGE_SUCCESS, false, false, true);
+                MESSAGE_SUCCESS, false, false, true, false);
         assertCommandSuccess(new StartCommand(), model, expectedCommandResult, expectedModel);
     }
 }
