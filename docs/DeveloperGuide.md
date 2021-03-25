@@ -165,7 +165,7 @@ An `Endpoint` contains the following attributes:
 * Before an API call is made, the `Response` object will be empty
 * Only when a Request#executeTimed(request) is called will a `Response` contain information about the API call response
 
-The following activity diagram summarizes what happens when a user executes a add command:
+The following activity diagram summarizes what happens when a user executes an add command:
 ![AddActivityDiagram](images/AddActivityDiagram.png)
 
 #### Design consideration:
