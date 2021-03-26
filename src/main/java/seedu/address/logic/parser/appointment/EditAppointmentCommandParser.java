@@ -17,10 +17,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.appointment.EditAppointmentCommand;
 import seedu.address.logic.commands.appointment.EditAppointmentCommand.EditAppointmentDescriptor;
-import seedu.address.logic.parser.ArgumentMultimap;
-import seedu.address.logic.parser.ArgumentTokenizer;
-import seedu.address.logic.parser.Parser;
-import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
@@ -56,13 +53,13 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
         }
 
         if (argMultimap.getValue(PREFIX_TIMESLOT_END).isPresent()) {
-            editAppointmentDescriptor.setTimeslot(ParserUtil
+            editAppointmentDescriptor.setTimeslot(TimeslotParser
                     .parseTimeslotByEnd(argMultimap.getValue(PREFIX_TIMESLOT_START).get(),
                     argMultimap.getValue(PREFIX_TIMESLOT_END).get()));
         }
         if (argMultimap.getValue(PREFIX_TIMESLOT_DURATION).isPresent()) {
             editAppointmentDescriptor
-                    .setTimeslot(ParserUtil.parseTimeslotByDuration(argMultimap.getValue(PREFIX_TIMESLOT_START).get(),
+                    .setTimeslot(TimeslotParser.parseTimeslotByDuration(argMultimap.getValue(PREFIX_TIMESLOT_START).get(),
                     argMultimap.getValue(PREFIX_TIMESLOT_DURATION).get()));
         }
 
