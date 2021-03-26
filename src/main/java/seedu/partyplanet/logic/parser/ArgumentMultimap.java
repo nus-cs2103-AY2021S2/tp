@@ -18,6 +18,9 @@ public class ArgumentMultimap {
     /** Prefixes mapped to their respective arguments**/
     private final Map<Prefix, List<String>> argMultimap = new HashMap<>();
 
+    /** Stores the order of prefixes */
+    private final List<Prefix> prefixPositionOrder = new ArrayList<>();
+
     /**
      * Associates the specified argument value with {@code prefix} key in this map.
      * If the map previously contained a mapping for the key, the new value is appended to the list of existing values.
@@ -65,4 +68,19 @@ public class ArgumentMultimap {
     public boolean contains(Prefix prefix) {
         return argMultimap.containsKey(prefix);
     }
+
+    /**
+     * Insert an ordered list containing the {@code Prefix}es.
+     */
+    public void putOrder(List<Prefix> prefixPositionOrder) {
+        this.prefixPositionOrder.addAll(prefixPositionOrder);
+    }
+
+    /**
+     * Get {@code Prefix} order list.
+     */
+    public List<Prefix> getPrefixPositionOrders() {
+        return this.prefixPositionOrder;
+    }
+
 }

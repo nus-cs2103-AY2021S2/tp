@@ -10,6 +10,10 @@ import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,22 +26,29 @@ import seedu.partyplanet.logic.commands.exceptions.CommandException;
 import seedu.partyplanet.logic.parser.ArgumentMultimap;
 import seedu.partyplanet.logic.parser.ArgumentTokenizer;
 import seedu.partyplanet.logic.parser.ParserUtil;
+import seedu.partyplanet.logic.parser.Prefix;
 import seedu.partyplanet.logic.parser.exceptions.ParseException;
 import seedu.partyplanet.model.Model;
 import seedu.partyplanet.model.person.Person;
+import seedu.partyplanet.model.tag.Tag;
 
 public class EditAutocompleteUtil {
-
-    public static final String REMARK_PREFIX_NOT_PRESENT_MESSAGE = "Remark prefix not present!";
-    public static final String REMARK_NOT_EMPTY = "You have already input some Remarks! "
-        + "We don't want to overrride them.";
-    public static final String REMARK_IS_EMPTY = "There is nothing to autocomplete since "
-        + "the current user's remark is empty!";
 
     /**
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+
+    /**
+     * Used to convert Set of {@code Tag}s into a String with Tag Prefixes.
+     */
+    private static String getTagsAsAutocompletedString(Set<Tag> tags) {
+        return tags
+            .stream()
+            .map(t -> "-t " + t.tagName)
+            .reduce((a, b) -> a + " " + b)
+            .orElse("-t");
+    }
 
     /**
      * Parses an edit command to autocomplete remark.
@@ -72,27 +83,57 @@ public class EditAutocompleteUtil {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
-        if (argMultimap.getValue(PREFIX_REMARK).isEmpty()) {
-            throw new ParseException(REMARK_PREFIX_NOT_PRESENT_MESSAGE);
-        }
-
-        if (!argMultimap.getValue(PREFIX_REMARK).get().equals("")) {
-            throw new ParseException(REMARK_NOT_EMPTY);
-        }
-
         ObservableList<Person> filteredPersonList = model.getFilteredPersonList();
         if (index.getZeroBased() >= filteredPersonList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-        String remark = filteredPersonList.get(index.getZeroBased()).getRemark().value;
 
-        if (remark.equals("")) {
-            throw new ParseException(REMARK_IS_EMPTY);
+        Person person = filteredPersonList.get(index.getZeroBased());
+
+        // Create a Map of Prefix to the relevant getter method
+        Map<Prefix, Supplier<String>> prefixMethodMap = Map.of(
+            PREFIX_ADDRESS, () -> person.getAddress().value,
+            PREFIX_BIRTHDAY, () -> person.getBirthday().value,
+            PREFIX_EMAIL, () -> person.getEmail().value,
+            PREFIX_NAME, () -> person.getName().fullName,
+            PREFIX_REMARK, () -> person.getRemark().value,
+            PREFIX_TAG, () -> getTagsAsAutocompletedString(person.getTags())
+        );
+
+        String output = "edit " + index.getOneBased();
+
+        // Here we can assume Prefixes are sorted in the order they are entered.
+        for (Prefix prefix: argMultimap.getPrefixPositionOrders()) {
+            List<String> values = argMultimap.getAllValues(prefix);
+            String lastValue = values.get(values.size() - 1);
+
+            // Remove Preamble
+            if (prefix.getPrefix().equals("")) {
+                continue;
+            }
+
+            // If Prefix is not a relevant/correct Prefix, ignore.
+            if (!prefixMethodMap.keySet().contains(prefix)) {
+                output += " " + prefix;
+                continue;
+            }
+
+            // If Prefix value already provided
+            if (lastValue.length() > 0) {
+                output += " " + prefix + " " + lastValue;
+                continue;
+            }
+
+            // Special Consideration for Tag Sets
+            if (prefix.equals(PREFIX_TAG)) {
+                output += " " + prefixMethodMap.get(prefix).get();
+                continue;
+            }
+
+            output += " " + prefix + " " + prefixMethodMap.get(prefix).get();
         }
 
-        int position = userInput.indexOf("-r") + 2;
-
-        return String.format("%s %s %s", userInput.substring(0, position), remark, userInput.substring(position));
+        return output;
     }
 
 }
