@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DRESSCODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,19 +66,34 @@ public class MatchCommand extends Command {
         List<String> keywords = new ArrayList<>();
         //keywords.add("c/"); not how it works, no need this
 
+        String keywordArgs = " c/";
         keywords.addAll(garmentToMatch.getColour().getMatches());
 
         //ColourContainsKeywordsPredicate predicate = new ColourContainsKeywordsPredicate(keywords);
         //List<ContainsKeywordsPredicate> predicateList = new ArrayList<>();
 
-        String keywordArgs = " c/";
         for (String keyword : keywords) {
             keywordArgs = keywordArgs + keyword + " ";
         }
+
+        keywordArgs = keywordArgs + "r/";
+        keywords.clear();
+        keywords.addAll(garmentToMatch.getDressCode().getMatches());
+        for (String keyword : keywords) {
+            keywordArgs = keywordArgs + keyword + " ";
+        }
+
+        keywordArgs = keywordArgs + "t/";
+        keywords.clear();
+        keywords.addAll(garmentToMatch.getType().getMatches());
+        for (String keyword : keywords) {
+            keywordArgs = keywordArgs + keyword + " ";
+        }
+
         //predicateList.add(new ColourContainsKeywordsPredicate(keywords));
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(keywordArgs, PREFIX_NAME, PREFIX_SIZE, PREFIX_COLOUR, PREFIX_DRESSCODE,
-                        PREFIX_DESCRIPTION);
+                        PREFIX_DESCRIPTION, PREFIX_TYPE);
 
         FindCommand findMatches = new FindCommand(new AttributesContainsKeywordsPredicate(argMultimap));
         return findMatches.execute(model);

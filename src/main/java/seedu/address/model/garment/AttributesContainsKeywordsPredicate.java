@@ -1,18 +1,16 @@
 package seedu.address.model.garment;
 
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
-import seedu.address.logic.parser.exceptions.ParseException;
 
 import java.util.Arrays;
 import java.util.function.Predicate;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COLOUR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DRESSCODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
 public class AttributesContainsKeywordsPredicate implements Predicate<Garment> {
 
@@ -34,7 +32,6 @@ public class AttributesContainsKeywordsPredicate implements Predicate<Garment> {
         if (argMultimap.getValue(PREFIX_DRESSCODE).isPresent()) {
             keywords = argMultimap.getValue(PREFIX_DRESSCODE).get().split("\\s+");
             testResult = testResult && new DressCodeContainsKeywordsPredicate(Arrays.asList(keywords)).test(garment);
-
         }
         if (argMultimap.getValue(PREFIX_COLOUR).isPresent()) {
             keywords = argMultimap.getValue(PREFIX_COLOUR).get().split("\\s+");
@@ -47,6 +44,10 @@ public class AttributesContainsKeywordsPredicate implements Predicate<Garment> {
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             keywords = argMultimap.getValue(PREFIX_DESCRIPTION).get().split("\\s+");
             testResult = testResult && new DescriptionContainsKeywordsPredicate(Arrays.asList(keywords)).test(garment);
+        }
+        if (argMultimap.getValue(PREFIX_TYPE).isPresent()) {
+            keywords = argMultimap.getValue(PREFIX_TYPE).get().split("\\s+");
+            testResult = testResult && new TypeContainsKeywordsPredicate(Arrays.asList(keywords)).test(garment);
         }
         return testResult;
     }

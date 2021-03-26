@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DRESSCODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,7 +41,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SIZE, PREFIX_COLOUR, PREFIX_DRESSCODE,
-                        PREFIX_DESCRIPTION);
+                        PREFIX_DESCRIPTION, PREFIX_TYPE);
 
         //ContainsKeywordsPredicate containsKeywordsPredicate;
         //String[] keywords = {""};//just init 1st see if works when check the keywords in last if block
@@ -118,39 +119,49 @@ public class FindCommandParser implements Parser<FindCommand> {
                 || argMultimap.getValue(PREFIX_NAME).isPresent());
     }*/
 
+    //maybe can separate to each prefix, but that sorta forces each prefic to be present
     public boolean isValidInput(ArgumentMultimap argMultimap) {
         String[] keywords = {""};
-        boolean isValid = false;
+        boolean isValidSyntax = false;
+        boolean isNotEmpty = true;
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            isValidSyntax = true;
             keywords = argMultimap.getValue(PREFIX_NAME).get().split("\\s+");
-            if (!(keywords[0].equals(""))) {
-                isValid = true;
-            }
+            isNotEmpty = isNotEmpty && isNotEmpty(keywords);
         }
         if (argMultimap.getValue(PREFIX_DRESSCODE).isPresent()) {
+            isValidSyntax = true;
             keywords = argMultimap.getValue(PREFIX_DRESSCODE).get().split("\\s+");
-            if (!(keywords[0].equals(""))) {
-                isValid = true;
-            }
+            isNotEmpty = isNotEmpty && isNotEmpty(keywords);
         }
         if (argMultimap.getValue(PREFIX_COLOUR).isPresent()) {
+            isValidSyntax = true;
             keywords = argMultimap.getValue(PREFIX_COLOUR).get().split("\\s+");
-            if (!(keywords[0].equals(""))) {
-                isValid = true;
-            }
+            isNotEmpty = isNotEmpty && isNotEmpty(keywords);
         }
         if (argMultimap.getValue(PREFIX_SIZE).isPresent()) {
+            isValidSyntax = true;
             keywords = argMultimap.getValue(PREFIX_SIZE).get().split("\\s+");
-            if (!(keywords[0].equals(""))) {
-                isValid = true;
-            }
+            isNotEmpty = isNotEmpty && isNotEmpty(keywords);
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
+            isValidSyntax = true;
             keywords = argMultimap.getValue(PREFIX_DESCRIPTION).get().split("\\s+");
-            if (!(keywords[0].equals(""))) {
-                isValid = true;
-            }
+            isNotEmpty = isNotEmpty && isNotEmpty(keywords);
         }
-        return isValid;
+        if (argMultimap.getValue(PREFIX_TYPE).isPresent()) {
+            isValidSyntax = true;
+            keywords = argMultimap.getValue(PREFIX_TYPE).get().split("\\s+");
+            isNotEmpty = isNotEmpty && isNotEmpty(keywords);
+        }
+        return isValidSyntax && isNotEmpty;
+    }
+
+    public boolean isNotEmpty(String[] input) {
+        if (!(input[0].equals(""))) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
