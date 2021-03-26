@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.meetings.AddMeetingCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -70,8 +71,12 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
 
         Set<Group> tagList = ParserUtil.parseGroups(argMultimap.getAllValues(PREFIX_GROUP));
 
-        Meeting meeting = new Meeting(meetingName, startTime, endTime, priority, description, tagList);
-
+        Meeting meeting;
+        try {
+            meeting = new Meeting(meetingName, startTime, endTime, priority, description, tagList);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(e.getMessage());
+        }
         return new AddMeetingCommand(meeting);
     }
 
