@@ -9,7 +9,7 @@
     <Line/>
     <VBox fx:id="todoColumn" alignment="CENTER" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
     <Line/>
-    <VBox fx:id="ongoingColumn" alignment="CENTER" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
+    <VBox fx:id="inProgressColumn" alignment="CENTER" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
     <Line/>
     <VBox fx:id="doneColumn" alignment="CENTER" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
     <Line/>
