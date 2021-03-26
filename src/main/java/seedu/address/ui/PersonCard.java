@@ -73,7 +73,7 @@ public class PersonCard extends UiPart<Region> {
             modeOfContactIcon.setImage(new Image("images/fail.png"));
         }
         if (person.getBlacklist().isBlacklisted) {
-            name.setStyle("-fx-text-fill: #ff0000");
+            name.setStyle("-fx-text-fill: #ff6666");
         } else {
             name.setStyle("");
         }
