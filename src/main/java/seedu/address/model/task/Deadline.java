@@ -89,6 +89,15 @@ public class Deadline {
         return now.isAfter(value);
     }
 
+    /**
+     * Check if there is a value present.
+     *
+     * @return true is value is null, false otherwise.
+     */
+    public boolean isEmptyValue() {
+        return value == null;
+    }
+
     @Override
     public String toString() {
         if (value != null) {
@@ -103,7 +112,8 @@ public class Deadline {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Deadline // instanceof handles nulls
-                && value.equals(((Deadline) other).value)); // state check
+                && ((value == null && ((Deadline) other).value == null)
+                        || value.equals(((Deadline) other).value))); // state check
     }
 
     @Override

@@ -183,6 +183,10 @@ public class RecurringSchedule {
         return recurringScheduleOutput;
     }
 
+    public boolean isEmptyValue() {
+        return emptyRecurringSchedule;
+    }
+
     @Override
     public String toString() {
         return output;

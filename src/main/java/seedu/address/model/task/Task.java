@@ -121,6 +121,33 @@ public class Task {
     }
 
     /**
+     * Checks if the Deadline attribute contains any data.
+     *
+     * @return true if the String of Deadline isEmpty, false otherwise.
+     */
+    public boolean isDeadlineEmpty() {
+        return deadline.isEmptyValue();
+    }
+
+    /**
+     * Checks if the Duration attribute contains any data.
+     *
+     * @return true if the String of Duration isEmpty, false otherwise.
+     */
+    public boolean isDurationEmpty() {
+        return duration.isEmptyValue();
+    }
+
+    /**
+     * Checks if the RecurringSchedule attribute contains any data.
+     *
+     * @return true if the String of RecurringSchedule isEmpty, false otherwise.
+     */
+    public boolean isRecurringScheduleEmpty() {
+        return recurringSchedule.isEmptyValue();
+    }
+
+    /**
      * Returns true if both tasks have the same identity and data fields.
      * This defines a stronger notion of equality between two tasks.
      */

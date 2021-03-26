@@ -68,6 +68,9 @@ public class TypicalTasks {
             .withDuration(VALID_DURATION_BOB).withRecurringSchedule(VALID_RECURRINGSCHEDULE_BOB)
             .withDescription(VALID_DESCRIPTION_BOB).withStatus(VALID_STATUS_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    public static final Task AMY_NO_DEADLINE = new TaskBuilder().withTitle(VALID_TITLE_AMY)
+            .withDuration(VALID_DURATION_AMY).withRecurringSchedule(VALID_RECURRINGSCHEDULE_AMY)
+            .withDescription(VALID_DESCRIPTION_AMY).withStatus(VALID_STATUS_AMY).withTags(VALID_TAG_FRIEND).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
