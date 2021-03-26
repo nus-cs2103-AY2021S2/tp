@@ -1,6 +1,8 @@
 package seedu.address.testutil;
 
 import seedu.address.model.grade.Grade;
+import seedu.address.model.grade.GradeEnum;
+import seedu.address.model.grade.GradedItem;
 import seedu.address.model.subject.SubjectName;
 
 /**
@@ -13,16 +15,16 @@ public class GradeBuilder {
     public static final String DEFAULT_GRADE = "A";
 
     private SubjectName subjectName;
-    private String gradedItem;
-    private String grade;
+    private GradedItem gradedItem;
+    private GradeEnum grade;
 
     /**
      * Creates a {@code GradeBuilder} with the default details.
      */
     public GradeBuilder() {
         subjectName = new SubjectName(DEFAULT_SUBJECT);
-        gradedItem = DEFAULT_GRADED_ITEM;
-        grade = DEFAULT_GRADE;
+        gradedItem = new GradedItem(DEFAULT_GRADED_ITEM);
+        grade = GradeEnum.valueOf(DEFAULT_GRADE);
     }
 
     /**
@@ -46,7 +48,7 @@ public class GradeBuilder {
      * Sets the {@code GradedItem} of the {@code Grade} that we are building.
      */
     public GradeBuilder withGradedItem(String gradedItem) {
-        this.gradedItem = gradedItem;
+        this.gradedItem = new GradedItem(gradedItem);
         return this;
     }
 
@@ -54,7 +56,7 @@ public class GradeBuilder {
      * Sets the {@code Grade} of the {@code Grade} that we are building.
      */
     public GradeBuilder withGrade(String grade) {
-        this.grade = grade;
+        this.grade = GradeEnum.valueOf(grade);
         return this;
     }
 

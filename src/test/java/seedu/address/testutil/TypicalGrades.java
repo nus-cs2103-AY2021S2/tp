@@ -18,11 +18,11 @@ public class TypicalGrades {
     public static final Grade SCIENCE_GRADE = new GradeBuilder()
             .withSubject("Science")
             .withGradedItem("Lab 1")
-            .withGrade("B+").build();
+            .withGrade("B").build();
     public static final Grade ENGLISH_GRADE = new GradeBuilder()
             .withSubject("English")
             .withGradedItem("Final")
-            .withGrade("85").build();
+            .withGrade("C").build();
 
     private TypicalGrades() {
     } // prevents instantiation
@@ -39,6 +39,6 @@ public class TypicalGrades {
     }
 
     public static List<Grade> getTypicalGrades() {
-        return new ArrayList<>(Arrays.asList(MATHS_GRADE, SCIENCE_GRADE));
+        return new ArrayList<>(Arrays.asList(MATHS_GRADE, SCIENCE_GRADE, ENGLISH_GRADE));
     }
 }
