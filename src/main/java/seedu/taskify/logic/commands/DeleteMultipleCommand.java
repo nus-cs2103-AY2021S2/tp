@@ -25,6 +25,9 @@ public class DeleteMultipleCommand extends Command {
             + ": Delete multiple tasks identified by the index number used in the displayed task list.\n"
             + "Parameters: FIRST_INDEX SECOND_INDEX ...(must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1" + " 3" + " 5";
+
+    public static final String MESSAGE_SWITCH_TO_HOME = "Switch back to home page to delete!";
+
     private final List<Index> targetIndexes;
     private final Optional<Status> statusOfTasksToDelete;
     private final boolean toDeleteByStatus;
@@ -56,6 +59,10 @@ public class DeleteMultipleCommand extends Command {
 
         List<Task> lastShownList = model.getFilteredTaskList();
         List<Task> tasksToDelete;
+
+        if (!CommandResult.isHomeTab()) {
+            throw new CommandException(MESSAGE_SWITCH_TO_HOME);
+        }
 
         if (toDeleteByStatus) {
             tasksToDelete = getTasksToDelete(statusOfTasksToDelete.get(), lastShownList);
