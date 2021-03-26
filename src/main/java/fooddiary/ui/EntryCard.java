@@ -61,8 +61,8 @@ public class EntryCard extends UiPart<Region> {
         reviews.setText(String.format("Reviews: %s", reviewStr));
 
         entry.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagCategory))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagCategory.titleCase())));
+                .sorted(Comparator.comparing(tag -> tag.tag))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tag)));
     }
 
     @Override
