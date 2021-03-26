@@ -42,7 +42,7 @@ public class Duration {
     public static boolean isValidDuration(String test) {
         Pattern p = Pattern.compile(VALIDATION_REGEX);
         Matcher m = p.matcher(test);
-        return m.matches();
+        return m.matches() || test.matches("");
     }
 
     /**
