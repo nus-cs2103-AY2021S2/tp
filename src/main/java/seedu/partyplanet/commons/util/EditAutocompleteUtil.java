@@ -101,7 +101,7 @@ public class EditAutocompleteUtil {
         );
 
         String output = "edit " + index.getOneBased();
-
+        
         // Here we can assume Prefixes are sorted in the order they are entered.
         for (Prefix prefix: argMultimap.getPrefixPositionOrders()) {
             List<String> values = argMultimap.getAllValues(prefix);
