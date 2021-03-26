@@ -47,8 +47,6 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private Label favourite;
-    @FXML
     private ImageView favIcon;
 
     /**
