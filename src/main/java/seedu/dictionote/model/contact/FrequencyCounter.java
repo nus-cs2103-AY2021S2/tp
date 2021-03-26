@@ -13,6 +13,13 @@ public class FrequencyCounter {
     public final int value;
 
     /**
+     * Constructs a {@code FrequencyCounter} with its value set to 0.
+     */
+    public FrequencyCounter() {
+        this(0);
+    }
+
+    /**
      * Constructs a {@code FrequencyCounter}.
      *
      * @param frequencyCounter A valid frequency counter value.
