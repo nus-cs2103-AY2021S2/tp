@@ -30,6 +30,9 @@ public class ViewPatientBox extends UiPart<Region> {
 
     public final Person person;
 
+    public static final String STARTUP_MESSAGE = "Hello Doc, to view patient info: \n"
+            + "try 'view INDEX'";
+
     @FXML
     private HBox cardPane;
     @FXML
@@ -67,27 +70,12 @@ public class ViewPatientBox extends UiPart<Region> {
     }
 
     /**
-     * this is the constructor for when the program just initializes
+     * Constructor for when the program just initializes
      */
     public ViewPatientBox() {
         super(FXML);
-        // create sample person to put in the box
-        this.person = new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("flu", "runnynose"));
-        person.addAppointment(new Appointment(LocalDateTime.now().plusDays(1)));
-        person.addAppointment(new Appointment(LocalDateTime.now().plusDays(2)));
-
-        name.setText(person.getName().fullName);
-        phone.setText("Phone: " + person.getPhone().value);
-        address.setText("Address: " + person.getAddress().value);
-        email.setText("Email: " + person.getEmail().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        person.getAppointments().stream()
-                .min(Comparator.comparing(Appointment::getDate))
-                .ifPresent(appt -> appointments.getChildren().add(new Label(appt.getDateDisplay())));
+        this.person = null;
+        name.setText(STARTUP_MESSAGE);
     }
 
     /**
