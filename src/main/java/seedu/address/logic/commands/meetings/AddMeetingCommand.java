@@ -20,8 +20,6 @@ import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 
-import java.util.List;
-
 
 public class AddMeetingCommand extends Command {
     public static final String COMMAND_WORD = "addm";

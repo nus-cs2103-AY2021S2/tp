@@ -33,7 +33,7 @@ public class Meeting implements Schedulable {
     private final Priority priority;
     private final Description description;
     private final Set<Group> groups = new HashSet<>();
-    private Set<Index> connectionToPerson = null;
+    private Set<Index> connectionToPerson = new HashSet<>();
 
     /**
      * Every field must be present and not null.

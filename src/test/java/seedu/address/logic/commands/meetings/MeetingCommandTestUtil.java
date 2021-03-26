@@ -62,8 +62,8 @@ public class MeetingCommandTestUtil {
     public static final String INVALID_DATETIME_DESC = " " + PREFIX_START_TIME + "2020/02/03 09:00";
     public static final String INVALID_PRIORITY_DESC = " " + PREFIX_PRIORITY + "-2";
     public static final String INVALID_TAG_DESC = " " + PREFIX_GROUP + "hubby*"; // '*' not allowed in tags
-    public static final String INVALID_CONNECTION1_DESC = " " + PREFIX_PERSON_CONNECTION + "a"; // should be a positive integer
-    public static final String INVALID_CONNECTION2_DESC = " " + PREFIX_PERSON_CONNECTION + "-1"; // should be a positive integer
+    public static final String INVALID_CONNECTION1_DESC = " " + PREFIX_PERSON_CONNECTION + "a";
+    public static final String INVALID_CONNECTION2_DESC = " " + PREFIX_PERSON_CONNECTION + "-1";
     /**
      * Updates {@code model}'s filtered meetings list to show only the meeting at the given {@code targetIndex} in the
      * {@code model}'s meeting book. It is mandatory for this case meeting names are unique with respect to their first

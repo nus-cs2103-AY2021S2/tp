@@ -8,8 +8,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_CONNECTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
+
 import java.util.Set;
 import java.util.stream.Stream;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.meetings.AddMeetingCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -70,11 +72,13 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
 
         Set<Group> tagList = ParserUtil.parseGroups(argMultimap.getAllValues(PREFIX_GROUP));
 
-        Set<Index> personConnectionSet = ParserUtil.parsePersonsConnection(argMultimap.getAllValues(PREFIX_PERSON_CONNECTION));
+        Set<Index> personConnectionSet = ParserUtil
+            .parsePersonsConnection(argMultimap.getAllValues(PREFIX_PERSON_CONNECTION));
 
         Meeting meeting;
         try {
-            meeting = new Meeting(meetingName, startTime, endTime, priority, description, tagList).setConnectionToPerson(personConnectionSet);
+            meeting = new Meeting(meetingName, startTime, endTime, priority, description, tagList)
+                .setConnectionToPerson(personConnectionSet);
         } catch (IllegalArgumentException e) {
             throw new ParseException(e.getMessage());
         }
