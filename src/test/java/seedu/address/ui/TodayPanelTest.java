@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.util.DateUtil.decodeDate;
+import static seedu.address.commons.util.DateUtil.decodeDateWithDay;
 import static seedu.address.testutil.TypicalColabFolder.getTypicalColabFolder;
 
 import java.time.LocalDate;
@@ -23,7 +24,7 @@ public class TodayPanelTest extends GuiUnitTest {
         LocalDate date = LocalDate.of(2021, 1, 1);
         initUi(getTypicalColabFolder(), date);
 
-        assertEquals(todayPanelHandle.getDisplayedDate(), decodeDate(date));
+        assertEquals(todayPanelHandle.getDisplayedDate(), decodeDateWithDay(date));
     }
 
 

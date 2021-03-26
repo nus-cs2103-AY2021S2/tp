@@ -1,7 +1,7 @@
 package seedu.address.ui.testutil;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.commons.util.DateUtil.decodeDate;
+import static seedu.address.commons.util.DateUtil.decodeDateWithDay;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -55,7 +55,7 @@ public class GuiTestAssert {
     public static void assertCardDisplaysCompletableDeadline(
             CompletableDeadline expectedDeadline, CompletableDeadlineCardHandle actualCard) {
         assertEquals(expectedDeadline.getDescription(), actualCard.getDescription());
-        assertEquals(decodeDate(expectedDeadline.getBy()), actualCard.getDate());
+        assertEquals(decodeDateWithDay(expectedDeadline.getBy()), actualCard.getDate());
         String expectedCompletedText = CompletableDeadlineCard
                 .getTextToDisplay(expectedDeadline.getIsDone());
         assertEquals(expectedCompletedText, actualCard.getCompleted());
@@ -78,7 +78,7 @@ public class GuiTestAssert {
     public static void assertCardDisplaysEvent(Event expectedEvent, EventCardHandle actualCard) {
         assertEquals(expectedEvent.getDescription(), actualCard.getDescription());
         assertEquals(expectedEvent.getRecurrence().toString(), actualCard.getInteval());
-        assertEquals(decodeDate(expectedEvent.getAt()), actualCard.getDate());
+        assertEquals(decodeDateWithDay(expectedEvent.getAt()), actualCard.getDate());
     }
 
     /**
