@@ -29,6 +29,10 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
+    //Health-related data fields
+    private final Weight weight;
+
+
     // Medical fields
     private final List<MedicalRecord> records = new ArrayList<>();
     private final List<Appointment> appointments = new ArrayList<>();
@@ -36,24 +40,26 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Weight weight, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, weight, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.weight = weight;
         this.tags.addAll(tags);
     }
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<Appointment>appointments) {
+    public Person(Name name, Phone phone, Email email, Address address, Weight weight, Set<Tag> tags, List<Appointment>appointments) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.weight = weight;
         this.tags.addAll(tags);
         this.appointments.addAll(appointments);
     }
@@ -72,6 +78,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Weight getWeight() {
+        return weight;
     }
 
     /**
@@ -122,13 +132,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getWeight().equals(getWeight())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, weight, tags);
     }
 
     @Override
@@ -140,7 +151,9 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Weight: ")
+                .append(getWeight());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
