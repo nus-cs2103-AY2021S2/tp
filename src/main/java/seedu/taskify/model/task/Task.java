@@ -66,6 +66,10 @@ public class Task {
         return this.getStatus().toString().equals("Completed");
     }
 
+    public boolean isTaskUncompleted() {
+        return !this.getStatus().toString().equals("Completed");
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.

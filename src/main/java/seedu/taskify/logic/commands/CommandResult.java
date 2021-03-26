@@ -12,6 +12,7 @@ public class CommandResult {
     private static boolean showHome = false;
     private static boolean showExpired = false;
     private static boolean showCompleted = false;
+    private static boolean showUncompleted = false;
 
     private final String feedbackToUser;
 
@@ -46,6 +47,7 @@ public class CommandResult {
         CommandResult.showHome = true;
         CommandResult.showExpired = false;
         CommandResult.showCompleted = false;
+        CommandResult.showUncompleted = false;
         return newCommand;
     }
 
@@ -59,6 +61,7 @@ public class CommandResult {
         CommandResult.showHome = false;
         CommandResult.showExpired = true;
         CommandResult.showCompleted = false;
+        CommandResult.showUncompleted = false;
         return newCommand;
     }
 
@@ -72,6 +75,22 @@ public class CommandResult {
         CommandResult.showHome = false;
         CommandResult.showExpired = false;
         CommandResult.showCompleted = true;
+        CommandResult.showUncompleted = false;
+        return newCommand;
+    }
+
+    /**
+     * Command Result for the user to switch to uncompleted task tab
+     * @param feedbackToUser
+     * @return commandResult
+     */
+
+    public static CommandResult switchToUncompleted(String feedbackToUser) {
+        CommandResult newCommand = new CommandResult(feedbackToUser);
+        CommandResult.showHome = false;
+        CommandResult.showExpired = false;
+        CommandResult.showCompleted = false;
+        CommandResult.showUncompleted = true;
         return newCommand;
     }
 
@@ -106,6 +125,10 @@ public class CommandResult {
 
     public static boolean isCompletedTab() {
         return CommandResult.showCompleted;
+    }
+
+    public static boolean isUncompletedTab() {
+        return CommandResult.showUncompleted;
     }
 
     @Override

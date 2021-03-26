@@ -94,6 +94,8 @@ public interface Model {
 
     ObservableList<Task> getCompletedFilteredTaskList();
 
+    ObservableList<Task> getUncompletedFilteredTaskList();
+
     /**
      * Updates the filter of the filtered task list to filter by the given {@code predicate}.
      *
@@ -104,4 +106,6 @@ public interface Model {
     void updateExpiredFilterTaskList(Predicate<Task> predicate);
 
     void updateCompletedFilterTaskList(Predicate<Task> predicate);
+
+    void updateUncompletedFilterTaskList(Predicate<Task> predicate);
 }

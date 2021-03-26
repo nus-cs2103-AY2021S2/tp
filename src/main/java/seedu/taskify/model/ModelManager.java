@@ -24,6 +24,7 @@ public class ModelManager implements Model {
     private final FilteredList<Task> filteredTasks;
     private final FilteredList<Task> expiredFilteredTasks;
     private final FilteredList<Task> completedFilteredTasks;
+    private final FilteredList<Task> uncompletedFilteredTasks;
 
     /**
      * Initializes a ModelManager with the given taskify and userPrefs.
@@ -39,6 +40,7 @@ public class ModelManager implements Model {
         filteredTasks = new FilteredList<>(this.taskify.getTaskList());
         expiredFilteredTasks = new FilteredList<>(this.taskify.getExpiredTaskList());
         completedFilteredTasks = new FilteredList<>(this.taskify.getCompletedTaskList());
+        uncompletedFilteredTasks = new FilteredList<>(this.taskify.getUncompletedTaskList());
     }
 
     public ModelManager() {
@@ -144,6 +146,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Task> getUncompletedFilteredTaskList() {
+        return uncompletedFilteredTasks;
+    }
+
+    @Override
     public void updateExpiredFilterTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         expiredFilteredTasks.setPredicate(predicate);
@@ -159,6 +166,12 @@ public class ModelManager implements Model {
     public void updateCompletedFilterTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         completedFilteredTasks.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateUncompletedFilterTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        uncompletedFilteredTasks.setPredicate(predicate);
     }
 
     @Override

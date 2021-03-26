@@ -123,6 +123,10 @@ public class Taskify implements ReadOnlyTaskify {
         return tasks.asUnmodifiableObservableList().filtered(t -> t.isTaskCompleted());
     }
 
+    public ObservableList<Task> getUncompletedTaskList() {
+        return tasks.asUnmodifiableObservableList().filtered(t -> t.isTaskUncompleted());
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
