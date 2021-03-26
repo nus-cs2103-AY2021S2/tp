@@ -153,12 +153,12 @@ public class MainWindow extends UiPart<Stage> {
      * Shows the flashcard panel for learn mode.
      */
     private void enterLearnMode() {
-        // flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
-        // flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
-        // flashcardListPanelPlaceholder.setVisible(true);
-        scoreHistoryListPanel = new ScoreHistoryListPanel(logic.getFilteredScoreList());
-        flashcardListPanelPlaceholder.getChildren().add(scoreHistoryListPanel.getRoot());
+        flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
+        flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
         flashcardListPanelPlaceholder.setVisible(true);
+        // scoreHistoryListPanel = new ScoreHistoryListPanel(logic.getFilteredScoreList());
+        // flashcardListPanelPlaceholder.getChildren().add(scoreHistoryListPanel.getRoot());
+        // flashcardListPanelPlaceholder.setVisible(true);
     }
 
     /**
