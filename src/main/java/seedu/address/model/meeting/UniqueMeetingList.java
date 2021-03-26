@@ -5,11 +5,13 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.meeting.exceptions.DuplicateMeetingException;
 import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
+import seedu.address.model.meeting.exceptions.MeetingTimeClashException;
 
 /**
  * A list of meetings that enforces uniqueness between its elements and does not allow nulls.
@@ -38,13 +40,28 @@ public class UniqueMeetingList implements Iterable<Meeting> {
     }
 
     /**
+     * Returns a list of meetings that clash with the current meeting
+     */
+
+    public List<Meeting> getClashes(Meeting toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().filter(meeting -> meeting.isConflict(toCheck))
+                .collect(Collectors.toList());
+    }
+
+    /**
      * Adds a meeting to the list.
      * The meeting must not already exist in the list.
+     * There must be no clashes with current meeting.
      */
     public void add(Meeting toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateMeetingException();
+        }
+        List<Meeting> clashes = getClashes(toAdd);
+        if (clashes.size() > 0) {
+            throw new MeetingTimeClashException(clashes.get(0));
         }
         internalList.add(toAdd);
     }
