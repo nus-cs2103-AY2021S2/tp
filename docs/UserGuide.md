@@ -260,7 +260,7 @@ Examples:
 
 ### Toggle theme : `theme`
 
-Toggles between Dark and Pink theme
+Toggles between Dark and Pastel theme
 
 Format: `theme`
 

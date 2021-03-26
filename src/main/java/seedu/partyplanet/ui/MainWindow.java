@@ -231,11 +231,11 @@ public class MainWindow extends UiPart<Stage> {
         this.theme = theme;
     }
     @FXML
-    public void setThemePastel() {
+    private void setThemePastel() {
         setTheme(Theme.PASTEL);
     }
     @FXML
-    public void setThemeDark() {
+    private void setThemeDark() {
         setTheme(Theme.DARK);
     }
 }

@@ -28,7 +28,7 @@ public class GuiSettings implements Serializable {
     }
 
     /**
-     * Constructs a {@code GuiSettings} with the default height, width and position, with specified Theme.
+     * Constructs a {@code GuiSettings} with the default height, width, position, and theme.
      */
     public GuiSettings(Theme theme) {
         windowWidth = DEFAULT_WIDTH;
@@ -38,7 +38,7 @@ public class GuiSettings implements Serializable {
     }
 
     /**
-     * Constructs a {@code GuiSettings} with the specified height, width and position.
+     * Constructs a {@code GuiSettings} with the specified height, width, position, and theme
      */
     public GuiSettings(double windowWidth, double windowHeight, int xPosition, int yPosition, Theme theme) {
         this.windowWidth = windowWidth;
