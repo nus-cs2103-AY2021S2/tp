@@ -1,0 +1,73 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":PlannerParser" as PlannerParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant ":TitleContainsKeywordsPredicate" as TitleContainsKeywordsPredicate LOGIC_COLOR
+participant ":FindCommand" as FindCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(find [args])
+activate LogicManager
+
+LogicManager -> PlannerParser : parseCommand(find [args])
+activate PlannerParser
+
+create FindCommandParser
+PlannerParser -> FindCommandParser : new FindCommandParser()
+activate FindCommandParser
+
+FindCommandParser --> PlannerParser : return
+deactivate FindCommandParser
+
+PlannerParser -> FindCommandParser : parse(args)
+activate FindCommandParser
+
+create TitleContainsKeywordsPredicate
+FindCommandParser -> TitleContainsKeywordsPredicate : new TitleContainsKeywordsPredicate(keywords)
+activate TitleContainsKeywordsPredicate
+
+TitleContainsKeywordsPredicate --> FindCommandParser : predicate
+deactivate TitleContainsKeywordsPredicate
+
+create FindCommand
+FindCommandParser -> FindCommand : new FindCommand(predicate)
+activate FindCommand
+
+FindCommand --> FindCommandParser : command
+deactivate FindCommand
+
+FindCommandParser --> PlannerParser : command
+deactivate FindCommandParser
+
+PlannerParser --> LogicManager : command
+deactivate PlannerParser
+
+LogicManager -> FindCommand : execute(model)
+activate FindCommand
+
+FindCommand -> Model : updateFilteredTaskList(predicate)
+activate Model
+
+create CommandResult
+FindCommand -> CommandResult : new CommandResult(feedbackToUser)
+activate CommandResult
+
+CommandResult --> FindCommand : result
+deactivate CommandResult
+FindCommand --> LogicManager : result
+deactivate FindCommand
+
+FindCommand -[hidden]-> LogicManager : result
+destroy FindCommand
+
+[<--LogicManager : return
+deactivate LogicManager
+@enduml

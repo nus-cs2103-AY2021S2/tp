@@ -13,6 +13,7 @@ import javafx.scene.layout.VBox;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Duration;
+import seedu.address.model.task.RecurringSchedule;
 import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
@@ -121,10 +122,10 @@ public class TaskCardDetails extends UiPart<Region> {
     }
 
     /**
-     * Sets the value of the field of the task into the label. Asserts that the value is not blank because the label
-     * is compulsory.
+     * Sets the value of the field of the task into an existing label. Asserts that the value is not blank because the
+     * label is compulsory.
      *
-     * @param label      Static label already fixed in the view.
+     * @param label      Static label that is already existing in the view.
      * @param fieldValue Value to be set as the text of the label.
      */
     private void setFieldLabel(Label label, String fieldValue) {
@@ -146,6 +147,9 @@ public class TaskCardDetails extends UiPart<Region> {
         if (fieldName.equals(Description.FIELD_NAME)) {
             details.getChildren().add(new Separator());
             newLabel.getStyleClass().add("description");
+        } else if (fieldName.equals(RecurringSchedule.FIELD_NAME)) {
+            newLabel.getStyleClass().clear();
+            newLabel.getStyleClass().add("recurring-schedule");
         } else {
             // Sets style of every other label.
             newLabel.getStyleClass().add("cell_small_label");

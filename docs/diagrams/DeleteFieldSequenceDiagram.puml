@@ -1,0 +1,76 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":PlannerParser" as PlannerParser LOGIC_COLOR
+participant ":DeleteFieldCommandParser" as DeleteFieldCommandParser LOGIC_COLOR
+participant "d:DeleteFieldCommand" as DeleteFieldCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("delete-field 2 t/")
+activate LogicManager
+
+LogicManager -> PlannerParser : parseCommand("delete-field 2 t/")
+activate PlannerParser
+
+create DeleteFieldCommandParser
+PlannerParser -> DeleteFieldCommandParser
+activate DeleteFieldCommandParser
+
+DeleteFieldCommandParser --> PlannerParser
+deactivate DeleteFieldCommandParser
+
+PlannerParser -> DeleteFieldCommandParser : parse("2")
+activate DeleteFieldCommandParser
+
+create DeleteFieldCommand
+DeleteFieldCommandParser -> DeleteFieldCommand
+activate DeleteFieldCommand
+
+DeleteFieldCommand --> DeleteFieldCommandParser : d
+deactivate DeleteFieldCommand
+
+DeleteFieldCommandParser --> PlannerParser : d
+deactivate DeleteFieldCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteFieldCommandParser -[hidden]-> PlannerParser
+destroy DeleteFieldCommandParser
+
+PlannerParser --> LogicManager : d
+deactivate PlannerParser
+
+LogicManager -> DeleteFieldCommand : execute()
+activate DeleteFieldCommand
+
+
+DeleteFieldCommand -> DeleteFieldCommand : deleteFieldFromTask(taskToDeleteFieldFrom, targetField)
+activate DeleteFieldCommand
+
+DeleteFieldCommand -> DeleteFieldCommand : taskWithFieldDeleted
+deactivate DeleteFieldCommand
+
+DeleteFieldCommand -> Model : setTask(taskToDeleteFieldFrom, taskWithFieldDeleted)
+activate Model
+
+Model --> DeleteFieldCommand
+deactivate Model
+
+create CommandResult
+DeleteFieldCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteFieldCommand
+deactivate CommandResult
+
+DeleteFieldCommand --> LogicManager : result
+deactivate DeleteFieldCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
