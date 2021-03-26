@@ -70,6 +70,8 @@ public class SampleDataUtil {
 
     /**
      * Returns a tag set containing the list of strings given.
+     *
+     * @return A {@code Set<Tag>} containing the list of strings given.
      */
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
@@ -79,6 +81,7 @@ public class SampleDataUtil {
 
     /**
      * Returns an array of sample {@code Projects}
+     *
      * @return sample {@code Projects}
      */
     public static Project[] getSampleProjects() {
@@ -93,6 +96,7 @@ public class SampleDataUtil {
 
     /**
      * Creates a new CS2103T project.
+     *
      * @return typical {@code Project}.
      */
     public static Project getCS2103TProject() throws DateConversionException {
@@ -103,6 +107,7 @@ public class SampleDataUtil {
 
     /**
      * Creates a new CS2101 project.
+     *
      * @return typical {@code Project}.
      */
     public static Project getCS2101Project() throws DateConversionException {

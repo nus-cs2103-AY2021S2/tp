@@ -73,7 +73,10 @@ public class ColabFolder implements ReadOnlyColabFolder {
     // person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the {@code ColabFolder}.
+     * Checks if person exists in the {@code ColabFolder}.
+     *
+     * @return true if a person with the same identity as {@code person} exists in the {@code ColabFolder},
+     * false otherwise.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -111,7 +114,10 @@ public class ColabFolder implements ReadOnlyColabFolder {
     // project-level operations
 
     /**
-     * Returns true if a project with the same identity as {@code project} exists in the {@code ColabFolder}.
+     * Checks if project exists in the {@code ColabFolder}.
+     *
+     * @return true if a project with the same identity as {@code project} exists in the {@code ColabFolder},
+     * false otherwise.
      */
     public boolean hasProject(Project project) {
         requireNonNull(project);
