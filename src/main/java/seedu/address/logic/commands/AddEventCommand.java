@@ -13,6 +13,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.exceptions.DuplicateEventException;
 import seedu.address.model.task.repeatable.Event;
 
 /**
@@ -59,13 +60,12 @@ public class AddEventCommand extends Command {
         Project projectToEdit = lastShownList.get(index.getZeroBased());
         assert projectToEdit != null;
 
-        for (Event event: projectToEdit.getEvents().getEvents()) {
-            if (this.toAdd.equals(event)) {
-                throw new CommandException(Messages.MESSAGE_DUPLICATE_EVENT);
-            }
+        try {
+            projectToEdit.addEvent(toAdd);
+        } catch (DuplicateEventException e) {
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_EVENT);
         }
 
-        projectToEdit.addEvent(toAdd);
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
         return new CommandResult(String.format(Messages.MESSAGE_ADD_EVENT_SUCCESS, toAdd));
     }

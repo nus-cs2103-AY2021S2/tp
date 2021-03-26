@@ -7,8 +7,8 @@ import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.project.exceptions.DuplicateTodoException;
 import seedu.address.model.task.CompletableTodo;
-import seedu.address.model.task.todo.Todo;
 
 /**
  * Represents a list of Todos.
@@ -34,12 +34,17 @@ public class TodoList {
     }
 
     /**
-     * Adds a todo to this {@code TodoList}.
+     * Adds a todo to this {@code TodoList}. The {@code CompletableTodo} must not already exist in the {@code TodoList}.
      *
      * @param todo {@code Todo} to add.
      */
-    public void addTodo(Todo todo) {
+    public void addTodo(CompletableTodo todo) {
         requireNonNull(todo);
+
+        if (hasTodo(todo)) {
+            throw new DuplicateTodoException();
+        }
+
         this.todos.add(todo);
     }
 
@@ -92,6 +97,21 @@ public class TodoList {
      */
     public Stream<CompletableTodo> stream() {
         return this.todos.stream();
+    }
+
+    /**
+     * Checks if the {@code TodoList} already contains the specified {@code todoToCheck}.
+     *
+     * @param todoToCheck The todo that is to be checked.
+     * @return true if this project contains the specified todo, false otherwise.
+     */
+    public boolean hasTodo(CompletableTodo todoToCheck) {
+        for (CompletableTodo todo: todos) {
+            if (todoToCheck.equals(todo)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

@@ -12,7 +12,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
-import seedu.address.model.task.CompletableDeadline;
+import seedu.address.model.project.exceptions.DuplicateDeadlineException;
 import seedu.address.model.task.deadline.Deadline;
 
 /**
@@ -58,13 +58,12 @@ public class AddDeadlineCommand extends Command {
         Project projectToEdit = lastShownList.get(index.getZeroBased());
         assert projectToEdit != null;
 
-        for (CompletableDeadline deadline: projectToEdit.getDeadlines().getDeadlines()) {
-            if (this.toAdd.equals(deadline)) {
-                throw new CommandException(Messages.MESSAGE_DUPLICATE_DEADLINE);
-            }
+        try {
+            projectToEdit.addDeadline(toAdd);
+        } catch (DuplicateDeadlineException e) {
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_DEADLINE);
         }
 
-        projectToEdit.addDeadline(toAdd);
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
         return new CommandResult(String.format(Messages.MESSAGE_ADD_DEADLINE_SUCCESS, toAdd));
     }
