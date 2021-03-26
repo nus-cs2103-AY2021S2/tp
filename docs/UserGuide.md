@@ -1,4 +1,10 @@
-DocBob is a **desktop app for managing your patient's information, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Bob can get your patient's medical information and scheduled appointments faster than any other patient's information management app in the market.
+<p align="center">
+  <img width="341" height="381" src="https://user-images.githubusercontent.com/48408342/112603571-29845b80-8e50-11eb-8dee-bb88603fffb8.png">
+</p>
+
+**DocBob** is a **desktop app for managing your patient's information, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Bob can get your patient's **medical information** and **scheduled appointments** faster than any other patient's information management app in the market. Bob will serve you dilligently and make sure you will never forget an appointment with a patient ever again!
+
+The purpose of this User Guide is to help new users(doctors) understand how to get the app running and learn about the basic commands and their usages.
 
 * Table of Contents
 {:toc}
