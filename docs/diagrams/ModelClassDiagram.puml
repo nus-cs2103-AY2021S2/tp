@@ -4,15 +4,12 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Package Client {
-Class Client
-}
 
-Package Meeting {
-Class Meeting
-}
 
 Package Model <<Rectangle>>{
+Class HiddenOutside #FFFFFF
+HiddenOutside .down.> Model
+
 Interface ReadOnlyClientBook <<Interface>>
 Interface ReadOnlyMeetingBook <<Interface>>
 Interface Model <<Interface>>
@@ -24,20 +21,62 @@ Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Class HiddenOutside #FFFFFF
-HiddenOutside .down.> Model
+Package Client {
+Class UniqueClientList
+Class Client
+Class Email
+Class Phone
+Class InsurancePlan
+}
 
-ClientBook .down.|> ReadOnlyClientBook
-MeetingBook .down.|> ReadOnlyMeetingBook
+
+Package Meeting {
+Class Meeting
+Class DateTime
+Class Description
+Class UniqueMeetingList
+}
+
+Package Commons {
+Class Location
+Class Name
+Class Tag
+}
+
+Client *--> Name
+Client *--> Location
+Client *--> Email
+Client *--> Phone
+Client *--> InsurancePlan
+Client *--> "*" Tag
+
+Meeting *--> Name
+Meeting *--> DateTime
+Meeting *--> Location
+Meeting *--> Description
+Meeting *--> "*" Tag
 
 ModelManager .up.|> Model
-Model .right.> ObservableList
-ModelManager o-down-> "1" ClientBook
-ModelManager o-down-> "1" MeetingBook
-ModelManager o-left-> "1" UserPrefs
-UserPrefs .up.|> ReadOnlyUserPrefs
+ModelManager o---> "1" ClientBook
+ModelManager o---> "1" MeetingBook
+ModelManager o-down-> "1" UserPrefs
 
-ModelManager -right->" ~* filtered list" Client
-ModelManager -->"* filtered sorted list" Meeting
+UserPrefs .down.|> ReadOnlyUserPrefs
+
+ClientBook .right.|> ReadOnlyClientBook
+ClientBook *-down-> "1  " UniqueClientList
+UniqueClientList o-down-> "~*  " Client
+
+Model .right.> ObservableList
+
+MeetingBook .left.|> ReadOnlyMeetingBook
+MeetingBook *-down-> "1   " UniqueMeetingList
+UniqueMeetingList o-down-> "*" Meeting
+
+ModelManager -left->"~* filtered list     " Client
+ModelManager -->"        ~* filtered sorted list" Meeting
+
+note bottom of Commons: Attributes that are used by different object types in the Model.
 }
+
 @enduml
