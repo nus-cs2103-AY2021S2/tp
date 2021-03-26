@@ -15,6 +15,8 @@ public class UndoCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Undoes the last command that changes the AddressBook.";
 
+    public static final String MESSAGE_USAGE_CONCISE = COMMAND_WORD;
+
     public static final String MESSAGE_SUCCESS = "Undo completed!";
 
     public static final String MESSAGE_INVALID_UNDO = "There's nothing left to undo!";

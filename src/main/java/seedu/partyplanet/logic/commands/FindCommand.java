@@ -22,6 +22,8 @@ public class FindCommand extends Command {
             + "Parameters: [-n NAME] [-t TAG]\n"
             + "Example: " + COMMAND_WORD + " -n Bob -t CS2030";
 
+    public static final String MESSAGE_USAGE_CONCISE = COMMAND_WORD + " [-n NAME] [-t TAG]";
+
     private final List<Predicate<Person>> predicates;
 
     public FindCommand(List<Predicate<Person>> predicates) {

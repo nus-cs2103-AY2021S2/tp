@@ -11,7 +11,7 @@ import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 
 import seedu.partyplanet.logic.commands.AddCommand;
-import seedu.partyplanet.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.partyplanet.logic.commands.EditFieldCommand.EditPersonDescriptor;
 import seedu.partyplanet.model.person.Person;
 import seedu.partyplanet.model.tag.Tag;
 

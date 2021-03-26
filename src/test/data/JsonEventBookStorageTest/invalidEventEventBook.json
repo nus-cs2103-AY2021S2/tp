@@ -1,0 +1,8 @@
+{
+  "events": [ {
+    "name": "Event With Invalid Date Field",
+    "isDone" : "0",
+    "eventDate" : "2021-13-01",
+    "detail" : "10 people"
+  } ]
+}

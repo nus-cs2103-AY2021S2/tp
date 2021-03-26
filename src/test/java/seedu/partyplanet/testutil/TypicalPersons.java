@@ -62,8 +62,6 @@ public class TypicalPersons {
             .withAddress(VALID_ADDRESS_BOB).withRemark(VALID_REMARK_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
-
     private TypicalPersons() {} // prevents instantiation
 
     /**

@@ -76,7 +76,6 @@ public class EventBook implements ReadOnlyEventBook {
      */
     public void addEvent(Event e) {
         events.add(e);
-        logger.info("added");
     }
 
     /**

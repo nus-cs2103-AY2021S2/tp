@@ -12,6 +12,8 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.partyplanet.model.date.Date;
+
 public class BirthdayTest {
 
     @Test
@@ -28,14 +30,14 @@ public class BirthdayTest {
     @Test
     public void isValidBirthday_invalidBirthdays() {
         // null birthdays
-        assertThrows(NullPointerException.class, () -> Birthday.isValidBirthday(null));
+        assertThrows(NullPointerException.class, () -> Birthday.isValidBirthdayDate(null));
 
         // invalid birthdays
-        assertFalse(Birthday.isValidBirthday("")); // empty string
-        assertFalse(Birthday.isValidBirthday(" ")); // spaces only
-        assertFalse(Birthday.isValidBirthday("91")); // none match
-        assertFalse(Birthday.isValidBirthday("2021 Feb 20")); // unsupported format
-        assertFalse(Birthday.isValidBirthday("20Feb2021")); // unsupported format
+        assertFalse(Birthday.isValidBirthdayDate("")); // empty string
+        assertFalse(Birthday.isValidBirthdayDate(" ")); // spaces only
+        assertFalse(Birthday.isValidBirthdayDate("91")); // none match
+        assertFalse(Birthday.isValidBirthdayDate("2021 Feb 20")); // unsupported format
+        assertFalse(Birthday.isValidBirthdayDate("20Feb2021")); // unsupported format
     }
 
     @Test
@@ -50,10 +52,10 @@ public class BirthdayTest {
             "February 3 2021",
         };
         for (String validInput: validInputs) {
-            assertTrue(Birthday.isValidBirthday(validInput));
+            assertTrue(Birthday.isValidBirthdayDate(validInput));
         }
         assertEquals(1, Arrays.stream(validInputs)
-                .map(Birthday::parseBirthday)
+                .map(Date::parseDate)
                 .map(x -> (LocalDate) x)
                 .distinct()
                 .count());
@@ -70,10 +72,10 @@ public class BirthdayTest {
             "February 3",
         };
         for (String validInput: validInputs) {
-            assertTrue(Birthday.isValidBirthday(validInput));
+            assertTrue(Birthday.isValidBirthdayDate(validInput));
         }
         assertEquals(1, Arrays.stream(validInputs)
-                .map(Birthday::parseBirthday)
+                .map(Date::parseDate)
                 .map(x -> (MonthDay) x)
                 .distinct()
                 .count());

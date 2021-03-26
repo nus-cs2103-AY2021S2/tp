@@ -6,8 +6,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.partyplanet.commons.exceptions.IllegalValueException;
+import seedu.partyplanet.logic.parser.exceptions.ParseException;
+import seedu.partyplanet.model.date.Date;
 import seedu.partyplanet.model.event.Event;
-import seedu.partyplanet.model.person.Birthday;
+import seedu.partyplanet.model.event.EventDate;
 import seedu.partyplanet.model.person.Name;
 import seedu.partyplanet.model.person.Remark;
 
@@ -19,7 +21,7 @@ class JsonAdaptedEvent {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Event's %s field is missing!";
 
     private final String name;
-    private final String date;
+    private final String eventDate;
     private final String detail;
     private final String isDone;
 
@@ -27,10 +29,10 @@ class JsonAdaptedEvent {
      * Constructs a {@code JsonAdaptedEvent} with the given event details.
      */
     @JsonCreator
-    public JsonAdaptedEvent(@JsonProperty("name") String name, @JsonProperty("birthday") String date,
+    public JsonAdaptedEvent(@JsonProperty("name") String name, @JsonProperty("eventDate") String eventDate,
                             @JsonProperty("remark") String detail, @JsonProperty("isDone") String isDone) {
         this.name = name;
-        this.date = date;
+        this.eventDate = eventDate;
         this.detail = detail;
         this.isDone = isDone;
     }
@@ -40,7 +42,7 @@ class JsonAdaptedEvent {
      */
     public JsonAdaptedEvent(Event source) {
         name = source.getName().fullName;
-        date = source.getDate().value;
+        eventDate = source.getEventDate().value;
         detail = source.getDetails().value;
         isDone = source.isDone() ? "1" : "0";
     }
@@ -59,20 +61,20 @@ class JsonAdaptedEvent {
         }
         final Name modelName = new Name(name);
 
-        Birthday modelDate;
-        if (date == null) {
+        EventDate modelDate;
+        if (eventDate == null) {
             throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Birthday.class.getSimpleName()));
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, EventDate.class.getSimpleName()));
         }
-        if (date.equals(Birthday.EMPTY_BIRTHDAY_STRING)) {
-            modelDate = Birthday.EMPTY_BIRTHDAY;
+        if (eventDate.equals(EventDate.EMPTY_DATE_STRING)) {
+            modelDate = EventDate.EMPTY_EVENT_DATE;
         } else {
             try {
-                modelDate = new Birthday(date);
+                modelDate = new EventDate(eventDate);
             } catch (DateTimeException err) { // date in wrong format
-                throw new IllegalValueException(Birthday.MESSAGE_CONSTRAINTS);
-            } catch (IllegalArgumentException err) { // birthday year exceeds current year
-                throw new IllegalValueException(Birthday.MESSAGE_DATE_CONSTRAINTS);
+                throw new ParseException(EventDate.MESSAGE_CONSTRAINTS);
+            } catch (IllegalArgumentException err) { // no year field;
+                throw new ParseException(Date.MESSAGE_YEAR_CONSTRAINTS);
             }
         }
 

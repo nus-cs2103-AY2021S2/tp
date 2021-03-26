@@ -17,7 +17,8 @@ import seedu.partyplanet.logic.commands.ClearCommand;
 import seedu.partyplanet.logic.commands.DeleteCommand;
 import seedu.partyplanet.logic.commands.DeleteContactCommand;
 import seedu.partyplanet.logic.commands.EditCommand;
-import seedu.partyplanet.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.partyplanet.logic.commands.EditFieldCommand;
+import seedu.partyplanet.logic.commands.EditFieldCommand.EditPersonDescriptor;
 import seedu.partyplanet.logic.commands.ExitCommand;
 import seedu.partyplanet.logic.commands.FindCommand;
 import seedu.partyplanet.logic.commands.HelpCommand;
@@ -59,7 +60,7 @@ public class AddressBookParserTest {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+        assertEquals(new EditFieldCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
     @Test

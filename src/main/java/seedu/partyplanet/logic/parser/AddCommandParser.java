@@ -47,7 +47,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).orElse(Phone.EMPTY_PHONE_STRING));
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(Email.EMPTY_EMAIL_STRING));
         Birthday birthday =
-                ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY).orElse(Birthday.EMPTY_BIRTHDAY_STRING));
+                ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY).orElse(Birthday.EMPTY_DATE_STRING));
         Address address =
                 ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(Address.EMPTY_ADDRESS_STRING));
         Remark remark =

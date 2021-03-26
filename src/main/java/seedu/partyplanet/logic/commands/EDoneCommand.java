@@ -24,6 +24,7 @@ public class EDoneCommand extends Command {
             + ": Mark the event identified by the index number as done\n"
             + "Parameters: INDEX [INDEX]...\n"
             + "Example: " + COMMAND_WORD + " 1 2 3";
+    public static final String MESSAGE_USAGE_CONCISE = "edone INDEX [INDEX]...";
 
     private final List<Index> targetIndexes;
 

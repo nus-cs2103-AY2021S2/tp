@@ -2,6 +2,7 @@ package seedu.partyplanet.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static seedu.partyplanet.testutil.TypicalEvents.getTypicalEventBook;
 import static seedu.partyplanet.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
@@ -12,7 +13,9 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.partyplanet.commons.core.GuiSettings;
 import seedu.partyplanet.model.AddressBook;
+import seedu.partyplanet.model.EventBook;
 import seedu.partyplanet.model.ReadOnlyAddressBook;
+import seedu.partyplanet.model.ReadOnlyEventBook;
 import seedu.partyplanet.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -64,6 +67,24 @@ public class StorageManagerTest {
     @Test
     public void getAddressBookFilePath() {
         assertNotNull(storageManager.getAddressBookFilePath());
+    }
+
+    @Test
+    public void eventBookReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonEventBookStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonEventBookStorageTest} class.
+         */
+        EventBook original = getTypicalEventBook();
+        storageManager.saveEventBook(original);
+        ReadOnlyEventBook retrieved = storageManager.readEventBook().get();
+        assertEquals(original, new EventBook(retrieved));
+    }
+
+    @Test
+    public void getEventBookFilePath() {
+        assertNotNull(storageManager.getEventBookFilePath());
     }
 
 }

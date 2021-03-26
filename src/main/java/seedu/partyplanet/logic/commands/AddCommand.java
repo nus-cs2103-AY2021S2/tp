@@ -39,6 +39,9 @@ public class AddCommand extends Command {
             + PREFIX_BIRTHDAY + " 1999-06-01 "
             + PREFIX_REMARK + " hates vegetables";
 
+    public static final String MESSAGE_USAGE_CONCISE =
+            COMMAND_WORD + " -n NAME [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]... [-b BIRTHDAY] [-r REMARK]";
+
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in PartyPlanet";
 

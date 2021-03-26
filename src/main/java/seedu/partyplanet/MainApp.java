@@ -83,6 +83,7 @@ public class MainApp extends Application {
         ReadOnlyAddressBook initialAddress;
         try {
             addressBookOptional = storage.readAddressBook();
+            logger.info("Loading saved AddressBook");
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
@@ -99,6 +100,7 @@ public class MainApp extends Application {
         ReadOnlyEventBook initialEvent;
         try {
             eventBookOptional = storage.readEventBook();
+            logger.info("Loading saved EventBook");
             if (!eventBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample EventBook");
             }
