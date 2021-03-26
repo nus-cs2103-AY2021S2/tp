@@ -118,6 +118,7 @@ public class MainWindow extends UiPart<Stage> {
 
         // display menu mode at the launch of app
         flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
+        scoreHistoryListPanel = new ScoreHistoryListPanel(logic.getFilteredScoreHistoryList());
         flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
 
 
@@ -194,9 +195,22 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             int currentMode = logic.getModel().getCurrentMode();
             logger.info(String.format("Current mode is %s", currentMode));
+
+            int i = flashcardListPanelPlaceholder.getChildren().indexOf(scoreHistoryListPanel.getRoot());
+            if (i != -1) {
+                flashcardListPanelPlaceholder.getChildren().set(i, flashcardListPanel.getRoot());
+            }
+
             flashcardListPanelPlaceholder.setVisible(commandResult.isShowCards());
             int index = (commandText.equals("next") || commandText.equals("check")) ? logic.getCurrentIndex() : -1;
             flashcardListPanel.updateCard(index, commandResult.isShowAnswer());
+
+            if (commandText.equals("history")) {
+                int j = flashcardListPanelPlaceholder.getChildren().indexOf(flashcardListPanel.getRoot());
+                if (j != -1) {
+                    flashcardListPanelPlaceholder.getChildren().set(j, scoreHistoryListPanel.getRoot());
+                }
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

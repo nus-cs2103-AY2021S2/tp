@@ -10,6 +10,7 @@ import seedu.weeblingo.logic.parser.exceptions.ParseException;
 import seedu.weeblingo.model.Model;
 import seedu.weeblingo.model.ReadOnlyFlashcardBook;
 import seedu.weeblingo.model.flashcard.Flashcard;
+import seedu.weeblingo.model.score.Score;
 
 /**
  * API of the Logic component
@@ -26,8 +27,14 @@ public interface Logic {
 
     ReadOnlyFlashcardBook getFlashcardBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
+    /** Returns an unmodifiable view of the filtered list of flashcards */
     ObservableList<Flashcard> getFilteredFlashcardList();
+
+    /** Returns an unmodifiable view of the filtered list of scores */
+    ObservableList<Score> getFilteredScoreHistoryList();
+
+
+
 
     /** Returns the current question number in the Quiz */
     int getCurrentIndex();

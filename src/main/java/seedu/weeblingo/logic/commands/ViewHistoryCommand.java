@@ -11,7 +11,7 @@ import seedu.weeblingo.model.Model;
 public class ViewHistoryCommand extends Command {
     public static final String COMMAND_WORD = "history";
 
-    public static final String MESSAGE_SUCCESS = "This is your past quiz attempts.\n"
+    public static final String MESSAGE_SUCCESS = "These are your past quiz attempts.\n"
             + "Enter \"end\" to go back to main menu, or "
             + "\"quiz\" to start a new quiz session, or "
             + "\"learn\" to start a learn session on all flashcards.";
