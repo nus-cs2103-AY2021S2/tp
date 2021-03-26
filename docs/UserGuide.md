@@ -196,9 +196,9 @@ Description:
 * There can be 0 or more keywords and 0 or more options, but keywords and options cannot be both empty. All text are case insensitive. 
 
 Options:
-* `t/[TYPE OF HOUSING]`
+* `t/[PROPERTY_TYPE]`
 
-    Search for properties or appointments whose housing type field contain patterns specified in `[REMARKS]`. 
+    Search for properties whose housing type field contain patterns specified in `[REMARKS]`. 
     
     The following housing types are supported: 
     * hdb
@@ -220,7 +220,7 @@ Examples:
 
 ### Searching appointments: `find appointment`
 
-Finds properties that match the criterion provided.
+Finds appointments that match the criterion provided.
 
 Formats:
 * `find appointment [KEYWORD]`
