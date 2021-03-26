@@ -3,7 +3,6 @@ layout: page
 title: User Guide
 ---
 
-## Table of Contents
 <!-- TOC adapted from
 https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2c67d7c407fcabb376191ff
 -->
@@ -12,23 +11,23 @@ https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2
   {:toc}
 </div>
 
-## 1. **Introduction**
+## **1.Introduction**
 
 <div align="center">
   <img alt="logo" src="images/logo.png">
 </div>
 
-Welcome to the user guide of **CoLAB**! Are you a university student in search of a reliable app to keep track of your school projects? Do you struggle to keep track of the many todos, deadlines for various school projects? Do you also tend to forget the various group meetings you have scheduled? You have come to the right place!
+Welcome to the user guide of **CoLAB**! Are you a university student in search of a reliable app to keep track of your school projects? Do you struggle to keep track of the many todos and deadlines for various school projects? Do you also tend to forget the various group meetings you have scheduled? You have come to the right place!
 
 CoLAB (Collaboration Lab) is a **desktop app for students currently enrolled in a university to manage their school projects.** It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CoLAB can get your project management tasks done faster than traditional GUI apps. CoLAB's main features include:
 
-1. Project management
-2. Groupmate management
-2. Today View
+- Project management
+- Contacts management
+- Today View
 
-With CoLAB, you can efficiently manage all your school projects through our comprehensive project management tools. We have put in a lot of time and effort into designing a user-friendly User Interface (UI) such that CoLAB remains intuitive to both first-time users and seasoned ones. We look forward to seeing what you accomplish with CoLAB with a clean and inviting UI. What are you waiting for? Get your journey started with the [Quick Start section](#3-quick-start)!
+With CoLAB, you can efficiently manage all your school projects through our comprehensive project management tools. We have put in a lot of time and effort into designing a user-friendly User Interface (UI) such that CoLAB remains intuitive to both first-time users and seasoned ones. We look forward to seeing what you accomplish with CoLAB with a clean and inviting UI. What are you waiting for? Get your journey started with the [Quick Start section](#3quick-start)!
 
-## 2. **About**
+## **2.About**
 
 This section serves to familarise you with information and terms that would help you make the best use of this user guide.
 
@@ -36,27 +35,27 @@ This section serves to familarise you with information and terms that would help
 
 We have included a large set of features in CoLAB to give you the greatest flexibility over what you can do with it. As such, this User Guide has been structured in a manner that allows you to easily find what you are looking for. 
 
-In [Section 2.2: Reading this Document](#2.2-reading-this-document), you will find useful tips on efficiently reading this document.
+In [Section 2.2: Reading this Document](#22-reading-this-document), you will find useful tips on efficiently reading this document.
 
-In [Section 3: Quick Start](#3-quick-start), you will find a quick start guide to get you started with using CoLAB.
+In [Section 3: Quick Start](#3quick-start), you will find a quick start guide to get you started with using CoLAB.
 
-In [Section 4: Features](#4-features), you will find documentation on all of CoLAB's commands and features.
+In [Section 4: Features](#4features), you will find documentation on all of CoLAB's commands and features.
 
-In [Section 5: FAQ](#5-faq), you may find answers to some questions you may have on using CoLAB.
+In [Section 5: FAQ](#5faq), you may find answers to some questions you may have on using CoLAB.
 
-In [Section 6: Command Summary](#6-command-summary), you will a summary on CoLAB's commands and features.
+In [Section 6: Command Summary](#6command-summary), you will a summary on CoLAB's commands and features.
 
 You can also easily sift through CoLAB's various commands and features by referring to the Table of Contents at the beginning of this User Guide.
 
 ### 2.2 Reading this Document
 
-This subsection serves to provide explanations on the symbols, syntax and technical terms  used throughout this User Guide. Familiarisation with this subsection would make the user guide easier to read.
+This subsection serves to provide explanations on the symbols, syntax and technical terms  used throughout this User Guide. Familiarising yourself with this subsection will make the User Guide easier to read.
 
 #### 2.2.1 Sections of the Application Window
 
 Different sections of the application window will be referred to by the names described in the image shown below:
 
-[TODO]
+![App Window Sections](images/app_window_sections.png)
 
 #### 2.2.2 Special Formats
 
@@ -64,11 +63,33 @@ Different sections of the application window will be referred to by the names de
 
 #### 2.2.3 Command Format
 
-[TODO]
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the command format:**<br>
+
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+
+* Items in square brackets are optional.<br>
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+
+* Items with `…`​ after them can be used multiple times including zero times.<br>
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+
+* Parameters can be in any order.<br>
+  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+
+* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 3. **Quick start**
+## **3.Quick start**
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -94,35 +115,11 @@ Different sections of the application window will be referred to by the names de
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#4features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. **Features**
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-</div>
+## **4.Features**
 
 ### Projects
 
@@ -444,14 +441,14 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. **FAQ**
+## **5.FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CoLAB home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. **Command summary**
+## **6.Command summary**
 
 Action | Format, Examples
 --------|------------------
@@ -477,7 +474,7 @@ Action | Format, Examples
 **View Today Panel** | `today`
 **Help** | `help`
 
-## 7. **Acknowledgements**
+## **7.Acknowledgements**
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 - Libraries used:
