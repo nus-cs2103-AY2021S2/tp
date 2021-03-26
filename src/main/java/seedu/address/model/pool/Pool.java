@@ -113,7 +113,7 @@ public class Pool {
         }
 
         Pool otherPool = (Pool) other;
-        return isSameTrip(otherPool)
+        return isSamePool(otherPool)
                 && otherPool.getTags().equals(getTags());
     }
 
