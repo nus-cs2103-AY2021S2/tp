@@ -74,6 +74,25 @@ public class FindPropertyCommandParserTest {
                 new FindPropertyCommand(new PropertyPredicateList(predicates));
 
         assertParseSuccess(parser, "pm/1000000 pl/2000000", expectedFindCommand);
+
+        // price with symbols
+        // price less
+        predicates = new ArrayList<>();
+        predicates.add(new PropertyPricePredicate("$1,000,000", true));
+
+        expectedFindCommand =
+                new FindPropertyCommand(new PropertyPredicateList(predicates));
+
+        assertParseSuccess(parser, "pl/$1,000,000", expectedFindCommand);
+
+        // price more
+        predicates = new ArrayList<>();
+        predicates.add(new PropertyPricePredicate("$1,000,000", false));
+
+        expectedFindCommand =
+                new FindPropertyCommand(new PropertyPredicateList(predicates));
+
+        assertParseSuccess(parser, "pm/$1,000,000", expectedFindCommand);
     }
 
     @Test
