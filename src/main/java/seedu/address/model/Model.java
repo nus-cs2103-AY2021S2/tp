@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -67,6 +68,11 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns the {@code Person} object at the specified index on the UI
+     */
+    Person getPersonByIndex(int i);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
@@ -131,6 +137,9 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Dish> getFilteredDishList();
 
+    /** Returns a list of dishes that use a particular ingredient */
+    List<Dish> getDishesByIngredients(Ingredient ingredient);
+
     //=========== IngredientBook ================================================================================
     /**
      * Replaces address book data with the data in {@code addressBook}.
@@ -182,10 +191,16 @@ public interface Model {
     boolean hasOrder(Order order);
 
     /**
-     * Deletes the given dish.
-     * The dish must exist.
+     * Deletes the given order.
+     * The order must exist.
      */
     void deleteOrder(Order order);
+
+    /**
+     * Deletes a list of orders.
+     * The orders must exist.
+     */
+    void deleteOrders(List<Order> orders);
 
     /**
      * Adds the given person.
@@ -200,6 +215,9 @@ public interface Model {
      */
     void setOrder(Order target, Order editedOrder);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /** Returns an unmodifiable view of the filtered order list */
     ObservableList<Order> getFilteredOrderList();
+
+    /** Returns an list of the orders belonging to a particular customer */
+    List<Order> getOrdersFromPerson(Person target);
 }

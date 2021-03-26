@@ -9,7 +9,7 @@ import seedu.address.commons.core.Pair;
 import seedu.address.model.Item;
 import seedu.address.model.ingredient.Ingredient;
 
-public class Dish implements Item {
+public class Dish implements Item, Aggregator<Ingredient> {
     private String name;
     private double price;
     private List<Pair<Ingredient, Integer>> ingredientQuantityList;
@@ -34,6 +34,18 @@ public class Dish implements Item {
 
     public double getPrice() {
         return price;
+    }
+
+    //@@author kangtinglee
+    /** Checks if a particular ingredient is contained within this dish */
+    @Override
+    public boolean contains(Ingredient ingredient) {
+        for (Pair<Ingredient, Integer> pair : getIngredientQuantityList()) {
+            if (pair.getKey().equals(ingredient)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public List<Pair<Ingredient, Integer>> getIngredientQuantityList() {
