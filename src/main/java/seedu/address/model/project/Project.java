@@ -16,7 +16,7 @@ import seedu.address.model.task.repeatable.Event;
 import seedu.address.model.task.todo.Todo;
 
 /**
- * Represents a Project in the address book.
+ * Represents a Project in CoLAB.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Project {

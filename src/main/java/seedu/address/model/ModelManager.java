@@ -15,36 +15,33 @@ import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the CoLAB folder data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
-    private final ProjectsFolder projectsFolder;
+    private final ColabFolder colabFolder;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Project> filteredProjects;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given colabFolder and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook,
-                        ReadOnlyProjectsFolder projectsFolder, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyColabFolder colabFolder, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(colabFolder, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with CoLAB folder: " + colabFolder + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
-        this.projectsFolder = new ProjectsFolder(projectsFolder);
+        this.colabFolder = new ColabFolder(colabFolder);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredProjects = new FilteredList<>(this.projectsFolder.getProjectsList());
+        filteredPersons = new FilteredList<>(this.colabFolder.getPersonList());
+        filteredProjects = new FilteredList<>(this.colabFolder.getProjectsList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new ProjectsFolder(), new UserPrefs());
+        this(new ColabFolder(), new UserPrefs());
     }
 
     @Override
@@ -61,7 +58,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return colabFolder.equals(other.colabFolder)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
                 && filteredProjects.equals(other.filteredProjects);
@@ -93,45 +90,47 @@ public class ModelManager implements Model {
         userPrefs.setGuiSettings(guiSettings);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== ColabFolder ================================================================================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getColabFolderFilePath() {
+        return userPrefs.getColabFolderFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
+    public void setColabFolderFilePath(Path colabFolderFilePath) {
+        requireNonNull(colabFolderFilePath);
 
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+        userPrefs.setColabFolderFilePath(colabFolderFilePath);
     }
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setColabFolder(ReadOnlyColabFolder colabFolder) {
+        this.colabFolder.resetData(colabFolder);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyColabFolder getColabFolder() {
+        return colabFolder;
     }
 
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
 
-        return addressBook.hasPerson(person);
+        return colabFolder.hasPerson(person);
     }
 
     @Override
     public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+        requireNonNull(target);
+
+        colabFolder.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
-        addressBook.addPerson(person);
+        colabFolder.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -139,14 +138,43 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
+        colabFolder.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public boolean hasProject(Project project) {
+        requireNonNull(project);
+
+        return colabFolder.hasProject(project);
+    }
+
+    @Override
+    public void deleteProject(Project target) {
+        requireNonNull(target);
+
+        colabFolder.removeProject(target);
+    }
+
+    @Override
+    public void addProject(Project project) {
+        requireNonNull(project);
+
+        colabFolder.addProject(project);
+        updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+    }
+
+    @Override
+    public void setProject(Project target, Project editedProject) {
+        requireAllNonNull(target, editedProject);
+
+        colabFolder.setProject(target, editedProject);
     }
 
     //=========== Filtered Person List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedColabFolder}.
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
@@ -160,60 +188,11 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
-    //=========== Projects File =============================================================================
-
-    @Override
-    public Path getProjectsFolderFilePath() {
-        return userPrefs.getProjectsFolderFilePath();
-    }
-
-    @Override
-    public void setProjectsFolderFilePath(Path projectsFolderFilePath) {
-        requireNonNull(projectsFolderFilePath);
-
-        userPrefs.setProjectsFolderFilePath(projectsFolderFilePath);
-    }
-
-    @Override
-    public void setProjectsFolder(ReadOnlyProjectsFolder projectsFolder) {
-        this.projectsFolder.resetData(projectsFolder);
-    }
-
-    @Override
-    public ReadOnlyProjectsFolder getProjectsFolder() {
-        return projectsFolder;
-    }
-
-    @Override
-    public boolean hasProject(Project project) {
-        requireNonNull(project);
-
-        return projectsFolder.hasProject(project);
-    }
-
-    @Override
-    public void deleteProject(Project target) {
-        projectsFolder.removeProject(target);
-    }
-
-    @Override
-    public void addProject(Project project) {
-        projectsFolder.addProject(project);
-        updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
-    }
-
-    @Override
-    public void setProject(Project target, Project editedProject) {
-        requireAllNonNull(target, editedProject);
-
-        projectsFolder.setProject(target, editedProject);
-    }
-
     //=========== Filtered Projects List Accessors ==========================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Project} backed by the internal list of
-     * {@code versionedProjectsFolder}
+     * {@code versionedColabFolder}.
      */
     @Override
     public ObservableList<Project> getFilteredProjectList() {

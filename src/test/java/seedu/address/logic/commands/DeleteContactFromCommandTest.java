@@ -5,11 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.DeleteContactFromCommand.MESSAGE_DELETE_PROJECT_SUCCESS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalColabFolder.getTypicalColabFolder;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalProjects.getTypicalProjectsFolder;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,7 +31,7 @@ public class DeleteContactFromCommandTest {
 
     @BeforeEach
     public void setUp() throws DateConversionException {
-        model = new ModelManager(getTypicalAddressBook(), getTypicalProjectsFolder(), new UserPrefs());
+        model = new ModelManager(getTypicalColabFolder(), new UserPrefs());
     }
 
     @Test
@@ -55,9 +54,7 @@ public class DeleteContactFromCommandTest {
         String expectedMessage = String.format(MESSAGE_DELETE_PROJECT_SUCCESS,
                 personToDelete.getName(), projectToEdit.getProjectName());
 
-        ModelManager expectedModel = new ModelManager(
-                getTypicalAddressBook(), getTypicalProjectsFolder(), new UserPrefs()
-        );
+        ModelManager expectedModel = new ModelManager(getTypicalColabFolder(), new UserPrefs());
 
         assertCommandSuccess(deleteContactFromCommand, model, expectedMessage, expectedModel);
     }

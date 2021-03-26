@@ -7,7 +7,6 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
-import static seedu.address.testutil.TypicalProjects.getTypicalProjectsFolder;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,9 +15,8 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.exceptions.DateConversionException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.ColabFolderBuilder;
 
 public class ModelManagerTest {
 
@@ -28,7 +26,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new ColabFolder(), new ColabFolder(modelManager.getColabFolder()));
     }
 
     @Test
@@ -39,14 +37,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setColabFolderFilePath(Paths.get("colab/folder/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setColabFolderFilePath(Paths.get("new/colab/folder/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -63,15 +61,15 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
+    public void setColabFolderFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setColabFolderFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
-        Path path = Paths.get("address/book/file/path");
-        modelManager.setAddressBookFilePath(path);
-        assertEquals(path, modelManager.getAddressBookFilePath());
+    public void setColabFolderFilePath_validPath_setsColabFolderFilePath() {
+        Path path = Paths.get("colab/folder/file/path");
+        modelManager.setColabFolderFilePath(path);
+        assertEquals(path, modelManager.getColabFolderFilePath());
     }
 
     @Test
@@ -80,12 +78,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasPerson_personNotInColabFolder_returnsFalse() {
         assertFalse(modelManager.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasPerson_personInColabFolder_returnsTrue() {
         modelManager.addPerson(ALICE);
         assertTrue(modelManager.hasPerson(ALICE));
     }
@@ -96,38 +94,14 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void getProjectsFolderFilePath_success() {
-        assertEquals(modelManager.getProjectsFolderFilePath(), modelManager.getUserPrefs().getProjectsFolderFilePath());
-    }
-
-    @Test
-    public void setProjectsFolderFilePath_success() {
-        Path path = Paths.get("data" , "test.json");
-        modelManager.setProjectsFolderFilePath(path);
-        assertEquals(path, modelManager.getUserPrefs().getProjectsFolderFilePath());
-    }
-
-    @Test
-    public void setProjectsFolder_success() {
-        try {
-            ProjectsFolder pf = getTypicalProjectsFolder();
-            modelManager.setProjectsFolder(pf);
-            assertEquals(pf, modelManager.getProjectsFolder());
-        } catch (DateConversionException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
-        AddressBook differentAddressBook = new AddressBook();
-        ProjectsFolder projectsFolder = new ProjectsFolder();
+        ColabFolder colabFolder = new ColabFolderBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        ColabFolder differentColabFolder = new ColabFolder();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, projectsFolder, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, projectsFolder, userPrefs);
+        modelManager = new ModelManager(colabFolder, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(colabFolder, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -139,20 +113,20 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, projectsFolder, userPrefs)));
+        // different colabFolder -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentColabFolder, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, projectsFolder, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(colabFolder, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, projectsFolder, differentUserPrefs)));
+        differentUserPrefs.setColabFolderFilePath(Paths.get("differentFilePath"));
+        assertFalse(modelManager.equals(new ModelManager(colabFolder, differentUserPrefs)));
     }
 }

@@ -5,11 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_DELETE_TODO_SUCCESS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalColabFolder.getTypicalColabFolder;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalProjects.getTypicalProjectsFolder;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,11 +31,11 @@ public class DeleteTodoCommandTest {
 
     @BeforeEach
     public void setUp() throws DateConversionException {
-        model = new ModelManager(getTypicalAddressBook(), getTypicalProjectsFolder(), new UserPrefs());
+        model = new ModelManager(getTypicalColabFolder(), new UserPrefs());
     }
 
     @Test
-    public void execute_validIndexUnfilteredList_success() throws DateConversionException {
+    public void execute_validIndexUnfilteredList_success() {
         Todo todoToDelete = new TodoBuilder().build();
         Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         Project editedProject = new ProjectBuilder(projectToEdit).build();
@@ -54,9 +53,7 @@ public class DeleteTodoCommandTest {
 
         String expectedMessage = String.format(MESSAGE_DELETE_TODO_SUCCESS, lastTodoIndex.getOneBased());
 
-        ModelManager expectedModel = new ModelManager(
-                getTypicalAddressBook(), getTypicalProjectsFolder(), new UserPrefs()
-        );
+        ModelManager expectedModel = new ModelManager(getTypicalColabFolder(), new UserPrefs());
 
         assertCommandSuccess(deleteTodoCommand, model, expectedMessage, expectedModel);
     }
@@ -153,7 +150,7 @@ public class DeleteTodoCommandTest {
         // null -> returns false
         assertNotEquals(deleteTodoFromProject1Command, null);
 
-        // different person -> returns false
+        // different project -> returns false
         assertNotEquals(deleteTodoFromProject1Command, deleteTodoFromProject2Command);
     }
 

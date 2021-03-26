@@ -7,7 +7,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.exceptions.DateConversionException;
-import seedu.address.model.ProjectsFolder;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.DeadlineList;
 import seedu.address.model.project.EventList;
@@ -32,23 +31,16 @@ public class TypicalProjects {
     private TypicalProjects() {} // prevents instantiation
 
     /**
-     * Returns a {@code ProjectsFolder} with all the typical projects.
-     */
-    public static ProjectsFolder getTypicalProjectsFolder() throws DateConversionException {
-        ProjectsFolder pf = new ProjectsFolder();
-        for (Project project : getTypicalProjects()) {
-            pf.addProject(project);
-        }
-        return pf;
-    }
-
-    /**
      * Returns a list of typical projects.
      *
      * @return {@code List<Project>} containing typical projects.
      */
-    public static List<Project> getTypicalProjects() throws DateConversionException {
-        return new ArrayList<>(Arrays.asList(getCS2103TProject(), getCS2101Project()));
+    public static List<Project> getTypicalProjects() {
+        try {
+            return new ArrayList<>(Arrays.asList(getCS2103TProject(), getCS2101Project()));
+        } catch (DateConversionException e) {
+            throw new AssertionError("Unreachable statement executed");
+        }
     }
 
     // Typical Projects
@@ -127,7 +119,7 @@ public class TypicalProjects {
         return todoList;
     }
 
-    private static ParticipantList getCS2103TParticipantsList() throws DateConversionException {
+    private static ParticipantList getCS2103TParticipantsList() {
         Person dahn = new PersonBuilder().withName("Dahn").withAddress("1 CoLAB Road")
                 .withEmail("dahn@colab.com").withPhone("91234561").build();
         Person ruochen = new PersonBuilder().withName("Ruochen").withAddress("1 CoLAB Road")

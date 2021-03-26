@@ -18,7 +18,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 
 /**
- * Clears the address book.
+ * Adds a contact to a project.
  */
 public class AddContactToCommand extends Command {
 

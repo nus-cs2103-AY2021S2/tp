@@ -14,7 +14,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.commons.util.DateUtil;
-import seedu.address.model.ReadOnlyProjectsFolder;
+import seedu.address.model.ReadOnlyColabFolder;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.repeatable.Event;
@@ -45,12 +45,12 @@ public class TodayPanel extends UiPart<Region> {
 
     /**
      * Creates a {@code TodayPanel}.
-     * @param projectsFolder Projects folder used to create today panel.
+     * @param colabFolder CoLAB folder used to create today panel.
      */
-    public TodayPanel(ReadOnlyProjectsFolder projectsFolder, LocalDate date) {
+    public TodayPanel(ReadOnlyColabFolder colabFolder, LocalDate date) {
         super(FXML);
 
-        this.projectsList = projectsFolder.getProjectsList();
+        this.projectsList = colabFolder.getProjectsList();
         this.currentDate = date;
         this.date.setText(DateUtil.decodeDate(currentDate));
 

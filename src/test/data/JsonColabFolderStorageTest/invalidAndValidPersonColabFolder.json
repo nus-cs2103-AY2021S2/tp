@@ -1,0 +1,144 @@
+{
+  "persons" : [ {
+    "name": "Valid Person",
+    "phone": "9482424",
+    "email": "hans@example.com",
+    "address": "4th street"
+  }, {
+    "name": "Person With Invalid Phone Field",
+    "phone": "948asdf2424",
+    "email": "hans@example.com",
+    "address": "4th street"
+  } ],
+  "projects" : [ {
+    "projectName" : "CS2103T Team Project",
+    "eventList" : [ {
+      "description" : "Weekly Project Meeting",
+      "interval" : "WEEKLY",
+      "isDone" : false,
+      "at" : "31-01-2021"
+    } ],
+    "todoList" : [ {
+      "description" : "Update documentation",
+      "isDone" : true
+    }, {
+      "description" : "Finish add command",
+      "isDone" : false
+    }, {
+      "description" : "Add unit tests",
+      "isDone" : false
+    }, {
+      "description" : "Brainstorm new feature",
+      "isDone" : false
+    } ],
+    "deadlineList" : [ {
+      "description" : "Milestone v1.1",
+      "isDone" : true,
+      "by" : "01-03-2021"
+    }, {
+      "description" : "Milestone v1.2",
+      "isDone" : true,
+      "by" : "15-03-2021"
+    }, {
+      "description" : "Milestone v1.3",
+      "isDone" : false,
+      "by" : "31-03-2021"
+    }, {
+      "description" : "Milestone v1.4",
+      "isDone" : false,
+      "by" : "12-04-2021"
+    } ],
+    "participantsList" : [ {
+      "name" : "Dahn",
+      "phone" : "91234561",
+      "email" : "dahn@colab.com",
+      "address" : "1 CoLAB Road",
+      "tagged" : [ ]
+    }, {
+      "name" : "Ruochen",
+      "phone" : "91234562",
+      "email" : "ruochen@colab.com",
+      "address" : "1 CoLAB Road",
+      "tagged" : [ ]
+    }, {
+      "name" : "Samuel",
+      "phone" : "91234563",
+      "email" : "samuel@colab.com",
+      "address" : "1 CoLAB Road",
+      "tagged" : [ ]
+    }, {
+      "name" : "Vevek",
+      "phone" : "91234564",
+      "email" : "vevek@colab.com",
+      "address" : "1 CoLAB Road",
+      "tagged" : [ ]
+    } ]
+  }, {
+    "projectName" : "CS2101 OP2",
+    "eventList" : [ {
+      "description" : "OP2 Planning Meeting",
+      "interval" : "NONE",
+      "isDone" : false,
+      "at" : "17-03-2021"
+    }, {
+      "description" : "OP2 Consultation",
+      "interval" : "NONE",
+      "isDone" : false,
+      "at" : "23-03-2021"
+    }, {
+      "description" : "OP2 Product Demo",
+      "interval" : "NONE",
+      "isDone" : false,
+      "at" : "06-04-2021"
+    }, {
+      "description" : "OP2 Pitch",
+      "interval" : "NONE",
+      "isDone" : false,
+      "at" : "09-04-2021"
+    } ],
+    "todoList" : [ {
+      "description" : "Split Workload",
+      "isDone" : true
+    }, {
+      "description" : "Do up slides for pitch",
+      "isDone" : false
+    }, {
+      "description" : "Do up video for demo",
+      "isDone" : false
+    } ],
+    "deadlineList" : [ {
+      "description" : "Product Demo Internal Deadline",
+      "isDone" : false,
+      "by" : "05-04-2021"
+    }, {
+      "description" : "Product Pitch Internal Deadline",
+      "isDone" : false,
+      "by" : "08-04-2021"
+    } ],
+    "participantsList" : [ {
+      "name" : "Dahn",
+      "phone" : "91234561",
+      "email" : "dahn@colab.com",
+      "address" : "1 CoLAB Road",
+      "tagged" : [ ]
+    }, {
+      "name" : "Ruochen",
+      "phone" : "91234562",
+      "email" : "ruochen@colab.com",
+      "address" : "1 CoLAB Road",
+      "tagged" : [ ]
+    }, {
+      "name" : "Samuel",
+      "phone" : "91234563",
+      "email" : "samuel@colab.com",
+      "address" : "1 CoLAB Road",
+      "tagged" : [ ]
+    }, {
+      "name" : "Vevek",
+      "phone" : "91234564",
+      "email" : "vevek@colab.com",
+      "address" : "1 CoLAB Road",
+      "tagged" : [ ]
+    } ]
+  } ]
+}

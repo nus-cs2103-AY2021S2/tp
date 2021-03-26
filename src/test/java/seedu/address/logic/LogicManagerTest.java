@@ -26,13 +26,11 @@ import seedu.address.logic.parser.CliSyntax;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyProjectsFolder;
+import seedu.address.model.ReadOnlyColabFolder;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
-import seedu.address.storage.JsonAddressBookStorage;
-import seedu.address.storage.JsonProjectsFolderStorage;
+import seedu.address.storage.JsonColabFolderStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PersonBuilder;
@@ -49,12 +47,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
-        JsonProjectsFolderStorage projectsFolderStorage =
-                new JsonProjectsFolderStorage(temporaryFolder.resolve("projects.json"));
+        JsonColabFolderStorage colabFolderStorage =
+                new JsonColabFolderStorage(temporaryFolder.resolve("colab.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, projectsFolderStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(colabFolderStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -77,48 +73,31 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void execute_addressBookStorageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
-        JsonProjectsFolderStorage projectsFolderStorage =
-                new JsonProjectsFolderStorage(temporaryFolder.resolve("ioExceptionProjectsFolder.json"));
+    public void execute_colabFolderStorageThrowsIoException_throwsCommandException() {
+        // Setup LogicManager with JsonColabFolderIoExceptionThrowingStub
+        JsonColabFolderStorage colabFolderStorage =
+                new JsonColabFolderIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionColabFolder.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, projectsFolderStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(colabFolderStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
-        // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+        ModelManager expectedModel = new ModelManager();
+        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
+
+        // Execute add contact command
+        String addContactCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
-        ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
-        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
-    }
+        assertCommandFailure(addContactCommand, CommandException.class, expectedMessage, expectedModel);
 
-    @Test
-    public void execute_projectsFolderStorageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonProjectsFolderIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("ioExceptionAddressBook.json"));
-        JsonProjectsFolderStorage projectsFolderStorage =
-                new JsonProjectsFolderIoExceptionThrowingStub(
-                temporaryFolder.resolve("ioExceptionProjectsFolder.json"));
-        JsonUserPrefsStorage userPrefsStorage =
-                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, projectsFolderStorage, userPrefsStorage);
-        logic = new LogicManager(model, storage);
-
-        // Execute add command
+        // Execute add project command
         String projectName = "New Project";
-        String addCommand = AddProjectCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_NAME + projectName;
+        String addProjectCommand = AddProjectCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_NAME + projectName;
         Project expectedProject = new ProjectBuilder().withName(projectName).build();
-        ModelManager expectedModel = new ModelManager();
         expectedModel.addProject(expectedProject);
-        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+        assertCommandFailure(addProjectCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
@@ -167,7 +146,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), model.getProjectsFolder(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getColabFolder(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -187,28 +166,15 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonColabFolderIoExceptionThrowingStub extends JsonColabFolderStorage {
+        private JsonColabFolderIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void saveColabFolder(ReadOnlyColabFolder colabFolder, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }
 
-    /**
-     * A stub class to throw an {@code IOException} when the save method is called.
-     */
-    private static class JsonProjectsFolderIoExceptionThrowingStub extends JsonProjectsFolderStorage {
-        private JsonProjectsFolderIoExceptionThrowingStub(Path filePath) {
-            super(filePath);
-        }
-
-        @Override
-        public void saveProjectsFolder(ReadOnlyProjectsFolder projectsFolder, Path filePath) throws IOException {
-            throw DUMMY_IO_EXCEPTION;
-        }
-    }
 }

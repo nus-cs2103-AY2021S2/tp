@@ -12,16 +12,19 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtilTest {
 
     @Test
+    public void getSampleColabFolder_success() {
+        assertDoesNotThrow(SampleDataUtil::getSampleColabFolder);
+    }
+
+    @Test
     public void getSamplePersons_personsValid_success() {
         assertDoesNotThrow(SampleDataUtil::getSamplePersons);
-        assertDoesNotThrow(SampleDataUtil::getSampleAddressBook);
         assertDoesNotThrow((ThrowingSupplier<Set<Tag>>) SampleDataUtil::getTagSet);
     }
 
     @Test
     public void getSampleProjects_projectsValid_success() {
         assertDoesNotThrow(SampleDataUtil::getSampleProjects);
-        assertDoesNotThrow(SampleDataUtil::getSampleProjectsFolder);
     }
 
 }
