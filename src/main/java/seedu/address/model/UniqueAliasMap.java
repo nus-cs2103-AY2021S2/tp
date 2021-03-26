@@ -24,12 +24,12 @@ import seedu.address.model.alias.exceptions.DuplicateAliasException;
  */
 public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
 
-    private final ObservableMap<Alias, CommandAlias> internalList = FXCollections.observableMap(new HashMap<>());
-    private final ObservableMap<Alias, CommandAlias> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableMap(internalList);
-    private final ObservableList<String> internalStringList = FXCollections.observableArrayList();
-    private final ObservableList<String> internalUnmodifiableStringList =
-            FXCollections.unmodifiableObservableList(internalStringList);
+    private final ObservableMap<Alias, CommandAlias> internalMap = FXCollections.observableMap(new HashMap<>());
+    private final ObservableMap<Alias, CommandAlias> internalUnmodifiableMap =
+            FXCollections.unmodifiableObservableMap(internalMap);
+    private final ObservableList<String> internalList = FXCollections.observableArrayList();
+    private final ObservableList<String> internalUnmodifiableList =
+            FXCollections.unmodifiableObservableList(internalList);
 
     public UniqueAliasMap() {}
 
@@ -52,11 +52,9 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
         if (!aliasesAreUnique(aliases)) {
             throw new DuplicateAliasException();
         }
-        internalList.clear();
-        internalList.putAll(aliases);
-        internalStringList.clear();
-        internalStringList.addAll(FXCollections.observableList(
-                internalList.values().stream().map(CommandAlias::toString).collect(Collectors.toList())));
+        internalMap.clear();
+        internalMap.putAll(aliases);
+        updateInternalList();
     }
 
     /**
@@ -73,7 +71,7 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
      */
     public boolean hasAlias(Alias alias) {
         requireNonNull(alias);
-        return internalList.containsKey(alias);
+        return internalMap.containsKey(alias);
     }
 
     /**
@@ -93,8 +91,8 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
         if (hasCommandAlias(toAdd)) {
             throw new DuplicateAliasException();
         }
-        internalList.put(toAdd.getAlias(), toAdd);
-        internalStringList.add(toAdd.toString());
+        internalMap.put(toAdd.getAlias(), toAdd);
+        internalList.add(toAdd.toString());
     }
 
     /**
@@ -108,7 +106,8 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
         if (!hasAlias(toRemove)) {
             throw new AliasNotFoundException();
         }
-        internalList.remove(toRemove);
+        internalMap.remove(toRemove);
+        updateInternalList();
     }
 
     /**
@@ -118,7 +117,7 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
      * @param alias alias to search in aliases.
      */
     public CommandAlias getCommandAlias(Alias alias) {
-        return internalList.get(alias);
+        return internalMap.get(alias);
     }
 
     /**
@@ -155,18 +154,18 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
 
     @Override
     public ObservableMap<Alias, CommandAlias> getAliases() {
-        return internalUnmodifiableList;
+        return internalUnmodifiableMap;
     }
 
     @Override
     public int getNumOfAlias() {
-        return internalList.size();
+        return internalMap.size();
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        for (CommandAlias commandAlias: internalList.values()) {
+        for (CommandAlias commandAlias: internalMap.values()) {
             builder.append(commandAlias);
             builder.append("\n");
         }
@@ -177,12 +176,12 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueAliasMap // instanceof handles nulls
-                && internalList.equals(((UniqueAliasMap) other).internalList));
+                && internalMap.equals(((UniqueAliasMap) other).internalMap));
     }
 
     @Override
     public int hashCode() {
-        return internalList.hashCode();
+        return internalMap.hashCode();
     }
 
     /**
@@ -201,7 +200,13 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
 
     @Override
     public ObservableList<String> getObservableStringAliases() {
-        return internalUnmodifiableStringList;
+        return internalUnmodifiableList;
+    }
+
+    private void updateInternalList() {
+        internalList.clear();
+        internalList.addAll(FXCollections.observableList(
+                internalMap.values().stream().map(CommandAlias::toString).collect(Collectors.toList())));
     }
 
 }
