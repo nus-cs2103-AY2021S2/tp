@@ -24,12 +24,19 @@ import seedu.address.logic.commands.appointmentcommands.EditAppointmentCommand;
 import seedu.address.logic.commands.appointmentcommands.FindAppointmentCommand;
 import seedu.address.logic.commands.appointmentcommands.ListAppointmentCommand;
 import seedu.address.logic.commands.appointmentcommands.ViewAppointmentCommand;
+import seedu.address.logic.commands.gradecommands.AddGradeCommand;
+import seedu.address.logic.commands.gradecommands.DeleteGradeCommand;
+import seedu.address.logic.commands.gradecommands.EditGradeCommand;
+import seedu.address.logic.commands.gradecommands.ListGradeCommand;
 import seedu.address.logic.parser.appointmentparser.AddAppointmentCommandParser;
 import seedu.address.logic.parser.appointmentparser.DeleteAppointmentCommandParser;
 import seedu.address.logic.parser.appointmentparser.EditAppointmentCommandParser;
 import seedu.address.logic.parser.appointmentparser.FindAppointmentCommandParser;
 import seedu.address.logic.parser.appointmentparser.ViewAppointmentCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.gradeparser.AddGradeCommandParser;
+import seedu.address.logic.parser.gradeparser.DeleteGradeCommandParser;
+import seedu.address.logic.parser.gradeparser.EditGradeCommandParser;
 
 /**
  * Parses user input.
@@ -109,6 +116,19 @@ public class TutorTrackerParser {
 
         case ListAppointmentCommand.COMMAND_WORD:
             return new ListAppointmentCommand();
+
+        /* Grade Commands */
+        case AddGradeCommand.COMMAND_WORD:
+            return new AddGradeCommandParser().parse(arguments);
+
+        case EditGradeCommand.COMMAND_WORD:
+            return new EditGradeCommandParser().parse(arguments);
+
+        case DeleteGradeCommand.COMMAND_WORD:
+            return new DeleteGradeCommandParser().parse(arguments);
+
+        case ListGradeCommand.COMMAND_WORD:
+            return new ListGradeCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
