@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAppointments.MATHS_APPOINTMENT;
 import static seedu.address.testutil.TypicalAppointments.SCIENCE_APPOINTMENT;
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
+import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -24,9 +25,10 @@ import seedu.address.model.appointment.NamePredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindAppointmentCommandTest {
-    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalAppointmentBook());
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
+            getTypicalAppointmentBook(), getTypicalGradeBook());
     private final Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
-            getTypicalAppointmentBook());
+            getTypicalAppointmentBook(), model.getGradeBook());
 
     @Test
     public void equals() {

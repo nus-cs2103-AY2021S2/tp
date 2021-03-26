@@ -17,17 +17,21 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.AddressBook;
 import seedu.address.model.AppointmentBook;
+import seedu.address.model.GradeBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAppointmentBook;
+import seedu.address.model.ReadOnlyGradeBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.AppointmentBookStorage;
+import seedu.address.storage.GradeBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonAppointmentBookStorage;
+import seedu.address.storage.JsonGradeBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
@@ -48,6 +52,8 @@ public class MainApp extends Application {
             + "Will be starting with a sample Appointment Book";
     private static final String ADDRESS_BOOK_NOT_FOUND = "Data file not found. Will "
             + "be starting with a sample AddressBook";
+    private static final String GRADE_BOOK_NOT_FOUND = "Data file not found. Will "
+            + "be starting with a sample GradeBook";
 
     protected Ui ui;
     protected Logic logic;
@@ -68,7 +74,8 @@ public class MainApp extends Application {
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         AppointmentBookStorage appointmentBookStorage =
                 new JsonAppointmentBookStorage(userPrefs.getAppointmentBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage, appointmentBookStorage);
+        GradeBookStorage gradeBookStorage = new JsonGradeBookStorage(userPrefs.getGradeBookFilePath());
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, appointmentBookStorage, gradeBookStorage);
 
         initLogging(config);
 
@@ -87,8 +94,10 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
         Optional<ReadOnlyAppointmentBook> appointmentBookOptional;
+        Optional<ReadOnlyGradeBook> gradeBookOptional;
         ReadOnlyAddressBook initialData;
         ReadOnlyAppointmentBook initialAppointments;
+        ReadOnlyGradeBook initialGrades;
 
         try {
             addressBookOptional = storage.readAddressBook();
@@ -117,7 +126,20 @@ public class MainApp extends Application {
             initialAppointments = new AppointmentBook();
         }
 
-        return new ModelManager(initialData, userPrefs, initialAppointments);
+        try {
+            gradeBookOptional = storage.readGradeBook();
+            if (!gradeBookOptional.isPresent()) {
+                logger.info(APPOINTMENT_BOOK_NOT_FOUND);
+            }
+            initialGrades =
+                    gradeBookOptional.orElseGet(SampleDataUtil::getSampleGradeBook);
+        } catch (DataConversionException e) {
+            initialGrades = new GradeBook();
+        } catch (IOException e) {
+            initialGrades = new GradeBook();
+        }
+
+        return new ModelManager(initialData, userPrefs, initialAppointments, initialGrades);
     }
 
     private void initLogging(Config config) {
