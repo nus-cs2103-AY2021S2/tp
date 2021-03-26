@@ -155,6 +155,7 @@ public class ModelManager implements Model {
 
         for (Order o : deletionList) {
             deleteOrder(o);
+            logger.fine(String.format("Order %s belonging to %s deleted by cascade", o, target));
         }
 
         assert personBook.hasPerson(target) == false;
