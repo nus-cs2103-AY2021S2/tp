@@ -30,6 +30,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonAppointmentBookStorage;
+import seedu.address.storage.JsonGradeBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PersonBuilder;
@@ -51,8 +52,11 @@ public class LogicManagerTest {
         JsonAppointmentBookStorage appointmentBookStorage =
                 new JsonAppointmentBookStorage(temporaryFolder.resolve(
                         "appointmentBook.json"));
+        JsonGradeBookStorage gradeBookStorage =
+                new JsonGradeBookStorage(temporaryFolder.resolve(
+                        "gradeBook.json"));
         StorageManager storage = new StorageManager(addressBookStorage,
-                userPrefsStorage, appointmentBookStorage);
+                userPrefsStorage, appointmentBookStorage, gradeBookStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -84,8 +88,11 @@ public class LogicManagerTest {
         JsonAppointmentBookStorage appointmentBookStorage =
                 new JsonAppointmentBookStorage(temporaryFolder.resolve(
                         "ioExceptionAppointmentBook.json"));
+        JsonGradeBookStorage gradeBookStorage =
+                new JsonGradeBookStorage(temporaryFolder.resolve(
+                        "ioExceptionGradeBook.json"));
         StorageManager storage = new StorageManager(addressBookStorage,
-                userPrefsStorage, appointmentBookStorage);
+                userPrefsStorage, appointmentBookStorage, gradeBookStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -140,7 +147,11 @@ public class LogicManagerTest {
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
         Model expectedModel = new ModelManager(model.getAddressBook(),
+<<<<<<< HEAD
                 new UserPrefs(), model.getAppointmentBook(), model.getBudgetBook());
+=======
+                new UserPrefs(), model.getAppointmentBook(), model.getGradeBook());
+>>>>>>> master
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

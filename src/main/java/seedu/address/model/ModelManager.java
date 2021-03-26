@@ -15,6 +15,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.appointment.DateViewPredicate;
 import seedu.address.model.budget.Budget;
+import seedu.address.model.grade.Grade;
 import seedu.address.model.person.Person;
 
 /**
@@ -25,10 +26,12 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final AppointmentBook appointmentBook;
+    private final GradeBook gradeBook;
 
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Appointment> filteredAppointment;
+    private final FilteredList<Grade> filteredGrades;
 
     private final BudgetBook budgetBook;
 
@@ -38,6 +41,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
                         ReadOnlyAppointmentBook appointmentBook,
                         BudgetBook budgetBook) {
+                        ReadOnlyAppointmentBook appointmentBook, ReadOnlyGradeBook gradeBook) {
         super();
         requireAllNonNull(addressBook, appointmentBook, userPrefs, budgetBook);
 
@@ -45,9 +49,11 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.appointmentBook = new AppointmentBook(appointmentBook);
+        this.gradeBook = new GradeBook(gradeBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredAppointment = new FilteredList<>(this.appointmentBook.getAppointmentList());
+<<<<<<< HEAD
 
         this.budgetBook = new BudgetBook(budgetBook);
 
@@ -55,6 +61,13 @@ public class ModelManager implements Model {
 
     public ModelManager() {
         this(new AddressBook(), new UserPrefs(), new AppointmentBook(), new BudgetBook());
+=======
+        filteredGrades = new FilteredList<>(this.gradeBook.getGradeList());
+    }
+
+    public ModelManager() {
+        this(new AddressBook(), new UserPrefs(), new AppointmentBook(), new GradeBook());
+>>>>>>> master
     }
 
     //=========== UserPrefs ==================================================================================
@@ -249,6 +262,7 @@ public class ModelManager implements Model {
         return !filteredAppointment.filtered(new DateViewPredicate(appointmentDateTime)).isEmpty();
     }
 
+<<<<<<< HEAD
 
     //============== Budget ============================================================
 
@@ -286,6 +300,97 @@ public class ModelManager implements Model {
         budgetBook.setBudget(budget);
     }
 
+=======
+    //=========== GradeList ============================================================================
+    /**
+     * Updates the filter of the filtered appointment list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    @Override
+    public void updateFilteredGradeList(Predicate<Grade> predicate) {
+        requireNonNull(predicate);
+        filteredGrades.setPredicate(predicate);
+    }
+
+    public ReadOnlyGradeBook getGradeBook() {
+        return gradeBook;
+
+    }
+
+    public void setGradeBook(ReadOnlyGradeBook readOnlyGradeBook) {
+        this.gradeBook.resetData(readOnlyGradeBook);
+    }
+
+    /**
+     * @return File path of Grade Book data file
+     */
+    public Path getGradeBookFilePath() {
+        return userPrefs.getGradeBookFilePath();
+    }
+
+    /**
+     * Sets grade book file path.
+     * @param gradeBookFilePath To be supplied by user
+     */
+    public void setGradeBookFilePath(Path gradeBookFilePath) {
+        requireNonNull(gradeBookFilePath);
+        userPrefs.setGradeBookFilePath(gradeBookFilePath);
+    }
+
+    /**
+     * Returns true if a grade with the same identity as {@code grade} exists in the grade book.
+     */
+    public boolean hasGrade(Grade grade) {
+        requireNonNull(grade);
+        return gradeBook.hasGrade(grade);
+    }
+
+    /**
+     * Deletes the given grade.
+     * The grade must exist in the grade book.
+     */
+    public void deleteGrade(Grade target) {
+        gradeBook.removeGrade(target);
+    }
+
+    /**
+     * Adds the given grade.
+     * {@code grade} must not already exist in the grade book.
+     */
+    public void addGrade(Grade grade) {
+        gradeBook.addGrade(grade);
+    }
+
+    /**
+     * Replaces the given grade {@code target} with {@code editedGrade}.
+     * {@code target} must exist in the grade book.
+     * The grade identity of {@code editedGrade} must not be the same as another existing grade in the grade book.
+     */
+    public void setGrade(Grade target, Grade editedGrade) {
+        requireAllNonNull(target, editedGrade);
+        gradeBook.setGrade(target, editedGrade);
+    }
+
+    /**
+     * Method that removes grade based on index
+     *
+     * @param indexToRemove
+     */
+    @Override
+    public void removeGradeIndex(int indexToRemove) {
+        gradeBook.removeGrade(indexToRemove);
+    }
+
+    /**
+     * Returns an unmodifiable view of the filtered grade list
+     */
+    public ObservableList<Grade> getFilteredGradeList() {
+        return filteredGrades;
+    }
+
+
+>>>>>>> master
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object

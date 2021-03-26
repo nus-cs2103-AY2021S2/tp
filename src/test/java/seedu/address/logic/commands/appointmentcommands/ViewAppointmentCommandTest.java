@@ -8,6 +8,7 @@ import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBo
 import static seedu.address.testutil.TypicalBudgets.getTypicalBudgetBook;
 import static seedu.address.testutil.TypicalDates.APPOINTMENT_FIRST_DATE;
 import static seedu.address.testutil.TypicalDates.APPOINTMENT_SECOND_DATE;
+import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -21,9 +22,15 @@ import seedu.address.model.appointment.DateViewPredicate;
 public class ViewAppointmentCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
+<<<<<<< HEAD
             getTypicalAppointmentBook(), getTypicalBudgetBook());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
             getTypicalAppointmentBook(), getTypicalBudgetBook());
+=======
+            getTypicalAppointmentBook(), getTypicalGradeBook());
+    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
+            getTypicalAppointmentBook(), model.getGradeBook());
+>>>>>>> master
 
     @Test
     public void execute_validDateUnfilteredList_success() {

@@ -3,7 +3,11 @@ package seedu.address.logic.commands.appointmentcommands;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showAppointmentAtIndex;
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
+<<<<<<< HEAD
 import static seedu.address.testutil.TypicalBudgets.getTypicalBudgetBook;
+=======
+import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
+>>>>>>> master
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -25,9 +29,15 @@ public class ListAppointmentCommandTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
+<<<<<<< HEAD
                 getTypicalAppointmentBook(), getTypicalBudgetBook());
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
                 model.getAppointmentBook(), model.getBudgetBook());
+=======
+                getTypicalAppointmentBook(), getTypicalGradeBook());
+        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
+                model.getAppointmentBook(), model.getGradeBook());
+>>>>>>> master
     }
 
     @Test

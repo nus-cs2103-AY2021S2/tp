@@ -10,6 +10,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.BudgetBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAppointmentBook;
+import seedu.address.model.ReadOnlyGradeBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
@@ -23,19 +24,22 @@ public class StorageManager implements Storage {
     private UserPrefsStorage userPrefsStorage;
     private AppointmentBookStorage appointmentBookStorage;
     private BudgetBookStorage budgetBookStorage;
+    private GradeBookStorage gradeBookStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
     public StorageManager(AddressBookStorage addressBookStorage,
                           UserPrefsStorage userPrefsStorage,
-                          AppointmentBookStorage appointmentBookStorage) {
+                          AppointmentBookStorage appointmentBookStorage,
+                          GradeBookStorage gradeBookStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.appointmentBookStorage = appointmentBookStorage;
         //TODO improve handling of budget book
         this.budgetBookStorage = new BudgetBookStorage();
+        this.gradeBookStorage = gradeBookStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -127,6 +131,37 @@ public class StorageManager implements Storage {
     public void saveBudgetBook(BudgetBook budgetBook) throws IOException {
         budgetBookStorage.saveBudget(budgetBook.getBudget().getValue(),
                 budgetBook.getBudget().getTotalCost());
+    }
+
+    // ================ GradeBook methods ==========================
+
+    @Override
+    public Path getGradeBookFilePath() {
+        return gradeBookStorage.getGradeBookFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyGradeBook> readGradeBook()
+            throws DataConversionException, IOException {
+        return readGradeBook(gradeBookStorage.getGradeBookFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyGradeBook> readGradeBook(Path filePath)
+            throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return gradeBookStorage.readGradeBook(filePath);
+    }
+
+    @Override
+    public void saveGradeBook(ReadOnlyGradeBook gradeBook) throws IOException {
+        saveGradeBook(gradeBook, gradeBookStorage.getGradeBookFilePath());
+    }
+
+    @Override
+    public void saveGradeBook(ReadOnlyGradeBook gradeBook, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        gradeBookStorage.saveGradeBook(gradeBook, filePath);
     }
 
 }
