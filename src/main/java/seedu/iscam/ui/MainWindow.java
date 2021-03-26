@@ -2,6 +2,8 @@ package seedu.iscam.ui;
 
 import java.util.logging.Logger;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -34,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private ClientListPanel clientListPanel;
     private MeetingListPanel meetingListPanel;
+    private ObservableValue<Boolean> isClientMode;
     private ResultDisplay resultDisplay;
     private final HelpWindow helpWindow;
 
@@ -67,6 +70,7 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
+        this.isClientMode = logic.getIsClientMode();
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -74,6 +78,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        isClientMode.addListener(new BooleanListener());
     }
 
     public Stage getPrimaryStage() {
@@ -146,11 +151,6 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
     }
-    
-    void toggleMeeting() {
-        meetingListPanel = new MeetingListPanel(logic.getFilteredMeetingList());
-        meetingListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
-    }
     /**
      * Opens the help window or focuses on it if it's already opened.
      */
@@ -193,7 +193,6 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
@@ -207,6 +206,20 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
+        }
+    }
+    
+    class BooleanListener implements ChangeListener<Boolean> {
+        @Override
+        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+            clientDetailFragmentPlaceholder.getChildren().clear();
+            if (newValue) {
+                ClientDetailFragment clientDetailFragment = new ClientDetailFragment(logic.getDetailedClient());
+                clientDetailFragmentPlaceholder.getChildren().add(clientDetailFragment.getRoot());
+            } else {
+                meetingListPanel = new MeetingListPanel(logic.getFilteredMeetingList());
+                clientDetailFragmentPlaceholder.getChildren().add(meetingListPanel.getRoot());
+            }
         }
     }
 }

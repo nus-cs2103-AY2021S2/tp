@@ -7,6 +7,8 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.iscam.commons.core.GuiSettings;
@@ -23,6 +25,7 @@ public class ModelManager implements Model {
     private final ClientBook clientBook;
     private final FilteredList<Client> filteredClients;
     private final ObservableClient detailedClient;
+    private final SimpleBooleanProperty isClientMode;
 
     private final MeetingBook meetingBook;
     private final FilteredList<Meeting> filteredMeetings;
@@ -41,6 +44,7 @@ public class ModelManager implements Model {
         this.clientBook = new ClientBook(clientBook);
         this.filteredClients = new FilteredList<>(this.clientBook.getClientList());
         this.detailedClient = new ObservableClient();
+        this.isClientMode = new SimpleBooleanProperty(true);
 
         this.meetingBook = new MeetingBook(meetingBook);
         this.filteredMeetings = new FilteredList<>(this.meetingBook.getMeetingList());
@@ -194,7 +198,32 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredMeetings.setPredicate(predicate);
     }
-
+    
+    /**
+     * Set isClientMode to true.
+     */
+    @Override
+    public void setClientMode() {
+        isClientMode.set(true);
+    }
+    
+    /**
+     * Set isClientMode to false.
+     */
+    @Override
+    public void setMeetingMode()
+    {
+        isClientMode.set(false);
+    }
+    
+    /**
+     * Set isClientMode to false.
+     */
+    @Override
+    public ObservableValue<Boolean> getIsClientMode() {
+        return isClientMode;
+    }
+    
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object

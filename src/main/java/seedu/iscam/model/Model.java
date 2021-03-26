@@ -3,6 +3,7 @@ package seedu.iscam.model;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.iscam.commons.core.GuiSettings;
 import seedu.iscam.model.client.Client;
@@ -143,6 +144,21 @@ public interface Model {
      * Updates the detailed client to match the supplied client.
      */
     void setDetailedClient(Client client);
+    
+    /**
+     * Set iScam to Client mode.
+     */
+    void setClientMode();
+    
+    /**
+     * Set iScam to Meeting mode.
+     */
+    void setMeetingMode();
+    
+    /**
+     * Return iScam's current mode.
+     */
+    ObservableValue<Boolean> getIsClientMode();
 
     MeetingBook getMeetingBook();
 }

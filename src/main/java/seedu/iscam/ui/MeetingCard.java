@@ -21,7 +21,7 @@ public class MeetingCard extends UiPart<Region> {
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
      *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on meetingBook level 4</a>
+     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on ClientBook level 4</a>
      */
 
     public final Meeting meeting;
@@ -29,7 +29,7 @@ public class MeetingCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
+    private Label meetingName;
     @FXML
     private Label id;
     @FXML
@@ -48,7 +48,7 @@ public class MeetingCard extends UiPart<Region> {
         super(FXML);
         this.meeting = meeting;
         id.setText(displayedIndex + ". ");
-        name.setText(meeting.getClientName().fullName);
+        meetingName.setText(meeting.getClientName().fullName);
         dateTime.setText(meeting.getDateTime().get().toString());
         meetingLocation.setText(meeting.getLocation().value);
         description.setText(meeting.getDescription().value);

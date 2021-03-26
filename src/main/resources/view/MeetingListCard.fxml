@@ -24,10 +24,10 @@
                         <Region fx:constant="USE_PREF_SIZE"/>
                     </minWidth>
                 </Label>
-                <Label fx:id="clientName" text="\$first" styleClass="cell_big_label"/>
+                <Label fx:id="meetingName" text="\$first" styleClass="cell_big_label"/>
             </HBox>
             <FlowPane fx:id="tags"/>
-            <Label fx:id="datetime" styleClass="cell_small_label" text="\$datetime"/>
+            <Label fx:id="dateTime" styleClass="cell_small_label" text="\$dateTime"/>
             <Label fx:id="meetingLocation" styleClass="cell_small_label" text="\$meetingLocation"/>
             <Label fx:id="description" styleClass="cell_small_label" text="\$description"/>
         </VBox>

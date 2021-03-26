@@ -30,6 +30,7 @@ public class ListMeetingsCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
+        model.setMeetingMode();
         ObservableList<Meeting> meetings = model.getFilteredMeetingList();
         if (meetings.size() == 0) {
             throw new CommandException(MESSAGE_EMPTY_LIST);
