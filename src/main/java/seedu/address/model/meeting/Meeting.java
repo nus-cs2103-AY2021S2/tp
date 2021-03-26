@@ -98,7 +98,7 @@ public class Meeting implements Schedulable {
      */
     public static boolean isValidStartTerminate(DateTime start, DateTime terminate) {
         boolean isSameDate = start.toLocalDate().equals(terminate.toLocalDate());
-        return start.compareTo(terminate) == -1 && isSameDate;
+        return start.compareTo(terminate) < 0 && isSameDate;
     }
 
     /**
@@ -167,6 +167,9 @@ public class Meeting implements Schedulable {
                 || this.getStartLocalDateTime().compareTo(schedulable.getTerminateLocalDateTime()) >= 0);
     }
 
-
+    @Override
+    public String getNameString() {
+        return meetingName.fullName;
+    }
 
 }

@@ -13,7 +13,7 @@ public interface Schedulable {
     /**
      * get name of this object.
      */
-    public String getName();
+    public String getNameString();
 
 
     /**
