@@ -1,4 +1,4 @@
-package seedu.address.model.trip;
+package seedu.address.model.pool;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;

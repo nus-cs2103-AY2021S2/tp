@@ -40,9 +40,9 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.passenger.Address;
 import seedu.address.model.person.passenger.Passenger;
+import seedu.address.model.pool.TripDay;
+import seedu.address.model.pool.TripTime;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.trip.TripDay;
-import seedu.address.model.trip.TripTime;
 import seedu.address.testutil.PassengerBuilder;
 
 public class AddCommandParserTest {
