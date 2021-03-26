@@ -69,6 +69,8 @@ public class PersonCard extends UiPart<Region> {
         case "address":
             modeOfContactIcon.setImage(new Image("images/house.png"));
             break;
+        default:
+            modeOfContactIcon.setImage(new Image("images/fail.png"));
         }
         if (person.getBlacklist().isBlacklisted) {
             name.setStyle("-fx-text-fill: #ff0000");
