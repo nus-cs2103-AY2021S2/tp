@@ -9,6 +9,7 @@
 - Implementation
     - AddOn feature
     - View feature
+    - FindAll feature
 - Appendix: Requirements
     - Product Scope
     - User Stories
@@ -63,6 +64,30 @@ The following sequence diagram shows how the View feature works:
 The following activity diagram summarizes what happens when a user executes a view command:
 ![View Activity Diagram](images/ViewActivityDiagram.png)
 
+### FindAll Feature
+#### Implementation
+
+The FindAll feature allows a user to find entries that match all the keywords provided by the user.
+This enables the user to easily sieve out all the entries that meet every single requirement the user
+is looking for, which will be useful when deciding where to eat.
+
+The FindAll feature is similar to the Find feature. The Find feature finds for all entries that meet
+at least one of the given keywords, while the FindAll feature only finds for entries that meet all the
+given keywords.
+
+One of the alternatives considered was to make the Find command serve the purpose of both the Find & FindAll
+commands, as they behave similarly. However, this would require the user to key in additional syntax to
+specify which method of find they would like to use. This was deemed to be less user-friendly and more prone
+to errors as the command now consists of 3 parts (command word, type of find to use & keywords to find),
+instead of 2 (command word & keywords to find). As a result, FindAll was implemented as a separate feature.
+
+The following sequence diagram shows how the FindAll feature works:
+![FindAll Sequence Diagram](images/FindAllSequenceDiagram.png)
+
+The following activity diagram summarises the events that take place when a user executes the FindAll
+command:
+![FindAll Activity Diagram](images/FindAllActivityDiagram.png)
+
 ## **Appendix: Requirements**
 
 ### Product scope
@@ -103,6 +128,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | User who wants to remember food ratings | Give a rating on the overall food experience | I can gauge/ballpark the satisfaction level I get against other food experiences           |
 | `* * *` | User deciding to revisit a place | Expand all the reviews of an entry | Read all the reviews in a glance           |
 | `* *`   | User frequently revisiting a place                          | Add multiple reviews to a single place           | Store all my food experiences with the place   |
+| `* *`   | User who wants to eat good food at an affordable price           | Search for places that match both the rating and price that I want | visit the best food places without overspending
 
 *{More to be added}*
 
@@ -239,6 +265,21 @@ Use case ends.
     * 2a1. Food Diary tells user that no entry was found.
 
       Use case ends.
+    
+**UC08: Find all specific entries**
+
+**MSS**
+1. User enters keywords to specify requirements for entries
+2. Food Diary shows all entries matching user requirements (if any)
+
+    Use case ends.
+
+**Extensions**:
+* 1a. Food Diary detects invalid command from user
+    * 1a1. Food Diary warns user about wrong syntax
+    * 1a2. User enters correct syntax
+    
+    Use case resumes from step 2.
 
 ### Non-Functional Requirements
 
