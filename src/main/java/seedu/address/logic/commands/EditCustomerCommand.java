@@ -72,7 +72,7 @@ public class EditCustomerCommand extends EditCommand {
         List<Customer> lastShownList = model.getFilteredCustomerList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_PHONE);
+            throw new CommandException(Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
         }
 
         Customer customerToEdit = lastShownList.get(index.getZeroBased());

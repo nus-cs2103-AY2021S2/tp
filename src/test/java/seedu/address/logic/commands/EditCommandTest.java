@@ -134,7 +134,7 @@ public class EditCommandTest {
                 new EditCustomerDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCustomerCommand editCommand = new EditCustomerCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_PHONE);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
     }
 
     /**
@@ -151,7 +151,7 @@ public class EditCommandTest {
         EditCustomerCommand editCommand = new EditCustomerCommand(outOfBoundIndex,
                 new EditCustomerDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_PHONE);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
     }
 
     @Test

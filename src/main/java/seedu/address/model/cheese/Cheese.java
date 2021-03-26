@@ -27,7 +27,7 @@ public class Cheese {
         this(cheeseType, manufactureDate, maturityDate, expiryDate, CheeseId.getNextId(), false);
     }
 
-    private Cheese(CheeseType cheeseType, ManufactureDate manufactureDate, MaturityDate maturityDate,
+    public Cheese(CheeseType cheeseType, ManufactureDate manufactureDate, MaturityDate maturityDate,
                    ExpiryDate expiryDate, CheeseId cheeseId) {
         this(cheeseType, manufactureDate, maturityDate, expiryDate, cheeseId, true);
     }
