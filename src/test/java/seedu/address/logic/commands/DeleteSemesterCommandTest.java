@@ -4,9 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPlanAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PLAN;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PLAN;
 import static seedu.address.testutil.TypicalPlans.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -16,7 +14,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.plan.Plan;
 import seedu.address.model.plan.Semester;
 
 public class DeleteSemesterCommandTest {
@@ -24,7 +21,6 @@ public class DeleteSemesterCommandTest {
 
     @Test
     public void execute_validSemester_success() {
-//        Plan planToDeleteFrom = model.getFilteredPlanList().get(INDEX_FIRST_PLAN.getZeroBased());
         Semester semesterToDelete = new Semester(1);
         model.addSemester(INDEX_FIRST_PLAN.getZeroBased(), semesterToDelete);
         DeleteSemesterCommand deleteCommand = new DeleteSemesterCommand(INDEX_FIRST_PLAN,
