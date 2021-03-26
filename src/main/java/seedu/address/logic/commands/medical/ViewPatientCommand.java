@@ -45,7 +45,6 @@ public class ViewPatientCommand extends Command {
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-
         Person personToView = lastShownList.get(index.getZeroBased());
         return new CommandResult(String.format(MESSAGE_SUCCESS, personToView.getName()),
                             false, false, personToView, false);
