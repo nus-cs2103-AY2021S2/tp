@@ -105,6 +105,9 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 **API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Due to the limitation of PlantUML, some multiplicities and association roles may be slightly out of place.
+</div>
+
 The `Model`,
 
 * stores a `UserPrefs` object that represents the user’s preferences, such as
