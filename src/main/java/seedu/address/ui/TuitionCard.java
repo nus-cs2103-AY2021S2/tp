@@ -1,9 +1,14 @@
 package seedu.address.ui;
 
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.session.Session;
@@ -26,37 +31,26 @@ public class TuitionCard extends UiPart<Region> {
      */
 
     public final Student student;
-    public final Session session;
 
     @FXML
-    private HBox cardPane;
-    @FXML
-    private Label id;
+    private HBox tuitionCardPane;
     @FXML
     private Label name;
     @FXML
-    private Label sessionDate;
-    @FXML
-    private Label duration;
-    @FXML
-    private Label subject;
-    @FXML
-    private Label fee;
+    private ListView<Session> sessionListView;
 
     /**
      * Creates a {@code TuitionCard} with the given {@code Tuition} and index to display.
      */
-    public TuitionCard(Tuition tuition) {
+    public TuitionCard(Student student) {
         super(FXML);
-        this.student = tuition.getStudent();
-        this.session = tuition.getSession();
-        id.setText(tuition.getStudentIndex() + "-" + tuition.getSessionIndex());
+        this.student = student;
         name.setText(student.getName().fullName);
-        sessionDate.setText("Date: " + DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
-                .format(session.getSessionDate().getDateTime()));
-        duration.setText("Duration: " + session.getDuration().getValue() + " mins");
-        subject.setText("Subject: " + session.getSubject().getValue());
-        fee.setText("Fee: $" + String.format("%.2f", session.getFee().getFee()));
+
+        ObservableList<Session> sessionList = FXCollections.observableList(student.getListOfSessions());
+
+        sessionListView.setItems(sessionList);
+        sessionListView.setCellFactory(listView -> new SessionListViewCell());
     }
 
     @Override
@@ -73,7 +67,24 @@ public class TuitionCard extends UiPart<Region> {
 
         // state check
         TuitionCard card = (TuitionCard) other;
-        return id.getText().equals(card.id.getText())
-                && session.equals(card.session);
+        return name.getText().equals(card.name.getText())
+                && student.equals(card.student);
+    }
+
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code Session} using a {@code SessionCard}.
+     */
+    class SessionListViewCell extends ListCell<Session> {
+        @Override
+        protected void updateItem(Session session, boolean empty) {
+            super.updateItem(session, empty);
+
+            if (empty || session == null) {
+                setGraphic(null);
+                setText(null);
+            } else {
+                setGraphic(new SessionCard(session).getRoot());
+            }
+        }
     }
 }

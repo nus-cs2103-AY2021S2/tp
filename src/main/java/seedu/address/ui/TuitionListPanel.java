@@ -1,11 +1,13 @@
 package seedu.address.ui;
 
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
@@ -22,50 +24,49 @@ public class TuitionListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(TuitionListPanel.class);
 
     @FXML
-    private ListView<Tuition> tuitionListView;
+    private Label studentName;
+
+    @FXML
+    private ListView<Student> tuitionListView;
 
     /**
      * Creates a {@code TuitionListPanel} with the given {@code ObservableList}.
      */
     public TuitionListPanel(ObservableList<Student> studentList) {
         super(FXML);
-        ObservableList<Tuition> tuitionList = FXCollections.observableArrayList();
-        for (int i = 0; i < studentList.size(); i++) {
-            for (int j = 0; j < studentList.get(i).getListOfSessions().size(); j++) {
-                Student currStudent = studentList.get(i);
-                Session currSession = currStudent.getListOfSessions().get(j);
-                tuitionList.add(new Tuition(currStudent, currSession, i, j));
-            }
-        }
+
         studentList.addListener((ListChangeListener<Student>) change -> {
             while (change.next()) {
-                tuitionList.clear();
-                for (int i = 0; i < studentList.size(); i++) {
-                    for (int j = 0; j < studentList.get(i).getListOfSessions().size(); j++) {
-                        Student currStudent = studentList.get(i);
-                        Session currSession = currStudent.getListOfSessions().get(j);
-                        tuitionList.add(new Tuition(currStudent, currSession, i, j));
-                    }
-                }
+
             }
         });
-        tuitionListView.setItems(tuitionList);
+
+        ObservableList<Student> studentWithSessionsList = filterStudentsWithSessions(studentList);
+        tuitionListView.setItems(studentWithSessionsList);
         tuitionListView.setCellFactory(listView -> new TuitionListViewCell());
+    }
+
+    /**
+     * Filter and keep only students with at least 1 session in the list
+     */
+    private ObservableList<Student> filterStudentsWithSessions(ObservableList<Student> studentList) {
+        return studentList.stream().filter(student -> student.getListOfSessions().size() != 0)
+                .collect(Collectors.toCollection(FXCollections::observableArrayList));
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Session} using a {@code SessionCard}.
      */
-    class TuitionListViewCell extends ListCell<Tuition> {
+    class TuitionListViewCell extends ListCell<Student> {
         @Override
-        protected void updateItem(Tuition tuition, boolean empty) {
-            super.updateItem(tuition, empty);
+        protected void updateItem(Student student, boolean empty) {
+            super.updateItem(student, empty);
 
-            if (empty || tuition == null) {
+            if (empty || student == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new TuitionCard(tuition).getRoot());
+                setGraphic(new TuitionCard(student).getRoot());
             }
         }
     }

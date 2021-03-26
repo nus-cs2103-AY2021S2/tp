@@ -70,6 +70,9 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        // Make application window fit to entire screen
+        primaryStage.setMaximized(true);
     }
 
     public Stage getPrimaryStage() {
