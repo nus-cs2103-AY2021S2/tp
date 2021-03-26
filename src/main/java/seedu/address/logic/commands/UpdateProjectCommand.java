@@ -25,7 +25,7 @@ public class UpdateProjectCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the name of the project specified "
             + "by the index number used in the displayed project list. "
-            + "Existing value will bew overwritten by the input value.\n"
+            + "Existing value will be overwritten by the input value.\n"
             + "Parameters: INDEX (must be positive integer) "
             + "[" + PREFIX_NAME + "NAME]\n"
             + "Example:\n"
