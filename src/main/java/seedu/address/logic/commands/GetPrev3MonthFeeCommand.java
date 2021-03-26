@@ -14,7 +14,7 @@ import seedu.address.model.session.Session;
 import seedu.address.model.student.Student;
 
 /**
- * Lists all emails in the address book to the user, delimited by semi colon.
+ * Gets current month and previous 2 months expected monthly fee based on the current list of sessions
  */
 public class GetPrev3MonthFeeCommand extends Command {
     public static final String COMMAND_WORD = "3Month_Fee";

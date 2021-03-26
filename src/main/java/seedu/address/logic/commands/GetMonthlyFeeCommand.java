@@ -18,7 +18,7 @@ import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 
 /**
- * Lists all emails in the address book to the user, delimited by semi colon.
+ * Gets the monthly fee of a particular student on a specific month and year.
  */
 public class GetMonthlyFeeCommand extends Command {
     public static final String COMMAND_WORD = "fee";

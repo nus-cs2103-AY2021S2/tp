@@ -186,7 +186,7 @@ public class ParserUtil {
      * Parses {@code String year} into a {@code Year year}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code month} is invalid.
+     * @throws ParseException if the given {@code year} is invalid.
      */
     public static Year parseYear(String year) throws ParseException {
         requireAllNonNull(year);
