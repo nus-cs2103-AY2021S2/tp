@@ -146,6 +146,9 @@ This section describes some noteworthy details on how certain features are imple
 
 ![Structure of the Property Component](images/PropertyClassDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Due to the limitation of PlantUML, some solid diamonds that are used to denote composition may overlap with each other.
+</div>
+
 #### Implementation
 
 A `Property` is stored in a `UniquePropertyList`, which ensures that there are no duplicate properties in the `PropertyBook`. Each `Property` is uniquely identified by its `Address` and `PostalCode`.
