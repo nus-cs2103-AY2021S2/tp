@@ -118,15 +118,22 @@ public class EditAutocompleteUtil {
                 continue;
             }
 
-            // If Prefix value already provided
-            if (lastValue.length() > 0) {
-                output += " " + prefix + " " + lastValue;
+            // Special Consideration for Tag Sets
+            if (prefix.equals(PREFIX_TAG)) {
+                if (values.size() > 0) {
+                    for (String value: values) {
+                        if (value.length() > 0) {
+                            output += " -t " + value; 
+                        }
+                    }
+                }
+                output += " " + prefixMethodMap.get(prefix).get();
                 continue;
             }
 
-            // Special Consideration for Tag Sets
-            if (prefix.equals(PREFIX_TAG)) {
-                output += " " + prefixMethodMap.get(prefix).get();
+            // If Prefix value already provided
+            if (lastValue.length() > 0) {
+                output += " " + prefix + " " + lastValue;
                 continue;
             }
 
