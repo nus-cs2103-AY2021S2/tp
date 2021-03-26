@@ -14,8 +14,8 @@ import org.junit.jupiter.api.Test;
 import seedu.iscam.commons.exceptions.IllegalValueException;
 import seedu.iscam.model.client.Email;
 import seedu.iscam.model.client.InsurancePlan;
-import seedu.iscam.model.client.Location;
-import seedu.iscam.model.client.Name;
+import seedu.iscam.model.commons.Location;
+import seedu.iscam.model.commons.Name;
 import seedu.iscam.model.client.Phone;
 
 public class JsonAdaptedClientTest {

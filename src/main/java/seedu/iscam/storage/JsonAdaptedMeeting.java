@@ -12,12 +12,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.iscam.commons.exceptions.IllegalValueException;
 import seedu.iscam.model.client.Client;
-import seedu.iscam.model.client.Location;
-import seedu.iscam.model.client.Name;
+import seedu.iscam.model.commons.Location;
+import seedu.iscam.model.commons.Name;
 import seedu.iscam.model.meeting.DateTime;
 import seedu.iscam.model.meeting.Description;
 import seedu.iscam.model.meeting.Meeting;
-import seedu.iscam.model.tag.Tag;
+import seedu.iscam.model.commons.Tag;
 
 /**
  * Jackson-friendly version of {@link Meeting}.

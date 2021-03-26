@@ -9,10 +9,10 @@ import seedu.iscam.model.ReadOnlyClientBook;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.client.Email;
 import seedu.iscam.model.client.InsurancePlan;
-import seedu.iscam.model.client.Location;
-import seedu.iscam.model.client.Name;
 import seedu.iscam.model.client.Phone;
-import seedu.iscam.model.tag.Tag;
+import seedu.iscam.model.commons.Location;
+import seedu.iscam.model.commons.Name;
+import seedu.iscam.model.commons.Tag;
 
 /**
  * Contains utility methods for populating {@code ClientBook} with sample data.

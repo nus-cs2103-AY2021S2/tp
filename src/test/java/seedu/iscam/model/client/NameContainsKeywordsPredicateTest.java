@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.iscam.model.commons.NameContainsKeywordsPredicate;
 import seedu.iscam.testutil.ClientBuilder;
 
 public class NameContainsKeywordsPredicateTest {

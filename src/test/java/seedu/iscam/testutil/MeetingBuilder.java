@@ -3,12 +3,12 @@ package seedu.iscam.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.iscam.model.client.Location;
-import seedu.iscam.model.client.Name;
+import seedu.iscam.model.commons.Location;
+import seedu.iscam.model.commons.Name;
 import seedu.iscam.model.meeting.DateTime;
 import seedu.iscam.model.meeting.Description;
 import seedu.iscam.model.meeting.Meeting;
-import seedu.iscam.model.tag.Tag;
+import seedu.iscam.model.commons.Tag;
 import seedu.iscam.model.util.SampleDataUtil;
 
 /**

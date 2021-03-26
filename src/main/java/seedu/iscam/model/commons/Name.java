@@ -1,4 +1,4 @@
-package seedu.iscam.model.client;
+package seedu.iscam.model.commons;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.iscam.commons.util.AppUtil.checkArgument;

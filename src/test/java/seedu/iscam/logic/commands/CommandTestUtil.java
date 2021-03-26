@@ -19,7 +19,7 @@ import seedu.iscam.logic.commands.exceptions.CommandException;
 import seedu.iscam.model.ClientBook;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.client.Client;
-import seedu.iscam.model.client.NameContainsKeywordsPredicate;
+import seedu.iscam.model.commons.NameContainsKeywordsPredicate;
 import seedu.iscam.testutil.EditClientDescriptorBuilder;
 
 /**

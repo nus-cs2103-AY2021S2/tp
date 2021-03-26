@@ -12,7 +12,7 @@ import java.util.Set;
 import seedu.iscam.logic.commands.AddCommand;
 import seedu.iscam.logic.commands.EditCommand.EditClientDescriptor;
 import seedu.iscam.model.client.Client;
-import seedu.iscam.model.tag.Tag;
+import seedu.iscam.model.commons.Tag;
 
 /**
  * A utility class for Client.
