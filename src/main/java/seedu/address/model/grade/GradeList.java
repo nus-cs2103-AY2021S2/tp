@@ -68,6 +68,14 @@ public class GradeList implements Iterable<Grade> {
         }
     }
 
+    /**
+     * Removes the equivalent grade from the list (must be present).
+     * @param index Index of grade to remove (0-based)
+     */
+    public void remove(int index) {
+        this.internalList.remove(index);
+    }
+
     public void setGrades(seedu.address.model.grade.GradeList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
