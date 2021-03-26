@@ -92,17 +92,17 @@ Review mode | This is where you can review all your flashcards. You can enter th
 **:information_source: Notes about the command format:**<br>
 
 * Words in UPPER_CASE are the parameters to be supplied by the user. <br>
-  eg. In `add q/QUESTION`, `QUESTION` is a parameter which can be used as `add q/What is Fermat's Last Theorem?`.<br>
+  e.g. In `add q/QUESTION`, `QUESTION` is a parameter which can be used as `add q/What is Fermat's Last Theorem?`.<br>
 
 * Items in square brackets are optional. <br>
-  eg. `q/QUESTION [t/TAG]` can be used as `q/What is Singapore Independence Day?` or
+  e.g. `q/QUESTION [t/TAG]` can be used as `q/What is Singapore Independence Day?` or
   as `q/What is Singapore Independence Day? t/Singapore`<br>
 
 * Items with `…​` after them can be used multiple times including zero times. <br>
   e.g. `[t/TAG]…`​ can be used as `t/vocabulary`, `t/vocabulary t/SAT` etc.
 
 * Parameters can be in any order. <br>
-  eg. If the command specifies `q/QUESTION a/ANSWER`, `a/ANSWER q/QUESTION` is also acceptable.<br>
+  e.g. If the command specifies `q/QUESTION a/ANSWER`, `a/ANSWER q/QUESTION` is also acceptable.<br>
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `undo`, `exit` and `clear`)
   will be ignored. <br>
@@ -111,8 +111,7 @@ Review mode | This is where you can review all your flashcards. You can enter th
 * Prefixes are case-sensitive. <br>
   e.g. `q/` is not the same as `Q/`.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of
-  the parameter will be taken. <br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken. <br>
   e.g. If you specify `c/Geography c/History`, only `c/History` will be taken.
 
 </div>
@@ -428,9 +427,9 @@ Action | Format, Examples
 **Clear** | `clear`
 **Undo** | `undo`
 **Redo** | `redo`
-**Sort** | `sort OPTION ORDER` <br> e.g, `sort priority -a`
+**Sort** | `sort OPTION ORDER` <br> e.g., `sort priority -a`
 **Review** | `review`
-**Statistics** | `stats [INDEX]` <br> e.g, `stats 4`, `stats`
+**Statistics** | `stats [INDEX]` <br> e.g., `stats 4`, `stats`
 **List** | `list`
 **Help** | `help`
 **Exit** | `exit`
