@@ -28,7 +28,8 @@ public class FindByPriorityCommandIntegrationTest {
         PriorityContainsKeywordPredicate predicate = new PriorityContainsKeywordPredicate(newList);
         expectedModel.updateFilteredTaskList(predicate);
 
-        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, expectedModel.getFilteredTaskList().size());
+        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW,
+                expectedModel.getFilteredTaskList().size());
 
         assertCommandSuccess(new FindByPriorityCommand(predicate), model, expectedMessage, expectedModel);
     }
