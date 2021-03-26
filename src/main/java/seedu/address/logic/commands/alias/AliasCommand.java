@@ -14,13 +14,16 @@ import seedu.address.model.Model;
  */
 public class AliasCommand extends Command {
     public static final String COMMAND_WORD = "alias";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets a shortcut command for a longer command.\n"
             + "Parameters: a/ALIAS cmd/COMMAND\n"
             + "Example: " + COMMAND_WORD + " a/rl cmd/rlist";
 
     public static final String MESSAGE_SUCCESS = "Alias created: %1$s";
+
     public static final String MESSAGE_RESERVED_KEYWORD =
             "%1$s is a reserved keyword and cannot be used as an alias";
+
     public static final String MESSAGE_RECURSIVE =
             "Recursive alias is not allowed";
 

@@ -11,6 +11,7 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.alias.AliasCommand;
+import seedu.address.logic.commands.alias.ListAliasCommand;
 import seedu.address.logic.commands.alias.UnaliasCommand;
 import seedu.address.logic.commands.commandhistory.ViewHistoryCommand;
 import seedu.address.logic.commands.issue.AddIssueCommand;
@@ -75,7 +76,7 @@ public class AliasMapping implements Serializable {
     }
 
     /**
-     * Check if alias name is a reserved keyword.
+     * Checks if alias name is a reserved keyword.
      */
     public boolean isReservedKeyword(String aliasName) {
         switch (aliasName) {
@@ -109,6 +110,7 @@ public class AliasMapping implements Serializable {
         //====== Alias Commands ======
         case AliasCommand.COMMAND_WORD:
         case UnaliasCommand.COMMAND_WORD:
+        case ListAliasCommand.COMMAND_WORD:
             return true;
         default:
             return false;
@@ -116,10 +118,18 @@ public class AliasMapping implements Serializable {
     }
 
     /**
-     * Check if the command used is an existing alias.
+     * Checks if the command used is an existing alias.
      */
     public boolean isRecursiveKeyword(String commandWord) {
         return mapping.containsKey(commandWord);
+    }
+
+    /**
+     * Returns the current number of user-defined aliases.
+     * @return Size of the current mapping.
+     */
+    public int size() {
+        return mapping.size();
     }
 
     @Override
@@ -139,5 +149,18 @@ public class AliasMapping implements Serializable {
         AliasMapping am = (AliasMapping) o;
 
         return mapping.keySet().stream().allMatch(key -> mapping.get(key).equals(am.mapping.get(key)));
+    }
+
+    @Override
+    public String toString() {
+        final String format = "%d:\t%s = %s\n";
+        StringBuilder msg = new StringBuilder();
+        int count = 0;
+
+        for (String key : mapping.keySet()) {
+            count++;
+            msg.append(String.format(format, count, key, mapping.get(key).getCommand()));
+        }
+        return msg.toString();
     }
 }

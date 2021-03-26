@@ -12,6 +12,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.alias.AliasCommand;
+import seedu.address.logic.commands.alias.ListAliasCommand;
 import seedu.address.logic.commands.alias.UnaliasCommand;
 import seedu.address.logic.commands.commandhistory.ViewHistoryCommand;
 import seedu.address.logic.commands.issue.AddIssueCommand;
@@ -142,6 +143,9 @@ public class AddressBookParser {
 
         case UnaliasCommand.COMMAND_WORD:
             return new UnaliasCommandParser().parse(arguments);
+
+        case ListAliasCommand.COMMAND_WORD:
+            return new ListAliasCommand();
 
         default:
             if (readOnlyUserPrefs.containsAlias(commandWord)) {

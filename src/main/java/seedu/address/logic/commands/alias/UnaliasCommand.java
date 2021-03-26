@@ -13,6 +13,7 @@ import seedu.address.model.Model;
 public class UnaliasCommand extends Command {
 
     public static final String COMMAND_WORD = "unalias";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete alias with the specified name.\n"
             + "Parameters: a/ALIAS\n"
             + "Example: unalias a/findBob";
