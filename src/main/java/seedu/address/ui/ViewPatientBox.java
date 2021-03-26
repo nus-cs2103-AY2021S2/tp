@@ -19,6 +19,8 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
+import javax.swing.*;
+
 /**
  * The UI component that is responsible for receiving user command inputs.
  */
@@ -39,6 +41,8 @@ public class ViewPatientBox extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private FlowPane test;
+    @FXML
     private FlowPane tags;
     @FXML
     private FlowPane appointments;
@@ -53,6 +57,7 @@ public class ViewPatientBox extends UiPart<Region> {
         phone.setText("Phone: " + person.getPhone().value);
         address.setText("Address: " + person.getAddress().value);
         email.setText("Email: " + person.getEmail().value);
+
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

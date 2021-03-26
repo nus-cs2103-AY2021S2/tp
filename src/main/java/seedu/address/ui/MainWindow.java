@@ -18,6 +18,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -37,6 +38,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private List<EditorWindow> editorWindows;
+    private ViewPatientBox viewPatientBox;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -157,6 +159,15 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Displays the patientViewBox which contains information about patient
+     */
+    @FXML
+    public void handlePatientViewBox(Person p) {
+        ViewPatientBox viewPatientBox = new ViewPatientBox(p);
+        viewPatientBoxPlaceholder.getChildren().add(viewPatientBox.getRoot());
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -208,6 +219,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowEdit()) {
                 handleEdit(commandResult.getFeedbackToUser());
+            }
+
+            if (commandResult.isShowViewBox()) {
+                handlePatientViewBox(commandResult.getPatient());
             }
 
             if (commandResult.isExit()) {

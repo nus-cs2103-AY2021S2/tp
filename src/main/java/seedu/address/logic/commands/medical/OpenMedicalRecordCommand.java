@@ -27,6 +27,6 @@ public class OpenMedicalRecordCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        return new CommandResult(index.toString(), false, true, false);
+        return new CommandResult(index.toString(), false, true, null, false);
     }
 }
