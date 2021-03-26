@@ -1,11 +1,11 @@
 package seedu.dictionote.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.dictionote.model.Model.PREDICATE_SHOW_ALL_CONTACTS;
+
 import seedu.dictionote.logic.commands.enums.UiAction;
 import seedu.dictionote.logic.commands.enums.UiActionOption;
 import seedu.dictionote.model.Model;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.dictionote.model.Model.PREDICATE_SHOW_ALL_CONTACTS;
 
 /**
  * Lists all contacts in the contacts list to the user.

@@ -8,7 +8,6 @@ import java.net.URI;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.dictionote.logic.commands.EditContactCommand;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.contact.UniqueContactList;
 import seedu.dictionote.model.contact.exceptions.InvalidContactMailtoLinkException;
