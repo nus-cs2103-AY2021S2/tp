@@ -21,7 +21,7 @@ import fooddiary.model.tag.Tag;
 public class SampleDataUtil {
     public static Entry[] getSampleEntries() {
         return new Entry[] {
-            new Entry(new Name("The Deck"), new Rating("5"),new Price("8"),
+            new Entry(new Name("The Deck"), new Rating("5"), new Price("8"),
                 getReviewList("The mala at the deck was so good. "
                         + "Gravy was super flavourful. Avoid the waffles.  "
                         + "Yakult fruit juice is a must try. "
@@ -38,7 +38,7 @@ public class SampleDataUtil {
                 getReviewList("Cheap and affordable food! Western store was amazing, and thai store was not bad."),
                 new Address("Faculty of Science, S16"),
                 getTagSet("Science")),
-            new Entry(new Name("PGP AC"), new Rating("4"),new Price("8"),
+            new Entry(new Name("PGP AC"), new Rating("4"), new Price("8"),
                 getReviewList("Amazing mala and Ramen store"),
                 new Address("Prince George's Park Residences"), getTagSet("PGP")),
             new Entry(new Name("Ameens"), new Rating("5"), new Price("5"),
@@ -54,7 +54,7 @@ public class SampleDataUtil {
                 getReviewList("It’s overpriced, only suited for occasions where I’m feeling more grandiose."),
                 new Address("Shaw Foundation Alumni House"),
                 getTagSet("NUSS")),
-            new Entry(new Name("Fine Food"), new Rating("2"),new Price("6"),
+            new Entry(new Name("Fine Food"), new Rating("2"), new Price("6"),
                 getReviewList("The mala was trash. "
                     + "There was so much MSG in the food, it felt like I was eating salt."
                     + "Chinese food gives high carbs. Would go for the fishball noodles."),
