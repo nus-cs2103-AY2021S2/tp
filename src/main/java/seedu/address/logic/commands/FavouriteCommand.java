@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 
 import java.util.List;
 
@@ -17,18 +18,29 @@ import seedu.address.model.person.Person;
 public class FavouriteCommand extends Command {
 
     public static final String COMMAND_WORD = "fav";
+    public static final String OPTION_REMOVE_FAV = "remove";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Favourites the person at the index in the address book.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 2";
+            + "[" + PREFIX_OPTION + "OPTION]\n"
+            + "Options: remove (to unfavourite)\n"
+            + "Example: " + COMMAND_WORD + " 2\n"
+            + "Example: " + COMMAND_WORD + " 4 o/remove";
     public static final String MESSAGE_FAV_IN_PROGRESS = "Favourite command is still being implemented.";
     public static final String MESSAGE_FAVOURITE_PERSON_SUCCESS = "Favourited Person: %1$s";
+    public static final String MESSAGE_UNFAVOURITE_PERSON_SUCCESS = "Unfavourited Person: %1$s";
 
     private final Index index;
+    private final boolean isFav;
 
-    public FavouriteCommand(Index index) {
+    /**
+     * @param index of the person in the filtered person list to edit
+     * @param isFav whether this FavouriteCommand is to favourite or unfavourite
+     */
+    public FavouriteCommand(Index index, boolean isFav) {
         this.index = index;
+        this.isFav = isFav;
     }
 
     @Override
@@ -42,10 +54,12 @@ public class FavouriteCommand extends Command {
 
         Person personToFavourite = lastShownList.get(index.getZeroBased());
         EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
-        editPersonDescriptor.setFavourite(new Favourite("true"));
+        editPersonDescriptor.setFavourite(new Favourite(String.valueOf(isFav)));
         Person favouritedPerson = EditCommand.createEditedPerson(personToFavourite, editPersonDescriptor);
 
         model.setPerson(personToFavourite, favouritedPerson);
-        return new CommandResult(String.format(MESSAGE_FAVOURITE_PERSON_SUCCESS, favouritedPerson));
+        return new CommandResult(
+                String.format(isFav ? MESSAGE_FAVOURITE_PERSON_SUCCESS : MESSAGE_UNFAVOURITE_PERSON_SUCCESS,
+                        favouritedPerson));
     }
 }
