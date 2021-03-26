@@ -24,8 +24,8 @@ public class EndCommand extends Command {
         int currentMode = model.getCurrentMode();
         if (currentMode != Mode.MODE_MENU) {
             model.clearQuizInstance();
-            model.getMode().switchModeMenu();
-            return new CommandResult(MESSAGE_SUCCESS, false, false, false, false);
+            model.switchModeMenu();
+            return new CommandResult(MESSAGE_SUCCESS, false, false);
         } else {
             throw new CommandException(Messages.MESSAGE_END_IN_MENU);
         }

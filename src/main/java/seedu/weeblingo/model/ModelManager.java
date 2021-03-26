@@ -215,4 +215,24 @@ public class ModelManager implements Model {
     public int getCurrentMode() {
         return this.mode.getCurrentMode();
     }
+
+    public void switchModeQuiz() {
+        this.mode.switchModeQuiz();
+    }
+
+    public void switchModeLearn() {
+        this.mode.switchModeLearn();
+    }
+
+    public void switchModeMenu() {
+        this.mode.switchModeMenu();
+    }
+
+    public void switchModeQuizSession() {
+        this.mode.switchModeQuizSession();
+    }
+
+    public void switchModeCheckSuccess() {
+        this.mode.switchModeCheckSuccess();
+    }
 }

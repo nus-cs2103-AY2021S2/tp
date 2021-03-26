@@ -51,4 +51,19 @@ public interface Logic {
      *
      */
     Model getModel();
+
+    /**
+     * Returns current mode Weeblingo is in
+     */
+    public int getCurrentMode();
+
+    /**
+     * True if cards should be shown.
+     */
+    public boolean showCards();
+
+    /**
+     * True if answer should be shown.
+     */
+    public boolean showAnswer();
 }

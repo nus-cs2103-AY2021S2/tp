@@ -30,6 +30,7 @@ public class NextCommand extends Command {
             return new CommandResult(Messages.QUIZ_END_MESSAGE + endOfQuizSessionMessage);
         }
 
-        return new CommandResult(MESSAGE_SUCCESS, false, false, true, false);
+        model.switchModeQuizSession();
+        return new CommandResult(MESSAGE_SUCCESS, false, false);
     }
 }

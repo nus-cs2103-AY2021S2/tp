@@ -114,4 +114,14 @@ public interface Model {
 
     /** Gets the quiz instance, which is this quiz session */
     Quiz getQuizInstance();
+
+    public void switchModeQuiz();
+
+    public void switchModeLearn();
+
+    public void switchModeMenu();
+
+    public void switchModeQuizSession();
+
+    public void switchModeCheckSuccess();
 }

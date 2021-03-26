@@ -16,8 +16,9 @@ public class CheckCommandTest {
     public void execute_check_success() {
         model.startQuiz();
         model.getMode().switchModeQuizSession();
+        String attempt = model.getQuizInstance().getCurrentQuestion().getAnswer().toString();
         CommandResult expectedCommandResult = new CommandResult(
-                MESSAGE_SUCCESS, false, false, true, true);
-        assertCommandSuccess(new CheckCommand(), model, expectedCommandResult, expectedModel);
+                MESSAGE_SUCCESS, false, false);
+        assertCommandSuccess(new CheckCommand(attempt), model, expectedCommandResult, expectedModel);
     }
 }

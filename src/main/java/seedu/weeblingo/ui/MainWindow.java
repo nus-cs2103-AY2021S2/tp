@@ -193,11 +193,11 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            int currentMode = logic.getModel().getCurrentMode();
+
+            int currentMode = logic.getCurrentMode();
             logger.info(String.format("Current mode is %s", currentMode));
-            flashcardListPanelPlaceholder.setVisible(commandResult.isShowCards());
-            int index = (commandText.equals("next") || commandText.equals("check")) ? logic.getCurrentIndex() : -1;
-            flashcardListPanel.updateCard(index, commandResult.isShowAnswer());
+            flashcardListPanelPlaceholder.setVisible(logic.showCards());
+            flashcardListPanel.updateCard(logic.getCurrentIndex(), logic.showAnswer());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -221,4 +221,5 @@ public class MainWindow extends UiPart<Stage> {
     public void displayGreetings() {
         resultDisplay.greetUser();
     }
+
 }
