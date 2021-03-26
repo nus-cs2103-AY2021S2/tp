@@ -11,6 +11,8 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.student.commons.exceptions.IllegalValueException;
 import seedu.student.model.ReadOnlyStudentBook;
 import seedu.student.model.StudentBook;
+import seedu.student.model.appointment.Appointment;
+import seedu.student.model.appointment.SameDateAppointmentList;
 import seedu.student.model.student.Student;
 
 /**
@@ -20,15 +22,19 @@ import seedu.student.model.student.Student;
 class JsonSerializableStudentBook {
 
     public static final String MESSAGE_DUPLICATE_STUDENT = "Student list contains duplicate student(s).";
+    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "Appointment list contains duplicate appointment(s),";
 
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
+    private final List<JsonAdaptedAppointment> appointments = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableStudentBook} with the given students.
      */
     @JsonCreator
-    public JsonSerializableStudentBook(@JsonProperty("students") List<JsonAdaptedStudent> student) {
+    public JsonSerializableStudentBook(@JsonProperty("students") List<JsonAdaptedStudent> student,
+                                       @JsonProperty("appointments") List<JsonAdaptedAppointment> appointment) {
         this.students.addAll(student);
+        this.appointments.addAll(appointment);
     }
 
     /**
@@ -38,6 +44,8 @@ class JsonSerializableStudentBook {
      */
     public JsonSerializableStudentBook(ReadOnlyStudentBook source) {
         students.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
+        appointments.addAll(source.getFlatAppointmentList().stream()
+                .map(JsonAdaptedAppointment::new).collect(Collectors.toList()));
     }
 
     /**
@@ -54,6 +62,17 @@ class JsonSerializableStudentBook {
             }
             studentBook.addStudent(student);
         }
+        for (JsonAdaptedAppointment jsonAdaptedAppointment : appointments) {
+            System.out.println("hello");
+            Appointment appointment = jsonAdaptedAppointment.toModelType();
+            if (studentBook.hasAppointment(appointment)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_APPOINTMENT);
+            }
+            studentBook.addAppointment(appointment);
+        }
+//        studentBook.getAppointmentList().stream()
+//                .flatMap((SameDateAppointmentList list) -> list.asUnmodifiableObservableList().stream())
+//                .forEach(appt -> System.out.println(appt.toString()));
         return studentBook;
     }
 
