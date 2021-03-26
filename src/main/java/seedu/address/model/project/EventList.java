@@ -52,6 +52,18 @@ public class EventList {
     }
 
     /**
+     * Set the {@code Event} specified by index with a new {@code Event}.
+     *
+     * @param index index specifies the target {@code Event}.
+     * @param event new {@code Event} for this index.
+     */
+    public void setEvent(Integer index, Event event) {
+        requireNonNull(event);
+
+        this.events.set(index, event);
+    }
+
+    /**
      * Deletes an event from this {@code EventList}.
      *
      * @param i Index of {@code Event} to be deleted.
@@ -123,6 +135,15 @@ public class EventList {
             }
         }
         return false;
+    }
+
+    /**
+     * Returns the size of the {@code EventList}.
+     *
+     * @return size of the {@code EventList}.
+     */
+    public int size() {
+        return events.size();
     }
 
     @Override
