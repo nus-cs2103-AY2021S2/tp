@@ -80,6 +80,8 @@ Command Box | This is where you type all the commands.
 Result Display | This is where the result of your input to the command box is displayed.
 View Pane | This is where the output for `view` and `stats` command is displayed.
 Flashcard List | This is where all the flashcards are displayed to user.
+Main mode | This is the first window when you open the app. Most of the command is executed here.
+Review mode | This is where you can review all your flashcards. You can enter this mode by typing `review` in the Command Box of the Main mode.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -127,8 +129,8 @@ Format: `help`
 
 Adds a new card to the card list.<br>
 Format: `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAG]...` <br />
-Note: The TAG is optional when adding a new card.
-<div markdown="span" class="alert alert-primary">:memo: **Note:**
+<div markdown="span" class="alert alert-primary">:memo: **Note:** <br>
+The `TAG` is optional when adding a new card.<br>
 Priority can only take 1 out of 3 values: `High`, `Mid` or `Low`.
 </div>
 
@@ -196,7 +198,7 @@ Examples:
 
 ### Finding cards : `find`
 
-Find flashcards containing any of the given keywords.
+Finds flashcards containing any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -253,10 +255,12 @@ Format: `clear`
 
 ### Undoing a command : `undo`
 
-Restore FlashBack to the state before the previous command was executed.
+Restores FlashBack to the state before the previous command was executed.
 <div markdown="span" class="alert alert-primary">:memo:
 **Note:**  Only commands that modify FlashBack's content can be reversed. (`add`, `delete`, `edit` and `clear`).
 </div>
+
+Format: `undo`
 
 Examples:
 `delete 3` <br><br>
@@ -268,11 +272,11 @@ Examples:
 `undo` will reverse the `delete 3` command. <br><br>
 ![UiDeleteAfterUndo](./images/UiDeleteAfterUndo.png) <br><br>
 
-Format: `undo`
-
 ### Redoing a command : `redo`
 
-Restore FlashBack to the state before the previous command was undo.
+Restores FlashBack to the state before the previous command was undo.
+
+Format: `redo`
 
 Examples:
 `delete 3` <br><br>
@@ -282,8 +286,6 @@ Examples:
 `redo` will reverse the `undo` command. <br><br>
 ![UiAfterRedo](./images/UiAfterRedo.png) <br><br>
 
-Format: `redo`
-
 ### Sorting all cards: `sort`
 Sorts all flashcards according to a given option.
 <div markdown="span" class="alert alert-primary">
@@ -292,6 +294,7 @@ Sorts all flashcards according to a given option.
 
 </div>
 
+Format: `sort <priority|question> -<a|d>` <br>
 Examples:
 
 `sort priority -a` will sort the flashcards by ascending priority. <br>
