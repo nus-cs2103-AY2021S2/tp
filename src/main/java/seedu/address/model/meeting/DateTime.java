@@ -67,11 +67,23 @@ public class DateTime implements Comparable<DateTime> {
 
     /**
      * Converts the dateTime object to localDate.
+     *
      * @return localDate
      */
     public LocalDate toLocalDate() {
         return value.toLocalDate();
     }
+
+    /**
+     * Converts DateTime to LocalDateTime.
+     * @return
+     */
+
+    public LocalDateTime toLocalDateTime() {
+        return value;
+    }
+
+
     @Override
     public int compareTo(DateTime other) {
         if (value.isBefore(other.value)) {

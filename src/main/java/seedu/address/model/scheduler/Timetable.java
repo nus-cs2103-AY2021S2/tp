@@ -47,12 +47,12 @@ public class Timetable {
      * get the Day schedule corresponding to a localDate;
      * @param localDate
      * @return
-     * @throws TimetableAccessError if the date is not within the timetable.
+     * @throws TimetableAccessException if the date is not within the timetable.
      */
 
-    private DaySchedule getDaySchedule(LocalDate localDate) throws TimetableAccessError {
+    private DaySchedule getDaySchedule(LocalDate localDate) throws TimetableAccessException {
         if (!isDateWithinTimetable(localDate)) {
-            throw new TimetableAccessError(MESSAGE_DAY_NOT_WITHIN_TIMETABLE);
+            throw new TimetableAccessException(MESSAGE_DAY_NOT_WITHIN_TIMETABLE);
         }
         int index = (int) DAYS.between(startOfTheWeek, localDate);
         return weeklySchedule[index];
@@ -76,7 +76,7 @@ public class Timetable {
      * @param endTime
      */
     public void bookTimeRange(LocalDate localDate, LocalTime startTime, LocalTime endTime)
-        throws BookingException, TimetableAccessError {
+        throws BookingException, TimetableAccessException {
         getDaySchedule(localDate).bookTimeRange(startTime, endTime);
     }
 
@@ -85,7 +85,7 @@ public class Timetable {
      * startTime and endTime.
      */
 
-    public void freeTimeRange(LocalDate localDate, LocalTime startTime, LocalTime endTime) throws TimetableAccessError {
+    public void freeTimeRange(LocalDate localDate, LocalTime startTime, LocalTime endTime) throws TimetableAccessException {
         getDaySchedule(localDate).freeTimeRange(startTime, endTime);
     }
 

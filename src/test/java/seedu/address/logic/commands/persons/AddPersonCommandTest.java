@@ -7,8 +7,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -235,6 +238,21 @@ public class AddPersonCommandTest {
 
         @Override
         public ObservableList<Person> getFilteredPersonListByMeetingConnection(Meeting meeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean clashes(Meeting toCheck) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public List<Meeting> getClashes(Meeting toCheck) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<Meeting> getMeetingAtInstant(LocalDateTime localDateTime) {
             throw new AssertionError("This method should not be called.");
         }
     }
