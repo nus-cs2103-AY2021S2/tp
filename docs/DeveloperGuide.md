@@ -247,7 +247,6 @@ Step 1: The user launches the application and executes `food_list`.
 Step 2: The food item(s) in the food list will be displayed.
 
 The following sequence diagram shows how the delete operation works:
-<INSERT DIAGRAM FLOW HERE>
  
 ### Delete food item feature
 
