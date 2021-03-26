@@ -1,5 +1,6 @@
 package seedu.student.ui;
 
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -15,7 +16,9 @@ import seedu.student.model.appointment.SameDateAppointmentList;
  * Panel containing the list of appointments on the same date.
  */
 public class SameDateAppointmentListContainer extends UiPart<Region> {
+
     private static final String FXML = "SameDateAppointmentListContainer.fxml";
+    private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("EEE, dd MMM YY");
     private final Logger logger = LogsCenter.getLogger(AppointmentListPanel.class);
 
     @FXML
@@ -28,7 +31,7 @@ public class SameDateAppointmentListContainer extends UiPart<Region> {
      */
     public SameDateAppointmentListContainer(SameDateAppointmentList list) {
         super(FXML);
-        date.setText(list.getDate().toString());
+        date.setText(list.getDate().format(dateFormatter));
         appointmentListView.setItems(list.asUnmodifiableObservableList());
         appointmentListView.setCellFactory(listView -> new AppointmentListViewCell());
     }
