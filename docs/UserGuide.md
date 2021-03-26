@@ -115,9 +115,16 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of persons in the address book.
 
-Format: `list`
+Format: `list [o/OPTION]`
+
+Currently available options for the `[OPTION]` field include:
+* `fav` Shows list of favourited persons in the address book
+
+Examples:
+* `list` List all persons in the address book
+* `list o/fav` Lists all favourited persons in the address book
 
 ### Editing a person : `edit`
 
@@ -202,6 +209,11 @@ Examples:
 * `list` followed by `fav 2` favourites the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` favourites the 1st person in the results of the `find` command.
 * `fav 3 o/remove` unfavourites the 3rd person in the address book.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+When a person is favourited, the star next to their name will become filled/white.
+When a person is unfavourited, the star will turn empty.
+</div>
 
 ### Clearing all entries : `clear`
 
