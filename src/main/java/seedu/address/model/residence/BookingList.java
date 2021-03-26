@@ -114,7 +114,7 @@ public class BookingList implements Iterable<Booking> {
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Booking> getValue() {
-        return internalUnmodifiableList;
+        return internalUnmodifiableList.sorted();
     }
 
     @Override
@@ -124,8 +124,12 @@ public class BookingList implements Iterable<Booking> {
 
     @Override
     public String toString() {
-        return getValue().size() + " bookings";
-        // TODO: refine later
+        final StringBuilder builder = new StringBuilder();
+        if (!getValue().isEmpty()) {
+            builder.append("Bookings:\n");
+            getValue().stream().forEach(obj -> builder.append(obj + "\n"));
+        }
+        return builder.toString();
     }
 
     @Override
