@@ -1,15 +1,19 @@
 package seedu.address.logic.parser.gradeparser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADED_ITEM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT_NAME;
+
 import seedu.address.logic.commands.gradecommands.AddGradeCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.grade.Grade;
+import seedu.address.model.grade.GradeEnum;
+import seedu.address.model.grade.GradedItem;
 import seedu.address.model.subject.SubjectName;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * Parses input arguments and creates a new AddGradeCommand object
@@ -36,8 +40,10 @@ public class AddGradeCommandParser {
 
         SubjectName subjectName =
                 ParserUtil.parseSubjectName(argMultimap.getValue(PREFIX_SUBJECT_NAME).get());
-        String gradedItem = "";
-        String grade = "";
+        GradedItem gradedItem =
+                ParserUtil.parseGradedItem(argMultimap.getValue(PREFIX_GRADED_ITEM).get());
+        GradeEnum grade =
+                ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).get());
 
         Grade gradeToAdd = new Grade(subjectName, gradedItem, grade);
 
