@@ -8,8 +8,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -237,6 +240,27 @@ class AddMeetingCommandTest {
         public ObservableList<Person> getFilteredPersonListByMeetingConnection(Meeting meeting) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean clashes(Meeting toCheck) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Gets a list of meetings from the model that overlap with this meeting.
+         */
+        public List<Meeting> getClashes(Meeting toCheck) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Gets the meeting ( if any ) scheduled  at this point in time in the model.
+         */
+        public Optional<Meeting> getMeetingAtInstant(LocalDateTime localDateTime) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+
     }
 
     /**
@@ -258,7 +282,7 @@ class AddMeetingCommandTest {
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the meeting being added.
      */
     private class MeetingModelStubAcceptingAdded extends AddMeetingCommandTest.ModelStub {
         final ArrayList<Meeting> meetingsAdded = new ArrayList<>();
@@ -273,6 +297,11 @@ class AddMeetingCommandTest {
         public void addMeeting(Meeting meeting) {
             requireNonNull(meeting);
             meetingsAdded.add(meeting);
+        }
+        @Override
+        public boolean clashes(Meeting meeting) {
+            requireNonNull(meeting);
+            return meetingsAdded.stream().anyMatch(meeting :: isConflict);
         }
 
         @Override

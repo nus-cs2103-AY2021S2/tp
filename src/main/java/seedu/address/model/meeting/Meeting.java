@@ -151,6 +151,19 @@ public class Meeting implements Schedulable {
         return builder.toString();
     }
 
+    /**
+     * Checks if the meeting is happening at this instant of time.
+     * @param localDateTime
+     * @return
+     */
+
+    public boolean containsTime(LocalDateTime localDateTime) {
+        LocalDateTime startLocalDateTime = start.toLocalDateTime();
+        LocalDateTime endLocalDateTime = terminate.toLocalDateTime();
+        return startLocalDateTime.compareTo(localDateTime) <= 0
+                && endLocalDateTime.compareTo(localDateTime) > 0;
+    }
+
     //==================interface methods =================================================
 
     public LocalDateTime getStartLocalDateTime() {

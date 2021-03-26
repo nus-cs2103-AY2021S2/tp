@@ -3,7 +3,9 @@ package seedu.address.model.meeting;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.ObservableList;
 
@@ -88,8 +90,32 @@ public class MeetingBook implements ReadOnlyMeetingBook {
         meetings.remove(key);
     }
 
-    //// util methods
+    // ===================== Clashing meetings checks =================================================
 
+    /**
+     * Checks if there is a clash in Meeting Times within the meeting book.
+     */
+    public boolean clashes(Meeting toCheck) {
+        return meetings.clashes(toCheck);
+    }
+
+    /**
+     * Gets a list of meetings that overlap with this meeting.
+     */
+    public List<Meeting> getClashes(Meeting toCheck) {
+        return meetings.getClashes(toCheck);
+    }
+
+    /**
+     * Gets the meeting ( if any ) happening at this point in time.
+     */
+
+    public Optional<Meeting> getMeetingAtInstant(LocalDateTime localDateTime) {
+        return meetings.getMeetingAtInstant(localDateTime);
+    }
+
+
+    //// ================= Util methods ==============================================
     @Override
     public String toString() {
         return meetings.asUnmodifiableObservableList().size() + " meetings";

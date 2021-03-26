@@ -3,8 +3,10 @@ package seedu.address.model.meeting;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
@@ -20,8 +22,12 @@ import seedu.address.model.meeting.exceptions.MeetingTimeClashException;
  * so as to ensure that the meeting being added or updated is
  * unique in terms of identity in the UniqueMeetingList. However, the removal of a meeting uses Meeting#equals(Object)
  * so as to ensure that the meeting with exactly the same fields will be removed.
+ * Also, it enforces that the meetings cannot overlap with each other ( i.e there is no conflicting meetings.)
  *
  * Supports a minimal set of list operations.
+ * In addition supports getting meetings happening at a certain point in time. For example, any time t,
+ * it gets the meeting whose interval [start, end) such that it contains the time t.
+ * Furthermore it gets a list of meetings that conflict with a certain meeting.
  *
  * @see Meeting#isSameMeeting(Meeting)
  */
@@ -39,7 +45,13 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         return internalList.stream().anyMatch(toCheck::isSameMeeting);
     }
 
-
+    /**
+     * Checks if there is a clash in Meeting Times
+     */
+    public boolean clashes(Meeting toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck :: isConflict);
+    }
     /**
      * Adds a meeting to the list.
      * The meeting must not already exist in the list.
@@ -50,7 +62,30 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         if (contains(toAdd)) {
             throw new DuplicateMeetingException();
         }
+        if (clashes(toAdd)) {
+            throw new MeetingTimeClashException();
+        }
         internalList.add(toAdd);
+    }
+
+    /**
+     * Obtains the list of meetings that clashes,
+     * if there is a clash in Meeting Times.
+     */
+    public List<Meeting> getClashes(Meeting toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().filter(toCheck :: isConflict).collect(Collectors.toList());
+    }
+
+    /**
+     * Gets the meeting happening at a particular point in time. Note that at the instance of tiem queried must lie
+     * between start (inclusive) and end ( exclusive) times.
+     */
+    public Optional<Meeting> getMeetingAtInstant(LocalDateTime localDateTime) {
+        requireNonNull(localDateTime);
+        return internalList.stream()
+                .filter( meeting -> meeting.containsTime(localDateTime))
+                .findFirst();
     }
 
     /**
@@ -68,6 +103,9 @@ public class UniqueMeetingList implements Iterable<Meeting> {
 
         if (!target.isSameMeeting(editedMeeting) && contains(editedMeeting)) {
             throw new DuplicateMeetingException();
+        }
+        if(!target.isSameMeeting(editedMeeting) && clashes(editedMeeting)) {
+            throw new MeetingTimeClashException();
         }
 
         internalList.set(index, editedMeeting);

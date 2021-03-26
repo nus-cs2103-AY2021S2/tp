@@ -7,7 +7,7 @@ public class MeetingTimeClashException extends RuntimeException {
     private static final String MEETING_CLASH_MESSAGE = "Already has a meeting inside the meeting list with clashing "
             + "time.";
 
-    public MeetingTimeClashException(Meeting m) {
+    public MeetingTimeClashException() {
         super(String.format(MEETING_CLASH_MESSAGE));
     }
 }

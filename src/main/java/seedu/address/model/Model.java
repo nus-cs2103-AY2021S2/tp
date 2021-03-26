@@ -1,6 +1,9 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -136,6 +139,24 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredMeetingList(Predicate<Meeting> predicate);
+
+    // ============= Clashing Meetings  ========================================================
+
+    /**
+     * Checks if there is a clash in meeting times within the model.
+     */
+    public boolean clashes(Meeting toCheck);
+
+    /**
+     * Gets a list of meetings from the model that overlap with this meeting.
+     */
+    public List<Meeting> getClashes(Meeting toCheck);
+
+    /**
+     * Gets the meeting ( if any ) scheduled  at this point in time in the model.
+     */
+    public Optional<Meeting> getMeetingAtInstant(LocalDateTime localDateTime);
+
 
     // ============= PersonMeetingConnection part of the meeting Model interface ================== //
     /**
