@@ -1,6 +1,6 @@
 package seedu.us.among.logic.commands;
 
-import static seedu.us.among.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.us.among.logic.commands.CommandTestUtil.assertListCommandSuccess;
 import static seedu.us.among.logic.commands.CommandTestUtil.showEndpointAtIndex;
 import static seedu.us.among.testutil.TypicalEndpoints.getTypicalEndpointList;
 import static seedu.us.among.testutil.TypicalIndexes.INDEX_FIRST_ENDPOINT;
@@ -33,20 +33,20 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand(), model,
+        assertListCommandSuccess(new ListCommand(), model,
                 ListCommand.MESSAGE_SUCCESS_WITH_FILLED_LIST, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showEndpointAtIndex(model, INDEX_FIRST_ENDPOINT);
-        assertCommandSuccess(new ListCommand(), model,
+        assertListCommandSuccess(new ListCommand(), model,
                 ListCommand.MESSAGE_SUCCESS_WITH_FILLED_LIST, expectedModel);
     }
 
     @Test
     public void execute_listIsEmpty_displayEmptyMessage() {
-        assertCommandSuccess(new ListCommand(), emptyModel,
+        assertListCommandSuccess(new ListCommand(), emptyModel,
                 ListCommand.MESSAGE_SUCCESS_WITH_EMPTY_LIST, emptyModel);
     }
 

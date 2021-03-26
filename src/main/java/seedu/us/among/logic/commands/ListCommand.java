@@ -27,13 +27,17 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS_WITH_EMPTY_LIST = MESSAGE_SUCCESS + MESSAGE_EMPTY_LIST;
 
+    public static final boolean showHelp = false;
+    public static final boolean isExit = false;
+    public static final boolean isList = true;
+
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredEndpointList(Model.PREDICATE_SHOW_ALL_ENDPOINTS);
-        return model.isEndpointListEmpty() ? new CommandResult(MESSAGE_SUCCESS_WITH_EMPTY_LIST)
+        return model.isEndpointListEmpty() ? new CommandResult(MESSAGE_SUCCESS_WITH_EMPTY_LIST, showHelp, isExit, isList)
                 :
-                new CommandResult(MESSAGE_SUCCESS_WITH_FILLED_LIST);
+                new CommandResult(MESSAGE_SUCCESS_WITH_FILLED_LIST,  showHelp, isExit, isList);
     }
 }

@@ -22,6 +22,9 @@ public class CommandResult {
     /** API response should be shown to the user. */
     private final boolean isApiResponse;
 
+    /** List should be shown to the user */
+    private final boolean isList;
+
     /** Toggle should be done. */
     private final String toggleTheme;
 
@@ -32,11 +35,12 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean isList) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.isApiResponse = false;
+        this.isList = isList;
         this.toggleTheme = null;
         this.endpoint = null;
     }
@@ -50,6 +54,7 @@ public class CommandResult {
         this.showHelp = showHelp;
         this.exit = exit;
         this.isApiResponse = isApiResponse;
+        this.isList = false;
         this.toggleTheme = null;
         this.endpoint = endpoint;
     }
@@ -62,6 +67,7 @@ public class CommandResult {
         this.showHelp = false;
         this.exit = false;
         this.isApiResponse = false;
+        this.isList = false;
         this.toggleTheme = themeToToggle;
         this.endpoint = null;
     }
@@ -71,7 +77,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -94,6 +100,10 @@ public class CommandResult {
         return isApiResponse;
     }
 
+    public boolean isList() {
+        return isList;
+    }
+
     public String getToggleTheme() {
         return this.toggleTheme;
     }
@@ -114,12 +124,13 @@ public class CommandResult {
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit
                 && isApiResponse == otherCommandResult.isApiResponse
+                && isList == otherCommandResult.isList
                 && endpoint == otherCommandResult.endpoint;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, isList);
     }
 
 }
