@@ -111,7 +111,7 @@ public class EventList {
     }
 
     /**
-     * Checks if the {@code EventList} already contains the specified {@code event}.
+     * Checks if the {@code EventList} already contains the specified {@code eventToCheck}.
      *
      * @param eventToCheck The event that is to be checked.
      * @return true if this project contains the specified event, false otherwise.

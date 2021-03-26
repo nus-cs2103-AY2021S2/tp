@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import seedu.address.model.project.exceptions.DuplicateDeadlineException;
 import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.deadline.Deadline;
 
@@ -37,12 +38,18 @@ public class DeadlineList {
     }
 
     /**
-     * Adds a deadline to this {@code DeadlineList}.
+     * Adds a deadline to this {@code DeadlineList}.The {@code Deadline} must not already exist in
+     * the {@code DeadlineList}.
      *
      * @param deadline {@code Deadline} to add.
      */
     public void addDeadline(Deadline deadline) {
         requireNonNull(deadline);
+
+        if (hasDeadline(deadline)) {
+            throw new DuplicateDeadlineException();
+        }
+
         this.deadlines.add(deadline);
     }
 
@@ -107,6 +114,21 @@ public class DeadlineList {
      */
     public Stream<CompletableDeadline> stream() {
         return deadlines.stream();
+    }
+
+    /**
+     * Checks if the {@code DeadlineList} already contains the specified {@code deadlineToCheck}.
+     *
+     * @param deadlineToCheck The deadline that is to be checked.
+     * @return true if this project contains the specified deadline, false otherwise.
+     */
+    public boolean hasDeadline(CompletableDeadline deadlineToCheck) {
+        for (CompletableDeadline deadline: deadlines) {
+            if (deadlineToCheck.equals(deadline)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
