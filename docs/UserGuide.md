@@ -114,6 +114,18 @@ Format: `showdc INDEX​`
 * Shows the note at the specified `INDEX`.
 * The index refers to the index number shown in the displayed note list. The index **must be a positive integer** 1, 2, 3, …​
 
+#### Listing all content : `listcontent`
+
+Shows a list of all contents in the Dictionary.
+
+Format: `listcontent`
+
+#### Listing all definitions : `listdef`
+
+Shows a list of all the definitions in the Dictionary.
+
+Format: `listdef`
+
 
 ### Note Features
 
@@ -525,6 +537,8 @@ Action | Format, Examples
 **Find content** | `findcontent KEYWORD [MORE_KEYWORDS]`
 **Find definition** | `finddef KEYWORD [MORE_KEYWORDS]`
 **Show specific content** | `showdc INDEX`
+**List content** | `listcontent`
+**List Definitions** | `listdef`
 ***Note Features*** | -
 **Add note** | `addnote [c/CONTENT] [t/TAG]…​`
 **Delete note** | `deletenote INDEX`

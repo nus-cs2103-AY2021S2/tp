@@ -391,9 +391,6 @@ public class MainWindow extends UiPart<Stage> {
         case DICTIONARY_CONTENT:
             setPanelVisibility(dictionaryContentDisplay, visible);
             break;
-        case DICTIONARY_DEFINITIONS:
-            setPanelVisibility(dictionaryContentDisplay, visible);
-            break;
         case NOTE:
             setPanelVisibility(noteContentDisplay, visible);
             setPanelVisibility(noteListDisplay, visible);

@@ -21,7 +21,7 @@ public class ListDefinitionCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredDefinitionList(PREDICATE_SHOW_ALL_DEFINITION);
-        return new CommandResult(MESSAGE_SUCCESS, UiAction.OPEN, UiActionOption.DICTIONARY_DEFINITIONS);
+        return new CommandResult(MESSAGE_SUCCESS, UiAction.OPEN, UiActionOption.DICTIONARY_LIST);
     }
 
 }
