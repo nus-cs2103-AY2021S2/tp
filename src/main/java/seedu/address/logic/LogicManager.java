@@ -45,7 +45,7 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final AddressBookParser addressBookParser;
-    private boolean showAlias = false;
+    private boolean shouldReturnAlias = false;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -64,7 +64,7 @@ public class LogicManager implements Logic {
         Command command = addressBookParser.parseCommand(commandText, model.getAliases());
         commandResult = command.execute(model);
 
-        showAlias = commandResult.isShowAlias();
+        shouldReturnAlias = commandResult.isShowAlias();
 
         try {
             storage.saveAddressBook(model.getAddressBook());
@@ -136,8 +136,8 @@ public class LogicManager implements Logic {
         commandList.add(AliasCommand.COMMAND_WORD);
         Collections.sort(commandList);
 
-        if (showAlias) {
-            showAlias = false;
+        if (shouldReturnAlias) {
+            shouldReturnAlias = false;
             return getObservableStringAliases();
         } else {
             if (value == null || value.isEmpty()) {
