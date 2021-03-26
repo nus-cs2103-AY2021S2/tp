@@ -4,14 +4,14 @@ title: Developer Guide
 ---
 
 * Table of Contents
-{:toc}  
-  
+{:toc}
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Introduction**
 ### Purpose
 
-The purpose of this document is to cover the multi-level design architecture of Dictionote, so that the 
+The purpose of this document is to cover the multi-level design architecture of Dictionote, so that the
 intended audience of this document can understand the relationship between components that make up Dictionote.
 
 ### Audience
@@ -191,7 +191,7 @@ Note that if the user does not have a mail client software set as default in the
 * **Alternative 1 (current choice):** make use of the OS mail client to facilitate email features.
 	* Pros: Easy to implement; utilizes a pre-existing and standardized system for invoking mail xyz.
 	* Cons: Requires the user to have a mail client installed on their OS, which is then set to be the default mail client of the system.
-	
+
 * **Alternative 2:** implement basic email features directly into Dictionote.
 	* Pros: Does not depened on the existence of external software in the OS.
 	* Cons: Much harder to implement, as it requires the implementation of network-related functions to handle the connections to email servers.

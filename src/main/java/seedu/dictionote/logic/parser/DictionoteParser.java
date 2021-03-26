@@ -30,6 +30,7 @@ import seedu.dictionote.logic.commands.HelpCommand;
 import seedu.dictionote.logic.commands.ListCommandCommand;
 import seedu.dictionote.logic.commands.ListContactCommand;
 import seedu.dictionote.logic.commands.ListContentCommand;
+import seedu.dictionote.logic.commands.ListDefinitionCommand;
 import seedu.dictionote.logic.commands.ListNoteCommand;
 import seedu.dictionote.logic.commands.MarkAllAsUndoneNoteCommand;
 import seedu.dictionote.logic.commands.MarkAsDoneNoteCommand;
@@ -126,6 +127,9 @@ public class DictionoteParser {
 
         case ListContentCommand.COMMAND_WORD:
             return new ListContentCommand();
+
+        case ListDefinitionCommand.COMMAND_WORD:
+            return new ListDefinitionCommand();
 
         case MarkAsDoneNoteCommand.COMMAND_WORD:
             return new MarkAsDoneNoteCommandParser().parse(arguments);
