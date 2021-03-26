@@ -23,8 +23,15 @@ nav-text: Developer Guide
 <div style="page-break-after: always;"></div>
 
 ## **Introduction**
-* todo brief description of the software provided in the developer guide
-* todo brief description and some navigation tips about the developer guide as to what was similarly done in the user guide.
+imPoster is a desktop application for beginners of API development to quickly grasp the basics. 
+imPoster's simple and minimalistic style can help beginner API developers **explore** and **test** APIs, whether those **found online** or those that they have **built** themselves.
+imPoster is also highly optimised fast typists and can be fully operated through keyboard commands.
+This developer's guide assumes its readers to have a **basic understanding** of APIs. 
+For a basic definition of [what an API is](), an appendix has been provided for readers who may be unfamiliar with the concept.
+However, it is highly recommended for readers to refer to proper tutorial contents for the basics of APIs prior to developing the application.
+Reader are also advised to download our [latest releases](https://imposter-dev.tk) from our main website in order to test out the application.
+
+* to-do brief description and some navigation tips about the developer guide as to what was similarly done in the user guide.
 
 ## **Design**
 
@@ -656,3 +663,16 @@ _{More to be added}_
  
 Please checkout the [workflow guide](https://ay2021s2-cs2103t-t12-4.github.io/tp/WorkflowGuide.html) to understand
 the adopted approach in maintaining imPoster.
+
+## **Appendix E: API definition**
+### What is an API?
+Broadly speaking, an **API** is an interface that enables and defines how **two systems** interact with one another. In a classic analogy, the interaction above is usually likened to a **waiter** communicating a **customer** order to the restaurant **kitchen**. In this analogy, the **customer** and **kitchen** represents the **two systems** and the **waiter** represents the **API** allowing them to communicate. The **order** and **food** delivered then corresponds to the terms **request** and **response** associated with an API call. The annotated diagrams below capture these interactions and may aid in providing a better understanding:
+
+<p align="center">
+  <img width="700px" src="images/ApiExplanation.png" >
+</p>
+
+### Why learn about APIs?
+
+You may be surprised to know that APIs are not only widely used in our daily lives, it is also likely that you have been using them frequently without actually noticing them! For example, the simple act of visiting a website involves an API request which is responsible for bringing back a response to you in the form of a webpage. Even a simple text message to your friend relies on an API to reliably deliver your message! The use of APIs is extensive in today’s highly connected world so even if they are completely unrelated to your job, it helps to have some basic understanding of them!
+
