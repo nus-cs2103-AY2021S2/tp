@@ -132,6 +132,248 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+### Tagging features
+#### Current Implementation 
+The current tagging system uses objects of the `Tag` class and its children `ChildTag`. Each `Person` in the
+`AddressBook` maintains its own set of tags as a `HashSet<Tag>`. 
+
+The `tag` command allows for the appending of tags to an existing
+`Person` without having to replace existing tags as offered by `edit` and is facilitated by 
+the `TagCommand` and `TagCommandParser` classes.
+
+[Placeholder: Class Diagram of Tag and related classes here... ]
+
+As part of the `Model` component, other components interact with tags through the `Model.java` API.
+As `Person` objects are designed to be immutable, commands that involve manipulating Persons such as `edit` and `tag`
+involve creating a new `Person` and replacing the original `Person` through `Model#setPerson()`.
+
+Given below is an example usage scenario of the `tag` command and how the application behaves through its execution.
+
+[Placeholder: screenshot of initial AddressBook before operation]
+
+Step 1. The user executes `tag 1 tc/Adam t/formteacher` to add tags to a previous contact they have added.
+
+Step 2. The `LogicManager` calls on the `AddressBookParser` to parse the user input
+, which creates a new `TagCommandParser` object and calls its `parse` method.
+
+Step 3. `TagCommandParser` will tokenize the given arguments using `ArgumentTokenizer#tokenize()`. 
+The `index` of `1` and option fields are parsed out. Since no option is used in this scenario,
+the `isReplace` variable is set to `false`.
+
+Step 4. `ParserUtil#parseTags` and `ParserUtil#parseChildTags` methods are used to generate `tagSet`, a `Set<Tag>`
+containing `ChildTag:Adam` and `Tag:formteacher`.
+
+Step 5. A new `TagCommand` is created using `index`, `tagSet`, and `isReplace` and returned to `AddressBookParser`
+and subsequently `LogicManager`.
+
+Step 6. `LogicManager` then calls the `execute` method of the newly created `TagCommand`.
+
+Step 7. Similar to `EditCommand`, `TagCommand` will generate a new `Person` object 
+though the `createTaggedPerson` method which will have its tags appended withe the new `Set<Tag>` defined by the command.
+
+Step 8. The `Model#setPerson()` method is used to update the model with the newly tagged `Person` and a `CommandResult`
+representing success is returned to the `LogicManager`.
+
+Shown below is the sequence diagram that visualises the above operations of a `tag` command.
+
+[Placeholder: Sequence diagram describing the program in the above steps]
+
+When displaying the tags in the UI as a `PersonCard`, a customised `TagComparator` that implements
+`Comparator<Tag>` is used to sort the tags such that `ChildTag` will be placed first before regular
+`Tag`. During the generation of the `Label` for the each `Tag` a different background color is then set
+for `ChildTag` resulting in the UI view shown below.
+
+[Placeholder: UI screenshot of AddressBook after operation]
+
+
+#### \[Proposed\] Potential Improvements
+
+### Help feature
+
+#### Implementation
+
+The help mechanism is facilitated by `HelpCommandParser` and `HelpCommand`. `HelpCommandParser` implements `Parser#parse(args)` from the `Parser` interface. The `args` passed to the method specify the command to display information for. If `args` specifies more than one command, a parse exception will be thrown. Otherwise, `HepCommandParser` returns a new `HelpCommand`.
+
+If no commands were specified in `args`, the `HelpCommand` constructor without any parameters will be called. If a single command was specified, the command will be passed as an argument to the `HelpCommand(specifiedCommand)` constructor.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If multiple commands are specified, an exception is thrown.
+</div>
+
+To execute a `HelpCommand`, `HelpCommand#execute()` is called. The method reads and parses information in the user guide (found at resources/UserGuideCopy.md) into a `helpMessage` differently depending on whether a command was specified. `helpMessage` can contain the following:
+
+* Command was not specified: A list of all available HeliBook commands that was parsed from the command summary table in the user guide.
+* Command was specified: Information on the specified command taken from the user guide. If the specified command is not found in the user guide, an exception is thrown.
+
+Given below are 2 example usage scenarios and how the help mechanism behaves in each scenario.
+
+Scenario 1: User enters `help` without specifying commands.
+
+1. `LogicManager#execute(userInput)` calls `AddressBookParser#parseCommand(userInput)`, which then parses the input into the command word and arguments, which is an empty string in this case. The empty string is passed to `HelpCommandParser#parse()`.
+2. A new `HelpCommand()` is returned.
+3. `LogicManager#execute()` calls `HelpCommand#execute()`, which then calls `HelpCommand#executeNonSpecific()`.
+4. The command summary table in the user guide is parsed so that each row is displayed as "commandName: description" in the `helpMessage` with the help of `HelpCommand#commandSummaryParser()`.
+5. The `helpMessage` is returned via a `CommandResult`. A default `helpTitle` is also returned via the `CommandResult`.
+6. `LogicManager#execute(userInput)` returns the `CommandResult` to `MainWindow#executeCommand`, which sets the help window header to `helpTitle` and the content to `helpMessage` via `HelpWindow#setHelpText()`.
+7. The help window is display.
+
+The following sequence diagram shows how the 'help' operation works in this scenario:
+
+![HelpSequenceDiagram1](images/HelpSequenceDiagram1.png)
+
+Scenario 2: User enters `help find`.
+
+1. `LogicManager#execute(userInput)` calls `AddressBookParser#parseCommand(userInput)`, which then parses the input into the command word and arguments, `find`. `find` is passed to `HelpCommandParser#parse(find)`.
+2. A new `HelpCommand(find)` is returned.
+3. `LogicManager#execute()` calls `HelpCommand#execute()`, which then calls `HelpCommand#executeSpecific()`.
+4. The user guide is searched for the section containing information on `find`.
+5. The information under the `find` section is parsed and appended to `helpMessage`.
+6. The `find` section heading is parsed and assigned to `helpTitle`. 
+7. The `helpMessage` and `helpTitle` are returned via a `CommandResult`.
+8. `LogicManager#execute(userInput)` returns the `CommandResult` to `MainWindow#executeCommand()`, which sets the help window header to `helpTitle` and the content to `helpMessage`.
+9. The help window is display.
+
+The following sequence diagram shows how the 'help' operation works in this scenario:
+
+![HelpSequenceDiagram2](images/HelpSequenceDiagram2.png)
+
+The following activity diagram summarises what happens when a user executes the help command:
+
+![HelpActivityDiagram](images/HelpActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: Where the information displayed in the help window is retrieved from
+
+* **Alternative 1 (current choice):** Retrieve from user guide document stored in resource folder and packed into `JAR` file. 
+  * Pros: Easy to update when features change, command classes will not be cluttered with a long `helpMessage` string.
+  * Cons: Have to remember to copy the latest version of the user guide from the docs folder into the resources folder, scanning user guide for information each time help is called can be time consuming, have to parse markdown into plain text.
+
+* **Alternative 2:** Retrieve from `helpMessage` string stored in each `Command` class. 
+  * Pros: Easy to implement, easy to retrieve `helpMessage`, minimal processing needed.
+  * Cons: To update the `helpMessage` of a command, we must search for its class and edit the `helpMessage` string manually. This essentially means we have do 2 updates every time a change is made to a command: one to the user guide and one to the command's class. 
+
+* **Alternative 3:** Retrieve from user guide webpage.
+  * Pros: Minimal updating needed when features change since only the user guide in the docs folder needs to be updated.
+  * Cons: Does not work when HeliBook is used offline, implementation might be complicated, scanning user guide for information each time help is called can be time-consuming.
+  
+Alternative 1 was eventually chosen as we were planning to make major changes to HeliBook over several iterations. Since we are already expected to update the user guide with each iteration, it is more efficient to simply copy the latest user guide document into the resources folder after updates are made rather than to edit each `helpMessage`. Furthermore, as long as the format of the user guide remains constant, parsing the markdown text into plain text is manageable and does not take too much time. This alternative will also work when HeliBook is used offline, making the application easy to use on the go. Lastly, alternative 1 keeps the actual code and documentation separate, making it a more logical and organised implementation. As such, that is the alternative that was chosen. 
+
+### Sort feature
+
+#### Implementation
+
+The sort mechanism is facilitated by `SortCommand` and `SortCommandParser`.
+
+`SortCommandParser` implements the following operation:
+* `SortCommandParser#parse(String order)` — Parses the arguments using `ArgumentTokenizer#tokenize`
+  and checks for `option`.
+
+`SortCommand` extends `Command`, and implements the following operation:
+* `SortCommand#execute(Model model)` — Executes the sort command by sorting the `lastShownList`
+  and updating the `model` accordingly.
+
+Sorting by name is done by comparing `Person` objects, which implement `Comparable<Person>`.
+
+Sorting by date is done using the `DateComparator`, which compares the `TimeAdded` attribute of the `Person` objects.
+
+Given below is an example usage scenario and how the sort mechanism behaves at each step.
+
+Step 1. The user executes `add n/David …​`, `add n/Anna …​` and `add n/Chloe …​` in that order.
+The `Person` objects created will be timestamped with the `TimeAdded` attribute.
+By default, they will be displayed on in the order in which they were added.
+
+[comment]: <> (add UML diagram)
+
+Step 2. The user executes `sort o/name`.
+
+(Add more steps)
+
+[comment]: <> (add UML diagram)
+
+The following sequence diagram shows how the sort operation works:
+
+![SortSequenceDiagram](images/SortSequenceDiagram.png)
+Note: Style of diagram to be updated.
+
+### Add feature
+
+#### Implementation
+
+The add mechanism is facilitated by `AddCommand` and `AddCommandParser`.
+
+`AddCommandParser` implements the following operation:
+* `AddCommandParser#parse(String order)` — Parses the arguments using `ArgumentTokenizer#tokenize`
+  and checks for if the various `args` are specified, only the `n/` arg is 
+  compulsory to be specified.
+
+`AddCommand` extends `Command`, and implements the following operation:
+* `AddCommand#execute(Model model)` — Executes the add command by 
+  adding the contact with the given `args`, if one of more args are not 
+  specified a 'NIL' is automatically used as a placeholder.
+  
+Given below is an example usage scenario and how the add mechanism behaves at each step.
+
+Step 1. The user executes `add n/David `. Since only the `n/` arg is specified, 
+'NIL' will be used for the remaining args.
+
+[comment]: <> (add UML diagram)
+
+The following sequence diagram shows how the add operation works:
+
+[Add sequence diagram]
+
+Note: Style of diagram to be updated.
+
+### \[Proposed\] Appointment feature
+
+#### Proposed Implementation
+
+An appointment feature will be implemented in the next version of this application. It is a useful feature for parents to track any important appointments
+related to their children. For example, a parent teacher meeting or a birthday party at the house of their child's friend. 
+
+##### UI Component
+
+The appointment will be added as a column beside the current address column.
+
+##### Model Component
+
+![AppointmentWithModelClassDiagram](images/AppointmentWithModelClassDiagram.png)
+
+As shown in the diagram above, the proposed appointment feature is facilitated by `AppointmentBook`. It is similar to `AddressBook`, with similar methods
+that are related to appointment instead. `AppointmentBook` contains `UniqueAppointmentList` that stores `Appointment` objects by
+implementing `Iterable<Appointment>`. `AppointmentBook` implements the interface `ReadOnlyAppointmentBook`.
+
+A filtered list of `Appointment` objects is maintained by `ModelManager`. 
+
+![AppointmentClassDiagram](images/AppointmentClassDiagram.png)
+
+Attributes of the `Appointment` class:
+* Name of appointment, which is a String object
+* Location of appointment, which is a String object
+* Date of appointment, which is a DateTime object
+* Contacts that parents might need to contact about the appointment. This is an ArrayList of Person objects.
+
+##### Logic Component
+
+![AppointmentWithLogicClassDiagram](images/AppointmentWithLogicClassDiagram.png)
+
+`HeliBookParser` looks at the user command and determines which command it is. After determing the correct command, it creates a parser
+for that particularly command.  
+
+![AppointmentCommandClassDiagram](images/AppointmentCommandClassDiagram.png)
+
+The main methods for the appointment feature include `AddAppointmentCommand`, `DeleteAppointmentCommand` and `FindAppointmentCommand`. These methods interact with other components in a similar way
+to similar methods for AddressBook. 
+* For `AddAppointmentCommand`, adding of contacts is handled by `AppointmentBook#addAppointment`, similar to how adding of addresses is handled by `AddressBook#addPerson()`. 
+* For `FindAppointmentCommand`, a predicate defined by given keywords is fed to the filtered list of `Appointment` handled by `ModelManager`, and this filters the `Appointment` objects.
+* For `DeleteAppointmentCommand`, `Appointment` is selected to be deleted by the given `index`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** FindAppointmentCommand only supports finding by the name of the appointment.
+</div>
+
+##### Storage Component
+
+As illustrated in the Logic UML Class Diagram, the `LogicManager` class will save the appointments.
 
 ### \[Proposed\] Undo/redo feature
 
