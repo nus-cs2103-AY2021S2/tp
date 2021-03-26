@@ -68,4 +68,5 @@ note "Extra: Tag functions" as N3
 N3 .left. Appointment
 
 Appointment ---> "~* contact" Person
+
 @enduml
