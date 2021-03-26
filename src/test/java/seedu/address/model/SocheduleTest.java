@@ -1,5 +1,6 @@
 package seedu.address.model;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -33,11 +34,15 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.EventComparator;
 import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskComparator;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
 import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.TaskBuilder;
+import seedu.address.testutil.TypicalEvents;
+import seedu.address.testutil.TypicalTasks;
 
 public class SocheduleTest {
     private final Sochedule sochedule = new Sochedule();
@@ -156,6 +161,58 @@ public class SocheduleTest {
     @Test
     public void getEventList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> sochedule.getEventList().remove(0));
+    }
+
+    @Test
+    public void sortTasks_nullList_nothingThrown() {
+        assertDoesNotThrow(() ->
+                sochedule.sortTasks(TaskComparator.getAcceptedVar().get(0)));
+    }
+
+    @Test
+    public void sortEvents_nullList_nothingThrown() {
+        assertDoesNotThrow(() ->
+                sochedule.sortEvents(EventComparator.getAcceptedVar().get(0)));
+    }
+
+    @Test
+    public void sortTasks_populatedList() {
+        for (String comparingVar : TaskComparator.getAcceptedVar()) {
+            TaskComparator tc = new TaskComparator();
+            tc.setComparingVar(comparingVar);
+
+            //build expected Sochedule
+            List<Task> originalTasks = TypicalTasks.getTypicalTasks();
+            Collections.sort(originalTasks, tc);
+            Sochedule expected = new Sochedule();
+            expected.setTasks(originalTasks);
+
+            //build actual Sochedule
+            Sochedule actual = TypicalTasks.getTypicalSochedule();
+            actual.sortTasks(comparingVar);
+
+            assertEquals(actual, expected);
+        }
+    }
+
+    @Test
+    public void sortEvents_populatedList() {
+        for (String comparingVar : EventComparator.getAcceptedVar()) {
+            EventComparator ec = new EventComparator();
+            ec.setComparingVar(comparingVar);
+
+            //build expected Sochedule
+            List<Event> originalEvents = TypicalEvents.getTypicalEvents();
+            Collections.sort(originalEvents, ec);
+            Sochedule expected = new Sochedule();
+            expected.setEvents(originalEvents);
+
+            //build actual Sochedule
+            Sochedule actual = TypicalEvents.getTypicalSochedule();
+            actual.sortEvents(comparingVar);
+
+            assertEquals(actual, expected);
+        }
     }
 
     /**

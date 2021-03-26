@@ -160,6 +160,28 @@ public class ModelManager implements Model {
     }
 
     /**
+     * Returns the number of completed tasks.
+     */
+    @Override
+    public int getNumCompletedTask() {
+        return sochedule.getNumCompletedTask();
+    }
+
+    /**
+     * Returns the number of overdue tasks.
+     */
+    public int getNumOverdueTask() {
+        return sochedule.getNumOverdueTask();
+    }
+
+    /**
+     * Returns the number of incompleted tasks before deadline.
+     */
+    public int getNumIncompleteTask() {
+        return sochedule.getNumIncompleteTask();
+    }
+
+    /**
      * Returns an unmodifiable view of the list of {@code Task}
      */
     @Override
@@ -205,6 +227,10 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public int getNumIncomingEvents() {
+        return sochedule.getNumIncomingEvents();
+    }
+
     public void clearExpiredEvents() {
         sochedule.clearExpiredEvents();
     }

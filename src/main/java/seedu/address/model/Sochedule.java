@@ -137,6 +137,28 @@ public class Sochedule implements ReadOnlySochedule {
     }
 
     /**
+     * Returns the number of completed tasks.
+     */
+    public int getNumCompletedTask() {
+        return tasks.getNumCompletedTask();
+    }
+
+    /**
+     * Returns the number of overdue tasks.
+     */
+    public int getNumOverdueTask() {
+        return tasks.getNumOverdueTask();
+    }
+
+    /**
+     * Returns the number of incompleted tasks before deadline.
+     */
+    public int getNumIncompleteTask() {
+        return tasks.getNumIncompleteTask();
+
+    }
+
+    /**
      * Clears expired tasks (deadline past).
      */
     public void clearExpiredTasks() {
@@ -196,6 +218,13 @@ public class Sochedule implements ReadOnlySochedule {
     public void sortEvents(String comparingVar) {
         assert comparingVar != null;
         events.sort(comparingVar);
+    }
+
+    /**
+     * Returns number of events happening in the next 7 days.
+     */
+    public int getNumIncomingEvents() {
+        return events.getNumIncomingEvents();
     }
 
     /**

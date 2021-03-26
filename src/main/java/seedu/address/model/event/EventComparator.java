@@ -44,6 +44,10 @@ public class EventComparator implements Comparator<Event> {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public static ArrayList<String> getAcceptedVar() {
+        return acceptedVar;
+    }
+
     /**
      * Compares between two {@code Event} objects.
      *
