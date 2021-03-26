@@ -14,8 +14,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.commons.util.AppUtil;
 import seedu.address.model.property.Deadline;
 import seedu.address.model.property.Property;
+import seedu.address.model.property.Type;
 import seedu.address.model.property.client.Client;
 
 /**
@@ -24,6 +26,10 @@ import seedu.address.model.property.client.Client;
 public class PropertyCard extends UiPart<Region> {
 
     private static final String FXML = "PropertyListCard.fxml";
+
+    private static final Image HDB_ICON = AppUtil.getImage("/images/hdb_64.png");
+    private static final Image CONDO_ICON = AppUtil.getImage("/images/condo_64.png");
+    private static final Image LANDED_ICON = AppUtil.getImage("/images/landed_64.png");
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -115,22 +121,20 @@ public class PropertyCard extends UiPart<Region> {
         } else {
             status.setText(property.getStatus().toString());
         }
-        
-        Image icon;
+
         switch (property.getPropertyType().toString()) {
         case HDB:
-            icon = new Image(getClass().getResourceAsStream("/images/hdb_64.png"));
+            propertyTypeIcon.setImage(HDB_ICON);
             break;
         case CONDO:
-            icon = new Image(getClass().getResourceAsStream("/images/condo_64.png"));
+            propertyTypeIcon.setImage(CONDO_ICON);
             break;
         case LANDED:
-            icon = new Image(getClass().getResourceAsStream("/images/landed_64.png"));
+            propertyTypeIcon.setImage(LANDED_ICON);
             break;
         default:
-            throw new AssertionError("Property type not recognized");
+            throw new AssertionError(Type.MESSAGE_CONSTRAINTS);
         }
-        propertyTypeIcon.setImage(icon);
     }
 
     @Override
