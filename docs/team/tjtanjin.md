@@ -3,67 +3,80 @@ layout: page
 title: Tan Jin's Project Portfolio Page
 ---
 
-## Project: imPoster
+<h1 class="post-title">{{ page.title | escape }}</h1>
 
-imPoster, imPoster, Your new API Tester!
+### Project: imPoster
 
-Given below are my contributions to the project.
+imPoster is a desktop application for beginners of API development to easily familiarise themselves with the basics. The application is optimised for fast typists and can be fully operated through a Command Line Interface.
 
-\*Below is the template that will be updating overtime, stay tuned!
+My contributions to the project are as listed below:
 
-- **New Feature**: Added the ability to undo/redo previous commands.
+**Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&since=2021-02-19&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=tjtanjin&tabRepo=AY2021S2-CS2103T-T12-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=)
 
-  - What it does: allows the user to undo all previous commands one at a time.
-    Preceding undo commands can be reversed by using the redo command.
-  - Justification: This feature improves the product significantly because a
-    user can make mistakes in commands and the app should provide a convenient
-    way to rectify them.
-  - Highlights: This enhancement affects existing commands and commands to be
-    added in future. It required an in-depth analysis of design alternatives.
-    The implementation too was challenging as it required changes to existing
-    commands.
-  - Credits: _{mention here if you reused any code/ideas from elsewhere or if a
-    third-party library is heavily used in the feature so that a reader can make
-    a more accurate judgement of how much effort went into the feature}_
+#### New Features & Enhancements
 
-- **New Feature**: Added a history command that allows the user to navigate to
-  previous commands using up/down keys.
+- **New Feature**: Added the `request` feature which is heavily used by the `send` and `run` command.
 
-- **Code contributed**:
-  [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&since=2021-02-19&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=tjtanjin&tabRepo=AY2021S2-CS2103T-T12-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=)
+  - What it does: Supports the making of API calls to an endpoint specified by the user (through the `send` and `run` command).
+  - Justification: The core functionality of our morphed product - API testing, is heavily dependent on this feature. Without this, the product is unable to send requests and receive responses.
+  - Highlights: This new feature is used by the `send` and `run` commands to perform API calls. The implementation was challenging as it required the use of threading to ensure that the UI does not freeze up when API calls take longer than expected.
+  - Credits: The request feature is built on top of [Apache HttpComponents](http://hc.apache.org/index.html).
 
-- **Project management**:
+- **New Feature**: Added the ability to make an API call through the `send` command.
 
-  - Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+  - What it does: Allows the user to choose an endpoint from the saved endpoint list and make an API call to it.
+  - Justification: This feature is required for the user to invoke an API call to an endpoint.
+  - Highlights: The `send` command complements and is supported by the above `request` feature which allows the user to specify an endpoint to make an API call for.
 
-- **Enhancements to existing features**:
+- **New Feature**: Added the ability to cancel an API call through <kbd>ctrl</kbd> + <kbd>d</kbd>.
 
-  - Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  - Wrote additional tests for existing features to increase coverage from 88%
-    to 92% (Pull requests [\#36](), [\#38]())
+  - What it does: Allows the user to cancel an ongoing API call.
+  - Justification: Certain endpoints may take an excessive amount of time to respond. Without this feature, users may be held hostage by the wait time without an option to cancel/abort the API call.
+  - Highlights: This keyboard command complements the above `request` feature by providing users with an option to terminate an ongoing API call. The implementation was challenging as the API call was made in a thread and terminating it required the closing of the HTTP connection with careful handling of exceptions.
 
-- **Documentation**:
+- **New Feature**: Added switching of application theme through the `toggle` command.
+
+  - What it does: Allows users to switch the application theme easily.
+  - Justfication: This improves the visual comfort for the user as they are able to work under visuals they are more accustomed to (e.g. light/dark theme).
+  - Highlights: This feature was implemented such that new themes can be added easily by modifying only a single line of code and adding a new css file.
+
+- **Enhancements**:
+
+  - Added `response` attribute to `endpoint` to allow the storing of responses from an API call.
+  - Added `project icon` to dock/taskbar when the application is launched.
+  - Added a distinct `orange outline` on the focused component (commandbox, endpoint list panel or resultdisplay) to provide more clarity for users.
+  - Created the `general template` of the UI according to the initial mockup.
+  - Created the `light/dark theme` of the application.
+  - Created `GIFs` to represent ongoing API call and error message.
+
+#### Project management
+
+  - Added the team self-initiated [main project website](https://imposter-dev.tk).
+  - Managed releases `v1.1`, `v1.2`, `v1.2b`, `v1.3` (4 releases) on GitHub.
+  - Setup the GitHub team organisation/repository and added favicon to project page.
+  - Setup [tools](#tools) and [workflow guide](../WorkflowGuide.md) to ease project workflow.
+  - Maintain [gantt chart](https://docs.google.com/spreadsheets/d/10HzmFh2pCHIu-8VpJSCRy0jzpVehnYpm/edit#gid=577662797).
+  - Maintain [project development board](https://github.com/AY2021S2-CS2103T-T12-4/tp/projects/1).
+
+#### Community
+
+  - PRs reviewed (with non-trivial review comments): [\#122](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/122), [\#378](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/378).
+  - Helped and provided tips through forum discussions (examples: [Checkstyle Guide](https://github.com/nus-cs2103-AY2021S2/forum/issues/93), [Fat JAR guide](https://github.com/nus-cs2103-AY2021S2/forum/issues/40), [Peer Help](https://github.com/nus-cs2103-AY2021S2/forum/issues/52)).
+
+#### Tools
+
+  - Integrated the third party library [Apache HttpComponents](http://hc.apache.org/index.html) to the project ([\#125](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/125)).
+  - Added a [pre-commit githook](https://github.com/AY2021S2-CS2103T-T12-4/tp/blob/master/.githooks/pre-commit) to the repository to improve CI ([\#66](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/66)).
+  - Added a [script](https://github.com/AY2021S2-CS2103T-T12-4/tp/blob/master/scripts/sync.sh) to easily sync local, remote individual and team repositories ([\#45](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/45)).
+
+#### Documentation
 
   - User Guide:
-    - Added documentation for the features `delete` and `find` [\#72]()
-    - Did cosmetic tweaks to existing documentation of features `clear`, `exit`:
-      [\#74]()
+    - Added and styled cover page with icon made by [Juliet](https://github.com/JulietTeoh).
+    - Added appendix for additional information on API, Requests and JSON.
+    - Improved styling/formatting.
+    - **To be updated**
   - Developer Guide:
-    - Added implementation details of the `delete` feature.
-
-- **Community**:
-
-  - PRs reviewed (with non-trivial review comments): [\#12](), [\#32](),
-    [\#19](), [\#42]()
-  - Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  - Reported bugs and suggestions for other teams in the class (examples: [1](),
-    [2](), [3]())
-  - Some parts of the history feature I added was adopted by several other class
-    mates ([1](), [2]())
-
-- **Tools**:
-
-  - Integrated a third party library (Natty) to the project ([\#42]())
-  - Integrated a new Github plugin (CircleCI) to the team repo
-
-- _{you can add/remove categories in the list above}_
+    - Added implementation details of the `request` feature.
+    - Added several use cases
+    - **To be updated**
