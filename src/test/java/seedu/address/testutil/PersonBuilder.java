@@ -10,6 +10,7 @@ import org.opentest4j.TestAbortedException;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
+import seedu.address.model.person.Debt;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Event;
 import seedu.address.model.person.Name;
@@ -35,6 +36,7 @@ public class PersonBuilder {
     private Birthday birthday;
     private Address address;
     private Picture picture;
+    private Debt debt;
     private Set<Tag> tags;
     private List<Event> dates;
     private List<Event> meetings;
@@ -48,6 +50,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         birthday = new Birthday(DEFAULT_BIRTHDAY);
         address = new Address(DEFAULT_ADDRESS);
+        debt = new Debt("0");
         picture = null;
         tags = new HashSet<>();
         dates = new ArrayList<>();
@@ -64,6 +67,7 @@ public class PersonBuilder {
         birthday = personToCopy.getBirthday();
         address = personToCopy.getAddress();
         picture = personToCopy.getPicture().orElse(null);
+        debt = personToCopy.getDebt();
         tags = new HashSet<>(personToCopy.getTags());
         dates = new ArrayList<>(personToCopy.getDates());
         meetings = new ArrayList<>(personToCopy.getMeetings());
@@ -110,6 +114,23 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Debt} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withDebt(String debt) {
+        this.debt = new Debt(debt);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Debt} of the {@code Person} that we are building.
+     * Overloaded method for testing purposes only.
+     */
+    public PersonBuilder withDebt(Debt debt) {
+        this.debt = debt;
+        return this;
+    }
+
+    /**
      * Parses the {@code path} into a {@code Picture} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withPicture(Path path) {
@@ -145,7 +166,12 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Builds the person with the information within the PersonBuilder.
+     * @return Person object
+     */
     public Person build() {
-        return new Person(name, phone, email, birthday, address, picture, tags, dates, meetings);
+        return new Person(name, phone, email, birthday, address,
+                picture, tags, dates, meetings, debt);
     }
 }

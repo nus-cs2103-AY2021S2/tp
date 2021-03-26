@@ -22,7 +22,9 @@ public class Commands {
                 FindCommand.COMMAND_WORD,
                 HelpCommand.COMMAND_WORD,
                 ListCommand.COMMAND_WORD,
-                ThemeCommand.COMMAND_WORD
+                ThemeCommand.COMMAND_WORD,
+                ChangeDebtCommand.COMMAND_WORD_SUBTRACT,
+                ChangeDebtCommand.COMMAND_WORD_ADD
         };
     }
 }

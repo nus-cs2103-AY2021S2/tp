@@ -37,6 +37,11 @@
             <Insets bottom="5.0"/>
         </padding>
     </Label>
+    <Label fx:id="debt" styleClass="cell_small_label" text="\$debt" wrapText="true">
+        <padding>
+            <Insets bottom="5.0"/>
+        </padding>
+    </Label>
     <Label fx:id="birthday" styleClass="cell_small_label" text="\$birthday" wrapText="true"/>
     <VBox styleClass="person-details-section">
         <VBox.margin>

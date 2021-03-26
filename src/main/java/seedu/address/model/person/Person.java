@@ -29,6 +29,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Picture picture;
+    private final Debt debt;
     private final Set<Tag> tags = new HashSet<>();
     private final List<Event> dates = new ArrayList<>();
     private final List<Event> meetings = new ArrayList<>();
@@ -44,13 +45,14 @@ public class Person {
         this.address = address;
         this.picture = null;
         this.tags.addAll(tags);
+        this.debt = new Debt("0");
     }
 
     /**
      * Used for immutable editing
      */
     public Person(Name name, Phone phone, Email email, Birthday birthday, Address address, Picture picture,
-            Set<Tag> tags, List<Event> dates, List<Event> meetings) {
+            Set<Tag> tags, List<Event> dates, List<Event> meetings, Debt debt) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -61,6 +63,7 @@ public class Person {
         this.tags.addAll(tags);
         this.dates.addAll(dates);
         this.meetings.addAll(meetings);
+        this.debt = debt;
     }
 
     public Name getName() {
@@ -83,12 +86,20 @@ public class Person {
         return address;
     }
 
+    public Debt getDebt() {
+        return debt;
+    }
+
+    public Person withDebt(Debt debt) {
+        return new Person(name, phone, email, birthday, address, picture, tags, dates, meetings, debt);
+    }
+
     public Optional<Picture> getPicture() {
         return Optional.ofNullable(picture);
     }
 
     public Person withPicture(Picture picture) {
-        return new Person(name, phone, email, birthday, address, picture, tags, dates, meetings);
+        return new Person(name, phone, email, birthday, address, picture, tags, dates, meetings, debt);
     }
 
     /**
@@ -104,7 +115,7 @@ public class Person {
     }
 
     public Person withDates(List<Event> dates) {
-        return new Person(name, phone, email, birthday, address, picture, tags, dates, meetings);
+        return new Person(name, phone, email, birthday, address, picture, tags, dates, meetings, debt);
     }
 
     public List<Event> getMeetings() {
@@ -112,7 +123,7 @@ public class Person {
     }
 
     public Person withMeetings(List<Event> meetings) {
-        return new Person(name, phone, email, birthday, address, picture, tags, dates, meetings);
+        return new Person(name, phone, email, birthday, address, picture, tags, dates, meetings, debt);
     }
 
     /**
@@ -152,13 +163,14 @@ public class Person {
                 && otherPerson.getPicture().equals(getPicture())
                 && otherPerson.getTags().equals(getTags())
                 && otherPerson.getDates().equals(getDates())
-                && otherPerson.getMeetings().equals(getMeetings());
+                && otherPerson.getMeetings().equals(getMeetings())
+                && otherPerson.getDebt().equals(getDebt());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, birthday, address, picture, tags, dates, meetings);
+        return Objects.hash(name, phone, email, birthday, address, picture, tags, dates, meetings, debt);
     }
 
     @Override
@@ -174,7 +186,9 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Picture: ")
-                .append(getPicture());
+                .append(getPicture())
+                .append("; Debt: ")
+                .append(getDebt());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

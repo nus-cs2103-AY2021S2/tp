@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
+import seedu.address.model.person.Debt;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Event;
 import seedu.address.model.person.Name;
@@ -32,7 +33,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String birthday;
-
+    private final String debt;
     private final String address;
     private final JsonAdaptedPicture picture;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -47,7 +48,7 @@ class JsonAdaptedPerson {
             @JsonProperty("email") String email, @JsonProperty("birthday") String birthday,
             @JsonProperty("address") String address, @JsonProperty("picture") JsonAdaptedPicture picture,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("dates") List<JsonAdaptedEvent> dates,
-            @JsonProperty("meetings") List<JsonAdaptedEvent> meetings) {
+            @JsonProperty("meetings") List<JsonAdaptedEvent> meetings, @JsonProperty("debt") String debt) {
 
         this.name = name;
         this.phone = phone;
@@ -55,6 +56,7 @@ class JsonAdaptedPerson {
         this.birthday = birthday;
         this.address = address;
         this.picture = picture;
+        this.debt = debt;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -74,6 +76,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        debt = source.getDebt().value.toString();
         birthday = source.getBirthday().toString();
 
         Optional<Picture> srcPic = source.getPicture();
@@ -137,6 +140,14 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (debt == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Debt.class.getSimpleName()));
+        }
+        if (!Debt.isValidDebt(debt)) {
+            throw new IllegalValueException(Debt.MESSAGE_CONSTRAINTS);
+        }
+        final Debt modelDebt = new Debt(debt);
+
         Picture modelPicture = null;
         if (picture != null) {
             modelPicture = picture.toModelType();
@@ -159,6 +170,6 @@ class JsonAdaptedPerson {
         }
 
         return new Person(modelName, modelPhone, modelEmail, modelBirthday, modelAddress, modelPicture,
-                modelTags, modelDates, modelMeetings);
+                modelTags, modelDates, modelMeetings, modelDebt);
     }
 }

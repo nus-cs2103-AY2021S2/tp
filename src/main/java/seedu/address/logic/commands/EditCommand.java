@@ -22,6 +22,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
+import seedu.address.model.person.Debt;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Event;
 import seedu.address.model.person.Name;
@@ -110,9 +111,10 @@ public class EditCommand extends Command {
         Picture picture = personToEdit.getPicture().orElse(null);
         List<Event> dates = personToEdit.getDates();
         List<Event> meetings = personToEdit.getMeetings();
+        Debt debt = personToEdit.getDebt();
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedBirthday, updatedAddress, picture,
-                updatedTags, dates, meetings);
+                updatedTags, dates, meetings, debt);
 
     }
 
