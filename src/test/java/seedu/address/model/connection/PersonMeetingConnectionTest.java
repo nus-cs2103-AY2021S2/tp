@@ -2,6 +2,7 @@ package seedu.address.model.connection;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.testutil.TypicalMeetings.MEETING1;
 import static seedu.address.testutil.TypicalMeetings.MEETING2;
 import static seedu.address.testutil.TypicalMeetings.MEETING3;
@@ -13,6 +14,7 @@ import static seedu.address.testutil.TypicalPersons.HOON;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.connection.exceptions.DuplicateConnectionException;
 import seedu.address.model.meeting.UniqueMeetingList;
 import seedu.address.model.person.UniquePersonList;
 
@@ -108,7 +110,6 @@ class PersonMeetingConnectionTest {
         assertEquals(connection.getPersonsByMeeting(MEETING3), expectedPersons);
         assertEquals(connection.getPersonsByMeeting(MEETING4), expectedPersons);
 
-
     }
 
     @Test
@@ -164,5 +165,10 @@ class PersonMeetingConnectionTest {
         assertEquals(connection.getPersonsByMeeting(MEETING2), expectedPersons);
         assertEquals(connection.getPersonsByMeeting(MEETING3), expectedPersons);
         assertEquals(connection.getPersonsByMeeting(MEETING4), new UniquePersonList());
+    }
+
+    @Test
+    void duplicatePersonMeetingConnection_throwsDuplicateConnectionException() {
+        assertThrows(DuplicateConnectionException.class, ()->connection.addPersonMeetingConnection(AMY, MEETING1));
     }
 }

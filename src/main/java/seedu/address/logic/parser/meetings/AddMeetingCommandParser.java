@@ -5,13 +5,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_CONNECTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
-
 import java.util.Set;
 import java.util.stream.Stream;
-
-import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.meetings.AddMeetingCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -39,7 +38,7 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
     public AddMeetingCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_START_TIME, PREFIX_END_TIME,
-                        PREFIX_DESCRIPTION, PREFIX_PRIORITY, PREFIX_GROUP);
+                        PREFIX_DESCRIPTION, PREFIX_PRIORITY, PREFIX_GROUP, PREFIX_PERSON_CONNECTION);
 
         // If the meeting has its meetingName and start time as well as the end time,
         // then it's sufficient for definition.
@@ -71,9 +70,11 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
 
         Set<Group> tagList = ParserUtil.parseGroups(argMultimap.getAllValues(PREFIX_GROUP));
 
+        Set<Index> personConnectionSet = ParserUtil.parsePersonsConnection(argMultimap.getAllValues(PREFIX_PERSON_CONNECTION));
+
         Meeting meeting;
         try {
-            meeting = new Meeting(meetingName, startTime, endTime, priority, description, tagList);
+            meeting = new Meeting(meetingName, startTime, endTime, priority, description, tagList).setConnectionToPerson(personConnectionSet);
         } catch (IllegalArgumentException e) {
             throw new ParseException(e.getMessage());
         }

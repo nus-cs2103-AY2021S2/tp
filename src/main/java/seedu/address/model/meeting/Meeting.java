@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.group.Group;
 
 /**
@@ -30,6 +31,7 @@ public class Meeting {
     private final Priority priority;
     private final Description description;
     private final Set<Group> groups = new HashSet<>();
+    private Set<Index> connectionToPerson = null;
 
     /**
      * Every field must be present and not null.
@@ -88,15 +90,25 @@ public class Meeting {
                 && otherMeeting.getStart().equals(getStart())
                 && otherMeeting.getTerminate().equals(getTerminate());
     }
-
-
-
     /**
      * Returns true if a given date time for the meeting is valid.
      */
     public static boolean isValidStartTerminate(DateTime start, DateTime terminate) {
         boolean isSameDate = start.toLocalDate().equals(terminate.toLocalDate());
         return start.compareTo(terminate) == -1 && isSameDate;
+    }
+    /**
+     * Set the connection indices to meetings.
+     */
+    public Meeting setConnectionToPerson(Set<Index> indices) {
+        this.connectionToPerson = indices;
+        return this;
+    }
+    /**
+     * Get the connection indices to meetings.
+     */
+    public Set<Index> getConnectionToPerson() {
+        return this.connectionToPerson;
     }
 
     /**
@@ -145,6 +157,15 @@ public class Meeting {
         if (!groups.isEmpty()) {
             builder.append("; Groups: ");
             groups.forEach(builder::append);
+        }
+
+        Set<Index> indices = getConnectionToPerson();
+        if (indices != null) {
+            builder.append("; Person Related Indices: ");
+            for (Index index : indices) {
+                builder.append(index.getOneBased());
+                builder.append(" ");
+            }
         }
         return builder.toString();
     }

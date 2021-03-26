@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_CONNECTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 
@@ -36,6 +37,8 @@ public class MeetingCommandTestUtil {
     public static final String VALID_DESCRIPTION_MEETING2 = "NUS Seminar Test";
     public static final String VALID_TAG_MEETING1 = "SoC";
     public static final String VALID_TAG_MEETING2 = "University";
+    public static final String VALID_PERSON_CONNECTION_INDEX1 = "1";
+    public static final String VALID_PERSON_CONNECTION_INDEX2 = "2";
 
     public static final String NAME_DESC_MEETING1 = " " + PREFIX_NAME + VALID_NAME_MEETING1;
     public static final String NAME_DESC_MEETING2 = " " + PREFIX_NAME + VALID_NAME_MEETING2;
@@ -49,6 +52,8 @@ public class MeetingCommandTestUtil {
     public static final String DESCRIPTION_DESC_MEETING2 = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_MEETING2;
     public static final String TAG_DESC_MEETING1 = " " + PREFIX_GROUP + VALID_TAG_MEETING1;
     public static final String TAG_DESC_MEETING2 = " " + PREFIX_GROUP + VALID_TAG_MEETING2;
+    public static final String CONNECTION1_DESC = " " + PREFIX_PERSON_CONNECTION + VALID_PERSON_CONNECTION_INDEX1;
+    public static final String CONNECTION2_DESC = " " + PREFIX_PERSON_CONNECTION + VALID_PERSON_CONNECTION_INDEX2;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -57,7 +62,8 @@ public class MeetingCommandTestUtil {
     public static final String INVALID_DATETIME_DESC = " " + PREFIX_START_TIME + "2020/02/03 09:00";
     public static final String INVALID_PRIORITY_DESC = " " + PREFIX_PRIORITY + "-2";
     public static final String INVALID_TAG_DESC = " " + PREFIX_GROUP + "hubby*"; // '*' not allowed in tags
-
+    public static final String INVALID_CONNECTION1_DESC = " " + PREFIX_PERSON_CONNECTION + "a"; // should be a positive integer
+    public static final String INVALID_CONNECTION2_DESC = " " + PREFIX_PERSON_CONNECTION + "-1"; // should be a positive integer
     /**
      * Updates {@code model}'s filtered meetings list to show only the meeting at the given {@code targetIndex} in the
      * {@code model}'s meeting book. It is mandatory for this case meeting names are unique with respect to their first

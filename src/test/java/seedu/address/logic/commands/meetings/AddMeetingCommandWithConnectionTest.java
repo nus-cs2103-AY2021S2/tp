@@ -1,58 +1,72 @@
 package seedu.address.logic.commands.meetings;
 
-
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
-
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashSet;
 import java.util.function.Predicate;
-
 import org.junit.jupiter.api.Test;
-
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.persons.AddPersonCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.connection.PersonMeetingConnection;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingBook;
 import seedu.address.model.meeting.ReadOnlyMeetingBook;
+import seedu.address.model.meeting.UniqueMeetingList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyAddressBook;
+import seedu.address.model.person.UniquePersonList;
 import seedu.address.testutil.MeetingBuilder;
+import seedu.address.testutil.PersonBuilder;
 
-class AddMeetingCommandTest {
-    @Test
-    public void constructor_nullMeeting_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddMeetingCommand(null));
-    }
+
+public class AddMeetingCommandWithConnectionTest {
 
     @Test
-    public void execute_meetingAcceptedByModel_addSuccessful() throws Exception {
-        AddMeetingCommandTest.MeetingModelStubAcceptingAdded modelStub =
-                new AddMeetingCommandTest.MeetingModelStubAcceptingAdded();
-        Meeting validMeeting = new MeetingBuilder().build();
+    public void execute_meetingPersonConnectionAcceptedByModel_addSuccessful() throws Exception {
+        // Add the person and the meeting separately
+        HashSet<Index> connections = new HashSet<>();
+        connections.add(Index.fromOneBased(1));
 
-        CommandResult commandResult = new AddMeetingCommand(validMeeting).execute(modelStub);
-        assertEquals(String.format(AddMeetingCommand.MESSAGE_SUCCESS, validMeeting), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validMeeting), modelStub.meetingsAdded);
-    }
+        MeetingModelStubAcceptingAdded modelStub = new MeetingModelStubAcceptingAdded();
+        Person validPerson = new PersonBuilder().build();
+        Meeting validMeeting = new MeetingBuilder().build().setConnectionToPerson(connections);
+        Meeting validMeeting2 = new MeetingBuilder().withName("Important Conference").build()
+            .setConnectionToPerson(connections);
 
-    @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Meeting validMeeting = new MeetingBuilder().build();
-        AddMeetingCommand addMeetingCommand = new AddMeetingCommand(validMeeting);
-        AddMeetingCommandTest.ModelStub modelStub = new AddMeetingCommandTest.MeetingModelStubWith(validMeeting);
+        CommandResult commandResult2 = new AddPersonCommand(validPerson).execute(modelStub);
+        CommandResult commandResult1 = new AddMeetingCommand(validMeeting).execute(modelStub);
 
-        assertThrows(CommandException.class,
-                AddMeetingCommand.MESSAGE_DUPLICATE_MEETING, () -> addMeetingCommand.execute(modelStub));
+        assertEquals(String.format(AddMeetingCommand.MESSAGE_SUCCESS, validMeeting), commandResult1.getFeedbackToUser());
+        assertEquals(String.format(AddPersonCommand.MESSAGE_SUCCESS, validPerson), commandResult2.getFeedbackToUser());
+
+        UniqueMeetingList expectedMeetings = new UniqueMeetingList();
+        expectedMeetings.add(validMeeting);
+
+        UniquePersonList expectedPersons = new UniquePersonList();
+        expectedPersons.add(validPerson);
+
+        // Check the meetings and persons
+        assertEquals(expectedMeetings, modelStub.meetingsAdded);
+        assertEquals(expectedPersons, modelStub.personsAdded);
+
+        // Check their connections
+        assertEquals(expectedMeetings.asUnmodifiableObservableList(), modelStub.getFilteredMeetingListByPersonConnection(validPerson));
+        assertEquals(expectedPersons.asUnmodifiableObservableList(), modelStub.getFilteredPersonListByMeetingConnection(validMeeting));
+
+        // Check more complex connections (2 meetings points to the same person)
+        expectedMeetings.add(validMeeting2);
+        CommandResult commandResult3 = new AddMeetingCommand(validMeeting2).execute(modelStub);
+        assertEquals(expectedMeetings.asUnmodifiableObservableList(), modelStub.getFilteredMeetingListByPersonConnection(validPerson));
+        assertEquals(expectedPersons.asUnmodifiableObservableList(), modelStub.getFilteredPersonListByMeetingConnection(validMeeting));
+
     }
 
     @Test
@@ -240,33 +254,97 @@ class AddMeetingCommandTest {
     }
 
     /**
-     * A Model stub that contains a single meeting.
+     * A Model stub that always accept the person being added. Also, should always accept meeting being added, as well as their connection.
      */
-    private class MeetingModelStubWith extends AddMeetingCommandTest.ModelStub {
-        private final Meeting meeting;
+    private class MeetingModelStubAcceptingAdded extends seedu.address.logic.commands.meetings.AddMeetingCommandWithConnectionTest.ModelStub {
+        final UniqueMeetingList meetingsAdded = new UniqueMeetingList();
+        final UniquePersonList personsAdded = new UniquePersonList();
+        final PersonMeetingConnection connection = new PersonMeetingConnection();
+        /**
+         * Replaces person meeting connection data with the data in {@code PersonMeetingConnection}.
+         */
+        @Override
+        public void setPersonMeetingConnection(PersonMeetingConnection connection) {
+            requireNonNull(connection);
+            this.connection.resetData(connection);
+        }
 
-        MeetingModelStubWith(Meeting meeting) {
-            requireNonNull(meeting);
-            this.meeting = meeting;
+        /** Returns the connection */
+        @Override
+        public PersonMeetingConnection getPersonMeetingConnection() {
+            return connection;
+        };
+
+        /**
+         * Returns true if a given person and a given meeting exist a connection.
+         */
+        @Override
+        public boolean hasPersonMeetingConnection(Person person, Meeting meeting) {
+            return connection.existPersonMeetingConnection(person, meeting);
+        }
+
+        /**
+         * Adds a connection between a person and a meeting.
+         */
+        @Override
+        public void addPersonMeetingConnection(Person person, Meeting meeting) {
+            connection.addPersonMeetingConnection(person, meeting);
+        }
+
+        /**
+         * This method delete a single connection between a meeting and a person.
+         */
+        @Override
+        public void deleteSinglePersonMeetingConnection(Person person, Meeting meeting) {
+            connection.deleteSinglePersonMeetingConnection(person, meeting);
+        }
+
+        /**
+         * This method delete a all connections related to a given person.
+         */
+        @Override
+        public void deleteAllPersonMeetingConnectionByPerson(Person person) {
+            connection.deleteAllPersonMeetingConnectionByPerson(person);
+        };
+
+        /**
+         * This method delete a all connections related to a given meeting.
+         */
+        @Override
+        public void deleteAllPersonMeetingConnectionByMeeting(Meeting meeting) {
+            connection.deleteAllPersonMeetingConnectionByMeeting(meeting);
+        }
+
+        //TODO: This two methods below may need further change because I don't know how it works with GUI.(Yuheng)
+        /**
+         * Returns a Observable meeting list object with the person as the key.
+         * Empty list will be returned if there is no value found in the hashMap.
+         */
+        public ObservableList<Meeting> getFilteredMeetingListByPersonConnection(Person person) {
+            UniqueMeetingList meetings = connection.getMeetingsByPerson(person);
+            assert meetings != null;
+            return meetings.asUnmodifiableObservableList();
+        }
+        /**
+         * Returns a Observable person list object with the meeting as the key.
+         * Empty list will be returned if there is no value found in the hashMap.
+         */
+        public ObservableList<Person> getFilteredPersonListByMeetingConnection(Meeting meeting) {
+            UniquePersonList persons = connection.getPersonsByMeeting(meeting);
+            assert persons != null;
+            return persons.asUnmodifiableObservableList();
         }
 
         @Override
         public boolean hasMeeting(Meeting meeting) {
             requireNonNull(meeting);
-            return this.meeting.isSameMeeting(meeting);
+            return meetingsAdded.contains(meeting);
         }
-    }
-
-    /**
-     * A Model stub that always accept the person being added.
-     */
-    private class MeetingModelStubAcceptingAdded extends AddMeetingCommandTest.ModelStub {
-        final ArrayList<Meeting> meetingsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasMeeting(Meeting meeting) {
-            requireNonNull(meeting);
-            return meetingsAdded.stream().anyMatch(meeting::isSameMeeting);
+        public boolean hasPerson(Person person) {
+            requireNonNull(person);
+            return personsAdded.contains(person);
         }
 
         @Override
@@ -276,8 +354,25 @@ class AddMeetingCommandTest {
         }
 
         @Override
+        public void addPerson(Person person) {
+            requireNonNull(person);
+            personsAdded.add(person);
+        }
+
+        /**
+         * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+         * {@code versionedAddressBook}
+         */
+        @Override
+        public ObservableList<Person> getFilteredPersonList() {
+            return personsAdded.asUnmodifiableObservableList();
+        }
+
+        @Override
         public ReadOnlyMeetingBook getMeetingBook() {
             return new MeetingBook();
         }
     }
 }
+
+
