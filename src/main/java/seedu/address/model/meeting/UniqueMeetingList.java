@@ -39,15 +39,6 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         return internalList.stream().anyMatch(toCheck::isSameMeeting);
     }
 
-    /**
-     * Returns a list of meetings that clash with the current meeting
-     */
-
-    public List<Meeting> getClashes(Meeting toCheck) {
-        requireNonNull(toCheck);
-        return internalList.stream().filter(meeting -> meeting.isConflict(toCheck))
-                .collect(Collectors.toList());
-    }
 
     /**
      * Adds a meeting to the list.
@@ -58,10 +49,6 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateMeetingException();
-        }
-        List<Meeting> clashes = getClashes(toAdd);
-        if (clashes.size() > 0) {
-            throw new MeetingTimeClashException(clashes.get(0));
         }
         internalList.add(toAdd);
     }

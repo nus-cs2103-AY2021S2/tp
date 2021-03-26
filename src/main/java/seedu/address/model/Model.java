@@ -106,6 +106,8 @@ public interface Model {
      */
     boolean hasMeeting(Meeting meeting);
 
+
+
     /**
      * Deletes the given meeting.
      * The meeting must exist in the meeting book.

@@ -63,6 +63,7 @@ public class MeetingBook implements ReadOnlyMeetingBook {
     /**
      * Adds a meeting to the meeting book.
      * The meeting must not already exist in the meeting book.
+     * The meeting must not clash with any meeting in the meetingBook.
      */
     public void addMeeting(Meeting m) {
         meetings.add(m);

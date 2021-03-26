@@ -151,7 +151,7 @@ public class Meeting implements Schedulable {
         return builder.toString();
     }
 
-    //==================Scheduler methods =================================================
+    //==================interface methods =================================================
 
     public LocalDateTime getStartLocalDateTime() {
         return start.toLocalDateTime();

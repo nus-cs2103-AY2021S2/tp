@@ -37,6 +37,7 @@ public class AddMeetingCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New meeting added: %1$s";
     public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in MeetBuddy";
+    public static final String MESSAGE_CLASH_MEETING = "This meeting clashes with an existing meeting %s";
 
     private final Meeting toAdd;
 
