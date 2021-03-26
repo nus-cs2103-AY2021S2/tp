@@ -50,8 +50,8 @@ public class CommandTestUtil {
     public static final String VALID_REPEATABLE_DATE = " " + PREFIX_REPEATABLE_DATE + "01-01-2020";
     public static final String VALID_REPEATABLE_INTERVAL = " " + PREFIX_REPEATABLE_INTERVAL + "WEEKLY";
     public static final String INVALID_DESCRIPTION = " " + PREFIX_DESCRIPTION + "";
-    public static final String INVALID_DEADLINE_DATE = " " + PREFIX_DEADLINE_DATE + "01012020";
-    public static final String INVALID_REPEATABLE_DATE = " " + PREFIX_REPEATABLE_DATE + "01012020";
+    public static final String INVALID_DEADLINE_DATE = " " + PREFIX_DEADLINE_DATE + "01/01-2020";
+    public static final String INVALID_REPEATABLE_DATE = " " + PREFIX_REPEATABLE_DATE + "01-01/2020";
     public static final String INVALID_REPEATABLE_INTERVAL = " " + PREFIX_REPEATABLE_INTERVAL + "Sometimes";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;

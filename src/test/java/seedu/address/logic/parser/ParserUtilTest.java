@@ -30,7 +30,7 @@ public class ParserUtilTest {
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_DESCRIPTION = " ";
     private static final String INVALID_INTERVAL = "Sometimes";
-    private static final String INVALID_DATE = "01012021";
+    private static final String INVALID_DATE = "01/01-2021";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
