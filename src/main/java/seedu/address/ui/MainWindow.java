@@ -70,7 +70,10 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         // When main window is closed, all other window closes.
-        primaryStage.setOnHidden(e -> Platform.exit());
+        primaryStage.setOnHidden(e -> {
+            Platform.exit();
+            System.exit(0);
+        });
         this.logic = logic;
 
         // Configure the UI
