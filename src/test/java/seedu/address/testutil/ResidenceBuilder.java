@@ -32,7 +32,7 @@ public class ResidenceBuilder {
     public ResidenceBuilder() {
         name = new ResidenceName(DEFAULT_RESIDENCE_NAME);
         address = new ResidenceAddress(DEFAULT_RESIDENCE_ADDRESS);
-        bookingList = new BookingList(DEFAULT_BOOKING_DETAILS);
+        //bookingList = new BookingList();
         cleanStatusTag = new CleanStatusTag(DEFAULT_CLEAN_STATUS);
         tags = new HashSet<>();
     }
@@ -43,7 +43,7 @@ public class ResidenceBuilder {
     public ResidenceBuilder(Residence residenceToCopy) {
         name = residenceToCopy.getResidenceName();
         address = residenceToCopy.getResidenceAddress();
-        bookingList = residenceToCopy.getBookingDetails();
+        bookingList = residenceToCopy.getBookingList();
         cleanStatusTag = residenceToCopy.getCleanStatusTag();
         tags = new HashSet<>(residenceToCopy.getTags());
     }
@@ -64,13 +64,13 @@ public class ResidenceBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code Booking} of the {@code Residence} that we are building.
-     */
-    public ResidenceBuilder withBookingDetails(String bookingDetails) {
-        this.bookingList = new BookingList(bookingDetails);
-        return this;
-    }
+    ///**
+    //* Sets the {@code Booking} of the {@code Residence} that we are building.
+    //*/
+    // public ResidenceBuilder withBookingDetails(String bookingDetails) {
+    //   this.bookingList = new BookingList(bookingDetails);
+    //    return this;
+    //}
 
     /**
      * Parses the {@code String cleanStatusTag} into a {@code cleanStatusTag} and set it to the {@code Residence}

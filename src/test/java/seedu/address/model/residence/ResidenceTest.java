@@ -3,7 +3,7 @@ package seedu.address.model.residence;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_RESIDENCE2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_BOOKING_DETAILS;
+//import static seedu.address.logic.commands.CommandTestUtil.VALID_BOOKING_DETAILS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_RESIDENCE2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_REPAIR;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_UNCLEAN_TAG;
@@ -33,7 +33,8 @@ public class ResidenceTest {
 
         // same name, all other attributes different -> returns true
         Residence editedR1 = new ResidenceBuilder(RESIDENCE1).withAddress(VALID_ADDRESS_RESIDENCE2)
-                .withBookingDetails("booking changed").withCleanStatusTags("n").withTags(VALID_TAG_REPAIR).build();
+                .withCleanStatusTags("n").withTags(VALID_TAG_REPAIR).build();
+        //.withBookingDetails()
         assertTrue(RESIDENCE1.isSameResidence(editedR1));
 
         // different name, all other attributes same -> returns false
@@ -77,8 +78,8 @@ public class ResidenceTest {
         assertFalse(RESIDENCE1.equals(editedR1));
 
         // different booking details -> returns false
-        editedR1 = new ResidenceBuilder(RESIDENCE1).withBookingDetails(VALID_BOOKING_DETAILS).build();
-        assertFalse(RESIDENCE1.equals(editedR1));
+        //editedR1 = new ResidenceBuilder(RESIDENCE1).withBookingDetails(VALID_BOOKING_DETAILS).build();
+        //assertFalse(RESIDENCE1.equals(editedR1));
 
         // different address -> returns false
         editedR1 = new ResidenceBuilder(RESIDENCE1).withAddress(VALID_ADDRESS_RESIDENCE2).build();

@@ -89,11 +89,13 @@ public class CommandTestUtil {
 
     static {
         DESC_RESIDENCE1 = new EditResidenceDescriptorBuilder().withName(VALID_NAME_RESIDENCE1)
-                .withAddress(VALID_ADDRESS_RESIDENCE1).withBookingDetails(VALID_BOOKING_DETAILS_RESIDENCE1)
+                .withAddress(VALID_ADDRESS_RESIDENCE1)
                 .withCleanStatusTag(VALID_CLEAN_TAG).withTags(VALID_TAG_RESERVED).build();
+        //.withBookingDetails(VALID_BOOKING_DETAILS_RESIDENCE1)
         DESC_RESIDENCE2 = new EditResidenceDescriptorBuilder().withName(VALID_NAME_RESIDENCE1)
-                .withAddress(VALID_ADDRESS_RESIDENCE2).withBookingDetails(VALID_BOOKING_DETAILS_RESIDENCE2)
+                .withAddress(VALID_ADDRESS_RESIDENCE2)
                 .withCleanStatusTag(VALID_CLEAN_TAG).withTags(VALID_TAG_RESERVED, VALID_TAG_REPAIR).build();
+        //withBookingDetails(VALID_BOOKING_DETAILS_RESIDENCE2)
     }
 
     /**

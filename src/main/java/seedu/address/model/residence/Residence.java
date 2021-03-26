@@ -28,6 +28,19 @@ public class Residence {
     /**
      * Every field must be present and not null.
      */
+    public Residence(ResidenceName residenceName, ResidenceAddress residenceAddress,
+                     CleanStatusTag cleanStatusTag, Set<Tag> tags) {
+        this.bookingList = new BookingList();
+        requireAllNonNull(residenceName, residenceAddress, cleanStatusTag, tags);
+        this.residenceName = residenceName;
+        this.residenceAddress = residenceAddress;
+        this.cleanStatusTag = cleanStatusTag;
+        this.tags.addAll(tags);
+    }
+
+    /**
+     * When BookingList is provided null.
+     */
     public Residence(ResidenceName residenceName, ResidenceAddress residenceAddress, BookingList bookingList,
                      CleanStatusTag cleanStatusTag, Set<Tag> tags) {
         this.bookingList = bookingList;
@@ -46,7 +59,7 @@ public class Residence {
         return residenceAddress;
     }
 
-    public BookingList getBookingDetails() {
+    public BookingList getBookingList() {
         return bookingList;
     }
 
@@ -92,7 +105,7 @@ public class Residence {
         Residence otherResidence = (Residence) other;
         return otherResidence.getResidenceName().equals(getResidenceName())
                 && otherResidence.getResidenceAddress().equals(getResidenceAddress())
-                && otherResidence.getBookingDetails().equals(getBookingDetails())
+                && otherResidence.getBookingList().equals(getBookingList())
                 && otherResidence.getCleanStatusTag().equals(getCleanStatusTag())
                 && otherResidence.getTags().equals(getTags());
     }
@@ -110,7 +123,7 @@ public class Residence {
                 .append("; Residence Address: ")
                 .append(getResidenceAddress())
                 .append("; Booking Details: ")
-                .append(getBookingDetails())
+                .append(getBookingList())
                 .append("; Clean Status: ")
                 .append(getCleanStatusTag());
 

@@ -56,10 +56,11 @@ public class Booking {
     /**
      * Returns if a given booking is a valid booking.
      */
-    public static boolean isValidBooking(Booking test) {
-        return Name.isValidName(test.getName().toString())
-                && Phone.isValidPhone(test.getPhone().toString())
-                && test.getEnd().isAfter(test.getStart());
+    public static boolean isValidBooking(String visitorName, String phone, String start, String end) {
+        boolean b = Name.isValidName(visitorName)
+                && Phone.isValidPhone(phone)
+                && start < end;
+        return b;
     }
 
     /**

@@ -110,10 +110,10 @@ public class ParserUtil {
     public static BookingList parseBooking(String bookingDetails) throws ParseException {
         requireNonNull(bookingDetails);
         String trimmedBooking = bookingDetails.trim();
-        if (!BookingList.isValidBooking(trimmedBooking)) {
+        if (!Booking.isValidBooking(trimmedBooking)) {
             throw new ParseException(Booking.MESSAGE_CONSTRAINTS);
         }
-        return new BookingList(trimmedBooking);
+        return new Booking(trimmedBooking);
     }
 
     /**

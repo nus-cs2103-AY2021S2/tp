@@ -90,7 +90,7 @@ public class EditCommand extends Command {
         ResidenceAddress updatedAddress = editResidenceDescriptor.getResidenceAddress()
                 .orElse(residenceToEdit.getResidenceAddress());
         BookingList updatedBookingList = editResidenceDescriptor.getBookingDetails()
-                .orElse(residenceToEdit.getBookingDetails());
+                .orElse(residenceToEdit.getBookingList());
         CleanStatusTag updatedCleanStatus = editResidenceDescriptor.getCleanStatusTag().orElse(
                 residenceToEdit.getCleanStatusTag());
         Set<Tag> updatedTags = editResidenceDescriptor.getTags().orElse(residenceToEdit.getTags());
@@ -124,9 +124,9 @@ public class EditCommand extends Command {
         private ResidenceName residenceName;
         private ResidenceAddress residenceAddress;
         // because CleanStatusTag has default value
-        private BookingList bookingList = new BookingList();
+        private BookingList bookingList;
         // because CleanStatusTag has default value
-        private CleanStatusTag cleanStatusTag = new CleanStatusTag();
+        private CleanStatusTag cleanStatusTag;
         private Set<Tag> tags;
 
         public EditResidenceDescriptor() {

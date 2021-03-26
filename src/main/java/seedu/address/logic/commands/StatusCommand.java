@@ -78,7 +78,7 @@ public class StatusCommand extends Command {
 
         ResidenceName updatedName = residenceToUpdateStatus.getResidenceName();
         ResidenceAddress updatedAddress = residenceToUpdateStatus.getResidenceAddress();
-        BookingList updatedBooking = residenceToUpdateStatus.getBookingDetails();
+        BookingList updatedBooking = residenceToUpdateStatus.getBookingList();
 
         CleanStatusTag updatedCleanStatus;
         if (status.equals("clean")) {
