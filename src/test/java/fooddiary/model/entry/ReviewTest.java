@@ -29,9 +29,9 @@ public class ReviewTest {
         assertFalse(Review.isValidReview(" ")); // spaces only
 
         // valid Review
-        assertTrue(Review.isValidReview("PeterJack_1190@example.com"));
+        assertTrue(Review.isValidReview("This is a good review."));
         assertTrue(Review.isValidReview("good")); // minimal
-        assertTrue(Review.isValidReview("test@localhost")); // alphabets only
+        assertTrue(Review.isValidReview("testlocalhost")); // alphabets only
         assertTrue(Review.isValidReview("!#$%&'*+/=?`{|}~^.-@.")); // special characters
         assertTrue(Review.isValidReview("123145")); // numeric
         assertTrue(Review.isValidReview("a1+be!@")); // mixture of alphanumeric and special characters

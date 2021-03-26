@@ -1,9 +1,9 @@
 package fooddiary.storage;
 
 import static fooddiary.testutil.Assert.assertThrows;
-import static fooddiary.testutil.TypicalEntries.ALICE;
-import static fooddiary.testutil.TypicalEntries.HOON;
-import static fooddiary.testutil.TypicalEntries.IDA;
+import static fooddiary.testutil.TypicalEntries.ENTRY_A;
+import static fooddiary.testutil.TypicalEntries.ENTRY_H;
+import static fooddiary.testutil.TypicalEntries.ENTRY_I;
 import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiary;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -73,14 +73,14 @@ public class JsonFoodDiaryStorageTest {
         assertEquals(original, new FoodDiary(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addEntry(HOON);
-        original.removeEntry(ALICE);
+        original.addEntry(ENTRY_H);
+        original.removeEntry(ENTRY_A);
         jsonFoodDiaryStorage.saveFoodDiary(original, filePath);
         readBack = jsonFoodDiaryStorage.readFoodDiary(filePath).get();
         assertEquals(original, new FoodDiary(readBack));
 
         // Save and read without specifying file path
-        original.addEntry(IDA);
+        original.addEntry(ENTRY_I);
         jsonFoodDiaryStorage.saveFoodDiary(original); // file path not specified
         readBack = jsonFoodDiaryStorage.readFoodDiary().get(); // file path not specified
         assertEquals(original, new FoodDiary(readBack));

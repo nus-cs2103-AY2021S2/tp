@@ -1,5 +1,6 @@
 package fooddiary.testutil;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -8,6 +9,7 @@ import fooddiary.logic.commands.EditCommand;
 import fooddiary.model.entry.Address;
 import fooddiary.model.entry.Entry;
 import fooddiary.model.entry.Name;
+import fooddiary.model.entry.Price;
 import fooddiary.model.entry.Rating;
 import fooddiary.model.entry.Review;
 import fooddiary.model.tag.Tag;
@@ -34,7 +36,8 @@ public class EditEntryDescriptorBuilder {
         descriptor = new EditCommand.EditEntryDescriptor();
         descriptor.setName(entry.getName());
         descriptor.setRating(entry.getRating());
-        descriptor.setReview(entry.getReview());
+        descriptor.setPrice(entry.getPrice());
+        descriptor.setReviews(entry.getReviews());
         descriptor.setAddress(entry.getAddress());
         descriptor.setTags(entry.getTags());
     }
@@ -56,10 +59,20 @@ public class EditEntryDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Review} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Price} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditEntryDescriptorBuilder withReview(String review) {
-        descriptor.setReview(new Review(review));
+    public EditEntryDescriptorBuilder withPrice(String price) {
+        descriptor.setPrice(new Price(price));
+        return this;
+    }
+
+    /**
+     * Parses the {@code reviews} into a {@code List<Review>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditEntryDescriptorBuilder withReviews(String... reviews) {
+        List<Review> reviewList = Stream.of(reviews).map(Review::new).collect(Collectors.toList());
+        descriptor.setReviews(reviewList);
         return this;
     }
 

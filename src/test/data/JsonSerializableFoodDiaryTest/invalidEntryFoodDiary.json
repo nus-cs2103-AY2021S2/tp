@@ -1,8 +1,9 @@
 {
   "entries": [ {
-    "name": "Hans Muster",
-    "review": " ",
+    "name": "Restaurant H",
+    "reviews": [" "],
     "rating": "4",
+    "price": "6",
     "address": "4th street"
   } ]
 }

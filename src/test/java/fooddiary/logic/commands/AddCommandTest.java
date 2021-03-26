@@ -52,26 +52,26 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Entry alice = new EntryBuilder().withName("Alice").build();
-        Entry bob = new EntryBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Entry entryA = new EntryBuilder().withName("Restaurant A").build();
+        Entry entryB = new EntryBuilder().withName("Restaurant B").build();
+        AddCommand addEntryACommand = new AddCommand(entryA);
+        AddCommand addEntryBCommand = new AddCommand(entryB);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addEntryACommand.equals(addEntryACommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddCommand addEntryACommandCopy = new AddCommand(entryA);
+        assertTrue(addEntryACommand.equals(addEntryACommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addEntryACommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addEntryACommand.equals(null));
 
         // different entry -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addEntryACommand.equals(addEntryBCommand));
     }
 
     /**

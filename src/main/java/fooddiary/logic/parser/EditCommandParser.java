@@ -3,6 +3,7 @@ package fooddiary.logic.parser;
 import static fooddiary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static fooddiary.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static fooddiary.logic.parser.CliSyntax.PREFIX_NAME;
+import static fooddiary.logic.parser.CliSyntax.PREFIX_PRICE;
 import static fooddiary.logic.parser.CliSyntax.PREFIX_RATING;
 import static fooddiary.logic.parser.CliSyntax.PREFIX_REVIEW;
 import static fooddiary.logic.parser.CliSyntax.PREFIX_TAG;
@@ -10,6 +11,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -17,6 +19,7 @@ import fooddiary.commons.core.index.Index;
 import fooddiary.logic.commands.EditCommand;
 import fooddiary.logic.commands.EditCommand.EditEntryDescriptor;
 import fooddiary.logic.parser.exceptions.ParseException;
+import fooddiary.model.entry.Review;
 import fooddiary.model.tag.Tag;
 
 
@@ -34,7 +37,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_RATING, PREFIX_REVIEW, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_RATING, PREFIX_PRICE,
+                PREFIX_REVIEW, PREFIX_ADDRESS, PREFIX_TAG);
 
         Index index;
 
@@ -51,9 +55,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_RATING).isPresent()) {
             editEntryDescriptor.setRating(ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).get()));
         }
-        if (argMultimap.getValue(PREFIX_REVIEW).isPresent()) {
-            editEntryDescriptor.setReview(ParserUtil.parseReview(argMultimap.getValue(PREFIX_REVIEW).get()));
+        if (argMultimap.getValue(PREFIX_PRICE).isPresent()) {
+            editEntryDescriptor.setPrice(ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get()));
         }
+        parseReviewsForEdit(argMultimap.getAllValues(PREFIX_REVIEW)).ifPresent(editEntryDescriptor::setReviews);
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editEntryDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
@@ -79,6 +84,21 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
+    }
+
+    /**
+     * Parses {@code Collection<String> reviews} into a {@code List<Review>} if {@code reviews} is non-empty.
+     * If {@code reviews} contain only one element which is an empty string, it will be parsed into a
+     * {@code List<Review>} containing zero reviews.
+     */
+    private Optional<List<Review>> parseReviewsForEdit(Collection<String> reviews) throws ParseException {
+        assert reviews != null;
+
+        if (reviews.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> reviewList = reviews;
+        return Optional.of(ParserUtil.parseReviews(reviewList));
     }
 
 }

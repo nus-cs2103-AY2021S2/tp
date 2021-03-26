@@ -17,7 +17,9 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all food places whose entries contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " kfc macdonalds";
+            + "Example 1: " + COMMAND_WORD + " kfc macdonalds\n"
+            + "Example 2: " + COMMAND_WORD + " western\n"
+            + "Example 3: " + COMMAND_WORD + " 5/5";
 
     private final NameContainsKeywordsPredicate predicate;
 

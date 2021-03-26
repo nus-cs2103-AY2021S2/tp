@@ -2,7 +2,7 @@ package fooddiary.logic.commands;
 
 import static fooddiary.commons.core.Messages.MESSAGE_ENTRIES_LISTED_OVERVIEW;
 import static fooddiary.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static fooddiary.testutil.TypicalEntries.CARL;
+import static fooddiary.testutil.TypicalEntries.ENTRY_C;
 import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiary;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -66,11 +66,11 @@ public class FindAllCommandTest {
     @Test
     public void execute_multipleKeywords_singleEntryFound() {
         String expectedMessage = String.format(MESSAGE_ENTRIES_LISTED_OVERVIEW, 1);
-        NameContainsAllKeywordsPredicate predicate = preparePredicate("Carl Kurz");
+        NameContainsAllKeywordsPredicate predicate = preparePredicate("Restaurant C");
         FindAllCommand command = new FindAllCommand(predicate);
         expectedModel.updateFilteredEntryList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL), model.getFilteredEntryList());
+        assertEquals(Arrays.asList(ENTRY_C), model.getFilteredEntryList());
     }
 
     /**

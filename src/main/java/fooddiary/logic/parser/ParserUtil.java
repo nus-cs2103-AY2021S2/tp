@@ -2,8 +2,10 @@ package fooddiary.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import fooddiary.commons.core.index.Index;
@@ -11,6 +13,7 @@ import fooddiary.commons.util.StringUtil;
 import fooddiary.logic.parser.exceptions.ParseException;
 import fooddiary.model.entry.Address;
 import fooddiary.model.entry.Name;
+import fooddiary.model.entry.Price;
 import fooddiary.model.entry.Rating;
 import fooddiary.model.entry.Review;
 import fooddiary.model.tag.Tag;
@@ -66,6 +69,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String price} into a {@code Price}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code price} is invalid.
+     */
+    public static Price parsePrice(String price) throws ParseException {
+        requireNonNull(price);
+        String trimmedPrice = price.trim();
+        if (!Price.isValidPrice(trimmedPrice)) {
+            throw new ParseException(Price.MESSAGE_CONSTRAINTS);
+        }
+        return new Price(trimmedPrice);
+    }
+
+    /**
      * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -93,6 +111,18 @@ public class ParserUtil {
             throw new ParseException(Review.MESSAGE_CONSTRAINTS);
         }
         return new Review(trimmedReview);
+    }
+
+    /**
+     * Parses {@code Collection<String> reviews} into a {@code List<Review>}.
+     */
+    public static List<Review> parseReviews(Collection<String> reviews) throws ParseException {
+        requireNonNull(reviews);
+        final List<Review> reviewList = new ArrayList<>();
+        for (String reviewValue : reviews) {
+            reviewList.add(parseReview(reviewValue));
+        }
+        return reviewList;
     }
 
     /**

@@ -15,7 +15,8 @@ import fooddiary.testutil.TypicalEntries;
 
 public class JsonSerializableFoodDiaryTest {
 
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableFoodDiaryTest");
+    private static final Path TEST_DATA_FOLDER =
+            Paths.get("src", "test", "data", "JsonSerializableFoodDiaryTest");
     private static final Path TYPICAL_ENTRIES_FILE = TEST_DATA_FOLDER.resolve("typicalEntriesFoodDiary.json");
     private static final Path INVALID_ENTRY_FILE = TEST_DATA_FOLDER.resolve("invalidEntryFoodDiary.json");
     private static final Path DUPLICATE_ENTRY_FILE = TEST_DATA_FOLDER.resolve("duplicateEntryFoodDiary.json");

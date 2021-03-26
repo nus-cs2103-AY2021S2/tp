@@ -47,12 +47,12 @@ public class EditCommandTest {
         Entry lastEntry = model.getFilteredEntryList().get(indexLastEntry.getZeroBased());
 
         EntryBuilder entryInList = new EntryBuilder(lastEntry);
-        Entry editedEntry = entryInList.withName(CommandTestUtil.VALID_NAME_BOB)
-                .withRating(CommandTestUtil.VALID_RATING_BOB)
+        Entry editedEntry = entryInList.withName(CommandTestUtil.VALID_NAME_B)
+                .withRating(CommandTestUtil.VALID_RATING_B)
                 .withTags(CommandTestUtil.VALID_TAG_WESTERN).build();
 
-        EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB)
-                .withRating(CommandTestUtil.VALID_RATING_BOB).withTags(CommandTestUtil.VALID_TAG_WESTERN).build();
+        EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_B)
+                .withRating(CommandTestUtil.VALID_RATING_B).withTags(CommandTestUtil.VALID_TAG_WESTERN).build();
 
         EditCommand editCommand = new EditCommand(indexLastEntry, descriptor);
 
@@ -81,9 +81,9 @@ public class EditCommandTest {
         CommandTestUtil.showEntryAtIndex(model, INDEX_FIRST_ENTRY);
 
         Entry entryInFilteredList = model.getFilteredEntryList().get(INDEX_FIRST_ENTRY.getZeroBased());
-        Entry editedEntry = new EntryBuilder(entryInFilteredList).withName(CommandTestUtil.VALID_NAME_BOB).build();
+        Entry editedEntry = new EntryBuilder(entryInFilteredList).withName(CommandTestUtil.VALID_NAME_B).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ENTRY,
-                new EditEntryDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build());
+                new EditEntryDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_B).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ENTRY_SUCCESS, editedEntry);
 
@@ -118,7 +118,7 @@ public class EditCommandTest {
     public void execute_invalidEntryIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEntryList().size() + 1);
         EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder()
-                .withName(CommandTestUtil.VALID_NAME_BOB).build();
+                .withName(CommandTestUtil.VALID_NAME_B).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
@@ -136,17 +136,17 @@ public class EditCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getFoodDiary().getEntryList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditEntryDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build());
+                new EditEntryDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_B).build());
 
         CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_ENTRY, CommandTestUtil.DESC_AMY);
+        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_ENTRY, CommandTestUtil.DESC_A);
 
         // same values -> returns true
-        EditEntryDescriptor copyDescriptor = new EditEntryDescriptor(CommandTestUtil.DESC_AMY);
+        EditEntryDescriptor copyDescriptor = new EditEntryDescriptor(CommandTestUtil.DESC_A);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_ENTRY, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -160,10 +160,10 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_ENTRY, CommandTestUtil.DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_ENTRY, CommandTestUtil.DESC_A)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_ENTRY, CommandTestUtil.DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_ENTRY, CommandTestUtil.DESC_B)));
     }
 
 }
