@@ -27,26 +27,26 @@ import seedu.taskify.testutil.EditTaskDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_AMY = "Amy Bee";
-    public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_DESCRIPTION_AMY = "11111111";
-    public static final String VALID_DESCRIPTION_BOB = "22222222";
+    public static final String VALID_NAME_CS2103T_IP = "Duke";
+    public static final String VALID_NAME_CS2103T_TP = "Bob Choo";
+    public static final String VALID_DESCRIPTION_CS2103T_IP = "crazy workload for 6 weeks";
+    public static final String VALID_DESCRIPTION_CS2103T_TP = "save me lord";
     public static final String VALID_STATUS_NOT_DONE = "not done";
     public static final String VALID_STATUS_IN_PROGRESS = "in progress";
     public static final String VALID_STATUS_COMPLETED = "completed";
-    public static final String VALID_DATE_AMY = "2020-12-25 22:30";
-    public static final String VALID_DATE_BOB = "2019-12-25 22:30";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_DATE_CS2103T_IP = "2020-12-25 22:30";
+    public static final String VALID_DATE_CS2103T_TP = "2019-12-25 22:30";
+    public static final String VALID_TAG_DEBUGGING = "debugging";
+    public static final String VALID_TAG_CS2103T_TP = "team";
 
-    public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
-    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
-    public static final String DESCRIPTION_DESC_AMY = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_AMY;
-    public static final String DESCRIPTION_DESC_BOB = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_BOB;
-    public static final String DATE_DESC_AMY = " " + PREFIX_DATE + VALID_DATE_AMY;
-    public static final String DATE_DESC_BOB = " " + PREFIX_DATE + VALID_DATE_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String NAME_DESC_CS2103T_IP = " " + PREFIX_NAME + VALID_NAME_CS2103T_IP;
+    public static final String NAME_DESC_CS2103T_TP = " " + PREFIX_NAME + VALID_NAME_CS2103T_TP;
+    public static final String DESCRIPTION_DESC_CS2103T_IP = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_CS2103T_IP;
+    public static final String DESCRIPTION_DESC_CS2103T_TP = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_CS2103T_TP;
+    public static final String DATE_DESC_CS2103T_IP = " " + PREFIX_DATE + VALID_DATE_CS2103T_IP;
+    public static final String DATE_DESC_CS2103T_TP = " " + PREFIX_DATE + VALID_DATE_CS2103T_TP;
+    public static final String TAG_DESC_CS2103T_TP = " " + PREFIX_TAG + VALID_TAG_CS2103T_TP;
+    public static final String TAG_DESC_DEBUGGING = " " + PREFIX_TAG + VALID_TAG_DEBUGGING;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION;
@@ -61,12 +61,12 @@ public class CommandTestUtil {
     public static final EditCommand.EditTaskDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditTaskDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withDescription(VALID_DESCRIPTION_AMY).withStatus(StatusType.NOT_DONE)
-                .withDate(VALID_DATE_AMY).withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditTaskDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withDescription(VALID_DESCRIPTION_BOB).withStatus(StatusType.NOT_DONE)
-                .withDate(VALID_DATE_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_AMY = new EditTaskDescriptorBuilder().withName(VALID_NAME_CS2103T_IP)
+                .withDescription(VALID_DESCRIPTION_CS2103T_IP).withStatus(StatusType.NOT_DONE)
+                .withDate(VALID_DATE_CS2103T_IP).withTags(VALID_TAG_CS2103T_TP).build();
+        DESC_BOB = new EditTaskDescriptorBuilder().withName(VALID_NAME_CS2103T_TP)
+                .withDescription(VALID_DESCRIPTION_CS2103T_TP).withStatus(StatusType.NOT_DONE)
+                .withDate(VALID_DATE_CS2103T_TP).withTags(VALID_TAG_DEBUGGING, VALID_TAG_CS2103T_TP).build();
     }
 
     /**
