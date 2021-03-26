@@ -66,7 +66,7 @@ public class ViewPatientBox extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        appointmentInfo.setText("Here are their upcoming appointments:");
+        appointmentInfo.setText(String.format("Appointments with %s:", person.getName().fullName));
         person.getAppointments().stream()
                 .sorted(Comparator.comparing(appt -> appt.getDate()))
                 .forEach(appt -> appointments.getChildren().add(new Label(appt.getDateDisplay())));
