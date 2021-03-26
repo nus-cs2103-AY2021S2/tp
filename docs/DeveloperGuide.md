@@ -162,7 +162,11 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Data consistency
 
-To ensure data consistency, some calls of the `delete` function have cascading effects. For example, when a `Person` is deleted from the model, all `Order`s related to that `Person` should also be deleted, since that `Person` no longer exists. This is illustrated in the following sequence diagram:
+To ensure data consistency, some calls of the `delete` function have cascading effects. 
+
+##### Deletion of Person objects
+
+When a `Person` is deleted from the model, all `Order`s related to that `Person` should also be deleted, since that `Person` no longer exists. This is illustrated in the following sequence diagram:
 
 ![Diagram showing example of cascading deletion](images/CascadingDeletionCustomers.png)
 
@@ -172,7 +176,19 @@ from `PersonBook`. Then, it retrieves the entire order list from `OrderBook` and
 check is done via `Order::isFromCustomer` which returns `true` if the `Order` is associated with the `Customer` and
 `false` otherwise.
 
-The `Person` and `Order` dependency is just one example of data consistency. Another key instance of data consistency occurs between the `Ingredient` and `Dish` classes; a deleted Ingredient also affects all the dishes that use that ingredient.
+##### Deletion of Ingredient objects
+
+Another key instance of data consistency occurs between the `Ingredient` and `Dish` classes. The deletion of an Ingredient also affects all the dishes that use that ingredient and hence, those `Dish`es will also be removed.
+
+When an `Ingredient` is being attempted to be deleted, a check is first done to see if any `Dish` uses that `Ingredient`. If no `Dish` uses the `Ingredient`, then it is deleted immediately.
+
+However, in the event that there are `Dish`es that use the `Ingredient` in question, then a warning will be displayed and users will be required to re-enter their command but with a `-f` flag to confirm that they want to also delete all `Dish`es associated with the `Ingredient`.
+
+##### Logging of Order object
+
+Data consistency extends beyond deletion. When `Order` objects are created, the `Ingredient`s and their quantities are tabulated from the `Dish`es and their respective quantities. 
+The quantity of each `Ingredient` is then decremented by the corresponding amount. 
+This automated data link ensures that the restaurant owner will be notified when they are attempting to place orders for dishes that have insufficient stock to produce.
 
 #### Concurrent list display
 
