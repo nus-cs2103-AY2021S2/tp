@@ -18,6 +18,8 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.grade.Grade;
+import seedu.address.model.grade.GradeEnum;
+import seedu.address.model.grade.GradedItem;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -117,7 +119,9 @@ public class ModelManagerTest {
 
         GradeBook gradeBook = new GradeBook();
         SubjectName subjectName = new SubjectName("Mathematics");
-        Grade diffGrade = new Grade(subjectName, "final exam", "A");
+        GradedItem gradedItem = new GradedItem("final exam");
+        GradeEnum grade = GradeEnum.valueOf("A");
+        Grade diffGrade = new Grade(subjectName, gradedItem, grade);
         GradeBook differentGradeBook = new GradeBook();
         differentGradeBook.addGrade(diffGrade);
 
