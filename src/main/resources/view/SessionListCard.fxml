@@ -30,13 +30,13 @@
                 <VBox>
                     <Label fx:id="id" styleClass="cell_big_label" alignment="TOP_RIGHT">
                         <padding>
-                            <Insets topRightBottomLeft="2" />
+                            <Insets topRightBottomLeft="5" />
                         </padding>
                     </Label>
                     <Region prefWidth="10" VBox.vgrow="ALWAYS" />
                     <Label fx:id="sessionType" styleClass="cell_big_label" alignment="BOTTOM_RIGHT" text="I">
                         <padding>
-                            <Insets topRightBottomLeft="2" />
+                            <Insets topRightBottomLeft="5" />
                         </padding>
                     </Label>
                 </VBox>
