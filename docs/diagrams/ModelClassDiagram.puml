@@ -8,6 +8,10 @@ Package Client {
 Class Client
 }
 
+Package Meeting {
+Class Meeting
+}
+
 Package Model <<Rectangle>>{
 Interface ReadOnlyClientBook <<Interface>>
 Interface ReadOnlyMeetingBook <<Interface>>
@@ -20,25 +24,20 @@ Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Package Tag {
-Class Tag
-}
-}
-
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
+HiddenOutside .down.> Model
 
-ClientBook .up.|> ReadOnlyClientBook
-MeetingBook .up|> ReadOnlyMeetingBook
+ClientBook .down.|> ReadOnlyClientBook
+MeetingBook .down.|> ReadOnlyMeetingBook
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" ClientBook
-ModelManager o--> "1" MeetingBook
+ModelManager o-down-> "1" ClientBook
+ModelManager o-down-> "1" MeetingBook
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-
-ModelManager ----->" ~* filtered list" Client
-ModelManager ----->" ~* filtered list" Meeting
+ModelManager -right->" ~* filtered list" Client
+ModelManager -->"* filtered sorted list" Meeting
+}
 @enduml
