@@ -198,7 +198,7 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredMeetings.setPredicate(predicate);
     }
-    
+
     /**
      * Set isClientMode to true.
      */
@@ -206,16 +206,15 @@ public class ModelManager implements Model {
     public void setClientMode() {
         isClientMode.set(true);
     }
-    
+
     /**
      * Set isClientMode to false.
      */
     @Override
-    public void setMeetingMode()
-    {
+    public void setMeetingMode() {
         isClientMode.set(false);
     }
-    
+
     /**
      * Set isClientMode to false.
      */
@@ -223,7 +222,7 @@ public class ModelManager implements Model {
     public ObservableValue<Boolean> getIsClientMode() {
         return isClientMode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object

@@ -2,7 +2,6 @@ package seedu.iscam.logic;
 
 import java.nio.file.Path;
 
-import javafx.beans.value.ObservableBooleanValue;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.iscam.commons.core.GuiSettings;
@@ -39,12 +38,12 @@ public interface Logic {
      * Returns an unmodifiable view of the filtered list of clients
      */
     ObservableList<Client> getFilteredClientList();
-    
+
     /**
      * Returns an unmodifiable view of the filtered list of meetings
      */
     ObservableList<Meeting> getFilteredMeetingList();
-    
+
     /**
      * Returns the mode of iScam.
      */

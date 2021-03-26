@@ -1,5 +1,7 @@
 package seedu.iscam.ui;
 
+import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -7,8 +9,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.iscam.commons.core.LogsCenter;
 import seedu.iscam.model.meeting.Meeting;
-
-import java.util.logging.Logger;
 
 /**
  * Panel containing the list of meetings.

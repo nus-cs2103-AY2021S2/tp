@@ -144,17 +144,17 @@ public interface Model {
      * Updates the detailed client to match the supplied client.
      */
     void setDetailedClient(Client client);
-    
+
     /**
      * Set iScam to Client mode.
      */
     void setClientMode();
-    
+
     /**
      * Set iScam to Meeting mode.
      */
     void setMeetingMode();
-    
+
     /**
      * Return iScam's current mode.
      */

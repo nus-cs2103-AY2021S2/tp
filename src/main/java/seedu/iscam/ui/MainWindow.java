@@ -31,7 +31,6 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Stage primaryStage;
     private final Logic logic;
-    
 
     // Independent Ui parts residing in this Ui container
     private ClientListPanel clientListPanel;
@@ -57,7 +56,7 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane clientDetailFragmentPlaceholder;
-    
+
     @FXML
     private StackPane meetingListPanelPlaceholder;
 
@@ -208,7 +207,7 @@ public class MainWindow extends UiPart<Stage> {
             throw e;
         }
     }
-    
+
     class BooleanListener implements ChangeListener<Boolean> {
         @Override
         public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {

@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ObservableBooleanValue;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.iscam.commons.core.GuiSettings;
@@ -68,12 +66,12 @@ public class LogicManager implements Logic {
     public ObservableList<Client> getFilteredClientList() {
         return model.getFilteredClientList();
     }
-    
+
     @Override
     public ObservableList<Meeting> getFilteredMeetingList() {
         return model.getFilteredMeetingList();
     }
-    
+
     @Override
     public ObservableValue<Boolean> getIsClientMode() {
         return model.getIsClientMode();
