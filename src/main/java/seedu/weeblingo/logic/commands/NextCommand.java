@@ -1,7 +1,6 @@
 package seedu.weeblingo.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.weeblingo.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 
 import seedu.weeblingo.commons.core.Messages;
 import seedu.weeblingo.logic.commands.exceptions.CommandException;
@@ -21,12 +20,16 @@ public class NextCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        try {
-            requireNonNull(model.getCurrentFlashcard());
-        } catch (NullPointerException e) {
+        if (model.getQuizInstance() == null) {
             throw new CommandException(Messages.NO_QUIZ_ERROR_MESSAGE);
         }
-        model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
-        return new CommandResult(MESSAGE_SUCCESS, false, false, true);
+
+        if (model.getNextFlashcard() == null) {
+            String quizSessionTime = model.getQuizInstance().getQuizSessionDuration();
+            String endOfQuizSessionMessage = "Your quiz session duration is " + quizSessionTime;
+            return new CommandResult(Messages.QUIZ_END_MESSAGE + endOfQuizSessionMessage);
+        }
+
+        return new CommandResult(MESSAGE_SUCCESS, false, false, true, false);
     }
 }

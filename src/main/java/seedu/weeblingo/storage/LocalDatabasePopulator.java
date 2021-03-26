@@ -41,6 +41,17 @@ public class LocalDatabasePopulator {
         return flashcards;
     }
 
+    /**
+     * Gets the specified number of flashcards, as an array of flashcards.
+     *
+     * @return An array of flashcards of specified size extracted from database.
+     */
+    public static Flashcard[] getSubsetOfFlashcards(int numberOfQuestions) {
+        return Arrays
+                .copyOfRange(getDatabaseOfFlashcards(JsonDatabaseReader
+                        .readDatabaseAsJsonArray()), 0, numberOfQuestions);
+    }
+
     public static ReadOnlyFlashcardBook getDatabaseOfWeeblingo() {
         FlashcardBook sampleFb = new FlashcardBook();
         for (Flashcard sampleFlashcard : getDatabaseOfFlashcards(JsonDatabaseReader.readDatabaseAsJsonArray())) {

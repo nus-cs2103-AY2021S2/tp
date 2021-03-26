@@ -26,6 +26,7 @@ public class ModelManager implements Model {
     private final FilteredList<Score> filteredHistoryScores;
     private final Mode mode;
     private Quiz quizInstance;
+    private int numOfQnsForQuizSession;
 
 
     /**
@@ -123,7 +124,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Flashcard} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedFlashcardBook}
      */
     @Override
     public ObservableList<Flashcard> getFilteredFlashcardList() {
@@ -170,20 +171,32 @@ public class ModelManager implements Model {
     //=========== Quiz Related =============================================================
 
     @Override
-    public ObservableList<Flashcard> startQuiz() {
-        this.quizInstance = new Quiz();
-        return quizInstance.getNextFlashcard();
+    public void startQuiz() {
+        if (numOfQnsForQuizSession == 0) {
+            this.quizInstance = new Quiz();
+            Flashcard next = quizInstance.getNextQuestion();
+            updateFilteredFlashcardList(curr -> curr.equals(next));
+        } else {
+            this.quizInstance = new Quiz(numOfQnsForQuizSession);
+            Flashcard next = quizInstance.getNextQuestion();
+            updateFilteredFlashcardList(curr -> curr.equals(next));
+        }
+
     }
 
     @Override
-    public ObservableList<Flashcard> getNextFlashcard() {
-        return quizInstance.getNextFlashcard();
-    }
-
-    @Override
-    public ObservableList<Flashcard> getCurrentFlashcard() {
+    public Flashcard getNextFlashcard() {
         requireNonNull(quizInstance);
-        return quizInstance.getCurrentFlashcard();
+        Flashcard next = quizInstance.getNextQuestion();
+        updateFilteredFlashcardList(curr -> curr.equals(next));
+        return next;
+    }
+
+    @Override
+    public void getCurrentFlashcard() {
+        requireNonNull(quizInstance);
+        Flashcard current = quizInstance.getCurrentQuestion();
+        updateFilteredFlashcardList(curr -> curr.equals(current));
     }
 
     @Override
@@ -194,5 +207,23 @@ public class ModelManager implements Model {
 
     public void clearQuizInstance() {
         quizInstance = null;
+    }
+
+    public void setNumOfQnsForQuizSession(int n) {
+        numOfQnsForQuizSession = n;
+    }
+
+    public Quiz getQuizInstance() {
+        return quizInstance;
+    }
+
+    //=========== Mode Related =============================================================
+
+    public Mode getMode() {
+        return this.mode;
+    }
+
+    public int getCurrentMode() {
+        return this.mode.getCurrentMode();
     }
 }

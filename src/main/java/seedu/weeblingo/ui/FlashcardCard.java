@@ -26,6 +26,8 @@ public class FlashcardCard extends UiPart<Region> {
 
     public final Flashcard flashcard;
 
+    private final String image = this.getClass().getResource("/images/cat_mascot.png").toExternalForm();
+
     @FXML
     private HBox cardPane;
     @FXML
@@ -40,31 +42,13 @@ public class FlashcardCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Flashcard} and index to display.
      */
-    public FlashcardCard(Flashcard flashcard, int displayedIndex) {
+    public FlashcardCard(Flashcard flashcard, int displayedIndex, boolean showAnswer) {
         super(FXML);
         this.flashcard = flashcard;
         id.setText("Question: " + displayedIndex + ". ");
-        question.setText(flashcard.getQuestion().value);
-        answer.setText("Answer: " + flashcard.getAnswer().value);
-        flashcard.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-    }
-
-    // experiments
-    /**
-     * Creates a {@code PersonCode} with the given {@code Flashcard} and index to display in quiz mode.
-     */
-    public FlashcardCard(Flashcard flashcard, int displayedIndex, boolean isQuiz) {
-        super(FXML);
-        this.flashcard = flashcard;
-        id.setText("Quiz " + displayedIndex + ": ");
-        question.setText(flashcard.getQuestion().value);
-        if (isQuiz) {
-            answer.setText("Answer: ");
-        } else {
-            answer.setText("Answer: " + flashcard.getAnswer().value);
-        }
+        setQuestion(flashcard.getQuestion().value);
+        showImage();
+        setAnswer(showAnswer ? "Answer: " + flashcard.getAnswer().value : "Answer: ");
         flashcard.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
@@ -87,4 +71,19 @@ public class FlashcardCard extends UiPart<Region> {
         return id.getText().equals(card.id.getText())
                 && flashcard.equals(card.flashcard);
     }
+
+    private void setQuestion(String toSet) {
+        question.setText(toSet);
+    }
+
+    private void setAnswer(String toSet) {
+        answer.setText(toSet);
+    }
+
+    private void showImage() {
+        cardPane.setStyle("-fx-background-image: url('" + image + "'); "
+                + "-fx-background-position: center center; "
+                + "-fx-background-repeat: stretch;");
+    }
+
 }

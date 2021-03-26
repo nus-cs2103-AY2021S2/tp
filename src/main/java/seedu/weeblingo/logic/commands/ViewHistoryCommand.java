@@ -1,12 +1,9 @@
 package seedu.weeblingo.logic.commands;
 
-import seedu.weeblingo.model.Model;
-import seedu.weeblingo.model.score.Score;
-
-import java.util.function.Predicate;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.weeblingo.model.Model.PREDICATE_SHOW_ALL_SCORES;
+
+import seedu.weeblingo.model.Model;
 
 /**
  * Lists all scoring history in the Flashcard-book to the user.
@@ -23,6 +20,6 @@ public class ViewHistoryCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredScoreHistory(PREDICATE_SHOW_ALL_SCORES);
-        return new CommandResult(MESSAGE_SUCCESS, false, false, true);
+        return new CommandResult(MESSAGE_SUCCESS, false, false, true, false);
     }
 }

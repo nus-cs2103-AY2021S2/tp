@@ -1,16 +1,17 @@
 package seedu.weeblingo.model;
 
 import static seedu.weeblingo.storage.LocalDatabasePopulator.getDatabaseOfFlashcards;
+import static seedu.weeblingo.storage.LocalDatabasePopulator.getSubsetOfFlashcards;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import javafx.collections.ObservableList;
 import seedu.weeblingo.model.flashcard.Flashcard;
-import seedu.weeblingo.model.flashcard.UniqueFlashcardList;
 import seedu.weeblingo.storage.JsonDatabaseReader;
 
 /**
@@ -19,12 +20,13 @@ import seedu.weeblingo.storage.JsonDatabaseReader;
 public class Quiz {
 
     public static final String QUIZ_END_MESSAGE = "The Quiz is over! \n"
-            + "Enter \"end\" to end the quiz.";
+            + "Enter \"end\" to end the quiz. \n";
 
     private static Queue<Flashcard> quizSessionQueue;
 
     private Flashcard currentQuiz;
     private int currentQuizIndex = 0;
+    private Instant startTime;
 
     /**
      * Initializes the quiz session with a queue of all flashcards with randomized order.
@@ -32,6 +34,17 @@ public class Quiz {
     public Quiz() {
         Flashcard[] flashcardsReadFromDB = getDatabaseOfFlashcards(JsonDatabaseReader.readDatabaseAsJsonArray());
         quizSessionQueue = getRandomizedQueue(flashcardsReadFromDB);
+        startTime = Instant.now();
+    }
+
+    /**
+     * Initializes the quiz session with a queue of all flashcards with
+     * randomized order and the specified number of questions.
+     */
+    public Quiz(int numberOfQuestions) {
+        Flashcard[] flashcardsReadFromDB = getSubsetOfFlashcards(numberOfQuestions);
+        quizSessionQueue = getRandomizedQueue(flashcardsReadFromDB);
+        startTime = Instant.now();
     }
 
     /**
@@ -42,6 +55,13 @@ public class Quiz {
      */
     public static boolean hasSessionEnded() {
         return quizSessionQueue.isEmpty();
+    }
+
+    /**
+     * Gets the question number of the current question in the quiz.
+     */
+    public int getCurrentQuizIndex() {
+        return currentQuizIndex;
     }
 
     /**
@@ -61,13 +81,6 @@ public class Quiz {
     }
 
     /**
-     * Gets the question number of the current question in the quiz.
-     */
-    public int getCurrentQuizIndex() {
-        return currentQuizIndex;
-    }
-
-    /**
      * Gets the current flashcard question shown to the user.
      *
      * @return The current flashcard shown.
@@ -76,26 +89,8 @@ public class Quiz {
         return currentQuiz;
     }
 
-    /**
-     * Gets the next flashcard question to show to the user in the type accepted by MainWindow.
-     *
-     * @return The next flashcard in the queue as an UnmodifiableObservableList, if the queue is not empty.
-     */
-    public ObservableList<Flashcard> getNextFlashcard() {
-        UniqueFlashcardList temp = new UniqueFlashcardList();
-        temp.setFlashcards(List.of(this.getNextQuestion()));
-        return temp.asUnmodifiableObservableList();
-    }
-
-    /**
-     * Gets the current flashcard question to show to the user in the type accepted by MainWindow.
-     *
-     * @return The current flashcard in the queue as an UnmodifiableObservableList.
-     */
-    public ObservableList<Flashcard> getCurrentFlashcard() {
-        UniqueFlashcardList temp = new UniqueFlashcardList();
-        temp.setFlashcards(List.of(this.getCurrentQuestion()));
-        return temp.asUnmodifiableObservableList();
+    public Queue<Flashcard> getQuizSessionQueue() {
+        return quizSessionQueue;
     }
 
     /**
@@ -112,5 +107,14 @@ public class Quiz {
             randomizedQueue.offer(f);
         }
         return randomizedQueue;
+    }
+
+    public String getQuizSessionDuration() {
+        Instant endTime = Instant.now();
+        Duration duration = Duration.between(startTime, endTime);
+        return String.format("%d:%02d:%02d",
+                duration.toHours(),
+                duration.toMinutesPart(),
+                duration.toSecondsPart());
     }
 }

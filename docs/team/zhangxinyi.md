@@ -11,7 +11,7 @@ users can learn Japanese at a comfortable pace with this application.
 
 Given below are my contributions to the project.`to be updated`
 
-* **New Feature**: 
+* **New Feature**:
 
 * **New Feature**:
 
@@ -22,7 +22,7 @@ Given below are my contributions to the project.`to be updated`
 * **Enhancements to existing features**:
 
 * **Documentation**:
- 
+
 
 * **Community**:
 

@@ -1,21 +1,22 @@
 package seedu.weeblingo.logic.commands;
 
 import static seedu.weeblingo.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.weeblingo.logic.commands.ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT;
+import static seedu.weeblingo.logic.commands.StartCommand.MESSAGE_SUCCESS;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import seedu.weeblingo.model.Model;
 import seedu.weeblingo.model.ModelManager;
 
-public class ExitCommandTest {
+public class StartCommandTest {
     private Model model = new ModelManager();
     private Model expectedModel = new ModelManager();
 
     @Test
-    public void execute_exit_success() {
+    public void execute_start_success() {
+        model.getMode().switchModeQuiz();
         CommandResult expectedCommandResult = new CommandResult(
-                MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true, false, false);
-        assertCommandSuccess(new ExitCommand(), model, expectedCommandResult, expectedModel);
+                MESSAGE_SUCCESS, false, false, true, false);
+        assertCommandSuccess(new StartCommand(), model, expectedCommandResult, expectedModel);
     }
 }
