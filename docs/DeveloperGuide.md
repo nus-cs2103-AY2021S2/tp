@@ -99,7 +99,9 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
+
 * stores the Weeblingo data.
+
 * exposes an unmodifiable `ObservableList<Flashcard>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
@@ -279,8 +281,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 8.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) and
     beginner typing speed for simple Japanese text (i.e. simple words and sentences) should be able to accomplish most
     of the learning faster using commands than using the mouse.
-9. A user should find interacting with the user interface easy, even if he/she is relatively new to the application.
-10. More to be added.
+10. A user should find interacting with the user interface easy, even if he/she is relatively new to the application.
+11. Each command should be processed within 3 seconds.
+12. More to be added.
 
 ### Glossary
 

@@ -1,7 +1,10 @@
 package seedu.weeblingo.model;
 
 import static seedu.weeblingo.storage.LocalDatabasePopulator.getDatabaseOfFlashcards;
+import static seedu.weeblingo.storage.LocalDatabasePopulator.getSubsetOfFlashcards;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -15,10 +18,14 @@ import seedu.weeblingo.model.flashcard.Flashcard;
  */
 public class Quiz {
 
+    public static final String QUIZ_END_MESSAGE = "The Quiz is over! \n"
+            + "Enter \"end\" to end the quiz. \n";
+
     private static Queue<Flashcard> quizSessionQueue;
 
     private Flashcard currentQuiz;
     private int currentQuizIndex = 0;
+    private Instant startTime;
 
     /**
      * Initializes the quiz session with a queue of all flashcards with randomized order.
@@ -26,6 +33,17 @@ public class Quiz {
     public Quiz() {
         Flashcard[] flashcardsReadFromDB = getDatabaseOfFlashcards();
         quizSessionQueue = getRandomizedQueue(flashcardsReadFromDB);
+        startTime = Instant.now();
+    }
+
+    /**
+     * Initializes the quiz session with a queue of all flashcards with
+     * randomized order and the specified number of questions.
+     */
+    public Quiz(int numberOfQuestions) {
+        Flashcard[] flashcardsReadFromDB = getSubsetOfFlashcards(numberOfQuestions);
+        quizSessionQueue = getRandomizedQueue(flashcardsReadFromDB);
+        startTime = Instant.now();
     }
 
     /**
@@ -90,4 +108,12 @@ public class Quiz {
         return randomizedQueue;
     }
 
+    public String getQuizSessionDuration() {
+        Instant endTime = Instant.now();
+        Duration duration = Duration.between(startTime, endTime);
+        return String.format("%d:%02d:%02d",
+                duration.toHours(),
+                duration.toMinutesPart(),
+                duration.toSecondsPart());
+    }
 }

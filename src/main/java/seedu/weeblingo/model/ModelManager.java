@@ -22,7 +22,9 @@ public class ModelManager implements Model {
     private final FlashcardBook flashcardBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Flashcard> filteredFlashcards;
+    private final Mode mode;
     private Quiz quizInstance;
+    private int numOfQnsForQuizSession;
 
     /**
      * Initializes a ModelManager with the given flashcardBook and userPrefs.
@@ -36,6 +38,7 @@ public class ModelManager implements Model {
         this.flashcardBook = new FlashcardBook(flashcardBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredFlashcards = new FilteredList<>(this.flashcardBook.getFlashcardList());
+        this.mode = new Mode();
     }
 
     public ModelManager() {
@@ -153,9 +156,16 @@ public class ModelManager implements Model {
 
     @Override
     public void startQuiz() {
-        this.quizInstance = new Quiz();
-        Flashcard next = quizInstance.getNextQuestion();
-        updateFilteredFlashcardList(curr -> curr.equals(next));
+        if (numOfQnsForQuizSession == 0) {
+            this.quizInstance = new Quiz();
+            Flashcard next = quizInstance.getNextQuestion();
+            updateFilteredFlashcardList(curr -> curr.equals(next));
+        } else {
+            this.quizInstance = new Quiz(numOfQnsForQuizSession);
+            Flashcard next = quizInstance.getNextQuestion();
+            updateFilteredFlashcardList(curr -> curr.equals(next));
+        }
+
     }
 
     @Override
@@ -179,12 +189,25 @@ public class ModelManager implements Model {
         return quizInstance.getCurrentQuizIndex();
     }
 
-    @Override
+    public void clearQuizInstance() {
+        quizInstance = null;
+    }
+
+    public void setNumOfQnsForQuizSession(int n) {
+        numOfQnsForQuizSession = n;
+    }
+
     public Quiz getQuizInstance() {
         return quizInstance;
     }
 
-    public void clearQuizInstance() {
-        quizInstance = null;
+    //=========== Mode Related =============================================================
+
+    public Mode getMode() {
+        return this.mode;
+    }
+
+    public int getCurrentMode() {
+        return this.mode.getCurrentMode();
     }
 }

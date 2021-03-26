@@ -7,6 +7,7 @@ import seedu.weeblingo.commons.core.GuiSettings;
 import seedu.weeblingo.logic.commands.CommandResult;
 import seedu.weeblingo.logic.commands.exceptions.CommandException;
 import seedu.weeblingo.logic.parser.exceptions.ParseException;
+import seedu.weeblingo.model.Model;
 import seedu.weeblingo.model.ReadOnlyFlashcardBook;
 import seedu.weeblingo.model.flashcard.Flashcard;
 
@@ -46,4 +47,8 @@ public interface Logic {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
+    /**
+     *
+     */
+    Model getModel();
 }

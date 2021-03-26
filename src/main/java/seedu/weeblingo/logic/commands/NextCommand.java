@@ -25,7 +25,9 @@ public class NextCommand extends Command {
         }
 
         if (model.getNextFlashcard() == null) {
-            throw new CommandException(Messages.QUIZ_END_MESSAGE);
+            String quizSessionTime = model.getQuizInstance().getQuizSessionDuration();
+            String endOfQuizSessionMessage = "Your quiz session duration is " + quizSessionTime;
+            return new CommandResult(Messages.QUIZ_END_MESSAGE + endOfQuizSessionMessage);
         }
 
         return new CommandResult(MESSAGE_SUCCESS, false, false, true, false);
