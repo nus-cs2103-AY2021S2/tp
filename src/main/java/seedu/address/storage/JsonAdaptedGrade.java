@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.grade.Grade;
+import seedu.address.model.grade.GradeEnum;
+import seedu.address.model.grade.GradedItem;
 import seedu.address.model.subject.SubjectName;
 import seedu.address.model.tag.Tag;
 
@@ -34,8 +36,8 @@ public class JsonAdaptedGrade {
      */
     public JsonAdaptedGrade(Grade grade) {
         this.subject = grade.getSubject().name;
-        this.gradedItem = grade.getGradedItem();
-        this.grade = grade.getGrade();
+        this.gradedItem = grade.getGradedItem().gradedItem;
+        this.grade = grade.getGrade().gradeLetter;
     }
 
 
@@ -55,8 +57,6 @@ public class JsonAdaptedGrade {
             throw new IllegalValueException(SubjectName.MESSAGE_CONSTRAINTS);
         }
 
-        final SubjectName modelSubjectName = new SubjectName(subject);
-
         if (!Grade.isValidGradedItem(gradedItem)) {
             throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
         }
@@ -65,7 +65,11 @@ public class JsonAdaptedGrade {
             throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
         }
 
-        return new Grade(modelSubjectName, gradedItem, grade);
+        final SubjectName modelSubjectName = new SubjectName(subject);
+        final GradedItem modelGradedItem = new GradedItem(gradedItem);
+        final GradeEnum modelGrade = GradeEnum.valueOf(grade);
+
+        return new Grade(modelSubjectName, modelGradedItem, modelGrade);
 
     }
 }
