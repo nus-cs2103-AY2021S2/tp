@@ -142,6 +142,45 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Property component
+
+![Structure of the Property Component](images/PropertyClassDiagram.png)
+
+#### Implementation
+
+A `Property` is stored in a `UniquePropertyList`, which ensures that there are no duplicate properties in the `PropertyBook`. Each `Property` is uniquely identified by its `Address` and `PostalCode`.
+
+A `Property consists of the following mandatory attributes,
+  * a `Name`: the name of the property
+  * a `Type`: the housing type of the property (Hdb, Condo, Landed)
+  * an `Address`: the address of the property
+  * a `PostalCode`: the postal code of the property
+  * a `Deadline`: the property's deadline for selling
+  * a `Tag` set: a set of zero or more `Tag` objects
+
+and the following optional attributes,
+  * a `Remark`: a note about the property 
+  * a `Status`: represents the current stage of the selling (Option, Sales Agreement, Completion)
+  * a `Client`: represents the seller of the property 
+
+A `Client` consists of at least one of the following attributes,
+  * a `Name`: the name of the client
+  * a `Contact`: the contact number of the client
+  * an `Email`: the email of the client
+  * an `AskingPrice`: the asking price of the client
+
+#### Design Consideration
+
+##### Aspect: How each attribute of `Property` is stored
+
+* **Current implementation:** Each attribute of `Property` is immutable. When a property is to be edited, a new `Property` containing the updated fields will be created to replace the original `Property` object.
+    * Pros: Prevent accidental modification of a `Property` object (less prone to bugs)
+    * Cons: More code to be written as a separate `Property` object has to be created for each edit operation
+
+* **Alternative:** Allow mutable `Property` objects (provide setter methods to update the attributes of a `Property`)
+    * Pros: Easy to implement
+    * Cons: More prone to bugs
+
 ### \[Proposed\] Undo feature
 
 #### Proposed Implementation
