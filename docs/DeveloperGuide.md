@@ -2,8 +2,31 @@
 layout: page
 title: Developer Guide
 ---
+
 * Table of Contents
-  {:toc}
+{:toc}  
+  
+--------------------------------------------------------------------------------------------------------------------
+
+## **Introduction**
+### Purpose
+
+The purpose of this document is to cover the multi-level design architecture of Dictionote, so that the 
+intended audience of this document can understand the relationship between components that make up Dictionote.
+
+### Audience
+
+This developer guide is for anyone who wants to understand the internal software architecture of Dictionote.
+The following groups of people are the intended audience:
+* Dictionote developers: anyone who wish to upgrade Dictionote to support more functions.
+* CS2103/T students: students of CS2103/T who want to improve their efficiency and productivity in learning.
+
+### Dictionote Overview
+
+Dictionote is a desktop app for CS2103/T Students, optimized for use via a Command Line Interface (CLI)
+while still having the benefits of a Graphical User Interface (GUI). Dictionote in general helps to organise content and
+definitions from the CS2103/T textbook, provide Note-keeping functions to facilitate learning, and enhance the ability
+for students to connect and learn together with their cohort mates.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -133,6 +156,46 @@ Classes used by multiple components are in the `seedu.dictionote.commons` packag
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Contact features
+
+#### Sending an email to a contact
+
+##### Implementation
+
+This feature is implemented as a command, `EmailCommand`, that extends `Command`. It is an index-dependent command, meaning that the user must provide an index number when typing the command as a reference to a specific contact on the contacts list.
+
+The index number was selected to refer to a particular contact. This is due to its character length being shorter in most cases than any other field of information in `Contact` objects, making it both simple and sufficient.
+
+The `execute()` method attempts to open a new window of the user's operating system (OS) default mail client. This is done by navigating to a `mailto` link with the contact's email address added to the end.
+
+As an example, consider running Dictionote on a Windows 10 machine with Microsoft Outlook as the OS default mail client:
+
+* Assume that the current state of the application is as follows (note the exisiting contacts on the left-side of the application's window):
+
+![ContactEmailFeatureInitState]<!---(images/ContactEmailFeatureInitState.png)-->
+
+* After typing in `emailcontact 2` and executing it, the result would be:
+
+![ContactEmailFeatureExecute]<!---(images/ContactEmailFeatureExecute.png)-->
+
+* A new window, belonging to Microsoft Outlook's `New Message` function, will pop up:
+
+![ContactEmailFeatureOSClient]<!---(images/ContactEmailFeatureOSClient.png)-->
+
+* Note that the email of the selected contact, Bob (referred to in the command by his index number), is automatically written in the `To...` field of the email's header information.
+
+Note that if the user does not have a mail client software set as default in their OS, then Dictionote will try to navigate to the `mailto` link through the user's default browser (i.e., the `mailto` link will be treated as an ordinary URL link).
+
+##### Design Considerations
+
+* **Alternative 1 (current choice):** make use of the OS mail client to facilitate email features.
+	* Pros: Easy to implement; utilizes a pre-existing and standardized system for invoking mail xyz.
+	* Cons: Requires the user to have a mail client installed on their OS, which is then set to be the default mail client of the system.
+	
+* **Alternative 2:** implement basic email features directly into Dictionote.
+	* Pros: Does not depened on the existence of external software in the OS.
+	* Cons: Much harder to implement, as it requires the implementation of network-related functions to handle the connections to email servers.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -257,50 +320,53 @@ _{Explain here how the data archiving feature will be implemented}_
 ### User stories
 
 #### User Stories : Main/UI
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                     | Category       |
-| -------- | ------------------------------- | ----------------------------------------- | -------------------------------------------------------------- | -------------------- |
-| `* *`    | CS2103 Student                  | View note and dictionary side-by-side     | Easily copy a note from dictionary      | Main/UI/UX         |
-| `* *`    | CS2103 Student                  | Open and close Contact panel              | Have more space for other content       | Main/Non-essential |
-| `* *`    | CS2103 Student                  | Open and close Dictionary panel           | Have more space for other content       | Main/Non-essential |
-| `* *`    | CS2103 Student                  | Open and close Dictionary manager panel   | Have more space for other content       | Main/Non-essential |
-| `* *`    | CS2103 Student                  | Open and close Note panel                 | Have more space for other content       | Main/Non-essential |
-| `* *`    | CS2103 Student                  | Open and close Note Manager panel         | Have more space for other content       | Main/Non-essential |
-| `* *`    | CS2103 Student                  | Save my UI configuration                  | Save my time on re-adjust the Ui        | Main/Non-essential |
-| `* *`    | CS2103 Student                  | Change my UI configuration                | do no need to adjust the UI using mouse | Main/Non-essential |
-| `* *`    | CS2103 Student                  | Change my UI orientation                  | use the space available more efficiently| Main/Non-essential |
-| | | | | |
-| `* * *`  | Template for must have user stories        | Template                       | Template                                                | Dictionary/<insert>  |
-| `* *`    | Template for nice to have                  | Template                       | Template                                                | Dictionary/<insert>  |
-| `*`      | Template for unlikely to have              | Template                       | Template                                                | Dictionary/<insert>  |
-| | | | | |
-| `* * *`  | CS2103T student                | Take a new note                       | Have easy access to my materials whenever I need them                                                | Note/Essential  |
-| `* * * ` | CS2103T student               | Delete an existing note            | Remove out-of-date notes.                                                | Note/Essential  |
-| `* * * ` | CS2103T student               | Edit a note                       | Revise a small typo in the note.                                                | Note/Essential  |
-| `* * * ` | CS2103T student               | Look at all notes                 | Remember what is the content of the note                                                | Note/Essential  |
-| `* * * ` | CS2103T student               | Show a specific note              | To read the content of a specific note in detail                                                | Note/Essential  |
-| `* * `   | CS2103T student               | Tag a note                       | I can access notes easily.                                                | Note/Non-Essential  |
-| `* * `   | CS2103T student               | Track the date and time the note is created                       | Find the note according to the time created                                                | Note/Non-Essential  |
-| `* `     | CS2103T student               | Track the date and time the note is last modified                       | Find the note according to the time last modify.                                                | Note/Non-Essential  |
-| `* `     | CS2103T student               | Mark a content of a note as done| Remember which part of the notes I have done.                                                | Note/Non-Essential  |
-| `* * * ` | CS2103T student               | Edit a note in edit mode        | Modify the content of the note easily.                                               | Note/Essential  |
-| | | | | |
-| `* * *`  | CS2103T Student                                              | Add my contacts                           | Easily manage the contacts list                            | Contact/Essential     |
-| `* * *`  | CS2103T Student                                              | Edit my contacts                          | Easily manage the contacts list                            | Contact/Essential     |
-| `* * *`  | CS2103T Student                                              | Delete my contacts                        | Easily manage the contacts list                            | Contact/Essential     |
-| `* * *`  | CS2103T Student                                              | Look at all contacts                      | Easily manage the contacts list                            | Contact/Essential     |
-| `* *`    | CS2103T Student                                              | Tag a contact with a word                 | Find contacts based on their tags                          | Contact/Non-essential |
-| `* *`    | CS2103T Student                                              | Search for contacts using tags            | Contact anyone from a particular tag                       | Contact/Non-essential |
-| `* *`    | CS2103T Student who wants to connect with others that I know | Email anyone from my contacts list        | Ask questions, discuss topics, or exchange notes with them | Contact/Non-essential |
-| | | | | |
-| `* * *`  | CS2103T student who is bad at remembering commands    | Access the list of commands with brief explanation       | Save time having to search through user guide for details     | Guide/Essential  |
-| `* * *`  | CS2103T student who uses commands often               | Scan through the list of commands for a quick refresher  | Save time having to search through user guide for all command | Guide/Essential  |
-| `* *`    | Template for nice to have                  | Template                       | Template                                                | Guide/<insert>  |
-| `*`      | Template for unlikely to have              | Template                       | Template                                                | Guide/<insert>  |
 
+| Priority | As a …​                                                   | I want to …​                                          | So that I can…​                                            | Category               |
+| -------- | -------------------------------------------------------------| -------------------------------------------------------- | ------------------------------------------------------------- | ---------------------- |
+|***Main***| | | |
+| `* *`    | CS2103 Student                                               | View note and dictionary side-by-side                    | Easily copy a note from dictionary                            | Main/UI/UX         |
+| `* *`    | CS2103 Student                                               | Open and close Contact panel                             | Have more space for other content                             | Main/Non-essential |
+| `* *`    | CS2103 Student                                               | Open and close Dictionary panel                          | Have more space for other content                             | Main/Non-essential |
+| `* *`    | CS2103 Student                                               | Open and close Dictionary manager panel                  | Have more space for other content                             | Main/Non-essential |
+| `* *`    | CS2103 Student                                               | Open and close Note panel                                | Have more space for other content                             | Main/Non-essential |
+| `* *`    | CS2103 Student                                               | Open and close Note Manager panel                        | Have more space for other content                             | Main/Non-essential |
+| `* *`    | CS2103 Student                                               | Save my UI configuration                                 | Save my time on re-adjust the Ui                              | Main/Non-essential |
+| `* *`    | CS2103 Student                                               | Change my UI configuration                               | do no need to adjust the UI using mouse                       | Main/Non-essential |
+| `* *`    | CS2103 Student                                               | Change my UI orientation                                 | use the space available more efficiently                      | Main/Non-essential |
+|***Dictionary*** | -- | -- | --  | -- |
+| `* * *`  | CS2103T student who find it troublesome to use the website   | Search for a definition of an SE term                    | Understand what it means                                      | Dictionary/Essential|
+| `* * *`  | CS2103T student                                              | Find content I need                                      | Save time having to dig through the textbook                  | Dictionary/Essential|
+| `* * *`  | CS2103T student                                              | List all the contents in the dictionary                  | View the extensive list of contents                           | Dictionary/Essential|
+| `* * *`  | CS2103T student                                              | List all the definitions in the dictionary               | View the extensive list of contents                           | Dictionary/Essential|
+| `*`      | CS2103T student                                              | Track my progress when reading through a summary         | Continue my preparation from where I left off                 | Dictionary/Non-essential|
+| `* *`    | CS2103T student                                              | Copy specific contents in the dictionary to the notes    | Keep track of the important content on my personal note list  | Dictionary/Non-essential|
+|***Note*** |  |  |  | |
+| `* * *`  | CS2103T student                                              | Take a new note                                          | Have easy access to my materials whenever I need them         | Note/Essential  |
+| `* * * ` | CS2103T student                                              | Delete an existing note                                  | Remove out-of-date notes.                                     | Note/Essential  |
+| `* * * ` | CS2103T student                                              | Edit a note                                              | Revise a small typo in the note.                              | Note/Essential  |
+| `* * * ` | CS2103T student                                              | Look at all notes                                        | Remember what is the content of the note                      | Note/Essential  |
+| `* * * ` | CS2103T student                                              | Show a specific note                                     | To read the content of a specific note in detail              | Note/Essential  |
+| `* * * ` | CS2103T student                                              | Edit a note in edit mode                                 | Modify the content of the note easily.                        | Note/Essential  |
+| `* * `   | CS2103T student                                              | Tag a note                                               | I can access notes easily.                                    | Note/Non-Essential  |
+| `* * `   | CS2103T student                                              | Track the date and time the note is created              | Find the note according to the time created                   | Note/Non-Essential  |
+| `* * `   | CS2103T student                                              | Sort a note alphabetically                               | I can read the notes in order.                                | Note/Non-Essential  |
+| `* * `   | CS2103T student                                              | Search a note using keyword                              | Find out what notes contain the specific keyword.             | Note/Non-Essential  |
+| `* * `   | CS2103T student                                              | Mark a note as undone                                    | Remember which part of the notes I have not done yet.         | Note/Non-Essential  |
+| `* * `   | CS2103T student                                              | Mark all notes as undone                                 | Reset all the features I have marked as done.                 | Note/Non-Essential  |
+| `* `     | CS2103T student                                              | Track the date and time the note is last modified        | Find the note according to the time last modify.              | Note/Non-Essential  |
+| `* `     | CS2103T student                                              | Mark a content of a note as done                         | Remember which part of the notes I have done.                 | Note/Non-Essential  |
+|***Contact***| | | | |
+| `* * *`  | CS2103T Student                                              | Add my contacts                                          | Easily manage the contacts list                               | Contact/Essential     |
+| `* * *`  | CS2103T Student                                              | Edit my contacts                                         | Easily manage the contacts list                               | Contact/Essential     |
+| `* * *`  | CS2103T Student                                              | Delete my contacts                                       | Easily manage the contacts list                               | Contact/Essential     |
+| `* * *`  | CS2103T Student                                              | Look at all contacts                                     | Easily manage the contacts list                               | Contact/Essential     |
+| `* *`    | CS2103T Student                                              | Tag a contact with a word                                | Find contacts based on their tags                             | Contact/Non-essential |
+| `* *`    | CS2103T Student                                              | Search for contacts using tags                           | Contact anyone from a particular tag                          | Contact/Non-essential |
+| `* *`    | CS2103T Student who wants to connect with others that I know | Email anyone from my contacts list                       | Ask questions, discuss topics, or exchange notes with them    | Contact/Non-essential |
+|***Guide*** | | | | |
+| `* * *`  | CS2103T student who is bad at remembering commands           | Access the list of commands with brief explanation       | Save time having to search through user guide for details     | Guide/Essential  |
+| `* * *`  | CS2103T student who uses commands often                      | Scan through the list of commands for a quick refresher  | Save time having to search through user guide for all command | Guide/Essential  |
 
-
-
-*{More to be added}*
 
 ### Use cases
 
@@ -325,14 +391,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 
 
-**Use case: Delete a person**
+**Use case: Delete a contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  Dictionote shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  Dictionote deletes the person
+1.  User requests to list contacts
+2.  Dictionote shows a list of contacts
+3.  User requests to delete a specific contact in the list
+4.  Dictionote deletes the contact
 
     Use case ends.
 

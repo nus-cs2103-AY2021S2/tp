@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.dictionote.logic.commands.CommandTestUtil.showContactAtIndex;
-import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
+import static seedu.dictionote.testutil.TypicalContacts.getTypicalContactsList;
 import static seedu.dictionote.testutil.TypicalContent.getTypicalDictionary;
 import static seedu.dictionote.testutil.TypicalDefinition.getTypicalDefinitionBook;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
@@ -18,7 +18,7 @@ import seedu.dictionote.commons.core.Messages;
 import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
-import seedu.dictionote.model.ReadOnlyAddressBook;
+import seedu.dictionote.model.ReadOnlyContactsList;
 import seedu.dictionote.model.ReadOnlyDefinitionBook;
 import seedu.dictionote.model.ReadOnlyDictionary;
 import seedu.dictionote.model.ReadOnlyNoteBook;
@@ -33,7 +33,7 @@ import seedu.dictionote.model.contact.Contact;
 public class EmailContactCommandTest {
 
     private Model model = new ModelManagerStub(
-            getTypicalAddressBook(),
+            getTypicalContactsList(),
             new UserPrefs(),
             getTypicalNoteBook(),
             getTypicalDictionary(),
@@ -48,7 +48,7 @@ public class EmailContactCommandTest {
         String expectedMessage = String.format(EmailContactCommand.MESSAGE_EMAIL_CONTACT_SUCCESS, contactToEmail);
 
         ModelManager expectedModel = new ModelManagerStub(
-                model.getAddressBook(),
+                model.getContactsList(),
                 new UserPrefs(),
                 getTypicalNoteBook(),
                 getTypicalDictionary(),
@@ -78,7 +78,7 @@ public class EmailContactCommandTest {
         String expectedMessage = String.format(EmailContactCommand.MESSAGE_EMAIL_CONTACT_SUCCESS, contactToEmail);
 
         ModelManager expectedModel = new ModelManagerStub(
-                model.getAddressBook(),
+                model.getContactsList(),
                 new UserPrefs(),
                 getTypicalNoteBook(),
                 getTypicalDictionary(),
@@ -98,7 +98,7 @@ public class EmailContactCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_CONTACT;
         // ensures that outOfBoundIndex is still in bounds of the contacts list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getContactList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getContactsList().getContactList().size());
 
         EmailContactCommand emailContactCommand = new EmailContactCommand(outOfBoundIndex);
 
@@ -131,7 +131,7 @@ public class EmailContactCommandTest {
      * A stub ModelManager that does not invoke the OS's mail client.
      */
     private static class ModelManagerStub extends ModelManager {
-        public ModelManagerStub(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
+        public ModelManagerStub(ReadOnlyContactsList addressBook, ReadOnlyUserPrefs userPrefs,
                                 ReadOnlyNoteBook noteBook, ReadOnlyDictionary dictionary,
                                 ReadOnlyDefinitionBook definitionBook) {
             super(addressBook, userPrefs, noteBook, dictionary, definitionBook);

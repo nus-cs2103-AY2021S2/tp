@@ -152,11 +152,11 @@ Examples:
 * `listcontact` followed by `emailcontact 2` opens a new message composition window targeting the 2nd contact in the contacts list.
 * `findcontact n/Alice` followed by `emailcontact 1` opens a new message composition window targeting the 1st contact in the results of the `findcontact` command.
 
-#### Clearing all entries : `clear`
+#### Clearing the contacts list : `clearcontact`
 
-Clears all entries from the address book.
+Clears the contacts list from all contacts.
 
-Format: `clear`
+Format: `clearcontact`
 
 ### Dictionary Features
 
@@ -241,6 +241,26 @@ Format: `markasdonenote [INDEX]`
 * The index **must be a positive integer** 1, 2, 3, …​
 * After execution, the affected note will be marked with a green tick.
 
+#### Mark a note as undone: `markasundonenote`
+
+Marks a note in a list as undone.
+
+Format: `markasundonenote [INDEX]`
+
+* Marks the note at the specified `INDEX` as undone.
+* The index refers to the index number shown in the displayed note list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* After execution, the affected note will not be marked with a green tick.
+
+#### Mark all notes as undone: `markallasundonenote`
+
+Marks all notes in a list as undone.
+
+Format: `markallasundonenote`
+
+* Marks all the notes as undone.
+* After execution, all notes marked with a green tick will be reset.
+
 #### Editing a note : `editnote`
 
 Edits an existing note in the note list.
@@ -268,6 +288,28 @@ Format: `shownote INDEX​`
 Lists every note on the note list.
 
 Format: `listnote​`
+
+#### Sort all notes : `sortnote`
+
+Sort every note on the note list alphabetically.
+
+Format: `sortnote`
+
+#### Find notes using a keyword : `findnote`
+
+Find notes whose names contain any of—or tags contain all of—the given keywords.
+
+Format: `findnote [n/NAME_KEYWORD]... [t/TAG_KEYWORD]...`
+
+* The search is case-insensitive. e.g `c/cs2103` will match the name `CS2103`
+* Only the content and tags are searched.
+* Notes and tags will be matched if they contain the given keywords e.g. `c/CS` will match the note containing `CS2103T`
+* Notes matching at least one content keyword will be returned (i.e. OR search). e.g. `c/CS c/Important` will return `CS Midterm`, `Important stuff`
+* Notes matching all of the given tag keywords will be returned (i.e. AND search). e.g. `c/urgent` will return all notes that are tagged with `urgent`.
+
+Examples:
+
+* `findnote c/CS2103` returns note containing `CS2103` 
 
 #### Edit a note in edit mode : `editmode`
 
@@ -478,7 +520,7 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add contact** | `addcontact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addcontact n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
+**Clear contacts list** | `clearcontact`
 **Close** | `close Option` <br> e.g., `close -c`
 **Delete contact** | `deletecontact INDEX`<br> e.g., `deletecontact 3`
 **Edit contact** | `editcontact INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`editcontact 2 n/James Lee e/jameslee@example.com`

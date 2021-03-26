@@ -10,7 +10,7 @@ import seedu.dictionote.logic.commands.AddContactCommand;
 import seedu.dictionote.logic.commands.AddContentCommand;
 import seedu.dictionote.logic.commands.AddDefinitionCommand;
 import seedu.dictionote.logic.commands.AddNoteCommand;
-import seedu.dictionote.logic.commands.ClearCommand;
+import seedu.dictionote.logic.commands.ClearContactCommand;
 import seedu.dictionote.logic.commands.CloseCommand;
 import seedu.dictionote.logic.commands.Command;
 import seedu.dictionote.logic.commands.DeleteContactCommand;
@@ -25,11 +25,13 @@ import seedu.dictionote.logic.commands.ExitCommand;
 import seedu.dictionote.logic.commands.FindContactCommand;
 import seedu.dictionote.logic.commands.FindContentCommand;
 import seedu.dictionote.logic.commands.FindDefinitionCommand;
+import seedu.dictionote.logic.commands.FindNoteCommand;
 import seedu.dictionote.logic.commands.HelpCommand;
 import seedu.dictionote.logic.commands.ListCommandCommand;
 import seedu.dictionote.logic.commands.ListContactCommand;
 import seedu.dictionote.logic.commands.ListContentCommand;
 import seedu.dictionote.logic.commands.ListNoteCommand;
+import seedu.dictionote.logic.commands.MarkAllAsUndoneNoteCommand;
 import seedu.dictionote.logic.commands.MarkAsDoneNoteCommand;
 import seedu.dictionote.logic.commands.MarkAsUndoneNoteCommand;
 import seedu.dictionote.logic.commands.OpenCommand;
@@ -100,11 +102,14 @@ public class DictionoteParser {
         case DeleteNoteCommand.COMMAND_WORD:
             return new DeleteNoteCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+        case ClearContactCommand.COMMAND_WORD:
+            return new ClearContactCommand();
 
         case FindContactCommand.COMMAND_WORD:
             return new FindContactCommandParser().parse(arguments);
+
+        case FindNoteCommand.COMMAND_WORD:
+            return new FindNoteCommandParser().parse(arguments);
 
         case FindContentCommand.COMMAND_WORD:
             return new FindContentCommandParser().parse(arguments);
@@ -129,6 +134,9 @@ public class DictionoteParser {
 
         case MarkAsUndoneNoteCommand.COMMAND_WORD:
             return new MarkAsUndoneNoteCommandParser().parse(arguments);
+
+        case MarkAllAsUndoneNoteCommand.COMMAND_WORD:
+            return new MarkAllAsUndoneNoteCommand();
 
         case ShowNoteCommand.COMMAND_WORD:
             return new ShowNoteCommandParser().parse(arguments);
