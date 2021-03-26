@@ -12,10 +12,10 @@ import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Trip.
+ * Represents a Pool.
  * Guarantees: details relevant for a trip are present and not null, field values are validated, immutable.
  */
-public class Trip {
+public class Pool {
 
     // Data fields
     private final TripDay tripDay;
@@ -27,7 +27,7 @@ public class Trip {
     /**
      * Every field must be present and not null.
      */
-    public Trip(Driver driver, TripDay tripDay, TripTime tripTime, Set<Passenger> passengers, Set<Tag> tags) {
+    public Pool(Driver driver, TripDay tripDay, TripTime tripTime, Set<Passenger> passengers, Set<Tag> tags) {
         requireAllNonNull(driver, tripDay, tripTime);
 
         // ensures a trip cannot be created with no passengers
@@ -86,16 +86,16 @@ public class Trip {
      * Returns true if both trips have same driver, date & time, and passengers.
      * This defines a weaker notion of equality between two trips.
      */
-    public boolean isSameTrip(Trip otherTrip) {
-        if (otherTrip == this) {
+    public boolean isSameTrip(Pool otherPool) {
+        if (otherPool == this) {
             return true;
         }
 
-        return otherTrip != null
-                && otherTrip.getDriver().equals(getDriver())
-                && otherTrip.getTripDay().equals(getTripDay())
-                && otherTrip.getTripTime().equals(getTripTime())
-                && otherTrip.getPassengers().equals(getPassengers());
+        return otherPool != null
+                && otherPool.getDriver().equals(getDriver())
+                && otherPool.getTripDay().equals(getTripDay())
+                && otherPool.getTripTime().equals(getTripTime())
+                && otherPool.getPassengers().equals(getPassengers());
     }
 
     /**
@@ -108,16 +108,16 @@ public class Trip {
             return true;
         }
 
-        if (!(other instanceof Trip)) {
+        if (!(other instanceof Pool)) {
             return false;
         }
 
-        Trip otherTrip = (Trip) other;
-        return otherTrip.getDriver().equals(getDriver())
-                && otherTrip.getTripDay().equals(getTripDay())
-                && otherTrip.getTripTime().equals(getTripTime())
-                && otherTrip.getPassengers().equals(getPassengers())
-                && otherTrip.getTags().equals(getTags());
+        Pool otherPool = (Pool) other;
+        return otherPool.getDriver().equals(getDriver())
+                && otherPool.getTripDay().equals(getTripDay())
+                && otherPool.getTripTime().equals(getTripTime())
+                && otherPool.getPassengers().equals(getPassengers())
+                && otherPool.getTags().equals(getTags());
     }
 
     @Override
@@ -131,9 +131,9 @@ public class Trip {
         final StringBuilder builder = new StringBuilder();
         builder.append("Driver: ")
                 .append(getDriverAsStr())
-                .append("; Trip Day: ")
+                .append("; Pool Day: ")
                 .append(getTripDayAsStr())
-                .append("; Trip Time: ")
+                .append("; Pool Time: ")
                 .append(getTripTimeAsStr())
                 .append("; Passengers: ");
 
