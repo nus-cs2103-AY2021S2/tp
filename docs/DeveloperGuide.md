@@ -290,14 +290,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. iScam requests for correction.
     * 1a2. User corrected the client info.
     * Steps 1a1-1a2 are repeated until the data entered are correct.
-    
+
     Use case resumes from step 2.
 
 
 * 3a. User chooses to cancel the addition.
     * 3a1. iScam requests to confirm the cancellation.
     * 3a2. User confirms the cancellation.
-      
+  
     Use case ends.
 
 **Use case: List clients**
@@ -311,7 +311,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 1a. The list is empty.
     * 1a1. iScam shows a message to indicate that there are no clients.
-      
+
       Use case ends.
 
 **Use case: Update a client**
@@ -328,17 +328,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. iScam detects an error in the new parameters.
     * 1a1. iScam requests for correction.
     * 1a2. User corrected the update info.
-    * Steps 1a1-1a2 are repeated until the data entered are correct. 
-      
+    * Steps 1a1-1a2 are repeated until the data entered are correct.
+
       Use case resumes from step 2.
-    
+
 
 * 3a. User chooses to cancel the update.
     * 3a1. iScam requests to confirm the cancellation.
     * 3a2. User confirms the cancellation.
-      
+
       Use case ends.
-    
+
 **Use case: Search clients**
 
 **MSS**
@@ -352,11 +352,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. iScam shows a message to indicate that there is no client.
 
         Use case ends.
-    
+
 
 * 1b. The search term is empty.
     * 1b1. iScam shows a message to indicate that a search term is required.
-    
+
         Use case ends
 
 **Use case: Delete a client**
@@ -374,14 +374,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. iScam requests for correction.
     * 1a2. User corrected which client to delete.
     * Steps 1a1-1a2 are repeated until the client entered is valid.
-        
+
         Use case resumes from step 2.
 
 
 * 2a. User chooses to cancel the deletion.
     * 2a1. iScam requests to confirm the cancellation.
     * 2a2. User confirms the cancellation.
-    
+
         Use case ends.
 
 **Use case: Add a meeting**
@@ -389,27 +389,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User requests to add a meeting with a client.
 2. iScam adds the meeting.
-    
+
     Use case ends.
 
 **Extensions**
 * 1a. The client does not exist.
     * 1a1. iScam shows a message to indicate that the client specified does not exist.
-    
+
         Use case ends.
-    
+
 
 * 1b. iScam detects an error in the parameters.
     * 1b1. iScam requests for correction.
     * 1b2. User corrected the parameters.
     * Steps 1b1-1b2 are repeated until the parameters entered are correct.
-    
+
         Use case resume from step 2.
-    
+
 
 * 1c. A meeting with that date and time already exists.
     * 1c1. iScam shows a message that a meeting with that date and time already exists.
-        
+
         Use case ends.
 
 **Use case: List meetings**
@@ -417,13 +417,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User requests to list meetings.
 2. iScam shows a list of meetings.
-    
+
     Use case ends.
 
 **Extensions**
 * 1a. The list is empty.
     * 1a1. iScam shows a message to indicate that there are no meetings.
-      
+
         Use case ends.
 
 **Use case: Update a meeting**
@@ -433,17 +433,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. iScam shows a preview of the updated meeting.
 3. User confirms the update.
 4. iScam updates the meeting.
-    
+
     Use case ends.
 
 **Extensions**
 * 1a. iScam detects an error with the new parameters.
     * 1a1. iScam requests for correction.
     * 1a2. User corrected the parameters.
-    * Steps 1a1-1a2 are repeated until the parameters entered are correct. 
-      
+    * Steps 1a1-1a2 are repeated until the parameters entered are correct.
+
         Use case resume from step 2.
-    
+
 
 * 1b. The new parameters' date or time is in conflict with other existing meetings.
     * 1b1. iScam shows a message that a meeting with that date and time already exists.
@@ -454,7 +454,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. User chooses to cancel the update.
     * 2a1. iScam requests to confirm the cancellation.
     * 2a2. User confirms the cancellation.
-      
+
         Use case ends.
 
 
@@ -473,16 +473,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. iScam requests for correction.
     * 1a2. User corrected which meeting to delete.
     * Steps 1a1-1a2 are repeated until the meeting entered is valid.
-        
+
         Use case resumes from step 2.
 
 
 * 2a. User chooses to cancel the deletion.
     * 2a1. iScam requests to confirm the cancellation.
     * 2a2. User confirms the cancellation.
-    
+
         Use case ends.
-    
+
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -490,7 +490,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 clients and meetings without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  A user should be able to quickly identify the purpose of different interface elements through larger buttons, recognizable color scheme etc. 
+4.  A user should be able to quickly identify the purpose of different interface elements through larger buttons, recognizable color scheme etc.
 5.  An average user should be able to get a grasp on the user interface within a few iteration of usage
 
 *{More to be added}*
