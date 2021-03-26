@@ -242,7 +242,7 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      *
      * @param askingPrice The client asking price string to be parsed.
-     * @return A {@code AskingPrice}.
+     * @return An {@code AskingPrice}.
      * @throws ParseException If the given {@code askingPrice} is invalid.
      */
     public static AskingPrice parseClientAskingPrice(String askingPrice) throws ParseException {
