@@ -10,6 +10,7 @@ Class Type
 Class Address
 Class PostalCode
 Class Deadline
+Class UniquePropertyList
 
 Package Client as ClientPackage {
 Class Client
@@ -40,35 +41,37 @@ Package Tag as TagPackage {
 Class Tag
 }
 
-Property *--up-> Type
-Property *--up-> Address
-Property *--up-> PostalCode
-Property *--up-> Deadline
+Class PropertyBook
+PropertyBook *--> "1 " UniquePropertyList
 
-Property *--up-> Status
+UniquePropertyList o--> "*" Property
+
+Property *--> Type
+Property *--> Address
+Property *--> PostalCode
+Property *--> Deadline
+
+Property *--> Status
 Option ..|> Status
 SalesAgreement ..|> Status
 Completion ..|> Status
 Status .right.> Offer
 
+Property *-up-> "*" Tag
 Property *-left-> Remark
-Property *-down-> "propertyName" Name : ""
-Property *--down-> Client
-Property *-right-> "*" Tag
+Property *--> " propertyName" Name : ""
+Property *---> Client
 
-Client *-r-> "clientName" Name
-Client *-left-> Contact
-Client *--> Email
-Client *--> AskingPrice
+Client *-right-> " clientName" Name
+Client *-down-> Contact
+Client *-down-> Email
+Client *-right-> AskingPrice
 
 Type -[hidden]right-> Address
 Address -[hidden]right-> PostalCode
 PostalCode -[hidden]right-> Deadline
 Deadline -[hidden]right-> Status
 
-Type -[hidden]down-> Remark
-Remark -[hidden]down-> ClientPackage
-Status -[hidden]down-> Tag
-Tag -[hidden]down-> NamePackage
-
+TagPackage -[hidden]down-> RemarkPackage
+RemarkPackage -[hidden]down-> NamePackage
 @enduml
