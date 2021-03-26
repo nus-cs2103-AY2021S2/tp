@@ -19,7 +19,6 @@ import seedu.address.model.person.TaskName;
 
 public class JsonAdaptedTaskTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_DATE = "2020-10-03";
     private static final String INVALID_TIME = "25:61";
     private static final String INVALID_TAG = "#friend";
