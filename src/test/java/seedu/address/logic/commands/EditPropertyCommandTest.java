@@ -42,7 +42,7 @@ public class EditPropertyCommandTest {
         EditPropertyDescriptor descriptor = new EditPropertyDescriptorBuilder(editedProperty).build();
         EditPropertyCommand editPropertyCommand = new EditPropertyCommand(INDEX_FIRST_PROPERTY, descriptor);
 
-        String expectedMessage = String.format(editPropertyCommand.MESSAGE_SUCCESS, editedProperty);
+        String expectedMessage = String.format(EditPropertyCommand.MESSAGE_SUCCESS, editedProperty);
 
         Model expectedModel = new ModelManager(new PropertyBook(model.getPropertyBook()), new UserPrefs());
         expectedModel.setProperty(model.getFilteredPropertyList().get(0), editedProperty);

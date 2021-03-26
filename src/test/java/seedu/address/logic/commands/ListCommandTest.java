@@ -6,6 +6,7 @@ import static seedu.address.testutil.TypicalAppointments.getTypicalAppointments;
 import static seedu.address.testutil.TypicalProperties.getTypicalPropertiesWithClient;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.list.ListAllCommand;
 import seedu.address.logic.commands.list.ListAppointmentCommand;
 import seedu.address.logic.commands.list.ListPropertyCommand;

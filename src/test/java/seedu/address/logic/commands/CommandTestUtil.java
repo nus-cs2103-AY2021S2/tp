@@ -101,6 +101,9 @@ public class CommandTestUtil {
     public static final String VALID_DATE_MEET_ALEX = "25-12-2021";
     public static final LocalDate VALID_DATE_LOCALDATE_MEET_ALEX = LocalDate.parse(VALID_DATE_MEET_ALEX,
         DateTimeFormatter.ofPattern("d-M-u").withResolverStyle(ResolverStyle.STRICT));
+    public static final String VALID_DATE_MEET_ALICE = "25-09-2021";
+    public static final LocalDate VALID_DATE_LOCALDATE_MEET_ALICE = LocalDate.parse(VALID_DATE_MEET_ALICE,
+            DateTimeFormatter.ofPattern("d-M-u").withResolverStyle(ResolverStyle.STRICT));
     public static final String VALID_DATE_MEET_BOB = "25-02-2021";
     public static final LocalDate VALID_DATE_LOCALDATE_MEET_BOB = LocalDate.parse(VALID_DATE_MEET_BOB,
         DateTimeFormatter.ofPattern("d-M-u").withResolverStyle(ResolverStyle.STRICT));
@@ -110,6 +113,10 @@ public class CommandTestUtil {
     public static final String VALID_TIME_MEET_BOB = "2000";
     public static final LocalTime VALID_TIME_LOCALTIME_MEET_BOB = LocalTime.parse(VALID_TIME_MEET_BOB,
         DateTimeFormatter.ofPattern("HHmm"));
+    public static final String VALID_TIME_MEET_ALICE = "2200";
+    public static final LocalTime VALID_TIME_MEET_LOCALTIME_ALICE = LocalTime.parse(VALID_TIME_MEET_ALICE,
+        DateTimeFormatter.ofPattern("HHmm"));
+
 
     public static final String NAME_DESC_MEET_ALEX = " " + PREFIX_NAME + VALID_NAME_MEET_ALEX;
     public static final String NAME_DESC_MEET_BOB = " " + PREFIX_NAME + VALID_NAME_MEET_BOB;

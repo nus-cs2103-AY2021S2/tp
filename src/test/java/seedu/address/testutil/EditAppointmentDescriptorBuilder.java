@@ -44,7 +44,7 @@ public class EditAppointmentDescriptorBuilder {
     /**
      * Sets the {@code Remarks} of the {@code EditAppointmentDescriptor} that we are building.
      */
-    public EditAppointmentDescriptorBuilder withRemarks(String remarks) {
+    public EditAppointmentDescriptorBuilder withRemark(String remarks) {
         descriptor.setRemarks(new Remark(remarks));
         return this;
     }
