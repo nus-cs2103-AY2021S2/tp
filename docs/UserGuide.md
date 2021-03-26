@@ -55,7 +55,7 @@ PocketEstate enables easy organization of mass clientele property information th
   e.g. if the command specifies `n/NAME r/REMARKS`, `r/REMARKS n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `n/John n/Alice`, only `n/Alice` will be taken.
+  e.g. if you specify `n/The Mayfair n/Mayfair`, only `n/Mayfair` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -129,7 +129,7 @@ Formats: `edit property INDEX [n/NAME] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_C
 
 <div markdown="block" class="alert alert-info">
 
-**:bulb: Tip:**<br>
+**:bulb: Reminder:**<br>
 
 * There can be multiple tags but different tags should be separated with a comma. <br> e.g. `tags/TAGS_SEPARATED_BY_COMMAS` can be used as `tags/Freehold`, `tags/Freehold, 5 bedrooms`, `tags/Freehold, 5 bedrooms, Near MRT` etc.
 
