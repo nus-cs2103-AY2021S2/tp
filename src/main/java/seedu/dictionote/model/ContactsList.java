@@ -8,6 +8,7 @@ import java.net.URI;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.dictionote.logic.commands.EditContactCommand;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.contact.UniqueContactList;
 import seedu.dictionote.model.contact.exceptions.InvalidContactMailtoLinkException;
@@ -97,9 +98,21 @@ public class ContactsList implements ReadOnlyContactsList {
         // link to the posts: https://www.codeproject.com/questions/398241/how-to-open-url-in-java
         try {
             userDesktop.mail(contactMailtoLink); // invoke user's OS default mail client.
+            setContact(contact, incrementContactFrequency(contact));
         } catch (IOException e) {
             throw new InvalidContactMailtoLinkException();
         }
+    }
+
+    private Contact incrementContactFrequency(Contact contact) {
+        return new Contact(
+                contact.getName(),
+                contact.getPhone(),
+                contact.getEmail(),
+                contact.getAddress(),
+                contact.getTags(),
+                contact.getFrequencyCounter() + 1
+        );
     }
 
     /**
