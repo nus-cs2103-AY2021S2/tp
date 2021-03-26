@@ -29,7 +29,7 @@ class JsonAdaptedContact {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private final int frequencyCounter;
+    private final int frequency;
 
     /**
      * Constructs a {@code JsonAdaptedContact} with the given person details.
@@ -38,7 +38,7 @@ class JsonAdaptedContact {
     public JsonAdaptedContact(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                               @JsonProperty("email") String email, @JsonProperty("address") String address,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                              @JsonProperty("frequency") int frequencyCounter) {
+                              @JsonProperty("frequency") int frequency) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -46,7 +46,7 @@ class JsonAdaptedContact {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-        this.frequencyCounter = frequencyCounter;
+        this.frequency = frequency;
 
     }
 
@@ -61,7 +61,7 @@ class JsonAdaptedContact {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        frequencyCounter = source.getFrequencyCounter();
+        frequency = source.getFrequencyCounter();
     }
 
     /**
@@ -109,7 +109,7 @@ class JsonAdaptedContact {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        return new Contact(modelName, modelPhone, modelEmail, modelAddress, modelTags, frequencyCounter);
+        return new Contact(modelName, modelPhone, modelEmail, modelAddress, modelTags, frequency);
     }
 
 }
