@@ -61,6 +61,27 @@ The following diagram omits the parser object created, namely `FilterEntryComman
 1. Allow filtering by more than one tag.
 1. Decide whether the filtering above considers Union or Intersection of tags.
 
+### [Proposed] List entry feature
+The proposed list entry mechanism allows users to see all of their schedules, or see them by day or by week.
+
+An outline of the proposed implementation is as follows:
+
+The AddressBookParser should accept another case of command word `elist` which eventually returns a `ListEntryCommand` 
+back to `LogicManager`. This command can take in three arguments: an empty string, the string “day” or the string “week”. 
+The arguments will be parsed by the `ListEntryCommandParser` to determine the behaviour of `ListEntryFormatPredicate`.
+Then, `updateFilteredEntryList` method in the `Model` interface is called, passing in the `ListEntryFormatPredicate` as 
+an argument.
+
+The following activity diagram (Fig 2.3.1) summarizes what happens when a user executes the list entry command.
+
+![Listing entries activity diagram](images/ListEntryActivityDiagram.png)
+Fig 2.3.1
+
+The following sequence diagram (Fig 2.3.2) shows how the list entry operation works:
+
+![Listing entries](images/ListEntrySequenceDiagram.png)
+Fig 2.3.2
+
 # Appendix: Requirements
 
 ## Product Scope
