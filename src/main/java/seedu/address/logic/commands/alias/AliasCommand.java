@@ -58,6 +58,7 @@ public class AliasCommand extends Command {
             throw new CommandException(MESSAGE_RECURSIVE);
         }
 
+        // update model
         model.addAlias(alias);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, alias.getAliasName()));

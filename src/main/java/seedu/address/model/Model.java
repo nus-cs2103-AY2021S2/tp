@@ -192,4 +192,10 @@ public interface Model {
      * Add an user-defined alias to the current mapping.
      */
     void addAlias(Alias alias);
+
+    /**
+     * Deletes an user-defined alias from the current mapping.
+     * @param aliasName The name of the alias to be deleted.
+     */
+    void deleteAlias(String aliasName);
 }

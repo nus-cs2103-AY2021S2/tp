@@ -11,6 +11,7 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.alias.AliasCommand;
+import seedu.address.logic.commands.alias.UnaliasCommand;
 import seedu.address.logic.commands.commandhistory.ViewHistoryCommand;
 import seedu.address.logic.commands.issue.AddIssueCommand;
 import seedu.address.logic.commands.issue.DeleteIssueCommand;
@@ -59,6 +60,14 @@ public class AliasMapping implements Serializable {
     }
 
     /**
+     * Deletes an user-defined alias from the current mapping.
+     * @param aliasName The name of the alias to be deleted.
+     */
+    public void deleteAlias(String aliasName) {
+        mapping.remove(aliasName);
+    }
+
+    /**
      * Checks if the current mapping contains an Alias based on alias name.
      */
     public boolean containsAlias(String aliasName) {
@@ -71,7 +80,6 @@ public class AliasMapping implements Serializable {
     public boolean isReservedKeyword(String aliasName) {
         switch (aliasName) {
         //====== System Commands ======
-        case AliasCommand.COMMAND_WORD:
         case ClearCommand.COMMAND_WORD:
         case ExitCommand.COMMAND_WORD:
         case HelpCommand.COMMAND_WORD:
@@ -97,6 +105,10 @@ public class AliasMapping implements Serializable {
         case FindIssueCommand.COMMAND_WORD:
         case EditIssueCommand.COMMAND_WORD:
         case DeleteIssueCommand.COMMAND_WORD:
+
+        //====== Alias Commands ======
+        case AliasCommand.COMMAND_WORD:
+        case UnaliasCommand.COMMAND_WORD:
             return true;
         default:
             return false;

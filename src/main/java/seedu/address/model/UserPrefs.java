@@ -84,6 +84,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     }
 
     /**
+     * Deletes an user-defined alias from the current mapping.
+     * @param aliasName The name of the alias to be deleted.
+     */
+    public void deleteAlias(String aliasName) {
+        requireNonNull(aliasName);
+        aliasMapping.deleteAlias(aliasName);
+    }
+
+    /**
      * Returns an Alias object based on alias name.
      */
     public Alias getAlias(String aliasName) {

@@ -28,6 +28,12 @@ public interface ReadOnlyUserPrefs {
     Alias getAlias(String aliasName);
 
     /**
+     * Deletes an user-defined alias from the current mapping.
+     * @param aliasName The name of the alias to be deleted.
+     */
+    void deleteAlias(String aliasName);
+
+    /**
      * Checks if the current mapping contains an alias based on name.
      */
     boolean containsAlias(String aliasName);
