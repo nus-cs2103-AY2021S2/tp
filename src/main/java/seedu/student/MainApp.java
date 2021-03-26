@@ -21,7 +21,6 @@ import seedu.student.model.ReadOnlyStudentBook;
 import seedu.student.model.ReadOnlyUserPrefs;
 import seedu.student.model.StudentBook;
 import seedu.student.model.UserPrefs;
-import seedu.student.model.appointment.SameDateAppointmentList;
 import seedu.student.model.util.SampleDataUtil;
 import seedu.student.storage.JsonStudentBookStorage;
 import seedu.student.storage.JsonUserPrefsStorage;

@@ -8,9 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.student.model.appointment.exceptions.DuplicateAppointmentException;
-import seedu.student.model.student.Student;
-import seedu.student.model.student.exceptions.DuplicateStudentException;
 
 /**
  * TO EDIT

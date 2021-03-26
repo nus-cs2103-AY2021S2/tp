@@ -12,7 +12,6 @@ import seedu.student.commons.exceptions.IllegalValueException;
 import seedu.student.model.ReadOnlyStudentBook;
 import seedu.student.model.StudentBook;
 import seedu.student.model.appointment.Appointment;
-import seedu.student.model.appointment.SameDateAppointmentList;
 import seedu.student.model.student.Student;
 
 /**
@@ -70,9 +69,6 @@ class JsonSerializableStudentBook {
             }
             studentBook.addAppointment(appointment);
         }
-//        studentBook.getAppointmentList().stream()
-//                .flatMap((SameDateAppointmentList list) -> list.asUnmodifiableObservableList().stream())
-//                .forEach(appt -> System.out.println(appt.toString()));
         return studentBook;
     }
 
