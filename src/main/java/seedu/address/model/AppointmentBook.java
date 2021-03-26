@@ -2,8 +2,10 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Stack;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
@@ -14,7 +16,8 @@ import seedu.address.model.appointment.UniqueAppointmentList;
  * Duplicates are not allowed (by .isSameAppointment comparison).
  */
 public class AppointmentBook implements ReadOnlyAppointmentBook {
-    private final UniqueAppointmentList appointments;
+    private UniqueAppointmentList appointments;
+    private Stack<List<Appointment>> previousAppointmentLists = new Stack<>();
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -76,6 +79,7 @@ public class AppointmentBook implements ReadOnlyAppointmentBook {
      * @param appointment The appointment to be added.
      */
     public void addAppointment(Appointment appointment) {
+        previousAppointmentLists.push(new ArrayList<>(appointments.asUnmodifiableObservableList()));
         appointments.add(appointment);
     }
 
@@ -87,7 +91,7 @@ public class AppointmentBook implements ReadOnlyAppointmentBook {
      */
     public void setAppointment(Appointment target, Appointment editedAppointment) {
         requireNonNull(editedAppointment);
-
+        previousAppointmentLists.push(new ArrayList<>(appointments.asUnmodifiableObservableList()));
         appointments.setAppointment(target, editedAppointment);
     }
 
@@ -96,6 +100,7 @@ public class AppointmentBook implements ReadOnlyAppointmentBook {
      * {@code key} must exist in the appointment book.
      */
     public void removeAppointment(Appointment key) {
+        previousAppointmentLists.push(new ArrayList<>(appointments.asUnmodifiableObservableList()));
         appointments.remove(key);
     }
 
@@ -104,6 +109,16 @@ public class AppointmentBook implements ReadOnlyAppointmentBook {
      */
     public void sortAppointments(Comparator<Appointment> comparator) {
         appointments.sortAppointments(comparator);
+    }
+
+    /**
+     * Undos the previous add, delete or edit commands for appointments and returns a copy of the
+     * previous appointment book.
+     */
+    public AppointmentBook undo() {
+        AppointmentBook previousAppointmentBook = new AppointmentBook();
+        previousAppointmentBook.setAppointments(previousAppointmentLists.pop());
+        return previousAppointmentBook;
     }
 
     // =====  Utility methods  ===================================================================================

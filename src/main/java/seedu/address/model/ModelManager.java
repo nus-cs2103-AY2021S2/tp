@@ -22,10 +22,12 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final PropertyBook propertyBook;
+
     private final FilteredList<Property> filteredProperties;
 
     private final UserPrefs userPrefs;
     private final AppointmentBook appointmentBook;
+
     private final FilteredList<Appointment> filteredAppointments;
 
     /**
@@ -127,6 +129,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setPropertyBook(ReadOnlyPropertyBook propertyBook) {
+        assert propertyBook != null;
         this.propertyBook.resetData(propertyBook);
     }
 
@@ -143,22 +146,27 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteProperty(Property target) {
+        assert target != null;
         propertyBook.removeProperty(target);
     }
 
     @Override
     public void addProperty(Property property) {
+        assert property != null;
         propertyBook.addProperty(property);
         updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
     }
 
     @Override
     public void setProperty(Property target, Property editedProperty) {
+        assert target != null;
+        assert editedProperty != null;
         propertyBook.setProperty(target, editedProperty);
     }
 
     @Override
     public void setProperty(int i, Property property) {
+        assert property != null;
         Property target = getProperty(i);
         setProperty(target, property);
     }
@@ -212,6 +220,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setAppointmentBook(ReadOnlyAppointmentBook appointmentBook) {
+        assert appointmentBook != null;
         this.appointmentBook.resetData(appointmentBook);
     }
 
@@ -228,11 +237,13 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteAppointment(Appointment target) {
+        assert target != null;
         appointmentBook.removeAppointment(target);
     }
 
     @Override
     public void addAppointment(Appointment appointment) {
+        assert appointment != null;
         appointmentBook.addAppointment(appointment);
         updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
     }
@@ -275,6 +286,20 @@ public class ModelManager implements Model {
     public void sortAppointmentList(Comparator<Appointment> comparator) {
         requireNonNull(comparator);
         this.appointmentBook.sortAppointments(comparator);
+    }
+
+    /**
+     * Undos the previous add, delete or edit commands for appointments.
+     */
+    public void undoAppointmentBook() {
+        setAppointmentBook(this.appointmentBook.undo());
+    }
+
+    /**
+     * Undos the previous add, delete or edit commands for properties.
+     */
+    public void undoPropertyBook() {
+        setPropertyBook(this.propertyBook.undo());
     }
 
     // ===========================================================================================================
