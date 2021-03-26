@@ -14,6 +14,8 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class AliasCommandParser implements Parser<AliasCommand> {
+    private static final int ARGUMENT_NO = 3;
+
     /**
      * Parses the given {@code String} of arguments in the context of the AliasCommand
      * and returns an AliasCommand object for execution.
@@ -28,7 +30,7 @@ public class AliasCommandParser implements Parser<AliasCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AliasCommand.MESSAGE_USAGE));
         }
 
-        String[] parsedArgs = args.split("\\s+", 3);
+        String[] parsedArgs = args.split("\\s+", ARGUMENT_NO);
         String aliasName = parsedArgs[1].substring(PREFIX_ALIAS.toString().length());
         String command = parsedArgs[2].substring(PREFIX_COMMAND.toString().length());
 
