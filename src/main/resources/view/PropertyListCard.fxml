@@ -32,7 +32,6 @@
                 </HBox>
                 <Label fx:id="status" text="\$status"/>
                 <FlowPane fx:id="tags"/>
-                <Label fx:id="propertyType" styleClass="cell_small_label" text="\$propertyType"/>
                 <Label fx:id="address" styleClass="cell_small_label" text="\$address"/>
                 <Label fx:id="postalCode" styleClass="cell_small_label" text="\$postalCode"/>
                 <Label fx:id="askingPrice" styleClass="cell_small_label" text="\$askingPrice"/>
@@ -47,10 +46,11 @@
             <RowConstraints/>
         </rowConstraints>
     </GridPane>
-    <VBox alignment="CENTER" minWidth="100.0" maxWidth="100.0" HBox.hgrow="NEVER">
+    <VBox alignment="CENTER" minWidth="100.0" maxWidth="100.0" HBox.hgrow="NEVER" spacing="2.0">
         <HBox alignment="CENTER">
             <ImageView fx:id="propertyTypeIcon" fitHeight="64.0" fitWidth="64.0" pickOnBounds="true"
                        preserveRatio="true"/>
         </HBox>
+        <Label fx:id="propertyType" styleClass="cell_small_label" text="\$propertyType"/>
     </VBox>
 </HBox>

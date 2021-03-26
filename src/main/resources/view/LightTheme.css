@@ -358,3 +358,10 @@
     -fx-background-radius: 5;
     -fx-font-size: 11;
 }
+
+#propertyType {
+    -fx-font-family: "Segoe UI";
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-text-fill: black;
+}
