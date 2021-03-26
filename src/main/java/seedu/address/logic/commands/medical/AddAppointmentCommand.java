@@ -20,6 +20,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Weight;
 import seedu.address.model.tag.Tag;
 
 public class AddAppointmentCommand extends Command {
@@ -78,9 +79,10 @@ public class AddAppointmentCommand extends Command {
         Phone updatedPhone = personToEdit.getPhone();
         Email updatedEmail = personToEdit.getEmail();
         Address updatedAddress = personToEdit.getAddress();
+        Weight updatedWeight = personToEdit.getWeight();
         Set<Tag> updatedTags = personToEdit.getTags();
         List<Appointment> updatedAppointments = personToEdit.getAppointments();
-        Person p = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+        Person p = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedWeight,
                 updatedTags, updatedAppointments);
         p.addAppointment(appt);
         return p;

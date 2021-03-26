@@ -6,8 +6,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Weight {
     public static final String MESSAGE_CONSTRAINTS =
             "Weight must be a number and be in kg";
-    public static final String VALIDATION_REGEX = "\\d";
     public static final String UNIT = "kg";
+    public static final String VALIDATION_REGEX = "\\d+" + UNIT;
 
     public final String value;
 
@@ -31,6 +31,6 @@ public class Weight {
 
     @Override
     public String toString() {
-        return value + UNIT;
+        return value;
     }
 }
