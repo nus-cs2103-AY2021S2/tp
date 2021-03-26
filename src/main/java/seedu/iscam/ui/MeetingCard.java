@@ -14,7 +14,7 @@ import seedu.iscam.model.meeting.Meeting;
  */
 public class MeetingCard extends UiPart<Region> {
 
-    private static final String FXML = "MeetingListCard.fxml";
+    private static final String FXML = "MeetingCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.

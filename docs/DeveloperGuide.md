@@ -297,7 +297,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. User chooses to cancel the addition.
     * 3a1. iScam requests to confirm the cancellation.
     * 3a2. User confirms the cancellation.
-  
+
     Use case ends.
 
 **Use case: List clients**
