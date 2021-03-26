@@ -1,10 +1,9 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKING_DETAILS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLEAN_STATUS_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RESIDENCE_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RESIDENCE_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -32,24 +31,18 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_RESIDENCE_NAME, PREFIX_RESIDENCE_ADDRESS,
-                        PREFIX_BOOKING_DETAILS, PREFIX_CLEAN_STATUS_TAG, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_RESIDENCE_ADDRESS,
+                        PREFIX_CLEAN_STATUS_TAG, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_RESIDENCE_NAME, PREFIX_RESIDENCE_ADDRESS)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_RESIDENCE_ADDRESS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        ResidenceName name = ParserUtil.parseName(argMultimap.getValue(PREFIX_RESIDENCE_NAME).get());
+        ResidenceName name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         ResidenceAddress address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_RESIDENCE_ADDRESS).get());
 
-        BookingList bookingList;
-        if (argMultimap.getAllValues(PREFIX_BOOKING_DETAILS).size() > 0) {
-            bookingList = ParserUtil.parseBookingList(
-                    argMultimap.getValue(PREFIX_BOOKING_DETAILS).get());
-        } else {
-            bookingList = new BookingList();
-        }
+        BookingList bookingList = new BookingList();
 
         CleanStatusTag cleanStatusTag;
         if (argMultimap.getAllValues(PREFIX_CLEAN_STATUS_TAG).size() > 0) {

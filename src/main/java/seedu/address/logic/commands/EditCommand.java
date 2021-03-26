@@ -90,7 +90,7 @@ public class EditCommand extends Command {
         ResidenceAddress updatedAddress = editResidenceDescriptor.getResidenceAddress()
                 .orElse(residenceToEdit.getResidenceAddress());
         BookingList updatedBookingList = editResidenceDescriptor.getBookingDetails()
-                .orElse(residenceToEdit.getBookingDetails());
+                .orElse(residenceToEdit.getBookingList());
         CleanStatusTag updatedCleanStatus = editResidenceDescriptor.getCleanStatusTag().orElse(
                 residenceToEdit.getCleanStatusTag());
         Set<Tag> updatedTags = editResidenceDescriptor.getTags().orElse(residenceToEdit.getTags());
