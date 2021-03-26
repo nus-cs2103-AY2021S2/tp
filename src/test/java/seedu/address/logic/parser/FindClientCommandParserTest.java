@@ -8,7 +8,7 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.find.FindClientCommand;
+import seedu.address.logic.commands.FindClientCommand;
 import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
 import seedu.address.model.property.PropertyClientNamePredicate;
 

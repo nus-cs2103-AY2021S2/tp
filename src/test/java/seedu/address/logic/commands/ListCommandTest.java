@@ -7,9 +7,6 @@ import static seedu.address.testutil.TypicalProperties.getTypicalPropertiesWithC
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.list.ListAllCommand;
-import seedu.address.logic.commands.list.ListAppointmentCommand;
-import seedu.address.logic.commands.list.ListPropertyCommand;
 import seedu.address.model.Model;
 import seedu.address.testutil.TypicalModelManager;
 

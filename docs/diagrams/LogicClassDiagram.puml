@@ -18,9 +18,11 @@ Class Prefix
 }
 
 package Command {
-Class XYZCommand
-Class CommandResult
-Class "{abstract}\nCommand" as Command
+    package XYZ {
+        Class XYZCommand
+        Class CommandResult
+        Class "{abstract}\nCommand" as Command
+    }
 }
 
 Interface Logic <<Interface>>
@@ -61,6 +63,7 @@ Storage --[hidden] Model
 Command .[hidden]up.> Storage
 Command .right.> Model
 note right of XYZCommand: XYZCommand = AddPropertyCommand, \nAddAppointmentCommand, \nFindPropertyCommand, etc
+note right of XYZ: XYZ = \nlist, \nadd, \nfind, etc
 
 Logic ..> CommandResult
 LogicManager .down.> CommandResult

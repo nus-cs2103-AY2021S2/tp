@@ -24,10 +24,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.edit.EditPropertyCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.sort.SortAppointmentCommand;
-import seedu.address.logic.commands.sort.SortPropertyCommand;
 import seedu.address.model.AppointmentBook;
 import seedu.address.model.Model;
 import seedu.address.model.PropertyBook;

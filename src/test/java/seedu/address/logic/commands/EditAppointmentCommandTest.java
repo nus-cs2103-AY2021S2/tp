@@ -10,8 +10,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.edit.EditAppointmentCommand;
-import seedu.address.logic.commands.edit.EditAppointmentCommand.EditAppointmentDescriptor;
+import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
 import seedu.address.model.AppointmentBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;

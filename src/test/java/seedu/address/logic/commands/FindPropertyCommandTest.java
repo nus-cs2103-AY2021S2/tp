@@ -24,7 +24,6 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.find.FindPropertyCommand;
 import seedu.address.logic.parser.FindPropertyCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
