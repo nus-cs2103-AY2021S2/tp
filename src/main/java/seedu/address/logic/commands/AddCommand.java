@@ -52,6 +52,14 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the planner";
+    public static final String MESSAGE_DEADLINE_EVENT_CONFLICT = "Task cannot have (Deadline) as well as "
+            + "(RecurringSchedule and Duration) at the same time! Please choose either when adding a task.";
+    public static final String MESSAGE_DEADLINE_DURATION_CONFLICT = "Task cannot have (Deadline) as well as "
+            + "(Duration) at the same time! Please choose either when adding a task.";
+    public static final String MESSAGE_DEADLINE_RECURRING_SCHEDULE_CONFLICT = "Task cannot have (Deadline) as well as "
+            + "(RecurringSchedule) at the same time! Please choose either when adding a task.";
+
+
 
     private Task toAdd;
 
@@ -69,22 +77,56 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        try {
+            handleDuplicateTask(model);
+            enforceDeadlineEventExclusiveness();
+            handleExpiredTask();
+            updateTags(model);
+            updateModel(model);
+
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        } catch (CommandException ce) {
+            throw ce;
+        }
+    }
+
+    private void handleDuplicateTask(Model model) throws CommandException{
         boolean isDuplicateTask = model.hasTask(toAdd);
         if (isDuplicateTask) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
+    }
 
+    private void enforceDeadlineEventExclusiveness() throws CommandException{
+        boolean hasDeadlineValue = !toAdd.isDeadlineEmpty();
+        boolean hasDurationValue = !toAdd.isDurationEmpty();
+        boolean hasRecurringScheduleValue = !toAdd.isRecurringScheduleEmpty();
+        if (hasDeadlineValue && hasDurationValue && hasRecurringScheduleValue) {
+            throw new CommandException(MESSAGE_DEADLINE_EVENT_CONFLICT);
+        }
+        if (hasDeadlineValue && hasDurationValue) {
+            throw new CommandException(MESSAGE_DEADLINE_DURATION_CONFLICT);
+        }
+        if (hasDeadlineValue && hasRecurringScheduleValue) {
+            throw new CommandException(MESSAGE_DEADLINE_RECURRING_SCHEDULE_CONFLICT);
+        }
+    }
+
+    private void handleExpiredTask() throws CommandException{
         if (toAdd.hasExpired()) {
             logger.info("Invalid end date in recurring schedule detected: " + INVALID_ENDDATE);
             throw new CommandException(INVALID_ENDDATE);
         }
+    }
 
+    private void updateTags(Model model) {
         Set<Tag> tagSet = toAdd.getTags();
         Set<Tag> newTagSet = model.addTagsIfAbsent(tagSet);
         toAdd = toAdd.setTags(newTagSet);
+    }
 
+    private void updateModel(Model model) {
         model.addTask(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override

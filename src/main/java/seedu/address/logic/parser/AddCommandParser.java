@@ -39,10 +39,26 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DEADLINE, PREFIX_DURATION,
                         PREFIX_RECURRINGSCHEDULE, PREFIX_DESCRIPTION, PREFIX_STATUS, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TITLE)//, PREFIX_DURATION, PREFIX_DEADLINE
-                || !argMultimap.getPreamble().isEmpty()) {
+        try {
+            handleMissingCompulsoryFields(argMultimap);
+            Task task = createTaskWithGivenArguments(argMultimap);
+
+            return new AddCommand(task);
+        } catch (ParseException pe) {
+            throw pe;
+        }
+    }
+
+    private void handleMissingCompulsoryFields(ArgumentMultimap argumentMultimap) throws ParseException{
+        boolean hasPrefixesMissing = !arePrefixesPresent(argumentMultimap, PREFIX_TITLE);
+        boolean hasInvalidPreamble = !argumentMultimap.getPreamble().isEmpty();
+        if (hasInvalidPreamble || hasPrefixesMissing) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
+    }
+
+    private Task createTaskWithGivenArguments(ArgumentMultimap argMultimap) throws ParseException{
+        assert argMultimap.getValue(PREFIX_TITLE).isPresent();
 
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
         Deadline deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).orElse(""));
@@ -54,9 +70,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).orElse("not done"));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Task task = new Task(title, deadline, duration, recurringSchedule, description, status, tagList);
-
-        return new AddCommand(task);
+        return new Task(title, deadline, duration, recurringSchedule, description, status, tagList);
     }
 
     /**
