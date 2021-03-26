@@ -107,10 +107,13 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 The `Model`,
 
-* stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* does not depend on any of the other three components.
+* stores a `UserPrefs` object that represents the user’s preferences, such as
+  * the preferred GUI settings (e.g. window size of the app)
+  * the preferred storage filepath for the property book
+  * the preferred storage filepath for the appointment book
+* stores the property book and appointment book data
+* exposes an unmodifiable `ObservableList<Property>` and an unmodifiable `ObservableList<Appointment>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change
+* does not depend on any of the other three components
 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
