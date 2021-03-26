@@ -1,10 +1,13 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.plan.Description;
 import seedu.address.model.plan.Plan;
+import seedu.address.model.plan.Semester;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -16,6 +19,7 @@ public class PlanBuilder {
 
     private Description description;
     private Set<Tag> tags;
+    private List<Semester> semesters;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -23,6 +27,7 @@ public class PlanBuilder {
     public PlanBuilder() {
         description = new Description(DEFAULT_DESCRIPTION);
         tags = new HashSet<>();
+        semesters = new ArrayList<>();
     }
 
     /**
@@ -31,6 +36,7 @@ public class PlanBuilder {
     public PlanBuilder(Plan planToCopy) {
         description = planToCopy.getDescription();
         tags = new HashSet<>(planToCopy.getTags());
+        semesters = planToCopy.getSemesters();
     }
 
     /**
@@ -49,8 +55,16 @@ public class PlanBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code List<Semester>} of the {@code Plan} that we are building.
+     */
+    public PlanBuilder withSemesters(List<Semester> semesters) {
+        this.semesters = semesters;
+        return this;
+    }
+
     public Plan build() {
-        return new Plan(description, tags);
+        return new Plan(description, tags, semesters);
     }
 
 }
