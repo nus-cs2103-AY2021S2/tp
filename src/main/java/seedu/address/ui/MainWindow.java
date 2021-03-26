@@ -19,6 +19,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.storage.CalendarStorage;
 import seedu.address.ui.calendar.CalendarWindow;
+import seedu.address.ui.calendar.schedule.UpcomingSchedule;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -38,6 +39,8 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private CalendarWindow calendarWindow;
+    private CalendarStorage calendarStorage;
+    private UpcomingSchedule upcomingSchedule;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -74,11 +77,12 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
         setAccelerators();
 
-        //Create calendarStorage
-        CalendarStorage calendarStorage = new CalendarStorage(logic);
+        //Create calendar dependecies and window
+        calendarStorage = new CalendarStorage(logic);
+        upcomingSchedule = new UpcomingSchedule(calendarStorage);
+        calendarWindow = new CalendarWindow(calendarStorage, upcomingSchedule);
 
         helpWindow = new HelpWindow();
-        calendarWindow = new CalendarWindow(calendarStorage);
     }
 
     public Stage getPrimaryStage() {

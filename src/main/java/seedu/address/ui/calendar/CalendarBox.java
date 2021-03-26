@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
@@ -15,6 +16,7 @@ import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Exam;
 import seedu.address.model.person.Birthday;
 import seedu.address.ui.UiPart;
+import seedu.address.ui.calendar.schedule.UpcomingSchedule;
 
 public class CalendarBox extends UiPart<Region> {
     private static final String FXML = "CalendarBox.fxml";
@@ -23,6 +25,7 @@ public class CalendarBox extends UiPart<Region> {
     private LocalDate dateTime;
     private EventList events;
 
+    @FXML
     private VBox dateHolder;
     @FXML
     private Label date;
@@ -51,8 +54,17 @@ public class CalendarBox extends UiPart<Region> {
         loadEventsCount();
     }
 
+    public void addClickEventHandler(UpcomingSchedule upcomingSchedule) {
+        dateHolder.addEventHandler(MouseEvent.MOUSE_CLICKED, upcomingSchedule);
+    }
+
+    public LocalDate getDate() {
+        return dateTime;
+    }
+
     private void loadDate() {
-        date.setText(dateTime.getMonth().toString().substring(0, 3) + " " + dateTime.getDayOfMonth());
+        date.setText(dateTime.getMonth().toString().substring(0, 3)
+                + " " + dateTime.getDayOfMonth() + " " + dateTime.getYear());
     }
 
     private void loadEventsCount() {

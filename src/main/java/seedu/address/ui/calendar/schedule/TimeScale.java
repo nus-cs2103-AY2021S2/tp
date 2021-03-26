@@ -1,11 +1,9 @@
 package seedu.address.ui.calendar.schedule;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -13,6 +11,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.model.Event;
+import seedu.address.model.EventList;
 import seedu.address.ui.UiPart;
 
 
@@ -47,10 +46,9 @@ public class TimeScale extends UiPart<Region> {
         }
     };
 
-    private List<TimeScaleCell> timeScaleCells = new ArrayList<>();
+    private List<TimeScaleCell> timeScaleCells;
     private CurrentTimePointer currentTimePointer;
-    private ObservableList<Event> events;
-    private HashMap<Event, EventCell> taskMapper;
+    private EventList events;
 
     @FXML
     private StackPane timeScale;
@@ -60,23 +58,66 @@ public class TimeScale extends UiPart<Region> {
 
     /**
      * Constructor of the TimeScale.
-     * @param events the task list that TimeScale listens to.
      */
-    public TimeScale(ObservableList<Event> events) {
+    public TimeScale() {
         super(FXML);
-        this.events = events;
-        taskMapper = new HashMap<>();
+        this.events = new EventList();
+        this.timeScaleCells = new ArrayList<>();
 
         //ui set-up
         init();
-        setMargin();
-
         //listener set-up
-        handleListener();
 
     }
 
     private void init() {
+        setUpTimeScale();
+        //style, temporary, move to css/fxml
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setFitToWidth(true);
+
+        loadTimeScale();
+    }
+
+    private void loadTimeScale() {
+        setMargin();
+        addEventsToTimeScale();
+    }
+
+    private void clearTimeScale() {
+        timeScale.getChildren().clear();
+    }
+
+    /**
+     * Updates time scale for schedule.
+     * @param events events to be loaded as event cells in schedule.
+     */
+    public void updateTimeScale(EventList events) {
+        this.events = events;
+        clearTimeScale();
+        loadTimeScale();
+    }
+
+    /**
+     * Add tasks to time scale.
+     */
+    public void addEventsToTimeScale() {
+        //add taskCell
+        for (Event event : events.getEvents()) {
+            addEventToTimeScale(event);
+        }
+    }
+
+    private void addEventToTimeScale(Event event) {
+        EventCell eventCell = new EventCell(event);
+
+        //taskMapper.put(event, eventCell);
+
+        timeScale.getChildren().add(eventCell.getRoot());
+        timeScale.setMargin(eventCell.getRoot(), new Insets(eventCell.marginTop(), 0, 0, 60));
+    }
+
+    private void setUpTimeScale() {
         //set morning
         timeScaleCells.add(new TimeScaleCell("12 AM"));
         for (int i = 1; i < 12; i++) {
@@ -93,40 +134,17 @@ public class TimeScale extends UiPart<Region> {
 
         //repeat 12 AM
         timeScaleCells.add(new TimeScaleCell("12 AM"));
-
-        //style, temporary, move to css/fxml
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scrollPane.setFitToWidth(true);
-
-        addEventsToTimeScale();
     }
 
-    /**
-     * Add tasks to time scale.
-     */
-    public void addEventsToTimeScale() {
-        //add taskCell
-        for (Event event : events) {
-            addEventToTimeScale(event);
-        }
-    }
-
-    private void addEventToTimeScale(Event event) {
-        EventCell eventCell = new EventCell(event);
-
-        taskMapper.put(event, eventCell);
-
-        timeScale.getChildren().add(eventCell.getRoot());
-        timeScale.setMargin(eventCell.getRoot(), new Insets(eventCell.marginTop(), 0, 0, 60));
-    }
-
+    /*
     private void addEventToTimeScale(int eventId) {
-        addEventToTimeScale(events.get(eventId));
+        //addEventToTimeScale(events.get(eventId));
     }
 
     private void removeTaskFromTimeScale(Event event) {
-        timeScale.getChildren().remove(taskMapper.get(event).getRoot());
+        //timeScale.getChildren().remove(taskMapper.get(event).getRoot());
     }
+    */
 
     /**
      * Stackpane would squeeze everything in the same place, time function is used to list the timeScaleCells.
@@ -202,7 +220,7 @@ public class TimeScale extends UiPart<Region> {
 
     }
 
-    private void handleListener() {
+    /*private void handleListener() {
         events.addListener(eventListener);
-    }
+    }*/
 }
