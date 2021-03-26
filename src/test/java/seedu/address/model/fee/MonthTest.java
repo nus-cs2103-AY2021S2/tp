@@ -18,10 +18,10 @@ public class MonthTest {
     @Test
     public void equalsMonth() {
         Month firstMonth = new Month(1);
-        String FIRST_MONTH_NAME = "January";
+        String firstMonthName = "January";
         assertEquals(firstMonth, new Month(1));
         assertEquals(firstMonth.toString(), String.valueOf(new Month(1).getMonth()));
-        assertEquals(firstMonth.getMonthName(), FIRST_MONTH_NAME);
+        assertEquals(firstMonth.getMonthName(), firstMonthName);
     }
 
     @Test
