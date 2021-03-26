@@ -186,7 +186,7 @@ public class CustomerEditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public void setTags(List<String> tags) {
-            this.tags = new ArrayList<>(tags);
+            this.tags = (tags != null) ? new ArrayList<>(tags) : null;
         }
 
         /**
