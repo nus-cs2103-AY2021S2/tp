@@ -40,7 +40,7 @@ public class ViewProjectCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, lastShownList.get(index.getZeroBased())),
-                new ViewProjectUiCommand(index));
+        return new CommandResult(String.format(MESSAGE_SUCCESS,
+                lastShownList.get(index.getZeroBased()).getProjectName()), new ViewProjectUiCommand(index));
     }
 }

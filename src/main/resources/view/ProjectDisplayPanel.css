@@ -117,3 +117,7 @@
 .scroll-pane > .viewport {
     -fx-background-color: transparent;
 }
+
+#interval {
+    -fx-padding: 0 10 0 0;
+}

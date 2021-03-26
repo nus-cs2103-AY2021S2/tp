@@ -63,6 +63,6 @@ public class Deadline extends CompletableDeadline {
      */
     @Override
     public String toString() {
-        return "[D]" + this.getStatusIcon() + " " + this.description + " (by: " + DateUtil.decodeDate(by) + ")";
+        return this.description + " (by: " + DateUtil.decodeDate(by) + ")";
     }
 }

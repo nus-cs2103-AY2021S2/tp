@@ -171,40 +171,49 @@ Step 4. During it's execution, the `Deadline` object would be added to a `Deadli
         * `Task` is not closed to modification. A new implementation of `Task` might require the addition of fields to store additional behaviours and attributes.
         * Risk of having a `Todo` added to a `DeadlineList` is heightened during implementation. This is in contrast to alternative 2, where each `TodoList`, `DeadlineList` and `EventList` holds only `CompletableTodo`, `CompletableDeadline` and `Repeatable` respectively.
 
-### UI Commands
+### View Projects Feature
 
-The mechanism to issue commands to change some aspect of the `Ui` (e.g. displaying a new panel) is facilitated by `UiCommand` abstract class. This mechanism is similar to the command pattern. 
+This section explains the implementation of the View Project feature. The implementation of other commands that opens panels, windows or tabs are similar.
 
-The client creates a concrete `UiCommand` that encapsulates all information needed to make a change to the Ui. Each concrete `UiCommand` implements the `UiCommand#execute(MainWindow)` method, which calls the appropriate method(s) in `MainWindow` to make a change to the UI.
+The `ViewProject` command results in the UI displaying the specified project together with all its related information. 
+
+The mechanism to issue the command to display a new project is facilitated by `ViewProjectUiCommand`, a concrete implementation of the `UiCommand` abstract class, which encapsulates the project `Index` as well as the logic that determines which methods to call in the `MainWindow`.
 
 Given below is an example usage scenario and how the mechanism behaves at each step.
 
-Step 1. The user issues executes the command `viewP 1`, which displays a panel containing information about the first project in the project list. 
+![View Project Sequence Diagram](images/ViewProjectCommandSequenceDiagram.png)
 
-Step 2. A `CommandResult` object is created (see section on [Logic Component](#logic-component)) containing a `ViewProjectUiCommand` object, a concrete implementation of `UiCommand`.
+Step 1. The user issues the command `viewP 1` to display a panel containing information about the first project in the project list.
 
-Step 3. The `CommandResult` is passed to the `Ui`, which gets the `UiCommand` by calling `CommandResult#getUiCommand()`.
+Step 2. A `CommandResult` object is created (see section on [Logic Component](#logic-component)) containing a `ViewProjectUiCommand` object. The `ViewProjectUiCommand` object stores the `Index` of the first project in the project list.
 
-Step 4. The `Ui` calls `UiCommand#execute(MainWindow)`, which will result in a call to the overridden method `ViewProjectUiCommand#execute(MainWindow)`. Execution of this method will result in calls to the relevant method(s) in `MainWindow` required to display the new project.
+Step 3. The `CommandResult` is passed to the `MainWindow`, which gets the `UiCommand` by calling `CommandResult#getUiCommand()`.
+
+Step 4. The `MainWindow` now calls `UiCommand#execute`, which will result in a call to the overridden method `ViewProjectUiCommand#execute`.
+
+Step5. Execution of this method will result in a call to `MainWindow#selectProject` with the `Index` of the first project as an argument. This will display the first project in the project list.
 
 #### Design Considerations
 
 ##### Aspect: How to store and pass around UI related instructions
 
 * **Alternative 1 (current choice):** Encapsulate instructions using `UiCommand` Object.
-    * Pros: 
-        * Design allows behaviour of `Ui` to be extended without (or with minimal) changes to the `Ui` and `CommandResult`.
-        * `UiCommand` encapsulates all information needed to execute the instruction (e.g. index of project).
-        
+    * Pros:
+        * Design allows behaviour of `UI` to be extended without (or with minimal) changes to the `MainWindow` and `CommandResult`. This makes it relatively easy to add many `UiCommands`.
+        * `UiCommand` encapsulates all information needed to execute the instruction (e.g. `Index` of project). It is easy to add new commands that store different types of information.
+        * Easy to support complex `UiCommands` that perform multiple instructions or contain logic.
+
     * Cons:
         * Many classes required.
+        * `MainWindow` and `UiCommand` are still highly coupled, as `MainWindow` both invokes the command and performs the requested action. 
 
 * **Alternative 2 (implementation used in AB3):** Store instructions in `CommandResult` as boolean fields.
-    * Pros: 
+    * Pros:
         * Easy to implement.
-        * Minimal changes needed if the new instruction is a combination of already existing instructions as the already existing boolean fields can be set to true.  
-    * Cons: 
-        * `Ui` and `CommandResult` are not closed to modification. A new instruction might require the addition of fields to `CommandResult` (to store instructions and related data) as well as a new conditional statement in `Ui` to handle the new instruction.
+        * Minimal changes needed if the new instruction is a combination of already existing instructions as the already existing boolean fields can be set to true.
+        * No need for extra classes.
+    * Cons:
+        * `MainWindow` and `CommandResult` are not closed to modification. A new instruction to change the UI might require the addition of fields to `CommandResult` (boolean fields for instructions and other fields for related data) as well as a new conditional statement in `MainWindow#execute` to handle the new instruction. This makes it relatively difficult to add new instructions.
 
 ### Update Commands [Coming soon in v1.3]
 
@@ -272,22 +281,22 @@ Step 3: The `AddEventCommand#execute` is called. It checks whether `Index` provi
 
 Step 4: The `Project` specified by Index will call addEvent function to add the given `Event` to its `EventList`. `Model` updates its Project List based on the change.
 
-Step 5: A `CommandResult` object is created (see section on [Logic Component](#logic-component)) containing the Event added. The `Ui` will help print out the success message. 
+Step 5: A `CommandResult` object is created (see section on [Logic Component](#logic-component)) containing the Event added. The `Ui` will help print out the success message.
 
 #### Design Considerations
 
 ##### Aspect: How to add a new `Event` to a `Project`.
 
 * **Alternative 1 (current choice):** `Project` tells its `EventList` to update the list of Events stored.
-    * Pros: 
+    * Pros:
         * This implementation requires no additional time and space (for creation of new 'Project` and `EventList` object).
     * Cons:
-        * This implementation will not work with an immutable implementation of `EventList` 
+        * This implementation will not work with an immutable implementation of `EventList`
 
 * **Alternative 2:** A new `Project` object is initialized with a new `EventList` object containing the added `Event`.
     * Pros: 
         * If the implementation of `EventList` becomes immutable. This implementaion still works.
-    * Cons: 
+    * Cons:
         * This implementation requires more time and space (for creation of new 'Project` and `EventList` object).
 
 ### \[Proposed\] Undo/redo feature

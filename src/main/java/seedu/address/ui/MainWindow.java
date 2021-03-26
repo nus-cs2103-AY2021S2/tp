@@ -173,7 +173,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             return commandResult;
-        } catch (UiCommandException | ParseException e) {
+        } catch (CommandException | UiCommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw new CommandException(e.getMessage(), e);
@@ -250,22 +250,22 @@ public class MainWindow extends UiPart<Stage> {
      * Shows overview tab.
      */
     public void displayOverviewTab() throws UiCommandException {
-        try {
-            projectDisplayPanel.showOverviewTab();
-        } catch (NullPointerException e) {
-            throw new UiCommandException(MESSAGE_UI_PROJECT_NOT_DISPLAYED, e);
+        if (!infoDisplayPlaceholder.getChildren().contains(projectDisplayPanel.getRoot())) {
+            throw new UiCommandException(MESSAGE_UI_PROJECT_NOT_DISPLAYED);
         }
+
+        projectDisplayPanel.showOverviewTab();
     }
 
     /**
      * Shows todos tab.
      */
     public void displayTodosTab() throws UiCommandException {
-        try {
-            projectDisplayPanel.showTodosTab();
-        } catch (NullPointerException e) {
-            throw new UiCommandException(MESSAGE_UI_PROJECT_NOT_DISPLAYED, e);
+        if (!infoDisplayPlaceholder.getChildren().contains(projectDisplayPanel.getRoot())) {
+            throw new UiCommandException(MESSAGE_UI_PROJECT_NOT_DISPLAYED);
         }
+
+        projectDisplayPanel.showTodosTab();
     }
 
     /**

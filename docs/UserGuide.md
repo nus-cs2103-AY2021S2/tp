@@ -3,44 +3,65 @@ layout: page
 title: User Guide
 ---
 
-CoLAB (Command Line Address Book) is a **desktop app for students currently enrolled in a university to manage their school projects.** It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CoLAB can get your project management tasks done faster than traditional GUI apps.
+<!-- TOC adapted from
+https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2c67d7c407fcabb376191ff
+-->
+<div class="toc-no-bullet-points">
+  * Table of Contents
+  {:toc}
+</div>
 
-* Table of Contents
-{:toc}
+## **1.Introduction**
 
---------------------------------------------------------------------------------------------------------------------
+<div align="center">
+  <img alt="logo" src="images/logo.png">
+</div>
 
-## **Quick start**
+Welcome to the user guide of **CoLAB**! Are you a university student in search of a reliable app to keep track of your school projects? Do you struggle to keep track of the many todos and deadlines for various school projects? Do you also tend to forget the various group meetings you have scheduled? You have come to the right place!
 
-1. Ensure you have Java `11` or above installed in your Computer.
+CoLAB (Collaboration Lab) is a **desktop app for students currently enrolled in a university to manage their school projects.** It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CoLAB can get your project management tasks done faster than traditional GUI apps. CoLAB's main features include:
 
-1. Download the latest `colab.jar` from [here](https://github.com/AY2021S2-CS2103T-T11-2/tp/releases).
+- Project management
+- Contacts management
+- Today View
 
-1. Copy the file to the folder you want to use as the _home folder_ for CoLAB.
+With CoLAB, you can efficiently manage all your school projects through our comprehensive project management tools. We have put in a lot of time and effort into designing a user-friendly User Interface (UI) such that CoLAB remains intuitive to both first-time users and seasoned ones. We look forward to seeing what you accomplish with CoLAB with a clean and inviting UI. What are you waiting for? Get your journey started with the [Quick Start section](#3quick-start)!
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+## **2.About**
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`listC`** and pressing Enter will list all contacts.<br>
-   Some example commands you can try:
+This section serves to familarise you with information and terms that would help you make the best use of this user guide.
 
-   * **`viewP 1`** : Displays the first project.
+### 2.1 Structure of this Document
 
-   * **`addP`**`n/My Project` : Adds a new project named `My Project` to CoLAB.
+We have included a large set of features in CoLAB to give you the greatest flexibility over what you can do with it. As such, this User Guide has been structured in a manner that allows you to easily find what you are looking for. 
 
-   * **`tabT`** : Displays the todos tab.
+In [Section 2.2: Reading this Document](#22-reading-this-document), you will find useful tips on efficiently reading this document.
 
-   * **`addTto`**`1 d/My Task` : Adds a todo with the description `My Task` to the first project.
+In [Section 3: Quick Start](#3quick-start), you will find a quick start guide to get you started with using CoLAB.
 
-   * **`deleteP`**`3` : Deletes the third project in the list.
+In [Section 4: Features](#4features), you will find documentation on all of CoLAB's commands and features.
 
-   * **`exit`** : Exits the app.
+In [Section 5: FAQ](#5faq), you may find answers to some questions you may have on using CoLAB.
 
-1. Refer to the [Features](#features) below for details of each command.
+In [Section 6: Command Summary](#6command-summary), you will a summary on CoLAB's commands and features.
 
---------------------------------------------------------------------------------------------------------------------
+You can also easily sift through CoLAB's various commands and features by referring to the Table of Contents at the beginning of this User Guide.
 
-## **Features**
+### 2.2 Reading this Document
+
+This subsection serves to provide explanations on the symbols, syntax and technical terms  used throughout this User Guide. Familiarising yourself with this subsection will make the User Guide easier to read.
+
+#### 2.2.1 Sections of the Application Window
+
+Different sections of the application window will be referred to by the names described in the image shown below:
+
+![App Window Sections](images/app_window_sections.png)
+
+#### 2.2.2 Special Formats
+
+[TODO]
+
+#### 2.2.3 Command Format
 
 <div markdown="block" class="alert alert-info">
 
@@ -66,9 +87,43 @@ CoLAB (Command Line Address Book) is a **desktop app for students currently enro
 
 </div>
 
+--------------------------------------------------------------------------------------------------------------------
+
+## **3.Quick start**
+
+1. Ensure you have Java `11` or above installed in your Computer.
+
+1. Download the latest `colab.jar` from [here](https://github.com/AY2021S2-CS2103T-T11-2/tp/releases).
+
+1. Copy the file to the folder you want to use as the _home folder_ for CoLAB.
+
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   ![Ui](images/Ui.png)
+
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`listC`** and pressing Enter will list all contacts.<br>
+   Some example commands you can try:
+
+   * **`viewP 1`** : Displays the first project.
+
+   * **`addP`**`n/My Project` : Adds a new project named `My Project` to CoLAB.
+
+   * **`tabT`** : Displays the todos tab.
+
+   * **`addTto`**`1 d/My Task` : Adds a todo with the description `My Task` to the first project.
+
+   * **`deleteP`**`3` : Deletes the third project in the list.
+
+   * **`exit`** : Exits the app.
+
+1. Refer to the [Features](#4features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **4.Features**
+
 ### Projects
 
-#### Viewing a project: `listP`
+#### Viewing a project: `viewP`
 
 Displays a panel with details of a specified project.
 
@@ -79,7 +134,7 @@ Format: `viewP PROJECT_INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `viewP 1` Displays the first project. 
+* `viewP 1` Displays the first project.
 * `viewP 2` Displays the second project.
 
 #### Viewing the overview tab: `tabO`
@@ -114,8 +169,8 @@ Adds an event to a specified project.
 
 Format: `addEto PROJECT_INDEX d/DESCRIPTION i/INTERVAL at/REPEATABLE_DATE`
 
-* Adds an event to the project at the specified `PROJECT_INDEX`. 
-* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu. 
+* Adds an event to the project at the specified `PROJECT_INDEX`.
+* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
 * The index **must be a positive integer** 1, 2, 3, …​
 * `INTERVAL` must be one of the following values:
     * `NONE`
@@ -137,7 +192,7 @@ Adds a deadline to a specified project.
 Format: `addDto PROJECT_INDEX d/DESCRIPTION by/REPEATABLE_DATE`
 
 * Adds a deadline to the project at the specified `PROJECT_INDEX`.
-* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu. 
+* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
 * The index **must be a positive integer** 1, 2, 3, …​
 * `REPEATABLE_DATE` must be in `dd-MM-yyyy` format.
 
@@ -186,7 +241,7 @@ Format: `deleteP PROJECT_INDEX`
 * Deletes a project at the specified `PROJECT_INDEX`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
 * The index **must be a positive integer** 1, 2, 3, …​
-  
+
 Examples:
 * `deleteP 1`
 * `deleteP 2`
@@ -199,7 +254,7 @@ Format: `deleteE PROJECT_INDEX r/EVENT_INDEX`
 
 * Deletes the event at the specified `EVENT_INDEX` from the project at the specified `PROJECT_INDEX`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
-* The `EVENT_INDEX` refers to the number shown beside the event when viewing the project. 
+* The `EVENT_INDEX` refers to the number shown beside the event when viewing the project.
 * Both indexes **must be a positive integer** 1, 2, 3, …​
 
 Examples:
@@ -386,14 +441,14 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **FAQ**
+## **5.FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CoLAB home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Command summary**
+## **6.Command summary**
 
 Action | Format, Examples
 --------|------------------
@@ -419,6 +474,11 @@ Action | Format, Examples
 **View Today Panel** | `today`
 **Help** | `help`
 
-## **Acknowledgements**
+## **7.Acknowledgements**
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+- Libraries used:
+    - [JavaFX](https://openjfx.io/)
+    - [Jackson](https://github.com/FasterXML/jackson)
+    - [JUnit5](https://github.com/junit-team/junit5)
+    - [TestFX](https://github.com/TestFX/TestFX)
