@@ -19,19 +19,27 @@
                 <Insets bottom="5" left="15" right="5" top="5" />
             </padding>
             <HBox alignment="CENTER_LEFT" spacing="5">
-                <VBox>
+                <VBox alignment="CENTER_LEFT">
                     <Label fx:id="date" styleClass="cell_small_label" text="\$date" wrapText="true"/>
                     <Label fx:id="time" styleClass="cell_small_label" text="\$time" wrapText="true"/>
                     <Label fx:id="duration" styleClass="cell_small_label" text="\$duration" wrapText="true"/>
                     <Label fx:id="subject" styleClass="cell_small_label" text="\$subject" wrapText="true"/>
                     <Label fx:id="fee" styleClass="cell_small_label" text="\$fee" wrapText="true"/>
                 </VBox>
-                <Label fx:id="id" styleClass="cell_big_label" textAlignment="RIGHT">
-                    <minWidth>
-                        <!-- Ensures that the label text is never truncated -->
-                        <Region fx:constant="USE_PREF_SIZE" />
-                    </minWidth>
-                </Label>
+                <Region prefWidth="100.0" HBox.hgrow="ALWAYS" />
+                <VBox>
+                    <Label fx:id="id" styleClass="cell_big_label" alignment="TOP_RIGHT">
+                        <padding>
+                            <Insets topRightBottomLeft="2" />
+                        </padding>
+                    </Label>
+                    <Region prefWidth="10" VBox.vgrow="ALWAYS" />
+                    <Label fx:id="sessionType" styleClass="cell_big_label" alignment="BOTTOM_RIGHT" text="I">
+                        <padding>
+                            <Insets topRightBottomLeft="2" />
+                        </padding>
+                    </Label>
+                </VBox>
             </HBox>
         <rowConstraints>
             <RowConstraints />

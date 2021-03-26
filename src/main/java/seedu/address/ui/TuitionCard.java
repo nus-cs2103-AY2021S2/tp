@@ -83,7 +83,7 @@ public class TuitionCard extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new SessionCard(session).getRoot());
+                setGraphic(new SessionCard(session, getIndex() + 1).getRoot());
             }
         }
     }

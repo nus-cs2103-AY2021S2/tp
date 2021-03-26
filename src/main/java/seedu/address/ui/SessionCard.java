@@ -47,7 +47,7 @@ public class SessionCard extends UiPart<Region> {
     /**
      * Creates a {@code TuitionCard} with the given {@code Tuition} and index to display.
      */
-    public SessionCard(Session session) {
+    public SessionCard(Session session, int displayedIndex) {
         super(FXML);
         this.session = session;
         date.setText("Date: " + session.getSessionDate().getDate().toString());
@@ -55,6 +55,7 @@ public class SessionCard extends UiPart<Region> {
         duration.setText("Duration: " + session.getDuration().getValue() + " mins");
         subject.setText("Subject: " + session.getSubject().getValue());
         fee.setText("Fee: $" + String.format("%.2f", session.getFee().getFee()));
+        id.setText(displayedIndex + "");
     }
 
     @Override

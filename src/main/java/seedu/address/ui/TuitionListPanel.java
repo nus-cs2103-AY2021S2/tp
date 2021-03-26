@@ -37,10 +37,16 @@ public class TuitionListPanel extends UiPart<Region> {
 
         studentList.addListener((ListChangeListener<Student>) change -> {
             while (change.next()) {
-
+                populateTuitionList(studentList);
             }
         });
+        populateTuitionList(studentList);
+    }
 
+    /**
+     * Populate the TuitionListPanel with the filtered student list
+     */
+    private void populateTuitionList(ObservableList<Student> studentList) {
         ObservableList<Student> studentWithSessionsList = filterStudentsWithSessions(studentList);
         tuitionListView.setItems(studentWithSessionsList);
         tuitionListView.setCellFactory(listView -> new TuitionListViewCell());
