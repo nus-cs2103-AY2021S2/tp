@@ -164,9 +164,7 @@ Step 3. The user executes `add appointment …​` to add a new appointment. The
 
 ![UndoState2](images/UndoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will 
-not executes `previousAppointmentLists.push(new ArrayList<>(appointments.asUnmodifiableObservableList()))`, so the 
-appointment book state will not be saved into the `previousAppointmentLists`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not executes `previousAppointmentLists.push(new ArrayList<>(appointments.asUnmodifiableObservableList()))`, so the appointment book state will not be saved into the `previousAppointmentLists`.
 
 </div>
 
@@ -174,12 +172,13 @@ Step 4. The user now decides that adding the appointment was a mistake, and deci
 
 ![UndoState3](images/UndoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `previousAppointmentLists` is empty,
-then there are no previous AppointmentBook states to restore. The `undo` command uses `commandHistory.empty()` 
-to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `previousAppointmentLists` is empty, then there are no previous AppointmentBook states to restore. The `undo` command uses `commandHistory.empty()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
 
 </div>
+
+The following sequence diagram shows how the undo operation works:
+
+![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
 Step 5. The user then decides to execute the command `list`. Commands that do not modify the appointment book, such as `list`, will usually not executes `previousAppointmentLists.push(new ArrayList<>(appointments.asUnmodifiableObservableList()))`. Thus, the `previousAppointmentLists` remains unchanged.
 
@@ -206,6 +205,64 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: Difficult to implement, different implementations are required to restore different changes.
 
 _{more aspects and alternatives to be added}_
+
+### \[Implemented\] Update feature
+
+#### Implementation
+
+The update mechanism is facilitated by `PocketEstate`. It implements the update feature with 3 parts, the `Status` field in `Property`, a `UpdateCommandParser` and `UpdateCommand`.
+
+The `Status` field consists of a `Status` interface with a `next()` method that returns a `Status` representing the next stage of the property selling process. There are 3 classes that implement `Status`, `Option`, `SalesAgreement` and `Completion`. Each class takes in an `Offer` which represents the price that was offered for the property.
+
+* `Option` — Represents the stage where the buyer exercises the Option to Purchase.
+* `SalesAgreement` — Represents the stage where the buyer is considering the Sales and Purchase Agreement.
+* `Completion` — Represents the stage where the property has been sold.
+
+(insert class diagram of status)
+
+The `UpdateCommand` is assisted by 3 subcommands that extend the abstract class `UpdateCommand` which itself extends `Command`. The subcommands are, `UpdateNewCommand`, `UpdateProceedCommand` and `UpdateCancelCommand`. The subcommands help execute on the model when the user calls `u/new`, `u/proceed` or `u/cancel` respectively. 
+
+* `UpdateNewCommand` — Takes in an `Index` and an Amount to create a new `Status` with the given Amount for the property at the given `Index`.
+* `UpdateProceedCommand` — Takes in an `Index` and moves the `Status` of the property at the given `Index` to the next `Status` if applicable.
+* `UpdateNewCommand` — Takes in an `Index` and removes the `Status` of the property at the given `Index` if applicable.
+
+(insert class diagram of UpdateCommand)
+
+Given below is an example usage scenario and how the update mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `PocketEstate` will be initialized with the initial appointment book state and property book state.
+
+Step 2. The user executes `update 1 u/new 600,000` command to add a new status with value 600,000 to the first property.
+
+(some object diagram?)
+
+Step 3. The user executes `update 1 u/proceed` to move the `Status` of the first property to `SalesAgreement`.
+
+(some object diagram?)
+
+Step 4. The user executes `update 1 u/proceed` to move the `Status` of the first property to `Completion`.
+
+(some object diagram?)
+
+Step 5. The user then decides that having the `Completion` status on the first property was a mistake and executes the command `update 1 u/cancel`.
+
+(some object diagram?)
+
+
+#### Design consideration:
+
+##### Aspect: How Update executes
+
+
+The following activity diagram summarizes what happens when a user executes an `UpdateCommand`:
+
+(insert overall update activity diagram here)
+
+(insert UpdateCommandParser activity diagram here)
+
+The following sequence diagram shows how the update operation works:
+
+(insert update new activity diagram here)
 
 ### \[Proposed\] Data archiving
 

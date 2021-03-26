@@ -129,6 +129,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setPropertyBook(ReadOnlyPropertyBook propertyBook) {
+        assert propertyBook != null;
         this.propertyBook.resetData(propertyBook);
     }
 
@@ -145,22 +146,27 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteProperty(Property target) {
+        assert target != null;
         propertyBook.removeProperty(target);
     }
 
     @Override
     public void addProperty(Property property) {
+        assert property != null;
         propertyBook.addProperty(property);
         updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
     }
 
     @Override
     public void setProperty(Property target, Property editedProperty) {
+        assert target != null;
+        assert editedProperty != null;
         propertyBook.setProperty(target, editedProperty);
     }
 
     @Override
     public void setProperty(int i, Property property) {
+        assert property != null;
         Property target = getProperty(i);
         setProperty(target, property);
     }
@@ -214,6 +220,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setAppointmentBook(ReadOnlyAppointmentBook appointmentBook) {
+        assert appointmentBook != null;
         this.appointmentBook.resetData(appointmentBook);
     }
 
@@ -230,11 +237,13 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteAppointment(Appointment target) {
+        assert target != null;
         appointmentBook.removeAppointment(target);
     }
 
     @Override
     public void addAppointment(Appointment appointment) {
+        assert appointment != null;
         appointmentBook.addAppointment(appointment);
         updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
     }

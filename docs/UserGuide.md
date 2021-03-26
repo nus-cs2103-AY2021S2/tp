@@ -154,8 +154,8 @@ Examples:
 Updates the status of a property from Option to Purchase, to Sales and Purchase Agreement to Completion
 
 Formats:
-* `update INDEX new AMOUNT`
-* `update INDEX [proceed][cancel]`
+* `update INDEX u/new AMOUNT`
+* `update INDEX u/[proceed][cancel]`
 
 Description:
 * Edits the property at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …​
@@ -166,8 +166,8 @@ Description:
 * At least one of the optional fields must be provided.
 
 Examples:
-*  `update 1 new 600000` Creates a new status with amount 600000 for the 1st property.
-*  `update 3 proceed` Moves the status of the 3rd property to next one.
+*  `update 1 u/new 600000` Creates a new status with amount 600000 for the 1st property.
+*  `update 3 u/proceed` Moves the status of the 3rd property to next one.
 
 ### Removing an entry : `delete`
 
