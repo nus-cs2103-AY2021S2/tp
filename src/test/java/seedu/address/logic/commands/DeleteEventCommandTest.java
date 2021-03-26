@@ -5,11 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showEventAtIndex;
+import static seedu.address.testutil.TypicalEvents.getTypicalSochedule;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EVENT;
-import static seedu.address.testutil.TypicalTasks.getTypicalSochedule;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
@@ -28,7 +27,6 @@ public class DeleteEventCommandTest {
     private Model model = new ModelManager(getTypicalSochedule(), new UserPrefs());
 
     @Test
-    @Disabled
     public void execute_validIndexUnfilteredList_success() {
         Event eventToDelete = model.getFilteredEventList().get(INDEX_FIRST_EVENT.getZeroBased());
         DeleteEventCommand deleteEventCommand = new DeleteEventCommand(INDEX_FIRST_EVENT);
@@ -42,16 +40,14 @@ public class DeleteEventCommandTest {
     }
 
     @Test
-    @Disabled
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEventList().size() + 1);
         DeleteEventCommand deleteEventCommand = new DeleteEventCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteEventCommand, model, Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
     }
 
     @Test
-    @Disabled
     public void execute_validIndexFilteredList_success() {
         showEventAtIndex(model, INDEX_FIRST_EVENT);
 
@@ -68,7 +64,6 @@ public class DeleteEventCommandTest {
     }
 
     @Test
-    @Disabled
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         showEventAtIndex(model, INDEX_FIRST_EVENT);
 
