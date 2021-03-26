@@ -249,11 +249,11 @@ public class MainWindow extends UiPart<Stage> {
      * Detect the change in orientation setting
      */
     private void configOrientation() {
-        if(noteSplitPanel.getOrientation() != logic.getGuiSettings().getNotePanelOrientation()) {
+        if (noteSplitPanel.getOrientation() != logic.getGuiSettings().getNotePanelOrientation()) {
             noteSplitPanel.setOrientation(logic.getGuiSettings().getNotePanelOrientation());
         }
 
-        if(dictionarySplitPanel.getOrientation() != logic.getGuiSettings().getDictionaryPanelOrientation()) {
+        if (dictionarySplitPanel.getOrientation() != logic.getGuiSettings().getDictionaryPanelOrientation()) {
             dictionarySplitPanel.setOrientation(logic.getGuiSettings().getDictionaryPanelOrientation());
         }
     }
