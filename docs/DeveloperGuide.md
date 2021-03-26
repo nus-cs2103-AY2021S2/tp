@@ -184,6 +184,26 @@ A `Client` consists of at least one of the following attributes,
     * Pros: Easy to implement
     * Cons: More prone to bugs
 
+### Appointment component
+
+![Structure of the Appointment Component](images/AppointmentClassDiagram.png)
+
+#### Implementation
+
+An `Appointment` is stored in a `UniqueAppointmentList`, which ensures that there are no duplicate appointments in the `AppointmentBook`. Each `Appointment` is uniquely identified by its `Date` and `Time`.
+
+An `Appointment` consists of the following mandatory attributes,
+* a `Name`: the name of the appointment
+* a `Remark`: a note about the appointment
+* a `Date`: the date of the appointment
+* a `Time`: the time of the appointment
+
+#### Design Consideration
+
+##### Aspect: How each attribute of `Appointment` is stored
+
+Similar design considerations as [how each attribute of `Property` is stored](#aspect-how-each-attribute-of-property-is-stored)
+
 ### \[Proposed\] Undo feature
 
 #### Proposed Implementation
