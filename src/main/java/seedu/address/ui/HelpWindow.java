@@ -15,6 +15,8 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.medical.AddAppointmentCommand;
 import seedu.address.logic.commands.medical.ListAppointmentsCommand;
+import seedu.address.logic.commands.medical.OpenMedicalRecordCommand;
+import seedu.address.logic.commands.medical.ViewPatientCommand;
 
 /**
  * Controller for a help page
@@ -28,6 +30,8 @@ public class HelpWindow extends UiPart<Stage> {
                                                         + "\n\n" + ListCommand.MESSAGE_USAGE
                                                         + "\n\n" + AddAppointmentCommand.MESSAGE_USAGE
                                                         + "\n\n" + ListAppointmentsCommand.MESSAGE_USAGE
+                                                        + "\n\n" + OpenMedicalRecordCommand.MESSAGE_USAGE
+                                                        + "\n\n" + ViewPatientCommand.MESSAGE_USAGE
                                                         + "\n\n" + HelpCommand.MESSAGE_USAGE + "\n\n";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);

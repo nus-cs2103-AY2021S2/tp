@@ -1,4 +1,10 @@
-DocBob is a **desktop app for managing your patient's information, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Bob can get your patient's medical information and scheduled appointments faster than any other patient's information management app in the market.
+<p align="center">
+  <img width="341" height="381" src="https://user-images.githubusercontent.com/48408342/112603571-29845b80-8e50-11eb-8dee-bb88603fffb8.png">
+</p>
+
+**DocBob** is a **desktop app for managing your patient's information, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Bob can get your patient's **medical information** and **scheduled appointments** faster than any other patient's information management app in the market. Bob will serve you dilligently and make sure you will never forget an appointment with a patient ever again!
+
+The purpose of this User Guide is to help new users(doctors) understand how to get the app running and learn about the basic commands and their usages.
 
 * Table of Contents
 {:toc}
@@ -79,7 +85,7 @@ Examples:
 
 ### Deleting a patients' contact : `delete`
 
-Deletes a patient from DocBob's contact list, identified by their index number displayed when when the `list` command is entered.
+Deletes a patient from DocBob's contact list, identified by the index number shown in the displayed patient list.
 
 Format : `delete INDEX`
 where INDEX must be a positive integer (1,2,3,...)
@@ -101,7 +107,7 @@ Output:
 
 ### Adding an appointment to a patient : `appt`
 
-Adds a scheduled upcoming appointment with a patient in DocBob's contact list. Add an appointment to a patient by their index, which is shown when the `list` command is entered, as well as the date and time of the appointment.
+Adds a scheduled upcoming appointment with a patient in DocBob's contact list. Add an appointment and its date and time to a patient identified by the index number shown in the displayed patient list.
 
 Format: `appt INDEX /dDATE`
 where INDEX must be a positive integer (1,2,3,...)
@@ -128,6 +134,32 @@ Output:
 `Thu, 11 Nov, 12:00 - Roy Balakrishnan`<br>
 `Sun, 12 Dec, 12:00 - Alex Yeoh`<br>
 `Sun, 12 Dec, 12:12 - Charlotte Oliveiro`<br>
+
+
+### Create a new medical record for a patient : `mrec`
+
+Opens an editor for you to write a custom medical report for the patient, identified by the index number shown in the displayed patient list.
+
+Format : `mrec INDEX`
+where INDEX must be a positive integer (1,2,3,...)
+
+Examples:
+* `mrec 3`
+
+### View all information regarding a patient : `view`
+
+Shows an overview of all contact information, tags, appointments and medical records of a patient, identified by the index number shown in the displayed patient list.
+
+Format : `view INDEX`
+where INDEX must be a positive integer (1,2,3,...)
+
+Examples:
+* `view 1`
+
+Output: 
+
+![image](https://user-images.githubusercontent.com/48408342/112605797-a6183980-8e52-11eb-9694-55d0ff014af4.png)
+
 
 ### Exiting the program : `exit`
 
@@ -183,10 +215,10 @@ Client contact data is saved in the hard disk automatically after any command th
 
 ### Editing the data file
 
-Client contact data is saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Client contact data is saved as a JSON file `[JAR file location]/data/docBob.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, docBob will discard all data and start with an empty data file at the next run.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -208,4 +240,6 @@ Action | Format, Examples
 **list** | `list`
 **appt** | `appt 1 d/010120211200`
 **listappt** | `listappt`
+**mrec** | `mrec 3`
+**view** | `view 1`
 **exit** | `exit`

@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Set;
@@ -11,18 +10,16 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.medical.Appointment;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
  */
 public class ViewPatientBox extends UiPart<Region> {
+
+    public static final String STARTUP_MESSAGE = "Hello Doc, to view patient info: \n"
+            + "try 'view INDEX'";
 
     private static final String FXML = "ViewPatientBox.fxml";
 
@@ -39,6 +36,10 @@ public class ViewPatientBox extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label tagInfo;
+    @FXML
+    private Label appointmentInfo;
+    @FXML
     private FlowPane tags;
     @FXML
     private FlowPane appointments;
@@ -53,36 +54,23 @@ public class ViewPatientBox extends UiPart<Region> {
         phone.setText("Phone: " + person.getPhone().value);
         address.setText("Address: " + person.getAddress().value);
         email.setText("Email: " + person.getEmail().value);
+        tagInfo.setText("Tags:");
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        appointmentInfo.setText(String.format("Appointments with %s:", person.getName().fullName));
         person.getAppointments().stream()
-                .min(Comparator.comparing(Appointment::getDate))
-                .ifPresent(appt -> appointments.getChildren().add(new Label(appt.getDateDisplay())));
+                .sorted(Comparator.comparing(appt -> appt.getDate()))
+                .forEach(appt -> appointments.getChildren().add(new Label(appt.getDateDisplay())));
     }
 
     /**
-     * this is the constructor for when the program just initializes
+     * Constructor for when the program just initializes
      */
     public ViewPatientBox() {
         super(FXML);
-        // create sample person to put in the box
-        this.person = new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("flu", "runnynose"));
-        person.addAppointment(new Appointment(LocalDateTime.now().plusDays(1)));
-        person.addAppointment(new Appointment(LocalDateTime.now().plusDays(2)));
-
-        name.setText(person.getName().fullName);
-        phone.setText("Phone: " + person.getPhone().value);
-        address.setText("Address: " + person.getAddress().value);
-        email.setText("Email: " + person.getEmail().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        person.getAppointments().stream()
-                .min(Comparator.comparing(Appointment::getDate))
-                .ifPresent(appt -> appointments.getChildren().add(new Label(appt.getDateDisplay())));
+        this.person = null;
+        name.setText(STARTUP_MESSAGE);
     }
 
     /**
