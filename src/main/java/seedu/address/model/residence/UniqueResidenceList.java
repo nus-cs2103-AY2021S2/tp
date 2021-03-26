@@ -3,6 +3,7 @@ package seedu.address.model.residence;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -29,6 +30,7 @@ public class UniqueResidenceList implements Iterable<Residence> {
     private final ObservableList<Residence> internalList = FXCollections.observableArrayList();
     private final ObservableList<Residence> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+    private final Comparator<Residence> comparator = new ResidenceComparator();
 
     /**
      * Returns true if the list contains an equivalent residence as the given argument.
@@ -48,6 +50,7 @@ public class UniqueResidenceList implements Iterable<Residence> {
             throw new DuplicateResidenceException();
         }
         internalList.add(toAdd);
+        FXCollections.sort(internalList, comparator);
     }
     /**
      * Replaces the residence {@code target} in the list with {@code editedResidence}.
@@ -67,6 +70,7 @@ public class UniqueResidenceList implements Iterable<Residence> {
         }
 
         internalList.set(index, editedResidence);
+        FXCollections.sort(internalList, comparator);
     }
 
     /**

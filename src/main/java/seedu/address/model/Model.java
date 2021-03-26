@@ -77,7 +77,6 @@ public interface Model {
      * The residence identity of {@code editedResidence} must not be the same as another existing residence in the
      * residence tracker.
      */
-
     void setResidence(Residence target, Residence editedResidence);
 
     /** Returns an unmodifiable view of the filtered residence list */

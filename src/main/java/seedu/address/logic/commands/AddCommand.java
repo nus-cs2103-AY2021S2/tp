@@ -29,7 +29,7 @@ public class AddCommand extends Command {
             + PREFIX_RESIDENCE_NAME + "Seaside Villa "
             + PREFIX_RESIDENCE_ADDRESS + "311, Pasir Ris Ave 2, #02-25 "
             + PREFIX_BOOKING_DETAILS + "Family of 3 "
-            + PREFIX_CLEAN_STATUS_TAG + "y"
+            + PREFIX_CLEAN_STATUS_TAG + "y "
             + PREFIX_TAG + "friends ";
 
     public static final String MESSAGE_SUCCESS = "New residence added: %1$s";

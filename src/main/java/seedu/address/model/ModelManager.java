@@ -109,7 +109,6 @@ public class ModelManager implements Model {
     @Override
     public void setResidence(Residence target, Residence editedResidence) {
         requireAllNonNull(target, editedResidence);
-
         residenceTracker.setResidence(target, editedResidence);
     }
 
