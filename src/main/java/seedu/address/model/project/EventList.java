@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import seedu.address.model.project.exceptions.DuplicateEventException;
 import seedu.address.model.task.repeatable.Event;
 
 /**
@@ -36,12 +37,17 @@ public class EventList {
     }
 
     /**
-     * Adds an event to this {@code EventList}.
+     * Adds an event to this {@code EventList}. The {@code Event} must not already exist in the {@code EventList}.
      *
      * @param event {@code Event} to add.
      */
     public void addEvent(Event event) {
         requireNonNull(event);
+
+        if (hasEvent(event)) {
+            throw new DuplicateEventException();
+        }
+
         this.events.add(event);
     }
 
@@ -102,6 +108,21 @@ public class EventList {
         requireNonNull(dateOfEvent);
         Predicate<Event> predicate = event -> event.getAt().isEqual(dateOfEvent);
         return events.filtered(predicate);
+    }
+
+    /**
+     * Checks if the {@code EventList} already contains the specified {@code event}.
+     *
+     * @param eventToCheck The event that is to be checked.
+     * @return true if this project contains the specified event, false otherwise.
+     */
+    public boolean hasEvent(Event eventToCheck) {
+        for (Event event: events) {
+            if (eventToCheck.equals(event)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
