@@ -35,8 +35,8 @@ public class ListCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredEndpointList(Model.PREDICATE_SHOW_ALL_ENDPOINTS);
-        return model.isEndpointListEmpty() ?
-                new CommandResult(MESSAGE_SUCCESS_WITH_EMPTY_LIST, SHOW_HELP, IS_EXIT, IS_LIST)
+        return model.isEndpointListEmpty()
+                ? new CommandResult(MESSAGE_SUCCESS_WITH_EMPTY_LIST, SHOW_HELP, IS_EXIT, IS_LIST)
                 :
                 new CommandResult(MESSAGE_SUCCESS_WITH_FILLED_LIST, SHOW_HELP, IS_EXIT, IS_LIST);
     }
