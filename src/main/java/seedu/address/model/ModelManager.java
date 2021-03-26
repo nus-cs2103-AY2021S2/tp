@@ -176,12 +176,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPatientInAppointmentSchedule(Patient patient) {
-        requireNonNull(patient);
-        return appointmentSchedule.hasPatientInSchedule(patient);
-    }
-
-    @Override
     public boolean hasConflictingAppointment(Appointment appointment) {
         requireNonNull(appointment);
         return appointmentSchedule.hasConflict(appointment);
@@ -194,8 +188,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasPatientInAppointmentSchedule(Patient patient) {
+        requireNonNull(patient);
+        return appointmentSchedule.hasPatientInSchedule(patient);
+    }
+
+    @Override
     public void deleteAppointment(Appointment target) {
         appointmentSchedule.removeAppointment(target);
+    }
+
+    @Override
+    public void deletePatientAppointments(Patient patient) {
+        requireNonNull(patient);
+        appointmentSchedule.deletePatientAppointments(patient);
     }
 
     @Override

@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -135,6 +136,15 @@ public class NonConflictingAppointmentList implements Iterable<Appointment> {
         }
 
         FXCollections.sort(internalList);
+    }
+
+    /**
+     * Deletes all appointments associated with the input patient from the appointment schedule.
+     */
+    public void deletePatientAppointments(Patient patient) {
+        List<Appointment> PatientAppointmentList = internalList.stream().filter(appointment ->
+                appointment.getPatient().equals(patient)).collect(Collectors.toList());
+        PatientAppointmentList.forEach(appointment -> internalList.remove(appointment));
     }
 
     public void setAppointments(NonConflictingAppointmentList replacement) {
