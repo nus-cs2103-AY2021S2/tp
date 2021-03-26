@@ -37,6 +37,7 @@ public class AppointmentListPanel extends UiPart<Region> {
         final Map<UUID, Patient> patientHashMap = new HashMap<>();
         ObservableList<AppointmentDisplay> displayAppointmentList = FXCollections.observableArrayList();
 
+        updatePatientHashMap(patientHashMap, patientList);
         for (int i = 0; i < appointmentList.size(); i++) {
             displayAppointmentList.add(mapToDisplayAppointment(patientHashMap, patientList, appointmentList.get(i)));
         }
@@ -54,7 +55,7 @@ public class AppointmentListPanel extends UiPart<Region> {
                 }
             }
         });
-        
+
         // patientList also needs listener to update the appointment display list
         patientList.addListener(new ListChangeListener<Patient>() {
             @Override
@@ -82,23 +83,26 @@ public class AppointmentListPanel extends UiPart<Region> {
     public AppointmentDisplay mapToDisplayAppointment(Map<UUID, Patient> patientHashMap,
             ObservableList<Patient> patientList, Appointment appt) {
         // mutates hashmap
-        if (patientHashMap.containsKey(appt.getPatientUuid())) {
-            return new AppointmentDisplay(patientHashMap.get(appt.getPatientUuid()),
-                    appt.getDoctor(), appt.getTimeslot(), appt.getTags());
-        }
-        Patient patient = patientList
-                    .stream()
-                    .filter(
-                        pt -> {
-                            return pt.getUuid().equals(appt.getPatientUuid());
-                        }
-                    ).filter(pt -> {
-                        return true;
-                    })
-                    .findFirst()
-                    .get();
-        patientHashMap.put(appt.getPatientUuid(), patient);
-        return new AppointmentDisplay(patient, appt.getDoctor(), appt.getTimeslot(), appt.getTags());
+        assert patientHashMap.containsKey(appt.getPatientUuid())
+                : "patientHashMap should always contain the appointment's patient UUID";
+        return new AppointmentDisplay(patientHashMap.get(appt.getPatientUuid()),
+                appt.getDoctor(), appt.getTimeslot(), appt.getTags());
+        // TODO: remove if verified to be unnecessary
+        // Don't think this part is needed, since if there is a mutation to patientList,
+        // updatePatientHashMap will be called, which means the entry will definitely be in the hashMap
+        // Patient patient = patientList
+        //             .stream()
+        //             .filter(
+        //                 pt -> {
+        //                     return pt.getUuid().equals(appt.getPatientUuid());
+        //                 }
+        //             ).filter(pt -> {
+        //                 return true;
+        //             })
+        //             .findFirst()
+        //             .get();
+        // patientHashMap.put(appt.getPatientUuid(), patient);
+        // return new AppointmentDisplay(patient, appt.getDoctor(), appt.getTimeslot(), appt.getTags());
     }
 
     /**
