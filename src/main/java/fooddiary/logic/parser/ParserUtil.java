@@ -2,8 +2,10 @@ package fooddiary.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import fooddiary.commons.core.index.Index;
@@ -109,6 +111,18 @@ public class ParserUtil {
             throw new ParseException(Review.MESSAGE_CONSTRAINTS);
         }
         return new Review(trimmedReview);
+    }
+
+    /**
+     * Parses {@code Collection<String> reviews} into a {@code List<Review>}.
+     */
+    public static List<Review> parseReviews(Collection<String> reviews) throws ParseException {
+        requireNonNull(reviews);
+        final List<Review> reviewList = new ArrayList<>();
+        for (String reviewValue : reviews) {
+            reviewList.add(parseReview(reviewValue));
+        }
+        return reviewList;
     }
 
     /**

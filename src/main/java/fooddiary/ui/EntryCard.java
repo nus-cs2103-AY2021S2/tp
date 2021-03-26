@@ -4,6 +4,7 @@ import java.util.Comparator;
 
 import fooddiary.model.entry.Entry;
 import javafx.fxml.FXML;
+import javafx.geometry.Orientation;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -39,7 +40,7 @@ public class EntryCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
-    private Label review;
+    private FlowPane reviews;
     @FXML
     private FlowPane tags;
 
@@ -54,7 +55,9 @@ public class EntryCard extends UiPart<Region> {
         rating.setText(String.format("Rating: %s / 5", entry.getRating().value));
         price.setText(String.format("Price: $%s", entry.getPrice().value));
         address.setText(entry.getAddress().value);
-        review.setText(entry.getReview().toString());
+        reviews.setOrientation(Orientation.VERTICAL);
+        entry.getReviews().stream()
+                .forEach(review -> reviews.getChildren().add(new Label(review.value)));
         entry.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagCategory))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagCategory.titleCase())));

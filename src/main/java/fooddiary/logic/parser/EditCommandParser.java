@@ -11,6 +11,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -18,6 +19,7 @@ import fooddiary.commons.core.index.Index;
 import fooddiary.logic.commands.EditCommand;
 import fooddiary.logic.commands.EditCommand.EditEntryDescriptor;
 import fooddiary.logic.parser.exceptions.ParseException;
+import fooddiary.model.entry.Review;
 import fooddiary.model.tag.Tag;
 
 
@@ -56,9 +58,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_PRICE).isPresent()) {
             editEntryDescriptor.setPrice(ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get()));
         }
-        if (argMultimap.getValue(PREFIX_REVIEW).isPresent()) {
-            editEntryDescriptor.setReview(ParserUtil.parseReview(argMultimap.getValue(PREFIX_REVIEW).get()));
-        }
+        parseReviewsForEdit(argMultimap.getAllValues(PREFIX_REVIEW)).ifPresent(editEntryDescriptor::setReviews);
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editEntryDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
@@ -84,6 +84,21 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
+    }
+
+    /**
+     * Parses {@code Collection<String> reviews} into a {@code List<Review>} if {@code reviews} is non-empty.
+     * If {@code reviews} contain only one element which is an empty string, it will be parsed into a
+     * {@code List<Review>} containing zero reviews.
+     */
+    private Optional<List<Review>> parseReviewsForEdit(Collection<String> reviews) throws ParseException {
+        assert reviews != null;
+
+        if (reviews.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> reviewList = reviews;
+        return Optional.of(ParserUtil.parseReviews(reviewList));
     }
 
 }

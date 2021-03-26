@@ -26,7 +26,7 @@ class JsonAdaptedEntry {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Entry's %s field is missing!";
 
     private final String name;
-    private final String review;
+    private final List<JsonAdaptedReview> reviews = new ArrayList<>();
     private final String rating;
     private final String price;
     private final String address;
@@ -37,13 +37,16 @@ class JsonAdaptedEntry {
      */
     @JsonCreator
     public JsonAdaptedEntry(@JsonProperty("name") String name, @JsonProperty("rating") String rating,
-                            @JsonProperty("price") String price, @JsonProperty("review") String review,
+                            @JsonProperty("price") String price,
+                            @JsonProperty("review") List<JsonAdaptedReview> reviews,
                             @JsonProperty("address") String address,
                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.rating = rating;
         this.price = price;
-        this.review = review;
+        if (reviews != null) {
+            this.reviews.addAll(reviews);
+        }
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -57,7 +60,9 @@ class JsonAdaptedEntry {
         name = source.getName().fullName;
         rating = source.getRating().value;
         price = source.getPrice().value;
-        review = source.getReview().value;
+        reviews.addAll(source.getReviews().stream()
+                .map(JsonAdaptedReview::new)
+                .collect(Collectors.toList()));
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -71,8 +76,12 @@ class JsonAdaptedEntry {
      */
     public Entry toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
+        final List<Review> reviewList = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+        for (JsonAdaptedReview review : reviews) {
+            reviewList.add(review.toModelType());
         }
 
         if (name == null) {
@@ -99,13 +108,7 @@ class JsonAdaptedEntry {
         }
         final Price modelPrice = new Price(price);
 
-        if (review == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Review.class.getSimpleName()));
-        }
-        if (!Review.isValidReview(review)) {
-            throw new IllegalValueException(Review.MESSAGE_CONSTRAINTS);
-        }
-        final Review modelReview = new Review(review);
+        final List<Review> modelReviews = new ArrayList<>(reviewList);
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
@@ -117,7 +120,7 @@ class JsonAdaptedEntry {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        return new Entry(modelName, modelRating, modelPrice, modelReview, modelAddress, modelTags);
+        return new Entry(modelName, modelRating, modelPrice, modelReviews, modelAddress, modelTags);
     }
 
 }
