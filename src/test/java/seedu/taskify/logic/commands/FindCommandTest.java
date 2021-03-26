@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taskify.commons.core.Messages.MESSAGE_TASKS_LISTED_OVERVIEW;
 import static seedu.taskify.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.taskify.testutil.TypicalTasks.CARL;
-import static seedu.taskify.testutil.TypicalTasks.ELLE;
-import static seedu.taskify.testutil.TypicalTasks.FIONA;
+import static seedu.taskify.testutil.TypicalTasks.TASK_1;
+import static seedu.taskify.testutil.TypicalTasks.TASK_2;
+import static seedu.taskify.testutil.TypicalTasks.TASK_3;
 import static seedu.taskify.testutil.TypicalTasks.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -67,11 +67,13 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleTasksFound() {
         String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        NameContainsKeywordsPredicate predicate =
+                preparePredicate(TASK_1.getName().fullName + " " + TASK_2.getName().fullName + " "
+                        + TASK_3.getName().fullName);
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredTaskList());
+        assertEquals(Arrays.asList(TASK_1, TASK_2, TASK_3), model.getFilteredTaskList());
     }
 
     /**

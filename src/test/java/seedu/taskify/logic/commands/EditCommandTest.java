@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taskify.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.taskify.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.taskify.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
-import static seedu.taskify.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.taskify.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.taskify.logic.commands.CommandTestUtil.VALID_DESCRIPTION_CS2103T_TP;
+import static seedu.taskify.logic.commands.CommandTestUtil.VALID_NAME_CS2103T_TP;
+import static seedu.taskify.logic.commands.CommandTestUtil.VALID_TAG_DEBUGGING;
 import static seedu.taskify.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.taskify.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.taskify.logic.commands.CommandTestUtil.showTaskAtIndex;
@@ -56,12 +56,12 @@ public class EditCommandTest {
         Task lastTask = model.getFilteredTaskList().get(indexLastTask.getZeroBased());
 
         TaskBuilder taskInList = new TaskBuilder(lastTask);
-        Task editedTask = taskInList.withName(VALID_NAME_BOB).withDescription(VALID_DESCRIPTION_BOB)
-                                  .withTags(VALID_TAG_HUSBAND).build();
+        Task editedTask = taskInList.withName(VALID_NAME_CS2103T_TP).withDescription(VALID_DESCRIPTION_CS2103T_TP)
+                                  .withTags(VALID_TAG_DEBUGGING).build();
 
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_BOB)
-                                                .withDescription(VALID_DESCRIPTION_BOB)
-                                                .withTags(VALID_TAG_HUSBAND).build();
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_CS2103T_TP)
+                                                .withDescription(VALID_DESCRIPTION_CS2103T_TP)
+                                                .withTags(VALID_TAG_DEBUGGING).build();
         EditCommand editCommand = new EditCommand(indexLastTask, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
@@ -91,9 +91,9 @@ public class EditCommandTest {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
         Task taskInFilteredList = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        Task editedTask = new TaskBuilder(taskInFilteredList).withName(VALID_NAME_BOB).build();
+        Task editedTask = new TaskBuilder(taskInFilteredList).withName(VALID_NAME_CS2103T_TP).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK,
-                new EditTaskDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditTaskDescriptorBuilder().withName(VALID_NAME_CS2103T_TP).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 

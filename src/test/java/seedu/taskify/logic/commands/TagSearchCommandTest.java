@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taskify.commons.core.Messages.MESSAGE_TASKS_LISTED_OVERVIEW;
 import static seedu.taskify.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.taskify.testutil.TypicalTasks.ALICE;
-import static seedu.taskify.testutil.TypicalTasks.BENSON;
-import static seedu.taskify.testutil.TypicalTasks.DANIEL;
+import static seedu.taskify.testutil.TypicalTasks.TASK_1;
+import static seedu.taskify.testutil.TypicalTasks.TASK_2;
+import static seedu.taskify.testutil.TypicalTasks.TASK_4;
 import static seedu.taskify.testutil.TypicalTasks.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -73,7 +73,7 @@ public class TagSearchCommandTest {
         TagSearchCommand command = new TagSearchCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredTaskList());
+        assertEquals(Arrays.asList(TASK_1, TASK_2, TASK_4), model.getFilteredTaskList());
     }
 
     /**

@@ -3,9 +3,9 @@ package seedu.taskify.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.taskify.testutil.Assert.assertThrows;
-import static seedu.taskify.testutil.TypicalTasks.ALICE;
-import static seedu.taskify.testutil.TypicalTasks.HOON;
-import static seedu.taskify.testutil.TypicalTasks.IDA;
+import static seedu.taskify.testutil.TypicalTasks.TASK_1;
+import static seedu.taskify.testutil.TypicalTasks.TASK_8;
+import static seedu.taskify.testutil.TypicalTasks.TASK_9;
 import static seedu.taskify.testutil.TypicalTasks.getTypicalAddressBook;
 
 import java.io.IOException;
@@ -72,14 +72,14 @@ public class JsonTaskifyParserStorageTest {
         assertEquals(original, new Taskify(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addTask(HOON);
-        original.removeTask(ALICE);
+        original.addTask(TASK_8);
+        original.removeTask(TASK_1);
         jsonTaskifyStorage.saveAddressBook(original, filePath);
         readBack = jsonTaskifyStorage.readAddressBook(filePath).get();
         assertEquals(original, new Taskify(readBack));
 
         // Save and read without specifying file path
-        original.addTask(IDA);
+        original.addTask(TASK_9);
         jsonTaskifyStorage.saveAddressBook(original); // file path not specified
         readBack = jsonTaskifyStorage.readAddressBook().get(); // file path not specified
         assertEquals(original, new Taskify(readBack));

@@ -1,25 +1,25 @@
 package seedu.taskify.logic.parser;
 
 import static seedu.taskify.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.taskify.logic.commands.CommandTestUtil.DATE_DESC_AMY;
-import static seedu.taskify.logic.commands.CommandTestUtil.DATE_DESC_BOB;
-import static seedu.taskify.logic.commands.CommandTestUtil.DESCRIPTION_DESC_AMY;
-import static seedu.taskify.logic.commands.CommandTestUtil.DESCRIPTION_DESC_BOB;
+import static seedu.taskify.logic.commands.CommandTestUtil.DATE_DESC_CS2103T_IP;
+import static seedu.taskify.logic.commands.CommandTestUtil.DATE_DESC_CS2103T_TP;
+import static seedu.taskify.logic.commands.CommandTestUtil.DESCRIPTION_DESC_CS2103T_IP;
+import static seedu.taskify.logic.commands.CommandTestUtil.DESCRIPTION_DESC_CS2103T_TP;
 import static seedu.taskify.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.taskify.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.taskify.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.taskify.logic.commands.CommandTestUtil.INVALID_STATUS_DESC;
 import static seedu.taskify.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.taskify.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.taskify.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.taskify.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.taskify.logic.commands.CommandTestUtil.VALID_DATE_AMY;
-import static seedu.taskify.logic.commands.CommandTestUtil.VALID_DATE_BOB;
-import static seedu.taskify.logic.commands.CommandTestUtil.VALID_DESCRIPTION_AMY;
-import static seedu.taskify.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
-import static seedu.taskify.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.taskify.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.taskify.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.taskify.logic.commands.CommandTestUtil.NAME_DESC_CS2103T_IP;
+import static seedu.taskify.logic.commands.CommandTestUtil.TAG_DESC_CS2103T_TP;
+import static seedu.taskify.logic.commands.CommandTestUtil.TAG_DESC_DEBUGGING;
+import static seedu.taskify.logic.commands.CommandTestUtil.VALID_DATE_CS2103T_IP;
+import static seedu.taskify.logic.commands.CommandTestUtil.VALID_DATE_CS2103T_TP;
+import static seedu.taskify.logic.commands.CommandTestUtil.VALID_DESCRIPTION_CS2103T_IP;
+import static seedu.taskify.logic.commands.CommandTestUtil.VALID_DESCRIPTION_CS2103T_TP;
+import static seedu.taskify.logic.commands.CommandTestUtil.VALID_NAME_CS2103T_IP;
+import static seedu.taskify.logic.commands.CommandTestUtil.VALID_TAG_CS2103T_TP;
+import static seedu.taskify.logic.commands.CommandTestUtil.VALID_TAG_DEBUGGING;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.taskify.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.taskify.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -51,7 +51,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_NAME_CS2103T_IP, MESSAGE_INVALID_FORMAT);
 
         // no field specified
         assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
@@ -63,10 +63,10 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + NAME_DESC_CS2103T_IP, MESSAGE_INVALID_FORMAT);
 
         // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + NAME_DESC_CS2103T_IP, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
@@ -88,14 +88,14 @@ public class EditCommandParserTest {
         // valid description followed by invalid description.
         // The test case for invalid description followed by valid description
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + DESCRIPTION_DESC_BOB
+        assertParseFailure(parser, "1" + DESCRIPTION_DESC_CS2103T_TP
                 + INVALID_DESCRIPTION_DESC, Description.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Task} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_CS2103T_TP + TAG_DESC_DEBUGGING + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_CS2103T_TP + TAG_EMPTY + TAG_DESC_DEBUGGING, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_CS2103T_TP + TAG_DESC_DEBUGGING, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC
@@ -105,12 +105,12 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_TASK;
-        String userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_BOB + TAG_DESC_HUSBAND
-                + DATE_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
+        String userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_CS2103T_TP + TAG_DESC_DEBUGGING
+                + DATE_DESC_CS2103T_IP + NAME_DESC_CS2103T_IP + TAG_DESC_CS2103T_TP;
 
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_AMY)
-                    .withDescription(VALID_DESCRIPTION_BOB)
-                    .withDate(VALID_DATE_AMY).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_CS2103T_IP)
+                    .withDescription(VALID_DESCRIPTION_CS2103T_TP)
+                    .withDate(VALID_DATE_CS2103T_IP).withTags(VALID_TAG_DEBUGGING, VALID_TAG_CS2103T_TP).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -119,9 +119,9 @@ public class EditCommandParserTest {
     @Test
     public void parse_someFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST_TASK;
-        String userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_BOB;
+        String userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_CS2103T_TP;
 
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDescription(VALID_DESCRIPTION_BOB)
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDescription(VALID_DESCRIPTION_CS2103T_TP)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -132,26 +132,26 @@ public class EditCommandParserTest {
     public void parse_oneFieldSpecified_success() {
         // name
         Index targetIndex = INDEX_THIRD_TASK;
-        String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_AMY).build();
+        String userInput = targetIndex.getOneBased() + NAME_DESC_CS2103T_IP;
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_CS2103T_IP).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // phone
-        userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_AMY;
-        descriptor = new EditTaskDescriptorBuilder().withDescription(VALID_DESCRIPTION_AMY).build();
+        userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_CS2103T_IP;
+        descriptor = new EditTaskDescriptorBuilder().withDescription(VALID_DESCRIPTION_CS2103T_IP).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // date
-        userInput = targetIndex.getOneBased() + DATE_DESC_AMY;
-        descriptor = new EditTaskDescriptorBuilder().withDate(VALID_DATE_AMY).build();
+        userInput = targetIndex.getOneBased() + DATE_DESC_CS2103T_IP;
+        descriptor = new EditTaskDescriptorBuilder().withDate(VALID_DATE_CS2103T_IP).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
-        userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
-        descriptor = new EditTaskDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
+        userInput = targetIndex.getOneBased() + TAG_DESC_CS2103T_TP;
+        descriptor = new EditTaskDescriptorBuilder().withTags(VALID_TAG_CS2103T_TP).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -159,14 +159,14 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_TASK;
-        String userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_AMY
-               + TAG_DESC_FRIEND + DESCRIPTION_DESC_AMY + TAG_DESC_FRIEND
-                + DESCRIPTION_DESC_BOB + DATE_DESC_AMY + DATE_DESC_BOB
-                + TAG_DESC_HUSBAND;
+        String userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_CS2103T_IP
+               + TAG_DESC_CS2103T_TP + DESCRIPTION_DESC_CS2103T_IP + TAG_DESC_CS2103T_TP
+                + DESCRIPTION_DESC_CS2103T_TP + DATE_DESC_CS2103T_IP + DATE_DESC_CS2103T_TP
+                + TAG_DESC_DEBUGGING;
 
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDescription(VALID_DESCRIPTION_BOB)
-                .withDate(VALID_DATE_BOB)
-                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDescription(VALID_DESCRIPTION_CS2103T_TP)
+                .withDate(VALID_DATE_CS2103T_TP)
+                .withTags(VALID_TAG_CS2103T_TP, VALID_TAG_DEBUGGING).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -176,15 +176,16 @@ public class EditCommandParserTest {
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_TASK;
-        String userInput = targetIndex.getOneBased() + INVALID_DESCRIPTION_DESC + DESCRIPTION_DESC_BOB;
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDescription(VALID_DESCRIPTION_BOB).build();
+        String userInput = targetIndex.getOneBased() + INVALID_DESCRIPTION_DESC + DESCRIPTION_DESC_CS2103T_TP;
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder()
+                .withDescription(VALID_DESCRIPTION_CS2103T_TP).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
         userInput = targetIndex.getOneBased() + INVALID_DESCRIPTION_DESC
-                + DESCRIPTION_DESC_BOB;
-        descriptor = new EditTaskDescriptorBuilder().withDescription(VALID_DESCRIPTION_BOB).build();
+                + DESCRIPTION_DESC_CS2103T_TP;
+        descriptor = new EditTaskDescriptorBuilder().withDescription(VALID_DESCRIPTION_CS2103T_TP).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

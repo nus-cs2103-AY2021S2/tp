@@ -3,9 +3,9 @@ package seedu.taskify.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.taskify.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.taskify.logic.commands.CommandTestUtil.VALID_TAG_DEBUGGING;
 import static seedu.taskify.testutil.Assert.assertThrows;
-import static seedu.taskify.testutil.TypicalTasks.ALICE;
+import static seedu.taskify.testutil.TypicalTasks.TASK_1;
 import static seedu.taskify.testutil.TypicalTasks.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -46,9 +46,9 @@ public class TaskifyParserTest {
     @Test
     public void resetData_withDuplicateTasks_throwsDuplicateTaskException() {
         // Two tasks with the same identity fields
-        Task editedAlice = new TaskBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+        Task editedAlice = new TaskBuilder(TASK_1).withTags(VALID_TAG_DEBUGGING)
                                    .build();
-        List<Task> newTasks = Arrays.asList(ALICE, editedAlice);
+        List<Task> newTasks = Arrays.asList(TASK_1, editedAlice);
         TaskifyStub newData = new TaskifyStub(newTasks);
 
         assertThrows(DuplicateTaskException.class, () -> taskify.resetData(newData));
@@ -61,19 +61,19 @@ public class TaskifyParserTest {
 
     @Test
     public void hasTask_taskNotInAddressBook_returnsFalse() {
-        assertFalse(taskify.hasTask(ALICE));
+        assertFalse(taskify.hasTask(TASK_1));
     }
 
     @Test
     public void hasTask_taskInAddressBook_returnsTrue() {
-        taskify.addTask(ALICE);
-        assertTrue(taskify.hasTask(ALICE));
+        taskify.addTask(TASK_1);
+        assertTrue(taskify.hasTask(TASK_1));
     }
 
     @Test
     public void hasTask_taskWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        taskify.addTask(ALICE);
-        Task editedAlice = new TaskBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+        taskify.addTask(TASK_1);
+        Task editedAlice = new TaskBuilder(TASK_1).withTags(VALID_TAG_DEBUGGING)
                                    .build();
         assertTrue(taskify.hasTask(editedAlice));
     }
