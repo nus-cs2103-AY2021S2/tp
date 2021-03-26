@@ -1,7 +1,7 @@
 package seedu.address.model.connection;
 
+import static java.util.Objects.requireNonNull;
 import java.util.HashMap;
-
 import seedu.address.model.connection.exceptions.ConnectionNoFoundException;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.UniqueMeetingList;
@@ -26,9 +26,24 @@ public class PersonMeetingConnection {
         meetingsInPerson = new HashMap<>();
     }
     /**
+     * Constructs a {@code PersonMeetingConnection} from a existing connection.
+     */
+    public PersonMeetingConnection(PersonMeetingConnection connection) {
+        personsInMeeting = connection.personsInMeeting;
+        meetingsInPerson = connection.meetingsInPerson;
+    }
+    /**
+     * Resets a {@code PersonMeetingConnection} from a existing connection.
+     */
+    public void resetData(PersonMeetingConnection connection) {
+        requireNonNull(connection);
+        this.personsInMeeting = connection.personsInMeeting;
+        this.meetingsInPerson = connection.meetingsInPerson;
+    }
+    /**
      * Returns true if a given person and a given meeting exist a connection.
      */
-    private boolean existPersonMeetingConnection(Person person, Meeting meeting) {
+    public boolean existPersonMeetingConnection(Person person, Meeting meeting) {
         UniquePersonList personList = personsInMeeting.get(meeting);
         UniqueMeetingList meetingList = meetingsInPerson.get(person);
         if (personList == null || meetingList == null) {
@@ -52,8 +67,7 @@ public class PersonMeetingConnection {
         return personsInMeeting.getOrDefault(meeting, new UniquePersonList());
     }
     /**
-     * Returns a UniqueMeetingList object with the person as the key.
-     * Empty list will be returned if there is no value found in the hashMap.
+     * Adds a connection between a person and a meeting.
      */
     public void addPersonMeetingConnection(Person person, Meeting meeting) {
         UniquePersonList personList = personsInMeeting.getOrDefault(meeting, new UniquePersonList());
@@ -104,6 +118,27 @@ public class PersonMeetingConnection {
             }
             personsInMeeting.remove(meeting);
         }
+    }
+
+    //Util methods
+    @Override
+    public String toString() {
+        return meetingsInPerson.keySet().toString() + " have connection with meetings\n"
+            + personsInMeeting.keySet().toString() + "have connection with persons.";
+        // TODO: refine later
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+            || (other instanceof PersonMeetingConnection // instanceof handles nulls
+            && personsInMeeting.equals(((PersonMeetingConnection) other).personsInMeeting)
+            && meetingsInPerson.equals(((PersonMeetingConnection) other).meetingsInPerson));
+    }
+
+    @Override
+    public int hashCode() {
+        return this.hashCode();
     }
 
 

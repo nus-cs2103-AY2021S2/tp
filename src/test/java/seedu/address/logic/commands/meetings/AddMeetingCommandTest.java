@@ -20,6 +20,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.connection.PersonMeetingConnection;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingBook;
 import seedu.address.model.meeting.ReadOnlyMeetingBook;
@@ -189,6 +190,51 @@ class AddMeetingCommandTest {
 
         @Override
         public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setPersonMeetingConnection(PersonMeetingConnection connection) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public PersonMeetingConnection getPersonMeetingConnection() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPersonMeetingConnection(Person person, Meeting meeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addPersonMeetingConnection(Person person, Meeting meeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteSinglePersonMeetingConnection(Person person, Meeting meeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteAllPersonMeetingConnectionByPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteAllPersonMeetingConnectionByMeeting(Meeting meeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Meeting> getFilteredMeetingListByPersonConnection(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Person> getFilteredPersonListByMeetingConnection(Meeting meeting) {
             throw new AssertionError("This method should not be called.");
         }
     }
