@@ -19,8 +19,6 @@ note right of HeliBookParser: create cases for\nall appointment-\nrelated comman
 note left of XYZCommandParser: create parser\nfor each command
 }
 
-Class Storage STORAGE_COLOR
-Storage .. LogicManager
 note top of LogicManager: Interacts with storage to save Addressbook\nand Appointmentbook
 note top of HeliBookParser: Previously known as AddressBook Parser
 package Command {
@@ -34,6 +32,10 @@ Class LogicManager
 }
 
 package Model{
+Class HiddenModel #FFFFFF
+}
+
+package Storage{
 Class HiddenModel #FFFFFF
 }
 
@@ -59,11 +61,13 @@ LogicManager .left.> Command : executes >
 
 LogicManager --> Model
 Command .right.> Model
-note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc.\n\nAppointment-related commands\ninclude:\n- AddAppointmentCommand\n- DeleteApppointmentCommand\n- FindAppointmentCommand
+note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc.\n\nAppointment-related commands\ninclude:\n- AddAppointmentCommand\n- DeleteApppointmentCommand\n- FindAppointmentCommand\n\n(Extra) Tag functions
 
 Logic ..> CommandResult
 LogicManager .down.> CommandResult
 Command .up.> CommandResult
 CommandResult -[hidden]-> Parser
+
+LogicManager -> Storage
 
 @enduml
