@@ -310,3 +310,4 @@ Action | Format, Examples
 **Add a budget** | `add_budget` <br> e.g.`add_budget b/500`
 **Edit a budget** | `edit_budget` <br> e.g. `edit_budget b/600`
 **Deleting a budget** | `delete_budget` <br> e.g. `delete_budget`
+
