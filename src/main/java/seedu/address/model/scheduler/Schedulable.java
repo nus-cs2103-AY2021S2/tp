@@ -1,19 +1,32 @@
 package seedu.address.model.scheduler;
 
-import java.util.List;
+
+import java.time.LocalDateTime;
 
 /**
- * Represents objects that can be scheduled in the scheduler. It must have be able to get the timeframe of the object
+ * Represents objects that can be scheduled by the scheduler. A schedulable object has
+ * to have a start date and terminate date.
  */
 
 public interface Schedulable {
 
+    /**
+     * get name of this object.
+     */
+    public String getName();
+
 
     /**
-     * Gets the list of timeframes in which this schedulable is scheduled on.
-     * @return the list of timeframes.
+     * Get the start date time.
+     * @return
      */
-    public List<TimeInterval> getTimeFrame();
+    public LocalDateTime getStartLocalDateTime();
+
+    /**
+     * Get the termination date time.
+     * @return
+     */
+    public LocalDateTime getTerminateLocalDateTime();
 
     /**
      * Given another schedulable object, check if there are any conflicts.

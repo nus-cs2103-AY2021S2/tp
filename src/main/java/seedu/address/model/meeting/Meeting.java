@@ -149,4 +149,22 @@ public class Meeting {
         return builder.toString();
     }
 
+    //==================Scheduler methods =================================================
+
+    public LocalDateTime getStartLocalDateTime() {
+        return start.toLocalDateTime();
+    }
+
+    public LocalDateTime getTerminateLocalDateTime() {
+        return terminate.toLocalDateTime();
+    }
+
+    @Override
+    public boolean isConflict(Schedulable schedulable) {
+        return !(this.getStartLocalDateTime().compareTo(schedulable.getTerminateLocalDateTime()) <= 0
+                || this.getStartLocalDateTime().compareTo(schedulable.getTerminateLocalDateTime()) >= 0);
+    }
+
+
+
 }
