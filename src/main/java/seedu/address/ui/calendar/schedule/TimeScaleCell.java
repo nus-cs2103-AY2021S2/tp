@@ -1,12 +1,12 @@
 package seedu.address.ui.calendar.schedule;
 
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.ui.UiPart;
-
-import java.util.logging.Logger;
 
 /**
  * Represents cells to construct the backbone of {@Code TimeScale}.

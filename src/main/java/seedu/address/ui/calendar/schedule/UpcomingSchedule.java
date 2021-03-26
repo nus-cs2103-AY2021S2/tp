@@ -86,12 +86,10 @@ public class UpcomingSchedule extends UiPart<Region> implements EventHandler<Mou
         schedule.getChildren().add(timeScale.getRoot());
 
         if (currentDay.equals(LocalDate.now())) {
-            timeScale.removeItem(currentTimePointer.getRoot());
-        } else {
-            addTimePointer();
+            //addTimePointer();
         }
+        addTimePointer();
     }
-
     /*
     private void fillOtherDay(int date) {
         timeScale.removeItem(currentTimePointer.getRoot());
