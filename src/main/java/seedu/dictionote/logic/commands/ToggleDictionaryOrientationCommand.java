@@ -6,11 +6,11 @@ import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.Model;
 
 /**
- * Terminates the program.
+ * Toggles the orientation of dictionary panel.
  */
 public class ToggleDictionaryOrientationCommand extends Command {
 
-    public static final String COMMAND_WORD = "toggledividern";
+    public static final String COMMAND_WORD = "toggledividerd";
 
     public static final String MESSAGE_TOGGLE_SUCCESS = "Dictionary Panel Orientation changed";
 
