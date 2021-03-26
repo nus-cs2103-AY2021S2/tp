@@ -11,6 +11,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.resident.Resident;
+import seedu.address.model.residentroom.ResidentRoom;
 
 /**
  * Deletes a resident identified using it's displayed index from the address book.
@@ -25,6 +26,9 @@ public class DeleteResidentCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_RESIDENT_SUCCESS = "Deleted Resident: %1$s";
+    public static final String MESSAGE_RESIDENT_ALLOCATED_FAILURE =
+            "The resident has been allocated to a room. Please deallocate the resident before deletion.";
+
 
     private final Index targetIndex;
 
@@ -41,7 +45,12 @@ public class DeleteResidentCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX);
         }
 
+
         Resident residentToDelete = lastShownList.get(targetIndex.getZeroBased());
+        if (model.hasEitherResidentRoom(new ResidentRoom(residentToDelete.getName(), null))) {
+            throw new CommandException(MESSAGE_RESIDENT_ALLOCATED_FAILURE);
+        }
+
         model.deleteResident(residentToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_RESIDENT_SUCCESS, residentToDelete)).setResidentCommand();
     }
