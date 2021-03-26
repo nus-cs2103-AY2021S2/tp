@@ -42,6 +42,24 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code oneBasedIndex} into two {@code Index} and returns it as an Index array.
+     *
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static Index[] parseTwoIndex(String oneBasedIndex) throws ParseException {
+        String[] spiltIndex = oneBasedIndex.split("\\s+");
+        assert (spiltIndex.length == 2);
+        if ((!StringUtil.isNonZeroUnsignedInteger(spiltIndex[0]))
+                || (!StringUtil.isNonZeroUnsignedInteger(spiltIndex[1]))) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        Index residenceIndex = Index.fromOneBased(Integer.parseInt(spiltIndex[0]));
+        Index bookingIndex = Index.fromOneBased(Integer.parseInt(spiltIndex[1]));
+        Index[] indexArray = {residenceIndex, bookingIndex};
+        return indexArray;
+    }
+
+    /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *
