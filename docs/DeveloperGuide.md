@@ -99,19 +99,24 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 **API** : [`Model.java`](https://github.com/se-edu/ClientBook-level3/tree/master/src/main/java/seedu/location/model/Model.java)
 
-The `Model`,
+The `Model` component,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the location book data.
-* exposes an unmodifiable `ObservableList<Client>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the client book and meeting book data.
+* exposes an unmodifiable `ObservableList<Client>` and `Observable<Meeting>` that can be 'observed' e.g. the UI can be bound to these lists so that the UI automatically updates when the data in these lists change.
 * does not depend on any of the other three components.
 
+The `Client` object,
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ClientBook`, which `client` references. This allows `ClientBook` to only require one `Tag` object per unique `Tag`, instead of each `client` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
+* stores the attributes of a client.
+* has `Name` to serve as its unique identifer.
 
-</div>
+The `Meeting` object,
 
+* stores the attributes of a meeting.
+* has `Name` to represent a client's name that is not required to be in the `ClientBook`.
+* cannot be created by the user if the `DateTime` is in conflict with another `Meeting`'s `DateTime` or before the date and time at the point of creation.
+* has `Name` and `DateTime` to serve as its unique identifier.
 
 ### Storage component
 
