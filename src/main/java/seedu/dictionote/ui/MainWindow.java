@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Orientation;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextInputControl;
@@ -238,10 +239,23 @@ public class MainWindow extends UiPart<Stage> {
      * Dynamically detect and change the split ratio depending on the content
      */
     void configSplit() {
+        configOrientation();
         configContactSplit();
         configNoteSplit();
         configDictionarySplit();
         configMainSplit();
+    }
+    /**
+     * Detect the change in orientation setting
+     */
+    private void configOrientation() {
+        if(noteSplitPanel.getOrientation() != logic.getGuiSettings().getNotePanelOrientation()) {
+            noteSplitPanel.setOrientation(logic.getGuiSettings().getNotePanelOrientation());
+        }
+
+        if(dictionarySplitPanel.getOrientation() != logic.getGuiSettings().getDictionaryPanelOrientation()) {
+            dictionarySplitPanel.setOrientation(logic.getGuiSettings().getDictionaryPanelOrientation());
+        }
     }
 
     /**
@@ -324,8 +338,9 @@ public class MainWindow extends UiPart<Stage> {
             (int) primaryStage.getX(), (int) primaryStage.getY(), logic.getGuiSettings().getContactSplitRatio(),
             logic.getGuiSettings().getDictionarySplitRatio(), logic.getGuiSettings().getNoteSplitRatio(),
             logic.getGuiSettings().getMainSplitRatio(), contactDisplay.isVisible(),
-            dictionaryContentDisplay.isVisible(), dictionaryListDisplay.isVisible(),
-            noteContentDisplay.isVisible(), noteListDisplay.isVisible());
+            dictionaryContentDisplay.isVisible(), dictionaryListDisplay.isVisible(), noteContentDisplay.isVisible(),
+            noteListDisplay.isVisible(), dictionarySplitPanel.getOrientation() == Orientation.VERTICAL,
+            noteSplitPanel.getOrientation() == Orientation.VERTICAL);
 
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();

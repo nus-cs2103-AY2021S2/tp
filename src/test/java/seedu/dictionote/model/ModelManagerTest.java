@@ -40,7 +40,7 @@ public class ModelManagerTest {
         userPrefs.setAddressBookFilePath(Paths.get("dictionote/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4, 5,
             6, 7, 8, true, false,
-            true, false, true));
+            true, false, true, true, true));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
@@ -59,7 +59,7 @@ public class ModelManagerTest {
     public void setGuiSettings_validGuiSettings_setsGuiSettings() {
         GuiSettings guiSettings = new GuiSettings(1, 2, 3, 4, 5,
             6, 7, 8, true, false,
-            true, false, true);
+            true, false, true, true, true);
         modelManager.setGuiSettings(guiSettings);
         assertEquals(guiSettings, modelManager.getGuiSettings());
     }

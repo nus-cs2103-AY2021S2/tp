@@ -39,6 +39,7 @@ import seedu.dictionote.logic.commands.ListContactCommand;
 import seedu.dictionote.logic.commands.OpenCommand;
 import seedu.dictionote.logic.commands.ShowDictionaryContentCommand;
 import seedu.dictionote.logic.commands.ShowNoteCommand;
+import seedu.dictionote.logic.commands.ToggleNoteOrientationCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
@@ -188,6 +189,12 @@ public class DictionoteParserTest {
                 CloseCommand.COMMAND_WORD + " " + VALID_UI_OPTIONS[i]);
             assertEquals(new CloseCommand(EXPECTED_UI_OPTION[i]), command);
         }
+    }
+
+    @Test
+    public void parseCommand_togglenotepanel() throws Exception {
+        assertTrue(parser.parseCommand(ToggleNoteOrientationCommand.COMMAND_WORD) instanceof ToggleNoteOrientationCommand);
+        assertTrue(parser.parseCommand(ToggleNoteOrientationCommand.COMMAND_WORD + " 3") instanceof ToggleNoteOrientationCommand);
     }
 
 
