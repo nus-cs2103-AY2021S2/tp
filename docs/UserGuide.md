@@ -73,6 +73,8 @@ ModuleBook3.5 is the go-to tool for busy students/professionals who are confiden
    * **`edit`** : Edit task
 
    * **`sort`** : Sort tasks
+   
+   * **`recur`** :  Recur tasks
 
 
 
@@ -241,6 +243,24 @@ Examples:
 *  `sort m/` Sorts the tasks by module code alphabetically in descending order.
 *  `sort t/` Sorts the tasks by number of tags in descending order.
 
+### Recurring tasks: `recur`
+
+Recurs a task either daily, monthly or weekly in the module book.
+
+Format: `recur INDEX r/RECURRENCE`
+
+* Recurs the task at the specified `INDEX`.
+* `INDEX` refers to the index number displayed in ModuleBook3.5.
+   It must be a positive integer.
+* `RECURRENCE` refers to the regularity of the task that recurs periodically.
+* `RECURRENCE` can only be `daily`, `weekly` or `monthly`. It is case-sensitive.
+
+Examples:
+* `recur 1 r/monthly` Recurs the 1st task in ModuleBook3.5 every month.
+* `recur 2 r/weekly` Recurs the 4th task in ModuleBook3.5 every week.
+* `recur 3 r/daily` Recurs the 3rd task in ModuleBook3.5 every day.
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Saving the data
@@ -284,4 +304,5 @@ Action | Format, Examples
 **tag** | `tag INDEX [t/TAG NAME]`<br> e.g., `tag 1 [t/SoftwareEng]`
 **find** | `find KEYWORD`<br> e.g., `find CS3230`
 **edit** | `edit INDEX [d/DESCRIPTION] [b/DEADLINE]…​`<br> e.g., `edit 2 d/Eat Biscuits b/2021-03-21 10:10`
+**recur** | `recur INDEX r/RECURRENCE`<br> e.g., `recur 1 r/monthly`
 **sort** | `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/` or `sort t/` <br> e.g., `sort b/`
