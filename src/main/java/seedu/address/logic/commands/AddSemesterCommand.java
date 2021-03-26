@@ -29,7 +29,7 @@ public class AddSemesterCommand extends Command {
             + PREFIX_SEM_NUMBER + "2 ";
 
     public static final String MESSAGE_SUCCESS = "New semester added to Plan %1$s: %2$s";
-    public static final String MESSAGE_DUPLICATE_PLAN = "This semester already exists";
+    public static final String MESSAGE_DUPLICATE_SEMESTER = "This semester already exists";
 
     private final Semester toAdd;
     private final Index toAddTo; // plan number
@@ -53,7 +53,7 @@ public class AddSemesterCommand extends Command {
         }
 
         if (model.hasSemester(toAddTo.getZeroBased(), toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PLAN);
+            throw new CommandException(MESSAGE_DUPLICATE_SEMESTER);
         }
 
         model.addSemester(toAddTo.getZeroBased(), toAdd);
