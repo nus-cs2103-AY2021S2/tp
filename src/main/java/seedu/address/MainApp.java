@@ -169,7 +169,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         logger.info("Starting nufash " + MainApp.VERSION);
-        //Colour.initialiseMatches(); //INITIALISE MATCHING HASHMAP
+        Colour.initialiseMatches(); //INITIALISE MATCHING HASHMAP
         ui.start(primaryStage);
     }
 
