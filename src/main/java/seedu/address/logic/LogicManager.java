@@ -16,6 +16,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.EventStatus;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -46,6 +47,7 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
+        assert commandResult != null : "There must be a command result whenever a command is executed!";
 
         try {
             storage.saveEventBook(model.getEventBook());
@@ -54,6 +56,11 @@ public class LogicManager implements Logic {
         }
 
         return commandResult;
+    }
+
+    @Override
+    public FilteredList<Event> getFilteredListByStatus(EventStatus status) {
+        return model.getFilteredListByStatus(status);
     }
 
     @Override

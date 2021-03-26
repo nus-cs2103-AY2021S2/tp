@@ -40,7 +40,7 @@ public class BackLogCommandParser implements Parser<BackLogCommand> {
             EventPriority priority = ParserUtil.parseEventPriority(argMultimap.getValue(PREFIX_PRIORITY).get());
             event = new Event(eventName, BACKLOG_EVENT_STATUS, priority, description);
         } else {
-            event = new Event(eventName, BACKLOG_EVENT_STATUS, EventPriority.NONE, description);
+            event = new Event(eventName, BACKLOG_EVENT_STATUS, EventPriority.LOW, description);
         }
 
         return new BackLogCommand(event);

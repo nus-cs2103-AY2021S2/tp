@@ -8,17 +8,17 @@
   }, {
     "eventName": "CS2107",
     "eventStatus": "IN_PROGRESS",
-    "eventPriority": "NONE",
+    "eventPriority": "LOW",
     "eventDescription": "Introduction to Information Security"
   }, {
     "eventName": "CS1010S",
     "eventStatus": "DONE",
-    "eventPriority": "NONE",
+    "eventPriority": "LOW",
     "eventDescription": "Programming Methodology I"
   }, {
     "eventName": "Complete Assignment 1",
     "eventStatus": "TODO",
-    "eventPriority": "NONE",
+    "eventPriority": "LOW",
     "eventDescription": "Assignment from CS2030"
   } ]
 }

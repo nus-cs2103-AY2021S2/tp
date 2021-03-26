@@ -35,39 +35,12 @@
           </Menu>
         </MenuBar>
 
-        <HBox>
-          <VBox fx:id="personList" styleClass="pane-with-border" minWidth="250" prefWidth="250" VBox.vgrow="ALWAYS">
-            <Label text="BACKLOG" />
-            <padding>
-              <Insets top="10" right="10" bottom="10" left="10" />
-            </padding>
-            <StackPane fx:id="backlogListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-          </VBox>
-
-          <VBox fx:id="tList" styleClass="pane-with-border" minWidth="250" prefWidth="250" VBox.vgrow="ALWAYS">
-            <Label text="TODO" />
-            <padding>
-              <Insets top="10" right="10" bottom="10" left="10" />
-            </padding>
-            <StackPane fx:id="todoListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-          </VBox>
-
-          <VBox fx:id="uList" styleClass="pane-with-border" minWidth="250" prefWidth="250" VBox.vgrow="ALWAYS">
-            <Label text="IN PROGRESS" />
-            <padding>
-              <Insets top="10" right="10" bottom="10" left="10" />
-            </padding>
-            <StackPane fx:id="progressListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-          </VBox>
-
-          <VBox fx:id="vList" styleClass="pane-with-border" minWidth="250" prefWidth="250" VBox.vgrow="ALWAYS">
-            <Label textAlignment="CENTER" text="DONE"/>
-            <padding>
-              <Insets top="10" right="10" bottom="10" left="10" />
-            </padding>
-            <StackPane fx:id="doneListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-          </VBox>
-        </HBox>
+        <VBox fx:id="eventList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+          <padding>
+            <Insets top="10" right="10" bottom="10" left="10" />
+          </padding>
+          <StackPane fx:id="kanbanPanelPlaceholder" VBox.vgrow="ALWAYS" />
+        </VBox>
 
 
 

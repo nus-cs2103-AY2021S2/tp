@@ -45,7 +45,7 @@ public class TodoCommandParser implements Parser<TodoCommand> {
             EventPriority priority = ParserUtil.parseEventPriority(argMultimap.getValue(PREFIX_PRIORITY).get());
             event = new Event(eventName, TODO_EVENT_STATUS, priority, description);
         } else {
-            event = new Event(eventName, TODO_EVENT_STATUS, EventPriority.NONE, description);
+            event = new Event(eventName, TODO_EVENT_STATUS, EventPriority.LOW, description);
         }
 
         return new TodoCommand(event);
