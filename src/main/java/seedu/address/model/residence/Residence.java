@@ -132,8 +132,6 @@ public class Residence {
         builder.append(getResidenceName())
                 .append("; Residence Address: ")
                 .append(getResidenceAddress())
-                .append("; Booking Details: ")
-                .append(getBookingList())
                 .append("; Clean Status: ")
                 .append(getCleanStatusTag());
 

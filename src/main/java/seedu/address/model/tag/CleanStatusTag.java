@@ -10,7 +10,7 @@ public class CleanStatusTag {
     public static final String CLEAN_DESC = "y";
     public static final String UNCLEAN_DESC = "n";
 
-    private static String MESSAGE_CONSTRAINTS = "should use y or n to show clean status";
+    private static String MESSAGE_CONSTRAINTS = "Please use 'c/y', 'c/n', 'c/clean' or 'c/unclean'";
 
     private String cleanStatus;
 
@@ -24,7 +24,7 @@ public class CleanStatusTag {
     /**
      * Constructs a {@code CleanStatusTag}.
      *
-     * @param cleanStatus define the clean status by y or n.
+     * @param cleanStatus A valid clean status.
      */
     public CleanStatusTag(String cleanStatus) {
         requireNonNull(cleanStatus);
@@ -50,16 +50,6 @@ public class CleanStatusTag {
      */
     public String getValue() {
         return cleanStatus;
-    }
-
-    /**
-     * Returns expected user input description of this {@code CleanStatusTag}.
-     */
-    public String getDesc() {
-        if (this.cleanStatus.equals(CLEAN)) {
-            return CLEAN_DESC;
-        }
-        return UNCLEAN_DESC;
     }
 
     @Override
