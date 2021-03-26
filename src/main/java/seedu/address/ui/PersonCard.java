@@ -6,6 +6,8 @@ import java.util.stream.Stream;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -46,6 +48,8 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private Label favourite;
+    @FXML
+    private ImageView favIcon;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -59,7 +63,11 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         streamTags(person.getTags()).forEach(tag -> tags.getChildren().add(generateTagLabel(tag)));
-        favourite.setText(person.getFavourite().isFav() ? "Favourite" : "");
+        if (person.getFavourite().isFav()) {
+            favIcon.setImage(new Image("/images/star_icon_filled.png"));
+        } else {
+            favIcon.setImage(new Image("/images/star_icon_empty.png"));
+        }
     }
 
     /**
