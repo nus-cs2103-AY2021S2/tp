@@ -6,11 +6,8 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
-<<<<<<< HEAD
 import static seedu.address.testutil.TypicalBudgets.getTypicalBudgetBook;
-=======
 import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
->>>>>>> master
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -34,16 +31,10 @@ public class ViewCommandTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
-<<<<<<< HEAD
-                getTypicalAppointmentBook(), getTypicalBudgetBook());
+                getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook());
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
-                model.getAppointmentBook(),
-                model.getBudgetBook());
-=======
-                getTypicalAppointmentBook(), getTypicalGradeBook());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
-                model.getAppointmentBook(), model.getGradeBook());
->>>>>>> master
+                model.getAppointmentBook(), model.getBudgetBook(), model.getGradeBook());
+
     }
 
     @Test

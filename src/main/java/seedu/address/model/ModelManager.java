@@ -40,8 +40,7 @@ public class ModelManager implements Model {
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
                         ReadOnlyAppointmentBook appointmentBook,
-                        BudgetBook budgetBook) {
-                        ReadOnlyAppointmentBook appointmentBook, ReadOnlyGradeBook gradeBook) {
+                        BudgetBook budgetBook, ReadOnlyGradeBook gradeBook) {
         super();
         requireAllNonNull(addressBook, appointmentBook, userPrefs, budgetBook);
 
@@ -53,21 +52,17 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredAppointment = new FilteredList<>(this.appointmentBook.getAppointmentList());
-<<<<<<< HEAD
-
+        filteredGrades = new FilteredList<>(this.gradeBook.getGradeList());
         this.budgetBook = new BudgetBook(budgetBook);
 
     }
 
+    /**
+     * Default constructor without params. Initializes with empty books.
+     */
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new AppointmentBook(), new BudgetBook());
-=======
-        filteredGrades = new FilteredList<>(this.gradeBook.getGradeList());
-    }
-
-    public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new AppointmentBook(), new GradeBook());
->>>>>>> master
+        this(new AddressBook(), new UserPrefs(), new AppointmentBook(),
+                new BudgetBook(), new GradeBook());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -244,8 +239,7 @@ public class ModelManager implements Model {
 
     /**
      * Method that removes appointment based on index
-     *
-     * @param indexToRemove
+     * @param indexToRemove Index of appointment to remove
      */
     @Override
     public void removeAppointmentIndex(int indexToRemove) {
@@ -261,8 +255,6 @@ public class ModelManager implements Model {
     public boolean hasAppointmentDateTime(AppointmentDateTime appointmentDateTime) {
         return !filteredAppointment.filtered(new DateViewPredicate(appointmentDateTime)).isEmpty();
     }
-
-<<<<<<< HEAD
 
     //============== Budget ============================================================
 
@@ -300,7 +292,6 @@ public class ModelManager implements Model {
         budgetBook.setBudget(budget);
     }
 
-=======
     //=========== GradeList ============================================================================
     /**
      * Updates the filter of the filtered appointment list to filter by the given {@code predicate}.
@@ -374,8 +365,7 @@ public class ModelManager implements Model {
 
     /**
      * Method that removes grade based on index
-     *
-     * @param indexToRemove
+     * @param indexToRemove index of grade to remove
      */
     @Override
     public void removeGradeIndex(int indexToRemove) {
@@ -390,7 +380,6 @@ public class ModelManager implements Model {
     }
 
 
->>>>>>> master
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object

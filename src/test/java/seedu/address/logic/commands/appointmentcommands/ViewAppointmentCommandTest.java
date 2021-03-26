@@ -22,15 +22,9 @@ import seedu.address.model.appointment.DateViewPredicate;
 public class ViewAppointmentCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
-<<<<<<< HEAD
-            getTypicalAppointmentBook(), getTypicalBudgetBook());
+            getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
-            getTypicalAppointmentBook(), getTypicalBudgetBook());
-=======
-            getTypicalAppointmentBook(), getTypicalGradeBook());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
-            getTypicalAppointmentBook(), model.getGradeBook());
->>>>>>> master
+            getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook());
 
     @Test
     public void execute_validDateUnfilteredList_success() {

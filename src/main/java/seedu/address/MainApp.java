@@ -17,11 +17,8 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.AddressBook;
 import seedu.address.model.AppointmentBook;
-<<<<<<< HEAD
 import seedu.address.model.BudgetBook;
-=======
 import seedu.address.model.GradeBook;
->>>>>>> master
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -130,11 +127,8 @@ public class MainApp extends Application {
             initialAppointments = new AppointmentBook();
         }
 
-<<<<<<< HEAD
         BudgetBook budgetBook = storage.readBudgetBook();
 
-        return new ModelManager(initialData, userPrefs, initialAppointments, budgetBook);
-=======
         try {
             gradeBookOptional = storage.readGradeBook();
             if (!gradeBookOptional.isPresent()) {
@@ -148,8 +142,8 @@ public class MainApp extends Application {
             initialGrades = new GradeBook();
         }
 
-        return new ModelManager(initialData, userPrefs, initialAppointments, initialGrades);
->>>>>>> master
+        return new ModelManager(initialData, userPrefs, initialAppointments,
+                budgetBook, initialGrades);
     }
 
     private void initLogging(Config config) {

@@ -7,11 +7,8 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
-<<<<<<< HEAD
 import seedu.address.model.budget.Budget;
-=======
 import seedu.address.model.grade.Grade;
->>>>>>> master
 import seedu.address.model.person.Person;
 
 /**
@@ -202,7 +199,6 @@ public interface Model {
     boolean hasAppointmentDateTime(AppointmentDateTime appointmentDateTime);
 
     /**
-<<<<<<< HEAD
      * @return Budget Book
      */
     BudgetBook getBudgetBook();
@@ -225,9 +221,9 @@ public interface Model {
     void editBudget(Budget budget);
 
 
-=======
-     * Returns true if a grade with the same identity as {@code grade} exists in the grade book.
-     */
+    /** Returns true if a grade with the same identity as {@code grade} exists in the
+    * grade book.
+    */
     boolean hasGrade(Grade grade);
 
     /**
@@ -255,5 +251,5 @@ public interface Model {
      * @param indexToRemove
      */
     void removeGradeIndex(int indexToRemove);
->>>>>>> master
+
 }
