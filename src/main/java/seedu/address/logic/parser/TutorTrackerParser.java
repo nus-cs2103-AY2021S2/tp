@@ -32,6 +32,8 @@ import seedu.address.logic.commands.filtercommands.AddPersonFilterCommand;
 import seedu.address.logic.commands.filtercommands.DeletePersonFilterCommand;
 import seedu.address.logic.commands.schedulecommands.AddScheduleCommand;
 import seedu.address.logic.commands.schedulecommands.DeleteScheduleCommand;
+import seedu.address.logic.commands.schedulecommands.EditScheduleCommand;
+import seedu.address.logic.commands.schedulecommands.ListScheduleCommand;
 import seedu.address.logic.parser.appointmentparser.AddAppointmentCommandParser;
 import seedu.address.logic.parser.appointmentparser.DeleteAppointmentCommandParser;
 import seedu.address.logic.parser.appointmentparser.EditAppointmentCommandParser;
@@ -46,6 +48,7 @@ import seedu.address.logic.parser.filterparser.AddPersonFilterCommandParser;
 import seedu.address.logic.parser.filterparser.DeletePersonFilterCommandParser;
 import seedu.address.logic.parser.scheduleparser.AddScheduleCommandParser;
 import seedu.address.logic.parser.scheduleparser.DeleteScheduleCommandParser;
+import seedu.address.logic.parser.scheduleparser.EditScheduleCommandParser;
 
 /**
  * Parses user input.
@@ -147,8 +150,15 @@ public class TutorTrackerParser {
         /* Schedule Commands */
         case AddScheduleCommand.COMMAND_WORD:
             return new AddScheduleCommandParser().parse(arguments);
+
+        case EditScheduleCommand.COMMAND_WORD:
+            return new EditScheduleCommandParser().parse(arguments);
+
         case DeleteScheduleCommand.COMMAND_WORD:
             return new DeleteScheduleCommandParser().parse(arguments);
+
+        case ListScheduleCommand.COMMAND_WORD:
+            return new ListScheduleCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
