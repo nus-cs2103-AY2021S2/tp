@@ -11,7 +11,11 @@ import seedu.address.model.Model;
 public class OpenMedicalRecordCommand extends Command {
 
     public static final String COMMAND_WORD = "mrec";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Opens an editor for a medical report for a patient ";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Opens an editor for a medical report for a patient "
+            + "identified by the index number used in the displayed person list. \n"
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " 3";
+
     public static final String MESSAGE_SUCCESS = "Editor opened: %s";
 
     private final Index index;
