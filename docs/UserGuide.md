@@ -49,7 +49,7 @@ PocketEstate enables easy organization of mass clientele property information th
   e.g `add property n/NAME t/PROPERTY_TYPE a/ADDRESS p/POSTAL_CODE d/DEADLINE [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS...]` can be used as <br>`add property n/Mayfair t/Condo a/1 Jurong East Street 32 p/609477 d/31-12-2021` <br> or as <br>`add property n/Mayfair t/Condo a/1 Jurong East Street 32 p/609477 d/31-12-2021 r/Urgent to sell cn/Alice cc/91234567 ce/alice@gmail.com ca/$800,000 tags/4 bedrooms, No need for renovation`.
 
 * Items with `…` after them can be used multiple times, including zero times.<br>
-  e.g. `[OPTION]...` can be used as ` ` (i.e. 0 times), `pl/$1,000,000`, `pl/$1,000,000 t/Condo` etc.
+  e.g. `[OPTION]...` can be used as `  ` (i.e. 0 times), `pl/$1,000,000`, `pl/$1,000,000 t/Condo` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME r/REMARKS`, `r/REMARKS n/NAME` is also acceptable.
@@ -193,35 +193,62 @@ Examples:
 *  `delete appointment 7` Deletes the `appointment` at index `7`.
 *  `delete property 7` Deletes the `property` at index `7`.
 
-### Filtering: `find`
+### Searching properties: `find property`
 
-Finds properties or appointments that matches the criterion provided.
+Finds properties that match the criterion provided.
 
 Formats:
-* `find appointment [keywords] [option...]`
-* `find property [keywords] [option...]`
+* `find property [KEYWORD] [OPTION...]`
 
 Description:
-* There can be 0 or more keywords and 0 or more options, but keywords and options cannot be both empty.
+* There can be 0 or more keywords and 0 or more options, but keywords and options cannot be both empty. All text are case insensitive. 
 
 Options:
-* `r/[REMARKS]`
+* `t/[PROPERTY_TYPE]`
 
-Search for properties or appointments whose remarks field contain patterns specified in `[REMARKS]`
+    Search for properties whose housing type field contain patterns specified in `[REMARKS]`. 
+    
+    The following housing types are supported: 
+    * hdb
+    * condo
+    * landed
 
 * `pm/[PRICE]`
 
-Search for properties with prices more than `[PRICE]`, ignored if used with appointment
+    Search for properties with prices more than `[PRICE]`. 
 
 * `pl/[PRICE]`
 
-Search for properties with prices less than `[PRICE]`, ignored if used with appointment
+    Search for properties with prices less than `[PRICE]`. 
 
 Examples:
-* `find property "jurong west"`
-* `find appointment "fri" r/"come in afternoon"`
+* `find property jurong west`
 * `find property pm/500000`
-* `find property "bishan" "north" "mrt" r/"recently renovated"`
+* `find property bishan north t/hdb pl/$1,000,000`
+
+### Searching appointments: `find appointment`
+
+Finds appointments that match the criterion provided.
+
+Formats:
+* `find appointment [KEYWORD]`
+
+Description:
+* There can be 0 or more keywords. Keywords are case insensitive. 
+
+Examples:
+* `find appointment bob`
+* `find appointment sunday`
+
+### Searching clients: `find client`
+
+Finds appointments that matches the keywords and properties whose clients matches the same keywords. Both are done at the same time. 
+
+Formats:
+* `find client [KEYWORD]`
+
+Description:
+* There can be 0 or more keywords. Keywords are case insensitive. 
 
 ### Clearing all entries : `clear`
 
@@ -274,7 +301,9 @@ Action | Format, Examples
 **Edit appointment** | `edit appointment INDEX [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]`<br> e.g.,`edit appointment 3 d/2021-03-28 r/at M hotel`
 **Add new status** | `update INDEX new AMOUNT`<br> e.g.,`update 1 new 600000`
 **Update status** | `update INDEX [proceed][cancel]`<br> e.g. `update 3 proceed`
-**Find** | `find appointment [keywords] [option...]` <br> e.g. `find appointment "fri" r/"come in afternoon"` <br><br> `find property [keywords] [option...]` <br> e.g., `find property "jurong west"`
+**Find properties** | `find property [KEYWORD] [OPTION...]` <br> Options: <br> <ul><li>`t/[HOUSING TYPE]`</li><li>`pm/[PRICE LOWER LIMIT]`</li><li>`pl/[PRICE UPPER LIMIT]`</li></ul> e.g., `find property bishan north t/hdb pl/$1,000,000`
+**Find appointments** | `find property [KEYWORD]` <br> e.g., `find appointment bob`
+**Find clients** | `find client [CLIENT NAME]` <br> e.g., `find client alice`
 **List all** | `list all`
 **List property** | `list property`
 **List appointment** | `list appointment`

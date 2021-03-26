@@ -301,20 +301,25 @@ _{Explain here how the data archiving feature will be implemented}_
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                 | I want to …​                                                            | So that I can…​                                                                |
-| -------- | ------------------------------------------ | -------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions                                                     | refer to instructions when I forget how to use the App                            |
-| `* * *`  | user                                       | be able to add a property                                                  | keep track of my clients' properties                                              |
-| `* * *`  | user                                       | be able to add an appointment                                              | keep track of my upcoming schedule                                                |
-| `* * *`  | user                                       | list all properties on sale                                                | know the number of properties that I have to sell                                 |
-| `* * *`  | user                                       | list all properties on sale                                                | know which properties I have to sell                                              |
-| `* * *`  | user                                       | view the client asking price of a property                                 | keep the price in mind when negotiating with the buyer                            |
-| `* * *`  | user                                       | view the properties in the order of nearest deadline                       | prioritize selling properties with a more urgent deadline                         |
-| `* *`    | potential user exploring the app           | see the app populated with sample data                                     | easily see how the app looks like when it is in use                               |
-| `* *`    | careless user                              | be able to categorize housing information based on predefined tags         | prevent typos while keying in information and avoid storing the wrong information |
-| `* *`    | user                                       | update the status of property listings(completed, Option, Sale Agreement)  | follow up with clients on time                                                    |
-| `* *`    | user                                       | edit the deadline of the property listing                                  | extend the time period for selling the property                                   |
-| `* *`    | user                                       | edit the name of the property listing                                      | change the name of the property when I have made a mistake                        |
-| `* *`    | user                                       | edit the address of the property listing                                   | change the address of the property when I have made a mistake                     |
+| -------- | ------------------------------------------ | -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `* * *`  | new user                                   | see usage instructions                                                     | refer to instructions when I forget how to use the App                                    |
+| `* * *`  | user                                       | be able to add a property                                                  | keep track of my clients' properties                                                      |
+| `* * *`  | user                                       | be able to add an appointment                                              | keep track of my upcoming schedule                                                        |
+| `* * *`  | user                                       | list all properties on sale                                                | know the number of properties that I have to sell                                         |
+| `* * *`  | user                                       | list all properties on sale                                                | know which properties I have to sell                                                      |
+| `* * *`  | user                                       | view the client asking price of a property                                 | keep the price in mind when negotiating with the buyer                                    |
+| `* * *`  | user                                       | view the properties in the order of nearest deadline                       | prioritize selling properties with a more urgent deadline                                 |
+| `* *`    | user                                       | edit the address of the property listing                                   | change the address of the property when I have made a mistake                             |
+| `* *`    | user                                       | search for properties based on some criteria                               | easily filter out the properties I want to see                                            |
+| `* *`    | user                                       | search for appointments based on some criteria                             | easily filter out the appointments I want to see                                          |
+| `* *`    | user                                       | search for all appointments and properties related to a client             | easily find out any appointments with a client and what properties they are interested in |
+| `* *`    | potential user exploring the app           | see the app populated with sample data                                     | easily see how the app looks like when it is in use                                       |
+| `* *`    | careless user                              | be able to categorize housing information based on predefined tags         | prevent typos while keying in information and avoid storing the wrong information         |
+| `* *`    | user                                       | update the status of property listings(completed, Option, Sale Agreement)  | follow up with clients on time                                                            |
+| `* *`    | user                                       | edit the deadline of the property listing                                  | extend the time period for selling the property                                           |
+| `* *`    | user                                       | edit the name of the property listing                                      | change the name of the property when I have made a mistake                                |
+| `* *`    | user                                       | edit the address of the property listing                                   | change the address of the property when I have made a mistake                             |
+| `* *`    | user                                       | edit the address of the property listing                                   | change the address of the property when I have made a mistake                             |
 
 *{More to be added}*
 
