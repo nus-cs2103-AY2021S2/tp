@@ -1,15 +1,23 @@
 package seedu.address.ui;
 
+import static seedu.address.model.property.Type.CONDO;
+import static seedu.address.model.property.Type.HDB;
+import static seedu.address.model.property.Type.LANDED;
+
 import java.time.LocalDate;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.commons.util.AppUtil;
 import seedu.address.model.property.Deadline;
 import seedu.address.model.property.Property;
+import seedu.address.model.property.Type;
 import seedu.address.model.property.client.Client;
 
 /**
@@ -18,6 +26,10 @@ import seedu.address.model.property.client.Client;
 public class PropertyCard extends UiPart<Region> {
 
     private static final String FXML = "PropertyListCard.fxml";
+
+    private static final Image HDB_ICON = AppUtil.getImage("/images/hdb_64.png");
+    private static final Image CONDO_ICON = AppUtil.getImage("/images/condo_64.png");
+    private static final Image LANDED_ICON = AppUtil.getImage("/images/landed_64.png");
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -57,6 +69,8 @@ public class PropertyCard extends UiPart<Region> {
     private Label status;
     @FXML
     private FlowPane tags;
+    @FXML
+    private ImageView propertyTypeIcon;
 
     /**
      * Creates a {@code PropertyCode} with the given {@code Property} and index to display.
@@ -101,6 +115,20 @@ public class PropertyCard extends UiPart<Region> {
             status.setManaged(false);
         } else {
             status.setText(property.getStatus().toString());
+        }
+
+        switch (property.getPropertyType().toString()) {
+        case HDB:
+            propertyTypeIcon.setImage(HDB_ICON);
+            break;
+        case CONDO:
+            propertyTypeIcon.setImage(CONDO_ICON);
+            break;
+        case LANDED:
+            propertyTypeIcon.setImage(LANDED_ICON);
+            break;
+        default:
+            throw new AssertionError(Type.MESSAGE_CONSTRAINTS);
         }
     }
 
