@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -137,6 +138,11 @@ public class CustomerAddCommandTest {
         }
 
         @Override
+        public Person getPersonByIndex(int i) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -188,6 +194,11 @@ public class CustomerAddCommandTest {
 
         @Override
         public ObservableList<Dish> getFilteredDishList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public List<Dish> getDishesByIngredients(Ingredient ingredient) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -247,6 +258,11 @@ public class CustomerAddCommandTest {
         }
 
         @Override
+        public void deleteOrders(List<Order> orders) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addOrder(Order order) {
             throw new AssertionError("This method should not be called.");
         }
@@ -258,6 +274,11 @@ public class CustomerAddCommandTest {
 
         @Override
         public ObservableList<Order> getFilteredOrderList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public List<Order> getOrdersFromPerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
     }
