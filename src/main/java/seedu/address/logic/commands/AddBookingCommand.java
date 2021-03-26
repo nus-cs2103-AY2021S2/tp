@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKING_END_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKING_START_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKING_END_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKING_START_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
@@ -17,7 +17,7 @@ import seedu.address.model.residence.Residence;
 
 
 /**
- * Adds a residence to the residence tracker.
+ * Adds a {@code Booking} to a {@code Residence} tracker.
  */
 public class AddBookingCommand extends Command {
 
@@ -27,14 +27,14 @@ public class AddBookingCommand extends Command {
             + "Parameters: RESIDENCE_INDEX (must be a positive integer)"
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
-            + PREFIX_BOOKING_START_TIME + "START_TIME "
-            + PREFIX_BOOKING_END_TIME + "END_TIME \n"
+            + PREFIX_BOOKING_START_DATE + "START_TIME "
+            + PREFIX_BOOKING_END_DATE + "END_TIME \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Sandy "
             + PREFIX_PHONE + "87654321 "
-            + PREFIX_BOOKING_START_TIME + "09082021 "
-            + PREFIX_BOOKING_END_TIME + "11082021 ";
-    public static final String MESSAGE_SUCCESS = String.format("New booking added to Residence %1$s : %2$s");
+            + PREFIX_BOOKING_START_DATE + "09082021 "
+            + PREFIX_BOOKING_END_DATE + "11082021 ";
+    public static final String MESSAGE_SUCCESS = "New booking added to Residence %1$s : %2$s";
     public static final String MESSAGE_INVALID_BOOKING = "The specified time overlaps "
             + "with another booking for this residence";
 

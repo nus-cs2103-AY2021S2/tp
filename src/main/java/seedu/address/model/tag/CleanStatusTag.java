@@ -30,9 +30,9 @@ public class CleanStatusTag {
         requireNonNull(cleanStatus);
         System.out.println("TESTING FOR CLEAN STATUS: " + cleanStatus);
         checkArgument(isValidCleanStatusTag(cleanStatus), MESSAGE_CONSTRAINTS);
-        if (cleanStatus.equalsIgnoreCase("y")) {
+        if (cleanStatus.equalsIgnoreCase("y") || cleanStatus.equalsIgnoreCase("clean")) {
             this.cleanStatus = CLEAN;
-        } else if (cleanStatus.equalsIgnoreCase("n")) {
+        } else if (cleanStatus.equalsIgnoreCase("n") || cleanStatus.equalsIgnoreCase("unclean")) {
             this.cleanStatus = UNCLEAN;
         }
     }
@@ -41,7 +41,8 @@ public class CleanStatusTag {
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidCleanStatusTag(String test) {
-        return test.equalsIgnoreCase("y") || test.equalsIgnoreCase("n");
+        return test.equalsIgnoreCase("y") || test.equalsIgnoreCase("n")
+                || test.equalsIgnoreCase("clean") || test.equalsIgnoreCase("unclean");
     }
 
     /**

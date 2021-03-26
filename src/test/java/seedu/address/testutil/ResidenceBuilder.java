@@ -1,8 +1,10 @@
 package seedu.address.testutil;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import seedu.address.model.booking.Booking;
 import seedu.address.model.residence.BookingList;
 import seedu.address.model.residence.Residence;
 import seedu.address.model.residence.ResidenceAddress;
@@ -64,13 +66,13 @@ public class ResidenceBuilder {
         return this;
     }
 
-    ///**
-    //* Sets the {@code Booking} of the {@code Residence} that we are building.
-    //*/
-    // public ResidenceBuilder withBookingDetails(String bookingDetails) {
-    //   this.bookingList = new BookingList(bookingDetails);
-    //    return this;
-    //}
+    /**
+     * Sets the {@code Booking} of the {@code Residence} that we are building.
+     */
+    public ResidenceBuilder withBookingDetails(List<Booking> bookings) {
+        this.bookingList = new BookingList(bookings);
+        return this;
+    }
 
     /**
      * Parses the {@code String cleanStatusTag} into a {@code cleanStatusTag} and set it to the {@code Residence}

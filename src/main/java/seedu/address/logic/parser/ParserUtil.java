@@ -128,8 +128,8 @@ public class ParserUtil {
         requireNonNull(start);
         requireNonNull(end);
         try {
-            LocalDate startTime = LocalDate.parse(start.trim(), DateTimeFormatter.ofPattern("DDMMYY"));
-            LocalDate endTime = LocalDate.parse(end.trim(), DateTimeFormatter.ofPattern("DDMMYY"));
+            LocalDate startTime = LocalDate.parse(start.trim(), DateTimeFormatter.ofPattern("ddMMuu"));
+            LocalDate endTime = LocalDate.parse(end.trim(), DateTimeFormatter.ofPattern("ddMMuu"));
             if (!Booking.isValidBookingTime(startTime, endTime)) {
                 throw new ParseException(Booking.MESSAGE_CONSTRAINTS);
             }

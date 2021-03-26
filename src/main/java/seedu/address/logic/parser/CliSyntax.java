@@ -13,6 +13,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_RESIDENCE_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_CLEAN_STATUS_TAG = new Prefix("clean/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
-    public static final Prefix PREFIX_BOOKING_START_TIME = new Prefix("s/");
-    public static final Prefix PREFIX_BOOKING_END_TIME = new Prefix("e/");
+    public static final Prefix PREFIX_BOOKING_START_DATE = new Prefix("s/");
+    public static final Prefix PREFIX_BOOKING_END_DATE = new Prefix("e/");
 }
