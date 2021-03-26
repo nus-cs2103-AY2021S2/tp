@@ -105,7 +105,7 @@ Format: `exit`
 
 Shows a message explaning how to access the help page. (to be updated)
 
-![help message](images/helpMessage.png) 
+![help message](images/helpMessage.png)
 
 Format: `help`
 

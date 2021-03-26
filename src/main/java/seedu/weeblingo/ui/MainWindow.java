@@ -115,12 +115,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
 
-        // can have a separate Panel here for the quiz mode, structure similar to learn mode
-        // problem is fillInnerParts() is called in UiManager start method when the app starts,
-        // need to find a way to alternate between the two panels
-
         // display menu mode at the launch of app
-
         flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
         flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
 
@@ -152,12 +147,16 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+
+
     /**
      * Opens the help window or focuses on it if it's already opened.
      */
     @FXML
     public void handleHelp() {
         if (!helpWindow.isShowing()) {
+            assert true;
+            logger.warning("Showing help");
             helpWindow.show();
         } else {
             helpWindow.focus();
@@ -194,7 +193,8 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
+            int currentMode = logic.getModel().getCurrentMode();
+            logger.info(String.format("Current mode is %s", currentMode));
             flashcardListPanelPlaceholder.setVisible(commandResult.isShowCards());
             int index = (commandText.equals("next") || commandText.equals("check")) ? logic.getCurrentIndex() : -1;
             flashcardListPanel.updateCard(index, commandResult.isShowAnswer());
