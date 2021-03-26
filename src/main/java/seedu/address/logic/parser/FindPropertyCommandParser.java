@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.logic.commands.FindPropertyCommand;
+import seedu.address.logic.commands.find.FindPropertyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyContainsKeywordsPredicate;

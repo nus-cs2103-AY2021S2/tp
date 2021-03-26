@@ -9,7 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_SORTING_ORDER_A
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.SortAppointmentCommand.SortAppointmentDescriptor;
+import seedu.address.logic.commands.sort.SortAppointmentCommand.SortAppointmentDescriptor;
 import seedu.address.testutil.SortAppointmentDescriptorBuilder;
 
 public class SortAppointmentDescriptorTest {

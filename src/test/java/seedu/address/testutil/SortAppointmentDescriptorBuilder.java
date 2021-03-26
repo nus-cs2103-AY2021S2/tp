@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import seedu.address.logic.commands.SortAppointmentCommand.SortAppointmentDescriptor;
+import seedu.address.logic.commands.sort.SortAppointmentCommand.SortAppointmentDescriptor;
 import seedu.address.model.sort.descriptor.AppointmentSortingKey;
 import seedu.address.model.sort.descriptor.SortingOrder;
 

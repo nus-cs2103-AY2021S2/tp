@@ -5,6 +5,7 @@ import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBo
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.clear.ClearAppointmentCommand;
 import seedu.address.model.AppointmentBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;

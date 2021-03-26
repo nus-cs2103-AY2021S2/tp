@@ -31,8 +31,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditPropertyCommand;
-import seedu.address.logic.commands.EditPropertyCommand.EditPropertyDescriptor;
+import seedu.address.logic.commands.edit.EditPropertyCommand;
+import seedu.address.logic.commands.edit.EditPropertyCommand.EditPropertyDescriptor;
 import seedu.address.model.name.Name;
 import seedu.address.model.property.Address;
 import seedu.address.model.property.Deadline;

@@ -11,7 +11,7 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.FindPropertyCommand;
+import seedu.address.logic.commands.find.FindPropertyCommand;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyContainsKeywordsPredicate;
 import seedu.address.model.property.PropertyPredicateList;

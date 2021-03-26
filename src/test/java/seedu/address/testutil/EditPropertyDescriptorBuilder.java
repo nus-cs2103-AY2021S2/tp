@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.EditPropertyCommand.EditPropertyDescriptor;
+import seedu.address.logic.commands.edit.EditPropertyCommand.EditPropertyDescriptor;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.name.Name;

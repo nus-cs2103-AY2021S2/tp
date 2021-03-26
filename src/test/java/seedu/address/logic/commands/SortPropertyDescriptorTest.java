@@ -9,7 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_SORTING_ORDER_A
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.SortPropertyCommand.SortPropertyDescriptor;
+import seedu.address.logic.commands.sort.SortPropertyCommand.SortPropertyDescriptor;
 import seedu.address.testutil.SortPropertyDescriptorBuilder;
 
 public class SortPropertyDescriptorTest {

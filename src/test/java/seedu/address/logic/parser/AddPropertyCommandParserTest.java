@@ -34,7 +34,7 @@ import static seedu.address.testutil.TypicalProperties.MAYFAIR;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddPropertyCommand;
+import seedu.address.logic.commands.add.AddPropertyCommand;
 import seedu.address.model.name.Name;
 import seedu.address.model.property.Address;
 import seedu.address.model.property.Deadline;

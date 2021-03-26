@@ -12,8 +12,8 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.SortPropertyCommand;
-import seedu.address.logic.commands.SortPropertyCommand.SortPropertyDescriptor;
+import seedu.address.logic.commands.sort.SortPropertyCommand;
+import seedu.address.logic.commands.sort.SortPropertyCommand.SortPropertyDescriptor;
 import seedu.address.model.sort.descriptor.PropertySortingKey;
 import seedu.address.model.sort.descriptor.SortingOrder;
 import seedu.address.testutil.SortPropertyDescriptorBuilder;

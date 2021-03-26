@@ -12,12 +12,12 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.ClearAppointmentCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindAppointmentCommand;
-import seedu.address.logic.commands.FindPropertyCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListAllCommand;
+import seedu.address.logic.commands.clear.ClearAppointmentCommand;
+import seedu.address.logic.commands.find.FindAppointmentCommand;
+import seedu.address.logic.commands.find.FindPropertyCommand;
+import seedu.address.logic.commands.list.ListAllCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
 import seedu.address.model.property.PropertyContainsKeywordsPredicate;

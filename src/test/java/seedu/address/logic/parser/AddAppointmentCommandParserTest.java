@@ -25,7 +25,7 @@ import static seedu.address.testutil.TypicalAppointments.MEET_ALEX;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddAppointmentCommand;
+import seedu.address.logic.commands.add.AddAppointmentCommand;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Date;
 import seedu.address.model.appointment.Time;

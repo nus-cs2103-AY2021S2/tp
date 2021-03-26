@@ -16,7 +16,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddPropertyCommand;
+import seedu.address.logic.commands.add.AddPropertyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.name.Name;
 import seedu.address.model.property.Address;

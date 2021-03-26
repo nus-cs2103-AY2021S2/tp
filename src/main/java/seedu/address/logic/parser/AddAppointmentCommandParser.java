@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddAppointmentCommand;
+import seedu.address.logic.commands.add.AddAppointmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Date;

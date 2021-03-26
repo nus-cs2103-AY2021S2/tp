@@ -6,6 +6,7 @@ import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBook;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.clear.ClearAllCommand;
 import seedu.address.model.AppointmentBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;

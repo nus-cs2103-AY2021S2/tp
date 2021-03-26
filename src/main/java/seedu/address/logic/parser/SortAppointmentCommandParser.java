@@ -5,8 +5,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORTING_KEY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORTING_ORDER;
 
-import seedu.address.logic.commands.SortAppointmentCommand;
-import seedu.address.logic.commands.SortAppointmentCommand.SortAppointmentDescriptor;
+import seedu.address.logic.commands.sort.SortAppointmentCommand;
+import seedu.address.logic.commands.sort.SortAppointmentCommand.SortAppointmentDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**

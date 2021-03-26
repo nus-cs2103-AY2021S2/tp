@@ -15,7 +15,8 @@ import java.util.Comparator;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.SortPropertyCommand.SortPropertyDescriptor;
+import seedu.address.logic.commands.sort.SortPropertyCommand;
+import seedu.address.logic.commands.sort.SortPropertyCommand.SortPropertyDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;

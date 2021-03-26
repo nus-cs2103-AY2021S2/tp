@@ -12,8 +12,8 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.SortAppointmentCommand;
-import seedu.address.logic.commands.SortAppointmentCommand.SortAppointmentDescriptor;
+import seedu.address.logic.commands.sort.SortAppointmentCommand;
+import seedu.address.logic.commands.sort.SortAppointmentCommand.SortAppointmentDescriptor;
 import seedu.address.model.sort.descriptor.AppointmentSortingKey;
 import seedu.address.model.sort.descriptor.SortingOrder;
 import seedu.address.testutil.SortAppointmentDescriptorBuilder;

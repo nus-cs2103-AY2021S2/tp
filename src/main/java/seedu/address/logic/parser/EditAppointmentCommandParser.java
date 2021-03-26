@@ -8,8 +8,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditAppointmentCommand;
-import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
+import seedu.address.logic.commands.edit.EditAppointmentCommand;
+import seedu.address.logic.commands.edit.EditAppointmentCommand.EditAppointmentDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**

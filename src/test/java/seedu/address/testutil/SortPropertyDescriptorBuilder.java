@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import seedu.address.logic.commands.SortPropertyCommand.SortPropertyDescriptor;
+import seedu.address.logic.commands.sort.SortPropertyCommand.SortPropertyDescriptor;
 import seedu.address.model.sort.descriptor.PropertySortingKey;
 import seedu.address.model.sort.descriptor.SortingOrder;
 

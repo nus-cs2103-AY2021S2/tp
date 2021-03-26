@@ -1,7 +1,9 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.clear;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.AppointmentBook;
 import seedu.address.model.Model;
 import seedu.address.model.PropertyBook;

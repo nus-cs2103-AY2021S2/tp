@@ -12,7 +12,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_BURGHLEY_D
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.EditPropertyCommand.EditPropertyDescriptor;
+import seedu.address.logic.commands.edit.EditPropertyCommand.EditPropertyDescriptor;
 import seedu.address.testutil.EditPropertyDescriptorBuilder;
 
 public class EditPropertyDescriptorTest {

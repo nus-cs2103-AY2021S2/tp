@@ -15,9 +15,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAGS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditPropertyCommand;
-import seedu.address.logic.commands.EditPropertyCommand.EditClientDescriptor;
-import seedu.address.logic.commands.EditPropertyCommand.EditPropertyDescriptor;
+import seedu.address.logic.commands.edit.EditPropertyCommand;
+import seedu.address.logic.commands.edit.EditPropertyCommand.EditClientDescriptor;
+import seedu.address.logic.commands.edit.EditPropertyCommand.EditPropertyDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**

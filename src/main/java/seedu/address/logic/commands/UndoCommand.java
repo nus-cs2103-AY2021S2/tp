@@ -6,6 +6,12 @@ import java.util.Stack;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.add.AddAppointmentCommand;
+import seedu.address.logic.commands.add.AddPropertyCommand;
+import seedu.address.logic.commands.delete.DeleteAppointmentCommand;
+import seedu.address.logic.commands.delete.DeletePropertyCommand;
+import seedu.address.logic.commands.edit.EditAppointmentCommand;
+import seedu.address.logic.commands.edit.EditPropertyCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.PocketEstateParser;
 import seedu.address.logic.parser.exceptions.ParseException;
