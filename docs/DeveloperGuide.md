@@ -266,7 +266,6 @@ Step 1: The user launches the application and executes `food_delete n/chocolate`
 Step 2: The food item specified will be deleted from the food list.
 
 The following sequence diagram shows how the delete operation works:
-<INSERT DIAGRAM FLOW HERE>
 
 ### Product Scope
 
