@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CLEAN_STATUS_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RESIDENCE_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RESIDENCE_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -49,8 +49,8 @@ public class CommandTestUtil {
 
     public static final String BOOKING_DETAILS_DESC_RESIDENCE1 = " " + PREFIX_BOOKING_DETAILS + VALID_BOOKING_DETAILS;
     public static final String BOOKING_DETAILS_DESC_RESIDENCE2 = " " + PREFIX_BOOKING_DETAILS + VALID_BOOKING_DETAILS;
-    public static final String NAME_DESC_RESIDENCE1 = " " + PREFIX_RESIDENCE_NAME + VALID_NAME_RESIDENCE1;
-    public static final String NAME_DESC_RESIDENCE2 = " " + PREFIX_RESIDENCE_NAME + VALID_NAME_RESIDENCE2;
+    public static final String NAME_DESC_RESIDENCE1 = " " + PREFIX_NAME + VALID_NAME_RESIDENCE1;
+    public static final String NAME_DESC_RESIDENCE2 = " " + PREFIX_NAME + VALID_NAME_RESIDENCE2;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
@@ -65,7 +65,7 @@ public class CommandTestUtil {
     public static final String UNCLEAN_STATUS_DESC = " " + PREFIX_CLEAN_STATUS_TAG + VALID_UNCLEAN_TAG;
 
     // '&' not allowed in names
-    public static final String INVALID_NAME_DESC = " " + PREFIX_RESIDENCE_NAME + "James&";
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&";
     // 'a' not allowed in phones
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a";
     // missing '@' symbol

@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.booking.Booking;
 import seedu.address.model.tag.CleanStatusTag;
 import seedu.address.model.tag.Tag;
 
@@ -26,7 +27,7 @@ public class Residence {
     private CleanStatusTag cleanStatusTag;
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null except for {@code BookingList}.
      */
     public Residence(ResidenceName residenceName, ResidenceAddress residenceAddress,
                      CleanStatusTag cleanStatusTag, Set<Tag> tags) {
@@ -39,7 +40,7 @@ public class Residence {
     }
 
     /**
-     * When BookingList is provided null.
+     * When BookingList is provided.
      */
     public Residence(ResidenceName residenceName, ResidenceAddress residenceAddress, BookingList bookingList,
                      CleanStatusTag cleanStatusTag, Set<Tag> tags) {
@@ -73,6 +74,15 @@ public class Residence {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Residence addBooking(Booking booking) {
+        bookingList.add(booking);
+        return this;
     }
 
     /**
