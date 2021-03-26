@@ -357,6 +357,8 @@
     -fx-border-radius: 2;
     -fx-background-radius: 5;
     -fx-font-size: 11;
+    -fx-max-width: 200;
+    -fx-wrap-text: true;
 }
 
 #propertyType {

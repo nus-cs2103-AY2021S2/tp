@@ -86,12 +86,7 @@ public class PropertyCard extends UiPart<Region> {
         postalCode.setText(property.getPostalCode().toString());
         property.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> {
-                    Label label = new Label(tag.tagName);
-                    label.setMaxWidth(200);
-                    label.setWrapText(true);
-                    tags.getChildren().add(label);
-                });
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
         Deadline currentDate = new Deadline(LocalDate.now());
         if (currentDate.compareTo(property.getDeadline()) > 0) {
