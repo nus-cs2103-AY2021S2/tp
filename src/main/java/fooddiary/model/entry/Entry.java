@@ -2,8 +2,10 @@ package fooddiary.model.entry;
 
 import static fooddiary.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -17,7 +19,7 @@ public class Entry {
 
     // Identity fields
     private final Name name;
-    private final Review review;
+    private final List<Review> reviews = new ArrayList<>();
     private final Rating rating;
     private final Price price;
 
@@ -29,12 +31,12 @@ public class Entry {
      * Every field must be present and not null.
      */
 
-    public Entry(Name name, Rating rating, Price price, Review review, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, rating, price, review, address, tags);
+    public Entry(Name name, Rating rating, Price price, List<Review> reviews, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, rating, price, reviews, address, tags);
         this.name = name;
         this.rating = rating;
         this.price = price;
-        this.review = review;
+        this.reviews.addAll(reviews);
         this.address = address;
         this.tags.addAll(tags);
     }
@@ -47,8 +49,12 @@ public class Entry {
         return rating;
     }
 
-    public Review getReview() {
-        return review;
+    /**
+     * Returns an immutable review list, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public List<Review> getReviews() {
+        return Collections.unmodifiableList(reviews);
     }
 
     public Price getPrice() {
@@ -98,7 +104,7 @@ public class Entry {
         return otherEntry.getName().equals(getName())
                 && otherEntry.getRating().equals(getRating())
                 && otherEntry.getPrice().equals(getPrice())
-                && otherEntry.getReview().equals(getReview())
+                && otherEntry.getReviews().equals(getReviews())
                 && otherEntry.getAddress().equals(getAddress())
                 && otherEntry.getTags().equals(getTags());
     }
@@ -106,7 +112,7 @@ public class Entry {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, rating, review, address, tags);
+        return Objects.hash(name, rating, reviews, address, tags);
     }
 
     @Override
@@ -116,10 +122,15 @@ public class Entry {
                 .append("; Rating: ")
                 .append(getRating())
                 .append("; Price: ")
-                .append(getPrice())
-                .append("; Review: ")
-                .append(getReview())
-                .append("; Address: ")
+                .append(getPrice());
+
+        List<Review> reviews = getReviews();
+        if (!reviews.isEmpty()) {
+            builder.append("; Reviews: ");
+            reviews.forEach(builder::append);
+        }
+
+        builder.append("; Address: ")
                 .append(getAddress());
 
         Set<Tag> tags = getTags();
