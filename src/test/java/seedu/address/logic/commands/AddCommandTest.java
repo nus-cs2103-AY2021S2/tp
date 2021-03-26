@@ -250,6 +250,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasBudget() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
         public boolean hasBudget(Budget budget) {
             throw new AssertionError("This method should not be called");
         }
@@ -265,7 +270,12 @@ public class AddCommandTest {
 
         @Override
         public void addBudget(Budget budget) {
+            throw new AssertionError("This method should not be called.");
+        }
 
+        @Override
+        public void deleteBudget() {
+            throw new AssertionError("This method should not be called.");
         }
 
         public void deleteGrade(Grade grade) {
