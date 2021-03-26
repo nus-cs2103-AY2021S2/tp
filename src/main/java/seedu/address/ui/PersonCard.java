@@ -4,6 +4,8 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -41,9 +43,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label remark;
     @FXML
-    private Label modeOfContact;
-    @FXML
-    private Label blacklist;
+    private ImageView modeOfContactIcon;
     @FXML
     private FlowPane tags;
 
@@ -59,8 +59,22 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         remark.setText(person.getRemark().value);
-        modeOfContact.setText(person.getModeOfContact().value);
-        blacklist.setText(person.getBlacklist().toString());
+        switch (person.getModeOfContact().value) {
+        case "phone":
+            modeOfContactIcon.setImage(new Image("images/smartphone.png"));
+            break;
+        case "email":
+            modeOfContactIcon.setImage(new Image("images/email.png"));
+            break;
+        case "address":
+            modeOfContactIcon.setImage(new Image("images/house.png"));
+            break;
+        }
+        if (person.getBlacklist().isBlacklisted) {
+            name.setStyle("-fx-text-fill: #ff0000");
+        } else {
+            name.setStyle("");
+        }
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

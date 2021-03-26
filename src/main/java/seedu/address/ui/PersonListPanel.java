@@ -41,6 +41,11 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
+                if (person.getBlacklist().isBlacklisted) {
+                    setStyle("-fx-background-color: #000000");
+                } else {
+                    setStyle("");
+                }
                 setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
             }
         }
