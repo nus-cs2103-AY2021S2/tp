@@ -57,6 +57,33 @@ public class Score implements Comparable<Score> {
         return result;
     }
 
+    /**
+     * Static method of creating a Score object.
+     * Quiz attempt time is properly handled within this method.
+     *
+     * @param datetime A LocalDatetime object equivalent to the LocalDatetime object created
+     *                 when the quiz is initialized. Must not be null.
+     * @param questionAttempted Number of questions attempted in the attempt. Must not be null or non-positive.
+     * @param questionCorrect Number of questions attempted correctly in the attempt. Must not be null or negative.
+     * @return A score object containing necessary information including the attributes supplied and
+     * the time when the Score object is created.
+     */
+    public static Score of(LocalDateTime datetime, Integer questionAttempted, Integer questionCorrect) {
+        if (datetime == null || questionAttempted == null || questionCorrect == null) {
+            throw new NullInputException("Null value supplied to Score object");
+        }
+        if (questionAttempted <= 0 || questionCorrect < 0) {
+            throw new NullInputException("Non-positive value supplied to the number of questions attempted, or "
+                    + "negative value supplied to number of questions attempted correctly");
+        }
+        if (questionAttempted < questionCorrect) {
+            throw new NullInputException("Questions attempted must be larger or equal to questions correct");
+        }
+        Score result = new Score(datetime, questionAttempted, questionCorrect);
+        logger.info(String.format("Attempt record stored: %s.", result.toString()));
+        return result;
+    }
+
     private Double getCorrectRatio() {
         assert questionAttempted != null;
         assert questionAttempted > 0;
