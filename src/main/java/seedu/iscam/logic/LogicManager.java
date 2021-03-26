@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.iscam.commons.core.GuiSettings;
 import seedu.iscam.commons.core.LogsCenter;
@@ -16,6 +17,7 @@ import seedu.iscam.model.Model;
 import seedu.iscam.model.ObservableClient;
 import seedu.iscam.model.ReadOnlyClientBook;
 import seedu.iscam.model.client.Client;
+import seedu.iscam.model.meeting.Meeting;
 import seedu.iscam.storage.Storage;
 
 /**
@@ -63,6 +65,16 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Client> getFilteredClientList() {
         return model.getFilteredClientList();
+    }
+
+    @Override
+    public ObservableList<Meeting> getFilteredMeetingList() {
+        return model.getFilteredMeetingList();
+    }
+
+    @Override
+    public ObservableValue<Boolean> getIsClientMode() {
+        return model.getIsClientMode();
     }
 
     @Override
