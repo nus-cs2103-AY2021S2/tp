@@ -30,9 +30,7 @@ public class EntryUtil {
         sb.append(CliSyntax.PREFIX_NAME + entry.getName().fullName + " ");
         sb.append(CliSyntax.PREFIX_RATING + entry.getRating().value + " ");
         sb.append(CliSyntax.PREFIX_PRICE + entry.getPrice().value + " ");
-        entry.getReviews().stream().forEach(
-                s -> sb.append(CliSyntax.PREFIX_REVIEW + s.value + " ")
-        );
+        entry.getReviews().stream().forEach(s -> sb.append(CliSyntax.PREFIX_REVIEW + s.value + " "));
         sb.append(CliSyntax.PREFIX_ADDRESS + entry.getAddress().value + " ");
         entry.getTags().stream().forEach(
             s -> sb.append(CliSyntax.PREFIX_TAG + s.tagCategory.titleCase() + " ")
