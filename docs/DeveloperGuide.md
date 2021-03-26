@@ -260,6 +260,10 @@ The following activity diagram summarizes what happens when a user executes an `
 
 (insert UpdateCommandParser activity diagram here)
 
+The following sequence diagram shows how the update operation works:
+
+(insert update new activity diagram here)
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
