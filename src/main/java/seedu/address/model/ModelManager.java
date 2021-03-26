@@ -11,12 +11,15 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.connection.PersonMeetingConnection;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingBook;
 import seedu.address.model.meeting.ReadOnlyMeetingBook;
+import seedu.address.model.meeting.UniqueMeetingList;
 import seedu.address.model.person.AddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyAddressBook;
+import seedu.address.model.person.UniquePersonList;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -31,6 +34,10 @@ public class ModelManager implements Model {
     // TODO: Modify the signature of ModelManager so that we can add meetings inside it.
     private final MeetingBook meetingBook;
     private final FilteredList<Meeting> filteredMeetings;
+
+    // TODO: Modify the signature of ModelManager so that we can add connection inside it.
+    private final PersonMeetingConnection connection;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs. MeetingBook will be set to default.
      */
@@ -45,6 +52,8 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        // TODO: Modify the signature of ModelManager so that we can add connection inside it.
+        this.connection = new PersonMeetingConnection();
     }
 
     /**
@@ -62,6 +71,27 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        // TODO: Modify the signature of ModelManager so that we can add connection inside it.
+        this.connection = new PersonMeetingConnection();
+    }
+
+    /**
+     * Initializes a ModelManager with the given addressBook, meetingBook, userPrefs and PersonMeetingConnection
+     */
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyMeetingBook meetingBook,
+                        ReadOnlyUserPrefs userPrefs, PersonMeetingConnection connection) {
+        super();
+        requireAllNonNull(addressBook, userPrefs);
+
+        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+
+        this.meetingBook = new MeetingBook(meetingBook);
+        this.filteredMeetings = new FilteredList<Meeting>(this.meetingBook.getMeetingList());
+        this.addressBook = new AddressBook(addressBook);
+        this.userPrefs = new UserPrefs(userPrefs);
+        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        // TODO: Modify the signature of ModelManager so that we can add connection inside it.
+        this.connection = connection;
     }
 
 
@@ -175,6 +205,82 @@ public class ModelManager implements Model {
         meetingBook.setMeeting(target, editedMeeting);
     }
     //TODO: Set MeetingBook file path in userPrefs? low priority feature(nice to have)
+
+    // ============= PersonMeetingConnection =======================
+    /**
+     * Replaces person meeting connection data with the data in {@code PersonMeetingConnection}.
+     */
+    @Override
+    public void setPersonMeetingConnection(PersonMeetingConnection connection) {
+        requireNonNull(connection);
+        this.connection.resetData(connection);
+    }
+
+    /** Returns the connection */
+    @Override
+    public PersonMeetingConnection getPersonMeetingConnection() {
+        return connection;
+    };
+
+    /**
+     * Returns true if a given person and a given meeting exist a connection.
+     */
+    @Override
+    public boolean hasPersonMeetingConnection(Person person, Meeting meeting) {
+        return connection.existPersonMeetingConnection(person, meeting);
+    }
+
+    /**
+     * Adds a connection between a person and a meeting.
+     */
+    @Override
+    public void addPersonMeetingConnection(Person person, Meeting meeting) {
+        connection.addPersonMeetingConnection(person, meeting);
+    }
+
+    /**
+     * This method delete a single connection between a meeting and a person.
+     */
+    @Override
+    public void deleteSinglePersonMeetingConnection(Person person, Meeting meeting) {
+        connection.deleteSinglePersonMeetingConnection(person, meeting);
+    }
+
+    /**
+     * This method delete a all connections related to a given person.
+     */
+    @Override
+    public void deleteAllPersonMeetingConnectionByPerson(Person person) {
+        connection.deleteAllPersonMeetingConnectionByPerson(person);
+    };
+
+    /**
+     * This method delete a all connections related to a given meeting.
+     */
+    @Override
+    public void deleteAllPersonMeetingConnectionByMeeting(Meeting meeting) {
+        connection.deleteAllPersonMeetingConnectionByMeeting(meeting);
+    }
+
+    //TODO: This two methods below may need further change because I don't know how it works with GUI.(Yuheng)
+    /**
+     * Returns a Observable meeting list object with the person as the key.
+     * Empty list will be returned if there is no value found in the hashMap.
+     */
+    public ObservableList<Meeting> getFilteredMeetingListByPersonConnection(Person person) {
+        UniqueMeetingList meetings = connection.getMeetingsByPerson(person);
+        assert meetings != null;
+        return meetings.asUnmodifiableObservableList();
+    }
+    /**
+     * Returns a Observable person list object with the meeting as the key.
+     * Empty list will be returned if there is no value found in the hashMap.
+     */
+    public ObservableList<Person> getFilteredPersonListByMeetingConnection(Meeting meeting) {
+        UniquePersonList persons = connection.getPersonsByMeeting(meeting);
+        assert persons != null;
+        return persons.asUnmodifiableObservableList();
+    }
 
     //=========== Filtered Person List Accessors =============================================================
 
