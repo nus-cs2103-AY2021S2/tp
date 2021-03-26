@@ -286,7 +286,7 @@ the steps are similar except for step 3 and 4 where it will be TagContainsKeywor
 DescriptionContainsKeywordsPredicate 
 respectively in place of TitleContainsKeywordsPredicate </div>
 
-![FindSequenceDiagram](images/FindSequenceDiagram.png)
+<img src="images/FindSequenceDiagram.png" width="1500" />
 
 ##### Design Considerations
 For the `find` command, there are 2 design choices being considered in whether to split the 3 implementation methods
