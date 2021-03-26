@@ -48,8 +48,8 @@ PocketEstate enables easy organization of mass clientele property information th
 * Items in square brackets are optional.<br>
   e.g `add property n/NAME t/PROPERTY_TYPE a/ADDRESS p/POSTAL_CODE d/DEADLINE [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS...]` can be used as <br>`add property n/Mayfair t/Condo a/1 Jurong East Street 32 p/609477 d/31-12-2021` <br> or as <br>`add property n/Mayfair t/Condo a/1 Jurong East Street 32 p/609477 d/31-12-2021 r/Urgent to sell cn/Alice cc/91234567 ce/alice@gmail.com ca/$800,000 tags/4 bedrooms, No need for renovation`.
 
-* Items with `…` after them can be used multiple times, and separated by a comma.<br>
-  e.g. `tags/TAGS...` can be used as `tags/Freehold`, `tags/Freehold, 5 bedrooms`, `tags/Freehold, 5 bedrooms, Near MRT` etc.
+* Items with `…` after them can be used multiple times, including zero times.<br>
+  e.g. `[OPTION]...` can be used as ` ` (i.e. 0 times), `pl/$1,000,000`, `pl/$1,000,000 t/Condo` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME r/REMARKS`, `r/REMARKS n/NAME` is also acceptable.
