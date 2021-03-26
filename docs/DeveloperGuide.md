@@ -2,22 +2,27 @@
 layout: page
 title: Developer Guide
 ---
+
 * Table of Contents
-  {:toc}  
+{:toc}  
   
 --------------------------------------------------------------------------------------------------------------------
+
 ## **Introduction**
 ### Purpose
+
 The purpose of this document is to cover the multi-level design architecture of Dictionote, so that the 
 intended audience of this document can understand the relationship between components that make up Dictionote.
 
 ### Audience
+
 This developer guide is for anyone who wants to understand the internal software architecture of Dictionote.
 The following groups of people are the intended audience:
 * Dictionote developers: anyone who wish to upgrade Dictionote to support more functions.
 * CS2103/T students: students of CS2103/T who want to improve their efficiency and productivity in learning.
 
 ### Dictionote Overview
+
 Dictionote is a desktop app for CS2103/T Students, optimized for use via a Command Line Interface (CLI)
 while still having the benefits of a Graphical User Interface (GUI). Dictionote in general helps to organise content and
 definitions from the CS2103/T textbook, provide Note-keeping functions to facilitate learning, and enhance the ability
@@ -167,15 +172,15 @@ As an example, consider running Dictionote on a Windows 10 machine with Microsof
 
 * Assume that the current state of the application is as follows (note the exisiting contacts on the left-side of the application's window):
 
-![ContactEmailFeatureInitState](images/ContactEmailFeatureInitState.png)
+![ContactEmailFeatureInitState]<!---(images/ContactEmailFeatureInitState.png)-->
 
 * After typing in `emailcontact 2` and executing it, the result would be:
 
-![ContactEmailFeatureExecute](images/ContactEmailFeatureExecute.png)
+![ContactEmailFeatureExecute]<!---(images/ContactEmailFeatureExecute.png)-->
 
 * A new window, belonging to Microsoft Outlook's `New Message` function, will pop up:
 
-![ContactEmailFeatureOSClient](images/ContactEmailFeatureOSClient.png)
+![ContactEmailFeatureOSClient]<!---(images/ContactEmailFeatureOSClient.png)-->
 
 * Note that the email of the selected contact, Bob (referred to in the command by his index number), is automatically written in the `To...` field of the email's header information.
 
@@ -315,6 +320,7 @@ _{Explain here how the data archiving feature will be implemented}_
 ### User stories
 
 #### User Stories : Main/UI
+
 | Priority | As a …​                                                   | I want to …​                                          | So that I can…​                                            | Category               |
 | -------- | -------------------------------------------------------------| -------------------------------------------------------- | ------------------------------------------------------------- | ---------------------- |
 |***Main***| | | |
@@ -327,14 +333,14 @@ _{Explain here how the data archiving feature will be implemented}_
 | `* *`    | CS2103 Student                                               | Save my UI configuration                                 | Save my time on re-adjust the Ui                              | Main/Non-essential |
 | `* *`    | CS2103 Student                                               | Change my UI configuration                               | do no need to adjust the UI using mouse                       | Main/Non-essential |
 | `* *`    | CS2103 Student                                               | Change my UI orientation                                 | use the space available more efficiently                      | Main/Non-essential |
-|***Dictionary*** | | | | |
+|***Dictionary*** | -- | -- | --  | -- |
 | `* * *`  | CS2103T student who find it troublesome to use the website   | Search for a definition of an SE term                    | Understand what it means                                      | Dictionary/Essential|
 | `* * *`  | CS2103T student                                              | Find content I need                                      | Save time having to dig through the textbook                  | Dictionary/Essential|
 | `* * *`  | CS2103T student                                              | List all the contents in the dictionary                  | View the extensive list of contents                           | Dictionary/Essential|
 | `* * *`  | CS2103T student                                              | List all the definitions in the dictionary               | View the extensive list of contents                           | Dictionary/Essential|
 | `*`      | CS2103T student                                              | Track my progress when reading through a summary         | Continue my preparation from where I left off                 | Dictionary/Non-essential|
 | `* *`    | CS2103T student                                              | Copy specific contents in the dictionary to the notes    | Keep track of the important content on my personal note list  | Dictionary/Non-essential|
-|***Note*** | | | | |
+|***Note*** |  |  |  | |
 | `* * *`  | CS2103T student                                              | Take a new note                                          | Have easy access to my materials whenever I need them         | Note/Essential  |
 | `* * * ` | CS2103T student                                              | Delete an existing note                                  | Remove out-of-date notes.                                     | Note/Essential  |
 | `* * * ` | CS2103T student                                              | Edit a note                                              | Revise a small typo in the note.                              | Note/Essential  |
