@@ -45,7 +45,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         BookingList bookingList;
         if (argMultimap.getAllValues(PREFIX_BOOKING_DETAILS).size() > 0) {
-            bookingList = ParserUtil.parseBooking(
+            bookingList = ParserUtil.parseBookingList(
                     argMultimap.getValue(PREFIX_BOOKING_DETAILS).get());
         } else {
             bookingList = new BookingList();

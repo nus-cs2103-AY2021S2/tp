@@ -109,8 +109,6 @@ public class Residence {
         builder.append(getResidenceName())
                 .append("; Residence Address: ")
                 .append(getResidenceAddress())
-                .append("; Booking Details: ")
-                .append(getBookingDetails())
                 .append("; Clean Status: ")
                 .append(getCleanStatusTag());
 

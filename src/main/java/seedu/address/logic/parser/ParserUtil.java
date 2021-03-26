@@ -107,7 +107,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code booking} is invalid.
      */
-    public static BookingList parseBooking(String bookingDetails) throws ParseException {
+    public static BookingList parseBookingList(String bookingDetails) throws ParseException {
         requireNonNull(bookingDetails);
         String trimmedBooking = bookingDetails.trim();
         if (!BookingList.isValidBooking(trimmedBooking)) {

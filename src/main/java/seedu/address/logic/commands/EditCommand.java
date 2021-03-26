@@ -33,9 +33,9 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed residence list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_CLEAN_STATUS_TAG + " y/n] "
-            + "Example: " + COMMAND_WORD
-            + PREFIX_CLEAN_STATUS_TAG + " y 1 ";
+            + "[" + PREFIX_CLEAN_STATUS_TAG + "n]\n"
+            + "Example: " + COMMAND_WORD + "1 "
+            + PREFIX_CLEAN_STATUS_TAG + "y";
 
     public static final String MESSAGE_EDIT_RESIDENCE_SUCCESS = "Edited Residence: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -123,10 +123,8 @@ public class EditCommand extends Command {
     public static class EditResidenceDescriptor {
         private ResidenceName residenceName;
         private ResidenceAddress residenceAddress;
-        // because CleanStatusTag has default value
-        private BookingList bookingList = new BookingList();
-        // because CleanStatusTag has default value
-        private CleanStatusTag cleanStatusTag = new CleanStatusTag();
+        private BookingList bookingList;
+        private CleanStatusTag cleanStatusTag;
         private Set<Tag> tags;
 
         public EditResidenceDescriptor() {
