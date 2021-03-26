@@ -8,36 +8,41 @@ import static seedu.address.commons.util.ScheduleUiUtil.toAmPmTime;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.Event;
 import seedu.address.ui.UiPart;
 
-/*
-Code adapted from https://github.com/AY2021S1-CS2103T-T12-3/tp
+/**
+ * Represents a cell for an event in the {@Code TimeScale} schedule UI.
  */
 public class EventCell extends UiPart<Region> {
+    //Code adapted from https://github.com/AY2021S1-CS2103T-T12-3/tp
     private static final String FXML = "schedule/EventCell.fxml";
+    private static Logger logger = LogsCenter.getLogger(EventCell.class);
 
-    private static final double MINIMUM_CELL_HEIGHT = 13.0; // The height of title label.
+    // The height of title label.
+    private static final double MINIMUM_CELL_HEIGHT = 13.0;
 
     @FXML
     private Label startTime;
-
     @FXML
     private VBox eventHolder;
-
     @FXML
     private Label title;
 
     private Event event;
 
     /**
-     * Construct a TaskCell from a {@Code task}
+     * Constructs an event cell with {@code Event};
+     *
+     * @param event event for the event cell.
      */
     public EventCell(Event event) {
         super(FXML);
@@ -58,12 +63,12 @@ public class EventCell extends UiPart<Region> {
             eventHolder.getChildren().remove(startTime);
             eventHolder.setAlignment(Pos.CENTER);
         }
-
+        logger.info("successfully initialised event cell");
     }
-
 
     /**
      * Method used to update the startTime.
+     *
      * @param startTimeStr must be in the form of hh:mm AM/PM
      */
     public void setStartTime(String startTimeStr) {
@@ -72,25 +77,28 @@ public class EventCell extends UiPart<Region> {
     }
 
     /**
-     * Calculate the margin top by the task for the TimeScale.
+     * Calculates the margin top by the task for the TimeScale.
      */
     public double marginTop() {
         return getMarginFromDateTime(event.getDateTime());
     }
 
-    /**
-     * Method used to update the title.
-     * @param titleStr
-     */
     private void setTitle(String titleStr) {
         this.title.setText(titleStr);
     }
 
+    /**
+     * Returns string format of starting time of event.
+     *
+     * @param event event to have its starting time interpreted.
+     * @return String format of starting time of event.
+     */
     private String getTimeFromEvent(Event event) {
         LocalDateTime dateTime = event.getDateTime();
         DateTimeFormatter formmater = DateTimeFormatter.ofPattern("HH:mm");
         return toAmPmTime(formmater.format(dateTime));
     }
+
 
     private double getTaskCellHeight() {
         double calculatedVal = getTaskDuration() * MARGIN_PER_MINUTE;

@@ -69,6 +69,7 @@ public class CalendarWindow extends UiPart<Stage> {
 
     /**
      * Creates a new CalendarWindow.
+     *
      * @param calendarStorage stores the calendar events' information.
      * @param upcomingSchedule timeline for date on the left side of the calendar window.
      */
@@ -85,6 +86,7 @@ public class CalendarWindow extends UiPart<Stage> {
         schedulePanelPlaceHolder.getChildren().add(upcomingSchedule.getRoot());
         setMonthYearLabel();
         loadCalendar();
+        logger.info("calendar window initialised");
     }
 
     // @@author banchiang-reused
@@ -105,12 +107,14 @@ public class CalendarWindow extends UiPart<Stage> {
     // @@author
 
     private void loadCalendar() {
+        logger.info("calendar window being loaded");
         //update the number of days for the months showing in calendar
         updateMonthDays();
         //load day names
         loadDayNames();
         //fill up the calendar with the dates
         loadDayDates();
+        logger.info("calendar window successfully loads");
     }
 
     /**
