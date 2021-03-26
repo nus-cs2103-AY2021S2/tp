@@ -34,6 +34,7 @@ import seedu.dictionote.logic.commands.ListNoteCommand;
 import seedu.dictionote.logic.commands.MarkAllAsUndoneNoteCommand;
 import seedu.dictionote.logic.commands.MarkAsDoneNoteCommand;
 import seedu.dictionote.logic.commands.MarkAsUndoneNoteCommand;
+import seedu.dictionote.logic.commands.MostFreqContactCommand;
 import seedu.dictionote.logic.commands.OpenCommand;
 import seedu.dictionote.logic.commands.ShowDictionaryContentCommand;
 import seedu.dictionote.logic.commands.ShowNoteCommand;
@@ -120,6 +121,9 @@ public class DictionoteParser {
 
         case EmailContactCommand.COMMAND_WORD:
             return new EmailContactCommandParser().parse(arguments);
+
+        case MostFreqContactCommand.COMMAND_WORD:
+            return new MostFreqContactCommand();
 
         case ListNoteCommand.COMMAND_WORD:
             return new ListNoteCommand();

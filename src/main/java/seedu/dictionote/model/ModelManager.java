@@ -293,6 +293,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void sortContactsByFrequencyCounter() {
+        contactsList.sortByFrequencyCounter();
+    }
+
+    @Override
     public void setContact(Contact target, Contact editedContact) {
         requireAllNonNull(target, editedContact);
 

@@ -3,8 +3,10 @@ package seedu.dictionote.model.contact;
 import static java.util.Objects.requireNonNull;
 import static seedu.dictionote.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -95,6 +97,15 @@ public class UniqueContactList implements Iterable<Contact> {
         }
 
         internalList.setAll(contacts);
+    }
+
+    /**
+     * Sorts the contacts in the contacts list in descending order by their frequency counters.
+     */
+    public void sortByFrequencyCounter() {
+        List<Contact> sortedList =
+                internalList.sorted(Comparator.comparingInt(Contact::getFrequencyCounter).reversed());
+        setContacts(sortedList);
     }
 
     /**
