@@ -10,6 +10,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Type {
     public static final String MESSAGE_CONSTRAINTS =
             "Property types should only be either hdb, condo or landed";
+    
+    public static final String HDB = "Hdb";
+    public static final String CONDO = "Condo";
+    public static final String LANDED = "Landed";
 
     /*
      * The property types should only be one of three types: hdb, condo, or landed.

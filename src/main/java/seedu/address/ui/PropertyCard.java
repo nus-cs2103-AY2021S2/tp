@@ -1,10 +1,16 @@
 package seedu.address.ui;
 
+import static seedu.address.model.property.Type.CONDO;
+import static seedu.address.model.property.Type.HDB;
+import static seedu.address.model.property.Type.LANDED;
+
 import java.time.LocalDate;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -57,6 +63,8 @@ public class PropertyCard extends UiPart<Region> {
     private Label status;
     @FXML
     private FlowPane tags;
+    @FXML
+    private ImageView propertyTypeIcon;
 
     /**
      * Creates a {@code PropertyCode} with the given {@code Property} and index to display.
@@ -72,7 +80,12 @@ public class PropertyCard extends UiPart<Region> {
         postalCode.setText(property.getPostalCode().toString());
         property.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> {
+                    Label label = new Label(tag.tagName);
+                    label.setMaxWidth(200);
+                    label.setWrapText(true);
+                    tags.getChildren().add(label);
+                });
 
         Deadline currentDate = new Deadline(LocalDate.now());
         if (currentDate.compareTo(property.getDeadline()) > 0) {
@@ -102,6 +115,22 @@ public class PropertyCard extends UiPart<Region> {
         } else {
             status.setText(property.getStatus().toString());
         }
+        
+        Image icon;
+        switch (property.getPropertyType().toString()) {
+        case HDB:
+            icon = new Image(getClass().getResourceAsStream("/images/hdb_64.png"));
+            break;
+        case CONDO:
+            icon = new Image(getClass().getResourceAsStream("/images/condo_64.png"));
+            break;
+        case LANDED:
+            icon = new Image(getClass().getResourceAsStream("/images/landed_64.png"));
+            break;
+        default:
+            throw new AssertionError("Property type not recognized");
+        }
+        propertyTypeIcon.setImage(icon);
     }
 
     @Override
