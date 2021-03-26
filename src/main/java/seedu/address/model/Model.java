@@ -19,6 +19,7 @@ public interface Model {
      */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENT = unused -> true;
+    Predicate<Grade> PREDICATE_SHOW_ALL_GRADE = unused -> true;
 
     /**
      * Returns the user prefs.
