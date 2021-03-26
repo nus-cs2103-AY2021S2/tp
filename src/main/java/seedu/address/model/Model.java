@@ -7,13 +7,14 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
+import seedu.address.model.event.EventModel;
 import seedu.address.model.person.Person;
 import seedu.address.model.schedule.ScheduleModel;
 
 /**
  * The API of the Model component.
  */
-public interface Model extends ScheduleModel {
+public interface Model extends EventModel, ScheduleModel {
     /**
      * {@code Predicate} that always evaluate to true
      */

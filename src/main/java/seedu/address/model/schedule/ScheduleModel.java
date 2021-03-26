@@ -3,7 +3,6 @@ package seedu.address.model.schedule;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.appointment.AppointmentDateTime;
 
 public interface ScheduleModel {
     Predicate<Schedule> PREDICATE_SHOW_ALL_SCHEDULE = unused -> true;
@@ -51,24 +50,9 @@ public interface ScheduleModel {
     void deleteSchedule(Schedule schedule);
 
     /**
-     * Method that removes schedule based on index
-     *
-     * @param indexToRemove
-     */
-    void deleteSchedule(int indexToRemove);
-
-    /**
      * Replaces the given schedule {@code target} with {@code editedSchedule}.
      * {@code target} must exist in the schedule tracker.
      * The {@code editedSchedule} must not be the same as another existing schedule in the schedule tracker.
      */
     void setSchedule(Schedule target, Schedule editedSchedule);
-
-    /**
-     * Checks if {@code AppointmentDateTime} exists in the schedule tracker.
-     *
-     * @param appointmentDateTime Schedule DateTime to be checked
-     * @return true if Schedule DateTime exists in the schedule list
-     */
-    boolean hasScheduleDateTime(AppointmentDateTime appointmentDateTime);
 }

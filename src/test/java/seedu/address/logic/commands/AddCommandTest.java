@@ -23,6 +23,7 @@ import seedu.address.model.ReadOnlyAppointmentBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
@@ -249,17 +250,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void deleteSchedule(int indexToRemove) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void setSchedule(Schedule target, Schedule editedSchedule) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasScheduleDateTime(AppointmentDateTime appointmentDateTime) {
+        public ObservableList<Event> getFilteredEventList() {
             throw new AssertionError("This method should not be called.");
         }
     }
