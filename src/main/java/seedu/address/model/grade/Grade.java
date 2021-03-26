@@ -21,21 +21,14 @@ public class Grade implements Filterable {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    /*
-     * The first character of the grade must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     * The grade must be
-     */
-    public static final String VALIDATION_GRADE = "[\\p{Alnum}][-+]?";
-
     private final SubjectName subject;
-    private final String gradedItem;
-    private final String grade;
+    private final GradedItem gradedItem;
+    private final GradeEnum grade;
 
     /**
      * Every field must be present and not null.
      */
-    public Grade(SubjectName subject, String gradedItem, String grade) {
+    public Grade(SubjectName subject, GradedItem gradedItem, GradeEnum grade) {
         requireAllNonNull(subject, gradedItem, grade);
         this.subject = subject;
         this.gradedItem = gradedItem;
@@ -47,22 +40,22 @@ public class Grade implements Filterable {
         return this.subject;
     }
 
-    public String getGradedItem() {
+    public GradedItem getGradedItem() {
         assert(this.gradedItem != null);
         return this.gradedItem;
     }
 
-    public String getGrade() {
+    public GradeEnum getGrade() {
         assert(this.grade != null);
         return this.grade;
     }
 
-    public static boolean isValidGradedItem(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidGrade(String test) {
+        return GradeEnum.isValidGrade(test);
     }
 
-    public static boolean isValidGrade(String test) {
-        return test.matches(VALIDATION_GRADE);
+    public static boolean isValidGradedItem(String test) {
+        return GradedItem.isValidGradedItem(test);
     }
 
     @Override
@@ -80,8 +73,8 @@ public class Grade implements Filterable {
         }
         Grade that = (Grade) o;
         return Objects.equals(subject, that.subject)
-                && Objects.equals(gradedItem, that.gradedItem)
-                && Objects.equals(grade, that.grade);
+                && Objects.equals(gradedItem, that.gradedItem);
+        //&& Objects.equals(grade, that.grade);
     }
 
     @Override
