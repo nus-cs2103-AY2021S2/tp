@@ -27,9 +27,9 @@
               <URL value="@CalendarWindow.css" />
           </stylesheets>
          <root>
-            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="654.0" prefWidth="1128.0" style="-fx-background-color: grey;">
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="654.0" prefWidth="1128.0" style="-fx-background-color: grey;">
                <children>
-                  <VBox prefHeight="650.0" prefWidth="275.0" style="-fx-background-color: #2F4550;">
+                  <VBox prefHeight="650.0" prefWidth="450.0" style="-fx-background-color: #2F4550;">
                      <children>
                         <ImageView fitHeight="167.0" fitWidth="151.0" pickOnBounds="true" preserveRatio="true" translateX="60.0">
                            <image>
@@ -38,12 +38,12 @@
                         </ImageView>
                         <HBox prefHeight="503.0" prefWidth="275.0">
                            <children>
-                              <StackPane fx:id="schedulePanelPlaceHolder" prefHeight="503.0" prefWidth="274.0" />
+                              <StackPane fx:id="schedulePanelPlaceHolder" prefHeight="503.0" prefWidth="450.0" />
                            </children>
                         </HBox>
                      </children>
                   </VBox>
-                  <AnchorPane prefHeight="656.0" prefWidth="854.0" style="-fx-background-color: #F8F8FF;">
+                  <AnchorPane minWidth="860.0" prefHeight="656.0" style="-fx-background-color: #F8F8FF;">
                      <children>
                         <Label fx:id="monthYearLabel" layoutX="26.0" layoutY="14.0" text="Text">
                            <font>
