@@ -16,6 +16,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.EventList;
 import seedu.address.storage.CalendarStorage;
 import seedu.address.ui.UiPart;
+import seedu.address.ui.calendar.schedule.UpcomingSchedule;
 
 public class CalendarWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(CalendarWindow.class);
@@ -42,6 +43,8 @@ public class CalendarWindow extends UiPart<Stage> {
 
     private CalendarStorage calendarStorage;
 
+    private UpcomingSchedule upcomingSchedule;
+
     @FXML
     private Label monthYearLabel;
     @FXML
@@ -64,7 +67,7 @@ public class CalendarWindow extends UiPart<Stage> {
     /**
      * Creates a new CalendarWindow.
      */
-    public CalendarWindow(CalendarStorage calendarStorage) {
+    public CalendarWindow(CalendarStorage calendarStorage, UpcomingSchedule upcomingSchedule) {
         super(FXML);
         this.todayDate = LocalDate.now();
         this.day = todayDate.getDayOfMonth();
@@ -73,6 +76,8 @@ public class CalendarWindow extends UiPart<Stage> {
         this.yearMonth = YearMonth.of(this.year, this.month);
         this.firstDayOfTheMonth = yearMonth.atDay(DAY_ONE);
         this.calendarStorage = calendarStorage;
+        this.upcomingSchedule = upcomingSchedule;
+        schedulePanelPlaceHolder.getChildren().add(upcomingSchedule.getRoot());
         setMonthYearLabel();
         loadCalendar();
     }
@@ -156,7 +161,9 @@ public class CalendarWindow extends UiPart<Stage> {
 
     private CalendarBox loadInfo(LocalDate date) {
         EventList events = calendarStorage.getDateEvents(date);
-        return new CalendarBox(date, events);
+        CalendarBox calendarBox = new CalendarBox(date, events);
+        calendarBox.addClickEventHandler(upcomingSchedule);
+        return calendarBox;
     }
 
     /**
@@ -330,6 +337,11 @@ public class CalendarWindow extends UiPart<Stage> {
     @FXML
     public void viewToday() {
         updateDayMonthYear(todayDate);
+        refreshCalenderView();
+    }
+
+    @FXML
+    public void refresh() {
         refreshCalenderView();
     }
 }

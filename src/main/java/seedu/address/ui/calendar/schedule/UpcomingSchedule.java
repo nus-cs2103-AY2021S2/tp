@@ -1,7 +1,7 @@
 package seedu.address.ui.calendar.schedule;
 
 import static seedu.address.commons.util.ScheduleUiUtil.CURRENT_TIME_POINTER_PADDING;
-import static seedu.address.commons.util.ScheduleUiUtil.IN_THE_DAY;
+import static seedu.address.commons.util.ScheduleUiUtil.calendarTextToDate;
 import static seedu.address.commons.util.ScheduleUiUtil.getMarginFromTime;
 import static seedu.address.commons.util.ScheduleUiUtil.toAmPmTime;
 
@@ -10,15 +10,14 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import javafx.application.Platform;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import seedu.address.model.Event;
+import seedu.address.model.EventList;
+import seedu.address.storage.CalendarStorage;
 import seedu.address.ui.UiPart;
 
 /*
@@ -29,6 +28,7 @@ public class UpcomingSchedule extends UiPart<Region> implements EventHandler<Mou
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
 
     private Thread thread;
+    private CalendarStorage calendarStorage;
 
     @FXML
     private VBox schedule;
@@ -44,35 +44,53 @@ public class UpcomingSchedule extends UiPart<Region> implements EventHandler<Mou
 
     private CurrentTimePointer currentTimePointer;
     private TimeScale timeScale;
-    private ObservableList<Event> calendarList;
-    private FilteredList<Event> dayList;
-    private LocalDate today;
+    //private ObservableList<Event> calendarList;
+    //private FilteredList<Event> dayList;
+    private LocalDate currentDay;
     private int currentCell;
 
     /**
      * Constructor for the UpcomingSchedulePanel, which is the left panel of the {@ScheduleUi}.
-     * @param calendarList
+     * @param calendarStorage storage for calendar to access events.
      */
-    public UpcomingSchedule(ObservableList<Event> calendarList) {
+    public UpcomingSchedule(CalendarStorage calendarStorage) {
         super(FXML);
-        this.calendarList = calendarList;
-        today = LocalDate.now();
-        dayList = calendarList.filtered(task -> IN_THE_DAY.test(task, today.atStartOfDay()));
+        this.calendarStorage = calendarStorage;
+        currentDay = LocalDate.now();
+        timeScale = new TimeScale();
+        schedule.getChildren().add(timeScale.getRoot());
+        loadSchedule(currentDay);
+    }
+
+    /**
+     * load the schdeule for a certain date.
+     * @param date Date for schedule.
+     */
+    public void loadSchedule(LocalDate date) {
+        currentDay = date;
+        fillTopLabelForDay();
         fillBase();
-        fillInnerToday();
     }
 
     private void fillBase() {
-        timeScale = new TimeScale(dayList);
-
+        schedule.getChildren().remove(timeScale.getRoot());
+        EventList events = calendarStorage.getDateEvents(currentDay);
+        timeScale.updateTimeScale(events);
         schedule.getChildren().add(timeScale.getRoot());
+
+        if (currentDay == LocalDate.now()) {
+            timeScale.removeItem(currentTimePointer.getRoot());
+        } else {
+            addTimePointer();
+        }
     }
 
+    /*
     private void fillOtherDay(int date) {
         timeScale.removeItem(currentTimePointer.getRoot());
-        LocalDateTime dateTime = LocalDate.of(today.getYear(), today.getMonth(), date).atStartOfDay();
-        dayList.setPredicate(task -> IN_THE_DAY.test(task, dateTime));
-        fillTopLabelForOtherDay(dateTime);
+        //LocalDateTime dateTime = LocalDate.of(today.getYear(), today.getMonth(), date).atStartOfDay();
+        //dayList.setPredicate(task -> IN_THE_DAY.test(task, dateTime));
+        //fillTopLabelForOtherDay(dateTime);
     }
 
     private void fillInnerToday() {
@@ -80,8 +98,14 @@ public class UpcomingSchedule extends UiPart<Region> implements EventHandler<Mou
         currentCell = today.getDayOfMonth();
 
         // Fill the label for today.
-        fillTopLabelForToday();
+        fillTopLabelForDay();
 
+
+
+
+    }*/
+
+    private void addTimePointer() {
         // Add the currentTimePointer to the TimeScale
         String currentTime = getCurrentTime();
         double marginTop = getMarginFromTime(currentTime) - CURRENT_TIME_POINTER_PADDING;
@@ -106,14 +130,20 @@ public class UpcomingSchedule extends UiPart<Region> implements EventHandler<Mou
                             - CURRENT_TIME_POINTER_PADDING);
                     timeScale.handleOverlap(newCurrentTime);
                     // update the today label
-                    fillTopLabelForToday();
+                    fillTopLabelForDay();
                 });
             }
         });
-
         thread.start();
     }
 
+    private void fillTopLabelForDay() {
+        year.setText(String.valueOf(currentDay.getYear()));
+        date.setText(getDateString(currentDay));
+        day.setText(getDayString(currentDay));
+    }
+
+    /*
     private void fillTopLabelForToday() {
         // Fill the label with date of "TODAY"
         today = LocalDate.now();
@@ -127,6 +157,7 @@ public class UpcomingSchedule extends UiPart<Region> implements EventHandler<Mou
         date.setText(getDateString(dateTime.toLocalDate()));
         day.setText(getDayString(dateTime.toLocalDate()));
     }
+    */
 
     private String getDateString(LocalDate date) {
         String month = date.getMonth().toString();
@@ -154,20 +185,16 @@ public class UpcomingSchedule extends UiPart<Region> implements EventHandler<Mou
 
     @Override
     public void handle(MouseEvent mouseEvent) {
-        String content = ((Label) ((VBox) mouseEvent.getSource()).getChildren().get(0)).getText();
-        int date = Integer.parseInt(content.substring(content.lastIndexOf(" ") + 1));
-        if (date == currentCell) {
+        String formattedTime = ((Label) ((VBox) mouseEvent.getSource()).getChildren().get(0)).getText();
+        System.out.println(formattedTime);
+        LocalDate clickedDate = calendarTextToDate(formattedTime);
+
+        if (clickedDate == currentDay) {
             return;
         }
 
-        if (date == today.getDayOfMonth()) {
-            endThread();
-            fillInnerToday();
-        }
-        if (date != today.getDayOfMonth()) {
-            currentCell = date;
-            endThread();
-            fillOtherDay(date);
-        }
+        currentDay = clickedDate;
+        endThread();
+        loadSchedule(currentDay);
     }
 }
