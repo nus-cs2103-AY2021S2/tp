@@ -125,7 +125,9 @@ public class BookingList implements Iterable<Booking> {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        if (!getValue().isEmpty()) {
+        if (getValue().isEmpty()) {
+            builder.append("No bookings.");
+        } else {
             builder.append("Bookings:\n");
             getValue().stream().forEach(obj -> builder.append(obj + "\n"));
         }

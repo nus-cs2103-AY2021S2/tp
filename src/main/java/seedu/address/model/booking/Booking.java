@@ -17,7 +17,7 @@ public class Booking implements Comparable<Booking> {
             + "1. Names should only contain alphanumeric characters and spaces, and they should not be blank. "
             + "2. Phone numbers should only contain numbers, and they should be at least 3 digits long. "
             + "The start and end dates must adhere to the following:\n"
-            + "    - be of the format DDMMYY\n"
+            + "    - be of the format DD-MM-YYYY\n"
             + "    - end date must be after start date";
 
     private final Name name;
