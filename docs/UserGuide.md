@@ -187,6 +187,22 @@ Examples:
 * `sort o/name` returns the contact list sorted in alphabetical order.
 * `sort o/date` returns the contact list sorted in chronological order.
 
+### Favourite a person : `fav`
+
+Format: `fav INDEX [o/OPTION]`
+
+* Favourite the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Currently available options for the `[OPTION]` field include:
+* `remove` Unfavourites the specified person
+
+Examples:
+* `list` followed by `fav 2` favourites the 2nd person in the address book.
+* `find Betsy` followed by `delete 1` favourites the 1st person in the results of the `find` command.
+* `fav 3 o/remove` unfavourites the 3rd person in the address book.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
