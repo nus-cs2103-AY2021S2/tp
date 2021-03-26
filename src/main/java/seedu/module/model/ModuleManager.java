@@ -1,6 +1,7 @@
 package seedu.module.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -58,10 +59,12 @@ public class ModuleManager {
             List<Task> newList = mappingOfModulesToTasks.get(module.toString());
             //must ensure Module exists in the listOfValidModules
             newList.add(task);
+            module.incrementWorkload(task.getWorkload());
             mappingOfModulesToTasks.put(module.toString(), newList);
         } else {
             List<Task> newList = new ArrayList<>();
             newList.add(task);
+            module.incrementWorkload(task.getWorkload());
             mappingOfModulesToTasks.put(module.toString(), newList);
         }
     }
@@ -80,6 +83,7 @@ public class ModuleManager {
         List<Task> newList = mappingOfModulesToTasks.get(module.toString());
         //must ensure Module exists in the listOfValidModules
         newList.remove(task);
+        module.decrementWorkload(task.getWorkload());
         if (newList.isEmpty()) { //remove the module(key) from mapping if no task is associated with it
             mappingOfModulesToTasks.remove(module.toString());
         } else {
@@ -102,8 +106,7 @@ public class ModuleManager {
     }
 
     /**
-     * Returns a List of supported Modules in String.
-     * @return
+     * Returns a list of existing Modules.
      */
     public static List<String> getListOfExistingModules() {
         return supportedModulesInStr;
@@ -115,10 +118,7 @@ public class ModuleManager {
      * @return List of String associated with basic modules
      */
     static List<String> initListOfModulesAccepted() {
-        List<String> listOfModules = new ArrayList<>();
-        for (String moduleInStr : arrOfModules) {
-            listOfModules.add(moduleInStr);
-        }
+        List<String> listOfModules = new ArrayList<>(Arrays.asList(arrOfModules));
         return listOfModules;
     }
 }

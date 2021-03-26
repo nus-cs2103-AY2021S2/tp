@@ -258,6 +258,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | student                                    | mark a task as undone                         | keep track of tasks that I've yet to complete or need to make edits to            |
 | `*`      | student                                    | tag tasks                                     | filter through my tasks easily and focus on the similar ones with the same tags   |
 | `*`      | user with many tasks in the module book    | modify the deadline without deleting the task | waste less time recreating the whole task     
+| `*`      | user with many tasks in the module book    | sort the tasks by deadline                    | see which tasks need to be addressed as soon as possible
+| `*`      | user with many tasks in the module book    | sort the tasks by workload                    | see which tasks require more effort to complete
+| `*`      | busy student                               | view workload count for each module           | decide which module requires more effort
 | `*`      | busy student                               | search for tags                               | locate my tasks easily                                                            |
 | `*`      | busy student                               | delete tags                                   | edit tags of my tasks without having to recreate them                                                           |
 
@@ -287,7 +290,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 2.  User requests to delete a specific task in the list.
 
-3.  ModuleBook 3.5 deletes the task.
+3.  ModuleBook3.5 deletes the task.
+
+4.  ModuleBook3.5 updates the workload count for the relevant module.
 
     Use case ends.
 
@@ -299,7 +304,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
 * 3a. The given index is out of range.
 
-    * 3a1. ModuleBook 3.5 shows an error message.
+    * 3a1. ModuleBook3.5 shows an error message.
 
       Use case resumes at step 2.
       
@@ -312,7 +317,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 2.  User requests to mark a task as done.
 
-3.  ModuleBook 3.5 marks the task as done.
+3.  ModuleBook3.5 marks the task as done.
 
     Use case ends.
 
@@ -320,19 +325,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
-    * 2a1. ModuleBook 3.5 shows an error message. 
+    * 2a1. ModuleBook3.5 shows an error message. 
       
       Use case ends.
 
 * 3a. The given index is out of range.
 
-    * 3a1. ModuleBook 3.5 shows an error message.
+    * 3a1. ModuleBook3.5 shows an error message.
 
       Use case resumes at step 2.
 
 * 3b. The task at given index is already done.
 
-    * 3b1. ModuleBook 3.5 shows an already done message.
+    * 3b1. ModuleBook3.5 shows an already done message.
 
       Use case resumes at step 2.
 
@@ -344,7 +349,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 2.  User requests to mark a task as not done.
 
-3.  ModuleBook 3.5 marks the task as not done.
+3.  ModuleBook3.5 marks the task as not done.
 
     Use case ends.
 
@@ -352,20 +357,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
-    * 2a1. ModuleBook 3.5 shows an error message.
+    * 2a1. ModuleBook3.5 shows an error message.
 
       Use case ends.
     
 
 * 3a. The given index is out of range.
 
-    * 3a1. ModuleBook 3.5 shows an error message.
+    * 3a1. ModuleBook3.5 shows an error message.
 
       Use case resumes at step 2.
 
 * 3b. The task at given index is not done yet.
 
-    * 3b1. ModuleBook 3.5 shows a not done message.
+    * 3b1. ModuleBook3.5 shows a not done message.
     
 
 **Use case 05: Add a task**
@@ -376,20 +381,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 2.  User request to add a task.
     
-3.  ModuleBook 3.5 adds the task into the user’s list of tasks.
+3.  ModuleBook3.5 adds the task into the user’s list of tasks.
+
+4.  ModuleBook3.5 updates the workload count for the relevant module.
 
 
 **Extensions**
 
 * 2a. The exact task with the same name and module code is already present in the list.
 
-    * 2a1. ModuleBook 3.5 displays an error message indicating task is present.
+    * 2a1. ModuleBook3.5 displays an error message indicating task is present.
       
       Use case resumes at step 2.
 
 * 2b.  Invalid format for the add command.
 
-    * 2b1. ModuleBook 3.5 shows an error message with the correct format for add and example.
+    * 2b1. ModuleBook3.5 shows an error message with the correct format for add and example.
 
       Use case resumes at step 2.
       
@@ -408,7 +415,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
 2.  User requests to add a tag to a task.
     
-3.  ModuleBook 3.5 adds tag to task.
+3.  ModuleBook3.5 adds tag to task.
 
     Use case ends.
     
@@ -416,13 +423,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
-    * 2b1. ModuleBook 3.5 shows an error message.
+    * 2b1. ModuleBook3.5 shows an error message.
 
       Use case resumes at step 2.
 
 * 2b. The given index is out of range.
 
-    * 2b1. ModuleBook 3.5 shows an error message.
+    * 2b1. ModuleBook3.5 shows an error message.
 
       Use case resumes at step 2.
 
@@ -436,7 +443,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User request to search for a task by inputing a tag.
 
-2.  ModuleBook 3.5 find the tag and display all tasks with the tag.
+2.  ModuleBook3.5 find the tag and display all tasks with the tag.
 
     Use case ends.
 
@@ -444,7 +451,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. Tag not found.
 
-    * 2a1. ModuleBook 3.5 shows an error message.
+    * 2a1. ModuleBook3.5 shows an error message.
 
       Use case ends.
 
@@ -454,7 +461,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User request to search a task by inputting a name.
 
-2.  ModuleBook 3.5 find the name and display all tasks with the name.
+2.  ModuleBook3.5 find the name and display all tasks with the name.
 
     Use case ends.
 
@@ -462,7 +469,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. Name not found.
 
-    * 2a1. ModuleBook 3.5 shows an error message.
+    * 2a1. ModuleBook3.5 shows an error message.
 
       Use case ends.
     
@@ -474,7 +481,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 2.  User requests to delete a specific Tag of a Task in the list.
 
-3.  ModuleBook 3.5 deletes the Tag.
+3.  ModuleBook3.5 deletes the Tag.
 
     Use case ends.
 
@@ -486,13 +493,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is out of range.
 
-    * 3a1. ModuleBook 3.5 shows an error message.
+    * 3a1. ModuleBook3.5 shows an error message.
 
       Use case resumes at step 2.
     
 * 3b. Tag does not exist.
   
-    * 3b1. ModuleBook 3.5 shows an error message.
+    * 3b1. ModuleBook3.5 shows an error message.
     
       Use case resumes at step 2.
     
@@ -507,31 +514,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 3.  ModuleBook3.5 changes task details.
 
+4.  ModuleBook3.5 updates workload count for the relevant module.
+
     Use case ends.
 
 **Extensions**
 
 * 2a. Invalid format for the edit command.
 
-    * 2a1. ModuleBook 3.5 shows an error message with the correct format for edit and example.
+    * 2a1. ModuleBook3.5 shows an error message with the correct format for edit and example.
 
       Use case resumes at step 2.
     
 * 2b. Detail to be edited is the same as original detail.
 
-    * 2b1. ModuleBook 3.5 shows an error message stating that detail need not be changed. 
+    * 2b1. ModuleBook3.5 shows an error message stating that detail need not be changed. 
       
       Use case resumes at step 2.
     
 * 2c. No edit inputs given.
 
-    * 2c1. ModuleBook 3.5 shows an error message stating that there are no changes in the first place. 
+    * 2c1. ModuleBook3.5 shows an error message stating that there are no changes in the first place. 
       
       Use case resumes at step 2.
     
 * 2d. The given index is out of range.
 
-    * 2d1. ModuleBook 3.5 shows an error message.
+    * 2d1. ModuleBook3.5 shows an error message.
 
       Use case resumes at step 2.
 
@@ -548,7 +557,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User request to search for tasks by inputting a module code.
 
-2.  ModuleBook 3.5 finds the tasks associated to the module code and display them.
+2.  ModuleBook3.5 finds the tasks associated to the module code and display them.
 
     Use case ends.
 
@@ -556,9 +565,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. Module code not found.
 
-    * 2a1. ModuleBook 3.5 shows an error message.
+    * 2a1. ModuleBook3.5 shows an error message.
 
       Use case ends.
+      
+      
+**Use case 12: Sorts tasks by Deadline**
+
+**MSS**
+
+1.  User request to sorts tasks by deadline.
+
+2.  ModuleBook 3.5 sorts the tasks in descending order of urgency and display them.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Invalid format for the sort command.
+
+    * 2a1. ModuleBook 3.5 shows an error message with the correct format for sort and example.
+
+      Use case resumes at step 2.
     
     
 ### Non-Functional Requirements
@@ -566,7 +594,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  The size of ModuleBook 3.5 will not be larger than 20 MB.
+4.  The size of ModuleBook3.5 will not be larger than 20 MB.
 5.  The project is expected to adhere to a schedule that delivers a feature set every two weeks until the end of April.
 
 ### Glossary
@@ -610,7 +638,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all tasks using the `list` command. Multiple tasks in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First task is deleted from the list. Details of the deleted task shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
       Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.

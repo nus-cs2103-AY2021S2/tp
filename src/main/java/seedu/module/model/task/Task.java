@@ -209,6 +209,11 @@ public class Task {
      */
     public static class DeadlineComparator implements Comparator<Task> {
 
+        @Override
+        public String toString() {
+            return "deadline";
+        }
+
         /**
          * Method to compare the time field of two task. Use startTime, if present.
          *
@@ -216,6 +221,7 @@ public class Task {
          * @param t2 task 2
          * @return the result of comparison
          */
+        @Override
         public int compare(Task t1, Task t2) {
             if (t1.isDeadline && t2.isDeadline) {
                 return t1.getDeadline().compareTo(t2.getDeadline());
@@ -229,4 +235,83 @@ public class Task {
         }
     }
 
+    /**
+     * Comparator of tasks using workload as reference
+     */
+    public static class WorkloadComparator implements Comparator<Task> {
+
+        @Override
+        public String toString() {
+            return "workload";
+        }
+
+        @Override
+        public int compare(Task t1, Task t2) {
+            return t1.getWorkload().compareTo(t2.getWorkload());
+        }
+    }
+
+    /**
+     * Comparator of tasks using module as reference
+     */
+    public static class ModuleComparator implements Comparator<Task> {
+
+        @Override
+        public String toString() {
+            return "module";
+        }
+
+        @Override
+        public int compare(Task t1, Task t2) {
+            return t1.getModule().compareTo(t2.getModule());
+        }
+    }
+
+    /**
+     * Comparator of tasks using name as reference
+     */
+    public static class NameComparator implements Comparator<Task> {
+
+        @Override
+        public String toString() {
+            return "task name";
+        }
+
+        @Override
+        public int compare(Task t1, Task t2) {
+            return t1.getName().compareTo(t2.getName());
+        }
+    }
+
+    /**
+     * Comparator of tasks using description as reference
+     */
+    public static class DescriptionComparator implements Comparator<Task> {
+
+        @Override
+        public String toString() {
+            return "description";
+        }
+
+        @Override
+        public int compare(Task t1, Task t2) {
+            return t1.getDescription().compareTo(t2.getDescription());
+        }
+    }
+
+    /**
+     * Comparator of tasks using number of tags as reference
+     */
+    public static class TagComparator implements Comparator<Task> {
+
+        @Override
+        public String toString() {
+            return "number of tags";
+        }
+
+        @Override
+        public int compare(Task t1, Task t2) {
+            return t2.getTags().size() - t1.getTags().size();
+        }
+    }
 }

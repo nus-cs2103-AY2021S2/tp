@@ -92,7 +92,7 @@ In `src/test/data/`, data meant for testing purposes are stored. While keeping t
 ```json
 {
   "tasks": [ {
-    "name": "Task with invalid name field: Ha!ns Mu@ster",
+    "name": "    ",
     "deadline": "9482424",
     "module": "hans@example.com",
     "description": "4th street"

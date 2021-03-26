@@ -12,8 +12,7 @@ import java.time.format.DateTimeFormatter;
  * Represents a Task's deadline in the module book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDeadline(String)}
  */
-public class Time {
-
+public class Time implements Comparable<Time> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Time should be formatted as yyyy-MM-dd or yyyy-MM-dd HH:mm";
@@ -79,6 +78,7 @@ public class Time {
                 && value.equals(((Time) other).value)); // state check
     }
 
+    @Override
     public int compareTo(Time other) {
         return time.compareTo(other.getTime());
     }

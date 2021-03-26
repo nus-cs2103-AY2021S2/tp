@@ -97,7 +97,7 @@ class JsonAdaptedTask {
 
         Time modelStartTime;
         boolean isDeadLine;
-        if (startTime.equals("")) {
+        if (startTime == null || startTime.equals("")) {
             modelStartTime = null;
             isDeadLine = true;
         } else {

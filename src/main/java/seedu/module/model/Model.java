@@ -1,6 +1,7 @@
 package seedu.module.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -77,9 +78,9 @@ public interface Model {
     void setTask(Task target, Task editedTask);
 
     /**
-     * Sorts the tasks by deadline.
+     * Sorts the tasks by corresponding factor.
      */
-    void sortTasks();
+    void sortTasks(Comparator<Task> factor);
 
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
