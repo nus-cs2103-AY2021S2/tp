@@ -167,7 +167,7 @@ Examples:
 
 Adds an event to a specified project.
 
-Format: `addEto PROJECT_INDEX d/DESCRIPTION i/INTERVAL at/REPEATABLE_DATE`
+Format: `addEto PROJECT_INDEX d/DESCRIPTION i/INTERVAL at/DATE`
 
 * Adds an event to the project at the specified `PROJECT_INDEX`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
@@ -179,7 +179,7 @@ Format: `addEto PROJECT_INDEX d/DESCRIPTION i/INTERVAL at/REPEATABLE_DATE`
     * `FORTNIGHTLY`
     * `MONTHLY`
     * `YEARLY`
-* `REPEATABLE_DATE` must be in `dd-MM-yyyy` format.
+* `DATE` must be in `dd-MM-yyyy`, `ddMMyyyy`, `dd/MM/yyyy` or `dd.MM.yyyy` format.
 
 Examples:
 * `addEto 1 d/Project Meeting i/WEEKLY at/24-04-2021`
@@ -189,12 +189,12 @@ Examples:
 
 Adds a deadline to a specified project.
 
-Format: `addDto PROJECT_INDEX d/DESCRIPTION by/REPEATABLE_DATE`
+Format: `addDto PROJECT_INDEX d/DESCRIPTION by/DATE`
 
 * Adds a deadline to the project at the specified `PROJECT_INDEX`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
 * The index **must be a positive integer** 1, 2, 3, …​
-* `REPEATABLE_DATE` must be in `dd-MM-yyyy` format.
+* `DATE` must be in `dd-MM-yyyy`, `ddMMyyyy`, `dd/MM/yyyy` or `dd.MM.yyyy` format.
 
 Examples:
 * `addDto 1 d/Milestone v1.2 by/01-03-2021`
@@ -454,8 +454,8 @@ Action | Format, Examples
 --------|------------------
 **Add Contact** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Add Project** | `addP n/PROJECT_NAME`
-**Add Deadline to Project** | `addDto PROJECT_INDEX d/DESCRIPTION by/REPEATABLE_DATE`
-**Add Event to Project** | `addEto PROJECT_INDEX d/DESCRIPTION i/INTERVAL at/REPEATABLE_DATE`
+**Add Deadline to Project** | `addDto PROJECT_INDEX d/DESCRIPTION by/DATE`
+**Add Event to Project** | `addEto PROJECT_INDEX d/DESCRIPTION i/INTERVAL at/DATE`
 **Add Participant to Project** | `addCto PROJECT_INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 **Add Todo to Project** | `addTto PROJECT_INDEX d/DESCRIPTION`
 **Delete Contact** | `delete INDEX`<br> e.g., `delete 3`
