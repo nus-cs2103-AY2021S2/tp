@@ -2,6 +2,7 @@ package seedu.iscam.logic;
 
 import java.nio.file.Path;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.iscam.commons.core.GuiSettings;
 import seedu.iscam.logic.commands.CommandResult;
@@ -10,6 +11,7 @@ import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.model.ObservableClient;
 import seedu.iscam.model.ReadOnlyClientBook;
 import seedu.iscam.model.client.Client;
+import seedu.iscam.model.meeting.Meeting;
 
 /**
  * API of the Logic component
@@ -36,6 +38,16 @@ public interface Logic {
      * Returns an unmodifiable view of the filtered list of clients
      */
     ObservableList<Client> getFilteredClientList();
+
+    /**
+     * Returns an unmodifiable view of the filtered list of meetings
+     */
+    ObservableList<Meeting> getFilteredMeetingList();
+
+    /**
+     * Returns the mode of iScam.
+     */
+    ObservableValue<Boolean> getIsClientMode();
 
     /**
      * Returns an unmodifiable view of a client to be displayed in detail
