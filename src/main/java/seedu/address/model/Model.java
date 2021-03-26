@@ -1,10 +1,12 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.garment.ContainsKeywordsPredicate;
 import seedu.address.model.garment.Garment;
 
 /**
@@ -84,4 +86,13 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredGarmentList(Predicate<Garment> predicate);
+
+    /**
+     * Updates the filter of the filtered garment list to filter by the given {@code predicateList}.
+     * @throws NullPointerException if {@code predicateList} is null.
+     */
+    //above meth works fine, but when i put into a list, ListList<Predicate<Garment>>, goes haywire?
+    void updateFilteredGarmentList(List<ContainsKeywordsPredicate> predicateList);
+    //hacking
+
 }

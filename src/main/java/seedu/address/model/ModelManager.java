@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.garment.ContainsKeywordsPredicate;
 import seedu.address.model.garment.Garment;
 
 /**
@@ -21,7 +23,8 @@ public class ModelManager implements Model {
 
     private final Wardrobe wardrobe;
     private final UserPrefs userPrefs;
-    private final FilteredList<Garment> filteredGarments;
+    //private final FilteredList<Garment> filteredGarments;
+    private FilteredList<Garment> filteredGarments;
 
     /**
      * Initializes a ModelManager with the given wardrobe and userPrefs.
@@ -127,6 +130,52 @@ public class ModelManager implements Model {
     public void updateFilteredGarmentList(Predicate<Garment> predicate) {
         requireNonNull(predicate);
         filteredGarments.setPredicate(predicate);
+    }
+
+    //have a overloaded meth
+    //hacking
+    //create a new class called multiple arguments predicate
+    @Override
+    public void updateFilteredGarmentList(List<ContainsKeywordsPredicate> predicateList) {
+        requireNonNull(predicateList);
+        //using the main list of filteredarguments. but since this is a void method how is
+        //it displaying it correctly tho?
+        FilteredList<Garment> updatedFilteredGarments = filteredGarments;
+        System.out.println(updatedFilteredGarments);
+        System.out.println("0");
+        for (Predicate<Garment> predicate : predicateList) {
+            updatedFilteredGarments.setPredicate(predicate);
+            System.out.println("1");
+            System.out.println(updatedFilteredGarments);
+            updatedFilteredGarments = new FilteredList<>(updatedFilteredGarments);
+        }
+        //currently shows the correct num of garment and filteredglist print is correct, but somehow not translating
+        // to the app
+        //this also affects the list command anyways so not a good soln
+        filteredGarments = updatedFilteredGarments;
+        System.out.println("2");
+        System.out.println(updatedFilteredGarments);
+        System.out.println(filteredGarments);
+
+        /*
+        //sizepred not of super type of namepred to do 'and'
+        ContainsKeywordsPredicate allPredicates = predicateList.get(0);
+        System.out.println("outside");
+        System.out.println(allPredicates);
+        filteredGarments.setPredicate(allPredicates);
+        System.out.println(filteredGarments);
+        for (int i = 1; i < predicateList.size(); i++) {
+            allPredicates.and(predicateList.get(i));
+            System.out.println("inside");
+            System.out.println(predicateList.get(i));
+
+            System.out.println(allPredicates);
+            filteredGarments.setPredicate(allPredicates);
+            System.out.println(filteredGarments);
+        }
+        filteredGarments.setPredicate(allPredicates);
+        System.out.println("out");
+        System.out.println(filteredGarments);*/
     }
 
     @Override

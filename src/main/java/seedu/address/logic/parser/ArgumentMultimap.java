@@ -6,6 +6,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COLOUR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DRESSCODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
+
 /**
  * Stores mapping of prefixes to their respective arguments.
  * Each key may be associated with multiple argument values.
