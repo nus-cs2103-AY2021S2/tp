@@ -136,11 +136,21 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Model update
 
-The model has been updated to contain new classes for the `menu`, `inventory`, and `order` components (`Dish`, `Ingredient`, and `Order` respectively), in addition to the original `Person` class for the `contact` component. Each component has its own `Book` class, which has its functionality exposed through the `ModelManager` class (Facade pattern).
+The model has been updated to contain new classes for the `menu`, `inventory`, and `order` components (`Dish`, `Ingredient`, and `Order` classes respectively), in addition to the original `Person` class for the `contact` component.
+
+`Person` class has had field classes `Phone`, `Address` and `Email` removed. `Tag` has also been replaced with `String` instead. The validation functionality will be moved to other classes.
+
+`UniquePersonList` has been adapted to `UniqueItemList<T>`, with every model class implementing the `Item` interface.
+
+Every component has its own `Book` class which uses `UniqueItemList<T>`, which have thgir functionality exposed through the `ModelManager` class (Facade pattern).
 
 #### Storage update
 
-The storage has been updated to handle the new classes and their relevant `Book` classes. Sample data has also been added for each book. JSON serializability of each class is ensured via the use of `Jackson` annotations.
+The storage has been updated to handle the new classes and their relevant `Book` classes. 
+
+Sample data has also been added for each book. JSON serializability of each class is ensured via the use of `Jackson` annotations.
+
+No `JsonAdaptedPerson` or similar classes are used. Instead, the model class is directly annotated for deserialization.
 
 #### Component Parser
 
@@ -159,6 +169,11 @@ The following sequence diagram shows how a `CustomerAddCommand` operation is par
 
 The following activity diagram summarizes what happens when a user executes a new command.
 ![Activity diagram for a new command](images/JJIMYParserActivityDiagram.png)
+
+#### Parser validation
+Validation of fields through regex are moved out of the model classes and into their own classes.
+
+Apart from regex, validation is also done through looking up of the model to ensure that no invalid links to other model classes (E.g. an order linking to a non-existing Dish) happens.
 
 #### Data consistency
 
