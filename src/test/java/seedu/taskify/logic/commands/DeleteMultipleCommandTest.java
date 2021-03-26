@@ -9,10 +9,10 @@ import static seedu.taskify.testutil.TypicalIndexes.INDEXES_FIRST_TO_THIRD_TASK;
 import static seedu.taskify.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.taskify.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.taskify.testutil.TypicalIndexes.INDEX_THIRD_TASK;
-import static seedu.taskify.testutil.TypicalTasks.ALICE;
-import static seedu.taskify.testutil.TypicalTasks.BENSON;
-import static seedu.taskify.testutil.TypicalTasks.CARL;
-import static seedu.taskify.testutil.TypicalTasks.ELLE;
+import static seedu.taskify.testutil.TypicalTasks.TASK_1;
+import static seedu.taskify.testutil.TypicalTasks.TASK_2;
+import static seedu.taskify.testutil.TypicalTasks.TASK_3;
+import static seedu.taskify.testutil.TypicalTasks.TASK_5;
 import static seedu.taskify.testutil.TypicalTasks.getTypicalAddressBook;
 
 import java.util.ArrayList;
@@ -36,9 +36,9 @@ import seedu.taskify.model.task.Task;
 public class DeleteMultipleCommandTest {
 
     private static final String MESSAGE_DELETE_FIRST_TO_THIRD_TASK_SUCCESS =
-            "Deleted Tasks: " + ALICE.toString() + BENSON.toString() + CARL.toString();
+            "Deleted Tasks: " + TASK_1.toString() + TASK_2.toString() + TASK_3.toString();
     private static final String MESSAGE_DELETE_COMPLETED_TASKS_SUCCESS =
-            "Deleted Tasks: " + CARL.toString() + ELLE.toString();
+            "Deleted Tasks: " + TASK_3.toString() + TASK_5.toString();
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
@@ -118,8 +118,8 @@ public class DeleteMultipleCommandTest {
     @Test
     public void execute_deleteByStatus_success() {
         List<Task> tasksToDelete = new ArrayList<>();
-        tasksToDelete.add(CARL);
-        tasksToDelete.add(ELLE);
+        tasksToDelete.add(TASK_3);
+        tasksToDelete.add(TASK_5);
 
         DeleteMultipleCommand deleteMulCommand = new DeleteMultipleCommand(new Status(StatusType.COMPLETED));
 
