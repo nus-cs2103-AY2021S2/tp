@@ -197,7 +197,7 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
-            assert commandResult != null : "Command Result is not supposed to be null";
+            assert commandResult.type() != CommandResult.CRtype.NONE : "Command Result is not supposed to be a help or exit command";
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
