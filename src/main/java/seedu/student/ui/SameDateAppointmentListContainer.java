@@ -1,8 +1,10 @@
 package seedu.student.ui;
 
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -11,6 +13,7 @@ import javafx.scene.layout.Region;
 import seedu.student.commons.core.LogsCenter;
 import seedu.student.model.appointment.Appointment;
 import seedu.student.model.appointment.SameDateAppointmentList;
+import seedu.student.model.student.Student;
 
 /**
  * Panel containing the list of appointments on the same date.
@@ -29,17 +32,25 @@ public class SameDateAppointmentListContainer extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public SameDateAppointmentListContainer(SameDateAppointmentList list) {
+    public SameDateAppointmentListContainer(SameDateAppointmentList appointmentList,
+                                            ObservableList<Student> studentList) {
         super(FXML);
-        date.setText(list.getDate().format(dateFormatter));
-        appointmentListView.setItems(list.asUnmodifiableObservableList());
-        appointmentListView.setCellFactory(listView -> new AppointmentListViewCell());
+        date.setText(appointmentList.getDate().format(dateFormatter).toUpperCase());
+        appointmentListView.setItems(appointmentList.asUnmodifiableObservableList());
+        appointmentListView.setCellFactory(listView -> new AppointmentListViewCell(studentList));
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Appointment} using a {@code AppointmentCard}.
      */
     class AppointmentListViewCell extends ListCell<Appointment> {
+        private ObservableList<Student> studentList;
+
+        public AppointmentListViewCell(ObservableList<Student> studentList) {
+            super();
+            this.studentList = studentList;
+        }
+
         @Override
         protected void updateItem(Appointment appointment, boolean empty) {
             super.updateItem(appointment, empty);
@@ -48,7 +59,7 @@ public class SameDateAppointmentListContainer extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new AppointmentCard(appointment, getIndex() + 1).getRoot());
+                setGraphic(new AppointmentCard(appointment, getIndex() + 1, studentList).getRoot());
             }
         }
     }
