@@ -26,7 +26,7 @@ public class IssueList implements Iterable<Issue> {
      */
     public boolean contains(Issue toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameIssue);
+        return internalList.stream().anyMatch(toCheck::equals);
     }
 
     /**
