@@ -7,7 +7,7 @@ import static seedu.module.commons.util.AppUtil.checkArgument;
  * Represents a Task's description in the module book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDescription(String)}
  */
-public class Description {
+public class Description implements Comparable<Description> {
 
     public static final String MESSAGE_CONSTRAINTS = "Descriptions can take any values, and it should not be blank";
 
@@ -54,4 +54,8 @@ public class Description {
         return value.hashCode();
     }
 
+    @Override
+    public int compareTo(Description o) {
+        return this.value.toLowerCase().compareTo(o.value.toLowerCase());
+    }
 }

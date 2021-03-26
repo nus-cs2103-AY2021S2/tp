@@ -53,7 +53,7 @@ public class CommandTestUtil {
     public static final String WORKLOAD_DESC_1 = " " + PREFIX_WORKLOAD + VALID_WORKLOAD_1;
     public static final String WORKLOAD_DESC_2 = " " + PREFIX_WORKLOAD + VALID_WORKLOAD_2;
 
-    public static final String INVALID_TASK_NAME_DESC = " " + PREFIX_TASK_NAME + "James&"; // '&' not allowed in tasks
+    public static final String INVALID_TASK_NAME_DESC = " " + PREFIX_TASK_NAME + "   "; // '&' not allowed in tasks
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "911a"; // 'a' not allowed in deadlines
     public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULE + "CS!2040"; // ! not allowed in modules
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION; // descriptions should not be empty

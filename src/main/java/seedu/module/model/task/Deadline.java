@@ -13,7 +13,7 @@ import java.time.format.DateTimeFormatter;
  * Represents a Task's deadline in the module book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDeadline(String)}
  */
-public class Deadline {
+public class Deadline implements Comparable<Deadline> {
 
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -80,6 +80,7 @@ public class Deadline {
                 && value.equals(((Deadline) other).value)); // state check
     }
 
+    @Override
     public int compareTo(Deadline other) {
         return time.compareTo(other.getTime());
     }

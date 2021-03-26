@@ -54,8 +54,8 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](https://github.com/qy-h00)]
 [[portfolio](team/qy-h00.md)]
 
-* Role: Developer
-* Responsibility: Developer for ModuleBook 3.5
+* Role: Developer, QA Engineer
+* Responsibility: Testing and Project Management
 
 
 

@@ -226,9 +226,17 @@ Examples:
 
 ### Sorting tasks : `sort`
 
-Sorts the list of all tasks added by deadline.
+Sorts the list of all tasks by workload/deadline/module.
 
-Format: `sort`
+Format:  `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/` or `sort t/` 
+
+Examples:
+*  `sort n/` Sorts the tasks by name alphabetically in ascending order.
+*  `sort d/` Sorts the tasks by description alphabetically in ascending order.
+*  `sort w/` Sorts the tasks by workload in descending order.
+*  `sort b/` Sorts the tasks by deadline so that the the task with closer the deadline in the list, the higher the task.
+*  `sort m/` Sorts the tasks by module code alphabetically in descending order.
+*  `sort t/` Sorts the tasks by number of tags in descending order.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -273,4 +281,4 @@ Action | Format, Examples
 **tag** | `tag INDEX [t/TAG NAME]`<br> e.g., `tag 1 [t/SoftwareEng]`
 **find** | `find KEYWORD`<br> e.g., `find CS3230`
 **edit** | `edit INDEX [d/DESCRIPTION] [b/DEADLINE]…​`<br> e.g., `edit 2 d/Eat Biscuits b/2021-03-21 10:10`
-**sort** | `sort`
+**sort** | `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/` or `sort t/` <br> e.g., `sort b/`

@@ -13,7 +13,7 @@ import seedu.module.model.ModuleManager;
  * Represents a Module in the module book.
  * Guarantees: immutable; is valid as declared in {@link #isValidModuleFormat(String)}
  */
-public class Module {
+public class Module implements Comparable<Module> {
 
     public static final String MESSAGE_CONSTRAINTS = "Modules should be formatted as {MAJOR_NAME}{MODULE_CODE}{IS_PLUS}"
             + "and adhere to the following constraints:\n"
@@ -134,4 +134,8 @@ public class Module {
         return value.hashCode();
     }
 
+    @Override
+    public int compareTo(Module o) {
+        return -this.toString().compareTo(o.toString());
+    }
 }
