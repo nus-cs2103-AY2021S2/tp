@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BANANA;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_ESSENTIAL;
 import static seedu.storemando.testutil.Assert.assertThrows;
 import static seedu.storemando.testutil.TypicalItems.APPLE;
 import static seedu.storemando.testutil.TypicalItems.BANANA;
@@ -43,7 +43,7 @@ public class UniqueItemListTest {
     @Test
     public void contains_itemWithSameIdentityFieldsInList_returnsTrue() {
         uniqueItemList.add(APPLE);
-        Item editedApple = new ItemBuilder(APPLE).withQuantity(VALID_QUANTITY_BANANA).withTags(VALID_TAG_HUSBAND)
+        Item editedApple = new ItemBuilder(APPLE).withQuantity(VALID_QUANTITY_BANANA).withTags(VALID_TAG_ESSENTIAL)
             .build();
         assertTrue(uniqueItemList.contains(editedApple));
     }
@@ -86,7 +86,7 @@ public class UniqueItemListTest {
     @Test
     public void setItem_editedItemHasSameIdentity_success() {
         uniqueItemList.add(APPLE);
-        Item editedApple = new ItemBuilder(APPLE).withLocation(VALID_LOCATION_BANANA).withTags(VALID_TAG_HUSBAND)
+        Item editedApple = new ItemBuilder(APPLE).withLocation(VALID_LOCATION_BANANA).withTags(VALID_TAG_ESSENTIAL)
             .build();
         uniqueItemList.setItem(APPLE, editedApple);
         UniqueItemList expectedUniqueItemList = new UniqueItemList();
