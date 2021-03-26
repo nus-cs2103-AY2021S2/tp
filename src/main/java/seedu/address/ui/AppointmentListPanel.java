@@ -54,6 +54,20 @@ public class AppointmentListPanel extends UiPart<Region> {
                 }
             }
         });
+        
+        // patientList also needs listener to update the appointment display list
+        patientList.addListener(new ListChangeListener<Patient>() {
+            @Override
+            public void onChanged(Change<? extends Patient> change) {
+                updatePatientHashMap(patientHashMap, patientList);
+                while (change.next());
+                displayAppointmentList.clear();
+                for (Appointment appt: appointmentList) {
+                    displayAppointmentList.add(mapToDisplayAppointment(
+                        patientHashMap, patientList, appt));
+                }
+            }
+        });
         appointmentListView.setItems(FXCollections.unmodifiableObservableList(displayAppointmentList));
         appointmentListView.setCellFactory(listView -> new AppointmentListViewCell());
     }
@@ -85,6 +99,16 @@ public class AppointmentListPanel extends UiPart<Region> {
                     .get();
         patientHashMap.put(appt.getPatientUuid(), patient);
         return new AppointmentDisplay(patient, appt.getDoctor(), appt.getTimeslot(), appt.getTags());
+    }
+
+    /**
+     * With the given {@code patientList}, updates the values of {@code patientHashMap}
+     * using the {@code Patient}'s UUID as the key.
+     */
+    public void updatePatientHashMap(Map<UUID, Patient> patientHashMap, ObservableList<Patient> patientList) {
+        for (Patient pt: patientList) {
+            patientHashMap.put(pt.getUuid(), pt);
+        }
     }
 
     /**
