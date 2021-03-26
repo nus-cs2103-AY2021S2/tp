@@ -47,20 +47,16 @@ ReviewMode -> ReviewManager
 loop until "q" is entered
     alt "n" is entered
         ReviewMode -> ReviewManager : hasNextFlashcard()
-        ReviewManager --> ReviewMode
     else "p" is entered
         ReviewMode -> ReviewManager : hasPreviousFlashcard()
-        ReviewManager --> ReviewMode
     else "a" is entered
         ReviewMode -> ReviewMode : handleShowAnswerCommand()
     else "h" is entered
-            ReviewMode -> ReviewMode : handleHideAnswerCommand()
+        ReviewMode -> ReviewMode : handleHideAnswerCommand()
     else "t" is entered
         ReviewMode -> ReviewManager : updateCardCorrect()
-        ReviewManager --> ReviewMode
     else "f" is entered
         ReviewMode -> ReviewManager : updateCardWrong()
-        ReviewManager --> ReviewMode
     end
     ReviewMode --> user
 end

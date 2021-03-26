@@ -80,6 +80,8 @@ Command Box | This is where you type all the commands.
 Result Display | This is where the result of your input to the command box is displayed.
 View Pane | This is where the output for `view` and `stats` command is displayed.
 Flashcard List | This is where all the flashcards are displayed to user.
+Main mode | This is the first window when you open the app. Most of the command is executed here.
+Review mode | This is where you can review all your flashcards. You can enter this mode by typing `review` in the Command Box of the Main mode.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -90,17 +92,17 @@ Flashcard List | This is where all the flashcards are displayed to user.
 **:information_source: Notes about the command format:**<br>
 
 * Words in UPPER_CASE are the parameters to be supplied by the user. <br>
-  eg. In `add q/QUESTION`, `QUESTION` is a parameter which can be used as `add q/What is Fermat's Last Theorem?`.<br>
+  e.g. In `add q/QUESTION`, `QUESTION` is a parameter which can be used as `add q/What is Fermat's Last Theorem?`.<br>
 
 * Items in square brackets are optional. <br>
-  eg. `q/QUESTION [t/TAG]` can be used as `q/What is Singapore Independence Day?` or
+  e.g. `q/QUESTION [t/TAG]` can be used as `q/What is Singapore Independence Day?` or
   as `q/What is Singapore Independence Day? t/Singapore`<br>
 
 * Items with `…​` after them can be used multiple times including zero times. <br>
   e.g. `[t/TAG]…`​ can be used as `t/vocabulary`, `t/vocabulary t/SAT` etc.
 
 * Parameters can be in any order. <br>
-  eg. If the command specifies `q/QUESTION a/ANSWER`, `a/ANSWER q/QUESTION` is also acceptable.<br>
+  e.g. If the command specifies `q/QUESTION a/ANSWER`, `a/ANSWER q/QUESTION` is also acceptable.<br>
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `undo`, `exit` and `clear`)
   will be ignored. <br>
@@ -109,8 +111,7 @@ Flashcard List | This is where all the flashcards are displayed to user.
 * Prefixes are case-sensitive. <br>
   e.g. `q/` is not the same as `Q/`.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of
-  the parameter will be taken. <br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken. <br>
   e.g. If you specify `c/Geography c/History`, only `c/History` will be taken.
 
 </div>
@@ -127,8 +128,8 @@ Format: `help`
 
 Adds a new card to the card list.<br>
 Format: `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAG]...` <br />
-Note: The TAG is optional when adding a new card.
-<div markdown="span" class="alert alert-primary">:memo: **Note:**
+<div markdown="span" class="alert alert-primary">:memo: **Note:** <br>
+The `TAG` is optional when adding a new card.<br>
 Priority can only take 1 out of 3 values: `High`, `Mid` or `Low`.
 </div>
 
@@ -196,7 +197,7 @@ Examples:
 
 ### Finding cards : `find`
 
-Find flashcards containing any of the given keywords.
+Finds flashcards containing any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -253,10 +254,12 @@ Format: `clear`
 
 ### Undoing a command : `undo`
 
-Restore FlashBack to the state before the previous command was executed.
+Restores FlashBack to the state before the previous command was executed.
 <div markdown="span" class="alert alert-primary">:memo:
 **Note:**  Only commands that modify FlashBack's content can be reversed. (`add`, `delete`, `edit` and `clear`).
 </div>
+
+Format: `undo`
 
 Examples:
 `delete 3` <br><br>
@@ -268,11 +271,11 @@ Examples:
 `undo` will reverse the `delete 3` command. <br><br>
 ![UiDeleteAfterUndo](./images/UiDeleteAfterUndo.png) <br><br>
 
-Format: `undo`
-
 ### Redoing a command : `redo`
 
-Restore FlashBack to the state before the previous command was undo.
+Restores FlashBack to the state before the previous command was undo.
+
+Format: `redo`
 
 Examples:
 `delete 3` <br><br>
@@ -282,8 +285,6 @@ Examples:
 `redo` will reverse the `undo` command. <br><br>
 ![UiAfterRedo](./images/UiAfterRedo.png) <br><br>
 
-Format: `redo`
-
 ### Sorting all cards: `sort`
 Sorts all flashcards according to a given option.
 <div markdown="span" class="alert alert-primary">
@@ -292,6 +293,7 @@ Sorts all flashcards according to a given option.
 
 </div>
 
+Format: `sort <priority|question> -<a|d>` <br>
 Examples:
 
 `sort priority -a` will sort the flashcards by ascending priority. <br>
@@ -425,9 +427,9 @@ Action | Format, Examples
 **Clear** | `clear`
 **Undo** | `undo`
 **Redo** | `redo`
-**Sort** | `sort OPTION ORDER` <br> e.g, `sort priority -a`
+**Sort** | `sort OPTION ORDER` <br> e.g., `sort priority -a`
 **Review** | `review`
-**Statistics** | `stats [INDEX]` <br> e.g, `stats 4`, `stats`
+**Statistics** | `stats [INDEX]` <br> e.g., `stats 4`, `stats`
 **List** | `list`
 **Help** | `help`
 **Exit** | `exit`
