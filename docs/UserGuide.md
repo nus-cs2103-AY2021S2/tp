@@ -85,7 +85,7 @@ Examples:
 
 ### Deleting a patients' contact : `delete`
 
-Deletes a patient from DocBob's contact list, identified by their index number displayed when when the `list` command is entered.
+Deletes a patient from DocBob's contact list, identified by the index number shown in the displayed patient list.
 
 Format : `delete INDEX`
 where INDEX must be a positive integer (1,2,3,...)
@@ -107,7 +107,7 @@ Output:
 
 ### Adding an appointment to a patient : `appt`
 
-Adds a scheduled upcoming appointment with a patient in DocBob's contact list. Add an appointment to a patient by their index, which is shown when the `list` command is entered, as well as the date and time of the appointment.
+Adds a scheduled upcoming appointment with a patient in DocBob's contact list. Add an appointment and its date and time to a patient identified by the index number shown in the displayed patient list.
 
 Format: `appt INDEX /dDATE`
 where INDEX must be a positive integer (1,2,3,...)
@@ -138,7 +138,7 @@ Output:
 
 ### Create a new medical record for a patient : `mrec`
 
-Opens an editor for you to write a custom medical report for the patient, identified by their index number displayed when when the `list` command is entered. 
+Opens an editor for you to write a custom medical report for the patient, identified by the index number shown in the displayed patient list.
 
 Format : `mrec INDEX`
 where INDEX must be a positive integer (1,2,3,...)
@@ -148,7 +148,7 @@ Examples:
 
 ### View all information regarding a patient : `view`
 
-Shows an overview of all contact information, tags, appointments and medical records of a patient, identified by their index number displayed when when the `list` command is entered. 
+Shows an overview of all contact information, tags, appointments and medical records of a patient, identified by the index number shown in the displayed patient list.
 
 Format : `view INDEX`
 where INDEX must be a positive integer (1,2,3,...)
@@ -240,4 +240,6 @@ Action | Format, Examples
 **list** | `list`
 **appt** | `appt 1 d/010120211200`
 **listappt** | `listappt`
+**mrec** | `mrec 3`
+**view** | `view 1`
 **exit** | `exit`
