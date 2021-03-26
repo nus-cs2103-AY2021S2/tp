@@ -97,7 +97,7 @@ public class TypicalItems {
     }
 
     /**
-     * Returns an {@code StoreMando} with all the typical itemss.
+     * Returns an {@code StoreMando} with all the typical items.
      */
     public static StoreMando getTypicalStoreMandoSortedByExpiryDate() {
         StoreMando ab = new StoreMando();
