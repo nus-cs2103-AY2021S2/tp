@@ -43,6 +43,21 @@ public class Session {
         return fee;
     }
 
+
+    // TODO : Overlap check for recurring session.
+    /**
+     * Checks if the {@code Session} slot overlaps with another session.
+     * @param otherSession the other session that is compared to.
+     */
+    public boolean isOverlapping(Session otherSession) {
+        SessionDate otherSessionDate = otherSession.getSessionDate();
+        SessionDate sessionStartDate = sessionDate;
+        SessionDate sessionEndDate = sessionStartDate.getEndSessionDate(duration);
+        return (otherSessionDate.getDateTime().isEqual(sessionStartDate.getDateTime())
+                || otherSessionDate.getDateTime().isAfter(sessionStartDate.getDateTime()))
+                && otherSessionDate.getDateTime().isBefore(sessionEndDate.getDateTime());
+    }
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
