@@ -8,6 +8,7 @@ Package Appointment <<Rectangle>> {
 Class Appointment
 Class Date
 Class Time
+Class UniqueAppointmentList
 }
 
 Package Name as NamePackage {
@@ -17,6 +18,11 @@ Class Name
 Package Remark as RemarkPackage {
 Class Remark
 }
+
+Class AppointmentBook
+AppointmentBook *--> "1 " UniqueAppointmentList
+
+UniqueAppointmentList o--> "~*  " Appointment
 
 Appointment *-right-> Name
 Appointment *--> Remark
