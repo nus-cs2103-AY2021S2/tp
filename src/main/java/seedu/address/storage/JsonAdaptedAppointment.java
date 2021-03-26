@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Timeslot;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Patient;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,7 +21,7 @@ import seedu.address.model.tag.Tag;
 public class JsonAdaptedAppointment {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Appointment's %s field is missing!";
 
-    private final JsonAdaptedPerson patient;
+    private final JsonAdaptedPatient patient;
     private final String doctor;
     private final JsonAdaptedTimeslot timeslot;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -30,7 +30,7 @@ public class JsonAdaptedAppointment {
      * Constructs a {@code JsonAdaptedAppointment} with the given appointment details.
      */
     @JsonCreator
-    public JsonAdaptedAppointment(@JsonProperty("patient") JsonAdaptedPerson patient,
+    public JsonAdaptedAppointment(@JsonProperty("patient") JsonAdaptedPatient patient,
                                   @JsonProperty("doctor") String doctor,
                                   @JsonProperty("timeslot") JsonAdaptedTimeslot timeslot,
                                   @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
@@ -47,7 +47,7 @@ public class JsonAdaptedAppointment {
      * Converts a given {@code Appointment} into this class for Jackson use.
      */
     public JsonAdaptedAppointment(Appointment source) {
-        patient = new JsonAdaptedPerson(source.getPatient());
+        patient = new JsonAdaptedPatient(source.getPatient());
         doctor = source.getDoctor();
         timeslot = new JsonAdaptedTimeslot(source.getTimeslot());
 
@@ -71,7 +71,7 @@ public class JsonAdaptedAppointment {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "patient"));
         }
 
-        final Person modelPatient = patient.toModelType();
+        final Patient modelPatient = patient.toModelType();
 
         if (doctor == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "doctor"));

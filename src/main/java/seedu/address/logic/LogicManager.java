@@ -16,7 +16,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAppointmentSchedule;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Patient;
 import seedu.address.storage.Storage;
 
 /**
@@ -59,7 +59,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.savePatientRecords(model.getPatientRecords());
             storage.saveAppointmentSchedule(model.getAppointmentSchedule());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
@@ -70,13 +70,13 @@ public class LogicManager implements Logic {
 
     //=========== AddressBook ================================================================================
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyAddressBook<Patient> getPatientRecords() {
+        return model.getPatientRecords();
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Patient> getFilteredPatientList() {
+        return model.getFilteredPatientList();
     }
 
     @Override
@@ -85,8 +85,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getPatientRecordsFilePath() {
+        return model.getPatientRecordsFilePath();
     }
 
     //=========== AppointmentSchedule ========================================================================
