@@ -48,10 +48,10 @@ public class AppointmentListPanel extends UiPart<Region> {
                 while (change.next());
                 // everything can be handled with just 1 clear and add of all appointments.
                 displayAppointmentList.clear();
-                    for (Appointment appt: change.getList()) {
-                        displayAppointmentList.add(mapToDisplayAppointment(
-                            patientHashMap, patientList, appt));
-                    }
+                for (Appointment appt: change.getList()) {
+                    displayAppointmentList.add(mapToDisplayAppointment(
+                        patientHashMap, patientList, appt));
+                }
             }
         });
         appointmentListView.setItems(FXCollections.unmodifiableObservableList(displayAppointmentList));
