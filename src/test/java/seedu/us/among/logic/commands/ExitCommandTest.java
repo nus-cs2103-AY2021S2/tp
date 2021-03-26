@@ -8,17 +8,17 @@ import seedu.us.among.model.Model;
 import seedu.us.among.model.ModelManager;
 
 public class ExitCommandTest {
+    public static final boolean SHOW_HELP = false;
+    public static final boolean IS_EXIT = true;
+    public static final boolean IS_LIST = false;
+
     private Model model = new ModelManager();
     private Model expectedModel = new ModelManager();
-
-    public static final boolean showHelp = false;
-    public static final boolean isExit = true;
-    public static final boolean isList = false;
 
     @Test
     public void execute_exit_success() {
         CommandResult expectedCommandResult = new CommandResult(ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT,
-                showHelp, isExit, isList);
+                SHOW_HELP, IS_EXIT, IS_LIST);
         assertCommandSuccess(new ExitCommand(), model, expectedCommandResult, expectedModel);
     }
 }

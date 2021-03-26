@@ -7,6 +7,10 @@ import seedu.us.among.model.Model;
  */
 public class HelpCommand extends Command {
 
+    public static final boolean SHOW_HELP = true;
+    public static final boolean IS_EXIT = false;
+    public static final boolean IS_LIST = false;
+
     public static final String COMMAND_WORD = "help";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
@@ -14,12 +18,8 @@ public class HelpCommand extends Command {
 
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 
-    public static final boolean showHelp = true;
-    public static final boolean isExit = false;
-    public static final boolean isList = false;
-
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_HELP_MESSAGE, showHelp, isExit, isList);
+        return new CommandResult(SHOWING_HELP_MESSAGE, SHOW_HELP, IS_EXIT, IS_LIST);
     }
 }

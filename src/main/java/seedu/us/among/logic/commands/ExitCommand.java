@@ -7,17 +7,18 @@ import seedu.us.among.model.Model;
  */
 public class ExitCommand extends Command {
 
+    public static final boolean SHOW_HELP = false;
+    public static final boolean IS_EXIT = true;
+    public static final boolean IS_LIST = false;
+
+
     public static final String COMMAND_WORD = "exit";
 
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting imPoster as requested ...";
 
-    public static final boolean showHelp = false;
-    public static final boolean isExit = true;
-    public static final boolean isList = false;
-
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, showHelp, isExit, isList);
+        return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, SHOW_HELP, IS_EXIT, IS_LIST);
     }
 
 }
