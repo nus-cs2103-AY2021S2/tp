@@ -121,7 +121,6 @@ public class MainWindow extends UiPart<Stage> {
         scoreHistoryListPanel = new ScoreHistoryListPanel(logic.getFilteredScoreHistoryList());
         flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
 
-
         // don't show flashcard panel at the start
         flashcardListPanelPlaceholder.setVisible(false);
 
@@ -196,21 +195,15 @@ public class MainWindow extends UiPart<Stage> {
             int currentMode = logic.getModel().getCurrentMode();
             logger.info(String.format("Current mode is %s", currentMode));
 
-            int i = flashcardListPanelPlaceholder.getChildren().indexOf(scoreHistoryListPanel.getRoot());
-            if (i != -1) {
-                flashcardListPanelPlaceholder.getChildren().set(i, flashcardListPanel.getRoot());
+            if (commandText.equals("history")) {
+                changePanelInPlaceHolder(flashcardListPanelPlaceholder, flashcardListPanel, scoreHistoryListPanel);
+            } else {
+                changePanelInPlaceHolder(flashcardListPanelPlaceholder, scoreHistoryListPanel, flashcardListPanel);
             }
 
             flashcardListPanelPlaceholder.setVisible(commandResult.isShowCards());
             int index = (commandText.equals("next") || commandText.equals("check")) ? logic.getCurrentIndex() : -1;
             flashcardListPanel.updateCard(index, commandResult.isShowAnswer());
-
-            if (commandText.equals("history")) {
-                int j = flashcardListPanelPlaceholder.getChildren().indexOf(flashcardListPanel.getRoot());
-                if (j != -1) {
-                    flashcardListPanelPlaceholder.getChildren().set(j, scoreHistoryListPanel.getRoot());
-                }
-            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -225,6 +218,13 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
+        }
+    }
+
+    private void changePanelInPlaceHolder(StackPane stackPane, ListPanel oldPanel, ListPanel newPanel) {
+        int index = stackPane.getChildren().indexOf(oldPanel.getRoot());
+        if (index != -1) {
+            stackPane.getChildren().set(index, newPanel.getRoot());
         }
     }
 

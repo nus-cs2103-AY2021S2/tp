@@ -9,7 +9,7 @@ import javafx.scene.layout.Region;
 import seedu.weeblingo.commons.core.LogsCenter;
 import seedu.weeblingo.model.score.Score;
 
-public class ScoreHistoryListPanel extends UiPart<Region> {
+public class ScoreHistoryListPanel extends UiPart<Region> implements ListPanel {
     private static final String FXML = "ScoreHistoryListPanel.fxml"; // placeholder, todo: beautify UI design
     private final Logger logger = LogsCenter.getLogger(FlashcardListPanel.class);
 
