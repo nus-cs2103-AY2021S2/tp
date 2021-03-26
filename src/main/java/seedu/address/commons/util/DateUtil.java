@@ -40,6 +40,16 @@ public class DateUtil {
     }
 
     /**
+     * Decodes a date passed as a LocalDate into a String in the EEEE, dd MMM yyyy format.
+     * @param date A LocalDate object.
+     * @return A date String in the EEEE, dd MMM yyyy format.
+     */
+    public static String decodeDateWithDay(LocalDate date) {
+        requireNonNull(date);
+        return date.format(DateTimeFormatter.ofPattern("EEEE, dd MMM yyyy"));
+    }
+
+    /**
      * Decodes a date passed as a LocalDate into a String in the yyyy-MM-dd format.
      * @param date A LocalDate object.
      * @return A date String in the yyyy-MM-dd format.

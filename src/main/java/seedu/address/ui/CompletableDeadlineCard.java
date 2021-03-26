@@ -40,7 +40,7 @@ public class CompletableDeadlineCard extends UiPart<Region> {
         this.deadline = deadline;
         id.setText("");
         description.setText(deadline.getDescription());
-        date.setText(DateUtil.decodeDate(deadline.getBy()));
+        date.setText(DateUtil.decodeDateWithDay(deadline.getBy()));
         completedLabel.setText(deadline.getIsDone() ? "✔" : "");
     }
 
@@ -54,7 +54,7 @@ public class CompletableDeadlineCard extends UiPart<Region> {
         this.deadline = deadline;
         id.setText(displayedIndex + ". ");
         description.setText(deadline.getDescription());
-        date.setText(DateUtil.decodeDate(deadline.getBy()));
+        date.setText(DateUtil.decodeDateWithDay(deadline.getBy()));
         completedLabel.setText(getTextToDisplay(deadline.getIsDone()));
     }
 

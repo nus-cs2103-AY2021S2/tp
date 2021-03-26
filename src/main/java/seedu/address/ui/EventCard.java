@@ -41,7 +41,7 @@ public class EventCard extends UiPart<Region> {
         id.setText("");
         eventDescription.setText(event.getDescription());
         interval.setText(event.getRecurrence().toString());
-        date.setText(DateUtil.decodeDate(event.getAt()));
+        date.setText(DateUtil.decodeDateWithDay(event.getAt()));
     }
 
     /**
@@ -55,7 +55,7 @@ public class EventCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         eventDescription.setText(event.getDescription());
         interval.setText(event.getRecurrence().toString());
-        date.setText(DateUtil.decodeDate(event.getAt()));
+        date.setText(DateUtil.decodeDateWithDay(event.getAt()));
     }
 
     @Override
