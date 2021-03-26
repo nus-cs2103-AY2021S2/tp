@@ -251,7 +251,7 @@ Step 5. The user then decides that having the `Completion` status on the first p
 
 #### Design consideration:
 
-##### Aspect: How undo executes
+##### Aspect: How Update executes
 
 
 The following activity diagram summarizes what happens when a user executes an `UpdateCommand`:
