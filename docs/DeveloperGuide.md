@@ -410,6 +410,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | disorganised user                          | display only certain attributes queried| avoid cluttering the screen with unnecessary information               |
 | `* *`    | insurance agent                            | sort my clients                | see my clients in a more organized way                                 |
 | `* *`    | insurance agent on the go                  | lock ClientBook with a password| prevent the leakage of my clients' information                         |
+| `* *`    | insurance agent                            | schedule meetings with clients | check what meetings I have with my clients                             |
 
 ### Use cases
 
@@ -557,13 +558,44 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
+* 1a. The given attribute or direction is invalid.
+
+    * 1a1. ClientBook shows an error message.
+
+      Use case resumes at step 1.
+
 * 2a. The list of clients is empty.
 
   Use case ends.
 
 <br>
 
-**Use case 8: Lock ClientBook**
+**Use case 8: Schedule a meeting with a client**
+
+**MSS**
+
+1.  User requests to list clients
+2.  ClientBook shows a list of clients
+3.  User requests to schedule a meeting with a specific client in the list
+4.  ClientBook schedules a meeting with the client
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of clients is empty.
+
+  Use case ends.
+
+* 3a. The given index, action, place, date or time is invalid.
+
+    * 3a1. ClientBook shows an error message.
+
+      Use case resumes at step 3.
+
+<br>
+
+**Use case 9: Lock ClientBook**
 
 **MSS**
 
@@ -585,7 +617,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case 9: Unlock ClientBook**
+**Use case 10: Unlock ClientBook**
 
 **MSS**
 
