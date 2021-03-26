@@ -4,7 +4,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
-
 /**
  * Represents a Task in HEY MATEz.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -20,7 +19,7 @@ public class Task {
     private final Priority priority;
 
     /**
-     * Overloaded constructor which sets taskStatus to uncompleted and priority to unassigned by default
+     * Overloaded constructor which sets taskStatus to uncompleted and PRIORITY to unassigned by default
      */
     public Task(Title title, Description description, Deadline deadline) {
         requireAllNonNull(title, description, deadline);
@@ -32,7 +31,7 @@ public class Task {
     }
 
     /**
-     * Every field must be present and not null. Priority here is default to unassigned
+     * Overloaded constructor where every field must be present and not null. Priority here is default to unassigned
      */
     public Task(Title title, Description description, Deadline deadline, TaskStatus taskStatus) {
         requireAllNonNull(title, description, deadline, taskStatus);
@@ -45,7 +44,7 @@ public class Task {
 
 
     /**
-     * Overloaded constructor where every field must be present and not null.  Status set to default of UNCOMPLETED
+     * Overloaded constructor where every field must be present and not null. Status set to default of UNCOMPLETED
      */
     public Task(Title title, Description description, Deadline deadline, Priority priority) {
         requireAllNonNull(title, description, deadline, priority);

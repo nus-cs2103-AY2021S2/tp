@@ -12,11 +12,13 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-
+/**
+ * Parses input arguments and creates a new EditTaskCommand object
+ */
 public class EditTaskCommandParser implements Parser<EditTaskCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
-     * and returns an EditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the EditTaskCommand
+     * and returns an EditTaskCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditTaskCommand parse(String args) throws ParseException {

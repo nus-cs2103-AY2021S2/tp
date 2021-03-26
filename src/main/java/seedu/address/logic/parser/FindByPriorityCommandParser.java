@@ -35,7 +35,6 @@ public class FindByPriorityCommandParser implements Parser<FindByPriorityCommand
                     FindByPriorityCommand.MESSAGE_USAGE));
         }
 
-
         String[] nameKeywords = {keyword};
 
         return new FindByPriorityCommand(new PriorityContainsKeywordPredicate(Arrays.asList(nameKeywords)));

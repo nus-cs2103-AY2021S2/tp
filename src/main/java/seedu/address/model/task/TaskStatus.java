@@ -2,7 +2,7 @@ package seedu.address.model.task;
 
 /**
  * Enum for the Task status values
- * It is used to signify whether a task has been completed
+ * It is used to signify whether a task has been completed or uncompleted
  * Task Status can take on the values, UNCOMPLETED or COMPLETED
  * */
 public enum TaskStatus {
@@ -19,6 +19,11 @@ public enum TaskStatus {
         this.status = status;
     }
 
+    /**
+     * Returns a String value by of the Enum name to use for UI
+     *
+     * @return a string value of the enum name to us for the UI
+     */
     public static String getEnumName() {
         return "Task Status";
     }
