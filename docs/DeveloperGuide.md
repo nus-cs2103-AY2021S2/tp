@@ -228,7 +228,6 @@ Step 1: The user launches the application and executes `food_update n/chocolate 
 Step 2: The food item specified will have its value(s) updated to the new value(s) in the food list.
 
 The following sequence diagram shows how the update operation works:
-<INSERT DIAGRAM FLOW HERE>
 
 ### List food item feature
 
