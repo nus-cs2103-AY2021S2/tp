@@ -33,7 +33,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_RESIDENCE_ADDRESS,
-                        PREFIX_BOOKING_DETAILS, PREFIX_CLEAN_STATUS_TAG, PREFIX_TAG);
+                        PREFIX_CLEAN_STATUS_TAG, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_RESIDENCE_ADDRESS)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -43,13 +43,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         ResidenceName name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         ResidenceAddress address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_RESIDENCE_ADDRESS).get());
 
-        BookingList bookingList;
-        if (argMultimap.getAllValues(PREFIX_BOOKING_DETAILS).size() > 0) {
-            bookingList = ParserUtil.parseBookingTime(
-                    argMultimap.getValue(PREFIX_BOOKING_DETAILS).get());
-        } else {
-            bookingList = new BookingList();
-        }
+        BookingList bookingList = new BookingList();
 
         CleanStatusTag cleanStatusTag;
         if (argMultimap.getAllValues(PREFIX_CLEAN_STATUS_TAG).size() > 0) {

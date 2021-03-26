@@ -45,12 +45,12 @@ public class BookingTest {
     public void isValidBooking() {
 
         // null booking
-        assertThrows(NullPointerException.class, () -> Booking.isValidBooking(null));
+        assertThrows(NullPointerException.class, () -> Booking.isValidBookingTime(null, null));
 
         // invalid dates - start date after end date
-        assertFalse(Booking.isValidBooking(new Booking(validName, validPhone, validEnd, validStart)));
+        assertFalse(Booking.isValidBookingTime(validEnd, validStart));
 
         // valid bookings
-        assertTrue(Booking.isValidBooking(new Booking(validName, validPhone, validStart, validEnd)));
+        assertTrue(Booking.isValidBookingTime(validStart, validEnd));
     }
 }

@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,7 +16,6 @@ import seedu.address.model.booking.Name;
 import seedu.address.model.booking.Phone;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.residence.BookingList;
 import seedu.address.model.residence.ResidenceAddress;
 import seedu.address.model.residence.ResidenceName;
 import seedu.address.model.tag.CleanStatusTag;
@@ -54,6 +55,21 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new ResidenceName(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code Name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static Name parseVisitorName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!ResidenceName.isValidResidenceName(trimmedName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new Name(trimmedName);
     }
 
     /**
@@ -107,13 +123,20 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code booking} is invalid.
      */
-    public static BookingList parseBookingTime(String start, String end) throws ParseException {
-        requireNonNull(bookingDetails);
-        String trimmedBooking = bookingDetails.trim();
-        if (!Booking.isValidBooking(trimmedBooking)) {
-            throw new ParseException(Booking.MESSAGE_CONSTRAINTS);
+    public static Booking parseBooking(Name visitorName, Phone phone,
+                                       String start, String end) throws ParseException {
+        requireNonNull(start);
+        requireNonNull(end);
+        try {
+            LocalDate startTime = LocalDate.parse(start.trim(), DateTimeFormatter.ofPattern("DDMMYY"));
+            LocalDate endTime = LocalDate.parse(end.trim(), DateTimeFormatter.ofPattern("DDMMYY"));
+            if (!Booking.isValidBookingTime(startTime, endTime)) {
+                throw new ParseException(Booking.MESSAGE_CONSTRAINTS);
+            }
+            return new Booking(visitorName, phone, startTime, endTime);
+        } catch (Exception exception) {
+            throw new ParseException("Date is not in the expected format: DDMMYY");
         }
-        return new Booking(trimmedBooking);
     }
 
     /**
