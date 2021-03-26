@@ -6,11 +6,11 @@ import java.util.stream.Stream;
 
 import seedu.module.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.module.model.tag.Tag;
-import seedu.module.model.task.Deadline;
 import seedu.module.model.task.Description;
 import seedu.module.model.task.Module;
 import seedu.module.model.task.Name;
 import seedu.module.model.task.Task;
+import seedu.module.model.task.Time;
 import seedu.module.model.task.Workload;
 
 /**
@@ -34,6 +34,7 @@ public class EditTaskDescriptorBuilder {
     public EditTaskDescriptorBuilder(Task task) {
         descriptor = new EditTaskDescriptor();
         descriptor.setName(task.getName());
+        descriptor.setStartTime(task.getStartTime());
         descriptor.setDeadline(task.getDeadline());
         descriptor.setModule(task.getModule());
         descriptor.setDescription(task.getDescription());
@@ -50,10 +51,18 @@ public class EditTaskDescriptorBuilder {
     }
 
     /**
+     * Sets the {@code StartTime} of the {@code EditTaskDescriptor} that we are building.
+     */
+    public EditTaskDescriptorBuilder withStartTime(String startTime) {
+        descriptor.setStartTime(new Time(startTime));
+        return this;
+    }
+
+    /**
      * Sets the {@code Deadline} of the {@code EditTaskDescriptor} that we are building.
      */
     public EditTaskDescriptorBuilder withDeadline(String deadline) {
-        descriptor.setDeadline(new Deadline(deadline));
+        descriptor.setDeadline(new Time(deadline));
         return this;
     }
 

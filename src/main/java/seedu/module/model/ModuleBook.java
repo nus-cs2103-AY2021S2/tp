@@ -2,6 +2,7 @@ package seedu.module.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -50,9 +51,10 @@ public class ModuleBook implements ReadOnlyModuleBook {
 
     /**
      * Sorts the task list by deadline.
+     * @param factor
      */
-    public void sortTasks() {
-        this.tasks.sortTasks();
+    public void sortTasks(Comparator<Task> factor) {
+        this.tasks.sortTasks(factor);
     }
 
     /**

@@ -259,6 +259,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | student                                    | tag tasks                                     | filter through my tasks easily and focus on the similar ones with the same tags   |
 | `*`      | user with many tasks in the module book    | modify the deadline without deleting the task | waste less time recreating the whole task                                         |
 | `*`      | user with many tasks in the module book    | modify the deadline without deleting the task | waste less time recreating the whole task     
+| `*`      | user with many tasks in the module book    | sort the tasks by deadline                    | see which tasks need to be addressed as soon as possible
+| `*`      | user with many tasks in the module book    | sort the tasks by workload                    | see which tasks require more effort to complete
 | `*`      | busy student                               | view workload count for each module           | decide which module requires more effort
 | `*`      | busy student                               | search for tags                               | locate my tasks easily                                                            |
 | `*`      | busy student                               | delete tags                                   | edit tags of my tasks without having to recreate them                             |
@@ -398,6 +400,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2b1. ModuleBook3.5 shows an error message with the correct format for add and example.
 
       Use case resumes at step 2.
+      
+* 2c.  The start time of the task is later than its deadline.
+      
+    * 2c1. ModuleBook 3.5 shows an error message.
+      
+      Use case resumes at step 2.
 
 
 **Use case 06: Tag a task**
@@ -536,6 +544,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2d1. ModuleBook3.5 shows an error message.
 
       Use case resumes at step 2.
+
+* 2e.  The start time of the edited task is later than its deadline.
+      
+    * 2e1. ModuleBook 3.5 shows an error message.
+      
+      Use case resumes at step 2.
     
 
 **Use case 11: Search tasks by Module**
@@ -555,6 +569,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. ModuleBook3.5 shows an error message.
 
       Use case ends.
+      
+      
+**Use case 12: Sorts tasks by Deadline**
+
+**MSS**
+
+1.  User request to sorts tasks by deadline.
+
+2.  ModuleBook 3.5 sorts the tasks in descending order of urgency and display them.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Invalid format for the sort command.
+
+    * 2a1. ModuleBook 3.5 shows an error message with the correct format for sort and example.
+
+      Use case resumes at step 2.
     
 **Use case 12: Recur tasks**
 

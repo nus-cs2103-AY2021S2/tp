@@ -7,16 +7,16 @@ import static seedu.module.commons.util.AppUtil.checkArgument;
  * Represents a Task's name in the module book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
-public class Name {
+public class Name implements Comparable<Name> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Names of Task should should not be blank";
 
     /*
      * The first character of the description must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "[\\S][\\S ]*";
 
     public final String fullName;
 
@@ -56,4 +56,8 @@ public class Name {
         return fullName.hashCode();
     }
 
+    @Override
+    public int compareTo(Name o) {
+        return this.fullName.toLowerCase().compareTo(o.fullName.toLowerCase());
+    }
 }

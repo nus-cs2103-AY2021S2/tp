@@ -6,6 +6,7 @@ import static seedu.module.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.module.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.module.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static seedu.module.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+import static seedu.module.testutil.TypicalIndexes.INDEX_FOURTH_TASK;
 import static seedu.module.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.module.testutil.TypicalTasks.getTypicalModuleBook;
 
@@ -23,17 +24,35 @@ public class NotDoneCommandTest {
     private Model model = new ModelManager(getTypicalModuleBook(), new UserPrefs());
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
+    public void execute_validIndexUnfilteredListWithStartTime_success() {
         Task originalTask = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        Task taskToMarkUndone = new Task(originalTask.getName(), originalTask.getDeadline(),
-                originalTask.getModule(), originalTask.getDescription(), originalTask.getWorkload(),
-                new DoneStatus(true), originalTask.getTags());
+        Task taskToMarkUndone = new Task(originalTask.getName(), originalTask.getStartTime(),
+                originalTask.getDeadline(), originalTask.getModule(), originalTask.getDescription(),
+                originalTask.getWorkload(), new DoneStatus(true), originalTask.getTags());
         model.setTask(originalTask, taskToMarkUndone);
 
         NotDoneCommand notDoneCommand = new NotDoneCommand(INDEX_FIRST_TASK);
 
         ModelManager expectedModel = new ModelManager(model.getModuleBook(), new UserPrefs());
         expectedModel.setTask(expectedModel.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased()), originalTask);
+
+        String expectedMessage = String.format(NotDoneCommand.MESSAGE_NOT_DONE_TASK_SUCCESS, originalTask);
+
+        assertCommandSuccess(notDoneCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validIndexUnfilteredListWithoutStartTime_success() {
+        Task originalTask = model.getFilteredTaskList().get(INDEX_FOURTH_TASK.getZeroBased());
+        Task taskToMarkUndone = new Task(originalTask.getName(), originalTask.getDeadline(), originalTask.getModule(),
+                originalTask.getDescription(), originalTask.getWorkload(), new DoneStatus(true),
+                originalTask.getTags());
+        model.setTask(originalTask, taskToMarkUndone);
+
+        NotDoneCommand notDoneCommand = new NotDoneCommand(INDEX_FOURTH_TASK);
+
+        ModelManager expectedModel = new ModelManager(model.getModuleBook(), new UserPrefs());
+        expectedModel.setTask(expectedModel.getFilteredTaskList().get(INDEX_FOURTH_TASK.getZeroBased()), originalTask);
 
         String expectedMessage = String.format(NotDoneCommand.MESSAGE_NOT_DONE_TASK_SUCCESS, originalTask);
 
@@ -60,9 +79,9 @@ public class NotDoneCommandTest {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
         Task originalTask = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        Task taskToMarkUndone = new Task(originalTask.getName(), originalTask.getDeadline(),
-                originalTask.getModule(), originalTask.getDescription(), originalTask.getWorkload(),
-                new DoneStatus(true), originalTask.getTags());
+        Task taskToMarkUndone = new Task(originalTask.getName(), originalTask.getStartTime(),
+                originalTask.getDeadline(), originalTask.getModule(), originalTask.getDescription(),
+                originalTask.getWorkload(), new DoneStatus(true), originalTask.getTags());
         model.setTask(originalTask, taskToMarkUndone);
 
         NotDoneCommand notDoneCommand = new NotDoneCommand(INDEX_FIRST_TASK);

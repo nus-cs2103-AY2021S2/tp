@@ -8,7 +8,7 @@ import java.util.InputMismatchException;
 /**
  * Enum to set workload levels of tasks.
  */
-public class Workload {
+public class Workload implements Comparable<Workload> {
     public static final String LOW_WORKLOAD = "Low";
     public static final String MEDIUM_WORKLOAD = "Medium";
     public static final String HIGH_WORKLOAD = "High";
@@ -29,6 +29,10 @@ public class Workload {
         this.workloadLevel = Integer.valueOf(workloadLevel);
     }
 
+    public Integer getWorkloadLevel() {
+        return this.workloadLevel;
+    }
+
     /**
      * Checks if workload string can be converted to int of range 1 to 3 inclusive.
      *
@@ -43,10 +47,6 @@ public class Workload {
         } catch (NumberFormatException e) {
             return false;
         }
-    }
-
-    public int getWorkloadLevel() {
-        return workloadLevel;
     }
 
     /**
@@ -77,6 +77,11 @@ public class Workload {
         return other == this // short circuit if same object
                 || (other instanceof Workload // instanceof handles nulls
                 && workloadLevel.equals(((Workload) other).workloadLevel)); // state check
+    }
+
+    @Override
+    public int compareTo(Workload other) {
+        return -workloadLevel.compareTo(other.getWorkloadLevel());
     }
 
     @Override

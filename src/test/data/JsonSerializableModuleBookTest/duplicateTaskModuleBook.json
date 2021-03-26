@@ -1,6 +1,7 @@
 {
   "tasks": [ {
     "name": "Quiz",
+    "startTime": "2021-02-01 10:00",
     "deadline": "2021-02-01 12:00",
     "module": "CS3243",
     "description": "hmmm",
@@ -9,6 +10,7 @@
     "tagged": [ "median" ]
   }, {
     "name": "Quiz",
+    "startTime": "2021-01-12 11:00",
     "deadline": "2021-01-12 13:00",
     "module": "CS3243",
     "description": "Is it easy?",

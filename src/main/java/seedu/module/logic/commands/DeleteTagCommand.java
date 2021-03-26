@@ -65,9 +65,16 @@ public class DeleteTagCommand extends Command {
             throw new CommandException(MESSAGE_TAG_NOT_EXISTS);
         }
 
-        Task editedTask = new Task(taskToTag.getName(), taskToTag.getDeadline(),
-                taskToTag.getModule(), taskToTag.getDescription(), taskToTag.getWorkload(),
-                taskToTag.getDoneStatus(), newTags);
+        Task editedTask;
+        if (taskToTag.isDeadline()) {
+            editedTask = new Task(taskToTag.getName(), taskToTag.getDeadline(),
+                    taskToTag.getModule(), taskToTag.getDescription(), taskToTag.getWorkload(),
+                    taskToTag.getDoneStatus(), newTags);
+        } else {
+            editedTask = new Task(taskToTag.getName(), taskToTag.getStartTime(), taskToTag.getDeadline(),
+                    taskToTag.getModule(), taskToTag.getDescription(), taskToTag.getWorkload(),
+                    taskToTag.getDoneStatus(), newTags);
+        }
 
         model.setTask(taskToTag, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);

@@ -1,6 +1,7 @@
 package seedu.module.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -117,10 +118,7 @@ public class ModuleManager {
      * @return List of String associated with basic modules
      */
     static List<String> initListOfModulesAccepted() {
-        List<String> listOfModules = new ArrayList<>();
-        for (String moduleInStr : arrOfModules) {
-            listOfModules.add(moduleInStr);
-        }
+        List<String> listOfModules = new ArrayList<>(Arrays.asList(arrOfModules));
         return listOfModules;
     }
 }
