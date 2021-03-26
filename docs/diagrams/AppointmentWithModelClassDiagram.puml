@@ -5,11 +5,11 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyHeliBook <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
 Class AddressBook
-Class ReadOnlyAddressBook
+Class AppointmentBook
 Class Model
 Class ModelManager
 Class UserPrefs
@@ -20,10 +20,17 @@ Class Person
 Class UniquePersonList
 }
 
+Class Address
+Class Name
+
+note "Previously known as\nReadOnlyAddressBook" as N1
+ReadOnlyHeliBook .up. N1
+
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up|> ReadOnlyAddressBook
+AddressBook .right|> ReadOnlyHeliBook
+AppointmentBook .left|> ReadOnlyHeliBook
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
@@ -34,24 +41,31 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 AddressBook *--> "1" UniquePersonList
 UniquePersonList o--> "*" Person
 
-ModelManager ->"filtered list ~*" Person
+Person ---> Name
+Person ---> Address
 
-'changes added from here onwards
-Class AppointmentBook
-Interface ReadOnlyAppointmentBook <<Interface>>
+ModelManager --->"filtered list ~*" Person
 
-AppointmentBook .up.|> ReadOnlyAppointmentBook
 ModelManager o---> "1" AppointmentBook
 
 Package Appointment {
 Class Appointment
 Class UniqueAppointmentList
+Class DateTime
 }
 
 AppointmentBook *--> "1" UniqueAppointmentList
 UniqueAppointmentList o--> "*" Appointment
 
-ModelManager ->"~* filtered list" Appointment
-note "Possible design considerations for ModelManager:\n- 2 subclass, one for Person and one for Appointment\n- As an implementation of the Model interface,\n  ModelManager can handle both" as N1
+Appointment ---> "name 1" Name
+Appointment --> "*" Address
+Appointment --> "*" DateTime
 
+ModelManager -->"filtered list *" Appointment
+note "Possible design considerations for ModelManager:\n- 2 subclass, one for Person and one for Appointment\n- As an implementation of the Model interface,\n  ModelManager can handle both" as N2
+
+note "Extra: Tag functions" as N3
+N3 .left. Appointment
+
+Appointment ---> "~* contact" Person
 @enduml
