@@ -185,35 +185,62 @@ Examples:
 *  `delete appointment 7` Deletes the `appointment` at index `7`.
 *  `delete property 7` Deletes the `property` at index `7`.
 
-### Filtering: `find`
+### Searching properties: `find property`
 
-Finds properties or appointments that matches the criterion provided.
+Finds properties that match the criterion provided.
 
 Formats:
-* `find appointment [keywords] [option...]`
-* `find property [keywords] [option...]`
+* `find property [KEYWORD] [OPTION...]`
 
 Description:
-* There can be 0 or more keywords and 0 or more options, but keywords and options cannot be both empty.
+* There can be 0 or more keywords and 0 or more options, but keywords and options cannot be both empty. All text are case insensitive. 
 
 Options:
-* `r/[REMARKS]`
+* `t/[TYPE OF HOUSING]`
 
-Search for properties or appointments whose remarks field contain patterns specified in `[REMARKS]`
+    Search for properties or appointments whose housing type field contain patterns specified in `[REMARKS]`. 
+    
+    The following housing types are supported: 
+    * hdb
+    * condo
+    * landed
 
 * `pm/[PRICE]`
 
-Search for properties with prices more than `[PRICE]`, ignored if used with appointment
+    Search for properties with prices more than `[PRICE]`. 
 
 * `pl/[PRICE]`
 
-Search for properties with prices less than `[PRICE]`, ignored if used with appointment
+    Search for properties with prices less than `[PRICE]`. 
 
 Examples:
-* `find property "jurong west"`
-* `find appointment "fri" r/"come in afternoon"`
+* `find property jurong west`
 * `find property pm/500000`
-* `find property "bishan" "north" "mrt" r/"recently renovated"`
+* `find property bishan north t/hdb pl/$1,000,000`
+
+### Searching appointments: `find appointment`
+
+Finds properties that match the criterion provided.
+
+Formats:
+* `find appointment [KEYWORD]`
+
+Description:
+* There can be 0 or more keywords. Keywords are case insensitive. 
+
+Examples:
+* `find appointment bob`
+* `find appointment sunday`
+
+### Searching clients: `find client`
+
+Finds appointments that matches the keywords and properties whose clients matches the same keywords. Both are done at the same time. 
+
+Formats:
+* `find client [KEYWORD]`
+
+Description:
+* There can be 0 or more keywords. Keywords are case insensitive. 
 
 ### Clearing all entries : `clear`
 
@@ -266,7 +293,9 @@ Action | Format, Examples
 **Edit appointment** | `edit appointment INDEX [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]`<br> e.g.,`edit appointment 3 d/2021-03-28 r/at M hotel`
 **Add new status** | `update INDEX new AMOUNT`<br> e.g.,`update 1 new 600000`
 **Update status** | `update INDEX [proceed][cancel]`<br> e.g. `update 3 proceed`
-**Find** | `find appointment [keywords] [option...]` <br> e.g. `find appointment "fri" r/"come in afternoon"` <br><br> `find property [keywords] [option...]` <br> e.g., `find property "jurong west"`
+**Find properties** | `find property [KEYWORD] [OPTION...]` <br> Options: <br> <ul><li>`t/[HOUSING TYPE]`</li><li>`pm/[PRICE LOWER LIMIT]`</li><li>`pl/[PRICE UPPER LIMIT]`</li></ul> e.g., `find property bishan north t/hdb pl/$1,000,000`
+**Find appointments** | `find property [KEYWORD]` <br> e.g., `find appointment bob`
+**Find clients** | `find client [CLIENT NAME]` <br> e.g., `find client alice`
 **List all** | `list all`
 **List property** | `list property`
 **List appointment** | `list appointment`
