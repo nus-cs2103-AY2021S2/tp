@@ -11,8 +11,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.module.commons.exceptions.IllegalValueException;
 import seedu.module.model.tag.Tag;
-import seedu.module.model.task.*;
+import seedu.module.model.task.Deadline;
+import seedu.module.model.task.Description;
+import seedu.module.model.task.DoneStatus;
 import seedu.module.model.task.Module;
+import seedu.module.model.task.Name;
+import seedu.module.model.task.Recurrence;
+import seedu.module.model.task.Task;
+import seedu.module.model.task.Workload;
 
 
 /**
@@ -45,10 +51,10 @@ class JsonAdaptedTask {
         this.description = description;
         this.workload = workload;
         this.doneStatus = doneStatus;
-        if (!recurrence.equals("")) {
-            this.recurrence = recurrence;
-        } else {
+        if (recurrence == null || recurrence.equals("")) {
             this.recurrence = "";
+        } else {
+            this.recurrence = recurrence;
         }
         if (tagged != null) {
             this.tagged.addAll(tagged);

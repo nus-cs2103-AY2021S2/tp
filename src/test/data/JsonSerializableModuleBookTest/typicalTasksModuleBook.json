@@ -10,11 +10,12 @@
     "tagged" : [ "medianPriority" ]
   }, {
     "name" : "Midterm",
-    "deadline" : "2021-03-06 08:30",
+    "deadline" : "2021-12-12 08:30",
     "module" : "CS3243",
     "description" : "Not include CSP.",
     "workload": "2",
     "doneStatus": "false",
+    "recurrence": "monthly",
     "tagged" : [ "highPriority" ]
   }, {
     "name" : "TP",
@@ -22,7 +23,8 @@
     "module" : "CS2103T",
     "description" : "Wrap up v1.2.",
     "workload": "3",
-    "doneStatus": "true"
+    "doneStatus": "true",
+    "recurrence": ""
   }, {
     "name" : "Tutorial",
     "deadline" : "2021-03-02 23:59",
@@ -30,6 +32,7 @@
     "description" : "Try to get full mark.",
     "workload": "2",
     "doneStatus": "false",
+    "recurrence": "",
     "tagged" : [ "easy" ]
   }, {
     "name" : "Project",
@@ -37,21 +40,24 @@
     "module" : "CS3243",
     "description" : "This is really challenging.",
     "workload": "3",
-    "doneStatus": "false"
+    "doneStatus": "false",
+    "recurrence": ""
   }, {
     "name" : "PAQ",
     "deadline" : "2021-03-05 23:59",
     "module" : "IS1103",
     "description" : "Strange questions.",
     "workload": "1",
-    "doneStatus": "true"
+    "doneStatus": "true",
+    "recurrence": ""
   }, {
     "name" : "OP 2",
     "deadline" : "2021-04-02 23:59",
     "module" : "CS2101",
     "description" : "Need to divide ourselves into two groups.",
     "workload": "2",
-    "doneStatus": "false"
+    "doneStatus": "false",
+    "recurrence": ""
   }
   ]
 }

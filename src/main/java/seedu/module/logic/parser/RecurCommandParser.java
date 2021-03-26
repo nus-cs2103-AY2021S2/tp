@@ -1,9 +1,8 @@
 package seedu.module.logic.parser;
 
-import java.util.Optional;
+
 
 import static java.util.Objects.requireNonNull;
-
 import static seedu.module.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -11,6 +10,8 @@ import static seedu.module.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_RECURRENCE;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TASK_NAME;
+
+import java.util.Optional;
 
 import seedu.module.commons.core.index.Index;
 import seedu.module.commons.exceptions.IllegalValueException;

@@ -2,7 +2,13 @@ package seedu.module.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.module.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.module.logic.parser.CliSyntax.*;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_RECURRENCE;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_TASK_NAME;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_WORKLOAD;
 
 import java.util.Collection;
 import java.util.Collections;

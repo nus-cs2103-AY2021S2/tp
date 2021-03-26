@@ -9,6 +9,7 @@ import seedu.module.model.task.Description;
 import seedu.module.model.task.DoneStatus;
 import seedu.module.model.task.Module;
 import seedu.module.model.task.Name;
+import seedu.module.model.task.Recurrence;
 import seedu.module.model.task.Task;
 import seedu.module.model.task.Workload;
 import seedu.module.model.util.SampleDataUtil;
@@ -24,6 +25,7 @@ public class TaskBuilder {
     public static final String DEFAULT_DONE = String.valueOf(Boolean.FALSE);
     public static final String DEFAULT_DESCRIPTION = "Not very hard.";
     public static final String DEFAULT_WORKLOAD = "1";
+    public static final String DEFAULT_RECURRENCE = "monthly";
 
     private Name name;
     private Deadline deadline;
@@ -31,7 +33,8 @@ public class TaskBuilder {
     private Description description;
     private Workload workload;
     private DoneStatus doneStatus;
-
+    private Recurrence recurrence;
+    private boolean isRecurringTask;
     private Set<Tag> tags;
 
     /**
@@ -44,6 +47,8 @@ public class TaskBuilder {
         description = new Description(DEFAULT_DESCRIPTION);
         workload = new Workload(DEFAULT_WORKLOAD);
         doneStatus = new DoneStatus(DEFAULT_DONE);
+        isRecurringTask = false;
+        this.recurrence = null;
         tags = new HashSet<>();
     }
 
@@ -57,6 +62,10 @@ public class TaskBuilder {
         description = taskToCopy.getDescription();
         workload = taskToCopy.getWorkload();
         doneStatus = taskToCopy.getDoneStatus();
+
+        recurrence = taskToCopy.getRecurrence();
+        isRecurringTask = taskToCopy.isRecurring();
+
         tags = new HashSet<>(taskToCopy.getTags());
     }
 
@@ -116,8 +125,30 @@ public class TaskBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code recurrence} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withRecurrence(String recurrence) {
+        if (recurrence.equals("")) {
+            this.recurrence = null;
+        } else {
+            this.isRecurringTask = true;
+            this.recurrence = new Recurrence(recurrence);
+        }
+        return this;
+    }
+
+    /**
+     * Build and returns a Task object.
+     *
+     * @return new Task object.
+     */
     public Task build() {
-        return new Task(name, deadline, module, description, workload, doneStatus, tags);
+        if (!isRecurringTask) {
+            return new Task(name, deadline, module, description, workload, doneStatus, tags);
+        } else {
+            return new Task(name, deadline, module, description, workload, doneStatus, recurrence, tags);
+        }
     }
 
 }

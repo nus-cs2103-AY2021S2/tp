@@ -11,7 +11,9 @@ import static seedu.module.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.module.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.module.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static seedu.module.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+import static seedu.module.testutil.TypicalIndexes.INDEX_FOURTH_TASK;
 import static seedu.module.testutil.TypicalIndexes.INDEX_SECOND_TASK;
+import static seedu.module.testutil.TypicalIndexes.INDEX_THIRD_TASK;
 import static seedu.module.testutil.TypicalTasks.getTypicalModuleBook;
 
 import org.junit.jupiter.api.Test;
@@ -100,9 +102,9 @@ public class EditCommandTest {
 
     @Test
     public void execute_duplicateTaskUnfilteredList_failure() {
-        Task firstTask = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(firstTask).build();
-        EditCommand editCommand = new EditCommand(INDEX_SECOND_TASK, descriptor);
+        Task thirdTask = model.getFilteredTaskList().get(INDEX_THIRD_TASK.getZeroBased());
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(thirdTask).build();
+        EditCommand editCommand = new EditCommand(INDEX_FOURTH_TASK, descriptor);
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_TASK);
     }

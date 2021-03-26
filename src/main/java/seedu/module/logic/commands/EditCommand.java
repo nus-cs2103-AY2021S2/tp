@@ -2,7 +2,13 @@ package seedu.module.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.module.logic.commands.RecurCommand.MESSAGE_DUPLICATE_RECURRENCE;
-import static seedu.module.logic.parser.CliSyntax.*;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_RECURRENCE;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_TASK_NAME;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_WORKLOAD;
 import static seedu.module.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.Collections;
@@ -17,8 +23,14 @@ import seedu.module.commons.util.CollectionUtil;
 import seedu.module.logic.commands.exceptions.CommandException;
 import seedu.module.model.Model;
 import seedu.module.model.tag.Tag;
-import seedu.module.model.task.*;
+import seedu.module.model.task.Deadline;
+import seedu.module.model.task.Description;
+import seedu.module.model.task.DoneStatus;
 import seedu.module.model.task.Module;
+import seedu.module.model.task.Name;
+import seedu.module.model.task.Recurrence;
+import seedu.module.model.task.Task;
+import seedu.module.model.task.Workload;
 
 /**
  * Edits the details of an existing task in the module book except for DoneStatus.

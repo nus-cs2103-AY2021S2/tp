@@ -33,8 +33,8 @@ public class TypicalTasks {
             .withWorkload("1").withTags("medianPriority").build();
     public static final Task MIDTERM = new TaskBuilder().withName("Midterm")
             .withDescription("Not include CSP.").withWorkload("2")
-            .withModule("CS3243").withDeadline("2021-03-06 08:30").withDoneStatus(NOT_DONE_STRING)
-            .withTags("highPriority").build();
+            .withModule("CS3243").withDeadline("2021-12-12 08:30").withDoneStatus(NOT_DONE_STRING)
+            .withRecurrence("monthly").withTags("highPriority").build();
     public static final Task TP = new TaskBuilder().withName("TP")
             .withDeadline("2021-03-14 14:00").withWorkload("3")
             .withModule("CS2103T").withDescription("Wrap up v1.2.").withDoneStatus(DONE_STRING).build();
@@ -104,9 +104,9 @@ public class TypicalTasks {
         ab.addTask(PROJECT); // 02-28
         ab.addTask(TUTORIAL); // 03-02
         ab.addTask(PAQ); // 03-05
-        ab.addTask(MIDTERM); // 03-06
         ab.addTask(TP); // 03-14
         ab.addTask(OP); // 04-02
+        ab.addTask(MIDTERM); // 12-12
         return ab;
     }
 

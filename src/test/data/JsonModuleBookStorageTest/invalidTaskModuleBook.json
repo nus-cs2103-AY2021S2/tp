@@ -5,6 +5,7 @@
     "module": "CS2030S",
     "description": "Task description",
     "workload": "1",
-    "doneStatus": "false"
+    "doneStatus": "false",
+    "recurrence": ""
   } ]
 }

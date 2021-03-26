@@ -109,7 +109,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Task expectedTask = new TaskBuilder(LAB).withTags().build();
+        Task expectedTask = new TaskBuilder(LAB).withTags().withRecurrence("").build();
         assertParseSuccess(parser,
                 CommandTestUtil.TASK_NAME_DESC_LAB
                         + CommandTestUtil.DEADLINE_DESC_LAB
