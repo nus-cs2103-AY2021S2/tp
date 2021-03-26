@@ -20,6 +20,8 @@ import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 
+import java.util.List;
+
 
 public class AddMeetingCommand extends Command {
     public static final String COMMAND_WORD = "addm";
@@ -46,6 +48,7 @@ public class AddMeetingCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New meeting added: %1$s";
     public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in MeetBuddy";
+    public static final String MESSAGE_CLASH_MEETING = "This meeting clashes with the following existing meetings \n%s";
 
     private final Meeting toAdd;
 
@@ -63,6 +66,11 @@ public class AddMeetingCommand extends Command {
 
         if (model.hasMeeting(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
+        }
+        if (model.clashes(toAdd)) {
+            List<Meeting> listOfClashingMeetings = model.getClashes(toAdd);
+            String formatMeetingListString = CommandDisplayUtil.formatElementsIntoRows(listOfClashingMeetings);
+            throw new CommandException(String.format(MESSAGE_CLASH_MEETING, formatMeetingListString));
         }
 
         if (toAdd.getConnectionToPerson().size() != 0) {

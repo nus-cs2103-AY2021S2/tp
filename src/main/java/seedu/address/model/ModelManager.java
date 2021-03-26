@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -205,6 +208,29 @@ public class ModelManager implements Model {
         meetingBook.setMeeting(target, editedMeeting);
     }
     //TODO: Set MeetingBook file path in userPrefs? low priority feature(nice to have)
+
+    //========= Clashing Meetings ================================================================
+
+    /**
+     * Checks if there is a clash in meeting times within the model.
+     */
+    public boolean clashes(Meeting toCheck) {
+        return meetingBook.clashes(toCheck);
+    }
+
+    /**
+     * Gets a list of meetings from the model that overlap with this meeting.
+     */
+    public List<Meeting> getClashes(Meeting toCheck) {
+        return meetingBook.getClashes(toCheck);
+    }
+
+    /**
+     * Gets the meeting ( if any ) scheduled  at this point in time in the model.
+     */
+    public Optional<Meeting> getMeetingAtInstant(LocalDateTime localDateTime) {
+        return meetingBook.getMeetingAtInstant(localDateTime);
+    }
 
     // ============= PersonMeetingConnection =======================
     /**
