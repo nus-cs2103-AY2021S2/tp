@@ -156,6 +156,12 @@ public class ModelManager implements Model {
         for (Order o : deletionList) {
             deleteOrder(o);
         }
+
+        assert personBook.hasPerson(target) == false;
+
+        for (Order o : deletionList) {
+            assert hasOrder(o) == false;
+        }
     }
 
     @Override
