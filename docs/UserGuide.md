@@ -129,9 +129,9 @@ Changes the specified event status to DONE in Focuris.
 
 Format: `done IDENTIFIER`
 
-* Changes the event status at the specified `IDENTIFIER` to DONE. 
+* Changes the event status at the specified `IDENTIFIER` to DONE.
 * The identifier refers to the index number shown in the displayed event list.
-* The identifier **must be a positive integer** 1, 2, 3, …​
+* The identifier **must be a positive integer** 1, 2, 3, …
 
 Examples:
 * `list` followed by `done 2` changes the status of the 2nd event to DONE in Focuris.

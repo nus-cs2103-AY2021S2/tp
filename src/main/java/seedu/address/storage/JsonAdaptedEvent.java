@@ -167,6 +167,7 @@ class JsonAdaptedEvent {
                     EventPriority.class.getSimpleName()));
         }
 
+
         final EventPriority modelPriority;
         switch(eventPriority) {
         case ("HIGH"):
@@ -177,9 +178,6 @@ class JsonAdaptedEvent {
             break;
         case ("LOW"):
             modelPriority = EventPriority.LOW;
-            break;
-        case ("NONE"):
-            modelPriority = EventPriority.NONE;
             break;
         default:
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

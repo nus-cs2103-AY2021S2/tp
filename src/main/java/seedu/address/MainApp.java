@@ -40,7 +40,7 @@ import seedu.address.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(0, 6, 0, true);
+    public static final Version VERSION = new Version(1, 3, 1, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
@@ -62,8 +62,8 @@ public class MainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         EventBookStorage eventBookStorage = new JsonEventBookStorage(userPrefs.getEventBookFilePath());
-        storage = new StorageManager(addressBookStorage, eventBookStorage, userPrefsStorage);
 
+        storage = new StorageManager(addressBookStorage, eventBookStorage, userPrefsStorage);
         initLogging(config);
 
         model = initModelManager(storage, userPrefs);
@@ -71,6 +71,8 @@ public class MainApp extends Application {
         logic = new LogicManager(model, storage);
 
         ui = new UiManager(logic);
+
+
     }
 
     /**

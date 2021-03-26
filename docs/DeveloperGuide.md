@@ -131,10 +131,16 @@ This section describes some noteworthy details on how certain features are imple
 
 ### \[Proposed\] Priority feature
 
+
+
+
+
+
+
 #### Proposed Implementation
 
 The priority feature is an additional field in the Event class. It is implemented as an enumeration named EventPriority and consists of
-a set of members named HIGH, MEDIUM, LOW and NONE. If the User decides not to add a priority to an event, NONE will be assigned as the priority.
+a set of members named HIGH, MEDIUM, LOW. If the User decides not to add a priority to an event, LOW will be assigned as the default priority.
 
 The following class diagram illustrates how the priority feature is implemented:
 
@@ -144,7 +150,7 @@ The following class diagram illustrates how the priority feature is implemented:
 
 ##### Aspect: Optional Priority
 
-- **Alternative 1 (current choice):** Include NONE as an enum member
+- **Alternative 1 (current choice):** Set LOW as the default priority
 
     - Pros: Easy to implement.
     - Cons: Events would have an additional field for priority even if there is no priority.
@@ -181,10 +187,8 @@ The following class diagram illustrates how the priority feature is implemented:
 - is reasonably comfortable using CLI apps
 
 **Value proposition**:
-- Adding of various different types of events, such as, lectures, tutorials, recitations, labs, and tasks
-- Adding of events to friends in the address book
-- Ability to find a common timeslot where all your friends are available to meet based on their schedules added
-- See events that are taken in conjunction with your friends
+- Adding of various different types of events, such as, lectures, tutorials, recitations, labs, and tasks (?))
+- Adding of events to the event book
 - Prioritize your tasks and events by assigning priorities to each event
 
 ### User stories
