@@ -7,6 +7,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.DeadlineBeforeDatePredicate;
 
+/**
+ * Parses input arguments and creates a new FindTasksBeforeCommand object
+ */
 public class FindTasksBeforeCommandParser implements Parser<FindTasksBeforeCommand> {
     /**
      * Parses the given {@code String} deadine in the context of the FindTasksBeforeCommand
