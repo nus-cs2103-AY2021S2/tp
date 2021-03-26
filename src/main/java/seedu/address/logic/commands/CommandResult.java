@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
-import seedu.address.model.person.Person;
-
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
+
+import seedu.address.model.person.Person;
 
 /**
  * Represents the result of a command execution.
@@ -41,7 +41,7 @@ public class CommandResult {
      * set to default value.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this(feedbackToUser, showHelp, false, null,  exit);
+        this(feedbackToUser, showHelp, false, null, exit);
     }
 
     /**

@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Set;
@@ -11,27 +10,20 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.medical.Appointment;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
-
-import javax.swing.*;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
  */
 public class ViewPatientBox extends UiPart<Region> {
 
+    public static final String STARTUP_MESSAGE = "Hello Doc, to view patient info: \n"
+            + "try 'view INDEX'";
+
     private static final String FXML = "ViewPatientBox.fxml";
 
     public final Person person;
-
-    public static final String STARTUP_MESSAGE = "Hello Doc, to view patient info: \n"
-            + "try 'view INDEX'";
 
     @FXML
     private HBox cardPane;
