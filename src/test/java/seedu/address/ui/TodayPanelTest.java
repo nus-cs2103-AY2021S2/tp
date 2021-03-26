@@ -1,7 +1,6 @@
 package seedu.address.ui;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.commons.util.DateUtil.decodeDate;
 import static seedu.address.commons.util.DateUtil.decodeDateWithDay;
 import static seedu.address.testutil.TypicalColabFolder.getTypicalColabFolder;
 
