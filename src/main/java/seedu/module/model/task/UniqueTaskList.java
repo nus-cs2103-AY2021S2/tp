@@ -39,6 +39,16 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     /**
+     * Checks if the list contains a task with the same attributes
+     * @param toCheck task to be checked againsta all tasks in internalList.
+     * @return true if a task in the list is matched, false otherwise
+     */
+    public boolean containsRecurringTask(Task toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::equals);
+    }
+
+    /**
      * Adds a task to the list.
      * The task must not already exist in the list.
      */

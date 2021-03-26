@@ -92,7 +92,7 @@ public class Task {
         return recurrence;
     }
 
-    public boolean getIsRecurringTaskStatus() {
+    public boolean isRecurring() {
         return isRecurringTask;
     }
 
@@ -119,6 +119,59 @@ public class Task {
     }
 
     /**
+     * Returns a new valid Deadline for the recurring task if previous recurring deadline has expired.
+     *
+     * @param currDeadline current deadline of the recurring task
+     * @param taskRecurrence recurrence of the task
+     * @return new Deadline object for the recurring task.
+     */
+    public Deadline getRecurringDeadline(Deadline currDeadline, Recurrence taskRecurrence) {
+        requireAllNonNull(currDeadline, taskRecurrence);
+        assert(isRecurringTask);
+
+        String nextRecurringDeadlineStr = currDeadline.value;
+        Deadline currTime = Deadline.makeDeadlineWithTime(LocalDateTime.now());
+
+        if (currDeadline.compareTo(currTime) < 0) {
+            // deadline is expired
+            switch (taskRecurrence.getRecurrenceType()) {
+            case daily:
+                //change date to day + 1
+                nextRecurringDeadlineStr = currDeadline.getTime().plusDays(1)
+                        .format(Deadline.DATE_TIME_FORMATTER_WITH_TIME);
+                break;
+            case weekly:
+                //change date to day + 7
+                nextRecurringDeadlineStr = currDeadline.getTime().plusDays(7)
+                        .format(Deadline.DATE_TIME_FORMATTER_WITH_TIME);
+                break;
+            case monthly:
+                //change date to month + 1
+                nextRecurringDeadlineStr = currDeadline.getTime().plusMonths(1)
+                        .format(Deadline.DATE_TIME_FORMATTER_WITH_TIME);
+                break;
+            default:
+                // throw new CommandException(MESSAGE_INVALID_RECURRENCE);
+            }
+            return new Deadline(nextRecurringDeadlineStr);
+        } else {
+            //deadline is still valid
+            return currDeadline;
+        }
+    }
+
+    /**
+     * Returns a new Task object if the task is recurring and the deadline has expired.
+     *
+     * @param newDeadline is the new Recurring Deadline.
+     */
+    public Task makeNewRecurringTask(Deadline newDeadline) {
+        DoneStatus defaultDoneStatus = new DoneStatus(false);
+        return new Task(getName(), newDeadline, getModule(), getDescription(), getWorkload(), defaultDoneStatus,
+                getRecurrence(), getTags());
+    }
+
+    /**
      * Returns true if both tasks have the same identity and data fields.
      * This defines a stronger notion of equality between two tasks.
      */
@@ -133,7 +186,15 @@ public class Task {
         }
 
         Task otherTask = (Task) other;
-        return otherTask.getName().equals(getName())
+        return !isRecurring()
+            ? otherTask.getName().equals(getName())
+                && otherTask.getDeadline().equals(getDeadline())
+                && otherTask.getModule().equals(getModule())
+                && otherTask.getDescription().equals(getDescription())
+                && otherTask.getWorkload().equals(getWorkload())
+                && otherTask.getDoneStatus().equals(getDoneStatus())
+                && otherTask.getTags().equals(getTags())
+            : otherTask.getName().equals(getName())
                 && otherTask.getDeadline().equals(getDeadline())
                 && otherTask.getModule().equals(getModule())
                 && otherTask.getDescription().equals(getDescription())
@@ -146,7 +207,7 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, deadline, module, description, workload, doneStatus, tags);
+        return Objects.hash(name, deadline, module, description, workload, doneStatus, recurrence, tags);
     }
 
     @Override

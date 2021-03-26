@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.module.model.task.Deadline;
 import seedu.module.model.task.Task;
 import seedu.module.model.task.UniqueTaskList;
 
@@ -75,6 +76,17 @@ public class ModuleBook implements ReadOnlyModuleBook {
     }
 
     /**
+     * Returns true if a {@code task} that is recurring exists in the module book.
+     * @param task
+     * @return
+     */
+    public boolean hasRecurringTask(Task task) {
+        assert (task.isRecurring());
+        requireNonNull(task);
+        return tasks.containsRecurringTask(task);
+    }
+
+    /**
      * Adds a task to the module book.
      * The task must not already exist in the module book.
      */
@@ -82,8 +94,15 @@ public class ModuleBook implements ReadOnlyModuleBook {
         assert(p != null);
         if (checkForSupportedModuleCode(p)) {
             assert(ModuleManager.moduleIsValid(p.getModule().toString()));
-            ModuleManager.insertTaskToMapping(p.getModule(), p);
-            tasks.add(p);
+
+            Task taskToAdd = p;
+            //check the deadline and recurrence of the task
+            if (p.isRecurring()) {
+                Deadline newDeadline = p.getRecurringDeadline(p.getDeadline(), p.getRecurrence());
+                taskToAdd = p.makeNewRecurringTask(newDeadline);
+            }
+            ModuleManager.insertTaskToMapping(taskToAdd.getModule(), taskToAdd);
+            tasks.add(taskToAdd);
         } else {
 
         }

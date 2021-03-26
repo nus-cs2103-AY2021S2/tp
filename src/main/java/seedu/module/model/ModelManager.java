@@ -95,6 +95,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasRecurringTask(Task task) {
+        requireNonNull(task);
+        return moduleBook.hasRecurringTask(task);
+    }
+
+    @Override
     public void deleteTask(Task target) {
         moduleBook.removeTask(target);
     }

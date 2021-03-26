@@ -11,13 +11,8 @@ import seedu.module.commons.core.index.Index;
 import seedu.module.logic.commands.exceptions.CommandException;
 import seedu.module.model.Model;
 import seedu.module.model.tag.Tag;
-import seedu.module.model.task.Deadline;
-import seedu.module.model.task.Description;
-import seedu.module.model.task.DoneStatus;
+import seedu.module.model.task.*;
 import seedu.module.model.task.Module;
-import seedu.module.model.task.Name;
-import seedu.module.model.task.Task;
-import seedu.module.model.task.Workload;
 
 public class DoneCommand extends Command {
     public static final String COMMAND_WORD = "done";
@@ -66,9 +61,14 @@ public class DoneCommand extends Command {
         Description description = taskToMarkDone.getDescription();
         Workload workload = taskToMarkDone.getWorkload();
         DoneStatus newDoneStatus = new DoneStatus(true);
+        Recurrence recurrence = taskToMarkDone.getRecurrence();
         Set<Tag> tags = taskToMarkDone.getTags();
 
-        return new Task(name, deadline, module, description, workload, newDoneStatus, tags);
+        if (!taskToMarkDone.isRecurring()) {
+            return new Task(name, deadline, module, description, workload, newDoneStatus, tags);
+        } else {
+            return new Task(name, deadline, module, description, workload, newDoneStatus, recurrence, tags);
+        }
     }
 
     @Override

@@ -1,12 +1,7 @@
 package seedu.module.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.module.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.module.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.module.logic.parser.CliSyntax.PREFIX_MODULE;
-import static seedu.module.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.module.logic.parser.CliSyntax.PREFIX_TASK_NAME;
-import static seedu.module.logic.parser.CliSyntax.PREFIX_WORKLOAD;
+import static seedu.module.logic.parser.CliSyntax.*;
 
 import seedu.module.logic.commands.exceptions.CommandException;
 import seedu.module.model.Model;
@@ -26,6 +21,7 @@ public class AddCommand extends Command {
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_DEADLINE + "DEADLINE "
             + PREFIX_WORKLOAD + "WORKLOAD "
+            + "[" + PREFIX_RECURRENCE + "RECURRENCE]"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TASK_NAME + "TP v1.2 "
@@ -33,6 +29,7 @@ public class AddCommand extends Command {
             + PREFIX_MODULE + "CS2103T "
             + PREFIX_DESCRIPTION + "Finish basic commands for TP "
             + PREFIX_WORKLOAD + "1 "
+            + PREFIX_RECURRENCE + "monthly "
             + PREFIX_TAG + "highPriority ";
 
     public static final String MESSAGE_SUCCESS = "New task added successfully:\n%1$s";
@@ -49,7 +46,7 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (model.hasTask(toAdd)) {
+        if (model.hasTask(toAdd) && !toAdd.isRecurring()) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 

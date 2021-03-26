@@ -60,7 +60,7 @@ public class TaskCard extends UiPart<Region> {
         module.setText(task.getModule().value);
         workload.setText(task.getWorkload().displayUi());
         doneStatus.setText(task.getDoneStatus().displayUi());
-        if (task.getIsRecurringTaskStatus()) {
+        if (task.isRecurring()) {
             recurrence.setText(task.getRecurrence().value);
         } else {
             recurrence.setText("");

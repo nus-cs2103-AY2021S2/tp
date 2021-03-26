@@ -1,12 +1,7 @@
 package seedu.module.logic.parser;
 
 import static seedu.module.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.module.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.module.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.module.logic.parser.CliSyntax.PREFIX_MODULE;
-import static seedu.module.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.module.logic.parser.CliSyntax.PREFIX_TASK_NAME;
-import static seedu.module.logic.parser.CliSyntax.PREFIX_WORKLOAD;
+import static seedu.module.logic.parser.CliSyntax.*;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -14,13 +9,8 @@ import java.util.stream.Stream;
 import seedu.module.logic.commands.AddCommand;
 import seedu.module.logic.parser.exceptions.ParseException;
 import seedu.module.model.tag.Tag;
-import seedu.module.model.task.Deadline;
-import seedu.module.model.task.Description;
-import seedu.module.model.task.DoneStatus;
+import seedu.module.model.task.*;
 import seedu.module.model.task.Module;
-import seedu.module.model.task.Name;
-import seedu.module.model.task.Task;
-import seedu.module.model.task.Workload;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -35,7 +25,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TASK_NAME, PREFIX_MODULE,
-                    PREFIX_DESCRIPTION, PREFIX_DEADLINE, PREFIX_WORKLOAD, PREFIX_TAG);
+                    PREFIX_DESCRIPTION, PREFIX_DEADLINE, PREFIX_WORKLOAD, PREFIX_RECURRENCE, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TASK_NAME, PREFIX_MODULE, PREFIX_DESCRIPTION,
                 PREFIX_DEADLINE, PREFIX_WORKLOAD)
@@ -51,7 +41,13 @@ public class AddCommandParser implements Parser<AddCommand> {
         DoneStatus newTaskDoneStatus = new DoneStatus(false);
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Task task = new Task(name, deadline, module, description, workload, newTaskDoneStatus, tagList);
+        Task task;
+        if (argMultimap.getValue(PREFIX_RECURRENCE).isEmpty()) {
+            task = new Task(name, deadline, module, description, workload, newTaskDoneStatus, tagList);
+        } else {
+            Recurrence recurrence = ParserUtil.parseRecurrence(argMultimap.getValue(PREFIX_RECURRENCE).get());
+            task = new Task(name, deadline, module, description, workload, newTaskDoneStatus, recurrence, tagList);
+        }
 
         return new AddCommand(task);
     }

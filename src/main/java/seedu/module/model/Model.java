@@ -58,6 +58,11 @@ public interface Model {
     boolean hasTask(Task task);
 
     /**
+     * Returns true if a task with the exact same attributes as {@code task} exists in the module book.
+     */
+    boolean hasRecurringTask(Task task);
+
+    /**
      * Deletes the given task.
      * The task must exist in the module book.
      */

@@ -65,7 +65,7 @@ class JsonAdaptedTask {
         description = source.getDescription().value;
         workload = source.getWorkload().toString();
         doneStatus = source.getDoneStatus().value;
-        if (!source.getIsRecurringTaskStatus()) {
+        if (!source.isRecurring()) {
             recurrence = "";
         } else {
             recurrence = source.getRecurrence().value;

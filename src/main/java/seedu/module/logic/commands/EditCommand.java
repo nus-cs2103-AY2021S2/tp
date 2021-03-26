@@ -1,12 +1,8 @@
 package seedu.module.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.module.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.module.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.module.logic.parser.CliSyntax.PREFIX_MODULE;
-import static seedu.module.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.module.logic.parser.CliSyntax.PREFIX_TASK_NAME;
-import static seedu.module.logic.parser.CliSyntax.PREFIX_WORKLOAD;
+import static seedu.module.logic.commands.RecurCommand.MESSAGE_DUPLICATE_RECURRENCE;
+import static seedu.module.logic.parser.CliSyntax.*;
 import static seedu.module.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.Collections;
@@ -21,13 +17,8 @@ import seedu.module.commons.util.CollectionUtil;
 import seedu.module.logic.commands.exceptions.CommandException;
 import seedu.module.model.Model;
 import seedu.module.model.tag.Tag;
-import seedu.module.model.task.Deadline;
-import seedu.module.model.task.Description;
-import seedu.module.model.task.DoneStatus;
+import seedu.module.model.task.*;
 import seedu.module.model.task.Module;
-import seedu.module.model.task.Name;
-import seedu.module.model.task.Task;
-import seedu.module.model.task.Workload;
 
 /**
  * Edits the details of an existing task in the module book except for DoneStatus.
@@ -45,6 +36,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_MODULE + "MODULE] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_WORKLOAD + "WORKLOAD] "
+            + "[" + PREFIX_RECURRENCE + "RECURRENCE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DEADLINE + "2021-03-15 "
@@ -81,8 +73,12 @@ public class EditCommand extends Command {
         Task taskToEdit = lastShownList.get(index.getZeroBased());
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
 
-        if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
+        if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask) && !taskToEdit.isRecurring()) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
+        }
+
+        if (taskToEdit.isRecurring() && model.hasRecurringTask(editedTask) && taskToEdit.equals(editedTask)) {
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_RECURRENCE, taskToEdit.getRecurrence()));
         }
 
         model.setTask(taskToEdit, editedTask);
@@ -103,10 +99,17 @@ public class EditCommand extends Command {
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Workload updatedWorkload = editTaskDescriptor.getWorkload().orElse(taskToEdit.getWorkload());
         DoneStatus originalDoneStatus = taskToEdit.getDoneStatus();
+        Recurrence updatedRecurrence = editTaskDescriptor.getRecurrence().orElse(taskToEdit.getRecurrence());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
-        return new Task(updatedName, updatedDeadline, updatedModule, updatedDescription,
-                updatedWorkload, originalDoneStatus, updatedTags);
+        if (updatedRecurrence == null) {
+            return new Task(updatedName, updatedDeadline, updatedModule, updatedDescription,
+                    updatedWorkload, originalDoneStatus, updatedTags);
+        } else {
+            return new Task(updatedName, updatedDeadline, updatedModule, updatedDescription,
+                    updatedWorkload, originalDoneStatus, updatedRecurrence, updatedTags);
+        }
+
     }
 
     @Override
@@ -137,6 +140,7 @@ public class EditCommand extends Command {
         private Module module;
         private Description description;
         private Workload workload;
+        private Recurrence recurrence;
         private Set<Tag> tags;
 
         public EditTaskDescriptor() {}
@@ -151,6 +155,7 @@ public class EditCommand extends Command {
             setModule(toCopy.module);
             setDescription(toCopy.description);
             setWorkload(toCopy.workload);
+            setRecurrence(toCopy.recurrence);
             setTags(toCopy.tags);
         }
 
@@ -158,7 +163,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, deadline, module, description, workload, tags);
+            return CollectionUtil.isAnyNonNull(name, deadline, module, description, workload, recurrence, tags);
         }
 
         public void setName(Name name) {
@@ -218,6 +223,14 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public Optional<Recurrence> getRecurrence() {
+            return Optional.ofNullable(recurrence);
+        }
+
+        public void setRecurrence(Recurrence recurrence) {
+            this.recurrence = recurrence;
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -238,6 +251,7 @@ public class EditCommand extends Command {
                     && getModule().equals(e.getModule())
                     && getDescription().equals(e.getDescription())
                     && getWorkload().equals(e.getWorkload())
+                    && getRecurrence().equals(e.getRecurrence())
                     && getTags().equals(e.getTags());
         }
     }

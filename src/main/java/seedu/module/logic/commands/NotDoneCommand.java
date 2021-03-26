@@ -11,13 +11,8 @@ import seedu.module.commons.core.index.Index;
 import seedu.module.logic.commands.exceptions.CommandException;
 import seedu.module.model.Model;
 import seedu.module.model.tag.Tag;
-import seedu.module.model.task.Deadline;
-import seedu.module.model.task.Description;
-import seedu.module.model.task.DoneStatus;
+import seedu.module.model.task.*;
 import seedu.module.model.task.Module;
-import seedu.module.model.task.Name;
-import seedu.module.model.task.Task;
-import seedu.module.model.task.Workload;
 
 public class NotDoneCommand extends Command {
     public static final String COMMAND_WORD = "notdone";
@@ -57,18 +52,23 @@ public class NotDoneCommand extends Command {
         return new CommandResult(String.format(MESSAGE_NOT_DONE_TASK_SUCCESS, doneTask));
     }
 
-    private static Task createNotDoneTask(Task taskToMarkDone) {
-        assert taskToMarkDone != null;
+    private static Task createNotDoneTask(Task taskToMarkNotDone) {
+        assert taskToMarkNotDone != null;
 
-        Name name = taskToMarkDone.getName();
-        Deadline deadline = taskToMarkDone.getDeadline();
-        Module module = taskToMarkDone.getModule();
-        Description description = taskToMarkDone.getDescription();
-        Workload workload = taskToMarkDone.getWorkload();
+        Name name = taskToMarkNotDone.getName();
+        Deadline deadline = taskToMarkNotDone.getDeadline();
+        Module module = taskToMarkNotDone.getModule();
+        Description description = taskToMarkNotDone.getDescription();
+        Workload workload = taskToMarkNotDone.getWorkload();
         DoneStatus newDoneStatus = new DoneStatus(false);
-        Set<Tag> tags = taskToMarkDone.getTags();
+        Recurrence recurrence = taskToMarkNotDone.getRecurrence();
+        Set<Tag> tags = taskToMarkNotDone.getTags();
 
-        return new Task(name, deadline, module, description, workload, newDoneStatus, tags);
+        if (!taskToMarkNotDone.isRecurring()) {
+            return new Task(name, deadline, module, description, workload, newDoneStatus, tags);
+        } else {
+            return new Task(name, deadline, module, description, workload, newDoneStatus, recurrence, tags);
+        }
     }
 
     @Override

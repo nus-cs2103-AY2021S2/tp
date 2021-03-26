@@ -11,11 +11,8 @@ import seedu.module.commons.util.StringUtil;
 import seedu.module.logic.parser.exceptions.ParseException;
 import seedu.module.model.ModuleManager;
 import seedu.module.model.tag.Tag;
-import seedu.module.model.task.Deadline;
-import seedu.module.model.task.Description;
+import seedu.module.model.task.*;
 import seedu.module.model.task.Module;
-import seedu.module.model.task.Name;
-import seedu.module.model.task.Workload;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -140,5 +137,18 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+    /**
+     * Parses a {@code String recurrence} into a {@code Recurrence}.
+     * Leading and trailing whitespaces are trimmed.
+     *
+     * @throws ParseException if the given {@code recurrence} is not valid.
+     */
+    public static Recurrence parseRecurrence(String recurrence) throws ParseException {
+        String trimmedRecurrence = recurrence.trim().toLowerCase();
+        if (!Recurrence.isValidRecurrence(trimmedRecurrence)) {
+            throw new ParseException(Recurrence.MESSAGE_CONSTRAINTS);
+        }
+        return new Recurrence(recurrence);
     }
 }
