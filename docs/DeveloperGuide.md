@@ -145,7 +145,19 @@ _{Coming soon}_
 
 _{Coming soon}_
 
-### \[Proposed\] Viewing a person's medical history through his/her medical records
+### Viewing all information regarding a patient
+
+**How**
+
+The viewing mechanism is facilitated by the `ViewPatientCommand` which extends `Command`. It mainly overrides `Command#execute` in order to return a `CommandResult` with a patient(`Person` object) attribute. When `MainWindow#executeCommand` is ran, `CommandResult` will then trigger `MainWindow#handlePatientViewBox` since it has a patient. `MainWindow#handlePatientViewBox` handles the construction of the `StackPane` containing all the patient information. It clears the `viewPatienBoxPlaceholder` in case there are Javafx nodes from the previous patient, and adds a new `ViewPatientBox` to it. The constructor of `ViewPatientBox` takes in a `Person` object and extracts information such as their name, phone, address, email, tags, appointments and medical records and adds the information to the labels and Panes which will be displayed in the `ViewPatientBox` UI.
+
+**Why**
+
+Since `MainWindow` dictates what to show on the UI depending on the `CommandResult` after running `logic.execute(commandtext)`, we can easily allow `MainWindow#executeCommand` to call `MainWindow#handlePatientViewBox` when it detects that a patient is present in `CommandResult`. `MainWindow#handlePatientViewBox` can then simply contruct the `StackPane` containing the patient's information.
+
+**Sequence Diagram**
+
+_{To be added}_
 
 
 _{more aspects and alternatives to be added}_
