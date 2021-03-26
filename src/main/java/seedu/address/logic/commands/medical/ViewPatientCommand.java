@@ -13,14 +13,14 @@ import java.util.List;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Lists all upcoming appointments to the user.
+ * Lists all upcoming appointments with a patient.
  */
 public class ViewPatientCommand extends Command {
 
     public static final String COMMAND_WORD = "view";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Display all information regarding the patient identified by the index number used in the \n"
+            + ": Displays all information regarding the patient identified by the index number used in the "
             + "displayed patient list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
