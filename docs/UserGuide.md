@@ -65,9 +65,9 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
 ## Application layout
 
 The figures below explain the different components in FlashBack. <br>
-Main window<br>
-![MainWindowComponents](./images/UiMainWindowComponents.png) <br>
-Review mode <br>
+Main window<br><br>
+![MainWindowComponents](./images/UiMainWindowComponents.png) <br><br>
+Review mode <br><br>
 ![ReviewModeComponents](./images/UiReviewModeComponents.png) <br><br>
 Brief explanation of each components:
 
@@ -192,7 +192,7 @@ Format: `view INDEX`
 
 Examples:
 
-* `view 3` shows the 3rd flashcard (in the displayed flashcard list). <br><br>
+* `view 2` shows the 2nd flashcard (in the displayed flashcard list). <br><br>
   ![UIView](./images/UiViewResult.png)
 
 ### Finding cards : `find`
@@ -308,8 +308,8 @@ After sort command is executed. <br><br>
 
 ### Entering review mode: `review`
 Reviews the current list of flashcards.<br>
-When the user enters `review` in the command box, this new window will appear. <br>
-![UiReview](./images/UiReviewModeWindow.png) <br><br>
+When the user enters `review` in the command box, this new window will appear. <br><br>
+![UiReviewMode](./images/UiReviewModeWindow.png) <br><br>
 Format: `review`
 
 ### Viewing statistics of cards: `stats`
