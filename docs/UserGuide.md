@@ -4,10 +4,7 @@ title: User Guide
 ---
 
 
-FlashBack is a **desktop application for managing notes, optimized for use via a Command Line Interface** (CLI) while
-still having the benefits of a Graphical User Interface (GUI). This application allows the improvement of student
-performance via improved accessibility and organisation of notes, together with interactive sessions that enhance memory
-retention.
+FlashBack is a **desktop application for managing notes, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). This application allows the improvement of student performance via improved accessibility and organisation of notes, together with interactive sessions that enhance memory retention.
 
 ## Table of Contents
 
@@ -68,9 +65,9 @@ retention.
 ## Application layout
 
 The figures below explain the different components in FlashBack. <br>
-Main window<br><br>
-![MainWindowComponents](./images/UiMainWindowComponents.png) <br><br>
-Review mode <br><br>
+Main window<br>
+![MainWindowComponents](./images/UiMainWindowComponents.png) <br>
+Review mode <br>
 ![ReviewModeComponents](./images/UiReviewModeComponents.png) <br><br>
 Brief explanation of each components:
 
