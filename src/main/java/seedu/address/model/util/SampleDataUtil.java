@@ -37,6 +37,9 @@ public class SampleDataUtil {
 
     public static Task[] getSampleTasks() {
         return new Task[] {
+            new Task(new Title("End of Year Club Performance Review"),
+                    new Description("End of Year Club Performance Review with the other EXCO member"),
+                    new Deadline("2020-12-13"), TaskStatus.valueOf("COMPLETED"), Priority.valueOf("MEDIUM")),
             new Task(new Title("Meeting with EXCO"), new Description("Meeting to discuss about club budget"),
                     new Deadline("2021-04-01"), TaskStatus.valueOf("UNCOMPLETED"), Priority.valueOf("HIGH")),
             new Task(new Title("Meeting with MINDS stakeholders"),
@@ -46,8 +49,11 @@ public class SampleDataUtil {
                     new Description("Plan for Club cohesion. Decide on logistic and games"),
                     new Deadline("2021-08-30"), TaskStatus.valueOf("UNCOMPLETED"), Priority.valueOf("LOW")),
             new Task(new Title("Buy materials for upcoming Cohesion"),
-                    new Description("Buy N95 masks, alcohol wips for participants to use"),
+                    new Description("Buy N95 masks, alcohol wipes for participants to use"),
                     new Deadline("2021-05-15"), TaskStatus.valueOf("UNCOMPLETED"), Priority.valueOf("UNASSIGNED")),
+            new Task(new Title("NUSSU Hackathon"),
+                    new Description("Hackathon event day"),
+                    new Deadline("2021-09-01"), TaskStatus.valueOf("UNCOMPLETED"), Priority.valueOf("HIGH")),
         };
     }
 
