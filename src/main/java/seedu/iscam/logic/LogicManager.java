@@ -16,6 +16,7 @@ import seedu.iscam.model.Model;
 import seedu.iscam.model.ObservableClient;
 import seedu.iscam.model.ReadOnlyClientBook;
 import seedu.iscam.model.client.Client;
+import seedu.iscam.model.meeting.Meeting;
 import seedu.iscam.storage.Storage;
 
 /**
@@ -63,6 +64,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Client> getFilteredClientList() {
         return model.getFilteredClientList();
+    }
+    
+    @Override
+    public ObservableList<Meeting> getFilteredMeetingList() {
+        return model.getFilteredMeetingList();
     }
 
     @Override
