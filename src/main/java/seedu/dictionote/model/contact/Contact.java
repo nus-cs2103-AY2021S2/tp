@@ -23,26 +23,26 @@ public class Contact {
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
     // Counter
-    private final int frequencyCounter;
+    private final FrequencyCounter freqCount;
 
     /**
      * Every field must be present and not null.
      */
     public Contact(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        this(name, phone, email, address, tags, 0);
+        this(name, phone, email, address, tags, new FrequencyCounter());
     }
 
     /**
      * Every field must be present and not null.
      */
-    public Contact(Name name, Phone phone, Email email, Address address, Set<Tag> tags, int frequencyCounter) {
+    public Contact(Name name, Phone phone, Email email, Address address, Set<Tag> tags, FrequencyCounter freqCount) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.address = address;
         this.email = email;
         this.tags.addAll(tags);
-        this.frequencyCounter = frequencyCounter;
+        this.freqCount = freqCount;
     }
 
     public Name getName() {
@@ -69,8 +69,8 @@ public class Contact {
         return Collections.unmodifiableSet(tags);
     }
 
-    public int getFrequencyCounter() {
-        return frequencyCounter;
+    public FrequencyCounter getFrequencyCounter() {
+        return freqCount;
     }
 
     /**
