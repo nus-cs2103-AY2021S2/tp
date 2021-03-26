@@ -21,7 +21,6 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.passenger.AddressContainsKeywordsPredicate;
-import seedu.address.model.person.passenger.NameContainsKeywordsPredicate;
 import seedu.address.model.person.passenger.PriceContainsKeywordsPredicate;
 import seedu.address.model.tag.TagContainsKeywordsPredicate;
 

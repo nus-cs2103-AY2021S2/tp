@@ -86,7 +86,7 @@ public class Pool {
      * Returns true if both trips have same driver, date & time, and passengers.
      * This defines a weaker notion of equality between two trips.
      */
-    public boolean isSameTrip(Pool otherPool) {
+    public boolean isSamePool(Pool otherPool) {
         if (otherPool == this) {
             return true;
         }
