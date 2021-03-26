@@ -1,7 +1,6 @@
 package seedu.student.ui;
 
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
