@@ -132,6 +132,17 @@
     -fx-text-fill: #f8f8f2;
 }
 
+.cell_subheading_label {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 11px;
+    -fx-text-fill: #f8f8f2;
+}
+
+.person-details-section {
+    -fx-border-width: 1 0 0 0;
+    -fx-border-color: #f9f8f5;
+}
+
 .stack-pane {
      -fx-background-color: #272822;
 }
@@ -373,4 +384,19 @@
 
 .tooltip-text {
     -fx-text-fill: #f8f8f2; /* foreground */
+}
+
+#autoCompletePopup .list-cell {
+    -fx-background-color: #272822;
+    -fx-text-fill: #f8f8f2;
+    -fx-font-size: 15px;
+}
+
+#autoCompletePopup .list-cell:selected {
+    -fx-background-color: #a1efe4;
+    -fx-text-fill: #75715e;
+}
+
+#autoCompletePopup .list-cell:hover {
+    -fx-text-fill: #75715e;
 }
