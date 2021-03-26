@@ -135,6 +135,32 @@ Output:
 `Sun, 12 Dec, 12:00 - Alex Yeoh`<br>
 `Sun, 12 Dec, 12:12 - Charlotte Oliveiro`<br>
 
+
+### Create a new medical record for a patient : `mrec`
+
+Opens an editor for you to write a custom medical report for the patient, identified by their index number displayed when when the `list` command is entered. 
+
+Format : `mrec INDEX`
+where INDEX must be a positive integer (1,2,3,...)
+
+Examples:
+* `mrec 3`
+
+### View all information regarding a patient : `view`
+
+Shows an overview of all contact information, tags, appointments and medical records of a patient, identified by their index number displayed when when the `list` command is entered. 
+
+Format : `view INDEX`
+where INDEX must be a positive integer (1,2,3,...)
+
+Examples:
+* `view 1`
+
+Output: 
+
+![image](https://user-images.githubusercontent.com/48408342/112605797-a6183980-8e52-11eb-9694-55d0ff014af4.png)
+
+
 ### Exiting the program : `exit`
 
 Exits the program.
