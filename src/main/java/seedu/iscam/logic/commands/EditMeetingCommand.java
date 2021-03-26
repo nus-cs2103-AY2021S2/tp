@@ -21,10 +21,10 @@ import seedu.iscam.logic.commands.exceptions.CommandException;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.commons.Location;
 import seedu.iscam.model.commons.Name;
+import seedu.iscam.model.commons.Tag;
 import seedu.iscam.model.meeting.DateTime;
 import seedu.iscam.model.meeting.Description;
 import seedu.iscam.model.meeting.Meeting;
-import seedu.iscam.model.commons.Tag;
 
 /**
  * Edits the details of an existing Meeting in the iscam book.

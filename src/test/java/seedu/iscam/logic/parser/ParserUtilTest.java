@@ -15,9 +15,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.model.client.Email;
+import seedu.iscam.model.client.Phone;
 import seedu.iscam.model.commons.Location;
 import seedu.iscam.model.commons.Name;
-import seedu.iscam.model.client.Phone;
 import seedu.iscam.model.commons.Tag;
 
 public class ParserUtilTest {

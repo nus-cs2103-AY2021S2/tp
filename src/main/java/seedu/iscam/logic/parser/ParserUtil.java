@@ -15,9 +15,9 @@ import seedu.iscam.model.client.InsurancePlan;
 import seedu.iscam.model.client.Phone;
 import seedu.iscam.model.commons.Location;
 import seedu.iscam.model.commons.Name;
+import seedu.iscam.model.commons.Tag;
 import seedu.iscam.model.meeting.DateTime;
 import seedu.iscam.model.meeting.Description;
-import seedu.iscam.model.commons.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

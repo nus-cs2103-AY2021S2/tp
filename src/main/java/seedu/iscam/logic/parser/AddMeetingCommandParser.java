@@ -14,10 +14,10 @@ import seedu.iscam.logic.commands.AddMeetingCommand;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.model.commons.Location;
 import seedu.iscam.model.commons.Name;
+import seedu.iscam.model.commons.Tag;
 import seedu.iscam.model.meeting.DateTime;
 import seedu.iscam.model.meeting.Description;
 import seedu.iscam.model.meeting.Meeting;
-import seedu.iscam.model.commons.Tag;
 
 public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
     public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
