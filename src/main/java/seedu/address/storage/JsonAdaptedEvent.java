@@ -167,6 +167,7 @@ class JsonAdaptedEvent {
                     EventPriority.class.getSimpleName()));
         }
 
+
         final EventPriority modelPriority;
         switch(eventPriority) {
         case ("HIGH"):
