@@ -113,10 +113,7 @@ public class Pool {
         }
 
         Pool otherPool = (Pool) other;
-        return otherPool.getDriver().equals(getDriver())
-                && otherPool.getTripDay().equals(getTripDay())
-                && otherPool.getTripTime().equals(getTripTime())
-                && otherPool.getPassengers().equals(getPassengers())
+        return isSameTrip(otherPool)
                 && otherPool.getTags().equals(getTags());
     }
 
