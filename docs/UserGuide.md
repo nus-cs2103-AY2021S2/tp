@@ -11,12 +11,14 @@ SOChedule is a one-stop solution for managing tasks and events, optimized for us
 * Deleting a task: `delete_task`
 * Listing all tasks: `list_task`
 * Marking a task as done : `done_task`
+* Finding tasks: `find_task`
 * Sorting all tasks: `sort_task`
 * Clearing completed tasks: `clear_completed_task`
 * Clearing expired tasks: `clear_expired_task`
 * Adding an event: `add_event`
 * Deleting an event: `delete_event`
 * Listing all events: `list_event`
+* Finding events: `find_event`
 * Clearing completed tasks: `clear_expired_event`
 
 
@@ -91,6 +93,14 @@ Format: `done_task INDEX`
 Examples:
 * `done_task 1` marks the first task in the task list as completed.
 
+### Finding all matching tasks: `find_task`
+Finds matching tasks from Task List.
+
+Format: `find_task KEYWORD`
+* Finds the tasks whose names contain a given keyword.
+* The keyword is case-insensitive.
+* A list of matching tasks will be displayed with their indexes.
+
 ### Sorting all tasks: `sort_task`
 Sorts SOChedule Task List.
 
@@ -144,6 +154,15 @@ Examples:
 ### Listing all events: `list_event`
 Lists all events from SOChedule Event Scheduler.
 Format: `list_event`
+
+### Finding all matching events: `find_event`
+Finds matching events from Event Scheduler.
+
+Format: `find_event KEYWORD`
+* Finds the events whose names contain a given keyword.
+* The keyword is case-insensitive.
+* A list of matching events will be displayed with their indexes.
+
 
 ### Clearing expired events: `clear_expired_event`
 Clear tasks with past end date time.
