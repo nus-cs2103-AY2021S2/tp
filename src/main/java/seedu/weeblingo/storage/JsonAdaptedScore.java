@@ -69,7 +69,7 @@ public class JsonAdaptedScore {
             if (questionCorrect == null) {
                 throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Question correct"));
             }
-            Integer questionCorrect = Integer.valueOf(this.questionAttempted);
+            Integer questionCorrect = Integer.valueOf(this.questionCorrect);
 
             return Score.of(time, questionAttempted, questionCorrect);
         } catch (NumberFormatException e) {

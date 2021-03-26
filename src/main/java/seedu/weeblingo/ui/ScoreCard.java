@@ -39,7 +39,7 @@ public class ScoreCard extends UiPart<Region> {
     public ScoreCard(Score score, int displayedIndex) {
         super(FXML);
         this.score = score;
-        id.setText("History ID: " + displayedIndex + ".\n");
+        id.setText("History ID: " + displayedIndex + "\n");
         completedTime.setText("Completed time: " + score.getCompletedTime());
         numOfQuestionsAttempted.setText("Number of questions attempted: " + score.getNumberOfQuestionsAttempted());
         numOfQuestionsCorrect.setText("Number of questions attempted correctly: "
