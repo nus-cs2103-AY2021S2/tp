@@ -32,15 +32,15 @@ public class HelpWindow extends UiPart<Stage> {
                                              + "\nEnter \"delete INDEX\""
                                              + "\nExample: delete 3\n\n";
 
-    public static final String EDIT_PROMPT = "edit - Edits the booking/cleaning status of an existing residence."
-                                           + "\nEnter \"edit INDEX clean/[y or n] \""
-                                           + "\nExample: edit clean/n 2\n\n";
+    public static final String EDIT_PROMPT = "edit - Edits fields of an existing residence (other than bookings)."
+                                           + "\nEnter \"edit INDEX c/n \""
+                                           + "\nExample: edit 2 c/n\n\n";
 
     public static final String FIND_PROMPT = "find - Finds residences whose name contains the given keyword."
-                                           + "\nEnter \"find KEYWORD\""
-                                           + "\nExample: find Heights\n\n";
+                                           + "\nEnter \"find KEYWORDS\""
+                                           + "\nExample: find Heights Condo\n\n";
 
-    public static final String LIST_PROMPT = "list - Shows a list of all residences in ResidenceTracker app."
+    public static final String LIST_PROMPT = "list - Shows a list of all residences in ResidenceTracker."
                                            + "\n Enter \"list\"\n\n";
 
     public static final String EXIT_PROMPT = "exit - Exits the program."

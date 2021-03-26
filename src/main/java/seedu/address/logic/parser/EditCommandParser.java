@@ -56,7 +56,7 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         if (argMultimap.getValue(PREFIX_BOOKING_DETAILS).isPresent()) {
             editResidenceDescriptor.setBookingDetails(
-                    ParserUtil.parseBooking(argMultimap.getValue(PREFIX_BOOKING_DETAILS).get()));
+                    ParserUtil.parseBookingList(argMultimap.getValue(PREFIX_BOOKING_DETAILS).get()));
         }
 
         if (argMultimap.getValue(PREFIX_CLEAN_STATUS_TAG).isPresent()) {
