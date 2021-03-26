@@ -10,13 +10,22 @@ Class Type
 Class Address
 Class PostalCode
 Class Deadline
-Class Status
 
 Package Client as ClientPackage {
 Class Client
 Class Contact
 Class Email
 Class AskingPrice
+}
+
+Package Status as StatusPackage {
+Interface Status <<Interface>>
+Class Status
+Class Option
+Class SalesAgreement
+CLass Completion
+Class Offer
+}
 }
 
 Package Name as NamePackage {
@@ -30,13 +39,17 @@ Class Remark
 Package Tag as TagPackage {
 Class Tag
 }
-}
 
 Property *--up-> Type
 Property *--up-> Address
 Property *--up-> PostalCode
 Property *--up-> Deadline
+
 Property *--up-> Status
+Option ..|> Status
+SalesAgreement ..|> Status
+Completion ..|> Status
+Status .right.> Offer
 
 Property *-left-> Remark
 Property *-down-> "propertyName" Name : ""
