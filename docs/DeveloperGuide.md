@@ -133,6 +133,16 @@ Classes used by multiple components are in the `seedu.cakecollate.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Sorting displayed list by delivery date
+
+The original approach of sorting the displayed list was to sort the observable list that the UI received from the Model Manager. This was not possible because the list obtained was immutable, and the indexes provided for some commands stopped corresponding to the actual orders displayed in the GUI. As such, it's implemented such that the model always keeps a list that is sorted by delivery date
+
+(insert sequence diagram)
+
+To ensure that after every command, the list was always sorted, each command sent to the model would additionally call the sortOrderList() command.
+
+(explain with more code later)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -268,6 +278,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 | `**`    | User                                         | add notes and special requests for orders                          | details on customized orders can be mentioned together with the main order                   |
 | `**`    | User who loves statistics                    | view my most ordered products                                      | I know what to products to promote more                                                      |
 | `**`    | Regular user                                 | be warned of duplicate orders I might have accidentally entered    | I can avoid making more than necessary, which may waste time and resources                   |
+| `**`    | User                                         | add different statuses to my orders                                | I can keep track of whether my order is delivered, not delivered yet or cancelled.           |
 | `**`    | User                                         | find the orders made by a certain customer                         | I can retrieve information about the orders that this customer have made before, if needed   |
 | `**`    | User                                         | input multiple order descriptions at one go                        | I don't need to input multiple entries for customers who order more than one type of cake    |
 | `**`    | User                                         | set prices and costs of orders                                     | I can note how much profit I am earning                                                      |
