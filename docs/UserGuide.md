@@ -68,7 +68,6 @@ Shows a list of available command
 
 Format: `listcommand`
 
-
 ### Dictionary Features
 
 #### Finding content in the Dictionary using keywords: `findcontent`
@@ -323,11 +322,11 @@ Examples:
 * `listcontact` followed by `emailcontact 2` opens a new message composition window targeting the 2nd contact in the contacts list.
 * `findcontact n/Alice` followed by `emailcontact 1` opens a new message composition window targeting the 1st contact in the results of the `findcontact` command.
 
-#### Clearing all entries : `clear`
+#### Clearing the contacts list : `clearcontact`
 
-Clears all entries from the address book.
+Clears the contacts list from all contacts.
 
-Format: `clear`
+Format: `clearcontact`
 
 #### Save and quit edit mode: `save`
 
@@ -547,7 +546,7 @@ Action | Format, Examples
 **Edit contact** | `editcontact INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`editcontact 2 n/James Lee e/jameslee@example.com`
 **Find contacts** | `findcontact [n/NAME_KEYWORD]... [t/TAG_KEYWORD]...`<br> e.g., `findcontact n/James t/family`
 **List all contacts** | `listcontact`
-**Clear** | `clear`
+**Clear contacts list** | `clearcontact`
 **Save and quit edit mode** | `save`
 **Quit edit mode** | `quit`
 ***UI Features*** | -
