@@ -21,7 +21,7 @@ public class AddBudgetCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Budget of %d is successfully added.";
     public static final String MESSAGE_DUPLICATE_BUDGET = "Budget already exists. "
-            + "Please use the edit_budget function instead.";
+            + " Please use the edit_budget function instead.";
 
     private final Budget toAdd;
 

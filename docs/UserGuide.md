@@ -263,6 +263,29 @@ Format: `edit_appointment [e/EMAIL] [s/SUBJECT_NAME] [d/DATE] [fr/TIME_FROM] [l/
 
 Examples: `edit_appointment e/andrewng@example.com l/Clementi`
 
+### Adding Budget : `add_budget`
+
+Adds a budget with an amount specified by user. Stores budget in user system.
+
+Format: `add_budget [b/BUDGET]`
+
+* BUDGET must be a positive integer inclusive of zero
+
+### Editing a Budget : `edit_budget`
+
+Edits an already existing budget with an amount specified by user.
+
+Format : `edit_budget [b/BUDGET]`
+
+* BUDGET must be a positive integer inclusive of zero
+
+### Deleting a budget : `delete_budget`
+
+Deletes an already existing budget.
+
+Format : `delete_budget`
+
+
 --------------------------------------------------------------------------------------------------------------------
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Tutor Tracker home folder.
@@ -284,3 +307,6 @@ Action | Format, Examples
 **Find tuition appointments** | `find_appointment` <br> e.g. `find_appointment John`
 **Delete a tuition appointment** | `delete_appointment` <br> e.g. `delete_appointment 1`
 **Edit a tuition appointment** | `edit_appointment [e/EMAIL] [s/SUBJECT_NAME] [d/DATE] [fr/TIME_FROM] [l/LOCATION]` <br> e.g. `edit_appointment e/andrewng@example.com l/Clementi`
+**Add a budget** | `add_budget` <br> e.g.`add_budget b/500`
+**Edit a budget** | `edit_budget` <br> e.g. `edit_budget b/600`
+**Deleting a budget** | `delete_budget` <br> e.g. `delete_budget`

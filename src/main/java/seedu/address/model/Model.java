@@ -204,6 +204,11 @@ public interface Model {
     BudgetBook getBudgetBook();
 
     /**
+     * @return Trus if budget already exists.
+     */
+    boolean hasBudget();
+
+    /**
      * @param budget Budget to verify whether present.
      * @return True if budget already exists.
      */
@@ -219,6 +224,11 @@ public interface Model {
      * @param budget Budget to update to.
      */
     void editBudget(Budget budget);
+
+    /**
+     * Deletes an already existing budget.
+     */
+    void deleteBudget();
 
 
     /** Returns true if a grade with the same identity as {@code grade} exists in the

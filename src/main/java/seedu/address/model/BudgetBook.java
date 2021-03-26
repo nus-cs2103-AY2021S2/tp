@@ -66,6 +66,15 @@ public class BudgetBook implements ReadOnlyBudgetBook {
     }
 
     /**
+     * Removes budget from existing budget list.
+     */
+    public void deleteBudget() {
+        this.budgetList.remove(0);
+        assert !hasBudget();
+    }
+
+
+    /**
      * @return True is budget is present already.
      */
     public boolean hasBudget() {

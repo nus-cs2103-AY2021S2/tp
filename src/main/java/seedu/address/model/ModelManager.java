@@ -267,6 +267,14 @@ public class ModelManager implements Model {
     }
 
     /**
+     * @return True is budget already exists.
+     */
+    @Override
+    public boolean hasBudget() {
+        return budgetBook.hasBudget();
+    }
+
+    /**
      * @param budget Budget to verify whether present.
      */
     @Override
@@ -290,6 +298,14 @@ public class ModelManager implements Model {
     @Override
     public void editBudget(Budget budget) {
         budgetBook.setBudget(budget);
+    }
+
+    /**
+     * Removes an already existing budget.
+     */
+    @Override
+    public void deleteBudget() {
+        budgetBook.deleteBudget();
     }
 
     //=========== GradeList ============================================================================
