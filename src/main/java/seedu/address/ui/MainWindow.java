@@ -165,6 +165,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handlePatientViewBox(Person p) {
         ViewPatientBox viewPatientBox = new ViewPatientBox(p);
+        viewPatientBoxPlaceholder.getChildren().clear();
         viewPatientBoxPlaceholder.getChildren().add(viewPatientBox.getRoot());
     }
 

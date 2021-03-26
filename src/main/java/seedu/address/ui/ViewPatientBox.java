@@ -44,7 +44,9 @@ public class ViewPatientBox extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private FlowPane test;
+    private Label tagInfo;
+    @FXML
+    private Label appointmentInfo;
     @FXML
     private FlowPane tags;
     @FXML
@@ -60,13 +62,14 @@ public class ViewPatientBox extends UiPart<Region> {
         phone.setText("Phone: " + person.getPhone().value);
         address.setText("Address: " + person.getAddress().value);
         email.setText("Email: " + person.getEmail().value);
-
+        tagInfo.setText("Tags:");
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        appointmentInfo.setText("Here are their upcoming appointments:");
         person.getAppointments().stream()
-                .min(Comparator.comparing(Appointment::getDate))
-                .ifPresent(appt -> appointments.getChildren().add(new Label(appt.getDateDisplay())));
+                .sorted(Comparator.comparing(appt -> appt.getDate()))
+                .forEach(appt -> appointments.getChildren().add(new Label(appt.getDateDisplay())));
     }
 
     /**
