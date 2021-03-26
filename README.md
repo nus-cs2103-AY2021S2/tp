@@ -8,12 +8,12 @@
   3. Copy the file download location to the folder that you want to use as the home folder for your [App moduleName]
   4. Double click on the file to start the app
   5. Once the app is started, you can begin by typing certain commands in the command box to execute certain actions. E.g: typing help and pressing enter will open the help windows for guidance on some command executions.
-      * add module : mc/CS2103 mc/Software Engineering tn/iP Level 10 d/ Feb 15 t/ 1800 will add this module to the list
-      * delete module [num list] : delete 3 will delete 3rd task from the listlist : will shown all module tasks
-      * mark as done [num list] : mark as done 3 will mark 3rd task from the list as done
-      * sort : sort d/ march will sort and show all march tasks on the top of the list and then Jan, Feb … Dec
-      * edit task [num list] : edit 3 will allow user to edit the 3rd module task from the list
-      * add notes [num list] : add notes 3 will add notes to the 3rd module task from the list
+      * add module : mc/CS2103 n/iP Level 10 d/15-11-2020 t/18:00 will add this module to the list
+      * delete module : delete 3 will delete 3rd task from the listlist : will shown all module tasks
+      * mark as done : mark as done 3 will mark 3rd task from the list as done
+      * sort : sort dateTime will sort based on deadline date and time and show all of the tasks in list.
+      * edit task : edit 3 will allow user to edit the 3rd module task from the list
+      * add notes : add notes 3 will add notes to the 3rd module task from the list
       * Priority tag HIGH/MEDIUM/LOW : pt/HIGH 3 will assign a high priority to the 3rd task on the list.
       * Time-based alert : alert will show a list of immediate tasks that will be due next week
       * clear : will delete all module tasks on the list
@@ -56,7 +56,7 @@
 
 
 5. ### Edit Task: *edit*
-  * Format: edit INDEX [tn/TASK NAME] [mn/MODULE NAME] [mc/MODULE CODE] [d/ DEADLINE DATE] [t/DEADLINE TIME] [n/NOTES] [pt/PRIORITY]
+  * Format: edit INDEX [n/TASK NAME] [mc/MODULE CODE] [d/ DEADLINE DATE] [t/DEADLINE TIME] [n/NOTES] [pt/PRIORITY]
     1. Edits the task at the specified index.
     2. The index must be a positive integer
     3. The index must be on the list else an error will be thrown
@@ -105,11 +105,11 @@
     4. Example: find assignment followed by notes 1 n/fooBar adds the note “fooBar” to the 1st task in the results of the find command.
 
 10. ### Shows alert(s) for incoming deadlines based on the time range (if give)
-  * Format: alert start/START_DATE end/END_DATE
-    1. If no time range is given, alert(s) shown will be deadlines next week.
+  * Format: show start/START_DATE end/END_DATE
+    1. If no time range is given, alert(s) shown will be deadlines from next week until next 2 weeks.
     2. If only START_DATE is given, alert(s) shown will be from the START_DATE until the latest deadline.
     3. If only END_DATE is given, alert(s) shown will be from today’s date until the END_DATE.
-    4. alert start/10-10-2020 will show deadlines starting from 10 October 2020 onwards.
+    4. show start/10-10-2020 will show deadlines starting from 10 October 2020 onwards.
 
 
 ## Acknowledgements
