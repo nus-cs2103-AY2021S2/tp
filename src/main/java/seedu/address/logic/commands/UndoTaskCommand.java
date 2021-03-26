@@ -28,7 +28,7 @@ public class UndoTaskCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 ";
 
 
-    public static final String MESSAGE_UNDO_TASK_SUCCESS = "Task: marked as Undo!";
+    public static final String MESSAGE_UNDO_TASK_SUCCESS = "Task: marked as uncompleted!";
     public static final String MESSAGE_TASK_ALREADY_MARKED_UNCOMPLETED = "Task is already marked as uncompleted!";
 
     private final Index index;
@@ -54,9 +54,11 @@ public class UndoTaskCommand extends Command {
         Task taskToMarkUndo = lastShownList.get(index.getZeroBased());
         Task undoTask = createUndoTask(taskToMarkUndo);
 
+        assert undoTask != null;
+
         model.setTask(taskToMarkUndo, undoTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-        return new CommandResult(String.format(MESSAGE_UNDO_TASK_SUCCESS, undoTask));
+        return new CommandResult(MESSAGE_UNDO_TASK_SUCCESS);
     }
 
     /**

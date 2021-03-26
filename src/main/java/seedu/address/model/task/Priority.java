@@ -14,9 +14,12 @@ public enum Priority {
     UNASSIGNED("unassigned");
 
     public static final String MESSAGE_CONSTRAINTS = "Error with Task Priority! "
-            + "Task Priority should take one of the predefined values: high, medium or low (Case Sensitive)";
-    public static final String MESSAGE_CANNOT_SPECIFY_UNASSIGNED = "If you are specifying a value fot priority"
-            + "it cannot be unassigned. Please choose from the value: high, medium or low. ";
+            + "Task Priority should take one of the predefined values: high, medium, "
+            + "low(Case Sensitive)";
+    public static final String MESSAGE_CANNOT_SPECIFY_UNASSIGNED = "If you are specifying a value for priority "
+            + "it cannot be unassigned. Please choose from the value: high, medium or low (Case Sensitive).";
+    public static final String MESSAGE_CANNOT_FIND_PRIORITY = "If you are looking for tasks with a certain priority,"
+            + "please choose from the values: high, medium, low or unassigned (Case Sensitive).";
 
     public final String priority;
 
