@@ -100,6 +100,9 @@ Review mode | This is where you can review all your flashcards. You can enter th
 
 * Items with `…​` after them can be used multiple times including zero times. <br>
   e.g. `[t/TAG]…`​ can be used as `t/vocabulary`, `t/vocabulary t/SAT` etc.
+  
+* Items in `<>` brackets are either/or options. Each option is seperated by a `|`. <br>
+e.g. <priority|question> means that user can choose between `priority` and `question`, but not both. 
 
 * Parameters can be in any order. <br>
   e.g. If the command specifies `q/QUESTION a/ANSWER`, `a/ANSWER q/QUESTION` is also acceptable.<br>
@@ -293,7 +296,7 @@ Sorts all flashcards according to a given option.
 
 </div>
 
-Format: `sort <priority|question> -<a|d>` <br>
+Format: `sort <priority|question> <-a|-d>` <br>
 Examples:
 
 `sort priority -a` will sort the flashcards by ascending priority. <br>
@@ -308,7 +311,7 @@ After sort command is executed. <br><br>
 
 ### Entering review mode: `review`
 Reviews the current list of flashcards.<br>
-When the user enters `review` in the command box, this new window will appear. <br><br>
+When the user enters `review` in the command box, this new window will appear. <br>
 ![UiReview](./images/UiReviewModeWindow.png) <br><br>
 Format: `review`
 
