@@ -80,6 +80,10 @@ public class Assignment extends Event {
         this.isDone = !isDone;
     }
 
+    @Override
+    public int getDuration() {
+        return 0;
+    }
 
     @Override
     public String toString() {

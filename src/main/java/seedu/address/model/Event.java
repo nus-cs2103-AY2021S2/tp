@@ -45,7 +45,7 @@ public abstract class Event implements Comparable<Event> {
         return tag;
     }
 
-    public int getTimeTaken() {
+    public int getDuration() {
         return 120;
     }
 
