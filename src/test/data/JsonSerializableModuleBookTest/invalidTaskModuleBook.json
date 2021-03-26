@@ -1,6 +1,7 @@
 {
   "tasks": [ {
     "name": "Hans Muster",
+    "startTime" : "",
     "deadline": "2021-10-21 10:10",
     "module": "invalid@module!3e",
     "description": "4th street",

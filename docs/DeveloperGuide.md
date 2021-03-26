@@ -399,6 +399,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2b1. ModuleBook3.5 shows an error message with the correct format for add and example.
 
       Use case resumes at step 2.
+      
+* 2c.  The start time of the task is later than its deadline.
+      
+    * 2c1. ModuleBook 3.5 shows an error message.
+      
+      Use case resumes at step 2.
 
 
 **Use case 06: Tag a task**
@@ -536,6 +542,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 2d1. ModuleBook3.5 shows an error message.
 
+      Use case resumes at step 2.
+
+* 2e.  The start time of the edited task is later than its deadline.
+      
+    * 2e1. ModuleBook 3.5 shows an error message.
+      
       Use case resumes at step 2.
     
 

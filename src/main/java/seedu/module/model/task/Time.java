@@ -6,18 +6,16 @@ import static seedu.module.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 /**
  * Represents a Task's deadline in the module book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDeadline(String)}
  */
-public class Deadline implements Comparable<Deadline> {
-
+public class Time implements Comparable<Time> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Deadline should be formatted as yyyy-MM-dd or yyyy-MM-dd HH:mm";
+            "Time should be formatted as yyyy-MM-dd or yyyy-MM-dd HH:mm";
     public static final String DATE_REGEX = "^((19|2[0-9])[0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])";
     public static final String TIME24HOURS_REGEX = "([01]?[0-9]|2[0-3]):[0-5][0-9]";
     public static final String DATE_TIME_VALIDATION_REGEX = DATE_REGEX + " " + TIME24HOURS_REGEX;
@@ -35,14 +33,14 @@ public class Deadline implements Comparable<Deadline> {
      *
      * @param deadline A valid deadline. Can either be in yyyy-MM-dd or yyyy-MM-dd HH:mm format
      */
-    public Deadline(String deadline) {
+    public Time(String deadline) {
         requireNonNull(deadline);
         checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
         value = deadline;
         String dateValue = value.split(" ")[0];
         if (value.length() == dateValue.length()) {
             date = LocalDate.parse(dateValue, ISO_LOCAL_DATE);
-            time = date.atTime(LocalTime.now());
+            time = date.atTime(0, 0);
         } else {
             time = LocalDateTime.parse(value, DATE_TIME_FORMATTER_WITH_TIME);
             date = time.toLocalDate();
@@ -76,12 +74,12 @@ public class Deadline implements Comparable<Deadline> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Deadline // instanceof handles nulls
-                && value.equals(((Deadline) other).value)); // state check
+                || (other instanceof Time // instanceof handles nulls
+                && value.equals(((Time) other).value)); // state check
     }
 
     @Override
-    public int compareTo(Deadline other) {
+    public int compareTo(Time other) {
         return time.compareTo(other.getTime());
     }
 

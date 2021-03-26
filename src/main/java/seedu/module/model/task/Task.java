@@ -16,10 +16,14 @@ import seedu.module.model.tag.Tag;
  */
 public class Task {
 
+    public static final String INVALID_START_TIME = "Start time have to be earlier than end time";
+
     // Identity fields
     private final Name name;
-    private final Deadline deadline;
+    private Time startTime;
+    private final Time deadline;
     private final Module module;
+    private final boolean isDeadline;
 
     // Data fields
     private final Description description;
@@ -30,7 +34,7 @@ public class Task {
     /**
      * Every field must be present and not null.
      */
-    public Task(Name name, Deadline deadline, Module module, Description description,
+    public Task(Name name, Time deadline, Module module, Description description,
                 Workload workload, DoneStatus doneStatus, Set<Tag> tags) {
         requireAllNonNull(name, deadline, module, description, workload, doneStatus, tags);
         this.name = name;
@@ -40,13 +44,35 @@ public class Task {
         this.workload = workload;
         this.doneStatus = doneStatus;
         this.tags.addAll(tags);
+        this.isDeadline = true;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Task(Name name, Time startTime, Time deadline, Module module, Description description,
+                Workload workload, DoneStatus doneStatus, Set<Tag> tags) {
+        requireAllNonNull(name, startTime, deadline, module, description, workload, doneStatus, tags);
+        this.name = name;
+        this.startTime = startTime;
+        this.deadline = deadline;
+        this.module = module;
+        this.description = description;
+        this.workload = workload;
+        this.doneStatus = doneStatus;
+        this.tags.addAll(tags);
+        this.isDeadline = false;
     }
 
     public Name getName() {
         return name;
     }
 
-    public Deadline getDeadline() {
+    public Time getStartTime() {
+        return startTime;
+    }
+
+    public Time getDeadline() {
         return deadline;
     }
 
@@ -64,6 +90,22 @@ public class Task {
 
     public DoneStatus getDoneStatus() {
         return doneStatus;
+    }
+
+    public boolean isDeadline() {
+        return isDeadline;
+    }
+
+    /**
+     * Check the validity of the relationship between startTime and deadLine
+     *
+     * @return if the relationship between startTime and deadLine is invalid
+     */
+    public boolean isTimeInvalid() {
+        if (this.startTime == null) {
+            return false;
+        }
+        return this.startTime.compareTo(this.deadline) >= 0;
     }
 
     /**
@@ -103,29 +145,49 @@ public class Task {
         }
 
         Task otherTask = (Task) other;
-        return otherTask.getName().equals(getName())
-                && otherTask.getDeadline().equals(getDeadline())
-                && otherTask.getModule().equals(getModule())
-                && otherTask.getDescription().equals(getDescription())
-                && otherTask.getWorkload().equals(getWorkload())
-                && otherTask.getDoneStatus().equals(getDoneStatus())
-                && otherTask.getTags().equals(getTags());
+
+        if (otherTask.isDeadline()) {
+            return otherTask.getName().equals(getName())
+                    && otherTask.getStartTime() == getStartTime()
+                    && otherTask.getDeadline().equals(getDeadline())
+                    && otherTask.getModule().equals(getModule())
+                    && otherTask.getDescription().equals(getDescription())
+                    && otherTask.getWorkload().equals(getWorkload())
+                    && otherTask.getDoneStatus().equals(getDoneStatus())
+                    && otherTask.getTags().equals(getTags());
+        } else {
+            return otherTask.getName().equals(getName())
+                    && otherTask.getStartTime().equals(getStartTime())
+                    && otherTask.getDeadline().equals(getDeadline())
+                    && otherTask.getModule().equals(getModule())
+                    && otherTask.getDescription().equals(getDescription())
+                    && otherTask.getWorkload().equals(getWorkload())
+                    && otherTask.getDoneStatus().equals(getDoneStatus())
+                    && otherTask.getTags().equals(getTags());
+        }
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, deadline, module, description, workload, doneStatus, tags);
+        return Objects.hash(name, startTime, deadline, module, description, workload, doneStatus, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append("Name: ")
-                .append(getName())
-                .append("; Deadline: ")
-                .append(getDeadline())
-                .append("; Module: ")
+                .append(getName());
+        if (isDeadline) {
+            builder.append("; Deadline: ")
+                    .append(getDeadline());
+        } else {
+            builder.append("; Start: ")
+                    .append(getStartTime())
+                    .append("; End: ")
+                    .append(getDeadline());
+        }
+        builder.append("; Module: ")
                 .append(getModule())
                 .append("; Description: ")
                 .append(getDescription())
@@ -152,9 +214,24 @@ public class Task {
             return "deadline";
         }
 
+        /**
+         * Method to compare the time field of two task. Use startTime, if present.
+         *
+         * @param t1 task 1
+         * @param t2 task 2
+         * @return the result of comparison
+         */
         @Override
         public int compare(Task t1, Task t2) {
-            return t1.getDeadline().compareTo(t2.getDeadline());
+            if (t1.isDeadline && t2.isDeadline) {
+                return t1.getDeadline().compareTo(t2.getDeadline());
+            } else if (t1.isDeadline) {
+                return t1.getDeadline().compareTo(t2.getStartTime());
+            } else if (t2.isDeadline) {
+                return t1.getStartTime().compareTo(t2.getDeadline());
+            } else {
+                return t1.getStartTime().compareTo(t2.getStartTime());
+            }
         }
     }
 
