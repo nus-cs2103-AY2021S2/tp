@@ -96,13 +96,14 @@ public class EditPatientCommand extends Command {
     private static Patient createEditedPatient(Patient patientToEdit, EditPatientDescriptor editPatientDescriptor) {
         assert patientToEdit != null;
 
+        UUID patientUuid = patientToEdit.getUuid();
         Name updatedName = editPatientDescriptor.getName().orElse(patientToEdit.getName());
         Phone updatedPhone = editPatientDescriptor.getPhone().orElse(patientToEdit.getPhone());
         Email updatedEmail = editPatientDescriptor.getEmail().orElse(patientToEdit.getEmail());
         Address updatedAddress = editPatientDescriptor.getAddress().orElse(patientToEdit.getAddress());
         Set<Tag> updatedTags = editPatientDescriptor.getTags().orElse(patientToEdit.getTags());
 
-        return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Patient(patientUuid, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
@@ -128,7 +129,6 @@ public class EditPatientCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditPatientDescriptor {
-        private UUID uuid;
         private Name name;
         private Phone phone;
         private Email email;
@@ -156,10 +156,6 @@ public class EditPatientCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
-        }
-
-        public void setUuid(UUID uuid) {
-            this.uuid = uuid;
         }
 
         public void setName(Name name) {
