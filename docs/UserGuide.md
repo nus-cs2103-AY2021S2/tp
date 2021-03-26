@@ -521,8 +521,8 @@ Action | Format, Examples
 **Viewing help** | `help`
 **Viewing Command List** | `listcommand`
 **Exit** | `exit`
-***Dictionary Features*** | - 
-**Find content** | `findcontent KEYWORD [MORE_KEYWORDS]` 
+***Dictionary Features*** | -
+**Find content** | `findcontent KEYWORD [MORE_KEYWORDS]`
 **Find definition** | `finddef KEYWORD [MORE_KEYWORDS]`
 **Show specific content** | `showdc INDEX`
 ***Note Features*** | -
