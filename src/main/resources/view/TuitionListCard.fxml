@@ -18,7 +18,11 @@
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
-      <Label fx:id="name" textAlignment="center" />
+      <Label fx:id="name" textAlignment="center">
+        <padding>
+          <Insets top="5" bottom="5" right="5" left="17" />
+        </padding>
+      </Label>
       <ListView fx:id="sessionListView"></ListView>
     </VBox>
   </GridPane>
