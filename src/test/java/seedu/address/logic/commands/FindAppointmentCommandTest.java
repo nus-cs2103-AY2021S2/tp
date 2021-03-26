@@ -98,7 +98,7 @@ public class FindAppointmentCommandTest {
     @Test
     public void execute_multipleKeywords() {
         String expectedMessage = String.format(MESSAGE_APPOINTMENT_LISTED_OVERVIEW_SINGULAR, 0);
-        AppointmentContainsKeywordsPredicate predicate = preparePredicate("meet somebody unknown");
+        AppointmentContainsKeywordsPredicate predicate = preparePredicate("somebody unknown");
         FindAppointmentCommand command = new FindAppointmentCommand(predicate);
         expectedModel.updateFilteredAppointmentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -108,7 +108,7 @@ public class FindAppointmentCommandTest {
     @Test
     public void execute_multipleKeywordsSuccess() {
         String expectedMessage = String.format(MESSAGE_APPOINTMENT_LISTED_OVERVIEW_SINGULAR, 1);
-        AppointmentContainsKeywordsPredicate predicate = preparePredicate("meet bob");
+        AppointmentContainsKeywordsPredicate predicate = preparePredicate("bob bob");
         FindAppointmentCommand command = new FindAppointmentCommand(predicate);
         expectedModel.updateFilteredAppointmentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
