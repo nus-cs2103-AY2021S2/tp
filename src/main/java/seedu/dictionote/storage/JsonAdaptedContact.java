@@ -110,7 +110,7 @@ class JsonAdaptedContact {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        if (FrequencyCounter.isValidFrequencyCounter(frequency)) {
+        if (!FrequencyCounter.isValidFrequencyCounter(frequency)) {
             throw new IllegalValueException(FrequencyCounter.MESSAGE_CONSTRAINTS);
         }
 

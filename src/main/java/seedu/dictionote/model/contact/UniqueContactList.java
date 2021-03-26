@@ -103,7 +103,7 @@ public class UniqueContactList implements Iterable<Contact> {
      */
     public void sortByFrequencyCounter() {
         List<Contact> sortedList =
-                internalList.sorted(Comparator.comparingInt(Contact::getFrequencyCounter).reversed());
+                internalList.sorted((c1, c2) -> c2.getFrequencyCounter().value - c1.getFrequencyCounter().value);
         setContacts(sortedList);
     }
 

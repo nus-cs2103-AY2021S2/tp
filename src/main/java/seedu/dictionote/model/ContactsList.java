@@ -119,7 +119,7 @@ public class ContactsList implements ReadOnlyContactsList {
                 contact.getEmail(),
                 contact.getAddress(),
                 contact.getTags(),
-                contact.getFrequencyCounter() + 1
+                contact.getFrequencyCounter().increment()
         );
     }
 

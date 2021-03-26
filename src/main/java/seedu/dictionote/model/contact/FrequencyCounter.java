@@ -29,6 +29,10 @@ public class FrequencyCounter {
         value = frequencyCounter;
     }
 
+    public FrequencyCounter increment() {
+        return new FrequencyCounter(value + 1);
+    }
+
     /**
      * Returns true if a given integer is a valid frequency counter value.
      */
