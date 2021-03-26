@@ -50,9 +50,9 @@ imPoster is a desktop application for beginners of API development to easily gra
 
   - Added the team self-initiated [main project website](https://imposter-dev.tk).
   - Managed releases `v1.1`, `v1.2`, `v1.2b`, `v1.3` (4 releases) on GitHub.
+  - Maintained [gantt chart](https://docs.google.com/spreadsheets/d/10HzmFh2pCHIu-8VpJSCRy0jzpVehnYpm/edit#gid=577662797) and [project development board](https://github.com/AY2021S2-CS2103T-T12-4/tp/projects/1).
   - Setup the GitHub team organisation/repository and added favicon to project page.
   - Setup [tools](#tools) and [workflow guide](../WorkflowGuide.md) to ease project workflow.
-  - Maintain [gantt chart](https://docs.google.com/spreadsheets/d/10HzmFh2pCHIu-8VpJSCRy0jzpVehnYpm/edit#gid=577662797) and [project development board](https://github.com/AY2021S2-CS2103T-T12-4/tp/projects/1).
 
 #### Community
 
