@@ -14,6 +14,8 @@ import seedu.weeblingo.model.score.Score;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Flashcard> PREDICATE_SHOW_ALL_FLASHCARDS = unused -> true;
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Score> PREDICATE_SHOW_ALL_SCORES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -89,6 +91,12 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredFlashcardList(Predicate<Flashcard> predicate);
+
+    /**
+     * Updates the filter of the filtered score history list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredScoreHistory(Predicate<Score> predicate);
 
     /** Generates a Quiz object and shows the first question */
     ObservableList<Flashcard> startQuiz();

@@ -215,6 +215,13 @@ public class MainWindow extends UiPart<Stage> {
         flashcardListPanelPlaceholder.setVisible(true);
     }
 
+
+    private void showHistory() {
+        scoreHistoryListPanel = new ScoreHistoryListPanel(logic.getFilteredScoreList());
+        flashcardListPanelPlaceholder.getChildren().add(scoreHistoryListPanel.getRoot());
+        flashcardListPanelPlaceholder.setVisible(true);
+    }
+
     /**
      * Clears the Quiz instance.
      */
@@ -290,6 +297,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandText.equals("check")) {
                 checkAnswer();
+            }
+
+            if (commandText.equals("history")) {
+                showHistory();
             }
 
             if (commandResult.isShowHelp()) {

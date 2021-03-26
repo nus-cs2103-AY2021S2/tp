@@ -23,8 +23,10 @@ public class ModelManager implements Model {
     private final FlashcardBook flashcardBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Flashcard> filteredFlashcards;
+    private final FilteredList<Score> filteredHistoryScores;
     private final Mode mode;
     private Quiz quizInstance;
+
 
     /**
      * Initializes a ModelManager with the given flashcardBook and userPrefs.
@@ -38,6 +40,7 @@ public class ModelManager implements Model {
         this.flashcardBook = new FlashcardBook(flashcardBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredFlashcards = new FilteredList<>(this.flashcardBook.getFlashcardList());
+        filteredHistoryScores = new FilteredList<>(this.flashcardBook.getScoreHistoryList());
         this.mode = new Mode();
     }
 
@@ -137,6 +140,12 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Score> getFilteredScoreHistory() {
         return flashcardBook.getScoreHistoryList();
+    }
+
+    @Override
+    public void updateFilteredScoreHistory(Predicate<Score> predicate) {
+        requireNonNull(predicate);
+        filteredHistoryScores.setPredicate(predicate);
     }
 
     @Override
