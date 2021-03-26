@@ -6,7 +6,7 @@ import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.Model;
 
 /**
- * Terminates the program.
+ * Toggles the orientation of note panel.
  */
 public class ToggleNoteOrientationCommand extends Command {
 

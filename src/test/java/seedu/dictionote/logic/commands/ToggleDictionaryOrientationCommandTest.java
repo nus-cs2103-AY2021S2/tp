@@ -12,6 +12,9 @@ import seedu.dictionote.logic.commands.enums.UiActionOption;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
 
+/**
+ * Toggles the orientation of dictionary panel.
+ */
 public class ToggleDictionaryOrientationCommandTest {
     private Model model = new ModelManager();
     private Model expectedModel = new ModelManager();
