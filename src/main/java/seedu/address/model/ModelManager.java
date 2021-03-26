@@ -141,27 +141,23 @@ public class ModelManager implements Model {
         return personBook.hasPerson(person);
     }
 
+    //@@author kangtinglee
+    public Person getPersonByIndex(int i) {
+        return getFilteredPersonList().get(i);
+    }
+
+    //@@author kangtinglee
     @Override
     public void deletePerson(Person target) {
         personBook.removePerson(target);
+        List<Order> deletionList = getOrdersFromPerson(target);
+        deleteOrders(deletionList);
 
-        List<Order> deletionList = new ArrayList<>();
-        ObservableList<Order> orders = getOrderBook().getOrderList();
-        for (Order o : orders) {
-            if (o.isFromCustomer(target)) {
-                deletionList.add(o);
-            }
-        }
+        assert !personBook.hasPerson(target);
 
         for (Order o : deletionList) {
-            deleteOrder(o);
+            assert !hasOrder(o);
             logger.fine(String.format("Order %s belonging to %s deleted by cascade", o, target));
-        }
-
-        assert personBook.hasPerson(target) == false;
-
-        for (Order o : deletionList) {
-            assert hasOrder(o) == false;
         }
     }
 
@@ -305,6 +301,19 @@ public class ModelManager implements Model {
         return filteredIngredients;
     }
 
+    //@@author kangtinglee
+    /** Returns a list of dishes that use a particular ingredient */
+    public List<Dish> getDishesByIngredients(Ingredient ingredient) {
+        List<Dish> result = new ArrayList<>();
+        List<Dish> dishes = getDishBook().getDishList();
+        for (Dish d : dishes) {
+            if (d.contains(ingredient)) {
+                result.add(d);
+            }
+        }
+        return result;
+    }
+
     //=========== Orders ================================================================================
     /**
      * Replaces address book data with the data in {@code addressBook}.
@@ -338,6 +347,16 @@ public class ModelManager implements Model {
     }
 
     /**
+     * Deletes a list of orders.
+     * The orders must exist.
+     */
+    public void deleteOrders(List<Order> orders) {
+        for (Order o : orders) {
+            deleteOrder(o);
+        }
+    }
+
+    /**
      * Adds the given order.
      * {@code order} must not already exist
      */
@@ -359,6 +378,19 @@ public class ModelManager implements Model {
     /** Returns an unmodifiable view of the filtered person list */
     public ObservableList<Order> getFilteredOrderList() {
         return filteredOrders;
+    }
+
+    //@@author kangtinglee
+    /** Returns an unmodifiable view of the orders belonging to a particular customer */
+    public List<Order> getOrdersFromPerson(Person target) {
+        List<Order> result = new ArrayList<>();
+        ObservableList<Order> orders = getOrderBook().getOrderList();
+        for (Order o : orders) {
+            if (o.isFromCustomer(target)) {
+                result.add(o);
+            }
+        }
+        return result;
     }
 
     //=========== Filtered Person List Accessors =============================================================
