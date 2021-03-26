@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.NonConflictingAppointmentList;
+import seedu.address.model.person.Patient;
 
 /**
  * Wraps all data at the appointment-schedule level
@@ -86,6 +87,28 @@ public class AppointmentSchedule implements ReadOnlyAppointmentSchedule {
     }
 
     /**
+     * Returns true if a patient has existing appointments in the appointment schedule.
+     */
+    public boolean hasPatientInSchedule(Patient patient) {
+        return appointments.hasPatientInSchedule(patient);
+    }
+
+    /**
+     * Removes {@code toRemove} from this {@code AppointmentSchedule}.
+     * {@code toRemove} must exist in the appointment schedule.
+     */
+    public void removeAppointment(Appointment toRemove) {
+        appointments.remove(toRemove);
+    }
+
+    /**
+     * Deletes all appointments associated with the input patient from the appointment schedule.
+     */
+    public void deletePatientAppointments(Patient patient) {
+        appointments.deletePatientAppointments(patient);
+    }
+
+    /**
      * Adds an appointment to the address book.
      * The appointment must not have conflicts with the existing appointments in the
      * appointment schedule
@@ -106,16 +129,7 @@ public class AppointmentSchedule implements ReadOnlyAppointmentSchedule {
         appointments.setAppointment(target, editedAppointment);
     }
 
-    /**
-     * Removes {@code toRemove} from this {@code AppointmentSchedule}.
-     * {@code toRemove} must exist in the appointment schedule.
-     */
-    public void removeAppointment(Appointment toRemove) {
-        appointments.remove(toRemove);
-    }
-
     //// util methods
-
     @Override
     public String toString() {
         return appointments.asUnmodifiableObservableList().size() + " appointments";
