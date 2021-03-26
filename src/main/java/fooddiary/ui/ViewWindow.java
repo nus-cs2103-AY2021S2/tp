@@ -31,7 +31,7 @@ public class ViewWindow extends UiPart<Stage> {
     @FXML
     private Label address;
     @FXML
-    private Label review;
+    private Label reviews;
     @FXML
     private FlowPane tags;
 
@@ -111,7 +111,7 @@ public class ViewWindow extends UiPart<Stage> {
         price.setText(String.format("price: $%s", entryDetails.get("price")));
         rating.setText(String.format("Rating: %s / 5", entryDetails.get("rating")));
         address.setText(entryDetails.get("address") + "\n\n");
-        review.setText(entryDetails.get("review") + "\n\n");
+        reviews.setText(String.format("Reviews:\n%s\n\n", entryDetails.get("reviews")));
         Arrays.stream(entryDetails.get("tags").split(";"))
                 .forEach(tag -> tags.getChildren().add(new Label(tag)));
     }

@@ -55,7 +55,7 @@ public class ViewCommand extends Command {
         entryDetails.put("price", entry.getPrice().value);
         entryDetails.put("address", entry.getAddress().value);
         String reviews = entry.getReviews().stream()
-                .map(review -> review.value + ";")
+                .map(review -> review.value + "\n")
                 .collect(Collectors.joining());
         entryDetails.put("reviews", reviews);
         String tags = entry.getTags().stream()
