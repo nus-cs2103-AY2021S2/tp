@@ -22,6 +22,10 @@ nav-text: Developer Guide
 
 <div style="page-break-after: always;"></div>
 
+## **Introduction**
+* todo brief description of the software provided in the developer guide
+* todo brief description and some navigation tips about the developer guide as to what was similarly done in the user guide.
+
 ## **Design**
 
 ### Architecture
@@ -70,7 +74,6 @@ The sections below give more details of each component.
 ### UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
-* to-do please check if this is correct
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/us/among/ui/Ui.java)
@@ -160,7 +163,7 @@ This section describes some noteworthy details on how certain features are imple
 * Change/Add classes in the Endpoint package to encapsulate an API endpoint.
 
 #### Implementation
-![Structure of the Model Component](images/ModelClassDiagram.png)
+![Structure of the Model Component](images/EndpointClassDiagram.png)
 An `Endpoint`,
 * is stored in `EndpointList` of the `Model`
 * encapsulates an API endpoint
@@ -180,7 +183,7 @@ An `Endpoint` contains the following attributes:
 * Before an API call is made, the `Response` object will be empty
 * Only when a Request#executeTimed(request) is called will a `Response` contain information about the API call response
 
-The following activity diagram summarizes what happens when a user executes an add command:
+The following activity diagram summarizes how an endpoint is created when a user executes an add command:
 ![AddActivityDiagram](images/AddActivityDiagram.png)
 
 #### Design consideration:

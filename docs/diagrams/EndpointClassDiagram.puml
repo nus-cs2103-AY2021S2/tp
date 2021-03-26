@@ -1,0 +1,37 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Class EndpointList
+
+Package Endpoint {
+Class Endpoint
+Class Address
+Class Data
+Class Method
+Class UniqueEndpointList
+}
+
+Package Header {
+Class Header
+}
+
+Package Tag {
+Class Tag
+}
+
+
+EndpointList *--> "1" UniqueEndpointList
+UniqueEndpointList o--> "*" Endpoint
+Endpoint *--> "1" Method
+Endpoint *--> "1" Data
+Endpoint *--> "1" Address
+Endpoint *--> "*" Header
+Endpoint *--> "*" Tag
+
+Method -[hidden]right-> Address
+Address -[hidden]right-> Data
+
+@enduml
