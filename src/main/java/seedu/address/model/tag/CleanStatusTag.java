@@ -7,10 +7,7 @@ public class CleanStatusTag {
 
     public static final String CLEAN = "Clean";
     public static final String UNCLEAN = "Unclean";
-    public static final String CLEAN_DESC = "y";
-    public static final String UNCLEAN_DESC = "n";
-
-    private static String MESSAGE_CONSTRAINTS = "Please use 'c/y', 'c/n', 'c/clean' or 'c/unclean'";
+    private static final String MESSAGE_CONSTRAINTS = "Please use 'c/y', 'c/n', 'c/clean' or 'c/unclean'";
 
     private String cleanStatus;
 
