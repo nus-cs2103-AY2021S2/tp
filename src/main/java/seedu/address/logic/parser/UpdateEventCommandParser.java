@@ -16,6 +16,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Interval;
 import seedu.address.model.task.repeatable.Event;
 
+/**
+ * Parses input arguments and creates a new UpdateEventCommand object
+ */
 public class UpdateEventCommandParser implements Parser<UpdateEventCommand> {
 
     /**
