@@ -1,7 +1,6 @@
 package seedu.weeblingo.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.weeblingo.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 
 import seedu.weeblingo.model.Model;
 
@@ -18,7 +17,9 @@ public class QuizCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
-        return new CommandResult(MESSAGE_SUCCESS, false, false, true);
+        model.updateFilteredFlashcardList(Model.PREDICATE_SHOW_ALL_FLASHCARDS);
+        model.getMode().switchModeQuiz();
+        return new CommandResult(MESSAGE_SUCCESS, false, false, true, false);
+
     }
 }

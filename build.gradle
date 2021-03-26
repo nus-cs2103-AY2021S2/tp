@@ -20,6 +20,10 @@ checkstyle {
     toolVersion = '8.29'
 }
 
+run {
+    enableAssertions = true
+}
+
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
@@ -71,3 +75,7 @@ shadowJar {
 }
 
 defaultTasks 'clean', 'test'
+
+run {
+    enableAssertions = true
+}

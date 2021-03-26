@@ -6,6 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -16,7 +18,6 @@ import seedu.weeblingo.logic.Logic;
 import seedu.weeblingo.logic.commands.CommandResult;
 import seedu.weeblingo.logic.commands.exceptions.CommandException;
 import seedu.weeblingo.logic.parser.exceptions.ParseException;
-import seedu.weeblingo.model.Quiz;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -27,6 +28,8 @@ public class MainWindow extends UiPart<Stage> {
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
+    private final ImageView teacherImage = new ImageView(
+            new Image(this.getClass().getResourceAsStream("/images/teacher.png")));
 
     private Stage primaryStage;
     private Logic logic;
@@ -112,17 +115,13 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
 
-        // can have a separate Panel here for the quiz mode, structure similar to learn mode
-        // problem is fillInnerParts() is called in UiManager start method when the app starts,
-        // need to find a way to alternate between the two panels
-
         // display menu mode at the launch of app
-
         flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
         flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
 
+
         // don't show flashcard panel at the start
-        enterStartMode();
+        flashcardListPanelPlaceholder.setVisible(false);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -148,75 +147,7 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    /**
-     * Shows the flashcard panel for learn mode.
-     */
-    private void enterLearnMode() {
-        flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
-        flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
-        flashcardListPanelPlaceholder.setVisible(true);
-    }
 
-    /**
-     * Hides the flashcard panel for start mode.
-     */
-    private void enterStartMode() {
-        flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
-        flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
-        flashcardListPanelPlaceholder.setVisible(false);
-    }
-
-    /**
-     * Shows the flashcard panel for learn mode.
-     * TODO: make changes to GUI and data structure s.t. only one question is shown at a time
-     * and only the question description is shown (since it is quiz).
-     */
-    private void enterQuizMode() {
-        flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList(),
-                true, FlashcardListPanel.QUIZ_LIST);
-        flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
-        flashcardListPanelPlaceholder.setVisible(true);
-    }
-
-    /**
-     * Starts the quiz by generating the Quiz object and then showing the first question.
-     */
-    private void startQuiz() {
-        flashcardListPanel = new FlashcardListPanel(logic.startQuiz(), true, logic.getCurrentIndex());
-        flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
-        flashcardListPanelPlaceholder.setVisible(true);
-    }
-
-    /**
-     * Shows the next question in the quiz.
-     */
-    private void getNextFlashcard() {
-        if (Quiz.hasSessionEnded()) {
-            resultDisplay.setFeedbackToUser(Quiz.QUIZ_END_MESSAGE);
-            flashcardListPanelPlaceholder.setVisible(false);
-            return;
-        }
-
-        flashcardListPanel = new FlashcardListPanel(logic.getNextFlashcard(), true, logic.getCurrentIndex());
-        flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
-        flashcardListPanelPlaceholder.setVisible(true);
-    }
-
-    /**
-     * Shows the answer of current question in the quiz.
-     */
-    private void checkAnswer() {
-        flashcardListPanel = new FlashcardListPanel(logic.getCurrentFlashcard(), false, logic.getCurrentIndex());
-        flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
-        flashcardListPanelPlaceholder.setVisible(true);
-    }
-
-    /**
-     * Clears the Quiz instance.
-     */
-    private void clearQuizInstance() {
-        logic.clearQuizInstance();
-    }
 
     /**
      * Opens the help window or focuses on it if it's already opened.
@@ -224,6 +155,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleHelp() {
         if (!helpWindow.isShowing()) {
+            assert true;
+            logger.warning("Showing help");
             helpWindow.show();
         } else {
             helpWindow.focus();
@@ -257,36 +190,14 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
-
-
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
-            if (commandText.equals("end")) {
-                clearQuizInstance();
-                enterStartMode();
-            }
-
-            if (commandText.equals("learn")) {
-                enterLearnMode();
-            }
-
-            if (commandText.equals("quiz")) {
-                enterQuizMode();
-            }
-
-            if (commandText.equals("start")) {
-                startQuiz();
-            }
-
-            if (commandText.equals("next")) {
-                getNextFlashcard();
-            }
-
-            if (commandText.equals("check")) {
-                checkAnswer();
-            }
+            int currentMode = logic.getModel().getCurrentMode();
+            logger.info(String.format("Current mode is %s", currentMode));
+            flashcardListPanelPlaceholder.setVisible(commandResult.isShowCards());
+            int index = (commandText.equals("next") || commandText.equals("check")) ? logic.getCurrentIndex() : -1;
+            flashcardListPanel.updateCard(index, commandResult.isShowAnswer());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
