@@ -13,6 +13,7 @@ import seedu.dictionote.commons.exceptions.IllegalValueException;
 import seedu.dictionote.model.contact.Address;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.contact.Email;
+import seedu.dictionote.model.contact.FrequencyCounter;
 import seedu.dictionote.model.contact.Name;
 import seedu.dictionote.model.contact.Phone;
 import seedu.dictionote.model.tag.Tag;
@@ -61,7 +62,7 @@ class JsonAdaptedContact {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        frequency = source.getFrequencyCounter();
+        frequency = source.getFrequencyCounter().value;
     }
 
     /**
@@ -109,7 +110,13 @@ class JsonAdaptedContact {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        return new Contact(modelName, modelPhone, modelEmail, modelAddress, modelTags, frequency);
+        if (FrequencyCounter.isValidFrequencyCounter(frequency)) {
+            throw new IllegalValueException(FrequencyCounter.MESSAGE_CONSTRAINTS);
+        }
+
+        final FrequencyCounter modelFrequency = new FrequencyCounter(frequency);
+
+        return new Contact(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelFrequency);
     }
 
 }
