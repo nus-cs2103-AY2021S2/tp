@@ -20,24 +20,24 @@ import seedu.address.model.garment.Type;
 public class SampleDataUtil {
     public static Garment[] getSampleGarments() {
         return new Garment[] {
-            new Garment(new Name("Alex Yeoh"), new Size("34"), new Colour("blue"),
-                new DressCode("FORMAL"), new Type("top"),
-                getDescriptionSet("friends")),
-            new Garment(new Name("Bernice Yu"), new Size("29"), new Colour("blue"),
-                new DressCode("CASUAL"), new Type("bottom"),
-                getDescriptionSet("colleagues", "friends")),
-            new Garment(new Name("Charlotte Oliveiro"), new Size("26"), new Colour("blue"),
-                new DressCode("ACTIVE"), new Type("footwear"),
-                getDescriptionSet("neighbours")),
-            new Garment(new Name("David Li"), new Size("43"), new Colour("blue"),
-                new DressCode("FORMAL"), new Type("top"),
-                getDescriptionSet("family")),
-            new Garment(new Name("Irfan Ibrahim"), new Size("44"), new Colour("blue"),
-                new DressCode("CASUAL"), new Type("footwear"),
-                getDescriptionSet("classmates")),
-            new Garment(new Name("Roy Balakrishnan"), new Size("35"), new Colour("blue"),
-                new DressCode("ACTIVE"), new Type("bottom"),
-                getDescriptionSet("colleagues"))
+            new Garment(new Name("Blazer"), new Size("34"), new Colour("blue"),
+                new DressCode("formal"), new Type("upper"),
+                getDescriptionSet("missing button")),
+            new Garment(new Name("Jeans"), new Size("29"), new Colour("blue"),
+                new DressCode("casual"), new Type("lower"),
+                getDescriptionSet("stained", "torn")),
+            new Garment(new Name("Adidas Shoes"), new Size("26"), new Colour("black"),
+                new DressCode("active"), new Type("footwear"),
+                getDescriptionSet("sole worn out")),
+            new Garment(new Name("Faculty Shirt"), new Size("43"), new Colour("blue"),
+                new DressCode("casual"), new Type("upper"),
+                getDescriptionSet("SOC")),
+            new Garment(new Name("Dress Shoes"), new Size("44"), new Colour("brown"),
+                new DressCode("formal"), new Type("footwear"),
+                getDescriptionSet("needs polishing")),
+            new Garment(new Name("FBT Shorts"), new Size("35"), new Colour("black"),
+                new DressCode("active"), new Type("lower"),
+                getDescriptionSet("loose"))
         };
     }
 
