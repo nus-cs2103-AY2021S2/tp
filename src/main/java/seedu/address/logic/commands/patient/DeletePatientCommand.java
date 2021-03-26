@@ -33,6 +33,11 @@ public class DeletePatientCommand extends Command {
     private final Index targetIndex;
     private final boolean isForceDelete;
 
+    /**
+     * Constructor: creates a DeletePatientCommand
+     * @param targetIndex index of patient to be deleted
+     * @param isForceDelete true if force delete is required
+     */
     public DeletePatientCommand(Index targetIndex, boolean isForceDelete) {
         this.targetIndex = targetIndex;
         this.isForceDelete = isForceDelete;
