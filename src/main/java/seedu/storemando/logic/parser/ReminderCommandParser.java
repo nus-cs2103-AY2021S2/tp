@@ -41,7 +41,7 @@ public class ReminderCommandParser implements Parser<ReminderCommand> {
     }
 
     /**
-     * Convert the given number and the time unit to the number of days.
+     * Converts the given number and the time unit to the number of days.
      *
      * @param parsedNum The number that is use to covert to days
      * @param timeUnit  The time unit in terms of days and weeks
@@ -57,7 +57,7 @@ public class ReminderCommandParser implements Parser<ReminderCommand> {
     }
 
     /**
-     * Check if the given number is singular.
+     * Checks if the given number is singular.
      *
      * @param number The number that is given
      * @return A boolean that says if the number is singular
@@ -66,6 +66,14 @@ public class ReminderCommandParser implements Parser<ReminderCommand> {
         return number >= -1 && number <= 1;
     }
 
+    /**
+     * Converts number into proper number of days based on the keyword given.
+     *
+     * @param parsedNum The number that is use to covert to days
+     * @param timeUnit  The time unit in terms of days and weeks
+     * @return The number of days
+     * @throws ParseException if the user input does not conform the expected keyword
+     */
     private long singularTimeUnitConversion(Long parsedNum, String timeUnit) throws ParseException {
         if (timeUnit.equalsIgnoreCase(DAY_KEYWORD)) {
             return parsedNum;
@@ -76,6 +84,14 @@ public class ReminderCommandParser implements Parser<ReminderCommand> {
         }
     }
 
+    /**
+     * Converts number into proper number of days based on the keyword given.
+     *
+     * @param parsedNum The number that is use to covert to days
+     * @param timeUnit  The time unit in terms of days and weeks
+     * @return The number of days
+     * @throws ParseException if the user input does not conform the expected keyword
+     */
     private long pluralTimeUnitConversion(Long parsedNum, String timeUnit) throws ParseException {
         if (timeUnit.equalsIgnoreCase(DAYS_KEYWORD)) {
             return parsedNum;
