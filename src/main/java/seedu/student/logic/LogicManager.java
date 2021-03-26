@@ -14,7 +14,7 @@ import seedu.student.logic.parser.StudentBookParser;
 import seedu.student.logic.parser.exceptions.ParseException;
 import seedu.student.model.Model;
 import seedu.student.model.ReadOnlyStudentBook;
-import seedu.student.model.appointment.Appointment;
+import seedu.student.model.appointment.SameDateAppointmentList;
 import seedu.student.model.student.Student;
 import seedu.student.storage.Storage;
 
@@ -66,7 +66,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Appointment> getFilteredAppointmentList() {
+    public ObservableList<SameDateAppointmentList> getFilteredAppointmentList() {
         return model.getFilteredAppointmentList();
     }
 
