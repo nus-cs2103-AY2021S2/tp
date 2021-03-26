@@ -1,7 +1,6 @@
 package seedu.address.testutil;
 
 import java.util.Set;
-import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -38,14 +37,6 @@ public class EditPatientDescriptorBuilder {
         descriptor.setEmail(patient.getEmail());
         descriptor.setAddress(patient.getAddress());
         descriptor.setTags(patient.getTags());
-    }
-
-    /**
-     * Sets the {@code UUID} of the {@code EditPatientDescriptor} that we are building.
-     */
-    public EditPatientDescriptorBuilder withUuid(String uuid) {
-        descriptor.setUuid(UUID.fromString(uuid));
-        return this;
     }
 
     /**
