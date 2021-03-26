@@ -2,6 +2,7 @@ package seedu.module.model.task;
 
 import static seedu.module.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
@@ -20,12 +21,14 @@ public class Task {
     private final Name name;
     private final Deadline deadline;
     private final Module module;
+    private boolean isRecurringTask;
 
     // Data fields
     private final Description description;
     private final Workload workload;
     private final DoneStatus doneStatus;
     private final Set<Tag> tags = new HashSet<>();
+    private Recurrence recurrence;
 
     /**
      * Every field must be present and not null.
@@ -40,6 +43,25 @@ public class Task {
         this.workload = workload;
         this.doneStatus = doneStatus;
         this.tags.addAll(tags);
+        this.isRecurringTask = false;
+    }
+
+    /**
+     * Overloaded constructor for Task when an optional Recurrence is passed in.
+     * Every field must be present and not null.
+     */
+    public Task(Name name, Deadline deadline, Module module, Description description,
+                Workload workload, DoneStatus doneStatus, Recurrence recurrence, Set<Tag> tags) {
+        requireAllNonNull(name, deadline, module, description, workload, doneStatus, recurrence, tags);
+        this.name = name;
+        this.deadline = deadline;
+        this.module = module;
+        this.description = description;
+        this.workload = workload;
+        this.doneStatus = doneStatus;
+        this.tags.addAll(tags);
+        this.recurrence = recurrence;
+        this.isRecurringTask = true;
     }
 
     public Name getName() {
@@ -64,6 +86,14 @@ public class Task {
 
     public DoneStatus getDoneStatus() {
         return doneStatus;
+    }
+
+    public Recurrence getRecurrence() {
+        return recurrence;
+    }
+
+    public boolean getIsRecurringTaskStatus() {
+        return isRecurringTask;
     }
 
     /**
@@ -109,7 +139,8 @@ public class Task {
                 && otherTask.getDescription().equals(getDescription())
                 && otherTask.getWorkload().equals(getWorkload())
                 && otherTask.getDoneStatus().equals(getDoneStatus())
-                && otherTask.getTags().equals(getTags());
+                && otherTask.getTags().equals(getTags())
+                && otherTask.getRecurrence().equals(getRecurrence());
     }
 
     @Override
@@ -134,11 +165,16 @@ public class Task {
                 .append("; Completion Status: ")
                 .append(getDoneStatus());
 
+        if (isRecurringTask) {
+            builder.append("; Recurring: ").append(getRecurrence());
+        }
+
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
         return builder.toString();
     }
 

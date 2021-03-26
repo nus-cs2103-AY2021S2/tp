@@ -49,6 +49,22 @@ public class Deadline {
         }
     }
 
+    /**
+     * Method to make new Deadline using LocalDateTime object instead
+     *
+     * @param deadlineTime a valid LocalDateTime that is used to construct Deadline object.
+     */
+    public static Deadline makeDeadlineWithTime(LocalDateTime deadlineTime) {
+        requireNonNull(deadlineTime);
+        String deadlineString = deadlineTime.format(DATE_TIME_FORMATTER_WITH_TIME);
+
+        return new Deadline(deadlineString);
+    }
+
+    public LocalDate getDate() {
+        return this.date;
+    }
+
     public LocalDateTime getTime() {
         return this.time;
     }

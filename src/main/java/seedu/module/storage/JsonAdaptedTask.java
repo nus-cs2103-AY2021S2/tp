@@ -11,13 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.module.commons.exceptions.IllegalValueException;
 import seedu.module.model.tag.Tag;
-import seedu.module.model.task.Deadline;
-import seedu.module.model.task.Description;
-import seedu.module.model.task.DoneStatus;
+import seedu.module.model.task.*;
 import seedu.module.model.task.Module;
-import seedu.module.model.task.Name;
-import seedu.module.model.task.Task;
-import seedu.module.model.task.Workload;
 
 
 /**
@@ -33,6 +28,7 @@ class JsonAdaptedTask {
     private final String description;
     private final String workload;
     private final String doneStatus;
+    private final String recurrence;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -42,13 +38,18 @@ class JsonAdaptedTask {
     public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("deadline") String deadline,
             @JsonProperty("module") String module, @JsonProperty("description") String description,
             @JsonProperty("workload") String workload, @JsonProperty("doneStatus") String doneStatus,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("recurrence") String recurrence, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.deadline = deadline;
         this.module = module;
         this.description = description;
         this.workload = workload;
         this.doneStatus = doneStatus;
+        if (!recurrence.equals("")) {
+            this.recurrence = recurrence;
+        } else {
+            this.recurrence = "";
+        }
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -64,6 +65,11 @@ class JsonAdaptedTask {
         description = source.getDescription().value;
         workload = source.getWorkload().toString();
         doneStatus = source.getDoneStatus().value;
+        if (!source.getIsRecurringTaskStatus()) {
+            recurrence = "";
+        } else {
+            recurrence = source.getRecurrence().value;
+        }
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -133,9 +139,26 @@ class JsonAdaptedTask {
 
         final DoneStatus modelDoneStatus = new DoneStatus(doneStatus);
 
-        final Set<Tag> modelTags = new HashSet<>(taskTags);
-        return new Task(modelName, modelDeadline, modelModule, modelDescription,
-                modelWorkload, modelDoneStatus, modelTags);
-    }
+        Recurrence modelRecurrence;
+        boolean isRecurringTask;
+        if (recurrence.equals("")) {
+            modelRecurrence = null;
+            isRecurringTask = false;
+        } else {
+            if (!Recurrence.isValidRecurrence(recurrence)) {
+                throw new IllegalValueException(Recurrence.MESSAGE_CONSTRAINTS);
+            }
+            modelRecurrence = new Recurrence(recurrence);
+            isRecurringTask = true;
+        }
 
+        final Set<Tag> modelTags = new HashSet<>(taskTags);
+        if (isRecurringTask) {
+            return new Task(modelName, modelDeadline, modelModule, modelDescription,
+                    modelWorkload, modelDoneStatus, modelRecurrence, modelTags);
+        } else {
+            return new Task(modelName, modelDeadline, modelModule, modelDescription,
+                    modelWorkload, modelDoneStatus, modelTags);
+        }
+    }
 }
