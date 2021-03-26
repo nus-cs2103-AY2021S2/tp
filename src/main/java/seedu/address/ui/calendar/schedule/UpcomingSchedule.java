@@ -99,10 +99,6 @@ public class UpcomingSchedule extends UiPart<Region> implements EventHandler<Mou
 
         // Fill the label for today.
         fillTopLabelForDay();
-
-
-
-
     }*/
 
     private void addTimePointer() {
@@ -110,6 +106,7 @@ public class UpcomingSchedule extends UiPart<Region> implements EventHandler<Mou
         String currentTime = getCurrentTime();
         double marginTop = getMarginFromTime(currentTime) - CURRENT_TIME_POINTER_PADDING;
         currentTimePointer = new CurrentTimePointer(toAmPmTime(currentTime));
+
         // The sequence matters, tasks must be on top.
         timeScale.placeCurrentTime(currentTimePointer, marginTop);
         timeScale.handleOverlap(currentTime);
@@ -124,11 +121,13 @@ public class UpcomingSchedule extends UiPart<Region> implements EventHandler<Mou
                 }
                 Platform.runLater(() -> {
                     String newCurrentTime = getCurrentTime();
+
                     //update the position of the currentTimePointer
                     currentTimePointer.updateTime(toAmPmTime(newCurrentTime));
                     timeScale.updateCurrentTimePosition(getMarginFromTime(newCurrentTime)
                             - CURRENT_TIME_POINTER_PADDING);
                     timeScale.handleOverlap(newCurrentTime);
+
                     // update the today label
                     fillTopLabelForDay();
                 });
@@ -185,8 +184,8 @@ public class UpcomingSchedule extends UiPart<Region> implements EventHandler<Mou
 
     @Override
     public void handle(MouseEvent mouseEvent) {
+        //Get time string from calendar box that was clicked
         String formattedTime = ((Label) ((VBox) mouseEvent.getSource()).getChildren().get(0)).getText();
-        System.out.println(formattedTime);
         LocalDate clickedDate = calendarTextToDate(formattedTime);
 
         if (clickedDate == currentDay) {

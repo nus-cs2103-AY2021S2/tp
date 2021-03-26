@@ -98,7 +98,7 @@ public class EventCell extends UiPart<Region> {
     }
 
     private int getTaskDuration() {
-        int duration = event.getTimeTaken();
+        int duration = event.getDuration();
         return duration;
     }
 

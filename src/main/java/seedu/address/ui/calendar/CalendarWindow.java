@@ -18,6 +18,9 @@ import seedu.address.storage.CalendarStorage;
 import seedu.address.ui.UiPart;
 import seedu.address.ui.calendar.schedule.UpcomingSchedule;
 
+/**
+ * Represents the calendar window for the GUI.
+ */
 public class CalendarWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(CalendarWindow.class);
     private static final String FXML = "CalendarWindow.fxml";
@@ -66,6 +69,8 @@ public class CalendarWindow extends UiPart<Stage> {
 
     /**
      * Creates a new CalendarWindow.
+     * @param calendarStorage stores the calendar events' information.
+     * @param upcomingSchedule timeline for date on the left side of the calendar window.
      */
     public CalendarWindow(CalendarStorage calendarStorage, UpcomingSchedule upcomingSchedule) {
         super(FXML);
@@ -87,8 +92,8 @@ public class CalendarWindow extends UiPart<Stage> {
     // https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/resources/view/CalendarView.fxml
     // with minor modifications.
     /**
-     * It will update the attributes in the class according to the meetingDate parse in
-     * @param date the new meetingDate
+     * Updates attributes in class from date.
+     * @param date current date.
      */
     private void updateDayMonthYear(LocalDate date) {
         this.year = date.getYear();
@@ -109,14 +114,14 @@ public class CalendarWindow extends UiPart<Stage> {
     }
 
     /**
-     * Refresh init storage.
+     * Refreshes Calendar storage.
      */
-    private void initStorage() {
+    private void refreshStorage() {
         calendarStorage.refreshStorage();
     }
 
     /**
-     * load the day names into Calendar
+     * Loads the day names into Calendar.
      */
     private void loadDayNames() {
         for (int col = 0; col < CALENDER_SIDE_SIZE; col++) {
@@ -131,11 +136,11 @@ public class CalendarWindow extends UiPart<Stage> {
     }
 
     /**
-     * load the day dates into Calendar
+     * Loads the day dates into Calendar.
      */
     private void loadDayDates() {
         //refresh storage to load dates
-        initStorage();
+        refreshStorage();
 
         LocalDate currentDate = firstDayOfTheMonth.minusDays(prevMonthDays);
         for (int row = 2; row < CALENDER_SIDE_SIZE; row++) {
@@ -154,6 +159,7 @@ public class CalendarWindow extends UiPart<Stage> {
                     calendarBox.getRoot().setDisable(true);
                     calendarBox.getRoot().setStyle("-fx-background-color: grey");
                 }
+
                 currentDate = currentDate.plusDays(1);
             }
         }
@@ -218,7 +224,7 @@ public class CalendarWindow extends UiPart<Stage> {
     // https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/resources/view/CalendarView.fxml
     // with no modifications.
     /**
-     * Find the number of days in a month given the year and month.
+     * Finds the number of days in a month given the year and month.
      *
      * @return return the number of days.
      */
@@ -235,7 +241,7 @@ public class CalendarWindow extends UiPart<Stage> {
     }
 
     /**
-     * Find the number of days in a month given the year and month.
+     * Finds the number of days in a month given the year and month.
      *
      * @return return the number of days.
      */
@@ -282,7 +288,7 @@ public class CalendarWindow extends UiPart<Stage> {
     //Solution below adapted from
     //https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/resources/view/CalendarView.fxml
     /**
-     * Set the monthYear Label's content.
+     * Sets the monthYear Label's content.
      */
     private void setMonthYearLabel() {
         StringBuilder monthYear = new StringBuilder();
@@ -296,7 +302,7 @@ public class CalendarWindow extends UiPart<Stage> {
     //Solution below adapted from
     //https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/resources/view/CalendarView.fxml
     /**
-     * Refresh the whole dateGridPane to show latest UI.
+     * Refreshes the whole dateGridPane to show latest UI.
      */
     private void refreshCalenderView() {
         calendar.getChildren().clear();
@@ -308,7 +314,7 @@ public class CalendarWindow extends UiPart<Stage> {
     //Solution below adapted from
     //https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/resources/view/CalendarView.fxml
     /**
-     * Initialise calendar to previous month data when the prev button is clicked.
+     * Initialises calendar to previous month data when the prev button is clicked.
      */
     @FXML
     public void handleToPrev() {
@@ -320,7 +326,7 @@ public class CalendarWindow extends UiPart<Stage> {
     //Solution below adapted from
     //https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/resources/view/CalendarView.fxml
     /**
-     * Initialise calendar to next month data when the next button is clicked.
+     * Initialises calendar to next month data when the next button is clicked.
      */
     @FXML
     public void handleToNext() {
@@ -332,7 +338,7 @@ public class CalendarWindow extends UiPart<Stage> {
     //Solution below adapted from
     //https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/resources/view/CalendarView.fxml
     /**
-     * Initialise calendar to current month of today's date.
+     * Initialises calendar to current month of today's date.
      */
     @FXML
     public void viewToday() {

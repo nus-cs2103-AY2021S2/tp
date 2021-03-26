@@ -50,7 +50,7 @@ public class UiManager implements Ui {
             //start a thread to run background music
             Runnable music = playMusic();
             Thread thread = new Thread(music);
-            thread.start();
+            //thread.start();
 
             mainWindow = new MainWindow(primaryStage, logic);
             CalendarStorage calendarStorage = new CalendarStorage(logic);
