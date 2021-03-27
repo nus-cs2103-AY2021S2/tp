@@ -1,0 +1,32 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Appointment <<Rectangle>> {
+Class Appointment
+Class Date
+Class Time
+Class UniqueAppointmentList
+}
+
+Package Name as NamePackage {
+Class Name
+}
+
+Package Remark as RemarkPackage {
+Class Remark
+}
+
+Class AppointmentBook
+AppointmentBook *--> "1 " UniqueAppointmentList
+
+UniqueAppointmentList o--> "~*  " Appointment
+
+Appointment *-right-> Name
+Appointment *--> Remark
+Appointment *--> Date
+Appointment *--> Time
+
+@enduml

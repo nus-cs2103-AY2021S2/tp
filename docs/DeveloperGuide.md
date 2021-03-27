@@ -103,14 +103,20 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Due to the limitation of PlantUML, some multiplicities and association roles may be slightly out of place.
+</div>
 
 The `Model`,
 
-* stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* does not depend on any of the other three components.
+* stores a `UserPrefs` object that represents the user’s preferences, such as
+  * the preferred GUI settings (e.g. window size of the app)
+  * the preferred storage filepath for the property book
+  * the preferred storage filepath for the appointment book
+* stores the property book and appointment book data
+* exposes an unmodifiable `ObservableList<Property>` and an unmodifiable `ObservableList<Appointment>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change
+* does not depend on any of the other three components
 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
@@ -138,6 +144,68 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Property component
+
+![Structure of the Property Component](images/PropertyClassDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Due to the limitation of PlantUML, some solid diamonds that are used to denote composition may overlap with each other.
+</div>
+
+#### Implementation
+
+A `Property` is stored in a `UniquePropertyList`, which ensures that there are no duplicate properties in the `PropertyBook`. Each `Property` is uniquely identified by its `Address` and `PostalCode`.
+
+A `Property consists of the following mandatory attributes,
+  * a `Name`: the name of the property
+  * a `Type`: the housing type of the property (Hdb, Condo, Landed)
+  * an `Address`: the address of the property
+  * a `PostalCode`: the postal code of the property
+  * a `Deadline`: the property's deadline for selling
+  * a `Tag` set: a set of zero or more `Tag` objects
+
+and the following optional attributes,
+  * a `Remark`: a note about the property 
+  * a `Status`: represents the current stage of the selling (Option, Sales Agreement, Completion)
+  * a `Client`: represents the seller of the property 
+
+A `Client` consists of at least one of the following attributes,
+  * a `Name`: the name of the client
+  * a `Contact`: the contact number of the client
+  * an `Email`: the email of the client
+  * an `AskingPrice`: the asking price of the client
+
+#### Design Consideration
+
+##### Aspect: How each attribute of `Property` is stored
+
+* **Current implementation:** Each attribute of `Property` is immutable. When a property is to be edited, a new `Property` containing the updated fields will be created to replace the original `Property` object.
+    * Pros: Prevent accidental modification of a `Property` object (less prone to bugs)
+    * Cons: More code to be written as a separate `Property` object has to be created for each edit operation
+
+* **Alternative:** Allow mutable `Property` objects (provide setter methods to update the attributes of a `Property`)
+    * Pros: Easy to implement
+    * Cons: More prone to bugs
+
+### Appointment component
+
+![Structure of the Appointment Component](images/AppointmentClassDiagram.png)
+
+#### Implementation
+
+An `Appointment` is stored in a `UniqueAppointmentList`, which ensures that there are no duplicate appointments in the `AppointmentBook`. Each `Appointment` is uniquely identified by its `Date` and `Time`.
+
+An `Appointment` consists of the following mandatory attributes,
+* a `Name`: the name of the appointment
+* a `Remark`: a note about the appointment
+* a `Date`: the date of the appointment
+* a `Time`: the time of the appointment
+
+#### Design Consideration
+
+##### Aspect: How each attribute of `Appointment` is stored
+
+Similar design considerations as [how each attribute of `Property` is stored](#aspect-how-each-attribute-of-property-is-stored)
 
 ### \[Proposed\] Undo feature
 
