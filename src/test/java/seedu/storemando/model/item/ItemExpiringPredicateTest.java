@@ -2,6 +2,7 @@ package seedu.storemando.model.item;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.storemando.testutil.Assert.assertThrows;
 
 import java.time.LocalDate;
 
@@ -11,6 +12,18 @@ import seedu.storemando.model.expirydate.ItemExpiringPredicate;
 import seedu.storemando.testutil.ItemBuilder;
 
 public class ItemExpiringPredicateTest {
+
+
+    @Test
+    public void constructor_nonPositiveValue_assertionFailure() {
+        // 0 supplied into constructor
+        assertThrows(AssertionError.class, () -> new ItemExpiringPredicate((long) 0));
+
+        // negative value supplied into constructor
+        assertThrows(AssertionError.class, () -> new ItemExpiringPredicate((long) -2));
+
+    }
+
     @Test
     public void equals() {
         long firstPredicateNumOfDays = 3;

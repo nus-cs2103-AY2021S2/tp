@@ -44,8 +44,9 @@ class ItemComparatorByDecreasingQuantityTest {
 
     @Test
     public void compare_itemsWithSameQuantityAndLocation_success() {
-        Item peanuts = new ItemBuilder().withName("Peanuts").withQuantity("20")
+        Item peanuts = new ItemBuilder().withName("Peanutss").withQuantity("20")
             .withLocation("Kitchen Basket").build();
         assertTrue(comparator.compare(peanuts, GINGER) > 0);
     }
+
 }

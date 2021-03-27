@@ -142,4 +142,31 @@ public class ExpiryDateTest {
         assertTrue(new ExpiryDate(VALID_EXPIRYDATE_CHEESE).compare(new ExpiryDate(VALID_EXPIRYDATE_BANANA)) > 0);
         assertTrue(new ExpiryDate(VALID_EXPIRYDATE_BANANA).compare(new ExpiryDate(VALID_EXPIRYDATE_CHEESE)) < 0);
     }
+
+
+    @Test
+    public void equals() {
+        // same expiry date object
+        ExpiryDate expiryDate = new ExpiryDate("2021-10-10");
+        assertTrue(expiryDate.equals(expiryDate));
+
+        // different expiry date objects with same date
+        ExpiryDate anotherExpiryDate = new ExpiryDate("2021-10-10");
+        assertTrue(expiryDate.equals(anotherExpiryDate));
+
+        // different expiry date objects with different date
+        anotherExpiryDate = new ExpiryDate("2021-10-11");
+        assertFalse(expiryDate.equals(anotherExpiryDate));
+
+        // different expiry date objects with different month
+        anotherExpiryDate = new ExpiryDate("2021-11-10");
+        assertFalse(expiryDate.equals(anotherExpiryDate));
+
+        // different expiry date objects with different year
+        anotherExpiryDate = new ExpiryDate("2022-10-10");
+        assertFalse(expiryDate.equals(anotherExpiryDate));
+
+        // different types
+        assertFalse(new ExpiryDate("2020-10-10").equals(new Object()));
+    }
 }
