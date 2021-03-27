@@ -10,7 +10,7 @@ import java.util.Set;
 
 import seedu.module.commons.core.Messages;
 import seedu.module.commons.core.index.Index;
-import seedu.module.commons.core.optionalField.OptionalField;
+import seedu.module.commons.core.optionalfield.OptionalField;
 import seedu.module.logic.commands.exceptions.CommandException;
 import seedu.module.model.Model;
 import seedu.module.model.tag.Tag;

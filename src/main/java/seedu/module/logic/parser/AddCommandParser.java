@@ -13,7 +13,7 @@ import static seedu.module.logic.parser.CliSyntax.PREFIX_WORKLOAD;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.module.commons.core.optionalField.OptionalField;
+import seedu.module.commons.core.optionalfield.OptionalField;
 import seedu.module.logic.commands.AddCommand;
 import seedu.module.logic.parser.exceptions.ParseException;
 import seedu.module.model.tag.Tag;

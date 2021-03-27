@@ -5,7 +5,7 @@ import static seedu.module.model.task.Time.DATE_TIME_FORMATTER_WITH_TIME;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.module.commons.core.optionalField.OptionalField;
+import seedu.module.commons.core.optionalfield.OptionalField;
 import seedu.module.model.tag.Tag;
 import seedu.module.model.task.Description;
 import seedu.module.model.task.DoneStatus;

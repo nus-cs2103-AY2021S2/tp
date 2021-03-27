@@ -6,9 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.module.commons.core.optionalField.OptionalField;
 import seedu.module.model.task.Task;
-import seedu.module.model.task.Time;
 import seedu.module.model.task.UniqueTaskList;
 
 /**

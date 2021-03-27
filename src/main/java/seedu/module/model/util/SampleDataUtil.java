@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.module.commons.core.optionalField.OptionalField;
+import seedu.module.commons.core.optionalfield.OptionalField;
 import seedu.module.model.ModuleBook;
 import seedu.module.model.ReadOnlyModuleBook;
 import seedu.module.model.tag.Tag;

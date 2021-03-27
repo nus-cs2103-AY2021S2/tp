@@ -1,4 +1,4 @@
-package seedu.module.commons.core.optionalField;
+package seedu.module.commons.core.optionalfield;
 
 /**
  * Wrapper for optional field.
@@ -12,6 +12,11 @@ public class OptionalField<T> {
     private final T nullableField;
     private final boolean isNull;
 
+    /**
+     * Constructor of OptionalField class, null check will be performed.
+     *
+     * @param field the content of this wrapper
+     */
     public OptionalField(T field) {
         isNull = field == null;
         this.nullableField = field;
@@ -37,10 +42,10 @@ public class OptionalField<T> {
         }
 
         if (this.isNull()) {
-            return ((OptionalField<?>)other).isNull();
+            return ((OptionalField<?>) other).isNull();
         }
 
-        return this.getField().equals(((OptionalField<?>)other).getField());
+        return this.getField().equals(((OptionalField<?>) other).getField());
     }
 
     @Override
