@@ -45,6 +45,7 @@ public class EditCheeseCommand extends EditCommand {
 
     public static final String MESSAGE_EDIT_CHEESE_SUCCESS = "Edited Cheese: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_CHEESE_IS_ASSIGNED = "Not allowed to change the fields of an assigned cheese.";
 
     protected final Index index;
     protected final EditCheeseDescriptor editCheeseDescriptor;
@@ -70,6 +71,9 @@ public class EditCheeseCommand extends EditCommand {
         }
 
         Cheese cheeseToEdit = lastShownList.get(index.getZeroBased());
+        if (cheeseToEdit.isCheeseAssigned()) {
+            throw new CommandException(MESSAGE_CHEESE_IS_ASSIGNED);
+        }
         Cheese editedCheese = createEditedCheese(cheeseToEdit, editCheeseDescriptor);
 
         model.setCheese(cheeseToEdit, editedCheese);
