@@ -8,10 +8,20 @@ public class TypicalModelManager {
     /**
      * Returns an {@code AppointmentBook} with all the typical appointments.
      */
-    public static ModelManager getTypicalModelManager() {
+    public static ModelManager getTypicalModelManagerWithClient() {
         ModelManager modelManager =
             new ModelManager(TypicalAppointments.getTypicalAppointmentBook(),
                 TypicalProperties.getTypicalPropertyBookWithClient(), new UserPrefs());
+        return modelManager;
+    }
+
+    /**
+     * Returns an {@code AppointmentBook} with all the typical appointments.
+     */
+    public static ModelManager getTypicalModelManager() {
+        ModelManager modelManager =
+                new ModelManager(TypicalAppointments.getTypicalAppointmentBook(),
+                        TypicalProperties.getTypicalPropertyBook(), new UserPrefs());
         return modelManager;
     }
 }

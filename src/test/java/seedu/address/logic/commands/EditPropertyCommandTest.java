@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_BURGHLEY_D
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertPropertyCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.showPropertyAtIndex;
+import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROPERTY;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROPERTY;
 import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBook;
@@ -32,7 +33,7 @@ import seedu.address.testutil.PropertyBuilder;
  */
 public class EditPropertyCommandTest {
 
-    private Model model = new ModelManager(getTypicalPropertyBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAppointmentBook(), getTypicalPropertyBook(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {

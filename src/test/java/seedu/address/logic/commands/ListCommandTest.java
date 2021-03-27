@@ -11,8 +11,8 @@ import seedu.address.model.Model;
 import seedu.address.testutil.TypicalModelManager;
 
 class ListCommandTest {
-    private Model model = TypicalModelManager.getTypicalModelManager();
-    private Model expectedModel = TypicalModelManager.getTypicalModelManager();
+    private Model model = TypicalModelManager.getTypicalModelManagerWithClient();
+    private Model expectedModel = TypicalModelManager.getTypicalModelManagerWithClient();
 
     @Test
     public void listPropertyTest() {
