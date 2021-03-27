@@ -22,7 +22,7 @@ import seedu.student.model.appointment.exceptions.OverlappingAppointmentExceptio
  *
  * @see Appointment#isSameAppointment(Appointment)
  */
-public class SameDateAppointmentList implements Iterable<Appointment> {
+public class SameDateAppointmentList implements Iterable<Appointment>, Comparable<SameDateAppointmentList> {
     private final LocalDate date;
     private final ObservableList<Appointment> internalList;
     private final ObservableList<Appointment> internalUnmodifiableList;
@@ -71,6 +71,7 @@ public class SameDateAppointmentList implements Iterable<Appointment> {
             throw new DuplicateAppointmentException();
         }
         internalList.add(toAdd);
+        FXCollections.sort(internalList);
     }
 
     /**
@@ -116,5 +117,10 @@ public class SameDateAppointmentList implements Iterable<Appointment> {
 
     public boolean sameDate(Appointment toCheck) {
         return date.isEqual(toCheck.getDate());
+    }
+
+    @Override
+    public int compareTo(SameDateAppointmentList o) {
+        return date.compareTo(o.date);
     }
 }
