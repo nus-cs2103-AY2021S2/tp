@@ -1,7 +1,5 @@
 package seedu.student.ui;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Logger;
 
@@ -15,7 +13,6 @@ import javafx.scene.layout.Region;
 import seedu.student.commons.core.LogsCenter;
 import seedu.student.model.appointment.Appointment;
 import seedu.student.model.appointment.SameDateAppointmentList;
-import seedu.student.model.student.MatriculationNumber;
 import seedu.student.model.student.Student;
 
 /**
