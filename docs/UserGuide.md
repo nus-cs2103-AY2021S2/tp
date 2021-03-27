@@ -159,17 +159,26 @@ Format: `findPriority PRIORITY`
 
 Examples: `findPriority high`
 
-<a name="findUncompleted"></a>
-### 10. View List of Uncompleted Tasks: `viewUncompletedTasks`
+<a name="findUnassigned"></a>
+### 10. View List of Unassigned Tasks: `viewUnassignedTasks`
 
-View the list of uncompleted tasks
+View the list of unassigned tasks.
+
+Format: `viewUnassignedTasks`
+
+Examples: `viewUnassignedTasks`
+
+<a name="findUncompleted"></a>
+### 11. View List of Uncompleted Tasks: `viewUncompletedTasks`
+
+View the list of uncompleted tasks.
 
 Format: `viewUncompletedTasks`
 
 Examples: `viewUncompletedTasks`
 
 <a name="addMember"></a>
-### 11. Add Member: `addMember`
+### 12. Add Member: `addMember`
 
 Adds a member along with his/ her contract number to contact list.
 
@@ -180,7 +189,7 @@ Examples: `addMember Dylan -p 64529356 -e test@test.com -r Member`
 * If role field is not specified, person will be assigned a default role of member.
 
 <a name="deleteMember"></a>
-### 12. Delete Member: `deleteMember`
+### 13. Delete Member: `deleteMember`
 
 Delete a member along with his/ her contact details from the contact list.
 
@@ -189,7 +198,7 @@ Format: `deleteMember NAME`
 Examples: `deleteMember Rachel`
 
 <a name="viewMembers"></a>
-### 13. View Member: `viewMembers`
+### 14. View Member: `viewMembers`
 
 View the list of members the user has added.
 
@@ -198,7 +207,7 @@ Format: `viewMembers `
 Examples: `viewMembers `
 
 <a name="editMember"></a>
-### 14. Edit Member: `editMember`
+### 15. Edit Member: `editMember`
 
 Format: `editMember NAME IN LIST -n NEW NAME -p NEW PHONE NUMBER -e NEW EMAIL -r ROLE`
 * Edits the person at the specified NAME IN LIST.
@@ -209,7 +218,7 @@ Format: `editMember NAME IN LIST -n NEW NAME -p NEW PHONE NUMBER -e NEW EMAIL -r
 Examples: `editMember Alice -n Alice Lim -p 95231156 -e tasha@test.com -r Events head`
 
 <a name="findmember"></a>
-### 15. Find Members by Keywords: `findMembers`
+### 16. Find Members by Keywords: `findMembers`
 
 Find all members whose details contain any of the specified keywords.
 
@@ -218,7 +227,7 @@ Format: `findMembers KEYWORD MORE_KEYWORDS`
 Examples: `findMembers Rachel 98562154 john@gmail.com`
 
 <a name="clear"></a>
-### 16. Clear all data in application: `clear`
+### 17. Clear all data in application: `clear`
 Clears all entries from the application.
 
 Format: clear
@@ -226,7 +235,7 @@ Format: clear
 Examples: `clear`
 
 <a name="exit"></a>
-### 17. Exiting the program: `exit`
+### 18. Exiting the program: `exit`
 Exits the program.
 
 Format: exit
@@ -234,7 +243,7 @@ Format: exit
 Examples: `exit`
 
 <a name="help"></a>
-### 18. View Help: `help`
+### 19. View Help: `help`
 Shows a message explaining how to access the help page.
 
 Format: help

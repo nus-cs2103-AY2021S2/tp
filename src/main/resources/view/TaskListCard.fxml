@@ -32,7 +32,7 @@
             <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline" />
             <Label fx:id="taskStatus" styleClass="cell_small_label" text="\$taskStatus" />
             <Label fx:id="priority" styleClass="cell_small_label" text="\$priority" />
-            <FlowPane fx:id="assignees" styleClass="cell_small_label" />
+            <FlowPane fx:id="assignees" id = "assigneesTag" styleClass="cell_small_label" />
         </VBox>
       <rowConstraints>
          <RowConstraints />

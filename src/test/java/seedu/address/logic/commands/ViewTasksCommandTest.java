@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showTaskAtIndex;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,6 +27,12 @@ public class ViewTasksCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
+        assertCommandSuccess(new ViewTasksCommand(), model, ViewTasksCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
+    public void execute_listIsFiltered_showsEverything() {
+        showTaskAtIndex(model, INDEX_FIRST_TASK);
         assertCommandSuccess(new ViewTasksCommand(), model, ViewTasksCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

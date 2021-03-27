@@ -104,6 +104,14 @@ public class Task {
         return Collections.unmodifiableSet(assignees);
     }
 
+    public boolean isUnassigned() {
+        return assignees.isEmpty();
+    }
+
+    public boolean isUncompleted() {
+        return this.taskStatus.equals(TaskStatus.UNCOMPLETED);
+    }
+
     /**
      * Returns true if both tasks have the same title.
      * This defines a weaker notion of equality between two tasks.

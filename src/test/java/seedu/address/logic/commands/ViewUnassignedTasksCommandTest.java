@@ -14,9 +14,9 @@ import seedu.address.testutil.TypicalTasks;
 
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ViewUncompletedTasksCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for ViewUnassignedTasksCommand.
  */
-public class ViewUncompletedTasksCommandTest {
+public class ViewUnassignedTasksCommandTest {
     private Model model;
     private Model expectedModel;
 
@@ -28,13 +28,13 @@ public class ViewUncompletedTasksCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ViewUncompletedTasksCommand(), model,
-                ViewUncompletedTasksCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ViewUnassignedTasksCommand(), model,
+                ViewUnassignedTasksCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
-        assertCommandSuccess(new ViewUncompletedTasksCommand(), model, ViewUncompletedTasksCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ViewUnassignedTasksCommand(), model, ViewUnassignedTasksCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
