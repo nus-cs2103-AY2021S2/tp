@@ -199,7 +199,7 @@ public class MainWindow extends UiPart<Stage> {
             resultListPanelPlaceholder.getChildren().add(bookingListPanel.getRoot());
         } else if (commandType.equals("venue")) {
             resultListPanelPlaceholder.getChildren().add(venueListPanel.getRoot());
-        } else if (commandType.equals("person")) {
+        } else {
             resultListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
         }
     }
