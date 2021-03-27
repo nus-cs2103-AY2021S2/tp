@@ -118,17 +118,17 @@ public class FindAppointmentCommandTest {
     public void execute_manyKeywords() {
         String expectedMessage = String.format(MESSAGE_APPOINTMENT_LISTED_OVERVIEW_SINGULAR, 0);
         AppointmentContainsKeywordsPredicate predicate = preparePredicate(
-            "We're no strangers to love\n"
-                    + "You know the rules and so do I\n"
-                    + "A full commitment's what I'm thinking of\n"
-                    + "You wouldn't get this from any other guy\n"
-                    + "I just wanna tell you how I'm feeling\n"
-                    + "Gotta make you understand\n"
-                    + "Never gonna give you up\n"
-                    + "Never gonna let you down\n"
-                    + "Never gonna run around and desert you\n"
-                    + "Never gonna make you cry\n"
-                    + "Never gonna say goodbye\n"
+            "We're no strangers to love "
+                    + "You know the rules and so do I "
+                    + "A full commitment's what I'm thinking of "
+                    + "You wouldn't get this from any other guy "
+                    + "I just wanna tell you how I'm feeling "
+                    + "Gotta make you understand "
+                    + "Never gonna give you up "
+                    + "Never gonna let you down "
+                    + "Never gonna run around and desert you "
+                    + "Never gonna make you cry "
+                    + "Never gonna say goodbye "
                     + "Never gonna tell a lie and hurt you");
         FindAppointmentCommand command = new FindAppointmentCommand(predicate);
         expectedModel.updateFilteredAppointmentList(predicate);

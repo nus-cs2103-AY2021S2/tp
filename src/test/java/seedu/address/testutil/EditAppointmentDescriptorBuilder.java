@@ -8,7 +8,7 @@ import seedu.address.model.name.Name;
 import seedu.address.model.remark.Remark;
 
 /**
- * A utility class to help with building EditPropertyDescriptor objects.
+ * A utility class to help with building EditAppointmentDescriptor objects.
  */
 public class EditAppointmentDescriptorBuilder {
 

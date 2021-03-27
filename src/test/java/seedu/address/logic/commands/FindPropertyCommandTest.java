@@ -36,7 +36,7 @@ import seedu.address.model.property.PropertyPricePredicate;
 import seedu.address.model.property.PropertyTypePredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindProperty}.
+ * Contains integration tests (interaction with the Model) for {@code FindPropertyCommand}.
  */
 public class FindPropertyCommandTest {
     private Model model = new ModelManager(getTypicalPropertyBookWithClient(), new UserPrefs());
