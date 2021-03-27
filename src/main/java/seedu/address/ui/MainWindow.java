@@ -19,6 +19,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.AddPlanCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.InfoCommand;
+import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -36,6 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+    private PlanListPanelWithTable planListPanelWithTable;
     private PlanListPanel planListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -93,6 +95,9 @@ public class MainWindow extends UiPart<Stage> {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 switch(newValue) {
+                    case ListCommand.COMMAND_WORD:
+                        personListPanelPlaceholder.getChildren().setAll(planListPanelWithTable.getRoot());
+                        break;
                     case InfoCommand.COMMAND_WORD:
                         personListPanelPlaceholder.getChildren().setAll(infoListPanel.getRoot());
                         break;
@@ -152,6 +157,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         planListPanel = new PlanListPanel(logic.getFilteredPersonList());
+        planListPanelWithTable = new PlanListPanelWithTable(logic.getFilteredPersonList());
+
         personListPanelPlaceholder.getChildren().add(planListPanel.getRoot());
 
         infoListPanel = new InfoListPanel(logic.getModuleInfoList());
@@ -210,6 +217,10 @@ public class MainWindow extends UiPart<Stage> {
 
     public PlanListPanel getPersonListPanel() {
         return planListPanel;
+    }
+
+    public PlanListPanelWithTable getPersonListPanelWithTable() {
+        return planListPanelWithTable;
     }
 
     /**
