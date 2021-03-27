@@ -1,14 +1,24 @@
 {
   "residences" : [ {
-    "booking" : "someone is coming",
+    "bookingList" : [ {
+      "name" : "933230",
+      "phone" : "092382",
+      "start" : "2008-08-08",
+      "end" : "2008-09-09"
+    } ],
     "cleanStatusTag" : "Unclean",
     "tags" : [ "Booked" ],
     "residenceName" : "HDB",
     "residenceAddress" : "Blk 30 Geylang Street 29, #06-40"
   }, {
-    "booking" : "4 adults",
+    "bookingList" : [ {
+      "name" : "933230",
+      "phone" : "0923^@82",
+      "start" : "2008-08-08",
+      "end" : "2008-09-09"
+    } ],
     "cleanStatusTag" : "Clean",
-    "tags" : [ "Rese  rved" ],
+    "tags" : [ "Reserved" ],
     "residenceName" : "Condo",
     "residenceAddress" : "Blk 45 Tampines Street 29, #08-01"
   }]

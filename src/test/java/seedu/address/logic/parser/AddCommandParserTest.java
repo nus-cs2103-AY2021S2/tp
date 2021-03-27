@@ -4,7 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 //import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_RESIDENCE1;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_RESIDENCE2;
 //import static seedu.address.logic.commands.CommandTestUtil.BOOKING_DETAILS_DESC_RESIDENCE1;
-import static seedu.address.logic.commands.CommandTestUtil.BOOKING_DETAILS_DESC_RESIDENCE2;
+//import static seedu.address.logic.commands.CommandTestUtil.BOOKING_DETAILS_DESC_RESIDENCE2;
 import static seedu.address.logic.commands.CommandTestUtil.CLEAN_STATUS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_CLEAN_TAG_DESC;
@@ -115,27 +115,27 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + ADDRESS_DESC_RESIDENCE2
-                + BOOKING_DETAILS_DESC_RESIDENCE2 + CLEAN_STATUS_DESC, ResidenceName.MESSAGE_CONSTRAINTS);
+                + CLEAN_STATUS_DESC, ResidenceName.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_RESIDENCE2 + INVALID_ADDRESS_DESC
-                + BOOKING_DETAILS_DESC_RESIDENCE2 + CLEAN_STATUS_DESC, ResidenceAddress.MESSAGE_CONSTRAINTS);
+                + CLEAN_STATUS_DESC, ResidenceAddress.MESSAGE_CONSTRAINTS);
 
         // invalid clean status tag
         assertParseFailure(parser, NAME_DESC_RESIDENCE2 + ADDRESS_DESC_RESIDENCE2
-                + BOOKING_DETAILS_DESC_RESIDENCE2 + INVALID_CLEAN_TAG_DESC, CleanStatusTag.getMessageConstraints());
+                + INVALID_CLEAN_TAG_DESC, CleanStatusTag.getMessageConstraints());
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_RESIDENCE2 + ADDRESS_DESC_RESIDENCE2
-                + BOOKING_DETAILS_DESC_RESIDENCE2 + CLEAN_STATUS_DESC + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
+                + CLEAN_STATUS_DESC + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + INVALID_ADDRESS_DESC
-                + BOOKING_DETAILS_DESC_RESIDENCE2 + CLEAN_STATUS_DESC, ResidenceName.MESSAGE_CONSTRAINTS);
+                + CLEAN_STATUS_DESC, ResidenceName.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_RESIDENCE2 + ADDRESS_DESC_RESIDENCE2
-                + BOOKING_DETAILS_DESC_RESIDENCE2 + CLEAN_STATUS_DESC + TAG_DESC_RESERVED + TAG_DESC_REPAIR,
+                + CLEAN_STATUS_DESC + TAG_DESC_RESERVED + TAG_DESC_REPAIR,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

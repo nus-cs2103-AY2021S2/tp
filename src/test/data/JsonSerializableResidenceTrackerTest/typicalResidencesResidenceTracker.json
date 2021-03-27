@@ -1,46 +1,76 @@
 {
   "_comment": "Residence Tracker save file which contains the same Residence values as in TypicalResidence#getTypicalResidenceTracker()",
   "residences" : [ {
-    "bookingDetails" : "Test Booking",
     "cleanStatusTag" : "Clean",
-    "tags" : [ "valuable" ],
     "residenceName" : "Amber Heights",
-    "residenceAddress" : "123, Jurong West Ave 6, #08-111"
+    "residenceAddress" : "123, Jurong West Ave 6, #08-111",
+    "bookingList" : [{
+      "name" : "933230",
+      "phone" : "092382",
+      "start" : "2008-08-08",
+      "end" : "2008-09-09"
+    }],
+    "tags" : [ "valuable" ]
   }, {
-    "bookingDetails" : "",
     "cleanStatusTag" : "Unclean",
-    "tags" : [ "repair", "popular" ],
     "residenceName" : "Beverly Hills",
-    "residenceAddress" : "311, Clementi Ave 2, #02-25"
+    "residenceAddress" : "311, Clementi Ave 2, #02-25",
+    "bookingList" : [ ],
+    "tags" : [ "repair", "popular" ]
   }, {
-    "bookingDetails" : "C booked",
     "cleanStatusTag" : "Clean",
-    "tags" : [ ],
     "residenceName" : "Casuarina Apartment",
-    "residenceAddress" : "wall street"
+    "residenceAddress" : "wall street",
+    "bookingList" : [ {
+      "name" : "933230",
+      "phone" : "092382",
+      "start" : "2008-08-08",
+      "end" : "2008-09-09"
+    }, {
+      "name" : "nsd",
+      "phone" : "098",
+      "start" : "2009-09-09",
+      "end" : "2009-09-09"
+    }, {
+      "name" : "cs",
+      "phone" : "098",
+      "start" : "2010-10-10",
+      "end" : "2011-09-09"
+    } ],
+    "tags" : [ ]
   }, {
-    "bookingDetails" : "No Booking",
     "cleanStatusTag" : "Clean",
-    "tags" : [ "forFriends" ],
     "residenceName" : "Dover Condominium",
-    "residenceAddress" : "10th street"
+    "residenceAddress" : "10th street",
+    "bookingList" : [ {
+      "name" : "nsd",
+      "phone" : "098",
+      "start" : "2009-09-09",
+      "end" : "2009-09-09"
+    }, {
+      "name" : "cs",
+      "phone" : "098",
+      "start" : "2010-10-10",
+      "end" : "2011-09-09"
+    } ],
+    "tags" : [ "forFriends" ]
   }, {
-    "bookingDetails" : "No Booking",
     "cleanStatusTag" : "Clean",
-    "tags" : [ ],
     "residenceName" : "Emerald Hills",
-    "residenceAddress" : "michegan ave"
+    "residenceAddress" : "michegan ave",
+    "bookingList" : [ ],
+    "tags" : [ ]
   }, {
-    "bookingDetails" : "No Booking",
     "cleanStatusTag" : "Unclean",
-    "tags" : [ ],
     "residenceName" : "Floravale",
-    "residenceAddress" : "little tokyo"
+    "residenceAddress" : "little tokyo",
+    "bookingList" : [ ],
+    "tags" : [ ]
   }, {
-    "bookingDetails" : "No Booking",
     "cleanStatusTag" : "Clean",
-    "tags" : [ ],
     "residenceName" : "Gem Residences",
-    "residenceAddress" : "4th street"
+    "residenceAddress" : "4th street",
+    "bookingList" : [ ],
+    "tags" : [ ]
   } ]
 }
