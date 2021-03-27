@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.booking.Booking;
 import seedu.address.model.tag.CleanStatusTag;
 import seedu.address.model.tag.Tag;
 
@@ -26,7 +27,20 @@ public class Residence implements Comparable<Residence> {
     private CleanStatusTag cleanStatusTag;
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null except for {@code BookingList}.
+     */
+    public Residence(ResidenceName residenceName, ResidenceAddress residenceAddress,
+                     CleanStatusTag cleanStatusTag, Set<Tag> tags) {
+        this.bookingList = new BookingList();
+        requireAllNonNull(residenceName, residenceAddress, cleanStatusTag, tags);
+        this.residenceName = residenceName;
+        this.residenceAddress = residenceAddress;
+        this.cleanStatusTag = cleanStatusTag;
+        this.tags.addAll(tags);
+    }
+
+    /**
+     * When BookingList is provided.
      */
     public Residence(ResidenceName residenceName, ResidenceAddress residenceAddress, BookingList bookingList,
                      CleanStatusTag cleanStatusTag, Set<Tag> tags) {
@@ -46,7 +60,7 @@ public class Residence implements Comparable<Residence> {
         return residenceAddress;
     }
 
-    public BookingList getBookingDetails() {
+    public BookingList getBookingList() {
         return bookingList;
     }
 
@@ -60,6 +74,15 @@ public class Residence implements Comparable<Residence> {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Residence addBooking(Booking booking) {
+        bookingList.add(booking);
+        return this;
     }
 
     /**
@@ -92,7 +115,7 @@ public class Residence implements Comparable<Residence> {
         Residence otherResidence = (Residence) other;
         return otherResidence.getResidenceName().equals(getResidenceName())
                 && otherResidence.getResidenceAddress().equals(getResidenceAddress())
-                && otherResidence.getBookingDetails().equals(getBookingDetails())
+                && otherResidence.getBookingList().equals(getBookingList())
                 && otherResidence.getCleanStatusTag().equals(getCleanStatusTag())
                 && otherResidence.getTags().equals(getTags());
     }
@@ -109,8 +132,6 @@ public class Residence implements Comparable<Residence> {
         builder.append(getResidenceName())
                 .append("; Residence Address: ")
                 .append(getResidenceAddress())
-                .append("; Booking Details: ")
-                .append(getBookingDetails())
                 .append("; Clean Status: ")
                 .append(getCleanStatusTag());
 

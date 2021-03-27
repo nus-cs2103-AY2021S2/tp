@@ -18,8 +18,8 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_REPAIR;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_RESERVED;
 //import static seedu.address.logic.commands.CommandTestUtil.UNCLEAN_STATUS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_RESIDENCE2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_BOOKING_DETAILS_RESIDENCE2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CLEAN_TAG;
+//import static seedu.address.logic.commands.CommandTestUtil.VALID_BOOKING_LIST2;
+//import static seedu.address.logic.commands.CommandTestUtil.VALID_CLEAN_TAG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_RESIDENCE2;
 //import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_REPAIR;
 //import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_RESERVED;
@@ -107,8 +107,8 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_RESIDENCE2 + VALID_ADDRESS_RESIDENCE2, expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_RESIDENCE2 + VALID_ADDRESS_RESIDENCE2
-                + VALID_BOOKING_DETAILS_RESIDENCE2 + VALID_CLEAN_TAG, expectedMessage);
+        //assertParseFailure(parser, VALID_NAME_RESIDENCE2 + VALID_ADDRESS_RESIDENCE2
+        //        + VALID_BOOKING_LIST2 + VALID_CLEAN_TAG, expectedMessage);
     }
 
     @Test

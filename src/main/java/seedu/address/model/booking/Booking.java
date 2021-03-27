@@ -10,14 +10,14 @@ import java.util.Objects;
  * Represents a Booking in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Booking {
+public class Booking implements Comparable<Booking> {
 
     public static final String MESSAGE_CONSTRAINTS = "Bookings should be of the format n/PERSON_NAME p/PERSON_PHONE "
             + "start/BOOKING_START_DATE end/BOOKING_END_DATE and adhere to the following constraints:\n"
             + "1. Names should only contain alphanumeric characters and spaces, and they should not be blank. "
             + "2. Phone numbers should only contain numbers, and they should be at least 3 digits long. "
             + "The start and end dates must adhere to the following:\n"
-            + "    - be of the format DDMMYYYY\n"
+            + "    - be of the format DDMMYY\n"
             + "    - end date must be after start date";
 
     private final Name name;
@@ -56,10 +56,8 @@ public class Booking {
     /**
      * Returns if a given booking is a valid booking.
      */
-    public static boolean isValidBooking(Booking test) {
-        return Name.isValidName(test.getName().toString())
-                && Phone.isValidPhone(test.getPhone().toString())
-                && test.getEnd().isAfter(test.getStart());
+    public static boolean isValidBookingTime(LocalDate start, LocalDate end) {
+        return !end.isBefore(start);
     }
 
     /**
@@ -76,7 +74,7 @@ public class Booking {
     }
 
     /**
-     * Returns true if both bookings have the same identity and data fields.
+     * Returns true if both bookings have the same name, phone, start and end dates.
      * This defines a stronger notion of equality between two bookings.
      */
     @Override
@@ -102,6 +100,20 @@ public class Booking {
         return Objects.hash(name, phone, start, end);
     }
 
+    /**
+     * Comparator of {@code Booking}s by cronological order.
+     * Earlier bookings come before later bookings.
+     */
+    @Override
+    public int compareTo(Booking otherBooking) {
+        if (this.getStart().isBefore(otherBooking.getStart())) {
+            return -1;
+        } else if (this.getStart().isAfter(otherBooking.getStart())) {
+            return 1;
+        }
+        return 0;
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
@@ -114,6 +126,18 @@ public class Booking {
                 .append(getEnd().format(dateTimeFormatter));
 
         return builder.toString();
+    }
+
+    /**
+     * Returns true if booking overlaps with another booking.
+     * This happens if the start and end dates of the booking are neither before the start date of the other booking
+     * or after the end date of the other booking.
+     */
+    public boolean doesOverlap(Booking otherBooking) {
+        boolean isBeforeOtherBooking = this.getEnd().isBefore(otherBooking.getStart());
+        boolean isAfterOtherBooking = this.getStart().isAfter(otherBooking.getEnd());
+
+        return !(isBeforeOtherBooking || isAfterOtherBooking);
     }
 
 }

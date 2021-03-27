@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditResidenceDescriptor;
-import seedu.address.model.residence.BookingList;
+//import seedu.address.model.residence.BookingList;
 import seedu.address.model.residence.Residence;
 import seedu.address.model.residence.ResidenceAddress;
 import seedu.address.model.residence.ResidenceName;
@@ -13,7 +13,7 @@ import seedu.address.model.tag.CleanStatusTag;
 import seedu.address.model.tag.Tag;
 
 /**
- * A utility class to help with building EditPersonDescriptor objects.
+ * A utility class to help with building EditResidenceDescriptor objects.
  */
 public class EditResidenceDescriptorBuilder {
 
@@ -34,7 +34,7 @@ public class EditResidenceDescriptorBuilder {
         descriptor = new EditResidenceDescriptor();
         descriptor.setResidenceName(residence.getResidenceName());
         descriptor.setResidenceAddress(residence.getResidenceAddress());
-        descriptor.setBookingDetails(residence.getBookingDetails());
+        descriptor.setBookingDetails(residence.getBookingList());
         descriptor.setCleanStatusTag(residence.getCleanStatusTag());
         descriptor.setTags(residence.getTags());
     }
@@ -55,13 +55,13 @@ public class EditResidenceDescriptorBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code Booking} of the {@code EditResidenceDescriptor} that we are building.
-     */
-    public EditResidenceDescriptorBuilder withBookingDetails(String bookingDetails) {
-        descriptor.setBookingDetails(new BookingList(bookingDetails));
-        return this;
-    }
+    ///**
+    //* Sets the {@code Booking} of the {@code EditResidenceDescriptor} that we are building.
+    //*/
+    //public EditResidenceDescriptorBuilder withBookingDetails() {
+    //    descriptor.setBookingDetails(new BookingList(bookingDetails));
+    //    return this;
+    //}
 
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}

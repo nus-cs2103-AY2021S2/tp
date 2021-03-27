@@ -3,8 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKING_DETAILS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLEAN_STATUS_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RESIDENCE_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RESIDENCE_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -18,18 +18,19 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a residence to the residence tracker. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a residence to the residence tracker.\n"
             + "Parameters: "
-            + PREFIX_RESIDENCE_NAME + "NAME "
+            + PREFIX_NAME + "NAME "
             + PREFIX_RESIDENCE_ADDRESS + "ADDRESS "
             + PREFIX_BOOKING_DETAILS + "BOOKING DETAILS "
             + "[" + PREFIX_CLEAN_STATUS_TAG + "y or n]"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_RESIDENCE_NAME + "Seaside Villa "
+            + PREFIX_NAME + "Seaside Villa "
             + PREFIX_RESIDENCE_ADDRESS + "311, Pasir Ris Ave 2, #02-25 "
             + PREFIX_BOOKING_DETAILS + "Family of 3 "
             + PREFIX_CLEAN_STATUS_TAG + "y "
+            + PREFIX_CLEAN_STATUS_TAG + "n"
             + PREFIX_TAG + "friends ";
 
     public static final String MESSAGE_SUCCESS = "New residence added: %1$s";

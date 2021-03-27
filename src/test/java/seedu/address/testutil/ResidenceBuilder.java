@@ -1,8 +1,10 @@
 package seedu.address.testutil;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import seedu.address.model.booking.Booking;
 import seedu.address.model.residence.BookingList;
 import seedu.address.model.residence.Residence;
 import seedu.address.model.residence.ResidenceAddress;
@@ -32,7 +34,7 @@ public class ResidenceBuilder {
     public ResidenceBuilder() {
         name = new ResidenceName(DEFAULT_RESIDENCE_NAME);
         address = new ResidenceAddress(DEFAULT_RESIDENCE_ADDRESS);
-        bookingList = new BookingList(DEFAULT_BOOKING_DETAILS);
+        //bookingList = new BookingList();
         cleanStatusTag = new CleanStatusTag(DEFAULT_CLEAN_STATUS);
         tags = new HashSet<>();
     }
@@ -43,7 +45,7 @@ public class ResidenceBuilder {
     public ResidenceBuilder(Residence residenceToCopy) {
         name = residenceToCopy.getResidenceName();
         address = residenceToCopy.getResidenceAddress();
-        bookingList = residenceToCopy.getBookingDetails();
+        bookingList = residenceToCopy.getBookingList();
         cleanStatusTag = residenceToCopy.getCleanStatusTag();
         tags = new HashSet<>(residenceToCopy.getTags());
     }
@@ -67,8 +69,8 @@ public class ResidenceBuilder {
     /**
      * Sets the {@code Booking} of the {@code Residence} that we are building.
      */
-    public ResidenceBuilder withBookingDetails(String bookingDetails) {
-        this.bookingList = new BookingList(bookingDetails);
+    public ResidenceBuilder withBookingDetails(List<Booking> bookings) {
+        this.bookingList = new BookingList(bookings);
         return this;
     }
 
