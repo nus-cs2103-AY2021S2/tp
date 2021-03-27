@@ -29,9 +29,6 @@ import seedu.address.model.tag.Tag;
  */
 public class AddCommandParser implements Parser<AddCommand> {
 
-    //todo remove STUB_VALID_PRICE declaration
-    private static final Optional<Price> STUB_VALID_PRICE = Optional.of(new Price(1.69));
-
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
@@ -53,9 +50,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         TripDay tripDay = ParserUtil.parseTripDay(argMultimap.getValue(PREFIX_TRIPDAY).get());
         TripTime tripTime = ParserUtil.parseTripTime(argMultimap.getValue(PREFIX_TRIPTIME).get());
+        Optional<Price> price = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get());
 
-        //todo remove stub
-        Passenger passenger = new Passenger(name, phone, address, tripDay, tripTime, STUB_VALID_PRICE, tagList);
+        Passenger passenger = new Passenger(name, phone, address, tripDay, tripTime, price, tagList);
 
         return new AddCommand(passenger);
     }

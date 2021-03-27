@@ -47,6 +47,7 @@ public class Passenger extends Person {
         this.tags.addAll(tags);
     }
 
+    // TODO consider refactoring the overloaded constructors
     /**
      * Creates a new {@code Passenger} with a driver.
      * @param name the {@code Name} of the {@code Passenger}

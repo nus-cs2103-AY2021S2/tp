@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -162,13 +163,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code price} is invalid.
      */
-    public static Price parsePrice(String price) throws ParseException {
+    public static Optional<Price> parsePrice(String price) throws ParseException {
         requireNonNull(price);
         String trimmedPrice = price.trim();
         if (!Price.isValidPrice(price)) {
             throw new ParseException(Price.MESSAGE_CONSTRAINTS);
         }
-        return new Price(Double.parseDouble(trimmedPrice));
+        return Optional.of(new Price(Double.parseDouble(trimmedPrice)));
     }
 
 
