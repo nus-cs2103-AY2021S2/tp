@@ -5,6 +5,8 @@ import static seedu.cakecollate.logic.parser.CommandParserTestUtil.assertParseFa
 import static seedu.cakecollate.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,8 +25,10 @@ public class FindCommandParserTest {
     @Test
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
+        HashMap<Prefix, List<String>> map = new HashMap<>();
+        map.put(new Prefix("all/"), Arrays.asList("Alice", "Bob"));
         FindCommand expectedFindCommand =
-                new FindCommand(new ContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+                new FindCommand(new ContainsKeywordsPredicate(map));
         assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords

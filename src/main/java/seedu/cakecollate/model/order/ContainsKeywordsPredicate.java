@@ -1,10 +1,5 @@
 package seedu.cakecollate.model.order;
 
-import java.time.LocalDate;
-import java.util.*;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
-
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_DELIVERY_STATUS;
@@ -14,6 +9,15 @@ import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_ORDER_DESCRIPTION;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_REQUEST;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import seedu.cakecollate.commons.util.StringUtil;
 import seedu.cakecollate.logic.parser.Prefix;

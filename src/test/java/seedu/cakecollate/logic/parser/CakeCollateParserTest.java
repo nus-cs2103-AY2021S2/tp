@@ -10,6 +10,7 @@ import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -84,7 +85,9 @@ public class CakeCollateParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new ContainsKeywordsPredicate(keywords)), command);
+        HashMap<Prefix, List<String>> map = new HashMap<>();
+        map.put(new Prefix("all/"), keywords);
+        assertEquals(new FindCommand(new ContainsKeywordsPredicate(map)), command);
     }
 
     @Test

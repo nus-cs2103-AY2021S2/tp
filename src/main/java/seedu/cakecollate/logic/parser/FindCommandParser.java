@@ -27,7 +27,7 @@ import seedu.cakecollate.model.order.ContainsKeywordsPredicate;
 public class FindCommandParser implements Parser<FindCommand> {
 
     private final Prefix[] allPrefixes = new Prefix[] {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-            PREFIX_ORDER_DESCRIPTION, PREFIX_TAG, PREFIX_DATE, PREFIX_REQUEST, PREFIX_DELIVERY_STATUS};
+        PREFIX_ORDER_DESCRIPTION, PREFIX_TAG, PREFIX_DATE, PREFIX_REQUEST, PREFIX_DELIVERY_STATUS};
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand

@@ -2,13 +2,16 @@ package seedu.cakecollate.model.order;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.cakecollate.logic.parser.Prefix;
 import seedu.cakecollate.testutil.OrderBuilder;
 
 public class ContainsKeywordsPredicateTest {
@@ -17,15 +20,19 @@ public class ContainsKeywordsPredicateTest {
     public void equals() {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
+        HashMap<Prefix, List<String>> map1 = new HashMap<>();
+        map1.put(PREFIX_NAME, firstPredicateKeywordList);
+        HashMap<Prefix, List<String>> map2 = new HashMap<>();
+        map1.put(PREFIX_NAME, secondPredicateKeywordList);
 
-        ContainsKeywordsPredicate firstPredicate = new ContainsKeywordsPredicate(firstPredicateKeywordList);
-        ContainsKeywordsPredicate secondPredicate = new ContainsKeywordsPredicate(secondPredicateKeywordList);
+        ContainsKeywordsPredicate firstPredicate = new ContainsKeywordsPredicate(map1);
+        ContainsKeywordsPredicate secondPredicate = new ContainsKeywordsPredicate(map2);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        ContainsKeywordsPredicate firstPredicateCopy = new ContainsKeywordsPredicate(firstPredicateKeywordList);
+        ContainsKeywordsPredicate firstPredicateCopy = new ContainsKeywordsPredicate(map1);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -39,36 +46,54 @@ public class ContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_nameContainsKeywords_returnsTrue() {
+    public void test_containsKeywords_returnsTrue() {
+        HashMap<Prefix, List<String>> map = new HashMap<>();
+
         // One keyword
-        ContainsKeywordsPredicate predicate = new ContainsKeywordsPredicate(Collections.singletonList("Alice"));
+        map.clear();
+        map.put(PREFIX_NAME, Collections.singletonList("Alice"));
+        ContainsKeywordsPredicate predicate = new ContainsKeywordsPredicate(map);
         assertTrue(predicate.test(new OrderBuilder().withName("Alice Bob").build()));
 
         // Multiple keywords
-        predicate = new ContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
+        map.clear();
+        map.put(PREFIX_NAME, Arrays.asList("Alice", "Bob"));
+        predicate = new ContainsKeywordsPredicate(map);
         assertTrue(predicate.test(new OrderBuilder().withName("Alice Bob").build()));
 
         // Only one matching keyword
-        predicate = new ContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
+        map.clear();
+        map.put(PREFIX_NAME, Arrays.asList("Bob", "Carol"));
+        predicate = new ContainsKeywordsPredicate(map);
         assertTrue(predicate.test(new OrderBuilder().withName("Alice Carol").build()));
 
         // Mixed-case keywords
-        predicate = new ContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
+        map.clear();
+        map.put(PREFIX_NAME, Arrays.asList("aLIce", "bOB"));
+        predicate = new ContainsKeywordsPredicate(map);
         assertTrue(predicate.test(new OrderBuilder().withName("Alice Bob").build()));
     }
 
     @Test
-    public void test_nameDoesNotContainKeywords_returnsFalse() {
+    public void test_doesNotContainKeywords_returnsFalse() {
+        HashMap<Prefix, List<String>> map = new HashMap<>();
+
         // Zero keywords
-        ContainsKeywordsPredicate predicate = new ContainsKeywordsPredicate(Collections.emptyList());
+        map.clear();
+        map.put(PREFIX_NAME, Collections.emptyList());
+        ContainsKeywordsPredicate predicate = new ContainsKeywordsPredicate(map);
         assertFalse(predicate.test(new OrderBuilder().withName("Alice").build()));
 
         // Non-matching keyword
-        predicate = new ContainsKeywordsPredicate(Arrays.asList("Carol"));
+        map.clear();
+        map.put(PREFIX_NAME, Arrays.asList("Carol"));
+        predicate = new ContainsKeywordsPredicate(map);
         assertFalse(predicate.test(new OrderBuilder().withName("Alice Bob").build()));
 
-        // Keywords match phone, email and cakecollate, but does not match name
-        predicate = new ContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
+        // Keywords match phone, email and address, but does not match name
+        map.clear();
+        map.put(PREFIX_NAME, Arrays.asList("12345", "alice@email.com", "Main", "Street"));
+        predicate = new ContainsKeywordsPredicate(map);
         assertFalse(predicate.test(new OrderBuilder().withName("Alice").withPhone("12345")
                 .withEmail("alice@email.com").withAddress("Main Street").build()));
     }

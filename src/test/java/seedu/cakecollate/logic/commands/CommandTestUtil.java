@@ -13,10 +13,12 @@ import static seedu.cakecollate.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import seedu.cakecollate.commons.core.index.Index;
 import seedu.cakecollate.logic.commands.exceptions.CommandException;
+import seedu.cakecollate.logic.parser.Prefix;
 import seedu.cakecollate.model.CakeCollate;
 import seedu.cakecollate.model.Model;
 import seedu.cakecollate.model.order.ContainsKeywordsPredicate;
@@ -146,7 +148,9 @@ public class CommandTestUtil {
 
         Order order = model.getFilteredOrderList().get(targetIndex.getZeroBased());
         final String[] splitName = order.getName().fullName.split("\\s+");
-        model.updateFilteredOrderList(new ContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        HashMap<Prefix, List<String>> mapping = new HashMap<>();
+        mapping.put(PREFIX_NAME, Arrays.asList(splitName[0]));
+        model.updateFilteredOrderList(new ContainsKeywordsPredicate(mapping));
 
         assertEquals(1, model.getFilteredOrderList().size());
     }

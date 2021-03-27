@@ -3,6 +3,7 @@ package seedu.cakecollate.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.cakecollate.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 import static seedu.cakecollate.testutil.Assert.assertThrows;
 import static seedu.cakecollate.testutil.TypicalOrders.ALICE;
@@ -13,10 +14,13 @@ import static seedu.cakecollate.testutil.TypicalOrders.GEORGE;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.cakecollate.commons.core.GuiSettings;
+import seedu.cakecollate.logic.parser.Prefix;
 import seedu.cakecollate.model.order.ContainsKeywordsPredicate;
 import seedu.cakecollate.testutil.CakeCollateBuilder;
 
@@ -120,7 +124,9 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredOrderList(new ContainsKeywordsPredicate(Arrays.asList(keywords)));
+        HashMap<Prefix, List<String>> map = new HashMap<>();
+        map.put(PREFIX_NAME, Arrays.asList(keywords));
+        modelManager.updateFilteredOrderList(new ContainsKeywordsPredicate(map));
         assertFalse(modelManager.equals(new ModelManager(cakeCollate, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

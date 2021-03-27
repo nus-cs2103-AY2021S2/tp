@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.cakecollate.commons.core.Messages.MESSAGE_ORDERS_LISTED_OVERVIEW;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.cakecollate.testutil.TypicalOrders.CARL;
 import static seedu.cakecollate.testutil.TypicalOrders.ELLE;
 import static seedu.cakecollate.testutil.TypicalOrders.FIONA;
@@ -12,9 +13,12 @@ import static seedu.cakecollate.testutil.TypicalOrders.getTypicalCakeCollate;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.cakecollate.logic.parser.Prefix;
 import seedu.cakecollate.model.Model;
 import seedu.cakecollate.model.ModelManager;
 import seedu.cakecollate.model.UserPrefs;
@@ -29,10 +33,12 @@ public class FindCommandTest {
 
     @Test
     public void equals() {
-        ContainsKeywordsPredicate firstPredicate =
-                new ContainsKeywordsPredicate(Collections.singletonList("first"));
-        ContainsKeywordsPredicate secondPredicate =
-                new ContainsKeywordsPredicate(Collections.singletonList("second"));
+        HashMap<Prefix, List<String>> map1 = new HashMap<>();
+        map1.put(PREFIX_NAME, Collections.singletonList("first"));
+        HashMap<Prefix, List<String>> map2 = new HashMap<>();
+        map1.put(PREFIX_NAME, Collections.singletonList("second"));
+        ContainsKeywordsPredicate firstPredicate = new ContainsKeywordsPredicate(map1);
+        ContainsKeywordsPredicate secondPredicate = new ContainsKeywordsPredicate(map2);
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
@@ -82,6 +88,8 @@ public class FindCommandTest {
      * Parses {@code userInput} into a {@code ContainsKeywordsPredicate}.
      */
     private ContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new ContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+        HashMap<Prefix, List<String>> map = new HashMap<>();
+        map.put(PREFIX_NAME, Arrays.asList(userInput.split("\\s+")));
+        return new ContainsKeywordsPredicate(map);
     }
 }
