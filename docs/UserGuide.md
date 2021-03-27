@@ -10,19 +10,19 @@ title: User Guide
     * [Overview](#overview)
 * [Quick start](#quick-start)
 * [Features](#features)
-    * [Adding a reader](#adding-a-reader-addreader)
-    * [Deleting a reader](#deleting-a-reader-deletereader)
-    * [Listing all readers](#listing-all-readers-listreader)
-    * [Finding a reader](#locating-readers-by-name-findreader)
-    * [Adding a book](#adding-a-book-addbook)
-    * [Deleting a book](#deleting-a-book-deletebook)
-    * [Listing all books](#listing-all-books-listbook)
-    * [Finding a book](#locating-books-by-name-findbook)
-    * [Borrowing a book](#borrowing-a-book-borrow)
-    * [Returning a book](#returning-a-book-return)
-    * [Clearing entries](#clearing-all-entries-clear)
-    * [Accessing the help page](#viewing-help-help)
-    * [Exiting the application](#exiting-the-program-exit)
+    * [Adding a reader](#adding-a-reader--addreader)
+    * [Deleting a reader](#deleting-a-reader--deletereader)
+    * [Listing all readers](#listing-all-readers--listreader)
+    * [Finding a reader](#locating-readers-by-name--findreader)
+    * [Adding a book](#adding-a-book--addbook)
+    * [Deleting a book](#deleting-a-book--deletebook)
+    * [Listing all books](#listing-all-books--listbook)
+    * [Finding a book](#locating-books-by-name--findbook)
+    * [Borrowing a book](#borrowing-a-book--borrow)
+    * [Returning a book](#returning-a-book--return)
+    * [Clearing entries](#clearing-all-entries--clear)
+    * [Accessing the help page](#viewing-help--help)
+    * [Exiting the application](#exiting-the-program--exit)
 * [FAQ](#faq)
 * [Command summary](#command-summary)
 
@@ -63,13 +63,16 @@ and borrowers' information, as compared to the traditional GUI apps currently av
 
 1. Copy the file to the folder you want to use as the _home folder_ for your SmartLib.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
+contains some sample data.<br>
+![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`listbook`** and pressing Enter will list all the current books in store.<br>
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`listbook`** and pressing Enter will
+list all the current books in store.<br>
    Some example commands you can try:
 
-   * **`addreader`**`r/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a reader named `John Doe` to SmartLib.
+   * **`addreader`**`r/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a reader named
+   `John Doe` to SmartLib.
 
    * **`deletereader`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -99,15 +102,17 @@ and borrowers' information, as compared to the traditional GUI apps currently av
 * Parameters can be in any order.<br>
   e.g. if the command specifies `r/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER r/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of
+the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be
+ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
-### Adding a reader: `addreader`
+### Adding a reader : `addreader`
 
 Adds a reader to SmartLib's registered reader base .
 
@@ -117,7 +122,7 @@ Examples:
 * `addreader r/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `addreader r/Betsy Crowe p/88888888 e/betsycrowe@example.com a/Newgate Prison`
 
-### Deleting a reader: `deletereader`
+### Deleting a reader : `deletereader`
 
 Deletes the specified reader from SmartLib's registered reader base.
 
@@ -134,13 +139,13 @@ Examples:
 Tip:
 * `listreader` followed by `deletereader 2` deletes the 2nd reader in the displayed reader list.
 
-### Listing all readers: `listreader`
+### Listing all readers : `listreader`
 
 Shows a list of all readers in SmartLib.
 
 Format: `list`
 
-### Locating readers by name: `findreader`
+### Locating readers by name : `findreader`
 
 Finds readers whose names contain any of the given keywords.
 
@@ -158,7 +163,7 @@ Examples:
 * `findreader alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'findreader alex david'](images/findAlexDavidResult.png)
 
-### Adding a book: `addbook`
+### Adding a book : `addbook`
 
 Adds a book to the book list.
 
@@ -168,7 +173,7 @@ Examples:
 * `addbook b/Harry Porter a/JK Rowling p/Bloomsbury i/9783161484100 g/Fantasy`
 * `addbook b/Hunger Games a/Suzanne Collins p/Scholastic i/9783161484100 g/Young Adult`
 
-### Deleting a book: `deletebook`
+### Deleting a book : `deletebook`
 
 Deletes a specific book from the book list.
 
@@ -181,13 +186,13 @@ Format: `deletebook INDEX`
 Examples:
 * `listbook` followed by `deletebook 2` deletes the 2nd book in the book list.
 
-### Listing all books: `listbook`
+### Listing all books : `listbook`
 
 Lists all the current in-store books.
 
 Format: `listbook`
 
-### Locating books by name: `findbook`
+### Locating books by name : `findbook`
 
 Finds books whose names contain any of the given keywords.
 
@@ -197,7 +202,7 @@ Examples:
 *`findbook fiction` returns books related to fiction
 *`findbook history [American History]` returns books related to history, especially American history.
 
-### Borrowing a book: `borrow`
+### Borrowing a book : `borrow`
 
 Records a borrowing activity.
 
@@ -209,7 +214,7 @@ Examples:
 * `borrow b/The Old Man and the Sea r/Alex Yeoh` records a rental entry that reader whose name is Alex Yeoh borrowed
 a book which name is The Old Man and the Sea
 
-### Returning a book: `return`
+### Returning a book : `return`
 
 Records a returning activity.
 
@@ -221,13 +226,13 @@ Examples:
 * `return b/The Old Man and the Sea r/Alex Yeoh` records a rental entry that reader whose name is Alex Yeoh returned
 a book which name is The Old Man and the Sea
 
-### Clearing all entries: `clear`
+### Clearing all entries : `clear`
 
 Clears all entries from SmartLib.
 
 Format: `clear`
 
-### Viewing help: `help`
+### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -235,7 +240,7 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Exiting the program: `exit`
+### Exiting the program : `exit`
 
 Exits the program.
 
@@ -243,14 +248,17 @@ Format: `exit`
 
 ### Saving the data
 
-SmartLib data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+SmartLib data are saved in the hard disk automatically after any command that changes the data. There is no need to save
+manually.
 
 ### Editing the data file
 
-SmartLib data are saved as a JSON file `[JAR file location]/data/smartlib.json`. Advanced users are welcome to update data directly by editing that data file.
+SmartLib data are saved as a JSON file `[JAR file location]/data/smartlib.json`. Advanced users are welcome to update
+data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, SmartLib will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, SmartLib will discard all data and start with an empty data
+file at the next run.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -258,7 +266,8 @@ If your changes to the data file makes its format invalid, SmartLib will discard
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous SmartLib home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
+the data of your previous SmartLib home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -266,7 +275,7 @@ If your changes to the data file makes its format invalid, SmartLib will discard
 
 Action | Format, Examples
 --------|------------------
-**Add reader** | `addreader r/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` <br> e.g., `addreader r/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`
+**Add reader** | `addreader r/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` <br> e.g., `addreader r/James Ho p/22224444e/jamesho@example.com a/123, Clementi Rd, 1234665`
 **Delete reader** | `deletereader INDEX`<br> e.g., `deletereader 3`
 **Find reader** | `findreader KEYWORD [MORE_KEYWORDS]`<br> e.g., `findreader James Jake`
 **List readers** | `listreader`
