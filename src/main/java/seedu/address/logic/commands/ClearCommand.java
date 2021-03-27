@@ -2,8 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.model.Sochedule;
 import seedu.address.model.Model;
+import seedu.address.model.Sochedule;
+
 
 /**
  * Clears the Sochedule.
