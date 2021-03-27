@@ -48,13 +48,13 @@ class JsonAdaptedBook {
      * Converts a given {@code Book} into this class for Jackson use.
      */
     public JsonAdaptedBook(Book source) {
-        name = source.getName().fullName;
+        name = source.getName().toString();
         author = source.getAuthor().toString();
         publisher = source.getPublisher().toString();
         isbn = source.getIsbn().toString();
         barcode = source.getBarcode().toString();
         genre = source.getGenre().toString();
-        borrowerName = source.getBorrowerName() == null ? null : source.getBorrowerName().fullName;
+        borrowerName = source.getBorrowerName() == null ? null : source.getBorrowerName().toString();
     }
 
     /**

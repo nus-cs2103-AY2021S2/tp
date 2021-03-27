@@ -8,6 +8,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.smartlib.model.reader.Reader;
+import seedu.smartlib.model.tag.Tag;
 
 /**
  * An UI component that displays information of a {@code Reader}.
@@ -50,15 +51,15 @@ public class ReaderCard extends UiPart<Region> {
         super(FXML);
         this.reader = reader;
         id.setText(displayedIndex + ". ");
-        name.setText(reader.getName().fullName);
-        phone.setText(reader.getPhone().value);
-        address.setText(reader.getAddress().value);
-        email.setText(reader.getEmail().value);
+        name.setText(reader.getName().toString());
+        phone.setText(reader.getPhone().toString());
+        address.setText(reader.getAddress().toString());
+        email.setText(reader.getEmail().toString());
         reader.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .sorted(Comparator.comparing(Tag::getTagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.getTagName())));
         reader.getBorrows().forEach((key, value) -> borrows.getChildren()
-                .add(new Label(key.fullName + ", borrowed on: " + value.value + "|||")));
+                .add(new Label(key.getName().toString() + ", borrowed on " + value.getValue() + ".")));
     }
 
     @Override
@@ -75,7 +76,6 @@ public class ReaderCard extends UiPart<Region> {
 
         // state check
         ReaderCard card = (ReaderCard) other;
-        return id.getText().equals(card.id.getText())
-                && reader.equals(card.reader);
+        return id.getText().equals(card.id.getText()) && reader.equals(card.reader);
     }
 }

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.commons.exceptions.IllegalValueException;
+import seedu.smartlib.model.book.Barcode;
 import seedu.smartlib.model.record.DateBorrowed;
 import seedu.smartlib.model.record.DateReturned;
 import seedu.smartlib.model.record.Record;
@@ -16,7 +17,7 @@ class JsonAdaptedRecord {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Record's %s field is missing!";
 
-    private final String bookName;
+    private final String barcode;
     private final String readerName;
     private final String dateBorrowed;
     private final String dateReturned;
@@ -25,11 +26,11 @@ class JsonAdaptedRecord {
      * Constructs a {@code JsonAdaptedRecord} with the given record details.
      */
     @JsonCreator
-    public JsonAdaptedRecord(@JsonProperty("bookName") String bookName,
+    public JsonAdaptedRecord(@JsonProperty("barcode") String barcode,
                              @JsonProperty("readerName") String readerName,
                              @JsonProperty("dateBorrowed") String dateBorrowed,
                              @JsonProperty("dateReturned") String dateReturned) {
-        this.bookName = bookName;
+        this.barcode = barcode;
         this.readerName = readerName;
         this.dateBorrowed = dateBorrowed;
         this.dateReturned = dateReturned;
@@ -39,9 +40,10 @@ class JsonAdaptedRecord {
      * Converts a given {@code Record} into this class for Jackson use.
      */
     public JsonAdaptedRecord(Record source) {
-        bookName = source.getBookName().fullName;
-        readerName = source.getReaderName().fullName;
+        barcode = source.getBookBarcode().toString();
+        readerName = source.getReaderName().toString();
         dateBorrowed = source.getDateBorrowed().toString();
+
         if (source.getDateReturned() == null) {
             dateReturned = null;
         } else {
@@ -56,14 +58,13 @@ class JsonAdaptedRecord {
      */
     public Record toModelType() throws IllegalValueException {
 
-        if (bookName == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        if (barcode == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Barcode.class.getSimpleName()));
         }
-        if (!Name.isValidName(bookName)) {
+        if (!Barcode.isValidBarcode(Integer.parseInt(barcode))) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        final Name modelBookName = new Name(bookName);
-
+        final Barcode modelBookBarcode = new Barcode(Integer.parseInt(barcode));
 
         if (readerName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -88,7 +89,7 @@ class JsonAdaptedRecord {
         } else {
             modelDateReturned = new DateReturned(dateReturned);
         }
-        return new Record(modelBookName, modelReaderName, modelDateBorrowed, modelDateReturned);
+        return new Record(modelBookBarcode, modelReaderName, modelDateBorrowed, modelDateReturned);
 
     }
 

@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.commons.exceptions.IllegalValueException;
+import seedu.smartlib.model.book.Book;
 import seedu.smartlib.model.reader.Address;
 import seedu.smartlib.model.reader.Email;
 import seedu.smartlib.model.reader.Phone;
@@ -33,7 +34,7 @@ class JsonAdaptedReader {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private final List<JsonAdaptedNameDateBorrowedPair> borrows = new ArrayList<>();
+    private final List<JsonAdaptedBookDateBorrowedPair> borrows = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedReader} with the given reader details.
@@ -42,7 +43,7 @@ class JsonAdaptedReader {
     public JsonAdaptedReader(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("borrows") List<JsonAdaptedNameDateBorrowedPair> borrows) {
+                             @JsonProperty("borrows") List<JsonAdaptedBookDateBorrowedPair> borrows) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -59,15 +60,15 @@ class JsonAdaptedReader {
      * Converts a given {@code Reader} into this class for Jackson use.
      */
     public JsonAdaptedReader(Reader source) {
-        name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
-        address = source.getAddress().value;
+        name = source.getName().toString();
+        phone = source.getPhone().toString();
+        email = source.getEmail().toString();
+        address = source.getAddress().toString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         borrows.addAll(source.getBorrows().entrySet().stream()
-                .map(JsonAdaptedNameDateBorrowedPair::new)
+                .map(JsonAdaptedBookDateBorrowedPair::new)
                 .collect(Collectors.toList()));
     }
 
@@ -81,8 +82,9 @@ class JsonAdaptedReader {
         for (JsonAdaptedTag tag : tagged) {
             readerTags.add(tag.toModelType());
         }
-        final Map<Name, DateBorrowed> readerBorrows = new HashMap<>();
-        for (JsonAdaptedNameDateBorrowedPair pair: borrows) {
+
+        final Map<Book, DateBorrowed> readerBorrows = new HashMap<>();
+        for (JsonAdaptedBookDateBorrowedPair pair : borrows) {
             readerBorrows.put(pair.toModelType().getKey(), pair.toModelType().getValue());
         }
 
@@ -120,7 +122,7 @@ class JsonAdaptedReader {
 
         final Set<Tag> modelTags = new HashSet<>(readerTags);
 
-        final Map<Name, DateBorrowed> modelBorrows = new HashMap<>(readerBorrows);
+        final Map<Book, DateBorrowed> modelBorrows = new HashMap<>(readerBorrows);
 
         return new Reader(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelBorrows);
 

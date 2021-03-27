@@ -6,6 +6,8 @@ import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_READER;
 
 import seedu.smartlib.logic.commands.exceptions.CommandException;
 import seedu.smartlib.model.Model;
+import seedu.smartlib.model.book.Barcode;
+import seedu.smartlib.model.record.IncompleteRecord;
 import seedu.smartlib.model.record.Record;
 
 /**
@@ -14,61 +16,79 @@ import seedu.smartlib.model.record.Record;
 public class ReturnCommand extends Command {
 
     public static final String COMMAND_WORD = "return";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": returns the book borrowed by the reader.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Returns the book borrowed by the reader.\n"
             + "Parameters: " + PREFIX_BOOK + "<book name> " + PREFIX_READER + "<reader name>\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_BOOK + "The Hobbit " + PREFIX_READER + "Alex Yeoh";
     public static final String MESSAGE_SUCCESS = "Record marked as returned.";
     public static final String MESSAGE_NO_SUCH_RECORD_FOUND =
-            "No such record found. Either already returned or never borrowed";
-    public static final String NO_READER_AND_BOOK_FOUND = "Sorry, we could find "
-            + "neither the book nor the reader you specified. Please check if you have spelled correctly.";
+            "No such record found. The book has either been returned, or was never borrowed by the reader.";
+    public static final String NO_READER_AND_BOOK_FOUND = "Sorry, we were unable to find "
+            + "neither the book nor the reader which you have specified. Please check if you have spelled correctly.";
     public static final String NO_BOOK_FOUND = "Sorry, we could not find the "
-            + "book you specified. Please check if you have spelled correctly.";
+            + "book which you have specified. Please check if you have spelled correctly.";
     public static final String NO_READER_FOUND = "Sorry, we could not find the "
-            + "reader you specified. Please check if you have spelled correctly.";
-    public static final String UNABLE_TO_UPDATE_CODEBASE = "Sorry, an error occurred with the codebase and we are "
-            + "unable to update it.";
+            + "reader which you have specified. Please check if you have spelled correctly.";
+    public static final String UNABLE_TO_UPDATE_CODEBASE = "Sorry, an error has occurred with the codebase and we are"
+            + " unable to update it.";
 
-    private final Record toReturn;
+    private final IncompleteRecord incompleteRecord;
 
     /**
-     * Creates a ReturnCommand to add a record
-     * @param record recordToAdd
+     * Creates a ReturnCommand to add a record.
+     *
+     * @param incompleteRecord record to be added to the Storage
      */
-    public ReturnCommand(Record record) {
-        requireAllNonNull(record);
-        toReturn = record;
+    public ReturnCommand(IncompleteRecord incompleteRecord) {
+        requireAllNonNull(incompleteRecord);
+        this.incompleteRecord = incompleteRecord;
+    }
+
+    private void verifyNameRegistration(Model model) throws CommandException {
+        if (!model.hasBook(incompleteRecord.getBookName()) && !model.hasReader(incompleteRecord.getReaderName())) {
+            throw new CommandException(NO_READER_AND_BOOK_FOUND);
+        }
+
+        if (!model.hasBook(incompleteRecord.getBookName())) {
+            throw new CommandException(NO_BOOK_FOUND);
+        }
+
+        if (!model.hasReader(incompleteRecord.getReaderName())) {
+            throw new CommandException(NO_READER_FOUND);
+        }
+    }
+
+    private Record createProperRecord(Model model) {
+        Barcode bookBarcode = model.getBookBarcodeForReturn(incompleteRecord.getBookName(),
+                incompleteRecord.getReaderName());
+        return new Record(bookBarcode, incompleteRecord.getReaderName(), incompleteRecord.getDateBorrowed());
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireAllNonNull(model);
 
-        if (!model.hasBook(toReturn.getBookName()) && !model.hasReader(toReturn.getReaderName())) {
-            throw new CommandException(NO_READER_AND_BOOK_FOUND);
-        }
-        if (!model.hasBook(toReturn.getBookName())) {
-            throw new CommandException(NO_BOOK_FOUND);
-        }
-        if (!model.hasReader(toReturn.getReaderName())) {
-            throw new CommandException(NO_READER_FOUND);
-        }
-        if (!model.hasRecord(toReturn)) {
-            return new CommandResult(String.format(MESSAGE_NO_SUCH_RECORD_FOUND, toReturn));
+        verifyNameRegistration(model);
+        Record properRecord = createProperRecord(model);
+
+        if (!model.hasRecord(properRecord)) {
+            return new CommandResult(String.format(MESSAGE_NO_SUCH_RECORD_FOUND, properRecord));
         }
 
-        model.markRecordAsReturned(toReturn);
-        boolean editStatusResult = model.returnBook(toReturn.getReaderName(), toReturn.getBookName());
+        model.markRecordAsReturned(properRecord);
+
+        boolean editStatusResult = model.returnBook(properRecord.getReaderName(), properRecord.getBookBarcode());
         if (!editStatusResult) {
             throw new CommandException(UNABLE_TO_UPDATE_CODEBASE);
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toReturn));
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, properRecord));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ReturnCommand // instanceof handles nulls
-                && toReturn.equals(((ReturnCommand) other).toReturn));
+                && incompleteRecord.equals(((ReturnCommand) other).incompleteRecord));
     }
+
 }

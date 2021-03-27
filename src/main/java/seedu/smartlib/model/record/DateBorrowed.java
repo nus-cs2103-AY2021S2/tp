@@ -12,7 +12,7 @@ public class DateBorrowed {
     public static final String MESSAGE_CONSTRAINTS = "Date should be of the format yyyy-mm-dd ";
     public static final String VALIDATION_REGEX = "^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$";
 
-    public final String value;
+    private final String value;
 
     /**
      * Constructs an {@code DateBorrowed}.
@@ -25,7 +25,6 @@ public class DateBorrowed {
         value = date.toString();
     }
 
-
     /**
      * Constructs an {@code DateBorrowed}.
      *
@@ -35,6 +34,14 @@ public class DateBorrowed {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
         value = date;
+    }
+
+    /**
+     * Returns the value of the borrow date.
+     * @return The value of the borrow date.
+     */
+    public String getValue() {
+        return value;
     }
 
     public boolean isOverdue() {

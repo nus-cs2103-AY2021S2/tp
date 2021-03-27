@@ -3,6 +3,7 @@ package seedu.smartlib.model;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -109,6 +110,7 @@ public class SmartLib implements ReadOnlySmartLib {
 
     /**
      * Returns the Reader object whose name is specified by readerName
+     *
      * @param readerName readerName
      * @return Reader Object, null if does not exist
      */
@@ -124,9 +126,9 @@ public class SmartLib implements ReadOnlySmartLib {
 
     /**
      * Returns true if the reader has already borrowed a book
+     *
      * @param readerName must exist in reader base
-     * @return true if the reader has neither borrowed all quota of books
-     * nor has overdue books. false by default
+     * @return true if the reader has neither borrowed all quota of books nor has overdue books. false by default.
      */
     public boolean canReaderBorrow(Name readerName) {
         requireNonNull(readerName);
@@ -225,7 +227,11 @@ public class SmartLib implements ReadOnlySmartLib {
      */
     public boolean hasBook(Name bookName) {
         requireNonNull(bookName);
-        return getBookByName(bookName) != null;
+
+        ArrayList<Book> booksWithName = getBooksByName(bookName);
+        requireNonNull(booksWithName);
+
+        return booksWithName.size() > 0;
     }
 
     /**
@@ -238,7 +244,8 @@ public class SmartLib implements ReadOnlySmartLib {
     }
 
     /**
-     * Retrieve the Book object whose barcode is specified by the given input
+     * Retrieves the Book object whose barcode is specified by the given input.
+     *
      * @param barcode Book's barcode
      * @return Book Object, null if does not exist
      */
@@ -254,33 +261,40 @@ public class SmartLib implements ReadOnlySmartLib {
     }
 
     /**
-     * Retrieve the Book object whose name is specified by bookName
+     * Retrieves the Book object whose name is specified by bookName.
+     *
      * @param bookName bookName
      * @return Book Object, null if does not exist
      */
-    public Book getBookByName(Name bookName) {
+    public ArrayList<Book> getBooksByName(Name bookName) {
         requireNonNull(bookName);
-        for (Book book: books) {
+        ArrayList<Book> booksWithName = new ArrayList<>();
+        for (Book book : books) {
             if (book.getName().equals(bookName)) {
-                return book;
+                booksWithName.add(book);
             }
         }
-        return null;
+        return booksWithName;
     }
 
     /**
-     * Returns true if a book with the same name as {@code bookName} is Already borrowed.
-     * @param bookName name of book, must exist in book base
-     * @return true if book is borrowed, if book not found, return true as well
+     * Returns true if a book with the same barcode as {@code barcode} is already borrowed.
+     *
+     * @param barcode barcode of book, must exist in book base
+     * @return true if the book is borrowed, or if the book is not found.
      */
-    public boolean isBookBorrowed(Name bookName) {
-        requireNonNull(bookName);
-        Book book = getBookByName(bookName);
-        if (book == null) {
-            return true;
-        } else {
-            return book.isBorrowed();
+    public boolean isBookWithBarcodeBorrowed(Barcode barcode) {
+        requireNonNull(barcode);
+
+        for (Book book : books) {
+            if (book.getBarcode().equals(barcode)) {
+                if (book.isBorrowed()) {
+                    return true;
+                }
+            }
         }
+
+        return false;
     }
 
     /**
@@ -305,7 +319,6 @@ public class SmartLib implements ReadOnlySmartLib {
     public String toString() {
         return readers.asUnmodifiableObservableList().size() + " readers"
                 + "\n" + records.asUnmodifiableObservableList().size() + " records";
-        // TODO: refine later
     }
 
     @Override
@@ -336,51 +349,68 @@ public class SmartLib implements ReadOnlySmartLib {
     }
 
     /**
-     * Update reader and book's status after a borrowing activity
-     * @param readerName readerName, must exist in reader base and
-     *                   must satisfy requirement for borrowing
-     * @param bookName bookName, must exist in book base
+     * Update reader and book's status after a borrowing activity.
+     *
+     * @param readerName readerName, must exist in reader base and must satisfy requirement for borrowing
+     * @param barcode barcode of book, must exist in book base
      */
-    public boolean borrowBook(Name readerName, Name bookName) {
+    public boolean borrowBook(Name readerName, Barcode barcode) {
         Reader reader = getReaderByName(readerName);
-        Book book = getBookByName(bookName);
-        if (reader == null || book == null) {
+        if (reader == null) {
             return false;
         }
-        reader.getBorrows().put(bookName, new DateBorrowed(LocalDate.now()));
-        Reader editedReader = new Reader(reader.getName(), reader.getPhone(), reader.getEmail(),
-                reader.getAddress(), reader.getTags(), reader.getBorrows());
-        Book editedBook = new Book(book.getName(), book.getAuthor(), book.getPublisher(),
-                book.getIsbn(), book.getBarcode(), book.getGenre(), readerName);
-        setReader(reader, editedReader);
-        setBook(book, editedBook);
-        return true;
+
+        Book book = getBookByBarcode(barcode);
+        if (book == null) {
+            return false;
+        }
+
+        if (!book.isBorrowed()) {
+            reader.getBorrows().put(book, new DateBorrowed(LocalDate.now()));
+            Reader editedReader = new Reader(reader.getName(), reader.getPhone(), reader.getEmail(),
+                    reader.getAddress(), reader.getTags(), reader.getBorrows());
+            Book editedBook = new Book(book.getName(), book.getAuthor(), book.getPublisher(),
+                    book.getIsbn(), book.getBarcode(), book.getGenre(), readerName);
+            setReader(reader, editedReader);
+            setBook(book, editedBook);
+            return true;
+        }
+
+        return false;
     }
 
     /**
-     * Update reader and book's status after a returning activity
+     * Update reader and book's status after a returning activity.
+     *
      * @param readerName readerName, must exist in reader base
-     * @param bookName bookName, must exist in book base
+     * @param barcode barcode of book, must exist in book base
      */
-    public boolean returnBook(Name readerName, Name bookName) {
+    public boolean returnBook(Name readerName, Barcode barcode) {
         Reader reader = getReaderByName(readerName);
-        Book book = getBookByName(bookName);
-        if (reader == null || book == null) {
+        if (reader == null) {
             return false;
         }
-        if (!reader.getBorrows().containsKey(bookName) || !book.getBorrowerName().equals(readerName)) {
+
+        Book book = getBookByBarcode(barcode);
+        if (book == null) {
+            return false;
+        }
+
+        if (!reader.getBorrows().containsKey(book) || !book.getBorrowerName().equals(readerName)) {
             System.out.println(reader.getBorrows());
             System.out.println(book.getBorrowerName());
-            System.out.println("Reader not containing bookname key or Book not containing readername");
+            System.out.println("Reader did not borrow the book, or Book was not borrowed to the reader.");
             return false;
         }
-        reader.getBorrows().remove(bookName);
+
+        reader.getBorrows().remove(book);
         Reader editedReader = new Reader(reader.getName(), reader.getPhone(), reader.getEmail(),
                 reader.getAddress(), reader.getTags(), reader.getBorrows());
-        Book editedBook = new Book(book.getName(), book.getAuthor(),
-                book.getPublisher(), book.getIsbn(), book.getBarcode(), book.getGenre());
+        Book editedBook = new Book(book.getName(), book.getAuthor(), book.getPublisher(), book.getIsbn(),
+                book.getBarcode(), book.getGenre());
         setReader(reader, editedReader);
         setBook(book, editedBook);
+
         return true;
     }
 }

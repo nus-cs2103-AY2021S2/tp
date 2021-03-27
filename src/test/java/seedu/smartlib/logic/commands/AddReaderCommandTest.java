@@ -129,6 +129,16 @@ public class AddReaderCommandTest {
         }
 
         @Override
+        public Barcode getBookBarcode(Name bookName) {
+            return null;
+        }
+
+        @Override
+        public Barcode getBookBarcodeForReturn(Name bookName, Name readerName) {
+            return null;
+        }
+
+        @Override
         public void setSmartLib(ReadOnlySmartLib newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -154,7 +164,7 @@ public class AddReaderCommandTest {
         }
 
         @Override
-        public boolean isBookBorrowed(Name bookName) {
+        public boolean isBookWithBarcodeBorrowed(Barcode barcode) {
             return false;
         }
 
@@ -179,12 +189,12 @@ public class AddReaderCommandTest {
         }
 
         @Override
-        public boolean borrowBook(Name readerName, Name bookName) {
+        public boolean borrowBook(Name readerName, Barcode barcode) {
             return false;
         }
 
         @Override
-        public boolean returnBook(Name readerName, Name bookName) {
+        public boolean returnBook(Name readerName, Barcode barcode) {
             return false;
         }
 

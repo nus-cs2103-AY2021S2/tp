@@ -22,6 +22,7 @@ import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.commons.util.CollectionUtil;
 import seedu.smartlib.logic.commands.exceptions.CommandException;
 import seedu.smartlib.model.Model;
+import seedu.smartlib.model.book.Book;
 import seedu.smartlib.model.reader.Address;
 import seedu.smartlib.model.reader.Email;
 import seedu.smartlib.model.reader.Phone;
@@ -34,7 +35,7 @@ import seedu.smartlib.model.tag.Tag;
  */
 public class EditCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "editreader";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the reader identified "
             + "by the index number used in the displayed reader list. "
@@ -101,7 +102,7 @@ public class EditCommand extends Command {
         Email updatedEmail = editReaderDescriptor.getEmail().orElse(readerToEdit.getEmail());
         Address updatedAddress = editReaderDescriptor.getAddress().orElse(readerToEdit.getAddress());
         Set<Tag> updatedTags = editReaderDescriptor.getTags().orElse(readerToEdit.getTags());
-        Map<Name, DateBorrowed> updatedBorrows = editReaderDescriptor.getBorrows().orElse(readerToEdit.getBorrows());
+        Map<Book, DateBorrowed> updatedBorrows = editReaderDescriptor.getBorrows().orElse(readerToEdit.getBorrows());
 
         return new Reader(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedBorrows);
     }
@@ -134,7 +135,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
-        private Map<Name, DateBorrowed> borrows;
+        private Map<Book, DateBorrowed> borrows;
 
         public EditReaderDescriptor() {}
 
@@ -210,7 +211,7 @@ public class EditCommand extends Command {
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
-        public void setBorrows(Map<Name, DateBorrowed> borrows) {
+        public void setBorrows(Map<Book, DateBorrowed> borrows) {
             this.borrows = (borrows != null) ? new HashMap<>(borrows) : null;
         }
 
@@ -219,7 +220,7 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Map<Name, DateBorrowed>> getBorrows() {
+        public Optional<Map<Book, DateBorrowed>> getBorrows() {
             return (borrows != null) ? Optional.of(Collections.unmodifiableMap(borrows)) : Optional.empty();
         }
 

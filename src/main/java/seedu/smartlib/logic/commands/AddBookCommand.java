@@ -62,7 +62,6 @@ public class AddBookCommand extends Command {
         while (model.hasBookWithBarcode(new Barcode(rv))) {
             rv = random.nextInt(Barcode.MAX_VALUE - Barcode.MIN_VALUE) + Barcode.MIN_VALUE;
         }
-        System.out.println(rv);
         return new Barcode(rv);
     }
 

@@ -41,7 +41,6 @@ public class AddBookCommandParser implements Parser<AddBookCommand> {
         Publisher publisher = ParserUtil.parsePublisher(argMultimap.getValue(PREFIX_PUBLISHER).get());
         Isbn isbn = ParserUtil.parseIsbn(argMultimap.getValue(PREFIX_ISBN).get());
         Genre genre = ParserUtil.parseGenre(argMultimap.getValue(PREFIX_GENRE).get());
-        //Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Book bookWithTempBarcode = new Book(bookName, author, publisher, isbn,
                 new Barcode(Barcode.TEMP_BARCODE_VALUE), genre);

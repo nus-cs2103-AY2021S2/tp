@@ -12,7 +12,7 @@ import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.logic.commands.ReturnCommand;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
 import seedu.smartlib.model.record.DateReturned;
-import seedu.smartlib.model.record.Record;
+import seedu.smartlib.model.record.IncompleteRecord;
 
 /**
  * Parses input arguments and creates a new {@code ReturnCommand} object
@@ -35,7 +35,7 @@ public class ReturnCommandParser implements Parser<ReturnCommand> {
         Name bookName = ParserUtil.parseName(argMultimap.getValue(PREFIX_BOOK).get());
         Name readerName = ParserUtil.parseName(argMultimap.getValue(PREFIX_READER).get());
         DateReturned dateReturned = new DateReturned(LocalDate.now());
-        Record record = new Record(bookName, readerName, dateReturned);
+        IncompleteRecord record = new IncompleteRecord(bookName, readerName, dateReturned);
 
         return new ReturnCommand(record);
     }

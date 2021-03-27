@@ -53,13 +53,13 @@ public class BookCard extends UiPart<Region> {
         super(FXML);
         this.book = book;
         id.setText(displayedIndex + ". ");
-        name.setText(book.getName().fullName);
+        name.setText(book.getName().toString());
         author.setText("Author: " + book.getAuthor().toString());
         publisher.setText("Publisher: " + book.getPublisher().toString());
         isbn.setText("ISBN: " + book.getIsbn().toString());
         barcode.setText("Barcode: " + book.getBarcode().toString());
         genre.setText("Genre: " + book.getGenre().toString());
-        borrowerName.setText(book.isBorrowed() ? "Borrowed by: " + book.getBorrowerName().fullName : "Available");
+        borrowerName.setText(book.isBorrowed() ? "Borrowed by: " + book.getBorrowerName().toString() : "Available");
         //Todo:
         //      book.getTags().stream()
         //                .sorted(Comparator.comparing(tag -> tag.tagName))
