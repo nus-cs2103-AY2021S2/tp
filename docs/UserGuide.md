@@ -402,6 +402,14 @@ find KEYWORD [MORE_KEYWORDS]...
 - `find CS2103` returns `CS2103` and `CS2103T`
 - `find assignment` returns `CS2101 assignment`, `CS2103 assignment`
 
+![before find screenshot](./images/user-guide/find-before-execute.png)
+
+**Figure 9. Before execution of find command**
+
+![after find screenshot](./images/user-guide/find-after-execute.png)
+
+**Figure 10. After execution of sample find command**
+
 [Return to Table of Contents](#table-of-contents)
 
 <div class="page-break-before"></div>
@@ -416,9 +424,15 @@ Lists all of your events in Focuris. Typically used after using [`find`](#237-fi
 list
 ```
 
-#### Expected Outcome:
+#### Example
 
-- If you used `find` previously, it will show all events, instead of only those that are found through the command.
+![after find screenshot](./images/user-guide/find-after-execute.png)
+
+**Figure 10. After execution of sample find command**
+
+![list example](./images/user-guide/list-example-1.png)
+
+**Figure 11. Execution of list command after find in Figure 10**
 
 [Return to Table of Contents](#table-of-contents)
 
