@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.stream.Stream;
 
 /**
- * Utility methods related to Collections
+ * Utility methods related to Collections.
  */
 public class CollectionUtil {
 
@@ -20,6 +20,8 @@ public class CollectionUtil {
 
     /**
      * Throws NullPointerException if {@code items} or any element of {@code items} is null.
+     *
+     * @param items the collection of items to be checked
      */
     public static void requireAllNonNull(Collection<?> items) {
         requireNonNull(items);
@@ -28,8 +30,12 @@ public class CollectionUtil {
 
     /**
      * Returns true if {@code items} contain any elements that are non-null.
+     *
+     * @param items the objects to be checked
+     * @return true if any of the objects are non-null, and false otherwise
      */
     public static boolean isAnyNonNull(Object... items) {
         return items != null && Arrays.stream(items).anyMatch(Objects::nonNull);
     }
+
 }

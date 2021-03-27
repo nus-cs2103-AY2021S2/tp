@@ -28,6 +28,11 @@ public class GuiSettings implements Serializable {
 
     /**
      * Constructs a {@code GuiSettings} with the specified height, width and position.
+     *
+     * @param windowWidth width of the GUI
+     * @param windowHeight height of the GUI
+     * @param xPosition x-position of the GUI
+     * @param yPosition y-position of the GUI
      */
     public GuiSettings(double windowWidth, double windowHeight, int xPosition, int yPosition) {
         this.windowWidth = windowWidth;
@@ -35,18 +40,39 @@ public class GuiSettings implements Serializable {
         windowCoordinates = new Point(xPosition, yPosition);
     }
 
+    /**
+     * Returns the width of the GUI.
+     *
+     * @return the width of the GUI
+     */
     public double getWindowWidth() {
         return windowWidth;
     }
 
+    /**
+     * Returns the height of the GUI.
+     *
+     * @return the height of the GUI
+     */
     public double getWindowHeight() {
         return windowHeight;
     }
 
+    /**
+     * Returns the coordinates of the GUI.
+     *
+     * @return the coordinates of the GUI
+     */
     public Point getWindowCoordinates() {
         return windowCoordinates != null ? new Point(windowCoordinates) : null;
     }
 
+    /**
+     * Checks if this GuiSettings object is equals to another GuiSettings object.
+     *
+     * @param other the other GuiSettings object to be compared
+     * @return true if this GuiSettings object is equal to the other GuiSettings object, and false otherwise
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -63,11 +89,21 @@ public class GuiSettings implements Serializable {
                 && Objects.equals(windowCoordinates, o.windowCoordinates);
     }
 
+    /**
+     * Generates a hashcode for this GuiSettings object.
+     *
+     * @return the hashcode for this GuiSettings object
+     */
     @Override
     public int hashCode() {
         return Objects.hash(windowWidth, windowHeight, windowCoordinates);
     }
 
+    /**
+     * Returns this GuiSettings object in String format.
+     *
+     * @return this GuiSettings object in String format
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -76,4 +112,5 @@ public class GuiSettings implements Serializable {
         sb.append("Position : " + windowCoordinates);
         return sb.toString();
     }
+
 }
