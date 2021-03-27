@@ -23,7 +23,7 @@ import seedu.address.model.task.Title;
  * Clear all assignees from a task identified using it's displayed index from the address book.
  */
 public class ClearAssigneesCommand extends Command {
-    public static final String COMMAND_WORD = "removeAssignees";
+    public static final String COMMAND_WORD = "clearAssignees";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the assignees from the task identified by the index number used "
