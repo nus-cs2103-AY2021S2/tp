@@ -13,15 +13,14 @@ import seedu.address.model.person.Person;
 public class PersonFilter implements Predicate<Person> {
     private final Set<Predicate<Name>> nameFilters;
 
-    private final Predicate<Name> composedNameFilter;
+    private Predicate<Name> composedNameFilter;
 
     /**
      * Constructs an empty {@code PersonFilter} that shows all people by default.
      */
     public PersonFilter() {
         this.nameFilters = new LinkedHashSet<>();
-
-        this.composedNameFilter = x -> true;
+        composeFilters();
     }
 
     /**
@@ -32,29 +31,27 @@ public class PersonFilter implements Predicate<Person> {
         requireAllNonNull(nameFilters);
         this.nameFilters = nameFilters;
 
-        this.composedNameFilter = nameFilters.stream()
-                .reduce((x, y) -> x.or(y))
-                .orElse(x -> true);
+        composeFilters();
     }
 
     /**
      * Add all filters from another person filter and merge them.
      */
     public PersonFilter add(PersonFilter personFilter) {
-        Set<Predicate<Name>> newNameFilters = new LinkedHashSet<>(nameFilters);
-        newNameFilters.addAll(personFilter.nameFilters);
+        nameFilters.addAll(personFilter.nameFilters);
 
-        return new PersonFilter(newNameFilters);
+        composeFilters();
+        return this;
     }
 
     /**
      * Remove filters from this person filter according to another person filter.
      */
     public PersonFilter remove(PersonFilter personFilter) {
-        Set<Predicate<Name>> newNameFilters = new LinkedHashSet<>(nameFilters);
-        newNameFilters.removeAll(personFilter.nameFilters);
+        nameFilters.removeAll(personFilter.nameFilters);
 
-        return new PersonFilter(newNameFilters);
+        composeFilters();
+        return this;
     }
 
     @Override
@@ -86,5 +83,11 @@ public class PersonFilter implements Predicate<Person> {
         boolean isFiltered = false;
         isFiltered = isFiltered || composedNameFilter.test(person.getName());
         return isFiltered;
+    }
+
+    private void composeFilters() {
+        this.composedNameFilter = nameFilters.stream()
+                .reduce((x, y) -> x.or(y))
+                .orElse(x -> true);
     }
 }

@@ -58,13 +58,13 @@ public class PersonFilterTest {
 
         Set<Predicate<Name>> nameFilters = new LinkedHashSet<Predicate<Name>>();
         nameFilters.add(new NameFilter(amy.getName().fullName));
-        personFilter = personFilter.add(new PersonFilter(nameFilters));
+        personFilter.add(new PersonFilter(nameFilters));
 
         assertTrue(personFilter.test(amy));
         assertFalse(personFilter.test(bob));
 
         nameFilters.add(new NameFilter(bob.getName().fullName));
-        personFilter = personFilter.add(new PersonFilter(nameFilters));
+        personFilter.add(new PersonFilter(nameFilters));
 
         assertTrue(personFilter.test(amy));
         assertTrue(personFilter.test(bob));
@@ -90,14 +90,14 @@ public class PersonFilterTest {
 
         nameFilters = new LinkedHashSet<Predicate<Name>>();
         nameFilters.add(new NameFilter(bob.getName().fullName));
-        personFilter = personFilter.remove(new PersonFilter(nameFilters));
+        personFilter.remove(new PersonFilter(nameFilters));
 
         assertTrue(personFilter.test(amy));
         assertFalse(personFilter.test(bob));
 
         nameFilters = new LinkedHashSet<Predicate<Name>>();
         nameFilters.add(new NameFilter(amy.getName().fullName));
-        personFilter = personFilter.remove(new PersonFilter(nameFilters));
+        personFilter.remove(new PersonFilter(nameFilters));
 
         assertTrue(personFilter.test(amy));
         assertTrue(personFilter.test(bob));
