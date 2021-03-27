@@ -86,6 +86,11 @@ public class AddEventCommandTest {
         }
 
         @Override
+        public void sortTasksDefault() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public int getNumCompletedTask() {
             throw new AssertionError("This method should not be called.");
         }

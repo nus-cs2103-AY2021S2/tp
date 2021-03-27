@@ -162,6 +162,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void sortTasksDefault() {
+        sochedule.sortTasksDefault();
+    }
+
+    @Override
     public void clearExpiredTasks() {
         sochedule.clearExpiredTasks();
     }

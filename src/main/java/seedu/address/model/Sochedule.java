@@ -153,6 +153,13 @@ public class Sochedule implements ReadOnlySochedule {
     }
 
     /**
+     * Sorts the contents of this list using current {@code comparingVar}.
+     */
+    public void sortTasksDefault() {
+        tasks.sortDefault();
+    }
+
+    /**
      * Returns the number of completed tasks.
      */
     public int getNumCompletedTask() {

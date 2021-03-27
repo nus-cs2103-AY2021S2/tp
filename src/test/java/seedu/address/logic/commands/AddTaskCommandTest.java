@@ -151,6 +151,10 @@ public class AddTaskCommandTest {
         public void sortTasks(String comparingVar) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public void sortTasksDefault() {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public int getNumCompletedTask() {

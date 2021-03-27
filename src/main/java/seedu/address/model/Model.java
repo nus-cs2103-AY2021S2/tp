@@ -114,6 +114,11 @@ public interface Model {
     void sortTasks(String comparingVar);
 
     /**
+     * Sorts the contents of this list using current {@code comparingVar}.
+     */
+    void sortTasksDefault();
+
+    /**
      * Returns the number of completed tasks.
      */
     int getNumCompletedTask();
