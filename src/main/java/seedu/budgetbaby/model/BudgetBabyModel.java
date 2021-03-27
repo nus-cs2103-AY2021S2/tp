@@ -111,7 +111,7 @@ public interface BudgetBabyModel {
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredFinancialRecordList(Predicate<FinancialRecord> predicate);
+    boolean updateFilteredFinancialRecordList(Predicate<FinancialRecord> predicate);
 
     /**
      * Deletes the given financial record.
@@ -134,7 +134,7 @@ public interface BudgetBabyModel {
      * Iterates through the financial records and searches for the {@code description} {@code amount} {@code category}.
      * {@code description} {@code amount} {@code category} must exist in the budget tracker.
      */
-    void findFinancialRecord(Description description, Amount amount, Category category);
+    boolean findFinancialRecord(Description description, Amount amount, Category category);
 
     /**
      * Resets filters on financial records to display original list

@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import seedu.budgetbaby.abmodel.ModelManager;
 import seedu.budgetbaby.commons.core.GuiSettings;
 import seedu.budgetbaby.commons.core.LogsCenter;
 import seedu.budgetbaby.model.budget.Budget;
@@ -140,8 +141,10 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
     }
 
     @Override
-    public void findFinancialRecord(Description description, Amount amount, Category category) {
+    public boolean findFinancialRecord(Description description, Amount amount, Category category) {
         assert true;
+
+        boolean result;
 
         Predicate<FinancialRecord> findD = fr -> fr.getDescription().description.equals(description.description);
 
@@ -164,23 +167,25 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
 
         if (description == null) {
             if (amount == null && category != null) {
-                updateFilteredFinancialRecordList(findC);
+                result = updateFilteredFinancialRecordList(findC);
             } else if (amount != null && category == null) {
-                updateFilteredFinancialRecordList(findA);
+                result = updateFilteredFinancialRecordList(findA);
             } else {
-                updateFilteredFinancialRecordList(findAC);
+                result = updateFilteredFinancialRecordList(findAC);
             }
         } else if (amount == null) {
             if (category == null) {
-                updateFilteredFinancialRecordList(findD);
+                result = updateFilteredFinancialRecordList(findD);
             } else {
-                updateFilteredFinancialRecordList(findDC);
+                result = updateFilteredFinancialRecordList(findDC);
             }
         } else if (category == null) {
-            updateFilteredFinancialRecordList(findDA);
+            result = updateFilteredFinancialRecordList(findDA);
         } else {
-            updateFilteredFinancialRecordList(findAll);
+            result = updateFilteredFinancialRecordList(findAll);
         }
+
+        return result;
     }
 
     @Override
@@ -213,9 +218,16 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
     }
 
     @Override
-    public void updateFilteredFinancialRecordList(Predicate<FinancialRecord> predicate) {
+    public boolean updateFilteredFinancialRecordList(Predicate<FinancialRecord> predicate) {
         requireNonNull(predicate);
-        filteredFinancialRecords.setPredicate(predicate);
+        FilteredList<FinancialRecord> tempFilteredList = new FilteredList<>(filteredFinancialRecords);
+        tempFilteredList.setPredicate(predicate);
+        if (!tempFilteredList.isEmpty()) {
+            filteredFinancialRecords.setPredicate(predicate);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override

@@ -29,9 +29,10 @@ public class FindFrCommand extends BudgetBabyCommand {
             + PREFIX_AMOUNT + "40 "
             + PREFIX_CATEGORY + "Apparel";
 
-    public static final String MESSAGE_SUCCESS = "Financial Records list is now filtered to %1$s."
+    public static final String MESSAGE_SUCCESS = "Financial Records list is now filtered. "
             + "Use reset-filter to revert to original list.";
 
+    public static final String MESSAGE_FAIL = "Unable to find financial Records matching given inputs.";
     private final Description description;
     private final Amount amount;
     private final Category category;
@@ -48,14 +49,11 @@ public class FindFrCommand extends BudgetBabyCommand {
     @Override
     public CommandResult execute(BudgetBabyModel model) throws CommandException {
         requireNonNull(model);
-        model.findFinancialRecord(description, amount, category);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, description, amount, category));
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof FindFrCommand // instanceof handles nulls
-                && category.equals(((FindFrCommand) other).category));
+        boolean result = model.findFinancialRecord(description, amount, category);
+        if (result) {
+            return new CommandResult(String.format(MESSAGE_SUCCESS, description, amount, category));
+        } else {
+            return new CommandResult(String.format(MESSAGE_FAIL));
+        }
     }
 }
