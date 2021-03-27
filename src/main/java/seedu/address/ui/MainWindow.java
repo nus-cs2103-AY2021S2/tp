@@ -36,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private CalendarView calendarView;
     private AppointmentListPanel appointmentListPanel;
+    private GradeListPanel gradeListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -54,6 +55,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane appointmentListPanelPlaceholder;
+
+    @FXML
+    private StackPane gradeListPanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -121,6 +125,10 @@ public class MainWindow extends UiPart<Stage> {
 
         appointmentListPanel = new AppointmentListPanel(logic.getFilteredAppointmentList());
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
+
+        /* Grade List */
+        gradeListPanel = new GradeListPanel(logic.getFilteredGradeList());
+        gradeListPanelPlaceholder.getChildren().add(gradeListPanel.getRoot());
 
         resultDisplay = new ResultBarFooter();
         statusbarPlaceholder.getChildren().add(resultDisplay.getRoot());
