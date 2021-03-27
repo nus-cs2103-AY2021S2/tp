@@ -7,7 +7,7 @@ package seedu.address.model.task;
 public class PinnedStatus implements Comparable<PinnedStatus> {
     public static final String VALIDATION_REGEX = "PINNED|UNPINNED";
     public static final String MESSAGE_CONSTRAINTS =
-            "Completion Statuses should only either by \"PINNED\" or \"UNPINNED\"";
+            "Pinned Statuses should only either by \"PINNED\" or \"UNPINNED\"";
 
     private Status pinnedStatus;
 
@@ -57,6 +57,13 @@ public class PinnedStatus implements Comparable<PinnedStatus> {
         } else {
             pinnedStatus = Status.PINNED;
         }
+    }
+
+    /**
+     * Returns true if a given string is a valid pinned status.
+     */
+    public static boolean isValidStatus(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     /**
