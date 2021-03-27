@@ -35,6 +35,7 @@ public class ViewUnassignedTasksCommandTest {
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
-        assertCommandSuccess(new ViewUnassignedTasksCommand(), model, ViewUnassignedTasksCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ViewUnassignedTasksCommand(), model,
+                ViewUnassignedTasksCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

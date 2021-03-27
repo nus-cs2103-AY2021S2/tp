@@ -35,6 +35,7 @@ public class ViewUncompletedTasksCommandTest {
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
-        assertCommandSuccess(new ViewUncompletedTasksCommand(), model, ViewUncompletedTasksCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ViewUncompletedTasksCommand(), model,
+                ViewUncompletedTasksCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
