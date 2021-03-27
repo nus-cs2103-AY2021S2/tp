@@ -113,7 +113,7 @@ public class AddOnCommand extends Command {
     }
 
     private static Price updatePrice(Price currentPrice, Price priceToAddOn) {
-        String[] priceValues = currentPrice.value.split("-");
+        String[] priceValues = currentPrice.value.split("\\s*-\\s*");
         assert priceValues.length == 2 || priceValues.length == 1:
                 "Expected Price values to contain minimum 1 value or maximum two values";
         String updatedPriceValue;
@@ -197,7 +197,7 @@ public class AddOnCommand extends Command {
          * Returns true if at least one field is updated with more details (eg. additional reviews).
          */
         public boolean isAnyFieldAddedOn() {
-            return CollectionUtil.isAnyNonNull(reviews);
+            return CollectionUtil.isAnyNonNull(reviews, price);
         }
 
         /**
