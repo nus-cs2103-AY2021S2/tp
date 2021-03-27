@@ -29,7 +29,6 @@ import static seedu.address.testutil.TypicalIdentifiers.IDENTIFIER_THIRD_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.identifier.Identifier;
-import seedu.address.commons.core.identifier.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditEventDescriptor;
 import seedu.address.model.event.EventName;

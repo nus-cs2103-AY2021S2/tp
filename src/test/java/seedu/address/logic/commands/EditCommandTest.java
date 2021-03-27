@@ -16,7 +16,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.identifier.Identifier;
-import seedu.address.commons.core.identifier.Index;
 import seedu.address.logic.commands.EditCommand.EditEventDescriptor;
 import seedu.address.model.EventBook;
 import seedu.address.model.Model;
