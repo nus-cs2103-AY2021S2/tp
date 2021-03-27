@@ -46,9 +46,18 @@ public class UpcomingTuitionListPanel extends UiPart<Region> {
                 populateTuitionList(studentList, tuitionList);
                 filterOneWeekTuitionSessions(tuitionList, finalTuitionList);
                 sortByDate(finalTuitionList);
+                populateUpcomingTuitionListView(finalTuitionList);
             }
         });
 
+        populateUpcomingTuitionListView(finalTuitionList);
+    }
+
+    /**
+     * Populate the upcomingTuitionListView with the given {@code ObservableList}
+     * @param finalTuitionList
+     */
+    private void populateUpcomingTuitionListView(ObservableList<Tuition> finalTuitionList) {
         upcomingTuitionListView.setItems(finalTuitionList);
         upcomingTuitionListView.setCellFactory(listView -> new UpcomingTuitionListViewCell());
     }
@@ -107,8 +116,6 @@ public class UpcomingTuitionListPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 setGraphic(new UpcomingTuitionCard(tuition).getRoot());
-                setStyle("-fx-background-color: #424659; -fx-background-radius: 30px;"
-                        + " -fx-background-insets: 3px, 0px; -fx-padding: 7px");
             }
         }
     }

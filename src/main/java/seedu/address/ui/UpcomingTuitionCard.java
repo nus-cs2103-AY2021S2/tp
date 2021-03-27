@@ -40,8 +40,8 @@ public class UpcomingTuitionCard extends UiPart<Region> {
         super(FXML);
         this.student = tuition.getStudent();
         this.session = tuition.getSession();
-        name.setText(student.getName().fullName);
-        address.setText(student.getAddress().value);
+        name.setText("Name: " + student.getName().fullName);
+        address.setText("Address: " + student.getAddress().value);
         date.setText("Date: " + session.getSessionDate().getDate().toString());
         time.setText("Time: " + session.getSessionDate().getTime().toString());
         duration.setText("Duration: " + session.getDuration().getValue() + " mins");
