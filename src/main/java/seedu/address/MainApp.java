@@ -26,6 +26,7 @@ import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
 import seedu.address.model.user.User;
 import seedu.address.model.util.SampleDataUtil;
+import seedu.address.model.util.TemplateInitializer;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.DietPlanListStorage;
 import seedu.address.storage.FoodIntakeListStorage;
@@ -128,22 +129,25 @@ public class MainApp extends Application {
                 logger.info("User file not found. Will be starting fresh");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-            uniqueFoodList = uniqueFoodListOptional.orElse(new UniqueFoodList());
-            foodIntakeList = foodIntakeListOptional.orElse(new FoodIntakeList());
+            TemplateInitializer initializer = new TemplateInitializer();
+            uniqueFoodList = uniqueFoodListOptional.orElse(initializer.getUniqueFoodListTemplate());
+            foodIntakeList = foodIntakeListOptional.orElse(initializer.getFoodListIntakeTemplate());
+            dietPlanList = dietPlanListOptional.orElse(initializer.getDietPlanListTemplate());
             user = userOptional.orElse(null); // update with sample data util
-            dietPlanList = dietPlanListOptional.orElseGet(SampleDataUtil::getSampleDietPlanList);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+            TemplateInitializer initializer = new TemplateInitializer();
             initialData = new AddressBook();
-            uniqueFoodList = new UniqueFoodList();
-            foodIntakeList = new FoodIntakeList();
-            dietPlanList = new DietPlanList();
+            uniqueFoodList = initializer.getUniqueFoodListTemplate();
+            foodIntakeList = initializer.getFoodListIntakeTemplate();
+            dietPlanList = initializer.getDietPlanListTemplate();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            TemplateInitializer initializer = new TemplateInitializer();
             initialData = new AddressBook();
-            uniqueFoodList = new UniqueFoodList();
-            foodIntakeList = new FoodIntakeList();
-            dietPlanList = new DietPlanList();
+            uniqueFoodList = initializer.getUniqueFoodListTemplate();
+            foodIntakeList = initializer.getFoodListIntakeTemplate();
+            dietPlanList = initializer.getDietPlanListTemplate();
         }
 
         return new ModelManager(initialData, uniqueFoodList, foodIntakeList, dietPlanList, userPrefs);
