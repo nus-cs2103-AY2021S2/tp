@@ -9,6 +9,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.person.Patient;
+import seedu.address.model.person.Doctor;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -19,14 +20,14 @@ import seedu.address.model.tag.Tag;
 public class Appointment implements Comparable<Appointment> {
     // Data fields
     private final Patient patient;
-    private final String doctor;
+    private final Doctor doctor;
     private final Timeslot timeslot;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Appointment(Patient patient, String doctor, Timeslot timeslot, Set<Tag> tags) {
+    public Appointment(Patient patient, Doctor doctor, Timeslot timeslot, Set<Tag> tags) {
         requireAllNonNull(patient, doctor, timeslot, tags);
         this.patient = patient;
         this.doctor = doctor;
@@ -39,7 +40,7 @@ public class Appointment implements Comparable<Appointment> {
         return patient;
     }
 
-    public String getDoctor() {
+    public Doctor getDoctor() {
         return doctor;
     }
 
