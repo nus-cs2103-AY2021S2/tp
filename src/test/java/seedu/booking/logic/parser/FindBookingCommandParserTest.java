@@ -22,7 +22,7 @@ public class FindBookingCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_validArgs_returnsFindBookingCommand() {
         // no leading and trailing whitespaces
         FindBookingCommand expectedFindBookingCommand =
                 new FindBookingCommand(new BookingIdContainsKeywordsPredicate("1"));
