@@ -1,21 +1,15 @@
 package seedu.address.ui;
 
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-
-import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.session.Session;
 import seedu.address.model.student.Student;
-import seedu.address.model.tuition.Tuition;
 
 /**
  * An UI component that displays information of a {@Student} and a list the {@code Session} of that {@code Student}.

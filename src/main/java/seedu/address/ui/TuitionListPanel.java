@@ -12,9 +12,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.session.Session;
 import seedu.address.model.student.Student;
-import seedu.address.model.tuition.Tuition;
 
 /**
  * Panel containing the list of tuition.
