@@ -11,6 +11,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAppointmentSchedule;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Patient;
+import seedu.address.model.person.Doctor;
 
 /**
  * API of the Logic component
@@ -43,6 +44,8 @@ public interface Logic {
      */
     ReadOnlyAddressBook<Patient> getPatientRecords();
 
+    ReadOnlyAddressBook<Patient> getDoctorRecords();
+
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Patient> getFilteredPatientList();
 
@@ -53,6 +56,11 @@ public interface Logic {
      * Returns the user prefs' address book file path.
      */
     Path getPatientRecordsFilePath();
+
+    /**
+     * Returns the user prefs' address book file path.
+     */
+    Path getDoctorRecordsFilePath();
 
     //=========== AppointmentSchedule ========================================================================
     /**
