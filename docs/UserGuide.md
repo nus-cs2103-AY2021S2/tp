@@ -128,6 +128,9 @@ Focuris is a **desktop application** for **managing events** with a KanBan board
 
 ## 2.2 General
 
+For ease of reference:
+![Ui](images/UiWithReference.png)
+
 ### 2.2.1 `help` Command
 
 Shows a pop-up with a link to the Focuris user guide.
@@ -426,13 +429,9 @@ list
 
 #### Example
 
-![after find screenshot](./images/user-guide/find-after-execute.png)
-
-**Figure 10. After execution of sample find command**
-
 ![list example](./images/user-guide/list-example-1.png)
 
-**Figure 11. Execution of list command after find in Figure 10**
+**Figure 11. Execution of list command**
 
 [Return to Table of Contents](#table-of-contents)
 
