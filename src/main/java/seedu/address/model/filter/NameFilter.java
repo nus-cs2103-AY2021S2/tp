@@ -57,6 +57,10 @@ public class NameFilter implements Predicate<Name> {
 
     @Override
     public boolean test(Name name) {
+        if (name == null) {
+            return false;
+        }
+
         return name.fullName.contains(nameFilter);
     }
 }
