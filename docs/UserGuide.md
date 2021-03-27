@@ -313,7 +313,7 @@ Optional identifiers can be added to show the list of matched clients with only 
   * `find n/alex david`
   
     ![find_alex_david](images/find_alex_david.png)
-  
+<br><br>
 * Find `Alex David`, `Alex Yeoh` and `David Li`.
   * `find n/alex & david`
 <br><br>
@@ -324,7 +324,7 @@ Optional identifiers can be added to show the list of matched clients with only 
   * `find n/alex & david -e -p`
     
     ![find_alex_&_david_with_filter](images/find-alex-&-david-with-filter.png)
-
+<br><br>
 [Return to Table of Contents](#table-of-contents)
 <br><br>
 
