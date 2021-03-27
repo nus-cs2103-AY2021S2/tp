@@ -70,6 +70,10 @@ public class Task {
         return completionStatus.isComplete();
     }
 
+    public boolean isPinned() {
+        return pinnedStatus.isPinned();
+    }
+
     public void pin() {
         pinnedStatus.pin();
     }

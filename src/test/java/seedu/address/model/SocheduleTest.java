@@ -164,6 +164,40 @@ public class SocheduleTest {
     }
 
     @Test
+    public void pinTask_returnsTrue() {
+        Task t = new TaskBuilder(ASSIGNMENT).build();
+        sochedule.addTask(t);
+        sochedule.pinTask(t);
+        assertTrue(t.isPinned());
+    }
+
+    @Test
+    public void unpinTask_returnsTrue() {
+        Task t = new TaskBuilder(ASSIGNMENT).build();
+        sochedule.addTask(t);
+        sochedule.pinTask(t);
+        assertTrue(t.isPinned());
+
+        sochedule.unpinTask(t);
+        assertFalse(t.isPinned());
+    }
+
+    @Test
+    public void pinTask_alreadyPinned_nothingHappen() {
+        Task t = new TaskBuilder(ASSIGNMENT).build();
+        sochedule.addTask(t);
+        sochedule.pinTask(t);
+        assertDoesNotThrow(() -> sochedule.pinTask(t));
+    }
+
+    @Test
+    public void unpinTask_alreadyUnpinned_nothingHappen() {
+        Task t = new TaskBuilder(ASSIGNMENT).build();
+        sochedule.addTask(t);
+        assertDoesNotThrow(() -> sochedule.unpinTask(t));
+    }
+
+    @Test
     public void sortTasks_nullList_nothingThrown() {
         assertDoesNotThrow(() ->
                 sochedule.sortTasks(TaskComparator.getAcceptedVar().get(0)));
