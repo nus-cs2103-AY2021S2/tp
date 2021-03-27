@@ -217,7 +217,7 @@ Format: `editMember NAME IN LIST [-n NEW_NAME] [-p NEW_PHONE_NUMBER] [-e NEW_EMA
 
 Examples: `editMember Alice -n Alice Lim -p 95231156 -e tasha@test.com -r Events head`
 
-<a name="findmember"></a>
+<a name="findMember"></a>
 ### 16. Find Members by Keywords: `findMembers`
 
 Find all members whose details contain any of the specified keywords.
@@ -226,8 +226,17 @@ Format: `findMembers KEYWORD [MORE_KEYWORDS]`
 
 Examples: `findMembers Rachel 98562154 john@gmail.com`
 
+<a name="findTasksFor"></a>
+### 17. Find Tasks Assigned to a Single Member: `findMembers`
+
+Find all tasks assigned to a single Member
+
+Format: `findTasksFor NAME`
+
+Examples: `findTasksFor`
+
 <a name="clear"></a>
-### 17. Clear all data in application: `clear`
+### 18. Clear all data in application: `clear`
 Clears all entries from the application.
 
 Format: `clear`
@@ -235,7 +244,7 @@ Format: `clear`
 Examples: `clear`
 
 <a name="exit"></a>
-### 18. Exiting the programme: `exit`
+### 19. Exiting the programme: `exit`
 Exits the program.
 
 Format: `exit`
@@ -243,7 +252,7 @@ Format: `exit`
 Examples: `exit`
 
 <a name="help"></a>
-### 19. View Help: `help`
+### 20. View Help: `help`
 Shows a message explaining how to access the help page.
 
 Format: `help`
