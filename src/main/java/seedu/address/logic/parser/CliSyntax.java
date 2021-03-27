@@ -35,7 +35,7 @@ public class CliSyntax {
 
     /*
      * Grade prefix definitions
-     * Reference: s/SUBJECT gi/Final Exam gr/A
+     * Reference: s/Science gi/Final Exam gr/A
      */
     public static final Prefix PREFIX_GRADED_ITEM = new Prefix("gi/");
     public static final Prefix PREFIX_GRADE = new Prefix("gr/");

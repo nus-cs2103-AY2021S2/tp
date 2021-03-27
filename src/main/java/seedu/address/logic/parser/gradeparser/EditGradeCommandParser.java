@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADED_ITEM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT_NAME;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.gradecommands.EditGradeCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -56,7 +55,7 @@ public class EditGradeCommandParser implements Parser<EditGradeCommand> {
         }
 
         if (!editGradeDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(EditGradeCommand.MESSAGE_NOT_EDITED);
         }
 
         return new EditGradeCommand(index, editGradeDescriptor);
