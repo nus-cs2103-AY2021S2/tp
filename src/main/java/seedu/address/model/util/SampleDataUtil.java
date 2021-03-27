@@ -18,9 +18,9 @@ import seedu.address.model.tag.Tag;
  */
 public class SampleDataUtil {
     public static Residence[] getSampleResidence() {
-        return new Residence[]{
+        return new Residence[] {
             new Residence(new ResidenceName("HDB"), new ResidenceAddress("Blk 30 Geylang Street 29, #06-40"),
-                    new BookingList(), getCleanStatusTag("y"), getTagSet("Booked")),
+                    new BookingList(), getCleanStatusTag("y"), getTagSet("Popular")),
             new Residence(new ResidenceName("Condo"), new ResidenceAddress("Blk 45 Tampines Street 29, #08-01"),
                     new BookingList(), getCleanStatusTag("n"), getTagSet("Reserved")),
         };

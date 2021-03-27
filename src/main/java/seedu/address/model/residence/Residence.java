@@ -80,7 +80,15 @@ public class Residence {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
+    public boolean hasBooking(Booking booking) {
+        return bookingList.contains(booking);
+    }
+
+    /**
+     * Returns a modified {@code Residence} with new booking.
+     */
     public Residence addBooking(Booking booking) {
+        assert !this.hasBooking(booking);
         bookingList.add(booking);
         return this;
     }
