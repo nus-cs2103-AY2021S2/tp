@@ -205,12 +205,12 @@ Step 3.
 The following sequence diagram shows how the find operation works:
 ![](images/FindSequenceDiagram.png)
 
+The following activity diagram summarizes what happens when a user executes `find-fr`:
+![](images/FindActivityDiagram.png)
+
 #### Extensions Implemented
 - `c/FR_CATEGORY` field accepts multiple categories
 - Display an appropriate message if no matching financial records found
-
-The following activity diagram summarizes what happens when a user executes `find-fr`:
-![](images/FindActivityDiagram.png)
 
 #### Design Consideration
 
@@ -240,6 +240,16 @@ is implemented by `BudgetBabyModelManager`. `BudgetBabyModelManager` then handle
 resetting of filter on `filteredFinancialRecords` through the `updateFilteredFinancialRecordList`
 method. The updated original financial records are then displayed to the user on the
 front end of the application.
+
+Given below is an example usage scenario and how the `find` mechanism behaves at each step.
+
+Step 1. The user executes `find-fr d/Lunch a/10 c/Food` command which filters and displays
+the updated financial records list
+
+Step 2. The user is satisfied with his query result and wishes to revert the financial records
+list back to its original state. The `reset-filter` command is executed which indirectly calls the
+`updateFilteredFinancialRecordList` method, causing `filteredFinancialRecords` to display all
+available financial records.
 
 ### Statistics Feature
 
