@@ -109,14 +109,7 @@ public interface Model {
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
 
-    /**
-     *
-     */
-    void commitTaskTracker(ReadOnlyTaskTracker currentState);
 
-    void undoTaskTracker();
-
-    void redoTaskTracker();
 
 
 }

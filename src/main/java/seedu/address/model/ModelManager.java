@@ -126,22 +126,6 @@ public class ModelManager implements Model {
         taskTracker.sortTasks(comparator);
     }
 
-    @Override
-    public void commitTaskTracker(ReadOnlyTaskTracker taskTracker) {
-        requireNonNull(taskTracker);
-        versionedTaskTracker.commit(new TaskTracker(taskTracker));
-    }
-
-    @Override
-    public void undoTaskTracker() {
-        versionedTaskTracker.undo();
-    }
-
-    @Override
-    public void redoTaskTracker() {
-        versionedTaskTracker.redo();
-    }
-
     //=========== Filtered Task List Accessors =============================================================
 
     /**
@@ -179,8 +163,8 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return taskTracker.equals(other.taskTracker)
-                && userPrefs.equals(other.userPrefs)
-                && filteredTasks.equals(other.filteredTasks);
+            && userPrefs.equals(other.userPrefs)
+            && filteredTasks.equals(other.filteredTasks);
     }
 
 }
