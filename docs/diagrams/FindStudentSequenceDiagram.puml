@@ -1,0 +1,67 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":StudentBookParser" as StudentBookParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant ":FindCommand" as FindCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute(args)
+activate LogicManager
+
+LogicManager -> StudentBookParser : parseCommand(args))
+activate StudentBookParser
+
+create FindCommandParser
+StudentBookParser -> FindCommandParser
+activate FindCommandParser
+
+StudentBookParser <-- FindCommandParser
+deactivate FindCommandParser
+
+StudentBookParser -> FindCommandParser : parse(args)
+activate FindCommandParser
+
+create FindCommand
+FindCommandParser -> FindCommand
+activate FindCommand
+
+FindCommand --> FindCommandParser
+deactivate FindCommand
+
+FindCommandParser --> StudentBookParser
+deactivate FindCommandParser
+FindCommandParser -[hidden]-> StudentBookParser
+destroy FindCommandParser
+
+StudentBookParser --> LogicManager
+deactivate StudentBookParser
+
+LogicManager -> FindCommand : execute()
+activate FindCommand
+
+FindCommand -> Model : updateFilteredPersonList(student)
+activate Model
+
+Model --> FindCommand
+deactivate Model
+
+FindCommand -> Model : getFilteredPersonList(student)
+activate Model
+
+Model --> FindCommand
+deactivate Model
+
+FindCommand --> LogicManager : student entry
+deactivate FindCommand
+FindCommand -[hidden]-> LogicManager
+destroy FindCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
