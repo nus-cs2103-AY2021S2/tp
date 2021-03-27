@@ -15,7 +15,7 @@ import seedu.address.model.undoredo.exceptions.RedoException;
 public class RedoCommand extends Command {
     public static final String COMMAND_WORD = "redo";
 
-    public static final String MESSAGE_SUCCESS = "Last undo undone.";
+    public static final String MESSAGE_SUCCESS = "Redo successful.";
 
     /**
      * Constructs a new {@code RedoCommand}.
