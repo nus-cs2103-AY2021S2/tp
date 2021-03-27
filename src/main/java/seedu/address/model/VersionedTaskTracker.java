@@ -24,8 +24,8 @@ public class VersionedTaskTracker extends TaskTracker {
     public ReadOnlyTaskTracker redo() {
         if (canRedoTaskTracker()) {
             currentStatePointer += 1;
-            return taskTrackerStateList.get(currentStatePointer);
         }
+        return taskTrackerStateList.get(currentStatePointer);
     }
 
     private boolean canRedoTaskTracker() {
