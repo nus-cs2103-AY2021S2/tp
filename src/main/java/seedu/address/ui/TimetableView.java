@@ -15,7 +15,7 @@ public class TimetableView extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(TimetableView.class);
 
     @FXML
-    private TableView timetableView;
+    private TableView<DaySchedule> timetableView;
 
     private ObservableList<DaySchedule> timetableList;
 
@@ -27,7 +27,7 @@ public class TimetableView extends UiPart<Region> {
         //set all 48 columns of the table
 
         for (int i = 0; i < DaySchedule.NUMBER_OF_PERIODS; i++) {
-            String columnName = timetableList.get(i).toString();
+            String columnName = timetableList.get(0).getTimeDisplayString(i);
             TableColumn<DaySchedule, String> currentCol = new TableColumn<DaySchedule, String>(columnName);
             //rowItem.getValue() returns the DaySchedule instance for particular row
             int finalI = i;
