@@ -26,9 +26,10 @@ public class NotDoneCommandTest {
     @Test
     public void execute_validIndexUnfilteredListWithStartTime_success() {
         Task originalTask = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        Task taskToMarkUndone = new Task(originalTask.getName(), originalTask.getStartTime(),
+        Task taskToMarkUndone = new Task(originalTask.getName(), originalTask.getStartTimeWrapper(),
                 originalTask.getDeadline(), originalTask.getModule(), originalTask.getDescription(),
-                originalTask.getWorkload(), new DoneStatus(true), originalTask.getTags());
+                originalTask.getWorkload(), new DoneStatus(true), originalTask.getRecurrenceWrapper(),
+                originalTask.getTags());
         model.setTask(originalTask, taskToMarkUndone);
 
         NotDoneCommand notDoneCommand = new NotDoneCommand(INDEX_FIRST_TASK);
@@ -44,8 +45,9 @@ public class NotDoneCommandTest {
     @Test
     public void execute_validIndexUnfilteredListWithoutStartTime_success() {
         Task originalTask = model.getFilteredTaskList().get(INDEX_FOURTH_TASK.getZeroBased());
-        Task taskToMarkUndone = new Task(originalTask.getName(), originalTask.getDeadline(), originalTask.getModule(),
-                originalTask.getDescription(), originalTask.getWorkload(), new DoneStatus(true),
+        Task taskToMarkUndone = new Task(originalTask.getName(), originalTask.getStartTimeWrapper(),
+                originalTask.getDeadline(), originalTask.getModule(), originalTask.getDescription(),
+                originalTask.getWorkload(), new DoneStatus(true), originalTask.getRecurrenceWrapper(),
                 originalTask.getTags());
         model.setTask(originalTask, taskToMarkUndone);
 
@@ -79,9 +81,10 @@ public class NotDoneCommandTest {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
         Task originalTask = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        Task taskToMarkUndone = new Task(originalTask.getName(), originalTask.getStartTime(),
+        Task taskToMarkUndone = new Task(originalTask.getName(), originalTask.getStartTimeWrapper(),
                 originalTask.getDeadline(), originalTask.getModule(), originalTask.getDescription(),
-                originalTask.getWorkload(), new DoneStatus(true), originalTask.getTags());
+                originalTask.getWorkload(), new DoneStatus(true), originalTask.getRecurrenceWrapper(),
+                originalTask.getTags());
         model.setTask(originalTask, taskToMarkUndone);
 
         NotDoneCommand notDoneCommand = new NotDoneCommand(INDEX_FIRST_TASK);
