@@ -19,13 +19,18 @@ public class AppointmentContainsKeywordsPredicate implements Predicate<SameDateA
     @Override
     public boolean test(SameDateAppointmentList sameDateAppointmentList) {
         List<Appointment> appointmentList = sameDateAppointmentList.getAppointmentList();
+        int appointmentListSize =appointmentList.size();
 
         boolean result = false;
 
-        for(int i=0; i< appointmentList.size(); i++){
-            if(keyword.equals(appointmentList.get(i).getMatriculationNumber())){
+        for(int i=0; i< appointmentListSize; i++){
+            Appointment currentAppointment = appointmentList.get(i);
+            if(keyword.equals(currentAppointment.getMatriculationNumber())){
                 result = true;
                 break;
+            } else{
+                System.out.println(currentAppointment.getMatriculationNumber());
+                 appointmentList.remove(currentAppointment);
             }
         }
 
