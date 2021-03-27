@@ -57,6 +57,12 @@ public class DeleteCommandTest {
         showStudentWithMatricNum(model, matricNumberToDelete);
 
         List<Student> studentListTest = model.getFilteredStudentList();
+
+        System.out.println("matric number to delete: " + matricNumberToDelete);
+        for(int i =0; i< studentListTest.size(); i++){
+            System.out.println(studentListTest.get(i));
+        }
+
         Student studentToDelete = DeleteCommand.getStudent(studentListTest, matricNumberToDelete);
         DeleteCommand deleteCommand = new DeleteCommand(matricNumberToDelete);
 
@@ -66,6 +72,9 @@ public class DeleteCommandTest {
         Model expectedModel = new ModelManager(model.getStudentBook(), new UserPrefs());
         expectedModel.deleteStudent(studentToDelete);
         showNoStudent(expectedModel);
+
+        System.out.println("deleted stud view: ");
+        System.out.println(expectedModel.getStudentBook().getStudentList());
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }

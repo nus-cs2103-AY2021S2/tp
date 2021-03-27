@@ -4,12 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.student.commons.core.Messages;
 import seedu.student.model.Model;
-import seedu.student.model.appointment.AppointmentContainsKeywordsPredicate;
-import seedu.student.model.appointment.SameDateAppointmentList;
-import seedu.student.model.student.MatriculationNumberContainsKeywordsPredicate;
-import seedu.student.model.student.Student;
-
-import java.time.LocalDate;
+import seedu.student.model.appointment.AppointmentContainsMatriculationNumberPredicate;
+import seedu.student.model.student.StudentContainsMatriculationNumberPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -24,11 +20,11 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD \n"
             + "Example: " + COMMAND_WORD + " A01234567R";
 
-    private final MatriculationNumberContainsKeywordsPredicate predicate;
-    private final AppointmentContainsKeywordsPredicate appointmentPredicate;
+    private final StudentContainsMatriculationNumberPredicate predicate;
+    private final AppointmentContainsMatriculationNumberPredicate appointmentPredicate;
 
-    public FindCommand(MatriculationNumberContainsKeywordsPredicate predicate ,
-                       AppointmentContainsKeywordsPredicate appointmentPredicate) {
+    public FindCommand(StudentContainsMatriculationNumberPredicate predicate ,
+                       AppointmentContainsMatriculationNumberPredicate appointmentPredicate) {
         this.predicate = predicate;
         this.appointmentPredicate = appointmentPredicate;
     }

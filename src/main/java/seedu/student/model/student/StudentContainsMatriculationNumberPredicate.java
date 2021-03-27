@@ -5,10 +5,10 @@ import java.util.function.Predicate;
 /**
  * Tests that a {@code Student}'s {@code Matriculation Number} matches any of the keywords given.
  */
-public class MatriculationNumberContainsKeywordsPredicate implements Predicate<Student> {
+public class StudentContainsMatriculationNumberPredicate implements Predicate<Student> {
     private final MatriculationNumber keyword;
 
-    public MatriculationNumberContainsKeywordsPredicate(MatriculationNumber keyword) {
+    public StudentContainsMatriculationNumberPredicate(MatriculationNumber keyword) {
         this.keyword = keyword;
     }
 
@@ -20,8 +20,8 @@ public class MatriculationNumberContainsKeywordsPredicate implements Predicate<S
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof MatriculationNumberContainsKeywordsPredicate // instanceof handles nulls
-                && keyword.equals(((MatriculationNumberContainsKeywordsPredicate) other).keyword)); // state check
+                || (other instanceof StudentContainsMatriculationNumberPredicate // instanceof handles nulls
+                && keyword.equals(((StudentContainsMatriculationNumberPredicate) other).keyword)); // state check
     }
 
 }
