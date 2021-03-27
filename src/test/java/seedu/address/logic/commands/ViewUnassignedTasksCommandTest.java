@@ -12,10 +12,11 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.testutil.TypicalTasks;
 
+
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ViewTasksCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for ViewUnassignedTasksCommand.
  */
-public class ViewTasksCommandTest {
+public class ViewUnassignedTasksCommandTest {
     private Model model;
     private Model expectedModel;
 
@@ -27,12 +28,14 @@ public class ViewTasksCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ViewTasksCommand(), model, ViewTasksCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ViewUnassignedTasksCommand(), model,
+                ViewUnassignedTasksCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
-        assertCommandSuccess(new ViewTasksCommand(), model, ViewTasksCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ViewUnassignedTasksCommand(), model,
+                ViewUnassignedTasksCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
