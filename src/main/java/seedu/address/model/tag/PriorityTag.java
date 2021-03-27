@@ -7,8 +7,8 @@ package seedu.address.model.tag;
 
 public class PriorityTag {
 
-    State state;
-    String tagName;
+    private State state;
+    private String tagName;
 
     /**
      * Constructs a {@code Tag}.
