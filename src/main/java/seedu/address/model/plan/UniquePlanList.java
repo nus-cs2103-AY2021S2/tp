@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.plan.exceptions.DuplicatePersonException;
-import seedu.address.model.plan.exceptions.PersonNotFoundException;
+import seedu.address.model.plan.exceptions.DuplicatePlanException;
+import seedu.address.model.plan.exceptions.PlanNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -20,9 +20,8 @@ import seedu.address.model.plan.exceptions.PersonNotFoundException;
  *
  * Supports a minimal set of list operations.
  *
- * @see Plan#equals(Plan)
  */
-public class UniquePersonList implements Iterable<Plan> {
+public class UniquePlanList implements Iterable<Plan> {
 
     private final ObservableList<Plan> internalList = FXCollections.observableArrayList();
     private final ObservableList<Plan> internalUnmodifiableList =
@@ -43,7 +42,7 @@ public class UniquePersonList implements Iterable<Plan> {
     public void add(Plan toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicatePlanException();
         }
         internalList.add(toAdd);
     }
@@ -53,16 +52,16 @@ public class UniquePersonList implements Iterable<Plan> {
      * {@code target} must exist in the list.
      * The plan identity of {@code editedPlan} must not be the same as another existing plan in the list.
      */
-    public void setPerson(Plan target, Plan editedPlan) {
+    public void setPlan(Plan target, Plan editedPlan) {
         requireAllNonNull(target, editedPlan);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new PlanNotFoundException();
         }
 
         if (!target.equals(editedPlan) && contains(editedPlan)) {
-            throw new DuplicatePersonException();
+            throw new DuplicatePlanException();
         }
 
         internalList.set(index, editedPlan);
@@ -75,11 +74,11 @@ public class UniquePersonList implements Iterable<Plan> {
     public void remove(Plan toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new PlanNotFoundException();
         }
     }
 
-    public void setPersons(UniquePersonList replacement) {
+    public void setPlans(UniquePlanList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -88,10 +87,10 @@ public class UniquePersonList implements Iterable<Plan> {
      * Replaces the contents of this list with {@code plans}.
      * {@code plans} must not contain duplicate plans.
      */
-    public void setPersons(List<Plan> plans) {
+    public void setPlans(List<Plan> plans) {
         requireAllNonNull(plans);
         if (!personsAreUnique(plans)) {
-            throw new DuplicatePersonException();
+            throw new DuplicatePlanException();
         }
 
         internalList.setAll(plans);
@@ -112,8 +111,8 @@ public class UniquePersonList implements Iterable<Plan> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniquePersonList // instanceof handles nulls
-                        && internalList.equals(((UniquePersonList) other).internalList));
+                || (other instanceof UniquePlanList // instanceof handles nulls
+                        && internalList.equals(((UniquePlanList) other).internalList));
     }
 
     @Override
