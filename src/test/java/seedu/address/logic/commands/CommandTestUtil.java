@@ -67,10 +67,9 @@ public class CommandTestUtil {
         DESC_AMY = new EditResidentDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
                 .withYear(VALID_YEAR_AMY)
-                .withRoom(VALID_ROOM_AMY)
                 .build();
         DESC_BOB = new EditResidentDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withRoom(VALID_ROOM_BOB)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .build();
     }
 
