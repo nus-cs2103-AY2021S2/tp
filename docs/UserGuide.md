@@ -6,8 +6,8 @@ title: User Guide
 
 
 ## Introduction
-HEY MATEz is a desktop application that allows CCA leaders to track members of
-a CCA and tasks that have to be carried out in the CCA. It is
+HEY MATEz is a desktop application to get rid of CCA leaders' woes by allowing them to track 
+members and tasks within the CCA efficiently. It is
 a Command Line Interface (CLI) application while still retaining a Graphical User Interface (GUI)
 as this application is catered to students who are used to typing on the keyboard frequently.
 
@@ -73,7 +73,7 @@ as this application is catered to students who are used to typing on the keyboar
 Adds a task, with its description and deadline to the list.
 
 
-Format: `addTask TITLE -d DESCRIPTION -b DEADLINE -s STATUS -p PRIORITY`
+Format: `addTask TITLE -d DESCRIPTION -b DEADLINE [-s STATUS] [-p PRIORITY]`
 * The status and priority fields are optional.
 * If status field is not provided, the Task will be assigned a default status value of uncompleted.
 * Status field can only take on the values completed or uncompleted
@@ -102,7 +102,7 @@ Examples: `viewTasks`
 ### 4. Edit Task: `editTask`
 Edit task details. 
 
-Format: `editTask INDEX -n NEW TITLE -d NEW DESCRIPTION -b NEW DEADLINE -s NEW STATUS -p NEW PRIORITY`
+Format: `editTask INDEX [-n NEW_TITLE] [-d NEW_DESCRIPTION] [-b NEW_DEADLINE] [-s NEW_STATUS] [-p NEW_PRIORITY]`
 
 Examples: `editTask 1 -n Plan meeting -d Plan board meeting -b 2021-04-04 -s high -p high`
 
@@ -134,7 +134,7 @@ Examples: `undo 1`
 
 Find all tasks containing any of the specified keywords in its title or description.
 
-Format: `findTasks KEYWORD MORE_KEYWORDS`
+Format: `findTasks KEYWORD [MORE_KEYWORDS]`
 
 Examples: `findTasks Meeting Proposal Draft`
 
@@ -182,7 +182,7 @@ Examples: `viewUncompletedTasks`
 
 Adds a member along with his/ her contract number to contact list.
 
-Format: `addMember NAME -p PHONE NUMBER -e EMAIL -r ROLE`
+Format: `addMember NAME -p PHONE_NUMBER -e EMAIL [-r ROLE]`
 
 Examples: `addMember Dylan -p 64529356 -e test@test.com -r Member`
 * The field ROLE is optional
@@ -209,7 +209,7 @@ Examples: `viewMembers `
 <a name="editMember"></a>
 ### 15. Edit Member: `editMember`
 
-Format: `editMember NAME IN LIST -n NEW NAME -p NEW PHONE NUMBER -e NEW EMAIL -r ROLE`
+Format: `editMember NAME IN LIST [-n NEW_NAME] [-p NEW_PHONE_NUMBER] [-e NEW_EMAIL] [-r ROLE]`
 * Edits the person at the specified NAME IN LIST.
 * The fields NEW NAME, NEW PHONE NUMBER, NEW EMAIL, NEW ROLE are all optional
 * At least one of the optional fields must be provided.
@@ -222,7 +222,7 @@ Examples: `editMember Alice -n Alice Lim -p 95231156 -e tasha@test.com -r Events
 
 Find all members whose details contain any of the specified keywords.
 
-Format: `findMembers KEYWORD MORE_KEYWORDS`
+Format: `findMembers KEYWORD [MORE_KEYWORDS]`
 
 Examples: `findMembers Rachel 98562154 john@gmail.com`
 
@@ -230,15 +230,15 @@ Examples: `findMembers Rachel 98562154 john@gmail.com`
 ### 17. Clear all data in application: `clear`
 Clears all entries from the application.
 
-Format: clear
+Format: `clear`
 
 Examples: `clear`
 
 <a name="exit"></a>
-### 18. Exiting the program: `exit`
+### 18. Exiting the programme: `exit`
 Exits the program.
 
-Format: exit
+Format: `exit`
 
 Examples: `exit`
 
@@ -246,7 +246,7 @@ Examples: `exit`
 ### 19. View Help: `help`
 Shows a message explaining how to access the help page.
 
-Format: help
+Format: `help`
 
 Examples: `help`
 
@@ -257,7 +257,7 @@ Hey MATEz data are saved in the hard disk automatically after any command that c
 
 ### Editing the data file
 
-HEY MATEz data are saved as a JSON file `[JAR file location]/data/heymatez.json`. Advanced users are welcome to update data directly by editing that data file.
+HEY MATEz data is saved as a JSON file `[JAR file location]/data/heymatez.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
@@ -277,15 +277,15 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 Action | Format, Examples
 --------|------------------
-**Add Member** | `addMember NAME -p PHONE NUMBER -e EMAIL -r ROLE` <br> e.g., `addMember Dylan -p 64529356 -e test@test.com -r Member`
+**Add Member** | `addMember NAME -p PHONE_NUMBER -e EMAIL -r ROLE` <br> e.g., `addMember Dylan -p 64529356 -e test@test.com -r Member`
 **Delete Member** | `deleteMember NAME` <br> e.g., `deleteMember Rachel`
 **View Members** | `viewMembers`<br> e.g., `viewMembers`
-**Edit Member** | `editMember NAME IN LIST -n NEW NAME -p NEW PHONE NUMBER -e NEW EMAIL -r ROLE​`<br> e.g.,`editMember Alice -n Alice Lim -p 95231156 -e tasha@test.com -r Events head`
+**Edit Member** | `editMember NAME_IN_LIST -n NEW_NAME -p NEW_PHONE_NUMBER -e NEW_EMAIL -r ROLE​`<br> e.g.,`editMember Alice -n Alice Lim -p 95231156 -e tasha@test.com -r Events head`
 **Find Members** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `findMembers Rachel 98562154 john@gmail.com`
 **Add Task** | `addTask TITLE -d DESCRIPTION -b DEADLINE -s STATUS -p PRIORITY` <br> e.g., `addTask assignment -d Math quiz 2 -b 2021-04-04 -s completed -p high`
 **Delete Task** | `deleteTask INDEX` <br> e.g., `deleteTask 1`
 **View Tasks** | `viewTasks`<br> e.g., `viewTasks`
-**Edit Task** | `editTask INDEX -n NEW TITLE -d NEW DESCRIPTION -b NEW DEADLINE -s NEW STATUS -p NEW PRIORITY`<br> e.g.,`editTask 1 -n Plan meeting -d Plan board meeting -b 2021-04-04 -s high -p high`
+**Edit Task** | `editTask INDEX -n NEW_TITLE -d NEW_DESCRIPTION -b NEW_DEADLINE -s NEW_STATUS -p NEW_PRIORITY`<br> e.g.,`editTask 1 -n Plan meeting -d Plan board meeting -b 2021-04-04 -s high -p high`
 **Mark Task as Completed** | `done INDEX`<br> e.g., `done 1`
 **Mark Task as Uncompleted** | `undo INDEX`<br> e.g., `undo 1`
 **Find Tasks by Keywords** | `findTasks KEYWORD MORE_KEYWORDS`<br> e.g., `findTasks Meeting Proposal Draft`
