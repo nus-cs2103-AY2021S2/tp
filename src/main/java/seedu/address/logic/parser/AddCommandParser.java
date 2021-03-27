@@ -49,7 +49,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
     }
 
-    private void handleMissingCompulsoryFields(ArgumentMultimap argumentMultimap) throws ParseException{
+    private void handleMissingCompulsoryFields(ArgumentMultimap argumentMultimap) throws ParseException {
         boolean hasPrefixesMissing = !arePrefixesPresent(argumentMultimap, PREFIX_TITLE);
         boolean hasInvalidPreamble = !argumentMultimap.getPreamble().isEmpty();
         if (hasInvalidPreamble || hasPrefixesMissing) {
@@ -57,7 +57,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
     }
 
-    private Task createTaskWithGivenArguments(ArgumentMultimap argMultimap) throws ParseException{
+    private Task createTaskWithGivenArguments(ArgumentMultimap argMultimap) throws ParseException {
         assert argMultimap.getValue(PREFIX_TITLE).isPresent();
 
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());

@@ -85,14 +85,14 @@ public class AddCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
-    private void handleDuplicateTask(Model model) throws CommandException{
+    private void handleDuplicateTask(Model model) throws CommandException {
         boolean isDuplicateTask = model.hasTask(toAdd);
         if (isDuplicateTask) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
     }
 
-    private void handleExpiredTask() throws CommandException{
+    private void handleExpiredTask() throws CommandException {
         if (toAdd.hasExpired()) {
             logger.info("Invalid end date in recurring schedule detected: " + INVALID_ENDDATE);
             throw new CommandException(INVALID_ENDDATE);
