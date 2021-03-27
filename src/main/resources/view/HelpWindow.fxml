@@ -5,6 +5,7 @@
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -21,7 +22,12 @@
             <children>
                <AnchorPane prefHeight="229.0" prefWidth="643.0" stylesheets="@DarkTheme.css">
                   <children>
-                     <Label fx:id="helpMessage" contentDisplay="CENTER" layoutX="8.0" layoutY="8.0" style="-fx-background-color: #555555#555555; -fx-text-fill: white;" text="Label" textFill="WHITE">
+                     <TextField fx:id="helpMessageField" layoutX="14.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: dimgray;">
+                        <padding>
+                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        </padding>
+                     </TextField>
+                     <Label fx:id="helpMessage" contentDisplay="CENTER" style="-fx-background-color: #555555#555555; -fx-text-fill: white;" text="" textFill="WHITE" wrapText="true">
                         <opaqueInsets>
                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                         </opaqueInsets>
@@ -36,7 +42,7 @@
                </AnchorPane>
                <HBox alignment="BOTTOM_RIGHT" prefHeight="39.0" prefWidth="558.0">
                   <children>
-                     <Button fx:id="copyButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#copyUrl" onMousePressed="#copyUrl" pickOnBounds="false" style="-fx-background-color: #555555; -fx-text-fill: white;" text="Copy URL">
+                     <Button fx:id="copyButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" mouseTransparent="true" onAction="#copyUrl" onMousePressed="#copyUrl" pickOnBounds="false" style="-fx-background-color: #555555; -fx-text-fill: white;" text="Copy URL">
                         <cursor>
                            <Cursor fx:constant="NONE" />
                         </cursor>

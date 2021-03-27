@@ -2,14 +2,16 @@ package fooddiary.ui;
 
 import java.util.logging.Logger;
 
-import fooddiary.commons.core.GuiSettings;
 import fooddiary.commons.core.LogsCenter;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
+
+
 
 /**
  * Controller for a help page
@@ -19,35 +21,35 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
     public static final String EXTERNAL_DETAILS = "For more details, refer to our user guide: \n" + USERGUIDE_URL;
     public static final String HELP_MESSAGE =
-            "add: Adds a food review to the Food Diary.\n" +
-            "   add  n/Al Amaan Restaurant ra/4 re/best for Butter Chicken a/12 Clementi Rd, " +
-            "Singapore 129742 c/Indian Muslim\n\n" +
-            "delete: Deletes a food review from the Food Diary.\n" +
-            "   delete n/Al Amaan Restaurant\n" +
-            "   delete i/1\n\n" +
-            "list: Lists all the restaurants with food reviews.\n" +
-            "   list\n\n" +
-            "find: Finds for food reviews whose names, ratings, address and categories " +
-            "match any of the provided keywords.\n" +
-            "   find Amaan Restaurant\n\n" +
-            "findall: Finds for food reviews whose names, ratings, address and categories match ALL " +
-            "of the provided keywords.\n" +
-            "   findall Amaan Restuarant 5/5\n\n" +
-            "view: Opens up a window, showing the details of a specified food review " +
-            "in a full expanded view.\n" +
-            "   view 1\n\n" +
-            EXTERNAL_DETAILS;
+            "add: Adds a food review to the Food Diary.\n"
+            + "   add  n/Al Amaan Restaurant ra/4 re/best for Butter Chicken a/12 Clementi Rd, "
+                    + "Singapore 129742 c/Indian Muslim\n\n"
+                    + "delete: Deletes a food review from the Food Diary.\n"
+                    + "   delete n/Al Amaan Restaurant\n"
+                    + "   delete i/1\n\n"
+                    + "list: Lists all the restaurants with food reviews.\n"
+                    + "   list\n\n"
+                    + "find: Finds for food reviews whose names, ratings, address and categories "
+                    + "match any of the provided keywords.\n"
+                    + "   find Amaan Restaurant\n\n"
+                    + "findall: Finds for food reviews whose names, ratings, address and categories match ALL "
+                    + "of the provided keywords.\n"
+                    + "   findall Amaan Restuarant 5/5\n\n"
+                    + "view: Opens up a window, showing the details of a specified food review "
+                    + "in a full expanded view.\n"
+                    + "   view 1\n\n" + EXTERNAL_DETAILS;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
-
-//    private Logic logic;
 
     @FXML
     private Button copyButton;
 
     @FXML
     private Label helpMessage;
+
+    @FXML
+    private TextField helpMessageField;
 
     /**
      * Creates a new HelpWindow.
@@ -58,6 +60,22 @@ public class HelpWindow extends UiPart<Stage> {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
 
+        helpMessageField.setText(HELP_MESSAGE);
+        helpMessageField.setEditable(false);
+//        assert(helpMessage.getWidth() != 0);
+        double width = helpMessage.getWidth();
+
+        helpMessageField.setPrefWidth(600);
+        double height = helpMessage.getHeight();
+        helpMessageField.setPrefHeight(600);
+//        helpMessageField.prefColumnCountProperty().bind(helpMessage.length());
+
+//        helpMessageField.setPrefWidth(600);
+
+        helpMessage.setVisible(false);
+//        helpMessageField.textProperty().bindBidirectional(helpMessage.textProperty());
+//        helpMessageField = new TextField(HELP_MESSAGE);
+//        root.addAll(helpMessageField);
 //        setWindowDefaultSize(logic.getGuiSettings());
     }
 
