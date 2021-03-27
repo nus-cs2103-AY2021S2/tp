@@ -42,7 +42,7 @@ public class TimeslotParser {
     public static LocalDateTime parseDateTime(String userInput) throws ParseException {
 
         String formattedInput = userInput.toUpperCase().trim();
-        String[] dateTimeInputArray = userInput.split(REMOVE_WHITESPACE_REGEX);
+        String[] dateTimeInputArray = formattedInput.split(REMOVE_WHITESPACE_REGEX);
         if (formattedInput.contains("NEXT")) {
             return parseNextDateTime(formattedInput);
         } else {
@@ -52,6 +52,9 @@ public class TimeslotParser {
 
                 StringBuilder parsedFormat = parseFormat(dateInput, timeInput);
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern(String.valueOf(parsedFormat));
+                System.out.println(parsedFormat);
+                System.out.println(timeInput);
+                System.out.println(formattedInput);
                 return LocalDateTime.parse(formattedInput, formatter);
             } catch (DateTimeParseException e) {
                 throw new ParseException(MESSAGE_INVALID_DATE_TIME_FORMAT);
@@ -67,13 +70,13 @@ public class TimeslotParser {
         StringBuilder formatter = new StringBuilder("");
 
         if (dateInput.matches(TimeslotRegex.DATE_SLASH_SHORT)) {
-            formatter.append("dd/mm/yy ");
+            formatter.append("dd/MM/yy ");
         } else if (dateInput.matches(TimeslotRegex.DATE_SLASH_LONG)) {
-            formatter.append("dd/mm/yyyy ");
+            formatter.append("dd/MM/yyyy ");
         } else if (dateInput.matches(TimeslotRegex.DATE_DASH_SHORT)) {
-            formatter.append("dd-mm-yy ");
+            formatter.append("dd-MM-yy ");
         } else {
-            formatter.append("dd-mm-yyyy ");
+            formatter.append("dd-MM-yyyy ");
         }
         return parseTimeFormat(timeInput, formatter);
     }
@@ -84,12 +87,11 @@ public class TimeslotParser {
      */
     public static StringBuilder parseTimeFormat(String timeInput, StringBuilder formatter) {
         if (timeInput.contains("AM") || timeInput.contains("PM")) {
-            formatter.append("hh:mm a");
+            formatter.append("hh:mma");
         } else {
             formatter.append("HH:mm");
         }
         return formatter;
-        //check if formatter returned is most updated
     }
 
     /**
@@ -223,7 +225,6 @@ public class TimeslotParser {
             throw new ParseException(Timeslot.MESSAGE_CONSTRAINTS);
         }
     }
-
 }
 
 enum Day {
