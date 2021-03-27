@@ -49,7 +49,7 @@ public class InfoCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         JsonModule[] informationOfModules = model.getPlans().getModuleInfo();
-        assert informationOfModules != null: "Module.json is not found";
+        assert informationOfModules != null : "Module.json is not found";
 
         JsonModule foundModule = findMatchingModule(informationOfModules);
         if (noArgument()) {
@@ -79,6 +79,7 @@ public class InfoCommand extends Command {
      * @return the module information if found otherwise a module not found message
      */
     public JsonModule findMatchingModule(JsonModule[] informationOfModules) {
+        assert informationOfModules != null : "Module information not found";
         for (int i = 0; i < informationOfModules.length; i++) {
             if (informationOfModules[i].getModuleCode().equals(this.moduleCode)) {
                 return informationOfModules[i];

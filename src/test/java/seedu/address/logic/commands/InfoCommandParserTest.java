@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +12,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.InfoCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
+
 
 public class InfoCommandParserTest {
     @Test
@@ -47,7 +48,7 @@ public class InfoCommandParserTest {
             assertEquals(parser.parse(" m/       ;askldghl;kdshgkl;dsj;flksd;ghk;sdf asdfsadfsda").getModuleCode(),
                     new InfoCommand(";askldghl;kdshgkl;dsj;flksd;ghk;sdf asdfsadfsda").getModuleCode());
         } catch (ParseException p) {
-            
+            System.out.println("Parsing error");
         }
     }
 }
