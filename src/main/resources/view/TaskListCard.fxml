@@ -23,7 +23,7 @@
    </HBox>
    <FlowPane fx:id="tags" />
    <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
-   <Label fx:id="status" styleClass="cell_small_label" text="\$status" />
+   <Label fx:id="status" styleClass="status" text="\$status" />
    <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
  </VBox>
 </HBox>
