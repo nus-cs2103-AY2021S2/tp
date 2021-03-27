@@ -18,42 +18,42 @@ import seedu.address.model.ReadOnlyAppointmentBook;
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.
  */
-public class JsonAddressBookStorage implements HeliBookStorage {
+public class JsonAppointmentBookStorage implements HeliBookStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonAppointmentBookStorage.class);
 
     private Path filePath;
 
-    public JsonAddressBookStorage(Path filePath) {
+    public JsonAppointmentBookStorage(Path filePath) {
         this.filePath = filePath;
     }
 
-    public Path getAddressBookFilePath() {
+    public Path getAppointmentBookFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException {
-        return readAddressBook(filePath);
+    public Optional<ReadOnlyAppointmentBook> readAppointmentBook() throws DataConversionException {
+        return readAppointmentBook(filePath);
     }
 
     /**
-     * Similar to {@link #readAddressBook()}.
+     * Similar to {@link #readAppointmentBook()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyAppointmentBook> readAppointmentBook(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableAddressBook.class);
-        if (!jsonAddressBook.isPresent()) {
+        Optional<JsonSerializableAppointmentBook> jsonAppointmentBook = JsonUtil.readJsonFile(
+                filePath, JsonSerializableAppointmentBook.class);
+        if (!jsonAppointmentBook.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonAppointmentBook.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
@@ -61,31 +61,32 @@ public class JsonAddressBookStorage implements HeliBookStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void saveAppointmentBook(ReadOnlyAppointmentBook appointmentBook) throws IOException {
+        saveAppointmentBook(appointmentBook, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyAddressBook)}.
+     * Similar to {@link #saveAppointmentBook(ReadOnlyAppointmentBook)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveAppointmentBook(ReadOnlyAppointmentBook appointmentBook, Path filePath) throws IOException {
+        requireNonNull(appointmentBook);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableAppointmentBook(appointmentBook), filePath);
     }
 
 
-    // ================ AppointmentBook methods ==============================
+    // ================ AddressBook methods ==============================
+
 
     /**
      * Returns the file path of the data file.
      */
     @Override
-    public Path getAppointmentBookFilePath() {
+    public Path getAddressBookFilePath() {
         return null;
     }
 
@@ -97,38 +98,37 @@ public class JsonAddressBookStorage implements HeliBookStorage {
      * @throws IOException             if there was any problem when reading from the storage.
      */
     @Override
-    public Optional<ReadOnlyAppointmentBook> readAppointmentBook() throws DataConversionException, IOException {
+    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
         return Optional.empty();
     }
 
     /**
      * @param filePath
-     * @see #getAppointmentBookFilePath()
+     * @see #getAddressBookFilePath()
      */
     @Override
-    public Optional<ReadOnlyAppointmentBook> readAppointmentBook(Path filePath)
-            throws DataConversionException, IOException {
+    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
         return Optional.empty();
     }
 
     /**
-     * Saves the given {@link ReadOnlyAppointmentBook} to the storage.
+     * Saves the given {@link ReadOnlyAddressBook} to the storage.
      *
-     * @param appointmentBook cannot be null.
+     * @param addressBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
     @Override
-    public void saveAppointmentBook(ReadOnlyAppointmentBook appointmentBook) throws IOException {
+    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
 
     }
 
     /**
-     * @param appointmentBook
+     * @param addressBook
      * @param filePath
-     * @see #saveAppointmentBook(ReadOnlyAppointmentBook)
+     * @see #saveAddressBook(ReadOnlyAddressBook)
      */
     @Override
-    public void saveAppointmentBook(ReadOnlyAppointmentBook appointmentBook, Path filePath) throws IOException {
+    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
 
     }
 

@@ -60,6 +60,24 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
+     * Returns the user prefs' appointment book file path.
+     */
+    Path getAppointmentBookFilePath();
+
+    /**
+     * Sets the user prefs' appointment book file path.
+     */
+    void setAppointmentBookFilePath(Path appointmentBookFilePath);
+
+    /**
+     * Replaces appointment book data with the data in {@code appointmentBook}.
+     */
+    void setAppointmentBook(ReadOnlyAppointmentBook appointmentBook);
+
+    /** Returns the AppointmentBook */
+    ReadOnlyAppointmentBook getAppointmentBook();
+
+    /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
