@@ -21,7 +21,7 @@ import seedu.address.model.tag.Tag;
 public class JsonAdaptedAppointment {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Appointment's %s field is missing!";
 
-    private final UUID patient;
+    private final String patientUuid;
     private final String doctor;
     private final JsonAdaptedTimeslot timeslot;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -30,11 +30,11 @@ public class JsonAdaptedAppointment {
      * Constructs a {@code JsonAdaptedAppointment} with the given appointment details.
      */
     @JsonCreator
-    public JsonAdaptedAppointment(@JsonProperty("patient") UUID patient,
+    public JsonAdaptedAppointment(@JsonProperty("patient") String patientUuid,
                                   @JsonProperty("doctor") String doctor,
                                   @JsonProperty("timeslot") JsonAdaptedTimeslot timeslot,
                                   @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
-        this.patient = patient;
+        this.patientUuid = patientUuid;
         this.doctor = doctor;
         this.timeslot = timeslot;
 
@@ -47,7 +47,7 @@ public class JsonAdaptedAppointment {
      * Converts a given {@code Appointment} into this class for Jackson use.
      */
     public JsonAdaptedAppointment(Appointment source) {
-        patient = source.getPatientUuid();
+        patientUuid = source.getPatientUuid().toString();
         doctor = source.getDoctor();
         timeslot = new JsonAdaptedTimeslot(source.getTimeslot());
 
@@ -67,11 +67,11 @@ public class JsonAdaptedAppointment {
             appointmentTags.add(tag.toModelType());
         }
 
-        if (patient == null) {
+        if (patientUuid == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "patient"));
         }
 
-        final UUID modelPatientUuid = patient;
+        final UUID modelPatientUuid = UUID.fromString(patientUuid);
 
         // final Patient modelPatient = patient.toModelType();
 
