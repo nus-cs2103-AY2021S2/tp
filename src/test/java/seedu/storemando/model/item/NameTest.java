@@ -45,7 +45,20 @@ public class NameTest {
         assertTrue(new ItemName(VALID_NAME_CHEESE).compare(new ItemName(VALID_NAME_BANANA)) > 0);
         assertTrue(new ItemName(VALID_NAME_BANANA).compare(new ItemName(VALID_NAME_CHEESE)) < 0);
         assertTrue(new ItemName(VALID_NAME_CHEESE).compare(new ItemName(VALID_NAME_CHEESE)) == 0);
+    }
 
+    @Test
+    public void equals() {
+        ItemName itemName = new ItemName(("A"));
+        assertTrue(itemName.equals(itemName)); // same itemname object
+        assertTrue(new ItemName("abc").equals(new ItemName("abc"))); // alphabets onl
+        assertTrue(new ItemName("123").equals(new ItemName("123"))); // numbers only
+        assertTrue(new ItemName("abc123").equals(new ItemName("abc123"))); // alphanumeric only
+
+        assertFalse(new ItemName("abcc").equals(new ItemName("abc"))); // name is a prefix of other itemName
+        assertFalse(new ItemName("10").equals(new ItemName("1"))); // number is a prefix of another
+        assertFalse(new ItemName("ABC").equals(new ItemName("ABC1"))); // alphanumeric prefix
+        assertFalse(new ItemName("aBc").equals(new ItemName("abC"))); // alphabets only in different cases
 
     }
 }

@@ -44,6 +44,16 @@ public class StoreMandoTest {
     }
 
     @Test
+    public void testStoreMandoEquals() {
+        StoreMando storeMando = getTypicalStoreMando();
+        assertEquals(storeMando, storeMando);
+
+        StoreMando storeMando1 = new StoreMando();
+        StoreMando storeMando2 = new StoreMando();
+        assertEquals(storeMando1, storeMando2);
+    }
+
+    @Test
     public void resetData_withDuplicateItems_throwsDuplicateItemException() {
         // Two items with the same identity fields
         Item editedApple = new ItemBuilder(APPLE).withQuantity(VALID_QUANTITY_BANANA).withTags(VALID_TAG_HUSBAND)

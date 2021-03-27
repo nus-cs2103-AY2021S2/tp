@@ -47,4 +47,16 @@ public class QuantityTest {
         assertTrue(new ItemName(VALID_QUANTITY_BANANA).compare(new ItemName(VALID_QUANTITY_CHEESE)) > 0);
         assertTrue(new ItemName(VALID_QUANTITY_BANANA).compare(new ItemName(VALID_QUANTITY_BANANA)) == 0);
     }
+
+
+    @Test
+    public void equals() {
+        Quantity quantity = new Quantity("10");
+        assertTrue(quantity.equals(quantity)); // same object
+        assertTrue(quantity.equals(new Quantity("10"))); // different objects but with same value
+
+        assertFalse(quantity.equals(new Quantity("11"))); // different objects and with different values
+        assertFalse(quantity.equals("11")); // different objects and different types
+        assertFalse(quantity.equals(null)); // null
+    }
 }

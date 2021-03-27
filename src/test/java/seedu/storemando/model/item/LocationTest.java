@@ -52,8 +52,10 @@ public class LocationTest {
         assertFalse(new Location("kitchen").equals(new Location("KITCHEN"))); //same location in different cases
         assertFalse(new Location("kitchenn").equals(new Location("kitchen"))); //different locations
 
-        assertTrue(new Location("kitchen").equals(new Location("kitchen")));
-        assertTrue(new Location("x").equals(new Location("x")));
+        Location location = new Location("kitchen");
+        assertTrue(location.equals(location)); // same location object
+        assertTrue(location.equals(new Location("kitchen"))); // different location object with same location
+
 
     }
 }
