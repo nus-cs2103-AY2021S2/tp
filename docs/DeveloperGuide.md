@@ -533,7 +533,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Property**: A property listing with mandatory attributes: Name, Property type, Address, Postal code and Deadline,
     optional attributes: Client name, Client contact, Client email, Client asking price, Remarks
 * **Appointment**: An appointment listing with mandatory attributes: Name, Remarks, Date,  optional attribute: Time
