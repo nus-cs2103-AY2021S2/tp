@@ -137,9 +137,9 @@ Format: `listdef`
 
 Adds a note equipped with some tags.
 
-Format: `addnote [c/CONTENT] [t/TAG]...`
+Format: `addnote c/CONTENT [t/TAG]...`
 
-* Tags are optional. However, there must be only one content.
+* Tags are optional. However, there must be exactly one content.
 * In the current version, notes will be stored as a pure string.
 
 Examples:
@@ -160,7 +160,7 @@ Format: `deletenote INDEX`
 
 Marks a note in a list as done.
 
-Format: `markasdonenote [INDEX]`
+Format: `markasdonenote INDEX`
 
 * Marks the note at the specified `INDEX` as done.
 * The index refers to the index number shown in the displayed note list.
@@ -171,7 +171,7 @@ Format: `markasdonenote [INDEX]`
 
 Marks a note in a list as undone.
 
-Format: `markasundonenote [INDEX]`
+Format: `markasundonenote INDEX`
 
 * Marks the note at the specified `INDEX` as undone.
 * The index refers to the index number shown in the displayed note list.
@@ -191,7 +191,7 @@ Format: `markallasundonenote`
 
 Edits an existing note in the note list.
 
-Format: `editnote INDEX [c/CONTENT] [t/TAG]…​`
+Format: `editnote INDEX c/CONTENT [t/TAG]…​`
 
 * Edits the note at the specified `INDEX`. The index refers to the index number shown in the displayed note list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -225,7 +225,7 @@ Format: `sortnote`
 
 Find notes whose names contain any of—or tags contain all of—the given keywords.
 
-Format: `findnote [n/NAME_KEYWORD]... [t/TAG_KEYWORD]...`
+Format: `findnote c/NAME_KEYWORD... [t/TAG_KEYWORD]...`
 
 * The search is case-insensitive. e.g `c/cs2103` will match the name `CS2103`
 * Only the content and tags are searched.
@@ -587,16 +587,16 @@ Action | Format, Examples
 **List content** | `listcontent`
 **List Definitions** | `listdef`
 ***Note Features*** | -
-**Add note** | `addnote [c/CONTENT] [t/TAG]…​`
+**Add note** | `addnote c/CONTENT [t/TAG]…​`
 **Delete note** | `deletenote INDEX`
-**Mark note as done** | `markasdonenote [INDEX]`
-**Mark note as undone** | `markasundonenote [INDEX]`
+**Mark note as done** | `markasdonenote INDEX`
+**Mark note as undone** | `markasundonenote INDEX`
 **Mark all notes as undone** | `markallasundonenote`
-**Edit note** | `editnote INDEX [c/CONTEXT] [t/TAG]…​`
+**Edit note** | `editnote INDEX c/CONTEXT [t/TAG]…​`
 **Show note** | `shownote`
 **List all notes** | `listnote`
 **Sort all notes** | `sortnote`
-**Find notes using keywords** | `findnote [n/NAME_KEYWORD]…​ [t/TAG_KEYWORD]…​`
+**Find notes using keywords** | `findnote c/NAME_KEYWORD…​ [t/TAG_KEYWORD]…​`
 **Edit note in edit mode** | `editmodenote`
 **Exit edit mode** | `exitnote`
 **Save changes to note** | `savenote`
