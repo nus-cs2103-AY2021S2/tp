@@ -11,18 +11,10 @@ import java.util.Set;
 
 import seedu.module.commons.core.Messages;
 import seedu.module.commons.core.index.Index;
-import seedu.module.commons.core.optionalfield.OptionalField;
 import seedu.module.logic.commands.exceptions.CommandException;
 import seedu.module.model.Model;
 import seedu.module.model.tag.Tag;
-import seedu.module.model.task.Description;
-import seedu.module.model.task.DoneStatus;
-import seedu.module.model.task.Module;
-import seedu.module.model.task.Name;
-import seedu.module.model.task.Recurrence;
 import seedu.module.model.task.Task;
-import seedu.module.model.task.Time;
-import seedu.module.model.task.Workload;
 
 /**
  * Add a tag to an existing task in the module book.
@@ -69,18 +61,7 @@ public class TagCommand extends Command {
         Set<Tag> oldTags = taskToTag.getTags();
         Set<Tag> newTags = addTags(oldTags, this.tags);
 
-        Task editedTask;
-        Name name = taskToTag.getName();
-        OptionalField<Time> startTime = taskToTag.getStartTimeWrapper();
-        Time deadline = taskToTag.getDeadline();
-        Module module = taskToTag.getModule();
-        Description description = taskToTag.getDescription();
-        Workload workload = taskToTag.getWorkload();
-        DoneStatus newDoneStatus = new DoneStatus(false);
-        OptionalField<Recurrence> recurrence = taskToTag.getRecurrenceWrapper();
-
-        editedTask = new Task(name, startTime, deadline, module, description, workload, newDoneStatus, recurrence,
-                newTags);
+        Task editedTask = Task.setTags(taskToTag, newTags);
 
         if (!taskToTag.isSameTask(editedTask) && model.hasTask(editedTask)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);

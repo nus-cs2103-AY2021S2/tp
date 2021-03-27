@@ -4,22 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.module.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
-import java.util.Set;
 
 import seedu.module.commons.core.Messages;
 import seedu.module.commons.core.index.Index;
-import seedu.module.commons.core.optionalfield.OptionalField;
 import seedu.module.logic.commands.exceptions.CommandException;
 import seedu.module.model.Model;
-import seedu.module.model.tag.Tag;
-import seedu.module.model.task.Description;
 import seedu.module.model.task.DoneStatus;
-import seedu.module.model.task.Module;
-import seedu.module.model.task.Name;
-import seedu.module.model.task.Recurrence;
 import seedu.module.model.task.Task;
-import seedu.module.model.task.Time;
-import seedu.module.model.task.Workload;
 
 public class NotDoneCommand extends Command {
     public static final String COMMAND_WORD = "notdone";
@@ -62,17 +53,9 @@ public class NotDoneCommand extends Command {
     private static Task createNotDoneTask(Task taskToMarkNotDone) {
         assert taskToMarkNotDone != null;
 
-        Name name = taskToMarkNotDone.getName();
-        OptionalField<Time> startTime = taskToMarkNotDone.getStartTimeWrapper();
-        Time deadline = taskToMarkNotDone.getDeadline();
-        Module module = taskToMarkNotDone.getModule();
-        Description description = taskToMarkNotDone.getDescription();
-        Workload workload = taskToMarkNotDone.getWorkload();
         DoneStatus newDoneStatus = new DoneStatus(false);
-        OptionalField<Recurrence> recurrence = taskToMarkNotDone.getRecurrenceWrapper();
-        Set<Tag> tags = taskToMarkNotDone.getTags();
 
-        return new Task(name, startTime, deadline, module, description, workload, newDoneStatus, recurrence, tags);
+        return Task.setDoneStatus(taskToMarkNotDone, newDoneStatus);
     }
 
     @Override

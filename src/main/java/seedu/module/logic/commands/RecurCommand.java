@@ -23,7 +23,7 @@ public class RecurCommand extends Command {
             + "to the task identified by the index number used in the last person listing. "
             + "If recurrence specified, it is overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "r/ [RECURRENCE] (must be daily, weekly or monthly)\n"
+            + "r/ RECURRENCE (must be daily, weekly or monthly)\n"
             + "Example: " + COMMAND_WORD + " 1 r/ monthly";
 
     public static final String MESSAGE_ADD_RECURRENCE_SUCCESS = "New recurrence to task added successfully: %1$s";
@@ -73,7 +73,7 @@ public class RecurCommand extends Command {
     private Task makeNextRecurringTask(Task previousRecurringTask) throws CommandException {
         assert previousRecurringTask != null;
 
-        return previousRecurringTask.makeNewRecurringTask();
+        return Task.updateRecurrenceTask(previousRecurringTask);
     }
 
 

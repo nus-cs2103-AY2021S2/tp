@@ -52,6 +52,51 @@ public class Task {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Factory method designed for done and notDone command, to get rid of repeat code.
+     *
+     * @param status done or not done status.
+     * @return an edited task object.
+     */
+    public static Task setDoneStatus(Task task, DoneStatus status) {
+        return new Task(task.name, task.startTime, task.deadline, task.module, task.description, task.workload,
+                status, task.recurrence, task.tags);
+    }
+
+    /**
+     * Factory method designed for tag and deleteTag command, to get rid of repeat code.
+     *
+     * @param tags new tags.
+     * @return an edited task object.
+     */
+    public static Task setTags(Task task, Set<Tag> tags) {
+        return new Task(task.name, task.startTime, task.deadline, task.module, task.description, task.workload,
+                task.doneStatus, task.recurrence, tags);
+    }
+
+    /**
+     * Factory method for updating recurrence task.
+     *
+     * @param task the task need to be updated.
+     * @return the updated task.
+     */
+    public static Task updateRecurrenceTask(Task task) {
+        DoneStatus defaultDoneStatus = new DoneStatus(false);
+
+        boolean isUnchanged;
+        Time newDeadline = getRecurringTime(task, task.getDeadline());
+        OptionalField<Time> newStartTime = task.getStartTimeWrapper();
+
+        isUnchanged = newDeadline.equals(task.getDeadline());
+
+        if (!isUnchanged) {
+            newStartTime = getRecurringTime(task, task.getStartTimeWrapper());
+        }
+
+        return new Task(task.name, newStartTime, newDeadline, task.module, task.description, task.workload,
+                defaultDoneStatus, task.recurrence, task.tags);
+    }
+
     public Name getName() {
         return name;
     }
@@ -137,17 +182,18 @@ public class Task {
     /**
      * Returns a new valid Deadline for the recurring task if previous recurring deadline has expired.
      *
-     * @param oldTime current deadline of the recurring task
+     * @param task the task need to be updated.
+     * @param oldTime current deadline of the recurring task.
      * @return new Deadline object for the recurring task.
      */
-    private Time getRecurringTime(Time oldTime) {
+    private static Time getRecurringTime(Task task, Time oldTime) {
         requireAllNonNull(oldTime);
-        assert(this.isRecurring());
+        assert(task.isRecurring());
 
         DateTimeFormatter formatter;
         String nextRecurringDeadlineStr = oldTime.value;
         Time currTime = Time.makeDeadlineWithTime(LocalDateTime.now());
-        Recurrence taskRecurrence = this.getRecurrence();
+        Recurrence taskRecurrence = task.getRecurrence();
 
         String dateValue = oldTime.value.split(" ")[0];
         if (oldTime.value.length() == dateValue.length()) {
@@ -187,36 +233,17 @@ public class Task {
     /**
      * Overloaded getRecurringTime method for optional time.
      *
+     * @param task the task need to be updated.
      * @param oldTime current deadline of the recurring task
      * @return new Deadline object for the recurring task.
      */
-    private OptionalField<Time> getRecurringTime(OptionalField<Time> oldTime) {
+    private static OptionalField<Time> getRecurringTime(Task task, OptionalField<Time> oldTime) {
         if (oldTime.isNull()) {
             return oldTime;
         } else {
-            Time newTime = getRecurringTime(oldTime.getField());
+            Time newTime = Task.getRecurringTime(task, oldTime.getField());
             return new OptionalField<>(newTime);
         }
-    }
-
-    /**
-     * Returns a new Task object if the task is recurring and the deadline has expired.
-     */
-    public Task makeNewRecurringTask() {
-        DoneStatus defaultDoneStatus = new DoneStatus(false);
-
-        boolean isUnchanged;
-        Time newDeadline = getRecurringTime(this.getDeadline());
-        OptionalField<Time> newStartTime = this.getStartTimeWrapper();
-
-        isUnchanged = newDeadline.equals(this.getDeadline());
-
-        if (!isUnchanged) {
-            newStartTime = getRecurringTime(this.getStartTimeWrapper());
-        }
-
-        return new Task(name, newStartTime, newDeadline, module, description, workload,
-                defaultDoneStatus, recurrence, tags);
     }
 
     /**
