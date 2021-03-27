@@ -60,7 +60,7 @@ public class Budget implements Filterable {
 
     @Override
     public String toString() {
-        return String.format("Budget: %d\nCurrent Total Cost: %d", this.value,
+        return String.format("Budget: %d\nTotal Cost of Appointments: %d", this.value,
                 this.totalCost);
     }
 

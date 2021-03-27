@@ -285,6 +285,12 @@ Deletes an already existing budget.
 
 Format : `delete_budget`
 
+### Viewing a budget : `view_budget`
+
+Views an already existing budget.
+
+Format : `view_budget`
+
 
 --------------------------------------------------------------------------------------------------------------------
 **Q**: How do I transfer my data to another Computer?<br>
@@ -310,4 +316,5 @@ Action | Format, Examples
 **Add a budget** | `add_budget` <br> e.g.`add_budget b/500`
 **Edit a budget** | `edit_budget` <br> e.g. `edit_budget b/600`
 **Deleting a budget** | `delete_budget` <br> e.g. `delete_budget`
+**Viewing a budget** | `view_budget` <br> e.g. `view_budget`
 
