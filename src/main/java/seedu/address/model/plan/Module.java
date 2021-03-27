@@ -28,6 +28,7 @@ public class Module {
         this.moduleTitle = moduleTitle;
         this.moduleCredits = moduleCredits;
         this.isDone = false;
+        this.grade = "-";
     }
 
     public String getModuleTitle() {

@@ -20,8 +20,6 @@ public class TypicalPlans {
             .withDescription("computer networking route")
             .withTags("interesting").build();
 
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
-
     private TypicalPlans() {} // prevents instantiation
 
     /**
@@ -36,6 +34,6 @@ public class TypicalPlans {
     }
 
     public static List<Plan> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(SOFTWARE_ENGINEERING));
+        return new ArrayList<>(Arrays.asList(SOFTWARE_ENGINEERING, COMPUTER_NETWORKING));
     }
 }

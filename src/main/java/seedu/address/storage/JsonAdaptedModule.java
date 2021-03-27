@@ -66,7 +66,7 @@ public class JsonAdaptedModule {
      */
     public Module toModelType() throws IllegalValueException {
         Module module = new Module(moduleTitle, moduleCode, moduleCredits);
-        if (!this.grade.equals("null")) {
+        if (!this.grade.equals("-")) {
             module.setGrade(this.grade);
         }
         return module;

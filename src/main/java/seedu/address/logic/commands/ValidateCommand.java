@@ -10,7 +10,7 @@ import seedu.address.model.plan.Semester;
 
 /**
  * Command to check validity of plans.
- * The validity of plans are checked again automatically each timeW
+ * The validity of plans are checked again automatically each time
  * the MasterCommand is ran, so plans are always validated at least once.
  */
 public class ValidateCommand extends Command {
@@ -21,6 +21,8 @@ public class ValidateCommand extends Command {
             + "Show validity of all plans.";
 
     public static final String MESSAGE_SUCCESS = "Showing validity of plans";
+
+    public static final String MESSAGE_NO_MASTER = "You must set a master plan first!";
 
     private Plan masterPlan;
     private Semester currentSemester;

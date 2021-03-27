@@ -65,8 +65,18 @@ dependencies {
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
 }
 
+run {
+    enableAssertions = true
+}
+
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveName = 'moduleplanner.jar'
+}
+
+gradle.projectsEvaluated {
+    tasks.withType(JavaCompile) {
+        options.compilerArgs << "-Xlint:unchecked"
+    }
 }
 
 defaultTasks 'clean', 'test'

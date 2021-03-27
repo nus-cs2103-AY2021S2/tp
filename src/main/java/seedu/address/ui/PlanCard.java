@@ -53,7 +53,7 @@ public class PlanCard extends UiPart<Region> {
         description.setText("Description: " + plan.getDescription().value);
         numSemesters.setText("Number of Semesters: " + plan.getSemesters().size());
         numModules.setText("Number of Modules: " + plan.getNumModules());
-        isMaster.setText("Is Master: " + plan.getIsMaster());
+        isMaster.setText("Is Master: " + plan.getIsMasterPlan());
         isValid.setText("Is Valid: " + plan.getIsValid());
 
         plan.getTags().stream()

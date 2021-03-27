@@ -25,7 +25,7 @@ public class DeletePlanCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PLAN_NUMBER + "1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Plan deleted: Plan %1$s";
+    public static final String MESSAGE_DELETE_PLAN_SUCCESS = "Plan deleted: Plan %1$s";
 
     private final Index targetIndex;
 
@@ -47,7 +47,7 @@ public class DeletePlanCommand extends Command {
 
         Plan planToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePlan(planToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS,
+        return new CommandResult(String.format(MESSAGE_DELETE_PLAN_SUCCESS,
                 targetIndex.getOneBased() + planToDelete.toString()));
     }
 

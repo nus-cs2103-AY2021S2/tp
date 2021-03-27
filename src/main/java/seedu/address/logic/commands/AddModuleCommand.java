@@ -42,7 +42,7 @@ public class AddModuleCommand extends Command {
         //this.planIndex = planIndex;
         //this.semIndex = semIndex;
         //this.moduleCode = moduleCode;
-        this(planIndex, semIndex, moduleCode, "null");
+        this(planIndex, semIndex, moduleCode, "-");
     }
 
     /**
@@ -77,10 +77,10 @@ public class AddModuleCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_MODULE);
         }
 
-        if (this.grade.equals("null")) {
+        if (this.grade.equals("-")) {
             model.addModule(planIndex.getZeroBased(), semIndex.getZeroBased(), matchingModule);
         } else {
-            if (!model.isValidGrade(grade)) {
+            if (!model.isValidGrade(this.grade)) {
                 throw new CommandException(MESSAGE_INVALID_GRADE);
             }
             Module moduleWithGrade = matchingModule.setGrade(this.grade);

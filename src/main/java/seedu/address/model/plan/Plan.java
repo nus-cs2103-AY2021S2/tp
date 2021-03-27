@@ -51,6 +51,7 @@ public class Plan {
      * Adds a semester to the Plan.
      */
     public Plan addSemester(Semester semester) {
+        requireAllNonNull(semester);
         semesters.add(semester);
         return this;
     }
@@ -59,6 +60,7 @@ public class Plan {
      * Deletes a semester from the Plan.
      */
     public Plan removeSemester(Semester semester) {
+        requireAllNonNull(semester);
         for (int i = 0; i < semesters.size(); i++) {
             if (semesters.get(i).getSemNumber() == semester.getSemNumber()) {
                 semesters.remove(i);
@@ -256,9 +258,5 @@ public class Plan {
 
         double cap = undividedCap / totalMcs;
         return cap;
-    }
-
-    public boolean getIsMaster() {
-        return this.isMasterPlan;
     }
 }
