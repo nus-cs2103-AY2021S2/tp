@@ -15,8 +15,9 @@ import seedu.student.model.student.Student;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
-
     /**
+     *
+     *
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
     void setUserPrefs(ReadOnlyUserPrefs userPrefs);
@@ -87,6 +88,8 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
+
+    void updateFilteredAppointmentList(Predicate<SameDateAppointmentList> predicate);
 
     boolean hasAppointment(Appointment appointment);
 

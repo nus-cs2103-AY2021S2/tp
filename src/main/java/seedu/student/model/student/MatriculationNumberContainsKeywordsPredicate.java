@@ -6,15 +6,15 @@ import java.util.function.Predicate;
  * Tests that a {@code Student}'s {@code Matriculation Number} matches any of the keywords given.
  */
 public class MatriculationNumberContainsKeywordsPredicate implements Predicate<Student> {
-    private final String keyword;
+    private final MatriculationNumber keyword;
 
-    public MatriculationNumberContainsKeywordsPredicate(String keyword) {
+    public MatriculationNumberContainsKeywordsPredicate(MatriculationNumber keyword) {
         this.keyword = keyword;
     }
 
     @Override
     public boolean test(Student student) {
-        return keyword.equals((student.getMatriculationNumber().toString()));
+        return keyword.equals((student.getMatriculationNumber()));
     }
 
     @Override
