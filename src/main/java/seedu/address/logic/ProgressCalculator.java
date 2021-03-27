@@ -122,14 +122,21 @@ public class ProgressCalculator {
         report.append(ViewPlanCommand.getResult(dietPlan, infoCalculator));
 
         // Dates that progress report is listing
-        report.append("\nHere is the report for the days ");
+        report.append("\nHere is the report for the ");
         LocalDate firstIntakeDay = foodIntakes.get(0).getDate();
         LocalDate lastIntakeDay = foodIntakes.get(foodIntakes.size() - 1).getDate();
-        report.append(firstIntakeDay.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)));
-        report.append(" to ");
-        report.append(lastIntakeDay.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)));
-        report.append(":\n\n");
 
+        if (firstIntakeDay.isEqual(lastIntakeDay)) {
+            report.append("day ");
+            report.append(firstIntakeDay.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)));
+        } else {
+            report.append("days ");
+            report.append(firstIntakeDay.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)));
+            report.append(" to ");
+            report.append(lastIntakeDay.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)));
+        }
+
+        report.append(":\n\n");
         return report;
     }
 
@@ -151,6 +158,7 @@ public class ProgressCalculator {
         boolean firstDay = true;
         double adherenceTotal = 0.0;
         int adherenceCounter = 0;
+        int foodCount = 1;
         for (FoodIntake foodIntake : foodIntakes) {
             // Report on date
             LocalDate day = foodIntake.getDate();
@@ -175,6 +183,7 @@ public class ProgressCalculator {
                 carbsSum = 0.0;
                 fatsSum = 0.0;
                 proteinsSum = 0.0;
+                foodCount = 1;
 
                 // Report new day
                 reportNewDay(report, day);
@@ -183,7 +192,8 @@ public class ProgressCalculator {
 
             // Report on foods consumed and macronutrients
             Food food = foodIntake.getFood();
-            reportFood(report, food);
+            reportFood(report, food, foodCount);
+            foodCount++;
 
             // Store sum of macronutrient consumption
             carbsSum += food.getCarbos();
@@ -224,7 +234,7 @@ public class ProgressCalculator {
      * @param report Report to append to
      * @param food Food to report
      */
-    private static void reportFood(StringBuilder report, Food food) {
+    private static void reportFood(StringBuilder report, Food food, int foodCount) {
         // Get macronutrients consumed
         double carbs = food.getCarbos();
         double fats = food.getFats();
@@ -235,6 +245,7 @@ public class ProgressCalculator {
         String fatsString = String.format("Fats: %,.2fg", fats);
         String proteinsString = String.format("Proteins: %,.2fg", proteins);
 
+        report.append(foodCount + ". ");
         report.append(food.getName() + "    ");
         report.append(carbsString + "    ");
         report.append(fatsString + "    ");
