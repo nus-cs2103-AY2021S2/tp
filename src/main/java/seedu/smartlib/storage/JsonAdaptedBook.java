@@ -29,6 +29,14 @@ class JsonAdaptedBook {
 
     /**
      * Constructs a {@code JsonAdaptedBook} with the given book details.
+     *
+     * @param name name of the book.
+     * @param author author of the book.
+     * @param publisher publisher of the book.
+     * @param isbn ISBN of the book.
+     * @param barcode barcode of the book.
+     * @param genre genre of the book.
+     * @param borrowerName reader who borrowed the book.
      */
     @JsonCreator
     public JsonAdaptedBook(@JsonProperty("name") String name, @JsonProperty("author") String author,
@@ -46,6 +54,8 @@ class JsonAdaptedBook {
 
     /**
      * Converts a given {@code Book} into this class for Jackson use.
+     *
+     * @param source book to be converted.
      */
     public JsonAdaptedBook(Book source) {
         name = source.getName().toString();
@@ -60,6 +70,7 @@ class JsonAdaptedBook {
     /**
      * Converts this Jackson-friendly adapted book object into the model's {@code Book} object.
      *
+     * @return Book object converted from the storage file.
      * @throws IllegalValueException if there were any data constraints violated in the adapted book.
      */
     public Book toModelType() throws IllegalValueException {
@@ -119,8 +130,6 @@ class JsonAdaptedBook {
             final Name readerName = new Name(borrowerName);
             return new Book(modelName, modelAuthor, modelPublisher, modelIsbn, modelBarcode, modelGenre, readerName);
         }
-
     }
 
 }
-
