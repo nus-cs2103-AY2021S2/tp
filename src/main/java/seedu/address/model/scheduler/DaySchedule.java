@@ -1,6 +1,8 @@
 package seedu.address.model.scheduler;
 
 import javafx.beans.property.ReadOnlyBooleanProperty;
+import javafx.beans.property.ReadOnlyStringProperty;
+import javafx.beans.property.SimpleStringProperty;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -153,5 +155,21 @@ public class DaySchedule {
     public ReadOnlyBooleanProperty getSlotBookedProperty(int period) {
         return periodArray[period].getisBookedProperty();
     }
+
+    /**
+     * From period i, returns the string representation of the period.
+     * @return "[isBooked] (start - end)"
+     */
+    public String getTimeDisplayString(int index) {
+        return periodArray[index].toString();
+    }
+    /**
+     * Gets the observable String of the description of the booking
+     */
+    public ReadOnlyStringProperty getStringProperty(int index) {
+        return new SimpleStringProperty("Hello");
+    }
+
+
 
 }

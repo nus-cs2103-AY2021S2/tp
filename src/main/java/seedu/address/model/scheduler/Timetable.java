@@ -95,6 +95,8 @@ public class Timetable {
         getDaySchedule(localDate).freeTimeRange(startTime, endTime);
     }
 
+    //Sanity Check ........
+
     public static void main(String args[]) {
         Timetable t = new Timetable(LocalDate.now());
         try {
