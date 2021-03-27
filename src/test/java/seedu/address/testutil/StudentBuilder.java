@@ -24,11 +24,6 @@ public class StudentBuilder {
     public static final String DEFAULT_STUDY_LEVEL = "Secondary 5";
     public static final String DEFAULT_GUARDIAN_PHONE = "90112344";
     public static final String DEFAULT_RELATIONSHIP = "Mother";
-    public static final List<Session> DEFAULT_SESSION = new ArrayList<Session>() {
-        {
-            add(new SessionBuilder().withSessionDate("2020-01-01", "12:00").build());
-        }
-    };
 
     private Name name;
     private Phone phone;
@@ -50,7 +45,7 @@ public class StudentBuilder {
         studyLevel = DEFAULT_STUDY_LEVEL;
         guardianPhone = new Phone(DEFAULT_GUARDIAN_PHONE);
         relationship = DEFAULT_RELATIONSHIP;
-        sessions = DEFAULT_SESSION;
+        sessions = new ArrayList<>();
     }
 
     /**
@@ -126,7 +121,7 @@ public class StudentBuilder {
     /**
      * Adds a {@code Session} to the {@code sessions} of the {@code Student}.
      */
-    public StudentBuilder withSession(Session session) {
+    public StudentBuilder addSession(Session session) {
         requireAllNonNull(session);
         this.sessions.add(session);
         return this;
