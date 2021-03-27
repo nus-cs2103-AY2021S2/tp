@@ -122,7 +122,7 @@ call.
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the storemando data.
+* stores the StoreMando data.
 * exposes an unmodifiable `ObservableList<Item>` that can be 'observed' e.g. the UI can be bound to this list so that
   the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
@@ -266,15 +266,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* residents in a household
-* has a need to manage a significant number of household items
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* household resident
+* has a lot of items at home and cannot constantly keep track of their respective locations
+* has a lot of perishable items with various expiry dates that are difficult to remember
+* prefers desktop applications over other types
+* fast typist
+* prefers typing to using mouse 
+* comfortable using CLI applications
 
-**Value proposition**: A centralized inventory manager that helps to track the location of items in a household, their
-individual quantities and respective expiry dates.
+**Value proposition**: Every info of every item you have at home - all in one place. One command is all you have to key 
+in to add, delete or find for an item. StoreMando keeps track of everything you need so that you don't have to 
+physically search for an item to obtain information on it. Get everything you need from StoreMando - locations,
+quantities and expiry dates.
 
 ### User stories
 
@@ -488,12 +491,18 @@ Use case ends.
 2. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
    able to accomplish most of the tasks faster using commands than using the mouse.
+4. Should work with or without Internet connection.   
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **StoreMando**: Name of the application
+* **CLI**: Command Line Interface    
+* **GUI**: Graphical User Interface
+* **Inventory**: List of all items stored in StoreMando
+    
 
 --------------------------------------------------------------------------------------------------------------------
 
