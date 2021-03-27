@@ -46,6 +46,11 @@ public class MainApp extends Application {
     protected Model model;
     protected Config config;
 
+    /**
+     * Initializes the application.
+     *
+     * @throws Exception if an error was encountered during the initialization.
+     */
     @Override
     public void init() throws Exception {
         logger.info("=============================[ Initializing SmartLib ]===========================");
@@ -165,12 +170,20 @@ public class MainApp extends Application {
         return initializedPrefs;
     }
 
+    /**
+     * Initializes the stage of the application.
+     *
+     * @param primaryStage the stage of the application.
+     */
     @Override
     public void start(Stage primaryStage) {
         logger.info("Starting SmartLib " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
+    /**
+     * Halts the stage of the application.
+     */
     @Override
     public void stop() {
         logger.info("============================ [ Stopping SmartLib ] =============================");
@@ -180,4 +193,5 @@ public class MainApp extends Application {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
         }
     }
+
 }
