@@ -10,7 +10,6 @@ import seedu.address.logic.commands.AddFoodIntakeCommand;
 import seedu.address.logic.commands.AddFoodItemCommand;
 import seedu.address.logic.commands.AddUserCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteFoodIntakeCommand;
 import seedu.address.logic.commands.DeleteFoodItemCommand;
 import seedu.address.logic.commands.EditUserCommand;
@@ -57,9 +56,6 @@ public class AddressBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
-
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
