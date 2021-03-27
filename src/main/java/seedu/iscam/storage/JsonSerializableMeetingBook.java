@@ -9,9 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.iscam.commons.exceptions.IllegalValueException;
-import seedu.iscam.model.MeetingBook;
-import seedu.iscam.model.ReadOnlyMeetingBook;
 import seedu.iscam.model.meeting.Meeting;
+import seedu.iscam.model.util.meetingbook.MeetingBook;
+import seedu.iscam.model.util.meetingbook.ReadOnlyMeetingBook;
 
 /**
  * An Immutable MeetingBook that is serializable to JSON format.

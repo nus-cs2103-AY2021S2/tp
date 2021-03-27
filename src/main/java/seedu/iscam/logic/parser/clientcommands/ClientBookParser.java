@@ -1,4 +1,4 @@
-package seedu.iscam.logic.parser;
+package seedu.iscam.logic.parser.clientcommands;
 
 import static seedu.iscam.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.iscam.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
@@ -16,6 +16,7 @@ import seedu.iscam.logic.commands.FindCommand;
 import seedu.iscam.logic.commands.HelpCommand;
 import seedu.iscam.logic.commands.ListCommand;
 import seedu.iscam.logic.commands.ShowCommand;
+import seedu.iscam.logic.parser.BookParser;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.logic.parser.exceptions.ParseFormatException;
 import seedu.iscam.logic.parser.exceptions.ShowCommandParser;

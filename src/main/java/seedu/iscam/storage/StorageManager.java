@@ -7,10 +7,10 @@ import java.util.logging.Logger;
 
 import seedu.iscam.commons.core.LogsCenter;
 import seedu.iscam.commons.exceptions.DataConversionException;
-import seedu.iscam.model.ReadOnlyClientBook;
-import seedu.iscam.model.ReadOnlyMeetingBook;
 import seedu.iscam.model.ReadOnlyUserPrefs;
 import seedu.iscam.model.UserPrefs;
+import seedu.iscam.model.util.clientbook.ReadOnlyClientBook;
+import seedu.iscam.model.util.meetingbook.ReadOnlyMeetingBook;
 
 /**
  * Manages storage of ClientBook data in local storage.

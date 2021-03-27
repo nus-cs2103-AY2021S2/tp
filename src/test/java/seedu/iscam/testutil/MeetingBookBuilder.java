@@ -1,7 +1,7 @@
 package seedu.iscam.testutil;
 
-import seedu.iscam.model.MeetingBook;
 import seedu.iscam.model.meeting.Meeting;
+import seedu.iscam.model.util.meetingbook.MeetingBook;
 
 /**
  * A utility class to help with building MeetingBook objects.

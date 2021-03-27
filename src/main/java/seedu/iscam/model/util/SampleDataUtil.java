@@ -4,8 +4,6 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.iscam.model.ClientBook;
-import seedu.iscam.model.ReadOnlyClientBook;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.client.Email;
 import seedu.iscam.model.client.InsurancePlan;
@@ -13,6 +11,8 @@ import seedu.iscam.model.client.Phone;
 import seedu.iscam.model.commons.Location;
 import seedu.iscam.model.commons.Name;
 import seedu.iscam.model.commons.Tag;
+import seedu.iscam.model.util.clientbook.ClientBook;
+import seedu.iscam.model.util.clientbook.ReadOnlyClientBook;
 
 /**
  * Contains utility methods for populating {@code ClientBook} with sample data.

@@ -12,7 +12,7 @@ import seedu.iscam.commons.exceptions.DataConversionException;
 import seedu.iscam.commons.exceptions.IllegalValueException;
 import seedu.iscam.commons.util.FileUtil;
 import seedu.iscam.commons.util.JsonUtil;
-import seedu.iscam.model.ReadOnlyClientBook;
+import seedu.iscam.model.util.clientbook.ReadOnlyClientBook;
 
 /**
  * A class to access ClientBook data stored as a json file on the hard disk.

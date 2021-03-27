@@ -6,10 +6,10 @@ import static seedu.iscam.testutil.TypicalMeetings.getTypicalMeetingBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.iscam.model.ClientBook;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.ModelManager;
 import seedu.iscam.model.UserPrefs;
+import seedu.iscam.model.util.clientbook.ClientBook;
 
 public class ClearCommandTest {
 

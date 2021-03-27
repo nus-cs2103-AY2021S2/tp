@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.iscam.commons.exceptions.IllegalValueException;
 import seedu.iscam.commons.util.JsonUtil;
-import seedu.iscam.model.ClientBook;
+import seedu.iscam.model.util.clientbook.ClientBook;
 import seedu.iscam.testutil.TypicalClients;
 
 public class JsonSerializableClientBookTest {

@@ -16,10 +16,10 @@ import java.util.List;
 
 import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.logic.commands.exceptions.CommandException;
-import seedu.iscam.model.ClientBook;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.commons.NameContainsKeywordsPredicate;
+import seedu.iscam.model.util.clientbook.ClientBook;
 import seedu.iscam.testutil.EditClientDescriptorBuilder;
 
 /**
