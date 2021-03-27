@@ -50,7 +50,7 @@ public class EditCheeseCommand extends EditCommand {
     protected final EditCheeseDescriptor editCheeseDescriptor;
 
     /**
-     * Creates an AddOrderCommand to add the specified {@code Order}
+     * Creates an EditCheeseCommand to edit the specified cheese at {@code index}
      */
     public EditCheeseCommand(Index index, EditCheeseDescriptor editCustomerDescriptor) {
         requireNonNull(index);
@@ -98,21 +98,21 @@ public class EditCheeseCommand extends EditCommand {
         CheeseId id = cheeseToEdit.getCheeseId();
         boolean isAssigned = cheeseToEdit.isCheeseAssigned();
 
-        return new Cheese(updatedCheeseType, updatedManufactureDate, 
+        return new Cheese(updatedCheeseType, updatedManufactureDate,
                 updatedMaturityDate, updatedExpiryDate, id, isAssigned);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddCheeseCommand // instanceof handles nulls
+                || (other instanceof EditCheeseCommand // instanceof handles nulls
                 && index.equals(((EditCheeseCommand) other).index)
                 && editCheeseDescriptor.equals(((EditCheeseCommand) other).editCheeseDescriptor));
     }
 
     /**
-     * Stores the details to edit the customer with. Each non-empty field value will replace the
-     * corresponding field value of the customer.
+     * Stores the details to edit the cheese with. Each non-empty field value will replace the
+     * corresponding field value of the cheese.
      */
     public static class EditCheeseDescriptor {
         private CheeseType cheeseType;
