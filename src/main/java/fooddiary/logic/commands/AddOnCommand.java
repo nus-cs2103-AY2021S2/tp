@@ -93,7 +93,8 @@ public class AddOnCommand extends Command {
 
         Name updatedName = entryToAddOn.getName(); //cannot add on name
         Rating updatedRating = entryToAddOn.getRating();
-        Price updatedPrice = entryToAddOn.getPrice();
+        Price currentPrice = entryToAddOn.getPrice();
+        String updatedPriceValue = currentPrice.value.split("-")[0];
         List<Review> updatedReviews = new ArrayList<>();
         updatedReviews.addAll(entryToAddOn.getReviews());
         addOnToEntryDescriptor.getReviews().ifPresent(r -> updatedReviews.addAll(r));
@@ -132,6 +133,7 @@ public class AddOnCommand extends Command {
      * corresponding field value of the entry.
      */
     public static class AddOnToEntryDescriptor {
+        private Price price;
         private List<Review> reviews;
 
         public AddOnToEntryDescriptor() {}
@@ -142,6 +144,7 @@ public class AddOnCommand extends Command {
          */
         public AddOnToEntryDescriptor(AddOnToEntryDescriptor toCopy) {
             setReviews(toCopy.reviews);
+            setPrice(toCopy.price);
         }
 
         /**
@@ -168,6 +171,14 @@ public class AddOnCommand extends Command {
             return (reviews != null) ? Optional.of(Collections.unmodifiableList(reviews)) : Optional.empty();
         }
 
+        public void setPrice(Price price) {
+            this.price = price;
+        }
+
+        public Optional<Price> getPrice() {
+            return Optional.ofNullable(price);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -183,7 +194,8 @@ public class AddOnCommand extends Command {
             // state check
             AddOnToEntryDescriptor e = (AddOnToEntryDescriptor) other;
 
-            return getReviews().equals(e.getReviews());
+            return getReviews().equals(e.getReviews())
+                    && getPrice().equals((e.getPrice()));
         }
     }
 }

@@ -1,6 +1,7 @@
 package fooddiary.logic.parser;
 
 import static fooddiary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static fooddiary.logic.parser.CliSyntax.PREFIX_PRICE;
 import static fooddiary.logic.parser.CliSyntax.PREFIX_REVIEW;
 import static java.util.Objects.requireNonNull;
 
@@ -28,7 +29,7 @@ public class AddOnCommandParser implements Parser<AddOnCommand> {
     public AddOnCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_REVIEW);
+                ArgumentTokenizer.tokenize(args, PREFIX_REVIEW, PREFIX_PRICE);
 
         Index index;
 
@@ -41,6 +42,10 @@ public class AddOnCommandParser implements Parser<AddOnCommand> {
         AddOnToEntryDescriptor addOnToEntryDescriptor = new AddOnToEntryDescriptor();
 
         parseReviewsForAddOn(argMultimap.getAllValues(PREFIX_REVIEW)).ifPresent(addOnToEntryDescriptor::setReviews);
+
+        if (argMultimap.getValue(PREFIX_PRICE).isPresent()) {
+            addOnToEntryDescriptor.setPrice(ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get()));
+        }
 
         if (!addOnToEntryDescriptor.isAnyFieldAddedOn()) {
             throw new ParseException(AddOnCommand.MESSAGE_NOT_ADDED_ON);
