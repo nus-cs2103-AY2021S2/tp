@@ -27,7 +27,7 @@ public class UpdateProjectCommand extends Command {
             + "by the index number used in the displayed project list. "
             + "Existing value will be overwritten by the input value.\n"
             + "Parameters: INDEX (must be positive integer) "
-            + "[" + PREFIX_NAME + "NAME]\n"
+            + PREFIX_NAME + "PROJECT_NAME\n"
             + "Example:\n"
             + COMMAND_WORD + " 1 " + PREFIX_NAME + "new name";
 
@@ -38,10 +38,10 @@ public class UpdateProjectCommand extends Command {
     private final ProjectName name;
 
     /**
-     * Constructs an {@code updateProjectCommand} with an {@code index} and a {@code name}.
+     * Constructs an {@code UpdateProjectCommand} with an {@code index} and a {@code name}.
      *
-     * @param index of the project in the filtered project list to update.
-     * @param name new name for the project
+     * @param index the index of the project in the filtered project list to update.
+     * @param name new name for the project.
      */
     public UpdateProjectCommand(Index index, ProjectName name) {
         requireNonNull(index);
@@ -61,7 +61,8 @@ public class UpdateProjectCommand extends Command {
         }
 
         for (Project project : lastShownList) {
-            if (project.getProjectName().equals(name)) {
+            if (project.getProjectName().equals(name) &&
+                    !lastShownList.get(index.getZeroBased()).getProjectName().equals(name)) {
                 throw new CommandException(MESSAGE_DUPLICATE_NAME);
             }
         }
@@ -71,7 +72,7 @@ public class UpdateProjectCommand extends Command {
 
         model.setProject(projectToEdit, updatedProject);
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
-        return new CommandResult(String.format(MESSAGE_UPDATE_PROJECT_SUCCESS, updatedProject));
+        return new CommandResult(String.format(MESSAGE_UPDATE_PROJECT_SUCCESS, updatedProject.getProjectName()));
     }
 
     /**

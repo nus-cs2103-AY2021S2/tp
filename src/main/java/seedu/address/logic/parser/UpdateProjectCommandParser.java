@@ -15,10 +15,10 @@ import seedu.address.model.project.ProjectName;
 public class UpdateProjectCommandParser implements Parser<UpdateProjectCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
-     * and returns an EditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the UpdateProjectCommand
+     * and returns an UpdateProjectCommand object for execution.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public UpdateProjectCommand parse(String args) throws ParseException {
         requireNonNull(args);
@@ -35,7 +35,7 @@ public class UpdateProjectCommandParser implements Parser<UpdateProjectCommand> 
         }
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddProjectCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateProjectCommand.MESSAGE_USAGE));
         }
 
         ProjectName newProjectName = ParserUtil.parseProjectName(argMultimap.getValue(PREFIX_NAME).get());
