@@ -326,12 +326,25 @@ PocketEstate data are saved in the hard disk automatically after any command tha
 * The default property storage data file used is `[JAR file location]/data/propertybook.json`. 
 * The default appointment storage data file used is `[JAR file location]/data/appointmentbook.json`.
 
-#### Editing the data file
+#### Editing the data files
 
 Advanced users are welcome to update data directly by editing the data files.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, PocketEstate will discard all data and start with an empty data file at the next run. For example, if the property storage data file is corrupted but the appointment storage data file is in the correct format, PocketEstate will start with an empty data file for properties and use the original data file for appointments.
+</div>
+
+#### Specifying the data files
+
+It is also possible to specify your own property and/or appointment storage data files. In the `preferences.json` file that is generated when you first launch the app, you may edit the values of `propertyBookFilePath` and/or the `appointmentBookFilePath` to your own property and appointment storage file paths respectively.
+
+![Edit preferences.json file](images/editPreferencesJsonFile.png)
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** For advanced users, it is also possible to specify your own configuration file, which contains your preferred preference file path. Refer to [Appendix: Launching application via command line](#lauching-application-via-command-line) for more information.
+
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** 
 </div>
 
 #### Archiving data files `[coming in v2.0]`
@@ -367,3 +380,17 @@ Action | Format, Examples
 **Sort** | `sort appointment o/<asc or desc> k/<datetime or name>`<br> e.g., `sort appointment o/asc k/datetime`<br><br>`sort property o/<asc or desc> k/<price or address or postalcode or deadline or name>`<br> e.g., `sort property o/asc k/price`
 **Remove an entry** | `delete appointment INDEX` <br> e.g. `delete appointment 7` <br><br> `delete property INDEX` <br> e.g. `delete property 7`
 **Help** | `help`
+
+## Appendix
+
+### Launching application via command line
+
+For advanced users, it is also possible to launch the app via the command line. Doing so will allow you the option of specifying your own configuration file.  The configuration file can be used to specify the location of the preferences file, which contains the preferred storage file paths for both property and appointment data.
+
+The default file paths used are:
+
+* Configuration file: `[JAR file location]/config.json`
+* Preferences file: `[JAR file location]/preferences.json`
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** However, if the specified configuration file or the preferences file is in an incorrect format, the default file paths will be used.
+</div>
