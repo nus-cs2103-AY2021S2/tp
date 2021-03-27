@@ -16,6 +16,14 @@ public class Messages {
             + " Force delete command format required! \n%1$s";
     public static final String MESSAGE_DELETE_PATIENT_SUCCESS = "Deleted Person: %1$s";
 
+    //=================================Doctor related messages===============================================
+    public static final String MESSAGE_DOCTORS_LISTED_OVERVIEW = "%1$d doctors listed!";
+    public static final String MESSAGE_INVALID_DOCTOR_DISPLAYED_INDEX = "The doctor index provided is invalid";
+    public static final String MESSAGE_FORCE_DELETE_DOCTOR_REQUIRED =
+            "The doctor has existing appointments in appointment schedule."
+                    + " Force delete command format required! \n%1$s";
+    public static final String MESSAGE_DELETE_DOCTOR_SUCCESS = "Deleted Person: %1$s";
+
     //=================================Appointment related messages===========================================
     public static final String MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX =
             "The appointment index provided is invalid";
