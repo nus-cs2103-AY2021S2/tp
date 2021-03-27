@@ -35,7 +35,8 @@ public class BookStub extends Book {
      * @param genre Genre of the book
      * @param borrowerName Reader who borrowed the book
      */
-    public BookStub(Name name, Author author, Publisher publisher, Isbn isbn, Barcode barcode, Genre genre, Name borrowerName) {
+    public BookStub(Name name, Author author, Publisher publisher, Isbn isbn, Barcode barcode, Genre genre,
+                    Name borrowerName) {
         super(name, author, publisher, isbn, barcode, genre, borrowerName);
     }
 
