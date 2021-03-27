@@ -104,6 +104,7 @@ The `Model`,
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the cakecollate data.
 * exposes an unmodifiable `ObservableList<Order>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<OrderItem>` that can also be 'observed'.
 * does not depend on any of the other three components.
 
 
@@ -132,6 +133,16 @@ Classes used by multiple components are in the `seedu.cakecollate.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Sorting displayed list by delivery date
+
+The original approach of sorting the displayed list was to sort the observable list that the UI received from the Model Manager. This was not possible because the list obtained was immutable, and the indexes provided for some commands stopped corresponding to the actual orders displayed in the GUI. As such, it's implemented such that the model always keeps a list that is sorted by delivery date
+
+(insert sequence diagram)
+
+To ensure that after every command, the list was always sorted, each command sent to the model would additionally call the sortOrderList() command.
+
+(explain with more code later)
 
 ### \[Proposed\] Undo/redo feature
 
@@ -268,6 +279,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 | `**`    | User                                         | add notes and special requests for orders                          | details on customized orders can be mentioned together with the main order                   |
 | `**`    | User who loves statistics                    | view my most ordered products                                      | I know what to products to promote more                                                      |
 | `**`    | Regular user                                 | be warned of duplicate orders I might have accidentally entered    | I can avoid making more than necessary, which may waste time and resources                   |
+| `**`    | User                                         | add different statuses to my orders                                | I can keep track of whether my order is delivered, not delivered yet or cancelled.           |
 | `**`    | User                                         | find the orders made by a certain customer                         | I can retrieve information about the orders that this customer have made before, if needed   |
 | `**`    | User                                         | input multiple order descriptions at one go                        | I don't need to input multiple entries for customers who order more than one type of cake    |
 | `**`    | User                                         | set prices and costs of orders                                     | I can note how much profit I am earning                                                      |
@@ -286,8 +298,8 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 1.  User requests to list order
 2.  CakeCollate shows a list of orders
-3.  User requests to delete a specific order in the list
-4.  CakeCollate deletes the order
+3.  User requests to delete a specific list of orders
+4.  CakeCollate deletes the specified orders
 
     Use case ends.
 
@@ -297,7 +309,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given list of indices is invalid.
 
     * 3a1. CakeCollate shows an error message.
 
@@ -418,22 +430,22 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a order
+### Deleting multiple orders
 
-1. Deleting a order while all orders are being shown
+1. Deleting multiple orders while all orders are being show
+    1. Prerequisites: List all orders using the `list` command. Multiple orders in the list.
+    1. Test case: `delete 1`<br>
+       Expected: First order is deleted from the list. Details of the deleted order shown in the status message.
+    1. Test case: `delete 1 2` <br>
+       Expected: First and second orders are deleted from the list. Details of the deleted orders are shown in the status message.
+    
+    1. Test case: `delete 0 1`<br>
+       Expected: No order is deleted. Error details shown in the status message.
+       
+    1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
-   1. Prerequisites: List all orders using the `list` command. Multiple orders in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No order is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
+1. _{ more test cases …​ }
 
 ### Receiving reminders for orders
 

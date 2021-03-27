@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.cakecollate.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents an Order's cakecollate in the cakecollate.
+ * Represents an Order's address in the CakeCollate.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
 public class Address {
@@ -12,7 +12,7 @@ public class Address {
     public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
 
     /*
-     * The first character of the cakecollate must not be a whitespace,
+     * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
@@ -22,7 +22,7 @@ public class Address {
     /**
      * Constructs an {@code Address}.
      *
-     * @param address A valid cakecollate.
+     * @param address A valid address.
      */
     public Address(String address) {
         requireNonNull(address);
@@ -31,7 +31,7 @@ public class Address {
     }
 
     /**
-     * Returns true if a given string is a valid cakecollate.
+     * Returns true if a given string is a valid address.
      */
     public static boolean isValidAddress(String test) {
         return test.matches(VALIDATION_REGEX);

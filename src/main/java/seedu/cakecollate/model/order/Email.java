@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.cakecollate.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents an Order's email in the cakecollate.
+ * Represents an Order's email in CakeCollate.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
 public class Email {
