@@ -51,6 +51,7 @@ public class Statistics {
      * @return List of MonthStatistics of past 6 months.
      */
     public List<MonthStatistics> getPastMonthStatistics() {
+        assert monthList.size() == 1;
         List<MonthStatistics> list = new ArrayList<>();
         for (Month m : getPastMonths()) {
             list.add(new MonthStatistics(m));
