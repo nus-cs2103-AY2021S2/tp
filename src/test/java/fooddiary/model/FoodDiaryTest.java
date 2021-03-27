@@ -47,7 +47,7 @@ public class FoodDiaryTest {
     @Test
     public void resetData_withDuplicateEntries_throwsDuplicateEntryException() {
         // Two entries with the same identity fields
-        Entry editedA = new EntryBuilder(ENTRY_A).withAddress(VALID_ADDRESS_B).withTags(VALID_TAG_WESTERN)
+        Entry editedA = new EntryBuilder(ENTRY_A).withAddress(VALID_ADDRESS_B).withTagCategories(VALID_TAG_WESTERN)
                 .build();
         List<Entry> newEntries = Arrays.asList(ENTRY_A, editedA);
         FoodDiaryStub newData = new FoodDiaryStub(newEntries);
@@ -74,7 +74,7 @@ public class FoodDiaryTest {
     @Test
     public void hasEntry_entryWithSameIdentityFieldsInFoodDiary_returnsTrue() {
         foodDiary.addEntry(ENTRY_A);
-        Entry editedA = new EntryBuilder(ENTRY_A).withAddress(VALID_ADDRESS_B).withTags(VALID_TAG_WESTERN)
+        Entry editedA = new EntryBuilder(ENTRY_A).withAddress(VALID_ADDRESS_B).withTagCategories(VALID_TAG_WESTERN)
                 .build();
         assertTrue(foodDiary.hasEntry(editedA));
     }

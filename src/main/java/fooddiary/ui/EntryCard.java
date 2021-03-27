@@ -3,6 +3,8 @@ package fooddiary.ui;
 import java.util.Comparator;
 
 import fooddiary.model.entry.Entry;
+import fooddiary.model.tag.TagCategory;
+import fooddiary.model.tag.TagSchool;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -41,7 +43,9 @@ public class EntryCard extends UiPart<Region> {
     @FXML
     private Label reviews;
     @FXML
-    private FlowPane tags;
+    private FlowPane tagCategory;
+    @FXML
+    private FlowPane tagSchool;
 
     /**
      * Creates a {@code EntryCode} with the given {@code Entry} and index to display.
@@ -60,9 +64,13 @@ public class EntryCard extends UiPart<Region> {
         }
         reviews.setText(String.format("Reviews: %s", reviewStr));
 
-        entry.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tag))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tag)));
+        entry.getTagCategories().stream()
+                .sorted(Comparator.comparing(TagCategory::getTag))
+                .forEach(tag -> tagCategory.getChildren().add(new Label(tag.getTag())));
+
+        entry.getTagSchools().stream()
+                .sorted(Comparator.comparing(TagSchool::getTag))
+                .forEach(tag -> tagSchool.getChildren().add(new Label(tag.getTag())));
     }
 
     @Override

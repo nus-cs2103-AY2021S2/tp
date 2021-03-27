@@ -1,7 +1,7 @@
 package fooddiary.logic.parser;
 
 import static fooddiary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static fooddiary.logic.parser.CliSyntax.PREFIX_TAG;
+import static fooddiary.logic.parser.CliSyntax.PREFIX_TAG_CATEGORY;
 import static fooddiary.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static fooddiary.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static fooddiary.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
@@ -25,7 +25,7 @@ import fooddiary.testutil.EditEntryDescriptorBuilder;
 
 public class EditCommandParserTest {
 
-    private static final String TAG_EMPTY = " " + PREFIX_TAG;
+    private static final String TAG_EMPTY = " " + PREFIX_TAG_CATEGORY;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
@@ -110,7 +110,7 @@ public class EditCommandParserTest {
                 new EditEntryDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_A)
                 .withRating(CommandTestUtil.VALID_RATING_B).withReviews(CommandTestUtil.VALID_REVIEW_A)
                 .withAddress(CommandTestUtil.VALID_ADDRESS_A)
-                .withTags(CommandTestUtil.VALID_TAG_WESTERN, CommandTestUtil.VALID_TAG_FASTFOOD).build();
+                .withTagCategories(CommandTestUtil.VALID_TAG_WESTERN, CommandTestUtil.VALID_TAG_FASTFOOD).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -166,7 +166,7 @@ public class EditCommandParserTest {
 
         // tags
         userInput = targetIndex.getOneBased() + CommandTestUtil.TAG_DESC_FASTFOOD;
-        descriptor = new EditEntryDescriptorBuilder().withTags(CommandTestUtil.VALID_TAG_FASTFOOD).build();
+        descriptor = new EditEntryDescriptorBuilder().withTagCategories(CommandTestUtil.VALID_TAG_FASTFOOD).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -187,7 +187,7 @@ public class EditCommandParserTest {
                 .withReviews(CommandTestUtil.VALID_REVIEW_A,
                         CommandTestUtil.VALID_REVIEW_A, CommandTestUtil.VALID_REVIEW_B)
                         .withAddress(CommandTestUtil.VALID_ADDRESS_B)
-                .withTags(CommandTestUtil.VALID_TAG_FASTFOOD, CommandTestUtil.VALID_TAG_WESTERN).build();
+                .withTagCategories(CommandTestUtil.VALID_TAG_FASTFOOD, CommandTestUtil.VALID_TAG_WESTERN).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -220,7 +220,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_THIRD_ENTRY;
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
-        EditCommand.EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder().withTags().build();
+        EditCommand.EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder().withTagCategories().build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

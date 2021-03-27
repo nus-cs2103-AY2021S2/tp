@@ -58,11 +58,16 @@ public class ViewCommand extends Command {
                 .map(review -> review.value + "\n")
                 .collect(Collectors.joining());
         entryDetails.put("reviews", reviews);
-        String tags = entry.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tag))
-                .map(tag -> tag.tag + ";")
+        String tagCategories = entry.getTagCategories().stream()
+                .sorted(Comparator.comparing(tag -> tag.getTag()))
+                .map(tag -> tag.getTag() + ";")
                 .collect(Collectors.joining());
-        entryDetails.put("tags", tags);
+        entryDetails.put("categories", tagCategories);
+        String tagSchools = entry.getTagSchools().stream()
+                .sorted(Comparator.comparing(tag -> tag.getTag()))
+                .map(tag -> tag.getTag() + ";")
+                .collect(Collectors.joining());
+        entryDetails.put("schools", tagSchools);
         return new CommandResult(entryDetails, String.format(MESSAGE_VIEW_ENTRY_SUCCESS, entry),
                 false , true, false);
     }

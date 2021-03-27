@@ -16,15 +16,22 @@ public class TypicalEntries {
     public static final Entry ENTRY_A = new EntryBuilder().withName("Restaurant A")
             .withAddress("123, Jurong West Ave 6, #08-111").withReviews("This is a review for Restaurant A.")
             .withRating("3").withPrice("11")
-            .withTags("WESTERN").build();
+            .withTagCategories("WESTERN")
+            .withTagSchools("SCIENCE")
+            .build();
     public static final Entry ENTRY_B = new EntryBuilder().withName("Restaurant B")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withReviews("This is a review for Restaurant B.").withRating("2").withPrice("12")
-            .withTags("VEGAN", "DESSERT").build();
+            .withTagCategories("VEGAN", "DESSERT")
+            .withTagSchools("SOC")
+            .build();
     public static final Entry ENTRY_C = new EntryBuilder().withName("Restaurant C").withRating("1").withPrice("13")
             .withReviews("This is a review for Restaurant C.").withAddress("wall street").build();
     public static final Entry ENTRY_D = new EntryBuilder().withName("Restaurant D").withRating("5").withPrice("14")
-            .withReviews("This is a review for Restaurant D.").withAddress("10th street").withTags("FASTFOOD").build();
+            .withReviews("This is a review for Restaurant D.").withAddress("10th street")
+            .withTagCategories("FASTFOOD")
+            .withTagSchools("BIZ")
+            .build();
     public static final Entry ENTRY_E = new EntryBuilder().withName("Restaurant E").withRating("2").withPrice("15")
             .withReviews("This is a review for Restaurant E.").withAddress("michegan ave").build();
     public static final Entry ENTRY_F = new EntryBuilder().withName("Restaurant F").withRating("1").withPrice("16")
@@ -42,11 +49,11 @@ public class TypicalEntries {
     public static final Entry VALID_ENTRY_A = new EntryBuilder().withName(CommandTestUtil.VALID_NAME_A)
             .withRating(CommandTestUtil.VALID_RATING_A).withPrice(CommandTestUtil.VALID_PRICE_A)
             .withReviews(CommandTestUtil.VALID_REVIEW_A).withAddress(CommandTestUtil.VALID_ADDRESS_A)
-            .withTags(CommandTestUtil.VALID_TAG_FASTFOOD).build();
+            .withTagCategories(CommandTestUtil.VALID_TAG_FASTFOOD).build();
     public static final Entry VALID_ENTRY_B = new EntryBuilder().withName(CommandTestUtil.VALID_NAME_B)
             .withRating(CommandTestUtil.VALID_RATING_B).withPrice(CommandTestUtil.VALID_PRICE_B)
             .withReviews(CommandTestUtil.VALID_REVIEW_B).withAddress(CommandTestUtil.VALID_ADDRESS_B)
-            .withTags(CommandTestUtil.VALID_TAG_WESTERN, CommandTestUtil.VALID_TAG_FASTFOOD)
+            .withTagCategories(CommandTestUtil.VALID_TAG_WESTERN, CommandTestUtil.VALID_TAG_FASTFOOD)
             .build();
 
     private TypicalEntries() {} // prevents instantiation

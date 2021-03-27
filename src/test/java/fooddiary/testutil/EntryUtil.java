@@ -8,7 +8,8 @@ import fooddiary.logic.commands.EditCommand;
 import fooddiary.logic.parser.CliSyntax;
 import fooddiary.model.entry.Entry;
 import fooddiary.model.entry.Review;
-import fooddiary.model.tag.Tag;
+import fooddiary.model.tag.TagCategory;
+import fooddiary.model.tag.TagSchool;
 
 /**
  * A utility class for Entry.
@@ -32,8 +33,11 @@ public class EntryUtil {
         sb.append(CliSyntax.PREFIX_PRICE + entry.getPrice().value + " ");
         entry.getReviews().stream().forEach(s -> sb.append(CliSyntax.PREFIX_REVIEW + s.value + " "));
         sb.append(CliSyntax.PREFIX_ADDRESS + entry.getAddress().value + " ");
-        entry.getTags().stream().forEach(
-            s -> sb.append(CliSyntax.PREFIX_TAG + s.tag + " ")
+        entry.getTagCategories().stream().forEach(
+            s -> sb.append(CliSyntax.PREFIX_TAG_CATEGORY + s.getTag() + " ")
+        );
+        entry.getTagSchools().stream().forEach(
+            s -> sb.append(CliSyntax.PREFIX_TAG_SCHOOL + s.getTag() + " ")
         );
         return sb.toString();
     }
@@ -56,14 +60,24 @@ public class EntryUtil {
         }
         descriptor.getAddress().ifPresent(address -> sb.append(CliSyntax.PREFIX_ADDRESS)
                 .append(address.value).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
+        if (descriptor.getTagCategories().isPresent()) {
+            Set<TagCategory> tags = descriptor.getTagCategories().get();
             if (tags.isEmpty()) {
-                sb.append(CliSyntax.PREFIX_TAG);
+                sb.append(CliSyntax.PREFIX_TAG_CATEGORY);
             } else {
-                tags.forEach(s -> sb.append(CliSyntax.PREFIX_TAG).append(s.tag).append(" "));
+                tags.forEach(s -> sb.append(CliSyntax.PREFIX_TAG_CATEGORY).append(s.getTag()).append(" "));
             }
         }
+
+        if (descriptor.getTagSchools().isPresent()) {
+            Set<TagSchool> tags = descriptor.getTagSchools().get();
+            if (tags.isEmpty()) {
+                sb.append(CliSyntax.PREFIX_TAG_SCHOOL);
+            } else {
+                tags.forEach(s -> sb.append(CliSyntax.PREFIX_TAG_SCHOOL).append(s.getTag()).append(" "));
+            }
+        }
+
         return sb.toString();
     }
 }
