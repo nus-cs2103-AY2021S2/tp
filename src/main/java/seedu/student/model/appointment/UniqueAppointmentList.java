@@ -1,6 +1,7 @@
 package seedu.student.model.appointment;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.student.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 

@@ -28,12 +28,7 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-<<<<<<< HEAD:src/main/java/seedu/address/logic/commands/FindCommand.java
-        model.updateFilteredPersonList(predicate);
-        model.
-=======
         model.updateFilteredStudentList(predicate);
->>>>>>> master:src/main/java/seedu/student/logic/commands/FindCommand.java
         return new CommandResult(
                 String.format(Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW, model.getFilteredStudentList().size()));
     }
