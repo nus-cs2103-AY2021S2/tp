@@ -21,7 +21,8 @@ public class NameContainsKeywordsPredicate implements Predicate<Customer> {
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(customer.getName().fullName, keyword)
                 || StringUtil.containsWordIgnoreCase(customer.getAddress().value, keyword)
                 || StringUtil.containsWordIgnoreCase(customer.getPhone().value, keyword)
-                || StringUtil.containsWordIgnoreCase(customer.getDate().value, keyword));
+                || StringUtil.containsWordIgnoreCase(customer.getDate().value, keyword)
+                        || StringUtil.containsWordIgnoreCase(customer.getDone().value, keyword));
     }
 
     @Override
