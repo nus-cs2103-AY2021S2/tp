@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.util.OperationFlag;
 import seedu.address.model.person.DeadlineDate;
 import seedu.address.model.person.DeadlineTime;
 import seedu.address.model.person.ModuleCode;
@@ -26,6 +27,7 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_WEIGHTAGE = "Weightage is not a positive percentage value.";
 
+    public static final String MESSAGE_INVALID_ARGS_LENGTH = "Invalid number of arguments provided.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -39,6 +41,14 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    public static OperationFlag parseOperationFlag(String operationFlag) throws ParseException {
+        String trimmedOperationFlag = operationFlag.trim();
+        if (!OperationFlag.isValidOperationType(trimmedOperationFlag)) {
+            throw new ParseException(OperationFlag.MESSAGE_CONSTRAINTS);
+        }
+        return new OperationFlag(trimmedOperationFlag);
     }
 
     /**
