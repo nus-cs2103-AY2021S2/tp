@@ -90,7 +90,8 @@ public abstract class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
+        return otherPerson.getUuid().equals(getUuid())
+                && otherPerson.getName().equals(getName())
                 && otherPerson.getTags().equals(getTags());
     }
 
