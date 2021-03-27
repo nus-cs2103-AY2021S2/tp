@@ -27,7 +27,7 @@ imPoster is a desktop application for beginners of API development to quickly gr
 imPoster's simple and minimalistic style can help beginner API developers **explore** and **test** APIs, whether those **found online** or those that they have **built** themselves.
 imPoster is also highly optimised fast typists and can be fully operated through keyboard commands.
 This developer's guide assumes its readers to have a **basic understanding** of APIs. 
-For a basic definition of [what an API is](), an appendix has been provided for readers who may be unfamiliar with the concept.
+For a basic definition of [what an API is](#what-is-an-api), an appendix has been provided for readers who may be unfamiliar with the concept.
 However, it is highly recommended for readers to refer to proper tutorial contents for the basics of APIs prior to developing the application.
 Reader are also advised to download our [latest releases](https://imposter-dev.tk) from our main website in order to test out the application.
 
@@ -211,6 +211,7 @@ The following activity diagram summarizes how an endpoint is created when a user
 Adds an endpoint to the bottom of the list of currently existing endpoints. Users are able to add any valid endpoint to the list. If the exact same endpoint is already in the list, this command will not be allowed and an error will be shown.
 
 Example: `add -x get -u https://localhost:3000`
+
 #### Implementation
 
 Upon the users entry of the endpoint, the `AddCommand` object is created. `AddCommand` is a class that extends `Command` abstract class. `AddCommand` implements the `execute()` method from the `Command` abstract class whereby upon execution, the method will add the given endpoint in the model's list of endpoints if a valid endpoint is given.
@@ -231,6 +232,7 @@ The following sequence diagram shows how the add operation works:
 #### What it is
 
 Looks for an endpoint in the list of endpoints and displays all the endpoints that match the requested specifications. If there are no specifications, `find` will do a general search through all fields that endpoint has.
+
 #### Implementation
 
 Upon the users entry of the find keyword, the parser will check if prefixes have been specified, if the user decided to specify prefixes, the `FindCommand` object will be created with predicates looking through the specified prefixes. Else, a general endpoint predicate that will scan through all fields of endpoint will be created. `FindCommand` is a class that extends `Command` abstract class. `FindCommand` implements the `execute()` method from the `Command` abstract class whereby upon execution, the method will search through the given endpoints in the model's list of endpoints and check if any endpoints match the specifications. It will then update the model with the filtered endpoint list.
@@ -250,6 +252,10 @@ The following activity diagram summarizes what happens when a user executes a fi
 ![FindActivityDiagram](images/FindActivityDiagram.png)
 
 ### Send/run command feature
+
+#### What it is
+
+Allows the user to make an API call to a specific endpoint, either with values from a saved endpoint (`send`) or values passed in as command line arguments (`run`).
 
 #### Implementation
 
@@ -293,6 +299,10 @@ The following activity diagram summarizes what happens when a user executes a ru
     * Cons: Duplication of code across Send and Run commands.
 
 ### Request feature
+
+#### What it is
+
+Supports the core functionality of our product which involves the sending of requests and receiving of responses from a specified endpoint. Required by the `send` and `run` command to perform API calls as requested by the user.
 
 #### Implementation
 
@@ -440,6 +450,30 @@ the `user`, unless specified otherwise)
 
     Use case resumes at step 2.
 
+**Use case G03 - Toggle Application Theme**
+
+**MSS**
+
+1.  User requests to toggle application theme
+2.  User enters toggle command into command box
+3.  imPoster switches to user specified application theme
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. The given command/format is invalid
+
+  - 2a1. imPoster shows an error message to the user
+
+    Use case resumes at step 2.
+
+- 2b. The given theme does not exist
+
+  - 2b1. imPoster shows an error message to the user
+
+    Use case resumes at step 2.
+
 ### <ins>Endpoint Use Cases</ins>
 
 **Use case E01 - Add an API endpoint**
@@ -447,7 +481,7 @@ the `user`, unless specified otherwise)
 **MSS**
 
 1.  User requests to add an API endpoint
-2.  User enters add command into command box
+2.  User enters `add` command into command box
 3.  imPoster saves the API endpoint to the API endpoint list
 
     Use case ends.
@@ -465,7 +499,7 @@ the `user`, unless specified otherwise)
 **MSS**
 
 1.  User requests to edit an API endpoint
-2.  User enters edit command into command box
+2.  User enters `edit` command into command box
 3.  imPoster edits the API endpoint and updates the API endpoint list
 
     Use case ends.
@@ -489,7 +523,7 @@ the `user`, unless specified otherwise)
 **MSS**
 
 1.  User requests to remove an API endpoint
-2.  User enters remove command into command box
+2.  User enters `remove` command into command box
 3.  imPoster removes the API endpoint and updates the API endpoint list
 
     Use case ends.
@@ -513,7 +547,7 @@ the `user`, unless specified otherwise)
 **MSS**
 
 1.  User requests to find a saved API endpoint
-2.  User enters find command into command box
+2.  User enters `find` command into command box
 3.  imPoster searches the existing records
 4.  imPoster returns a list of matching API endpoints
 
@@ -538,7 +572,7 @@ the `user`, unless specified otherwise)
 **MSS**
 
 1.  User requests to view all saved API endpoints
-2.  User enters list command into command box
+2.  User enters `list` command into command box
 3.  imPoster displays all existing records
 
     Use case ends.
@@ -556,7 +590,7 @@ the `user`, unless specified otherwise)
 **MSS**
 
 1.  User requests to clear all saved API endpoints
-2.  User enters clear command into command box
+2.  User enters `clear` command into command box
 3.  imPoster clears all existing records
 
     Use case ends.
@@ -574,7 +608,7 @@ the `user`, unless specified otherwise)
 **MSS**
 
 1.  User requests to call a saved API endpoint
-2.  User enters send command into command box
+2.  User enters `send` command into command box
 3.  imPoster makes a call to the desired API endpoint
 4.  API call is successful and response is shown to the user
 5.  imPoster saves the response to a file that the user can view
@@ -607,7 +641,7 @@ the `user`, unless specified otherwise)
 **MSS**
 
 1.  User requests to call a saved API endpoint
-2.  User enters run command into command box
+2.  User enters `run` command into command box
 3.  imPoster makes a call to the desired API endpoint
 4.  API call is successful and response is shown to the user
 5.  imPoster saves the response to a file that the user can view
@@ -629,7 +663,49 @@ the `user`, unless specified otherwise)
 
     Use case resumes at step 1.
 
-*{More to be added}*
+**Use case E09 - Abort an ongoing API call**
+
+**Preconditions:** There is an ongoing API call
+
+**MSS**
+
+1.  User requests to cancel a saved API endpoint
+2.  User inputs <kbd>ctrl</kbd> + <kbd>d</kbd> through the keyboard
+3.  imPoster aborts the API call
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. The keyboard input is invalid
+
+  - 2a1. imPoster takes no action
+
+    Use case resumes at step 2.
+
+**Use case E10 - View details of an API endpoint**
+
+**MSS**
+
+1.  User requests to view the details of a saved API endpoint
+2.  User enters `show` command into command box
+3.  imPoster shows the details of the API endpoint
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. The given command/format is invalid
+
+  - 2a1. imPoster shows an error message to the user
+
+    Use case resumes at step 2.
+
+- 2b. The given index is invalid
+
+  - 2b1. imPoster shows an error message to the user
+
+    Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
@@ -646,18 +722,16 @@ the `user`, unless specified otherwise)
     endpoint fails due to third-party unavailability.
 6.  Should not crash or throw unexpected errors when internet connection is
     unavailable.
-
-_{More to be added}_
+7.  Should be able to display responses not exceeding 100000 lines from an
+    API call without crashing or throwing unexpected errors.
 
 ### Glossary
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
-- **Endpoint/API endpoint**: The point of entry in a communication channel for two
+- **API endpoint/Endpoint**: The point of entry in a communication channel for two
   systems to interact
 - **API Call/Call**: A process where information is transferred, processed and a response is returned
 - **Postman**: An existing API client for developers
-
-_{More to be added}_
 
 ## **Appendix D: Developer Workflow**
  
