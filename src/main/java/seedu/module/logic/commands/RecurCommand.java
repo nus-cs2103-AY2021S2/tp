@@ -79,8 +79,8 @@ public class RecurCommand extends Command {
         Recurrence recurrence = this.recurrence;
         Time lastDeadline = previousRecurringTask.getDeadline();
         Time lastStartTime = previousRecurringTask.getStartTime();
-        Time nextRecurringDeadline = previousRecurringTask.getRecurringDeadline(lastDeadline, recurrence);
-        Time nextRecurringStartTime = previousRecurringTask.getRecurringDeadline(lastStartTime, recurrence);
+        Time nextRecurringDeadline = previousRecurringTask.getRecurringTime(lastDeadline, recurrence);
+        Time nextRecurringStartTime = previousRecurringTask.getRecurringTime(lastStartTime, recurrence);
 
         Task nextRecurringTask;
         if (previousRecurringTask.isDeadline()) {

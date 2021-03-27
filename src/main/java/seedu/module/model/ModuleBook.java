@@ -100,11 +100,11 @@ public class ModuleBook implements ReadOnlyModuleBook {
             Task taskToAdd = p;
             //check the deadline and recurrence of the task
             if (p.isRecurring()) {
-                Time newDeadline = p.getRecurringDeadline(p.getDeadline(), p.getRecurrence());
+                Time newDeadline = p.getRecurringTime(p.getDeadline(), p.getRecurrence());
                 if (p.isDeadline()) {
                     taskToAdd = p.makeNewRecurringTask(newDeadline, null);
                 } else {
-                    Time newStartTime = p.getRecurringDeadline(p.getStartTime(), p.getRecurrence());
+                    Time newStartTime = p.getRecurringTime(p.getStartTime(), p.getRecurrence());
                     taskToAdd = p.makeNewRecurringTask(newDeadline, newStartTime);
                 }
             }
