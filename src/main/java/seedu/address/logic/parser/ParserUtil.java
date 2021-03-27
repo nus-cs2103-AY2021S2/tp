@@ -2,8 +2,10 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -106,27 +108,19 @@ public class ParserUtil {
         return new Description(trimmedDescription);
     }
 
-
     /**
-     * Parses a {@code String description} into a {@code Description}.
+     * Parses a {@code String status} into a {@code EventStatus}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code description} is invalid.
+     * @throws ParseException if the given {@code status} is invalid.
      */
     public static EventStatus parseEventStatus(String status) throws ParseException {
         requireNonNull(status);
         String trimmedStatus = status.trim().toUpperCase();
-        boolean isNotValid = false;
-        for (EventStatus e : EventStatus.values()) {
-            if (e.name().equals(trimmedStatus)) {
-                isNotValid = true;
-                break;
-            }
-        }
-        if (!isNotValid) {
-            throw new ParseException(EventStatus.MESSAGE_CONSTRAINTS);
-        }
-        return EventStatus.valueOf(trimmedStatus);
+        Optional<EventStatus> eventStatusOptional = Arrays.stream(EventStatus.values())
+                .filter(statusValue -> statusValue.toString().equals(trimmedStatus))
+                .findFirst();
+        return eventStatusOptional.orElseThrow(() -> new ParseException(EventStatus.MESSAGE_CONSTRAINTS));
     }
 
     /**
