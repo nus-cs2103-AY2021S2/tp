@@ -112,7 +112,7 @@ public class ContactsList implements ReadOnlyContactsList {
      * @return a new {@code Contact} object that has the same attributes as the given one, but with a frequency
      *         counter greater by one.
      */
-    private Contact incrementContactFrequency(Contact contact) {
+    protected Contact incrementContactFrequency(Contact contact) {
         return new Contact(
                 contact.getName(),
                 contact.getPhone(),
