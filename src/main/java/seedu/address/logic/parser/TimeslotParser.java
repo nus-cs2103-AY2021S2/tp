@@ -133,8 +133,10 @@ public class TimeslotParser {
                 parsedDate = currentDateTime.with(TemporalAdjusters.next(DayOfWeek.valueOf(keyword)));
             } else if (keyword.contains("MONTH")) {
                 parsedDate = currentDateTime.plusMonths(1);
-            } else {
+            } else if (keyword.contains("YEAR")) {
                 parsedDate = currentDateTime.plusYears(1);
+            } else {
+                throw new ParseException(MESSAGE_INVALID_TIME_FORMAT);
             }
 
             if (nextDateTimeInputArray.length > 2) {
