@@ -13,6 +13,7 @@ import java.util.stream.Stream;
 
 import seedu.iscam.logic.commands.AddCommand;
 import seedu.iscam.logic.parser.exceptions.ParseException;
+import seedu.iscam.logic.parser.exceptions.ParseFormatException;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.client.Email;
 import seedu.iscam.model.client.InsurancePlan;
@@ -47,7 +48,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_LOCATION, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_PLAN)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseFormatException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());

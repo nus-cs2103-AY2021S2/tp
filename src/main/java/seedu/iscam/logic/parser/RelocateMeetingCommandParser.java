@@ -7,6 +7,7 @@ import static seedu.iscam.logic.parser.CliSyntax.PREFIX_LOCATION;
 import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.logic.commands.RelocateMeetingCommand;
 import seedu.iscam.logic.parser.exceptions.ParseException;
+import seedu.iscam.logic.parser.exceptions.ParseFormatException;
 import seedu.iscam.model.commons.Location;
 
 /**
@@ -27,7 +28,7 @@ public class RelocateMeetingCommandParser implements Parser<RelocateMeetingComma
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            throw new ParseFormatException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     RelocateMeetingCommand.MESSAGE_USAGE));
         }
 
@@ -35,7 +36,7 @@ public class RelocateMeetingCommandParser implements Parser<RelocateMeetingComma
         if (argMultimap.getValue(PREFIX_LOCATION).isPresent()) {
             location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
         } else {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            throw new ParseFormatException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     RelocateMeetingCommand.MESSAGE_USAGE));
         }
 

@@ -2,6 +2,8 @@ package seedu.iscam.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.beans.value.ObservableValue;
@@ -11,8 +13,10 @@ import seedu.iscam.commons.core.LogsCenter;
 import seedu.iscam.logic.commands.Command;
 import seedu.iscam.logic.commands.CommandResult;
 import seedu.iscam.logic.commands.exceptions.CommandException;
+import seedu.iscam.logic.parser.BookParser;
 import seedu.iscam.logic.parser.ClientBookParser;
 import seedu.iscam.logic.parser.MeetingBookParser;
+import seedu.iscam.logic.parser.exceptions.ParseFormatException;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.ObservableClient;
@@ -23,6 +27,8 @@ import seedu.iscam.model.client.Client;
 import seedu.iscam.model.meeting.Meeting;
 import seedu.iscam.storage.Storage;
 
+import static seedu.iscam.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+
 /**
  * The main LogicManager of the app.
  */
@@ -32,8 +38,8 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final ClientBookParser clientBookParser;
-    private final MeetingBookParser meetingBookParser;
+
+    private final List<BookParser> bookParsers;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -41,25 +47,34 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        clientBookParser = new ClientBookParser();
-        meetingBookParser = new MeetingBookParser();
 
+        this.bookParsers = new ArrayList<>();
+        bookParsers.add(new ClientBookParser());
+        bookParsers.add(new MeetingBookParser());
     }
 
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
-        int commandHasMeeting = commandText.split("Meeting").length;
+        Command command = null;
+        CommandResult commandResult = null;
 
-        CommandResult commandResult;
+        // Execute the first command that is successfully parsed
+        for (BookParser parser : bookParsers) {
+            try {
+                command = parser.parseCommand(commandText);
+            } catch(ParseFormatException e) {
+                throw e;
+            } catch(ParseException e) {
+                continue;
+            }
+            commandResult = command.execute(model);
+            break;
+        }
 
-        if (commandHasMeeting == 1) { //not meeting command
-            Command command = clientBookParser.parseCommand(commandText);
-            commandResult = command.execute(model);
-        } else {
-            Command command = meetingBookParser.parseCommand(commandText);
-            commandResult = command.execute(model);
+        if(command == null) {
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
 
         try {

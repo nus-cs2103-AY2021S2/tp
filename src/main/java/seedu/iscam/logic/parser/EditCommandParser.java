@@ -17,6 +17,7 @@ import java.util.Set;
 import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.logic.commands.EditCommand;
 import seedu.iscam.logic.commands.EditCommand.EditClientDescriptor;
+import seedu.iscam.logic.parser.exceptions.ParseFormatException;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.model.commons.Tag;
 
@@ -41,7 +42,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseFormatException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE),
+                    pe);
         }
 
         EditClientDescriptor editClientDescriptor = new EditClientDescriptor();

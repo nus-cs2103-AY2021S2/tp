@@ -12,6 +12,7 @@ import java.util.stream.Stream;
 
 import seedu.iscam.logic.commands.AddMeetingCommand;
 import seedu.iscam.logic.parser.exceptions.ParseException;
+import seedu.iscam.logic.parser.exceptions.ParseFormatException;
 import seedu.iscam.model.commons.Location;
 import seedu.iscam.model.commons.Name;
 import seedu.iscam.model.commons.Tag;
@@ -36,7 +37,7 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_CLIENT, PREFIX_ON, PREFIX_LOCATION, PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingCommand.MESSAGE_USAGE));
+            throw new ParseFormatException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingCommand.MESSAGE_USAGE));
         }
 
         Name clientName = ParserUtil.parseName(argMultimap.getValue(PREFIX_CLIENT).get());

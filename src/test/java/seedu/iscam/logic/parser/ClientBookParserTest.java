@@ -23,6 +23,7 @@ import seedu.iscam.logic.commands.FindCommand;
 import seedu.iscam.logic.commands.HelpCommand;
 import seedu.iscam.logic.commands.ListCommand;
 import seedu.iscam.logic.parser.exceptions.ParseException;
+import seedu.iscam.logic.parser.exceptions.ParseFormatException;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.commons.NameContainsKeywordsPredicate;
 import seedu.iscam.testutil.ClientBuilder;
@@ -90,7 +91,7 @@ public class ClientBookParserTest {
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
+        assertThrows(ParseFormatException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
             -> parser.parseCommand(""));
     }
 
