@@ -11,7 +11,7 @@
     {
       "name" : "HEY IT'S a VALID MEETING ",
       "startDateTime" : "2021-03-17:00",
-      "endDateTime" : "2021-03-18 16:00",
+      "endDateTime" : "2021-03-17 18:00",
       "description" : "Discuss proposal for an app",
       "priority" : "4",
       "group" : ["business", "app"]

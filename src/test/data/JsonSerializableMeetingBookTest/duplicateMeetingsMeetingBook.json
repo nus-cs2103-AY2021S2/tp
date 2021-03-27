@@ -2,16 +2,16 @@
   "meetings" : [
     {
       "name" : "Meeting with Gjeorfie",
-      "startDateTime" : "2021-03-17 16:00",
-      "endDateTime" : "2021-04-15 16:00",
+      "startDateTime" : "2021-04-15 16:00",
+      "endDateTime" : "2021-04-15 18:00",
       "description" : "Discuss proposal for an app",
       "priority" : "4",
       "group" : ["business", "app"]
     },
     {
       "name" : "Meeting with Gjeorfie",
-      "startDateTime" : "2021-03-17 16:00",
-      "endDateTime" : "2021-04-15 16:00",
+      "startDateTime" : "2021-04-15 16:00",
+      "endDateTime" : "2021-04-15 18:00",
       "description" : "Discuss proposal for an app",
       "priority" : "4",
       "group" : ["business", "app"]

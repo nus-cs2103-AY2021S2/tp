@@ -29,7 +29,7 @@ class MeetingTest {
                 new Description("Test"), groups);
         assertTrue(meeting.isSameMeeting(meeting2));
 
-        Meeting meeting3 = new Meeting(MEETING_NAME, new DateTime("2020-03-10 15:04"),
+        Meeting meeting3 = new Meeting(MEETING_NAME, new DateTime("2021-03-11 15:05"),
                 TERMINATE, PRIORITY, DESCRIPTION, groups);
         assertFalse(meeting.isSameMeeting(meeting3));
     }

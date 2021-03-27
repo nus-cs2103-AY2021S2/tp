@@ -3,21 +3,25 @@ package seedu.address.model.meeting;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.group.Group;
+import seedu.address.model.scheduler.Schedulable;
 
 /**
  * Represents a meeting in MeetBuddy.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Meeting {
+public class Meeting implements Schedulable {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "The start date time of a meeting should be strictly earlier than the terminate date time.";
+            "The start date time of a meeting should be strictly earlier than the terminate date time."
+                    + "The meeting must start and end on the same date";
+
 
     // Identity fields
     private final MeetingName meetingName;
@@ -93,7 +97,8 @@ public class Meeting {
      * Returns true if a given date time for the meeting is valid.
      */
     public static boolean isValidStartTerminate(DateTime start, DateTime terminate) {
-        return start.compareTo(terminate) == -1;
+        boolean isSameDate = start.toLocalDate().equals(terminate.toLocalDate());
+        return start.compareTo(terminate) < 0 && isSameDate;
     }
 
     /**
@@ -144,6 +149,40 @@ public class Meeting {
             groups.forEach(builder::append);
         }
         return builder.toString();
+    }
+
+    /**
+     * Checks if the meeting is happening at this instant of time.
+     * @param localDateTime
+     * @return
+     */
+
+    public boolean containsTime(LocalDateTime localDateTime) {
+        LocalDateTime startLocalDateTime = start.toLocalDateTime();
+        LocalDateTime endLocalDateTime = terminate.toLocalDateTime();
+        return startLocalDateTime.compareTo(localDateTime) <= 0
+                && endLocalDateTime.compareTo(localDateTime) > 0;
+    }
+
+    //==================interface methods =================================================
+
+    public LocalDateTime getStartLocalDateTime() {
+        return start.toLocalDateTime();
+    }
+
+    public LocalDateTime getTerminateLocalDateTime() {
+        return terminate.toLocalDateTime();
+    }
+
+    @Override
+    public boolean isConflict(Schedulable schedulable) {
+        return !(this.getTerminateLocalDateTime().compareTo(schedulable.getStartLocalDateTime()) <= 0
+                || this.getStartLocalDateTime().compareTo(schedulable.getTerminateLocalDateTime()) >= 0);
+    }
+
+    @Override
+    public String getNameString() {
+        return meetingName.fullName;
     }
 
 }

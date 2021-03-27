@@ -1,7 +1,7 @@
 {
   "meetings" : [
     {
-      "name" : "INVALID START > END TIME ",
+      "name" : "INVALID START TIME ",
       "startDateTime" : "2021-03-17:00",
       "endDateTime" : "2021-03-15 16:00",
       "description" : "Discuss proposal for an app",

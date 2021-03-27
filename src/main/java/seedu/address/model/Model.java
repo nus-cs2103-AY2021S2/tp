@@ -1,10 +1,13 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
-
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.connection.PersonMeetingConnection;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.ReadOnlyMeetingBook;
 import seedu.address.model.person.Person;
@@ -106,6 +109,8 @@ public interface Model {
      */
     boolean hasMeeting(Meeting meeting);
 
+
+
     /**
      * Deletes the given meeting.
      * The meeting must exist in the meeting book.
@@ -134,4 +139,68 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredMeetingList(Predicate<Meeting> predicate);
+
+    // ============= Clashing Meetings  ========================================================
+
+    /**
+     * Checks if there is a clash in meeting times within the model.
+     */
+    public boolean clashes(Meeting toCheck);
+
+    /**
+     * Gets a list of meetings from the model that overlap with this meeting.
+     */
+    public List<Meeting> getClashes(Meeting toCheck);
+
+    /**
+     * Gets the meeting ( if any ) scheduled  at this point in time in the model.
+     */
+    public Optional<Meeting> getMeetingAtInstant(LocalDateTime localDateTime);
+
+
+    // ============= PersonMeetingConnection part of the meeting Model interface ================== //
+    /**
+     * Replaces person meeting connection data with the data in {@code PersonMeetingConnection}.
+     */
+    void setPersonMeetingConnection(PersonMeetingConnection connection);
+
+    /** Returns the connection */
+    PersonMeetingConnection getPersonMeetingConnection();
+
+    /**
+     * Returns true if a given person and a given meeting exist a connection.
+     */
+    boolean hasPersonMeetingConnection(Person person, Meeting meeting);
+
+    /**
+     * Adds a connection between a person and a meeting.
+     */
+    void addPersonMeetingConnection(Person person, Meeting meeting);
+
+    /**
+     * This method delete a single connection between a meeting and a person.
+     */
+    void deleteSinglePersonMeetingConnection(Person person, Meeting meeting);
+
+    /**
+     * This method delete a all connections related to a given person.
+     */
+    void deleteAllPersonMeetingConnectionByPerson(Person person);
+
+    /**
+     * This method delete a all connections related to a given meeting.
+     */
+    void deleteAllPersonMeetingConnectionByMeeting(Meeting meeting);
+
+    /**
+     * Returns a Observable meeting list object with the person as the key.
+     * Empty list will be returned if there is no value found in the hashMap.
+     */
+    ObservableList<Meeting> getFilteredMeetingListByPersonConnection(Person person);
+    /**
+     * Returns a Observable person list object with the meeting as the key.
+     * Empty list will be returned if there is no value found in the hashMap.
+     */
+    ObservableList<Person> getFilteredPersonListByMeetingConnection(Meeting meeting);
+
 }

@@ -70,6 +70,11 @@ dependencies {
 
 }
 
+run {
+    enableAssertions = true
+}
+
+
 shadowJar {
     archiveName = 'addressbook.jar'
 }
