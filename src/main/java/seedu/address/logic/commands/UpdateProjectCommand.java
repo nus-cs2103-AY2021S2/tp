@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class UpdateProjectCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the name of the project specified "
             + "by the index number used in the displayed project list. "
             + "Existing value will be overwritten by the input value.\n"
-            + "Parameters: INDEX (must be positive integer) "
+            + "Parameters: PROJECT_INDEX (must be a positive integer)\n"
             + PREFIX_NAME + "PROJECT_NAME\n"
             + "Example:\n"
             + COMMAND_WORD + " 1 " + PREFIX_NAME + "new name";
@@ -34,20 +35,19 @@ public class UpdateProjectCommand extends Command {
     public static final String MESSAGE_UPDATE_PROJECT_SUCCESS = "Edited Project: %1$s";
     public static final String MESSAGE_DUPLICATE_NAME = "This project name already exists in CoLAB.";
 
-    private final Index index;
+    private final Index targetIndex;
     private final ProjectName name;
 
     /**
      * Constructs an {@code UpdateProjectCommand} with an {@code index} and a {@code name}.
      *
-     * @param index the index of the project in the filtered project list to update.
+     * @param targetIndex the index of the project in the filtered project list to update.
      * @param name new name for the project.
      */
-    public UpdateProjectCommand(Index index, ProjectName name) {
-        requireNonNull(index);
-        requireNonNull(name);
+    public UpdateProjectCommand(Index targetIndex, ProjectName name) {
+        requireAllNonNull(targetIndex, name);
 
-        this.index = index;
+        this.targetIndex = targetIndex;
         this.name = name;
     }
 
@@ -56,18 +56,18 @@ public class UpdateProjectCommand extends Command {
         requireNonNull(model);
         List<Project> lastShownList = model.getFilteredProjectList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
 
         for (Project project : lastShownList) {
-            if (project.getProjectName().equals(name) &&
-                    !lastShownList.get(index.getZeroBased()).getProjectName().equals(name)) {
+            if (project.getProjectName().equals(name)
+                    && !lastShownList.get(targetIndex.getZeroBased()).getProjectName().equals(name)) {
                 throw new CommandException(MESSAGE_DUPLICATE_NAME);
             }
         }
 
-        Project projectToEdit = lastShownList.get(index.getZeroBased());
+        Project projectToEdit = lastShownList.get(targetIndex.getZeroBased());
         Project updatedProject = createUpdatedProject(projectToEdit, name);
 
         model.setProject(projectToEdit, updatedProject);
@@ -88,6 +88,14 @@ public class UpdateProjectCommand extends Command {
         ParticipantList currParticipantList = projectToEdit.getParticipants();
 
         return new Project(name, currEventList, currTodoList, currDeadlineList, currParticipantList);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof UpdateProjectCommand // instanceof handles nulls
+                && targetIndex.equals(((UpdateProjectCommand) other).targetIndex))
+                && name.equals(((UpdateProjectCommand) other).name); // state check
     }
 
 }
