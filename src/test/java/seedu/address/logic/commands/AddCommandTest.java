@@ -24,6 +24,7 @@ import seedu.address.model.ReadOnlyGradeBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
+import seedu.address.model.filter.PersonFilter;
 import seedu.address.model.grade.Grade;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
@@ -265,6 +266,21 @@ public class AddCommandTest {
 
         @Override
         public void removeGradeIndex(int indexToRemove) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPersonFilter(PersonFilter personFilter) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addPersonFilter(PersonFilter personFilter) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removePersonFilter(PersonFilter personFilter) {
             throw new AssertionError("This method should not be called.");
         }
     }

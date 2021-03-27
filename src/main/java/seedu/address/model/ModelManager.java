@@ -14,6 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.appointment.DateViewPredicate;
+import seedu.address.model.filter.PersonFilter;
 import seedu.address.model.grade.Grade;
 import seedu.address.model.person.Person;
 
@@ -28,6 +29,8 @@ public class ModelManager implements Model {
     private final GradeBook gradeBook;
 
     private final UserPrefs userPrefs;
+
+    private final PersonFilter personFilter;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Appointment> filteredAppointment;
     private final FilteredList<Grade> filteredGrades;
@@ -45,7 +48,10 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.appointmentBook = new AppointmentBook(appointmentBook);
         this.gradeBook = new GradeBook(gradeBook);
+
         this.userPrefs = new UserPrefs(userPrefs);
+
+        this.personFilter = new PersonFilter();
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredAppointment = new FilteredList<>(this.appointmentBook.getAppointmentList());
         filteredGrades = new FilteredList<>(this.gradeBook.getGradeList());
@@ -337,6 +343,21 @@ public class ModelManager implements Model {
         return filteredGrades;
     }
 
+    //=========== PersonFilter =====================================================================
+    @Override
+    public boolean hasPersonFilter(PersonFilter personFilter) {
+        return this.personFilter.has(personFilter);
+    }
+
+    @Override
+    public void addPersonFilter(PersonFilter personFilter) {
+        this.personFilter.add(personFilter);
+    }
+
+    @Override
+    public void removePersonFilter(PersonFilter personFilter) {
+        this.personFilter.remove(personFilter);
+    }
 
     @Override
     public boolean equals(Object obj) {
