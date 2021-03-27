@@ -12,6 +12,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Unassignment;
+import seedu.address.model.assignment.exceptions.UnassignTutorException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.AlreadyEnrolledException;
 import seedu.address.model.person.exceptions.StudentTutorNotFoundException;
@@ -215,6 +217,39 @@ public class ModelManager implements Model {
             }
         }
         return true;
+    }
+
+    /**
+     * Unassigns the student/tutor from a session in addressBook
+     * @param unassignment
+     */
+    public void registerUnassignment(Unassignment unassignment) throws SessionNotFoundException,
+            StudentTutorNotFoundException, UnassignTutorException {
+        Session session = addressBook.getSession(unassignment.getSessionId());
+        if (session == null) {
+            throw new SessionNotFoundException("Session id :" + unassignment.getSessionId() + " does not exist");
+        }
+        if (unassignment.getStudentId() != null) {
+            Person currentStudent = addressBook.getPerson(unassignment.getStudentId());
+            if (currentStudent == null) {
+                throw new StudentTutorNotFoundException("student id: " + unassignment.getStudentId() + " does not exist");
+            }
+            currentStudent.removeSession(unassignment.getSessionId());
+            session.unassignStudent(unassignment.getStudentId());
+        }
+        if (unassignment.getTutorId() != null) {
+            Person currentTutor = addressBook.getPerson(unassignment.getTutorId());
+            if (currentTutor == null) {
+                throw new StudentTutorNotFoundException("tutor id: " + unassignment.getTutorId() + " does not exist");
+            }
+            if (!unassignment.getTutorId().equals(session.getTutor())) {
+                throw new UnassignTutorException("Given tutor id, " + unassignment.getTutorId()
+                        + ", is different from the current tutor id of the session, "
+                        + session.getTutor().getPersonId() + ".");
+            }
+            currentTutor.removeSession(unassignment.getSessionId());
+            session.unassignTutor();
+        }
     }
 
     //=========== Filtered Session List Accessors =============================================================

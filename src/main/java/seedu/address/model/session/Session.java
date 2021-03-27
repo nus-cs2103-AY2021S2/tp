@@ -109,6 +109,19 @@ public class Session {
     }
 
     /**
+     * Removes a student from the session
+     * @param student The student to be removed
+     */
+    public void unassignStudent(PersonId student) {
+        requireAllNonNull(student);
+        this.students.remove(student);
+    }
+
+    public void unassignTutor() {
+        this.tutor = new PersonId("");
+    }
+
+    /**
      * Returns true if both sessions have the same ID.
      * This defines a weaker notion of equality between two sessions.
      */

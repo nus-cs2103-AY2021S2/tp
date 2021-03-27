@@ -108,6 +108,14 @@ public class Person {
     }
 
     /**
+     * Removes a session to the list of sessions that this person is assigned to
+     * @param session
+     */
+    public void removeSession(SessionId session) {
+        this.sessions.remove(session);
+    }
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
