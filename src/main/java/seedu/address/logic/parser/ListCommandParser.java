@@ -25,7 +25,7 @@ public class ListCommandParser implements Parser<ListCommand> {
         boolean isListDoneTask = trimmedArgs.equals("done");
         boolean isListEverything = trimmedArgs.equals("");
 
-        if (isListDoneTask || isListNotDoneTask ) {
+        if (isListDoneTask || isListNotDoneTask) {
             return new ListCommand(new TaskDoneStatusPredicate(trimmedArgs));
         } else if (isListEverything) {
             return new ListCommand(true);

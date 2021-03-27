@@ -17,8 +17,8 @@ public class TaskDoneStatusPredicate implements Predicate<Task> {
 
     @Override
     public boolean test(Task task) {
-        String task_status = task.getStatus().value;
-        return task_status.equals(this.keyword);
+        String taskStatus = task.getStatus().value;
+        return taskStatus.equals(this.keyword);
     }
 
     @Override
