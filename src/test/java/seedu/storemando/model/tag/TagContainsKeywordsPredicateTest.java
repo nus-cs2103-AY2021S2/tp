@@ -42,7 +42,7 @@ public class TagContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_tagContainsKeywords_returnsFalse(){
+    public void test_tagContainsKeywords_returnsFalse() {
         TagContainsKeywordsPredicate predicate =
             new TagContainsKeywordsPredicate(Collections.singletonList("Expiring"));
         assertFalse(predicate.test(new ItemBuilder().withTags("notExpiring").build())); // no match
@@ -60,5 +60,4 @@ public class TagContainsKeywordsPredicateTest {
         assertTrue(predicate.test(new ItemBuilder().withTags("FAVOURITE").build())); // all upper case
         assertTrue(predicate.test(new ItemBuilder().withTags("faVourIte").build())); // mix of upper and lower case
     }
-        
 }

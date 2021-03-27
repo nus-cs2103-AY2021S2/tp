@@ -47,7 +47,7 @@ public class LocationTest {
     }
 
     @Test
-    public void equals(){
+    public void equals() {
         assertFalse(new Location("kitChen").equals(new Location("Kitchen"))); //same location in different cases
         assertFalse(new Location("kitchen").equals(new Location("KITCHEN"))); //same location in different cases
         assertFalse(new Location("kitchenn").equals(new Location("kitchen"))); //different locations
