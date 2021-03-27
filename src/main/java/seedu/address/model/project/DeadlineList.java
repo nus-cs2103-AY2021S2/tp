@@ -54,6 +54,18 @@ public class DeadlineList {
     }
 
     /**
+     * Get the {@code Deadline} specified by index.
+     *
+     * @param i index specifies the target {@code Deadline}.
+     * @return {@code Deadline} at this index.
+     */
+    public CompletableDeadline getDeadline(Integer i) {
+        requireNonNull(i);
+
+        return this.deadlines.get(i);
+    }
+
+    /**
      * Set the {@code Deadline} specified by index with a new {@code Deadline}.
      *
      * @param index index specifies the target {@code Deadline}.

@@ -24,7 +24,7 @@ public class UpdateTodoCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates a todo of a project specified "
             + "by 2 index numbers: project index and target todo index.\n"
-            + "Parameters: PROJECT_INDEX (must be a positive integer)"
+            + "Parameters: PROJECT_INDEX (must be a positive integer) "
             + PREFIX_UPDATE_INDEX + "TARGET_TODO_INDEX "
             + PREFIX_DESCRIPTION + "DESCRIPTION\n"
             + "Example:\n" + COMMAND_WORD + " 1 "
