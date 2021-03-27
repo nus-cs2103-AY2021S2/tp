@@ -6,7 +6,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import seedu.address.model.Model;
 
 /**
- * Lists all tasks in the address book to the user.
+ * Lists all tasks in the task tracker to the user.
  */
 public class ListCommand extends Command {
 
@@ -20,5 +20,10 @@ public class ListCommand extends Command {
         requireNonNull(model);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    @Override
+    public String toString() {
+        return "LIST";
     }
 }

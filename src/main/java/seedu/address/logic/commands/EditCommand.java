@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
@@ -40,6 +41,7 @@ public class EditCommand extends Command {
         + "Parameters: INDEX (must be a positive integer) "
         + "[" + PREFIX_NAME + "NAME] "
         + "[" + PREFIX_CODE + "CODE] "
+        + "[" + PREFIX_REMARK + "REMARK] "
         + "[" + PREFIX_TAG + "TAG]...\n"
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_NAME + "CS2103 Assignment";
@@ -98,8 +100,9 @@ public class EditCommand extends Command {
         DeadlineTime updatedDeadlineTime = editTaskDescriptor.getDeadlineTime()
             .orElse(taskToEdit.getDeadlineTime());
         Status updatedStatus = taskToEdit.getStatus();
-        Weightage updatedWeightage = taskToEdit.getWeightage(); // edit command does not allow editing weightage
-        Remark updatedRemark = taskToEdit.getRemark(); // edit command does not allow editing remarks
+        Weightage updatedWeightage = editTaskDescriptor.getWeightage()
+                .orElse(taskToEdit.getWeightage());
+        Remark updatedRemark = editTaskDescriptor.getRemark().orElse(taskToEdit.getRemark());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
         return new Task(updatedTaskName, updatedModuleCode, updatedDeadlineDate,
@@ -135,7 +138,10 @@ public class EditCommand extends Command {
         private ModuleCode moduleCode;
         private DeadlineDate deadlineDate;
         private DeadlineTime deadlineTime;
+        private Weightage weightage;
+        private Remark remark;
         private Set<Tag> tags;
+        private Status status;
 
         public EditTaskDescriptor() {
         }
@@ -149,6 +155,8 @@ public class EditCommand extends Command {
             setModuleCode(toCopy.moduleCode);
             setDeadlineDate(toCopy.deadlineDate);
             setDeadlineTime(toCopy.deadlineTime);
+            setWeightage(toCopy.weightage);
+            setRemark(toCopy.remark);
             setTags(toCopy.tags);
         }
 
@@ -157,7 +165,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(taskName, moduleCode,
-                deadlineDate, deadlineTime, tags);
+                deadlineDate, deadlineTime, weightage, remark, tags);
         }
 
         public void setTaskName(TaskName taskName) {
@@ -190,6 +198,30 @@ public class EditCommand extends Command {
 
         public Optional<DeadlineTime> getDeadlineTime() {
             return Optional.ofNullable(deadlineTime);
+        }
+
+        public void setStatus(Status status) {
+            this.status = status;
+        }
+
+        public Optional<Status> getStatus() {
+            return Optional.ofNullable(status);
+        }
+
+        public void setWeightage(Weightage weightage) {
+            this.weightage = weightage;
+        }
+
+        public Optional<Weightage> getWeightage() {
+            return Optional.ofNullable(weightage);
+        }
+
+        public void setRemark(Remark remark) {
+            this.remark = remark;
+        }
+
+        public Optional<Remark> getRemark() {
+            return Optional.ofNullable(remark);
         }
 
         /**
@@ -226,7 +258,13 @@ public class EditCommand extends Command {
 
             return getTaskName().equals(e.getTaskName())
                 && getModuleCode().equals(e.getModuleCode())
+                && getWeightage().equals(e.getWeightage())
+                && getRemark().equals(e.getRemark())
+                && getDeadlineDate().equals(e.getDeadlineDate())
+                && getDeadlineTime().equals(e.getDeadlineTime())
+                && getStatus().equals(e.getStatus())
                 && getTags().equals(e.getTags());
         }
+
     }
 }

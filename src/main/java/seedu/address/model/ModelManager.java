@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -22,7 +23,7 @@ public class ModelManager implements Model {
     private final TaskTracker taskTracker;
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
-    private final FilteredList<Task> finishedTasks;
+    private VersionedTaskTracker versionedTaskTracker;
 
     /**
      * Initializes a ModelManager with the given taskTracker and userPrefs.
@@ -37,9 +38,7 @@ public class ModelManager implements Model {
         this.taskTracker = new TaskTracker(taskTracker);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredTasks = new FilteredList<>(this.taskTracker.getTaskList());
-        finishedTasks = new FilteredList<>(this.taskTracker.getTaskList());
-        filteredTasks.setPredicate(PREDICATE_SHOW_UNFINISHED_TASKS);
-        finishedTasks.setPredicate(PREDICATE_SHOW_FINISHED_TASKS);
+        this.versionedTaskTracker = new VersionedTaskTracker();
     }
 
     public ModelManager() {
@@ -112,7 +111,7 @@ public class ModelManager implements Model {
     @Override
     public void addTask(Task task) {
         taskTracker.addTask(task);
-        updateFilteredTaskList(PREDICATE_SHOW_UNFINISHED_TASKS);
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
     }
 
     @Override
@@ -121,6 +120,39 @@ public class ModelManager implements Model {
 
         taskTracker.setTask(target, editedTask);
     }
+
+    @Override
+    public void sortTasks(Comparator<Task> comparator) {
+        requireNonNull(comparator);
+        taskTracker.sortTasks(comparator);
+    }
+
+    @Override
+    public void commitTaskTracker(ReadOnlyTaskTracker taskTracker) {
+        requireNonNull(taskTracker);
+        versionedTaskTracker.commit(new TaskTracker(taskTracker));
+    }
+
+    @Override
+    public TaskTracker undoTaskTracker() {
+        return versionedTaskTracker.undo();
+    }
+
+    @Override
+    public TaskTracker redoTaskTracker() {
+        return versionedTaskTracker.redo();
+    }
+
+    @Override
+    public boolean canUndoTaskTracker() {
+        return versionedTaskTracker.canUndoTaskTracker();
+    }
+
+    @Override
+    public boolean canRedoTaskTracker() {
+        return versionedTaskTracker.canRedoTaskTracker();
+    }
+
 
     //=========== Filtered Task List Accessors =============================================================
 
@@ -135,13 +167,13 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Task> getFinishedTaskList() {
-        return finishedTasks;
+        return filteredTasks;
     }
 
     @Override
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
-        filteredTasks.setPredicate(predicate.and(PREDICATE_SHOW_UNFINISHED_TASKS));
+        filteredTasks.setPredicate(predicate);
     }
 
     @Override
@@ -159,8 +191,8 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return taskTracker.equals(other.taskTracker)
-                && userPrefs.equals(other.userPrefs)
-                && filteredTasks.equals(other.filteredTasks);
+            && userPrefs.equals(other.userPrefs)
+            && filteredTasks.equals(other.filteredTasks);
     }
 
 }

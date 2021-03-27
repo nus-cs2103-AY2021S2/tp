@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -59,6 +60,15 @@ public class TaskTracker implements ReadOnlyTaskTracker {
         requireNonNull(newData);
 
         setTasks(newData.getTaskList());
+    }
+
+    //// sorting operation
+
+    /**
+     * Sorts the task list with the given {@code comparator}.
+     */
+    public void sortTasks(Comparator<Task> comparator) {
+        tasks.sort(comparator);
     }
 
     //// task-level operations

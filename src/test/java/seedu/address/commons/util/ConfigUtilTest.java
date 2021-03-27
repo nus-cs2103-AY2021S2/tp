@@ -84,6 +84,11 @@ public class ConfigUtilTest {
     }
 
     @Test
+    public void save_nullFileAndConfig_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> save(null, null));
+    }
+
+    @Test
     public void saveConfig_allInOrder_success() throws DataConversionException, IOException {
         Config original = getTypicalConfig();
 

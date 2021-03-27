@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -15,16 +16,6 @@ public interface Model {
      * {@code Predicate} that always evaluate to true
      */
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = task -> true;
-
-    /**
-     * {@code Predicate} that returns true if the task is unfinished
-     */
-    Predicate<Task> PREDICATE_SHOW_UNFINISHED_TASKS = task -> !task.hasFinished();
-
-    /**
-     * {@code Predicate} that returns true if the task is finished
-     */
-    Predicate<Task> PREDICATE_SHOW_FINISHED_TASKS = task -> task.hasFinished();
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -97,12 +88,17 @@ public interface Model {
     void setTask(Task target, Task editedTask);
 
     /**
+     * Sorts the TaskTracker according to the given {@code comparator}.
+     */
+    void sortTasks(Comparator<Task> comparator);
+
+    /**
      * Returns an unmodifiable view of the filtered task list
      */
     ObservableList<Task> getFilteredTaskList();
 
     /**
-     * Returns an unmodifiable view of the finisehed task list
+     * Returns an unmodifiable view of the finished task list
      */
     ObservableList<Task> getFinishedTaskList();
 
@@ -112,4 +108,40 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
+
+    /**
+     * Commits the taskTracker
+     */
+    void commitTaskTracker(ReadOnlyTaskTracker currentState);
+
+    /**
+     * Undoes the last change to the TaskTracker
+     *
+     * @return Previous state of TaskTracker
+     */
+    TaskTracker undoTaskTracker();
+
+    /**
+     * Redoes the last change to the TaskTracker after an "undo"
+     *
+     * @return Previous state of TaskTracker after an "undo"
+     */
+    TaskTracker redoTaskTracker();
+
+    /**
+     * Checks if there is a valid TaskTracker state for undo
+     *
+     * @return True if there is a valid TaskTracker state for undo
+     */
+    boolean canUndoTaskTracker();
+
+    /**
+     * Checks if there is a valid TaskTracker state for redo
+     *
+     * @return True if there is a valid TaskTracker state for redo
+     */
+    boolean canRedoTaskTracker();
+
+
+
 }

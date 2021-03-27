@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 public class WeightageTest {
 
     @Test
-    public void constructor_null_throwsNullPointerExcpetion() {
+    public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Weightage(null));
     }
 

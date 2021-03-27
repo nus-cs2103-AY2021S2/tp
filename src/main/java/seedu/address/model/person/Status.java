@@ -1,12 +1,14 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Represents a Task's status in the task list.
  */
 
 public class Status {
 
-    private boolean isDone;
+    private final boolean isDone;
 
     /**
      * Constructs a {@code Status}.
@@ -19,11 +21,13 @@ public class Status {
      * Constructs a {@code Status} given the string given.
      */
     public Status(String status) {
+        requireNonNull(status);
         if (status.equals("Finished")) {
             this.isDone = true;
         } else {
             this.isDone = false;
         }
+
     }
 
 
@@ -32,13 +36,6 @@ public class Status {
      */
     public boolean hasFinished() {
         return this.isDone;
-    }
-
-    /**
-     * Mark the task's status as finished.
-     */
-    public void finish() {
-        this.isDone = true;
     }
 
     @Override

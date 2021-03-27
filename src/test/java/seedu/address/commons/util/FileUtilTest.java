@@ -12,6 +12,7 @@ public class FileUtilTest {
     public void isValidPath() {
         // valid path
         assertTrue(FileUtil.isValidPath("valid/file/path"));
+        assertTrue(FileUtil.isValidPath(""));
 
         // invalid path
         assertFalse(FileUtil.isValidPath("a\0"));

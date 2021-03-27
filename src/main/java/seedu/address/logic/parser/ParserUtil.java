@@ -24,9 +24,8 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
-    public static final String MESSAGE_INVALID_WEIGHTAGE = "Weightage provided is invalid!";
+    public static final String MESSAGE_INVALID_WEIGHTAGE = "Weightage is not a positive percentage value.";
 
-    private static final String WEIGHTAGE_VALIDATION_REGEX = "\\d+%";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -109,12 +108,10 @@ public class ParserUtil {
     public static Weightage parseWeightage(String weightage) throws ParseException {
         requireNonNull(weightage);
         String trimmedWeightage = weightage.trim();
-        Integer intWeightage;
-        try {
-            intWeightage = convertStringWeightageToInteger(trimmedWeightage);
-        } catch (IllegalArgumentException iae) {
-            throw new ParseException(iae.getMessage());
+        if (!StringUtil.isPositivePercentageValue(trimmedWeightage)) {
+            throw new ParseException(MESSAGE_INVALID_WEIGHTAGE);
         }
+        Integer intWeightage = StringUtil.convertPercentageToInteger(trimmedWeightage);
         if (!Weightage.isValidWeightage(intWeightage)) {
             throw new ParseException(Weightage.MESSAGE_CONSTRAINTS);
         }
@@ -156,17 +153,6 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
-    }
-
-    private static Integer convertStringWeightageToInteger(String strWeightage) throws IllegalArgumentException {
-        Integer intWeightage;
-        if (!strWeightage.matches(WEIGHTAGE_VALIDATION_REGEX)) {
-            throw new IllegalArgumentException(MESSAGE_INVALID_WEIGHTAGE);
-        } else {
-            String strWeightageWithoutPercentageSign = strWeightage.substring(0, strWeightage.length() - 1);
-            intWeightage = Integer.parseInt(strWeightageWithoutPercentageSign);
-        }
-        return intWeightage;
     }
 
 }

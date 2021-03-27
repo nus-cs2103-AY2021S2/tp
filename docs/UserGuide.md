@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-`semester.config` is a **desktop app for managing details, optimized for use via a Command Line Interface** (CLI)
+`semester.config` is a **desktop app for managing tasks, optimized for use via a Command Line Interface** (CLI)
 while still having the benefits of a Graphical User Interface (GUI).
 If you can type fast, `semester.config` can get your contact management tasks done faster than traditional GUI apps.
 
@@ -76,10 +76,10 @@ Format: `instructions`
 
 Add a deadline to the list
 
-Format: `add mc/MODULE_CODE mn/MODULE_NAME tn/TASK_NAME d/DATE [t/TIME]`
+Format: `add mc/MODULE_CODE n/TASK_NAME d/DATE t/TIME w/WEIGHTAGE [r/REMARK]`
 
 Example:
-* `add mc/CS3243 mn/Introduction to Artificial Intelligence tn/Project 1 d/ Feb 15` will add this deadline to the list
+* `add mc/CS3243 n/Project 1 d/15-04-2021 t/10:00 w/10` will add this deadline to the list
 
 ### Clear Application : `clear`
 
@@ -104,8 +104,8 @@ Example:
 
 Edits an existing deadline in the application
 
-Format: `edit INDEX [tn/TASK NAME] [mn/MODULE NAME] [mc/MODULE CODE] [d/DEADLINE DATE]
-[t/DEADLINE TIME] [n/NOTES] [pt/PRIORITY]`
+Format: `edit INDEX [n/TASK NAME] [mc/MODULE CODE] [d/DEADLINE DATE]
+[t/DEADLINE TIME] [r/REMARK] [pt/PRIORITY]`
 
 * Edits the deadline at the specified index
 * The index must be a positive integer 1,2,3,...
@@ -114,12 +114,12 @@ Format: `edit INDEX [tn/TASK NAME] [mn/MODULE NAME] [mc/MODULE CODE] [d/DEADLINE
 * Existing values will be updated to the input values
 
 Examples:
-* `edit 1 mn/Software Engineering mc/CS2103` edits the module moduleName and module code of the deadline at index 1 to be “Software Engineering” and “CS2103” respectively.
-* `edit 2 tn/Finals n/Open Book` edits the moduleName and notes of the deadline at index 2 to be “Finals” and “Open Book” respectively.
+* `edit 1 n/Lecture Quiz mc/CS2103` edits the task name and module code of the deadline at index 1 to be “Lecture Quiz” and “CS2103” respectively.
+* `edit 2 d/15-04-2021 r/Open Book` edits the date and remark of the deadline at index 2 to be “15 April 2021” and “Open Book” respectively.
 
 ### Locating deadlines by moduleName: `find`
 
-Find deadlines whose moduleName contains any of the given keywords.
+Find deadlines whose taskName contains any of the given keywords.
 
 Format: `find KEYWORD...`
 * The search is case-insensitive. e.g “Assignment” will match “assignment”
@@ -140,25 +140,28 @@ Format: `list`
 
 ### Mark a deadline as done: `done`
 
-Marks deadline(s) in the application to be done.
+Marks deadline in the application to be done.
 
-Format: `done INDEX…`
+Format: `done INDEX`
 * The index refers to the index number shown in the displayed person list.
 * The index must be a positive integer 1, 2, 3, …​
 * Index must be available on the list else an error will be thrown
 
 Example:
-* Using `list` to show all deadlines, the user wants to mark the 5th deadline as done. Users use command `done 5` to mark the 5th deadline.
+* Using `list` to show all deadlines, the user wants to mark the 5th deadline as done. Users use command `done 5` to mark the 5th deadline as done.
 
 ### Sort deadlines: `sort`
 
 Sorts deadlines according to the specified parameter.
 
-Format: sort `[/dt] [/mc] [/pt]`
-* Deadlines can be sorted according to these three parameters: date & time `/dt`, module code `/mc` or priority tag `/pt`. If no arguments are given, assumed to be sorted based on date.
+Format: sort `[dateTime] [taskName] [moduleCode] [priorityTag] [weightage]`
+* Deadlines can be sorted according to these three parameters: date & time `dateTime`, module code `moduleCode`, priority tag `priorityTag`, weightage `weightage`, and task name `taskName`.
+* If no arguments given, an error will be thrown.
 * For `date & time`, the deadlines will be sorted in ascending order, with the earliest deadline placed first.
 * For `module code`, the deadlines will be sorted according to the lexicographical ordering of the module codes.
 * For `priority tag`, the deadlines will be sorted according to this order: HIGH > MEDIUM > LOW. Deadlines with a high priority will then be shown at the top of the list.
+* For `weightage`, the deadlines will be sorted in ascending order, with the lowest weightage deadline placed first.
+* For `taskName`, the deadlines will be sorted according to the lexicographical ordering of the task name.
 
 ### Clear Application: `clear`
 
@@ -171,13 +174,13 @@ Format: `clear`
 Shows alert(s) for incoming deadlines based on the time range (if given).
 
 Format: `show [start/START_DATE] [end/END_DATE]`
-* If no time range is given, alert(s) shown will be deadlines next week.
+* If no time range is given, alert(s) shown will be deadlines from next week until the next 2 weeks.
 * If only `START_DATE` is given, alert(s) shown will be from **the `START_DATE` until the latest deadline**.
 * If only `END_DATE` is given, alert(s) shown will be from **today’s date until the `END_DATE`**.
 
 Example:
 * `alert start/10-10-2020` will show deadlines starting from 10 October 2020 onwards.
-
+* If today is 10 March 2021, `alert` will show deadlines from 17 March - 23 March 2021.
 ### Saving the data
 
 `semester.config` data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -204,17 +207,17 @@ that contains the data of your previous `semester.config` home folder.
 Action | Format, Examples
 --------|------------------
 **instructions** | `instructions`
-**add** | `add mc/MODULE_CODE mn/MODULE_NAME tn/TASK_NAME d/DATE [t/TIME]` <br> e.g, `add mc/CS1010 mn/Programming Methodology tn/Assignment 2 d/ Feb 15`
-**delete** | `delete INDEX ...` <br> e.g, `delete 3` `delete 1 2`
+**add** | `add mc/MODULE_CODE n/TASK_NAME d/DATE t/TIME w/WEIGHTAGE [r/remark]` <br> e.g, `add mc/CS1010 n/Practical Exam d/12-12-2020 t/10:10 w/10`
+**delete** | `delete INDEX` <br> e.g, `delete 3` `delete 1`
 **find** | `find KEYWORD ...` <br> e.g, `find Database` `find Software`
 **list** | `list`
-**done** | `done INDEX ...` <br> e.g, `done 1` `done 3 5`
-**sort** | `sort [/dt] [/mc] [/pt]` <br> e.g, `sort /dt` `sort /mc /pt`
+**done** | `done INDEX` <br> e.g, `done 1`
+**sort** | `sort [dateTime] [taskName] [moduleCode] [priorityTag] [weightage]` <br> e.g, `sort dateTime` `sort moduleCode`
 **notes** | `notes INDEX n/NOTES` <br> e.g, `notes 4 n/Assignment must be handwritten`
 **edit** | `edit INDEX [tn/TASK NAME] [mn/MODULE NAME] [mc/MODULE CODE] [d/ DEADLINE DATE] [t/DEADLINE TIME] [n/NOTES] [pt/PRIORITY]` <br> e.g, `edit 2 tn/Assignment 7`
 **clear** |`clear`
 **pt** | `pt [/LOW] [/MEDIUM] [/HIGH] INDEX` <br> e.g, `pt /MEDIUM 3`
-**show** | `show [start/START_DATE] [end/END_DATE]` <br> e.g, `show`  `show end/10-10-2020` `show start/10-10-2020 end/11-10-2020`
+**show** | `show [start/START_DATE] [end/END_DATE]` <br> e.g, `show`  `show end/10-10-2020` <br>`show start/10-10-2020 end/11-10-2020`
 
 
 

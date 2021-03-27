@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 /**
  * Represents a Task's weightage (as a percentage) in the task tracker.
  */
-public class Weightage {
+public class Weightage implements Comparable<Weightage> {
 
     public static final String MESSAGE_CONSTRAINTS = "Weightage should be a percentage value greater or equal to 0%,"
             + " and lesser or equal to 100%.";
@@ -23,6 +23,7 @@ public class Weightage {
         checkArgument(isValidWeightage(weightage), MESSAGE_CONSTRAINTS);
         this.weightage = weightage;
     }
+
 
     /**
      * Returns true if the weightage is a value greater or equal to 0, and less or equal to 100.
@@ -46,5 +47,10 @@ public class Weightage {
     @Override
     public int hashCode() {
         return weightage.hashCode();
+    }
+
+    @Override
+    public int compareTo(Weightage otherWeightage) {
+        return weightage - otherWeightage.weightage;
     }
 }
