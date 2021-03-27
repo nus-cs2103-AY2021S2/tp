@@ -59,9 +59,9 @@ public class TaskCard extends UiPart<Region> {
         status.getStyleClass().add("status");
         if (statString.equals("Not done")) {
             status.getStyleClass().add("notDone");
-        } else if (statString.equals("in progress")) {
+        } else if (statString.equals("In progress")) {
             status.getStyleClass().add("inProgress");
-        } else if (statString.equals("completed")) {
+        } else if (statString.equals("Completed")) {
             status.getStyleClass().add("completed");
         }
 
