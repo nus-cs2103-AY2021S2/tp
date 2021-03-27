@@ -89,13 +89,14 @@ Focuris is a **desktop application** for **managing events** with a KanBan board
 
 | Command                           | Description                                     | Format, Examples                                                                                           |
 | --------------------------------- | ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| [**Todo**](#231-todo-command)     | Creates a new event with status **Todo**        | `todo n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `todo n/CS2040 d/Assignment`                           |
+| [**Clear**](#236-clear-command)   | **Clears** all events in Focuris                | `clear`                                                                                                    |
+| [**Delete**](#235-delete-command) | **Deletes** an existing event                   | `delete IDENTIFIER`<br> e.g., `delete 3`                                                                   |
+| [**Edit**](#234-edit-command)     | **Edits** an existing event's attributes        | `edit IDENTIFIER [n/NAME] [s/STATUS] [d/DESCRIPTION] [p/PRIORITY]`<br> e.g.,`edit 2 n/CS2030 d/Assignment` |
+| [**Exit**](#222-exit-command)     | **Exits** the application                       | `exit`                                                                                                     |
+| [**Help**](#221-help-command)     | Displays **help menu** pop-up                   | `help`                                                                                                     |
 | [**Log**](#232-log-command)       | Creates a new event with status **Backlog**     | `log n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `log n/CS2030 d/Lab`                                    |
 | [**Prog**](#233-prog-command)     | Creates a new event with status **In-Progress** | `prog n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `prog n/CS2100 d/Tutorial`                             |
-| [**Delete**](#237-delete-command) | **Deletes** an existing event                   | `delete IDENTIFIER`<br> e.g., `delete 3`                                                                   |
-| [**Edit**](#234-edit-command)     | **Edits** an existing event's attributes        | `edit IDENTIFIER [n/NAME] [s/STATUS] [d/DESCRIPTION] [p/PRIORITY]`<br> e.g.,`edit 2 n/CS2030 d/Assignment` |
-| [**Help**](#221-help-command)     | Displays **help menu** pop-up                   | `help`                                                                                                     |
-| [**Exit**](#222-exit-command)     | **Exits** the application                       | `exit`                                                                                                     |
+| [**Todo**](#231-todo-command)     | Creates a new event with status **Todo**        | `todo n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `todo n/CS2040 d/Assignment`                           |
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -318,6 +319,8 @@ delete IDENTIFIER
 The commands in the table above make reference to the events in Focuris as seen in Figure 7.
 
 </div>
+
+[Return to Table of Contents](#table-of-contents)
 
 ### 2.3.6 `clear` Command
 
