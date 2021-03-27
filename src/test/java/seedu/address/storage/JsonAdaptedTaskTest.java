@@ -15,6 +15,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.common.Date;
 import seedu.address.model.common.Name;
 import seedu.address.model.task.CompletionStatus;
+import seedu.address.model.task.PinnedStatus;
 import seedu.address.model.task.Priority;
 
 public class JsonAdaptedTaskTest {
@@ -22,6 +23,7 @@ public class JsonAdaptedTaskTest {
     private static final String INVALID_DEADLINE = ",!@#%$";
     private static final String INVALID_PRIORITY = ",!@#%$";
     private static final String INVALID_COMPLETION = ",!@#%$";
+    private static final String INVALID_PINNED = ",!@#%$";
     private static final String INVALID_TAGS = ",!@#%$";
     private static final String INVALID_CATEGORIES = ",!@#%$";
 
@@ -29,6 +31,7 @@ public class JsonAdaptedTaskTest {
     private static final String VALID_DEADLINE = ASSIGNMENT.getDeadline().toString();
     private static final String VALID_PRIORITY = ASSIGNMENT.getPriority().toString();
     private static final String VALID_COMPLETION = ASSIGNMENT.getCompletionStatus().toString();
+    private static final String VALID_PINNED = ASSIGNMENT.getPinnedStatus().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = ASSIGNMENT.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
@@ -46,7 +49,7 @@ public class JsonAdaptedTaskTest {
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedTask person =
                 new JsonAdaptedTask(INVALID_NAME, VALID_DEADLINE, VALID_PRIORITY,
-                        VALID_COMPLETION, VALID_CATEGORIES, VALID_TAGS);
+                        VALID_COMPLETION, VALID_PINNED, VALID_CATEGORIES, VALID_TAGS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -55,7 +58,7 @@ public class JsonAdaptedTaskTest {
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedTask person =
                 new JsonAdaptedTask(null, VALID_DEADLINE, VALID_PRIORITY,
-                        VALID_COMPLETION, VALID_CATEGORIES, VALID_TAGS);
+                        VALID_COMPLETION, VALID_PINNED, VALID_CATEGORIES, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -64,7 +67,7 @@ public class JsonAdaptedTaskTest {
     public void toModelType_invalidDeadline_throwsIllegalValueException() {
         JsonAdaptedTask person =
                 new JsonAdaptedTask(VALID_NAME, INVALID_DEADLINE, VALID_PRIORITY,
-                        VALID_COMPLETION, VALID_CATEGORIES, VALID_TAGS);
+                        VALID_COMPLETION, VALID_PINNED, VALID_CATEGORIES, VALID_TAGS);
         String expectedMessage = Date.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -73,7 +76,7 @@ public class JsonAdaptedTaskTest {
     public void toModelType_nullDeadline_throwsIllegalValueException() {
         JsonAdaptedTask person =
                 new JsonAdaptedTask(VALID_NAME, null, VALID_PRIORITY,
-                        VALID_COMPLETION, VALID_CATEGORIES, VALID_TAGS);
+                        VALID_COMPLETION, VALID_PINNED, VALID_CATEGORIES, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -82,7 +85,7 @@ public class JsonAdaptedTaskTest {
     public void toModelType_invalidPriority_throwsIllegalValueException() {
         JsonAdaptedTask person =
                 new JsonAdaptedTask(VALID_NAME, VALID_DEADLINE, INVALID_PRIORITY,
-                        VALID_COMPLETION, VALID_CATEGORIES, VALID_TAGS);
+                        VALID_COMPLETION, VALID_PINNED, VALID_CATEGORIES, VALID_TAGS);
         String expectedMessage = Priority.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -91,7 +94,7 @@ public class JsonAdaptedTaskTest {
     public void toModelType_invalidCompletion_throwsIllegalValueException() {
         JsonAdaptedTask person =
                 new JsonAdaptedTask(VALID_NAME, VALID_DEADLINE, VALID_PRIORITY,
-                        INVALID_COMPLETION, VALID_CATEGORIES, VALID_TAGS);
+                        INVALID_COMPLETION, VALID_PINNED, VALID_CATEGORIES, VALID_TAGS);
         String expectedMessage = CompletionStatus.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -100,8 +103,26 @@ public class JsonAdaptedTaskTest {
     public void toModelType_nullCompletion_throwsIllegalValueException() {
         JsonAdaptedTask person =
                 new JsonAdaptedTask(VALID_NAME, VALID_DEADLINE, VALID_PRIORITY,
-                        null, VALID_CATEGORIES, VALID_TAGS);
+                        null, VALID_PINNED, VALID_CATEGORIES, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, CompletionStatus.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidPinned_throwsIllegalValueException() {
+        JsonAdaptedTask person =
+                new JsonAdaptedTask(VALID_NAME, VALID_DEADLINE, VALID_PRIORITY,
+                        VALID_COMPLETION, INVALID_PINNED, VALID_CATEGORIES, VALID_TAGS);
+        String expectedMessage = PinnedStatus.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullPinned_throwsIllegalValueException() {
+        JsonAdaptedTask person =
+                new JsonAdaptedTask(VALID_NAME, VALID_DEADLINE, VALID_PRIORITY,
+                        VALID_COMPLETION, null, VALID_CATEGORIES, VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, PinnedStatus.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
@@ -111,7 +132,7 @@ public class JsonAdaptedTaskTest {
         invalidTags.add(new JsonAdaptedTag(INVALID_TAGS));
         JsonAdaptedTask task =
                 new JsonAdaptedTask(VALID_NAME, VALID_DEADLINE, VALID_PRIORITY,
-                        VALID_COMPLETION, VALID_CATEGORIES, invalidTags);
+                        VALID_COMPLETION, VALID_PINNED, VALID_CATEGORIES, invalidTags);
         assertThrows(IllegalValueException.class, task::toModelType);
     }
 
@@ -121,7 +142,7 @@ public class JsonAdaptedTaskTest {
         invalidCategories.add(new JsonAdaptedCategory(INVALID_CATEGORIES));
         JsonAdaptedTask task =
                 new JsonAdaptedTask(VALID_NAME, VALID_DEADLINE, VALID_PRIORITY,
-                        VALID_COMPLETION, invalidCategories, VALID_TAGS);
+                        VALID_COMPLETION, VALID_PINNED, invalidCategories, VALID_TAGS);
         assertThrows(IllegalValueException.class, task::toModelType);
     }
 }

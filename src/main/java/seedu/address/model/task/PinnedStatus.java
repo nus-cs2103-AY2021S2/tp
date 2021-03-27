@@ -99,9 +99,9 @@ public class PinnedStatus implements Comparable<PinnedStatus> {
      */
     public String toString() {
         if (pinnedStatus == Status.PINNED) {
-            return "Pinned";
+            return "PINNED";
         } else {
-            return "Unpinned";
+            return "UNPINNED";
         }
     }
 
