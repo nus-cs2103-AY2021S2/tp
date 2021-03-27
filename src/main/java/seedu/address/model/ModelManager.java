@@ -46,6 +46,10 @@ public class ModelManager implements Model {
         this(new AddressBook(), new AppointmentBook(), new UserPrefs());
     }
 
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+        this(addressBook, new AppointmentBook(), userPrefs);
+    }
+
     //=========== UserPrefs ==================================================================================
 
     @Override
