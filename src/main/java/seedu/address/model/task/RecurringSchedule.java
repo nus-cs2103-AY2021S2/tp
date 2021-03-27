@@ -79,7 +79,7 @@ public class RecurringSchedule implements RecurringDates {
      * @return State of whether recurring schedule is empty in boolean format
      */
     public static boolean isEmptyRecurringScheduleInput(String test) {
-        return test.equals("") || test.equals("***Optional***");
+        return test.equals("");
     }
 
     /**
@@ -115,7 +115,7 @@ public class RecurringSchedule implements RecurringDates {
     }
 
     public boolean isEmptyValue() {
-        return emptyRecurringSchedule;
+        return isEmptyRecurringSchedule;
     }
 
     @Override

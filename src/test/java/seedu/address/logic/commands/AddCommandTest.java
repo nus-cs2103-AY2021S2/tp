@@ -32,7 +32,6 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
-import seedu.address.testutil.TypicalInvalidTasks;
 
 public class AddCommandTest {
 
@@ -63,7 +62,9 @@ public class AddCommandTest {
 
     @Test
     public void execute_DeadlineAndRecurringSchedule_throwsCommandException() {
-        Task invalidTask = TypicalInvalidTasks.DEADLINE_WITH_RECURRING_SCHEDULE;
+        Task invalidTask = new TaskBuilder().withTitle(VALID_TITLE_AMY)
+                .withDeadline(VALID_DEADLINE_AMY).withRecurringSchedule(VALID_RECURRINGSCHEDULE_AMY)
+                .withDescription(VALID_DESCRIPTION_AMY).withStatus(VALID_STATUS_AMY).withTags(VALID_TAG_FRIEND).build();
         AddCommand addCommand = new AddCommand(invalidTask);
         ModelStub modelStub = new ModelStubAcceptingTaskAdded();
 
@@ -73,11 +74,9 @@ public class AddCommandTest {
 
     @Test
     public void execute_DeadlineAndDuration_throwsCommandException() {
-        Task invalidTask = TypicalInvalidTasks.DEADLINE_WITH_DURATION_TASK;
-        Task too = new TaskBuilder().withTitle(VALID_TITLE_AMY)
+        Task invalidTask = new TaskBuilder().withTitle(VALID_TITLE_AMY)
                 .withDeadline(VALID_DEADLINE_AMY).withDuration(VALID_DURATION_AMY)
                 .withDescription(VALID_DESCRIPTION_AMY).withStatus(VALID_STATUS_AMY).withTags(VALID_TAG_FRIEND).build();
-        assertEquals(invalidTask, too);
 
         AddCommand addCommand = new AddCommand(invalidTask);
         ModelStub modelStub = new ModelStubAcceptingTaskAdded();
@@ -88,7 +87,10 @@ public class AddCommandTest {
 
     @Test
     public void execute_DeadlineAndEvent_throwsCommandException() {
-        Task invalidTask = TypicalInvalidTasks.DEADLINE_WITH_RECURRING_SCHEDULE_AND_DURATION;
+        Task invalidTask = new TaskBuilder()
+                .withTitle(VALID_TITLE_AMY).withDeadline(VALID_DEADLINE_AMY)
+                .withDuration(VALID_DURATION_AMY).withRecurringSchedule(VALID_RECURRINGSCHEDULE_AMY)
+                .withDescription(VALID_DESCRIPTION_AMY).withStatus(VALID_STATUS_AMY).withTags(VALID_TAG_FRIEND).build();
         AddCommand addCommand = new AddCommand(invalidTask);
         ModelStub modelStub = new ModelStubAcceptingTaskAdded();
 
