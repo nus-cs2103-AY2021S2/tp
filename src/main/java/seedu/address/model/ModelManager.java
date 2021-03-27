@@ -38,6 +38,7 @@ public class ModelManager implements Model {
         this.taskTracker = new TaskTracker(taskTracker);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredTasks = new FilteredList<>(this.taskTracker.getTaskList());
+        this.versionedTaskTracker = new VersionedTaskTracker();
     }
 
     public ModelManager() {
@@ -133,13 +134,23 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void undoTaskTracker() {
-        versionedTaskTracker.undo();
+    public TaskTracker undoTaskTracker() {
+        return versionedTaskTracker.undo();
     }
 
     @Override
-    public void redoTaskTracker() {
-        versionedTaskTracker.redo();
+    public TaskTracker redoTaskTracker() {
+        return versionedTaskTracker.redo();
+    }
+
+    @Override
+    public boolean canUndoTaskTracker() {
+        return versionedTaskTracker.canUndoTaskTracker();
+    }
+
+    @Override
+    public boolean canRedoTaskTracker() {
+        return versionedTaskTracker.canRedoTaskTracker();
     }
 
     //=========== Filtered Task List Accessors =============================================================

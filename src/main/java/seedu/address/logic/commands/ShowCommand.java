@@ -41,4 +41,9 @@ public class ShowCommand extends Command {
                 || (other instanceof ShowCommand // instanceof handles nulls
                 && predicate.equals(((ShowCommand) other).predicate)); // state check
     }
+
+    @Override
+    public String toString() {
+        return "SHOW";
+    }
 }

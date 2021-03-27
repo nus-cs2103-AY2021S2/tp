@@ -110,13 +110,37 @@ public interface Model {
     void updateFilteredTaskList(Predicate<Task> predicate);
 
     /**
-     *
+     * Commits the taskTracker
      */
     void commitTaskTracker(ReadOnlyTaskTracker currentState);
 
-    void undoTaskTracker();
+    /**
+     * Undoes the last change to the TaskTracker
+     *
+     * @return Previous state of TaskTracker
+     */
+    TaskTracker undoTaskTracker();
 
-    void redoTaskTracker();
+    /**
+     * Redoes the last change to the TaskTracker after an "undo"
+     *
+     * @return Previous state of TaskTracker after an "undo"
+     */
+    TaskTracker redoTaskTracker();
+
+    /**
+     * Checks if there is a valid TaskTracker state for undo
+     *
+     * @return True if there is a valid TaskTracker state for undo
+     */
+    boolean canUndoTaskTracker();
+
+    /**
+     * Checks if there is a valid TaskTracker state for redo
+     *
+     * @return True if there is a valid TaskTracker state for redo
+     */
+    boolean canRedoTaskTracker();
 
 
 }
