@@ -2,7 +2,7 @@ package fooddiary.model.tag;
 
 import java.util.ArrayList;
 
-public enum TagCategories {
+public enum Categories {
     FASTFOOD,
     WESTERN,
     INDIAN,
@@ -19,37 +19,37 @@ public enum TagCategories {
     INVALID;
 
     /**
-     * Checks if a String given fits any of the Categories in TagCategories.
+     * Checks if a String given fits any of the Categories in Categories.
      *
      * @param test
      * @return boolean
      */
     public static boolean matches(String test) {
         ArrayList<String> categories = new ArrayList<>();
-        for (TagCategories tagCategory : TagCategories.values()) {
-            categories.add(tagCategory.name().toLowerCase());
+        for (Categories category : Categories.values()) {
+            categories.add(category.name().toLowerCase());
         }
         return categories.contains(test.toLowerCase());
     }
 
     /**
-     * Finds a TagCateogry for user to save as,
+     * Finds a Category for user to save as,
      * if category is not found, classified as others.
      *
-     * @param category
-     * @return a TagCategory based on what user has input
+     * @param categoryInput
+     * @return a Category based on what user has input
      */
-    public static TagCategories find(String category) {
-        for (TagCategories tagCategory : TagCategories.values()) {
-            if (tagCategory.name().toLowerCase().contains(category.toLowerCase())) {
-                return tagCategory;
+    public static Categories find(String categoryInput) {
+        for (Categories category : Categories.values()) {
+            if (category.name().toLowerCase().contains(categoryInput.toLowerCase())) {
+                return category;
             }
         }
-        return TagCategories.INVALID;
+        return Categories.INVALID;
     }
 
     /**
-     * Displays TagCategories in title case.
+     * Displays Categories in title case.
      *
      * @return string of tag category in title case
      */

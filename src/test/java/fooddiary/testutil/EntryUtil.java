@@ -33,7 +33,7 @@ public class EntryUtil {
         entry.getReviews().stream().forEach(s -> sb.append(CliSyntax.PREFIX_REVIEW + s.value + " "));
         sb.append(CliSyntax.PREFIX_ADDRESS + entry.getAddress().value + " ");
         entry.getTags().stream().forEach(
-            s -> sb.append(CliSyntax.PREFIX_TAG + s.tagCategory.titleCase() + " ")
+            s -> sb.append(CliSyntax.PREFIX_TAG + s.tag + " ")
         );
         return sb.toString();
     }
@@ -61,7 +61,7 @@ public class EntryUtil {
             if (tags.isEmpty()) {
                 sb.append(CliSyntax.PREFIX_TAG);
             } else {
-                tags.forEach(s -> sb.append(CliSyntax.PREFIX_TAG).append(s.tagCategory.titleCase()).append(" "));
+                tags.forEach(s -> sb.append(CliSyntax.PREFIX_TAG).append(s.tag).append(" "));
             }
         }
         return sb.toString();
