@@ -28,7 +28,7 @@ public class BookingList implements Iterable<Booking> {
     private final ObservableList<Booking> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
-    public BookingList() { }
+    public BookingList() {}
 
     public BookingList(List<Booking> residenceBookingList) {
         setBookings(residenceBookingList);
@@ -111,7 +111,6 @@ public class BookingList implements Iterable<Booking> {
     /**
      * Replaces the contents of this list with {@code bookings}.
      * {@code bookings} must not contain overlapping bookings.
-     * @return
      */
     public void setBookings(List<Booking> bookings) {
         requireAllNonNull(bookings);
@@ -119,6 +118,16 @@ public class BookingList implements Iterable<Booking> {
             throw new OverlappingBookingException();
         }
         internalList.setAll(bookings);
+    }
+
+    /**
+     * Returns the index of a {@code Booking}
+     *
+     * @param booking that contains in the list
+     */
+    public int getIndex(Booking booking) {
+        ObservableList<Booking> tempList = internalUnmodifiableList.sorted();
+        return tempList.indexOf(booking);
     }
 
     /**
@@ -136,7 +145,9 @@ public class BookingList implements Iterable<Booking> {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        if (!getValue().isEmpty()) {
+        if (getValue().isEmpty()) {
+            builder.append("No bookings.");
+        } else {
             builder.append("Bookings:\n");
             getValue().stream().forEach(obj -> builder.append(obj + "\n"));
         }

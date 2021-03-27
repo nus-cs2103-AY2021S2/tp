@@ -32,8 +32,8 @@ public class AddBookingCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Sandy "
             + PREFIX_PHONE + "87654321 "
-            + PREFIX_BOOKING_START_DATE + "09082021 "
-            + PREFIX_BOOKING_END_DATE + "11082021 ";
+            + PREFIX_BOOKING_START_DATE + "09-08-2021 "
+            + PREFIX_BOOKING_END_DATE + "11-08-2021 ";
     public static final String MESSAGE_SUCCESS = "New booking added to Residence %1$s : %2$s";
     public static final String MESSAGE_INVALID_BOOKING = "The specified time overlaps "
             + "with another booking for this residence";

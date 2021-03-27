@@ -147,14 +147,14 @@ public class ParserUtil {
         requireNonNull(start);
         requireNonNull(end);
         try {
-            LocalDate startTime = LocalDate.parse(start.trim(), DateTimeFormatter.ofPattern("ddMMuu"));
-            LocalDate endTime = LocalDate.parse(end.trim(), DateTimeFormatter.ofPattern("ddMMuu"));
+            LocalDate startTime = LocalDate.parse(start.trim(), DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            LocalDate endTime = LocalDate.parse(end.trim(), DateTimeFormatter.ofPattern("dd-MM-yyyy"));
             if (!Booking.isValidBookingTime(startTime, endTime)) {
                 throw new ParseException(Booking.MESSAGE_CONSTRAINTS);
             }
             return new Booking(visitorName, phone, startTime, endTime);
         } catch (Exception exception) {
-            throw new ParseException("Date is not in the expected format: DDMMYY");
+            throw new ParseException("Date is not in the expected format: DD-MM-YYYY");
         }
     }
 

@@ -14,7 +14,7 @@ public class ResidenceListPanel extends UiPart<Region> {
     private static final String FXML = "ResidenceListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ResidenceListPanel.class);
 
-    @javafx.fxml.FXML
+    @FXML
     private ListView<Residence> residenceListView;
 
     /**
