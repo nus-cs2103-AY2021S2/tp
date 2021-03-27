@@ -51,6 +51,10 @@ title: User Guide
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+
+* For commands that only take in one parameters (such as `open`, `close`, `` and `clear`) will be ignored.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  
 </div>
 
 ### Guide Feature
@@ -111,8 +115,8 @@ Showcases a dictionary content.
 
 Format: `showdc INDEX​`
 
-* Shows the note at the specified `INDEX`.
-* The index refers to the index number shown in the displayed note list. The index **must be a positive integer** 1, 2, 3, …​
+* Shows the dictionary content at the specified `INDEX`.
+* The index refers to the index number shown in the displayed dictionary list. The index **must be a positive integer** 1, 2, 3, …​
 
 #### Listing all content : `listcontent`
 
@@ -432,7 +436,7 @@ Examples:
 #### Set dictionary divider position: `setdividerd`
 
 Sets the position of the dictionary divider.
-The note divider is the divider separating the dictionary list and dictionary content.
+The dictionary divider is the divider separating the dictionary list and dictionary content.
 
 Format: `setdividerd Position`
 
@@ -471,10 +475,10 @@ Examples:
 * `setdividerm 10`
   * set the position of main divider at 10% mark from the left
 
-#### Toggle note divider orientation: `toggledividerd`
+#### Toggle dictionary divider orientation: `toggledividerd`
 
 Toggle the orientation of the dictionary divider.
-If the current orientation of the note divider on horizontal,
+If the current orientation of the dictionary divider on horizontal,
 it will be changed to vertical and vice versa.
 
 Format: `toggledividerd`
