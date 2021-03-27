@@ -1,6 +1,7 @@
 package seedu.cakecollate.logic.parser;
 
 import static seedu.cakecollate.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.cakecollate.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.cakecollate.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -26,13 +27,13 @@ public class FindCommandParserTest {
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         HashMap<Prefix, List<String>> map = new HashMap<>();
-        map.put(new Prefix("all/"), Arrays.asList("Alice", "Bob"));
+        map.put(PREFIX_NAME, Arrays.asList("Alice", "Bob"));
         FindCommand expectedFindCommand =
                 new FindCommand(new ContainsKeywordsPredicate(map));
-        assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
+        assertParseSuccess(parser, " n/Alice Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
+        assertParseSuccess(parser, " n/ \n Alice \n \t Bob  \t", expectedFindCommand);
     }
 
 }

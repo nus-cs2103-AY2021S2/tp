@@ -19,6 +19,7 @@ import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.databind.util.TypeKey;
 import seedu.cakecollate.commons.util.StringUtil;
 import seedu.cakecollate.logic.parser.Prefix;
 import seedu.cakecollate.model.tag.Tag;
@@ -108,4 +109,13 @@ public class ContainsKeywordsPredicate implements Predicate<Order> {
                 && keywords.equals(((ContainsKeywordsPredicate) other).keywords)); // state check
     }
 
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        for (Map.Entry<Prefix, List<String>> entry : keywords.entrySet()) {
+            Prefix prefix = entry.getKey();
+            List<String> value = entry.getValue();
+            result.append(prefix.toString()).append(", ").append(value.toString());
+        }
+        return result.toString();
+    }
 }
