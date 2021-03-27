@@ -34,16 +34,16 @@ class SortCommandParserTest {
         //check for valid increasing quantity user inputs
         assertParseSuccess(parser, "quantity asc", expectedQuantityCommand);
         assertParseSuccess(parser, "QuAnTiTy Asc", expectedQuantityCommand);
-        assertParseSuccess(parser, "\n     QuAnTiTy Asc", expectedQuantityCommand);
+        assertParseSuccess(parser, "\n      QuAnTiTy Asc", expectedQuantityCommand);
 
         //check for valid increasing quantity user inputs
         assertParseSuccess(parser, "quantity desc", expectedQuantityCommand);
         assertParseSuccess(parser, "QuAnTiTy DeSc", expectedQuantityCommand);
-        assertParseSuccess(parser, "\n     QuAnTiTy DeSc", expectedQuantityCommand);
+        assertParseSuccess(parser, "\n      QuAnTiTy DeSc", expectedQuantityCommand);
 
         //check for valid expiryDate user inputs
         assertParseSuccess(parser, "expirydate", expectedExpiryDateCommand);
         assertParseSuccess(parser, "eXpIrYdAtE", expectedExpiryDateCommand);
-        assertParseSuccess(parser, "\n     eXpIrYdAtE", expectedExpiryDateCommand);
+        assertParseSuccess(parser, "\n      eXpIrYdAtE", expectedExpiryDateCommand);
     }
 }
