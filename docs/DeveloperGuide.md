@@ -196,8 +196,6 @@ description `Lunch`, amount `10` and category `Food`. The `find-fr` command indi
 `updateFilteredFinancialRecordList` method, causing `filteredFinancialRecords` to display the matching
 records without modifying the contents of the original financial records list.
 
-Step 3. 
-
     - Note: If no matching financial record(s) is/are found,
     then the list will not be updated and a log message
     indicating no records found will be shown.
@@ -241,7 +239,8 @@ resetting of filter on `filteredFinancialRecords` through the `updateFilteredFin
 method. The updated original financial records are then displayed to the user on the
 front end of the application.
 
-Given below is an example usage scenario and how the `find` mechanism behaves at each step.
+Given below is an example usage scenario and how the `reset` mechanism behaves at each step
+with the `find-fr` command initially applied
 
 Step 1. The user executes `find-fr d/Lunch a/10 c/Food` command which filters and displays
 the updated financial records list
@@ -250,6 +249,12 @@ Step 2. The user is satisfied with his query result and wishes to revert the fin
 list back to its original state. The `reset-filter` command is executed which indirectly calls the
 `updateFilteredFinancialRecordList` method, causing `filteredFinancialRecords` to display all
 available financial records.
+
+The following sequence diagram shows how the find operation works:
+![](images/ResetSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes `reset-filter`:
+![](images/ResetActivityDiagram.png)
 
 ### Statistics Feature
 
