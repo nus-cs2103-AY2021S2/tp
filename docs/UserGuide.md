@@ -5,8 +5,9 @@ title: User Guide
 
 # ClientBook
 
-ClientBook is an application for managing client contacts, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). 
-If you are an insurance agent who can type fast, ClientBook can help _you_ accomplish your client management tasks faster than traditional GUI apps.
+ClientBook is an application for insurance agents to manage client contacts, optimized for use via a Command Line Interface (CLI) while 
+still having the benefits of a Graphical User Interface (GUI). If you are an insurance agent who can type fast, 
+ClientBook can help _you_ accomplish your client management tasks faster than traditional GUI apps.
 
 ### Table of Contents 
 
@@ -38,15 +39,14 @@ If you are an insurance agent who can type fast, ClientBook can help _you_ accom
 
 ## Why ClientBook?
 
-ClientBook is designed for insurance agents who are always on the go. We understand the **pain** and **inconvenience** of having to **navigate around 
-your screen without a mouse** while you are out meeting a client, as well as the **limitations of a laptop's battery life**.<br>
+ClientBook is designed for insurance agents who are always on the go. We understand the pain and inconvenience of having to navigate around 
+your screen without a mouse while you are out meeting a client. We are also aware that you might have to remember various details about your many clients.
+<br>
 
 Thus, ClientBook is born!<br>
 
 Requiring **minimal interactions with your cursor**, ClientBook still allows you to complete essential contact management 
-tasks with our minimal yet essential set of contact management features.<br> 
-
-Consisting of only the **most necessary features** any good insurance agent will need while on the go, ClientBook is extremely easy on your laptop's battery!
+tasks with our minimal yet essential set of contact management features.<br>
 
 If you are a new user, you can start with the [Quick Start](#quick-start) section. 
 If you are an experienced user, we have provided a convenient [Summary of Commands](#summary-of-commands) at the end of this user guide.
