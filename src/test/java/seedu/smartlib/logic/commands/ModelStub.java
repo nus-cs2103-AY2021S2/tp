@@ -119,7 +119,7 @@ class ModelStub implements Model {
     }
 
     @Override
-    public boolean returnBook(Name readerName, Name bookName) {
+    public boolean returnBook(Name readerName, Barcode barcode) {
         return false;
     }
 

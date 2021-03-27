@@ -156,9 +156,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean returnBook(Name readerName, Name bookName) {
-        requireAllNonNull(bookName, readerName);
-        boolean status = smartLib.returnBook(readerName, bookName);
+    public boolean returnBook(Name readerName, Barcode barcode) {
+        requireAllNonNull(barcode, readerName);
+        boolean status = smartLib.returnBook(readerName, barcode);
         updateFilteredReaderList(PREDICATE_SHOW_ALL_READERS);
         updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
         return status;
@@ -220,6 +220,27 @@ public class ModelManager implements Model {
 
         for (Book b : books) {
             if (!b.isBorrowed()) {
+                return b.getBarcode();
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Returns the barcode of the first copy of the specified book borrowed by the reader in SmartLib.
+     *
+     * @param bookName   name of the book to be borrowed
+     * @param readerName name of the reader who borrowed the book
+     * @return the barcode of the first such book in SmartLib
+     */
+    @Override
+    public Barcode getBookBarcodeForReturn(Name bookName, Name readerName) {
+        ArrayList<Book> books = smartLib.getBooksByName(bookName);
+        requireNonNull(books);
+
+        for (Book b : books) {
+            if (b.getBorrowerName() != null && b.getBorrowerName().equals(readerName)) {
                 return b.getBarcode();
             }
         }

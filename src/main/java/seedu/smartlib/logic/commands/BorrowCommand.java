@@ -33,14 +33,15 @@ public class BorrowCommand extends Command {
     public static final String BOOK_ALREADY_BORROWED = "Sorry, the book is already borrowed by another reader.";
     public static final String READER_DISABLE_BORROWING = "Sorry, the reader has either reached the quota of books"
             + " that he/she can borrow, or is holding on to an overdue book.";
-    public static final String UNABLE_TO_UPDATE_CODEBASE = "Sorry, an error has occurred with codebase and we are"
+    public static final String UNABLE_TO_UPDATE_CODEBASE = "Sorry, an error has occurred with the codebase and we are"
             + " unable to update it.";
 
     private final IncompleteRecord incompleteRecord;
 
     /**
      * Creates a BorrowCommand to add a record.
-     * @param incompleteRecord record to be added to the Storage files
+     *
+     * @param incompleteRecord record to be added to the Storage
      */
     public BorrowCommand(IncompleteRecord incompleteRecord) {
         requireAllNonNull(incompleteRecord);

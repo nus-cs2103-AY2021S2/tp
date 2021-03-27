@@ -55,11 +55,11 @@ public interface Model {
     void setSmartLibFilePath(Path smartLibFilePath);
 
     /**
-     * Replaces smartlib's data with the data in {@code smartLib}.
+     * Replaces SmartLib's data with the data in {@code smartLib}.
      */
     void setSmartLib(ReadOnlySmartLib smartLib);
 
-    /** Returns the SmartLib */
+    /** Returns the SmartLib. */
     ReadOnlySmartLib getSmartLib();
 
     /**
@@ -104,28 +104,24 @@ public interface Model {
     boolean hasRecord(Record record);
 
     /**
-     * Update reader and book's status after borrow
-     * @param readerName reader must exist in reader base
-     * @param barcode book must exist in book base
+     * Updates the reader's and book's statuses after borrowing.
      */
     boolean borrowBook(Name readerName, Barcode barcode);
 
     /**
-     * Update reader and book's status after return
-     * @param readerName reader must exist in reader base
-     * @param bookName book must exist in book base
+     * Updates the reader's and book's statuses after returning.
      */
-    boolean returnBook(Name readerName, Name bookName);
+    boolean returnBook(Name readerName, Barcode barcode);
 
     /**
      * Deletes the given book.
-     * The book must exist in the registered book base.
+     * {@code target} must exist in the registered book base.
      */
     void deleteBook(Book target);
 
     /**
      * Deletes the given reader.
-     * The reader must exist in the registered reader base.
+     * {@code target} must exist in the registered reader base.
      */
     void deleteReader(Reader target);
 
@@ -148,16 +144,19 @@ public interface Model {
     void addRecord(Record record);
 
     /**
-     * Search for the latest given record and mark it as returned
+     * Searches for the latest given record and mark it as returned.
      */
     void markRecordAsReturned(Record record);
 
     /**
      * Returns the barcode of the first available (i.e. not borrowed) copy of the book in SmartLib.
-     * @param bookName name of the book to be borrowed
-     * @return the barcode of the first available copy of the book in SmartLib
      */
     Barcode getBookBarcode(Name bookName);
+
+    /**
+     * Returns the barcode of the first copy of the specified book borrowed by the reader in SmartLib.
+     */
+    Barcode getBookBarcodeForReturn(Name bookName, Name readerName);
 
     /**
      * Replaces the given reader {@code target} with {@code editedReader}.
@@ -174,19 +173,23 @@ public interface Model {
 
     /**
      * Updates the filter of the filtered book list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredBookList(Predicate<Book> predicate);
 
     /**
      * Updates the filter of the filtered reader list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredReaderList(Predicate<Reader> predicate);
 
     /**
      * Updates the filter of the filtered record list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredRecordList(Predicate<Record> predicate);
+
 }
