@@ -1,15 +1,5 @@
 package seedu.dictionote.logic.commands;
 
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import seedu.dictionote.model.*;
-import seedu.dictionote.model.contact.Contact;
-import seedu.dictionote.model.contact.exceptions.InvalidContactMailtoLinkException;
-
-import java.util.Arrays;
-
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.dictionote.testutil.TypicalContacts.ALICE;
 import static seedu.dictionote.testutil.TypicalContacts.BENSON;
@@ -22,6 +12,25 @@ import static seedu.dictionote.testutil.TypicalContacts.getTypicalContactsList;
 import static seedu.dictionote.testutil.TypicalContent.getTypicalDictionary;
 import static seedu.dictionote.testutil.TypicalDefinition.getTypicalDefinitionBook;
 import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
+
+import java.util.Arrays;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import seedu.dictionote.model.ContactsList;
+import seedu.dictionote.model.Model;
+import seedu.dictionote.model.ModelManager;
+import seedu.dictionote.model.ReadOnlyContactsList;
+import seedu.dictionote.model.ReadOnlyDefinitionBook;
+import seedu.dictionote.model.ReadOnlyDictionary;
+import seedu.dictionote.model.ReadOnlyNoteBook;
+import seedu.dictionote.model.ReadOnlyUserPrefs;
+import seedu.dictionote.model.UserPrefs;
+import seedu.dictionote.model.contact.Contact;
+import seedu.dictionote.model.contact.exceptions.InvalidContactMailtoLinkException;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
