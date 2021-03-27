@@ -113,8 +113,8 @@ public class ViewWindow extends UiPart<Stage> {
         name.setText(entryDetails.get("name") + "\n\n");
         price.setText(String.format("Price: $%s", entryDetails.get("price")));
         rating.setText(String.format("Rating: %s / 5", entryDetails.get("rating")));
-        address.setText(String.format("Address: %s\n", entryDetails.get("address")));
-        reviews.setText(String.format("Reviews:\n%s\n\n", entryDetails.get("reviews")));
+        address.setText(String.format("Address: %s", entryDetails.get("address")));
+        reviews.setText(String.format("Reviews:\n%s", entryDetails.get("reviews")));
         Arrays.stream(entryDetails.get("categories").split(";"))
                 .forEach(tag -> tagCategory.getChildren().add(new Label(tag)));
         Arrays.stream(entryDetails.get("schools").split(";"))
