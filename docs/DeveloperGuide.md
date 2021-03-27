@@ -172,15 +172,15 @@ As an example, consider running Dictionote on a Windows 10 machine with Microsof
 
 * Assume that the current state of the application is as follows (note the exisiting contacts on the left-side of the application's window):
 
-![ContactEmailFeatureInitState]<!---(images/ContactEmailFeatureInitState.png)-->
+![ContactEmailFeatureInitState](images/ContactEmailFeatureInitState.png)
 
 * After typing in `emailcontact 2` and executing it, the result would be:
 
-![ContactEmailFeatureExecute]<!---(images/ContactEmailFeatureExecute.png)-->
+![ContactEmailFeatureExecute](images/ContactEmailFeatureExecute.png)
 
 * A new window, belonging to Microsoft Outlook's `New Message` function, will pop up:
 
-![ContactEmailFeatureOSClient]<!---(images/ContactEmailFeatureOSClient.png)-->
+![ContactEmailFeatureOSClient](images/ContactEmailFeatureOSClient.png)
 
 * Note that the email of the selected contact, Bob (referred to in the command by his index number), is automatically written in the `To...` field of the email's header information.
 
@@ -195,6 +195,9 @@ Note that if the user does not have a mail client software set as default in the
 * **Alternative 2:** implement basic email features directly into Dictionote.
 	* Pros: Does not depened on the existence of external software in the OS.
 	* Cons: Much harder to implement, as it requires the implementation of network-related functions to handle the connections to email servers.
+	
+	
+#### More implementation details to be added...
 
 ### \[Proposed\] Undo/redo feature
 
