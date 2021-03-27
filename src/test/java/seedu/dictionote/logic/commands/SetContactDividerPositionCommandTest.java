@@ -1,7 +1,6 @@
 package seedu.dictionote.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.dictionote.logic.commands.SetContactDividerPositionCommand.MESSAGE_SET_DIVIDER_SUCCESS;
 import static seedu.dictionote.testutil.TypicalContacts.getTypicalContactsList;
@@ -23,10 +22,10 @@ public class SetContactDividerPositionCommandTest {
     private Model model = new ModelManager(getTypicalContactsList(), new UserPrefs(),
         getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
     private Model expectedModel = new ModelManager(getTypicalContactsList(), new UserPrefs(),
-    getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
+        getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
 
     @Test
-    public void execute_set_position_success() {
+    public void execute_setDividerPosition_success() {
         for (int i = 0; i < VALID_UI_POSITION.length; i++) {
             CommandResult expectedCommandResult = new CommandResult(
                 MESSAGE_SET_DIVIDER_SUCCESS + VALID_UI_POSITION[i], UiAction.OPEN,

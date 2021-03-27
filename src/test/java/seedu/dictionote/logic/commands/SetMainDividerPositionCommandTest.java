@@ -22,10 +22,10 @@ public class SetMainDividerPositionCommandTest {
     private Model model = new ModelManager(getTypicalContactsList(), new UserPrefs(),
         getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
     private Model expectedModel = new ModelManager(getTypicalContactsList(), new UserPrefs(),
-    getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
+        getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
 
     @Test
-    public void execute_set_position_success() {
+    public void execute_setDividerPosition_success() {
         for (int i = 0; i < VALID_UI_POSITION.length; i++) {
             CommandResult expectedCommandResult = new CommandResult(
                 MESSAGE_SET_DIVIDER_SUCCESS + VALID_UI_POSITION[i], UiAction.OPEN,

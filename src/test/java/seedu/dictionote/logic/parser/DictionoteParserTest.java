@@ -206,22 +206,26 @@ public class DictionoteParserTest {
 
     @Test
     public void parseCommand_setContactDividerPosition() throws Exception {
-        assertTrue(parser.parseCommand(SetContactDividerPositionCommand.COMMAND_WORD + " 6") instanceof SetContactDividerPositionCommand);
+        assertTrue(parser.parseCommand(SetContactDividerPositionCommand.COMMAND_WORD + " 6")
+            instanceof SetContactDividerPositionCommand);
     }
 
     @Test
     public void parseCommand_setDictionaryDividerPosition() throws Exception {
-        assertTrue(parser.parseCommand(SetDictionaryDividerPositionCommand.COMMAND_WORD + " 6") instanceof SetDictionaryDividerPositionCommand);
+        assertTrue(parser.parseCommand(SetDictionaryDividerPositionCommand.COMMAND_WORD + " 6")
+            instanceof SetDictionaryDividerPositionCommand);
     }
 
     @Test
     public void parseCommand_setNoteDividerPosition() throws Exception {
-        assertTrue(parser.parseCommand(SetNoteDividerPositionCommand.COMMAND_WORD + " 6") instanceof SetNoteDividerPositionCommand);
+        assertTrue(parser.parseCommand(SetNoteDividerPositionCommand.COMMAND_WORD + " 6")
+            instanceof SetNoteDividerPositionCommand);
     }
 
     @Test
     public void parseCommand_setMainDividerPosition() throws Exception {
-        assertTrue(parser.parseCommand(SetMainDividerPositionCommand.COMMAND_WORD + " 6") instanceof SetMainDividerPositionCommand);
+        assertTrue(parser.parseCommand(SetMainDividerPositionCommand.COMMAND_WORD + " 6")
+            instanceof SetMainDividerPositionCommand);
     }
 
     @Test
