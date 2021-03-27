@@ -241,23 +241,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to add a member
 2.  HEY MATEz adds the member to the list of members
 
-    Use case ends.
+    
+Use case ends.
 
 **Extensions**
 
 * 1a. Member already exists (Matching Name) in the list
     * 1a1. HEY MATEz shows an error message
-
-  Use case ends.
+  
+Use case ends.
 
 **Use case: View members**
 
 **MSS**
 
 1.  User requests to view the members
-2.  HEY MATEz lists the members in the list and their contact details
-
-    Use case ends.
+2.  HEY MATEz lists the members in the list, and their contact details
+    
+Use case ends.
 
 **Use case: Delete member**
 
@@ -267,14 +268,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  HEY MATEz searches for the member 
 3.  HEY MATEz deletes the member from the list
     
-    Use case ends. 
+Use case ends. 
 
 **Extensions**
 
 * 2a. Member does not exist in the list of members
     * 2a1. HEY MATEz shows an error message
-
-    Use case ends.
+  
+Use case ends.
 
 **Use case: Edit member's details**
 
@@ -284,14 +285,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  HEY MATEz searches for the member 
 3.  HEY MATEz edits the corresponding member with the new details 
     
-    Use case ends. 
+Use case ends. 
 
 **Extensions**
 
 * 2a. Member does not exist in the list of members
     * 2a1. HEY MATEz shows an error message
-
-  Use case ends.
+  
+Use case ends.
 
 **Use case: Find members using keywords**
 
@@ -300,8 +301,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to find members using the keywords specified
 2.  HEY MATEz searches through each member's details 
 3.  HEY MATEz lists members whose details matches any of the keywords 
-
-    Use case ends.
+    
+Use case ends.
 
 **Use case: Add a task**
 
@@ -309,24 +310,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to add a task
 2.  HEY MATEz adds the task to the task board
-
-    Use case ends.
+    
+Use case ends.
 
 **Extensions**
 
 * 2a. Task already exists (Matching Title) in the list
     * 2a1. HEY MATEz shows an error message
-
-  Use case ends.
+  
+Use case ends.
 
 **Use case: View Tasks**
 
 **MSS**
 
 1.  User requests to view the list of tasks
-2.  HEY MATEz lists the tasks along with the description
-
-    Use case ends.
+2.  HEY MATEz lists the tasks along with the description 
+    
+Use case ends.
 
 **Use case: Delete Task**
 
@@ -339,8 +340,8 @@ Similar to deleting a member but user specifies task index instead of name
 
 * 2a. Task index does not exist in the list of tasks
     * 2a1. HEY MATEz shows an error message
-
-  Use case ends.
+  
+Use case ends.
 
 **Use case: Edit a task**
 
@@ -353,8 +354,8 @@ Similar tp editing a member except that user specifies task index instead of nam
 
 * 1a. Task does not exist (Task index out of bounds)
     * 1a1. HEY MATEz shows an error message
-
-  Use case ends.
+  
+Use case ends.
 
 **Use case: Find tasks using keywords**
 
@@ -371,7 +372,7 @@ lists tasks with its title or description matching any of the keywords
 2. HEY MATEz searches through tasks' deadline 
 3. HEY MATEz lists tasks with deadlines before the specified date
    
-    Use case ends.
+Use case ends.
    
     
 **Use case: Find tasks using Priority**
@@ -381,16 +382,16 @@ lists tasks with its title or description matching any of the keywords
 1.  User requests to find tasks using the input (A priority value)
 2.  HEY MATEz searches through each tasks' priority
 3.  HEY MATEz lists tasks with a matching priority.
-
-    Use case ends.
+    
+Use case ends.
 
 Extensions
 * 1a. The input value by the user is not a valid priority value
     * 1a1. HEY MATEz shows an error message telling the user to choose from a list of predefined values
 * 1b. The input format for findPriority is incorrect
     * 1b1. HEY MATEz shows an error message
-
-    Use case ends.
+  
+Use case ends.
 
 **Use case: Mark a Task as Completed**
 
@@ -399,13 +400,13 @@ Extensions
 1.  User requests to mark a task as completed using the task's index
 2.  HEY MATEz searches for the task index and changes the status of the task in the list to be completed
     
-    Use case ends.
+Use case ends.
 
 **Extensions**
 * 1a. The index specified by the user does not exist
     * 1a1. HEY MATEz shows an error message indicating the index is invalid
-
-    Use case ends.
+  
+Use case ends.
 
 **Use case: Mark a Task as Uncompleted**
 
@@ -413,14 +414,14 @@ Extensions
 
 1.  User requests to mark a task as uncompleted using the task's index
 2.  HEY MATEz searches for the task index and changes the status of the task in the list to be uncompleted
-
-    Use case ends.
+    
+Use case ends.
 
 **Extensions**
 * 1a. The index specified by the user does not exist
     * 1a1. HEY MATEz shows an error message indicating the index is invalid 
-      
-    Use case ends.
+  
+Use case ends.
 
 **Use case: Delete Task**
 
@@ -431,17 +432,17 @@ Similar to deleting a member except that user specifies task index instead of na
 **Extensions**
 * 1a. The index specified by the user does not exist
     * 1a1. HEY MATEz shows an error message indicating the index is invalid
-
-    Use case ends.
+  
+Use case ends.
 
 **Use case: View Uncompleted Tasks**
 
 **MSS**
 
 1.  User requests to view the list of uncompleted tasks
-2.  HEY MATEz lists the uncompleted tasks along with the description
-
-    Use case ends.
+2.  HEY MATEz lists the uncompleted tasks along with the description 
+    
+Use case ends.
 
 ### Non-Functional Requirements
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
