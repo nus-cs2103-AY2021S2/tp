@@ -95,7 +95,7 @@ class PoolCommandTest {
         int index = 0;
         Driver driver = new DriverBuilder().build();
         Passenger editedPassenger = new PassengerBuilder(model.getFilteredPassengerList().get(index))
-                .withDriver(driver).buildWithDriver();
+                .build();
 
         PoolCommand poolCommand = new PoolCommand(driver, new CommuterBuilder()
                 .withIndices(new int[]{index + 1}).build());
@@ -117,7 +117,7 @@ class PoolCommandTest {
         Driver driver = new DriverBuilder().build();
         for (int idx : index) {
             Passenger editedPassenger = new PassengerBuilder(model.getFilteredPassengerList().get(idx - 1))
-                    .withDriver(driver).buildWithDriver();
+                    .build();
             joiner.add(editedPassenger.getName().toString());
             expectedModel.setPassenger(model.getFilteredPassengerList().get(idx - 1), editedPassenger);
         }
@@ -141,7 +141,7 @@ class PoolCommandTest {
 
         for (int idx : index) {
             Passenger editedPassenger = new PassengerBuilder(model.getFilteredPassengerList().get(idx - 1))
-                    .withDriver(driver).buildWithDriver();
+                    .build();
             expectedModel.setPassenger(model.getFilteredPassengerList().get(idx - 1), editedPassenger);
         }
 
@@ -169,7 +169,7 @@ class PoolCommandTest {
 
         Driver driver = new DriverBuilder().build();
         Passenger editedPassenger = new PassengerBuilder(passengerInFilteredList)
-                .withDriver(driver).buildWithDriver();
+                .build();
 
         PoolCommand poolCommand = new PoolCommand(driver, new CommuterBuilder()
                 .withIndices(new int[]{INDEX_FIRST_PASSENGER.getOneBased()}).build());

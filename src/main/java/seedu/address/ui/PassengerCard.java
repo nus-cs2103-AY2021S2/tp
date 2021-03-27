@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import static seedu.address.ui.DriverCard.newDriverCard;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -65,21 +63,19 @@ public class PassengerCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
+        //TODO: Mark I removed the getDriverAsStr() method below here as the passenger no longer has a driver object
+        // attached to it. Just letting you know in case it causes problems.
+
         // collect the fields that uses the icon and label format
         List<Region> cardFields = new ArrayList<>();
         cardFields.add(new LabelWithIcon(ICON_PATH_PHONE, passenger.getPhone().value).getRoot());
         cardFields.add(new LabelWithIcon(ICON_PATH_ADDRESS, passenger.getAddress().value).getRoot());
         cardFields.add(new LabelWithIcon(ICON_PATH_TIME,
                 passenger.getTripDay() + " " + passenger.getTripTime()).getRoot());
-        cardFields.add(new LabelWithIcon(ICON_PATH_DRIVER, passenger.getDriverAsStr()).getRoot());
         cardFieldContainer.getChildren().addAll(cardFields);
 
-        //if there is a driver, create the driverCard and display the info, else release the reserved width
-        passenger.getDriver().ifPresentOrElse(x -> {
-                driverCard = newDriverCard(x);
-                driverCardContainer.getChildren().add(driverCard.getRoot());
-            }, () -> columnConstraints.setPercentWidth(0)
-        );
+        //TODO: Mark I removed the getDriver().ifPresentOrElse() block of code below here as the passenger no longer has
+        // a driver object attached to it. Just letting you know in case it causes problems.
     }
 
     @Override

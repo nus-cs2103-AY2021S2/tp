@@ -25,7 +25,7 @@ public class Pool {
     private Driver driver;
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null. Ensures a pool cannot be created with no passengers.
      */
     public Pool(Driver driver, TripDay tripDay, TripTime tripTime, Set<Passenger> passengers, Set<Tag> tags) {
         requireAllNonNull(driver, tripDay, tripTime);

@@ -17,7 +17,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.driver.Driver;
 import seedu.address.model.person.passenger.Address;
 import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.person.passenger.Price;
@@ -38,7 +37,6 @@ class JsonAdaptedPassenger {
     private final String tripDayStr;
     private final String tripTimeStr;
     private final String priceStr;
-    private final String driverStr;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
 
@@ -49,7 +47,6 @@ class JsonAdaptedPassenger {
     public JsonAdaptedPassenger(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                                 @JsonProperty("address") String address, @JsonProperty("tripDay") String tripDayStr,
                                 @JsonProperty("tripTime") String tripTimeStr, @JsonProperty("price") String priceStr,
-                                @JsonProperty("driver") String driverStr,
                                 @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
@@ -57,7 +54,6 @@ class JsonAdaptedPassenger {
         this.tripDayStr = tripDayStr;
         this.tripTimeStr = tripTimeStr;
         this.priceStr = priceStr;
-        this.driverStr = driverStr;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -73,7 +69,6 @@ class JsonAdaptedPassenger {
         tripDayStr = source.getTripDayAsStr();
         tripTimeStr = source.getTripTimeAsStr();
         priceStr = source.getPriceAsStr();
-        driverStr = source.getDriverAsStr();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -138,11 +133,6 @@ class JsonAdaptedPassenger {
         }
         final TripTime modelTripTime = new TripTime(parsedTimeObject);
 
-        if (driverStr == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Driver.class.getSimpleName()));
-        }
-
         final Set<Tag> modelTags = new HashSet<>(passengerTags);
 
         if (priceStr == null) {
@@ -154,14 +144,8 @@ class JsonAdaptedPassenger {
         double priceNum = Double.parseDouble(priceStr);
         final Optional<Price> modelPrice = Optional.of(new Price(priceNum));
 
-        if (Driver.isValidDriver(driverStr)) {
-            final Driver modelDriver = new Driver(driverStr);
-            return new Passenger(modelName, modelPhone, modelAddress, modelTripDay, modelTripTime, modelPrice,
-                    modelDriver, modelTags);
-        } else {
-            return new Passenger(modelName, modelPhone, modelAddress, modelTripDay, modelTripTime, modelPrice,
-                    modelTags);
-        }
+        return new Passenger(modelName, modelPhone, modelAddress, modelTripDay, modelTripTime, modelPrice,
+                modelTags);
     }
 
 }
