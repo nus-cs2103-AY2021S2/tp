@@ -36,6 +36,8 @@ public class ViewPatientBox extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label height;
+    @FXML
     private Label weight;
     @FXML
     private Label tagInfo;
@@ -56,6 +58,7 @@ public class ViewPatientBox extends UiPart<Region> {
         phone.setText("Phone: " + person.getPhone().value);
         address.setText("Address: " + person.getAddress().value);
         email.setText("Email: " + person.getEmail().value);
+        height.setText("Height: " + person.getHeight().value);
         weight.setText("Weight: " + person.getWeight().value);
         tagInfo.setText("Tags:");
         person.getTags().stream()
