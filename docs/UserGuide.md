@@ -27,7 +27,7 @@ The purpose of this User Guide is to help new users(doctors) understand how to g
 
    * **`list`** : List out all patients in DocBob's contact list.
 
-   * **`add`**`/nShrek p/66666666 a/69 l/Swamp` : Adds a patient named `Shrek` to DocBob's contact list.
+   * **`add n/Shrek p/66666666 e/shrek@swampmail.com a/Swamp h/243cm w/94kg`** : Adds a patient named `Shrek` to DocBob's contact list.
 
    * **`appt`** : Adds a scheduled upcoming appointment with a patient in DocBob's contact list.
 
@@ -78,10 +78,10 @@ DocBob will open up a help window with the help information.
 
 Adds a patient to DocBob's contact list.
 
-Format: `add n/Name p/phoneNumber a/Age l/Location`
+Format: `add n/Name p/phoneNumber e/Email a/Address h/Height w/Weight`
 
 Examples:
-* `add /nShrek p/66666666 a/69 l/Swamp`
+* `add n/Shrek p/66666666 e/shrek@swampmail.com a/Swamp h/243cm w/94kg`
 
 ### Deleting a patients' contact : `delete`
 
@@ -171,7 +171,7 @@ Format: `exit`
 
 Edits an existing person in the list.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [h/HEIGHT] [w/WEIGHT] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -235,7 +235,7 @@ If your changes to the data file makes its format invalid, docBob will discard a
 Action | Format, Examples
 --------|------------------
 **help** | `help`
-**add** | `add n/Name p/phoneNumber a/Age l/Location` <br> e.g., `add /nShrek p/66666666 a/69 l/Swamp`
+**add** | `add n/Name p/phoneNumber e/Email a/Address h/Height w/Weight [t/TAGS]` <br> e.g., `add n/Shrek p/66666666 e/shrek@swampmail.com a/Swamp h/243cm w/94kg`
 **delete** | `delete INDEX` <br> e.g., `delete 1`
 **list** | `list`
 **appt** | `appt 1 d/010120211200`

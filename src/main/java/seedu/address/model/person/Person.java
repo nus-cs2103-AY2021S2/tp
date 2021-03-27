@@ -15,7 +15,7 @@ import seedu.address.model.medical.MedicalRecord;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Person in DocBob.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
@@ -29,6 +29,10 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
+    //Health-related data fields
+    private final Height height;
+    private final Weight weight;
+
     // Medical fields
     private final List<MedicalRecord> records = new ArrayList<>();
     private final List<Appointment> appointments = new ArrayList<>();
@@ -36,24 +40,29 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Height height, Weight weight, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, height, weight, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.height = height;
+        this.weight = weight;
         this.tags.addAll(tags);
     }
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<Appointment>appointments) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Height height, Weight weight,
+                  Set<Tag> tags, List<Appointment>appointments) {
+        requireAllNonNull(name, phone, email, address, height, weight, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.height = height;
+        this.weight = weight;
         this.tags.addAll(tags);
         this.appointments.addAll(appointments);
     }
@@ -72,6 +81,14 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Height getHeight() {
+        return height;
+    }
+
+    public Weight getWeight() {
+        return weight;
     }
 
     /**
@@ -122,13 +139,15 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getHeight().equals(getHeight())
+                && otherPerson.getWeight().equals(getWeight())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, height, weight, tags);
     }
 
     @Override
@@ -140,7 +159,11 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Height: ")
+                .append(getHeight())
+                .append("; Weight: ")
+                .append(getWeight());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
