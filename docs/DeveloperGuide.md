@@ -16,9 +16,15 @@ title: Developer Guide
     * [Storage component](#storage-component)
     * [Common classes](#common-classes)
 * [Implementation](#implementation)
-    * [List all readers](#list-all-readers)
+    * [Deleting a book](#deleting-a-book)
+    * [Finding a book](#finding-books-with-keywords)
+    * [Adding a reader](#adding-a-reader)
+    * [Listing all readers](#listing-all-readers)
+    * [Finding a reader](#finding-readers-with-keywords)
+    * [Borrowing a book](#borrowing-a-book)
+    * [Returning a book](#returning-a-book)
+    * [Returning overdue books](#returning-overdue-books)
     * [\[Proposed\] Undo/redo feature](#proposed-undoredo-feature)
-    * [\[Proposed\] Data archiving](#proposed-data-archiving)
 * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 * [Appendix: Requirements](#appendix-requirements)
     * [Product scope](#product-scope)
@@ -144,9 +150,9 @@ The `UI` component,
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `deletereader 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteReaderCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### Model component
@@ -189,7 +195,39 @@ Classes used by multiple components are in the `seedu.smartlib.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Add a reader
+### Deleting a book
+
+The execution of deleting a book and deleting a reader is very similar (refer to the sequence diagram under [**`Logic`**](#logic-component)).
+
+The only difference is that `DeleteBookCommandParser` is used to parse the
+argument(s) and `DeleteBookCommand` is created. In order to delete a book,
+`Model#deleteBook()` is called instead of `Model#deleteReader()`.
+
+The following activity diagram summarizes what happen when a user executes a delete book command.
+
+![DeleteBookActivityDiagram](images/DeleteBookActivityDiagram.png)
+
+### Finding books with keywords
+
+Finding books in the book list requires a user input from the CLI.
+The respective parsers will parse the user input to check whether the input is valid, and obtain the keyword(s) of the book(s) that the user wants to find.
+
+Given below is an example usage scenario of how the `findbook` mechanism behaves at each step. In our example and the diagrams below, we assume that the user input is `findbook Harry Potter`:
+* Step 1: The user launches the SmartLib application with all of his/her readers already added to the reader list.
+* Step 2: The user inputs `findbook Harry Potter` to SmartLib, which calls upon `LogicManager#execute()`.
+* Step 3: `SmartLibParser` and `FindBookCommandParser` will check the user input, and return a `FindBookCommand` to the `LogicManager` if the input is valid.
+* Step 4: `LogicManager` will then call `FindBookCommand#execute()`, which in turn calls `Model#updateFilteredBookList()`.
+* Step 5: The book list is updated and reflected on the GUI.
+
+The following sequence diagram shows how the `findbook` operation works:
+
+![FindBookSequenceDiagram](images/FindBookSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes the `findbook` command:
+
+![FindBookActivityDiagram](images/FindBookActivityDiagram.png)
+
+### Adding a reader
 Adding a reader into a class requires user input from the CLI.
 The `SmartLibParser` will parse the user input to check the validity of it, the input is valid if
 1. The reader does not already exist in the code base.
@@ -213,7 +251,7 @@ The following activity diagram summarizes what happens when a user executes the 
 
 ![AddReaderActivityDiagram](images/AddReaderActivityDiagram.png)
 
-### List all readers
+### Listing all readers
 
 Listing all readers in a class requires user input from the CLI.
 The `SmartLibParser` will then create a `ListReaderCommand`, which will trigger Model to update the GUI with a full list of the readers.
@@ -237,48 +275,16 @@ The following activity diagram summarizes what happens when a user executes the 
 
 ![ListReaderActivityDiagram](images/ListReaderActivityDiagram.png)
 
-### Find all readers
+### Finding readers with keywords
 
-Finding all readers in a class requires a user input from the CLI.
-The respective parsers will parse the user input to check whether the input is valid, and obtain the name(s) of the reader(s) that the user wants to find.
+The execution of finding a reader using keywords and finding a book using keywords is very similar (you may want to
+refer to the diagrams under [**`Finding books with keywords`**](#finding-books-with-keywords)).
 
-Given below is an example usage scenario of how the `findreader` mechanism behaves at each step. In our example and the diagrams below, we assume that the user input is `findreader Tom`:
-* Step 1: The user launches the SmartLib application with all of his/her readers already added to the reader list.
-* Step 2: The user inputs `findreader Tom` to SmartLib, which calls upon `LogicManager#execute()`.
-* Step 3: `SmartLibParser` and `FindReaderCommandParser` will check the user input, and return a `FindReaderCommand` to the `LogicManager` if the input is valid.
-* Step 4: `LogicManager` will then call `FindReaderCommand#execute()`, which in turn calls `Model#updateFilteredReaderList()`.
-* Step 5: The reader list is updated and reflected on the GUI.
+The only differences are that `FindReaderCommandParser` is used to parse the argument(s) and instead of 
+`FindBookCommandParser`, and an object of `FindReaderCommand` is created. In order to find a reader using keywords,
+`Model#updateFilteredReaderList()` is called instead of `Model#updateFilteredBookList()`.
 
-The following sequence diagram shows how the `findreader` operation works:
-
-![ListReaderSequenceDiagram](images/FindReaderSequenceDiagram.png)
-
-The following activity diagram summarizes what happens when a user executes the `findreader` command:
-
-![ListReaderActivityDiagram](images/FindReaderActivityDiagram.png)
-
-### Find books with keywords
-
-Finding books in the book list requires a user input from the CLI.
-The respective parsers will parse the user input to check whether the input is valid, and obtain the keyword(s) of the book(s) that the user wants to find.
-
-Given below is an example usage scenario of how the `findbook` mechanism behaves at each step. In our example and the diagrams below, we assume that the user input is `findbook Harry Potter`:
-* Step 1: The user launches the SmartLib application with all of his/her readers already added to the reader list.
-* Step 2: The user inputs `findbook Harry Potter` to SmartLib, which calls upon `LogicManager#execute()`.
-* Step 3: `SmartLibParser` and `FindBookCommandParser` will check the user input, and return a `FindBookCommand` to the `LogicManager` if the input is valid.
-* Step 4: `LogicManager` will then call `FindBookCommand#execute()`, which in turn calls `Model#updateFilteredBookList()`.
-* Step 5: The book list is updated and reflected on the GUI.
-
-The following sequence diagram shows how the `findbook` operation works:
-
-![FindBookSequenceDiagram](images/FindBookSequenceDiagram.png)
-
-The following activity diagram summarizes what happens when a user executes the `findbook` command:
-
-![FindBookActivityDiagram](images/FindBookActivityDiagram.png)
-
-
-### Record a reader borrowing a book
+### Borrowing a book
 
 Recording a reader borrowing a book requires a user input from the CLI.
 The respective parsers will parse the user input to check whether the input is valid, the input is valid if
@@ -286,7 +292,7 @@ The respective parsers will parse the user input to check whether the input is v
 2. The book is available
 3. The reader does not have overdue books or exceed his borrowing quota
 
-Then take the following pesudo processes:
+Then take the following pseudo processes:
 1. Obtain the Reader object and the Book object based on the identity provided by the user
 2. Add a corresponding record to the record List
 3. Update reader and book's borrowing status by adding the book in reader's borrowing list and setting the book's borrower to the reader
@@ -313,7 +319,7 @@ The following activity diagram summarizes what happens when a user executes the 
 
 ![BorrowActivityDiagram](images/BorrowActivityDiagram.png)
 
-### Record a reader returning a book
+### Returning a book
 
 Recording a reader returning a book requires a user input from the CLI.
 The respective parsers will parse the user input to check whether the input is valid, the input is valid if
@@ -321,7 +327,7 @@ The respective parsers will parse the user input to check whether the input is v
 2. The reader is borrowing the book and the book is borrowed by the reader
 3. There is such a valid borrowing record existing in the code base
 
-Then take the following pesudo processes:
+Then take the following pseudo processes:
 1. Obtain the Reader object and the Book object based on the identity provided by the user
 2. Mark a corresponding record as returned by indicating the dateReturned field.
 3. Remove the book from reader's borrowing list and set book's borrower to null
@@ -350,22 +356,7 @@ The following activity diagram summarizes what happens when a user executes the 
 
 ![ReturnActivityDiagram](images/ReturnActivityDiagram.png)
 
-### Delete book feature
-
-#### Implementation
-
-The execution of deleting a book and deleting a reader is very similar (refer to the sequence diagram under [**`Logic`**](#logic-component)).
-The only difference is that `DeleteBookCommandParser` is used to parse the
-argument and `DeleteBookCommand` is created. In order to delete a book,
-`Model#deleteBook()` is called instead of `Model#deleteReader()`.
-
-The following activity diagram summarizes what happen when a user executes a delete book command.
-
-![DeleteBookActivityDiagram](images/DeleteBookActivityDiagram.png)
-
-### Return overdue books
-
-#### Implementation
+### Returning overdue books
 
 This section is a more detailed explanation of how the system deals with returned book that is overdue.
 This process happens after `ReturnCommand#returnBook()` and before creating a `CommandResult` object (refer to [**`this`**](#record-a-reader-returning-a-book)).

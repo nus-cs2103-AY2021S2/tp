@@ -3,19 +3,55 @@ layout: page
 title: User Guide
 ---
 
+# Table of Contents
+* [Introduction](#introduction)
+    * [Purpose](#purpose)
+    * [Audience](#audience)
+    * [Overview](#overview)
+* [Quick start](#quick-start)
+* [Features](#features)
+    * [Adding a reader](#adding-a-reader-addreader)
+    * [Deleting a reader](#deleting-a-reader-deletereader)
+    * [Listing all readers](#listing-all-readers-listreader)
+    * [Finding a reader](#locating-readers-by-name-findreader)
+    * [Adding a book](#adding-a-book-addbook)
+    * [Deleting a book](#deleting-a-book-deletebook)
+    * [Listing all books](#listing-all-books-listbook)
+    * [Finding a book](#locating-books-by-name-findbook)
+    * [Borrowing a book](#borrowing-a-book-borrow)
+    * [Returning a book](#returning-a-book-return)
+    * [Clearing entries](#clearing-all-entries-clear)
+    * [Accessing the help page](#viewing-help-help)
+    * [Exiting the application](#exiting-the-program-exit)
+* [FAQ](#faq)
+* [Command summary](#command-summary)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Introduction**
+
+### Purpose
+
+The purpose of this document is to provide a brief guide to the various features and functions of SmartLib,
+so that our target readers would be able to gain a better understanding of how our application works,
+and may navigate the application with greater ease.
+
+### Audience
+
+This User Guide (UG) is meant for any user who is interested in understanding the various features and
+functions of our application, SmartLib. Some of our intended audience include:
+
+* SmartLib's end-users: any user who may want to use SmartLib features to support their businesses and/or for other
+purposes.
+
+### Overview
+
 SmartLib is a desktop app for managing private book loaning services owning less than 10,000 books,
 optimized for use via a Command Line Interface (CLI),
 while still having the benefits of a Graphical User Interface (GUI).
 
 If you can type fast, SmartLib would be a brilliant and efficient assistant in the systematic management of your books
 and borrowers' information, as compared to the traditional GUI apps currently available in the market.
-
-# Table of Contents
-* [Quick start](#quick-start)
-* [Features](#features)
-* [FAQ](#faq)
-* [Command summary](#command-summary)
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -71,7 +107,58 @@ and borrowers' information, as compared to the traditional GUI apps currently av
 
 </div>
 
-### Adding a book : `addbook`
+### Adding a reader: `addreader`
+
+Adds a reader to SmartLib's registered reader base .
+
+Format: `addreader r/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
+
+Examples:
+* `addreader r/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `addreader r/Betsy Crowe p/88888888 e/betsycrowe@example.com a/Newgate Prison`
+
+### Deleting a reader: `deletereader`
+
+Deletes the specified reader from SmartLib's registered reader base.
+
+Format: `deletereader INDEX`
+
+* Deletes the reader at the specified `INDEX`.
+* The index refers to the index number shown in the displayed reader list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `deletereader 1`
+* `deletereader 2`
+
+Tip:
+* `listreader` followed by `deletereader 2` deletes the 2nd reader in the displayed reader list.
+
+### Listing all readers: `listreader`
+
+Shows a list of all readers in SmartLib.
+
+Format: `list`
+
+### Locating readers by name: `findreader`
+
+Finds readers whose names contain any of the given keywords.
+
+Format: `findreader KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the name is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Readers matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+Examples:
+* `findreader John` returns `john` and `John Doe`
+* `findreader alex david` returns `Alex Yeoh`, `David Li`<br>
+  ![result for 'findreader alex david'](images/findAlexDavidResult.png)
+
+### Adding a book: `addbook`
 
 Adds a book to the book list.
 
@@ -110,82 +197,7 @@ Examples:
 *`findbook fiction` returns books related to fiction
 *`findbook history [American History]` returns books related to history, especially American history.
 
-### Listing all readers : `listreader`
-
-Shows a list of all readers in SmartLib.
-
-Format: `list`
-
-### Locating readers by name: `findreader`
-
-Finds readers whose names contain any of the given keywords.
-
-Format: `findreader KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Readers matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `findreader John` returns `john` and `John Doe`
-* `findreader alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'findreader alex david'](images/findAlexDavidResult.png)
-
-### Viewing help : `help`
-
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-### Adding a reader: `addreader`
-
-Adds a reader to SmartLib's registered reader base .
-
-Format: `addreader r/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
-
-Examples:
-* `addreader r/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `addreader r/Betsy Crowe p/88888888 e/betsycrowe@example.com a/Newgate Prison`
-
-### Editing a reader : `edit`
-
-Edits an existing reader in SmartLib.
-
-Format: `edit INDEX [r/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the reader at the specified `INDEX`. The index refers to the index number shown in the displayed reader list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the reader will be removed i.e adding of tags is not cumulative.
-* You can remove all the reader’s tags by typing `t/` without specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st reader to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 r/Betsy Crower t/` Edits the name of the 2nd reader to be `Betsy Crower` and clears all existing tags.
-
-### Deleting a reader : `deletereader`
-
-Deletes the specified reader from SmartLib's registered reader base.
-
-Format: `deletereader INDEX`
-
-* Deletes the reader at the specified `INDEX`.
-* The index refers to the index number shown in the displayed reader list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `deletereader 1`
-* `deletereader 2`
-
-Tip:
-* `listreader` followed by `deletereader 2` deletes the 2nd reader in the displayed reader list.
-
-### Borrowing a book : `borrow`
+### Borrowing a book: `borrow`
 
 Records a borrowing activity.
 
@@ -197,7 +209,7 @@ Examples:
 * `borrow b/The Old Man and the Sea r/Alex Yeoh` records a rental entry that reader whose name is Alex Yeoh borrowed
 a book which name is The Old Man and the Sea
 
-### Returning a book : `return`
+### Returning a book: `return`
 
 Records a returning activity.
 
@@ -209,13 +221,21 @@ Examples:
 * `return b/The Old Man and the Sea r/Alex Yeoh` records a rental entry that reader whose name is Alex Yeoh returned
 a book which name is The Old Man and the Sea
 
-### Clearing all entries : `clear`
+### Clearing all entries: `clear`
 
 Clears all entries from SmartLib.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+### Viewing help: `help`
+
+Shows a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
+### Exiting the program: `exit`
 
 Exits the program.
 
@@ -246,10 +266,16 @@ If your changes to the data file makes its format invalid, SmartLib will discard
 
 Action | Format, Examples
 --------|------------------
-**Add reader** | `add r/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` <br> e.g., `add r/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`
+**Add reader** | `addreader r/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` <br> e.g., `addreader r/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`
+**Delete reader** | `deletereader INDEX`<br> e.g., `deletereader 3`
+**Find reader** | `findreader KEYWORD [MORE_KEYWORDS]`<br> e.g., `findreader James Jake`
+**List readers** | `listreader`
+**Add book** | `addbook b/NAME a/AUTHOR p/PUBLISHER i/ISBN g/Genre` <br> e.g., `addbook b/Harry Porter a/JK Rowling p/Bloomsbury i/9783161484100 g/Fantasy`
+**Borrow book** | `borrow b/BOOKNAME r/READERNAME`<br> e.g., `borrow b/The Old Man and the Sea r/Alex Yeoh`
+**Delete book** | `deletebook INDEX`<br> e.g., `deletebook 3`
+**Find book** | `findbook KEYWORD [MORE_KEYWORDS]`<br> e.g., `findbook Thomas the Tank Engine`
+**List books** | `listbook`
+**Return book** | `return b/BOOKNAME r/READERNAME`<br> e.g., `return b/The Old Man and the Sea r/Alex Yeoh`
 **Clear** | `clear`
-**Delete reader** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [r/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 r/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
 **Help** | `help`
+**Exit** | `exit`
