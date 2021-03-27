@@ -8,7 +8,7 @@ public class IllegalValueException extends Exception {
     /**
      * A constructor for the IllegalValueException.
      *
-     * @param message should contain relevant information on the failed constraint(s)
+     * @param message should contain relevant information on the failed constraint(s).
      */
     public IllegalValueException(String message) {
         super(message);
@@ -17,8 +17,8 @@ public class IllegalValueException extends Exception {
     /**
      * A constructor for the IllegalValueException.
      *
-     * @param message should contain relevant information on the failed constraint(s)
-     * @param cause of the main exception
+     * @param message should contain relevant information on the failed constraint(s).
+     * @param cause of the main exception.
      */
     public IllegalValueException(String message, Throwable cause) {
         super(message, cause);

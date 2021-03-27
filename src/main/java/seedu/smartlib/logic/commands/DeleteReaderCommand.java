@@ -11,14 +11,14 @@ import seedu.smartlib.model.Model;
 import seedu.smartlib.model.reader.Reader;
 
 /**
- * Deletes a reader identified using it's displayed index from the SmarLib registered reader base.
+ * Deletes a reader identified using it's displayed index from SmartLib's registered reader base.
  */
 public class DeleteReaderCommand extends Command {
 
     public static final String COMMAND_WORD = "deletereader";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the reader identified by the index number used in the displayed reader list.\n"
+            + ": Deletes the reader identified by the index number in the displayed reader list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
@@ -26,10 +26,22 @@ public class DeleteReaderCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates an DeleteReaderCommand to delete the specified reader.
+     *
+     * @param targetIndex index of the reader to be deleted from SmartLib's reader base.
+     */
     public DeleteReaderCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
+    /**
+     * Executes the command and returns the result message.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return feedback message of the operation result for display.
+     * @throws CommandException if an error occurs during command execution.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -44,10 +56,17 @@ public class DeleteReaderCommand extends Command {
         return new CommandResult(String.format(MESSAGE_DELETE_READER_SUCCESS, readerToDelete));
     }
 
+    /**
+     * Checks if this DeleteReaderCommand is equal to another DeleteReaderCommand.
+     *
+     * @param other the other DeleteReaderCommand to be compared.
+     * @return true if this DeleteReaderCommand is equal to the other DeleteReaderCommand, and false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteReaderCommand // instanceof handles nulls
                 && targetIndex.equals(((DeleteReaderCommand) other).targetIndex)); // state check
     }
+
 }

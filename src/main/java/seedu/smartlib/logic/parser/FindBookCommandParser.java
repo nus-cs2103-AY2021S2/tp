@@ -9,14 +9,17 @@ import seedu.smartlib.logic.parser.exceptions.ParseException;
 import seedu.smartlib.model.book.BookNameContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new FindReaderCommand object
+ * Parses input arguments and creates a new FindBookCommand object.
  */
 public class FindBookCommandParser implements Parser<FindBookCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindBookCommand
      * and returns a FindBookCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @param args arguments given in the user input.
+     * @return a FindBookCommand object required for execution.
+     * @throws ParseException if the user input does not conform to the expected format.
      */
     public FindBookCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
@@ -31,4 +34,3 @@ public class FindBookCommandParser implements Parser<FindBookCommand> {
     }
 
 }
-

@@ -14,13 +14,17 @@ import seedu.smartlib.model.record.DateBorrowed;
 import seedu.smartlib.model.record.IncompleteRecord;
 
 /**
- * Parses input arguments and creates a new {@code BorrowCommand} object
+ * Parses input arguments and creates a new {@code BorrowCommand} object.
  */
 public class BorrowCommandParser implements Parser<BorrowCommand> {
+
     /**
      * Parses the given {@code String} of arguments in the context of the {@code BorrowCommand}
      * and returns a {@code BorrowCommand} object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @param args arguments given in the user input.
+     * @return a BorrowCommand object required for execution.
+     * @throws ParseException if the user input does not conform to the expected format.
      */
     public BorrowCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_BOOK, PREFIX_READER);
@@ -41,8 +45,13 @@ public class BorrowCommandParser implements Parser<BorrowCommand> {
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
+     *
+     * @param argumentMultimap a map containing the args.
+     * @param prefixes prefixes to be checked.
+     * @return true if none of the prefixes contains empty values, and false otherwise.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
+
 }

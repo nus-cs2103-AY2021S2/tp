@@ -41,7 +41,7 @@ public class BorrowCommand extends Command {
     /**
      * Creates a BorrowCommand to add a record.
      *
-     * @param incompleteRecord record to be added to the Storage
+     * @param incompleteRecord the record to be added to the Storage.
      */
     public BorrowCommand(IncompleteRecord incompleteRecord) {
         requireAllNonNull(incompleteRecord);
@@ -81,6 +81,13 @@ public class BorrowCommand extends Command {
         }
     }
 
+    /**
+     * Executes the command and returns the result message.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return feedback message of the operation result for display.
+     * @throws CommandException if an error occurs during command execution.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireAllNonNull(model);
@@ -98,6 +105,12 @@ public class BorrowCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, properRecord));
     }
 
+    /**
+     * Checks if this BorrowCommand is equal to another BorrowCommand.
+     *
+     * @param other the other BorrowCommand to be compared.
+     * @return true if this BorrowCommand is equal to the other BorrowCommand, and false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
