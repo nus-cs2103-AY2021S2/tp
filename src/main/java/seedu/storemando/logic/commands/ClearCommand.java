@@ -10,7 +10,7 @@ import java.util.function.Predicate;
 import seedu.storemando.logic.commands.exceptions.CommandException;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.item.Item;
-import seedu.storemando.model.item.LocationContainsKeywordsPredicate;
+import seedu.storemando.model.item.LocationContainsPredicate;
 
 /**
  * Clears the storemando or a specified location.
@@ -28,7 +28,7 @@ public class ClearCommand extends Command {
 
     private final Predicate<Item> predicate;
 
-    public ClearCommand(LocationContainsKeywordsPredicate predicate) {
+    public ClearCommand(LocationContainsPredicate predicate) {
         this.predicate = predicate;
     }
 
