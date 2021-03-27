@@ -2,16 +2,21 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNEE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+
+import java.util.Collection;
+import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.assignee.Assignee;
-
-import java.util.Collection;
-import java.util.Optional;
-import java.util.Set;
 
 /**
  * Parses input arguments and creates a new EditTaskCommand object
@@ -80,8 +85,6 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         if (assignees.isEmpty()) {
             return Optional.empty();
         }
-
-//        Collection<String> tagSet = assignees.size() == 1 && assignees.contains("") ? Collections.emptySet() : assignees;
 
         return Optional.of(ParserUtil.parseAssignees(assignees));
     }
