@@ -20,12 +20,12 @@ import seedu.address.model.Model;
 import seedu.address.model.filter.PersonFilter;
 
 /**
- * Adds a tutor filter.
+ * Adds tutor filters.
  */
 public class AddPersonFilterCommand extends Command {
     public static final String COMMAND_WORD = "add_tutor_filter";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tutor filter."
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds tutor filters."
             + "Parameters: "
             + "[" + PREFIX_NAME + "NAME]... "
             + "[" + PREFIX_GENDER + "GENDER]... "
@@ -49,7 +49,7 @@ public class AddPersonFilterCommand extends Command {
     private final PersonFilter personFilter;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates a AddPersonFilterCommand.
      */
     public AddPersonFilterCommand(PersonFilter personFilter) {
         requireNonNull(personFilter);

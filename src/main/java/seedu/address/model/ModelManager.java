@@ -352,11 +352,13 @@ public class ModelManager implements Model {
     @Override
     public void addPersonFilter(PersonFilter personFilter) {
         this.personFilter.add(personFilter);
+        this.updateFilteredPersonList(this.personFilter);
     }
 
     @Override
     public void removePersonFilter(PersonFilter personFilter) {
         this.personFilter.remove(personFilter);
+        this.updateFilteredPersonList(this.personFilter);
     }
 
     @Override
