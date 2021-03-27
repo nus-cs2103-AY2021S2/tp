@@ -127,9 +127,13 @@ public class EditAutocompleteUtil {
                         continue;
                     }
 
-                    Tag tag = new Tag(value);
-                    if (tags.contains(tag)) {
-                        inputTags.add(tag);
+                    try {
+                        Tag tag = new Tag(value);
+                        if (tags.contains(tag)) {
+                            inputTags.add(tag);
+                        }
+                    } catch (IllegalArgumentException e) {
+                        // If tag input is invalid, dont need to check if tags set contains it.
                     }
 
                     output += " -t " + value;
