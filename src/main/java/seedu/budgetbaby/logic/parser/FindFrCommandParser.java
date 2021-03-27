@@ -15,13 +15,13 @@ import seedu.budgetbaby.model.record.Category;
 import seedu.budgetbaby.model.record.Description;
 
 /**
- * Parses input arguments and creates a new CategoryFilterCommand object
+ * Parses input arguments and creates a new FindFrCommand object
  */
 public class FindFrCommandParser implements BudgetBabyCommandParser<FindFrCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the CategoryFilterCommand
-     * and returns a CategoryFilterCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the FindFrCommand
+     * and returns a FindFrCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */

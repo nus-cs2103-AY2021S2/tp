@@ -27,12 +27,12 @@ title: User Guide
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   - **`add-fr`** `d/Lunch a/10` : Add a financial record for `lunch` which cost `10` dollars.
+   - **`add-fr`** `d/Lunch a/10 c/Food` : Add a financial record for `Lunch` which cost `10` dollars and tag it under the `Food` category
     
    - **`delete-fr`** `3` : Deletes the 3rd financial record shown in the current list.
 
    - **`set-bg`** `500` : Sets the current month's budget at `500` dollars.
-
+    
    - **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
@@ -170,7 +170,7 @@ The UI displays the current monthly budget that has been set automatically.
 
 The UI displays and updates the remaining budget for the current month automatically.
 
-### Viewing a specific month : [coming in v1.3 subject to changes]
+### Viewing a specific month : `view-month`
 
 Displays data associated with a specific month.
 
@@ -179,7 +179,7 @@ Data associated include:
 - Remaining budget amount
 - Financial records
 
-Format: `view MM-YYYY`
+Format: `view-month MM-YYYY`
 
 <div markdown="span" class="alert alert-primary"></div>
 
@@ -192,25 +192,30 @@ Examples:
 
 - `view 01-2021`
 
-### Filtering financial records by category :
+### Find financial records : `find-fr`
 
-Filters financial records based on specified category.
+Finds financial records matching all the specified inputs of description, amount and/or category.
 
 Data associated include:
-- Category to filter
+- Description, amount and/or category to filter
 - Financial records
 
-Format: `category-filter c/FR_CATEGORY`
+Format: `find-fr d/FR_DESCRIPTION a/FR_AMOUNT c/FR_CATEGORY`
 
 <div markdown="span" class="alert alert-primary"></div>
 
+**:bulb: Tips:**
+
+- `d/FR_DESCRIPTION`, `a/FR_AMOUNT` and `c/FR_CATEGORY` are optional fields, but the command expects at least 1 field present
+- `c/FR_CATEGORY` accepts multiple categories (i.e. `c/Food c/Picnic c/Family`)
+
 Examples:
 
-- `category-filter c/Food`
+- `find-fr d/Lunch a/10 c/Food c/Family`
 
-### Resetting filters on financial records :
+### Resetting filters on financial records : `reset-filter`
 
-Resets all filters on financial records.
+Resets all filters on financial records set by `find-fr`.
 
 Data associated include:
 - Financial records
@@ -260,17 +265,19 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action                              | Format, Examples                                                           |
-| ----------------------------------- | -----------------------------------------------------------------------    |
-| **Add a Financial Record**          | `add-fr d/FR_DESCRIPTION a/FR_AMOUNT​` <br> e.g., `add-fr d/Lunch a/10` |
-| **List a Month's Financial Record** | `list MM-YYYY​` <br> e.g., `list 02-2021`                               |
-| **View a Financial Record**         | `view-fr FR_INDEX` <br> e.g., `view-fr 10`                                 |
-| **Delete a Financial Record**       | `delete-fr FR_INDEX` <br> e.g., `delete-fr 10`                             |
-| **Set Monthly Budget**              | `set-bg BG_AMOUNT​` <br> e.g., `set-bg 100`                             |
-| **View Monthly Budget**             | `view-bg​`                                                              |
-| **View a Month**                    | `view MM-YYYY` <br> e.g., `view 01-2021`                                   |
-| **Help**                            | `help`                                                                     |
-| **Exit**                            | `exit`                                                                     |
+| Action                                      | Format, Examples                                                                                 |
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| **Add a Financial Record**                  | `add-fr d/FR_DESCRIPTION a/FR_AMOUNT​` <br> e.g., `add-fr d/Lunch a/10`                       |
+| **List a Month's Financial Record**         | `list MM-YYYY​` <br> e.g., `list 02-2021`                                                     |
+| **View a Financial Record**                 | `view-fr FR_INDEX` <br> e.g., `view-fr 10`                                                       |
+| **Delete a Financial Record**               | `delete-fr FR_INDEX` <br> e.g., `delete-fr 10`                                                   |
+| **Find a Financial Record**                 | `find-fr FR_DESCRIPTION FR/AMOUNT FR/CATEGORY` <br> e.g., `find-fr d/Lunch a/10 c/Food c/Family` | 
+| **Reset filters set on Financial Records**  | `reset-filter` <br> e.g., `reset-filter`                                                         |
+| **Set Monthly Budget**                      | `set-bg BG_AMOUNT​` <br> e.g., `set-bg 100`                                                   |
+| **View Monthly Budget**                     | `view-bg​`                                                                                    |
+| **View a Month**                            | `view MM-YYYY` <br> e.g., `view 01-2021`                                                         |
+| **Help**                                    | `help`                                                                                           |
+| **Exit**                                    | `exit`                                                                                           |
 
 ## Credits
 
