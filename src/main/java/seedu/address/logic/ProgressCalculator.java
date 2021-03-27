@@ -122,6 +122,7 @@ public class ProgressCalculator {
         report.append(ViewPlanCommand.getResult(dietPlan, infoCalculator));
 
         // Dates that progress report is listing
+        report.append("\n================================================================\n");
         report.append("\nHere is the report for the ");
         LocalDate firstIntakeDay = foodIntakes.get(0).getDate();
         LocalDate lastIntakeDay = foodIntakes.get(foodIntakes.size() - 1).getDate();
