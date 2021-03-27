@@ -17,9 +17,9 @@ import seedu.address.model.student.Student;
 public class TuitionCard extends UiPart<Region> {
 
     private static final String FXML = "TuitionListCard.fxml";
+    private static final int ROW_HEIGHT = 98;
 
     public final Student student;
-    final int ROW_HEIGHT = 98;
 
     @FXML
     private VBox tuitionCardPane;

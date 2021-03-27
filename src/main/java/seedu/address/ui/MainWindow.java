@@ -195,18 +195,21 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Display and refresh date time display on TutorBuddy every 1 second
+     */
     private void displayDateAndTime() {
         final Timeline timeline = new Timeline(
                 new KeyFrame(
-                        Duration.millis( 500 ),
-                        event -> {
-                            time.setText(LocalDateTime.now().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm"))
-                                + "     " + LocalDateTime.now().toLocalDate()
-                                    .format(DateTimeFormatter.ofPattern("dd-MM-YYYY")));
-                        }
+                    Duration.millis(1000),
+                    event -> {
+                        time.setText(LocalDateTime.now().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm"))
+                            + "     " + LocalDateTime.now().toLocalDate()
+                                .format(DateTimeFormatter.ofPattern("dd-MM-YYYY")));
+                    }
                 )
         );
-        timeline.setCycleCount( Animation.INDEFINITE );
+        timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
     }
 

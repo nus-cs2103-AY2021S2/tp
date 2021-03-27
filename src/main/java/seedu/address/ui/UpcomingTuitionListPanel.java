@@ -79,7 +79,8 @@ public class UpcomingTuitionListPanel extends UiPart<Region> {
     /**
      * Filters all tuition 1 week from today.
      */
-    private void filterOneWeekTuitionSessions(ObservableList<Tuition> tuitionList, ObservableList<Tuition> finalTuitionList) {
+    private void filterOneWeekTuitionSessions(ObservableList<Tuition> tuitionList,
+                                              ObservableList<Tuition> finalTuitionList) {
         LocalDate today = LocalDateTime.now().toLocalDate();
         LocalDate weekToday = today.plusWeeks(1);
         for (Tuition tuition : tuitionList) {
