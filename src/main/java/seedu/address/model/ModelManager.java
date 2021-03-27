@@ -23,6 +23,7 @@ public class ModelManager implements Model {
     private final TaskTracker taskTracker;
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
+    private VersionedTaskTracker versionedTaskTracker;
 
     /**
      * Initializes a ModelManager with the given taskTracker and userPrefs.
@@ -162,8 +163,8 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return taskTracker.equals(other.taskTracker)
-                && userPrefs.equals(other.userPrefs)
-                && filteredTasks.equals(other.filteredTasks);
+            && userPrefs.equals(other.userPrefs)
+            && filteredTasks.equals(other.filteredTasks);
     }
 
 }
