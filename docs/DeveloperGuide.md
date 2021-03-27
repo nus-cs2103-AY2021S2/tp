@@ -487,13 +487,17 @@ Use case ends.
 
 ### Non-Functional Requirements
 
-1. Should be able to hold up to 1000 line items in the house without any sluggish performance for typical usage.
-2. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
-   able to accomplish most of the tasks faster using commands than using the mouse.
-4. Should work with or without Internet connection.   
+1. **Performance**
+    * Result should appear within 0.3 seconds after user keys in a command.
+2. **Reliability**
+    * Should be able to hold up to 1000 line items in the house without any sluggish performance for typical usage.
+3. **Portability**
+    * Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+4. **Usability**
+    * A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should 
+      be able to accomplish most of the tasks faster by typing rather than using the mouse. 
+    * StoreMando should work with or without Internet connection.
 
-*{More to be added}*
 
 ### Glossary
 
@@ -502,7 +506,6 @@ Use case ends.
 * **CLI**: Command Line Interface    
 * **GUI**: Graphical User Interface
 * **Inventory**: List of all items stored in StoreMando
-    
 
 --------------------------------------------------------------------------------------------------------------------
 
