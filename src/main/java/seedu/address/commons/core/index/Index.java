@@ -31,6 +31,10 @@ public class Index {
         return zeroBasedIndex + 1;
     }
 
+    public static int getInterval(Index startIndex, Index endIndex) {
+        return endIndex.zeroBasedIndex - startIndex.zeroBasedIndex;
+    }
+
     /**
      * Creates a new {@code Index} using a zero-based index.
      */

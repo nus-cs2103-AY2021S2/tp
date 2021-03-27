@@ -3,7 +3,9 @@ package seedu.address.ui;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Region;
+import seedu.address.logic.commandlist.CommandList;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -18,6 +20,8 @@ public class CommandBox extends UiPart<Region> {
 
     private final CommandExecutor commandExecutor;
 
+    private final CommandList commandList = new CommandList();
+
     @FXML
     private TextField commandTextField;
 
@@ -29,6 +33,13 @@ public class CommandBox extends UiPart<Region> {
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        commandTextField.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.UP) {
+                handleUpPressed();
+            } else if (event.getCode() == KeyCode.DOWN) {
+                handleDownPressed();
+            }
+        });
     }
 
     /**
@@ -40,6 +51,7 @@ public class CommandBox extends UiPart<Region> {
         if (commandText.equals("")) {
             return;
         }
+        commandList.addCommand(commandText);
 
         try {
             commandExecutor.execute(commandText);
@@ -47,6 +59,14 @@ public class CommandBox extends UiPart<Region> {
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
         }
+    }
+
+    private void handleUpPressed() {
+        commandTextField.setText(commandList.moveUp());
+    }
+
+    private void handleDownPressed() {
+        commandTextField.setText(commandList.moveDown());
     }
 
     /**
