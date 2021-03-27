@@ -60,9 +60,13 @@ public class AddBookingCommand extends Command {
         }
 
         Residence residenceToAddBooking = lastShownList.get(targetIndex.getZeroBased());
+        if (residenceToAddBooking.hasBooking(toAdd)) {
+            throw new CommandException(MESSAGE_INVALID_BOOKING);
+        }
+
         model.setResidence(residenceToAddBooking, residenceToAddBooking.addBooking(toAdd));
         return new CommandResult(String.format(MESSAGE_SUCCESS,
-                residenceToAddBooking.getResidenceName().getValue(), toAdd));
+                residenceToAddBooking.getResidenceName().toString(), toAdd));
     }
 
     @Override
