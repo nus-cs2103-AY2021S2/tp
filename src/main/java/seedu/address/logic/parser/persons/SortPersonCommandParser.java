@@ -16,7 +16,7 @@ public class SortPersonCommandParser implements Parser<SortPersonCommand> {
      */
     @Override
     public SortPersonCommand parse(String userInput) throws ParseException {
-        return new SortPersonCommand(PersonSortOption.NAME, PersonSortDirection.ASC);
+        return new SortPersonCommand(PersonSortOption.NAME, PersonSortDirection.DESC);
     }
 
 

@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -95,6 +96,7 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    void sortFilteredPersonList(Comparator<Person> comparator);
 
     // ======================= Meeting part of the meeting Model interface ============================ //
     /**
@@ -140,7 +142,9 @@ public interface Model {
      */
     void updateFilteredMeetingList(Predicate<Meeting> predicate);
 
-    // ============= Clashing Meetings  ========================================================
+    void sortFilteredMeetingList(Comparator<Meeting> comparator);
+
+        // ============= Clashing Meetings  ========================================================
 
     /**
      * Checks if there is a clash in meeting times within the model.

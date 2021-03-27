@@ -23,19 +23,9 @@ public class SortPersonCommand extends Command {
     public SortPersonCommand(PersonSortOption sortOption, PersonSortDirection sortDirection) {
         switch (sortOption) {
         case NAME:
-            personComparator = new Comparator<Person>() {
-                @Override
-                public int compare(Person p1, Person p2) {
-                    return p1.getName().toString().compareTo(p2.getName().toString());
-                }
-            };
-        default:
-            personComparator = new Comparator<Person>() {
-                @Override
-                public int compare(Person p1, Person p2) {
-                    return 0;
-                }
-            };
+            personComparator = Comparator.comparing(person -> person.getName().toString(),
+                    String.CASE_INSENSITIVE_ORDER);
+            break;
         }
         if (sortDirection == PersonSortDirection.DESC) {
             personComparator = personComparator.reversed();

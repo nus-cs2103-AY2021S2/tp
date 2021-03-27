@@ -18,6 +18,7 @@ import seedu.address.logic.commands.persons.EditPersonCommand;
 import seedu.address.logic.commands.persons.FindGroupCommand;
 import seedu.address.logic.commands.persons.FindPersonCommand;
 import seedu.address.logic.commands.persons.ListPersonCommand;
+import seedu.address.logic.commands.persons.SortPersonCommand;
 import seedu.address.logic.commands.reminders.RefreshRemindersCommand;
 
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -28,6 +29,7 @@ import seedu.address.logic.parser.persons.DeletePersonCommandParser;
 import seedu.address.logic.parser.persons.EditPersonCommandParser;
 import seedu.address.logic.parser.persons.FindGroupCommandParser;
 import seedu.address.logic.parser.persons.FindPersonCommandParser;
+import seedu.address.logic.parser.persons.SortPersonCommandParser;
 
 
 /**
@@ -77,6 +79,9 @@ public class MeetBuddyParser {
 
         case ListPersonCommand.COMMAND_WORD:
             return new ListPersonCommand();
+
+        case SortPersonCommand.COMMAND_WORD:
+            return new SortPersonCommandParser().parse(arguments);
 
         //============================= Meeting ==============================
         case AddMeetingCommand.COMMAND_WORD:
