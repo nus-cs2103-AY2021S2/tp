@@ -53,6 +53,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         model.appendCommandHistoryEntry(commandText);
+        commandHistorySelector.selectLast();
 
         try {
             storage.saveAddressBook(model.getAddressBook());
