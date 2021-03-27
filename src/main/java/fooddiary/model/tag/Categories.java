@@ -9,6 +9,7 @@ public enum Categories {
     CHINESE,
     FUSION,
     JAPANESE,
+    KOREAN,
     MALAY,
     HALAL,
     VEGETARIAN,

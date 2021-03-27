@@ -79,7 +79,7 @@ public class LogicManagerTest {
         String addCommand = AddCommand.COMMAND_WORD + CommandTestUtil.NAME_DESC_A
                 + CommandTestUtil.RATING_DESC_A + CommandTestUtil.PRICE_DESC_A
                 + CommandTestUtil.REVIEW_DESC_A + CommandTestUtil.ADDRESS_DESC_A;
-        Entry expectedEntry = new EntryBuilder(VALID_ENTRY_A).withTags().build();
+        Entry expectedEntry = new EntryBuilder(VALID_ENTRY_A).withTagCategories().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addEntry(expectedEntry);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

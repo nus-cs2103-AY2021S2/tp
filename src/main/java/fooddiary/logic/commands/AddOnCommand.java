@@ -23,7 +23,8 @@ import fooddiary.model.entry.Name;
 import fooddiary.model.entry.Price;
 import fooddiary.model.entry.Rating;
 import fooddiary.model.entry.Review;
-import fooddiary.model.tag.Tag;
+import fooddiary.model.tag.TagCategory;
+import fooddiary.model.tag.TagSchool;
 
 
 /**
@@ -100,9 +101,12 @@ public class AddOnCommand extends Command {
 
 
         Address updatedAddress = entryToAddOn.getAddress();
-        Set<Tag> updatedTags = entryToAddOn.getTags();
+        Set<TagCategory> updatedTagCategories = entryToAddOn.getTagCategories();
+        Set<TagSchool> updatedTagSchools = entryToAddOn.getTagSchools();
 
-        return new Entry(updatedName, updatedRating, updatedPrice, updatedReviews, updatedAddress, updatedTags);
+
+        return new Entry(updatedName, updatedRating, updatedPrice, updatedReviews,
+                updatedAddress, updatedTagCategories, updatedTagSchools);
     }
 
     @Override

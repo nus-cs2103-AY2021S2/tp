@@ -6,7 +6,8 @@ import static fooddiary.logic.parser.CliSyntax.PREFIX_NAME;
 import static fooddiary.logic.parser.CliSyntax.PREFIX_PRICE;
 import static fooddiary.logic.parser.CliSyntax.PREFIX_RATING;
 import static fooddiary.logic.parser.CliSyntax.PREFIX_REVIEW;
-import static fooddiary.logic.parser.CliSyntax.PREFIX_TAG;
+import static fooddiary.logic.parser.CliSyntax.PREFIX_TAG_CATEGORY;
+import static fooddiary.logic.parser.CliSyntax.PREFIX_TAG_SCHOOL;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
@@ -20,8 +21,8 @@ import fooddiary.logic.commands.EditCommand;
 import fooddiary.logic.commands.EditCommand.EditEntryDescriptor;
 import fooddiary.logic.parser.exceptions.ParseException;
 import fooddiary.model.entry.Review;
-import fooddiary.model.tag.Tag;
-
+import fooddiary.model.tag.TagCategory;
+import fooddiary.model.tag.TagSchool;
 
 
 /**
@@ -38,7 +39,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_RATING, PREFIX_PRICE,
-                PREFIX_REVIEW, PREFIX_ADDRESS, PREFIX_TAG);
+                PREFIX_REVIEW, PREFIX_ADDRESS, PREFIX_TAG_CATEGORY, PREFIX_TAG_SCHOOL);
 
         Index index;
 
@@ -62,7 +63,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editEntryDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editEntryDescriptor::setTags);
+        parseTagCategoriesForEdit(argMultimap.getAllValues(PREFIX_TAG_CATEGORY))
+                .ifPresent(editEntryDescriptor::setTagCategories);
+        parseTagSchoolsForEdit(argMultimap.getAllValues(PREFIX_TAG_SCHOOL))
+                .ifPresent(editEntryDescriptor::setTagSchools);
 
         if (!editEntryDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -76,14 +80,29 @@ public class EditCommandParser implements Parser<EditCommand> {
      * If {@code tags} contain only one element which is an empty string, it will be parsed into a
      * {@code Set<Tag>} containing zero tags.
      */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
+    private Optional<Set<TagCategory>> parseTagCategoriesForEdit(Collection<String> tags) throws ParseException {
         assert tags != null;
 
         if (tags.isEmpty()) {
             return Optional.empty();
         }
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
+        return Optional.of(ParserUtil.parseTagsCategories(tagSet));
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
+     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Tag>} containing zero tags.
+     */
+    private Optional<Set<TagSchool>> parseTagSchoolsForEdit(Collection<String> tags) throws ParseException {
+        assert tags != null;
+
+        if (tags.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
+        return Optional.of(ParserUtil.parseTagSchool(tagSet));
     }
 
     /**
