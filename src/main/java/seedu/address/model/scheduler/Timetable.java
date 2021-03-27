@@ -8,8 +8,8 @@ import static java.util.Objects.requireNonNull;
 
 /**
  * A weekly timetable class, starting from Monday to Sunday, containing half hour slots that can be booked.
- * Internals should not be modified except for booking purposes. The startOfTheWeek date is the date of the first day
- * of the week.
+ * This represents the model of the user's schedule of free timetable slots. The startOfTheWeek date is the date of the
+ * first day in the timetable.
  *
  */
 
@@ -94,7 +94,7 @@ public class Timetable {
         try {
             t.bookTimeRange(LocalDate.now().plusDays(5),
                     LocalTime.of(16, 0), LocalTime.of(18, 30));
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("NO");
         }
         System.out.println(t);
