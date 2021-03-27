@@ -80,7 +80,6 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         birthday = source.getBirthday().toString();
-        System.out.println(name);
         goal = source.getGoal().toString();
 
         Optional<Picture> srcPic = source.getPicture();
@@ -139,7 +138,7 @@ class JsonAdaptedPerson {
         if (!Goal.isValidGoal(goal)) {
             throw new IllegalValueException(Goal.MESSAGE_CONSTRAINTS);
         }
-        final Goal modelGoal = new Goal(Goal.ENUM_MAP.get(goal.toLowerCase(Locale.ROOT)));
+        final Goal modelGoal = new Goal(Goal.parseFrequency(goal.toLowerCase(Locale.ROOT)));
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));

@@ -5,11 +5,10 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FREQUENCY;
 import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
-import java.util.Optional;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.SetGoalCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Goal.Frequency;
 
 public class SetGoalCommandParser implements Parser<SetGoalCommand> {
     @Override
@@ -18,11 +17,12 @@ public class SetGoalCommandParser implements Parser<SetGoalCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_FREQUENCY);
 
         Index index;
-        Optional<String> frequency;
+        Frequency frequency;
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            frequency = argMultimap.getValue(PREFIX_FREQUENCY);
+            String frequencyString = argMultimap.getValue(PREFIX_FREQUENCY).orElse("n");
+            frequency = ParserUtil.parseFrequency(frequencyString);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetGoalCommand.MESSAGE_USAGE), pe);
         }
@@ -31,6 +31,6 @@ public class SetGoalCommandParser implements Parser<SetGoalCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetGoalCommand.MESSAGE_USAGE));
         }
 
-        return new SetGoalCommand(index, ParserUtil.parseFrequency(frequency.orElse("n")));
+        return new SetGoalCommand(index, frequency);
     }
 }

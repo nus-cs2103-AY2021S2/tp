@@ -13,6 +13,7 @@ import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Event;
 import seedu.address.model.person.Goal;
+import seedu.address.model.person.Goal.Frequency;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -30,7 +31,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_BIRTHDAY = "02-03-1995";
-    public static final Goal.Frequency DEFAULT_GOAL = Goal.Frequency.NONE;
+    public static final Frequency DEFAULT_GOAL = Frequency.NONE;
 
     private Name name;
     private Phone phone;

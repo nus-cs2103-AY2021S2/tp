@@ -15,7 +15,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Goal;
+import seedu.address.model.person.Goal.Frequency;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 
@@ -43,7 +43,7 @@ public class JsonAdaptedPersonTest {
     private static final List<JsonAdaptedEvent> VALID_MEETINGS = BENSON.getMeetings().stream()
             .map(JsonAdaptedEvent::new)
             .collect(Collectors.toList());
-    private static final String VALID_GOAL = Goal.Frequency.WEEKLY.toString();
+    private static final String VALID_GOAL = Frequency.WEEKLY.toString();
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {

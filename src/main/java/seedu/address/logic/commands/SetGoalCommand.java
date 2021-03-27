@@ -9,6 +9,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Goal;
+import seedu.address.model.person.Goal.Frequency;
 import seedu.address.model.person.Person;
 
 public class SetGoalCommand extends Command {
@@ -24,14 +25,14 @@ public class SetGoalCommand extends Command {
     public static final String MESSAGE_ADD_GOAL_SUCCESS = "Set %1$s goal for %2$s";
 
     private final Index index;
-    private final Goal.Frequency frequency;
+    private final Frequency frequency;
 
     /**
      * Constructs an {@code AddGoalCommand} with the given index and frequency.
      * @param index of the person in the filter person list to add a goal for.
      * @param frequency of the meetings with this person.
      */
-    public SetGoalCommand(Index index, Goal.Frequency frequency) {
+    public SetGoalCommand(Index index, Frequency frequency) {
         this.index = index;
         this.frequency = frequency;
     }

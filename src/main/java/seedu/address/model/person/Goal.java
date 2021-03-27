@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.function.Function;
 
+import seedu.address.logic.parser.exceptions.ParseException;
+
 public class Goal {
 
     public static final String MESSAGE_CONSTRAINTS = "Goal should only be of type WEEKLY, MONTHLY, YEARLY, or NONE";
@@ -38,10 +40,16 @@ public class Goal {
         FREQUENCY_MAP.put(Frequency.YEARLY, x -> x.plusYears(1));
     }
 
+    /**
+     * Constructs a {@code Goal} instance of frequency type NONE.
+     */
     public Goal() {
         this.frequency = Frequency.NONE;
     }
 
+    /**
+     * Constructs a {@code Goal} instance with the given frequency.
+     */
     public Goal(Frequency frequency) {
         this.frequency = frequency;
     }
@@ -50,7 +58,15 @@ public class Goal {
         return frequency;
     }
 
-    public LocalDate getNext(LocalDate date) {
+    public boolean isNoneFrequency() {
+        return this.getFrequency().equals(Frequency.NONE);
+    }
+
+    private static boolean isValidFrequencyString(String frequencyString) {
+        return Goal.ENUM_MAP.containsKey(frequencyString);
+    }
+
+    public LocalDate getGoalDeadline(LocalDate date) {
         if (date == null || this.getFrequency().equals(Frequency.NONE)) {
             return null;
         }
@@ -59,6 +75,17 @@ public class Goal {
 
     public static boolean isValidGoal(String goal) {
         return goal.equals("WEEKLY") || goal.equals("MONTHLY") || goal.equals("YEARLY") || goal.equals("NONE");
+    }
+
+    /**
+     * Converts a key defined in {@code ENUM_MAP} to frequency type.
+     * @throws ParseException if the provided {@code frequencyString} is invalid.
+     */
+    public static Frequency parseFrequency(String frequencyString) throws ParseException {
+        if (!Goal.isValidFrequencyString(frequencyString)) {
+            throw new ParseException("Invalid frequency string " + frequencyString + " provided");
+        }
+        return Goal.ENUM_MAP.get(frequencyString);
     }
 
     @Override

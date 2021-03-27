@@ -11,7 +11,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.commons.util.DateUtil;
-import seedu.address.model.person.Goal;
 import seedu.address.model.person.Person;
 
 /**
@@ -66,7 +65,7 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         birthday.setText(person.getBirthday().toUi());
         String goalText;
-        if (person.getGoal().getFrequency().equals(Goal.Frequency.NONE)) {
+        if (person.getGoal().isNoneFrequency()) {
             goalText = "No goal set for this person";
         } else {
             LocalDate deadline = person.getGoalDeadline(LocalDate.now());

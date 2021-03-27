@@ -133,10 +133,11 @@ public class Person {
             // user has never met up with this person before
             return DateUtil.ZERO_DAY;
         }
-        return this.goal.getNext(this.meetings.stream()
+        LocalDate latestMeetingDate = meetings.stream()
                 .map(Event::getDate)
                 .filter(x -> x.isBefore(date))
-                .max(LocalDate::compareTo).orElse(DateUtil.ZERO_DAY));
+                .max(LocalDate::compareTo).orElse(DateUtil.ZERO_DAY);
+        return goal.getGoalDeadline(latestMeetingDate);
     }
 
     /**
