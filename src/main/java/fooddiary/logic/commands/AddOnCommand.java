@@ -93,21 +93,67 @@ public class AddOnCommand extends Command {
 
         Name updatedName = entryToAddOn.getName(); //cannot add on name
         Rating updatedRating = entryToAddOn.getRating();
-        Price currentPrice = entryToAddOn.getPrice();
-        String updatedPriceValue = currentPrice.value.split("-")[0];
+
+        Price updatedPrice = entryToAddOn.getPrice();
+        if (addOnToEntryDescriptor.getPrice().isPresent()) {
+            updatedPrice = updatePrice(updatedPrice, addOnToEntryDescriptor.getPrice().get());
+        }
+
         List<Review> updatedReviews = new ArrayList<>();
         updatedReviews.addAll(entryToAddOn.getReviews());
         addOnToEntryDescriptor.getReviews().ifPresent(r -> updatedReviews.addAll(r));
         logger.fine("Added additional Review");
 
-
         Address updatedAddress = entryToAddOn.getAddress();
         Set<TagCategory> updatedTagCategories = entryToAddOn.getTagCategories();
         Set<TagSchool> updatedTagSchools = entryToAddOn.getTagSchools();
 
-
         return new Entry(updatedName, updatedRating, updatedPrice, updatedReviews,
                 updatedAddress, updatedTagCategories, updatedTagSchools);
+    }
+
+    private static Price updatePrice(Price currentPrice, Price priceToAddOn) {
+        String[] priceValues = currentPrice.value.split("-");
+        assert priceValues.length == 2 || priceValues.length == 1:
+                "Expected Price values to contain minimum 1 value or maximum two values";
+        String updatedPriceValue;
+
+        if (priceValues.length == 1) {
+            updatedPriceValue = createPriceRange(priceValues, priceToAddOn.value);
+        } else {
+            updatedPriceValue = updatePriceRange(priceValues, priceToAddOn.value);
+        }
+
+        return new Price(updatedPriceValue);
+    }
+
+    //TODO add function to format price range
+    private static String createPriceRange(String[] priceValues, String priceValueToAddOn) {
+        String priceRange;
+        assert priceValues.length == 1;
+        if (Integer.parseInt(priceValues[0]) == Integer.parseInt(priceValueToAddOn)) {
+            priceRange =  priceValueToAddOn;
+        } else if (Integer.parseInt(priceValues[0]) < Integer.parseInt(priceValueToAddOn)) {
+            priceRange = priceValues[0] + " - " + priceValueToAddOn;
+        } else {
+            priceRange = priceValueToAddOn + " - " + priceValues[0];
+        }
+        return priceRange;
+    }
+
+    private static String updatePriceRange(String[] priceValues, String priceValueToAddOn) {
+        String priceRange;
+        assert priceValues.length == 2;
+        String firstPriceValue = priceValues[0];
+        String secondPriceValue = priceValues[1];
+        if (Integer.parseInt(priceValueToAddOn) < Integer.parseInt(firstPriceValue)) {
+            priceRange = priceValueToAddOn + " - " + Integer.parseInt(secondPriceValue);
+        } else if (Integer.parseInt(priceValueToAddOn) > Integer.parseInt(secondPriceValue)) {
+            priceRange = Integer.parseInt(firstPriceValue) + " - " + priceValueToAddOn;
+        } else {
+            priceRange = firstPriceValue + " - " + secondPriceValue;
+        }
+        return priceRange;
     }
 
     @Override
