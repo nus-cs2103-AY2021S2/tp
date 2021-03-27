@@ -24,7 +24,7 @@ public class RecurringSchedule implements RecurringDates {
     public static final String VALIDATION_REGEX = DATE_REGEX + DAYSOFWEEK_REGEX + WEEKFREQUENCY_REGEX;
 
     public static final String MESSAGE_CONSTRAINTS = "Recurring Schedule conditions should consists of:"
-            + "\n\n1) Ending Date should be ahead of current date or at least a week ahead of current date"
+            + "\n\n1) Ending Date should be ahead of current date"
             + "\n\n2) Days of week which are alphabet letters that are case-insensitive represented in these options\n "
             + "=====> (mon, tue, wed, thu, fri, sat, sun)"
             + "\n\n3) Frequency of week that are also case-insensitive represented in these options\n"
@@ -33,7 +33,7 @@ public class RecurringSchedule implements RecurringDates {
             + "\n\nHere is an example: [23/10/2021][Mon][weekly]";
 
     public static final String INVALID_ENDDATE = "End date should be ahead of current date "
-            + "or at least a week ahead of current date";
+            + "or the input end is less than a week without matching days found !!!";
 
     private static boolean isEmptyRecurringSchedule;
     private static List<String> weekDates;
@@ -85,7 +85,7 @@ public class RecurringSchedule implements RecurringDates {
     /**
      * Returns if the given end date within the recurring schedule have not expired
      * Date is considered expired when end date is before current system date
-     * Or less than a week after current system date
+     * Or less than a week after current system date without any matching days
      *
      * @return State of whether date in recurring schedule has expired
      */
