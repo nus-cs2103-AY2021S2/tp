@@ -8,9 +8,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.iscam.model.client.Location;
-import seedu.iscam.model.client.Name;
-import seedu.iscam.model.tag.Tag;
+import seedu.iscam.model.commons.Location;
+import seedu.iscam.model.commons.Name;
+import seedu.iscam.model.commons.Tag;
 
 /**
  * Represents a Meeting in the address book.

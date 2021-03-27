@@ -1,0 +1,40 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>>{
+Interface ReadOnlyMeetingBook <<Interface>>
+
+Class ModelManager
+
+Class MeetingBook
+
+Package Meeting {
+Class Meeting
+Class Name
+Class DateTime
+Class Location
+Class Description
+Class UniqueMeetingList
+}
+
+Package Tag {
+Class Tag
+}
+}
+
+MeetingBook .up.|> ReadOnlyMeetingBook
+ModelManager o--> "1" MeetingBook
+
+MeetingBook *--> "1" UniqueMeetingList
+UniqueMeetingList o--> "*" Meeting
+Meeting *--> Name
+Meeting *--> DateTime
+Meeting *--> Location
+Meeting *--> Description
+Meeting *--> "*" Tag
+
+ModelManager ----->" ~* filtered list" Meeting
+@enduml

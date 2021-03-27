@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.iscam.commons.core.Messages;
 import seedu.iscam.model.Model;
-import seedu.iscam.model.client.NameContainsKeywordsPredicate;
+import seedu.iscam.model.commons.NameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all clients in iscam book whose name contains any of the argument keywords.

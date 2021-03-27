@@ -7,7 +7,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.iscam.model.tag.Tag;
+import seedu.iscam.model.commons.Location;
+import seedu.iscam.model.commons.Name;
+import seedu.iscam.model.commons.Tag;
 
 /**
  * Represents a Client in the iscam book.

@@ -18,7 +18,7 @@ import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.logic.commands.EditCommand;
 import seedu.iscam.logic.commands.EditCommand.EditClientDescriptor;
 import seedu.iscam.logic.parser.exceptions.ParseException;
-import seedu.iscam.model.tag.Tag;
+import seedu.iscam.model.commons.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object
