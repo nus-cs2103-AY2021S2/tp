@@ -19,7 +19,6 @@ import seedu.address.model.util.SampleDataUtil;
 public class ResidenceBuilder {
     public static final String DEFAULT_RESIDENCE_NAME = "Amber Park";
     public static final String DEFAULT_RESIDENCE_ADDRESS = "14 Amber Gardens, 439960";
-    public static final String DEFAULT_BOOKING_DETAILS = "4 adults";
     public static final String DEFAULT_CLEAN_STATUS = "y";
 
     private ResidenceName name;

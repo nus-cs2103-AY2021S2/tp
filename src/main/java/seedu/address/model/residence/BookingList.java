@@ -79,6 +79,17 @@ public class BookingList implements Iterable<Booking> {
     }
 
     /**
+     * Returns the size of booking list
+     */
+    public int getBookingListSize() {
+        return internalList.size();
+    }
+
+    public Booking getBooking(int zeroBasedIndex) {
+        return internalList.get(zeroBasedIndex);
+    }
+
+    /**
      * Removes the equivalent booking from the list.
      * The booking must exist in the list.
      */

@@ -15,7 +15,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Residence in ResidenceTracker.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Residence {
+public class Residence implements Comparable<Residence> {
 
     // Identity fields
     private final ResidenceName residenceName;
@@ -80,7 +80,15 @@ public class Residence {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
+    public boolean hasBooking(Booking booking) {
+        return bookingList.contains(booking);
+    }
+
+    /**
+     * Returns a modified {@code Residence} with new booking.
+     */
     public Residence addBooking(Booking booking) {
+        assert !this.hasBooking(booking);
         bookingList.add(booking);
         return this;
     }
@@ -143,4 +151,16 @@ public class Residence {
         return builder.toString();
     }
 
+    @Override
+    public int compareTo(Residence o) {
+        if (this.getCleanStatusTag().getValue().equals("Unclean")
+                && (o.getCleanStatusTag().getValue().equals("Clean"))) {
+            return -1;
+        } else if (this.getCleanStatusTag().getValue().equals("Clean")
+                && (o.getCleanStatusTag().getValue().equals("Unclean"))) {
+            return 1;
+        } else { //same then we sort by booking date
+            return 0;
+        }
+    }
 }
