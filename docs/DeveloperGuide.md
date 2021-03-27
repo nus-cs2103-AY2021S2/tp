@@ -145,17 +145,85 @@ To be updated by Xinyue
 
 To be updated by Yu Heem
 
-### Filter Feature
+### [Completed] Find Financial Record Feature : `find-fr`
 
-#### `filter` command (accepts d/ a/ c/)
+#### Initial Proposed Implementation
 
-#### `reset-filter` command
+The initial plan was to implement a `category-filter` command which filters
+the financial records based on a specified category. After this feature was
+developed, the planned extensions were to implement other filter commands
+(i.e. `description-filter` and `amount-filter`) that would enable users to
+filter financial records across a larger scope. These 2 extensions would work
+similar to `category-filter`, only with the exception of flags as part of
+user input to filter by description, amount or category. While this proposed
+implementation was to improve the overall usability of the application, the
+similarity in development and functionalities across all 3 features gave strong
+reasons to implement a single feature that combines and serves the intended function of
+all 3 features. Not only would this retain the initial plan of improving the flexibility
+and usability of the application, it would eliminate additional commands that are unnecessary.
 
-To be updated by Jaryl
+#### Actual Implementation
+
+The revised approach was to implement a `find-fr` command that enables 
+users to filter up to all 3 fields in a single function. For example, `search-fr d/Shoe
+a/30 c/Apparel` would filter and display items that match all conditions provided (i.e. 
+records with description `Shoe`, amount `30` and category `Apparel`).
+
+The proposed `find` mechanism is facilitated by `BudgetBabyModelManager` which implements
+`BudgetBabyModel`. The `BudgetBabyModelManager` class contains a FilteredList `filteredFinancialRecords`
+that is to be altered and displayed to the user according to the `find-fr` command.
+
+The command is parsed from `BudgetBabyCommandParser` to the `FindFrCommandParser` class, where the input fields
+will be processed before instantiating a new valid `FindFrCommand`. The `FindFrCommand` calls the
+`findFinancialRecord` method of the `BudgetBabyModel` that is implemented by `BudgetBabyModelManager`.
+`BudgetBabyModelManager` then handles the filtering of `filteredFinancialRecords` through the
+`updateFilteredFinancialRecordList`. The updated financial records is then displayed to the user.
+
+The `findFinancialRecord` method a minimum of 1 and up to 3 of the following arguments: `Description`, `Amount`, `Category`.
+
+Given below is an example usage scenario and how the `find` mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. 
+
+Step 2. The user executes `search-fr d/Lunch a/10 c/Food` command to filter the financial records
+list to match all input fields. The `find-fr` command calls 
+
+Step 3. 
+
+Step 4. 
+
+Step 5. 
+
+#### Extensions Implemented
+- `c/FR_CATEGORY` field accepts multiple categories
+- Display an error message if no matching financial records found
+
+The following activity diagram summarizes what happens when a user executes `search-fr`:
+
+
+#### Design Consideration
+
+Add design consideration here
+
+### [Completed] Reset Filter Feature : `reset-filter`
+
+#### Proposed Implementation
+
+This feature was developed in conjunction with `find-fr`. As the financial records list would
+be filtered to the flags set by the user, there must be a way for the user to revert this list
+back to its original state (i.e. displaying all financial records).
+
+#### Design Consideration
+
+Add design consideration here
 
 ### Statistics Feature
 
-To be updated
+To be updated by Nat
+
+### Undo Feature
+
+To be updated by De Yi
 
 ---
 
