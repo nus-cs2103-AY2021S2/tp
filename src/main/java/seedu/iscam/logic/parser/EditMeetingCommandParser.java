@@ -18,6 +18,7 @@ import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.logic.commands.EditMeetingCommand;
 import seedu.iscam.logic.commands.EditMeetingCommand.EditMeetingDescriptor;
 import seedu.iscam.logic.parser.exceptions.ParseException;
+import seedu.iscam.logic.parser.exceptions.ParseFormatException;
 import seedu.iscam.model.commons.Tag;
 
 /**
@@ -41,8 +42,8 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditMeetingCommand.MESSAGE_USAGE),
-                    pe);
+            throw new ParseFormatException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditMeetingCommand.MESSAGE_USAGE), pe);
         }
 
         EditMeetingDescriptor editMeetingDescriptor = new EditMeetingDescriptor();

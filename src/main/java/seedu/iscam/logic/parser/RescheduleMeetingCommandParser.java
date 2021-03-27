@@ -7,6 +7,7 @@ import static seedu.iscam.logic.parser.CliSyntax.PREFIX_ON;
 import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.logic.commands.RescheduleMeetingCommand;
 import seedu.iscam.logic.parser.exceptions.ParseException;
+import seedu.iscam.logic.parser.exceptions.ParseFormatException;
 import seedu.iscam.model.meeting.DateTime;
 
 /**
@@ -28,7 +29,7 @@ public class RescheduleMeetingCommandParser implements Parser<RescheduleMeetingC
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            throw new ParseFormatException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     RescheduleMeetingCommand.MESSAGE_USAGE));
         }
 
@@ -36,7 +37,7 @@ public class RescheduleMeetingCommandParser implements Parser<RescheduleMeetingC
         if (argMultimap.getValue(PREFIX_ON).isPresent()) {
             dateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_ON).get());
         } else {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            throw new ParseFormatException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     RescheduleMeetingCommand.MESSAGE_USAGE));
         }
 

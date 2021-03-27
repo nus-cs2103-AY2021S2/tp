@@ -11,18 +11,18 @@ import seedu.iscam.logic.commands.Command;
 import seedu.iscam.logic.commands.DeleteMeetingCommand;
 import seedu.iscam.logic.commands.DoneMeetingCommand;
 import seedu.iscam.logic.commands.EditMeetingCommand;
-import seedu.iscam.logic.commands.ExitCommand;
 import seedu.iscam.logic.commands.FindMeetingsCommand;
 import seedu.iscam.logic.commands.HelpCommand;
 import seedu.iscam.logic.commands.ListMeetingsCommand;
 import seedu.iscam.logic.commands.RelocateMeetingCommand;
 import seedu.iscam.logic.commands.RescheduleMeetingCommand;
 import seedu.iscam.logic.parser.exceptions.ParseException;
+import seedu.iscam.logic.parser.exceptions.ParseFormatException;
 
 /**
  * Parses user input.
  */
-public class MeetingBookParser {
+public class MeetingBookParser implements BookParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -39,33 +39,12 @@ public class MeetingBookParser {
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseFormatException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
-
-        /*case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
-
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
-
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
-
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
-
-        case ShowCommand.COMMAND_WORD:
-            return new ShowCommandParser().parse(arguments);*/
 
         case AddMeetingCommand.COMMAND_WORD:
             return new AddMeetingCommandParser().parse(arguments);
@@ -90,12 +69,6 @@ public class MeetingBookParser {
 
         case DoneMeetingCommand.COMMAND_WORD:
             return new DoneMeetingCommandParser().parse(arguments);
-
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

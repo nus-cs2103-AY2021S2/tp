@@ -23,7 +23,7 @@ public class ShowCommandParser implements Parser<ShowCommand> {
             Index index = ParserUtil.parseIndex(args);
             return new ShowCommand(index);
         } catch (ParseException pe) {
-            throw new ParseException(
+            throw new ParseFormatException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ShowCommand.MESSAGE_USAGE), pe);
         }
     }

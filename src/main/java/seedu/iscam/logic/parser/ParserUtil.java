@@ -10,6 +10,7 @@ import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.commons.util.StringUtil;
 import seedu.iscam.logic.commands.EditMeetingCommand;
 import seedu.iscam.logic.parser.exceptions.ParseException;
+import seedu.iscam.logic.parser.exceptions.ParseFormatException;
 import seedu.iscam.model.client.Email;
 import seedu.iscam.model.client.InsurancePlan;
 import seedu.iscam.model.client.Phone;
@@ -178,7 +179,7 @@ public class ParserUtil {
         requireNonNull(isDone);
         if (!isDone.equals(EditMeetingCommand.PARAMETER_DONE)
                 && !isDone.equals(EditMeetingCommand.PARAMETER_NOT_DONE)) {
-            throw new ParseException(EditMeetingCommand.MESSAGE_USAGE);
+            throw new ParseFormatException(EditMeetingCommand.MESSAGE_USAGE);
         }
         return isDone.equals(EditMeetingCommand.PARAMETER_DONE);
     }

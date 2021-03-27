@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 import seedu.iscam.logic.commands.FindMeetingsCommand;
 import seedu.iscam.logic.parser.exceptions.ParseException;
+import seedu.iscam.logic.parser.exceptions.ParseFormatException;
 import seedu.iscam.model.meeting.MeetingContainsKeywordsPredicate;
 
 /**
@@ -22,7 +23,8 @@ public class FindMeetingsCommandParser implements Parser<FindMeetingsCommand> {
     public FindMeetingsCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindMeetingsCommand.MESSAGE_USAGE));
+            throw new ParseFormatException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    FindMeetingsCommand.MESSAGE_USAGE));
         }
 
         String[] meetingKeywords = trimmedArgs.split("\\s+");
