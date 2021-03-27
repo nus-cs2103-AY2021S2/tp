@@ -184,22 +184,6 @@ public class JsonAdaptedPropertyTest {
     }
 
     @Test
-    public void invalidBlankDeadlineCreateTest() {
-        JsonAdaptedProperty adaptedPropertyNoName =
-                new JsonAdaptedProperty(WOODLANDS_CRESCENT.getName().toString(),
-                        WOODLANDS_CRESCENT.getPropertyType().toString(),
-                        WOODLANDS_CRESCENT.getAddress().toString(),
-                        "",
-                        WOODLANDS_CRESCENT.getPostalCode().toString(),
-                        " ",
-                        null,
-                        WOODLANDS_CRESCENT.getTags().stream().map(JsonAdaptedTag::new).collect(Collectors.toList()),
-                        null);
-        IllegalValueException thrown = assertThrows(IllegalValueException.class, adaptedPropertyNoName::toModelType);
-        assertEquals(thrown.getMessage(), Deadline.MESSAGE_CONSTRAINTS);
-    }
-
-    @Test
     public void parseStringToClientTest() throws IllegalValueException {
         assertEquals(JsonAdaptedProperty.fromStringToClient(CLIENT_EVE.toString()),
             CLIENT_EVE);
