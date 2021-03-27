@@ -3,12 +3,22 @@ layout: page
 title: User Guide
 ---
 
-PocketEstate enables easy organization of mass clientele property information through sorting of information by price, location and housing type, that may otherwise be difficult to manage.
+Welcome to the PocketEstate User Guide! Learn how to use PocketEstate to efficiently organize property data, manage clientele information and keep track of your upcoming appointments.
 
-* Table of Contents
+## Table of Contents
+
+1. Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Introduction
+
+### What is PocketEstate?
+
+PocketEstate is a desktop application for property agents efficiently and effectively manage property data and appointment schedules. With PocketEstate, you can easily organize your property and clientele information, as well as keeping track of your schedules and deadlines.
+
+PocketEstate is also highly optimized for users who can type fast and prefer typing over other means of input, allowing fast completion of most tasks solely via Command Line Interface (CLI).
 
 ## Quick start
 
