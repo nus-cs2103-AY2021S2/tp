@@ -60,9 +60,12 @@ public class Grade implements Filterable {
 
     @Override
     public String toString() {
-        return subject.name + " - " + gradedItem + " - " + grade;
+        return subject.name + " (" + gradedItem + "): " + grade;
     }
 
+    /**
+     * return true if the subject and gradedItem of two Grade Objects are equal.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -74,7 +77,6 @@ public class Grade implements Filterable {
         Grade that = (Grade) o;
         return Objects.equals(subject, that.subject)
                 && Objects.equals(gradedItem, that.gradedItem);
-        //&& Objects.equals(grade, that.grade);
     }
 
     @Override
