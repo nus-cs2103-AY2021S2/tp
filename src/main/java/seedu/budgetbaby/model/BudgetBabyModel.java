@@ -8,7 +8,9 @@ import javafx.collections.ObservableList;
 import seedu.budgetbaby.commons.core.GuiSettings;
 import seedu.budgetbaby.model.budget.Budget;
 import seedu.budgetbaby.model.month.Month;
+import seedu.budgetbaby.model.record.Amount;
 import seedu.budgetbaby.model.record.Category;
+import seedu.budgetbaby.model.record.Description;
 import seedu.budgetbaby.model.record.FinancialRecord;
 
 /**
@@ -129,10 +131,10 @@ public interface BudgetBabyModel {
     void setFinancialRecord(FinancialRecord target, FinancialRecord editedRecord);
 
     /**
-     * Filters the financial records with {@code category}.
-     * {@code category} must exist in the address book.
+     * Iterates through the financial records and searches for the {@code description} {@code amount} {@code category}.
+     * {@code description} {@code amount} {@code category} must exist in the budget tracker.
      */
-    void filterByCategory(Category category);
+    void search(Description description, Amount amount, Category category);
 
     /**
      * Resets filters on financial records to display original list

@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 import seedu.budgetbaby.ablogic.commands.HelpCommand;
 import seedu.budgetbaby.logic.commands.AddFrCommand;
 import seedu.budgetbaby.logic.commands.BudgetBabyCommand;
-import seedu.budgetbaby.logic.commands.CategoryFilterCommand;
+import seedu.budgetbaby.logic.commands.SearchFrCommand;
 import seedu.budgetbaby.logic.commands.DeleteFrCommand;
 import seedu.budgetbaby.logic.commands.ResetFilterCommand;
 import seedu.budgetbaby.logic.commands.SetBudgetCommand;
@@ -52,8 +52,8 @@ public class BudgetBabyParser {
         case SetBudgetCommand.COMMAND_WORD:
             return new SetBudgetCommandParser().parse(arguments);
 
-        case CategoryFilterCommand.COMMAND_WORD:
-            return new CategoryFilterCommandParser().parse(arguments);
+        case SearchFrCommand.COMMAND_WORD:
+            return new SearchFrCommandParser().parse(arguments);
 
         case ResetFilterCommand.COMMAND_WORD:
             return new ResetFilterCommandParser().parse(arguments);
