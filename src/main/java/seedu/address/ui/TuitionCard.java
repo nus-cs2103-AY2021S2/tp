@@ -3,6 +3,7 @@ package seedu.address.ui;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,6 +12,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.model.session.Session;
 import seedu.address.model.student.Student;
 import seedu.address.model.tuition.Tuition;
@@ -31,9 +33,10 @@ public class TuitionCard extends UiPart<Region> {
      */
 
     public final Student student;
+    final int ROW_HEIGHT = 98;
 
     @FXML
-    private HBox tuitionCardPane;
+    private VBox tuitionCardPane;
     @FXML
     private Label name;
     @FXML
@@ -51,6 +54,9 @@ public class TuitionCard extends UiPart<Region> {
 
         sessionListView.setItems(sessionList);
         sessionListView.setCellFactory(listView -> new SessionListViewCell());
+
+        // hard code height to prevent list from being scrollable
+        sessionListView.setPrefHeight(sessionList.size() * ROW_HEIGHT);
     }
 
     @Override

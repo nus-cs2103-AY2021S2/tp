@@ -10,39 +10,18 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.geometry.Insets?>
-<HBox id="sessionCardPane" fx:id="sessionCardPane" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
-    <GridPane HBox.hgrow="ALWAYS">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
-        </columnConstraints>
-            <padding>
-                <Insets bottom="5" left="15" right="5" top="5" />
-            </padding>
-            <HBox alignment="CENTER_LEFT" spacing="5">
-                <VBox alignment="CENTER_LEFT">
-                    <Label fx:id="date" styleClass="cell_small_label" text="\$date" wrapText="true"/>
-                    <Label fx:id="time" styleClass="cell_small_label" text="\$time" wrapText="true"/>
-                    <Label fx:id="duration" styleClass="cell_small_label" text="\$duration" wrapText="true"/>
-                    <Label fx:id="subject" styleClass="cell_small_label" text="\$subject" wrapText="true"/>
-                    <Label fx:id="fee" styleClass="cell_small_label" text="\$fee" wrapText="true"/>
-                </VBox>
-                <Region prefWidth="100.0" HBox.hgrow="ALWAYS" />
-                <VBox>
-                    <Label fx:id="id" styleClass="cell_big_label" alignment="TOP_RIGHT">
-                        <padding>
-                            <Insets topRightBottomLeft="5" />
-                        </padding>
-                    </Label>
-                    <Region prefWidth="10" VBox.vgrow="ALWAYS" />
-                    <Label fx:id="sessionType" styleClass="cell_big_label" alignment="BOTTOM_RIGHT" text="I">
-                        <padding>
-                            <Insets topRightBottomLeft="5" />
-                        </padding>
-                    </Label>
-                </VBox>
-            </HBox>
-        <rowConstraints>
-            <RowConstraints />
-        </rowConstraints>
-    </GridPane>
-</HBox>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane id="sessionCardPane" fx:id="sessionCardPane" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox AnchorPane.leftAnchor="10">
+        <padding>
+            <Insets bottom="5" left="5" right="5" top="5" />
+        </padding>
+        <Label fx:id="date" styleClass="cell_small_label" text="\$date" wrapText="true"/>
+        <Label fx:id="time" styleClass="cell_small_label" text="\$time" wrapText="true"/>
+        <Label fx:id="duration" styleClass="cell_small_label" text="\$duration" wrapText="true"/>
+        <Label fx:id="subject" styleClass="cell_small_label" text="\$subject" wrapText="true"/>
+        <Label fx:id="fee" styleClass="cell_small_label" text="\$fee" wrapText="true"/>
+    </VBox>
+    <Label fx:id="id" styleClass="cell_big_label" AnchorPane.rightAnchor="10" AnchorPane.topAnchor="10" />
+    <Label fx:id="sessionType" styleClass="cell_big_label" AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10" text="I" />
+</AnchorPane>

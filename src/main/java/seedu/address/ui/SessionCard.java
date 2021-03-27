@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.session.Session;
@@ -29,7 +30,7 @@ public class SessionCard extends UiPart<Region> {
     public final Session session;
 
     @FXML
-    private HBox sessionCardPane;
+    private AnchorPane sessionCardPane;
     @FXML
     private Label date;
     @FXML
