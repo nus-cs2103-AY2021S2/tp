@@ -1,15 +1,22 @@
 package seedu.address.ui;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Logger;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -33,6 +40,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private StudentListPanel studentListPanel;
     private TuitionListPanel tuitionListPanel;
+    private UpcomingTuitionListPanel upcomingTuitionListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -53,6 +61,15 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane upcomingTuitionListPanelPlaceholder;
+
+    @FXML
+    private StackPane feePanelPlaceholder;
+
+    @FXML
+    private Tab time;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -117,6 +134,9 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        upcomingTuitionListPanel = new UpcomingTuitionListPanel(logic.getFilteredStudentList());
+        upcomingTuitionListPanelPlaceholder.getChildren().add(upcomingTuitionListPanel.getRoot());
+
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
         studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
@@ -131,6 +151,8 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        displayDateAndTime();
     }
 
     /**
@@ -171,6 +193,21 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
+    }
+
+    private void displayDateAndTime() {
+        final Timeline timeline = new Timeline(
+                new KeyFrame(
+                        Duration.millis( 500 ),
+                        event -> {
+                            time.setText(LocalDateTime.now().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm"))
+                                + "     " + LocalDateTime.now().toLocalDate()
+                                    .format(DateTimeFormatter.ofPattern("dd-MM-YYYY")));
+                        }
+                )
+        );
+        timeline.setCycleCount( Animation.INDEFINITE );
+        timeline.play();
     }
 
     public StudentListPanel getStudentListPanel() {
