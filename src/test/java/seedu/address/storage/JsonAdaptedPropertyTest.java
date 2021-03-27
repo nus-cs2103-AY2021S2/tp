@@ -7,6 +7,8 @@ import static seedu.address.testutil.TypicalClients.CLIENT_EVE;
 import static seedu.address.testutil.TypicalProperties.JURONG;
 import static seedu.address.testutil.TypicalProperties.WOODLANDS_CRESCENT;
 
+import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -16,8 +18,6 @@ import seedu.address.model.property.Deadline;
 import seedu.address.model.property.PostalCode;
 import seedu.address.model.property.Type;
 import seedu.address.model.remark.Remark;
-
-import java.util.stream.Collectors;
 
 public class JsonAdaptedPropertyTest {
     @Test
@@ -187,8 +187,8 @@ public class JsonAdaptedPropertyTest {
     public void parseStringToClientTest() throws IllegalValueException {
         assertEquals(JsonAdaptedProperty.fromStringToClient(CLIENT_EVE.toString()),
             CLIENT_EVE);
-        IllegalValueException thrown = assertThrows(IllegalValueException.class,
-                () -> JsonAdaptedProperty.fromStringToClient("This is no client"));
+        IllegalValueException thrown = assertThrows(IllegalValueException.class, () ->
+            JsonAdaptedProperty.fromStringToClient("This is no client"));
         assertEquals(thrown.getMessage(), INCORRECT_CLIENT_FIELD_MESSAGE);
     }
 
@@ -196,8 +196,8 @@ public class JsonAdaptedPropertyTest {
     public void parseRemarkTest() throws IllegalValueException {
         assertEquals(JsonAdaptedProperty.parseToRemark(new Remark("Urgent to sell").toString()),
                 new Remark("Urgent to sell"));
-        IllegalValueException thrown = assertThrows(IllegalValueException.class,
-                () -> JsonAdaptedProperty.parseToRemark(" "));
+        IllegalValueException thrown = assertThrows(IllegalValueException.class, () ->
+            JsonAdaptedProperty.parseToRemark(" "));
         assertEquals(thrown.getMessage(), Remark.MESSAGE_CONSTRAINTS);
     }
 }
