@@ -429,13 +429,9 @@ list
 
 #### Example
 
-![after find screenshot](./images/user-guide/find-after-execute.png)
-
-**Figure 10. After execution of sample find command**
-
 ![list example](./images/user-guide/list-example-1.png)
 
-**Figure 11. Execution of list command after find in Figure 10**
+**Figure 11. Execution of list command**
 
 [Return to Table of Contents](#table-of-contents)
 
