@@ -294,51 +294,37 @@ A person can have any number of tags and insurance policies (including 0).
 ### `find`: Search for client contact based on keywords
 
 **Purpose**: Finds and displays all clients whose field (name, phone, email, address, tags, insurance policy) contains any of the given keywords.
-Optional flags can be added to show the list of matched clients with only the specified attributes.
+Optional identifiers can be added to show the list of matched clients with only the specified field(s), similar to the [`list`](#list-list-all-clients) command.
 
-**Format**: `find FLAG/KEYWORD [& MORE_KEYWORDS] [-ATTRIBUTES]…​`
+**Format**: `find IDENTIFIER/KEYWORD [& KEYWORDS]…​ [-IDENTIFIER]…​`
 
 * The search is **case-insensitive**. 
-  * E.g. hans will match Hans.
+  * E.g. `hans` will match `Hans`.
 * The **order of the keywords does not matter**.
-* Only one `FLAG` can be used in each find command.
-  * `FLAG` uses the identifier of each attribute to help the program identify which attribute you are referring to.
-  * For more information about the identifiers for each attribute, refer to [What information can we store for each client contact?](#what-information-can-we-store-for-each-client-contact).
+* Only **one** `IDENTIFIER` can be used in each `find` command.
+    * For more information about the identifiers for each field, refer to [What information can we store for each client contact?](#what-information-can-we-store-for-each-client-contact).
 * The delimiter `&` between keywords allows you to search for Clients using multiple keywords.
-  * E.g. `Aaron & Tan` will return all persons with either `Aaron` or `Tan` in their names.
-* Without the use of delimiter `&`, all keywords following the `FLAG` will be used in the search. 
-  * E.g. `Aaron Tan` will only return persons with `Aaron Tan` in their names.
-* Clients with matching keywords in the chosen field will be returned. 
-  * E.g. `Hans & Bo` will return person `Hans Sum` and `Bo Yang`.
-* Similar to the [`list`](#list-list-all-clients) command, optional attributes can be added to show only certain attributes in the search result.
-  * E.g. `-p` filters phone number information of the listed clients.
     
 **Examples**:
 * Find `Alex David` and `Alex Yeoh`.
   * `find n/alex`
-
-    ![find alex](images/find-alex.png)
-
+<br><br>
 * Find `Alex David`.
   * `find n/alex david`
   
     ![find_alex_david](images/find_alex_david.png)
-  
+<br><br>
 * Find `Alex David`, `Alex Yeoh` and `David Li`.
   * `find n/alex & david`
-  
-    ![find_alex_&_david](images/find-alex-&-david.png)
-
+<br><br>
 * Find all persons whose address contains `geylang`.
   * `find a/geylang` - returns `Alex Yeoh` whose address is `Blk 30 Geylang Street 29, #06-40`
-
-    ![find by address](images/find-by-address.png)
-
-* Find the email and phone number of all persons whose names contain `alex` and `david`.
+<br><br>
+* Find the email and phone number of all persons whose names contain `alex` and `david` using the `&` delimiter, and only display their email and phone number.
   * `find n/alex & david -e -p`
     
     ![find_alex_&_david_with_filter](images/find-alex-&-david-with-filter.png)
-
+<br><br>
 [Return to Table of Contents](#table-of-contents)
 <br><br>
 
