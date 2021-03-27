@@ -20,6 +20,21 @@ PocketEstate is a desktop application for property agents efficiently and effect
 
 PocketEstate is also highly optimized for users who can type fast and prefer typing over other means of input, allowing fast completion of most tasks solely via Command Line Interface (CLI).
 
+### Using this User Guide
+
+This user guide uses various formatting styles to facilitate reading and to communicate ideas more effectively. Here are some important conventions to take note of when reading this user guide:
+
+| Convention                | Meaning                                                      |
+|---------------------------|--------------------------------------------------------------|
+| **Bold**                  | Important information                                        |
+| :information_source: Note | Additional information                                       |
+| :bulb: Tip                | Helpful tips                                                 |
+| :exclamation: Caution     | Things to watch out for                                      |
+| `Code`                    | Represents a user input or some important code-related terms |
+| [SQUARE_BRACKETS]         | Optional parameters of a command                             |
+| UPPER_CASE                | Parameters of a command to be supplied by the user           |
+| ...                       | Parameters of a command that can be used multiple times      |
+
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
