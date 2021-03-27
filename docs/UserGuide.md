@@ -395,6 +395,7 @@ The region name is as follow :
 1. Dictionary Content Panel
 1. Note List Panel
 1. Dictionary Content Panel
+
 #### Opening UI Panel: `open`
 
 Open selected UI Panel.
@@ -482,7 +483,6 @@ Format: `setdividerd Position`
 
 Examples:
 * `setdividerd 5`
-  * set the position of dictionary divider at 5 marked in the image
 
 ##### Set note divider position: `setdividern`
 
