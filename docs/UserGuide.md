@@ -146,7 +146,7 @@ Formats: `edit property INDEX [n/NAME] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_C
 
 <div markdown="block" class="alert alert-info">
 
-**:bulb: Reminder:**<br>
+**:bulb: Tip:**<br>
 
 * There can be multiple tags but different tags should be separated with a comma. <br> e.g. `tags/TAGS_SEPARATED_BY_COMMAS` can be used as `tags/Freehold`, `tags/Freehold, 5 bedrooms`, `tags/Freehold, 5 bedrooms, Near MRT` etc.
 
