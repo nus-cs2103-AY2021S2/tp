@@ -16,6 +16,8 @@ Focuris is a **desktop application** for **managing events** with a KanBan board
 
 ---
 
+<div class="page-break-before"></div>
+
 # Table Of Contents
 
 <!-- prettier-ignore-start -->
@@ -28,6 +30,8 @@ Focuris is a **desktop application** for **managing events** with a KanBan board
 <!-- prettier-ignore-end -->
 
 ---
+
+<div class="page-break-before"></div>
 
 # 1. Quick start
 
@@ -58,6 +62,8 @@ Focuris is a **desktop application** for **managing events** with a KanBan board
 
 [Return to Table of Contents](#table-of-contents)
 
+<div class="page-break-before"></div>
+
 # 2. Features
 
 <div markdown="block" class="alert alert-info">
@@ -83,6 +89,8 @@ Focuris is a **desktop application** for **managing events** with a KanBan board
 
 [Return to Table of Contents](#table-of-contents)
 
+<div class="page-break-before"></div>
+
 ## 2.1 Summary
 
 ### 2.1.1 Command Summary
@@ -100,6 +108,8 @@ Focuris is a **desktop application** for **managing events** with a KanBan board
 
 [Return to Table of Contents](#table-of-contents)
 
+<div class="page-break-before"></div>
+
 ### 2.1.2 Attribute Summary
 
 | [Attribute](#attributes) | Prefix    | Description                              | Constraints                                                                                                                                             |
@@ -111,6 +121,8 @@ Focuris is a **desktop application** for **managing events** with a KanBan board
 | KEYWORD                  | No Prefix | Keywords for searching Events in Focuris | No Constraints                                                                                                                                          |
 
 [Return to Table of Contents](#table-of-contents)
+
+<div class="page-break-before"></div>
 
 ## 2.2 General
 
@@ -132,6 +144,8 @@ help
 
 [Return to Table of Contents](#table-of-contents)
 
+<div class="page-break-before"></div>
+
 ### 2.2.2 `exit` Command
 
 Exits out of Focuris.
@@ -147,6 +161,8 @@ exit
 - Your Focuris application window closes.
 
 [Return to Table of Contents](#table-of-contents)
+
+<div class="page-break-before"></div>
 
 ### 2.2.3 Saving of your data
 
@@ -168,6 +184,8 @@ If your changes to the data file makes its format invalid, Focuris will discard 
 </div>
 
 [Return to Table of Contents](#table-of-contents)
+
+<div class="page-break-before"></div>
 
 ## 2.3 Event Commands
 
@@ -196,6 +214,8 @@ todo n/NAME d/DESCRIPTION [p/PRIORITY]
 
 [Return to Table of Contents](#table-of-contents)
 
+<div class="page-break-before"></div>
+
 ### 2.3.2 `log` Command
 
 Adds an event with status `BACKLOG` to Focuris.
@@ -221,6 +241,8 @@ log n/NAME d/DESCRIPTION [p/PRIORITY]
 
 [Return to Table of Contents](#table-of-contents)
 
+<div class="page-break-before"></div>
+
 ### 2.3.3 `prog` Command
 
 Adds an event with status `IN PROGRESS` to Focuris.
@@ -245,6 +267,8 @@ prog n/NAME d/DESCRIPTION [p/PRIORITY]
 | 4   | `prog n/Lunch with John d/At VivoCity on Friday p/medium`                     | New In-Progress added: Lunch with John; Status: IN_PROGRESS; Description: At VivoCity on Friday                              |
 
 [Return to Table of Contents](#table-of-contents)
+
+<div class="page-break-before"></div>
 
 ### 2.3.4 `edit` Command
 
@@ -284,6 +308,8 @@ Existing event will have its data overwritten by the new values taken in by the 
 
 [Return to Table of Contents](#table-of-contents)
 
+<div class="page-break-before"></div>
+
 ### 2.3.5 `delete` Command
 
 Deletes the specified event from Focuris.
@@ -322,6 +348,8 @@ The commands in the table above make reference to the events in Focuris as seen 
 
 [Return to Table of Contents](#table-of-contents)
 
+<div class="page-break-before"></div>
+
 ### 2.3.6 `clear` Command
 
 Clears all events in Focuris.
@@ -349,12 +377,16 @@ All events will be cleared from Focuris and this is **irreversible**. Please use
 
 [Return to Table of Contents](#table-of-contents)
 
+<div class="page-break-before"></div>
+
 ## 3. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Focuris home folder.
 
 [Return to Table of Contents](#table-of-contents)
+
+<div class="page-break-before"></div>
 
 ## 4. Glossary
 
