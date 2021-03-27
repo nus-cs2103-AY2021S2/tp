@@ -16,7 +16,7 @@ Welcome to the PocketEstate User Guide! Learn how to use PocketEstate to efficie
 
 ### What is PocketEstate?
 
-PocketEstate is a desktop application for property agents efficiently and effectively manage property data and appointment schedules. With PocketEstate, you can easily organize your property and clientele information, as well as keeping track of your schedules and deadlines.
+PocketEstate is a desktop application for property agents to efficiently and effectively manage property data and appointment schedules. With PocketEstate, you can easily organize your property and clientele information, as well as keeping track of your schedules and deadlines.
 
 PocketEstate is also highly optimized for users who can type fast and prefer typing over other means of input, allowing fast completion of most tasks solely via Command Line Interface (CLI).
 
