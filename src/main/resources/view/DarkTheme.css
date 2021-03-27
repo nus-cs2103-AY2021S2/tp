@@ -359,3 +359,7 @@
     -fx-font-weight: bold;
     -fx-font-size: 15;
 }
+
+.tuition {
+    -fx-background-color: #383838;
+}
