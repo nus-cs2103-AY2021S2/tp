@@ -6,13 +6,14 @@ import java.util.Optional;
 
 import seedu.iscam.commons.exceptions.DataConversionException;
 import seedu.iscam.model.ReadOnlyClientBook;
+import seedu.iscam.model.ReadOnlyMeetingBook;
 import seedu.iscam.model.ReadOnlyUserPrefs;
 import seedu.iscam.model.UserPrefs;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends ClientBookStorage, UserPrefsStorage {
+public interface Storage extends ClientBookStorage, MeetingBookStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -28,5 +29,14 @@ public interface Storage extends ClientBookStorage, UserPrefsStorage {
 
     @Override
     void saveClientBook(ReadOnlyClientBook clientBook) throws IOException;
+
+    @Override
+    Path getMeetingBookFilePath();
+
+    @Override
+    Optional<ReadOnlyMeetingBook> readMeetingBook() throws DataConversionException, IOException;
+
+    @Override
+    void saveMeetingBook(ReadOnlyMeetingBook meetingBook) throws IOException;
 
 }

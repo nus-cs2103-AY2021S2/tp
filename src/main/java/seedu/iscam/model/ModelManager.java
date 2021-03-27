@@ -29,6 +29,7 @@ public class ModelManager implements Model {
 
     private final MeetingBook meetingBook;
     private final FilteredList<Meeting> filteredMeetings;
+    private final ObservableMeeting detailedMeeting;
 
     private final UserPrefs userPrefs;
 
@@ -37,9 +38,11 @@ public class ModelManager implements Model {
      */
     public ModelManager(ReadOnlyClientBook clientBook, ReadOnlyMeetingBook meetingBook, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(clientBook, userPrefs);
+        requireAllNonNull(clientBook, meetingBook, userPrefs);
 
-        logger.fine("Initializing with iscam book: " + clientBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with iscam book: " + clientBook
+                + ", meeting book " + meetingBook
+                + " and user prefs " + userPrefs);
 
         this.clientBook = new ClientBook(clientBook);
         this.filteredClients = new FilteredList<>(this.clientBook.getClientList());
@@ -48,6 +51,7 @@ public class ModelManager implements Model {
 
         this.meetingBook = new MeetingBook(meetingBook);
         this.filteredMeetings = new FilteredList<>(this.meetingBook.getMeetingList());
+        this.detailedMeeting = new ObservableMeeting();
 
         this.userPrefs = new UserPrefs(userPrefs);
     }
@@ -86,9 +90,19 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setClientBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setClientBookFilePath(addressBookFilePath);
+    public void setClientBookFilePath(Path clientBookFilePath) {
+        requireNonNull(clientBookFilePath);
+        userPrefs.setClientBookFilePath(clientBookFilePath);
+    }
+    @Override
+    public Path getMeetingBookFilePath() {
+        return userPrefs.getMeetingBookFilePath();
+    }
+
+    @Override
+    public void setMeetingBookFilePath(Path meetingBookFilePath) {
+        requireNonNull(meetingBookFilePath);
+        userPrefs.setMeetingBookFilePath(meetingBookFilePath);
     }
 
     //=========== ClientBook ================================================================================
@@ -99,8 +113,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setClientBook(ReadOnlyClientBook addressBook) {
-        this.clientBook.resetData(addressBook);
+    public void setClientBook(ReadOnlyClientBook clientBook) {
+        this.clientBook.resetData(clientBook);
     }
 
     @Override
@@ -123,8 +137,19 @@ public class ModelManager implements Model {
     @Override
     public void setClient(Client target, Client editedClient) {
         requireAllNonNull(target, editedClient);
-
         clientBook.setClient(target, editedClient);
+    }
+
+    //=========== MeetingBook ================================================================================
+
+    @Override
+    public ReadOnlyMeetingBook getMeetingBook() {
+        return meetingBook;
+    }
+
+    @Override
+    public void setMeetingBook(ReadOnlyMeetingBook meetingBook) {
+        this.meetingBook.resetData(meetingBook);
     }
 
     @Override
@@ -141,7 +166,7 @@ public class ModelManager implements Model {
     @Override
     public void addMeeting(Meeting meeting) {
         meetingBook.addMeeting(meeting);
-        updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS); // May need adjust this
+        updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
     }
 
     @Override
@@ -150,11 +175,12 @@ public class ModelManager implements Model {
         meetingBook.setMeeting(target, editedMeeting);
     }
 
+
     //=========== Filtered Client List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Client} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedClientBook}
      */
     @Override
     public ObservableList<Client> getFilteredClientList() {
@@ -179,14 +205,9 @@ public class ModelManager implements Model {
 
     //=========== Filtered Meeting List Accessors =============================================================
 
-    @Override
-    public MeetingBook getMeetingBook() {
-        return meetingBook;
-    }
-
     /**
      * Returns an unmodifiable view of the list of {@code Meeting} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedClientBook}
      */
     @Override
     public ObservableList<Meeting> getFilteredMeetingList() {
@@ -221,6 +242,17 @@ public class ModelManager implements Model {
     @Override
     public ObservableValue<Boolean> getIsClientMode() {
         return isClientMode;
+    }
+
+    @Override
+    public ObservableMeeting getDetailedMeeting() {
+        return detailedMeeting;
+    }
+
+    @Override
+    public void setDetailedMeeting(Meeting meeting) {
+        detailedMeeting.setMeeting(meeting);
+
     }
 
     @Override

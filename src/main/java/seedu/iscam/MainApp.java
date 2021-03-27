@@ -26,7 +26,9 @@ import seedu.iscam.model.UserPrefs;
 import seedu.iscam.model.util.SampleDataUtil;
 import seedu.iscam.storage.ClientBookStorage;
 import seedu.iscam.storage.JsonClientBookStorage;
+import seedu.iscam.storage.JsonMeetingBookStorage;
 import seedu.iscam.storage.JsonUserPrefsStorage;
+import seedu.iscam.storage.MeetingBookStorage;
 import seedu.iscam.storage.Storage;
 import seedu.iscam.storage.StorageManager;
 import seedu.iscam.storage.UserPrefsStorage;
@@ -50,7 +52,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing ClientBook ]===========================");
+        logger.info("=======================[ Initializing ClientBook and MeetingBook ]=======================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -59,7 +61,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         ClientBookStorage clientBookStorage = new JsonClientBookStorage(userPrefs.getClientBookFilePath());
-        storage = new StorageManager(clientBookStorage, userPrefsStorage);
+        MeetingBookStorage meetingBookStorage = new JsonMeetingBookStorage(userPrefs.getMeetingBookFilePath());
+        storage = new StorageManager(clientBookStorage, meetingBookStorage, userPrefsStorage);
 
         initLogging(config);
 

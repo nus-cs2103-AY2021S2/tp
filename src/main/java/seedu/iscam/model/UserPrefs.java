@@ -15,6 +15,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path clientBookFilePath = Paths.get("data", "clientbook.json");
+    private Path meetingBookFilePath = Paths.get("data", "meetingbook.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -57,6 +58,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.clientBookFilePath = clientBookFilePath;
     }
 
+    public Path getMeetingBookFilePath() {
+        return meetingBookFilePath;
+    }
+
+    public void setMeetingBookFilePath(Path meetingBookFilePath) {
+        requireNonNull(meetingBookFilePath);
+        this.meetingBookFilePath = meetingBookFilePath;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -74,14 +84,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, clientBookFilePath);
+        return Objects.hash(guiSettings, clientBookFilePath, meetingBookFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + clientBookFilePath);
+        sb.append("\nLocal client data file location : " + clientBookFilePath);
+        sb.append("\nLocal meeting data file location : " + meetingBookFilePath);
         return sb.toString();
     }
 
