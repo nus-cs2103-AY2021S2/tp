@@ -258,7 +258,7 @@ A person can have any number of tags and insurance policies (including 0).
 *  Edit the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
     * `edit 1 p/91234567 e/johndoe@example.com`
       
-      ![edit 1](images/edit-1.png)
+      ![edit 1](images/edit-annotate.png)
     
 *  Edit the name of the 2nd person to be `Betsy Crower`.
     * `edit 2 n/Betsy Crower`
@@ -287,7 +287,7 @@ A person can have any number of tags and insurance policies (including 0).
 *  Shows a list of all clients and their phone number and insurance policy number.
    * `list -p -i`
     
-     ![list phone](images/list-phone-policy.png)
+     ![list phone](images/list-phone-policy-annotate.png)
 
 [Return to Table of Contents](#table-of-contents)
 <br><br>
@@ -314,7 +314,7 @@ Optional identifiers can be added to show the list of matched clients with only 
 * Find `Alex David`.
   * `find n/alex david`
   
-    ![find_alex_david](images/find_alex_david.png)
+    ![find_alex_david](images/find_alex_david-annotate.png)
 <br><br>
 * Find `Alex David`, `Alex Yeoh` and `David Li`.
   * `find n/alex & david`
@@ -325,7 +325,7 @@ Optional identifiers can be added to show the list of matched clients with only 
 * Find the email and phone number of all persons whose names contain `alex` and `david` using the `&` delimiter, and only display their email and phone number.
   * `find n/alex & david -e -p`
     
-    ![find_alex_&_david_with_filter](images/find-alex-&-david-with-filter.png)
+    ![find_alex_&_david_with_filter](images/find-alex-&-david-with-filter-annotate.png)
 <br><br>
 [Return to Table of Contents](#table-of-contents)
 <br><br>
@@ -346,7 +346,7 @@ Optional identifiers can be added to show the list of matched clients with only 
 **Examples**:
 * `list` followed by `policy 2` displays the policies associated with the 2nd person in the address book.
   
-  ![with policy URL](images/with_policy_URL.png)
+  ![with policy URL](images/with-policy-URL-annotate.png)
   
 * `find n/Bernice` followed by `policy 1` displays the policies associated with the 1st person in the results of the `find` command.
   
@@ -398,7 +398,7 @@ Optional identifiers can be added to show the list of matched clients with only 
 * Sort the current list of clients by name in **descending** alphabetical order.
     * `sort -n -des`
 
-      ![sort](images/sort-des.png)
+      ![sort](images/sort-des-annotate.png)
 
 [Return to Table of Contents](#table-of-contents)
 <br><br>
