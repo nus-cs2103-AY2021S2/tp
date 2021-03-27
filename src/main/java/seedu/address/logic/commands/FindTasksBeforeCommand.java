@@ -6,6 +6,9 @@ import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.task.DeadlineBeforeDatePredicate;
 
+/**
+ * Finds and lists all tasks in HEY MATEz with deadline before a specified date.
+ */
 public class FindTasksBeforeCommand extends Command {
     public static final String COMMAND_WORD = "findBefore";
 

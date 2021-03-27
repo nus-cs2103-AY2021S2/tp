@@ -12,10 +12,10 @@ import seedu.address.model.task.DeadlineBeforeDatePredicate;
  */
 public class FindTasksBeforeCommandParser implements Parser<FindTasksBeforeCommand> {
     /**
-     * Parses the given {@code String} deadine in the context of the FindTasksBeforeCommand
+     * Parses the given {@code String} deadline in the context of the FindTasksBeforeCommand
      * and returns a FindTasksBefore Command object for execution.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform to the expected format
      */
     public FindTasksBeforeCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();

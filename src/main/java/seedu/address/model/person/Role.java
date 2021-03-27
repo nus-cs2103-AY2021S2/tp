@@ -10,14 +10,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Role {
     public static final String MESSAGE_CONSTRAINTS =
             "Member roles can take any values, and it should not be blank ";
-    //public static final String VALIDATION_REGEX = "[^\\s].*";
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     public final String memberRole;
 
     /**
      * Constructs a {@code Role}.
      *
-     * @param role A valid member role.
+     * @param role A valid member role as a string.
      */
     public Role(String role) {
         requireNonNull(role);
@@ -27,6 +26,8 @@ public class Role {
 
     /**
      * Returns true if a given string is a valid member role.
+     *
+     * @return a boolean value
      */
     public static boolean isValidRole(String test) {
         return test.matches(VALIDATION_REGEX);

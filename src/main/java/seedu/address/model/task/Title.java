@@ -31,6 +31,8 @@ public class Title {
 
     /**
      * Returns true if a given string is a valid name.
+     *
+     * @return a boolean value
      */
     public static boolean isValidTitle(String test) {
         return test.matches(VALIDATION_REGEX);

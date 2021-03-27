@@ -51,11 +51,8 @@ public class Task {
 
 
     /**
-<<<<<<< HEAD
      * Overloaded constructor where every field must be present and not null.
-=======
      * Overloaded constructor where every field must be present and not null. Status set to default of UNCOMPLETED
->>>>>>> 27647962e12e0a2778d78dccd8df3e1fe1670941
      */
     public Task(Title title, Description description, Deadline deadline, TaskStatus taskStatus, Priority priority) {
         requireAllNonNull(title, description, deadline, taskStatus, priority);
