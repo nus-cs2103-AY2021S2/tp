@@ -4,7 +4,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_LOCALDATE_
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_LOCALTIME_MEET_ALEX;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_MEET_LOCALTIME_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
 
 import org.junit.jupiter.api.Test;
@@ -18,6 +17,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.testutil.AppointmentBuilder;
 import seedu.address.testutil.EditAppointmentDescriptorBuilder;
+import seedu.address.testutil.TypicalModelManager;
 
 
 /**
@@ -27,7 +27,7 @@ public class EditAppointmentCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Model model = new ModelManager(getTypicalAppointmentBook(), new UserPrefs());
+        Model model = TypicalModelManager.getTypicalModelManager();
         Appointment editedAppointment =
                 new AppointmentBuilder().withName("Meet alice")
                                         .withDate(VALID_DATE_LOCALDATE_MEET_ALICE)
@@ -47,7 +47,7 @@ public class EditAppointmentCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Model model = new ModelManager(getTypicalAppointmentBook(), new UserPrefs());
+        Model model = TypicalModelManager.getTypicalModelManager();
         Index indexLastAppointment = Index.fromOneBased(model.getFilteredAppointmentList().size());
         Appointment lastAppointment = model.getFilteredAppointmentList().get(indexLastAppointment.getZeroBased());
 

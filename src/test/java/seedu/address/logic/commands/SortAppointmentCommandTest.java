@@ -21,11 +21,12 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.testutil.SortAppointmentDescriptorBuilder;
+import seedu.address.testutil.TypicalModelManager;
 
 
 public class SortAppointmentCommandTest {
 
-    private Model model = new ModelManager(getTypicalAppointmentBook(), new UserPrefs());
+    private Model model = TypicalModelManager.getTypicalModelManager();
 
     @Test
     public void execute_sortByDatetimeInAscendingOrder_success() {

@@ -21,11 +21,12 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.property.Property;
 import seedu.address.testutil.SortPropertyDescriptorBuilder;
+import seedu.address.testutil.TypicalModelManager;
 
 
 public class SortPropertyCommandTest {
 
-    private Model model = new ModelManager(getTypicalPropertyBook(), new UserPrefs());
+    private Model model = TypicalModelManager.getTypicalModelManager();
 
     @Test
     public void execute_sortByDeadlineInAscendingOrder_success() {

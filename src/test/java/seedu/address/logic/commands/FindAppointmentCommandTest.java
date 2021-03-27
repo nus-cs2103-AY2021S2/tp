@@ -7,7 +7,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_APPOINTMENT_LISTED_OVE
 import static seedu.address.commons.core.Messages.MESSAGE_APPOINTMENT_LISTED_OVERVIEW_SINGULAR;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAppointments.MEET_BOB;
-import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointments;
 
 import java.util.Arrays;
@@ -16,16 +15,15 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
+import seedu.address.testutil.TypicalModelManager;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindAppointmentCommand}.
  */
 public class FindAppointmentCommandTest {
-    private Model model = new ModelManager(getTypicalAppointmentBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAppointmentBook(), new UserPrefs());
+    private Model model = TypicalModelManager.getTypicalModelManager();
+    private Model expectedModel = TypicalModelManager.getTypicalModelManager();
 
     @Test
     public void equals() {
