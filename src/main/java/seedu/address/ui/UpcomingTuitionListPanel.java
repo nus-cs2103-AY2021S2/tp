@@ -1,5 +1,8 @@
 package seedu.address.ui;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
@@ -15,7 +18,7 @@ import seedu.address.model.student.Student;
 import seedu.address.model.tuition.Tuition;
 
 /**
- * Panel containing the list of tuition.
+ * Panel containing the list of the upcoming tuition in 1 week.
  */
 public class UpcomingTuitionListPanel extends UiPart<Region> {
     private static final String FXML = "UpcomingTuitionListPanel.fxml";
@@ -25,32 +28,72 @@ public class UpcomingTuitionListPanel extends UiPart<Region> {
     private ListView<Tuition> upcomingTuitionListView;
 
     /**
-     * Creates a {@code TuitionListPanel} with the given {@code ObservableList}.
+     * Creates a {@code UpcomingTuitionListPanel} with the given {@code ObservableList}.
      */
     public UpcomingTuitionListPanel(ObservableList<Student> studentList) {
         super(FXML);
         ObservableList<Tuition> tuitionList = FXCollections.observableArrayList();
+        ObservableList<Tuition> finalTuitionList = FXCollections.observableArrayList();
+
+        populateTuitionList(studentList, tuitionList);
+        filterOneWeekTuitionSessions(tuitionList, finalTuitionList);
+        sortByDate(finalTuitionList);
+
+        studentList.addListener((ListChangeListener<Student>) change -> {
+            while (change.next()) {
+                tuitionList.clear();
+                finalTuitionList.clear();
+                populateTuitionList(studentList, tuitionList);
+                filterOneWeekTuitionSessions(tuitionList, finalTuitionList);
+                sortByDate(finalTuitionList);
+            }
+        });
+
+        upcomingTuitionListView.setItems(finalTuitionList);
+        upcomingTuitionListView.setCellFactory(listView -> new UpcomingTuitionListViewCell());
+    }
+
+    /**
+     * Sorts tuition by ascending order of date.
+     */
+    private void sortByDate(ObservableList<Tuition> finalTuitionList) {
+        finalTuitionList.sort(new Comparator<Tuition>() {
+            @Override
+            public int compare(Tuition o1, Tuition o2) {
+                return o1.getSession().getSessionDate().getDateTime().compareTo(
+                        o2.getSession().getSessionDate().getDateTime()
+                );
+            }
+        });
+    }
+
+    /**
+     * Filters all tuition 1 week from today
+     * @param tuitionList
+     * @param finalTuitionList
+     */
+    private void filterOneWeekTuitionSessions(ObservableList<Tuition> tuitionList, ObservableList<Tuition> finalTuitionList) {
+        LocalDate today = LocalDateTime.now().toLocalDate();
+        LocalDate weekToday = today.plusWeeks(1);
+        for (Tuition tuition : tuitionList) {
+            LocalDate sessionDate = tuition.getSession().getSessionDate().getDate();
+            if (today.compareTo(sessionDate) <= 0 && sessionDate.compareTo(weekToday) < 0) {
+                finalTuitionList.add(tuition);
+            }
+        }
+    }
+
+    /**
+     * Populates the tuitionList with {@code Tuition} for all sessions in the studentList.
+     */
+    private void populateTuitionList(ObservableList<Student> studentList, ObservableList<Tuition> tuitionList) {
         for (int i = 0; i < studentList.size(); i++) {
+            Student currStudent = studentList.get(i);
             for (int j = 0; j < studentList.get(i).getListOfSessions().size(); j++) {
-                Student currStudent = studentList.get(i);
                 Session currSession = currStudent.getListOfSessions().get(j);
                 tuitionList.add(new Tuition(currStudent, currSession, i, j));
             }
         }
-        studentList.addListener((ListChangeListener<Student>) change -> {
-            while (change.next()) {
-                tuitionList.clear();
-                for (int i = 0; i < studentList.size(); i++) {
-                    for (int j = 0; j < studentList.get(i).getListOfSessions().size(); j++) {
-                        Student currStudent = studentList.get(i);
-                        Session currSession = currStudent.getListOfSessions().get(j);
-                        tuitionList.add(new Tuition(currStudent, currSession, i, j));
-                    }
-                }
-            }
-        });
-        upcomingTuitionListView.setItems(tuitionList);
-        upcomingTuitionListView.setCellFactory(listView -> new UpcomingTuitionListViewCell());
     }
 
     /**
