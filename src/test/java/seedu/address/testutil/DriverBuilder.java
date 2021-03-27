@@ -9,7 +9,7 @@ import seedu.address.model.person.driver.Driver;
  */
 public class DriverBuilder {
 
-    public static final String DEFAULT_NAME = "Amy Bee";
+    public static final String DEFAULT_NAME = "Dr Iver Man";
     public static final String DEFAULT_PHONE = "85355255";
 
     private Name name;

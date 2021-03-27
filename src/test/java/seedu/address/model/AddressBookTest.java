@@ -20,6 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.person.passenger.exceptions.DuplicatePassengerException;
+import seedu.address.model.pool.Pool;
 import seedu.address.testutil.PassengerBuilder;
 
 public class AddressBookTest {
@@ -83,11 +84,14 @@ public class AddressBookTest {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPassengerList().remove(0));
     }
 
+
+    // TODO add pool test
     /**
      * A stub ReadOnlyAddressBook whose passengers list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Passenger> passengers = FXCollections.observableArrayList();
+        private final ObservableList<Pool> pools = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Passenger> passengers) {
             this.passengers.setAll(passengers);
@@ -96,6 +100,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Passenger> getPassengerList() {
             return passengers;
+        }
+
+        @Override
+        public ObservableList<Pool> getPoolList() {
+            return pools;
         }
     }
 

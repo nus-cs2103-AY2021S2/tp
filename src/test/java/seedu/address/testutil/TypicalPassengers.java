@@ -48,20 +48,18 @@ public class TypicalPassengers {
     public static final Passenger GEORGE = new PassengerBuilder().withName("George Best").withPhone("9482442")
             .withTripDay(DayOfWeek.THURSDAY).withTripTime(LocalTime.of(7, 15)).withPrice(1.69)
             .withAddress("4th street").build();
-
-    // Passengers with drivers already assigned
     public static final Passenger HILARY = new PassengerBuilder().withName("Hilary Clinton").withPhone("9486666")
             .withTripDay(DayOfWeek.MONDAY).withTripTime(LocalTime.of(19, 30)).withPrice(1.69)
-            .withAddress("6th ave").withDriver().buildWithDriver();
+            .withAddress("6th ave").build();
     public static final Passenger IRENE = new PassengerBuilder().withName("Irene Newton").withPhone("91238888")
             .withTripDay(DayOfWeek.MONDAY).withTripTime(LocalTime.of(19, 30)).withPrice(1.80)
-            .withAddress("5th ave").withDriver().buildWithDriver();
+            .withAddress("5th ave").build();
     public static final Passenger JACKSON = new PassengerBuilder().withName("Jackson Mehoff").withPhone("91236969")
             .withTripDay(DayOfWeek.MONDAY).withTripTime(LocalTime.of(19, 30)).withPrice(1.30)
-            .withAddress("4th ave").withDriver().buildWithDriver();
+            .withAddress("4th ave").build();
     public static final Passenger KINGSLEY = new PassengerBuilder().withName("Kingsley Kuan").withPhone("91867510")
             .withTripDay(DayOfWeek.MONDAY).withTripTime(LocalTime.of(19, 30)).withPrice(1.90)
-            .withAddress("3rd ave").withDriver().buildWithDriver();
+            .withAddress("3rd ave").build();
 
     // Passengers with drivers removed
     public static final Passenger HILARY_NO_DRIVER = new PassengerBuilder().withName("Hilary Clinton")

@@ -65,11 +65,6 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Passenger> getPassengerListByHasDriver() {
-        return model.getPassengerListByHasDriver();
-    }
-
-    @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
     }

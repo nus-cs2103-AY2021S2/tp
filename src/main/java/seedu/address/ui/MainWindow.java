@@ -116,7 +116,9 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         filteredPassengerListPanel = new FilteredPassengerListPanel(logic.getFilteredPassengerList());
         filteredPassengerListPanelPlaceholder.getChildren().add(filteredPassengerListPanel.getRoot());
-        takenPassengerListPanel = new TakenPassengerListPanel(logic.getPassengerListByHasDriver());
+        //TODO: removed creation of takenPassengerListPanel here as the logic should no longer support getting a
+        // passenger list by drivers
+
         takenPassengerListPanelPlaceholder.getChildren().add(takenPassengerListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();

@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPassengers.HILARY;
@@ -70,7 +69,7 @@ class UnpoolCommandTest {
 
         Driver driver = new DriverBuilder().build();
         UnpoolCommand unpoolCommand = new UnpoolCommand(driver);
-        String expectedMessage = String.format(UnpoolCommand.MESSAGE_UNPOOL_SUCCESS, driver, HILARY.getName());
+        String expectedMessage = String.format(UnpoolCommand.MESSAGE_UNPOOL_SUCCESS, driver, "");
 
         assertCommandSuccess(unpoolCommand, model, expectedMessage, expectedModel);
     }
@@ -89,25 +88,11 @@ class UnpoolCommandTest {
         Driver driver = new DriverBuilder().build();
         UnpoolCommand unpoolCommand = new UnpoolCommand(driver);
         StringJoiner joiner = new StringJoiner(", ");
-        joiner.add(HILARY.getName().toString()).add(IRENE.getName().toString())
-                .add(JACKSON.getName().toString()).add(KINGSLEY.getName().toString());
+
+        //  TODO: Changed expectedmessage to exclude driver as it is no longer attached to the passenger
         String expectedMessage = String.format(UnpoolCommand.MESSAGE_UNPOOL_SUCCESS, driver, joiner);
 
         assertCommandSuccess(unpoolCommand, model, expectedMessage, expectedModel);
-    }
-
-    // TODO: write a filtered list execute success test
-
-    @Test
-    public void execute_noExistingDriverNameUnfilteredList_failure() {
-        AddressBookBuilder addressBookBuilder = new AddressBookBuilder(getTypicalAddressBook())
-                .withPassenger(HILARY).withPassenger(IRENE).withPassenger(JACKSON).withPassenger(KINGSLEY);
-        Model model = new ModelManager(addressBookBuilder.build(), new UserPrefs());
-
-        Driver driver = new DriverBuilder().withName("Mike Hunt").build();
-        UnpoolCommand unpoolCommand = new UnpoolCommand(driver);
-
-        assertCommandFailure(unpoolCommand, model, UnpoolCommand.MESSAGE_DRIVER_NOT_EXIST);
     }
 
     // TODO: write a filtered list no existing driver failure test

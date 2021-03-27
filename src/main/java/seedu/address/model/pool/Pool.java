@@ -25,7 +25,7 @@ public class Pool {
     private Driver driver;
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null. Ensures a pool cannot be created with no passengers.
      */
     public Pool(Driver driver, TripDay tripDay, TripTime tripTime, Set<Passenger> passengers, Set<Tag> tags) {
         requireAllNonNull(driver, tripDay, tripTime);
@@ -86,7 +86,7 @@ public class Pool {
      * Returns true if both trips have same driver, date & time, and passengers.
      * This defines a weaker notion of equality between two trips.
      */
-    public boolean isSameTrip(Pool otherPool) {
+    public boolean isSamePool(Pool otherPool) {
         if (otherPool == this) {
             return true;
         }
@@ -113,7 +113,7 @@ public class Pool {
         }
 
         Pool otherPool = (Pool) other;
-        return isSameTrip(otherPool)
+        return isSamePool(otherPool)
                 && otherPool.getTags().equals(getTags());
     }
 
