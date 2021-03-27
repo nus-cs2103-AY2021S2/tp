@@ -336,7 +336,7 @@ If your changes to the data file makes its format invalid, PocketEstate will dis
 
 #### Specifying the data files
 
-It is also possible to specify your own property and/or appointment storage data files. In the `preferences.json` file that is generated when you first launch the app, you may edit the values of `propertyBookFilePath` and/or the `appointmentBookFilePath` to your own property and appointment storage file paths respectively.
+It is also possible to specify your own property and/or appointment storage data files. In the `preferences.json` file that is generated when you first launch the app, you may edit the values of `propertyBookFilePath` and/or `appointmentBookFilePath` to your own property and appointment storage file paths respectively.
 
 ![Edit preferences.json file](images/editPreferencesJsonFile.png)
 
