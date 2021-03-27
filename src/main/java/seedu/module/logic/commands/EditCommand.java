@@ -88,12 +88,16 @@ public class EditCommand extends Command {
         Task taskToEdit = lastShownList.get(index.getZeroBased());
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
 
-        if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask) && !taskToEdit.isRecurring()) {
-            throw new CommandException(MESSAGE_DUPLICATE_TASK);
-        }
+//        if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask) && !taskToEdit.isRecurring()) {
+//            throw new CommandException(MESSAGE_DUPLICATE_TASK);
+//        }
+//
+//        if (taskToEdit.isRecurring() && model.hasRecurringTask(editedTask) && taskToEdit.equals(editedTask)) {
+//            throw new CommandException(String.format(MESSAGE_DUPLICATE_RECURRENCE, taskToEdit.getRecurrence()));
+//        }
 
-        if (taskToEdit.isRecurring() && model.hasRecurringTask(editedTask) && taskToEdit.equals(editedTask)) {
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_RECURRENCE, taskToEdit.getRecurrence()));
+        if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
+            throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
         if (editedTask.isTimeInvalid()) {
