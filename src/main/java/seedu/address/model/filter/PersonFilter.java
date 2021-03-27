@@ -2,6 +2,7 @@ package seedu.address.model.filter;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -32,6 +33,13 @@ public class PersonFilter implements Predicate<Person> {
         this.nameFilters = nameFilters;
 
         composeFilters();
+    }
+
+    /**
+     * Checks if person filter contains any of the filters from another person filter.
+     */
+    public boolean has(PersonFilter personFilter) {
+        return !Collections.disjoint(this.nameFilters, personFilter.nameFilters);
     }
 
     /**

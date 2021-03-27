@@ -50,6 +50,29 @@ public class PersonFilterTest {
     }
 
     @Test
+    public void has_personFilter_success() {
+        Person amy = TypicalPersons.AMY;
+        Person bob = TypicalPersons.BOB;
+
+        Set<Predicate<Name>> nameFilters = new LinkedHashSet<Predicate<Name>>();
+        nameFilters.add(new NameFilter(amy.getName().fullName));
+        PersonFilter personFilterOne = new PersonFilter(nameFilters);
+
+        nameFilters = new LinkedHashSet<Predicate<Name>>();
+        nameFilters.add(new NameFilter(amy.getName().fullName));
+        nameFilters.add(new NameFilter(bob.getName().fullName));
+        PersonFilter personFilterTwo = new PersonFilter(nameFilters);
+
+        assertTrue(personFilterTwo.has(personFilterOne));
+        assertFalse(personFilterTwo.has(new PersonFilter()));
+    }
+
+    @Test
+    public void has_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new PersonFilter().has(null));
+    }
+
+    @Test
     public void add_personFilter_success() {
         PersonFilter personFilter = new PersonFilter();
 
