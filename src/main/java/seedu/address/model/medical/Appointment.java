@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import seedu.address.model.person.Person;
 
 /**
- * Represents a Appointment of a Patient.
+ * Represents an Appointment of a Patient.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Appointment implements Comparable<Appointment> {
