@@ -33,6 +33,7 @@ If you are an insurance agent who can type fast, ClientBook can help _you_ accom
 * [Frequently Asked Questions](#frequently-asked-questions)
   * [Setting Up](#setting-up)
 * [Summary of Commands](#summary-of-commands)
+* [Keyboard Shortcuts](#keyboard-shortcuts)
 * [Contact Us](#contact-us)
 
 
@@ -479,6 +480,10 @@ Optional flags can be added to show the list of matched clients with only the sp
 [Return to Table of Contents](#table-of-contents)
 <br><br>
 
+### Keyboard shortcuts
+
+**Purpose**: We note that continuously typing the same command keywords can become tiresome. Hence, we have provided 
+[keyboard shortcuts](#summary-of-keyboard-shortcuts) which when pressed, will fill in the command keyword for you.
 
 ### Saving data
 
@@ -548,6 +553,17 @@ If you get an error message (`Java command not found`), it means that Java is no
 [**Exit**](#exiting-the-program--exit) | `exit` | `exit` |
 
 [Return to Table of Contents](#table-of-contents)
+
+## Summary of Keyboard Shortcuts
+
+| Shortcut | Output |
+| --------|------------------ |
+**CTRL+A** | `add` |
+**CTRL+D** | `delete` |
+**CTRL+E** | `edit` |
+**CTRL+F** | `find` |
+**CTRL+L** | `list` |
+**CTRL+S** | `sort` |
 
 --------------------------------------------------------------------------------------------------------------------
 
