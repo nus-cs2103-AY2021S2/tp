@@ -27,13 +27,14 @@ If you are an insurance agent who can type fast, ClientBook can help _you_ accom
   * [`lock`: Lock ClientBook with a user-selected password](#lock-lock-clientbook-with-a-user-selected-password)
   * [`unlock`: Unlock ClientBook](#unlock-unlock-clientbook)
   * [`exit`: Exiting the program](#exit-exiting-the-program)
+  * [Keyboard shortcuts](#keyboard-shortcuts)
   * [Saving data](#saving-data)
   * [Editing data file](#editing-data-file)
   * [Upcoming features!](#upcoming-features-v20-and-beyond)
 * [Frequently Asked Questions](#frequently-asked-questions)
   * [Setting Up](#setting-up)
 * [Summary of Commands](#summary-of-commands)
-* [Keyboard Shortcuts](#keyboard-shortcuts)
+* [Summary of Keyboard Shortcuts](#keyboard-shortcuts)
 * [Contact Us](#contact-us)
 
 
