@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.IDENTIFIER_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIdentifiers.IDENTIFIER_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.List;

@@ -12,7 +12,8 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
+import seedu.address.commons.core.identifier.Identifier;
+import seedu.address.commons.core.identifier.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditEventDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -33,10 +34,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_STATUS, PREFIX_PRIORITY);
 
-        Index index;
+        Identifier identifier;
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            identifier = ParserUtil.parseIdentifier(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
@@ -64,7 +65,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editEventDescriptor);
+        return new EditCommand(identifier, editEventDescriptor);
     }
 
     /**

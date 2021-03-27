@@ -1,17 +1,14 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
 import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
+import seedu.address.commons.core.identifier.Identifier;
+import seedu.address.commons.core.identifier.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -28,18 +25,15 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the event identified "
+            + "by the identifier used in the displayed event list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_NAME + "Finish CS2030S Lab 1 "
+            + PREFIX_PRIORITY + "high";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -49,18 +43,18 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_EVENT_SUCCESS = "Edited Event: %1$s";
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the event book.";
 
-    private final Index index;
+    private final Identifier identifier;
     private final EditEventDescriptor editEventDescriptor;
 
     /**
      * @param identifier of the person in the filtered person list to edit
      * @param editEventDescriptor details to edit the person with
      */
-    public EditCommand(Index identifier, EditEventDescriptor editEventDescriptor) {
+    public EditCommand(Identifier identifier, EditEventDescriptor editEventDescriptor) {
         requireNonNull(identifier);
         requireNonNull(editEventDescriptor);
 
-        this.index = identifier;
+        this.identifier = identifier;
         this.editEventDescriptor = new EditEventDescriptor(editEventDescriptor);
     }
 
@@ -72,7 +66,7 @@ public class EditCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_INDEX_NO_EVENTS);
         }
 
-        Optional<Event> optEventToEdit = model.getEventByIdentifier(index.getOneBased());
+        Optional<Event> optEventToEdit = model.getEventByIdentifier(identifier.getValue());
         Optional<Event> optEditedEvent = optEventToEdit
                 .map(event -> createEditedEvent(event, editEventDescriptor));
 
@@ -127,7 +121,7 @@ public class EditCommand extends Command {
 
         // state check
         EditCommand e = (EditCommand) other;
-        return index.equals(e.index)
+        return identifier.equals(e.identifier)
                 && editEventDescriptor.equals(e.editEventDescriptor);
     }
 

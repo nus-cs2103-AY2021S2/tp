@@ -8,14 +8,15 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CS2030;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalEvents.getTypicalEventBook;
-import static seedu.address.testutil.TypicalIndexes.IDENTIFIER_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.IDENTIFIER_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIdentifiers.IDENTIFIER_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIdentifiers.IDENTIFIER_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
+import seedu.address.commons.core.identifier.Identifier;
+import seedu.address.commons.core.identifier.Index;
 import seedu.address.logic.commands.EditCommand.EditEventDescriptor;
 import seedu.address.model.EventBook;
 import seedu.address.model.Model;
@@ -80,7 +81,7 @@ public class EditCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         Event editedEvent = model.getFilteredEventList().get(IDENTIFIER_FIRST_PERSON.getZeroBased());
-        Index eventIdentifier = Index.fromOneBased(editedEvent.getIdentifier());
+        Identifier eventIdentifier = Identifier.fromIdentifier(editedEvent.getIdentifier());
         EditCommand editCommand = new EditCommand(eventIdentifier, new EditEventDescriptor());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EVENT_SUCCESS, editedEvent);
@@ -103,7 +104,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_invalidEventIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEventList().size() + 1);
+        Identifier outOfBoundIndex = Identifier.fromIdentifier(model.getFilteredEventList().size() + 1);
         EditEventDescriptor descriptor = new EditEventDescriptorBuilder().withName(VALID_NAME_CS2030).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
