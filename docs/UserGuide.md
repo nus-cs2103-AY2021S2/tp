@@ -9,6 +9,7 @@ ClientBook is an application for insurance agents to manage client contacts, opt
 still having the benefits of a Graphical User Interface (GUI). If you are an insurance agent who can type fast, 
 ClientBook can help _you_ accomplish your client management tasks faster than traditional GUI apps.
 
+
 ### Table of Contents 
 
 * [**1**. Why ClientBook?](#why-clientbook)
@@ -34,7 +35,8 @@ ClientBook can help _you_ accomplish your client management tasks faster than tr
 * [**5.** Frequently Asked Questions](#frequently-asked-questions)
   * [**5.1** Setting Up](#setting-up)
 * [**6.** Summary of Commands](#summary-of-commands)
-* [**7.** Contact Us](#contact-us)
+* [**7.** Glossary](#glossary)
+* [**8.** Contact Us](#contact-us)
 
 
 ## Why ClientBook?
@@ -532,6 +534,38 @@ If you get an error message (`Java command not found`), it means that Java is no
 [**Lock**](#lock-clientbook-with-a-user-selected-password-lock) | `lock [CURRENT_PASSWORD] NEW_PASSWORD` | `lock 123 456` |
 [**Unlock**](#unlock-clientbook--unlock) | `unlock [CURRENT_PASSWORD]` | `unlock 456` |
 [**Exit**](#exiting-the-program--exit) | `exit` | `exit` |
+
+[Return to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Glossary
+
+1. **CLI** (Command Line Interface) A text box like interface which allows a user to enter commands.
+
+
+2. **GUI** (Graphical user interface) A form of user interface with graphical features such as icons that allows a user to interact with our program.
+
+
+3. **UI** (User Interface) An interface for a user to interact with the program.
+
+
+4. **Java** A programming language and computing platform to use our ClientBook.
+
+
+5. **Command Prompt** A command line interpreter application on Windows.
+
+
+6. **Terminal** A command line interpreter application on Mac.
+
+
+7. **Attribute** The types of information you can store in our ClientBook.
+
+
+8. **Identifier** The alphabetical letter associated with the attribute.
+
+
+9. **JSON** (JavaScript Object Notation) A format for storing and transporting data.
 
 [Return to Table of Contents](#table-of-contents)
 
