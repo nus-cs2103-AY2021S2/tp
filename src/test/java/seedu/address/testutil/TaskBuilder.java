@@ -20,8 +20,8 @@ public class TaskBuilder {
 
     public static final String DEFAULT_TITLE = "Amy Bee";
     public static final String DEFAULT_DEADLINE = "";
-    public static final String DEFAULT_DURATION = "15:30-16:30";
-    public static final String DEFAULT_RECURRINGSCHEDULE = "[10/06/2021][Mon][weekly]";
+    public static final String DEFAULT_DURATION = "";
+    public static final String DEFAULT_RECURRINGSCHEDULE = "";
     public static final String DEFAULT_DESCRIPTION = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_STATUS = "not done";
 

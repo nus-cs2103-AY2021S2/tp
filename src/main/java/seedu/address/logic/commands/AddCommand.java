@@ -53,11 +53,11 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the planner";
     public static final String MESSAGE_DEADLINE_EVENT_CONFLICT = "Task cannot have (Deadline) as well as "
-            + "(RecurringSchedule and Duration) at the same time! Please choose either when adding a task.";
+            + "(RecurringSchedule and Duration) at the same time!\nPlease choose either when adding a task.";
     public static final String MESSAGE_DEADLINE_DURATION_CONFLICT = "Task cannot have (Deadline) as well as "
-            + "(Duration) at the same time! Please choose either when adding a task.";
+            + "(Duration) at the same time!\nPlease choose either when adding a task.";
     public static final String MESSAGE_DEADLINE_RECURRING_SCHEDULE_CONFLICT = "Task cannot have (Deadline) as well as "
-            + "(RecurringSchedule) at the same time! Please choose either when adding a task.";
+            + "(RecurringSchedule) at the same time!\nPlease choose either when adding a task.";
 
 
 

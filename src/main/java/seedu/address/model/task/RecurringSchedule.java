@@ -93,7 +93,7 @@ public class RecurringSchedule {
      * @return State of whether recurring schedule is empty in boolean format
      */
     public static boolean isEmptyRecurringScheduleInput(String test) {
-        return test.equals("");
+        return test.equals("") || test.equals("***Optional***");
     }
 
     /**
