@@ -9,10 +9,11 @@ import java.util.Objects;
  */
 public class CommandResult {
 
-    private static boolean showHome = false;
+    private static boolean showHome = true;
     private static boolean showExpired = false;
     private static boolean showCompleted = false;
     private static boolean showUncompleted = false;
+    private static final String ALREADY_IN_HOMETAB = "You are already in home tab!";
 
     private final String feedbackToUser;
 
@@ -44,6 +45,9 @@ public class CommandResult {
      */
     public static CommandResult switchToHome(String feedbackToUser) {
         CommandResult newCommand = new CommandResult(feedbackToUser);
+        if (CommandResult.showHome == true) {
+            return new CommandResult(ALREADY_IN_HOMETAB);
+        }
         CommandResult.showHome = true;
         CommandResult.showExpired = false;
         CommandResult.showCompleted = false;
