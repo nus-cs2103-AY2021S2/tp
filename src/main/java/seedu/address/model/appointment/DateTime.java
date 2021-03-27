@@ -13,13 +13,12 @@ import java.time.format.DateTimeParseException;
  */
 public class DateTime {
 
-    private static final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-
-    private static final String MESSAGE_CONSTRAINTS = "DateTimes should not be blank and must be "
+    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+    public static final String MESSAGE_CONSTRAINTS = "DateTimes should not be blank and must be "
             + "of the format dd/MM/yyyy HH:mm";
-    private static final String PLACEHOLDER = "NIL";
+    public static final String PLACEHOLDER = "NIL";
 
-    private final String dateTime;
+    public final String dateTime;
 
     /**
      * Constructs an {@code DateTime}.
@@ -43,7 +42,7 @@ public class DateTime {
      */
     public static boolean isValidDateTime(String test) {
         try {
-            LocalDateTime.parse(test, dateFormat);
+            LocalDateTime.parse(test, DATE_TIME_FORMATTER);
             return true;
         } catch (DateTimeParseException e) {
             return false;
