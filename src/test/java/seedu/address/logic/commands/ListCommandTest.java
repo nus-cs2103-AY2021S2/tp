@@ -33,7 +33,7 @@ public class ListCommandTest {
     /* TODO: Broken due to use of identifier
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showEven(model, IDENTIFIER_FIRST_PERSON);
+        getEventByIdentifier(model, IDENTIFIER_FIRST_PERSON);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
      */
