@@ -30,6 +30,11 @@ public class StatefulAddressBook extends AddressBook {
         currStatePtr = 0;
     }
 
+    /**
+     * Returns true if a redo operation is possible. False otherwise.
+     *
+     * @return True if a redo operation is possible. False otherwise.
+     */
     public boolean canRedo() {
         return hasRemainingRedoableStates();
     }
