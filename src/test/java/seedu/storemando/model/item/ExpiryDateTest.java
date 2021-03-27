@@ -125,7 +125,7 @@ public class ExpiryDateTest {
         assertFalse(new ExpiryDate("2022-11-01").isPastCurrentDate());
 
         // expiryDates same as current date returns false
-        //assertFalse(new ExpiryDate("2021-03-27").isPastCurrentDate());
+        assertFalse(new ExpiryDate(LocalDate.now().toString()).isPastCurrentDate());
 
         // expiryDates past current date returns true
         assertTrue(new ExpiryDate("2012-01-01").isPastCurrentDate());
