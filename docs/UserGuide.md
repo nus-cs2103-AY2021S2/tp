@@ -391,3 +391,10 @@ The default file paths used are:
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** However, if the specified configuration file or the preferences file is in an incorrect format, the default file paths will be used.
 </div>
+
+To launch PocketEstate via the command line, 
+
+1. First, open up your command prompt or terminal.
+1. Then, `cd` into the base directory containing the `pocketestate.jar` file.
+1. Run `java -jar pocketestate.jar --config={path_to_config_file.json}`, replacing `{path_to_config_file.json}` with your own JSON configuration file.<br>
+E.g. `java -jar pocketestate.jar --config=myConfigFile.json`
