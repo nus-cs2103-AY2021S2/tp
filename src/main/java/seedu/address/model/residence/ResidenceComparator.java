@@ -1,6 +1,5 @@
 package seedu.address.model.residence;
 
-import java.time.LocalDate;
 import java.util.Comparator;
 
 public class ResidenceComparator implements Comparator<Residence> {
