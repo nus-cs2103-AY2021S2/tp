@@ -56,6 +56,9 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
+     *
+     * @param primaryStage the given stage.
+     * @param logic the given logic.
      */
     public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
@@ -72,6 +75,11 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow = new HelpWindow();
     }
 
+    /**
+     * Returns the stage associated with this MainWindow.
+     *
+     * @return the stage associated with this MainWindow.
+     */
     public Stage getPrimaryStage() {
         return primaryStage;
     }
@@ -82,6 +90,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -154,6 +163,9 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Shows the primary stage.
+     */
     void show() {
         primaryStage.show();
     }
@@ -170,6 +182,11 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Returns the panel showing the list of readers.
+     *
+     * @return the panel showing the list of readers.
+     */
     public ReaderListPanel getReaderListPanel() {
         return readerListPanel;
     }
@@ -200,4 +217,5 @@ public class MainWindow extends UiPart<Stage> {
             throw e;
         }
     }
+
 }

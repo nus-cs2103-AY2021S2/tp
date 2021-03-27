@@ -22,6 +22,8 @@ public class ReaderListPanel extends UiPart<Region> {
 
     /**
      * Creates a {@code ReaderListPanel} with the given {@code ObservableList}.
+     *
+     * @param readerList the given reader list.
      */
     public ReaderListPanel(ObservableList<Reader> readerList) {
         super(FXML);
@@ -33,6 +35,7 @@ public class ReaderListPanel extends UiPart<Region> {
      * Custom {@code ListCell} that displays the graphics of a {@code Reader} using a {@code ReaderCard}.
      */
     class ReaderListViewCell extends ListCell<Reader> {
+
         @Override
         protected void updateItem(Reader reader, boolean empty) {
             super.updateItem(reader, empty);
@@ -44,6 +47,7 @@ public class ReaderListPanel extends UiPart<Region> {
                 setGraphic(new ReaderCard(reader, getIndex() + 1).getRoot());
             }
         }
+
     }
 
 }
