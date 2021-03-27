@@ -5,6 +5,7 @@ import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.budgetbaby.logic.commands.FindFrCommand;
@@ -38,7 +39,7 @@ public class FindFrCommandParser implements BudgetBabyCommandParser<FindFrComman
 
         Description description;
         Amount amount;
-        Category category;
+        Set<Category> categories;
 
         if (arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
             description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
@@ -53,12 +54,12 @@ public class FindFrCommandParser implements BudgetBabyCommandParser<FindFrComman
         }
 
         if (arePrefixesPresent(argMultimap, PREFIX_CATEGORY)) {
-            category = ParserUtil.parseTag(argMultimap.getValue(PREFIX_CATEGORY).get());
+            categories = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_CATEGORY));
         } else {
-            category = null;
+            categories = null;
         }
 
-        return new FindFrCommand(description, amount, category);
+        return new FindFrCommand(description, amount, categories);
     }
 
     /**

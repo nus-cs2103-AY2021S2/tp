@@ -5,6 +5,8 @@ import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
+import java.util.Set;
+
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.model.BudgetBabyModel;
 import seedu.budgetbaby.model.record.Amount;
@@ -35,23 +37,23 @@ public class FindFrCommand extends BudgetBabyCommand {
     public static final String MESSAGE_FAIL = "Unable to find financial Records matching given inputs.";
     private final Description description;
     private final Amount amount;
-    private final Category category;
+    private final Set<Category> categories;
 
     /**
      * Creates a FindFrCommand to update the FR list
      */
-    public FindFrCommand(Description description, Amount amount, Category category) {
+    public FindFrCommand(Description description, Amount amount, Set<Category> categories) {
         this.description = description;
         this.amount = amount;
-        this.category = category;
+        this.categories = categories;
     }
 
     @Override
     public CommandResult execute(BudgetBabyModel model) throws CommandException {
         requireNonNull(model);
-        boolean result = model.findFinancialRecord(description, amount, category);
+        boolean result = model.findFinancialRecord(description, amount, categories);
         if (result) {
-            return new CommandResult(String.format(MESSAGE_SUCCESS, description, amount, category));
+            return new CommandResult(String.format(MESSAGE_SUCCESS, description, amount, categories));
         } else {
             return new CommandResult(String.format(MESSAGE_FAIL));
         }

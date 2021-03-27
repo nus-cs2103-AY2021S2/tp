@@ -5,12 +5,12 @@ import static seedu.budgetbaby.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.time.YearMonth;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import seedu.budgetbaby.abmodel.ModelManager;
 import seedu.budgetbaby.commons.core.GuiSettings;
 import seedu.budgetbaby.commons.core.LogsCenter;
 import seedu.budgetbaby.model.budget.Budget;
@@ -141,7 +141,7 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
     }
 
     @Override
-    public boolean findFinancialRecord(Description description, Amount amount, Category category) {
+    public boolean findFinancialRecord(Description description, Amount amount, Set<Category> categories) {
         assert true;
 
         boolean result;
@@ -150,36 +150,36 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
 
         Predicate<FinancialRecord> findA = fr -> fr.getAmount().getValue().equals(amount.getValue());
 
-        Predicate<FinancialRecord> findC = fr -> fr.getTags().contains(category);
+        Predicate<FinancialRecord> findC = fr -> fr.getTags().containsAll(categories);
 
         Predicate<FinancialRecord> findDA = fr -> fr.getDescription().description.equals(description.description)
                 && fr.getAmount().getValue().equals(amount.getValue());
 
         Predicate<FinancialRecord> findDC = fr -> fr.getDescription().description.equals(description.description)
-                && fr.getTags().contains(category);
+                && fr.getTags().containsAll(categories);
 
         Predicate<FinancialRecord> findAC = fr -> fr.getAmount().getValue().equals(amount.getValue())
-                && fr.getTags().contains(category);
+                && fr.getTags().containsAll(categories);
 
         Predicate<FinancialRecord> findAll = fr -> fr.getDescription().description.equals(description.description)
                 && fr.getAmount().getValue().equals(amount.getValue())
-                && fr.getTags().contains(category);
+                && fr.getTags().containsAll(categories);
 
         if (description == null) {
-            if (amount == null && category != null) {
+            if (amount == null && categories != null) {
                 result = updateFilteredFinancialRecordList(findC);
-            } else if (amount != null && category == null) {
+            } else if (amount != null && categories == null) {
                 result = updateFilteredFinancialRecordList(findA);
             } else {
                 result = updateFilteredFinancialRecordList(findAC);
             }
         } else if (amount == null) {
-            if (category == null) {
+            if (categories == null) {
                 result = updateFilteredFinancialRecordList(findD);
             } else {
                 result = updateFilteredFinancialRecordList(findDC);
             }
-        } else if (category == null) {
+        } else if (categories == null) {
             result = updateFilteredFinancialRecordList(findDA);
         } else {
             result = updateFilteredFinancialRecordList(findAll);

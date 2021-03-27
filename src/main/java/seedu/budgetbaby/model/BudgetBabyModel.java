@@ -2,6 +2,7 @@ package seedu.budgetbaby.model;
 
 import java.nio.file.Path;
 import java.time.YearMonth;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -134,7 +135,7 @@ public interface BudgetBabyModel {
      * Iterates through the financial records and searches for the {@code description} {@code amount} {@code category}.
      * {@code description} {@code amount} {@code category} must exist in the budget tracker.
      */
-    boolean findFinancialRecord(Description description, Amount amount, Category category);
+    boolean findFinancialRecord(Description description, Amount amount, Set<Category> categories);
 
     /**
      * Resets filters on financial records to display original list
