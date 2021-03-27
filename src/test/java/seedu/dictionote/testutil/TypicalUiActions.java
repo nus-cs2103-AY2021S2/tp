@@ -56,4 +56,10 @@ public class TypicalUiActions {
         EXCEPTION_OPTION_4, EXCEPTION_OPTION_5, EXCEPTION_OPTION_6,
         EXCEPTION_OPTION_7, EXCEPTION_OPTION_8, EXCEPTION_OPTION_9
     };
+
+    public static final int[] VALID_UI_POSITION = {
+        1, 2, 3,
+        4, 5, 6,
+        7, 8, 9
+    };
 }

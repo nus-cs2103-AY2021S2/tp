@@ -31,7 +31,7 @@ public class SetDictionaryDividerPositionCommand extends SetDividerPositionComma
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.getGuiSettings().setNoteSplitRatio(position / NORMALIZE_RATIO);
+        model.getGuiSettings().setDictionarySplitRatio(position / NORMALIZE_RATIO);
         return new CommandResult(String.format(MESSAGE_SET_DIVIDER_SUCCESS + position),
                 UiAction.OPEN, UiActionOption.DICTIONARY);
     }
