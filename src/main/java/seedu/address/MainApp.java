@@ -85,7 +85,7 @@ public class MainApp extends Application {
             logger.info("No theme specified. Applying default theme ...");
             ThemeManager.setTheme(ThemeFactory.getDefaultTheme(), null);
         } else {
-            logger.info("Loading theme" + model.getGuiSettings().getThemePath() + " ...");
+            logger.info("Loading theme " + model.getGuiSettings().getThemePath() + " ...");
             try {
                 Theme theme = ThemeFactory.load(Paths.get(model.getGuiSettings().getThemePath()));
                 ThemeManager.setTheme(theme, model.getGuiSettings().getThemePath());

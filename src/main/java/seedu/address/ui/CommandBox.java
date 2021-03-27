@@ -1,10 +1,15 @@
 package seedu.address.ui;
 
+import org.controlsfx.control.textfield.AutoCompletionBinding;
+import org.controlsfx.control.textfield.TextFields;
+
+import impl.org.controlsfx.skin.AutoCompletePopup;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.Commands;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -29,6 +34,15 @@ public class CommandBox extends UiPart<Region> {
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+
+        String[] suggestions = Commands.getAutoCompleteStrings();
+        AutoCompletionBinding<String> autoCompletionBinding = TextFields.bindAutoCompletion(commandTextField,
+                suggestions);
+        autoCompletionBinding.setDelay(100); // in ms
+        autoCompletionBinding.setVisibleRowCount(5);
+
+        AutoCompletePopup<String> autoCompletePopup = autoCompletionBinding.getAutoCompletionPopup();
+        autoCompletePopup.setId("autoCompletePopup"); // for styles in the css files
     }
 
     /**
