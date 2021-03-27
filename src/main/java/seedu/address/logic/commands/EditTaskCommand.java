@@ -107,7 +107,11 @@ public class EditTaskCommand extends Command {
         Set<Category> updatedCategories = editTaskDescriptor.getCategories().orElse(taskToEdit.getCategories());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
-        return new Task(updatedName, updatedDeadline, updatedPriority, updatedCategories, updatedTags);
+        Task editedTask = new Task(updatedName, updatedDeadline, updatedPriority, updatedCategories, updatedTags);
+        if (taskToEdit.isPinned()) {
+            editedTask.pin();
+        }
+        return editedTask;
     }
 
     @Override
