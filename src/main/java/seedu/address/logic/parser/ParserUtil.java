@@ -48,7 +48,8 @@ public class ParserUtil {
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index[] parseTwoIndex(String oneBasedIndex) throws ParseException {
-        String[] spiltIndex = oneBasedIndex.split("\\s+");
+        String trimmedIndex = oneBasedIndex.trim();
+        String[] spiltIndex = trimmedIndex.split("\\s+");
         assert (spiltIndex.length == 2);
         if ((!StringUtil.isNonZeroUnsignedInteger(spiltIndex[0]))
                 || (!StringUtil.isNonZeroUnsignedInteger(spiltIndex[1]))) {

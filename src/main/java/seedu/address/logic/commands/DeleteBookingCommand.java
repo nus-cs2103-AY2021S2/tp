@@ -9,6 +9,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.booking.Booking;
+import seedu.address.model.residence.BookingList;
 import seedu.address.model.residence.Residence;
 
 
@@ -43,18 +44,18 @@ public class DeleteBookingCommand extends Command {
         requireNonNull(model);
         List<Residence> lastShownList = model.getFilteredResidenceList();
         Residence targetResidence = lastShownList.get(residenceIndex.getZeroBased());
-        List<Booking> bookingList = targetResidence.getBookingList();
+        BookingList bookingList = targetResidence.getBookingList();
         if (residenceIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_RESIDENCE_DISPLAYED_INDEX);
         }
 
-        if (bookingIndex.getZeroBased() >= bookingList.size()) {
+        if (bookingIndex.getZeroBased() >= bookingList.getBookingListSize()) {
             throw new CommandException(Messages.MESSAGE_INVALID_BOOKING_DISPLAYED_INDEX);
         }
 
-        Booking bookingToDelete = bookingList.get(bookingIndex.getZeroBased());
+        Booking bookingToDelete = bookingList.getBooking(bookingIndex.getZeroBased());
         Residence residenceToDeleteBooking = lastShownList.get(residenceIndex.getZeroBased());
-        residenceToDeleteBooking.getBookingList().remove(residenceIndex.getZeroBased());
+        residenceToDeleteBooking.getBookingList().remove(bookingToDelete);
         model.setResidence(targetResidence, residenceToDeleteBooking);
         return new CommandResult(String.format(MESSAGE_DELETE_BOOKING_SUCCESS, bookingToDelete));
     }
