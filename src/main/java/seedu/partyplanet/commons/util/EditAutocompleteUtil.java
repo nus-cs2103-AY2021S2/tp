@@ -105,7 +105,6 @@ public class EditAutocompleteUtil {
         // Here we can assume Prefixes are sorted in the order they are entered.
         for (Prefix prefix: argMultimap.getPrefixPositionOrders()) {
             List<String> values = argMultimap.getAllValues(prefix);
-            String lastValue = values.get(values.size() - 1);
 
             // Remove Preamble
             if (prefix.getPrefix().equals("")) {
@@ -118,22 +117,17 @@ public class EditAutocompleteUtil {
                 continue;
             }
 
-            // Special Consideration for Tag Sets
-            if (prefix.equals(PREFIX_TAG)) {
-                if (values.size() > 0) {
-                    for (String value: values) {
-                        if (value.length() > 0) {
-                            output += " -t " + value;
-                        }
+            if (values.size() > 0) {
+                for (String value: values) {
+                    if (value.length() > 0) {
+                        output += " " + prefix + " " + value;
                     }
                 }
-                output += " " + prefixMethodMap.get(prefix).get();
-                continue;
             }
-
-            // If Prefix value already provided
-            if (lastValue.length() > 0) {
-                output += " " + prefix + " " + lastValue;
+            
+            // Special Consideration for Tag Sets
+            if (prefix.equals(PREFIX_TAG)) {
+                output += " " + prefixMethodMap.get(prefix).get();
                 continue;
             }
 
