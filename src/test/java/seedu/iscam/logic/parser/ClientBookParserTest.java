@@ -24,7 +24,7 @@ import seedu.iscam.logic.commands.HelpCommand;
 import seedu.iscam.logic.commands.ListCommand;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.model.client.Client;
-import seedu.iscam.model.client.NameContainsKeywordsPredicate;
+import seedu.iscam.model.commons.NameContainsKeywordsPredicate;
 import seedu.iscam.testutil.ClientBuilder;
 import seedu.iscam.testutil.ClientUtil;
 import seedu.iscam.testutil.EditClientDescriptorBuilder;

@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.iscam.logic.commands.FindCommand;
 import seedu.iscam.logic.parser.exceptions.ParseException;
-import seedu.iscam.model.client.NameContainsKeywordsPredicate;
+import seedu.iscam.model.commons.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

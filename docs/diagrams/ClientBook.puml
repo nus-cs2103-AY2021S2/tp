@@ -1,0 +1,40 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>>{
+Interface ReadOnlyClientBook <<Interface>>
+
+Class ModelManager
+
+Class ClientBook
+
+Package Client {
+Class Client
+Class Name
+Class Location
+Class Email
+Class Phone
+Class UniqueClientList
+}
+
+Package Tag {
+Class Tag
+}
+}
+
+ClientBook .up.|> ReadOnlyClientBook
+ModelManager o--> "1" ClientBook
+
+ClientBook *--> "1" UniqueClientList
+UniqueClientList o--> "*" Client
+Client *--> Name
+Client *--> Location
+Client *--> Email
+Client *--> Phone
+Client *--> "*" Tag
+
+ModelManager ----->" ~* filtered list" Client
+@enduml

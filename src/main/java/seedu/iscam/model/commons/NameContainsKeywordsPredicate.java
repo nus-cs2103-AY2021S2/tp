@@ -1,9 +1,10 @@
-package seedu.iscam.model.client;
+package seedu.iscam.model.commons;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.iscam.commons.util.StringUtil;
+import seedu.iscam.model.client.Client;
 
 /**
  * Tests that a {@code Client}'s {@code Name} matches any of the keywords given.

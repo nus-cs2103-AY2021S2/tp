@@ -7,7 +7,7 @@ import static seedu.iscam.logic.parser.CliSyntax.PREFIX_LOCATION;
 import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.logic.commands.RelocateMeetingCommand;
 import seedu.iscam.logic.parser.exceptions.ParseException;
-import seedu.iscam.model.client.Location;
+import seedu.iscam.model.commons.Location;
 
 /**
  * Parses input arguments and creates a new RelocateMeetingCommand object.

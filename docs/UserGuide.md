@@ -93,6 +93,12 @@ Shows a list of all clients in iScam.
 
 Format: `list`
 
+### Listing all meetings : `listmeet`
+
+Shows a list of all meetings in iScam.
+
+Format: `listmeet`
+
 ### Editing a client : `edit`
 
 Edits an existing client in iScam.
