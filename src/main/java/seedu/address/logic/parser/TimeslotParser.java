@@ -1,8 +1,6 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.appointment.Timeslot;
-import seedu.address.model.appointment.exceptions.NegativeOrZeroDurationException;
+import static java.util.Objects.requireNonNull;
 
 import java.time.DayOfWeek;
 import java.time.Duration;
@@ -12,18 +10,12 @@ import java.time.format.DateTimeParseException;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Arrays;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.appointment.Timeslot;
+import seedu.address.model.appointment.exceptions.NegativeOrZeroDurationException;
 
 /**
- * Parses timeslots from user input.at higher level
- * FLow: UserInputParser ->TimeslotParser(arguemts) -> individual parsers like addappointmentprser
- *       ^any type of date -> converts to actual timeslot class -> pass thru like normal aguments as per prev
- *
- *       error -> correct format? if time not included or cannot read
- *       FOR PREFIX TIMESLOT_START
- *       ALTER EACH CASE and xxPARSER class - input only timeslot
- *       ALTER ENTIRE STATEMENT HERE- less work on prse commnd, introduce more bugs by replacing whole 'argument statement'
- *       "2021-01-01 00:00 "
+ * Contains Utility methods used for parsing dates, time, and timeslots from raw user inputs
  */
 public class TimeslotParser {
     public static final String MESSAGE_INVALID_DATE_TIME_FORMAT = "Input format for date time parameters "
@@ -39,8 +31,10 @@ public class TimeslotParser {
     private static final String REMOVE_WHITESPACE_REGEX = "\\s+";
 
     /**
-     * Parses a {@code String dateTime} into a {@code LocalDateTime}.
-     * Leading and trailing whitespaces will be trimmed.
+     * Parses a {@code String userInput} into a {@code LocalDateTime}.
+     * Leading and trailing whitespaces will be trimmed. Raw User Input set to all Uppercase.
+     * Multiple user Input formats are accepted and parsed accordingly, mainly in absolute
+     * date formats or the next relevant dateTime.
      *
      * @throws ParseException if the given {@code dateTime} does not
      * conform to the expected date time format.
@@ -65,14 +59,18 @@ public class TimeslotParser {
         }
     }
 
+    /**
+     * Parses a {@code String dateInput, String timeInput} into their appropriate LocalDateTime
+     * format in {@code StringBuilder}. For Absolute DateTime cases only.
+     */
     public static StringBuilder parseFormat(String dateInput, String timeInput) {
         StringBuilder formatter = new StringBuilder("");
 
-        if (dateInput.matches(TimeslotRegex.dateSlashShort)) {
+        if (dateInput.matches(TimeslotRegex.DATE_SLASH_SHORT)) {
             formatter.append("dd/mm/yy ");
-        } else if (dateInput.matches(TimeslotRegex.dateSlashLong)) {
+        } else if (dateInput.matches(TimeslotRegex.DATE_SLASH_LONG)) {
             formatter.append("dd/mm/yyyy ");
-        } else if (dateInput.matches(TimeslotRegex.dateDashShort)) {
+        } else if (dateInput.matches(TimeslotRegex.DATE_DASH_SHORT)) {
             formatter.append("dd-mm-yy ");
         } else {
             formatter.append("dd-mm-yyyy ");
@@ -80,6 +78,10 @@ public class TimeslotParser {
         return parseTimeFormat(timeInput, formatter);
     }
 
+    /**
+     * Parses a {@code String timeInput, StringBuilder} into a full {@code StringBuilder} format for
+     * LocalDateTime. 24-Hour Clock and Meridian time Inputs are both accepted.
+     */
     public static StringBuilder parseTimeFormat(String timeInput, StringBuilder formatter) {
         if (timeInput.contains("AM") || timeInput.contains("PM")) {
             formatter.append("hh:mm a");
@@ -90,6 +92,16 @@ public class TimeslotParser {
         //check if formatter returned is most updated
     }
 
+    /**
+     * Parses a {@code String userInput} into a {@code LocalDateTime}.
+     * Parses user input containing the next day, month or year. Time can remain the same or
+     * revised into a new one as per user input.
+     *
+     * @throws ParseException if the given {@code dateTime} does not
+     * conform to the expected date time format.
+     * @throws NullPointerException if the {@code timeInput} does not
+     * conform to the expected time format.
+     */
     public static LocalDateTime parseNextDateTime(String userInput) throws ParseException, NullPointerException {
         try {
             LocalDateTime currentDateTime = LocalDateTime.now();
@@ -120,6 +132,14 @@ public class TimeslotParser {
         }
     }
 
+    /**
+     * Parses a {@code String timeInput} into a {@code LocalDateTime}.
+     * Adjusts the time in current LocalDateTime based on user time input.
+     * Accomodates both 24-clock or Meridian time format.
+     *
+     * @throws NullPointerException if the {@code timeInput} does not
+     * conform to the expected time format.
+     */
     public static int[] parseTime(String timeInput) throws NullPointerException {
         try {
             String[] hoursMinutesRawArray;
@@ -138,6 +158,13 @@ public class TimeslotParser {
         }
     }
 
+    /**
+     * Removes Meridian format from a {@code String timeInput} to {@code String}.
+     * Gets rid of Meridian Format of "AM" and "PM" in raw user time input.
+     *
+     * @throws NullPointerException if the {@code timeInput} does not
+     * conform to the expected time format.
+     */
     public static String removeMeridian(String timeInput) {
         String timeSubString = null;
         if ((timeInput != null) && (timeInput.length() > 0)) {

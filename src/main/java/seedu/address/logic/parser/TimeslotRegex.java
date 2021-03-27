@@ -7,8 +7,8 @@ public class TimeslotRegex {
 
     /* Timeslot Regex Format */
     //=========== Date ================================================================================
-    public static final String dateSlashShort = "([0-9]{2})/([0-9]{2})/([0-9]{2})";
-    public static final String dateSlashLong = "([0-9]{2})/([0-9]{2})/([0-9]{4})";
-    public static final String dateDashShort = "([0-9]{2})-([0-9]{2})-([0-9]{2})";
-    public static final String dateDashLong = "([0-9]{2})-([0-9]{2})-([0-9]{4})";
+    public static final String DATE_SLASH_SHORT = "([0-9]{2})/([0-9]{2})/([0-9]{2})";
+    public static final String DATE_SLASH_LONG = "([0-9]{2})/([0-9]{2})/([0-9]{4})";
+    public static final String DATE_DASH_SHORT = "([0-9]{2})-([0-9]{2})-([0-9]{2})";
+    public static final String DATE_DASH_LONG = "([0-9]{2})-([0-9]{2})-([0-9]{4})";
 }
