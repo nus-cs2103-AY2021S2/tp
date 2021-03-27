@@ -26,13 +26,13 @@ public class DeleteBookingCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1" + " 1";
 
-    public static final String MESSAGE_DELETE_BOOKING_SUCCESS = "Deleted Residence %1$d Booking %1$s";
+    public static final String MESSAGE_DELETE_BOOKING_SUCCESS = "Deleted Residence %1$s's Booking %1$s";
 
     private final Index residenceIndex;
     private final Index bookingIndex;
 
     /**
-     * Constructs a {@Code DeleteBookingCommand} with {@Code residenceIndex} and {@Code BookingIndex}
+     * Constructs a {@code DeleteBookingCommand} with {@code residenceIndex} and {@code bookingIndex}
      */
     public DeleteBookingCommand(Index residenceIndex, Index bookingIndex) {
         this.residenceIndex = residenceIndex;
@@ -57,7 +57,8 @@ public class DeleteBookingCommand extends Command {
         Residence residenceToDeleteBooking = lastShownList.get(residenceIndex.getZeroBased());
         residenceToDeleteBooking.getBookingList().remove(bookingToDelete);
         model.setResidence(targetResidence, residenceToDeleteBooking);
-        return new CommandResult(String.format(MESSAGE_DELETE_BOOKING_SUCCESS, bookingToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_BOOKING_SUCCESS,
+                residenceIndex.getOneBased(), bookingToDelete));
     }
 
     @Override
