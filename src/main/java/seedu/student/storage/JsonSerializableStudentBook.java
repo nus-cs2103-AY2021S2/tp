@@ -62,7 +62,6 @@ class JsonSerializableStudentBook {
             studentBook.addStudent(student);
         }
         for (JsonAdaptedAppointment jsonAdaptedAppointment : appointments) {
-            System.out.println("hello");
             Appointment appointment = jsonAdaptedAppointment.toModelType();
             if (studentBook.hasAppointment(appointment)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_APPOINTMENT);

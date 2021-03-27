@@ -67,9 +67,7 @@ class JsonAdaptedAppointment {
         final LocalTime modelStartTime = LocalTime.parse(startTime);
         final LocalTime modelEndTime = LocalTime.parse(endTime);
 
-        Appointment appt = new Appointment(modelMatric, modelDate, modelStartTime, modelEndTime);
-        System.out.println(appt);
-        return appt;
+        return new Appointment(modelMatric, modelDate, modelStartTime, modelEndTime);
     }
 
 }
