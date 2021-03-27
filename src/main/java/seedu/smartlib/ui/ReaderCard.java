@@ -50,15 +50,15 @@ public class ReaderCard extends UiPart<Region> {
         super(FXML);
         this.reader = reader;
         id.setText(displayedIndex + ". ");
-        name.setText(reader.getName().fullName);
-        phone.setText(reader.getPhone().value);
-        address.setText(reader.getAddress().value);
-        email.setText(reader.getEmail().value);
+        name.setText(reader.getName().toString());
+        phone.setText(reader.getPhone().toString());
+        address.setText(reader.getAddress().toString());
+        email.setText(reader.getEmail().toString());
         reader.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         reader.getBorrows().forEach((key, value) -> borrows.getChildren()
-                .add(new Label(key.fullName + ", borrowed on: " + value.value + "|||")));
+                .add(new Label(key.getName().toString() + ", borrowed on " + value.getValue() + ".")));
     }
 
     @Override
@@ -75,7 +75,6 @@ public class ReaderCard extends UiPart<Region> {
 
         // state check
         ReaderCard card = (ReaderCard) other;
-        return id.getText().equals(card.id.getText())
-                && reader.equals(card.reader);
+        return id.getText().equals(card.id.getText()) && reader.equals(card.reader);
     }
 }

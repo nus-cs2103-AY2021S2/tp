@@ -78,9 +78,9 @@ public interface Model {
     boolean hasBookWithBarcode(Barcode barcode);
 
     /**
-     * Returns true if a book with the same name as {@code bookName} is already borrowed in the registered book base.
+     * Returns true if a book with the same barcode as {@code barcode} is already borrowed in the registered book base.
      */
-    boolean isBookBorrowed(Name bookName);
+    boolean isBookWithBarcodeBorrowed(Barcode barcode);
 
     /**
      * Returns true if a reader with the same identity as {@code reader} exists in the registered reader base.
@@ -106,9 +106,9 @@ public interface Model {
     /**
      * Update reader and book's status after borrow
      * @param readerName reader must exist in reader base
-     * @param bookName book must exist in book base
+     * @param barcode book must exist in book base
      */
-    boolean borrowBook(Name readerName, Name bookName);
+    boolean borrowBook(Name readerName, Barcode barcode);
 
     /**
      * Update reader and book's status after return
@@ -153,9 +153,16 @@ public interface Model {
     void markRecordAsReturned(Record record);
 
     /**
+     * Returns the barcode of the first available (i.e. not borrowed) copy of the book in SmartLib.
+     * @param bookName name of the book to be borrowed
+     * @return the barcode of the first available copy of the book in SmartLib
+     */
+    Barcode getBookBarcode(Name bookName);
+
+    /**
      * Replaces the given reader {@code target} with {@code editedReader}.
-     * {@code target} must exist in smartlib.
-     * The reader identity of {@code editedReader} must not be the same as another existing reader in smartlib.
+     * {@code target} must exist in SmartLib.
+     * The reader identity of {@code editedReader} must not be the same as another existing reader in SmartLib.
      */
     void setReader(Reader target, Reader editedReader);
 

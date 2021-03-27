@@ -116,7 +116,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentSmartLib, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
+        String[] keywords = ALICE.getName().toString().split("\\s+");
         modelManager.updateFilteredReaderList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(smartLib, userPrefs)));
 

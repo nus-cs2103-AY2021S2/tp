@@ -3,7 +3,9 @@ package seedu.smartlib.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.smartlib.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.lang.reflect.Array;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -116,8 +118,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean isBookBorrowed(Name bookName) {
-        return smartLib.isBookBorrowed(bookName);
+    public boolean isBookWithBarcodeBorrowed(Barcode barcode) {
+        return smartLib.isBookWithBarcodeBorrowed(barcode);
     }
 
     @Override
@@ -145,9 +147,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean borrowBook(Name readerName, Name bookName) {
-        requireAllNonNull(bookName, readerName);
-        boolean status = smartLib.borrowBook(readerName, bookName);
+    public boolean borrowBook(Name readerName, Barcode barcode) {
+        requireAllNonNull(barcode, readerName);
+        boolean status = smartLib.borrowBook(readerName, barcode);
         updateFilteredReaderList(PREDICATE_SHOW_ALL_READERS);
         updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
         return status;
@@ -203,6 +205,26 @@ public class ModelManager implements Model {
             foundRecord.setDateReturned(record.getDateReturned());
         }
         updateFilteredRecordList(PREDICATE_SHOW_ALL_RECORDS);
+    }
+
+    /**
+     * Returns the barcode of the first available (i.e. not borrowed) copy of the book in SmartLib.
+     *
+     * @param bookName name of the book to be borrowed
+     * @return the barcode of the first available copy of the book in SmartLib
+     */
+    @Override
+    public Barcode getBookBarcode(Name bookName) {
+        ArrayList<Book> books = smartLib.getBooksByName(bookName);
+        requireNonNull(books);
+
+        for (Book b : books) {
+            if (!b.isBorrowed()) {
+                return b.getBarcode();
+            }
+        }
+
+        return null;
     }
 
     @Override

@@ -43,25 +43,6 @@ public class ReturnCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireAllNonNull(model);
-
-        if (!model.hasBook(toReturn.getBookName()) && !model.hasReader(toReturn.getReaderName())) {
-            throw new CommandException(NO_READER_AND_BOOK_FOUND);
-        }
-        if (!model.hasBook(toReturn.getBookName())) {
-            throw new CommandException(NO_BOOK_FOUND);
-        }
-        if (!model.hasReader(toReturn.getReaderName())) {
-            throw new CommandException(NO_READER_FOUND);
-        }
-        if (!model.hasRecord(toReturn)) {
-            return new CommandResult(String.format(MESSAGE_NO_SUCH_RECORD_FOUND, toReturn));
-        }
-
-        model.markRecordAsReturned(toReturn);
-        boolean editStatusResult = model.returnBook(toReturn.getReaderName(), toReturn.getBookName());
-        if (!editStatusResult) {
-            throw new CommandException(UNABLE_TO_UPDATE_CODEBASE);
-        }
         return new CommandResult(String.format(MESSAGE_SUCCESS, toReturn));
     }
 

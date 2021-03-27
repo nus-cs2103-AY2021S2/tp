@@ -10,6 +10,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.smartlib.commons.core.name.Name;
+import seedu.smartlib.model.book.Book;
 import seedu.smartlib.model.record.DateBorrowed;
 import seedu.smartlib.model.tag.Tag;
 
@@ -27,14 +28,13 @@ public class Reader {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-
-    private final Map<Name, DateBorrowed> borrows = new HashMap<>();
+    private final Map<Book, DateBorrowed> borrows = new HashMap<>();
 
     /**
      * Every field must be present and not null.
      */
     public Reader(Name name, Phone phone, Email email, Address address,
-                  Set<Tag> tags, Map<Name, DateBorrowed> borrows) {
+                  Set<Tag> tags, Map<Book, DateBorrowed> borrows) {
         requireAllNonNull(name, phone, email, address, tags, borrows);
         this.name = name;
         this.phone = phone;
@@ -45,7 +45,7 @@ public class Reader {
     }
 
 
-    public Map<Name, DateBorrowed> getBorrows() {
+    public Map<Book, DateBorrowed> getBorrows() {
         return borrows;
     }
 
@@ -78,7 +78,7 @@ public class Reader {
      * @return true if the reader has overdue books
      */
     public boolean hasOverdueBooks() {
-        for (DateBorrowed dateBorrowed : this.borrows.values()) {
+        for (DateBorrowed dateBorrowed : borrows.values()) {
             if (dateBorrowed.isOverdue()) {
                 return true;
             }

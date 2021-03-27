@@ -2,7 +2,6 @@ package seedu.smartlib.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -264,7 +263,7 @@ public class SmartLib implements ReadOnlySmartLib {
      * @param bookName bookName
      * @return Book Object, null if does not exist
      */
-    private ArrayList<Book> getBooksByName(Name bookName) {
+    public ArrayList<Book> getBooksByName(Name bookName) {
         requireNonNull(bookName);
         ArrayList<Book> booksWithName = new ArrayList<>();
         for (Book book : books) {
@@ -276,23 +275,22 @@ public class SmartLib implements ReadOnlySmartLib {
     }
 
     /**
-     * Returns true if a book with the same name as {@code bookName} is already borrowed.
-     * @param bookName name of book, must exist in book base
+     * Returns true if a book with the same barcode as {@code barcode} is already borrowed.
+     * @param barcode barcode of book, must exist in book base
      * @return true if the book is borrowed, or if the book is not found.
      */
-    public boolean isBookBorrowed(Name bookName) {
-        requireNonNull(bookName);
-        ArrayList<Book> booksWithName = getBooksByName(bookName);
-        requireNonNull(booksWithName);
+    public boolean isBookWithBarcodeBorrowed(Barcode barcode) {
+        requireNonNull(barcode);
 
-        if (booksWithName.size() != 0) {
-            for (Book book : booksWithName) {
-                if (!book.isBorrowed()) {
-                    return false;
+        for (Book book : books) {
+            if (book.getBarcode().equals(barcode)) {
+                if (book.isBorrowed()) {
+                    return true;
                 }
             }
         }
-        return true;
+
+        return false;
     }
 
     /**
@@ -351,32 +349,28 @@ public class SmartLib implements ReadOnlySmartLib {
      * Update reader and book's status after a borrowing activity
      * @param readerName readerName, must exist in reader base and
      *                   must satisfy requirement for borrowing
-     * @param bookName bookName, must exist in book base
+     * @param barcode barcode of book, must exist in book base
      */
-    public boolean borrowBook(Name readerName, Name bookName) {
+    public boolean borrowBook(Name readerName, Barcode barcode) {
         Reader reader = getReaderByName(readerName);
         if (reader == null) {
             return false;
         }
 
-        ArrayList<Book> booksWithName = getBooksByName(bookName);
-        requireNonNull(booksWithName);
-        if (booksWithName.size() == 0) {
+        Book book = getBookByBarcode(barcode);
+        if (book == null) {
             return false;
         }
 
-        for (Book book : booksWithName) {
-            if (!book.isBorrowed()) {
-                // TODO: Change bookName to barcode
-                reader.getBorrows().put(bookName, new DateBorrowed(LocalDate.now()));
-                Reader editedReader = new Reader(reader.getName(), reader.getPhone(), reader.getEmail(),
-                        reader.getAddress(), reader.getTags(), reader.getBorrows());
-                Book editedBook = new Book(book.getName(), book.getAuthor(), book.getPublisher(),
-                        book.getIsbn(), book.getBarcode(), book.getGenre(), readerName);
-                setReader(reader, editedReader);
-                setBook(book, editedBook);
-                return true;
-            }
+        if (!book.isBorrowed()) {
+            reader.getBorrows().put(book, new DateBorrowed(LocalDate.now()));
+            Reader editedReader = new Reader(reader.getName(), reader.getPhone(), reader.getEmail(),
+                    reader.getAddress(), reader.getTags(), reader.getBorrows());
+            Book editedBook = new Book(book.getName(), book.getAuthor(), book.getPublisher(),
+                    book.getIsbn(), book.getBarcode(), book.getGenre(), readerName);
+            setReader(reader, editedReader);
+            setBook(book, editedBook);
+            return true;
         }
 
         return false;

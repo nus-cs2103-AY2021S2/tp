@@ -179,7 +179,7 @@ public class AddReaderCommandTest {
         }
 
         @Override
-        public boolean borrowBook(Name readerName, Name bookName) {
+        public boolean borrowBook(Name readerName, Barcode barcode) {
             return false;
         }
 

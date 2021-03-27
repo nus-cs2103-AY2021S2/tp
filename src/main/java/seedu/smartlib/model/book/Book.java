@@ -138,7 +138,7 @@ public class Book {
                 && otherBook.getPublisher().equals(getPublisher())
                 && otherBook.getIsbn().equals(getIsbn())
                 && otherBook.getGenre().equals(getGenre())
-                && otherBook.getBarcode().equals(getBarcode());
+                && otherBook.getBarcode().equals(getBarcode()); // TODO: add BookStub for tests
     }
 
     @Override

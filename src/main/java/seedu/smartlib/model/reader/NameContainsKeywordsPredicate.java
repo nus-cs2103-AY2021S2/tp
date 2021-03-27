@@ -22,7 +22,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Reader> {
     @Override
     public boolean test(Reader reader) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(reader.getName().fullName, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(reader.getName().toString(), keyword));
     }
 
     @Override

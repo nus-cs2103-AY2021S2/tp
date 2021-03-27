@@ -155,7 +155,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredReaderList().size());
 
         Reader reader = model.getFilteredReaderList().get(targetIndex.getZeroBased());
-        final String[] splitName = reader.getName().fullName.split("\\s+");
+        final String[] splitName = reader.getName().toString().split("\\s+");
         model.updateFilteredReaderList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredReaderList().size());
@@ -169,7 +169,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredBookList().size());
 
         Book book = model.getFilteredBookList().get(targetIndex.getZeroBased());
-        final String[] splitName = book.getName().fullName.split("\\s+");
+        final String[] splitName = book.getName().toString().split("\\s+");
         model.updateFilteredBookList(new BookNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredBookList().size());
