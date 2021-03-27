@@ -28,6 +28,7 @@ import seedu.address.model.meeting.ReadOnlyMeetingBook;
 import seedu.address.model.person.AddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyAddressBook;
+import seedu.address.model.reminder.ReadOnlyReminderBook;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddPersonCommandTest {
@@ -239,6 +240,16 @@ public class AddPersonCommandTest {
         @Override
         public ObservableList<Person> getFilteredPersonListByMeetingConnection(Meeting meeting) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyReminderBook getReminderBook() {
+            return null;
+        }
+
+        @Override
+        public void refreshReminderBook() {
+
         }
 
         @Override
