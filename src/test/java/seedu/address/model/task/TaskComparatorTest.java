@@ -96,8 +96,9 @@ public class TaskComparatorTest {
     public void compare_twoValidInput_withOnePinned() {
         Task assignment = new TaskBuilder(ASSIGNMENT).build();
         assignment.pin();
+        //take reverse ordering of compare as pinned tasks come before unpinned tasks in list
         assertEquals(assignment.getPinnedStatus().compareTo(EXERCISE.getPinnedStatus()),
-                taskComparator.compare(assignment, EXERCISE));
+                taskComparator.compare(EXERCISE, assignment));
     }
 
     @Test
