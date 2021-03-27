@@ -25,15 +25,6 @@ public class Person {
         this.email = email;
     }
 
-    /**
-     * Only name is available.
-     */
-    public Person(Name name) {
-        requireAllNonNull(name);
-        this.name = name;
-        this.phone = null;
-        this.email = null;
-    }
 
     public Name getName() {
         return name;
