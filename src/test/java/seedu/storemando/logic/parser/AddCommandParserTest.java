@@ -26,6 +26,7 @@ import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_ESSENTIA
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_FAVOURITE;
 import static seedu.storemando.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.storemando.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.storemando.model.expirydate.ExpiryDate.NO_EXPIRY_DATE;
 import static seedu.storemando.testutil.TypicalItems.BANANA;
 import static seedu.storemando.testutil.TypicalItems.CHEESE;
 
@@ -77,6 +78,12 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_optionalFieldsMissing_success() {
+        // zero expiry date
+        Item expectedItemNoExpiryDate = new ItemBuilder(CHEESE).withTags(VALID_TAG_FAVOURITE)
+            .withExpiryDate(NO_EXPIRY_DATE).build();
+        assertParseSuccess(parser, NAME_DESC_CHEESE + LOCATION_DESC_CHEESE + QUANTITY_DESC_CHEESE
+            + TAG_DESC_FAVOURITE, new AddCommand(expectedItemNoExpiryDate));
+
         // zero tag
         Item expectedItemNoTag = new ItemBuilder(CHEESE).withTags().build();
         assertParseSuccess(parser,
