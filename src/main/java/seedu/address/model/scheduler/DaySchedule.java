@@ -1,5 +1,7 @@
 package seedu.address.model.scheduler;
 
+import javafx.beans.property.ReadOnlyBooleanProperty;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -38,7 +40,7 @@ public class DaySchedule {
      * @param period
      * @return
      */
-    public HalfHourTimeSlot getPeriod(int period) {
+    private HalfHourTimeSlot getPeriod(int period) {
         return periodArray[period];
     }
 
@@ -64,7 +66,7 @@ public class DaySchedule {
         if (periodArray[period].isBooked()) {
             throw new BookingException(MESSAGE_BOOKING_FAILURE);
         }
-        periodArray[period].setBooked(true);
+        periodArray[period].setIsBooked(true);
     }
 
     /**
@@ -75,7 +77,7 @@ public class DaySchedule {
     public void freeSlot(LocalTime localTime) {
         int period = getPeriodIndex(localTime);
         //mark the period as free
-        periodArray[period].setBooked(false);
+        periodArray[period].setIsBooked(false);
     }
 
     /**
@@ -91,7 +93,7 @@ public class DaySchedule {
             }
         }
         for (int i = start; i <= end; i++) {
-            periodArray[i].setBooked(true);
+            periodArray[i].setIsBooked(true);
         }
     }
 
@@ -124,7 +126,7 @@ public class DaySchedule {
             end -= 1;
         }
         for (int i = start; i <= end; i++) {
-            periodArray[i].setBooked(false);
+            periodArray[i].setIsBooked(false);
         }
     }
 
@@ -145,4 +147,11 @@ public class DaySchedule {
     public DayOfWeek getDayOfWeek() {
         return this.dayOfWeek;
     }
+
+    //============ Ui method ==================================================
+
+    public ReadOnlyBooleanProperty getSlotBookedProperty(int period) {
+        return periodArray[period].getisBookedProperty();
+    }
+
 }

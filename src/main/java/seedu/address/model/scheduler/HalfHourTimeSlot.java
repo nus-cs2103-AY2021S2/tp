@@ -1,6 +1,9 @@
 package seedu.address.model.scheduler;
 
-import seedu.address.logic.parser.DateTimeUtil;
+
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ReadOnlyBooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 
 import java.time.LocalTime;
 
@@ -11,7 +14,7 @@ public class HalfHourTimeSlot {
 
     public static final int MINUTES_IN_HALF_PERIOD = 30;
     private final TimeInterval timeInterval;
-    private boolean isBooked;
+    private final BooleanProperty isBooked = new SimpleBooleanProperty(false);
 
     /**
      * Constructs a 30 minute period in the timetable starting at a specified time, which is not booked.
@@ -21,7 +24,6 @@ public class HalfHourTimeSlot {
     public HalfHourTimeSlot(LocalTime startTime) {
         LocalTime endTime = startTime.plusMinutes(MINUTES_IN_HALF_PERIOD);
         this.timeInterval = new TimeInterval(startTime, endTime);
-        this.isBooked = false;
     }
 
     /**
@@ -30,8 +32,8 @@ public class HalfHourTimeSlot {
      * @param isBooked
      */
 
-    public void setBooked(boolean isBooked) {
-        this.isBooked = isBooked;
+    public void setIsBooked(boolean isBooked) {
+        this.isBooked.set(isBooked);
     }
 
     /**
@@ -40,6 +42,14 @@ public class HalfHourTimeSlot {
      * @return
      */
     public boolean isBooked() {
+        return this.isBooked.get();
+    }
+
+    /**
+     * Returns the property containing the boolean value to indicate if the slot is booked.
+     * @return
+     */
+    public ReadOnlyBooleanProperty getisBookedProperty() {
         return isBooked;
     }
 
@@ -49,7 +59,7 @@ public class HalfHourTimeSlot {
     }
 
     public String getStatusIcon() {
-        return (isBooked ? "\u2718" : "\u2713"); // return tick or X symbols
+        return (isBooked() ? "\u2718" : "\u2713"); // return tick or X symbols
     }
 
 }
