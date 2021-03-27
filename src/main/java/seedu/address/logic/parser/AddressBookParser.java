@@ -28,6 +28,7 @@ import seedu.address.logic.commands.room.DeleteRoomCommand;
 import seedu.address.logic.commands.room.EditRoomCommand;
 import seedu.address.logic.commands.room.FindRoomCommand;
 import seedu.address.logic.commands.room.ListRoomCommand;
+import seedu.address.logic.commands.undoredo.UndoCommand;
 import seedu.address.logic.parser.commandhistory.ViewHistoryCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.issue.AddIssueCommandParser;
@@ -135,6 +136,9 @@ public class AddressBookParser {
 
         case ViewHistoryCommand.COMMAND_WORD:
             return new ViewHistoryCommandParser().parse(arguments);
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
 
         default:
             if (readOnlyUserPrefs.containsAlias(commandWord)) {

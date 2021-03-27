@@ -160,6 +160,21 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public boolean canUndoAddressBook() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void undoAddressBook() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void commitAddressBook() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public AliasMapping getAliasMapping() {
         throw new AssertionError("This method should not be called.");
     }

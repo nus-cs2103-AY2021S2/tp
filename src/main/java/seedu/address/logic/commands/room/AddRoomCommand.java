@@ -49,6 +49,7 @@ public class AddRoomCommand extends Command {
         }
 
         model.addRoom(toAdd);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd)).setRoomCommand();
     }
 

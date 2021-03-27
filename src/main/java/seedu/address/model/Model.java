@@ -192,4 +192,21 @@ public interface Model {
      * Add an user-defined alias to the current mapping.
      */
     void addAlias(Alias alias);
+
+    /**
+     * Returns true if the model has any states to restore. False otherwise.
+     *
+     * @return True if the model has any states to restore. False otherwise.
+     */
+    boolean canUndoAddressBook();
+
+    /**
+     * Restores the model's state to its previous state, if any.
+     */
+    void undoAddressBook();
+
+    /**
+     * Saves the model's state for undo.
+     */
+    void commitAddressBook();
 }
