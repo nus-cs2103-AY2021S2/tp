@@ -126,6 +126,9 @@ Focuris is a **desktop application** for **managing events** with a KanBan board
 
 ## 2.2 General
 
+For ease of reference:
+![Ui](images/UiWithReference.png)
+
 ### 2.2.1 `help` Command
 
 Shows a pop-up with a link to the Focuris user guide.
