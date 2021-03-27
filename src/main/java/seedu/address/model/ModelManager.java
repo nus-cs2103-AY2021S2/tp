@@ -153,6 +153,7 @@ public class ModelManager implements Model {
         return versionedTaskTracker.canRedoTaskTracker();
     }
 
+
     //=========== Filtered Task List Accessors =============================================================
 
     /**
@@ -190,8 +191,8 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return taskTracker.equals(other.taskTracker)
-                && userPrefs.equals(other.userPrefs)
-                && filteredTasks.equals(other.filteredTasks);
+            && userPrefs.equals(other.userPrefs)
+            && filteredTasks.equals(other.filteredTasks);
     }
 
 }
