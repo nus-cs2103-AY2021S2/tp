@@ -88,6 +88,7 @@ public class AddCommand extends Command {
     private void handleDuplicateTask(Model model) throws CommandException {
         boolean isDuplicateTask = model.hasTask(toAdd);
         if (isDuplicateTask) {
+            logger.info("Duplicate task detected: " + MESSAGE_DUPLICATE_TASK);
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
     }

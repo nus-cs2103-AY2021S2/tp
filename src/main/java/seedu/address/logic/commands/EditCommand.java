@@ -15,7 +15,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -63,6 +65,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the planner.";
 
+    private final Logger logger = LogsCenter.getLogger(getClass());
+
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
 
@@ -103,6 +107,7 @@ public class EditCommand extends Command {
         boolean isInvalidIndex = indexValue >= lastShownList.size();
 
         if (isInvalidIndex) {
+            logger.info("Invalid Index detected: " + Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
     }
@@ -110,12 +115,14 @@ public class EditCommand extends Command {
     private void checkForDuplicateTask(Model model, Task taskToEdit, Task editedTask) throws CommandException {
         boolean isDuplicateTask = !taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask);
         if (isDuplicateTask) {
+            logger.info("Duplicate task detected: " + MESSAGE_DUPLICATE_TASK);
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
     }
 
     private void checkForInvalidDate(Task editedTask) throws CommandException {
         if (editedTask.hasExpired()) {
+            logger.info("Invalid date detected: " + INVALID_ENDDATE);
             throw new CommandException(INVALID_ENDDATE);
         }
     }
