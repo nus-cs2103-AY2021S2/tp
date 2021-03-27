@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox minHeight="482.0" styleClass="timetable-container" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+    <ScrollPane fx:id="scrollPane" vbarPolicy="NEVER" VBox.vgrow="ALWAYS" style="-fx-background-color: #383838;">
+        <GridPane fx:id="gridPane" styleClass="schedule-grid" style="-fx-background-color: #383838;">
+         <padding>
+            <Insets bottom="4.0" left="2.0" right="2.0" top="4.0" />
+         </padding></GridPane>
+    </ScrollPane>
+</VBox>

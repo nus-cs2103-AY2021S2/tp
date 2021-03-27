@@ -351,3 +351,60 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+.timetable-container {
+    -fx-background-color: #383838;
+}
+
+.timetable-grid {
+    -fx-background-color: #383838;
+    -fx-background-insets: 0, 1 1 0 0 ;
+    -fx-padding: 1;
+}
+
+.timetable-grid-cell {
+    -fx-border-color: #474747;
+    -fx-border-width: 0.5 0 0.5 0;
+    -fx-background-color: transparent;
+    -fx-background-color: #292929;
+}
+
+.timetable-grid-cell.first-column {
+    -fx-background-color: #222324;
+    -fx-border-width: 0.5;
+    -fx-background-insets: 0, 0 1 1 1;
+}
+
+.timetable-grid-cell.alternate-column {
+    -fx-background-color: #222324;
+    -fx-background-insets: 0, 0 1 1 1;
+}
+
+.timetable-grid Line {
+  -fx-stroke: grey;
+}
+
+.schedule-grid-cell {
+    -fx-background-color: #69c;
+    -fx-border-width: 100;
+    -fx-background-radius: 5;
+    -fx-max-height: 65;
+    -fx-effect: dropshadow(three-pass-box, rgba(51, 102, 153, 0.8), 0, 0, 0, 5);
+}
+
+.appointment-grid-cell {
+    -fx-background-color: #9c9;
+    -fx-background-radius: 5;
+    -fx-border-width: 0 1 0 1;
+    -fx-border-color: black;
+    -fx-max-height: 65;
+    -fx-effect: dropshadow(three-pass-box, rgba(85, 170, 85, 0.8), 0, 0, 0, 5);
+}
+
+.date-display-slot {
+    -fx-padding: 10;
+    -fx-border-insets: 20;
+    -fx-background-insets: 5;
+    -fx-max-width: 80;
+    -fx-min-height: 65;
+}

@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.ui.timetablepanel.TimeTablePanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -31,11 +32,10 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private TutorListPanel tutorListPanel;
     private ResultBarFooter resultDisplay;
     private HelpWindow helpWindow;
-    private CalendarView calendarView;
-    private AppointmentListPanel appointmentListPanel;
+    private MainPanel mainPanel;
+    private TimeTablePanel timeTablePanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -44,16 +44,10 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
-
-    @FXML
     private StackPane statusbarPlaceholder;
 
     @FXML
-    private StackPane calendarViewPane;
-
-    @FXML
-    private StackPane appointmentListPanelPlaceholder;
+    private StackPane tabPanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -116,20 +110,17 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        tutorListPanel = new TutorListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
-
-        appointmentListPanel = new AppointmentListPanel(logic.getFilteredAppointmentList());
-        appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
+        timeTablePanel = new TimeTablePanel(logic.getFilteredEventList());
+        mainPanel = new MainPanel(logic, this::executeCommand);
+//        tabPanelPlaceholder.getChildren().add(mainPanel.getRoot());
+        timeTablePanel.construct();
+        tabPanelPlaceholder.getChildren().add(timeTablePanel.getRoot());
 
         resultDisplay = new ResultBarFooter();
         statusbarPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-
-        calendarView = new CalendarView(this::executeCommand);
-        calendarViewPane.getChildren().add(calendarView.getRoot());
     }
 
     /**
@@ -156,17 +147,6 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    @FXML
-    private void setCalendarNavigation(String direction) throws CommandException {
-        if (direction.equals("next")) {
-            calendarView.handleToNext();
-        } else if (direction.equals("prev")) {
-            calendarView.handleToPrev();
-        } else {
-            throw new CommandException("MESSAGE_UNKNOWN_COMMAND");
-        }
-    }
-
     void show() {
         primaryStage.show();
     }
@@ -181,10 +161,6 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
-    }
-
-    public TutorListPanel getPersonListPanel() {
-        return tutorListPanel;
     }
 
     /**

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<HBox xmlns:fx="http://javafx.com/fxml/1" id="slotPane" fx:id="slotPane" alignment="CENTER"
+      styleClass="date-display-slot" xmlns="http://javafx.com/javafx/11">
+    <VBox alignment="CENTER">
+        <Label fx:id="day" text="\$day" style="-fx-font-size: 16; -fx-text-fill: white;"/>
+        <Label fx:id="date" text="\$date" style="-fx-font-size: 12; -fx-text-fill: white;"/>
+    </VBox>
+</HBox>
