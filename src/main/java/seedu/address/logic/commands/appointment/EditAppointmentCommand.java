@@ -25,6 +25,7 @@ import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Timeslot;
 import seedu.address.model.person.Patient;
+import seedu.address.model.person.Doctor;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -47,7 +48,7 @@ public class EditAppointmentCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PATIENT + "1 "
-            + PREFIX_DOCTOR + "Dr. Phon "
+            + PREFIX_DOCTOR + "2 "
             + PREFIX_TIMESLOT_START + "2021-05-08 09:00 "
             + PREFIX_TIMESLOT_DURATION + "1H 00M "
             + PREFIX_TAG + "severe "
@@ -73,16 +74,21 @@ public class EditAppointmentCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        // get the patient and appointment lists
+        // get the patient, doctor and appointment lists
         List<Patient> displayedPatientRecords = model.getFilteredPatientList();
+        List<Doctor> displayedDoctorRecords = model.getFilteredDoctorList();
         List<Appointment> appointmentList = model.getFilteredAppointmentList();
+
         // check index
         if (index.getZeroBased() >= appointmentList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
         }
+
         //get appointment to be edited
         Appointment appointmentToEdit = appointmentList.get(index.getZeroBased());
         Patient patient;
+        Doctor doctor;
+
         // check if patient index is present
         if (editAppointmentDescriptor.getPatientIndex().isPresent()) {
             //check if patient index is valid
@@ -95,7 +101,22 @@ public class EditAppointmentCommand extends Command {
         } else {
             patient = appointmentToEdit.getPatient();
         }
-        Appointment editedAppointment = createEditedAppointment(patient, appointmentToEdit, editAppointmentDescriptor);
+
+        // check if doctor index is present
+        if (editAppointmentDescriptor.getDoctorIndex().isPresent()) {
+            //check if doctor index is valid
+            if (editAppointmentDescriptor.doctorIndex.getZeroBased() >= displayedDoctorRecords.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_DOCTOR_DISPLAYED_INDEX);
+            }
+            // assign doctor
+            doctor = displayedDoctorRecords.get(editAppointmentDescriptor.doctorIndex.getZeroBased());
+            // if doctor index is not present
+        } else {
+            doctor = appointmentToEdit.getDoctor();
+        }
+
+
+        Appointment editedAppointment = createEditedAppointment(patient, doctor, appointmentToEdit, editAppointmentDescriptor);
         if (model.hasConflictingAppointmentExcludingTarget(appointmentToEdit, editedAppointment)) {
             throw new CommandException(MESSAGE_APPOINTMENT_CONFLICT);
         }
@@ -108,14 +129,13 @@ public class EditAppointmentCommand extends Command {
      * Creates and returns a {@code Appointment} with the details of {@code appointmentToEdit}
      * edited with {@code editAppointmentDescriptor}.
      */
-    private static Appointment createEditedAppointment(Patient patient, Appointment appointmentToEdit,
+    private static Appointment createEditedAppointment(Patient patient, Doctor doctor, Appointment appointmentToEdit,
                                                        EditAppointmentDescriptor editAppointmentDescriptor) {
         assert appointmentToEdit != null;
-        String updatedDoctor = editAppointmentDescriptor.getDoctor().orElse(appointmentToEdit.getDoctor());
         Timeslot updatedTimeslot = editAppointmentDescriptor.getTimeslot().orElse(appointmentToEdit.getTimeslot());
         Set<Tag> updatedTags = editAppointmentDescriptor.getTags().orElse(appointmentToEdit.getTags());
 
-        return new Appointment(patient, updatedDoctor, updatedTimeslot, updatedTags);
+        return new Appointment(patient, doctor, updatedTimeslot, updatedTags);
     }
 
     @Override
@@ -142,7 +162,7 @@ public class EditAppointmentCommand extends Command {
      */
     public static class EditAppointmentDescriptor {
         private Index patientIndex;
-        private String doctor;
+        private Index doctorIndex;
         private Timeslot timeslot;
         private Set<Tag> tags;
 
@@ -154,7 +174,7 @@ public class EditAppointmentCommand extends Command {
          */
         public EditAppointmentDescriptor(EditAppointmentDescriptor toCopy) {
             setPatientIndex(toCopy.patientIndex);
-            setDoctor(toCopy.doctor);
+            setDoctorIndex(toCopy.doctorIndex);
             setTimeslot(toCopy.timeslot);
             setTags(toCopy.tags);
         }
@@ -163,7 +183,7 @@ public class EditAppointmentCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(patientIndex, doctor, timeslot, tags);
+            return CollectionUtil.isAnyNonNull(patientIndex, doctorIndex, timeslot, tags);
         }
 
         public void setPatientIndex(Index patientIndex) {
@@ -174,12 +194,12 @@ public class EditAppointmentCommand extends Command {
             return Optional.ofNullable(patientIndex);
         }
 
-        public void setDoctor(String doctor) {
-            this.doctor = doctor;
+        public void setDoctorIndex(Index doctorIndex) {
+            this.doctorIndex = doctorIndex;
         }
 
-        public Optional<String> getDoctor() {
-            return Optional.ofNullable(doctor);
+        public Optional<Index> getDoctorIndex() {
+            return Optional.ofNullable(doctorIndex);
         }
 
         public void setTimeslot(Timeslot timeslot) {
@@ -223,7 +243,7 @@ public class EditAppointmentCommand extends Command {
             EditAppointmentDescriptor e = (EditAppointmentDescriptor) other;
 
             return getPatientIndex().equals(e.getPatientIndex())
-                    && getDoctor().equals(e.getDoctor())
+                    && getDoctorIndex().equals(e.getDoctorIndex())
                     && getTimeslot().equals(e.getTimeslot())
                     && getTags().equals(e.getTags());
         }
