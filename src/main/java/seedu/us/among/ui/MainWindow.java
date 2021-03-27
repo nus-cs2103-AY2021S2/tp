@@ -261,6 +261,7 @@ public class MainWindow extends UiPart<Stage> {
                 this.applicationTheme = new Theme(theme);
                 if (resultDisplay != null) {
                     resultDisplay.setErrorGifType(theme);
+                    resultDisplay.setSpinnerGifType(theme);
                 }
             }
         }

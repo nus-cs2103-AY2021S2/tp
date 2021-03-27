@@ -37,7 +37,8 @@ public class ResultDisplay extends UiPart<Region> {
     private String errorGifType = "error-white.gif";
     private final Image error = new Image(this.getClass().getResourceAsStream("/images/" + errorGifType));
 
-    private final Image loadingSpinner = new Image(this.getClass().getResourceAsStream("/images/loading_spinner.gif"));
+    private final Image loadingSpinnerForDark = new Image(this.getClass().getResourceAsStream("/images/loading_spinner-white.gif"));
+    private final Image loadingSpinnerForLight = new Image(this.getClass().getResourceAsStream("/images/loading_spinner-black.gif"));
     private final Image emptyList = new Image(this.getClass().getResourceAsStream("/images/imPosterEmptyList.png"));
 
     /**
@@ -45,7 +46,7 @@ public class ResultDisplay extends UiPart<Region> {
      */
     public ResultDisplay() {
         super(FXML);
-        this.loadingSpinnerPlaceholder.setImage(loadingSpinner);
+        this.loadingSpinnerPlaceholder.setImage(loadingSpinnerForDark);
         this.errorPlaceholder.setImage(error);
         this.emptyListPlaceholder.setImage(emptyList);
 
@@ -94,6 +95,14 @@ public class ResultDisplay extends UiPart<Region> {
             this.errorGifType = "error-black.gif";
         } else {
             this.errorGifType = "error-white.gif";
+        }
+    }
+
+    public void setSpinnerGifType(String theme) {
+        if (theme.equalsIgnoreCase("light")) {
+            this.loadingSpinnerPlaceholder.setImage(loadingSpinnerForLight);
+        } else {
+            this.loadingSpinnerPlaceholder.setImage(loadingSpinnerForDark);
         }
     }
 
