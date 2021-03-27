@@ -136,7 +136,7 @@ public class EditMemberCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code assignees} is used internally.
          */
         public EditMemberDescriptor(EditMemberDescriptor toCopy) {
             setName(toCopy.name);

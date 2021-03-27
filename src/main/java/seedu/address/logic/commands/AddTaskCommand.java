@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
@@ -23,13 +24,16 @@ public class AddTaskCommand extends Command {
             + PREFIX_DESCRIPTION + " DESCRIPTION "
             + PREFIX_DEADLINE + " DEADLINE"
             + PREFIX_STATUS + " TASK STATUS "
-            + PREFIX_PRIORITY + " PRIORITY \n"
+            + PREFIX_PRIORITY + " PRIORITY "
+            + PREFIX_ASSIGNEE + "ASSIGNEE \n"
+
             + "Example: " + COMMAND_WORD + " "
             + "Plan board meeting "
             + PREFIX_DESCRIPTION + " Draft meeting agenda and proposal for board meeting "
             + PREFIX_DEADLINE + "2021-05-02"
             + PREFIX_STATUS + " completed "
-            + PREFIX_PRIORITY + " high ";
+            + PREFIX_PRIORITY + " high "
+            + PREFIX_ASSIGNEE + " Rachel";
 
     public static final String MESSAGE_SUCCESS = "New Task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "A task with the same name already exists in the task board! "
@@ -51,6 +55,10 @@ public class AddTaskCommand extends Command {
 
         if (model.hasTask(toAddTask)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
+        }
+
+        if (!model.checkAssignees(toAddTask)) {
+            throw new CommandException("Invalid assignee name! Assignee's name must be in the displayed members list.");
         }
 
         model.addTask(toAddTask);

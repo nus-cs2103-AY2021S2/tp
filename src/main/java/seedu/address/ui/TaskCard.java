@@ -1,7 +1,10 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.task.Task;
@@ -28,6 +31,8 @@ public class TaskCard extends UiPart<Region> {
     private Label taskStatus;
     @FXML
     private Label priority;
+    @FXML
+    private FlowPane assignees;
 
     /**
      * Creates a {@code TaskCode} with the given {@code Task} and index to display.
@@ -41,6 +46,9 @@ public class TaskCard extends UiPart<Region> {
         deadline.setText("Deadline: " + task.getDeadline().dateString);
         taskStatus.setText("Status: " + task.getTaskStatus().getStatus());
         priority.setText("Priority: " + task.getPriority().getPriority());
+        task.getAssignees().stream()
+                .sorted(Comparator.comparing(assignee -> assignee.assigneeName))
+                .forEach(assignee -> assignees.getChildren().add(new Label(assignee.assigneeName)));
     }
 
     @Override

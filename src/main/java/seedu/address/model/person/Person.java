@@ -29,7 +29,7 @@ public class Person {
     }
 
     /**
-     * Overloaded constructor which sets role to member as default
+     * Overloaded constructor which sets role to member as default.
      */
     public Person(Name name, Phone phone, Email email) {
         requireAllNonNull(name, phone, email);
@@ -37,6 +37,17 @@ public class Person {
         this.phone = phone;
         this.email = email;
         this.role = new Role("Member");
+    }
+
+    /**
+     * Overloaded constructor which sets phone, email and role of member as null.
+     */
+    public Person(Name name) {
+        requireAllNonNull(name);
+        this.name = name;
+        this.phone = null;
+        this.email = null;
+        this.role = null;
     }
 
     public Name getName() {
