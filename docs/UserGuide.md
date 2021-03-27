@@ -308,7 +308,7 @@ Optional identifiers can be added to show the list of matched clients with only 
 **Examples**:
 * Find `Alex David` and `Alex Yeoh`.
   * `find n/alex`
-
+<br><br>
 * Find `Alex David`.
   * `find n/alex david`
   
@@ -316,10 +316,10 @@ Optional identifiers can be added to show the list of matched clients with only 
   
 * Find `Alex David`, `Alex Yeoh` and `David Li`.
   * `find n/alex & david`
-
+<br><br>
 * Find all persons whose address contains `geylang`.
   * `find a/geylang` - returns `Alex Yeoh` whose address is `Blk 30 Geylang Street 29, #06-40`
-
+<br><br>
 * Find the email and phone number of all persons whose names contain `alex` and `david` using the `&` delimiter, and only display their email and phone number.
   * `find n/alex & david -e -p`
     
