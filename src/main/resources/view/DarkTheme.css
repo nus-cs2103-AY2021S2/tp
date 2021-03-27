@@ -380,3 +380,23 @@
     -fx-background-radius: 15;
     -fx-font-size: 11;
 }
+
+.status {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+    -fx-text-fill: black;
+    -fx-padding: 1 3 1 3;
+    -fx-font-size: 11;
+}
+
+.notDone{
+  -fx-background-color: #bbbbbb;
+}
+
+.inProgress{
+  -fx-background-color: #ebcf34;
+}
+
+.completed{
+  -fx-background-color: #05d12e;
+}

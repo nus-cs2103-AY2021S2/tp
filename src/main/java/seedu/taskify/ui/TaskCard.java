@@ -52,7 +52,19 @@ public class TaskCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(task.getName().fullName);
         description.setText(task.getDescription().value);
-        status.setText(task.getStatus().toString());
+        String statString = task.getStatus().toString();
+        status.setText(statString);
+        System.out.println(statString);
+        status.getStyleClass().clear();
+        status.getStyleClass().add("status");
+        if (statString.equals("Not done")) {
+            status.getStyleClass().add("notDone");
+        } else if (statString.equals("in progress")) {
+            status.getStyleClass().add("inProgress");
+        } else if (statString.equals("completed")) {
+            status.getStyleClass().add("completed");
+        }
+
         date.setText(task.getDate().value);
         task.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
