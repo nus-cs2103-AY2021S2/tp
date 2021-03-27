@@ -7,6 +7,7 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
@@ -45,7 +46,23 @@
         <TabPane fx:id="mainTabPane" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
           <Tab fx:id="home" text="Home">
             <content>
+              <HBox>
+                <VBox>
+                  <Label styleClass="tuitionTitle" text="Reminders" prefWidth="${screen.visualBounds.width}" minWidth="250" textAlignment="CENTER" />
+                  <StackPane fx:id="upcomingTuitionListPanelPlaceholder" prefWidth="${screen.visualBounds.width}" minWidth="250" HBox.hgrow="ALWAYS"/>
+                  <padding>
+                    <Insets top="10" right="10" bottom="10" left="10" />
+                  </padding>
+                </VBox>
 
+                <VBox>
+                  <Label styleClass="tuitionTitle" prefWidth="${screen.visualBounds.width}" minWidth="250" text="Fees" />
+                  <StackPane fx:id="feePanelPlaceholder" prefWidth="${screen.visualBounds.width}" minWidth="250" style="-fx-wrap-text: true" />
+                  <padding>
+                    <Insets top="10" right="10" bottom="10" left="10" />
+                  </padding>
+                </VBox>
+              </HBox>
             </content>
           </Tab>
 
@@ -76,6 +93,10 @@
             <content>
 
             </content>
+          </Tab>
+
+          <Tab fx:id="time" disable="true" styleClass="time" >
+
           </Tab>
         </TabPane>
 
