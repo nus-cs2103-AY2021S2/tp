@@ -28,7 +28,7 @@ public class NameFilter implements Predicate<Name> {
     public NameFilter(String nameFilter) {
         requireNonNull(nameFilter);
         checkArgument(isValidNameFilter(nameFilter), MESSAGE_CONSTRAINTS);
-        this.nameFilter = nameFilter;
+        this.nameFilter = nameFilter.toLowerCase();
     }
 
     /**
@@ -61,6 +61,6 @@ public class NameFilter implements Predicate<Name> {
             return false;
         }
 
-        return name.fullName.contains(nameFilter);
+        return name.fullName.toLowerCase().contains(nameFilter);
     }
 }

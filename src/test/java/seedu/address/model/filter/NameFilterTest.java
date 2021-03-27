@@ -41,11 +41,13 @@ public class NameFilterTest {
 
     @Test
     public void test_name_success() {
-        NameFilter nameFilter = new NameFilter("Pete");
+        NameFilter nameFilter = new NameFilter("pete");
 
+        assertTrue(nameFilter.test(new Name("pete")));
         assertTrue(nameFilter.test(new Name("Pete")));
         assertTrue(nameFilter.test(new Name("Peter Parker")));
         assertTrue(nameFilter.test(new Name("Alex Pete")));
+        assertTrue(nameFilter.test(new Name("Apete")));
 
         assertFalse(nameFilter.test(new Name("Pet")));
         assertFalse(nameFilter.test(new Name("ete")));
