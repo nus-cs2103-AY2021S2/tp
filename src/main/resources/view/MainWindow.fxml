@@ -8,7 +8,6 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -65,24 +64,22 @@
           <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
         </VBox>
         </left>
-          <center>
-               <StackPane fx:id="meetingDashboardPlaceholder" BorderPane.alignment="CENTER">
-                  <children>
-                     <TabPane fx:id="displayTabs" tabClosingPolicy="UNAVAILABLE">
-                        <tabs>
-                           <Tab fx:id="meetingsTab" text="Meetings">
-                             <content>
-                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                             </content>
-                           </Tab>
-                           <Tab fx:id="timetableTab" text="TimeTable">
-                             <content>
-                               <AnchorPane />
-                             </content>
-                           </Tab>
-                        </tabs></TabPane>
-                  </children></StackPane>
-          </center>
+            <center>
+               <TabPane fx:id="displayTabs" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+                  <tabs>
+                     <Tab fx:id="meetingsTab" text="Meetings">
+                        <content>
+                           <StackPane fx:id="meetingDashboardPlaceholder" />
+                        </content>
+                     </Tab>
+                     <Tab fx:id="timetableTab" text="TimeTable">
+                        <content>
+                           <StackPane fx:id="timetableHolder" />
+                        </content>
+                     </Tab>
+                  </tabs>
+               </TabPane>
+            </center>
 
       </BorderPane>
     </Scene>

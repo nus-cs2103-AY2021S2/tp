@@ -54,9 +54,6 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     @FXML
-    private StackPane meetingDashboardPlaceholder;
-
-    @FXML
     private TabPane displayTabs;
 
     @FXML
@@ -64,6 +61,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private Tab timetableTab;
+
+    @FXML
+    private StackPane meetingDashboardPlaceholder;
+
+    @FXML
+    private StackPane timetableHolder;
 
 
     /**
@@ -140,7 +143,7 @@ public class MainWindow extends UiPart<Stage> {
 
         // Yuheng To Maurice: I made my modification to the logic so now you can add meetings into the UI.
         meetingDashboard = new MeetingDashboard(logic.getFilteredMeetingList());
-        meetingsTab.setContent(meetingDashboard.getRoot());
+        meetingDashboardPlaceholder.getChildren().add(meetingDashboard.getRoot());
     }
 
     /**
