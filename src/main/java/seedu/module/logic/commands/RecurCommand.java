@@ -7,6 +7,7 @@ import java.util.List;
 
 import seedu.module.commons.core.Messages;
 import seedu.module.commons.core.index.Index;
+import seedu.module.commons.core.optionalField.OptionalField;
 import seedu.module.logic.commands.exceptions.CommandException;
 import seedu.module.model.Model;
 import seedu.module.model.task.DoneStatus;
@@ -76,35 +77,24 @@ public class RecurCommand extends Command {
         assert previousRecurringTask != null;
 
         DoneStatus newDoneStatus = new DoneStatus(false);
+
         Recurrence recurrence = this.recurrence;
+        OptionalField<Recurrence> wrappedRecurrence = new OptionalField<>(this.recurrence);
+
         Time lastDeadline = previousRecurringTask.getDeadline();
-        Time lastStartTime = previousRecurringTask.getStartTime();
         Time nextRecurringDeadline = previousRecurringTask.getRecurringTime(lastDeadline, recurrence);
-        Time nextRecurringStartTime = previousRecurringTask.getRecurringTime(lastStartTime, recurrence);
+        OptionalField<Time> lastStartTime = previousRecurringTask.getStartTimeWrapper();
+        OptionalField<Time> nextRecurringStartTime = previousRecurringTask.getRecurringTime(lastStartTime, recurrence);
 
-        Task nextRecurringTask;
-        if (previousRecurringTask.isDeadline()) {
-            nextRecurringTask = new Task(previousRecurringTask.getName(),
-                    nextRecurringDeadline,
-                    previousRecurringTask.getModule(),
-                    previousRecurringTask.getDescription(),
-                    previousRecurringTask.getWorkload(),
-                    newDoneStatus,
-                    recurrence,
-                    previousRecurringTask.getTags());
-        } else {
-            nextRecurringTask = new Task(previousRecurringTask.getName(),
-                    nextRecurringStartTime,
-                    nextRecurringDeadline,
-                    previousRecurringTask.getModule(),
-                    previousRecurringTask.getDescription(),
-                    previousRecurringTask.getWorkload(),
-                    newDoneStatus,
-                    recurrence,
-                    previousRecurringTask.getTags());
-        }
-
-        return nextRecurringTask;
+        return new Task(previousRecurringTask.getName(),
+                nextRecurringStartTime,
+                nextRecurringDeadline,
+                previousRecurringTask.getModule(),
+                previousRecurringTask.getDescription(),
+                previousRecurringTask.getWorkload(),
+                newDoneStatus,
+                wrappedRecurrence,
+                previousRecurringTask.getTags());
     }
 
 

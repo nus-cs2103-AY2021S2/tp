@@ -41,7 +41,7 @@ public class UniqueTaskList implements Iterable<Task> {
 
     /**
      * Checks if the list contains a task with the same attributes
-     * @param toCheck task to be checked againsta all tasks in internalList.
+     * @param toCheck task to be checked against all tasks in internalList.
      * @return true if a task in the list is matched, false otherwise
      */
     public boolean containsRecurringTask(Task toCheck) {

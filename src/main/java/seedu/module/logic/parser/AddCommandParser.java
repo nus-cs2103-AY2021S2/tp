@@ -13,6 +13,7 @@ import static seedu.module.logic.parser.CliSyntax.PREFIX_WORKLOAD;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import seedu.module.commons.core.optionalField.OptionalField;
 import seedu.module.logic.commands.AddCommand;
 import seedu.module.logic.parser.exceptions.ParseException;
 import seedu.module.model.tag.Tag;
@@ -54,29 +55,26 @@ public class AddCommandParser implements Parser<AddCommand> {
         DoneStatus newTaskDoneStatus = new DoneStatus(false);
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Task task;
-        // no recurrence, no start time
-        if (argMultimap.getValue(PREFIX_RECURRENCE).isEmpty() && argMultimap.getValue(PREFIX_START_TIME).isEmpty()) {
-            task = new Task(name, deadline, module, description, workload, newTaskDoneStatus, tagList);
-        // no recurrence, start time present
-        } else if (argMultimap.getValue(PREFIX_RECURRENCE).isEmpty()
-                && !argMultimap.getValue(PREFIX_START_TIME).isEmpty()) {
-
-            Time startTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_START_TIME).get());
-            task = new Task(name, startTime, deadline, module, description, workload, newTaskDoneStatus, tagList);
-        // recurrence, no start time
-        } else if (!argMultimap.getValue(PREFIX_RECURRENCE).isEmpty()
-                && argMultimap.getValue(PREFIX_START_TIME).isEmpty()) {
-
-            Recurrence recurrence = ParserUtil.parseRecurrence(argMultimap.getValue(PREFIX_RECURRENCE).get());
-            task = new Task(name, deadline, module, description, workload, newTaskDoneStatus, recurrence, tagList);
-        // recurrence present, start time present
+        // Null check for optional field startTime.
+        OptionalField<Time> startTime;
+        if (argMultimap.getValue(PREFIX_START_TIME).isEmpty()) {
+            startTime = new OptionalField<>(null);
         } else {
-            Time startTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_START_TIME).get());
-            Recurrence recurrence = ParserUtil.parseRecurrence(argMultimap.getValue(PREFIX_RECURRENCE).get());
-            task = new Task(name, startTime, deadline, module, description, workload, newTaskDoneStatus, recurrence,
-                    tagList);
+            startTime = new OptionalField<>(ParserUtil.parseTime(argMultimap.getValue(PREFIX_START_TIME).get()));
         }
+
+        // Null check for optional field recurrence.
+        OptionalField<Recurrence> recurrence;
+        if (argMultimap.getValue(PREFIX_RECURRENCE).isEmpty()) {
+            recurrence = new OptionalField<>(null);
+        } else {
+            recurrence = new OptionalField<>(ParserUtil.parseRecurrence(argMultimap.getValue(PREFIX_RECURRENCE).get()));
+        }
+
+        Task task;
+        task = new Task(name, startTime, deadline, module, description, workload, newTaskDoneStatus, recurrence,
+                tagList);
+
         return new AddCommand(task);
     }
 

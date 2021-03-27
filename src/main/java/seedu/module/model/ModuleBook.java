@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.module.commons.core.optionalField.OptionalField;
 import seedu.module.model.task.Task;
 import seedu.module.model.task.Time;
 import seedu.module.model.task.UniqueTaskList;
@@ -52,7 +53,8 @@ public class ModuleBook implements ReadOnlyModuleBook {
 
     /**
      * Sorts the task list by deadline.
-     * @param factor
+     *
+     * @param factor the comparator
      */
     public void sortTasks(Comparator<Task> factor) {
         this.tasks.sortTasks(factor);
@@ -79,8 +81,9 @@ public class ModuleBook implements ReadOnlyModuleBook {
 
     /**
      * Returns true if a {@code task} that is recurring exists in the module book.
-     * @param task
-     * @return
+     *
+     * @param task for checking
+     * @return true if a task with the same identity as {@code task} exists in the module book.
      */
     public boolean hasRecurringTask(Task task) {
         assert (task.isRecurring());
@@ -101,12 +104,14 @@ public class ModuleBook implements ReadOnlyModuleBook {
             //check the deadline and recurrence of the task
             if (p.isRecurring()) {
                 Time newDeadline = p.getRecurringTime(p.getDeadline(), p.getRecurrence());
+                OptionalField<Time> newStartTimeWrapper;
                 if (p.isDeadline()) {
-                    taskToAdd = p.makeNewRecurringTask(newDeadline, null);
+                    newStartTimeWrapper = new OptionalField<>(null);
                 } else {
                     Time newStartTime = p.getRecurringTime(p.getStartTime(), p.getRecurrence());
-                    taskToAdd = p.makeNewRecurringTask(newDeadline, newStartTime);
+                    newStartTimeWrapper = new OptionalField<>(newStartTime);
                 }
+                taskToAdd = p.makeNewRecurringTask(newDeadline, newStartTimeWrapper);
             }
             ModuleManager.insertTaskToMapping(taskToAdd.getModule(), taskToAdd);
             tasks.add(taskToAdd);
@@ -124,8 +129,6 @@ public class ModuleBook implements ReadOnlyModuleBook {
             ModuleManager.deleteTaskFromMapping(target.getModule(), target);
             ModuleManager.insertTaskToMapping(editedTask.getModule(), editedTask);
             tasks.setTask(target, editedTask);
-        } else {
-
         }
     }
 
@@ -138,15 +141,13 @@ public class ModuleBook implements ReadOnlyModuleBook {
             assert(ModuleManager.moduleIsValid(p.getModule().toString()));
             ModuleManager.deleteTaskFromMapping(p.getModule(), p);
             tasks.remove(p);
-        } else {
-
         }
     }
 
     /**
      * Extra check that task contains a supported module code.
      *
-     * @param task
+     * @param task for checking
      * @return True if Module is supported
      */
     public boolean checkForSupportedModuleCode(Task task) {

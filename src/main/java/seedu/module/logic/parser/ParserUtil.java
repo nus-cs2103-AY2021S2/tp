@@ -62,7 +62,7 @@ public class ParserUtil {
     public static Time parseTime(String deadline) throws ParseException {
         requireNonNull(deadline);
         String trimmedDeadline = deadline.trim();
-        if (!Time.isValidDeadline(trimmedDeadline)) {
+        if (!Time.isValidTime(trimmedDeadline)) {
             throw new ParseException(Time.MESSAGE_CONSTRAINTS);
         }
         return new Time(trimmedDeadline);

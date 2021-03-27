@@ -8,6 +8,7 @@ import java.util.Set;
 
 import seedu.module.commons.core.Messages;
 import seedu.module.commons.core.index.Index;
+import seedu.module.commons.core.optionalField.OptionalField;
 import seedu.module.logic.commands.exceptions.CommandException;
 import seedu.module.model.Model;
 import seedu.module.model.tag.Tag;
@@ -62,27 +63,17 @@ public class DoneCommand extends Command {
         assert taskToMarkDone != null;
 
         Name name = taskToMarkDone.getName();
-        Time startTime = taskToMarkDone.getStartTime();
+        OptionalField<Time> startTime = taskToMarkDone.getStartTimeWrapper();
         Time deadline = taskToMarkDone.getDeadline();
         Module module = taskToMarkDone.getModule();
         Description description = taskToMarkDone.getDescription();
         Workload workload = taskToMarkDone.getWorkload();
         DoneStatus newDoneStatus = new DoneStatus(true);
-        Recurrence recurrence = taskToMarkDone.getRecurrence();
+        OptionalField<Recurrence> recurrence = taskToMarkDone.getRecurrenceWrapper();
         Set<Tag> tags = taskToMarkDone.getTags();
 
-        if (!taskToMarkDone.isRecurring() && !taskToMarkDone.isDeadline()) {
-            return new Task(name, startTime, deadline, module, description, workload, newDoneStatus, tags);
+        return new Task(name, startTime, deadline, module, description, workload, newDoneStatus, recurrence, tags);
 
-        } else if (!taskToMarkDone.isRecurring() && taskToMarkDone.isDeadline()) {
-            return new Task(name, deadline, module, description, workload, newDoneStatus, tags);
-
-        } else if (taskToMarkDone.isRecurring() && !taskToMarkDone.isDeadline()) {
-            return new Task(name, startTime, deadline, module, description, workload, newDoneStatus, recurrence, tags);
-
-        } else {
-            return new Task(name, deadline, module, description, workload, newDoneStatus, recurrence, tags);
-        }
     }
 
     @Override

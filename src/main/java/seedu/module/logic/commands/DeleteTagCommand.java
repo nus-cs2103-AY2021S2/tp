@@ -10,6 +10,7 @@ import java.util.Set;
 
 import seedu.module.commons.core.Messages;
 import seedu.module.commons.core.index.Index;
+import seedu.module.commons.core.optionalField.OptionalField;
 import seedu.module.logic.commands.exceptions.CommandException;
 import seedu.module.model.Model;
 import seedu.module.model.tag.Tag;
@@ -74,27 +75,16 @@ public class DeleteTagCommand extends Command {
 
         Task editedTask;
         Name name = taskToTag.getName();
-        Time startTime = taskToTag.getStartTime();
+        OptionalField<Time> startTime = taskToTag.getStartTimeWrapper();
         Time deadline = taskToTag.getDeadline();
         Module module = taskToTag.getModule();
         Description description = taskToTag.getDescription();
         Workload workload = taskToTag.getWorkload();
         DoneStatus newDoneStatus = new DoneStatus(false);
-        Recurrence recurrence = taskToTag.getRecurrence();
+        OptionalField<Recurrence> recurrence = taskToTag.getRecurrenceWrapper();
 
-        if (!taskToTag.isRecurring() && !taskToTag.isDeadline()) {
-            editedTask = new Task(name, startTime, deadline, module, description, workload, newDoneStatus, newTags);
-
-        } else if (!taskToTag.isRecurring() && taskToTag.isDeadline()) {
-            editedTask = new Task(name, deadline, module, description, workload, newDoneStatus, newTags);
-
-        } else if (taskToTag.isRecurring() && !taskToTag.isDeadline()) {
-            editedTask = new Task(name, startTime, deadline, module, description, workload, newDoneStatus, recurrence,
-                    newTags);
-
-        } else {
-            editedTask = new Task(name, deadline, module, description, workload, newDoneStatus, recurrence, newTags);
-        }
+        editedTask = new Task(name, startTime, deadline, module, description, workload, newDoneStatus, recurrence,
+                newTags);
 
         model.setTask(taskToTag, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);

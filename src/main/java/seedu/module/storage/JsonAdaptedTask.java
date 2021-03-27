@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.module.commons.core.optionalField.OptionalField;
 import seedu.module.commons.exceptions.IllegalValueException;
 import seedu.module.model.tag.Tag;
 import seedu.module.model.task.Description;
@@ -108,24 +109,21 @@ class JsonAdaptedTask {
         }
         final Name modelName = new Name(name);
 
-        Time modelStartTime;
-        boolean isDeadLine;
+        OptionalField<Time> modelStartTime;
         if (startTime == null || startTime.equals("")) {
-            modelStartTime = null;
-            isDeadLine = true;
+            modelStartTime = new OptionalField<>(null);
         } else {
-            if (!Time.isValidDeadline(startTime)) {
+            if (!Time.isValidTime(startTime)) {
                 throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
             }
-            modelStartTime = new Time(startTime);
-            isDeadLine = false;
+            modelStartTime = new OptionalField<>(new Time(startTime));
         }
 
         if (deadline == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 Time.class.getSimpleName()));
         }
-        if (!Time.isValidDeadline(deadline)) {
+        if (!Time.isValidTime(deadline)) {
             throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
         }
         final Time modelDeadline = new Time(deadline);
@@ -166,36 +164,20 @@ class JsonAdaptedTask {
 
         final DoneStatus modelDoneStatus = new DoneStatus(doneStatus);
 
-        Recurrence modelRecurrence;
-        boolean isRecurringTask;
-        if (recurrence.equals("")) {
-            modelRecurrence = null;
-            isRecurringTask = false;
+        OptionalField<Recurrence> modelRecurrence;
+        if (startTime == null || recurrence.equals("")) {
+            modelRecurrence = new OptionalField<>(null);
         } else {
             if (!Recurrence.isValidRecurrence(recurrence)) {
                 throw new IllegalValueException(Recurrence.MESSAGE_CONSTRAINTS);
             }
-            modelRecurrence = new Recurrence(recurrence);
-            isRecurringTask = true;
+            modelRecurrence = new OptionalField<>(new Recurrence(recurrence));
         }
 
         final Set<Tag> modelTags = new HashSet<>(taskTags);
-        if (!isRecurringTask && !isDeadLine) {
-            return new Task(modelName, modelStartTime, modelDeadline, modelModule, modelDescription,
-                    modelWorkload, modelDoneStatus, modelTags);
 
-        } else if (!isRecurringTask && isDeadLine) {
-            return new Task(modelName, modelDeadline, modelModule, modelDescription,
-                    modelWorkload, modelDoneStatus, modelTags);
-
-        } else if (isRecurringTask && !isDeadLine) {
-            return new Task(modelName, modelStartTime, modelDeadline, modelModule, modelDescription,
-                    modelWorkload, modelDoneStatus, modelRecurrence, modelTags);
-
-        } else {
-            return new Task(modelName, modelDeadline, modelModule, modelDescription,
-                    modelWorkload, modelDoneStatus, modelRecurrence, modelTags);
-        }
+        return new Task(modelName, modelStartTime, modelDeadline, modelModule, modelDescription,
+                modelWorkload, modelDoneStatus, modelRecurrence, modelTags);
 
     }
 }

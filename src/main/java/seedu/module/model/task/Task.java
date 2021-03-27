@@ -58,7 +58,7 @@ public class Task {
         return startTime.getField();
     }
 
-    private OptionalField<Time> getStartTimeWrapper() {
+    public OptionalField<Time> getStartTimeWrapper() {
         return this.startTime;
     }
 
@@ -86,7 +86,7 @@ public class Task {
         return recurrence.getField();
     }
 
-    private OptionalField<Recurrence> getRecurrenceWrapper() {
+    public OptionalField<Recurrence> getRecurrenceWrapper() {
         return this.recurrence;
     }
 
