@@ -559,12 +559,12 @@ If you get an error message (`Java command not found`), it means that Java is no
 
 | Shortcut | Output |
 | --------|------------------ |
-**CTRL+A** | `add` |
-**CTRL+D** | `delete` |
-**CTRL+E** | `edit` |
-**CTRL+F** | `find` |
-**CTRL+L** | `list` |
-**CTRL+S** | `sort` |
+CTRL + A | `add` |
+CTRL + D | `delete` |
+CTRL + E | `edit` |
+CTRL + F | `find` |
+CTRL + L | `list` |
+CTRL + S | `sort` |
 
 --------------------------------------------------------------------------------------------------------------------
 
