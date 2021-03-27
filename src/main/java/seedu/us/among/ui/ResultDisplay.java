@@ -37,8 +37,10 @@ public class ResultDisplay extends UiPart<Region> {
     private String errorGifType = "error-white.gif";
     private final Image error = new Image(this.getClass().getResourceAsStream("/images/" + errorGifType));
 
-    private final Image loadingSpinnerForDark = new Image(this.getClass().getResourceAsStream("/images/loading_spinner-white.gif"));
-    private final Image loadingSpinnerForLight = new Image(this.getClass().getResourceAsStream("/images/loading_spinner-black.gif"));
+    private final Image loadingSpinnerForDark = new Image(this.getClass().getResourceAsStream(
+            "/images/loading_spinner-white.gif"));
+    private final Image loadingSpinnerForLight = new Image(this.getClass().getResourceAsStream(
+            "/images/loading_spinner-black.gif"));
     private final Image emptyList = new Image(this.getClass().getResourceAsStream("/images/imPosterEmptyList.png"));
 
     /**
