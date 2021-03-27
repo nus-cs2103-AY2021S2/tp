@@ -1,8 +1,11 @@
 package seedu.student.ui;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Logger;
 
+import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -12,6 +15,7 @@ import javafx.scene.layout.Region;
 import seedu.student.commons.core.LogsCenter;
 import seedu.student.model.appointment.Appointment;
 import seedu.student.model.appointment.SameDateAppointmentList;
+import seedu.student.model.student.MatriculationNumber;
 import seedu.student.model.student.Student;
 
 /**
@@ -37,6 +41,8 @@ public class SameDateAppointmentListContainer extends UiPart<Region> {
         date.setText(appointmentList.getDate().format(dateFormatter).toUpperCase());
         appointmentListView.setItems(appointmentList.asUnmodifiableObservableList());
         appointmentListView.setCellFactory(listView -> new AppointmentListViewCell(studentList));
+        appointmentListView.prefHeightProperty().bind(Bindings.size(appointmentList.asUnmodifiableObservableList())
+                .multiply(110));
     }
 
     /**
