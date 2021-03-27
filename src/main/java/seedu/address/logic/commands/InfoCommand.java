@@ -49,6 +49,8 @@ public class InfoCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         JsonModule[] informationOfModules = model.getPlans().getModuleInfo();
+        assert informationOfModules != null: "Module.json is not found";
+
         JsonModule foundModule = findMatchingModule(informationOfModules);
         if (noArgument()) {
             model.setCurrentCommand(COMMAND_WORD);
@@ -67,7 +69,7 @@ public class InfoCommand extends Command {
      * Checks if infocommand has been given a module code to find
      * @return true if modulecode specified false otherwise
      */
-    private boolean noArgument() {
+    public boolean noArgument() {
         return moduleCode.equals("");
     }
 
@@ -76,7 +78,7 @@ public class InfoCommand extends Command {
      * @param informationOfModules the array of module information to find the module fomr
      * @return the module information if found otherwise a module not found message
      */
-    private JsonModule findMatchingModule(JsonModule[] informationOfModules) {
+    public JsonModule findMatchingModule(JsonModule[] informationOfModules) {
         for (int i = 0; i < informationOfModules.length; i++) {
             if (informationOfModules[i].getModuleCode().equals(this.moduleCode)) {
                 return informationOfModules[i];
