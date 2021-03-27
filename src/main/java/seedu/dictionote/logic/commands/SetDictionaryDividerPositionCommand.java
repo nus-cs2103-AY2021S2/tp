@@ -12,7 +12,7 @@ import seedu.dictionote.model.Model;
  */
 public class SetDictionaryDividerPositionCommand extends SetDividerPositionCommand {
 
-    public static final String COMMAND_WORD = "setdividern";
+    public static final String COMMAND_WORD = "setdividerd";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Set the position of dictionary divider.\n"
