@@ -22,14 +22,12 @@ public class ListCommand extends Command {
             + "Example (to show the details of the first endpoint):\n"
             + "show 1";
 
-    private static final String MESSAGE_EMPTY_LIST = "Want to add endpoints to fill your empty list?\n"
-            + "Use the add command with the details of an endpoint!\n"
-            + "Example (adding a sample endpoint):\n"
-            + "add -x GET -u https://api.data.gov.sg/v1/environment/air-temperature";
+    private static final String MESSAGE_EMPTY_LIST = "It seems like your list is empty!\n"
+            + "Try using the add command to populate your list!\n";
 
     public static final String MESSAGE_SUCCESS_WITH_FILLED_LIST = MESSAGE_SUCCESS + MESSAGE_FILLED_LIST;
 
-    public static final String MESSAGE_SUCCESS_WITH_EMPTY_LIST = MESSAGE_SUCCESS + MESSAGE_EMPTY_LIST;
+    public static final String MESSAGE_SUCCESS_WITH_EMPTY_LIST = MESSAGE_EMPTY_LIST;
 
     @Override
     public CommandResult execute(Model model) {
