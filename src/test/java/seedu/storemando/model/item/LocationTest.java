@@ -29,10 +29,13 @@ public class LocationTest {
         // invalid addresses
         assertFalse(Location.isValidLocation("")); // empty string
         assertFalse(Location.isValidLocation(" ")); // spaces only
+        assertFalse(Location.isValidLocation(" kitchen")); // space at the start
 
         // valid addresses
         assertTrue(Location.isValidLocation("Blk 456, Den Road, #01-355"));
+        assertTrue(Location.isValidLocation("kitchen ")); // trailing space
         assertTrue(Location.isValidLocation("-")); // one character
+        assertTrue(Location.isValidLocation("123456")); // all numbers
         assertTrue(Location.isValidLocation("Leng Inc; 1 Mark St; San Francis CA 2349879; US")); // long location
     }
 
@@ -41,5 +44,16 @@ public class LocationTest {
         assertTrue(new ItemName(VALID_LOCATION_BANANA).compare(new ItemName(VALID_LOCATION_CHEESE)) < 0);
         assertTrue(new ItemName(VALID_LOCATION_CHEESE).compare(new ItemName(VALID_LOCATION_BANANA)) > 0);
         assertTrue(new ItemName(VALID_LOCATION_BANANA).compare(new ItemName(VALID_LOCATION_BANANA)) == 0);
+    }
+
+    @Test
+    public void equals(){
+        assertFalse(new Location("kitChen").equals(new Location("Kitchen"))); //same location in different cases
+        assertFalse(new Location("kitchen").equals(new Location("KITCHEN"))); //same location in different cases
+        assertFalse(new Location("kitchenn").equals(new Location("kitchen"))); //different locations
+
+        assertTrue(new Location("kitchen").equals(new Location("kitchen")));
+        assertTrue(new Location("x").equals(new Location("x")));
+
     }
 }

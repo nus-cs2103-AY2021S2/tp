@@ -32,6 +32,8 @@ public class QuantityTest {
         assertFalse(Quantity.isValidQuantity("quantity")); // non-numeric
         assertFalse(Quantity.isValidQuantity("9011p041")); // alphabets within digits
         assertFalse(Quantity.isValidQuantity("9312 1534")); // spaces within digits
+        assertFalse(Quantity.isValidQuantity("0")); // zero quantity
+        assertFalse(Quantity.isValidQuantity("-1")); // negative quantity
 
         // valid quantity numbers
         assertTrue(Quantity.isValidQuantity("9")); // exactly 1 number

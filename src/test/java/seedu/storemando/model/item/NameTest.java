@@ -33,11 +33,11 @@ public class NameTest {
         assertFalse(ItemName.isValidName("peter*")); // contains non-alphanumeric characters
 
         // valid name
-        assertTrue(ItemName.isValidName("peter jack")); // alphabets only
+        assertTrue(ItemName.isValidName("Coco Crunch")); // alphabets only
         assertTrue(ItemName.isValidName("12345")); // numbers only
-        assertTrue(ItemName.isValidName("peter the 2nd")); // alphanumeric characters
-        assertTrue(ItemName.isValidName("Capital Tan")); // with capital letters
-        assertTrue(ItemName.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
+        assertTrue(ItemName.isValidName("Fruit loops 2")); // alphanumeric characters
+        assertTrue(ItemName.isValidName("Capital Frosties")); // with capital letters
+        assertTrue(ItemName.isValidName("Pancake flour made by mom")); // long names
     }
 
     @Test
