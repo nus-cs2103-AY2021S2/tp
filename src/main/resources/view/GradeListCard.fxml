@@ -23,7 +23,7 @@
                 <Label fx:id="subjectName" text="\$first" styleClass="cell_big_label" />
             </HBox>
             <Label fx:id="gradedItem" styleClass="cell_small_label" text="\$gradedItem" />
-            <Label fx:id="grade" styleClass="cell_small_label" text="\$grade" />
+            <Label fx:id="gradeLetter" styleClass="cell_small_label" text="\$grade" />
         </VBox>
     </GridPane>
 </HBox>
