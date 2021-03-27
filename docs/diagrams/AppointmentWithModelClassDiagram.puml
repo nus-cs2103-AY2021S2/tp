@@ -22,9 +22,12 @@ Class UniquePersonList
 
 Class Address
 Class Name
+note "Name and Address, classes previously in Person package" as N1
+Name .. N1
+Address .. N1
 
-note "Previously known as\nReadOnlyAddressBook" as N1
-ReadOnlyHeliBook .up. N1
+note "Previously known as\nReadOnlyAddressBook" as N2
+ReadOnlyHeliBook .up. N2
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
@@ -62,10 +65,10 @@ Appointment --> "*" Address
 Appointment --> "*" DateTime
 
 ModelManager -->"filtered list *" Appointment
-note "Possible design considerations for ModelManager:\n- 2 subclass, one for Person and one for Appointment\n- As an implementation of the Model interface,\n  ModelManager can handle both" as N2
+note "Possible design considerations for ModelManager:\n- 2 subclass, one for Person and one for Appointment\n- As an implementation of the Model interface,\n  ModelManager can handle both" as N3
 
-note "Extra: Tag functions" as N3
-N3 .left. Appointment
+note "Extra: Tag functions" as N4
+N4 .left. Appointment
 
 Appointment ---> "~* contact" Person
 
