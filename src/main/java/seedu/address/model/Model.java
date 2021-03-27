@@ -108,4 +108,15 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
+
+    /**
+     *
+     */
+    void commitTaskTracker(ReadOnlyTaskTracker currentState);
+
+    void undoTaskTracker();
+
+    void redoTaskTracker();
+
+
 }

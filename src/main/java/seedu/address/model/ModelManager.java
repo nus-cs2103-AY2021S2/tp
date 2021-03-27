@@ -23,6 +23,7 @@ public class ModelManager implements Model {
     private final TaskTracker taskTracker;
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
+    private VersionedTaskTracker versionedTaskTracker;
 
     /**
      * Initializes a ModelManager with the given taskTracker and userPrefs.
@@ -123,6 +124,22 @@ public class ModelManager implements Model {
     public void sortTasks(Comparator<Task> comparator) {
         requireNonNull(comparator);
         taskTracker.sortTasks(comparator);
+    }
+
+    @Override
+    public void commitTaskTracker(ReadOnlyTaskTracker taskTracker) {
+        requireNonNull(taskTracker);
+        versionedTaskTracker.commit(new TaskTracker(taskTracker));
+    }
+
+    @Override
+    public void undoTaskTracker() {
+        versionedTaskTracker.undo();
+    }
+
+    @Override
+    public void redoTaskTracker() {
+        versionedTaskTracker.redo();
     }
 
     //=========== Filtered Task List Accessors =============================================================

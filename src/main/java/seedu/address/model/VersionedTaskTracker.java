@@ -4,24 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VersionedTaskTracker extends TaskTracker {
-    private List<ReadOnlyTaskTracker> taskTrackerStateList = new ArrayList<ReadOnlyTaskTracker>();
+    private List<TaskTracker> taskTrackerStateList = new ArrayList<TaskTracker>();
     private int currentStatePointer;
 
     public VersionedTaskTracker() {
         this.currentStatePointer = 0;
     }
 
-    public void commit(ReadOnlyTaskTracker taskToBeCommitted) {
+    public void commit(TaskTracker taskToBeCommitted) {
         taskTrackerStateList.add(taskToBeCommitted);
         currentStatePointer = taskTrackerStateList.size() - 1;
     }
 
-    public ReadOnlyTaskTracker undo() {
+    public TaskTracker undo() {
         currentStatePointer -= 1;
         return taskTrackerStateList.get(currentStatePointer);
     }
 
-    public ReadOnlyTaskTracker redo() {
+    public TaskTracker redo() {
         if (canRedoTaskTracker()) {
             currentStatePointer += 1;
         }
