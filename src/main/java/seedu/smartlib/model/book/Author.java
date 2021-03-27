@@ -23,16 +23,30 @@ public class Author {
 
     /**
      * Returns true if a given string is a valid author's name.
+     *
+     * @param test the string to be tested.
+     * @return true if a given string is a valid author's name, and false otherwise.
      */
     public static boolean isValidAuthor(String test) {
         return Name.isValidName(test);
     }
 
+    /**
+     * Returns this Author in String format.
+     *
+     * @return this Author in String format.
+     */
     @Override
     public String toString() {
         return fullName.toString();
     }
 
+    /**
+     * Checks if this Author is equal to another Author.
+     *
+     * @param other the other Author to be compared.
+     * @return true if this Author is equal to the other Author, and false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -41,8 +55,9 @@ public class Author {
     }
 
     /**
-     * Calculates hashCode of this Author object
-     * @return hashCode of Author
+     * Generates a hashCode for this Author object.
+     *
+     * @return hashCode of Author.
      */
     @Override
     public int hashCode() {

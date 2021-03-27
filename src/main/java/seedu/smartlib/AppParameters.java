@@ -14,20 +14,34 @@ import seedu.smartlib.commons.util.FileUtil;
  * Represents the parsed command-line parameters given to the application.
  */
 public class AppParameters {
+
     private static final Logger logger = LogsCenter.getLogger(AppParameters.class);
 
     private Path configPath;
 
+    /**
+     * Returns the config path of the application.
+     *
+     * @return the config path of the application.
+     */
     public Path getConfigPath() {
         return configPath;
     }
 
+    /**
+     * Updates the config path of the application.
+     *
+     * @param configPath the new config path of the application.
+     */
     public void setConfigPath(Path configPath) {
         this.configPath = configPath;
     }
 
     /**
      * Parses the application command-line parameters.
+     *
+     * @param parameters the application command-line parameters.
+     * @return the application command-line parameters parsed as an AppParameters object.
      */
     public static AppParameters parse(Application.Parameters parameters) {
         AppParameters appParameters = new AppParameters();
@@ -43,6 +57,12 @@ public class AppParameters {
         return appParameters;
     }
 
+    /**
+     * Checks if this AppParameters object is equal to another AppParameters object.
+     *
+     * @param other the other AppParameters object to be compared.
+     * @return true if this AppParameters object is equal to the other AppParameters object, and false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -57,8 +77,14 @@ public class AppParameters {
         return Objects.equals(getConfigPath(), otherAppParameters.getConfigPath());
     }
 
+    /**
+     * Generates a hashcode for this AppParameters object.
+     *
+     * @return the hashcode for this AppParameters object.
+     */
     @Override
     public int hashCode() {
         return configPath.hashCode();
     }
+
 }

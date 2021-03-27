@@ -38,11 +38,22 @@ public class Name {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns this Name object in String format.
+     *
+     * @return this Name object in String format
+     */
     @Override
     public String toString() {
         return fullName;
     }
 
+    /**
+     * Checks if this Name object is equal to another Name object.
+     *
+     * @param other the other Name object to be compared
+     * @return true if this Name object is equal to the other Name object, and false otherwise
+     */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -50,6 +61,11 @@ public class Name {
                 && fullName.equals(((Name) other).fullName)); // state check
     }
 
+    /**
+     * Generates a hashcode for this Name object.
+     *
+     * @return the hashcode for this Name object
+     */
     @Override
     public int hashCode() {
         return fullName.hashCode();

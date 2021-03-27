@@ -14,7 +14,7 @@ public class BookNameContainsKeywordsPredicate implements Predicate<Book> {
     private final List<String> keywords;
 
     /**
-     * Creates a NameContainsKeywordPredicate.
+     * Creates a BookNameContainsKeywordPredicate.
      *
      * @param keywords list of keywords
      */
@@ -22,6 +22,12 @@ public class BookNameContainsKeywordsPredicate implements Predicate<Book> {
         this.keywords = keywords;
     }
 
+    /**
+     * Tests if the book contains any of the keywords.
+     *
+     * @param book the book to be tested.
+     * @return true if the book contains any of the keywords, and false otherwise.
+     */
     @Override
     public boolean test(Book book) {
         ArrayList<String> bookInfo = new ArrayList<>();
@@ -35,6 +41,13 @@ public class BookNameContainsKeywordsPredicate implements Predicate<Book> {
                         bookInfo, keyword));
     }
 
+    /**
+     * Checks if this BookNameContainsKeywordPredicate is equal to another BookNameContainsKeywordPredicate.
+     *
+     * @param other the other BookNameContainsKeywordPredicate to be compared.
+     * @return true if this BookNameContainsKeywordPredicate is equal to the other BookNameContainsKeywordPredicate,
+     *         and false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

@@ -24,6 +24,11 @@ class JsonAdaptedRecord {
 
     /**
      * Constructs a {@code JsonAdaptedRecord} with the given record details.
+     *
+     * @param barcode barcode associated with the record.
+     * @param readerName name of the reader associated with the record.
+     * @param dateBorrowed borrow date associated with the record.
+     * @param dateReturned return date associated with the record.
      */
     @JsonCreator
     public JsonAdaptedRecord(@JsonProperty("barcode") String barcode,
@@ -38,6 +43,8 @@ class JsonAdaptedRecord {
 
     /**
      * Converts a given {@code Record} into this class for Jackson use.
+     *
+     * @param source record to be converted.
      */
     public JsonAdaptedRecord(Record source) {
         barcode = source.getBookBarcode().toString();
@@ -54,6 +61,7 @@ class JsonAdaptedRecord {
     /**
      * Converts this Jackson-friendly adapted record object into the model's {@code record} object.
      *
+     * @return Record object converted from the storage file.
      * @throws IllegalValueException if there were any data constraints violated in the adapted record.
      */
     public Record toModelType() throws IllegalValueException {
@@ -90,7 +98,6 @@ class JsonAdaptedRecord {
             modelDateReturned = new DateReturned(dateReturned);
         }
         return new Record(modelBookBarcode, modelReaderName, modelDateBorrowed, modelDateReturned);
-
     }
 
 }

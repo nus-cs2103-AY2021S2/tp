@@ -11,7 +11,7 @@ import seedu.smartlib.model.record.IncompleteRecord;
 import seedu.smartlib.model.record.Record;
 
 /**
- * Marks the record indicating that a reader returning a book
+ * Updates a record in the record base to indicate that a reader has returned his or her book.
  */
 public class ReturnCommand extends Command {
 
@@ -36,7 +36,7 @@ public class ReturnCommand extends Command {
     /**
      * Creates a ReturnCommand to add a record.
      *
-     * @param incompleteRecord record to be added to the Storage
+     * @param incompleteRecord record to be added to the Storage.
      */
     public ReturnCommand(IncompleteRecord incompleteRecord) {
         requireAllNonNull(incompleteRecord);
@@ -63,6 +63,13 @@ public class ReturnCommand extends Command {
         return new Record(bookBarcode, incompleteRecord.getReaderName(), incompleteRecord.getDateBorrowed());
     }
 
+    /**
+     * Executes the command and returns the result message.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return feedback message of the operation result for display.
+     * @throws CommandException if an error occurs during command execution.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireAllNonNull(model);
@@ -84,6 +91,12 @@ public class ReturnCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, properRecord));
     }
 
+    /**
+     * Checks if this ReturnCommand is equal to another ReturnCommand.
+     *
+     * @param other the other ReturnCommand to be compared.
+     * @return true if this ReturnCommand is equal to the other ReturnCommand, and false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

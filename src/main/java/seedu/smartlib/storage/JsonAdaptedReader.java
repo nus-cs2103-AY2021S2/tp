@@ -38,6 +38,13 @@ class JsonAdaptedReader {
 
     /**
      * Constructs a {@code JsonAdaptedReader} with the given reader details.
+     *
+     * @param name name of the reader.
+     * @param phone phone number of the reader.
+     * @param email email of the reader.
+     * @param address address of the reader.
+     * @param tagged tags of the reader.
+     * @param borrows books which the reader has borrowed.
      */
     @JsonCreator
     public JsonAdaptedReader(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
@@ -58,6 +65,8 @@ class JsonAdaptedReader {
 
     /**
      * Converts a given {@code Reader} into this class for Jackson use.
+     *
+     * @param source reader to be converted.
      */
     public JsonAdaptedReader(Reader source) {
         name = source.getName().toString();
@@ -75,6 +84,7 @@ class JsonAdaptedReader {
     /**
      * Converts this Jackson-friendly adapted reader object into the model's {@code Reader} object.
      *
+     * @return Reader object converted from the storage file.
      * @throws IllegalValueException if there were any data constraints violated in the adapted reader.
      */
     public Reader toModelType() throws IllegalValueException {
@@ -125,7 +135,6 @@ class JsonAdaptedReader {
         final Map<Book, DateBorrowed> modelBorrows = new HashMap<>(readerBorrows);
 
         return new Reader(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelBorrows);
-
     }
 
 }

@@ -6,7 +6,7 @@ import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.record.Record;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of a SmartLib.
  */
 public interface ReadOnlySmartLib {
 
@@ -27,6 +27,5 @@ public interface ReadOnlySmartLib {
      * This list will not contain any duplicate records.
      */
     ObservableList<Record> getRecordList();
-
 
 }

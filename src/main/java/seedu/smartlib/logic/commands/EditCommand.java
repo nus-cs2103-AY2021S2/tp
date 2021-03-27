@@ -69,6 +69,13 @@ public class EditCommand extends Command {
         this.editReaderDescriptor = new EditReaderDescriptor(editReaderDescriptor);
     }
 
+    /**
+     * Executes the command and returns the result message.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return feedback message of the operation result for display.
+     * @throws CommandException if an error occurs during command execution.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -107,6 +114,12 @@ public class EditCommand extends Command {
         return new Reader(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedBorrows);
     }
 
+    /**
+     * Checks if this EditCommand is equal to another EditCommand.
+     *
+     * @param other the other EditCommand to be compared.
+     * @return true if this EditCommand is equal to the other EditCommand, and false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -137,11 +150,16 @@ public class EditCommand extends Command {
         private Set<Tag> tags;
         private Map<Book, DateBorrowed> borrows;
 
+        /**
+         * A constructor for the EditReaderDescriptor.
+         */
         public EditReaderDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
+         *
+         * @param toCopy a copy of the EditReaderDescriptor.
          */
         public EditReaderDescriptor(EditReaderDescriptor toCopy) {
             setName(toCopy.name);
@@ -153,46 +171,90 @@ public class EditCommand extends Command {
 
         /**
          * Returns true if at least one field is edited.
+         *
+         * @return true if at least one field is edited, and false otherwise.
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
         }
 
+        /**
+         * Updates the name of this reader.
+         *
+         * @param name the new name of this reader.
+         */
         public void setName(Name name) {
             this.name = name;
         }
 
+        /**
+         * Returns the name of this reader.
+         *
+         * @return an Optional containing the name of this reader.
+         */
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
         }
 
+        /**
+         * Updates the phone number of this reader.
+         *
+         * @param phone the new phone number of this reader.
+         */
         public void setPhone(Phone phone) {
             this.phone = phone;
         }
 
+        /**
+         * Returns the phone number of this reader.
+         *
+         * @return an Optional containing the phone number of this reader.
+         */
         public Optional<Phone> getPhone() {
             return Optional.ofNullable(phone);
         }
 
+        /**
+         * Updates the email of this reader.
+         *
+         * @param email the new email of this reader.
+         */
         public void setEmail(Email email) {
             this.email = email;
         }
 
+        /**
+         * Returns the email of this reader.
+         *
+         * @return an Optional containing the email of this reader.
+         */
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
         }
 
+        /**
+         * Updates the address of this reader.
+         *
+         * @param address the new address of this reader.
+         */
         public void setAddress(Address address) {
             this.address = address;
         }
 
+        /**
+         * Returns the address of this reader.
+         *
+         * @return an Optional containing the address of this reader.
+         */
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
+         * Sets {@code tags} to this reader's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
+         *
+         * @param tags tags to be set to this reader.
          */
         public void setTags(Set<Tag> tags) {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
@@ -201,6 +263,7 @@ public class EditCommand extends Command {
         /**
          * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
+         *
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
         public Optional<Set<Tag>> getTags() {
@@ -208,22 +271,31 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code borrows} to this reader's {@code borrows}.
+         * A defensive copy of {@code borrows} is used internally.
+         *
+         * @param borrows borrows to be set to this reader.
          */
         public void setBorrows(Map<Book, DateBorrowed> borrows) {
             this.borrows = (borrows != null) ? new HashMap<>(borrows) : null;
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable borrow set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         *
+         * Returns {@code Optional#empty()} if {@code borrows} is null.
          */
         public Optional<Map<Book, DateBorrowed>> getBorrows() {
             return (borrows != null) ? Optional.of(Collections.unmodifiableMap(borrows)) : Optional.empty();
         }
 
+        /**
+         * Checks if this EditReaderDescriptor is equal to another EditReaderDescriptor.
+         *
+         * @param other the other EditReaderDescriptor to be compared.
+         * @return true if this EditReaderDescriptor is equal to the other EditReaderDescriptor, and false otherwise.
+         */
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -245,5 +317,7 @@ public class EditCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }
+
     }
+
 }

@@ -21,10 +21,21 @@ public class FindReaderCommand extends Command {
 
     private final NameContainsKeywordsPredicate predicate;
 
+    /**
+     * Creates an FindReaderCommand to find the specified reader(s).
+     *
+     * @param predicate a Predicate used to find the specified reader(s).
+     */
     public FindReaderCommand(NameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
+    /**
+     * Executes the command and returns the result message.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return feedback message of the operation result for display.
+     */
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
@@ -33,10 +44,17 @@ public class FindReaderCommand extends Command {
                 String.format(Messages.MESSAGE_READERS_LISTED_OVERVIEW, model.getFilteredReaderList().size()));
     }
 
+    /**
+     * Checks if this FindReaderCommand is equal to another FindReaderCommand.
+     *
+     * @param other the other FindReaderCommand to be compared.
+     * @return true if this FindReaderCommand is equal to the other FindReaderCommand, and false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindReaderCommand // instanceof handles nulls
                 && predicate.equals(((FindReaderCommand) other).predicate)); // state check
     }
+
 }

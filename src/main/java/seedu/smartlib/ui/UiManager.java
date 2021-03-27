@@ -27,12 +27,19 @@ public class UiManager implements Ui {
 
     /**
      * Creates a {@code UiManager} with the given {@code Logic}.
+     *
+     * @param logic the given logic.
      */
     public UiManager(Logic logic) {
         super();
         this.logic = logic;
     }
 
+    /**
+     * Starts the UI (and the App).
+     *
+     * @param primaryStage the given stage.
+     */
     @Override
     public void start(Stage primaryStage) {
         logger.info("Starting UI...");
@@ -55,6 +62,14 @@ public class UiManager implements Ui {
         return new Image(MainApp.class.getResourceAsStream(imagePath));
     }
 
+    /**
+     * Shows the alert dialog and pauses the app.
+     *
+     * @param type the alert type.
+     * @param title the alert's title.
+     * @param headerText the header text of the alert.
+     * @param contentText the content text of the alert.
+     */
     void showAlertDialogAndWait(Alert.AlertType type, String title, String headerText, String contentText) {
         showAlertDialogAndWait(mainWindow.getPrimaryStage(), type, title, headerText, contentText);
     }

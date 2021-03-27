@@ -30,6 +30,9 @@ public class UniqueRecordList implements Iterable<Record> {
 
     /**
      * Returns true if the list contains an equivalent record as the given argument.
+     *
+     * @param toCheck the record to be checked.
+     * @return true if the list contains an equivalent record as the given argument, and false otherwise.
      */
     public boolean contains(Record toCheck) {
         requireNonNull(toCheck);
@@ -39,6 +42,8 @@ public class UniqueRecordList implements Iterable<Record> {
     /**
      * Adds a record to the list.
      * The record must not already exist in the list.
+     *
+     * @param toAdd the record to be added.
      */
     public void addRecord(Record toAdd) {
         requireNonNull(toAdd);
@@ -52,6 +57,9 @@ public class UniqueRecordList implements Iterable<Record> {
      * Replaces the record {@code target} in the list with {@code editedRecord}.
      * {@code target} must exist in the list.
      * The record identity of {@code editedRecord} must not be the same as another existing record in the list.
+     *
+     * @param target the record to be replaced.
+     * @param editedRecord the new record.
      */
     public void setRecord(Record target, Record editedRecord) {
         requireAllNonNull(target, editedRecord);
@@ -71,6 +79,8 @@ public class UniqueRecordList implements Iterable<Record> {
     /**
      * Removes the equivalent record from the list.
      * The record must exist in the list.
+     *
+     * @param toRemove the record to be removed.
      */
     public void remove(Record toRemove) {
         requireNonNull(toRemove);
@@ -79,6 +89,11 @@ public class UniqueRecordList implements Iterable<Record> {
         }
     }
 
+    /**
+     * Updates the records in the unique record list.
+     *
+     * @param replacement the new list of records.
+     */
     public void setRecords(UniqueRecordList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -87,6 +102,8 @@ public class UniqueRecordList implements Iterable<Record> {
     /**
      * Replaces the contents of this list with {@code records}.
      * {@code records} must not contain duplicate records.
+     *
+     * @param records the new list of records.
      */
     public void setRecords(List<Record> records) {
         requireAllNonNull(records);
@@ -99,16 +116,29 @@ public class UniqueRecordList implements Iterable<Record> {
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
+     *
+     * @return the backing list of records.
      */
     public ObservableList<Record> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
 
+    /**
+     * Returns an iterator for the unique record list.
+     *
+     * @return an iterator for the unique record list.
+     */
     @Override
     public Iterator<Record> iterator() {
         return internalList.iterator();
     }
 
+    /**
+     * Checks if this UniqueRecordList is equal to another UniqueRecordList.
+     *
+     * @param other the other UniqueRecordList to be compared.
+     * @return true if this UniqueRecordList is equal to the other UniqueRecordList, and false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -116,6 +146,11 @@ public class UniqueRecordList implements Iterable<Record> {
                         && internalList.equals(((UniqueRecordList) other).internalList));
     }
 
+    /**
+     * Generates a hashcode for this UniqueRecordList.
+     *
+     * @return the hashcode for this UniqueRecordList.
+     */
     @Override
     public int hashCode() {
         return internalList.hashCode();
@@ -123,6 +158,9 @@ public class UniqueRecordList implements Iterable<Record> {
 
     /**
      * Returns true if {@code records} contains only unique records.
+     *
+     * @param records the list of records to be checked.
+     * @return true if {@code records} contains only unique records, and false otherwise.
      */
     private boolean recordsAreUnique(List<Record> records) {
         for (int i = 0; i < records.size() - 1; i++) {
@@ -134,4 +172,5 @@ public class UniqueRecordList implements Iterable<Record> {
         }
         return true;
     }
+
 }

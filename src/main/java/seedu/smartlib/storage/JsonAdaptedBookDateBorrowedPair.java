@@ -29,6 +29,9 @@ class JsonAdaptedBookDateBorrowedPair {
 
     /**
      * Constructs a {@code JsonAdaptedBookDateBorrowedPair} with the given {@code NameDateBorrowedPair}.
+     *
+     * @param book book associated with this pair.
+     * @param dateBorrowed borrow date associated with this pair.
      */
     @JsonCreator
     public JsonAdaptedBookDateBorrowedPair(@JsonProperty("book") List<String> book,
@@ -39,6 +42,8 @@ class JsonAdaptedBookDateBorrowedPair {
 
     /**
      * Converts a given {@code NameDateBorrowedPair} into this class for Jackson use.
+     *
+     * @param entry pair to be converted.
      */
     public JsonAdaptedBookDateBorrowedPair(Map.Entry<Book, DateBorrowed> entry) {
         Book book = entry.getKey();
@@ -49,11 +54,14 @@ class JsonAdaptedBookDateBorrowedPair {
         this.book.add(book.getIsbn().toString());
         this.book.add(book.getBarcode().toString());
         this.book.add(book.getGenre().toString());
-        this.dateBorrowed = entry.getValue().getValue();
+        this.dateBorrowed = entry.getValue().toString();
     }
 
     /**
      * Converts a given {@code NameDateBorrowedPair} into this class for Jackson use.
+     *
+     * @param book book to be converted.
+     * @param dateBorrowed borrow date to be converted.
      */
     public JsonAdaptedBookDateBorrowedPair(Book book, DateBorrowed dateBorrowed) {
         this.book = new ArrayList<>();
@@ -63,13 +71,14 @@ class JsonAdaptedBookDateBorrowedPair {
         this.book.add(book.getIsbn().toString());
         this.book.add(book.getBarcode().toString());
         this.book.add(book.getGenre().toString());
-        this.dateBorrowed = dateBorrowed.getValue();
+        this.dateBorrowed = dateBorrowed.toString();
     }
 
     /**
-     * Converts this Jackson-friendly adapted NameDateBorrowedPair
-     * object into the model's {@code NameDateBorrowedPair} object.
+     * Converts this Jackson-friendly adapted NameDateBorrowedPair object into the model's
+     * {@code NameDateBorrowedPair} object.
      *
+     * @return NameDateBorrowedPair object converted from the storage file.
      * @throws IllegalValueException if there were any data constraints violated in the adapted NameDateBorrowedPair.
      */
     public Map.Entry<Book, DateBorrowed> toModelType() throws IllegalValueException {

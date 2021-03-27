@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import seedu.smartlib.commons.core.LogsCenter;
 
 /**
- * Controller for a help page
+ * Controller for a help page.
  */
 public class HelpWindow extends UiPart<Stage> {
 
@@ -46,7 +46,7 @@ public class HelpWindow extends UiPart<Stage> {
 
     /**
      * Shows the help window.
-     * @throws IllegalStateException
+     * @throws IllegalStateException if an error occurred when generating the help window.
      * <ul>
      *     <li>
      *         if this method is called on a thread other than the JavaFX Application Thread.
@@ -70,6 +70,8 @@ public class HelpWindow extends UiPart<Stage> {
 
     /**
      * Returns true if the help window is currently being shown.
+     *
+     * @return true if the help window is currently being shown, and false otherwise.
      */
     public boolean isShowing() {
         return getRoot().isShowing();
@@ -99,4 +101,5 @@ public class HelpWindow extends UiPart<Stage> {
         url.putString(USERGUIDE_URL);
         clipboard.setContent(url);
     }
+
 }

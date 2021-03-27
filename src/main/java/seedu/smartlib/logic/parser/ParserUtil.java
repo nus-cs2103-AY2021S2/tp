@@ -29,6 +29,9 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
+     * @param oneBasedIndex the given index to be parsed.
+     * @return an Index object made up of the given one-based index.
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -43,6 +46,8 @@ public class ParserUtil {
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param name the given name to be parsed.
+     * @return a Name object made up of the given name.
      * @throws ParseException if the given {@code name} is invalid.
      */
     public static Name parseName(String name) throws ParseException {
@@ -58,6 +63,8 @@ public class ParserUtil {
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param phone the given phone (number) to be parsed.
+     * @return a Phone object made up of the given phone (number).
      * @throws ParseException if the given {@code phone} is invalid.
      */
     public static Phone parsePhone(String phone) throws ParseException {
@@ -73,6 +80,8 @@ public class ParserUtil {
      * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param address the given address to be parsed.
+     * @return an Address object made up of the given address.
      * @throws ParseException if the given {@code address} is invalid.
      */
     public static Address parseAddress(String address) throws ParseException {
@@ -88,6 +97,8 @@ public class ParserUtil {
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param email the given email to be parsed.
+     * @return an Email object made up of the given email.
      * @throws ParseException if the given {@code email} is invalid.
      */
     public static Email parseEmail(String email) throws ParseException {
@@ -103,6 +114,9 @@ public class ParserUtil {
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     *
+     * @param tag the given tag to be parsed.
+     * @return a Tag object made up of the given tag.
      * @throws ParseException if the given {@code tag} is invalid.
      */
     public static Tag parseTag(String tag) throws ParseException {
@@ -116,6 +130,10 @@ public class ParserUtil {
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     *
+     * @param tags the given tags to be parsed.
+     * @return a set of Tag objects made up of the given tags.
+     * @throws ParseException if the given {@code tags} is invalid.
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
@@ -130,6 +148,8 @@ public class ParserUtil {
      * Parses a {@code String author} into a {@code Author}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param author the given author to be parsed.
+     * @return an Author object made up of the given author.
      * @throws ParseException if the given {@code name} is invalid.
      */
     public static Author parseAuthor(String author) throws ParseException {
@@ -145,6 +165,8 @@ public class ParserUtil {
      * Parses a {@code String Isbn} into a {@code Isbn}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param isbn the given ISBN to be parsed.
+     * @return an Isbn object made up of the given ISBN.
      * @throws ParseException if the given {@code name} is invalid.
      */
     public static Isbn parseIsbn(String isbn) throws ParseException {
@@ -160,6 +182,8 @@ public class ParserUtil {
      * Parses a {@code String Publisher} into a {@code Publisher}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param publisher the given publisher to be parsed.
+     * @return a Publisher object made up of the given publisher.
      * @throws ParseException if the given {@code name} is invalid.
      */
     public static Publisher parsePublisher(String publisher) throws ParseException {
@@ -175,6 +199,8 @@ public class ParserUtil {
      * Parses a {@code String Genre} into a {@code Genre}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param genre the given genre to be parsed.
+     * @return a Genre object made up of the given genre.
      * @throws ParseException if the given {@code name} is invalid.
      */
     public static Genre parseGenre(String genre) throws ParseException {
