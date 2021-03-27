@@ -24,6 +24,9 @@ import seedu.address.model.person.Doctor;
 
 import seedu.address.model.tag.Tag;
 
+
+// NOT SURE WHETHER THIS CLASS IS REQUIRED
+
 /**
  * Edits the details of an existing person in the address book.
  */
