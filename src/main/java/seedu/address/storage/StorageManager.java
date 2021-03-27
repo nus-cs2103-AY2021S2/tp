@@ -130,11 +130,9 @@ public class StorageManager implements Storage {
     @Override
     public void saveBudgetBook(BudgetBook budgetBook) throws IOException {
         if (budgetBook.hasBudget()) {
-            System.out.println("There");
             budgetBookStorage.saveBudget(budgetBook.getBudget().getValue(),
                     budgetBook.getBudget().getTotalCost());
         } else {
-            System.out.println("Here");
             budgetBookStorage.saveBudget();
         }
 
