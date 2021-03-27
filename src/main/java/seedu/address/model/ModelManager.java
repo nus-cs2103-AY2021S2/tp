@@ -297,4 +297,14 @@ public class ModelManager implements Model {
     public void commitAddressBook() {
         statefulAddressBook.commit();
     }
+
+    @Override
+    public boolean canRedoAddressBook() {
+        return statefulAddressBook.canRedo();
+    }
+
+    @Override
+    public void redoAddressBook() {
+        statefulAddressBook.redo();
+    }
 }

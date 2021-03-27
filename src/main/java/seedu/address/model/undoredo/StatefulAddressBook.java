@@ -6,7 +6,9 @@ import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.undoredo.exceptions.NoRedoableStateException;
 import seedu.address.model.undoredo.exceptions.NoUndoableStateException;
+import seedu.address.model.undoredo.exceptions.RedoException;
 import seedu.address.model.undoredo.exceptions.UndoException;
 
 /**
@@ -28,6 +30,10 @@ public class StatefulAddressBook extends AddressBook {
         currStatePtr = 0;
     }
 
+    public boolean canRedo() {
+        return hasRemainingRedoableStates();
+    }
+
     /**
      * Returns true if an undo operation is possible. False otherwise.
      *
@@ -47,6 +53,19 @@ public class StatefulAddressBook extends AddressBook {
     }
 
     /**
+     * Sets the current state of the address book to the next state, if any.
+     *
+     * @throws RedoException If the redo operation fails for any reason.
+     */
+    public void redo() throws RedoException {
+        if (!canRedo()) {
+            throw new NoRedoableStateException();
+        }
+        currStatePtr++;
+        resetData(stateHistory.get(currStatePtr));
+    }
+
+    /**
      * Reverts the current state of the address book to the previous state, if any.
      *
      * @throws UndoException If the undo operation fails for any reason.
@@ -57,6 +76,10 @@ public class StatefulAddressBook extends AddressBook {
         }
         currStatePtr--;
         resetData(stateHistory.get(currStatePtr));
+    }
+
+    private boolean hasRemainingRedoableStates() {
+        return currStatePtr < stateHistory.size() - 1;
     }
 
     private boolean hasRemainingUndoableStates() {

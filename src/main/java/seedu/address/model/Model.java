@@ -194,9 +194,9 @@ public interface Model {
     void addAlias(Alias alias);
 
     /**
-     * Returns true if the model has any states to restore. False otherwise.
+     * Returns true if the model has any previous states to restore. False otherwise.
      *
-     * @return True if the model has any states to restore. False otherwise.
+     * @return True if the model has any previous states to restore. False otherwise.
      */
     boolean canUndoAddressBook();
 
@@ -209,4 +209,16 @@ public interface Model {
      * Saves the model's state for undo.
      */
     void commitAddressBook();
+
+    /**
+     * Returns true if the model has any future states to restore. False otherwise.
+     *
+     * @return True if the model has any future states to restore. False otherwise.
+     */
+    boolean canRedoAddressBook();
+
+    /**
+     * Restores the model's state to its next state, if any.
+     */
+    void redoAddressBook();
 }
