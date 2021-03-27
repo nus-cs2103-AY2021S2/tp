@@ -63,4 +63,9 @@ public class SortCommand extends Command {
                 || (other instanceof SortCommand) // instanceof handles null
                 && sortingFlag.equals(((SortCommand) other).sortingFlag); // state check
     }
+
+    @Override
+    public String toString() {
+        return "SORT";
+    }
 }

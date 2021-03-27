@@ -165,6 +165,32 @@ public class AddCommandTest {
         public void updateFilteredTaskList(Predicate<Task> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void commitTaskTracker(ReadOnlyTaskTracker currentState) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+
+        public TaskTracker undoTaskTracker() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public TaskTracker redoTaskTracker() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canUndoTaskTracker() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canRedoTaskTracker() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
