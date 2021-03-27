@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Person}'s {@code Tag}s match all of the keywords given.
+ * Tests that a {@code Note}'s {@code Tag}s match all of the keywords given.
  */
 public class TagNoteContainKeywordsPredicate implements Predicate<Note> {
     private final List<String> keywords;
