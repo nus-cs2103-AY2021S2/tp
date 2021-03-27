@@ -54,7 +54,6 @@ public class TaskCard extends UiPart<Region> {
         description.setText(task.getDescription().value);
         String statString = task.getStatus().toString();
         status.setText(statString);
-        System.out.println(statString);
         status.getStyleClass().clear();
         status.getStyleClass().add("status");
         if (statString.equals("Not done")) {
