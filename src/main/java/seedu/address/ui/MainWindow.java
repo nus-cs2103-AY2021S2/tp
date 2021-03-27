@@ -179,6 +179,25 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
+
+    /**
+     * Only used when command is invalid.
+     */
+    void clearPanels() {
+        viewIndividualPlaceholder.getItems().clear();
+        personListPanelPlaceholder.getChildren().clear();
+        sessionListPanelPlaceholder.getChildren().clear();
+
+        resultDisplay = new ResultDisplay();
+        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+
+        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
     /**
      * Sets the default size based on {@code guiSettings}.
      */
@@ -256,6 +275,7 @@ public class MainWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
+            clearPanels();
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }

@@ -218,7 +218,7 @@ public class ParserUtil {
     public static SessionId parseSessionId(String sessionId) throws ParseException {
         requireNonNull(sessionId);
         String trimmedSessionId = sessionId.trim();
-        if (!SessionId.isValidSessionId(sessionId)) {
+        if (!SessionId.isValidSessionId(trimmedSessionId)) {
             throw new ParseException(Session.MESSAGE_CONSTRAINTS);
         }
         return new SessionId(trimmedSessionId);
