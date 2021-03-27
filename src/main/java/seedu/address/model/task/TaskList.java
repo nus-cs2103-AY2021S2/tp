@@ -10,7 +10,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 
-
+/**
+ * A list of task that enforces uniqueness between its elements and does not allow nulls.
+ * A Task is considered unique by comparing using {@code Task#isSameTask(Task)}. As such, adding and updating of
+ * persons uses Task#isSameTask) for equality so as to ensure that the Task being added or updated is
+ * unique in terms of identity in the TaskList. However, the removal of a task uses Task#equals(Object) so
+ * as to ensure that the Task with exactly the same fields will be removed.
+ *
+ * Supports a minimal set of list operations.
+ *
+ * @see Task#isSameTask(Task)
+ */
 public class TaskList implements Iterable<Task> {
     private final ObservableList<Task> internalList = FXCollections.observableArrayList();
     private final ObservableList<Task> internalUnmodifiableList =

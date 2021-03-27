@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showTaskAtIndex;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_TASK;
@@ -19,6 +20,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
+
 
 
 /**
@@ -66,6 +68,7 @@ public class DoneTaskCommandTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
         expectedModel.setTask(taskToMarkDone, doneTask);
+        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         showNoTask(expectedModel);
 
         assertCommandSuccess(doneCommand, model, expectedMessage, expectedModel);
