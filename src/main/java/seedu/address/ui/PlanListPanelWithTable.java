@@ -19,7 +19,7 @@ import seedu.address.model.plan.Plan;
  * Panel containing the list of persons.
  */
 public class PlanListPanelWithTable extends UiPart<Region> {
-    private static final String FXML = "PlanListPanel.fxml";
+    private static final String FXML = "PlanListPanelWithTable.fxml";
     private final Logger logger = LogsCenter.getLogger(PlanListPanelWithTable.class);
 
     @FXML
@@ -31,9 +31,11 @@ public class PlanListPanelWithTable extends UiPart<Region> {
     @FXML
     private TableColumn<Plan, String> descriptionCol = new TableColumn<>("Description");
     @FXML
-    private TableColumn<Plan, Boolean> isMasterPlanCol = new TableColumn<>("IsMaster");
-    @FXML
     private TableColumn<Plan, Boolean> isValidCol = new TableColumn<>("IsValid");
+    @FXML
+    private TableColumn<Plan, Boolean> numMcCol = new TableColumn<>("MCs");
+    @FXML
+    private TableColumn<Plan, Integer> numSemestersCol = new TableColumn<>("Semesters");
     @FXML
     private TableColumn<Plan, Integer> numModulesCol = new TableColumn<>("NumMods");
 
@@ -44,22 +46,22 @@ public class PlanListPanelWithTable extends UiPart<Region> {
     public PlanListPanelWithTable(ObservableList<Plan> planList) {
         super(FXML);
 
-        indexCol.setMinWidth(100);
-        descriptionCol.setMinWidth(200);
-        isMasterPlanCol.setMinWidth(150);
-        isValidCol.setMinWidth(150);
-        numModulesCol.setMinWidth(150);
+        indexCol.setMinWidth(50);
+        descriptionCol.setMinWidth(150);
+        numMcCol.setMinWidth(135);
+        isValidCol.setMinWidth(100);
+        numSemestersCol.setMinWidth(135);
+        numModulesCol.setMinWidth(135);
 
         personTableView.setItems(planList);
-        personTableView.getColumns().addAll(indexCol, descriptionCol, isMasterPlanCol, isValidCol, numModulesCol);
+        personTableView.getColumns().addAll(indexCol, descriptionCol, isValidCol, numMcCol,
+                numSemestersCol, numModulesCol);
         indexCol.setCellFactory(new LineNumbersCellFactory<>());
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
-        isMasterPlanCol.setCellValueFactory(new PropertyValueFactory<Plan, Boolean>("isMasterPlan"));
         isValidCol.setCellValueFactory(new PropertyValueFactory<Plan, Boolean>("isValid"));
+        numMcCol.setCellValueFactory(new PropertyValueFactory<Plan, Boolean>("numMcs"));
+        numSemestersCol.setCellValueFactory(new PropertyValueFactory<Plan, Integer>("numSemester"));
         numModulesCol.setCellValueFactory(new PropertyValueFactory<Plan, Integer>("numModules"));
-
-        personListView.setItems(planList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
     }
 
     /**

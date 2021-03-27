@@ -23,8 +23,9 @@
                 <FXCollections fx:factory="observableArrayList">
                     <TableColumn fx:id="indexCol"/>
                     <TableColumn fx:id="descriptionCol"/>
-                    <TableColumn fx:id="isMasterPlanCol"/>
                     <TableColumn fx:id="isValidCol"/>
+                    <TableColumn fx:id="numMcCol"/>
+                    <TableColumn fx:id="numSemestersCol"/>
                     <TableColumn fx:id="numModulesCol"/>
                 </FXCollections>
             </items>
