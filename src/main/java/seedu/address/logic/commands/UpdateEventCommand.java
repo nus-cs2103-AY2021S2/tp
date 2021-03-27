@@ -51,8 +51,8 @@ public class UpdateEventCommand extends Command {
      * {@code targetEventIndex} and an {@code Event}.
      *
      * @param projectIndex     index of the project in the filtered project list.
-     * @param targetEventIndex index of the event in the event list to update.
-     * @param updateEventDescriptor details to edit event with.
+     * @param targetEventIndex index of the {@code Event} in the {@code EventList} to update.
+     * @param updateEventDescriptor details to edit {@code Event} with.
      */
     public UpdateEventCommand(Index projectIndex, Index targetEventIndex, UpdateEventDescriptor updateEventDescriptor) {
         requireAllNonNull(projectIndex, targetEventIndex, updateEventDescriptor);
@@ -122,8 +122,8 @@ public class UpdateEventCommand extends Command {
     }
 
     /**
-     * Stores the details to update the event. Each non-empty field value will replace the
-     * corresponding field value of the event.
+     * Stores the details to update the {@code Event}. Each non-empty field value will replace the
+     * corresponding field value of the {@code Event}.
      */
     public static class UpdateEventDescriptor {
         private String description;
