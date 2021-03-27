@@ -56,7 +56,7 @@ public class TypicalAppObjects {
             .build();
     public static final Patient DANIEL = new PatientBuilder()
             .withUuid("5f71a395-f7a3-460f-b358-937808b8a6dd")
-            .withName("Daniel Meier")
+            .withName("Daniel Wellington")
             .withPhone("87652533")
             .withEmail("cornelia@example.com")
             .withAddress("10th street")

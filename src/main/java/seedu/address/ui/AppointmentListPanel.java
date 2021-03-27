@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.logging.Logger;
@@ -22,6 +23,8 @@ import seedu.address.model.person.Patient;
  */
 public class AppointmentListPanel extends UiPart<Region> {
     private static final String FXML = "AppointmentListPanel.fxml";
+    private static final Map<UUID, Patient> PATIENT_HASH_MAP = new HashMap<>();
+
     private final Logger logger = LogsCenter.getLogger(AppointmentListPanel.class);
 
     @FXML
@@ -34,12 +37,11 @@ public class AppointmentListPanel extends UiPart<Region> {
         super(FXML);
 
         // maintain a hashmap to improve speed of searching
-        final Map<UUID, Patient> patientHashMap = new HashMap<>();
         ObservableList<AppointmentDisplay> displayAppointmentList = FXCollections.observableArrayList();
 
-        updatePatientHashMap(patientHashMap, patientList);
+        updatePatientHashMap(patientList);
         for (int i = 0; i < appointmentList.size(); i++) {
-            displayAppointmentList.add(mapToDisplayAppointment(patientHashMap, patientList, appointmentList.get(i)));
+            displayAppointmentList.add(mapToDisplayAppointment(PATIENT_HASH_MAP, patientList, appointmentList.get(i)));
         }
 
         appointmentList.addListener(new ListChangeListener<Appointment>() {
@@ -51,7 +53,7 @@ public class AppointmentListPanel extends UiPart<Region> {
                 displayAppointmentList.clear();
                 for (Appointment appt: change.getList()) {
                     displayAppointmentList.add(mapToDisplayAppointment(
-                        patientHashMap, patientList, appt));
+                        PATIENT_HASH_MAP, patientList, appt));
                 }
             }
         });
@@ -60,12 +62,12 @@ public class AppointmentListPanel extends UiPart<Region> {
         patientList.addListener(new ListChangeListener<Patient>() {
             @Override
             public void onChanged(Change<? extends Patient> change) {
-                updatePatientHashMap(patientHashMap, patientList);
+                updatePatientHashMap(patientList);
                 while (change.next());
                 displayAppointmentList.clear();
                 for (Appointment appt: appointmentList) {
                     displayAppointmentList.add(mapToDisplayAppointment(
-                        patientHashMap, patientList, appt));
+                        PATIENT_HASH_MAP, patientList, appt));
                 }
             }
         });
@@ -75,10 +77,10 @@ public class AppointmentListPanel extends UiPart<Region> {
 
     /**
      * With the given {@code Appointment}, gets the corresponding {@code Patient} from
-     * {@code patientHashMap} using the {@code Appointment}'s PatientUuid as the key.
-     * If {@code Patient} does not exist in the {@code patientHashMap}, then seaches
+     * {@code Map} using the {@code Appointment}'s PatientUuid as the key.
+     * If {@code Patient} does not exist in the {@code Map}, then seaches
      * through {@code patientList} to find the corresponding {@code Patient} and add it
-     * to the {@code patientHashMap}.
+     * to the {@code Map}.
      */
     public AppointmentDisplay mapToDisplayAppointment(Map<UUID, Patient> patientHashMap,
             ObservableList<Patient> patientList, Appointment appt) {
@@ -106,13 +108,17 @@ public class AppointmentListPanel extends UiPart<Region> {
     }
 
     /**
-     * With the given {@code patientList}, updates the values of {@code patientHashMap}
+     * With the given {@code patientList}, updates the values of {@code PATIENTHASHMAP}
      * using the {@code Patient}'s UUID as the key.
      */
-    public void updatePatientHashMap(Map<UUID, Patient> patientHashMap, ObservableList<Patient> patientList) {
+    public static void updatePatientHashMap(List<Patient> patientList) {
         for (Patient pt: patientList) {
-            patientHashMap.put(pt.getUuid(), pt);
+            PATIENT_HASH_MAP.put(pt.getUuid(), pt);
         }
+    }
+
+    public static Map<UUID, Patient> getPatientHashMap() {
+        return PATIENT_HASH_MAP;
     }
 
     /**

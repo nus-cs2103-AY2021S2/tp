@@ -12,6 +12,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -24,6 +26,7 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
+import seedu.address.ui.AppointmentListPanel;
 
 /**
  * Contains helper methods for testing commands.
@@ -141,14 +144,19 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredAppointmentList().size());
 
         Appointment appointment = model.getFilteredAppointmentList().get(targetIndex.getZeroBased());
-        final String patientUuid = appointment.getPatientUuid().toString();
+        Map<UUID, Patient> patientHashMap = AppointmentListPanel.getPatientHashMap();
+        AppointmentListPanel.updatePatientHashMap(model.getPatientRecords().getPersonList());
+
+        UUID patientUuid = appointment.getPatientUuid();
+
+        final String patientName = patientHashMap.get(patientUuid).getName().fullName;
+
         model.updateFilteredAppointmentList(
                 new AppointmentContainsKeywordsPredicate(
-                        Arrays.asList(patientUuid),
+                        Arrays.asList(patientName),
                         new ArrayList<>(),
                         new ArrayList<>(),
                         new ArrayList<>()));
-
         assertEquals(1, model.getFilteredAppointmentList().size());
     }
 }
