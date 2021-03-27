@@ -86,6 +86,8 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    void updateFilteredAppointmentList(Predicate<Person> predicate);
+
     boolean hasAppointment(Appointment appointment);
 
     boolean hasOverlappingAppointment(Appointment appointment);

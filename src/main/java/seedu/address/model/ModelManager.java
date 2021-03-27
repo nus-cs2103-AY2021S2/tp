@@ -20,24 +20,24 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final StudentBook addressBook;
+    private final StudentBook studentBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Appointment> filteredAppointments;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given studentBook and userPrefs.
      */
     public ModelManager(ReadOnlyStudentBook addressBook, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with student book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new StudentBook(addressBook);
+        this.studentBook = new StudentBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredAppointments = new FilteredList<>(this.addressBook.getAppointmentList());
+        filteredPersons = new FilteredList<Person>(this.studentBook.getPersonList());
+        filteredAppointments = new FilteredList<Appointment>(this.studentBook.getAppointmentList());
     }
 
     public ModelManager() {
@@ -83,28 +83,28 @@ public class ModelManager implements Model {
 
     @Override
     public void setAddressBook(ReadOnlyStudentBook addressBook) {
-        this.addressBook.resetData(addressBook);
+        this.studentBook.resetData(addressBook);
     }
 
     @Override
     public ReadOnlyStudentBook getAddressBook() {
-        return addressBook;
+        return studentBook;
     }
 
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return studentBook.hasPerson(person);
     }
 
     @Override
     public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+        studentBook.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
-        addressBook.addPerson(person);
+        studentBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -112,24 +112,24 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
+        studentBook.setPerson(target, editedPerson);
     }
 
     @Override
     public boolean hasAppointment(Appointment appointment) {
         requireNonNull(appointment);
-        return addressBook.hasAppointment(appointment);
+        return studentBook.hasAppointment(appointment);
     }
 
     @Override
     public boolean hasOverlappingAppointment(Appointment appointment) {
         requireNonNull(appointment);
-        return addressBook.hasOverlappingAppointment(appointment);
+        return studentBook.hasOverlappingAppointment(appointment);
     }
 
     @Override
     public void addAppointment(Appointment appointment) {
-        addressBook.addAppointment(appointment);
+        studentBook.addAppointment(appointment);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -147,6 +147,11 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredAppointmentList(Predicate<Person> predicate) {
+
     }
 
     //=========== Filtered Appointment List Accessors =============================================================
@@ -174,7 +179,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return studentBook.equals(other.studentBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
