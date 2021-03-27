@@ -10,6 +10,7 @@ import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -47,7 +48,7 @@ public class EditAutocompleteUtil {
             .stream()
             .map(t -> "-t " + t.tagName)
             .reduce((a, b) -> a + " " + b)
-            .orElse("-t");
+            .orElse("");
     }
 
     /**
@@ -97,7 +98,7 @@ public class EditAutocompleteUtil {
             PREFIX_EMAIL, () -> person.getEmail().value,
             PREFIX_NAME, () -> person.getName().fullName,
             PREFIX_REMARK, () -> person.getRemark().value,
-            PREFIX_TAG, () -> getTagsAsAutocompletedString(person.getTags())
+            PREFIX_TAG, () -> null
         );
 
         String output = "edit " + index.getOneBased();
@@ -117,18 +118,40 @@ public class EditAutocompleteUtil {
                 continue;
             }
 
+            if (prefix.equals(PREFIX_TAG)) {
+                Set<Tag> tags = new HashSet<>(person.getTags());
+                Set<Tag> inputTags = new HashSet<>();
+
+                for (String value: values) {
+                    if (value.equals("")) {
+                        continue;
+                    }
+
+                    Tag tag = new Tag(value);
+                    if (tags.contains(tag)) {
+                        inputTags.add(tag);
+                    }
+
+                    output += " -t " + value;
+                }
+
+                // Get tags that aren't input by User
+                tags.removeAll(inputTags);
+                output += " " + getTagsAsAutocompletedString(tags);
+                continue;
+            }
+
+            boolean hasOutput = false;
             if (values.size() > 0) {
                 for (String value: values) {
                     if (value.length() > 0) {
                         output += " " + prefix + " " + value;
+                        hasOutput = true;
                     }
                 }
             }
 
-            // For Tag Sets list out all Tags
-            if (prefix.equals(PREFIX_TAG)) {
-                output += " " + prefixMethodMap.get(prefix).get();
-            } else {
+            if (!hasOutput) {
                 output += " " + prefix + " " + prefixMethodMap.get(prefix).get();
             }
 
