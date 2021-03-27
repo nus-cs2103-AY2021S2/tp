@@ -27,7 +27,7 @@ public class UpdateProjectCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the name of the project specified "
             + "by the index number used in the displayed project list. "
             + "Existing value will be overwritten by the input value.\n"
-            + "Parameters: PROJECT_INDEX (must be a positive integer)\n"
+            + "Parameters: PROJECT_INDEX (must be a positive integer) "
             + PREFIX_NAME + "PROJECT_NAME\n"
             + "Example:\n"
             + COMMAND_WORD + " 1 " + PREFIX_NAME + "new name";
@@ -60,14 +60,14 @@ public class UpdateProjectCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
 
+        Project projectToEdit = lastShownList.get(targetIndex.getZeroBased());
+
         for (Project project : lastShownList) {
-            if (project.getProjectName().equals(name)
-                    && !lastShownList.get(targetIndex.getZeroBased()).getProjectName().equals(name)) {
+            if (project.getProjectName().equals(name) && !projectToEdit.getProjectName().equals(name)) {
                 throw new CommandException(MESSAGE_DUPLICATE_NAME);
             }
         }
 
-        Project projectToEdit = lastShownList.get(targetIndex.getZeroBased());
         Project updatedProject = createUpdatedProject(projectToEdit, name);
 
         model.setProject(projectToEdit, updatedProject);
