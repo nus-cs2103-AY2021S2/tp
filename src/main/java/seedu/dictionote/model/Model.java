@@ -208,6 +208,11 @@ public interface Model {
     void emailContact(Contact contact);
 
     /**
+     * Sorts the contacts in the contacts list by their frequency counters.
+     */
+    void sortContactsByFrequencyCounter();
+
+    /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the dictionote book.
      * The person identity of {@code editedPerson} must not be the same as

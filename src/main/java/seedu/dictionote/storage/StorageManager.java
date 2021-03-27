@@ -89,7 +89,7 @@ public class StorageManager implements Storage {
         noteBookStorage.saveNoteBook(noteBook, filePath);
     }
 
-    // ================ AddressBook methods ==============================
+    // ================ ContactsList methods ==============================
 
     @Override
     public Path getContactsListFilePath() {
