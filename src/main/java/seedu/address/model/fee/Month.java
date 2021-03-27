@@ -33,7 +33,7 @@ public class Month {
     }
 
     /**
-     * Get the month's name. (E.g. January / February)
+     * Gets the month's name. (E.g. January / February)
      * @return The month name in String.
      */
     public String getMonthName() {

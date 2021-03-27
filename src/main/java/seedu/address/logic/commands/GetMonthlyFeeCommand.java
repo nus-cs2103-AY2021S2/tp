@@ -49,7 +49,7 @@ public class GetMonthlyFeeCommand extends Command {
     }
 
     /**
-     * Get the local date time format of the month and year combined
+     * Gets the local date time format of the month and year combined
      * @return LocalDateTime of the month and year combined
      */
     public static LocalDateTime getLocalDate(Month month, Year year) {

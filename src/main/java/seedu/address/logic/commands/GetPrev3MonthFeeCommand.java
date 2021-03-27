@@ -23,7 +23,7 @@ public class GetPrev3MonthFeeCommand extends Command {
         + "for this month + previous 2 months";
 
     /**
-     * Get the local date time format of the month and year combined
+     * Gets the local date time format of the month and year combined
      * @return LocalDateTime of the month and year combined
      */
     private LocalDateTime getLocalDate(Month month, Year year) {
