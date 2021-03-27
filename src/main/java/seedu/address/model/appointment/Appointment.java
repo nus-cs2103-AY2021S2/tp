@@ -2,12 +2,11 @@ package seedu.address.model.appointment;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-
-import java.time.LocalDateTime;
 
 import seedu.address.model.Address;
 import seedu.address.model.Name;
@@ -29,7 +28,7 @@ public class Appointment implements Comparable<Appointment> {
     private final LocalDateTime dateTime;
     private final Set<Person> contacts = new HashSet<>();
 
-//    private final TimeAdded timeAdded;
+    //private final TimeAdded timeAdded;
 
     /**
      * Every field must be present and not null.
