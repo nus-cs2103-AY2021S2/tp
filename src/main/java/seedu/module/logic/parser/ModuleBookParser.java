@@ -92,7 +92,7 @@ public class ModuleBookParser {
             return new DeleteTagCommandParser().parse(arguments);
 
         case SortCommand.COMMAND_WORD:
-            return new SortCommand();
+            return new SortCommandParser().parse(arguments);
 
         case FindModuleCommand.COMMAND_WORD:
             return new FindModuleCommandParser().parse(arguments);

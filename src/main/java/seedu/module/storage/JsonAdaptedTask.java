@@ -11,13 +11,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.module.commons.exceptions.IllegalValueException;
 import seedu.module.model.tag.Tag;
-import seedu.module.model.task.Deadline;
 import seedu.module.model.task.Description;
 import seedu.module.model.task.DoneStatus;
 import seedu.module.model.task.Module;
 import seedu.module.model.task.Name;
 import seedu.module.model.task.Recurrence;
 import seedu.module.model.task.Task;
+import seedu.module.model.task.Time;
 import seedu.module.model.task.Workload;
 
 
@@ -29,6 +29,7 @@ class JsonAdaptedTask {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
 
     private final String name;
+    private final String startTime;
     private final String deadline;
     private final String module;
     private final String description;
@@ -41,11 +42,13 @@ class JsonAdaptedTask {
      * Constructs a {@code JsonAdaptedTask} with the given task details.
      */
     @JsonCreator
-    public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("deadline") String deadline,
-            @JsonProperty("module") String module, @JsonProperty("description") String description,
-            @JsonProperty("workload") String workload, @JsonProperty("doneStatus") String doneStatus,
-            @JsonProperty("recurrence") String recurrence, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+    public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("startTime") String startTime,
+                           @JsonProperty("deadline") String deadline, @JsonProperty("module") String module,
+                           @JsonProperty("description") String description, @JsonProperty("workload") String workload,
+                           @JsonProperty("doneStatus") String doneStatus, @JsonProperty("recurrence") String recurrence,
+                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
+        this.startTime = startTime;
         this.deadline = deadline;
         this.module = module;
         this.description = description;
@@ -66,6 +69,11 @@ class JsonAdaptedTask {
      */
     public JsonAdaptedTask(Task source) {
         name = source.getName().fullName;
+        if (!source.isDeadline()) {
+            startTime = source.getStartTime().value;
+        } else {
+            startTime = "";
+        }
         deadline = source.getDeadline().value;
         module = source.getModule().value;
         description = source.getDescription().value;
@@ -100,14 +108,27 @@ class JsonAdaptedTask {
         }
         final Name modelName = new Name(name);
 
+        Time modelStartTime;
+        boolean isDeadLine;
+        if (startTime == null || startTime.equals("")) {
+            modelStartTime = null;
+            isDeadLine = true;
+        } else {
+            if (!Time.isValidDeadline(startTime)) {
+                throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
+            }
+            modelStartTime = new Time(startTime);
+            isDeadLine = false;
+        }
+
         if (deadline == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                Deadline.class.getSimpleName()));
+                Time.class.getSimpleName()));
         }
-        if (!Deadline.isValidDeadline(deadline)) {
-            throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
+        if (!Time.isValidDeadline(deadline)) {
+            throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
         }
-        final Deadline modelDeadline = new Deadline(deadline);
+        final Time modelDeadline = new Time(deadline);
 
         if (module == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Module.class.getSimpleName()));
@@ -159,12 +180,22 @@ class JsonAdaptedTask {
         }
 
         final Set<Tag> modelTags = new HashSet<>(taskTags);
-        if (isRecurringTask) {
-            return new Task(modelName, modelDeadline, modelModule, modelDescription,
-                    modelWorkload, modelDoneStatus, modelRecurrence, modelTags);
-        } else {
+        if (!isRecurringTask && !isDeadLine) {
+            return new Task(modelName, modelStartTime, modelDeadline, modelModule, modelDescription,
+                    modelWorkload, modelDoneStatus, modelTags);
+
+        } else if (!isRecurringTask && isDeadLine) {
             return new Task(modelName, modelDeadline, modelModule, modelDescription,
                     modelWorkload, modelDoneStatus, modelTags);
+
+        } else if (isRecurringTask && !isDeadLine) {
+            return new Task(modelName, modelStartTime, modelDeadline, modelModule, modelDescription,
+                    modelWorkload, modelDoneStatus, modelRecurrence, modelTags);
+
+        } else {
+            return new Task(modelName, modelDeadline, modelModule, modelDescription,
+                    modelWorkload, modelDoneStatus, modelRecurrence, modelTags);
         }
+
     }
 }

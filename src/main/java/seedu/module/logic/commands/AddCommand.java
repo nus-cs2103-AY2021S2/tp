@@ -5,6 +5,7 @@ import static seedu.module.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_RECURRENCE;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TASK_NAME;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_WORKLOAD;
@@ -25,12 +26,14 @@ public class AddCommand extends Command {
             + PREFIX_TASK_NAME + "TASK NAME "
             + PREFIX_MODULE + "MODULE "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
+            + "[" + PREFIX_START_TIME + "START TIME] "
             + PREFIX_DEADLINE + "DEADLINE "
             + PREFIX_WORKLOAD + "WORKLOAD "
             + "[" + PREFIX_RECURRENCE + "RECURRENCE]"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TASK_NAME + "TP v1.2 "
+            + PREFIX_START_TIME + "2021-01-30 10:00 "
             + PREFIX_DEADLINE + "2021-01-30 12:00 "
             + PREFIX_MODULE + "CS2103T "
             + PREFIX_DESCRIPTION + "Finish basic commands for TP "
@@ -54,6 +57,12 @@ public class AddCommand extends Command {
         requireNonNull(model);
         if (model.hasTask(toAdd) && !toAdd.isRecurring()) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
+        }
+        if (toAdd.isRecurring() && model.hasRecurringTask(toAdd)) {
+            throw new CommandException(RecurCommand.MESSAGE_DUPLICATE_RECURRENCE);
+        }
+        if (toAdd.isTimeInvalid()) {
+            throw new CommandException(Task.INVALID_START_TIME);
         }
 
         model.addTask(toAdd);

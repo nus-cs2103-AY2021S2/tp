@@ -9,6 +9,7 @@ import static seedu.module.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.module.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.module.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static seedu.module.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+import static seedu.module.testutil.TypicalIndexes.INDEX_FOURTH_TASK;
 import static seedu.module.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.module.testutil.TypicalTasks.getTypicalModuleBook;
 
@@ -29,8 +30,8 @@ class DeleteTagCommandTest {
     private final Model model = new ModelManager(getTypicalModuleBook(), new UserPrefs());
 
     @Test
-    void execute_deleteTagUnfilteredList_success() {
-        //get first task
+    void execute_deleteTagUnfilteredListWithStartTime_success() {
+        //get first task, which has a startTime field
         Task firstTask = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         int sz = firstTask.getTags().size();
         //get last tag of first task
@@ -47,6 +48,29 @@ class DeleteTagCommandTest {
 
         Model expectedModel = new ModelManager(new ModuleBook(model.getModuleBook()), new UserPrefs());
         expectedModel.setTask(firstTask, editedTask);
+
+        assertCommandSuccess(deleteTagCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    void execute_deleteTagUnfilteredListWithoutStartTime_success() {
+        //get fourth task, which does not have a startTime field
+        Task fourthTask = model.getFilteredTaskList().get(INDEX_FOURTH_TASK.getZeroBased());
+        int sz = fourthTask.getTags().size();
+        //get last tag of the fourth task
+        Tag lastTag = (Tag) fourthTask.getTags().toArray()[sz - 1];
+        String[] expectedTags = new String[fourthTask.getTags().size() - 1];
+        for (int i = 0; i < sz - 1; i++) { //omit the last tag
+            expectedTags[i] = fourthTask.getTags().iterator().next().tagName;
+        }
+        Task editedTask = new TaskBuilder(fourthTask).withTags(expectedTags).build();
+
+        DeleteTagCommand deleteTagCommand = new DeleteTagCommand(INDEX_FOURTH_TASK, lastTag);
+
+        String expectedMessage = String.format(DeleteTagCommand.MESSAGE_DELETE_TAG_TASK_SUCCESS, editedTask);
+
+        Model expectedModel = new ModelManager(new ModuleBook(model.getModuleBook()), new UserPrefs());
+        expectedModel.setTask(fourthTask, editedTask);
 
         assertCommandSuccess(deleteTagCommand, model, expectedMessage, expectedModel);
     }
@@ -93,6 +117,13 @@ class DeleteTagCommandTest {
         DeleteTagCommand deleteTagCommand = new DeleteTagCommand(outOfBoundIndex, new Tag(VALID_TAG_PRIORITY_HIGH));
 
         assertCommandFailure(deleteTagCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_tagNotExist_throwsCommandException() {
+        Tag stubTag = new Tag(VALID_TAG_PRIORITY_HIGH);
+        DeleteTagCommand deleteTagCommand = new DeleteTagCommand(INDEX_FIRST_TASK, stubTag);
+        assertCommandFailure(deleteTagCommand, model, DeleteTagCommand.MESSAGE_TAG_NOT_EXISTS);
     }
 
     @Test

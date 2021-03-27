@@ -52,7 +52,7 @@ ModuleBook3.5 is the go-to tool for busy students/professionals who are confiden
 
    * **`list`** : List out tasks
 
-   * **`add`**` : Add a task
+   * **`add`** : Add a task
 
    * **`delete`** : Delete a task
 
@@ -73,6 +73,8 @@ ModuleBook3.5 is the go-to tool for busy students/professionals who are confiden
    * **`edit`** : Edit task
 
    * **`sort`** : Sort tasks
+   
+   * **`recur`** :  Recur tasks
 
 
 
@@ -89,7 +91,9 @@ Format: `list`
 
 Adds a task to ModuleBook3.5.
 
-Format: `add n/TASK NAME m/MODULE d/DESCRIPTION b/DEADLINE w/WORKLOAD [t/TAG]…​`
+Format: `add n/TASK NAME m/MODULE d/DESCRIPTION [a/START TIME] b/DEADLINE w/WORKLOAD [t/TAG]…​`
+
+* If you wish to include a start time for your task, the start time should not be later than deadline.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Enter the time you wish to complete your task in the format: yyyy-MM-dd HH:mm or yyyy-MM-dd (HH:mm taken as current time)
@@ -212,11 +216,12 @@ Examples:
 
 Edits an existing task in the module book.
 
-Format: `edit INDEX [n/NAME] [m/MODULE] [d/DESCRIPTION] [b/DEADLINE] [w/WORKLOAD] [t/TAG] …​`
+Format: `edit INDEX [n/NAME] [m/MODULE] [d/DESCRIPTION] [a/START TIME] [b/DEADLINE] [w/WORKLOAD] [t/TAG] …​`
 
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* If you wish to include a start time for your task, the start time should not be later than deadline.
 
 Examples:
 *  `edit 1 d/Eat Biscuits` Edits the description of the 1st task to `Eat Biscuits`.
@@ -226,9 +231,35 @@ Examples:
 
 ### Sorting tasks : `sort`
 
-Sorts the list of all tasks added by deadline.
+Sorts the list of all tasks by workload/deadline/module.
 
-Format: `sort`
+Format:  `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/` or `sort t/` 
+
+Examples:
+*  `sort n/` Sorts the tasks by name alphabetically in ascending order.
+*  `sort d/` Sorts the tasks by description alphabetically in ascending order.
+*  `sort w/` Sorts the tasks by workload in descending order.
+*  `sort b/` Sorts the tasks by deadline so that the the task with closer the deadline in the list, the higher the task.
+*  `sort m/` Sorts the tasks by module code alphabetically in descending order.
+*  `sort t/` Sorts the tasks by number of tags in descending order.
+
+### Recurring tasks: `recur`
+
+Recurs a task either daily, monthly or weekly in the module book.
+
+Format: `recur INDEX r/RECURRENCE`
+
+* Recurs the task at the specified `INDEX`.
+* `INDEX` refers to the index number displayed in ModuleBook3.5.
+   It must be a positive integer.
+* `RECURRENCE` refers to the regularity of the task that recurs periodically.
+* `RECURRENCE` can only be `daily`, `weekly` or `monthly`. It is case-sensitive.
+
+Examples:
+* `recur 1 r/monthly` Recurs the 1st task in ModuleBook3.5 every month.
+* `recur 2 r/weekly` Recurs the 4th task in ModuleBook3.5 every week.
+* `recur 3 r/daily` Recurs the 3rd task in ModuleBook3.5 every day.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -273,4 +304,5 @@ Action | Format, Examples
 **tag** | `tag INDEX [t/TAG NAME]`<br> e.g., `tag 1 [t/SoftwareEng]`
 **find** | `find KEYWORD`<br> e.g., `find CS3230`
 **edit** | `edit INDEX [d/DESCRIPTION] [b/DEADLINE]…​`<br> e.g., `edit 2 d/Eat Biscuits b/2021-03-21 10:10`
-**sort** | `sort`
+**recur** | `recur INDEX r/RECURRENCE`<br> e.g., `recur 1 r/monthly`
+**sort** | `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/` or `sort t/` <br> e.g., `sort b/`

@@ -31,6 +31,14 @@ public class ArgumentMultimap {
         argMultimap.put(prefix, argValues);
     }
 
+    public int getPrefixesSize() {
+        return argMultimap.keySet().size();
+    }
+
+    public boolean contains(Prefix prefix) {
+        return argMultimap.containsKey(prefix);
+    }
+
     /**
      * Returns the last value of {@code prefix}.
      */

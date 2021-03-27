@@ -14,7 +14,14 @@ import seedu.module.commons.core.index.Index;
 import seedu.module.logic.commands.exceptions.CommandException;
 import seedu.module.model.Model;
 import seedu.module.model.tag.Tag;
+import seedu.module.model.task.Description;
+import seedu.module.model.task.DoneStatus;
+import seedu.module.model.task.Module;
+import seedu.module.model.task.Name;
+import seedu.module.model.task.Recurrence;
 import seedu.module.model.task.Task;
+import seedu.module.model.task.Time;
+import seedu.module.model.task.Workload;
 
 /**
  * Add a tag to an existing task in the module book.
@@ -60,9 +67,30 @@ public class TagCommand extends Command {
         Task taskToTag = lastShownList.get(index.getZeroBased());
         Set<Tag> oldTags = taskToTag.getTags();
         Set<Tag> newTags = addTags(oldTags, this.tags);
-        Task editedTask = new Task(taskToTag.getName(), taskToTag.getDeadline(),
-                taskToTag.getModule(), taskToTag.getDescription(), taskToTag.getWorkload(),
-                taskToTag.getDoneStatus(), newTags);
+
+        Task editedTask;
+        Name name = taskToTag.getName();
+        Time startTime = taskToTag.getStartTime();
+        Time deadline = taskToTag.getDeadline();
+        Module module = taskToTag.getModule();
+        Description description = taskToTag.getDescription();
+        Workload workload = taskToTag.getWorkload();
+        DoneStatus newDoneStatus = new DoneStatus(false);
+        Recurrence recurrence = taskToTag.getRecurrence();
+
+        if (!taskToTag.isRecurring() && !taskToTag.isDeadline()) {
+            editedTask = new Task(name, startTime, deadline, module, description, workload, newDoneStatus, newTags);
+
+        } else if (!taskToTag.isRecurring() && taskToTag.isDeadline()) {
+            editedTask = new Task(name, deadline, module, description, workload, newDoneStatus, newTags);
+
+        } else if (taskToTag.isRecurring() && !taskToTag.isDeadline()) {
+            editedTask = new Task(name, startTime, deadline, module, description, workload, newDoneStatus, recurrence,
+                    newTags);
+
+        } else {
+            editedTask = new Task(name, deadline, module, description, workload, newDoneStatus, recurrence, newTags);
+        }
 
         if (!taskToTag.isSameTask(editedTask) && model.hasTask(editedTask)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);

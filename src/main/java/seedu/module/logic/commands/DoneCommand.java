@@ -11,13 +11,13 @@ import seedu.module.commons.core.index.Index;
 import seedu.module.logic.commands.exceptions.CommandException;
 import seedu.module.model.Model;
 import seedu.module.model.tag.Tag;
-import seedu.module.model.task.Deadline;
 import seedu.module.model.task.Description;
 import seedu.module.model.task.DoneStatus;
 import seedu.module.model.task.Module;
 import seedu.module.model.task.Name;
 import seedu.module.model.task.Recurrence;
 import seedu.module.model.task.Task;
+import seedu.module.model.task.Time;
 import seedu.module.model.task.Workload;
 
 public class DoneCommand extends Command {
@@ -62,7 +62,8 @@ public class DoneCommand extends Command {
         assert taskToMarkDone != null;
 
         Name name = taskToMarkDone.getName();
-        Deadline deadline = taskToMarkDone.getDeadline();
+        Time startTime = taskToMarkDone.getStartTime();
+        Time deadline = taskToMarkDone.getDeadline();
         Module module = taskToMarkDone.getModule();
         Description description = taskToMarkDone.getDescription();
         Workload workload = taskToMarkDone.getWorkload();
@@ -70,8 +71,15 @@ public class DoneCommand extends Command {
         Recurrence recurrence = taskToMarkDone.getRecurrence();
         Set<Tag> tags = taskToMarkDone.getTags();
 
-        if (!taskToMarkDone.isRecurring()) {
+        if (!taskToMarkDone.isRecurring() && !taskToMarkDone.isDeadline()) {
+            return new Task(name, startTime, deadline, module, description, workload, newDoneStatus, tags);
+
+        } else if (!taskToMarkDone.isRecurring() && taskToMarkDone.isDeadline()) {
             return new Task(name, deadline, module, description, workload, newDoneStatus, tags);
+
+        } else if (taskToMarkDone.isRecurring() && !taskToMarkDone.isDeadline()) {
+            return new Task(name, startTime, deadline, module, description, workload, newDoneStatus, recurrence, tags);
+
         } else {
             return new Task(name, deadline, module, description, workload, newDoneStatus, recurrence, tags);
         }

@@ -2,11 +2,12 @@ package seedu.module.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.module.model.task.Deadline;
 import seedu.module.model.task.Task;
+import seedu.module.model.task.Time;
 import seedu.module.model.task.UniqueTaskList;
 
 /**
@@ -51,9 +52,10 @@ public class ModuleBook implements ReadOnlyModuleBook {
 
     /**
      * Sorts the task list by deadline.
+     * @param factor
      */
-    public void sortTasks() {
-        this.tasks.sortTasks();
+    public void sortTasks(Comparator<Task> factor) {
+        this.tasks.sortTasks(factor);
     }
 
     /**
@@ -98,13 +100,16 @@ public class ModuleBook implements ReadOnlyModuleBook {
             Task taskToAdd = p;
             //check the deadline and recurrence of the task
             if (p.isRecurring()) {
-                Deadline newDeadline = p.getRecurringDeadline(p.getDeadline(), p.getRecurrence());
-                taskToAdd = p.makeNewRecurringTask(newDeadline);
+                Time newDeadline = p.getRecurringDeadline(p.getDeadline(), p.getRecurrence());
+                if (p.isDeadline()) {
+                    taskToAdd = p.makeNewRecurringTask(newDeadline, null);
+                } else {
+                    Time newStartTime = p.getRecurringDeadline(p.getStartTime(), p.getRecurrence());
+                    taskToAdd = p.makeNewRecurringTask(newDeadline, newStartTime);
+                }
             }
             ModuleManager.insertTaskToMapping(taskToAdd.getModule(), taskToAdd);
             tasks.add(taskToAdd);
-        } else {
-
         }
     }
 

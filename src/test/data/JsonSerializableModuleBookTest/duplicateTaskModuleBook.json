@@ -1,7 +1,8 @@
 {
   "tasks": [ {
     "name": "Quiz",
-    "deadline": "2021-12-12 12:00",
+    "startTime": "2021-02-01 10:00",
+    "deadline": "2021-02-01 12:00",
     "module": "CS3243",
     "description": "hmmm",
     "workload": "2",
@@ -11,6 +12,7 @@
   }, {
     "name": "Quiz",
     "deadline": "2021-12-12 12:00",
+    "startTime": "2021-01-12 11:00",
     "module": "CS3243",
     "description": "Is it easy?",
     "workload": "2",

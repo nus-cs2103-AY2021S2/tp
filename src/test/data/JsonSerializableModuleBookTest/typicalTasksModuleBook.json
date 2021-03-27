@@ -2,6 +2,7 @@
   "_comment": "ModuleBook save file which contains the same Task values as in TypicalTasks#getTypicalModuleBook()",
   "tasks" : [ {
     "name" : "Quiz",
+    "startTime" : "2021-02-01 11:30",
     "deadline" : "2021-02-01 12:00",
     "module" : "CS3243",
     "description" : "About Artificial Intelligence.",
@@ -10,6 +11,7 @@
     "tagged" : [ "medianPriority" ]
   }, {
     "name" : "Midterm",
+    "startTime" : "2021-12-12 06:30",
     "deadline" : "2021-12-12 08:30",
     "module" : "CS3243",
     "description" : "Not include CSP.",
@@ -19,6 +21,7 @@
     "tagged" : [ "highPriority" ]
   }, {
     "name" : "TP",
+    "startTime" : "",
     "deadline" : "2021-03-14 14:00",
     "module" : "CS2103T",
     "description" : "Wrap up v1.2.",
@@ -27,6 +30,7 @@
     "recurrence": ""
   }, {
     "name" : "Tutorial",
+    "startTime" : "",
     "deadline" : "2021-03-02 23:59",
     "module" : "ST2131",
     "description" : "Try to get full mark.",
@@ -36,6 +40,7 @@
     "tagged" : [ "easy" ]
   }, {
     "name" : "Project",
+    "startTime" : "",
     "deadline" : "2021-02-28 23:59",
     "module" : "CS3243",
     "description" : "This is really challenging.",
@@ -44,6 +49,7 @@
     "recurrence": ""
   }, {
     "name" : "PAQ",
+    "startTime" : "",
     "deadline" : "2021-03-05 23:59",
     "module" : "IS1103",
     "description" : "Strange questions.",
@@ -52,6 +58,7 @@
     "recurrence": ""
   }, {
     "name" : "OP 2",
+    "startTime" : "",
     "deadline" : "2021-04-02 23:59",
     "module" : "CS2101",
     "description" : "Need to divide ourselves into two groups.",

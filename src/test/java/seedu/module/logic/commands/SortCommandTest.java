@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import seedu.module.model.Model;
 import seedu.module.model.ModelManager;
 import seedu.module.model.UserPrefs;
+import seedu.module.model.task.Task;
 
 class SortCommandTest {
 
@@ -24,12 +25,14 @@ class SortCommandTest {
 
     @Test
     public void execute_sortedTask_showsSameList() {
-        assertCommandSuccess(new SortCommand(), expectedModel, SortCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new SortCommand(new Task.DeadlineComparator()), expectedModel,
+                "Sorted all tasks by deadline.", expectedModel);
     }
 
     @Test
     public void execute_unsortedTask_showsSortedList() {
-        assertCommandSuccess(new SortCommand(), model, SortCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new SortCommand(new Task.DeadlineComparator()), model,
+                "Sorted all tasks by deadline.", expectedModel);
     }
 
 }

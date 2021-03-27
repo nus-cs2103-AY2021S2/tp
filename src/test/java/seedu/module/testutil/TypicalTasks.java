@@ -6,6 +6,7 @@ import static seedu.module.logic.commands.CommandTestUtil.VALID_DESCRIPTION_LAB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_DESCRIPTION_PRACTICAL;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_LAB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_PRACTICAL;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_START_TIME_PRACTICAL;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_PRIORITY_HIGH;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_PRIORITY_LOW;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_TASK_NAME_LAB;
@@ -27,11 +28,11 @@ public class TypicalTasks {
     public static final String DONE_STRING = String.valueOf(Boolean.TRUE);
     public static final String NOT_DONE_STRING = String.valueOf(Boolean.FALSE);
 
-    public static final Task QUIZ = new TaskBuilder().withName("Quiz")
+    public static final Task QUIZ = new TaskBuilder().activateStartTime().withName("Quiz")
             .withDescription("About Artificial Intelligence.").withModule("CS3243")
-            .withDeadline("2021-02-01 12:00").withDoneStatus(NOT_DONE_STRING)
+            .withStartTime("2021-02-01 11:30").withDeadline("2021-02-01 12:00").withDoneStatus(NOT_DONE_STRING)
             .withWorkload("1").withTags("medianPriority").build();
-    public static final Task MIDTERM = new TaskBuilder().withName("Midterm")
+    public static final Task MIDTERM = new TaskBuilder().withName("Midterm").withStartTime("2021-12-12 06:30")
             .withDescription("Not include CSP.").withWorkload("2")
             .withModule("CS3243").withDeadline("2021-12-12 08:30").withDoneStatus(NOT_DONE_STRING)
             .withRecurrence("monthly").withTags("highPriority").build();
@@ -72,8 +73,10 @@ public class TypicalTasks {
             .withWorkload(VALID_WORKLOAD_1)
             .withDoneStatus(NOT_DONE_STRING)
             .withTags(VALID_TAG_PRIORITY_LOW).build();
-    public static final Task PRACTICAL = new TaskBuilder()
+
+    public static final Task PRACTICAL = new TaskBuilder().activateStartTime()
             .withName(VALID_TASK_NAME_PRACTICAL)
+            .withStartTime(VALID_START_TIME_PRACTICAL)
             .withDeadline(VALID_DEADLINE_PRACTICAL)
             .withModule(VALID_MODULE_PRACTICAL)
             .withDescription(VALID_DESCRIPTION_PRACTICAL)
