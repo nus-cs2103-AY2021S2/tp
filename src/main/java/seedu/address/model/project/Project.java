@@ -169,6 +169,29 @@ public class Project {
     }
 
     /**
+     *  Returns the {@code Event}. at the specified position in this {@code Project}'s {@code EventList}.
+     *
+     * @return the {@code Event}. at the specified position in this {@code Project}'s {@code EventList}.
+     */
+    public Event getEvent(Integer i) {
+        requireNonNull(i);
+
+        return events.getEvent(i);
+    }
+
+    /**
+     * Set the {@code Event} specified by index with a new {@code Event}.
+     *
+     * @param i index number specifies the target {@code Event}.
+     * @param event new {@code Event} for this index.
+     */
+    public void setEvent(Integer i, Event event) {
+        requireAllNonNull(event, i);
+
+        this.events.setEvent(i, event);
+    }
+
+    /**
      *  Deletes a participant from {@code ParticipantList} field of this {@code Project}.
      *
      * @param i Index of {@code Person} to be deleted.

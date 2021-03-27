@@ -7,14 +7,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REPEATABLE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REPEATABLE_INTERVAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_UPDATE_INDEX;
 
-import java.time.LocalDate;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.UpdateEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.task.Interval;
-import seedu.address.model.task.repeatable.Event;
 
 /**
  * Parses input arguments and creates a new UpdateEventCommand object
@@ -32,21 +30,32 @@ public class UpdateEventCommandParser implements Parser<UpdateEventCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_UPDATE_INDEX, PREFIX_DESCRIPTION,
                 PREFIX_REPEATABLE_INTERVAL, PREFIX_REPEATABLE_DATE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_UPDATE_INDEX, PREFIX_DESCRIPTION,
-                PREFIX_REPEATABLE_INTERVAL, PREFIX_REPEATABLE_DATE)
-                || argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_UPDATE_INDEX) || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateEventCommand.MESSAGE_USAGE));
         }
 
         Index projectIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
         Index targetEventIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_UPDATE_INDEX).get());
-        String description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        Interval interval = ParserUtil.parseInterval(argMultimap.getValue(PREFIX_REPEATABLE_INTERVAL).get());
-        LocalDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_REPEATABLE_DATE).get());
 
-        Event event = new Event(description, interval, date);
+        UpdateEventCommand.UpdateEventDescriptor updateEventDescriptor = new UpdateEventCommand.UpdateEventDescriptor();
 
-        return new UpdateEventCommand(projectIndex, targetEventIndex, event);
+        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
+            updateEventDescriptor.setDescription(
+                    ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
+        }
+        if (argMultimap.getValue(PREFIX_REPEATABLE_INTERVAL).isPresent()) {
+            updateEventDescriptor.setInterval(
+                    ParserUtil.parseInterval(argMultimap.getValue(PREFIX_REPEATABLE_INTERVAL).get()));
+        }
+        if (argMultimap.getValue(PREFIX_REPEATABLE_DATE).isPresent()) {
+            updateEventDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_REPEATABLE_DATE).get()));
+        }
+
+        if (!updateEventDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+        }
+
+        return new UpdateEventCommand(projectIndex, targetEventIndex, updateEventDescriptor);
     }
 
     /**

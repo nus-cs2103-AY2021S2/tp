@@ -7,13 +7,17 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REPEATABLE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REPEATABLE_INTERVAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_UPDATE_INDEX;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
+import seedu.address.model.task.Interval;
 import seedu.address.model.task.repeatable.Event;
 
 /**
@@ -23,17 +27,16 @@ public class UpdateEventCommand extends Command {
 
     public static final String COMMAND_WORD = "updateE";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates an event of a project specified "
-            + "by 2 index numbers: project index and target event index.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the event "
+            + "identified by it's index number within the displayed project.\n"
             + "Parameters: PROJECT_INDEX "
-            + PREFIX_UPDATE_INDEX + "TARGET_EVENT_INDEX "
-            + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + PREFIX_REPEATABLE_INTERVAL + "INTERVAL "
-            + PREFIX_REPEATABLE_DATE + "REPEATABLE_DATE\n"
+            + PREFIX_UPDATE_INDEX + "EVENT_INDEX "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_REPEATABLE_INTERVAL + "INTERVAL] "
+            + "[" + PREFIX_REPEATABLE_DATE + "REPEATABLE_DATE]\n"
             + "Example:\n" + COMMAND_WORD + " 1 "
             + PREFIX_UPDATE_INDEX + "1 "
             + PREFIX_DESCRIPTION + "Project meeting "
-            + PREFIX_REPEATABLE_INTERVAL + "DAILY "
             + PREFIX_REPEATABLE_DATE + "24-04-2021";
 
     public static final String MESSAGE_UPDATE_EVENT_SUCCESS = "Edited event: %1$s";
@@ -41,7 +44,7 @@ public class UpdateEventCommand extends Command {
 
     private final Index projectIndex;
     private final Index targetEventIndex;
-    private final Event event;
+    private final UpdateEventDescriptor updateEventDescriptor;
 
     /**
      * Constructs an {@code updateEventCommand} with a {@code projectIndex}.
@@ -49,14 +52,14 @@ public class UpdateEventCommand extends Command {
      *
      * @param projectIndex     index of the project in the filtered project list.
      * @param targetEventIndex index of the event in the event list to update.
-     * @param event            new event given for updating.
+     * @param updateEventDescriptor details to edit event with.
      */
-    public UpdateEventCommand(Index projectIndex, Index targetEventIndex, Event event) {
-        requireAllNonNull(projectIndex, targetEventIndex, event);
+    public UpdateEventCommand(Index projectIndex, Index targetEventIndex, UpdateEventDescriptor updateEventDescriptor) {
+        requireAllNonNull(projectIndex, targetEventIndex, updateEventDescriptor);
 
         this.projectIndex = projectIndex;
         this.targetEventIndex = targetEventIndex;
-        this.event = event;
+        this.updateEventDescriptor = new UpdateEventDescriptor(updateEventDescriptor);
     }
 
     @Override
@@ -67,18 +70,126 @@ public class UpdateEventCommand extends Command {
         if (projectIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
-        Project projectRelated = lastShownList.get(projectIndex.getZeroBased());
+        Project projectToUpdate = lastShownList.get(projectIndex.getZeroBased());
 
-        if (targetEventIndex.getZeroBased() >= projectRelated.getEvents().size()) {
+        if (targetEventIndex.getZeroBased() >= projectToUpdate.getEvents().size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
 
-        if (projectRelated.getEvents().hasEvent(event)) {
+        Event eventToUpdate = projectToUpdate.getEvent(targetEventIndex.getZeroBased());
+        Event updatedEvent = createUpdatedEvent(eventToUpdate, updateEventDescriptor);
+
+        if (projectToUpdate.getEvents().hasEvent(updatedEvent) && !eventToUpdate.equals(updatedEvent)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
 
-        projectRelated.getEvents().setEvent(targetEventIndex.getZeroBased(), event);
+        projectToUpdate.setEvent(targetEventIndex.getZeroBased(), updatedEvent);
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
-        return new CommandResult(String.format(MESSAGE_UPDATE_EVENT_SUCCESS, event));
+        return new CommandResult(String.format(MESSAGE_UPDATE_EVENT_SUCCESS, updatedEvent));
+    }
+
+    /**
+     * Creates and returns a {@code Event} with the details of {@code eventToUpdate}
+     * edited with {@code updatedEventDescriptor}.
+     */
+    private static Event createUpdatedEvent(Event eventToEdit, UpdateEventDescriptor updateEventDescriptor) {
+        assert eventToEdit != null;
+
+        String updatedDescription = updateEventDescriptor.getDescription().orElse(eventToEdit.getDescription());
+        Interval updatedInterval = updateEventDescriptor.getInterval().orElse(eventToEdit.getRecurrence());
+        LocalDate updatedDate = updateEventDescriptor.getDate().orElse(eventToEdit.getAt());
+
+        return new Event(updatedDescription, updatedInterval, updatedDate);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof UpdateEventCommand)) {
+            return false;
+        }
+
+        // state check
+        UpdateEventCommand e = (UpdateEventCommand) other;
+        return projectIndex.equals(e.projectIndex)
+                && targetEventIndex.equals(e.targetEventIndex)
+                && updateEventDescriptor.equals(e.updateEventDescriptor);
+    }
+
+    /**
+     * Stores the details to update the event. Each non-empty field value will replace the
+     * corresponding field value of the event.
+     */
+    public static class UpdateEventDescriptor {
+        private String description;
+        private Interval interval;
+        private LocalDate date;
+
+        public UpdateEventDescriptor() {}
+
+        /**
+         * Copy constructor.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public UpdateEventDescriptor(UpdateEventDescriptor toCopy) {
+            setDescription(toCopy.description);
+            setInterval(toCopy.interval);
+            setDate(toCopy.date);
+        }
+
+        /**
+         * Returns true if at least one field is edited.
+         */
+        public boolean isAnyFieldEdited() {
+            return CollectionUtil.isAnyNonNull(description, interval, date);
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
+        }
+
+        public Optional<String> getDescription() {
+            return Optional.ofNullable(description);
+        }
+
+        public void setInterval(Interval interval) {
+            this.interval = interval;
+        }
+
+        public Optional<Interval> getInterval() {
+            return Optional.ofNullable(interval);
+        }
+
+        public void setDate(LocalDate date) {
+            this.date = date;
+        }
+
+        public Optional<LocalDate> getDate() {
+            return Optional.ofNullable(date);
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            // short circuit if same object
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof UpdateEventDescriptor)) {
+                return false;
+            }
+
+            // state check
+            UpdateEventDescriptor e = (UpdateEventDescriptor) other;
+
+            return getDescription().equals(e.getDescription())
+                    && getInterval().equals(e.getInterval())
+                    && getDate().equals(e.getDate());        }
     }
 }
