@@ -392,101 +392,179 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Add a meeting**
 
 **MSS**
-1. User requests to add a meeting with a client.
+1. User requests to add a meeting with a set of parameters.
 2. iScam adds the meeting.
 
     Use case ends.
 
 **Extensions**
-* 1a. The client does not exist.
-    * 1a1. iScam shows a message to indicate that the client specified does not exist.
+* 1a. iScam detects an error within the new parameters.
+    * 1a1. iScam displays the first invalid parameter and requests for a new set of parameters.
+    * 1a2. User enters a new set of parameters.
+    
+    Steps 1a1-1a2 are repeated until all the parameters entered are valid.
 
-        Use case ends.
-
-
-* 1b. iScam detects an error in the parameters.
-    * 1b1. iScam requests for correction.
-    * 1b2. User corrected the parameters.
-    * Steps 1b1-1b2 are repeated until the parameters entered are correct.
-
-        Use case resume from step 2.
+    Use case resume from step 2.
 
 
-* 1c. A meeting with that date and time already exists.
-    * 1c1. iScam shows a message that a meeting with that date and time already exists.
+* 1b. iScam detects that the user did not provide all required parameters.
+    * 1b1. iScam displays the expected command format and requests for a new set of parameters.
+    * 1b2. User enters a new set of parameters.
+    
+    Steps 1b1-1b2 are repeated until all required parameters are provided.
 
-        Use case ends.
+    Use case resume from either 1a or 2, depending on whether the provided parameter are invalid.
 
 **Use case: List meetings**
 
 **MSS**
 1. User requests to list meetings.
-2. iScam shows a list of meetings.
+2. iScam displays a list of meetings.
 
     Use case ends.
 
 **Extensions**
 * 1a. The list is empty.
-    * 1a1. iScam shows a message to indicate that there are no meetings.
+    * 1a1. iScam displays a message to indicate that there are no meetings. 
+    
+    Use case ends.
 
-        Use case ends.
-
-**Use case: Update a meeting**
+**Use case: Edit a meeting**
 
 **MSS**
 1. User requests to update a meeting with new parameters.
-2. iScam shows a preview of the updated meeting.
-3. User confirms the update.
-4. iScam updates the meeting.
+2. iScam updates the meeting.
 
     Use case ends.
 
 **Extensions**
-* 1a. iScam detects an error with the new parameters.
-    * 1a1. iScam requests for correction.
-    * 1a2. User corrected the parameters.
-    * Steps 1a1-1a2 are repeated until the parameters entered are correct.
+* 1a. iScam detects an error within the new parameters.
+    * 1a1. iScam displays the first invalid parameter and requests for a new set of parameters.
+    * 1a2. User enters a new set of parameters.
+    
+    Steps 1a1-1a2 are repeated until all the parameters entered are valid.
 
-        Use case resume from step 2.
-
-
-* 1b. The new parameters' date or time is in conflict with other existing meetings.
-    * 1b1. iScam shows a message that a meeting with that date and time already exists.
-
-        Use case ends.
+    Use case resume from step 2.
 
 
-* 2a. User chooses to cancel the update.
-    * 2a1. iScam requests to confirm the cancellation.
-    * 2a2. User confirms the cancellation.
+* 1b. iScam detects that the user did not provide any parameter.
+    * 1b1. iScam displays the expected command format and requests for a new set of parameters.
+    * 1b2. User enters a new set of parameters.
+    
+    Steps 1b1-1b2 are repeated until at least 1 parameter is provided.
 
-        Use case ends.
-
+    Use case resume from either 1a or 2, depending on whether the provided parameter is invalid.
 
 **Use case: Delete a meeting**
 
 **MSS**
-1. User requests to delete a meeting.
-2. iScam requests to confirm the deletion.
-3. User confirms the deletion.
-4. iScam delete the meeting.
+1. User requests to delete a meeting that is specified with an entered index.
+2. iScam deletes the meeting and displays a success message.
 
     Use case ends.
 
 **Extensions**
-* 1a. The meeting does not exist.
-    * 1a1. iScam requests for correction.
-    * 1a2. User corrected which meeting to delete.
-    * Steps 1a1-1a2 are repeated until the meeting entered is valid.
+* 1a. iScam cannot find the specified meeting.
+    * 1a1. iScam displays the expected command format and requests for another index.
+    * 1a2. User enters a new index.
 
+    Steps 1a1-1a2 are repeated until the given index is valid.
+  
+    Use case resumes from step 2.
+
+**Use case: Find a meeting**
+
+**MSS**
+1. User requests to find meetings that contain the given keywords.
+2. iScam lists out all matched meetings.
+
+    Use case ends.
+
+**Extensions**
+* 1a. iScam did not receive any keyword.
+    * 1a1. iScam displays the expected command format and requests for keywords.
+    * 1a2 User enter keywords.
+    * Steps 1a1-1a2 are repeated until keywords are given.
+    
         Use case resumes from step 2.
 
+**Use case: Reschedule a meeting**
+1. User requests to change the date time of a meeting by specifying with an entered index and a new date time.
+2. iScam changes the date time of the meeting and displays a success message.
 
-* 2a. User chooses to cancel the deletion.
-    * 2a1. iScam requests to confirm the cancellation.
-    * 2a2. User confirms the cancellation.
+    Use case ends.
 
-        Use case ends.
+**MSS**
+* 1a. iScam did not receive both parameters.
+    * 1a1. iScam displays the expected command format and requests for both index and date time.
+    * 1a2. User enters an index and a date time.
+    
+    Steps 1a1-1a2 are repeated until both parameters are provided.
+    
+    Use cases can resume from either 1b or 2, depending on whether both parameters are valid.
+
+
+* 1b. iScam receives one or more invalid parameters.
+    * 1b1. iScam displays which parameter is invalid and requests for both index and date time.
+    * 1b2. User enters an index and a location.
+    
+    Steps 1b1-1b2 are repeated until the both parameters are valid.
+  
+    Use cases can resume from either 1a or 2, depending on whether both parameters are present.
+
+**Extensions**
+
+**Use case: Relocate a meeting**
+
+**MSS**
+1. User requests to change the location of a meeting by specifying with an entered index and a new location.
+2. iScam changes the location of the meeting and displays a success message.
+
+    Use case ends.
+
+**Extensions**
+* 1a. iScam did not receive both parameters.
+    * 1a1. iScam displays the expected command format and requests for both index and location.
+    * 1a2. User enters an index and a location.
+    
+    Steps 1a1-1a2 are repeated until both parameters are provided.
+    
+    Use cases can resume from either 1b or 2, depending on whether both parameters are valid.
+
+
+* 1b. iScam receives one or more invalid parameters.
+    * 1b1. iScam displays which parameter is invalid and requests for both index and location.
+    * 1b2. User enters an index and a location.
+    
+    Steps 1b1-1b2 are repeated until the both parameters are valid.
+  
+    Use cases can resume from either 1a or 2, depending on whether both parameters are present.
+
+**Use case: Complete a meeting**
+
+**MSS**
+1. User requests to complete a meeting that is specified by an entered index.
+2. iScam marks the meeting as completed and display a success message.
+
+    Use case ends.
+
+**Extensions**
+* 1a. iScam did not receive any index from the user.
+    * 1a1. iScam displays the expected command format and request for an index.
+    * 1a2. User enters a new index.
+
+    Steps 1a1-1a2 are repeated until an index is provided.
+    
+    Use case can resume from either 1b or 2, depending on whether the index is valid.
+
+
+* 1b. iScam cannot find a meeting with the entered index.
+    * 1b1. iScam displays that index is invalid and requests for another index.
+    * 1b2. User enters a new index.
+    
+    Steps 1b1-1b2 are repeated until the index entered is valid.
+    
+    Use case resumes from step 2.
 
 *{More to be added}*
 
