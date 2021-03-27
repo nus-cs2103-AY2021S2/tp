@@ -129,7 +129,7 @@ public class MainApp extends Application {
         try {
             gradeBookOptional = storage.readGradeBook();
             if (!gradeBookOptional.isPresent()) {
-                logger.info(APPOINTMENT_BOOK_NOT_FOUND);
+                logger.info(GRADE_BOOK_NOT_FOUND);
             }
             initialGrades =
                     gradeBookOptional.orElseGet(SampleDataUtil::getSampleGradeBook);
