@@ -18,11 +18,11 @@ as this application is catered to students who are used to typing on the keyboar
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer. You can install Java `11` [here](https://www.oracle.com/sg/java/technologies/javase-jdk11-downloads.html).
 
 1. Download the latest `heymatez.jar` from [here](https://github.com/AY2021S2-CS2103T-W14-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your Hey Matez.
+1. Copy the file to the folder you want to use as the _home folder_ for your Hey MATEz.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -32,7 +32,7 @@ as this application is catered to students who are used to typing on the keyboar
 
    * **`viewMembers`** : Lists all members.
 
-   * **`addTask`**`Wash dishes -d Wash all dishes from dinner -b 2020-01-01` : Adds a task named `Wash dishes` to the Hey Matez.
+   * **`addTask`**`Wash dishes -d Wash all dishes from dinner -b 2020-01-01` : Adds a task named `Wash dishes` to the Hey MATEz.
 
    * **`deleteTask`**`3` : Deletes the 3rd task shown in the current list.
 
@@ -84,7 +84,7 @@ Examples: `addTask assignment -d Math quiz 2 -b 2021-04-04 -s completed -p high`
 
 <a name="deleteTask"></a>
 ### 2. Delete Task: `deleteTask`
-Deletes a task from the list.
+Deletes a task from the list using the INDEX.
 
 Format: `deleteTask INDEX`
 
@@ -92,7 +92,7 @@ Examples: `deleteTask 1`
 
 <a name="viewTasks"></a>
 ### 3. View Tasks: `viewTasks`
-Views the list of tasks that the user has added into the application
+Views the list of tasks that the user has added into the application.
 
 Format: `viewTasks`
 
@@ -100,7 +100,7 @@ Examples: `viewTasks`
 
 <a name="editTask"></a>
 ### 4. Edit Task: `editTask`
-Edit task details
+Edit task details. 
 
 Format: `editTask INDEX -n NEW TITLE -d NEW DESCRIPTION -b NEW DEADLINE -s NEW STATUS -p NEW PRIORITY`
 
@@ -114,7 +114,7 @@ Examples: `editTask 1 -n Plan meeting -d Plan board meeting -b 2021-04-04 -s hig
 <a name="doneTask"></a>
 ### 5. Mark Task as Completed: `done`
 
-Change the status of a task from uncompleted to completed
+Change the status of a task from uncompleted to completed.
 
 Format: `done INDEX`
 
@@ -123,7 +123,7 @@ Examples: `done 1`
 <a name="undoTask"></a>
 ### 6. Mark Task as Uncompleted: `undo`
 
-Change the status of a task from completed to uncompleted
+Change the status of a task from completed to uncompleted.
 
 Format: `undo INDEX`
 
@@ -132,7 +132,7 @@ Examples: `undo 1`
 <a name="findTask"></a>
 ### 7. Find Tasks by Keywords: `findTasks`
 
-Find all tasks containing any of the specified keywords in its title or description
+Find all tasks containing any of the specified keywords in its title or description.
 
 Format: `findTasks KEYWORD MORE_KEYWORDS`
 
@@ -142,7 +142,7 @@ Examples: `findTasks Meeting Proposal Draft`
 <a name="findBefore"></a>
 ### 8. Find Tasks due before certain date: `findBefore`
 
-Find all tasks with deadline before the specified date
+Find all tasks with deadline before the specified date.
 
 Format: `findBefore DATE`
 
@@ -151,7 +151,7 @@ Examples: `findBefore 2021-05-04`
 <a name="findPriority"></a>
 ### 9. Find Tasks by Priority: `findPriority`
 
-Find all tasks containing the specified priority
+Find all tasks containing the specified priority.
 
 Note: The valid input values for `findPriority`: high, medium, low and unassigned (Case sensitive)
 
@@ -171,7 +171,7 @@ Examples: `viewUncompletedTasks`
 <a name="addMember"></a>
 ### 11. Add Member: `addMember`
 
-Adds a member and his/ her contract number to contact list
+Adds a member along with his/ her contract number to contact list.
 
 Format: `addMember NAME -p PHONE NUMBER -e EMAIL -r ROLE`
 
@@ -182,7 +182,7 @@ Examples: `addMember Dylan -p 64529356 -e test@test.com -r Member`
 <a name="deleteMember"></a>
 ### 12. Delete Member: `deleteMember`
 
-Delete a member and his/ her contact details from the contact list
+Delete a member along with his/ her contact details from the contact list.
 
 Format: `deleteMember NAME`
 
@@ -191,7 +191,7 @@ Examples: `deleteMember Rachel`
 <a name="viewMembers"></a>
 ### 13. View Member: `viewMembers`
 
-View the list of members the user has added
+View the list of members the user has added.
 
 Format: `viewMembers `
 
@@ -211,7 +211,7 @@ Examples: `editMember Alice -n Alice Lim -p 95231156 -e tasha@test.com -r Events
 <a name="findmember"></a>
 ### 15. Find Members by Keywords: `findMembers`
 
-Find all members whose details contain any of the specified keywords
+Find all members whose details contain any of the specified keywords.
 
 Format: `findMembers KEYWORD MORE_KEYWORDS`
 
@@ -226,7 +226,7 @@ Format: clear
 Examples: `clear`
 
 <a name="exit"></a>
-### 17. Exiting the progam: `exit`
+### 17. Exiting the program: `exit`
 Exits the program.
 
 Format: exit
@@ -235,7 +235,7 @@ Examples: `exit`
 
 <a name="help"></a>
 ### 18. View Help: `help`
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 Format: help
 
@@ -244,7 +244,7 @@ Examples: `help`
 
 ### Saving the data
 
-Hey Matez data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Hey MATEz data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
