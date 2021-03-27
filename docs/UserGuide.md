@@ -5,48 +5,48 @@ title: User Guide
 
 # ClientBook
 
-ClientBook is an application for managing client contacts, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). 
-If you are an insurance agent who can type fast, ClientBook can help _you_ accomplish your client management tasks faster than traditional GUI apps.
+ClientBook is an application for insurance agents to manage client contacts, optimized for use via a Command Line Interface (CLI) while 
+still having the benefits of a Graphical User Interface (GUI). If you are an insurance agent who can type fast, 
+ClientBook can help _you_ accomplish your client management tasks faster than traditional GUI apps.
 
 ### Table of Contents 
 
-* [Why ClientBook?](#why-clientbook)
-* [Quick Start](#quick-start)
-* [Overview](#Overview)
-  * [Feature Summary](#feature-summary)
-  * [What information can we store for each client contact?](#what-information-can-we-store-for-each-client-contact)
-* [Feature Description](#feature-description)
-  * [`help`: Viewing help](#help-viewing-help)
-  * [`add`: Add client contact](#add-add-client-contact)
-  * [`edit`: Edit client contact](#edit-edit-client-contact)
-  * [`list`: List all clients](#list-list-all-clients)
-  * [`find`: Search for client contact based on keywords](#find-search-for-client-contact-based-on-keywords)
-  * [`policy`: Display policies associated with a client](#policy-display-policies-associated-with-a-client)
-  * [`delete`Delete client contact](#delete-delete-client-contact)
-  * [`sort`: Sort list of clients](#sort-sort-list-of-clients)
-  * [`lock`: Lock ClientBook with a user-selected password](#lock-lock-clientbook-with-a-user-selected-password)
-  * [`unlock`: Unlock ClientBook](#unlock-unlock-clientbook)
-  * [`exit`: Exiting the program](#exit-exiting-the-program)
-  * [Saving data](#saving-data)
-  * [Editing data file](#editing-data-file)
-  * [Upcoming features!](#upcoming-features-v20-and-beyond)
-* [Frequently Asked Questions](#frequently-asked-questions)
-  * [Setting Up](#setting-up)
-* [Summary of Commands](#summary-of-commands)
-* [Contact Us](#contact-us)
+* [**1**. Why ClientBook?](#why-clientbook)
+* [**2.** Quick Start](#quick-start)
+* [**3.** Overview](#Overview)
+  * [**3.1** Feature Summary](#feature-summary)
+  * [**3.2** What information can we store for each client contact?](#what-information-can-we-store-for-each-client-contact)
+* [**4.** Feature Description](#feature-description)
+  * [**4.1** `help`: Viewing help](#help-viewing-help)
+  * [**4.2** `add`: Add client contact](#add-add-client-contact)
+  * [**4.3** `edit`: Edit client contact](#edit-edit-client-contact)
+  * [**4.4** `list`: List all clients](#list-list-all-clients)
+  * [**4.5** `find`: Search for client contact based on keywords](#find-search-for-client-contact-based-on-keywords)
+  * [**4.6** `policy`: Display policies associated with a client](#policy-display-policies-associated-with-a-client)
+  * [**4.7** `delete`Delete client contact](#delete-delete-client-contact)
+  * [**4.8** `sort`: Sort list of clients](#sort-sort-list-of-clients)
+  * [**4.9** ` lock`: Lock ClientBook with a user-selected password](#lock-lock-clientbook-with-a-user-selected-password)
+  * [**4.10** `unlock`: Unlock ClientBook](#unlock-unlock-clientbook)
+  * [**4.11** `exit`: Exiting the program](#exit-exiting-the-program)
+  * [**4.12** Saving data](#saving-data)
+  * [**4.13** Editing data file](#editing-data-file)
+  * [**4.14** Upcoming features!](#upcoming-features-v20-and-beyond)
+* [**5.** Frequently Asked Questions](#frequently-asked-questions)
+  * [**5.1** Setting Up](#setting-up)
+* [**6.** Summary of Commands](#summary-of-commands)
+* [**7.** Contact Us](#contact-us)
 
 
 ## Why ClientBook?
 
-ClientBook is designed for insurance agents who are always on the go. We understand the **pain** and **inconvenience** of having to **navigate around 
-your screen without a mouse** while you are out meeting a client, as well as the **limitations of a laptop's battery life**.<br>
+ClientBook is designed for insurance agents who are always on the go. We understand the pain and inconvenience of having to navigate around 
+your screen without a mouse while you are out meeting a client. We are also aware that you might have to remember various details about your many clients.
+<br>
 
 Thus, ClientBook is born!<br>
 
 Requiring **minimal interactions with your cursor**, ClientBook still allows you to complete essential contact management 
-tasks with our minimal yet essential set of contact management features.<br> 
-
-Consisting of only the **most necessary features** any good insurance agent will need while on the go, ClientBook is extremely easy on your laptop's battery!
+tasks with our minimal yet essential set of contact management features.<br>
 
 If you are a new user, you can start with the [Quick Start](#quick-start) section. 
 If you are an experienced user, we have provided a convenient [Summary of Commands](#summary-of-commands) at the end of this user guide.
