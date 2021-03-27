@@ -15,6 +15,7 @@ import seedu.smartlib.model.record.Record;
  * The API of the Model component.
  */
 public interface Model {
+
     /** {@code Predicate} that always evaluate to true */
     Predicate<Book> PREDICATE_SHOW_ALL_BOOKS = unused -> true;
 
@@ -45,12 +46,12 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' smartlib file path.
+     * Returns the user prefs' SmartLib file path.
      */
     Path getSmartLibFilePath();
 
     /**
-     * Sets the user prefs' smartlib file path.
+     * Sets the user prefs' SmartLib file path.
      */
     void setSmartLibFilePath(Path smartLibFilePath);
 
@@ -59,7 +60,9 @@ public interface Model {
      */
     void setSmartLib(ReadOnlySmartLib smartLib);
 
-    /** Returns the SmartLib. */
+    /**
+     * Returns an immutable copy of the SmartLib.
+     */
     ReadOnlySmartLib getSmartLib();
 
     /**
@@ -94,7 +97,7 @@ public interface Model {
 
     /**
      * Returns true if a reader with the same name as {@code readerName} in the registered reader base
-     * has already borrowed a book.
+     * has already reached his borrow quota.
      */
     boolean canReaderBorrow(Name readerName);
 
@@ -144,7 +147,7 @@ public interface Model {
     void addRecord(Record record);
 
     /**
-     * Searches for the latest given record and mark it as returned.
+     * Searches for the latest given record and marks it as returned.
      */
     void markRecordAsReturned(Record record);
 
@@ -165,10 +168,14 @@ public interface Model {
      */
     void setReader(Reader target, Reader editedReader);
 
-    /** Returns an unmodifiable view of the filtered reader list */
+    /**
+     * Returns an unmodifiable view of the filtered reader list.
+     */
     ObservableList<Reader> getFilteredReaderList();
 
-    /** Returns an unmodifiable view of the filtered book list */
+    /**
+     * Returns an unmodifiable view of the filtered book list.
+     */
     ObservableList<Book> getFilteredBookList();
 
     /**

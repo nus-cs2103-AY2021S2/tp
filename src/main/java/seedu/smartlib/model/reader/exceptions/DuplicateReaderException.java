@@ -5,7 +5,12 @@ package seedu.smartlib.model.reader.exceptions;
  * identity).
  */
 public class DuplicateReaderException extends RuntimeException {
+
+    /**
+     * A constructor for the DuplicateReaderException.
+     */
     public DuplicateReaderException() {
         super("Operation would result in duplicate readers");
     }
+
 }

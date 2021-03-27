@@ -5,7 +5,12 @@ package seedu.smartlib.model.record.exceptions;
  * reader name and book name and dateBorrowed).
  */
 public class DuplicateRecordException extends RuntimeException {
+
+    /**
+     * A constructor for the DuplicateRecordException.
+     */
     public DuplicateRecordException() {
         super("Operation would result in duplicate records");
     }
+
 }

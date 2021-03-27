@@ -31,18 +31,31 @@ public class Isbn {
     }
 
     /**
-     *
      * Returns true if a given string is a valid ISBN.
+     *
+     * @param test string to be tested.
+     * @return true if a given string is a valid ISBN.
      */
     public static boolean isValidIsbn(String test) {
         return test.matches(VALIDATION_REGEX) && test.length() == ISBN_LENGTH;
     }
 
+    /**
+     * Returns this ISBN in String format.
+     *
+     * @return this ISBN in String format.
+     */
     @Override
     public String toString() {
         return value;
     }
 
+    /**
+     * Checks if this ISBN is equal to another ISBN.
+     *
+     * @param other the other ISBN to be compared.
+     * @return true if this ISBN is equal to the other ISBN, and false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -50,6 +63,11 @@ public class Isbn {
                 && value.equals(((Isbn) other).value)); // state check
     }
 
+    /**
+     * Generates a hashcode for this ISBN.
+     *
+     * @return the hashcode for this ISBN.
+     */
     @Override
     public int hashCode() {
         return value.hashCode();

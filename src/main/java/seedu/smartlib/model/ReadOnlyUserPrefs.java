@@ -9,8 +9,14 @@ import seedu.smartlib.commons.core.GuiSettings;
  */
 public interface ReadOnlyUserPrefs {
 
+    /**
+     * Returns the GUI settings of the userPrefs.
+     */
     GuiSettings getGuiSettings();
 
+    /**
+     * Returns the file path to SmartLib registered in the userPrefs.
+     */
     Path getSmartLibFilePath();
 
 }

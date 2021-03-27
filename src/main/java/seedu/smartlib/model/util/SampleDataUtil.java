@@ -76,8 +76,9 @@ public class SampleDataUtil {
     );
 
     /**
-     * Gets an array of sample readers
-     * @return an array of sample readers
+     * Gets an array of sample readers.
+     *
+     * @return an array of sample readers.
      */
     public static Reader[] getSampleReaders() {
         HashMap<Book, DateBorrowed> berniceMap = new HashMap<>();
@@ -110,8 +111,9 @@ public class SampleDataUtil {
     }
 
     /**
-     * Gets an array of sample records
-     * @return an array of sample records
+     * Gets an array of sample records.
+     *
+     * @return an array of sample records.
      */
     public static Record[] getSampleRecords() {
         return new Record[] {
@@ -122,16 +124,18 @@ public class SampleDataUtil {
     }
 
     /**
-     * Gets an array of sample records
-     * @return an array of sample records
+     * Gets an array of sample books.
+     *
+     * @return an array of sample books.
      */
     public static Book[] getSampleBooks() {
         return new Book[] { OLDMAN, HOBBIT, CLOUDATLAS, CLOUDNINE, AVENGERS };
     }
 
     /**
-     * Gets a Stub of SmartLib
-     * @return SmartLib Sample
+     * Gets a Sample of SmartLib.
+     *
+     * @return SmartLib Sample.
      */
     public static ReadOnlySmartLib getSampleSmartLib() {
         SmartLib sampleAb = new SmartLib();
@@ -149,6 +153,9 @@ public class SampleDataUtil {
 
     /**
      * Returns a tag set containing the list of strings given.
+     *
+     * @param strings given list of strings.
+     * @return tag set containing the list of strings given.
      */
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
@@ -157,7 +164,10 @@ public class SampleDataUtil {
     }
 
     /**
-     * Returns a borrow map containing the list of strings given.
+     * Returns a borrow map containing the list of borrow records given.
+     *
+     * @param map given list of borrow records.
+     * @return borrow map containing the list of borrow records given.
      */
     private static Map<Book, DateBorrowed> getBorrowMap(HashMap<Book, DateBorrowed> map) {
         return map;

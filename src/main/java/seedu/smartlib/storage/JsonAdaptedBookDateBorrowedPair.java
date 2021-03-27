@@ -49,7 +49,7 @@ class JsonAdaptedBookDateBorrowedPair {
         this.book.add(book.getIsbn().toString());
         this.book.add(book.getBarcode().toString());
         this.book.add(book.getGenre().toString());
-        this.dateBorrowed = entry.getValue().getValue();
+        this.dateBorrowed = entry.getValue().toString();
     }
 
     /**
@@ -63,7 +63,7 @@ class JsonAdaptedBookDateBorrowedPair {
         this.book.add(book.getIsbn().toString());
         this.book.add(book.getBarcode().toString());
         this.book.add(book.getGenre().toString());
-        this.dateBorrowed = dateBorrowed.getValue();
+        this.dateBorrowed = dateBorrowed.toString();
     }
 
     /**

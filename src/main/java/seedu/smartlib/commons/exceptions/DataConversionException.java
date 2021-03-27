@@ -8,7 +8,7 @@ public class DataConversionException extends Exception {
     /**
      * A constructor for the DataConversionException.
      *
-     * @param cause should contain relevant information on the cause(s) of failure
+     * @param cause should contain relevant information on the cause(s) of failure.
      */
     public DataConversionException(Exception cause) {
         super(cause);

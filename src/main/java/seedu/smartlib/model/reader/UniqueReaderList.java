@@ -30,6 +30,9 @@ public class UniqueReaderList implements Iterable<Reader> {
 
     /**
      * Returns true if the list contains an equivalent reader as the given argument.
+     *
+     * @param toCheck the reader to be checked.
+     * @return true if the list contains an equivalent reader as the given argument, and false otherwise.
      */
     public boolean contains(Reader toCheck) {
         requireNonNull(toCheck);
@@ -39,6 +42,8 @@ public class UniqueReaderList implements Iterable<Reader> {
     /**
      * Adds a reader to the list.
      * The reader must not already exist in the list.
+     *
+     * @param toAdd the reader to be added.
      */
     public void addReader(Reader toAdd) {
         requireNonNull(toAdd);
@@ -52,6 +57,9 @@ public class UniqueReaderList implements Iterable<Reader> {
      * Replaces the reader {@code target} in the list with {@code editedReader}.
      * {@code target} must exist in the list.
      * The person identity of {@code editedReader} must not be the same as another existing reader in the list.
+     *
+     * @param target the reader to be replaced.
+     * @param editedReader the new reader.
      */
     public void setReader(Reader target, Reader editedReader) {
         requireAllNonNull(target, editedReader);
@@ -71,6 +79,8 @@ public class UniqueReaderList implements Iterable<Reader> {
     /**
      * Removes the equivalent reader from the list.
      * The reader must exist in the list.
+     *
+     * @param toRemove the reader to be removed.
      */
     public void remove(Reader toRemove) {
         requireNonNull(toRemove);
@@ -79,6 +89,11 @@ public class UniqueReaderList implements Iterable<Reader> {
         }
     }
 
+    /**
+     * Updates the readers in the unique reader list.
+     *
+     * @param replacement the new list of readers.
+     */
     public void setReaders(UniqueReaderList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -87,6 +102,8 @@ public class UniqueReaderList implements Iterable<Reader> {
     /**
      * Replaces the contents of this list with {@code readers}.
      * {@code readers} must not contain duplicate readers.
+     *
+     * @param readers the new list of readers.
      */
     public void setReaders(List<Reader> readers) {
         requireAllNonNull(readers);
@@ -99,16 +116,29 @@ public class UniqueReaderList implements Iterable<Reader> {
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
+     *
+     * @return the backing list of readers.
      */
     public ObservableList<Reader> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
 
+    /**
+     * Returns an iterator for the unique reader list.
+     *
+     * @return an iterator for the unique reader list.
+     */
     @Override
     public Iterator<Reader> iterator() {
         return internalList.iterator();
     }
 
+    /**
+     * Checks if this UniqueReaderList is equal to another UniqueReaderList.
+     *
+     * @param other the other UniqueReaderList to be compared.
+     * @return true if this UniqueReaderList is equal to the other UniqueReaderList, and false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -116,6 +146,11 @@ public class UniqueReaderList implements Iterable<Reader> {
                         && internalList.equals(((UniqueReaderList) other).internalList));
     }
 
+    /**
+     * Generates a hashcode for this UniqueReaderList.
+     *
+     * @return the hashcode for this UniqueReaderList.
+     */
     @Override
     public int hashCode() {
         return internalList.hashCode();
@@ -123,6 +158,9 @@ public class UniqueReaderList implements Iterable<Reader> {
 
     /**
      * Returns true if {@code readers} contains only unique readers.
+     *
+     * @param readers the list of readers to be checked.
+     * @return true if {@code readers} contains only unique readers, and false otherwise.
      */
     private boolean readersAreUnique(List<Reader> readers) {
         for (int i = 0; i < readers.size() - 1; i++) {
@@ -134,4 +172,5 @@ public class UniqueReaderList implements Iterable<Reader> {
         }
         return true;
     }
+
 }

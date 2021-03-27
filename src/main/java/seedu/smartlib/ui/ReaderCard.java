@@ -59,7 +59,7 @@ public class ReaderCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(Tag::getTagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.getTagName())));
         reader.getBorrows().forEach((key, value) -> borrows.getChildren()
-                .add(new Label(key.getName().toString() + ", borrowed on " + value.getValue() + ".")));
+                .add(new Label(key.getName().toString() + ", borrowed on " + value.toString() + ".")));
     }
 
     @Override
