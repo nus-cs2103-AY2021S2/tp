@@ -30,6 +30,7 @@ import seedu.dictionote.logic.commands.HelpCommand;
 import seedu.dictionote.logic.commands.ListCommandCommand;
 import seedu.dictionote.logic.commands.ListContactCommand;
 import seedu.dictionote.logic.commands.ListContentCommand;
+import seedu.dictionote.logic.commands.ListDefinitionCommand;
 import seedu.dictionote.logic.commands.ListNoteCommand;
 import seedu.dictionote.logic.commands.MarkAllAsUndoneNoteCommand;
 import seedu.dictionote.logic.commands.MarkAsDoneNoteCommand;
@@ -38,6 +39,8 @@ import seedu.dictionote.logic.commands.OpenCommand;
 import seedu.dictionote.logic.commands.ShowDictionaryContentCommand;
 import seedu.dictionote.logic.commands.ShowNoteCommand;
 import seedu.dictionote.logic.commands.SortNoteCommand;
+import seedu.dictionote.logic.commands.ToggleDictionaryOrientationCommand;
+import seedu.dictionote.logic.commands.ToggleNoteOrientationCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 
 /**
@@ -127,6 +130,9 @@ public class DictionoteParser {
         case ListContentCommand.COMMAND_WORD:
             return new ListContentCommand();
 
+        case ListDefinitionCommand.COMMAND_WORD:
+            return new ListDefinitionCommand();
+
         case MarkAsDoneNoteCommand.COMMAND_WORD:
             return new MarkAsDoneNoteCommandParser().parse(arguments);
 
@@ -147,6 +153,12 @@ public class DictionoteParser {
 
         case CloseCommand.COMMAND_WORD:
             return new CloseCommandParser().parse(arguments);
+
+        case ToggleNoteOrientationCommand.COMMAND_WORD:
+            return new ToggleNoteOrientationCommand();
+
+        case ToggleDictionaryOrientationCommand.COMMAND_WORD:
+            return new ToggleDictionaryOrientationCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

@@ -4,6 +4,8 @@ import java.awt.Point;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javafx.geometry.Orientation;
+
 /**
  * A Serializable class that contains the GUI settings.
  * Guarantees: immutable.
@@ -18,10 +20,22 @@ public class GuiSettings implements Serializable {
     private static final double DEFAULT_NOTE_SPLIT_RATIO = 0.3;
     private static final double DEFAULT_MAIN_SPLIT_RATIO = 0.5;
 
+    private static final boolean DEFAULT_CONTACT_PANEL_IS_VISIBLE = true;
+    private static final boolean DEFAULT_NOTE_LIST_PANEL_IS_VISIBLE = true;
+    private static final boolean DEFAULT_NOTE_CONTENT_PANEL_IS_VISIBLE = true;
+    private static final boolean DEFAULT_DICTIONARY_LIST_PANEL_IS_VISIBLE = true;
+    private static final boolean DEFAULT_DICTIONARY_CONTENT_PANEL_IS_VISIBLE = true;
+
+    private static final boolean DEFAULT_NOTE_ORIENTATION_ISVERTICIAL = false;
+    private static final boolean DEFAULT_DICTIONARY_ORIENTATION_ISVERTICIAL = false;
+
 
     private final double windowWidth;
     private final double windowHeight;
     private final Point windowCoordinates;
+
+    private boolean isDictionaryPanelVerticial;
+    private boolean isNotePanelVerticial;
 
     private double contactSplitRatio;
     private double dictionarySplitRatio;
@@ -35,6 +49,7 @@ public class GuiSettings implements Serializable {
     private final boolean isDictionaryContentPanelVisible;
 
 
+
     /**
      * Constructs a {@code GuiSettings} with the default height, width and position.
      */
@@ -43,16 +58,19 @@ public class GuiSettings implements Serializable {
         windowHeight = 0;
         windowCoordinates = null; // null represent no coordinates
 
-        this.contactSplitRatio = DEFAULT_CONTACT_SPLIT_RATIO;
-        this.dictionarySplitRatio = DEFAULT_DICTIONARY_SPLIT_RATIO;
-        this.noteSplitRatio = DEFAULT_NOTE_SPLIT_RATIO;
-        this.mainSplitRatio = DEFAULT_MAIN_SPLIT_RATIO;
+        contactSplitRatio = DEFAULT_CONTACT_SPLIT_RATIO;
+        dictionarySplitRatio = DEFAULT_DICTIONARY_SPLIT_RATIO;
+        noteSplitRatio = DEFAULT_NOTE_SPLIT_RATIO;
+        mainSplitRatio = DEFAULT_MAIN_SPLIT_RATIO;
 
-        isContactPanelVisible = true;
-        isDictionaryContentPanelVisible = true;
-        isDictionaryListPanelVisible = true;
-        isNoteContentPanelVisible = true;
-        isNoteListPanelVisible = true;
+        isContactPanelVisible = DEFAULT_CONTACT_PANEL_IS_VISIBLE;
+        isDictionaryContentPanelVisible = DEFAULT_DICTIONARY_CONTENT_PANEL_IS_VISIBLE;
+        isDictionaryListPanelVisible = DEFAULT_DICTIONARY_LIST_PANEL_IS_VISIBLE;
+        isNoteContentPanelVisible = DEFAULT_NOTE_CONTENT_PANEL_IS_VISIBLE;
+        isNoteListPanelVisible = DEFAULT_NOTE_LIST_PANEL_IS_VISIBLE;
+
+        isDictionaryPanelVerticial = DEFAULT_DICTIONARY_ORIENTATION_ISVERTICIAL;
+        isNotePanelVerticial = DEFAULT_NOTE_ORIENTATION_ISVERTICIAL;
     }
 
     /**
@@ -63,7 +81,8 @@ public class GuiSettings implements Serializable {
                        double noteSplitRatio, double mainSplitRatio,
                        boolean isContactPanelVisible, boolean isDictionaryContentPanelVisible,
                        boolean isDictionaryListPanelVisible, boolean isNoteContentPanelVisible,
-                       boolean isNoteListPanelVisible) {
+                       boolean isNoteListPanelVisible, boolean isDictionaryPanelVerticial,
+                       boolean isNotePanelVerticial) {
 
         this.windowWidth = windowWidth;
         this.windowHeight = windowHeight;
@@ -79,6 +98,9 @@ public class GuiSettings implements Serializable {
         this.isDictionaryListPanelVisible = isDictionaryListPanelVisible;
         this.isNoteContentPanelVisible = isNoteContentPanelVisible;
         this.isNoteListPanelVisible = isNoteListPanelVisible;
+
+        this.isDictionaryPanelVerticial = isDictionaryPanelVerticial;
+        this.isNotePanelVerticial = isNotePanelVerticial;
     }
 
     public double getWindowWidth() {
@@ -190,7 +212,8 @@ public class GuiSettings implements Serializable {
     public int hashCode() {
         return Objects.hash(windowWidth, windowHeight, windowCoordinates, contactSplitRatio, dictionarySplitRatio,
             noteSplitRatio, mainSplitRatio, isContactPanelVisible, isDictionaryContentPanelVisible,
-            isDictionaryListPanelVisible, isNoteContentPanelVisible, isNoteListPanelVisible
+            isDictionaryListPanelVisible, isNoteContentPanelVisible, isNoteListPanelVisible, isDictionaryPanelVerticial,
+            isNotePanelVerticial
         );
     }
 
@@ -209,6 +232,24 @@ public class GuiSettings implements Serializable {
         sb.append("IsDictionaryListPanelVisible : " + isDictionaryListPanelVisible + "\n");
         sb.append("IsNoteContentPanelVisible : " + isNoteContentPanelVisible + "\n");
         sb.append("IsNoteListPanelVisible : " + isNoteListPanelVisible + "\n");
+        sb.append("isDictionaryPanelVerticial : " + isDictionaryPanelVerticial + "\n");
+        sb.append("isNotePanelVerticial : " + isNotePanelVerticial + "\n");
         return sb.toString();
+    }
+
+    public Orientation getDictionaryPanelOrientation() {
+        return isDictionaryPanelVerticial ? Orientation.VERTICAL : Orientation.HORIZONTAL;
+    }
+
+    public void toggleDictionaryPanelOrientation() {
+        isDictionaryPanelVerticial = !isDictionaryPanelVerticial;
+    }
+
+    public Orientation getNotePanelOrientation() {
+        return isNotePanelVerticial ? Orientation.VERTICAL : Orientation.HORIZONTAL;
+    }
+
+    public void toggleNotePanelOrientation() {
+        isNotePanelVerticial = !isNotePanelVerticial;
     }
 }

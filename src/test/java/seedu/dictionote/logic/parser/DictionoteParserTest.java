@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.dictionote.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.dictionote.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.dictionote.testutil.Assert.assertThrows;
@@ -39,8 +40,11 @@ import seedu.dictionote.logic.commands.ListContactCommand;
 import seedu.dictionote.logic.commands.OpenCommand;
 import seedu.dictionote.logic.commands.ShowDictionaryContentCommand;
 import seedu.dictionote.logic.commands.ShowNoteCommand;
+import seedu.dictionote.logic.commands.ToggleDictionaryOrientationCommand;
+import seedu.dictionote.logic.commands.ToggleNoteOrientationCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 import seedu.dictionote.model.contact.Contact;
+import seedu.dictionote.model.contact.EmailContainsKeywordsPredicate;
 import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
 import seedu.dictionote.model.contact.TagsContainKeywordsPredicate;
 import seedu.dictionote.model.note.Note;
@@ -138,16 +142,22 @@ public class DictionoteParserTest {
     public void parseCommand_findContact() throws Exception {
         List<String> nameKeywords = Arrays.asList("foo", "bar", "baz");
         List<String> tagKeywords = Arrays.asList("friends", "family", "tutors");
+        List<String> emailKeywords = Arrays.asList("@aexample.com", "@bexample.com", "@cexample.net");
 
         FindContactCommand command = (FindContactCommand) parser.parseCommand(
             FindContactCommand.COMMAND_WORD
                 + " "
                 + nameKeywords.stream().map(nk -> PREFIX_NAME + nk).collect(Collectors.joining(" "))
                 + " "
-                + tagKeywords.stream().map(tk -> PREFIX_TAG + tk).collect(Collectors.joining(" ")));
+                + emailKeywords.stream().map(ek -> PREFIX_EMAIL + ek).collect(Collectors.joining(" "))
+                + " "
+                + tagKeywords.stream().map(tk -> PREFIX_TAG + tk).collect(Collectors.joining(" "))
+
+        );
 
         assertEquals(new FindContactCommand(
             new NameContainsKeywordsPredicate(nameKeywords),
+            new EmailContainsKeywordsPredicate(emailKeywords),
             new TagsContainKeywordsPredicate(tagKeywords)), command);
     }
 
@@ -190,6 +200,21 @@ public class DictionoteParserTest {
         }
     }
 
+    @Test
+    public void parseCommand_toggleNotePanel() throws Exception {
+        assertTrue(parser.parseCommand(
+            ToggleNoteOrientationCommand.COMMAND_WORD) instanceof ToggleNoteOrientationCommand);
+        assertTrue(parser.parseCommand(
+            ToggleNoteOrientationCommand.COMMAND_WORD + " 3") instanceof ToggleNoteOrientationCommand);
+    }
+
+    @Test
+    public void parseCommand_toggleDictionaryPanel() throws Exception {
+        assertTrue(parser.parseCommand(
+            ToggleDictionaryOrientationCommand.COMMAND_WORD) instanceof ToggleDictionaryOrientationCommand);
+        assertTrue(parser.parseCommand(
+            ToggleDictionaryOrientationCommand.COMMAND_WORD + " 3") instanceof ToggleDictionaryOrientationCommand);
+    }
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
