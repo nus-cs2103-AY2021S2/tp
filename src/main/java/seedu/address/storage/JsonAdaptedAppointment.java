@@ -1,6 +1,5 @@
 package seedu.address.storage;
 
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -12,6 +11,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.Address;
 import seedu.address.model.Name;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.DateTime;
 import seedu.address.model.person.Person;
 
 public class JsonAdaptedAppointment {
@@ -19,7 +19,7 @@ public class JsonAdaptedAppointment {
 
     private final String name;
     private final String address;
-    private final LocalDateTime date; // to change LocalDateTime to DateTime
+    private final DateTime date;
     private final Set<JsonAdaptedPerson> contacts = new HashSet<>();
     // private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -28,7 +28,7 @@ public class JsonAdaptedAppointment {
      */
     @JsonCreator
     public JsonAdaptedAppointment(@JsonProperty("name") String name, @JsonProperty("address") String address,
-                                  @JsonProperty("date") LocalDateTime date,
+                                  @JsonProperty("date") DateTime date,
                                   @JsonProperty("contacts") Set<JsonAdaptedPerson> contacts) {
         this.name = name;
         this.address = address;
@@ -79,9 +79,9 @@ public class JsonAdaptedAppointment {
 
         if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    LocalDateTime.class.getSimpleName()));
+                    DateTime.class.getSimpleName()));
         }
-        final LocalDateTime modelDate = date;
+        final DateTime modelDate = date;
 
         final Set<Person> modelContacts = new HashSet<>(appointmentContacts);
 
