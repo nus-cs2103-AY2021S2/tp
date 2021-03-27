@@ -10,11 +10,12 @@ import seedu.smartlib.commons.util.StringUtil;
  * Tests that a {@code Book}'s {@code Name} matches any of the keywords given.
  */
 public class BookNameContainsKeywordsPredicate implements Predicate<Book> {
-    
+
     private final List<String> keywords;
 
     /**
-     * Creates a NameContainsKeywordPredicate
+     * Creates a NameContainsKeywordPredicate.
+     *
      * @param keywords list of keywords
      */
     public BookNameContainsKeywordsPredicate(List<String> keywords) {

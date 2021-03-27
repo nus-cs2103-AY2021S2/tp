@@ -64,6 +64,16 @@ class ModelStub implements Model {
     }
 
     @Override
+    public Barcode getBookBarcode(Name bookName) {
+        return null;
+    }
+
+    @Override
+    public Barcode getBookBarcodeForReturn(Name bookName, Name readerName) {
+        return null;
+    }
+
+    @Override
     public void setSmartLib(ReadOnlySmartLib newData) {
         throw new AssertionError("This method should not be called.");
     }
@@ -89,7 +99,7 @@ class ModelStub implements Model {
     }
 
     @Override
-    public boolean isBookBorrowed(Name bookName) {
+    public boolean isBookWithBarcodeBorrowed(Barcode barcode) {
         return false;
     }
 

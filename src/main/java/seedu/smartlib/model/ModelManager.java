@@ -3,7 +3,6 @@ package seedu.smartlib.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.smartlib.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.lang.reflect.Array;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.function.Predicate;

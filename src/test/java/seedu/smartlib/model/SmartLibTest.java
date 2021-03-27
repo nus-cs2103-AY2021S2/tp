@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.smartlib.commons.core.name.Name;
+import seedu.smartlib.model.book.Barcode;
 import seedu.smartlib.model.book.Book;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.reader.exceptions.DuplicateReaderException;
@@ -50,11 +51,17 @@ public class SmartLibTest {
     @Test
     public void resetData_withDuplicateReaders_throwsDuplicateReaderException() {
         // Two readers with the same identity fields
-        Reader editedAlice = new ReaderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Reader editedAlice = new ReaderBuilder(ALICE)
+                .withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Reader> newReaders = Arrays.asList(ALICE, editedAlice);
-        Record record = new Record(new Name("Cloud Atlas"), new Name("Alex Yeoh"), new DateBorrowed("2020-11-23"));
+
+        Record record = new Record(
+                new Barcode(Barcode.MAX_VALUE), new Name("Alex Yeoh"), new DateBorrowed("2020-11-23")
+        );
         List<Record> newRecords = Arrays.asList(record, record);
+
         SmartLibStub newData = new SmartLibStub(newRecords, newReaders);
 
         assertThrows(DuplicateReaderException.class, () -> smartLib.resetData(newData));
