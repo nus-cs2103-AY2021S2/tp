@@ -10,7 +10,8 @@ import seedu.address.ui.exceptions.InvalidThemeException;
 
 public class ThemeFactory {
 
-    // Properties of the default theme.
+    // Properties of the default theme
+    // Can be found on https://terminal.sexy, monokai.dark
     private static final String DEFAULT_FOREGROUND = "#f8f8f2";
     private static final String DEFAULT_BACKGROUND = "#272822";
     private static final String[] DEFAULT_COLOR;
