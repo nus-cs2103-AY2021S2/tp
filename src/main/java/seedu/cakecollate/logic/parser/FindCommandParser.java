@@ -40,7 +40,14 @@ public class FindCommandParser implements Parser<FindCommand> {
         List<Prefix> prefixes = Arrays.asList(allPrefixes);
         HashMap<Prefix, List<String>> prefixesToFind = new HashMap<>();
 
+        // User input at least 1 prefix
         if (!arePrefixesEmpty(argMultimap, allPrefixes)) {
+            String preamble = argMultimap.getPreamble();
+            if (!preamble.trim().isEmpty()) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            }
+
             prefixes.forEach(prefix -> {
                 List<String> values = argMultimap.getAllValues(prefix);
                 if (!values.isEmpty()) {
@@ -48,6 +55,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                     prefixesToFind.put(prefix, processed);
                 }
             });
+        // User did not input any prefix
         } else {
             String trimmedArgs = args.trim();
             if (trimmedArgs.isEmpty()) {

@@ -11,6 +11,7 @@ import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_REQUEST;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +20,6 @@ import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import com.fasterxml.jackson.databind.util.TypeKey;
 import seedu.cakecollate.commons.util.StringUtil;
 import seedu.cakecollate.logic.parser.Prefix;
 import seedu.cakecollate.model.tag.Tag;
@@ -83,10 +83,18 @@ public class ContainsKeywordsPredicate implements Predicate<Order> {
             return String.join(" ", tagsString);
         } else if (prefix.equals(PREFIX_DATE)) {
             LocalDate deliveryDate = order.getDeliveryDate().value;
+            DateTimeFormatter format1 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            DateTimeFormatter format2 = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            DateTimeFormatter format3 = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+            DateTimeFormatter format4 = DateTimeFormatter.ofPattern("dd MMM yyyy");
             return deliveryDate.getDayOfMonth() + " "
                     + deliveryDate.getMonthValue() + " "
                     + deliveryDate.getMonth().toString() + " "
-                    + deliveryDate.getYear();
+                    + deliveryDate.getYear() + " "
+                    + format1.format(deliveryDate) + " "
+                    + format2.format(deliveryDate) + " "
+                    + format3.format(deliveryDate) + " "
+                    + format4.format(deliveryDate) + " ";
         } else if (prefix.equals(PREFIX_REQUEST)) {
             return order.getRequest().value;
         } else if (prefix.equals(PREFIX_DELIVERY_STATUS)) {
@@ -107,15 +115,5 @@ public class ContainsKeywordsPredicate implements Predicate<Order> {
         return other == this // short circuit if same object
                 || (other instanceof ContainsKeywordsPredicate // instanceof handles nulls
                 && keywords.equals(((ContainsKeywordsPredicate) other).keywords)); // state check
-    }
-
-    public String toString() {
-        StringBuilder result = new StringBuilder();
-        for (Map.Entry<Prefix, List<String>> entry : keywords.entrySet()) {
-            Prefix prefix = entry.getKey();
-            List<String> value = entry.getValue();
-            result.append(prefix.toString()).append(", ").append(value.toString());
-        }
-        return result.toString();
     }
 }
