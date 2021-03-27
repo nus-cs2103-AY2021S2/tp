@@ -25,7 +25,7 @@ public class Appointment implements Comparable<Appointment> {
 
     // Data fields
     private final Address address;
-    private final LocalDateTime dateTime;
+    private final DateTime dateTime;
     private final Set<Person> contacts = new HashSet<>();
 
     //private final TimeAdded timeAdded;
@@ -33,7 +33,7 @@ public class Appointment implements Comparable<Appointment> {
     /**
      * Every field must be present and not null.
      */
-    public Appointment(Name name, Address address, LocalDateTime dateTime, Set<Person> contacts) {
+    public Appointment(Name name, Address address, DateTime dateTime, Set<Person> contacts) {
         requireAllNonNull(name, address, dateTime, contacts);
         this.name = name;
         this.address = address;
@@ -49,7 +49,7 @@ public class Appointment implements Comparable<Appointment> {
         return address;
     }
 
-    public LocalDateTime getDateTime() {
+    public DateTime getDateTime() {
         return dateTime;
     }
 
