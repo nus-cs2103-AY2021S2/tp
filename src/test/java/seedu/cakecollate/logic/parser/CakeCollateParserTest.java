@@ -29,7 +29,7 @@ import seedu.cakecollate.logic.commands.ListCommand;
 import seedu.cakecollate.logic.commands.RemindCommand;
 import seedu.cakecollate.logic.commands.RequestCommand;
 import seedu.cakecollate.logic.parser.exceptions.ParseException;
-import seedu.cakecollate.model.order.NameContainsKeywordsPredicate;
+import seedu.cakecollate.model.order.ContainsKeywordsPredicate;
 import seedu.cakecollate.model.order.Order;
 import seedu.cakecollate.model.order.ReminderDatePredicate;
 import seedu.cakecollate.model.order.Request;
@@ -84,7 +84,7 @@ public class CakeCollateParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(new ContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

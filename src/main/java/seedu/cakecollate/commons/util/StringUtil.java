@@ -31,7 +31,7 @@ public class StringUtil {
         checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
         checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
 
-        String preppedSentence = sentence;
+        String preppedSentence = sentence.trim();
 
         return preppedSentence.toLowerCase().contains(preppedWord.toLowerCase());
     }

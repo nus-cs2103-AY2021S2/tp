@@ -17,7 +17,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.cakecollate.commons.core.GuiSettings;
-import seedu.cakecollate.model.order.NameContainsKeywordsPredicate;
+import seedu.cakecollate.model.order.ContainsKeywordsPredicate;
 import seedu.cakecollate.testutil.CakeCollateBuilder;
 
 public class ModelManagerTest {
@@ -120,7 +120,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredOrderList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredOrderList(new ContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(cakeCollate, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

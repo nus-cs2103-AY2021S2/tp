@@ -1,15 +1,13 @@
 package seedu.cakecollate.model.order;
 
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_DELIVERY_STATUS;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_ORDER_DESCRIPTION;
@@ -24,31 +22,40 @@ import seedu.cakecollate.model.tag.Tag;
 /**
  * Tests that an {@code Order}'s {@code Name} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate implements Predicate<Order> {
+public class ContainsKeywordsPredicate implements Predicate<Order> {
     private final HashMap<Prefix, List<String>> keywords;
 
-    public NameContainsKeywordsPredicate(HashMap<Prefix, List<String>> keywords) {
+    public ContainsKeywordsPredicate(HashMap<Prefix, List<String>> keywords) {
         this.keywords = keywords;
     }
 
     @Override
     public boolean test(Order order) {
-        boolean result = false;
+        boolean result = true;
         for (Map.Entry<Prefix, List<String>> entry : keywords.entrySet()) {
             Prefix prefix = entry.getKey();
             List<String> value = entry.getValue();
             String testString = getTestString(prefix, order);
-            result = result || prefixTest(value, testString);
+            result = result && prefixTest(value, testString);
         }
         return result;
     }
 
+    /**
+     * Test each {@code String} retrieved from {@code Order} to see if {@code String}
+     * contains any of the provided keywords.
+     */
     public boolean prefixTest(List<String> toTest, String toTestFrom) {
         return toTest.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(toTestFrom, keyword));
     }
 
+    /**
+     * For the specified {@code Order}, retrieve, process and return the {@code String} to test keywords against
+     * based on the provided {@code Prefix}.
+     */
     public String getTestString(Prefix prefix, Order order) {
+        // Cannot use switch-case unless I edit the Prefix class...
         if (prefix.equals(PREFIX_NAME)) {
             return order.getName().fullName;
         } else if (prefix.equals(PREFIX_PHONE)) {
@@ -77,6 +84,14 @@ public class NameContainsKeywordsPredicate implements Predicate<Order> {
                     + deliveryDate.getYear();
         } else if (prefix.equals(PREFIX_REQUEST)) {
             return order.getRequest().value;
+        } else if (prefix.equals(PREFIX_DELIVERY_STATUS)) {
+            return order.getDeliveryStatus().toString();
+        } else if (prefix.equals(new Prefix("all/"))) {
+            List<Prefix> prefixes = Arrays.asList(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                    PREFIX_ORDER_DESCRIPTION, PREFIX_TAG, PREFIX_DATE, PREFIX_REQUEST, PREFIX_DELIVERY_STATUS);
+            StringBuilder returnResult = new StringBuilder();
+            prefixes.forEach(px -> returnResult.append(getTestString(px, order)).append(" "));
+            return returnResult.toString();
         } else {
             return "";
         }
@@ -85,8 +100,8 @@ public class NameContainsKeywordsPredicate implements Predicate<Order> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof ContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((ContainsKeywordsPredicate) other).keywords)); // state check
     }
 
 }

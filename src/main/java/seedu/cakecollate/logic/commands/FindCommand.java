@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.cakecollate.commons.core.Messages;
 import seedu.cakecollate.model.Model;
-import seedu.cakecollate.model.order.NameContainsKeywordsPredicate;
+import seedu.cakecollate.model.order.ContainsKeywordsPredicate;
 
 /**
  * Finds and lists all orders in cakecollate whose name contains any of the argument keywords.
@@ -19,9 +19,9 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final ContainsKeywordsPredicate predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public FindCommand(ContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
