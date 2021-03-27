@@ -13,8 +13,8 @@
 //
 ///**
 // * A list of bookings that enforces no overlapping between its elements and does not allow nulls.
-// * A booking is considered non-overlapping by comparing using {@code Booking#doesOverlap(Booking)}. As such, adding and
-// * updating of bookings uses Booking#doesOverlap(Booking) so as to ensure that the booking being added or
+// * A booking is considered non-overlapping by comparing using {@code Booking#doesOverlap(Booking)}. As such,
+// * adding and updating of bookings uses Booking#doesOverlap(Booking) so as to ensure that the booking being added or
 // * updated does not overlap in timing with another booking in the UniqueBookingList. However, the removal of a booking
 // * uses Booking#equals(Object) so as to ensure that the booking with exactly the same fields will be removed.
 // * Supports a minimal set of list operations.
