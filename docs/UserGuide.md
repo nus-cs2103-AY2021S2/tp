@@ -340,7 +340,7 @@ It is also possible to specify your own property and/or appointment storage data
 
 ![Edit preferences.json file](images/editPreferencesJsonFile.png)
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:** For advanced users, it is also possible to specify your own configuration file, which contains your preferred preference file path. Refer to <a href="##launching-application-via-command-line">Appendix: Launching application via command line</a> for more information.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** For advanced users, it is also possible to specify your own configuration file, which contains your preferred preference file path. Refer to <a href="#launching-application-via-command-line">Appendix: Launching application via command line</a> for more information.
 
 </div>
 
