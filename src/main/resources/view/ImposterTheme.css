@@ -1,3 +1,7 @@
+@font-face {
+    src: url(fonts/AmaticSC-Bold.ttf);
+}
+
 .background {
     -fx-background-color: #000000;
     background-color: #383838; /* Used in the default.html file */
@@ -400,4 +404,12 @@
 
 }
 
+#banner {
+    -fx-background-color: #000000;
+}
 
+#banner .label {
+    -fx-text-fill: derive(#FD830D, 10%);
+    -fx-font-family: 'Amatic SC';
+    -fx-font-size: 20;
+}

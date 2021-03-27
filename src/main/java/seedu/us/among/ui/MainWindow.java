@@ -9,6 +9,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.us.among.commons.core.GuiSettings;
@@ -48,7 +49,8 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane commandBoxPlaceholder;
 
     @FXML
-    private MenuItem helpMenuItem;
+    //private MenuItem helpMenuItem;
+    private HBox banner;
 
     @FXML
     private StackPane endpointListPanelPlaceholder;
@@ -72,7 +74,7 @@ public class MainWindow extends UiPart<Stage> {
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
-        setAccelerators();
+        //setAccelerators();
 
         helpWindow = new HelpWindow();
     }
@@ -81,9 +83,9 @@ public class MainWindow extends UiPart<Stage> {
         return primaryStage;
     }
 
-    private void setAccelerators() {
+    /*private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
-    }
+    }*/
 
     /**
      * Sets the accelerator of a MenuItem.
@@ -131,6 +133,8 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand, resultDisplay, primaryStage);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        // Ensures command box is already focused upon startup
+        commandBox.setFocus();
     }
 
     /**

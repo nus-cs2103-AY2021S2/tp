@@ -393,4 +393,12 @@
     -fx-z-index: -1;
 }
 
+#banner {
+    -fx-background-color: derive(#F2F2F2, 20%);
+}
 
+#banner .label {
+    -fx-text-fill: black;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 15;
+}
