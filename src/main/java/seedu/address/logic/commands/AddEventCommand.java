@@ -36,7 +36,7 @@ public class AddEventCommand extends Command {
             + PREFIX_ENDDATE + "2021-02-27 "
             + PREFIX_ENDTIME + "17:00 "
             + PREFIX_CATEGORY + "School "
-            + PREFIX_TAG + "Team Project";
+            + PREFIX_TAG + "TeamProject";
 
     public static final String MESSAGE_SUCCESS = "New event added: %1$s";
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in Sochedule";
