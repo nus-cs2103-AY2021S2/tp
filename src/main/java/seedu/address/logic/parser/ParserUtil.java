@@ -1,17 +1,23 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Address;
+import seedu.address.model.Model;
 import seedu.address.model.Name;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.ChildTag;
 import seedu.address.model.tag.Tag;
@@ -22,6 +28,11 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    private static Model model;
+
+    public static void setModel(Model model) {
+        ParserUtil.model = model;
+    }
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -148,5 +159,44 @@ public class ParserUtil {
             tagSet.add(parseChildTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String contact} into a {@code Person}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code person} is invalid.
+     */
+    public static Person parseContact(String contact) throws ParseException {
+        requireNonNull(contact);
+
+        String trimmedArgs = contact.trim();
+        if (trimmedArgs.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+
+        String[] nameKeywords = trimmedArgs.split("\\s+");
+
+        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+
+        //        String trimmedTag = contact.trim();
+        //        if (!Tag.isValidTagName(trimmedTag)) {
+        //            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        //        }
+        //        return new Tag(trimmedTag);
+        return null;
+    }
+
+    /**
+     * Parses {@code Collection<String> contacts} into a {@code Set<Person>}.
+     */
+    public static Set<Person> parseContacts(Collection<String> contacts) throws ParseException {
+        requireNonNull(contacts);
+        final Set<Person> contactSet = new HashSet<>();
+        for (String contact : contacts) {
+            contactSet.add(parseContact(contact));
+        }
+        return contactSet;
     }
 }
