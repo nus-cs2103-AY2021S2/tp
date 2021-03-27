@@ -2,11 +2,6 @@
 layout: page
 title: User Guide
 ---
-
-## Introduction
-
-DietLAH! is a **desktop app with a Command-Line Interface (CLI) that allows users to easily track and maintain their meals so that they are able to maintain their ideal body weight.** If you can type fast, you’ll be able to record your meals and track your weight in this app much faster than other traditional GUI-based diet tracking apps!
-
 ## Table of Contents
 
 <!--ts-->
@@ -37,6 +32,11 @@ DietLAH! is a **desktop app with a Command-Line Interface (CLI) that allows user
      * [3.8.2. Query food intake over a period of days](#382-query-food-intake-over-a-period-of-days)
 * [Command summary](#command-summary)
 <!--te-->
+
+--------------------------------------------------------------------------------------------------------------------
+## Introduction
+
+DietLAH! is a **desktop app with a Command-Line Interface (CLI) that allows users to easily track and maintain their meals so that they are able to maintain their ideal body weight.** If you can type fast, you’ll be able to record your meals and track your weight in this app much faster than other traditional GUI-based diet tracking apps!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -196,9 +196,11 @@ Daily Fat intake: 55 g
 ## 3. Macronutrients Tracker
 ### 3.1 Add food item
 
-Creates a new food item with their nutrients value and stores them in the food list. Food items are used as shortcuts to add food intake items without having to type out the values.
+Adds a new food item with their nutrients value and stores them in the food list. Food items are used as shortcuts to add food intake items without having to type out the values.
 
 **Format:** `food_add n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS`
+
+<div class="text-blue mb-2">Test</div>
 
 **Example:** `food_add n/tomato c/10 f/10 p/10`
 
@@ -251,7 +253,7 @@ Successfully deleted food item:  tomato
 
 ### 3.5 Input food intake
 
-For tracking the user's diet plan progress, the user is encouraged to track their daily food intake by entering the food name and associated macronutrients (carbohydrates, fats and proteins) in grams. There are a few ways to input a food intake such as using the pre-stored food values, or adding a brand new food intake. The different scenarios are outlined below.
+For tracking the user's diet plan progress, the user is encouraged to track their daily food intake by entering the food name and associated macronutrients (carbohydrates, fats and proteins) in grams. There are a few ways to input a food intake such as using the pre-stored food values, or adding a brand new food intake. For Date input, the user can use the alias `d/today` as a shortcut to input today's date. The actions for Food Intake Item can only be performed based on past and current date. The different scenarios are outlined below.
 
 **Note:** If there are multiple food intakes with the same date and name, the food name will be automatically renamed to include a duplicate count for easy identification. E.g. Chicken rice, Chicken rice 2
 
