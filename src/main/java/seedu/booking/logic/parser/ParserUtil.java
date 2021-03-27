@@ -14,7 +14,6 @@ import seedu.booking.model.booking.Id;
 import seedu.booking.model.booking.StartTime;
 import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Name;
-import seedu.booking.model.person.Person;
 import seedu.booking.model.person.Phone;
 import seedu.booking.model.venue.Capacity;
 import seedu.booking.model.venue.Venue;
@@ -102,16 +101,6 @@ public class ParserUtil {
         return new Email(trimmedEmail);
     }
 
-    /**
-     * Parses a {@code String booker} into a {@code String trimmedBooker}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     */
-    public static Person parseBooker(String booker) {
-        requireNonNull(booker);
-        String trimmedBooker = booker.trim();
-        return new Person(new Name(trimmedBooker));
-    }
 
 
     /**
