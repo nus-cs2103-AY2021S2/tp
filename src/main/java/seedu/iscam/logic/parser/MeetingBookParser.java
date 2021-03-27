@@ -11,7 +11,6 @@ import seedu.iscam.logic.commands.Command;
 import seedu.iscam.logic.commands.DeleteMeetingCommand;
 import seedu.iscam.logic.commands.DoneMeetingCommand;
 import seedu.iscam.logic.commands.EditMeetingCommand;
-import seedu.iscam.logic.commands.ExitCommand;
 import seedu.iscam.logic.commands.FindMeetingsCommand;
 import seedu.iscam.logic.commands.HelpCommand;
 import seedu.iscam.logic.commands.ListMeetingsCommand;

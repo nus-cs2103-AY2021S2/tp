@@ -1,5 +1,7 @@
 package seedu.iscam.logic;
 
+import static seedu.iscam.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -16,8 +18,8 @@ import seedu.iscam.logic.commands.exceptions.CommandException;
 import seedu.iscam.logic.parser.BookParser;
 import seedu.iscam.logic.parser.ClientBookParser;
 import seedu.iscam.logic.parser.MeetingBookParser;
-import seedu.iscam.logic.parser.exceptions.ParseFormatException;
 import seedu.iscam.logic.parser.exceptions.ParseException;
+import seedu.iscam.logic.parser.exceptions.ParseFormatException;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.ObservableClient;
 import seedu.iscam.model.ObservableMeeting;
@@ -27,7 +29,6 @@ import seedu.iscam.model.client.Client;
 import seedu.iscam.model.meeting.Meeting;
 import seedu.iscam.storage.Storage;
 
-import static seedu.iscam.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 /**
  * The main LogicManager of the app.
@@ -64,16 +65,16 @@ public class LogicManager implements Logic {
         for (BookParser parser : bookParsers) {
             try {
                 command = parser.parseCommand(commandText);
-            } catch(ParseFormatException e) {
+            } catch (ParseFormatException e) {
                 throw e;
-            } catch(ParseException e) {
+            } catch (ParseException e) {
                 continue;
             }
             commandResult = command.execute(model);
             break;
         }
 
-        if(command == null) {
+        if (command == null) {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
 
