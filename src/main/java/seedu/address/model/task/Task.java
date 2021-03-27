@@ -22,6 +22,7 @@ public class Task {
     private final Date deadline;
     private final Priority priority;
     private final CompletionStatus completionStatus = new CompletionStatus();
+    private final PinnedStatus pinnedStatus = new PinnedStatus();
     private final Set<Category> categories = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
 
@@ -52,6 +53,8 @@ public class Task {
     public CompletionStatus getCompletionStatus() {
         return this.completionStatus;
     }
+
+    public PinnedStatus getPinnedStatus() {return this.pinnedStatus;}
 
     public Set<Category> getCategories() {
         return this.categories;
@@ -127,7 +130,9 @@ public class Task {
                 .append("; Category: ")
                 .append(getCategories())
                 .append("; Completion Status: ")
-                .append(completionStatus.toString());
+                .append(completionStatus.toString())
+                .append("; Pinned Status: ")
+                .append(pinnedStatus.toString());
 
         Set<seedu.address.model.common.Tag> tags = getTags();
         if (!tags.isEmpty()) {
