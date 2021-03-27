@@ -234,7 +234,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `HEY MATEz` and the **Actor** is the `user`, unless specified otherwise)
 
-:pencil2:**Use case: Add a member**
+:pencil2: **Use case: Add a member**
 
 **MSS**
 
@@ -251,7 +251,7 @@ Use case ends.
   
 Use case ends.
 
-**Use case: View members**
+:pencil2: **Use case: View members**
 
 **MSS**
 
@@ -260,7 +260,7 @@ Use case ends.
     
 Use case ends.
 
-**Use case: Delete member**
+:pencil2: **Use case: Delete member**
 
 **MSS**
 
@@ -277,7 +277,7 @@ Use case ends.
   
 Use case ends.
 
-**Use case: Edit member's details**
+:pencil2: **Use case: Edit member's details**
 
 **MSS**
 
@@ -294,7 +294,7 @@ Use case ends.
   
 Use case ends.
 
-**Use case: Find members using keywords**
+:pencil2: **Use case: Find members using keywords**
 
 **MSS**
 
@@ -304,7 +304,7 @@ Use case ends.
     
 Use case ends.
 
-**Use case: Add a task**
+:pencil2: **Use case: Add a task**
 
 **MSS**
 
@@ -320,7 +320,7 @@ Use case ends.
   
 Use case ends.
 
-**Use case: View Tasks**
+:pencil2: **Use case: View Tasks**
 
 **MSS**
 
@@ -329,7 +329,7 @@ Use case ends.
     
 Use case ends.
 
-**Use case: Delete Task**
+:pencil2: **Use case: Delete Task**
 
 **MSS**
 
@@ -343,7 +343,7 @@ Similar to deleting a member but user specifies task index instead of name
   
 Use case ends.
 
-**Use case: Edit a task**
+:pencil2: **Use case: Edit a task**
 
 **MSS**
 
@@ -357,14 +357,14 @@ Similar tp editing a member except that user specifies task index instead of nam
   
 Use case ends.
 
-**Use case: Find tasks using keywords**
+:pencil2: **Use case: Find tasks using keywords**
 
 **MSS**
 
 Similar to finding members with keywords except that HEY MATEz 
 lists tasks with its title or description matching any of the keywords
 
-**Use case: Find tasks with deadline before a specified date**
+:pencil2: **Use case: Find tasks with deadline before a specified date**
 
 **MSS**
 
@@ -373,9 +373,8 @@ lists tasks with its title or description matching any of the keywords
 3. HEY MATEz lists tasks with deadlines before the specified date
    
 Use case ends.
-   
-    
-**Use case: Find tasks using Priority**
+
+:pencil2: **Use case: Find tasks using Priority**
 
 **MSS**
 
@@ -393,7 +392,7 @@ Extensions
   
 Use case ends.
 
-**Use case: Mark a Task as Completed**
+:pencil2: **Use case: Mark a Task as Completed**
 
 **MSS**
 
@@ -408,7 +407,7 @@ Use case ends.
   
 Use case ends.
 
-**Use case: Mark a Task as Uncompleted**
+:pencil2: **Use case: Mark a Task as Uncompleted**
 
 **MSS**
 
@@ -423,7 +422,7 @@ Use case ends.
   
 Use case ends.
 
-**Use case: Delete Task**
+:pencil2: **Use case: Delete Task**
 
 **MSS**
 
@@ -435,7 +434,7 @@ Similar to deleting a member except that user specifies task index instead of na
   
 Use case ends.
 
-**Use case: View Uncompleted Tasks**
+:pencil2: **Use case: View Uncompleted Tasks**
 
 **MSS**
 
