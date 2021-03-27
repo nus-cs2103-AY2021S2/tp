@@ -38,7 +38,7 @@ public class SortPropertyCommandTest {
 
         String expectedMessage = String.format(SortPropertyCommand.MESSAGE_SUCCESS, descriptor);
 
-        Model expectedModel = new ModelManager(getTypicalPropertyBook(), new UserPrefs());
+        Model expectedModel = TypicalModelManager.getTypicalModelManager();
 
         Comparator<Property> comparator = (o1, o2) -> o1.getDeadline().compareTo(o2.getDeadline());
 
@@ -57,7 +57,7 @@ public class SortPropertyCommandTest {
 
         String expectedMessage = String.format(SortPropertyCommand.MESSAGE_SUCCESS, descriptor);
 
-        Model expectedModel = new ModelManager(getTypicalPropertyBook(), new UserPrefs());
+        Model expectedModel = TypicalModelManager.getTypicalModelManager();
 
         Comparator<Property> comparator = (o1, o2) -> -1 * o1.getDeadline().compareTo(o2.getDeadline());
 
@@ -76,7 +76,7 @@ public class SortPropertyCommandTest {
 
         String expectedMessage = String.format(SortPropertyCommand.MESSAGE_SUCCESS, descriptor);
 
-        Model expectedModel = new ModelManager(getTypicalPropertyBook(), new UserPrefs());
+        Model expectedModel = TypicalModelManager.getTypicalModelManager();
 
         Comparator<Property> comparator = (o1, o2) -> o1.getName().compareTo(o2.getName());
 
@@ -95,7 +95,7 @@ public class SortPropertyCommandTest {
 
         String expectedMessage = String.format(SortPropertyCommand.MESSAGE_SUCCESS, descriptor);
 
-        Model expectedModel = new ModelManager(getTypicalPropertyBook(), new UserPrefs());
+        Model expectedModel = TypicalModelManager.getTypicalModelManager();
 
         Comparator<Property> comparator = (o1, o2) -> -1 * o1.getName().compareTo(o2.getName());
 

@@ -38,7 +38,7 @@ import seedu.address.testutil.TypicalModelManager;
  */
 public class FindPropertyCommandTest {
     private Model model = TypicalModelManager.getTypicalModelManagerWithClient();
-    private Model expectedModel =TypicalModelManager.getTypicalModelManagerWithClient();
+    private Model expectedModel = TypicalModelManager.getTypicalModelManagerWithClient();
 
     @Test
     public void equalsKeywords() {

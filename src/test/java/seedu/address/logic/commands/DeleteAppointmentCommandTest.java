@@ -35,7 +35,7 @@ public class DeleteAppointmentCommandTest {
         String expectedMessage = String.format(DeleteAppointmentCommand.MESSAGE_DELETE_APPOINTMENT_SUCCESS,
                 appointmentToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAppointmentBook(), new UserPrefs());
+        ModelManager expectedModel = TypicalModelManager.getTypicalModelManager();
         expectedModel.deleteAppointment(appointmentToDelete);
 
         assertCommandSuccess(deleteAppointmentCommand, model, expectedMessage, expectedModel);
@@ -61,7 +61,7 @@ public class DeleteAppointmentCommandTest {
         String expectedMessage = String.format(DeleteAppointmentCommand.MESSAGE_DELETE_APPOINTMENT_SUCCESS,
                 appointmentToDelete);
 
-        Model expectedModel = new ModelManager(model.getAppointmentBook(), new UserPrefs());
+        Model expectedModel = TypicalModelManager.getTypicalModelManager();
         expectedModel.deleteAppointment(appointmentToDelete);
         showNoAppointment(expectedModel);
 
