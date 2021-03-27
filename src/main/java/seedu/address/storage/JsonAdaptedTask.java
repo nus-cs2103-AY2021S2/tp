@@ -1,9 +1,16 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.assignee.Assignee;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Priority;
@@ -19,7 +26,7 @@ public class JsonAdaptedTask {
     private final String status;
     private final String deadline;
     private final String priority;
-
+    private final List<JsonAdaptedAssignee> assignee = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedtask} with the given task details.
@@ -27,12 +34,16 @@ public class JsonAdaptedTask {
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("title") String title, @JsonProperty("description") String description,
                            @JsonProperty("deadline") String deadline, @JsonProperty("status") String status,
-                           @JsonProperty("priority") String priority) {
+                           @JsonProperty("priority") String priority,
+                           @JsonProperty("assignee") List<JsonAdaptedAssignee> assignee) {
         this.title = title;
         this.description = description;
         this.deadline = deadline;
         this.status = status;
         this.priority = priority;
+        if (assignee != null) {
+            this.assignee.addAll(assignee);
+        }
     }
 
     /**
@@ -45,6 +56,9 @@ public class JsonAdaptedTask {
         deadline = source.getDeadline().getUnformattedDate();
         status = source.getTaskStatus().getStatus();
         priority = source.getPriority().getPriority();
+        assignee.addAll(source.getAssignees().stream()
+                .map(JsonAdaptedAssignee::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -53,6 +67,11 @@ public class JsonAdaptedTask {
      * @throws IllegalValueException if there were any data constraints violated in the adapted task.
      */
     public Task toModelType() throws IllegalValueException {
+        final List<Assignee> personAssignees = new ArrayList<>();
+        for (JsonAdaptedAssignee currentAssignee : assignee) {
+            personAssignees.add(currentAssignee.toModelType());
+        }
+
         if (title == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName()));
         }
@@ -99,7 +118,7 @@ public class JsonAdaptedTask {
 
         final Priority modelPriority = Priority.valueOf(priority.toUpperCase());
 
-        return new Task(modelTitle, modelDescription, modelDeadline, modelTaskStatus, modelPriority);
+        final Set<Assignee> modelAssignees = new HashSet<>(personAssignees);
+        return new Task(modelTitle, modelDescription, modelDeadline, modelTaskStatus, modelPriority, modelAssignees);
     }
-
 }

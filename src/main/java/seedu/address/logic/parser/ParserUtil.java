@@ -9,11 +9,11 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.assignee.Assignee;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Role;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Priority;
@@ -102,30 +102,30 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String assignee} into a {@code Assignee}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code assignee} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    public static Assignee parseAssignee(String assignee) throws ParseException {
+        requireNonNull(assignee);
+        String trimmedAssignee = assignee.trim();
+        if (!Assignee.isValidAssigneeName(trimmedAssignee)) {
+            throw new ParseException(Assignee.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new Assignee(trimmedAssignee);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> assignees} into a {@code Set<Assignee>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+    public static Set<Assignee> parseAssignees(Collection<String> assignees) throws ParseException {
+        requireNonNull(assignees);
+        final Set<Assignee> assigneeSet = new HashSet<>();
+        for (String assigneeName : assignees) {
+            assigneeSet.add(parseAssignee(assigneeName));
         }
-        return tagSet;
+        return assigneeSet;
     }
 
     /**

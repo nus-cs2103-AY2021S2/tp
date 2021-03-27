@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,6 +12,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.assignee.Assignee;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
@@ -24,7 +27,6 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Task> filteredTasks;
-
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -140,9 +142,20 @@ public class ModelManager implements Model {
         addressBook.removeTask(target);
     }
 
+    @Override
+    public boolean checkAssignees(Task task) {
+        Set<Assignee> assignees = task.getAssignees();
 
+        for (Assignee assignee : assignees) {
+            Name tempName = new Name(assignee.assigneeName);
+            Person tempPerson = new Person(tempName);
+            if (!hasPerson(tempPerson)) {
+                return false;
+            }
+        }
 
-
+        return true;
+    }
 
     //=========== Filtered Person List Accessors =============================================================
 
@@ -190,5 +203,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
-
 }

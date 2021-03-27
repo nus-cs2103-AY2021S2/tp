@@ -2,8 +2,12 @@ package seedu.address.model.task;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
+import seedu.address.model.assignee.Assignee;
 
 /**
  * Represents a Task in HEY MATEz.
@@ -18,6 +22,8 @@ public class Task {
     private final TaskStatus taskStatus;
     private final Deadline deadline;
     private final Priority priority;
+
+    private final Set<Assignee> assignees = new HashSet<>();
 
     /**
      * Overloaded constructor which sets taskStatus to uncompleted and priority to unassigned by default
@@ -45,19 +51,7 @@ public class Task {
 
 
     /**
-     * Overloaded constructor where every field must be present and not null.  Status set to default of UNCOMPLETED
-     */
-    public Task(Title title, Description description, Deadline deadline, Priority priority) {
-        requireAllNonNull(title, description, deadline, priority);
-        this.title = title;
-        this.description = description;
-        this.taskStatus = TaskStatus.UNCOMPLETED;
-        this.deadline = deadline;
-        this.priority = priority;
-    }
-
-    /**
-     * Overloaded constructor where every field must be present and not null
+     * Overloaded constructor where every field must be present and not null.
      */
     public Task(Title title, Description description, Deadline deadline, TaskStatus taskStatus, Priority priority) {
         requireAllNonNull(title, description, deadline, taskStatus, priority);
@@ -66,6 +60,20 @@ public class Task {
         this.taskStatus = taskStatus;
         this.deadline = deadline;
         this.priority = priority;
+    }
+
+    /**
+     * Overloaded constructor where every field must be present and not null
+     */
+    public Task(Title title, Description description, Deadline deadline, TaskStatus taskStatus,
+                Priority priority, Set<Assignee> assignees) {
+        requireAllNonNull(title, description, deadline, taskStatus, priority);
+        this.title = title;
+        this.description = description;
+        this.taskStatus = taskStatus;
+        this.deadline = deadline;
+        this.priority = priority;
+        this.assignees.addAll(assignees);
     }
 
     public Title getTitle() {
@@ -86,6 +94,10 @@ public class Task {
 
     public Priority getPriority() {
         return this.priority;
+    }
+
+    public Set<Assignee> getAssignees() {
+        return Collections.unmodifiableSet(assignees);
     }
 
     /**
@@ -140,7 +152,12 @@ public class Task {
                 .append("; Priority: ")
                 .append(getPriority());
 
+        Set<Assignee> assignees = getAssignees();
+        if (!assignees.isEmpty()) {
+            builder.append("; Assignees: ");
+            assignees.forEach(builder::append);
+        }
+
         return builder.toString();
     }
-
 }
