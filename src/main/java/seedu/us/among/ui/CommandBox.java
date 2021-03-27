@@ -179,6 +179,13 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
+     * Forces focus of window onto the input command box.
+     */
+    public void setFocus() {
+        commandTextField.requestFocus();
+    }
+
+    /**
      * Represents a function that can execute commands.
      */
     @FunctionalInterface
