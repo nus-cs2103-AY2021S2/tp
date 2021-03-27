@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Priority;
@@ -32,7 +33,6 @@ public class KanbanPanel extends UiPart<Region> {
     @FXML
     private VBox doneColumn;
 
-
     /**
      * Creates a {@code BugListPanel} with the given {@code ObservableList}.
      */
@@ -56,8 +56,10 @@ public class KanbanPanel extends UiPart<Region> {
         EventListPaneKanbanView eventListPanel = new EventListPaneKanbanView(logic.getFilteredListByStatus(status));
         VBox.setVgrow(eventListPanel.getRoot(), Priority.ALWAYS);
 
-
-        Label label = new Label(title + String.format(" (%d)", logic.getFilteredListByStatus(status).size()));
+        Label label = new Label();
+        label.textProperty().bind(
+                Bindings.size(logic.getFilteredListByStatus(status))
+                        .asString(title + " (%1$s)"));
         label.getStyleClass().add("status");
 
         column.getChildren().addAll(label, eventListPanel.getRoot());
