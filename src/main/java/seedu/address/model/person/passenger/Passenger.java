@@ -12,6 +12,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.driver.Driver;
+import seedu.address.model.pool.TripDay;
+import seedu.address.model.pool.TripTime;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -163,9 +165,9 @@ public class Passenger extends Person {
                 .append(getPhone())
                 .append("; Address: ")
                 .append(getAddress())
-                .append("; Trip Day: ")
+                .append("; Pool Day: ")
                 .append(getTripDay())
-                .append("; Trip Time: ")
+                .append("; Pool Time: ")
                 .append(getTripTime())
                 .append("; Price: ")
                 .append(getPrice())

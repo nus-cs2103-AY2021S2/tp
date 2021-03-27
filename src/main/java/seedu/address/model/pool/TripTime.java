@@ -1,4 +1,4 @@
-package seedu.address.model.person.passenger;
+package seedu.address.model.pool;
 
 import static java.util.Objects.requireNonNull;
 

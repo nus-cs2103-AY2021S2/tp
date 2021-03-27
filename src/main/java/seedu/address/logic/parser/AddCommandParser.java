@@ -20,8 +20,8 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.passenger.Address;
 import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.person.passenger.Price;
-import seedu.address.model.person.passenger.TripDay;
-import seedu.address.model.person.passenger.TripTime;
+import seedu.address.model.pool.TripDay;
+import seedu.address.model.pool.TripTime;
 import seedu.address.model.tag.Tag;
 
 /**
