@@ -35,14 +35,14 @@ public interface MeetingBookStorage {
     /**
      * Saves the given {@link ReadOnlyMeetingBook} to the storage.
      *
-     * @param MeetingBook cannot be null.
+     * @param meetingBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveMeetingBook(ReadOnlyMeetingBook MeetingBook) throws IOException;
+    void saveMeetingBook(ReadOnlyMeetingBook meetingBook) throws IOException;
 
     /**
      * @see #saveMeetingBook(ReadOnlyMeetingBook)
      */
-    void saveMeetingBook(ReadOnlyMeetingBook MeetingBook, Path filePath) throws IOException;
+    void saveMeetingBook(ReadOnlyMeetingBook meetingBook, Path filePath) throws IOException;
 
 }

@@ -11,11 +11,15 @@ import seedu.iscam.logic.commands.Command;
 import seedu.iscam.logic.commands.CommandResult;
 import seedu.iscam.logic.commands.exceptions.CommandException;
 import seedu.iscam.logic.parser.ClientBookParser;
+import seedu.iscam.logic.parser.MeetingBookParser;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.ObservableClient;
+import seedu.iscam.model.ObservableMeeting;
 import seedu.iscam.model.ReadOnlyClientBook;
+import seedu.iscam.model.ReadOnlyMeetingBook;
 import seedu.iscam.model.client.Client;
+import seedu.iscam.model.meeting.Meeting;
 import seedu.iscam.storage.Storage;
 
 /**
@@ -28,6 +32,7 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final ClientBookParser clientBookParser;
+    private final MeetingBookParser meetingBookParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -36,18 +41,29 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         clientBookParser = new ClientBookParser();
+        meetingBookParser = new MeetingBookParser();
+
     }
 
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
+        int commandHasMeeting = commandText.split("Meeting").length;
+
         CommandResult commandResult;
-        Command command = clientBookParser.parseCommand(commandText);
-        commandResult = command.execute(model);
+
+        if (commandHasMeeting == 1) { //not meeting command
+            Command command = clientBookParser.parseCommand(commandText);
+            commandResult = command.execute(model);
+        } else {
+            Command command = meetingBookParser.parseCommand(commandText);
+            commandResult = command.execute(model);
+        }
 
         try {
             storage.saveClientBook(model.getClientBook());
+            storage.saveMeetingBook(model.getMeetingBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -56,7 +72,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyClientBook getAddressBook() {
+    public ReadOnlyClientBook getClientBook() {
         return model.getClientBook();
     }
 
@@ -71,8 +87,28 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getClientBookFilePath() {
         return model.getClientBookFilePath();
+    }
+
+    @Override
+    public ReadOnlyMeetingBook getMeetingBook() {
+        return model.getMeetingBook();
+    }
+
+    @Override
+    public ObservableList<Meeting> getFilteredMeetingList() {
+        return model.getFilteredMeetingList();
+    }
+
+    @Override
+    public ObservableMeeting getDetailedMeeting() {
+        return model.getDetailedMeeting();
+    }
+
+    @Override
+    public Path getMeetingBookFilePath() {
+        return model.getMeetingBookFilePath();
     }
 
     @Override

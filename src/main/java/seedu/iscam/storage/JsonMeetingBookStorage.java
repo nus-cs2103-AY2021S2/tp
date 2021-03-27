@@ -60,8 +60,8 @@ public class JsonMeetingBookStorage implements MeetingBookStorage {
     }
 
     @Override
-    public void saveMeetingBook(ReadOnlyMeetingBook clientBook) throws IOException {
-        saveMeetingBook(clientBook, filePath);
+    public void saveMeetingBook(ReadOnlyMeetingBook meetingBook) throws IOException {
+        saveMeetingBook(meetingBook, filePath);
     }
 
     /**
@@ -69,12 +69,12 @@ public class JsonMeetingBookStorage implements MeetingBookStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveMeetingBook(ReadOnlyMeetingBook clientBook, Path filePath) throws IOException {
-        requireNonNull(clientBook);
+    public void saveMeetingBook(ReadOnlyMeetingBook meetingBook, Path filePath) throws IOException {
+        requireNonNull(meetingBook);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableMeetingBook(clientBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableMeetingBook(meetingBook), filePath);
     }
 
 

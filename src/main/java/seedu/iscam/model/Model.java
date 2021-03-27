@@ -65,42 +65,6 @@ public interface Model {
     /**
      * Returns true if a meeting with the same identity as {@code meeting} exists in the iscam book.
      */
-    boolean hasMeeting(Meeting meeting);
-
-    /**
-     * Deletes the given meeting.
-     * The meeting must exist in the iscam book.
-     */
-    void deleteMeeting(Meeting target);
-
-    /**
-     * Adds the given meeting.
-     * {@code meeting} must not already exist in the iscam book.
-     */
-    void addMeeting(Meeting meeting);
-
-    /**
-     * Replaces the given meeting {@code target} with {@code editedMeeting}.
-     * {@code target} must exist in the iscam book.
-     * The identity of {@code editedMeeting} must not be the same as another existing meeting in the iscam book.
-     */
-    void setMeeting(Meeting target, Meeting editedMeeting);
-
-    /**
-     * Returns an unmodifiable view of the filtered meeting list
-     */
-    ObservableList<Meeting> getFilteredMeetingList();
-
-    /**
-     * Updates the filter of the filtered meeting list to filter by the given {@code predicate}.
-     *
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredMeetingList(Predicate<Meeting> predicate);
-
-    /**
-     * Returns true if a meeting with the same identity as {@code meeting} exists in the iscam book.
-     */
     boolean hasClient(Client client);
 
     /**
@@ -144,5 +108,69 @@ public interface Model {
      */
     void setDetailedClient(Client client);
 
-    MeetingBook getMeetingBook();
+    /**
+     * Returns the user prefs' iscam book file path.
+     */
+    Path getMeetingBookFilePath();
+
+    /**
+     * Sets the user prefs' iscam book file path.
+     */
+    void setMeetingBookFilePath(Path meetingBookFilePath);
+
+    /**
+     * Returns the MeetingBook
+     */
+    ReadOnlyMeetingBook getMeetingBook();
+
+    /**
+     * Replaces iscam book data with the data in {@code meetingBook}.
+     */
+    void setMeetingBook(ReadOnlyMeetingBook meetingBook);
+
+    /**
+     * Returns true if a meeting with the same identity as {@code meeting} exists in the iscam book.
+     */
+    boolean hasMeeting(Meeting meeting);
+
+    /**
+     * Deletes the given meeting.
+     * The meeting must exist in the iscam book.
+     */
+    void deleteMeeting(Meeting target);
+
+    /**
+     * Adds the given meeting.
+     * {@code meeting} must not already exist in the iscam book.
+     */
+    void addMeeting(Meeting meeting);
+
+    /**
+     * Replaces the given meeting {@code target} with {@code editedMeeting}.
+     * {@code target} must exist in the iscam book.
+     * The meeting identity of {@code editedMeeting} must not be the same as another existing meeting in the iscam book.
+     */
+    void setMeeting(Meeting target, Meeting editedMeeting);
+
+    /**
+     * Returns an unmodifiable view of the filtered meeting list
+     */
+    ObservableList<Meeting> getFilteredMeetingList();
+
+    /**
+     * Updates the filter of the filtered meeting list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredMeetingList(Predicate<Meeting> predicate);
+
+    /**
+     * Returns an unmodifiable view of a meeting to be displayed in detail
+     */
+    ObservableMeeting getDetailedMeeting();
+
+    /**
+     * Updates the detailed meeting to match the supplied meeting.
+     */
+    void setDetailedMeeting(Meeting meeting);
 }

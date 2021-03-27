@@ -26,9 +26,11 @@ import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.ModelManager;
 import seedu.iscam.model.ReadOnlyClientBook;
+import seedu.iscam.model.ReadOnlyMeetingBook;
 import seedu.iscam.model.UserPrefs;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.storage.JsonClientBookStorage;
+import seedu.iscam.storage.JsonMeetingBookStorage;
 import seedu.iscam.storage.JsonUserPrefsStorage;
 import seedu.iscam.storage.StorageManager;
 import seedu.iscam.testutil.ClientBuilder;
@@ -44,10 +46,12 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonClientBookStorage addressBookStorage =
-                new JsonClientBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonClientBookStorage clientBookStorage =
+                new JsonClientBookStorage(temporaryFolder.resolve("clientBook.json"));
+        JsonMeetingBookStorage meetingBookStorage =
+                new JsonMeetingBookStorage(temporaryFolder.resolve("meetingBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(clientBookStorage, meetingBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -71,12 +75,14 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonClientBookStorage addressBookStorage =
-                new JsonClientBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        // Setup LogicManager with JsonClientBookIoExceptionThrowingStub
+        JsonClientBookStorage clientBookStorage =
+                new JsonClientBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionClientBook.json"));
+        JsonMeetingBookStorage meetingBookStorage =
+                new JsonMeetingBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionMeetingBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(clientBookStorage, meetingBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -148,7 +154,7 @@ public class LogicManagerTest {
     }
 
     /**
-     * A stub class to throw an {@code IOException} when the save method is called.
+     * A stub class to throw an {@code IOException} when the save method is called for client.
      */
     private static class JsonClientBookIoExceptionThrowingStub extends JsonClientBookStorage {
         private JsonClientBookIoExceptionThrowingStub(Path filePath) {
@@ -156,7 +162,21 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveClientBook(ReadOnlyClientBook addressBook, Path filePath) throws IOException {
+        public void saveClientBook(ReadOnlyClientBook clientBook, Path filePath) throws IOException {
+            throw DUMMY_IO_EXCEPTION;
+        }
+    }
+
+    /**
+     * A stub class to throw an {@code IOException} when the save method is called for meeting.
+     */
+    private static class JsonMeetingBookIoExceptionThrowingStub extends JsonMeetingBookStorage {
+        private JsonMeetingBookIoExceptionThrowingStub(Path filePath) {
+            super(filePath);
+        }
+
+        @Override
+        public void saveMeetingBook(ReadOnlyMeetingBook meetingBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }
