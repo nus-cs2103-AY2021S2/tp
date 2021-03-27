@@ -3,7 +3,8 @@ layout: page
 title: Developer Guide
 ---
 
-* Table of Contents {:toc}
+* Table of Contents 
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -115,8 +116,8 @@ call.
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**
-API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-W10-2/tp/blob/master/src/main/java/seedu/storemando/model/Model.java)
+**API** :
+[`Model.java`](https://github.com/AY2021S2-CS2103T-W10-2/tp/blob/master/src/main/java/seedu/storemando/model/Model.java)
 
 The `Model`,
 
@@ -130,8 +131,8 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**
-API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-W10-2/tp/blob/master/src/main/java/seedu/storemando/storage/Storage.java)
+**API** :
+[`Storage.java`](https://github.com/AY2021S2-CS2103T-W10-2/tp/blob/master/src/main/java/seedu/storemando/storage/Storage.java)
 
 The `Storage` component,
 
@@ -156,9 +157,9 @@ The proposed undo/redo mechanism is facilitated by `VersionedStoreMando`. It ext
 history, stored internally as an `storeMandoStateList` and `currentStatePointer`. Additionally, it implements the
 following operations:
 
-* `VersionedStoreMando#commit()` — Saves the current location book state in its history.
-* `VersionedStoreMando#undo()` — Restores the previous location book state from its history.
-* `VersionedStoreMando#redo()` — Restores a previously undone location book state from its history.
+* `VersionedStoreMando#commit()` — Saves the current inventory state in its history.
+* `VersionedStoreMando#undo()` — Restores the previous inventory state from its history.
+* `VersionedStoreMando#redo()` — Restores a previously undone inventory state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitStoreMando()`, `Model#undoStoreMando()`
 and `Model#redoStoreMando()` respectively.
@@ -166,7 +167,7 @@ and `Model#redoStoreMando()` respectively.
 Given below is an example usage scenario and how undo/redo mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `VersionedStoreMando` will be initialized with the
-initial location book state, and the `currentStatePointer` pointing to that single location book state.
+initial inventory state, and the `currentStatePointer` pointing to that single inventory state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
@@ -181,7 +182,7 @@ causing another modified inventory state to be saved into the `storeMandoStateLi
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitStoreMando()`, so the location book state will not be saved into the `storeMandoStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitStoreMando()`, so the inventory state will not be saved into the `storeMandoStateList`.
 
 </div>
 
@@ -205,22 +206,22 @@ The following sequence diagram shows how the undo operation works:
 </div>
 
 The `redo` command does the opposite — it calls `Model#redoStoreMando()`, which shifts the `currentStatePointer` once to
-the right, pointing to the previously undone state, and restores the location book to that state.
+the right, pointing to the previously undone state, and restores the inventory to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `storeMandoStateList.size() - 1`, pointing to the latest location book state, then there are no undone StoreMando states to restore. The `redo` command uses `Model#canRedoStoreMando()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `storeMandoStateList.size() - 1`, pointing to the latest inventory state, then there are no undone StoreMando states to restore. The `redo` command uses `Model#canRedoStoreMando()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the location book, such
-as `list`, will usually not call `Model#commitStoreMando()`, `Model#undoStoreMando()` or `Model#redoStoreMando()`. Thus,
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the inventory, such as `list`,
+will usually not call `Model#commitStoreMando()`, `Model#undoStoreMando()` or `Model#redoStoreMando()`. Thus,
 the `storeMandoStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
 Step 6. The user executes `clear`, which calls `Model#commitStoreMando()`. Since the `currentStatePointer` is not
-pointing at the end of the `storeMandoStateList`, all location book states after the `currentStatePointer` will be
-purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern
-desktop applications follow.
+pointing at the end of the `storeMandoStateList`, all inventory states after the `currentStatePointer` will be purged.
+Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop
+applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -232,7 +233,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ##### Aspect: How undo & redo executes
 
-* **Alternative 1 (current choice):** Saves the entire location book.
+* **Alternative 1 (current choice):** Saves the entire inventory.
     * Pros: Easy to implement.
     * Cons: May have performance issues in terms of memory usage.
 
@@ -280,14 +281,19 @@ individual quantities and respective expiry dates.
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​ | I want to …​ | So that I can…​ | 
-| -------- | -----------| ----------------| -------------------| 
-| `* * *`  | user | delete an item | remove it when it is expired or used up | | `* * *`  | impulsive buyer | add a new item | keep track of it | 
-| `* * *`  | user with many items | list down all items | know in one glance all the items I have | 
-| `* * *`  | forgetful user with many items | search for an item quickly | locate them easily | 
-| `*`      | user who stocks up items daily | update my items | change the items' expiry dates and quantities accordingly | 
-| `* *`    | user who likes to tidy up my room | see all items in the same location | see what items I have in that particular location | 
-| `* *`    | user who tags my items meaningfully | see all items with the same tag | see what items I have with that particular tag |
-| `* *`    | forgetful user | be aware of my expiring items | replace them before it is expired |
+| -------- | ---------- | --------------- | ------------------ | 
+| `* * *` | user | add an item to the inventory | keep track of it’s location, quantity and expiry date |
+| `* * *` | user who discards items often | delete an item from the inventory | remove it when it is expired or used up |
+| `* * *` | user who stocks up items regularly | update my items’ details | change the items' expiry dates and/or quantities accordingly | 
+| `* * *` | user with many items | list down all items | know all the items I have in one glance |
+| `* *` | user who has many items in my room | see all items in my room | keep track of exactly what I have | 
+| `* *` | user who tags my items meaningfully | see all items with the same tag | see what items I have with that particular tag |
+| `* * *` | forgetful user with many items | search for an item quickly | locate them easily |
+| `* *` | forgetful user | be aware of my expiring items | replace them before it is expired or discard them if they have expired |
+| `* *` | grocery buyer of the household | sort my items in terms of quantity | stock up items that are running low on quantity |
+| `* *` | user who does not like to waste food | sort my food in terms of expiry date | consume food that is expiring first |
+| `*` | user who discards large number of items at once | clear all the items in the inventory | start the list afresh without having waste time deleting each item manually |
+| `*` | user who does room cleaning during CNY | clear all the items in a certain location | add them back to different places easily |
 
 _**(more to be added)**_
 
@@ -397,15 +403,15 @@ otherwise)
 * 1a. User inputs a negative number.
 
     * 1a1. StoreMando shows an error message.
-    
+
     * 1a2. StoreMando prompt the user for a correct input.
 
       Use case resumes at step 1.
-    
+
 * 1a. Time unit input is neither day(s) or week(s)
 
     * 1a1. StoreMando shows an error message.
-    
+
     * 1a2. StoreMando prompt the user for a correct input.
 
       Use case resumes at step 1.
@@ -474,7 +480,6 @@ Use case ends.
 
       Use case resumes at step 1.
 
-
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -538,7 +543,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding an item to StoreMando
 
-    1. Prerequisites: Arguments are valid and compulsory parameters are provided. No duplicate item or similar item 
+    1. Prerequisites: Arguments are valid and compulsory parameters are provided. No duplicate item or similar item
        exists in the list.
 
     1. Test case: `add n/Banana q/1 l/kitchen e/2020-10-10 `<br>
@@ -547,10 +552,10 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `add `<br>
        Expected: No item is added. Error details shown in the status message.
 
-    1. Other incorrect add commands to try: `add n/`, `add l/kitchen`, `...` (where compulsory fields are not specified)<br>
+    1. Other incorrect add commands to try: `add n/`, `add l/kitchen`, `...` (where compulsory fields are not
+       specified)<br>
        Expected: Similar to previous.
 
-       
 ### Saving data
 
 1. Dealing with missing/corrupted data files
