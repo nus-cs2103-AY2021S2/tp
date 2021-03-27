@@ -33,12 +33,6 @@
 
 !define USER_COLOR #000000
 
-!define PERSON_COLOR #9E6900
-!define PERSON_COLOR_T1 #FAC873
-!define PERSON_COLOR_T2 #E3B220
-!define PERSON_COLOR_T3 #7B5000
-!define PERSON_COLOR_T4 #4D3200
-
 skinparam BackgroundColor #FFFFFFF
 
 skinparam Shadowing false
