@@ -344,9 +344,6 @@ It is also possible to specify your own property and/or appointment storage data
 
 </div>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** 
-</div>
-
 #### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
