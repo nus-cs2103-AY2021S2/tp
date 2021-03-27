@@ -10,10 +10,6 @@ import java.util.stream.Stream;
 import javafx.collections.ObservableList;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingBook;
-import seedu.address.model.meeting.UniqueMeetingList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.ReadOnlyAddressBook;
-import seedu.address.model.person.UniquePersonList;
 
 public class ReminderBook implements ReadOnlyReminderBook{
 
@@ -34,7 +30,7 @@ public class ReminderBook implements ReadOnlyReminderBook{
     public ReminderBook() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an ReminderBook using {@code toBeCopied}
      */
     public ReminderBook(ReadOnlyReminderBook toBeCopied) {
         this();
@@ -49,15 +45,14 @@ public class ReminderBook implements ReadOnlyReminderBook{
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the reminders
      */
     public void setReminders(List<Reminder> reminders) {
         this.reminders.setReminders(reminders);
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code ReminderBook} with {@code newData}.
      */
     public void resetData(ReadOnlyReminderBook newData) {
         requireNonNull(newData);
@@ -79,8 +74,7 @@ public class ReminderBook implements ReadOnlyReminderBook{
     }
 
     /**
-     * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
+     * Returns an unmodifiable view of the reminders list.
      */
     @Override
     public ObservableList<Reminder> getReminderList() {

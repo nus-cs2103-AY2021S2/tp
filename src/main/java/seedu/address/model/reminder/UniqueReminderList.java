@@ -8,9 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.meeting.Meeting;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 
 public class UniqueReminderList {
     private final ObservableList<Reminder> internalList = FXCollections.observableArrayList();
@@ -24,8 +21,7 @@ public class UniqueReminderList {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code reminders}.
      */
     public void setReminders(List<Reminder> reminders) {
         requireAllNonNull(reminders);
