@@ -56,11 +56,11 @@ public class TaskComparator implements Comparator<Task> {
      */
     public int compare(Task t1, Task t2) {
         if (t1.isPinned() && !t2.isPinned()) {
-            return 1;
+            return -1;
         }
 
         if (t2.isPinned() && !t1.isPinned()) {
-            return -1;
+            return 1;
         }
 
         switch (comparingVar) {
