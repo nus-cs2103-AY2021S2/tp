@@ -1,4 +1,4 @@
-package seedu.partyplanet.commons.util;
+package seedu.partyplanet.logic.autocomplete;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.partyplanet.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -14,7 +14,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -22,7 +21,6 @@ import javafx.collections.ObservableList;
 import seedu.partyplanet.commons.core.Messages;
 import seedu.partyplanet.commons.core.index.Index;
 import seedu.partyplanet.logic.commands.EditCommand;
-import seedu.partyplanet.logic.commands.HelpCommand;
 import seedu.partyplanet.logic.commands.exceptions.CommandException;
 import seedu.partyplanet.logic.parser.ArgumentMultimap;
 import seedu.partyplanet.logic.parser.ArgumentTokenizer;
@@ -36,11 +34,6 @@ import seedu.partyplanet.model.tag.Tag;
 public class EditAutocompleteUtil {
 
     /**
-     * Used for initial separation of command word and args.
-     */
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
-
-    /**
      * Used to convert Set of {@code Tag}s into a String with Tag Prefixes.
      */
     private static String getTagsAsAutocompletedString(Set<Tag> tags) {
@@ -52,25 +45,13 @@ public class EditAutocompleteUtil {
 
     /**
      * Parses an edit command to autocomplete remark.
-     * @param userInput User's input command.
+     * @param arguments User's input command.
      * @param model Model instance containing address book.
      * @return String of new autocompleted command.
      * @throws ParseException If the input command does not follow requirements.
      * @throws CommandException If the input command is out of bounds.
      */
-    public String parseEditCommand(String userInput, Model model) throws ParseException, CommandException {
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
-        if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
-        }
-
-        final String commandWord = matcher.group("commandWord");
-        final String arguments = matcher.group("arguments");
-
-        if (!commandWord.equals("edit")) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
-        }
-
+    public String parseCommand(String arguments, Model model) throws ParseException, CommandException {
         requireNonNull(arguments);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
