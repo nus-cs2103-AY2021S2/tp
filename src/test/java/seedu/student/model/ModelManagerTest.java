@@ -14,8 +14,6 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 
 import seedu.student.commons.core.GuiSettings;
-import seedu.student.model.student.MatriculationNumber;
-import seedu.student.model.student.StudentContainsMatriculationNumberPredicate;
 import seedu.student.testutil.StudentBookBuilder;
 
 public class ModelManagerTest {

@@ -8,8 +8,8 @@ import seedu.student.commons.core.Messages;
 import seedu.student.logic.commands.exceptions.CommandException;
 import seedu.student.model.Model;
 import seedu.student.model.student.MatriculationNumber;
-import seedu.student.model.student.StudentContainsMatriculationNumberPredicate;
 import seedu.student.model.student.Student;
+import seedu.student.model.student.StudentContainsMatriculationNumberPredicate;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.

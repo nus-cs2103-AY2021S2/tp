@@ -23,9 +23,14 @@ public class FindCommand extends Command {
     private final StudentContainsMatriculationNumberPredicate predicate;
     private final AppointmentContainsMatriculationNumberPredicate appointmentPredicate;
 
-    public FindCommand(StudentContainsMatriculationNumberPredicate predicate ,
+    /**
+     *  Creates a FindCommand object responsible for deleting a student by matriculation number.
+     * @param studentPredicate
+     * @param appointmentPredicate
+     */
+    public FindCommand(StudentContainsMatriculationNumberPredicate studentPredicate ,
                        AppointmentContainsMatriculationNumberPredicate appointmentPredicate) {
-        this.predicate = predicate;
+        this.predicate = studentPredicate;
         this.appointmentPredicate = appointmentPredicate;
     }
 

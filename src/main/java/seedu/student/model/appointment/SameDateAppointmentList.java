@@ -3,17 +3,13 @@ package seedu.student.model.appointment;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.student.model.appointment.exceptions.DuplicateAppointmentException;
 import seedu.student.model.appointment.exceptions.OverlappingAppointmentException;
-import seedu.student.model.student.MatriculationNumber;
 
 /**
  * A list of appointments that enforces uniqueness between its elements and does not allow nulls.

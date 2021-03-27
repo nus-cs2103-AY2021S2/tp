@@ -1,13 +1,11 @@
 package seedu.student.model.appointment;
 
-import org.junit.jupiter.api.Test;
-import seedu.student.model.student.MatriculationNumber;
-import seedu.student.model.student.StudentContainsMatriculationNumberPredicate;
-import seedu.student.testutil.AppointmentBuilder;
-import seedu.student.testutil.StudentBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.student.model.student.MatriculationNumber;
 
 public class AppointmentContainsMatriculationNumberPredicateTest {
 
@@ -39,19 +37,20 @@ public class AppointmentContainsMatriculationNumberPredicateTest {
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
-    @Test
+    /*@Test
     public void test_matriculationNumberContainsKeywords_returnsTrue() {
 
-        // Matching keyword
         AppointmentContainsMatriculationNumberPredicate predicate =
                 new AppointmentContainsMatriculationNumberPredicate(new MatriculationNumber("A9012345J"));
-       // assertTrue(predicate.test(new AppointmentBuilder().withDate()));
+       //assertTrue(predicate.test(new AppointmentBuilder().withDate()));
     }
+
+   */
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
 
-      /*  // Zero matriculation numbeer
+      /* Zero matriculation numbeer
         AppointmentContainsMatriculationNumberPredicate predicate =
                 new AppointmentContainsMatriculationNumberPredicate(new MatriculationNumber(""));
         // assertFalse(predicate.test(new StudentBuilder().withMatric("A0984245T").build()));

@@ -46,7 +46,7 @@ public class FindCommandTest {
                 new AppointmentContainsMatriculationNumberPredicate(secondMatriculationNumber);
 
         FindCommand findFirstCommand = new FindCommand(firstStudentPredicate, firstAppointmentPredicate);
-        FindCommand findSecondCommand = new FindCommand(secondStudentPredicate,secondAppointmentPredicate);
+        FindCommand findSecondCommand = new FindCommand(secondStudentPredicate, secondAppointmentPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));

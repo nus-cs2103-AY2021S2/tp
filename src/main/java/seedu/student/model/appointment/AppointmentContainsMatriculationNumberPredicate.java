@@ -1,9 +1,9 @@
 package seedu.student.model.appointment;
 
-import seedu.student.model.student.MatriculationNumber;
-
 import java.util.List;
 import java.util.function.Predicate;
+
+import seedu.student.model.student.MatriculationNumber;
 
 /**
  * Tests that a {@code Appointment}'s {@code Matriculation Number} matches any of the keywords given.
@@ -19,21 +19,19 @@ public class AppointmentContainsMatriculationNumberPredicate implements Predicat
     @Override
     public boolean test(SameDateAppointmentList sameDateAppointmentList) {
         List<Appointment> appointmentList = sameDateAppointmentList.getAppointmentList();
-        int appointmentListSize =appointmentList.size();
+        int appointmentListSize = appointmentList.size();
 
         boolean result = false;
 
-        for(int i=0; i< appointmentListSize; i++){
+        for (int i = 0; i < appointmentListSize; i++) {
             Appointment currentAppointment = appointmentList.get(i);
-            if(keyword.equals(currentAppointment.getMatriculationNumber())){
+            if (keyword.equals(currentAppointment.getMatriculationNumber())) {
                 result = true;
                 break;
-            } else{
-                System.out.println(currentAppointment.getMatriculationNumber());
-                 appointmentList.remove(currentAppointment);
+            } else {
+                appointmentList.remove(currentAppointment);
             }
         }
-
         return result;
     }
 
