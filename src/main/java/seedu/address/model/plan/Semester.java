@@ -1,6 +1,10 @@
 package seedu.address.model.plan;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -20,6 +24,7 @@ public class Semester {
      * @param semNumber Number of Semester.
      */
     public Semester(int semNumber) {
+        requireAllNonNull(semNumber);
         this.semNumber = semNumber;
         modules = new ArrayList<>(10);
     }
@@ -30,6 +35,7 @@ public class Semester {
      * @param modules List of modules in this semester
      */
     public Semester(int semNumber, List<Module> modules) {
+        requireAllNonNull(semNumber, modules);
         this.semNumber = semNumber;
         this.modules = modules;
     }
@@ -46,7 +52,7 @@ public class Semester {
     }
 
     public List<Module> getModules() {
-        return List.copyOf(modules);
+        return Collections.unmodifiableList((modules));
     }
 
     public int getTotalMCs() {
@@ -57,7 +63,14 @@ public class Semester {
         return totalMCs;
     }
 
+    /**
+     * Adds a module to the semester's list of modules
+     *
+     * @param module
+     * @see Module
+     */
     public void addModule(Module module) {
+        requireNonNull(module);
         modules.add(module);
     }
 

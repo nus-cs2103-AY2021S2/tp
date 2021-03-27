@@ -13,7 +13,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.plan.Plan;
-import seedu.address.model.plan.UniquePersonList;
+import seedu.address.model.plan.UniquePlanList;
 import seedu.address.storage.JsonModule;
 
 /**
@@ -22,7 +22,7 @@ import seedu.address.storage.JsonModule;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniquePersonList persons;
+    private final UniquePlanList persons;
     private JsonModule[] moduleInfo;
     private Integer currentSemesterNumber;
     private ObservableList<JsonModule> foundModule;
@@ -34,7 +34,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        persons = new UniquePlanList();
         currentSemesterNumber = null;
         try {
             moduleInfo = readModuleInfo();
@@ -64,7 +64,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code plans} must not contain duplicate plans.
      */
     public void setPersons(List<Plan> plans) {
-        this.persons.setPersons(plans);
+        this.persons.setPlans(plans);
     }
 
     /**
@@ -103,7 +103,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPlan(Plan target, Plan editedPlan) {
         requireNonNull(editedPlan);
 
-        persons.setPerson(target, editedPlan);
+        persons.setPlan(target, editedPlan);
     }
 
     /**
