@@ -124,14 +124,14 @@ public class EditAutocompleteUtil {
                     }
                 }
             }
-            
-            // Special Consideration for Tag Sets
+
+            // For Tag Sets list out all Tags
             if (prefix.equals(PREFIX_TAG)) {
                 output += " " + prefixMethodMap.get(prefix).get();
-                continue;
+            } else {
+                output += " " + prefix + " " + prefixMethodMap.get(prefix).get();
             }
 
-            output += " " + prefix + " " + prefixMethodMap.get(prefix).get();
         }
 
         return output;
