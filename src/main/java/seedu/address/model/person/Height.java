@@ -4,32 +4,32 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's weight in DocBob.
- * Guarantees: immutable; is valid as declared in {@link #isValidWeight(String)}
+ * Represents a Person's height in DocBob.
+ * Guarantees: immutable; is valid as declared in {@link #isValidHeight(String)}
  */
-public class Weight {
+public class Height {
     public static final String MESSAGE_CONSTRAINTS =
-            "Weight must be a number and be in kg";
-    public static final String UNIT = "kg";
+            "Height must be a number and be in cm";
+    public static final String UNIT = "cm";
     public static final String VALIDATION_REGEX = "\\d+" + UNIT;
 
     public final String value;
 
     /**
-     * Constructs a {@code Weight}.
+     * Constructs a {@code Height}.
      *
-     * @param weight A valid weight.
+     * @param height A valid height.
      */
-    public Weight(String weight) {
-        requireNonNull(weight);
-        checkArgument(isValidWeight(weight), MESSAGE_CONSTRAINTS);
-        value = weight;
+    public Height(String height) {
+        requireNonNull(height);
+        checkArgument(isValidHeight(height), MESSAGE_CONSTRAINTS);
+        value = height;
     }
 
     /**
      * Returns true if a given string is a valid weight.
      */
-    public static boolean isValidWeight(String test) {
+    public static boolean isValidHeight(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
