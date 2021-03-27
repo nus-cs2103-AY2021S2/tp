@@ -154,11 +154,6 @@ public interface Model {
     ObservableList<Meeting> getFilteredMeetingList();
 
     /**
-     * Returns an unmodifiable view of a client to be displayed in detail
-     */
-    ObservableClient getDetailedClient();
-
-    /**
      * Updates the filter of the filtered meeting list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
