@@ -294,23 +294,26 @@ Examples:
 
 #### Locating contacts: `findcontact`
 
-Finds contacts whose names contain any of—or tags contain all of—the given keywords.
+Finds contacts whose names and emails contain any of—or tags contain all of—the given keywords.
 
-Format: `findcontact [n/NAME_KEYWORD]... [t/TAG_KEYWORD]...`
+Format: `findcontact [n/NAME_KEYWORD]... [e/EMAIL_KEYWORD]... [t/TAG_KEYWORD]...`
 
 * The search is case-insensitive. e.g `n/hans` will match the name `Hans`
 * The order of the keywords does not matter. e.g. `n/Hans n/Bo` will match the name `Bo Hans`
-* Only the name and tags are searched.
-* Names and tags will be matched if they contain the given keywords e.g. `n/Han` will match the name `Hans`
+* Only the name, email, and tags are searched.
+* Names, emails, and tags will be matched if they contain the given keywords e.g. `n/Han` will match the name `Hans`
 * Contacts matching at least one name keyword will be returned (i.e. `OR` search).
   e.g. `n/Hans n/Bo` will return `Hans Gruber`, `Bo Yang`
+* Contacts matching at least one email keyword will be returned (i.e. `OR` search).
+  e.g. `e/@mail.com e/@mail.net` will return contacts with the following emails: `hans@mail.com`, `bo@mail.net`
 * Contacts matching all of the given tag keywords will be returned (i.e. `AND` search).
-  e.g. `t/friends` will return all contacts that are tagged with `Friends`.
+  e.g. `t/friends t/university` will only return all contacts that are tagged with both `Friends` and `University`
 
 Examples:
 * `findcontact n/John` returns `john` and `John Doe`
 * `findcontact n/alex n/david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+* (More examples to be added...)
 
 #### Deleting a contact : `deletecontact`
 
@@ -337,6 +340,15 @@ Format: `emailcontact INDEX`
 Examples:
 * `listcontact` followed by `emailcontact 2` opens a new message composition window targeting the 2nd contact in the contacts list.
 * `findcontact n/Alice` followed by `emailcontact 1` opens a new message composition window targeting the 1st contact in the results of the `findcontact` command.
+
+#### Sorting the contacts list by most frequently-contacted: `mostfreqcontact`
+
+Sorts the contacts list in descending order based on the number of email sending attempts to each contact.
+
+Format: `mostfreqcontact`
+
+* Each sucessful execution of `emailcommand` will be counted as an email sending attempt, regardless of whether an email was actually sent or not.
+* The ordering of the contacts list after sorting will replace the original ordering. (i.e., the sorted ordering is stored by Dictionote)
 
 #### Clearing the contacts list : `clearcontact`
 
@@ -559,11 +571,12 @@ Action | Format, Examples
 **Save changes to note** | `savenote`
 ***Contact Features*** | -
 **Add contact** | `addcontact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addcontact n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Delete contact** | `deletecontact INDEX`<br> e.g., `deletecontact 3`
-**Send email to contact** | `emailcontact INDEX`
-**Edit contact** | `editcontact INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`editcontact 2 n/James Lee e/jameslee@example.com`
-**Find contacts** | `findcontact [n/NAME_KEYWORD]... [t/TAG_KEYWORD]...`<br> e.g., `findcontact n/James t/family`
 **List all contacts** | `listcontact`
+**Edit contact** | `editcontact INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`editcontact 2 n/James Lee e/jameslee@example.com`
+**Find contacts** | `findcontact [n/NAME_KEYWORD]... [e/EMAIL_KEYWORD]... [t/TAG_KEYWORD]...`<br> e.g., `findcontact n/James e/@mail.com t/family`
+**Delete contact** | `deletecontact INDEX`<br> e.g., `deletecontact 3`
+**Send email to contact** | `emailcontact INDEX`<br> e.g., `emailcontact 2`
+**Sort contacts by most-frequent** | `mostfreqcontact`
 **Clear contacts list** | `clearcontact`
 **Save and quit edit mode** | `save`
 **Quit edit mode** | `quit`
