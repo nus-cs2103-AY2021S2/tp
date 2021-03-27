@@ -25,6 +25,7 @@ import seedu.address.logic.commands.appointmentcommands.FindAppointmentCommand;
 import seedu.address.logic.commands.appointmentcommands.ListAppointmentCommand;
 import seedu.address.logic.commands.appointmentcommands.ViewAppointmentCommand;
 import seedu.address.logic.commands.filtercommands.AddPersonFilterCommand;
+import seedu.address.logic.commands.filtercommands.DeletePersonFilterCommand;
 import seedu.address.logic.parser.appointmentparser.AddAppointmentCommandParser;
 import seedu.address.logic.parser.appointmentparser.DeleteAppointmentCommandParser;
 import seedu.address.logic.parser.appointmentparser.EditAppointmentCommandParser;
@@ -32,6 +33,7 @@ import seedu.address.logic.parser.appointmentparser.FindAppointmentCommandParser
 import seedu.address.logic.parser.appointmentparser.ViewAppointmentCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.filterparser.AddPersonFilterCommandParser;
+import seedu.address.logic.parser.filterparser.DeletePersonFilterCommandParser;
 
 /**
  * Parses user input.
@@ -114,6 +116,9 @@ public class TutorTrackerParser {
 
         case AddPersonFilterCommand.COMMAND_WORD:
             return new AddPersonFilterCommandParser().parse(arguments);
+
+        case DeletePersonFilterCommand.COMMAND_WORD:
+            return new DeletePersonFilterCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
