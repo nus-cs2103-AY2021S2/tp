@@ -33,7 +33,7 @@ public class Task {
     private final DoneStatus doneStatus;
     private final Set<Tag> tags = new HashSet<>();
     private Recurrence recurrence;
-
+    
     /**
      * Every field must be present and not null.
      */
