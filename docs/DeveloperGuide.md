@@ -219,7 +219,7 @@ The following is the sequence diagram for  `OPENCOMMAND`
 #### Design Consideration
 * **Alternative 1 (current choice):** Make use of the existing command `CommandResult` class
     * Pros: make use of the existing system and easy to implement
-    * Cons: All command will have to decide on the response. (or use the default result)
+    * Cons: All command will have to decide on the response. (or use the default setting)
 * Alternative 2: Make use of the Model Component as an intermediary between Command and UI. The command will call a method available on the model to make a change to the UI.
     * Pros: Only the class that requires to change in UI will be needed to call the method
     * Cons: Increasing coupling.
