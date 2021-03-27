@@ -3,9 +3,6 @@ package seedu.iscam.model.tag;
 import static seedu.iscam.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-
-import seedu.iscam.model.commons.Tag;
-
 import seedu.iscam.model.commons.Tag;
 
 public class TagTest {

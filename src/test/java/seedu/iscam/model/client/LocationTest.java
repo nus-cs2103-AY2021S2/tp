@@ -5,9 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.iscam.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-
-import seedu.iscam.model.commons.Location;
-
 import seedu.iscam.model.commons.Location;
 
 public class LocationTest {
