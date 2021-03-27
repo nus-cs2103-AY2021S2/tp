@@ -1,5 +1,6 @@
 package seedu.smartlib.model.book;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -21,8 +22,15 @@ public class BookNameContainsKeywordsPredicate implements Predicate<Book> {
 
     @Override
     public boolean test(Book book) {
+        ArrayList<String> bookInfo = new ArrayList<>();
+        bookInfo.add(book.getName().toString());
+        bookInfo.add(book.getAuthor().toString());
+        bookInfo.add(book.getGenre().toString());
+        bookInfo.add(book.getPublisher().toString());
+        bookInfo.add(book.getIsbn().toString());
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(book.getName().fullName, keyword));
+                .anyMatch(keyword -> StringUtil.containsAnyIgnoreCase(
+                        bookInfo, keyword));
     }
 
     @Override

@@ -5,6 +5,7 @@ import static seedu.smartlib.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -36,6 +37,29 @@ public class StringUtil {
 
         return Arrays.stream(wordsInPreppedSentence)
                 .anyMatch(preppedWord::equalsIgnoreCase);
+    }
+
+    /**
+     * Returns true if the {@code searchWords} contains the {@code word}.
+     *   Ignores case, but a full word match is required.
+     *   <br>examples:<pre>
+     *       containsAnyIgnoreCase("{ABc, def}", "abc") == true
+     *       containsAnyIgnoreCase("{ABc, def}", "DEF") == true
+     *       containsAnyIgnoreCase("{ABc, def}", "AB") == false //not a full word match
+     *       </pre>
+     * @param searchWords cannot be null
+     * @param word cannot be null, cannot be empty, must be a single word
+     */
+    public static boolean containsAnyIgnoreCase(ArrayList<String> searchWords, String word) {
+        boolean isMatched = false;
+
+        for (int i = 0; i < searchWords.size(); i++) {
+            isMatched = containsWordIgnoreCase(searchWords.get(i), word);
+            if (isMatched == true) {
+                break;
+            }
+        }
+        return isMatched;
     }
 
     /**
