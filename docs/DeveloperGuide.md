@@ -104,6 +104,9 @@ The `Model`,
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the meeting book data.
+* exposes an unmodifiable `ObservableList<Meeting>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the connection between the person in the address book and the meeting in the meeting book. e.g. Tom and July both participate in the CS2103 Lecture.
 * does not depend on any of the other three components.
 
 
@@ -313,6 +316,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. AddressBook shows an error message.
 
   Use case ends.
+
+**Use case: Assigning priorities to meetings**
+
+**MSS**
+
+1.  User requests to add a meeting with priority
+2.  MeetBuddy shows the list of meetings after adding.
+
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The priority is out of range.
+
+    * 1a1. MeetBuddy shows an error message.
+
+  Use case ends.
+
 
 
 

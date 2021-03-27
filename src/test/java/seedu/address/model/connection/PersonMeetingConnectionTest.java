@@ -19,6 +19,7 @@ import seedu.address.model.person.UniquePersonList;
 
 class PersonMeetingConnectionTest {
     private PersonMeetingConnection connection = new PersonMeetingConnection();
+    private PersonMeetingConnection connectionCopy;
     private PersonMeetingConnectionTest() {
         connection.addPersonMeetingConnection(AMY, MEETING1);
         connection.addPersonMeetingConnection(AMY, MEETING2);
@@ -28,6 +29,22 @@ class PersonMeetingConnectionTest {
         connection.addPersonMeetingConnection(BOB, MEETING2);
         connection.addPersonMeetingConnection(BOB, MEETING3);
 
+        connectionCopy = new PersonMeetingConnection(connection);
+
+    }
+
+    @Test
+    void resetData() {
+        PersonMeetingConnection reset = new PersonMeetingConnection();
+        reset.resetData(connection);
+        UniqueMeetingList expected = new UniqueMeetingList();
+        expected.add(MEETING1);
+        expected.add(MEETING2);
+        expected.add(MEETING3);
+        assertEquals(connection.getMeetingsByPerson(AMY), expected);
+        assertEquals(connection.getMeetingsByPerson(BOB), expected);
+        assertNotEquals(connection.getMeetingsByPerson(CARL), expected);
+        assertNotEquals(connection.getMeetingsByPerson(HOON), null);
     }
 
     @Test
@@ -41,6 +58,11 @@ class PersonMeetingConnectionTest {
         assertNotEquals(connection.getMeetingsByPerson(CARL), expected);
         assertNotEquals(connection.getMeetingsByPerson(HOON), null);
 
+        assertEquals(connectionCopy.getMeetingsByPerson(AMY), expected);
+        assertEquals(connectionCopy.getMeetingsByPerson(BOB), expected);
+        assertNotEquals(connectionCopy.getMeetingsByPerson(CARL), expected);
+        assertNotEquals(connectionCopy.getMeetingsByPerson(HOON), null);
+
     }
 
     @Test
@@ -53,6 +75,12 @@ class PersonMeetingConnectionTest {
         assertEquals(connection.getPersonsByMeeting(MEETING3), expected);
         assertNotEquals(connection.getPersonsByMeeting(MEETING4), expected);
         assertNotEquals(connection.getPersonsByMeeting(MEETING4), null);
+
+        assertEquals(connectionCopy.getPersonsByMeeting(MEETING1), expected);
+        assertEquals(connectionCopy.getPersonsByMeeting(MEETING2), expected);
+        assertEquals(connectionCopy.getPersonsByMeeting(MEETING3), expected);
+        assertNotEquals(connectionCopy.getPersonsByMeeting(MEETING4), expected);
+        assertNotEquals(connectionCopy.getPersonsByMeeting(MEETING4), null);
     }
 
     @Test
