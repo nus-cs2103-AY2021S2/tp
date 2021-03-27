@@ -45,6 +45,10 @@ public class OptionalField<T> {
             return ((OptionalField<?>) other).isNull();
         }
 
+        if (((OptionalField<?>) other).isNull) {
+            return this.isNull();
+        }
+
         return this.getField().equals(((OptionalField<?>) other).getField());
     }
 
