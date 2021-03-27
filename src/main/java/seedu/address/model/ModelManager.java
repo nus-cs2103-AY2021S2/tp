@@ -11,9 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.driver.Driver;
-import seedu.address.model.person.passenger.IsAssignedDriverPredicate;
-import seedu.address.model.person.passenger.IsSpecifiedDriverPredicate;
 import seedu.address.model.person.passenger.Passenger;
 
 /**
@@ -25,7 +22,6 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Passenger> filteredPassengers;
-    private final FilteredList<Passenger> hasDriverPassengers;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -39,8 +35,6 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredPassengers = new FilteredList<>(this.addressBook.getPassengerList());
-        this.hasDriverPassengers = new FilteredList<>(this.addressBook.getPassengerList())
-                .filtered(new IsAssignedDriverPredicate(true));
     }
 
     public ModelManager() {
@@ -127,16 +121,6 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Passenger> getFilteredPassengerList() {
         return filteredPassengers;
-    }
-
-    @Override
-    public ObservableList<Passenger> getPassengerListByHasDriver() {
-        return hasDriverPassengers;
-    }
-
-    @Override
-    public ObservableList<Passenger> getFilteredPassengerListByDriver(Driver driver) {
-        return filteredPassengers.filtered(new IsSpecifiedDriverPredicate(driver));
     }
 
     @Override

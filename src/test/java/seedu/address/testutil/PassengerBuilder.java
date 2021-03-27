@@ -8,7 +8,6 @@ import java.util.Set;
 
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.driver.Driver;
 import seedu.address.model.person.passenger.Address;
 import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.person.passenger.Price;
@@ -36,7 +35,6 @@ public class PassengerBuilder {
     private TripTime tripTime;
     private Optional<Price> price;
     private Set<Tag> tags;
-    private Optional<Driver> driver;
 
     /**
      * Creates a {@code PassengerBuilder} with the default details.
@@ -49,7 +47,6 @@ public class PassengerBuilder {
         tripTime = new TripTime(DEFAULT_TRIPTIME);
         price = Optional.of(new Price(DEFAULT_PRICE));
         tags = new HashSet<>();
-        driver = Optional.empty();
     }
 
     /**
@@ -63,7 +60,6 @@ public class PassengerBuilder {
         tripTime = passengerToCopy.getTripTime();
         price = passengerToCopy.getPrice();
         tags = new HashSet<>(passengerToCopy.getTags());
-        driver = passengerToCopy.getDriver();
     }
 
     /**
@@ -122,28 +118,7 @@ public class PassengerBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code Driver} of the {@code Passenger} that we are building, with {@code DriverBuilder}.
-     */
-    public PassengerBuilder withDriver() {
-        this.driver = Optional.of(new DriverBuilder().build());
-        return this;
-    }
-
-    /**
-     * Sets the {@code Driver} of the {@code Passenger} that we are building.
-     */
-    public PassengerBuilder withDriver(Driver driver) {
-        this.driver = Optional.ofNullable(driver);
-        return this;
-    }
-
     public Passenger build() {
         return new Passenger(name, phone, address, tripDay, tripTime, price, tags);
     }
-
-    public Passenger buildWithDriver() {
-        return new Passenger(name, phone, address, tripDay, tripTime, price, driver.get(), tags);
-    }
-
 }

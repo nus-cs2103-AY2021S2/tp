@@ -106,7 +106,7 @@ public class PoolCommand extends Command {
         TripTime updatedTripTime = passengerToEdit.getTripTime();
         Optional<Price> price = passengerToEdit.getPrice();
 
-        return new Passenger(updatedName, updatedPhone, updatedAddress, updatedTripDay, updatedTripTime, price, driver,
+        return new Passenger(updatedName, updatedPhone, updatedAddress, updatedTripDay, updatedTripTime, price,
                 updatedTags);
     }
 
