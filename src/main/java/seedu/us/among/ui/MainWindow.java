@@ -193,6 +193,7 @@ public class MainWindow extends UiPart<Stage> {
             RequestException, AbortRequestException {
         resultDisplay.setFeedbackToUser("");
         resultDisplay.getLoadingSpinnerPlaceholder().setVisible(true);
+        resultDisplay.getEmptyListPlaceholder().setVisible(false);
         try {
             CommandResult commandResult = logic.execute(commandText);
             resultDisplay.getLoadingSpinnerPlaceholder().setVisible(false);
@@ -202,6 +203,10 @@ public class MainWindow extends UiPart<Stage> {
                 resultDisplay.setApiFeedbackToUser(commandResult.getFeedbackToUser(), commandResult.getEndpoint());
             } else {
                 resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            }
+
+            if (logic.getFilteredEndpointList().isEmpty() && commandResult.isList()) {
+                resultDisplay.getEmptyListPlaceholder().setVisible(true);
             }
 
             if (commandResult.isShowHelp()) {
