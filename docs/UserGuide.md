@@ -51,11 +51,10 @@ This user guide uses various formatting styles to facilitate reading and to comm
 
 ### Trying out
 
-1. Let's try out your first command by adding a new property! <br>Type `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-6-2021` into the command box and press Enter to execute it.
-1. Scroll down to the bottom of the property list to see your newly added property.
-1. Want to view the properties in order of their asking price? Type the command `sort property o/desc k/price ` and press Enter. The property list will now be ordered in descending order, with the property having the highest asking price at the top.
-1. Now let us try adding a new appointment. Type `add appointment n/Meet Jacob for dinner r/At Orchard Central's food court d/19-4-2021 t/1930`. Scroll down to the bottom of the appointment list to see your newly added appointment.
-1. Forgot the next appointment date to meet Simon? Let's try to find out! Type `find appointment simon` and press Enter. There it is! Your appointment with Simon is on Sep 20, 2021.
+1. Let's try out your first command by adding a new property! <br>Type `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-6-2021` into the command box and press Enter to execute it. After that, scroll down to the bottom of the property list to see your newly added property.
+1. Want to view the properties in order of their asking price? Type the command `sort property o/desc k/price` and press Enter. The property list will now be ordered in descending order, with the property having the highest asking price at the top.
+1. Now let's try adding a new appointment. Type `add appointment n/Meet Jacob for dinner r/At Orchard Central's food court d/19-4-2021 t/1930`. Scroll down to the bottom of the appointment list to see your newly added appointment.
+1. Forgot the next appointment date to meet Simon? Let's try to find out!<br>Type `find appointment simon` and press Enter. There it is! Your appointment with Simon is on Sep 20, 2021.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
  Some example commands you can try:
@@ -63,7 +62,7 @@ This user guide uses various formatting styles to facilitate reading and to comm
    * `list all` : Lists all properties and appointments in the app.
    * `delete property 2` : Deletes the 2nd property shown in the current list of properties.
    * `clear appointment` : Clears all existing appointment data from the app.
-   * **`exit`** : Exits the app.
+   * `exit` : Exits the app.
 
 For a quick reference of the available commands and their syntax, refer to the [Command Summary](#command-summary) section.
 </div>
