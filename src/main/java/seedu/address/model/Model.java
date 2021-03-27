@@ -87,6 +87,18 @@ public interface Model {
     void doneTask(Task task);
 
     /**
+     * Pins the given task.
+     * {@code task} must not already exist in the Sochedule.
+     */
+    void pinTask(Task task);
+
+    /**
+     * Unpins the given task.
+     * {@code task} must not already exist in the Sochedule.
+     */
+    void unpinTask(Task task);
+
+    /**
      * Replaces the given task {@code target} with {@code editedTask}.
      * {@code target} must exist in the Sochedule.
      * The task identity of {@code editedTask} must not be the same as another existing task in the Sochedule.

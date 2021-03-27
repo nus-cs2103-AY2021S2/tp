@@ -135,6 +135,14 @@ public class AddEventCommandTest {
             throw new AssertionError("This method should not be called.");
         }
         @Override
+        public void pinTask(Task target) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void unpinTask(Task target) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
         public void setTask(Task target, Task editedTask) {
             throw new AssertionError("This method should not be called.");
         }

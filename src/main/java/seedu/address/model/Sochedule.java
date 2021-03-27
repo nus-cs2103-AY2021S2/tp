@@ -126,6 +126,22 @@ public class Sochedule implements ReadOnlySochedule {
     }
 
     /**
+     * Pins {@code key} from {@code Sochedule}.
+     * {@code task} must exist in Sochedule.
+     */
+    public void pinTask(Task task) {
+        task.pin();
+    }
+
+    /**
+     * Unpins {@code key} from {@code Sochedule}.
+     * {@code task} must exist in Sochedule.
+     */
+    public void unpinTask(Task task) {
+        task.unpin();
+    }
+
+    /**
      * Sorts the contents of this list given {@code comparingVar}.
      * {@code comparingVar} must be a valid parameter.
      *
