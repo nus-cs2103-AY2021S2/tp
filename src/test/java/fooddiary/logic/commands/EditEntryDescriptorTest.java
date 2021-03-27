@@ -47,7 +47,7 @@ public class EditEntryDescriptorTest {
 
         // different review -> returns false
         editedEntryA = new EditEntryDescriptorBuilder(CommandTestUtil.DESC_A)
-                .withReview(CommandTestUtil.VALID_REVIEW_B).build();
+                .withReviews(CommandTestUtil.VALID_REVIEW_B).build();
         assertFalse(CommandTestUtil.DESC_A.equals(editedEntryA));
 
         // different address -> returns false

@@ -2,49 +2,49 @@
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "entries" : [ {
     "name" : "Restaurant A",
-    "review" : "This is a review for Restaurant A.",
+    "reviews" : ["This is a review for Restaurant A."],
     "rating" : "3",
     "price" : "11",
     "address" : "123, Jurong West Ave 6, #08-111",
     "tagged" : [ "WESTERN" ]
   }, {
     "name" : "Restaurant B",
-    "review" : "This is a review for Restaurant B.",
+    "reviews" : ["This is a review for Restaurant B."],
     "rating" : "2",
     "price" : "12",
     "address" : "311, Clementi Ave 2, #02-25",
     "tagged" : [ "VEGAN", "DESSERT" ]
   }, {
     "name" : "Restaurant C",
-    "review" : "This is a review for Restaurant C.",
+    "reviews" : ["This is a review for Restaurant C."],
     "rating" : "1",
     "price" : "13",
     "address" : "wall street",
     "tagged" : [ ]
   }, {
     "name" : "Restaurant D",
-    "review" : "This is a review for Restaurant D.",
+    "reviews" : ["This is a review for Restaurant D."],
     "rating" : "5",
     "price" : "14",
     "address" : "10th street",
     "tagged" : [ "FASTFOOD" ]
   }, {
     "name" : "Restaurant E",
-    "review" : "This is a review for Restaurant E.",
+    "reviews" : ["This is a review for Restaurant E."],
     "rating" : "2",
     "price" : "15",
     "address" : "michegan ave",
     "tagged" : [ ]
   }, {
     "name" : "Restaurant F",
-    "review" : "This is a review for Restaurant F.",
+    "reviews" : ["This is a review for Restaurant F."],
     "rating" : "1",
     "price" : "16",
     "address" : "little tokyo",
     "tagged" : [ ]
   }, {
     "name" : "Restaurant G",
-    "review" : "This is a review for Restaurant G.",
+    "reviews" : ["This is a review for Restaurant G."],
     "rating" : "0",
     "price" : "17",
     "address" : "4th street",

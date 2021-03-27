@@ -2,6 +2,7 @@ package fooddiary.logic.parser;
 
 import static fooddiary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -40,11 +41,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get());
         Rating rating = ParserUtil.parseRating(argMultimap.getValue(CliSyntax.PREFIX_RATING).get());
         Price price = ParserUtil.parsePrice(argMultimap.getValue(CliSyntax.PREFIX_PRICE).get());
-        Review review = ParserUtil.parseReview(argMultimap.getValue(CliSyntax.PREFIX_REVIEW).get());
+        List<Review> reviewList = ParserUtil.parseReviews(argMultimap.getValueInList(CliSyntax.PREFIX_REVIEW));
         Address address = ParserUtil.parseAddress(argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(CliSyntax.PREFIX_TAG));
 
-        Entry entry = new Entry(name, rating, price, review, address, tagList);
+        Entry entry = new Entry(name, rating, price, reviewList, address, tagList);
 
         return new AddCommand(entry);
     }

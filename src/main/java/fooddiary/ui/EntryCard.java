@@ -39,7 +39,7 @@ public class EntryCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
-    private Label review;
+    private Label reviews;
     @FXML
     private FlowPane tags;
 
@@ -54,10 +54,15 @@ public class EntryCard extends UiPart<Region> {
         rating.setText(String.format("Rating: %s / 5", entry.getRating().value));
         price.setText(String.format("Price: $%s", entry.getPrice().value));
         address.setText(entry.getAddress().value);
-        review.setText(entry.getReview().toString());
+        String reviewStr = "";
+        for (int i = 0; i < entry.getReviews().size(); i++) {
+            reviewStr += entry.getReviews().get(i) + "\n";
+        }
+        reviews.setText(String.format("Reviews: %s", reviewStr));
+
         entry.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagCategory))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagCategory.titleCase())));
+                .sorted(Comparator.comparing(tag -> tag.tag))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tag)));
     }
 
     @Override
