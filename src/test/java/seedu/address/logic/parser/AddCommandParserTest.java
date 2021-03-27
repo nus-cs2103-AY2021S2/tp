@@ -4,7 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 //import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_RESIDENCE1;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_RESIDENCE2;
 //import static seedu.address.logic.commands.CommandTestUtil.BOOKING_DETAILS_DESC_RESIDENCE1;
-import static seedu.address.logic.commands.CommandTestUtil.BOOKING_DETAILS_DESC_RESIDENCE2;
+//import static seedu.address.logic.commands.CommandTestUtil.BOOKING_DETAILS_DESC_RESIDENCE2;
 import static seedu.address.logic.commands.CommandTestUtil.CLEAN_STATUS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_CLEAN_TAG_DESC;

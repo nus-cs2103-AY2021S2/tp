@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_RESIDEN
 //import static seedu.address.logic.commands.CommandTestUtil.VALID_BOOKING_DETAILS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_RESIDENCE2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_REPAIR;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_UNCLEAN_TAG;
+//import static seedu.address.logic.commands.CommandTestUtil.VALID_UNCLEAN_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalResidences.RESIDENCE1;
 import static seedu.address.testutil.TypicalResidences.RESIDENCE2;
