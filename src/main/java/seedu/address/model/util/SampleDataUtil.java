@@ -69,14 +69,17 @@ public class SampleDataUtil {
     }
 
     public static Event[] getSampleEvents() {
-        return new Event[] {new Event(new EventName("Lunch with John"),
-                EventStatus.TODO, EventPriority.HIGH, new Description("At VivoCity"))};
-        /* Removed timeStart and timeEnd in v1.2
-        return new Event[] {new Event(new EventName("Lunch with John"), new EventTime("12/01/2021 10:10"),
-                new EventTime("21/01/2021 10:10"), EventStatus.TODO, new Description("At VivoCity"),
-                getTagSet("Friends"), getSamplePersonSet())
-        };
-         */
+        return new Event[] {
+            new Event(new EventName("CS2107 Finals"), EventStatus.BACKLOG,
+                    EventPriority.LOW, new Description("Finals on 3rd May 2021")),
+            new Event(new EventName("CS2030 Lab 1"), EventStatus.TODO,
+                    EventPriority.MEDIUM, new Description("Lab 1 to complete")),
+            new Event(new EventName("CS2103T TP"), EventStatus.IN_PROGRESS,
+                    EventPriority.HIGH, new Description("Team Project for CS2103T")),
+            new Event(new EventName("CS2105 Assignment 1"), EventStatus.IN_PROGRESS,
+                    EventPriority.MEDIUM, new Description("Due on 28 Mar 2021")),
+            new Event(new EventName("CS2101 OP1"), EventStatus.DONE,
+                    EventPriority.HIGH, new Description("OP1 Preparations")) };
     }
 
     /**

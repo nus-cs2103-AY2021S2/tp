@@ -95,16 +95,18 @@ Focuris is a **desktop application** for **managing events** with a KanBan board
 
 ### 2.1.1 Command Summary
 
-| Command                           | Description                                     | Format, Examples                                                                                           |
-| --------------------------------- | ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| [**Clear**](#236-clear-command)   | **Clears** all events in Focuris                | `clear`                                                                                                    |
-| [**Delete**](#235-delete-command) | **Deletes** an existing event                   | `delete IDENTIFIER`<br> e.g., `delete 3`                                                                   |
-| [**Edit**](#234-edit-command)     | **Edits** an existing event's attributes        | `edit IDENTIFIER [n/NAME] [s/STATUS] [d/DESCRIPTION] [p/PRIORITY]`<br> e.g.,`edit 2 n/CS2030 d/Assignment` |
-| [**Exit**](#222-exit-command)     | **Exits** the application                       | `exit`                                                                                                     |
-| [**Help**](#221-help-command)     | Displays **help menu** pop-up                   | `help`                                                                                                     |
-| [**Log**](#232-log-command)       | Creates a new event with status **Backlog**     | `log n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `log n/CS2030 d/Lab`                                    |
-| [**Prog**](#233-prog-command)     | Creates a new event with status **In-Progress** | `prog n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `prog n/CS2100 d/Tutorial`                             |
-| [**Todo**](#231-todo-command)     | Creates a new event with status **Todo**        | `todo n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `todo n/CS2040 d/Assignment`                           |
+| Command                           | Description                                      | Format, Examples                                                                                           |
+| --------------------------------- | ------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
+| [**Clear**](#236-clear-command)   | **Clears** all events in Focuris                 | `clear`                                                                                                    |
+| [**Delete**](#235-delete-command) | **Deletes** an existing event                    | `delete IDENTIFIER`<br> e.g., `delete 3`                                                                   |
+| [**Edit**](#234-edit-command)     | **Edits** an existing event's attributes         | `edit IDENTIFIER [n/NAME] [s/STATUS] [d/DESCRIPTION] [p/PRIORITY]`<br> e.g.,`edit 2 n/CS2030 d/Assignment` |
+| [**Find**](#237-find-command)     | **Finds** an existing event by specific keywords | `find KEYWORD [KEYWORD]...`<br> e.g., `find James Jake`                                                    |
+| [**Exit**](#222-exit-command)     | **Exits** the application                        | `exit`                                                                                                     |
+| [**Help**](#221-help-command)     | Displays **help menu** pop-up                    | `help`                                                                                                     |
+| [**List**](#232-list-command)     | Clears previous filters and lists all events     | `list`                                                                                                     |
+| [**Log**](#232-log-command)       | Creates a new event with status **Backlog**      | `log n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `log n/CS2030 d/Lab`                                    |
+| [**Prog**](#233-prog-command)     | Creates a new event with status **In-Progress**  | `prog n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `prog n/CS2100 d/Tutorial`                             |
+| [**Todo**](#231-todo-command)     | Creates a new event with status **Todo**         | `todo n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `todo n/CS2040 d/Assignment`                           |
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -377,6 +379,63 @@ All events will be cleared from Focuris and this is **irreversible**. Please use
 ![clear command screenshot](./images/user-guide/clear-example-1.png)
 
 **Figure 8. Shows Focuris after a clear command has been executed.**
+
+[Return to Table of Contents](#table-of-contents)
+
+<div class="page-break-before"></div>
+
+### 2.3.7 `find` Command
+
+Finds events whose names contain any of the given keywords.
+
+#### Format
+
+```
+find KEYWORD [MORE_KEYWORDS]...
+```
+
+- The search is case-insensitive. e.g `cs2040` will match `CS2040`
+- The order of the keywords does not matter. e.g. `Household Chores` will match `Chores Household`
+- Only the name and description is searched.
+- Only full words will be matched e.g. `Chor` will not match `Chore`
+- Events matching at least one keyword will be returned (i.e. OR search). e.g. `Household` will return `Household Tidy`, `Household Clean`
+
+#### Examples
+
+- `find CS2103` returns `CS2103` and `CS2103T`
+- `find assignment` returns `CS2101 assignment`, `CS2103 assignment`
+
+![before find screenshot](./images/user-guide/find-before-execute.png)
+
+**Figure 9. Before execution of find command**
+
+![after find screenshot](./images/user-guide/find-after-execute.png)
+
+**Figure 10. After execution of sample find command**
+
+[Return to Table of Contents](#table-of-contents)
+
+<div class="page-break-before"></div>
+
+### 2.3.8 `list` Command
+
+Lists all of your events in Focuris. Typically used after using [`find`](#237-find-command).
+
+#### Format
+
+```
+list
+```
+
+#### Example
+
+![after find screenshot](./images/user-guide/find-after-execute.png)
+
+**Figure 10. After execution of sample find command**
+
+![list example](./images/user-guide/list-example-1.png)
+
+**Figure 11. Execution of list command after find in Figure 10**
 
 [Return to Table of Contents](#table-of-contents)
 
