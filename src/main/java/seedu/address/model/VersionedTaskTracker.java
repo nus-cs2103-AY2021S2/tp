@@ -11,7 +11,7 @@ public class VersionedTaskTracker extends TaskTracker {
     private int currentStatePointer;
 
     /**
-     * Creates a VerionedTaskTracker
+     * Creates a VersionedTaskTracker
      * Initializes the currentStatePointer as 0
      */
     public VersionedTaskTracker() {
