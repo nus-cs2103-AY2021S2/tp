@@ -166,7 +166,7 @@ public interface Model {
     ObservableMeeting getDetailedMeeting();
 
     /**
-     * Updates the detailed meeting to match the supplied meeting.
+     * Updates the detailed client to match the supplied client.
      */
     void setDetailedClient(Client client);
 

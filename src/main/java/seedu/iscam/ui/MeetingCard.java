@@ -1,5 +1,6 @@
 package seedu.iscam.ui;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -49,7 +50,8 @@ public class MeetingCard extends UiPart<Region> {
         this.meeting = meeting;
         id.setText(displayedIndex + ". ");
         meetingName.setText(meeting.getClientName().fullName);
-        dateTime.setText(meeting.getDateTime().get().toString());
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("E, MMM dd yyyy HH:mm:ss");
+        dateTime.setText(dateTimeFormatter.format(meeting.getDateTime().get()));
         meetingLocation.setText(meeting.getLocation().value);
         description.setText(meeting.getDescription().value);
         meeting.getTags().stream()

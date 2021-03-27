@@ -401,7 +401,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. iScam detects an error within the new parameters.
     * 1a1. iScam displays the first invalid parameter and requests for a new set of parameters.
     * 1a2. User enters a new set of parameters.
-    
+
     Steps 1a1-1a2 are repeated until all the parameters entered are valid.
 
     Use case resume from step 2.
@@ -410,7 +410,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1b. iScam detects that the user did not provide all required parameters.
     * 1b1. iScam displays the expected command format and requests for a new set of parameters.
     * 1b2. User enters a new set of parameters.
-    
+
     Steps 1b1-1b2 are repeated until all required parameters are provided.
 
     Use case resume from either 1a or 2, depending on whether the provided parameter are invalid.
@@ -425,8 +425,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The list is empty.
-    * 1a1. iScam displays a message to indicate that there are no meetings. 
-    
+    * 1a1. iScam displays a message to indicate that there are no meetings.
+
     Use case ends.
 
 **Use case: Edit a meeting**
@@ -441,7 +441,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. iScam detects an error within the new parameters.
     * 1a1. iScam displays the first invalid parameter and requests for a new set of parameters.
     * 1a2. User enters a new set of parameters.
-    
+
     Steps 1a1-1a2 are repeated until all the parameters entered are valid.
 
     Use case resume from step 2.
@@ -450,7 +450,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1b. iScam detects that the user did not provide any parameter.
     * 1b1. iScam displays the expected command format and requests for a new set of parameters.
     * 1b2. User enters a new set of parameters.
-    
+
     Steps 1b1-1b2 are repeated until at least 1 parameter is provided.
 
     Use case resume from either 1a or 2, depending on whether the provided parameter is invalid.
@@ -469,7 +469,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a2. User enters a new index.
 
     Steps 1a1-1a2 are repeated until the given index is valid.
-  
+
     Use case resumes from step 2.
 
 **Use case: Find a meeting**
@@ -485,7 +485,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. iScam displays the expected command format and requests for keywords.
     * 1a2 User enter keywords.
     * Steps 1a1-1a2 are repeated until keywords are given.
-    
+
         Use case resumes from step 2.
 
 **Use case: Reschedule a meeting**
@@ -498,18 +498,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. iScam did not receive both parameters.
     * 1a1. iScam displays the expected command format and requests for both index and date time.
     * 1a2. User enters an index and a date time.
-    
+
     Steps 1a1-1a2 are repeated until both parameters are provided.
-    
+
     Use cases can resume from either 1b or 2, depending on whether both parameters are valid.
 
 
 * 1b. iScam receives one or more invalid parameters.
     * 1b1. iScam displays which parameter is invalid and requests for both index and date time.
     * 1b2. User enters an index and a location.
-    
+
     Steps 1b1-1b2 are repeated until the both parameters are valid.
-  
+
     Use cases can resume from either 1a or 2, depending on whether both parameters are present.
 
 **Extensions**
@@ -526,18 +526,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. iScam did not receive both parameters.
     * 1a1. iScam displays the expected command format and requests for both index and location.
     * 1a2. User enters an index and a location.
-    
+
     Steps 1a1-1a2 are repeated until both parameters are provided.
-    
+
     Use cases can resume from either 1b or 2, depending on whether both parameters are valid.
 
 
 * 1b. iScam receives one or more invalid parameters.
     * 1b1. iScam displays which parameter is invalid and requests for both index and location.
     * 1b2. User enters an index and a location.
-    
+
     Steps 1b1-1b2 are repeated until the both parameters are valid.
-  
+
     Use cases can resume from either 1a or 2, depending on whether both parameters are present.
 
 **Use case: Complete a meeting**
@@ -554,16 +554,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a2. User enters a new index.
 
     Steps 1a1-1a2 are repeated until an index is provided.
-    
+
     Use case can resume from either 1b or 2, depending on whether the index is valid.
 
 
 * 1b. iScam cannot find a meeting with the entered index.
     * 1b1. iScam displays that index is invalid and requests for another index.
     * 1b2. User enters a new index.
-    
+
     Steps 1b1-1b2 are repeated until the index entered is valid.
-    
+
     Use case resumes from step 2.
 
 *{More to be added}*
