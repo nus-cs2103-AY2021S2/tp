@@ -19,7 +19,6 @@ public class EventListPaneKanbanView extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(EventListPaneKanbanView.class);
     private ObservableList<Event> eventList;
 
-
     @FXML
     private ListView<Event> eventListView;
 

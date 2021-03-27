@@ -3,208 +3,362 @@ layout: page
 title: User Guide
 ---
 
-Focuris is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Focuris can get your contact management tasks done faster than traditional GUI apps.
+# Welcome to Focuris User Guide!
+
+Focuris is a **desktop application** for **managing events** with a KanBan board, which is a board where your **events displayed according to the level of completion** of each event, which consists of Backlog, Todo, In-Progress and Done.
+
+## Here's why you should use Focuris:
+
+- Focuris is made specially for **university students** like you to keep track of your tasks to complete.
+- Use of a Command Line Interface (CLI) allows fast typists to manage your event boards faster than applications with a Graphical User Interface (GUI).
+- Gain ability to prioritize your tasks by looking at their priority level, from **Low** to **High**.
+- Get instant overview on the level of completion of each of your tasks.
+
+---
+
+# Table Of Contents
+
+<!-- prettier-ignore-start -->
+<!-- AUTO-GENERATED TOC - START -->
 
 * Table of Contents
 {:toc}
 
+<!-- AUTO-GENERATED TOC - END -->
+<!-- prettier-ignore-end -->
+
 ---
 
-## Quick start
+# 1. Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed on your Computer.
 
-1. Download the latest `focuris.jar` from [link coming soon].
+1. Download the latest `focuris.jar` from [here](https://github.com/AY2021S2-CS2103T-W15-4/tp/releases/tag/v1.3.trial).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your Focuris.
+1. Copy the `focuris.jar` file to the folder you want to use as the _home folder_ for your Focuris.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the `focuris.jar` file to start the application. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   - **`todo`**`n/CS2030 d/Assignment` : Adds an event named `CS2030` to the application with status `TODO`.
+   - **`todo`**`n/CS2030 Lab 1 d/Lab 1 to complete` : Adds an event named `CS2030 Lab 1` to the application with status `TODO`.
 
-   - **`log`**`n/CS2040 d/Tutorial` : Adds an event named `CS2040` to the application with status `BACKLOG`.
+   - **`log`**`n/CS2107 Finals d/Finals on 3rd May 2021` : Adds an event named `CS2107 Finals` to the application with status `BACKLOG`.
 
    - **`prog`**`n/CS2100 d/Lab` : Adds an event named `CS2100` to the application with status `IN PROGRESS`.
-     
-   - **`delete`**`3` : Deletes the event with the identifier of 3 shown in the list.
 
-   - **`exit`** : Exits the app.
+   - **`delete`**`3` : Deletes the event with the identifier of 3 shown on the KanBan board.
+
+   - **`exit`** : Exits the application.
 
 1. Refer to the [Features](#features) below for details of each command.
 
----
+[Return to Table of Contents](#table-of-contents)
 
-## Features
+# 2. Features
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
-- Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `todo n/NAME d/DESCRIPTION`, `NAME` is a parameter which can be used as `todo n/CS2030`.
+- Words in `UPPER_CASE` are the [parameters](#parameters) to be supplied by the user.<br>
+  e.g. in `todo n/NAME d/DESCRIPTION`, `NAME` is a [parameter](#parameters) which can be used as `todo n/CS2030`.
 
 - Items in square brackets are optional.<br>
   e.g `n/NAME d/DESCRIPTION [p/PRIORITY]` can be used as `n/CS2030 d/Assignement p/HIGH` or as `n/CS2030 d/Assignment`.
 
-- Parameters can be in any order.<br>
+- [Parameters](#parameters) can be in any order.<br>
   e.g. if the command specifies `n/NAME d/DESCRIPTION`, `d/DESCRIPTION n/NAME` is also acceptable.
 
-- If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+- If a [parameter](#parameters) is expected only once in the command but you specified it multiple times, only the last occurrence of the [parameter](#parameters) will be taken.<br>
   e.g. if you specify `d/walk d/run`, only `d/run` will be taken.
 
-- Extraneous parameters for commands that do not take in parameters (such as `help` and `exit`) will be ignored.<br>
+- Extraneous [parameters](#parameters) for commands that do not take in [parameters](#parameters) (such as `help` and `exit`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
-### Viewing help : `help`
+[Return to Table of Contents](#table-of-contents)
 
-Shows a message explaining how to access the help page.
+## 2.1 Summary
+
+### 2.1.1 Command Summary
+
+| Command                           | Description                                     | Format, Examples                                                                                           |
+| --------------------------------- | ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| [**Todo**](#231-todo-command)     | Creates a new event with status **Todo**        | `todo n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `todo n/CS2040 d/Assignment`                           |
+| [**Log**](#232-log-command)       | Creates a new event with status **Backlog**     | `log n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `log n/CS2030 d/Lab`                                    |
+| [**Prog**](#233-prog-command)     | Creates a new event with status **In-Progress** | `prog n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `prog n/CS2100 d/Tutorial`                             |
+| [**Delete**](#237-delete-command) | **Deletes** an existing event                   | `delete IDENTIFIER`<br> e.g., `delete 3`                                                                   |
+| [**Edit**](#234-edit-command)     | **Edits** an existing event's attributes        | `edit IDENTIFIER [n/NAME] [s/STATUS] [d/DESCRIPTION] [p/PRIORITY]`<br> e.g.,`edit 2 n/CS2030 d/Assignment` |
+| [**Help**](#221-help-command)     | Displays **help menu** pop-up                   | `help`                                                                                                     |
+| [**Exit**](#222-exit-command)     | **Exits** the application                       | `exit`                                                                                                     |
+
+[Return to Table of Contents](#table-of-contents)
+
+### 2.1.2 Attribute Summary
+
+| [Attribute](#attributes) | Prefix    | Description                              | Constraints                                                                                                                                             |
+| ------------------------ | --------- | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| NAME                     | `n/`      | Name of your Event                       | Event names should not contain any [special characters](#special-characters) or be blank                                                                |
+| DESCRIPTION              | `d/`      | Description of your Event                | Event descriptions should not contain any [special characters](#special-characters) or be blank                                                         |
+| PRIORITY                 | `p/`      | Priority of your Event                   | Event priorities should be either `high`, `medium` or `low`. Priorities are case insensitive, meaning `high` or `HiGH` would be understood the same way |
+| IDENTIFIER               | No Prefix | Identifier of your Event in Focuris      | Event identifier should exist in the KanBan board.                                                                                                      |
+| KEYWORD                  | No Prefix | Keywords for searching Events in Focuris | No Constraints                                                                                                                                          |
+
+[Return to Table of Contents](#table-of-contents)
+
+## 2.2 General
+
+### 2.2.1 `help` Command
+
+Shows a pop-up with a link to the Focuris user guide.
+
+#### Format
+
+```bash
+help
+```
+
+#### Expected Outcome
+
+- Pop-up displays link to the user guide.
 
 ![help message](images/helpMessageNew.png)
 
-Format: `help`
+[Return to Table of Contents](#table-of-contents)
 
-### Adding a todo event: `todo`
+### 2.2.2 `exit` Command
 
-Adds an event with status TODO to Focuris
+Exits out of Focuris.
 
-Format: `todo n/NAME d/DESCRIPTION [p/PRIORITY]`
+#### Format
 
-Examples:
+```
+exit
+```
 
-- `todo n/Household Chores d/Cleaning the kitchen p/HIGH`
-- `todo n/CS2030 d/Assignment p/LOW`
-- `todo n/Lunch with John d/At VivoCity p/MEDIUM`
-- `todo n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T`
+#### Expected Outcome
 
-### Adding a backlog event: `log`
+- Your Focuris application window closes.
 
-Adds an event with status BACKLOG to Focuris
+[Return to Table of Contents](#table-of-contents)
 
-Format: `log n/NAME d/DESCRIPTION [p/PRIORITY]`
+### 2.2.3 Saving of your data
 
-Examples:
+Event data in Focuris is saved **automatically** whenever you execute any command that makes changes to events. As such, there is no need for you to trigger manually saving of data.
 
-- `log n/Household Chores d/Cleaning the kitchen p/HIGH`
-- `log n/CS2030 d/Assignment p/MEDIUM`
-- `log n/Lunch with John d/At VivoCity`
-- `log n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T`
+[Return to Table of Contents](#table-of-contents)
 
-### Adding an in-progress event: `prog`
+### 2.2.4 Editing your data file
 
-Adds an event with status IN_PROGRESS to Focuris
+Focuris' data is saved as a JSON file `[JAR_FILE_LOCATION]/data/eventbook.json`.
 
-Format: `prog n/NAME d/DESCRIPTION [p/PRIORITY]`
+<div markdown="block" class="alert alert-info">
+:information_source: **Advanced Users:**
+If you are an advanced user, you are welcome to update the data file by editing the data file directly.
+</div>
 
-Examples:
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, Focuris will discard all your existing data and start with an empty data file on the next run.
+</div>
 
-- `prog n/Household Chores d/Cleaning the kitchen`
-- `prog n/CS2030 d/Assignment p/LOW`
-- `prog n/Lunch with John d/At VivoCity`
-- `prog n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T`
+[Return to Table of Contents](#table-of-contents)
 
-### Editing an event : `edit`
+## 2.3 Event Commands
+
+### 2.3.1 `todo` Command
+
+Adds an event with status `TODO` to Focuris.
+
+#### Format
+
+```
+todo n/NAME d/DESCRIPTION [p/PRIORITY]
+```
+
+#### Examples
+
+![Todo Sample Screenshot](./images/user-guide/todo-example-1.png)
+
+**Figure 1. Shows the result after execution of Example Command 1 in the table below.**
+
+| No  | Example Command                                                               | Expected Command Result                                                                                        |
+| --- | ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| 1   | `todo n/Household Chores d/Cleaning the kitchen p/high`                       | New Todo added: Household Chores; Status: TODO; Description: Cleaning the kitchen                              |
+| 2   | `todo n/CS2030 Assignment 1 d/Due on 23 Mar 2021 p/high`                      | New Todo added: CS2030 Assignment 1; Status: TODO; Description: Due on 23 Mar 2021                             |
+| 3   | `todo n/Lunch with John d/At VivoCity on Friday p/medium`                     | New Todo added: Lunch with John; Status: TODO; Description: At VivoCity on Friday                              |
+| 4   | `todo n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T` | New Todo added: Complete Homework; Status: TODO; Description: Complete weekly quiz and group tasks for CS2103T |
+
+[Return to Table of Contents](#table-of-contents)
+
+### 2.3.2 `log` Command
+
+Adds an event with status `BACKLOG` to Focuris.
+
+#### Format
+
+```
+log n/NAME d/DESCRIPTION [p/PRIORITY]
+```
+
+#### Examples
+
+![Backlog sample screenshot](./images/user-guide/log-example-1.png)
+
+**Figure 2. Shows the result after execution of Example Command 1 in the table below.**
+
+| No  | Example Command                                                              | Expected Command Result                                                                                              |
+| --- | ---------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| 1   | `log n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T` | New BackLog added: Complete Homework; Status: BACKLOG; Description: Complete weekly quiz and group tasks for CS2103T |
+| 2   | `log n/Household Chores d/Cleaning the kitchen p/high`                       | New BackLog added: Household Chores; Status: BACKLOG; Description: Cleaning the kitchen                              |
+| 3   | `log n/CS2030 Assignment 1 d/Due on 23 Mar 2021 p/high`                      | New BackLog added: CS2030 Assignment 1; Status: BACKLOG; Description: Due on 23 Mar 2021                             |
+| 4   | `log n/Lunch with John d/At VivoCity on Friday p/medium`                     | New BackLog added: Lunch with John; Status: BACKLOG; Description: At VivoCity on Friday                              |
+
+[Return to Table of Contents](#table-of-contents)
+
+### 2.3.3 `prog` Command
+
+Adds an event with status `IN PROGRESS` to Focuris.
+
+#### Format
+
+```
+prog n/NAME d/DESCRIPTION [p/PRIORITY]
+```
+
+#### Examples
+
+![Prog sample screenshot](./images/user-guide/prog-example-1.png)
+
+**Figure 3. Shows the result after execution of Example Command 1 below.**
+
+| No  | Example Command                                                               | Expected Command Result                                                                                                      |
+| --- | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| 1   | `prog n/CS2030 Assignment d/Due on 23 May 2021 p/medium`                      | New In-Progress added: CS2030 Assignment 1; Status: IN_PROGRESS; Description: Due on 23 Mar 2021                             |
+| 2   | `prog n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T` | New In-Progress added: Complete Homework; Status: IN_PROGRESS; Description: Complete weekly quiz and group tasks for CS2103T |
+| 3   | `prog n/Household Chores d/Cleaning the kitchen p/high`                       | New In-Progress added: Household Chores; Status: IN_PROGRESS; Description: Cleaning the kitchen                              |
+| 4   | `prog n/Lunch with John d/At VivoCity on Friday p/medium`                     | New In-Progress added: Lunch with John; Status: IN_PROGRESS; Description: At VivoCity on Friday                              |
+
+[Return to Table of Contents](#table-of-contents)
+
+### 2.3.4 `edit` Command
 
 Edits an existing event in Focuris.
 
-Format: `edit IDENTIFIER [n/NAME] [d/DESCRIPTION] [s/STATUS] [p/PRIORITY]`
+#### Format
 
-* Edits the event at the specified `IDENTIFIER`.
-* The identifier refers to the index number shown in the respective displayed event list.
-* The identifier **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
+```
+edit IDENTIFIER [n/NAME] [d/DESCRIPTION] [s/STATUS] [p/PRIORITY]
+```
 
-Examples:
-*  `edit 1 n/CS2030 d/Assignment` Edits the event name and event description of the 1st event to be `CS2030` and `Assignment` respectively.
-*  `edit 2 s/log ` Edits the status of the 2nd event to be `BACKLOG`
+- Edits the event at the specified `IDENTIFIER`.
+- The identifier refers to the index number shown in the respective displayed event list.
+- The identifier **must be a positive integer** 1, 2, 3, …​
+- At least one of the optional fields must be provided.
 
-### Changing the status of an event to Done  : `done`
-Changes the specified event status to DONE in Focuris.
+<div markdown="block" class="alert alert-info">
+:exclamation: **Caution**
 
-Format: `done IDENTIFIER`
+Existing event will have its data overwritten by the new values taken in by the `edit` command
 
-* Changes the event status at the specified `IDENTIFIER` to DONE.
-* The identifier refers to the index number shown in the displayed event list.
-* The identifier **must be a positive integer** 1, 2, 3, …
+</div>
 
-Examples:
-* `list` followed by `done 2` changes the status of the 2nd event to DONE in Focuris.
-* `find CS2100` followed by `done 1` changes the status of the 1st event to DONE in the results of the `find` command.
+#### Examples
 
-### Search using a matching keyword : `find`
+- `edit 1 n/CS2030 d/Assignment` Edits the event name and event description of the event with identifier `#1` to be `CS2030` and `Assignment` respectively.
+- `edit 2 s/backlog` Edits the status of the event with identifier `#2` to be `BACKLOG`
+- `edit 3 n/CS1101S d/Streams assignment s/in_progress p/high` Edits event the event name, description, status and priority of the event with identifier `#3` to be `CS1101S`, `Streams assignment`, `IN_PROGRESS`, `HIGH` respectively.
 
-Finds events whose names contain any of the given keywords.
+![Edit command screenshot before](./images/user-guide/edit-example-1.png)
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+**Figure 4. Shows Focuris before execution of the edit command in the command box.**
 
-* The search is case-insensitive. e.g `cs2040` will match `CS2040`
-* The order of the keywords does not matter. e.g. `Household Chores` will match `Chores Household`
-* Only the name is searched.
-* Only full words will be matched e.g. `Chore` will not match `Chore`
-* Events matching at least one keyword will be returned (i.e. OR search). e.g. `Household` will return `Household Tidy`, `Household Clean`
+![Edit command screenshot after](./images/user-guide/edit-example-2.png)
 
-Examples:
+**Figure 5. Shows Focuris after execution of the edit command in the command box.**
 
-* `find CS2103` returns `CS2103` and `CS2103T`
-* `find assignment` returns `CS2101 assignment`, `CS2103 assignment`
+[Return to Table of Contents](#table-of-contents)
 
-### Deleting an event : `delete`
+### 2.3.5 `delete` Command
 
 Deletes the specified event from Focuris.
 
-Format: `delete IDENTIFIER`
+#### Format
 
-* Deletes the event at the specified `INDEX`
-* The identifier refers to the index number shown in the displayed event list.
-* The identifier **must be a positive integer** 1, 2, 3, …​
+```
+delete IDENTIFIER
+```
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd event in Focuris.
-* `find CS2100` followed by `delete 1` deletes the 1st event in the results of the `find` command.
+- Deletes the event at the specified `IDENTIFIER`
+- The identifier refers to the number beside the hex symbol, e.g. `#10` has an identifier of 10.
+- The identifier **must be a positive integer** 1, 2, 3, …​
 
+#### Examples
 
-### Exiting the program : `exit`
+![delete command screenshot](./images/user-guide/delete-example-1.png)
 
-Exits the program.
+**Figure 6. Shows Focuris _before_ the execution of the delete command in the command box.**
 
-Format: `exit`
+![deleted command screenshot](./images/user-guide/delete-example-2.png)
 
-### Saving the data
+**Figure 7. Shows Focuris _after_ the execution of the delete command in the command box.**
 
-Focuris data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+| No  | Example Command | Expected Command Result                                                                  |
+| --- | --------------- | ---------------------------------------------------------------------------------------- |
+| 1   | `delete 1`      | Deleted Event: CS2030 Lab 1; Status: TODO; Description: Lab 1 to complete;               |
+| 2   | `delete 5`      | Deleted Event: CS2105 Assignment 2; Status: IN_PROGRESS; Description: Due on 28 Mar 2021 |
 
-### Editing the data file
+<div markdown="block" class="alert alert-info">
 
-Focuris data are saved as a JSON file `[JAR file location]/data/eventbook.json`. Advanced users are welcome to update data directly by editing that data file.
+**:information_source: Note** <br>
+The commands in the table above make reference to the events in Focuris as seen in Figure 7.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, Focuris will discard all data and start with an empty data file at the next run.
 </div>
 
----
+### 2.3.6 `clear` Command
 
-## FAQ
+Clears all events in Focuris.
+
+#### Format
+
+```
+clear
+```
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:**
+All events will be cleared from Focuris and this is **irreversible**. Please use this command with care.
+
+</div>
+
+#### Expected Outcome
+
+- All events are cleared from Focuris.
+
+![clear command screenshot](./images/user-guide/clear-example-1.png)
+
+**Figure 8. Shows Focuris after a clear command has been executed.**
+
+[Return to Table of Contents](#table-of-contents)
+
+## 3. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Focuris home folder.
 
----
+[Return to Table of Contents](#table-of-contents)
 
-## Command summary
+## 4. Glossary
 
-| Action     | Format, Examples                                                                                                                                                                                                                 |
-| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Todo**   | `todo n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `todo n/CS2040 d/Assignment`                                                                                                                                                              |
-| **Log**    | `log n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `log n/CS2030 d/Lab`                                                                                                                                                                       |
-| **Prog**   | `prog n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `prog n/CS2100 d/Tutorial`                                                                                                                                                                |
-| **Done**   | `done INDEX` <br> e.g., `done 2`                                                                                                                                                                                                 |
-| **Delete** | `delete IDENTIFIER`<br> e.g., `delete 3`                                                                                                                                                                                         |
-| **Edit**   | `edit IDENTIFIER [n/NAME] [s/STATUS] [d/DESCRIPTION] [p/PRIORITY]`<br> e.g.,`edit 2 n/CS2030 d/Assignment`                                                                                                                       |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                       |
-| **Help**   | `help`                                                                                                                                                                                                                           |
+<a name="special-characters"><bold>Special Characters</bold>: Characters that are neither alphabets, from A to Z, nor digits, from 0 to 9.</a>
+
+<a name="attributes"><bold>Attributes</bold>: Attributes are names of different inputs that a command takes in.</a>
+
+<a name="parameters"><bold>Parameters</bold>: Parameters are the input given to commands behind prefixes such as `n/`.</a>
+
+[Return to Table of Contents](#table-of-contents)

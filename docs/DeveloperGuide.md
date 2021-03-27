@@ -3,8 +3,14 @@ layout: page
 title: Developer Guide
 ---
 
+<!-- prettier-ignore-start -->
+<!-- AUTO-GENERATED TOC - START -->
+
 * Table of Contents
 {:toc}
+
+<!-- AUTO-GENERATED TOC - END -->
+<!-- prettier-ignore-end -->
 
 ---
 
@@ -131,12 +137,6 @@ This section describes some noteworthy details on how certain features are imple
 
 ### \[Proposed\] Priority feature
 
-
-
-
-
-
-
 #### Proposed Implementation
 
 The priority feature is an additional field in the Event class. It is implemented as an enumeration named EventPriority and consists of
@@ -152,14 +152,13 @@ The following class diagram illustrates how the priority feature is implemented:
 
 - **Alternative 1 (current choice):** Set LOW as the default priority
 
-    - Pros: Easy to implement.
-    - Cons: Events would have an additional field for priority even if there is no priority.
-            May increase memory usage.
+  - Pros: Easy to implement.
+  - Cons: Events would have an additional field for priority even if there is no priority.
+    May increase memory usage.
 
 - **Alternative 2:** Include an additional constructor that takes in priority as an additional argument.
-    - Pros: Will use less memory when no priority is assigned.
-    - Cons: We must ensure that the implementation of each individual command are correct and uses the right constructor.
-
+  - Pros: Will use less memory when no priority is assigned.
+  - Cons: We must ensure that the implementation of each individual command are correct and uses the right constructor.
 
 ---
 
@@ -187,8 +186,11 @@ The following class diagram illustrates how the priority feature is implemented:
 - is reasonably comfortable using CLI apps
 
 **Value proposition**:
-- Adding of various different types of events, such as, lectures, tutorials, recitations, labs, and tasks (?))
-- Adding of events to the event book
+
+- Adding of various different types of events, such as, lectures, tutorials, recitations, labs, and tasks
+- Adding of events to friends in the address book
+- Ability to find a common timeslot where all your friends are available to meet based on their schedules added
+- See events that are taken in conjunction with your friends
 - Prioritize your tasks and events by assigning priorities to each event
 
 ### User stories
