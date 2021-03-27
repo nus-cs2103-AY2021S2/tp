@@ -1,6 +1,6 @@
 {
   "residences" : [ {
-    "booking" : "someone is coming",
+    "bookingList" : [ ],
     "cleanStatusTag" : "Unclean",
     "tags" : [ "Boo ked" ],
     "residenceName" : "HDB",

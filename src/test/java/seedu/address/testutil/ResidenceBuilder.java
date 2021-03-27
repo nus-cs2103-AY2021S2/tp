@@ -34,7 +34,6 @@ public class ResidenceBuilder {
     public ResidenceBuilder() {
         name = new ResidenceName(DEFAULT_RESIDENCE_NAME);
         address = new ResidenceAddress(DEFAULT_RESIDENCE_ADDRESS);
-        //bookingList = new BookingList();
         cleanStatusTag = new CleanStatusTag(DEFAULT_CLEAN_STATUS);
         tags = new HashSet<>();
     }
@@ -69,7 +68,7 @@ public class ResidenceBuilder {
     /**
      * Sets the {@code Booking} of the {@code Residence} that we are building.
      */
-    public ResidenceBuilder withBookingDetails(List<Booking> bookings) {
+    public ResidenceBuilder withBookingList(List<Booking> bookings) {
         this.bookingList = new BookingList(bookings);
         return this;
     }
