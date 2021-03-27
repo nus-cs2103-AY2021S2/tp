@@ -34,7 +34,7 @@ If you are an insurance agent who can type fast, ClientBook can help _you_ accom
 * [Frequently Asked Questions](#frequently-asked-questions)
   * [Setting Up](#setting-up)
 * [Summary of Commands](#summary-of-commands)
-* [Summary of Keyboard Shortcuts](#keyboard-shortcuts)
+* [Summary of Keyboard Shortcuts](#summary-of-keyboard-shortcuts)
 * [Contact Us](#contact-us)
 
 
