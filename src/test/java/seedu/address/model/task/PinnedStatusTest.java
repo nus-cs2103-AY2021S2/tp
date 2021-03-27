@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalTasks.ASSIGNMENT;
 import static seedu.address.testutil.TypicalTasks.EXERCISE;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.TaskBuilder;
@@ -25,14 +24,16 @@ public class PinnedStatusTest {
     }
 
     @Test
-    @Disabled
-    //disabled until model support for pinned status
     public void compareTest() {
-        assertEquals(ASSIGNMENT.getCompletionStatus().compareTo(EXERCISE.getCompletionStatus()), 0);
+        assertEquals(ASSIGNMENT.getPinnedStatus().compareTo(EXERCISE.getPinnedStatus()), 0);
 
         Task assignment = new TaskBuilder(ASSIGNMENT).build();
-        assignment.markTaskAsDone();
-        assertEquals(assignment.getCompletionStatus().compareTo(EXERCISE.getCompletionStatus()), 1);
-        assertEquals(EXERCISE.getCompletionStatus().compareTo(assignment.getCompletionStatus()), -1);
+
+        assignment.pin();
+        assertEquals(assignment.getPinnedStatus().compareTo(EXERCISE.getPinnedStatus()), 1);
+        assertEquals(EXERCISE.getPinnedStatus().compareTo(assignment.getPinnedStatus()), -1);
+
+        assignment.unpin();
+        assertEquals(ASSIGNMENT.getPinnedStatus().compareTo(EXERCISE.getPinnedStatus()), 0);
     }
 }

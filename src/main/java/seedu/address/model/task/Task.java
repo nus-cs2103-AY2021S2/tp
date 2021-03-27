@@ -54,7 +54,9 @@ public class Task {
         return this.completionStatus;
     }
 
-    public PinnedStatus getPinnedStatus() {return this.pinnedStatus;}
+    public PinnedStatus getPinnedStatus() {
+        return this.pinnedStatus;
+    }
 
     public Set<Category> getCategories() {
         return this.categories;
@@ -66,6 +68,14 @@ public class Task {
 
     public boolean isComplete() {
         return completionStatus.isComplete();
+    }
+
+    public void pin() {
+        pinnedStatus.pin();
+    }
+
+    public void unpin() {
+        pinnedStatus.unpin();
     }
 
     public void markTaskAsDone() {
