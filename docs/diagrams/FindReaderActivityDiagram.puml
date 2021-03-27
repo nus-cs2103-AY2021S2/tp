@@ -13,6 +13,7 @@ if () then ([valid input])
         :SmartLib shows an empty list;
     endif
 else ([else])
+    :Print "Unknown Command";
 endif
 stop
 @enduml
