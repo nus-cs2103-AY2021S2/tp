@@ -33,6 +33,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private TaskListPanel taskListPanel;
     private ResultDisplay resultDisplay;
+    private TagListPanel tagListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -42,6 +43,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane taskListPanelPlaceholder;
+
+    @FXML
+    private StackPane tagListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -69,6 +73,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -112,6 +117,9 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        tagListPanel = new TagListPanel(logic.getSortedTagList());
+        tagListPanelPlaceholder.getChildren().add(tagListPanel.getRoot());
     }
 
     /**

@@ -50,7 +50,7 @@ TaskCardDetails --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
 
-TaskCard ..> Model
+TaskListPanel ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 

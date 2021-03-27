@@ -26,14 +26,18 @@ public class ListCommandTest {
         expectedModel = new ModelManager(model.getPlanner(), new UserPrefs());
     }
 
+
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListCommand(true), model,
+                ListCommand.MESSAGE_ALL_TASKS_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListCommand(true), model,
+                ListCommand.MESSAGE_ALL_TASKS_SUCCESS, expectedModel);
     }
+
 }

@@ -13,7 +13,8 @@ import java.util.regex.Pattern;
 public class Duration {
     public static final String FIELD_NAME = "Duration";
 
-    public static final String MESSAGE_CONSTRAINTS = "Duration should be numeric and should be in 24 hours format";
+    public static final String MESSAGE_CONSTRAINTS = "Duration should be numeric, consisting of start time and end time"
+            + " and should be in 24 hours format in the following example format 10:00-14:00";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -42,7 +43,7 @@ public class Duration {
     public static boolean isValidDuration(String test) {
         Pattern p = Pattern.compile(VALIDATION_REGEX);
         Matcher m = p.matcher(test);
-        return m.matches();
+        return m.matches() || test.matches("");
     }
 
     /**
@@ -52,6 +53,15 @@ public class Duration {
      */
     public static String parseDuration(String duration) {
         return duration;
+    }
+
+    /**
+     * Checks if the value of Duration is Empty.
+     *
+     * @return true if value.isEmpty(), false otherwise.
+     */
+    public boolean isEmptyValue() {
+        return value.isEmpty();
     }
 
     @Override

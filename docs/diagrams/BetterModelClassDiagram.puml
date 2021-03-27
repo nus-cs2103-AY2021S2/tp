@@ -5,20 +5,19 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Planner *-right-> "1" UniqueTaskList
-'Planner *-right-> "1" UniqueTagList
-'UniqueTagList -[hidden]down- UniqueTaskList
-'UniqueTagList -[hidden]down- UniqueTaskList
-'
-'UniqueTagList *-right-> "*" Tag
+Planner *-right-> "1" UniqueTagList
+UniqueTagList -[hidden]down- UniqueTaskList
+UniqueTagList -[hidden]down- UniqueTaskList
+
+UniqueTagList o-right-> "*" Tag
 UniqueTaskList o-right-> Task
 
-'Task -up-> "*" Tag
+Task o-up-> "*" Tag
 
 Task *--> Title
 Task *--> Deadline
-Task *--> StartTime
-Task *--> Email
+Task *--> Duration
+Task *--> RecurringSchedule
 Task *--> Description
 Task *--> Status
-Task *--> Tags
 @enduml

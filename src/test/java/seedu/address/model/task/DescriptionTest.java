@@ -18,9 +18,13 @@ public class DescriptionTest {
         assertThrows(NullPointerException.class, () -> Description.isValidDescription(null));
 
         // valid descriptions
+        assertTrue(Description.isValidDescription("")); // blank
         assertTrue(Description.isValidDescription("Blk 456, Den Road, #01-355"));
         assertTrue(Description.isValidDescription("-")); // one character
         assertTrue(Description.isValidDescription("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA"));
-        // long description
+        assertTrue(Description.isValidDescription("Todo: "
+                + "\n - task 1"
+                + "\n - task 2"
+                + "\n - task 3"));
     }
 }

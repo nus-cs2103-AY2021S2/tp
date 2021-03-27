@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User executes command;
+if () then ([index is valid])
+    if () then ([field is deletable])
+        :Create new task with same attributes
+                        but with field deleted;
+        :Update model with new task;
+        :Show success message to user;
+    else ([else])
+        :Throw new CommandException;
+        :Show user field cannot be deleted
+                        error message;
+    endif
+else ([else])
+:Throw new CommandException;
+:Show user invalid index error message;
+endif
+
+stop
+
+@enduml

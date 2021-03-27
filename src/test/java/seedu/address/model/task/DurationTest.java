@@ -14,22 +14,21 @@ public class DurationTest {
     }
 
     @Test
-    public void constructor_invalidDeadline_throwsIllegalArgumentException() {
-        String invalidStartTime = " ";
-        assertThrows(IllegalArgumentException.class, () -> new Duration(invalidStartTime));
+    public void constructor_invalidDuration_throwsIllegalArgumentException() {
+        String invalidDuration = " ";
+        assertThrows(IllegalArgumentException.class, () -> new Duration(invalidDuration));
     }
 
     @Test
-    public void isValidDeadline() {
-        // null deadline number
+    public void isValidDuration() {
+        // null duration number
         assertThrows(NullPointerException.class, () -> Duration.isValidDuration(null));
 
-        // invalid deadline numbers
-        assertFalse(Duration.isValidDuration("")); // empty string
+        // invalid duration numbers
         assertFalse(Duration.isValidDuration(" ")); // spaces only
 
-
-        // valid deadline numbers
+        // valid duration numbers
+        assertTrue(Duration.isValidDuration("")); // empty string
         assertTrue(Duration.isValidDuration("15:30-16:30"));
 
     }

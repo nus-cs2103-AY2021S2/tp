@@ -4,12 +4,20 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DURATION_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RECURRINGSCHEDULE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -21,6 +29,7 @@ import seedu.address.model.Model;
 import seedu.address.model.Planner;
 import seedu.address.model.ReadOnlyPlanner;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
 
@@ -49,6 +58,44 @@ public class AddCommandTest {
         ModelStub modelStub = new ModelStubWithTask(validTask);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_TASK, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_deadlineAndRecurringSchedule_throwsCommandException() {
+        Task invalidTask = new TaskBuilder().withTitle(VALID_TITLE_AMY)
+                .withDeadline(VALID_DEADLINE_AMY).withRecurringSchedule(VALID_RECURRINGSCHEDULE_AMY)
+                .withDescription(VALID_DESCRIPTION_AMY).withStatus(VALID_STATUS_AMY).withTags(VALID_TAG_FRIEND).build();
+        AddCommand addCommand = new AddCommand(invalidTask);
+        ModelStub modelStub = new ModelStubAcceptingTaskAdded();
+
+        assertThrows(CommandException.class,
+                AddCommand.MESSAGE_DEADLINE_RECURRING_SCHEDULE_CONFLICT, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_deadlineAndDuration_throwsCommandException() {
+        Task invalidTask = new TaskBuilder().withTitle(VALID_TITLE_AMY)
+                .withDeadline(VALID_DEADLINE_AMY).withDuration(VALID_DURATION_AMY)
+                .withDescription(VALID_DESCRIPTION_AMY).withStatus(VALID_STATUS_AMY).withTags(VALID_TAG_FRIEND).build();
+
+        AddCommand addCommand = new AddCommand(invalidTask);
+        ModelStub modelStub = new ModelStubAcceptingTaskAdded();
+
+        assertThrows(CommandException.class,
+                AddCommand.MESSAGE_DEADLINE_DURATION_CONFLICT, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_deadlineAndEvent_throwsCommandException() {
+        Task invalidTask = new TaskBuilder()
+                .withTitle(VALID_TITLE_AMY).withDeadline(VALID_DEADLINE_AMY)
+                .withDuration(VALID_DURATION_AMY).withRecurringSchedule(VALID_RECURRINGSCHEDULE_AMY)
+                .withDescription(VALID_DESCRIPTION_AMY).withStatus(VALID_STATUS_AMY).withTags(VALID_TAG_FRIEND).build();
+        AddCommand addCommand = new AddCommand(invalidTask);
+        ModelStub modelStub = new ModelStubAcceptingTaskAdded();
+
+        assertThrows(CommandException.class,
+                AddCommand.MESSAGE_DEADLINE_EVENT_CONFLICT, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -145,6 +192,36 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasTag(Tag tag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Tag getTag(Tag tag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTag(Tag target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTag(Tag tag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Set<Tag> addTagsIfAbsent(Set<Tag> tags) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTags(Set<Tag> target, Set<Tag> editedTags) throws CommandException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public String countdownTask(Task task) {
             throw new AssertionError("This method should not be called.");
         }
@@ -155,12 +232,22 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Tag> getSortedTagList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredTaskList(Predicate<Task> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateSortedTaskList(Comparator<Task> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortedTagList(Comparator<Tag> comparator) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -204,6 +291,11 @@ public class AddCommandTest {
         @Override
         public ReadOnlyPlanner getPlanner() {
             return new Planner();
+        }
+
+        @Override
+        public Set<Tag> addTagsIfAbsent(Set<Tag> tags) {
+            return tags;
         }
     }
 

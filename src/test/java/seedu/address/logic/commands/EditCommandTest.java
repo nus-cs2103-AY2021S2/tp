@@ -45,6 +45,7 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new Planner(model.getPlanner()), new UserPrefs());
         expectedModel.setTask(model.getFilteredTaskList().get(0), editedTask);
+        expectedModel.setTags(model.getFilteredTaskList().get(0).getTags(), editedTask.getTags());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -66,6 +67,7 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new Planner(model.getPlanner()), new UserPrefs());
         expectedModel.setTask(lastTask, editedTask);
+        expectedModel.setTags(lastTask.getTags(), editedTask.getTags());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -95,6 +97,7 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new Planner(model.getPlanner()), new UserPrefs());
         expectedModel.setTask(model.getFilteredTaskList().get(0), editedTask);
+        expectedModel.setTags(model.getFilteredTaskList().get(0).getTags(), editedTask.getTags());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }

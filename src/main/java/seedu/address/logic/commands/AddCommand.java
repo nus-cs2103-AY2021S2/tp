@@ -9,11 +9,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.model.task.RecurringSchedule.INVALID_ENDDATE;
 
+import java.util.Set;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.conditions.ConditionManager;
 import seedu.address.model.Model;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 
 /**
@@ -50,8 +53,14 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the planner";
+    public static final String MESSAGE_DEADLINE_EVENT_CONFLICT = "Task cannot have (Deadline) as well as "
+            + "(RecurringSchedule and Duration) at the same time!\nPlease choose either when adding a task.";
+    public static final String MESSAGE_DEADLINE_DURATION_CONFLICT = "Task cannot have (Deadline) as well as "
+            + "(Duration) at the same time!\nPlease choose either when adding a task.";
+    public static final String MESSAGE_DEADLINE_RECURRING_SCHEDULE_CONFLICT = "Task cannot have (Deadline) as well as "
+            + "(RecurringSchedule) at the same time!\nPlease choose either when adding a task.";
 
-    private final Task toAdd;
+    private Task toAdd;
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -67,18 +76,38 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        handleDuplicateTask(model);
+        ConditionManager.enforceAttributeConstraints(toAdd);
+        handleExpiredTask();
+        updateTags(model);
+        updateModel(model);
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+    }
+
+    private void handleDuplicateTask(Model model) throws CommandException {
         boolean isDuplicateTask = model.hasTask(toAdd);
         if (isDuplicateTask) {
+            logger.info("Duplicate task detected: " + MESSAGE_DUPLICATE_TASK);
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
+    }
 
+    private void handleExpiredTask() throws CommandException {
         if (toAdd.hasExpired()) {
             logger.info("Invalid end date in recurring schedule detected: " + INVALID_ENDDATE);
             throw new CommandException(INVALID_ENDDATE);
         }
+    }
 
+    private void updateTags(Model model) {
+        Set<Tag> tagSet = toAdd.getTags();
+        Set<Tag> newTagSet = model.addTagsIfAbsent(tagSet);
+        toAdd = toAdd.setTags(newTagSet);
+    }
+
+    private void updateModel(Model model) {
         model.addTask(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override

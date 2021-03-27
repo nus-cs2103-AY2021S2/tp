@@ -18,16 +18,17 @@ Class ReadOnlyUserPrefs
 Package Task {
 Class Task
 Class Deadline
-Class Email
+Class RecurringSchedule
 Class Title
 Class Status
-Class StartTime
+Class Duration
 Class Description
 Class UniqueTaskList
 }
 
 Package Tag {
 Class Tag
+Class UniqueTagList
 }
 }
 
@@ -44,18 +45,20 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 Planner *--> "1" UniqueTaskList
 UniqueTaskList o--> "*" Task
+Planner *--> "1" UniqueTagList
+UniqueTagList o--> "*" Tag
 Task *--> Title
 Task *--> Deadline
-Task *--> StartTime
-Task *--> Email
+Task *--> Duration
+Task *--> RecurringSchedule
 Task *--> Description
 Task *--> Status
-Task *--> "*" Tag
+Task o--> "*" Tag
 
 Title -[hidden]right-> Deadline
-Deadline -[hidden]right-> StartTime
-StartTime -[hidden]right-> Email
-Email -[hidden]right-> Description
+Deadline -[hidden]right-> Duration
+Duration -[hidden]right-> RecurringSchedule
+RecurringSchedule -[hidden]right-> Description
 Description -[hidden]right-> Status
 
 

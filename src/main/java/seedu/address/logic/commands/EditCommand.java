@@ -15,11 +15,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.conditions.ConditionManager;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
@@ -43,7 +46,7 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
-            + "[" + PREFIX_DURATION + "15:30] "
+            + "[" + PREFIX_DURATION + "15:30 - 18:30] "
             + "[" + PREFIX_RECURRINGSCHEDULE + "RECURRINGSCHEDULE] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
@@ -61,6 +64,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the planner.";
+
+    private final Logger logger = LogsCenter.getLogger(getClass());
 
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
@@ -81,29 +86,57 @@ public class EditCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
-
         int indexValue = index.getZeroBased();
-        boolean isInvalidIndex = indexValue >= lastShownList.size();
 
-        if (isInvalidIndex) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
-        }
+        checkForValidIndex(indexValue, lastShownList);
 
         Task taskToEdit = lastShownList.get(indexValue);
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
 
+        checkForDuplicateTask(model, taskToEdit, editedTask);
+        checkForInvalidDate(editedTask);
+        ConditionManager.enforceAttributeConstraints(editedTask);
+
+        editedTask = handleTagUpdates(model, taskToEdit, editedTask);
+        updateModel(model, taskToEdit, editedTask);
+
+        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
+    }
+
+    private void checkForValidIndex(int indexValue, List<Task> lastShownList) throws CommandException {
+        boolean isInvalidIndex = indexValue >= lastShownList.size();
+
+        if (isInvalidIndex) {
+            logger.info("Invalid Index detected: " + Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        }
+    }
+
+    private void checkForDuplicateTask(Model model, Task taskToEdit, Task editedTask) throws CommandException {
         boolean isDuplicateTask = !taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask);
         if (isDuplicateTask) {
+            logger.info("Duplicate task detected: " + MESSAGE_DUPLICATE_TASK);
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
+    }
 
+    private void checkForInvalidDate(Task editedTask) throws CommandException {
         if (editedTask.hasExpired()) {
+            logger.info("Invalid date detected: " + INVALID_ENDDATE);
             throw new CommandException(INVALID_ENDDATE);
         }
+    }
 
+    private Task handleTagUpdates(Model model, Task taskToEdit, Task editedTask) throws CommandException {
+        Set<Tag> oldTags = taskToEdit.getTags();
+        Set<Tag> newTags = editedTask.getTags();
+        model.setTags(oldTags, newTags);
+        return editedTask.setTags(newTags);
+    }
+
+    private void updateModel(Model model, Task taskToEdit, Task editedTask) throws CommandException {
         model.setTask(taskToEdit, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
 
     /**

@@ -29,11 +29,11 @@ public class CountdownCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Task taskToCountdown = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        Task taskToCountdown = model.getFilteredTaskList().get(INDEX_SECOND_TASK.getZeroBased());
         long daysLeft = LocalDate.now().until(taskToCountdown.getDeadline().getDate(),
                 ChronoUnit.DAYS);
 
-        CountdownCommand countdownCommand = new CountdownCommand(INDEX_FIRST_TASK);
+        CountdownCommand countdownCommand = new CountdownCommand(INDEX_SECOND_TASK);
 
         String expectedMessage = String.format(CountdownCommand.MESSAGE_COUNTDOWN_TASK_SUCCESS,
                 daysLeft, taskToCountdown);
@@ -54,7 +54,7 @@ public class CountdownCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showTaskAtIndex(model, INDEX_FIRST_TASK);
+        showTaskAtIndex(model, INDEX_SECOND_TASK);
 
         Task taskToCountdown = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         long daysLeft = LocalDate.now().until(taskToCountdown.getDeadline().getDate(),
@@ -66,7 +66,7 @@ public class CountdownCommandTest {
 
         Model expectedModel = new ModelManager(model.getPlanner(), new UserPrefs());
 
-        showTaskAtIndex(expectedModel, INDEX_FIRST_TASK);
+        showTaskAtIndex(expectedModel, INDEX_SECOND_TASK);
         assertCommandSuccess(countdownCommand, model, expectedMessage, expectedModel);
     }
 

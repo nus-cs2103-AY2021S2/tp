@@ -4,6 +4,7 @@
     -fx-text-fill: rgba(255, 255, 255, 0.5);
     -fx-font-size: 13px;
     -fx-padding: 10 10 10 0;
+    -fx-wrap-text: true;
 }
 
 .status-red {
@@ -22,4 +23,13 @@
     -fx-border-color: palegreen;
     -fx-border-radius: 3;
     -fx-background-radius: 3;
+}
+
+.recurring-schedule {
+    -fx-font-family: "Segoe UI";
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-border-width: 0;
+    -fx-max-height: 110;
+    -fx-wrap-text: true;
 }

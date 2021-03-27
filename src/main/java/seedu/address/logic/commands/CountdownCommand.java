@@ -3,7 +3,9 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -32,6 +34,8 @@ public class CountdownCommand extends Command {
 
     private final Index index;
 
+    private final Logger logger = LogsCenter.getLogger(getClass());
+
     /**
      * @param index of the task in the filtered task list to find how much time is left before deadline
      */
@@ -57,6 +61,7 @@ public class CountdownCommand extends Command {
         Task taskToCountdown = lastShownList.get(targetIndexValue);
 
         if (taskToCountdown.dateOver()) {
+            logger.info("User entered date that's already over");
             throw new CommandException(MESSAGE_DEADLINE_OVER);
         }
         String daysLeft = model.countdownTask(taskToCountdown);

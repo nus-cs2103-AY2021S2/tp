@@ -52,6 +52,7 @@ public class DeleteTaskCommand extends Command {
         }
 
         Task taskToDelete = lastShownList.get(targetIndexValue);
+        taskToDelete.getTags().forEach(model::deleteTag);
         model.deleteTask(taskToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
     }

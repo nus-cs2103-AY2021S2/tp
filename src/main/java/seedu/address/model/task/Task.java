@@ -76,6 +76,13 @@ public class Task {
     }
 
     /**
+     * Replaces the task with a new Task with the set of tags provided.
+     */
+    public Task setTags(Set<Tag> tagSet) {
+        return new Task(title, deadline, duration, recurringSchedule, description, status, tagSet);
+    }
+
+    /**
      * Gets a hashmap of each field name and its string value. Insertion order matters for the
      * TaskCardDetails class that invokes this method to dynamically use entries.
      *
@@ -111,6 +118,33 @@ public class Task {
 
     public boolean hasExpired() {
         return recurringSchedule.isExpired();
+    }
+
+    /**
+     * Checks if the Deadline attribute contains any data.
+     *
+     * @return true if the String of Deadline isEmpty, false otherwise.
+     */
+    public boolean isDeadlineEmpty() {
+        return deadline.isEmptyValue();
+    }
+
+    /**
+     * Checks if the Duration attribute contains any data.
+     *
+     * @return true if the String of Duration isEmpty, false otherwise.
+     */
+    public boolean isDurationEmpty() {
+        return duration.isEmptyValue();
+    }
+
+    /**
+     * Checks if the RecurringSchedule attribute contains any data.
+     *
+     * @return true if the String of RecurringSchedule isEmpty, false otherwise.
+     */
+    public boolean isRecurringScheduleEmpty() {
+        return recurringSchedule.isEmptyValue();
     }
 
     /**
