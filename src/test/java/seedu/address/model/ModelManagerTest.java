@@ -25,6 +25,7 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskComparator;
 import seedu.address.model.task.TaskNameContainsKeywordsPredicate;
 import seedu.address.testutil.SocheduleBuilder;
+import seedu.address.testutil.TaskBuilder;
 import seedu.address.testutil.TypicalEvents;
 import seedu.address.testutil.TypicalTasks;
 
@@ -126,6 +127,40 @@ public class ModelManagerTest {
     @Test
     public void getFilteredEventList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredEventList().remove(0));
+    }
+
+    @Test
+    public void pinTask_returnsTrue() {
+        Task t = new TaskBuilder(ASSIGNMENT).build();
+        modelManager.addTask(t);
+        modelManager.pinTask(t);
+        assertTrue(t.isPinned());
+    }
+
+    @Test
+    public void unpinTask_returnsTrue() {
+        Task t = new TaskBuilder(ASSIGNMENT).build();
+        modelManager.addTask(t);
+        modelManager.pinTask(t);
+        assertTrue(t.isPinned());
+
+        modelManager.unpinTask(t);
+        assertFalse(t.isPinned());
+    }
+
+    @Test
+    public void pinTask_alreadyPinned_nothingHappen() {
+        Task t = new TaskBuilder(ASSIGNMENT).build();
+        modelManager.addTask(t);
+        modelManager.pinTask(t);
+        assertDoesNotThrow(() -> modelManager.pinTask(t));
+    }
+
+    @Test
+    public void unpinTask_alreadyUnpinned_nothingHappen() {
+        Task t = new TaskBuilder(ASSIGNMENT).build();
+        modelManager.addTask(t);
+        assertDoesNotThrow(() -> modelManager.unpinTask(t));
     }
 
     @Test
