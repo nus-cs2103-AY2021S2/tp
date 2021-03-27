@@ -52,9 +52,6 @@ public class TimeslotParser {
 
                 StringBuilder parsedFormat = parseFormat(dateInput, timeInput);
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern(String.valueOf(parsedFormat));
-                System.out.println(parsedFormat);
-                System.out.println(timeInput);
-                System.out.println(formattedInput);
                 return LocalDateTime.parse(formattedInput, formatter);
             } catch (DateTimeParseException e) {
                 throw new ParseException(MESSAGE_INVALID_DATE_TIME_FORMAT);
@@ -106,25 +103,28 @@ public class TimeslotParser {
      */
     public static LocalDateTime parseNextDateTime(String userInput) throws ParseException, NullPointerException {
         try {
-            LocalDateTime currentDateTime = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            LocalDateTime currentDateTime = LocalDateTime.now().withSecond(0).withNano(0);
             String[] nextDateTimeInputArray = userInput.split(REMOVE_WHITESPACE_REGEX);
             String keyword = nextDateTimeInputArray[1];
-            String timeInput = nextDateTimeInputArray[2];
             LocalDateTime parsedDate = null;
 
             if (Arrays.stream(Day.values()).anyMatch(e -> e.name().equals(keyword))) {
                 parsedDate = currentDateTime.with(TemporalAdjusters.next(DayOfWeek.valueOf(keyword)));
-            } else if (userInput.contains("MONTH")) {
+            } else if (keyword.contains("MONTH")) {
                 parsedDate = currentDateTime.plusMonths(1);
             } else {
                 parsedDate = currentDateTime.plusYears(1);
             }
 
-            if (!timeInput.isEmpty()) {
+            if (nextDateTimeInputArray.length > 2) {
+                String timeInput = nextDateTimeInputArray[2];
                 int[] hoursMinutesArray = parseTime(timeInput);
-                parsedDate.withHour(hoursMinutesArray[0]);
-                parsedDate.withMinute(hoursMinutesArray[1]);
+                parsedDate = parsedDate.withHour(hoursMinutesArray[0]);
+                parsedDate = parsedDate.withMinute(hoursMinutesArray[1]);
+                parsedDate = parsedDate.withSecond(0).withNano(0);
             }
+
             return parsedDate;
 
         } catch (DateTimeParseException e) {
@@ -137,20 +137,22 @@ public class TimeslotParser {
     /**
      * Parses a {@code String timeInput} into a {@code LocalDateTime}.
      * Adjusts the time in current LocalDateTime based on user time input.
-     * Accomodates both 24-clock or Meridian time format.
+     * Accommodates both 24-clock or Meridian time format.
      *
      * @throws NullPointerException if the {@code timeInput} does not
      * conform to the expected time format.
      */
     public static int[] parseTime(String timeInput) throws NullPointerException {
         try {
-            String[] hoursMinutesRawArray;
-            timeInput = removeMeridian(timeInput);
-            hoursMinutesRawArray = timeInput.split(":");
+            String revisedTimeInput = removeMeridian(timeInput);
+            String[] hoursMinutesRawArray = revisedTimeInput.split(":");
             int[] hoursMinutesIntegerArray = Arrays.stream(hoursMinutesRawArray).mapToInt(Integer::parseInt).toArray();
-
             if (timeInput.contains("PM")) {
                 hoursMinutesIntegerArray[0] = (hoursMinutesIntegerArray[0]) + 12;
+            }
+
+            if (timeInput.contains("AM") && hoursMinutesIntegerArray[0] == 12) {
+                hoursMinutesIntegerArray[0] = 0;
             }
 
             return hoursMinutesIntegerArray;
@@ -170,7 +172,7 @@ public class TimeslotParser {
     public static String removeMeridian(String timeInput) {
         String timeSubString = null;
         if ((timeInput != null) && (timeInput.length() > 0)) {
-            timeSubString = timeInput.substring(timeInput.length() - 3);
+            timeSubString = timeInput.substring(0, timeInput.length() - 2);
         }
         return timeSubString;
     }
@@ -184,7 +186,6 @@ public class TimeslotParser {
      */
     public static Duration parseDuration(String duration) throws ParseException {
         requireNonNull(duration);
-
         try {
             return Duration.parse(PREFIX_DURATION_PARSE_SEQUENCE + duration.replaceAll(
                     REMOVE_WHITESPACE_REGEX, ""));
