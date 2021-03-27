@@ -78,8 +78,7 @@ public class EditVenueCommand extends Command {
 
     private static Venue getVenueByVenueName(VenueName venueName, List<Venue> venueList) {
         return venueList.stream()
-                .filter(venue -> StringUtil.containsWordIgnoreCase(String.valueOf(venue.getVenueName()),
-                        String.valueOf(venueName))).findFirst().orElse(null);
+                .filter(venue -> (venue.getVenueName()).equals(venueName)).findFirst().orElse(null);
     }
 
     /**

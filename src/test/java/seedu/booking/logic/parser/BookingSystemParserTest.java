@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.booking.logic.commands.AddCommand;
+import seedu.booking.logic.commands.AddPersonCommand;
 import seedu.booking.logic.commands.ClearCommand;
 import seedu.booking.logic.commands.DeleteCommand;
 import seedu.booking.logic.commands.EditCommand;
@@ -36,8 +36,8 @@ public class BookingSystemParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        AddPersonCommand command = (AddPersonCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
+        assertEquals(new AddPersonCommand(person), command);
     }
 
     @Test

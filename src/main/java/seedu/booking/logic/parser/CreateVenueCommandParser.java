@@ -7,7 +7,7 @@ import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 
 import java.util.stream.Stream;
 
-import seedu.booking.logic.commands.CreateVenueCommand;
+import seedu.booking.logic.commands.AddVenueCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.model.venue.Capacity;
 import seedu.booking.model.venue.Venue;
@@ -16,7 +16,7 @@ import seedu.booking.model.venue.VenueName;
 /**
  * Parses input arguments and creates a new AddVenue object
  */
-public class CreateVenueCommandParser implements Parser<CreateVenueCommand> {
+public class CreateVenueCommandParser implements Parser<AddVenueCommand> {
 
     private static final String DEFAULT_CAPACITY = "10";
     private static final String DEFAULT_DESCRIPTION = "No description provided.";
@@ -26,7 +26,7 @@ public class CreateVenueCommandParser implements Parser<CreateVenueCommand> {
      * and returns an AddVenue object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public CreateVenueCommand parse(String args) throws ParseException {
+    public AddVenueCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_VENUE, PREFIX_CAPACITY, PREFIX_DESCRIPTION);
 
@@ -42,14 +42,14 @@ public class CreateVenueCommandParser implements Parser<CreateVenueCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_VENUE, PREFIX_CAPACITY, PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateVenueCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddVenueCommand.MESSAGE_USAGE));
         }
 
         VenueName name = ParserUtil.parseVenueName(argMultimap.getValue(PREFIX_VENUE).get());
         Capacity capacity = ParserUtil.parseCapacity(argMultimap.getValue(PREFIX_CAPACITY).get());
         Venue venue = new Venue(name, capacity, description);
 
-        return new CreateVenueCommand(venue);
+        return new AddVenueCommand(venue);
     }
 
     /**

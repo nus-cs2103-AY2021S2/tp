@@ -14,9 +14,9 @@ import seedu.booking.model.booking.Booking;
 /**
  * Adds a person to the address book.
  */
-public class CreateBookingCommand extends Command {
+public class AddBookingCommand extends Command {
 
-    public static final String COMMAND_WORD = "create_booking";
+    public static final String COMMAND_WORD = "add_booking";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a booking to the address book. "
             + "Parameters: "
@@ -43,7 +43,7 @@ public class CreateBookingCommand extends Command {
     /**
      * Creates an CreateBookingCommand to add the specified {@code Booking}
      */
-    public CreateBookingCommand(Booking booking) {
+    public AddBookingCommand(Booking booking) {
         requireNonNull(booking);
         toAdd = booking;
     }
@@ -79,7 +79,7 @@ public class CreateBookingCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof CreateBookingCommand // instanceof handles nulls
-                && toAdd.equals(((CreateBookingCommand) other).toAdd));
+                || (other instanceof AddBookingCommand // instanceof handles nulls
+                && toAdd.equals(((AddBookingCommand) other).toAdd));
     }
 }
