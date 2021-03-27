@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT_START;
 
 import java.time.DayOfWeek;
 import java.time.Duration;
@@ -19,9 +20,29 @@ import seedu.address.model.appointment.exceptions.NegativeOrZeroDurationExceptio
  */
 public class TimeslotParser {
     public static final String MESSAGE_INVALID_DATE_TIME_FORMAT = "Input format for date time parameters "
-            + "must be: YYYY-MM-DD HH:mm";
-    public static final String MESSAGE_INVALID_NEXT_DATE_TIME_FORMAT = "Input format for next date time parameters ";
-    public static final String MESSAGE_INVALID_TIME_FORMAT = "Input format for time parameters must be: ";
+            + "must be any of:\n"
+            + "==== Date ====\n"
+            + "> DD-MM-YYYY\n"
+            + "> DD-MM-YY\n"
+            + "> DD/MM/YYYY\n"
+            + "> DD/MM/YY\n"
+            + "> next DAY\n"
+            + "> next month\n"
+            + "> next year\n"
+            + "==== Time ====\n"
+            + "> hh:mm (In 24-Hour format)\n"
+            + "> hh:mmam/pm\n"
+            + "Example:\n" + PREFIX_TIMESLOT_START
+            + "12/12/21 09:00am";
+    public static final String MESSAGE_INVALID_NEXT_DATE_TIME_FORMAT = "Input format for next date time parameters "
+            + "must be:\n"
+            + "next DAY TIME\n"
+            + "Example:\n" + PREFIX_TIMESLOT_START
+            + "next Wednesday 12:12pm";
+    public static final String MESSAGE_INVALID_TIME_FORMAT = "Input format for time parameters must be: "
+            + "hh:mm (In 24-Hour format) or hh:mmam/pm\n"
+            + "Example:\n"
+            + "15:12 or 03:12pm";
     public static final String MESSAGE_INVALID_DURATION_FORMAT = "Input format for duration must be: "
             + "[%d UNIT...] where units are { H:hours, M:minutes }\n"
             + "Examples of duration inputs:\n"
@@ -103,7 +124,6 @@ public class TimeslotParser {
      */
     public static LocalDateTime parseNextDateTime(String userInput) throws ParseException, NullPointerException {
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             LocalDateTime currentDateTime = LocalDateTime.now().withSecond(0).withNano(0);
             String[] nextDateTimeInputArray = userInput.split(REMOVE_WHITESPACE_REGEX);
             String keyword = nextDateTimeInputArray[1];
