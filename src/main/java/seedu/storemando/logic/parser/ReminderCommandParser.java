@@ -75,9 +75,9 @@ public class ReminderCommandParser implements Parser<ReminderCommand> {
      * @throws ParseException if the user input does not conform the expected keyword
      */
     private long singularTimeUnitConversion(Long parsedNum, String timeUnit) throws ParseException {
-        if (timeUnit.equalsIgnoreCase(DAY_KEYWORD)) {
+        if (timeUnit.equalsIgnoreCase(DAY_KEYWORD) || timeUnit.equalsIgnoreCase(DAYS_KEYWORD)) {
             return parsedNum;
-        } else if (timeUnit.equalsIgnoreCase(WEEK_KEYWORD)) {
+        } else if (timeUnit.equalsIgnoreCase(WEEK_KEYWORD) || timeUnit.equalsIgnoreCase(WEEKS_KEYWORD)) {
             return parsedNum * 7;
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
