@@ -14,9 +14,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.partyplanet.commons.core.Messages;
@@ -47,8 +47,7 @@ public class EditAutocompleteUtil {
         return tags
             .stream()
             .map(t -> "-t " + t.tagName)
-            .reduce((a, b) -> a + " " + b)
-            .orElse("");
+            .collect(Collectors.joining(" "));
     }
 
     /**
@@ -92,13 +91,13 @@ public class EditAutocompleteUtil {
         Person person = filteredPersonList.get(index.getZeroBased());
 
         // Create a Map of Prefix to the relevant getter method
-        Map<Prefix, Supplier<String>> prefixMethodMap = Map.of(
-            PREFIX_ADDRESS, () -> person.getAddress().value,
-            PREFIX_BIRTHDAY, () -> person.getBirthday().value,
-            PREFIX_EMAIL, () -> person.getEmail().value,
-            PREFIX_NAME, () -> person.getName().fullName,
-            PREFIX_REMARK, () -> person.getRemark().value,
-            PREFIX_TAG, () -> null
+        Map<Prefix, String> prefixMethodMap = Map.of(
+            PREFIX_ADDRESS, person.getAddress().value,
+            PREFIX_BIRTHDAY, person.getBirthday().value,
+            PREFIX_EMAIL, person.getEmail().value,
+            PREFIX_NAME, person.getName().fullName,
+            PREFIX_REMARK, person.getRemark().value,
+            PREFIX_TAG, ""
         );
 
         String output = "edit " + index.getOneBased();
@@ -156,7 +155,7 @@ public class EditAutocompleteUtil {
             }
 
             if (!hasOutput) {
-                output += " " + prefix + " " + prefixMethodMap.get(prefix).get();
+                output += " " + prefix + " " + prefixMethodMap.get(prefix);
             }
 
         }
