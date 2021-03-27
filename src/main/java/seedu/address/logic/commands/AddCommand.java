@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.conditions.ConditionManager;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
@@ -59,8 +60,6 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DEADLINE_RECURRING_SCHEDULE_CONFLICT = "Task cannot have (Deadline) as well as "
             + "(RecurringSchedule) at the same time!\nPlease choose either when adding a task.";
 
-
-
     private Task toAdd;
 
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -77,38 +76,19 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        try {
-            handleDuplicateTask(model);
-            enforceDeadlineEventExclusiveness();
-            handleExpiredTask();
-            updateTags(model);
-            updateModel(model);
+        handleDuplicateTask(model);
+        ConditionManager.enforceAttributeConstraints(toAdd);
+        handleExpiredTask();
+        updateTags(model);
+        updateModel(model);
 
-            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-        } catch (CommandException ce) {
-            throw ce;
-        }
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     private void handleDuplicateTask(Model model) throws CommandException{
         boolean isDuplicateTask = model.hasTask(toAdd);
         if (isDuplicateTask) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
-        }
-    }
-
-    private void enforceDeadlineEventExclusiveness() throws CommandException{
-        boolean hasDeadlineValue = !toAdd.isDeadlineEmpty();
-        boolean hasDurationValue = !toAdd.isDurationEmpty();
-        boolean hasRecurringScheduleValue = !toAdd.isRecurringScheduleEmpty();
-        if (hasDeadlineValue && hasDurationValue && hasRecurringScheduleValue) {
-            throw new CommandException(MESSAGE_DEADLINE_EVENT_CONFLICT);
-        }
-        if (hasDeadlineValue && hasDurationValue) {
-            throw new CommandException(MESSAGE_DEADLINE_DURATION_CONFLICT);
-        }
-        if (hasDeadlineValue && hasRecurringScheduleValue) {
-            throw new CommandException(MESSAGE_DEADLINE_RECURRING_SCHEDULE_CONFLICT);
         }
     }
 

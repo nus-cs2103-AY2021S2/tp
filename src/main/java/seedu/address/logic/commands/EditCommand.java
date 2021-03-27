@@ -20,6 +20,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.conditions.ConditionManager;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
@@ -90,6 +91,8 @@ public class EditCommand extends Command {
 
         checkForDuplicateTask(model, taskToEdit, editedTask);
         checkForInvalidDate(editedTask);
+        ConditionManager.enforceAttributeConstraints(editedTask);
+
         editedTask = handleTagUpdates(model, taskToEdit, editedTask);
         updateModel(model, taskToEdit, editedTask);
 
