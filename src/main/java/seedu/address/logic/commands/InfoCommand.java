@@ -75,7 +75,7 @@ public class InfoCommand extends Command {
 
     /**
      * finds the module code from the array of module information
-     * @param informationOfModules the array of module information to find the module fomr
+     * @param informationOfModules the array of module information to find the module from
      * @return the module information if found otherwise a module not found message
      */
     public JsonModule findMatchingModule(JsonModule[] informationOfModules) {
@@ -85,6 +85,10 @@ public class InfoCommand extends Command {
             }
         }
         return null;
+    }
+
+    public String getModuleCode() {
+        return this.moduleCode;
     }
 }
 
