@@ -9,7 +9,7 @@ import seedu.smartlib.model.Model;
 import seedu.smartlib.model.record.Record;
 
 /**
- * Adds a record indicating that a reader borrowing a book
+ * Adds a record indicating that a reader borrowing a book.
  */
 public class BorrowCommand extends Command {
 
@@ -19,23 +19,23 @@ public class BorrowCommand extends Command {
             + "Parameters: " + PREFIX_BOOK + "<book name> " + PREFIX_READER + "<reader name>\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_BOOK + "The Hobbit " + PREFIX_READER + "Alex Yeoh";
     public static final String MESSAGE_SUCCESS = "New borrowing record added.";
-    public static final String MESSAGE_DUPLICATE_RECORD = "This record already exists in the registered record base";
-    public static final String NO_READER_AND_BOOK_FOUND = "Sorry, we could find "
-            + "neither the book nor the reader you specified. Please check if you have spelled correctly.";
+    public static final String MESSAGE_DUPLICATE_RECORD = "This record already exists in the registered record base.";
+    public static final String NO_READER_AND_BOOK_FOUND = "Sorry, we were unable to find "
+            + "neither the book nor the reader which you have specified. Please check if you have spelled correctly.";
     public static final String NO_BOOK_FOUND = "Sorry, we could not find the "
-            + "book you specified. Please check if you have spelled correctly.";
+            + "book which you have specified. Please check if you have spelled correctly.";
     public static final String NO_READER_FOUND = "Sorry, we could not find the "
-            + "reader you specified. Please check if you have spelled correctly.";
-    public static final String BOOK_ALREADY_BORROWED = "Sorry, the book is already borrowed by someone.";
-    public static final String READER_DISABLE_BORROWING = "Sorry, the reader has either borrowed all quota of books"
-            + " or has overdue books unreturned.";
-    public static final String UNABLE_TO_UPDATE_CODEBASE = "Sorry, an error occured with codebase and we are"
-            + "not able to update it.";
+            + "reader which you have specified. Please check if you have spelled correctly.";
+    public static final String BOOK_ALREADY_BORROWED = "Sorry, the book is already borrowed by another reader.";
+    public static final String READER_DISABLE_BORROWING = "Sorry, the reader has either reached the quota of books"
+            + " that he/she can borrow, or is holding on to an overdue book.";
+    public static final String UNABLE_TO_UPDATE_CODEBASE = "Sorry, an error has occurred with codebase and we are"
+            + " unable to update it.";
 
     private final Record toAdd;
 
     /**
-     * Creates a BorrowCommand to add a record
+     * Creates a BorrowCommand to add a record.
      * @param record recordToAdd
      */
     public BorrowCommand(Record record) {
@@ -50,12 +50,15 @@ public class BorrowCommand extends Command {
         if (model.hasRecord(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_RECORD);
         }
+
         if (!model.hasBook(toAdd.getBookName()) && !model.hasReader(toAdd.getReaderName())) {
             throw new CommandException(NO_READER_AND_BOOK_FOUND);
         }
+
         if (!model.hasBook(toAdd.getBookName())) {
             throw new CommandException(NO_BOOK_FOUND);
         }
+
         if (!model.hasReader(toAdd.getReaderName())) {
             throw new CommandException(NO_READER_FOUND);
         }
@@ -63,6 +66,7 @@ public class BorrowCommand extends Command {
         if (model.isBookBorrowed(toAdd.getBookName())) {
             throw new CommandException(BOOK_ALREADY_BORROWED);
         }
+
         if (!model.canReaderBorrow(toAdd.getReaderName())) {
             throw new CommandException(READER_DISABLE_BORROWING);
         }
