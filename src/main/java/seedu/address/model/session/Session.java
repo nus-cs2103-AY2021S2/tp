@@ -149,9 +149,7 @@ public class Session {
                 .append("; Day: ")
                 .append(this.getDay())
                 .append("; Time: ")
-                .append(this.getTimeslot().toString())
-                .append("; Students: ")
-                .append(this.getStudents().toString());
+                .append(this.getTimeslot().toString());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

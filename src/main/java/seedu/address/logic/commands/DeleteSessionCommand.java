@@ -20,7 +20,7 @@ public class DeleteSessionCommand extends Command {
             + "Parameters: C/ID (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " c/1";
 
-    public static final String MESSAGE_DELETE_SESSION_SUCCESS = "Deleted Session: Session ID: %1$s";
+    public static final String MESSAGE_DELETE_SESSION_SUCCESS = "Deleted Session: %1$s";
 
     private final SessionId targetClassId;
 

@@ -85,7 +85,7 @@ public class EditSessionCommand extends Command {
     private static Session createEditedSession(Session sessionToEdit, EditSessionDescriptor editSessionDescriptor) {
         assert sessionToEdit != null;
 
-        SessionId sessionId = editSessionDescriptor.getSessionId().orElse(sessionToEdit.getClassId());
+        SessionId sessionId = sessionToEdit.getClassId();
         Day updatedDay = editSessionDescriptor.getDay().orElse(sessionToEdit.getDay());
         Subject updatedSubject = editSessionDescriptor.getSubject().orElse(sessionToEdit.getSubject());
         Timeslot updatedTimeSlot = editSessionDescriptor.getTimeSlot().orElse(sessionToEdit.getTimeslot());

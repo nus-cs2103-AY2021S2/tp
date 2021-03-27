@@ -34,6 +34,10 @@ public class SessionId {
         return sessionId;
     }
 
+    public static SessionId fromOneBased(Integer sessionId) {
+        return new SessionId(sessionId);
+    }
+
     /**
      * Returns true if a given string is a valid session ID.
      */
