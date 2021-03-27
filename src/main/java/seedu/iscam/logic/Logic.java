@@ -45,11 +45,6 @@ public interface Logic {
     ObservableList<Meeting> getFilteredMeetingList();
 
     /**
-     * Returns an unmodifiable view of the filtered list of meetings
-     */
-    ObservableList<Meeting> getFilteredMeetingList();
-
-    /**
      * Returns the mode of iScam.
      */
     ObservableValue<Boolean> getIsClientMode();

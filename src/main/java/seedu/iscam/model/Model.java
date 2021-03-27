@@ -141,30 +141,10 @@ public interface Model {
     void updateFilteredClientList(Predicate<Client> predicate);
 
     /**
-     * Returns an unmodifiable view of a client to be displayed in detail
-     */
-    ObservableClient getDetailedClient();
-
-    /**
      * Updates the detailed client to match the supplied client.
      */
     void setDetailedClient(Client client);
-
-    /**
-     * Set iScam to Client mode.
-     */
-    void setClientMode();
-
-    /**
-     * Set iScam to Meeting mode.
-     */
-    void setMeetingMode();
-
-    /**
-     * Return iScam's current mode.
-     */
-    ObservableValue<Boolean> getIsClientMode();
-
+    
     /**
      * Set iScam to Client mode.
      */

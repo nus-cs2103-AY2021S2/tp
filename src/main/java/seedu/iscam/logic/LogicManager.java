@@ -71,11 +71,7 @@ public class LogicManager implements Logic {
     public ObservableList<Meeting> getFilteredMeetingList() {
         return model.getFilteredMeetingList();
     }
-
-    @Override
-    public ObservableList<Meeting> getFilteredMeetingList() {
-        return model.getFilteredMeetingList();
-    }
+    
 
     @Override
     public ObservableValue<Boolean> getIsClientMode() {
