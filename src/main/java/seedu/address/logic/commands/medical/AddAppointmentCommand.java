@@ -17,6 +17,7 @@ import seedu.address.model.Model;
 import seedu.address.model.medical.Appointment;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Height;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -79,10 +80,11 @@ public class AddAppointmentCommand extends Command {
         Phone updatedPhone = personToEdit.getPhone();
         Email updatedEmail = personToEdit.getEmail();
         Address updatedAddress = personToEdit.getAddress();
+        Height updatedHeight = personToEdit.getHeight();
         Weight updatedWeight = personToEdit.getWeight();
         Set<Tag> updatedTags = personToEdit.getTags();
         List<Appointment> updatedAppointments = personToEdit.getAppointments();
-        Person p = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedWeight,
+        Person p = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedHeight, updatedWeight,
                 updatedTags, updatedAppointments);
         p.addAppointment(appt);
         return p;
