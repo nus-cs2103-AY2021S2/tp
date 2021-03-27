@@ -68,9 +68,7 @@ public class UpcomingTuitionListPanel extends UiPart<Region> {
     }
 
     /**
-     * Filters all tuition 1 week from today
-     * @param tuitionList
-     * @param finalTuitionList
+     * Filters all tuition 1 week from today.
      */
     private void filterOneWeekTuitionSessions(ObservableList<Tuition> tuitionList, ObservableList<Tuition> finalTuitionList) {
         LocalDate today = LocalDateTime.now().toLocalDate();
@@ -97,7 +95,7 @@ public class UpcomingTuitionListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Session} using a {@code SessionCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Tuition} using a {@code UpcomingTuitionCard}.
      */
     class UpcomingTuitionListViewCell extends ListCell<Tuition> {
         @Override

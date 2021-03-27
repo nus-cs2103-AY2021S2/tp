@@ -18,19 +18,11 @@ import seedu.address.model.student.Student;
 import seedu.address.model.tuition.Tuition;
 
 /**
- * An UI component that displays information of a {@code Tuition}.
+ * An UI component that displays information of a {@Student} and a list the {@code Session} of that {@code Student}.
  */
 public class TuitionCard extends UiPart<Region> {
 
     private static final String FXML = "TuitionListCard.fxml";
-
-    /**
-     * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
-     * As a consequence, UI elements' variable names cannot be set to such keywords
-     * or an exception will be thrown by JavaFX during runtime.
-     *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
-     */
 
     public final Student student;
     final int ROW_HEIGHT = 98;
@@ -52,11 +44,18 @@ public class TuitionCard extends UiPart<Region> {
 
         ObservableList<Session> sessionList = FXCollections.observableList(student.getListOfSessions());
 
-        sessionListView.setItems(sessionList);
-        sessionListView.setCellFactory(listView -> new SessionListViewCell());
+        populateSessionListView(sessionList);
 
         // hard code height to prevent list from being scrollable
         sessionListView.setPrefHeight(sessionList.size() * ROW_HEIGHT);
+    }
+
+    /**
+     * Populates the sessionListView with all {@code Session} of the given {@Student}.
+     */
+    private void populateSessionListView(ObservableList<Session> sessionList) {
+        sessionListView.setItems(sessionList);
+        sessionListView.setCellFactory(listView -> new SessionListViewCell());
     }
 
     @Override

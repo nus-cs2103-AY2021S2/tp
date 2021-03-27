@@ -37,16 +37,16 @@ public class TuitionListPanel extends UiPart<Region> {
 
         studentList.addListener((ListChangeListener<Student>) change -> {
             while (change.next()) {
-                populateTuitionList(studentList);
+                populateTuitionListView(studentList);
             }
         });
-        populateTuitionList(studentList);
+        populateTuitionListView(studentList);
     }
 
     /**
-     * Populate the TuitionListPanel with the filtered student list
+     * Populate the tuitionListView with the given {@code ObservableList}
      */
-    private void populateTuitionList(ObservableList<Student> studentList) {
+    private void populateTuitionListView(ObservableList<Student> studentList) {
         ObservableList<Student> studentWithSessionsList = filterStudentsWithSessions(studentList);
         tuitionListView.setItems(studentWithSessionsList);
         tuitionListView.setCellFactory(listView -> new TuitionListViewCell());
@@ -61,7 +61,8 @@ public class TuitionListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Session} using a {@code SessionCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Student} and {@code Session}
+     * using a {@code TuitionCard}.
      */
     class TuitionListViewCell extends ListCell<Student> {
         @Override
