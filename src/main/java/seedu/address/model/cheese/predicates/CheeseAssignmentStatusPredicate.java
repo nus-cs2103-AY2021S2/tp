@@ -58,4 +58,11 @@ public class CheeseAssignmentStatusPredicate extends FieldPredicate<Cheese> {
         return isCheeseAssigned ? 1 : 0;
     }
 
+    @Override
+    public String toString() {
+        return String.format(
+                "%s status", (isCheeseAssigned ? "assigned" : "not assigned")
+        );
+    }
+
 }

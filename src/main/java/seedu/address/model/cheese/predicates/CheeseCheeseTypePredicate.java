@@ -1,6 +1,7 @@
 package seedu.address.model.cheese.predicates;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.util.PredicateUtil;
 import seedu.address.model.cheese.Cheese;
@@ -32,4 +33,9 @@ public class CheeseCheeseTypePredicate extends SingleFieldPredicate<Cheese> {
         return (other instanceof CheeseCheeseTypePredicate) && super.equals(other); // state check
     }
 
+    @Override
+    public String toString() {
+        return String.format("cheese type keyword(s) of %s",
+                keywords.stream().collect(Collectors.joining(" , ")));
+    }
 }

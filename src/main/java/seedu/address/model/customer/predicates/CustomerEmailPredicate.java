@@ -40,4 +40,9 @@ public class CustomerEmailPredicate extends SingleFieldPredicate<Customer> {
         return (other instanceof CustomerEmailPredicate) && super.equals(other); // state check
     }
 
+    @Override
+    public String toString() {
+        return String.format("email starting with %s",
+                super.toString());
+    }
 }

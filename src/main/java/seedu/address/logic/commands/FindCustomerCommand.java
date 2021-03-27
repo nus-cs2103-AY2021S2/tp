@@ -45,8 +45,17 @@ public class FindCustomerCommand extends Command {
         requireNonNull(model);
         model.updateFilteredCustomerList(predicate);
         model.setPanelToCustomerList();
-        return new CommandResult(
-                String.format(Messages.MESSAGE_CUSTOMERS_LISTED_OVERVIEW, model.getFilteredCustomerList().size()));
+
+        String message = String.format(
+                Messages.MESSAGE_CUSTOMERS_FOUND_OVERVIEW,
+                model.getFilteredCustomerList().size(),
+                predicate);
+
+        if (model.getFilteredCustomerList().size() == 0) {
+            message = String.format(Messages.MESSAGE_CUSTOMERS_NOT_FOUND_OVERVIEW, predicate);
+        }
+
+        return new CommandResult(message);
     }
 
     @Override

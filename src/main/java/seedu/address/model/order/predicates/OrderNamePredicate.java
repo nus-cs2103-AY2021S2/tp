@@ -57,4 +57,9 @@ public class OrderNamePredicate extends SingleFieldPredicate<Order> {
         return matchingCustomer != null ? matchingCustomer.getName().toString() : null;
     }
 
+    @Override
+    public String toString() {
+        return String.format("customer's name containing  %s",
+                super.toString());
+    }
 }
