@@ -8,6 +8,7 @@ import static seedu.student.testutil.Assert.assertThrows;
 import static seedu.student.testutil.TypicalStudents.ALICE;
 import static seedu.student.testutil.TypicalStudents.getTypicalStudentBook;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -17,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.student.model.appointment.Appointment;
 import seedu.student.model.appointment.SameDateAppointmentList;
 import seedu.student.model.student.Student;
 import seedu.student.model.student.exceptions.DuplicateStudentException;
@@ -102,6 +104,11 @@ public class StudentBookTest {
         @Override
         public ObservableList<SameDateAppointmentList> getAppointmentList() {
             return appointments;
+        }
+
+        @Override
+        public List<Appointment> getFlatAppointmentList() {
+            return new ArrayList<>();
         }
     }
 
