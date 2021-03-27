@@ -2,7 +2,7 @@
   "_comment": "PlanIt save file which contains the same Task values as in TypicalTasks#getTypicalPlanner()",
   "tasks" : [ {
     "title" : "Assignment 79",
-    "deadline" : "13/12/2021",
+    "deadline" : "",
     "duration": "12:30-13:30",
     "recurringSchedule" : "[10/06/2021][Mon][biweekly]",
     "description": "Build the next Google",
@@ -11,14 +11,14 @@
   }, {
     "title" : "Build a gaming PC",
     "deadline" : "12/12/2021",
-    "duration": "12:30-13:30",
-    "recurringSchedule" : "[08/06/2021][Tue][weekly]",
+    "duration": "",
+    "recurringSchedule" : "",
     "description": "buy: coffee, 3080, 40-inch monitor",
     "status": "not done",
     "tagged" : [ "findMoney", "priorities" ]
   }, {
     "title" : "Countdown to finals",
-    "deadline" : "09/09/2021",
+    "deadline" : "",
     "duration": "12:30-13:30",
     "recurringSchedule" : "[10/06/2021][Wed][weekly]",
     "description": "aiken doeet",
@@ -26,7 +26,7 @@
     "tagged" : [ ]
   }, {
     "title" : "Demo our amazing product",
-    "deadline" : "25/09/2021",
+    "deadline" : "",
     "duration": "12:30-13:30",
     "recurringSchedule" : "[05/06/2021][Thu][biweekly]",
     "description": "Number 1 for real",
@@ -35,23 +35,23 @@
   }, {
     "title" : "Ensure that I eat lunch",
     "deadline" : "20/10/2021",
-    "duration": "12:30-13:30",
-    "recurringSchedule" : "[02/06/2021][Wed][weekly]",
+    "duration": "",
+    "recurringSchedule" : "",
     "description": "budget 3$",
     "status": "done",
     "tagged" : [ ]
   }, {
     "title" : "Final project consult again",
-    "deadline" : "20/10/2021",
+    "deadline" : "",
     "duration": "12:30-13:30",
-    "recurringSchedule" : "[03/06/2021][Fri][biweekly]",
+    "recurringSchedule" : "",
     "description": "at COM2",
     "status": "done",
     "tagged" : [ ]
   }, {
     "title" : "Get ready for 2101 presentation",
-    "deadline" : "20/05/2022",
-    "duration": "12:30-13:30",
+    "deadline" : "",
+    "duration": "",
     "recurringSchedule" : "[18/06/2021][Sun][weekly]",
     "description": "remember to shave",
     "status": "done",

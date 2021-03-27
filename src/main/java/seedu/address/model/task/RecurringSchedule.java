@@ -114,6 +114,10 @@ public class RecurringSchedule implements RecurringDates {
         return recurringScheduleOutput;
     }
 
+    public boolean isEmptyValue() {
+        return isEmptyRecurringSchedule;
+    }
+
     @Override
     public String toString() {
         return output;
