@@ -14,6 +14,7 @@ public class DetailsPanel extends UiPart<Region> {
 
     private final PersonDetailsTab personDetailsTab;
     private final UpcomingEventsTab upcomingEventsTab;
+    private final StreaksTab streaksTab;
 
     @FXML
     private VBox tabPlaceholder;
@@ -23,11 +24,15 @@ public class DetailsPanel extends UiPart<Region> {
      * @param upcomingEventsList A list of upcoming events.
      * @param detailedPerson A list containing a single {@code Person}.
      */
-    public DetailsPanel(ObservableList<PersonEvent> upcomingEventsList, ObservableList<Person> detailedPerson) {
+    public DetailsPanel(ObservableList<PersonEvent> upcomingEventsList, ObservableList<Person> detailedPerson, ObservableList<Person> persons) {
         super(FXML);
         upcomingEventsTab = new UpcomingEventsTab(upcomingEventsList);
         personDetailsTab = new PersonDetailsTab(detailedPerson);
-        toggleTab(DetailsPanelTab.UPCOMING_EVENTS);
+        streaksTab = new StreaksTab(persons);
+//        toggleTab(DetailsPanelTab.UPCOMING_EVENTS);
+        toggleTab(DetailsPanelTab.STREAKS);
+        System.out.println("Width of tabplaceholder");
+        System.out.println(tabPlaceholder.widthProperty());
     }
 
     /**
@@ -38,6 +43,9 @@ public class DetailsPanel extends UiPart<Region> {
         switch (tab) {
         case PERSON_DETAILS:
             tabPlaceholder.getChildren().setAll(personDetailsTab.getRoot());
+            break;
+        case STREAKS:
+            tabPlaceholder.getChildren().setAll(streaksTab.getRoot());
             break;
         case UPCOMING_EVENTS:
         default:
