@@ -16,6 +16,8 @@ Focuris is a **desktop application** for **managing events** with a KanBan board
 
 ---
 
+<div class="page-break-before"></div>
+
 # Table Of Contents
 
 <!-- prettier-ignore-start -->
@@ -28,6 +30,8 @@ Focuris is a **desktop application** for **managing events** with a KanBan board
 <!-- prettier-ignore-end -->
 
 ---
+
+<div class="page-break-before"></div>
 
 # 1. Quick start
 
@@ -58,6 +62,8 @@ Focuris is a **desktop application** for **managing events** with a KanBan board
 
 [Return to Table of Contents](#table-of-contents)
 
+<div class="page-break-before"></div>
+
 # 2. Features
 
 <div markdown="block" class="alert alert-info">
@@ -83,21 +89,26 @@ Focuris is a **desktop application** for **managing events** with a KanBan board
 
 [Return to Table of Contents](#table-of-contents)
 
+<div class="page-break-before"></div>
+
 ## 2.1 Summary
 
 ### 2.1.1 Command Summary
 
 | Command                           | Description                                     | Format, Examples                                                                                           |
 | --------------------------------- | ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| [**Todo**](#231-todo-command)     | Creates a new event with status **Todo**        | `todo n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `todo n/CS2040 d/Assignment`                           |
+| [**Clear**](#236-clear-command)   | **Clears** all events in Focuris                | `clear`                                                                                                    |
+| [**Delete**](#235-delete-command) | **Deletes** an existing event                   | `delete IDENTIFIER`<br> e.g., `delete 3`                                                                   |
+| [**Edit**](#234-edit-command)     | **Edits** an existing event's attributes        | `edit IDENTIFIER [n/NAME] [s/STATUS] [d/DESCRIPTION] [p/PRIORITY]`<br> e.g.,`edit 2 n/CS2030 d/Assignment` |
+| [**Exit**](#222-exit-command)     | **Exits** the application                       | `exit`                                                                                                     |
+| [**Help**](#221-help-command)     | Displays **help menu** pop-up                   | `help`                                                                                                     |
 | [**Log**](#232-log-command)       | Creates a new event with status **Backlog**     | `log n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `log n/CS2030 d/Lab`                                    |
 | [**Prog**](#233-prog-command)     | Creates a new event with status **In-Progress** | `prog n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `prog n/CS2100 d/Tutorial`                             |
-| [**Delete**](#237-delete-command) | **Deletes** an existing event                   | `delete IDENTIFIER`<br> e.g., `delete 3`                                                                   |
-| [**Edit**](#234-edit-command)     | **Edits** an existing event's attributes        | `edit IDENTIFIER [n/NAME] [s/STATUS] [d/DESCRIPTION] [p/PRIORITY]`<br> e.g.,`edit 2 n/CS2030 d/Assignment` |
-| [**Help**](#221-help-command)     | Displays **help menu** pop-up                   | `help`                                                                                                     |
-| [**Exit**](#222-exit-command)     | **Exits** the application                       | `exit`                                                                                                     |
+| [**Todo**](#231-todo-command)     | Creates a new event with status **Todo**        | `todo n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `todo n/CS2040 d/Assignment`                           |
 
 [Return to Table of Contents](#table-of-contents)
+
+<div class="page-break-before"></div>
 
 ### 2.1.2 Attribute Summary
 
@@ -110,6 +121,8 @@ Focuris is a **desktop application** for **managing events** with a KanBan board
 | KEYWORD                  | No Prefix | Keywords for searching Events in Focuris | No Constraints                                                                                                                                          |
 
 [Return to Table of Contents](#table-of-contents)
+
+<div class="page-break-before"></div>
 
 ## 2.2 General
 
@@ -131,6 +144,8 @@ help
 
 [Return to Table of Contents](#table-of-contents)
 
+<div class="page-break-before"></div>
+
 ### 2.2.2 `exit` Command
 
 Exits out of Focuris.
@@ -146,6 +161,8 @@ exit
 - Your Focuris application window closes.
 
 [Return to Table of Contents](#table-of-contents)
+
+<div class="page-break-before"></div>
 
 ### 2.2.3 Saving of your data
 
@@ -167,6 +184,8 @@ If your changes to the data file makes its format invalid, Focuris will discard 
 </div>
 
 [Return to Table of Contents](#table-of-contents)
+
+<div class="page-break-before"></div>
 
 ## 2.3 Event Commands
 
@@ -195,6 +214,8 @@ todo n/NAME d/DESCRIPTION [p/PRIORITY]
 
 [Return to Table of Contents](#table-of-contents)
 
+<div class="page-break-before"></div>
+
 ### 2.3.2 `log` Command
 
 Adds an event with status `BACKLOG` to Focuris.
@@ -220,6 +241,8 @@ log n/NAME d/DESCRIPTION [p/PRIORITY]
 
 [Return to Table of Contents](#table-of-contents)
 
+<div class="page-break-before"></div>
+
 ### 2.3.3 `prog` Command
 
 Adds an event with status `IN PROGRESS` to Focuris.
@@ -244,6 +267,8 @@ prog n/NAME d/DESCRIPTION [p/PRIORITY]
 | 4   | `prog n/Lunch with John d/At VivoCity on Friday p/medium`                     | New In-Progress added: Lunch with John; Status: IN_PROGRESS; Description: At VivoCity on Friday                              |
 
 [Return to Table of Contents](#table-of-contents)
+
+<div class="page-break-before"></div>
 
 ### 2.3.4 `edit` Command
 
@@ -283,6 +308,8 @@ Existing event will have its data overwritten by the new values taken in by the 
 
 [Return to Table of Contents](#table-of-contents)
 
+<div class="page-break-before"></div>
+
 ### 2.3.5 `delete` Command
 
 Deletes the specified event from Focuris.
@@ -319,6 +346,10 @@ The commands in the table above make reference to the events in Focuris as seen 
 
 </div>
 
+[Return to Table of Contents](#table-of-contents)
+
+<div class="page-break-before"></div>
+
 ### 2.3.6 `clear` Command
 
 Clears all events in Focuris.
@@ -346,12 +377,16 @@ All events will be cleared from Focuris and this is **irreversible**. Please use
 
 [Return to Table of Contents](#table-of-contents)
 
+<div class="page-break-before"></div>
+
 ## 3. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Focuris home folder.
 
 [Return to Table of Contents](#table-of-contents)
+
+<div class="page-break-before"></div>
 
 ## 4. Glossary
 
