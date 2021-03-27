@@ -16,7 +16,8 @@ import fooddiary.model.entry.Name;
 import fooddiary.model.entry.Price;
 import fooddiary.model.entry.Rating;
 import fooddiary.model.entry.Review;
-import fooddiary.model.tag.Tag;
+import fooddiary.model.tag.TagCategory;
+import fooddiary.model.tag.TagSchool;
 
 /**
  * Jackson-friendly version of {@link Entry}.
@@ -30,7 +31,8 @@ class JsonAdaptedEntry {
     private final String rating;
     private final String price;
     private final String address;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedTagCategory> category = new ArrayList<>();
+    private final List<JsonAdaptedTagSchool> school = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedEntry} with the given entry details.
@@ -40,7 +42,8 @@ class JsonAdaptedEntry {
                             @JsonProperty("price") String price,
                             @JsonProperty("review") List<JsonAdaptedReview> reviews,
                             @JsonProperty("address") String address,
-                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                            @JsonProperty("category") List<JsonAdaptedTagCategory> category,
+                            @JsonProperty("school") List<JsonAdaptedTagSchool> school) {
         this.name = name;
         this.rating = rating;
         this.price = price;
@@ -48,8 +51,13 @@ class JsonAdaptedEntry {
             this.reviews.addAll(reviews);
         }
         this.address = address;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
+
+        if (category != null) {
+            this.category.addAll(category);
+        }
+
+        if (school != null) {
+            this.school.addAll(school);
         }
     }
 
@@ -64,8 +72,11 @@ class JsonAdaptedEntry {
                 .map(JsonAdaptedReview::new)
                 .collect(Collectors.toList()));
         address = source.getAddress().value;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
+        category.addAll(source.getTagCategories().stream()
+                .map(JsonAdaptedTagCategory::new)
+                .collect(Collectors.toList()));
+        school.addAll(source.getTagSchools().stream()
+                .map(JsonAdaptedTagSchool::new)
                 .collect(Collectors.toList()));
     }
 
@@ -75,11 +86,17 @@ class JsonAdaptedEntry {
      * @throws IllegalValueException if there were any data constraints violated in the adapted entry.
      */
     public Entry toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<TagCategory> entryTagCategories = new ArrayList<>();
+        final List<TagSchool> entryTagSchools = new ArrayList<>();
         final List<Review> reviewList = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+
+        for (JsonAdaptedTagCategory tag : category) {
+            entryTagCategories.add(tag.toModelType());
         }
+        for (JsonAdaptedTagSchool tag : school) {
+            entryTagSchools.add(tag.toModelType());
+        }
+
         for (JsonAdaptedReview review : reviews) {
             reviewList.add(review.toModelType());
         }
@@ -118,9 +135,12 @@ class JsonAdaptedEntry {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<TagCategory> modelTagCategories = new HashSet<>(entryTagCategories);
 
-        return new Entry(modelName, modelRating, modelPrice, modelReviews, modelAddress, modelTags);
+        final Set<TagSchool> modelTagSchools = new HashSet<>(entryTagSchools);
+
+        return new Entry(modelName, modelRating, modelPrice, modelReviews, modelAddress,
+                modelTagCategories, modelTagSchools);
     }
 
 }

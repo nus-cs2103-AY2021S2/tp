@@ -28,7 +28,8 @@
                     <Label fx:id="price" styleClass="cell_small_label" text="\$price" />
                     <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
                     <Label fx:id="reviews" styleClass="cell_small_label" wrapText="true"/>
-                    <FlowPane fx:id="tags" />
+                    <FlowPane fx:id="tagCategory" />
+                    <FlowPane fx:id="tagSchool" />
                 </VBox>
             </ScrollPane>
         </Scene>

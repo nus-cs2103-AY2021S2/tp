@@ -22,7 +22,7 @@ public class EntryTest {
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Entry entry = new EntryBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> entry.getTags().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> entry.getTagCategories().remove(0));
     }
 
     @Test
@@ -36,7 +36,7 @@ public class EntryTest {
         // same name, all other attributes different -> returns true
         Entry editedA = new EntryBuilder(ENTRY_A).withRating(VALID_RATING_B)
                 .withPrice(VALID_PRICE_B).withReviews(VALID_REVIEW_B)
-                .withAddress(VALID_ADDRESS_B).withTags(VALID_TAG_WESTERN).build();
+                .withAddress(VALID_ADDRESS_B).withTagCategories(VALID_TAG_WESTERN).build();
         assertTrue(ENTRY_A.isSameEntry(editedA));
 
         // different name, all other attributes same -> returns false
@@ -92,7 +92,7 @@ public class EntryTest {
         assertFalse(ENTRY_A.equals(editedA));
 
         // different tags -> returns false
-        editedA = new EntryBuilder(ENTRY_A).withTags(VALID_TAG_FASTFOOD).build();
+        editedA = new EntryBuilder(ENTRY_A).withTagCategories(VALID_TAG_FASTFOOD).build();
         assertFalse(ENTRY_A.equals(editedA));
     }
 }
