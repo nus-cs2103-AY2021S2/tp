@@ -3,34 +3,47 @@ layout: page
 title: User Guide
 ---
 
-ModuleBook3.5 is the go-to tool for busy students/professionals who are confident that typing can save them time.
+ModuleBook3.5 is the go-to tool for busy students/professionals who are confident that typing can save them time. 
+Using ModuleBook3.5, one can organise and keep track of tasks and their deadlines without the need for consistent internet connection.
 
 * Table of Contents
 {:toc}
-* Modules supported: CS1101S, CS1231S, CS2030, CS2040S, CS2101,
+
+Current module codes supported: CS1101S, CS1231S, CS2030, CS2040S, CS2101,
   CS2103T, CS2105, CS2106, CS3230, CS3243, CS3244, IS1103, ST2131
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
-{more to be added}
+1. ModuleBook3.5 can run on a computer installed with a major operating system (e.g. Windows/Mac/Linux) and Java 11.
 
-1. Refer to the [Features](#features) below for details of each command.
+2. First, download the jar file for the latest release from [github](https://github.com/AY2021S2-CS2103T-T13-2/tp/releases)
+
+3. Once the jar file is ready, simply double-click the file in the download section.
+
+4. Refer to the [Commands](#commands) below for details of each command.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Commands
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the compulsory parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the compulsory parameters to be supplied by you.<br>
   e.g. in `add d/DESCRIPTION`, `DESCRIPTION` is a parameter which can be used as `add d/DESCRIPTION`.
 
+* For `MODULE`, the letters in module code should be upper-case.<br>
+  e.g. `CS2103T` and not `cs2103t`.
+  
+* For `START TIME` and `DEADLINE`, the accepted date-time formats are: yyyy-MM-dd HH:mm or yyyy-MM-dd (HH:mm taken as current time).<br>
+  e.g. `2021-03-21 10:10` or `2021-03-21`.
+
 * Items in square brackets are optional.<br>
-  e.g `d/DESCRIPTION [t/TAG]` can be used as `d/CS3243 Assignment4 t/Minimax` or as `d/CS3243 Assignment4`.
+  e.g. `d/DESCRIPTION [t/TAG]` can be used as `d/CS3243 Assignment4 t/Minimax` or as `d/CS3243 Assignment4`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Minimax`, `t/Minimax t/CSP` etc.
@@ -45,10 +58,6 @@ ModuleBook3.5 is the go-to tool for busy students/professionals who are confiden
   e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 
 </div>
-
---------------------------------------------------------------------------------------------------------------------
-
-## Commands
 
    * **`list`** : List out tasks
 
@@ -66,7 +75,7 @@ ModuleBook3.5 is the go-to tool for busy students/professionals who are confiden
 
    * **`findTag`** : Search for tasks with tag
      
-   * **`deleteTag`** : Deletes a tag of a task
+   * **`deleteTag`** : Delete a tag of a task
 
    * **`mod`** : Search for tasks of a specific module
 
@@ -95,7 +104,7 @@ Format: `add n/TASK NAME m/MODULE d/DESCRIPTION [a/START TIME] b/DEADLINE w/WORK
 
 * If you wish to include a start time for your task, the start time should not be later than deadline.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: **ALERT:**
 Enter the time you wish to complete your task in the format: yyyy-MM-dd HH:mm or yyyy-MM-dd (HH:mm taken as current time)
 </div>
 
@@ -105,6 +114,7 @@ Enter the time you wish to complete your task in the format: yyyy-MM-dd HH:mm or
 Examples:
 * `add n/v1.2 TP m/CS2103T d/implement basic features b/2021-03-13 23:59 w/3 t/urgent`
 * `add n/practice set 1 m/CS3230 d/practice master's theorem b/2021-03-15 00:00 w/1 t/optional`
+
 
 ### Deleting a task : `delete`
 
@@ -117,10 +127,11 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd task in the ModuleBook 3.5.
+* `list` followed by `delete 2` deletes the 2nd task in the ModuleBook3.5.
 * `find CS2103T` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
-### Mark a task as done : `done`
+
+### Marking a task as done : `done`
 
 Mark an existing task as done.
 
@@ -131,10 +142,11 @@ Format: `done INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `done 2` marks the 2nd task as done in the ModuleBook 3.5.
+* `list` followed by `done 2` marks the 2nd task as done in the ModuleBook3.5.
 * `find CS2103T` followed by `done 1` marks the 1st task in the results of the `find` command as done.
 
-### Mark a task as not done : `notdone`
+
+### Marking a task as not done : `notdone`
 
 Mark an existing task as not done.
 
@@ -145,7 +157,7 @@ Format: `notdone INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `notdone 2` marks the 2nd task as not done in the ModuleBook 3.5.
+* `list` followed by `notdone 2` marks the 2nd task as not done in the ModuleBook3.5.
 * `find CS2103T` followed by `notdone 1` marks the 1st task in the results of the `find` command as not done.
 
 
@@ -161,17 +173,19 @@ Examples:
 
 * `tag 1 t/SoftwareEng`
 
+
 ### Searching tasks with name of task: `find`
 
 Searches for tasks with a name of task  provided.
 
 Format: `find KEYWORD`
 
-* Searches through ModuleBook 3.5 for tasks whose names contain `KEYWORD`.
+* Searches through ModuleBook3.5 for tasks whose names contain `KEYWORD`.
 
 Examples:
 
 * `find revise`
+
 
 ### Searching tasks with tag: `findTag`
 
@@ -179,11 +193,12 @@ Searches for tasks with an associated tag.
 
 Format: `findTag KEYWORD`
 
-* Searches through ModuleBook 3.5 for tasks whose has a tag named `KEYWORD`.
+* Searches through ModuleBook3.5 for tasks which have a tag named `KEYWORD`.
 
 Examples:
 
 * `findTag homework`
+
 
 ### Searching tasks associated to a Module: `mod`
 
@@ -191,7 +206,7 @@ Searches for tasks of a specific Module.
 
 Format: `mod MODULE`
 
-* Searches through ModuleBook 3.5 for tasks which belong to `MODULE`.
+* Searches through ModuleBook3.5 for tasks which belong to `MODULE`.
 
 Examples:
 
@@ -212,6 +227,7 @@ Examples:
 
 * `deleteTag 1 t/homework`
 
+
 ### Editing a task: `edit`
 
 Edits an existing task in the module book.
@@ -222,6 +238,7 @@ Format: `edit INDEX [n/NAME] [m/MODULE] [d/DESCRIPTION] [a/START TIME] [b/DEADLI
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * If you wish to include a start time for your task, the start time should not be later than deadline.
+* Editing tags through the `edit` command overrides all existing tags. If you wish to add or delete only certain tags, use `tag` and `deleteTag` commands instead.
 
 Examples:
 *  `edit 1 d/Eat Biscuits` Edits the description of the 1st task to `Eat Biscuits`.
@@ -242,6 +259,7 @@ Examples:
 *  `sort b/` Sorts the tasks by deadline so that the the task with closer the deadline in the list, the higher the task.
 *  `sort m/` Sorts the tasks by module code alphabetically in descending order.
 *  `sort t/` Sorts the tasks by number of tags in descending order.
+
 
 ### Recurring tasks: `recur`
 
@@ -286,6 +304,9 @@ _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
+**Q**: I tried double-clicking the jar file but it did not open. What happened?<br>
+**A**: Try checking if any security software is blocking the jar file. If that still does not work, navigate to command prompt and run the following command:
+`java -jar modulebook.jar`
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ModuleBook3.5 home folder.
@@ -297,12 +318,14 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **list** | `list`
-**add** | `add d/DESCRIPTION b/TIME [t/TAG]…​` <br> e.g., `add n/TP m/CS2103T d/Team tasks b/2021-01-20 20:00 w/3 t/tagname`
+**add** | `add n/TASK NAME m/MODULE d/DESCRIPTION [a/START TIME] b/DEADLINE w/WORKLOAD [t/TAG]…​` <br> e.g., `add n/TP m/CS2103T d/Team tasks b/2021-01-20 20:00 w/3 t/tagname`
 **delete** | `delete INDEX`<br> e.g., `delete 3`
 **done** | `done INDEX`<br> e.g., `done 1`
 **notdone** | `notdone INDEX`<br> e.g., `notdone 1`
 **tag** | `tag INDEX [t/TAG NAME]`<br> e.g., `tag 1 [t/SoftwareEng]`
-**find** | `find KEYWORD`<br> e.g., `find CS3230`
+**find** | `find KEYWORD`<br> e.g., `find Assignment`
+**findTag** | `findTag KEYWORD`<br> e.g., `find Assignment`
+**mod** | `mod MODULE`<br> e.g., `mod CS2103T`
 **edit** | `edit INDEX [d/DESCRIPTION] [b/DEADLINE]…​`<br> e.g., `edit 2 d/Eat Biscuits b/2021-03-21 10:10`
 **recur** | `recur INDEX r/RECURRENCE`<br> e.g., `recur 1 r/monthly`
 **sort** | `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/` or `sort t/` <br> e.g., `sort b/`

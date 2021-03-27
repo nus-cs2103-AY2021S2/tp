@@ -4,6 +4,12 @@ title: Developer Guide
 ---
 * Table of Contents
 {:toc}
+  
+--------------------------------------------------------------------------------------------------------------------
+
+## **Introduction**
+
+This developer guide is meant for developers who wish to understand the internal workings of ModuleBook3.5. 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -252,7 +258,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                 | I want to …​                               | So that I can…​                                                                |
 | -------- | ------------------------------------------ | --------------------------------------------- | --------------------------------------------------------------------------------- |
-| `* * *`  | student                                    | add task to list                              | I can keep track of my module-related tasks and stay organized                    |
+| `* * *`  | student                                    | add task to list                              | keep track of my module-related tasks and stay organized                    |
 | `* * *`  | student                                    | delete a task from the list                   | remove the tasks I have completed or don't want anymore                           |
 | `* *`    | meticulous student                         | mark a task as done                           | keep track of tasks that I have completed                                         |
 | `* *`    | student                                    | mark a task as undone                         | keep track of tasks that I've yet to complete or need to make edits to            |
@@ -264,7 +270,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | busy student                               | view workload count for each module           | decide which module requires more effort
 | `*`      | busy student                               | search for tags                               | locate my tasks easily                                                            |
 | `*`      | busy student                               | delete tags                                   | edit tags of my tasks without having to recreate them                             |
-| `*`      | busy student with many repeating tasks     | make a task repeat daily, monthly or weekly   | don't have to key in the same task daily or weekly or monthly                     |                              
+| `*`      | busy student with many repeating tasks     | make a task repeat daily, monthly or weekly   | avoid keying in the same task daily or weekly or monthly                     |                              
 
 
 ### Use cases
@@ -403,7 +409,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       
 * 2c.  The start time of the task is later than its deadline.
       
-    * 2c1. ModuleBook 3.5 shows an error message.
+    * 2c1. ModuleBook3.5 shows an error message.
       
       Use case resumes at step 2.
 
@@ -547,7 +553,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2e.  The start time of the edited task is later than its deadline.
       
-    * 2e1. ModuleBook 3.5 shows an error message.
+    * 2e1. ModuleBook3.5 shows an error message.
       
       Use case resumes at step 2.
     
@@ -577,7 +583,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User request to sorts tasks by deadline.
 
-2.  ModuleBook 3.5 sorts the tasks in descending order of urgency and display them.
+2.  ModuleBook3.5 sorts the tasks in descending order of urgency and display them.
 
     Use case ends.
 
@@ -585,7 +591,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. Invalid format for the sort command.
 
-    * 2a1. ModuleBook 3.5 shows an error message with the correct format for sort and example.
+    * 2a1. ModuleBook3.5 shows an error message with the correct format for sort and example.
 
       Use case resumes at step 2.
     
@@ -633,7 +639,6 @@ Use case ends.
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Module**: A subject in NUS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
