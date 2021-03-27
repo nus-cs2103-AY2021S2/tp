@@ -158,9 +158,10 @@ similar to `category-filter`, only with the exception of flags as part of
 user input to filter by description, amount or category. While this proposed
 implementation was to improve the overall usability of the application, the
 similarity in development and functionalities across all 3 features gave strong
-reasons to implement a single feature that combines and serves the intended function of
-all 3 features. Not only would this retain the initial plan of improving the flexibility
-and usability of the application, it would eliminate additional commands that are unnecessary.
+reasons to implement a single feature that combines and serves the intended
+function of all 3 features. Not only would this retain the initial plan of
+improving the flexibility and usability of the application, it would eliminate
+additional commands that are unnecessary.
 
 #### Actual Implementation
 
@@ -169,53 +170,76 @@ users to filter up to all 3 fields in a single function. For example, `search-fr
 a/30 c/Apparel` would filter and display items that match all conditions provided (i.e. 
 records with description `Shoe`, amount `30` and category `Apparel`).
 
-The proposed `find` mechanism is facilitated by `BudgetBabyModelManager` which implements
-`BudgetBabyModel`. The `BudgetBabyModelManager` class contains a FilteredList `filteredFinancialRecords`
-that is to be altered and displayed to the user according to the `find-fr` command.
+The proposed `find` mechanism is facilitated by `BudgetBabyModelManager` which contains
+a FilteredList `filteredFinancialRecords` that is to be altered and displayed to the
+user according to the `find-fr` command.
 
-The command is parsed from `BudgetBabyCommandParser` to the `FindFrCommandParser` class, where the input fields
-will be processed before instantiating a new valid `FindFrCommand`. The `FindFrCommand` calls the
-`findFinancialRecord` method of the `BudgetBabyModel` that is implemented by `BudgetBabyModelManager`.
-`BudgetBabyModelManager` then handles the filtering of `filteredFinancialRecords` through the
-`updateFilteredFinancialRecordList`. The updated financial records is then displayed to the user.
+The command is parsed from `BudgetBabyCommandParser` to the `FindFrCommandParser` class,
+where the input fields will be processed before instantiating a new valid `FindFrCommand`.
+The `FindFrCommand` calls the `findFinancialRecord` method of the `BudgetBabyModel` that
+is implemented by `BudgetBabyModelManager`. `BudgetBabyModelManager` then handles the
+filtering of `filteredFinancialRecords` through the `updateFilteredFinancialRecordList`
+method. The updated financial records are then displayed to the user on the front end of
+the application.
 
-The `findFinancialRecord` method a minimum of 1 and up to 3 of the following arguments: `Description`, `Amount`, `Category`.
+The `findFinancialRecord` method expects a minimum of 1 and up to 3 of the following arguments:
+`Description`, `Amount`, `Category`.
 
 Given below is an example usage scenario and how the `find` mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. 
+Step 1. The user launches the application for the first time. The `filteredFinancialRecords` list
+presented to the user would be a list of all financial records retrieved from local storage
+`budgetbaby.json` (if applicable).
 
-Step 2. The user executes `search-fr d/Lunch a/10 c/Food` command to filter the financial records
-list to match all input fields. The `find-fr` command calls 
+Step 2. The user executes `find-fr d/Lunch a/10 c/Food` command to find financial records with
+description `Lunch`, amount `10` and category `Food`. The `find-fr` command indirectly calls the
+`updateFilteredFinancialRecordList` method, causing `filteredFinancialRecords` to display the matching
+records without modifying the contents of the original financial records list.
 
 Step 3. 
 
-Step 4. 
+    - Note: If no matching financial record(s) is/are found,
+    then the list will not be updated and a log message
+    indicating no records found will be shown.
 
-Step 5. 
+The following sequence diagram shows how the find operation works:
+![](images/FindSequenceDiagram.png)
 
 #### Extensions Implemented
 - `c/FR_CATEGORY` field accepts multiple categories
-- Display an error message if no matching financial records found
+- Display an appropriate message if no matching financial records found
 
-The following activity diagram summarizes what happens when a user executes `search-fr`:
-
+The following activity diagram summarizes what happens when a user executes `find-fr`:
+![](images/FindActivityDiagram.png)
 
 #### Design Consideration
 
-Add design consideration here
+- Alternative 1 (selected choice): A single `find-fr` command that handles all fields
+    - Pros: Eliminates the need to implement separate search features. Allows
+      filtering multiple fields in a single command
+    - Cons: May cause confusion in usage. Some users may find it cumbersome to deal with
+      `d/` `a/` `c/` tags
+
+- Alternative 2: Separate `find-description`, `find-amount`, `find-category` commands
+    - Pros: May be less confusing to users and eliminates the use of `d/` `a/` `c/` tags
+    - Cons: Additional implementation and commands. More steps required for user
+    when filtering multiple fields
 
 ### [Completed] Reset Filter Feature : `reset-filter`
 
-#### Proposed Implementation
+#### Actual Implementation
 
-This feature was developed in conjunction with `find-fr`. As the financial records list would
+This feature was developed in conjunction with `find-fr`. As the financial records list can
 be filtered to the flags set by the user, there must be a way for the user to revert this list
 back to its original state (i.e. displaying all financial records).
 
-#### Design Consideration
+Similar to the mechanism of the find operation, the `ResetFilterCommand` calls 
 
-Add design consideration here
+The `ResetFilterCommand` calls the `resetFilter` method of the `BudgetBabyModel` that
+is implemented by `BudgetBabyModelManager`. `BudgetBabyModelManager` then handles the
+resetting of filter on `filteredFinancialRecords` through the `updateFilteredFinancialRecordList`
+method. The updated original financial records are then displayed to the user on the
+front end of the application.
 
 ### Statistics Feature
 
