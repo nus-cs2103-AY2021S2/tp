@@ -352,12 +352,20 @@ public class ModelManager implements Model {
     @Override
     public void addPersonFilter(PersonFilter personFilter) {
         this.personFilter.add(personFilter);
+
+        // Required workaround for bug where filtered list would not trigger update
+        this.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
         this.updateFilteredPersonList(this.personFilter);
     }
 
     @Override
     public void removePersonFilter(PersonFilter personFilter) {
         this.personFilter.remove(personFilter);
+
+        // Required workaround for bug where filtered list would not trigger update
+        this.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
         this.updateFilteredPersonList(this.personFilter);
     }
 
