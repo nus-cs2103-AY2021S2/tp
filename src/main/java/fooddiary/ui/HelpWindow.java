@@ -6,7 +6,7 @@ import fooddiary.commons.core.LogsCenter;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
@@ -49,7 +49,7 @@ public class HelpWindow extends UiPart<Stage> {
     private Label helpMessage;
 
     @FXML
-    private TextField helpMessageField;
+    private TextArea helpMessageField;
 
     /**
      * Creates a new HelpWindow.
@@ -59,22 +59,22 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
-
+//        helpMessageField = new TextArea("Hello");
         helpMessageField.setText(HELP_MESSAGE);
-        helpMessageField.setEditable(false);
+//        helpMessageField.setEditable(false);
 //        assert(helpMessage.getWidth() != 0);
         double width = helpMessage.getWidth();
 
-        helpMessageField.setPrefWidth(600);
+//        helpMessageField.setPrefWidth(width);
         double height = helpMessage.getHeight();
-        helpMessageField.setPrefHeight(600);
+//        helpMessageField.setPrefHeight(height);
 //        helpMessageField.prefColumnCountProperty().bind(helpMessage.length());
 
 //        helpMessageField.setPrefWidth(600);
 
         helpMessage.setVisible(false);
 //        helpMessageField.textProperty().bindBidirectional(helpMessage.textProperty());
-//        helpMessageField = new TextField(HELP_MESSAGE);
+
 //        root.addAll(helpMessageField);
 //        setWindowDefaultSize(logic.getGuiSettings());
     }
