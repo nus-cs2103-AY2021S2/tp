@@ -38,6 +38,7 @@ public class GradeCard extends UiPart<Region> {
      * Creates a {@code GradeCode} with the given {@code Grade} and index to display.
      */
     public GradeCard(Grade grade, int displayedIndex) {
+
         super(FXML);
         this.grade = grade;
         id.setText(displayedIndex + ". ");
@@ -55,7 +56,7 @@ public class GradeCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof TutorCard)) {
+        if (!(other instanceof GradeCard)) {
             return false;
         }
 

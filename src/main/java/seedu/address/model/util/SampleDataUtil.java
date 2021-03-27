@@ -87,16 +87,18 @@ public class SampleDataUtil {
     }
 
     public static Grade[] getSampleGrade() {
-        return new Grade[] {
+        return new Grade[]{
+            new Grade(new SubjectName("Science"),
+                    new GradedItem("Lab 1"),
+                    GradeEnum.valueOf("A")),
+            new Grade(new SubjectName("Mathematics"),
+                    new GradedItem("Final"),
+                    GradeEnum.valueOf("B")),
             new Grade(new SubjectName("English"),
                     new GradedItem("Midterm"),
-                    GradeEnum.valueOf("A")),
-            new Grade(new SubjectName("Physics"),
-                    new GradedItem("Lab 2"),
-                    GradeEnum.valueOf("B"))
+                    GradeEnum.valueOf("C"))
         };
     }
-
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();

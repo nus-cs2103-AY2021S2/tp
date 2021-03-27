@@ -42,9 +42,9 @@ public class JsonAdaptedGrade {
 
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code
+     * Converts this Jackson-friendly adapted grade object into the model's {@code
      * Grade } object.
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted grade.
      */
     public Grade toModelType() throws IllegalValueException {
 
