@@ -41,7 +41,6 @@ public class LogicManager implements Logic {
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
-
         CommandResult commandResult;
         Command command = foodDiaryParser.parseCommand(commandText);
         commandResult = command.execute(model);

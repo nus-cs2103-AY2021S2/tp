@@ -1,12 +1,15 @@
 package fooddiary.testutil;
 
+import java.util.List;
 import java.util.Set;
 
 import fooddiary.logic.commands.AddCommand;
 import fooddiary.logic.commands.EditCommand;
 import fooddiary.logic.parser.CliSyntax;
 import fooddiary.model.entry.Entry;
-import fooddiary.model.tag.Tag;
+import fooddiary.model.entry.Review;
+import fooddiary.model.tag.TagCategory;
+import fooddiary.model.tag.TagSchool;
 
 /**
  * A utility class for Entry.
@@ -28,10 +31,13 @@ public class EntryUtil {
         sb.append(CliSyntax.PREFIX_NAME + entry.getName().fullName + " ");
         sb.append(CliSyntax.PREFIX_RATING + entry.getRating().value + " ");
         sb.append(CliSyntax.PREFIX_PRICE + entry.getPrice().value + " ");
-        sb.append(CliSyntax.PREFIX_REVIEW + entry.getReview().value + " ");
+        entry.getReviews().stream().forEach(s -> sb.append(CliSyntax.PREFIX_REVIEW + s.value + " "));
         sb.append(CliSyntax.PREFIX_ADDRESS + entry.getAddress().value + " ");
-        entry.getTags().stream().forEach(
-            s -> sb.append(CliSyntax.PREFIX_TAG + s.tagCategory.titleCase() + " ")
+        entry.getTagCategories().stream().forEach(
+            s -> sb.append(CliSyntax.PREFIX_TAG_CATEGORY + s.getTag() + " ")
+        );
+        entry.getTagSchools().stream().forEach(
+            s -> sb.append(CliSyntax.PREFIX_TAG_SCHOOL + s.getTag() + " ")
         );
         return sb.toString();
     }
@@ -44,17 +50,34 @@ public class EntryUtil {
         descriptor.getName().ifPresent(name -> sb.append(CliSyntax.PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getRating().ifPresent(rating -> sb.append(CliSyntax.PREFIX_RATING).append(rating.value).append(" "));
         descriptor.getPrice().ifPresent(price -> sb.append(CliSyntax.PREFIX_PRICE).append(price.value).append(" "));
-        descriptor.getReview().ifPresent(review -> sb.append(CliSyntax.PREFIX_REVIEW).append(review.value).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(CliSyntax.PREFIX_ADDRESS)
-                .append(address.value).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
-            if (tags.isEmpty()) {
-                sb.append(CliSyntax.PREFIX_TAG);
+        if (descriptor.getReviews().isPresent()) {
+            List<Review> reviews = descriptor.getReviews().get();
+            if (reviews.isEmpty()) {
+                sb.append(CliSyntax.PREFIX_REVIEW);
             } else {
-                tags.forEach(s -> sb.append(CliSyntax.PREFIX_TAG).append(s.tagCategory.titleCase()).append(" "));
+                reviews.forEach(s -> sb.append(CliSyntax.PREFIX_REVIEW).append(s.value).append(" "));
             }
         }
+        descriptor.getAddress().ifPresent(address -> sb.append(CliSyntax.PREFIX_ADDRESS)
+                .append(address.value).append(" "));
+        if (descriptor.getTagCategories().isPresent()) {
+            Set<TagCategory> tags = descriptor.getTagCategories().get();
+            if (tags.isEmpty()) {
+                sb.append(CliSyntax.PREFIX_TAG_CATEGORY);
+            } else {
+                tags.forEach(s -> sb.append(CliSyntax.PREFIX_TAG_CATEGORY).append(s.getTag()).append(" "));
+            }
+        }
+
+        if (descriptor.getTagSchools().isPresent()) {
+            Set<TagSchool> tags = descriptor.getTagSchools().get();
+            if (tags.isEmpty()) {
+                sb.append(CliSyntax.PREFIX_TAG_SCHOOL);
+            } else {
+                tags.forEach(s -> sb.append(CliSyntax.PREFIX_TAG_SCHOOL).append(s.getTag()).append(" "));
+            }
+        }
+
         return sb.toString();
     }
 }

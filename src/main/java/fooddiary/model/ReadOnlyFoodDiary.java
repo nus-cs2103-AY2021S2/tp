@@ -9,8 +9,8 @@ import javafx.collections.ObservableList;
 public interface ReadOnlyFoodDiary {
 
     /**
-     * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
+     * Returns an unmodifiable view of the food diary list.
+     * This list will not contain any duplicate food diary entries.
      */
     ObservableList<Entry> getEntryList();
 

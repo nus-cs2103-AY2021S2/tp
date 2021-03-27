@@ -2,8 +2,10 @@ package fooddiary.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import fooddiary.commons.core.index.Index;
@@ -14,7 +16,8 @@ import fooddiary.model.entry.Name;
 import fooddiary.model.entry.Price;
 import fooddiary.model.entry.Rating;
 import fooddiary.model.entry.Review;
-import fooddiary.model.tag.Tag;
+import fooddiary.model.tag.TagCategory;
+import fooddiary.model.tag.TagSchool;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -112,28 +115,67 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses {@code Collection<String> reviews} into a {@code List<Review>}.
+     */
+    public static List<Review> parseReviews(Collection<String> reviews) throws ParseException {
+        requireNonNull(reviews);
+        final List<Review> reviewList = new ArrayList<>();
+        for (String reviewValue : reviews) {
+            reviewList.add(parseReview(reviewValue));
+        }
+        return reviewList;
+    }
+
+    /**
+     * Parses a {@code String tag} into a {@code TagCategory}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
+    public static TagCategory parseTagsCategories(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        if (!TagCategory.isValidTagName(trimmedTag)) {
+            throw new ParseException(TagCategory.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new TagCategory(trimmedTag);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> tags} into a {@code Set<TagCategory>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+    public static Set<TagCategory> parseTagsCategories(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
+        final Set<TagCategory> tagSet = new HashSet<>();
         for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+            tagSet.add(parseTagsCategories(tagName));
+        }
+        return tagSet;
+    }
+
+    /**
+     * Parses a {@code String tag} into a {@code TagSchool}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
+    public static TagSchool parseTagSchool(String tag) throws ParseException {
+        requireNonNull(tag);
+        String trimmedTag = tag.trim();
+        if (!TagSchool.isValidTagName(trimmedTag)) {
+            throw new ParseException(TagSchool.MESSAGE_CONSTRAINTS);
+        }
+        return new TagSchool(trimmedTag);
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<TagSchool>}.
+     */
+    public static Set<TagSchool> parseTagSchool(Collection<String> tags) throws ParseException {
+        requireNonNull(tags);
+        final Set<TagSchool> tagSet = new HashSet<>();
+        for (String tagName : tags) {
+            tagSet.add(parseTagSchool(tagName));
         }
         return tagSet;
     }
