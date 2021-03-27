@@ -27,6 +27,7 @@
         <Label fx:id="cheeseTypeAndQuantity" text="\$first" styleClass="cell_big_label" />
       </HBox>
       <Label fx:id="name" styleClass="cell_small_label" text="\$name" />
+      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
       <Label fx:id="orderDate" styleClass="cell_small_label" text="\$orderDate" />
       <Label fx:id="completedDate" styleClass="cell_small_label" text="\$completedDate" />
     </VBox>

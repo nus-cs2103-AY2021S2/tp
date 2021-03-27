@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CHEESE_ASSIGNED_STATUS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CHEESES;
 import static seedu.address.testutil.TypicalModels.getTypicalAddressBook;
@@ -60,7 +61,7 @@ public class FindCheeseCommandTest {
 
     @Test
     public void execute_listIsFiltered_byAssignmentStatusOnly() {
-        CheeseAssignmentStatusPredicate predicate = new CheeseAssignmentStatusPredicate(true);
+        CheeseAssignmentStatusPredicate predicate = new CheeseAssignmentStatusPredicate(VALID_CHEESE_ASSIGNED_STATUS);
         expectedModel.updateFilteredCheeseList(predicate);
         assertCommandSuccess(
                 new FindCheeseCommand(predicate),
@@ -74,7 +75,8 @@ public class FindCheeseCommandTest {
     public void execute_listIsFiltered_byCheeseTypeAndAssignmentStatus() {
         List<String> cheeseTypeKeywords = Arrays.asList("brie", "feta");
         CheeseCheeseTypePredicate typePredicate = new CheeseCheeseTypePredicate(cheeseTypeKeywords);
-        CheeseAssignmentStatusPredicate statusPredicate = new CheeseAssignmentStatusPredicate(true);
+        CheeseAssignmentStatusPredicate statusPredicate =
+                new CheeseAssignmentStatusPredicate(VALID_CHEESE_ASSIGNED_STATUS);
 
         CompositeFieldPredicateBuilder<Cheese> pBuilder = new CompositeFieldPredicateBuilder<>();
         pBuilder.compose(typePredicate);

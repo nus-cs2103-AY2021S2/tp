@@ -8,7 +8,12 @@ import seedu.address.commons.util.PredicateUtil;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.util.predicate.SingleFieldPredicate;
 
+/**
+ * Predicate for filtering customers by their emails.
+ */
 public class CustomerEmailPredicate extends SingleFieldPredicate<Customer> {
+
+    public static final String MESSAGE_CONSTRAINTS = "Email keywords must not be empty.";
 
     public CustomerEmailPredicate(List<String> keywords) {
         super(keywords);

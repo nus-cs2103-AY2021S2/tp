@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_CHEESE_TYPE_BRI
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CHEESE_TYPE_CAMEMBERT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CHEESE_TYPE_FETA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CHEESE_UNASSIGNED_STATUS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CHEESE_ASSIGNMENT_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CHEESE_TYPE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -63,16 +63,16 @@ public class FindCheeseCommandParserTest {
 
     @Test
     public void parse_validAssignmentStatusArgs_returnsFindCheeseCommand() {
-        // Inputting 'assigned' as assignment status' argument
+        // Inputting an "assigned" status argument
         CompositeFieldPredicate<Cheese> assignedStatusPredicate =
-                new CompositeFieldPredicate<>(new CheeseAssignmentStatusPredicate(true));
-        String assignedStatusArg = " " + PREFIX_ASSIGNMENT_STATUS + VALID_CHEESE_ASSIGNED_STATUS;
+                new CompositeFieldPredicate<>(new CheeseAssignmentStatusPredicate(VALID_CHEESE_ASSIGNED_STATUS));
+        String assignedStatusArg = " " + PREFIX_CHEESE_ASSIGNMENT_STATUS + VALID_CHEESE_ASSIGNED_STATUS;
         assertParseSuccess(parser, assignedStatusArg, new FindCheeseCommand(assignedStatusPredicate));
 
-        // Inputting 'unassigned' as assignment status argument
+        // Inputting an "unassigned" status argument
         CompositeFieldPredicate<Cheese> unassignedStatusPredicate =
-                new CompositeFieldPredicate<>(new CheeseAssignmentStatusPredicate(false));
-        String unassignedStatusArg = " " + PREFIX_ASSIGNMENT_STATUS + VALID_CHEESE_UNASSIGNED_STATUS;
+                new CompositeFieldPredicate<>(new CheeseAssignmentStatusPredicate(VALID_CHEESE_UNASSIGNED_STATUS));
+        String unassignedStatusArg = " " + PREFIX_CHEESE_ASSIGNMENT_STATUS + VALID_CHEESE_UNASSIGNED_STATUS;
         assertParseSuccess(parser, unassignedStatusArg, new FindCheeseCommand(unassignedStatusPredicate));
     }
 
@@ -84,11 +84,11 @@ public class FindCheeseCommandParserTest {
         );
 
         CompositeFieldPredicate<Cheese> predicate = new CompositeFieldPredicateBuilder<Cheese>()
-                .compose(new CheeseAssignmentStatusPredicate(true))
+                .compose(new CheeseAssignmentStatusPredicate(VALID_CHEESE_ASSIGNED_STATUS))
                 .compose(new CheeseCheeseTypePredicate(cheeseTypeKeywordsMultiple))
                 .build();
 
-        String arg = " " + PREFIX_ASSIGNMENT_STATUS + VALID_CHEESE_ASSIGNED_STATUS
+        String arg = " " + PREFIX_CHEESE_ASSIGNMENT_STATUS + VALID_CHEESE_ASSIGNED_STATUS
                 + " " + PREFIX_CHEESE_TYPE + VALID_CHEESE_TYPE_BRIE
                 + " " + VALID_CHEESE_TYPE_CAMEMBERT;
 
@@ -97,18 +97,34 @@ public class FindCheeseCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseExeception() {
-
         // Empty argument following cheese type prefix
-        assertParseFailure(parser, " " + PREFIX_CHEESE_TYPE, FindCheeseCommandParser.EMPTY_CHEESE_TYPE_MESSAGE);
-        assertParseFailure(parser, " " + PREFIX_ASSIGNMENT_STATUS + "assigned " + PREFIX_CHEESE_TYPE,
-                FindCheeseCommandParser.EMPTY_CHEESE_TYPE_MESSAGE);
+        assertParseFailure(
+                parser,
+                " " + PREFIX_CHEESE_TYPE,
+                CheeseCheeseTypePredicate.MESSAGE_CONSTRAINTS
+        );
+        assertParseFailure(
+                parser,
+                " " + PREFIX_CHEESE_ASSIGNMENT_STATUS + "assigned " + PREFIX_CHEESE_TYPE,
+                CheeseCheeseTypePredicate.MESSAGE_CONSTRAINTS
+        );
 
         // Invalid argument following assignment status prefix
-        assertParseFailure(parser, " " + PREFIX_ASSIGNMENT_STATUS, FindCheeseCommandParser.INVALID_STATUS_MESSAGE);
-        assertParseFailure(parser, " " + PREFIX_ASSIGNMENT_STATUS + " " + PREFIX_CHEESE_TYPE + VALID_CHEESE_TYPE_BRIE,
-                FindCheeseCommandParser.INVALID_STATUS_MESSAGE);
-        assertParseFailure(parser, " " + PREFIX_ASSIGNMENT_STATUS + "a",
-                FindCheeseCommandParser.INVALID_STATUS_MESSAGE);
+        assertParseFailure(
+                parser,
+                " " + PREFIX_CHEESE_ASSIGNMENT_STATUS,
+                CheeseAssignmentStatusPredicate.MESSAGE_CONSTRAINTS
+        );
+        assertParseFailure(
+                parser,
+                " " + PREFIX_CHEESE_ASSIGNMENT_STATUS + " " + PREFIX_CHEESE_TYPE + VALID_CHEESE_TYPE_BRIE,
+                CheeseAssignmentStatusPredicate.MESSAGE_CONSTRAINTS
+        );
+        assertParseFailure(
+                parser,
+                " " + PREFIX_CHEESE_ASSIGNMENT_STATUS + "a",
+                CheeseAssignmentStatusPredicate.MESSAGE_CONSTRAINTS
+        );
     }
 
 }

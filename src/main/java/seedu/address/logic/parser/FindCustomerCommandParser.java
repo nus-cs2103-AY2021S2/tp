@@ -6,17 +6,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FindCustomerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.customer.Customer;
-import seedu.address.model.customer.predicates.CustomerAddressPredicate;
-import seedu.address.model.customer.predicates.CustomerEmailPredicate;
-import seedu.address.model.customer.predicates.CustomerNamePredicate;
-import seedu.address.model.customer.predicates.CustomerPhonePredicate;
 import seedu.address.model.util.predicate.CompositeFieldPredicateBuilder;
 
 /**
@@ -41,26 +36,22 @@ public class FindCustomerCommandParser implements Parser<FindCustomerCommand> {
         CompositeFieldPredicateBuilder<Customer> pBuilder = new CompositeFieldPredicateBuilder<>();
         Optional<String> nameArg = argMultimap.getValue(PREFIX_NAME);
         if (nameArg.isPresent()) {
-            List<String> nameKeywords = ParserUtil.parseKeywordsList(nameArg.get(), "Name");
-            pBuilder.compose(new CustomerNamePredicate(nameKeywords));
+            pBuilder.compose(ParserUtil.parseCustomerNameKeywords(nameArg.get()));
         }
 
         Optional<String> phoneArg = argMultimap.getValue(PREFIX_PHONE);
         if (phoneArg.isPresent()) {
-            List<String> phoneKeywords = ParserUtil.parseKeywordsList(phoneArg.get(), "Phone");
-            pBuilder.compose(new CustomerPhonePredicate(phoneKeywords));
+            pBuilder.compose(ParserUtil.parseCustomerPhoneKeywords(phoneArg.get()));
         }
 
         Optional<String> emailArg = argMultimap.getValue(PREFIX_EMAIL);
         if (emailArg.isPresent()) {
-            List<String> emailKeywords = ParserUtil.parseKeywordsList(emailArg.get(), "Email");
-            pBuilder.compose(new CustomerEmailPredicate(emailKeywords));
+            pBuilder.compose(ParserUtil.parseCustomerEmailKeywords(emailArg.get()));
         }
 
         Optional<String> addressArg = argMultimap.getValue(PREFIX_ADDRESS);
         if (addressArg.isPresent()) {
-            List<String> addressKeywords = ParserUtil.parseKeywordsList(addressArg.get(), "Address");
-            pBuilder.compose(new CustomerAddressPredicate(addressKeywords));
+            pBuilder.compose(ParserUtil.parseCustomerAddressKeywords(addressArg.get()));
         }
 
         return new FindCustomerCommand(pBuilder.build());

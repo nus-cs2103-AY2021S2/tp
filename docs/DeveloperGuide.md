@@ -296,11 +296,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 
+#### Use case: Search for particular orders
+
+**MSS**
+1. User enters a request to search for orders matching certain cheese types, customer names, phone number or completion status.
+2. CHIM shows the matching orders.
+
+   Use case ends.
+
+***Extensions**
+* 1a. No orders match the input given by the user.
+    * 1a1. CHIM shows an empty list.
+
+  Use case ends.
+
+* 1b. User input is invalid.
+    * 1b1. CHIM shows an error message.
+
+  Use case ends.
+
+
 #### Use case: Exit the application
 
 **MSS**
 1. User enters the command to exit the application.
-1. CHIM saves customers, orders and cheese data into data files.
+2. CHIM saves customers, orders and cheese data into data files.
 
    Use case ends.
 

@@ -61,18 +61,6 @@ public class FindCustomerCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noCustomerFound() {
-        String expectedMessage = String.format(MESSAGE_CUSTOMERS_LISTED_OVERVIEW, 0);
-        String keywordsString = " ";
-        CompositeFieldPredicate<Customer> predicate = preparePredicate(keywordsString);
-        FindCustomerCommand command = new FindCustomerCommand(predicate);
-        expectedModel.updateFilteredCustomerList(predicate);
-        expectedModel.setPanelToCustomerList();
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredCustomerList());
-    }
-
-    @Test
     public void execute_multipleKeywords_multipleCustomersFound() {
         String expectedMessage = String.format(MESSAGE_CUSTOMERS_LISTED_OVERVIEW, 3);
 
