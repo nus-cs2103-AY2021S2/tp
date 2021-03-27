@@ -81,33 +81,52 @@ public class EditCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
-
         int indexValue = index.getZeroBased();
+
+        checkForValidIndex(indexValue, lastShownList);
+
+        Task taskToEdit = lastShownList.get(indexValue);
+        Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
+
+        checkForDuplicateTask(model, taskToEdit, editedTask);
+        checkForInvalidDate(editedTask);
+        editedTask = handleTagUpdates(model, taskToEdit, editedTask);
+        updateModel(model, taskToEdit, editedTask);
+
+        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
+    }
+
+    private void checkForValidIndex(int indexValue, List<Task> lastShownList) throws CommandException {
         boolean isInvalidIndex = indexValue >= lastShownList.size();
 
         if (isInvalidIndex) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
+    }
 
-        Task taskToEdit = lastShownList.get(indexValue);
-        Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
-
+    private void checkForDuplicateTask(Model model, Task taskToEdit, Task editedTask) throws CommandException {
         boolean isDuplicateTask = !taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask);
         if (isDuplicateTask) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
+    }
 
+    private void checkForInvalidDate(Task editedTask) throws CommandException {
         if (editedTask.hasExpired()) {
             throw new CommandException(INVALID_ENDDATE);
         }
+    }
 
+    private Task handleTagUpdates(Model model, Task taskToEdit, Task editedTask) throws CommandException {
         Set<Tag> oldTags = taskToEdit.getTags();
         Set<Tag> newTags = editedTask.getTags();
         model.setTags(oldTags, newTags);
-        editedTask = editedTask.setTags(newTags);
+        return editedTask.setTags(newTags);
+    }
+
+    private void updateModel(Model model, Task taskToEdit, Task editedTask) throws CommandException {
         model.setTask(taskToEdit, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
 
     /**
