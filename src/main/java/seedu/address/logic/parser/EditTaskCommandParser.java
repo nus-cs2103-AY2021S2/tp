@@ -2,15 +2,16 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.assignee.Assignee;
+
+import java.util.Collection;
+import java.util.Optional;
+import java.util.Set;
 
 /**
  * Parses input arguments and creates a new EditTaskCommand object
@@ -25,7 +26,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DESCRIPTION, PREFIX_STATUS, PREFIX_DEADLINE,
-                        PREFIX_PRIORITY);
+                        PREFIX_PRIORITY, PREFIX_ASSIGNEE);
 
         Index index;
 
@@ -58,11 +59,30 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
             editTaskDescriptor.setPriority(ParserUtil.parsePriority(argMultimap
                     .getValue(PREFIX_PRIORITY).get()));
         }
+
+        parseAssigneesForEdit(argMultimap.getAllValues(PREFIX_ASSIGNEE)).ifPresent(editTaskDescriptor::setAssignees);
+
         if (!editTaskDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditTaskCommand.MESSAGE_NOT_EDITED);
         }
 
-
         return new EditTaskCommand(index, editTaskDescriptor);
+    }
+
+    /**
+     * Parses {@code Collection<String> assignees} into a {@code Set<Assignee>} if {@code assignees} is non-empty.
+     * If {@code assignees} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Assignee>} containing zero assignees.
+     */
+    private Optional<Set<Assignee>> parseAssigneesForEdit(Collection<String> assignees) throws ParseException {
+        assert assignees != null;
+
+        if (assignees.isEmpty()) {
+            return Optional.empty();
+        }
+
+//        Collection<String> tagSet = assignees.size() == 1 && assignees.contains("") ? Collections.emptySet() : assignees;
+
+        return Optional.of(ParserUtil.parseAssignees(assignees));
     }
 }

@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.assignee.Assignee;
 import seedu.address.model.task.Task;
 
 /**
@@ -25,8 +26,7 @@ public class AddTaskCommand extends Command {
             + PREFIX_DEADLINE + " DEADLINE"
             + PREFIX_STATUS + " TASK STATUS "
             + PREFIX_PRIORITY + " PRIORITY "
-            + PREFIX_ASSIGNEE + "ASSIGNEE \n"
-
+            + "[" + PREFIX_ASSIGNEE + "ASSIGNEE]...\n"
             + "Example: " + COMMAND_WORD + " "
             + "Plan board meeting "
             + PREFIX_DESCRIPTION + " Draft meeting agenda and proposal for board meeting "
@@ -58,7 +58,7 @@ public class AddTaskCommand extends Command {
         }
 
         if (!model.checkAssignees(toAddTask)) {
-            throw new CommandException("Invalid assignee name! Assignee's name must be in the displayed members list.");
+            throw new CommandException(Assignee.MESSAGE_CONSTRAINTS);
         }
 
         model.addTask(toAddTask);

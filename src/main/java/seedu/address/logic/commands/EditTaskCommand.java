@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
@@ -8,14 +9,18 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.assignee.Assignee;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Priority;
@@ -38,9 +43,10 @@ public class EditTaskCommand extends Command {
             + "[" + PREFIX_DEADLINE + " DEADLINE] "
             + "[" + PREFIX_STATUS + " STATUS] "
             + "[" + PREFIX_PRIORITY + " PRIORITY] "
+            + "[" + PREFIX_ASSIGNEE + "ASSIGNEE]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_TITLE + " Plan open house meeting "
-            + PREFIX_STATUS + " completed";
+            + PREFIX_TITLE + "Plan open house meeting "
+            + PREFIX_STATUS + "completed";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -72,6 +78,10 @@ public class EditTaskCommand extends Command {
         Task taskToEdit = lastShownList.get(index.getZeroBased());
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
 
+        if (!model.checkAssignees(editedTask)) {
+            throw new CommandException(Assignee.MESSAGE_CONSTRAINTS);
+        }
+
         model.setTask(taskToEdit, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
@@ -89,8 +99,10 @@ public class EditTaskCommand extends Command {
         Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
         TaskStatus updatedStatus = editTaskDescriptor.getStatus().orElse(taskToEdit.getTaskStatus());
         Priority updatedPriority = editTaskDescriptor.getPriority().orElse(taskToEdit.getPriority());
+        Set<Assignee> updatedAssignees = editTaskDescriptor.getAssignees().orElse(taskToEdit.getAssignees());
 
-        return new Task(updatedTitle, updatedDescription, updatedDeadline, updatedStatus, updatedPriority);
+        return new Task(updatedTitle, updatedDescription, updatedDeadline, updatedStatus, updatedPriority,
+                updatedAssignees);
     }
 
     @Override
@@ -123,11 +135,13 @@ public class EditTaskCommand extends Command {
         private TaskStatus status;
         private Deadline deadline;
         private Priority priority;
+        private Set<Assignee> assignees;
 
         public EditTaskDescriptor() {}
 
         /**
          * Copy constructor.
+         * A defensive copy of {@code assignees} is used internally.
          */
         public EditTaskDescriptor(EditTaskCommand.EditTaskDescriptor toCopy) {
             setTitle(toCopy.title);
@@ -135,13 +149,14 @@ public class EditTaskCommand extends Command {
             setStatus(toCopy.status);
             setDeadline(toCopy.deadline);
             setPriority(toCopy.priority);
+            setAssignees(toCopy.assignees);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, description, status, deadline, priority);
+            return CollectionUtil.isAnyNonNull(title, description, status, deadline, priority, assignees);
         }
 
         public void setTitle(Title title) {
@@ -184,6 +199,22 @@ public class EditTaskCommand extends Command {
             return Optional.ofNullable(priority);
         }
 
+        /**
+         * Sets {@code assignees} to this object's {@code assignees}.
+         * A defensive copy of {@code assignees} is used internally.
+         */
+        public void setAssignees(Set<Assignee> assignees) {
+            this.assignees = (assignees != null) ? new HashSet<>(assignees) : null;
+        }
+
+        /**
+         * Returns an unmodifiable assignees set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code assignees} is null.
+         */
+        public Optional<Set<Assignee>> getAssignees() {
+            return (assignees != null) ? Optional.of(Collections.unmodifiableSet(assignees)) : Optional.empty();
+        }
 
         @Override
         public boolean equals(Object other) {
@@ -204,7 +235,8 @@ public class EditTaskCommand extends Command {
                     && getDescription().equals(e.getDescription())
                     && getStatus().equals(e.getStatus())
                     && getDeadline().equals(e.getDeadline())
-                    && getPriority().equals(e.getPriority());
+                    && getPriority().equals(e.getPriority())
+                    && getAssignees().equals(e.getAssignees());
         }
     }
 }

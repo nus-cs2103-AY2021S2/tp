@@ -1,12 +1,15 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -17,7 +20,9 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.assignee.Assignee;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Name;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
 
@@ -27,17 +32,17 @@ public class AddTaskCommandTest {
         assertThrows(NullPointerException.class, () -> new AddTaskCommand(null));
     }
 
-    //    @Test
-    //    public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
-    //        AddTaskCommandTest.ModelStubAcceptingTaskAdded modelStub = new AddTaskCommandTest
-    //                .ModelStubAcceptingTaskAdded();
-    //        Task validTask = new TaskBuilder().build();
-    //
-    //        CommandResult commandResult = new AddTaskCommand(validTask).execute(modelStub);
-    //
-    //        assertEquals(String.format(AddTaskCommand.MESSAGE_SUCCESS, validTask), commandResult.getFeedbackToUser());
-    //        assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
-    //    }
+    @Test
+    public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
+        AddTaskCommandTest.ModelStubAcceptingTaskAdded modelStub = new AddTaskCommandTest
+                .ModelStubAcceptingTaskAdded();
+        Task validTask = new TaskBuilder().build();
+
+        CommandResult commandResult = new AddTaskCommand(validTask).execute(modelStub);
+
+        assertEquals(String.format(AddTaskCommand.MESSAGE_SUCCESS, validTask), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
+    }
 
     @Test
     public void equals() {
@@ -214,6 +219,21 @@ public class AddTaskCommandTest {
         @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
+        }
+
+        @Override
+        public boolean checkAssignees(Task task) {
+            Set<Assignee> assignees = task.getAssignees();
+
+            for (Assignee assignee : assignees) {
+                Name tempName = new Name(assignee.assigneeName);
+                Person tempPerson = new Person(tempName);
+                if (!hasPerson(tempPerson)) {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }
