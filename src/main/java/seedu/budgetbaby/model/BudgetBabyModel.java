@@ -134,7 +134,7 @@ public interface BudgetBabyModel {
      * Iterates through the financial records and searches for the {@code description} {@code amount} {@code category}.
      * {@code description} {@code amount} {@code category} must exist in the budget tracker.
      */
-    void search(Description description, Amount amount, Category category);
+    void findFinancialRecord(Description description, Amount amount, Category category);
 
     /**
      * Resets filters on financial records to display original list

@@ -12,9 +12,9 @@ import seedu.budgetbaby.model.record.Description;
 /**
  * Filters financial records by category.
  */
-public class SearchFrCommand extends BudgetBabyCommand {
+public class FindFrCommand extends BudgetBabyCommand {
 
-    public static final String COMMAND_WORD = "search-fr";
+    public static final String COMMAND_WORD = "find-fr";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Search for financial records by description, amount and/or category.\n"
             + "Parameters: "
@@ -35,7 +35,7 @@ public class SearchFrCommand extends BudgetBabyCommand {
     /**
      * Creates a CategoryFrCommand to update the FR list
      */
-    public SearchFrCommand(Description description, Amount amount, Category category) {
+    public FindFrCommand(Description description, Amount amount, Category category) {
         this.description = description;
         this.amount = amount;
         this.category = category;
@@ -44,14 +44,14 @@ public class SearchFrCommand extends BudgetBabyCommand {
     @Override
     public CommandResult execute(BudgetBabyModel model) throws CommandException {
         requireNonNull(model);
-        model.search(description, amount, category);
+        model.findFinancialRecord(description, amount, category);
         return new CommandResult(String.format(MESSAGE_SUCCESS, description, amount, category));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof SearchFrCommand // instanceof handles nulls
-                && category.equals(((SearchFrCommand) other).category));
+                || (other instanceof FindFrCommand // instanceof handles nulls
+                && category.equals(((FindFrCommand) other).category));
     }
 }

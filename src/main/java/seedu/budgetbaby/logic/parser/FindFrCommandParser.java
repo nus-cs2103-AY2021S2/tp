@@ -5,7 +5,7 @@ import static seedu.budgetbaby.logic.parser.CliSyntax.*;
 
 import java.util.stream.Stream;
 
-import seedu.budgetbaby.logic.commands.SearchFrCommand;
+import seedu.budgetbaby.logic.commands.FindFrCommand;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 import seedu.budgetbaby.model.record.Amount;
 import seedu.budgetbaby.model.record.Category;
@@ -14,7 +14,7 @@ import seedu.budgetbaby.model.record.Description;
 /**
  * Parses input arguments and creates a new CategoryFilterCommand object
  */
-public class SearchFrCommandParser implements BudgetBabyCommandParser<SearchFrCommand> {
+public class FindFrCommandParser implements BudgetBabyCommandParser<FindFrCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the CategoryFilterCommand
@@ -22,20 +22,21 @@ public class SearchFrCommandParser implements BudgetBabyCommandParser<SearchFrCo
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public SearchFrCommand parse(String args) throws ParseException {
+    public FindFrCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_AMOUNT, PREFIX_CATEGORY);
 
-        if (!arePrefixesPresent(argMultimap)
+        if ((!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)
+                && !arePrefixesPresent(argMultimap, PREFIX_AMOUNT)
+                && !arePrefixesPresent(argMultimap, PREFIX_CATEGORY))
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    SearchFrCommand.MESSAGE_USAGE));
+                    FindFrCommand.MESSAGE_USAGE));
         }
 
         Description description;
         Amount amount;
         Category category;
-
 
         if (arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
             description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
@@ -55,7 +56,7 @@ public class SearchFrCommandParser implements BudgetBabyCommandParser<SearchFrCo
             category = null;
         }
 
-        return new SearchFrCommand(description, amount, category);
+        return new FindFrCommand(description, amount, category);
     }
 
     /**

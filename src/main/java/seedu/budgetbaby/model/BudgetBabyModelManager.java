@@ -140,46 +140,46 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
     }
 
     @Override
-    public void search(Description description, Amount amount, Category category) {
+    public void findFinancialRecord(Description description, Amount amount, Category category) {
         assert true;
 
-        Predicate<FinancialRecord> searchD = fr -> fr.getDescription().description.equals(description.description);
+        Predicate<FinancialRecord> findD = fr -> fr.getDescription().description.equals(description.description);
 
-        Predicate<FinancialRecord> searchA = fr -> fr.getAmount().getValue().equals(amount.getValue());
+        Predicate<FinancialRecord> findA = fr -> fr.getAmount().getValue().equals(amount.getValue());
 
-        Predicate<FinancialRecord> searchC = fr -> fr.getTags().contains(category);
+        Predicate<FinancialRecord> findC = fr -> fr.getTags().contains(category);
 
-        Predicate<FinancialRecord> searchDA = fr -> fr.getDescription().description.equals(description.description)
+        Predicate<FinancialRecord> findDA = fr -> fr.getDescription().description.equals(description.description)
                 && fr.getAmount().getValue().equals(amount.getValue());
 
-        Predicate<FinancialRecord> searchDC = fr -> fr.getDescription().description.equals(description.description)
+        Predicate<FinancialRecord> findDC = fr -> fr.getDescription().description.equals(description.description)
                 && fr.getTags().contains(category);
 
-        Predicate<FinancialRecord> searchAC = fr -> fr.getAmount().getValue().equals(amount.getValue())
+        Predicate<FinancialRecord> findAC = fr -> fr.getAmount().getValue().equals(amount.getValue())
                 && fr.getTags().contains(category);
 
-        Predicate<FinancialRecord> searchDAC = fr -> fr.getDescription().description.equals(description.description)
+        Predicate<FinancialRecord> findDAC = fr -> fr.getDescription().description.equals(description.description)
                 && fr.getAmount().getValue().equals(amount.getValue())
                 && fr.getTags().contains(category);
 
         if (description == null) {
             if (amount == null && category != null) {
-                updateFilteredFinancialRecordList(searchC);
+                updateFilteredFinancialRecordList(findC);
             } else if (amount != null && category == null) {
-                updateFilteredFinancialRecordList(searchA);
+                updateFilteredFinancialRecordList(findA);
             } else {
-                updateFilteredFinancialRecordList(searchAC);
+                updateFilteredFinancialRecordList(findAC);
             }
         } else if (amount == null) {
             if (category == null) {
-                updateFilteredFinancialRecordList(searchD);
+                updateFilteredFinancialRecordList(findD);
             } else {
-                updateFilteredFinancialRecordList(searchDC);
+                updateFilteredFinancialRecordList(findDC);
             }
         } else if (category == null) {
-            updateFilteredFinancialRecordList(searchDA);
+            updateFilteredFinancialRecordList(findDA);
         } else {
-            updateFilteredFinancialRecordList(searchDAC);
+            updateFilteredFinancialRecordList(findDAC);
         }
     }
 
