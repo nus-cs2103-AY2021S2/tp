@@ -69,7 +69,7 @@ For a quick reference of the available commands and their syntax, refer to the [
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Commands
 
 <div markdown="block" class="alert alert-info">
 
@@ -95,7 +95,9 @@ For a quick reference of the available commands and their syntax, refer to the [
 
 </div>
 
-### Viewing help : `help`
+### General
+
+#### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -103,8 +105,15 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+#### Exiting the program : `exit`
 
-### Adding a property: `add property`
+Exits the program.
+
+Format: `exit`
+
+### Adding
+
+#### Adding a property: `add property`
 
 Adds a property to the app.
 
@@ -117,7 +126,7 @@ Examples:
 * `add property n/Mayfair t/Condo a/1 Jurong East Street 32 p/609477 d/31-12-2021`
 * `add property n/Mayfair t/Condo a/1 Jurong East Street 32 p/609477 d/31-12-2021 r/Urgent to sell cn/Alice cc/91234567 ce/alice@gmail.com ca/$800,000 tags/4 bedrooms, No need for renovation`
 
-### Adding an appointment: `add appointment`
+#### Adding an appointment: `add appointment`
 
 Adds an appointment to the app.
 
@@ -126,35 +135,9 @@ Format: `add appointment n/NAME r/REMARKS d/DATE t/TIME​`
 Examples:
 * `add appointment n/Meet Alex r/At M Hotel d/17-2-2021 t/1500`
 
-### Listing all properties and appointments : `list all`
+### Editing
 
-Shows a list of all properties and appointments in the app.
-
-### Listing all properties : `list property`
-
-Shows a list of all properties in the app.
-
-### Listing all appointments : `list appointment`
-
-Shows a list of all appointments in the app.
-
-### Sorting : `sort`
-
-Sorts and shows a list of properties or appointments that is sorted according to the comparator provided.
-
-Formats:
-* `sort appointment o/<asc or desc> k/<datetime or name>`
-* `sort property o/<asc or desc> k/<price or address or postalcode or deadline or name>`
-
-Description:
-* Sorts appointment or property by the specified sorting key in ascending or descending order.
-* The sorting key and sorting order fields must be specified.
-
-Examples:
-*  `sort appointment o/asc k/datetime` Sorts `appointment` by `datetime` in ascending order.
-*  `sort property o/desc k/price` Sorts `property` by `price` in descending order.
-
-### Editing a property : `edit property`
+#### Editing a property : `edit property`
 
 Overwrites the information of the property according to the flags provided.
 
@@ -176,7 +159,7 @@ Description:
 Examples:
 *  `edit property 1 r/Urgent to sell cn/Alice` Edits the remark and client name of the 1st property to be `Urgent to sell` and `Alice` respectively.
 
-### Editing an appointment : `edit appointment`
+#### Editing an appointment : `edit appointment`
 
 Overwrites the information of the appointment according to the flags provided.
 
@@ -190,7 +173,42 @@ Description:
 Examples:
 *  `edit appointment 3 d/21-03-2021 r/at M hotel` Edits the date and remark of the 3rd appointment to be `21-03-2021` and `at M hotel` respectively.
 
-### Updating the status of a property : `update`
+### Deleting
+
+#### Removing an entry : `delete`
+
+Deletes the specified property or appointment from the app.
+
+Formats:
+* `delete appointment INDEX`
+* `delete property INDEX`
+
+Description:
+* Deletes the appointment or property at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …
+* The field INDEX must be provided.
+
+Examples:
+*  `delete appointment 7` Deletes the `appointment` at index `7`.
+*  `delete property 7` Deletes the `property` at index `7`.
+
+### Listing
+
+#### Listing all properties and appointments : `list all`
+
+Shows a list of all properties and appointments in the app.
+
+#### Listing all properties : `list property`
+
+Shows a list of all properties in the app.
+
+#### Listing all appointments : `list appointment`
+
+Shows a list of all appointments in the app.
+
+
+### Updating status
+
+#### Updating the status of a property : `update`
 
 Updates the status of a property from Option to Purchase, to Sales and Purchase Agreement to Completion
 
@@ -210,23 +228,27 @@ Examples:
 *  `update 1 u/new 600000` Creates a new status with amount 600000 for the 1st property.
 *  `update 3 u/proceed` Moves the status of the 3rd property to next one.
 
-### Removing an entry : `delete`
+### Sorting
 
-Deletes the specified property or appointment from the app.
+#### Sorting : `sort`
+
+Sorts and shows a list of properties or appointments that is sorted according to the comparator provided.
 
 Formats:
-* `delete appointment INDEX`
-* `delete property INDEX`
+* `sort appointment o/<asc or desc> k/<datetime or name>`
+* `sort property o/<asc or desc> k/<price or address or postalcode or deadline or name>`
 
 Description:
-* Deletes the appointment or property at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …
-* The field INDEX must be provided.
+* Sorts appointment or property by the specified sorting key in ascending or descending order.
+* The sorting key and sorting order fields must be specified.
 
 Examples:
-*  `delete appointment 7` Deletes the `appointment` at index `7`.
-*  `delete property 7` Deletes the `property` at index `7`.
+*  `sort appointment o/asc k/datetime` Sorts `appointment` by `datetime` in ascending order.
+*  `sort property o/desc k/price` Sorts `property` by `price` in descending order.
 
-### Searching properties: `find property`
+### Searching
+
+#### Searching properties: `find property`
 
 Finds properties that match the criterion provided.
 
@@ -259,7 +281,7 @@ Examples:
 * `find property pm/500000`
 * `find property bishan north t/hdb pl/$1,000,000`
 
-### Searching appointments: `find appointment`
+#### Searching appointments: `find appointment`
 
 Finds appointments that match the criterion provided.
 
@@ -273,7 +295,7 @@ Examples:
 * `find appointment bob`
 * `find appointment sunday`
 
-### Searching clients: `find client`
+#### Searching clients: `find client`
 
 Finds appointments that matches the keywords and properties whose clients matches the same keywords. Both are done at the same time. 
 
@@ -283,7 +305,9 @@ Formats:
 Description:
 * There can be 0 or more keywords. Keywords are case insensitive. 
 
-### Clearing all entries : `clear`
+### Clearing
+
+#### Clearing all entries : `clear`
 
 Clears all properties or appointments or both from the app.
 
@@ -292,25 +316,24 @@ Formats:
 * `clear appointment`
 * `clear all`
 
-### Exiting the program : `exit`
+## Storage
 
-Exits the program.
+#### Saving the data
 
-Format: `exit`
+PocketEstate data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually. PocketEstate data are saved as a JSON file after any command that modifies the data of the app.
 
-### Saving the data
+* The default property storage data file used is `[JAR file location]/data/propertybook.json`. 
+* The default appointment storage data file used is `[JAR file location]/data/appointmentbook.json`.
 
-PocketEstate data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+#### Editing the data file
 
-### Editing the data file
-
-PocketEstate data are saved as a JSON file `[JAR file location]/data/pocketestate.json`. Advanced users are welcome to update data directly by editing that data file.
+Advanced users are welcome to update data directly by editing the data files.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, PocketEstate will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, PocketEstate will discard all data and start with an empty data file at the next run. For example, if the property storage data file is corrupted but the appointment storage data file is in the correct format, PocketEstate will start with an empty data file for properties and use the original data file for appointments.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+#### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
