@@ -77,6 +77,11 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             }
         }
 
+        if (validIndexes.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        }
+
         return new DeleteContactCommand(validIndexes, invalidIndexes);
     }
 }

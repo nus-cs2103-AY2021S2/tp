@@ -48,6 +48,11 @@ public class EDoneCommandParser implements Parser<EDoneCommand> {
             }
         }
 
+        if (validIndexes.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EDoneCommand.MESSAGE_USAGE));
+        }
+
         return new EDoneCommand(validIndexes, invalidIndexes);
     }
 }

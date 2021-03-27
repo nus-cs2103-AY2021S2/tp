@@ -60,6 +60,11 @@ public class EDeleteCommandParser implements Parser<EDeleteCommand> {
             }
         }
 
+        if (validIndexes.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EDeleteCommand.MESSAGE_USAGE));
+        }
+
         return new EDeleteEventCommand(validIndexes, invalidIndexes);
     }
 }
