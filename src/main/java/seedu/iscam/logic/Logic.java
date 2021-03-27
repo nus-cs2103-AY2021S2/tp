@@ -38,7 +38,7 @@ public interface Logic {
      * Returns an unmodifiable view of the filtered list of clients
      */
     ObservableList<Client> getFilteredClientList();
-    
+
     /**
      * Returns an unmodifiable view of the filtered list of meetings
      */
