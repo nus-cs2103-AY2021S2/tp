@@ -208,6 +208,21 @@ Examples:
 
 `filter medical` returns every contact with the tag `medical`
 
+### Calling notifications of recent events : `notif`
+
+Generates a list of notifications.
+
+![notif message](images/notifMessage.png)
+
+Format: `notif`
+
+Lists all client birthdays within the next two weeks.
+
+Lists all meetings occurring today in order of time.
+
+Also displays upon startup.
+
+
 ### Saving the data
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
