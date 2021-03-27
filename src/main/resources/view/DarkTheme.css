@@ -132,6 +132,10 @@
     -fx-text-fill: #010504;
 }
 
+.label_with_icon {
+    -fx-padding: 0 0 0 5;
+}
+
 .stack-pane {
      -fx-background-color: derive(#1d1d1d, 20%);
 }

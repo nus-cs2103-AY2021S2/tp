@@ -1,14 +1,13 @@
 @startuml
 start
-:User executes command;
+:User executes Add command;
 
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 
-if () then ([command commits AddressBook])
-    :Purge redundant states;
-    :Save AddressBook to
-    addressBookStateList;
+if () then ([input is valid & student does not exist in Student Book])
+    :Parse Command;
+    :Save new student to StudentBook;
 else ([else])
 endif
 stop
