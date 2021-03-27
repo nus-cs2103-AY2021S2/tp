@@ -76,25 +76,7 @@ public class RecurCommand extends Command {
     private Task makeNextRecurringTask(Task previousRecurringTask) throws CommandException {
         assert previousRecurringTask != null;
 
-        DoneStatus newDoneStatus = new DoneStatus(false);
-
-        Recurrence recurrence = this.recurrence;
-        OptionalField<Recurrence> wrappedRecurrence = new OptionalField<>(this.recurrence);
-
-        Time lastDeadline = previousRecurringTask.getDeadline();
-        Time nextRecurringDeadline = previousRecurringTask.getRecurringTime(lastDeadline, recurrence);
-        OptionalField<Time> lastStartTime = previousRecurringTask.getStartTimeWrapper();
-        OptionalField<Time> nextRecurringStartTime = previousRecurringTask.getRecurringTime(lastStartTime, recurrence);
-
-        return new Task(previousRecurringTask.getName(),
-                nextRecurringStartTime,
-                nextRecurringDeadline,
-                previousRecurringTask.getModule(),
-                previousRecurringTask.getDescription(),
-                previousRecurringTask.getWorkload(),
-                newDoneStatus,
-                wrappedRecurrence,
-                previousRecurringTask.getTags());
+        return previousRecurringTask.makeNewRecurringTask();
     }
 
 

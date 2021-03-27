@@ -1,8 +1,10 @@
 package seedu.module.model.task;
 
+import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE;
 import static seedu.module.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
@@ -136,15 +138,23 @@ public class Task {
      * Returns a new valid Deadline for the recurring task if previous recurring deadline has expired.
      *
      * @param oldTime current deadline of the recurring task
-     * @param taskRecurrence recurrence of the task
      * @return new Deadline object for the recurring task.
      */
-    public Time getRecurringTime(Time oldTime, Recurrence taskRecurrence) {
-        requireAllNonNull(oldTime, taskRecurrence);
+    private Time getRecurringTime(Time oldTime) {
+        requireAllNonNull(oldTime);
         assert(this.isRecurring());
 
+        DateTimeFormatter formatter;
         String nextRecurringDeadlineStr = oldTime.value;
         Time currTime = Time.makeDeadlineWithTime(LocalDateTime.now());
+        Recurrence taskRecurrence = this.getRecurrence();
+
+        String dateValue = oldTime.value.split(" ")[0];
+        if (oldTime.value.length() == dateValue.length()) {
+            formatter = ISO_LOCAL_DATE;
+        } else {
+            formatter = Time.DATE_TIME_FORMATTER_WITH_TIME;
+        }
 
         if (oldTime.compareTo(currTime) < 0) {
             // deadline is expired
@@ -152,17 +162,17 @@ public class Task {
             case daily:
                 //change date to day + 1
                 nextRecurringDeadlineStr = oldTime.getTime().plusDays(1)
-                        .format(Time.DATE_TIME_FORMATTER_WITH_TIME);
+                        .format(formatter);
                 break;
             case weekly:
                 //change date to day + 7
                 nextRecurringDeadlineStr = oldTime.getTime().plusDays(7)
-                        .format(Time.DATE_TIME_FORMATTER_WITH_TIME);
+                        .format(formatter);
                 break;
             case monthly:
                 //change date to month + 1
                 nextRecurringDeadlineStr = oldTime.getTime().plusMonths(1)
-                        .format(Time.DATE_TIME_FORMATTER_WITH_TIME);
+                        .format(formatter);
                 break;
             default:
                 // throw new CommandException(MESSAGE_INVALID_RECURRENCE);
@@ -178,27 +188,35 @@ public class Task {
      * Overloaded getRecurringTime method for optional time.
      *
      * @param oldTime current deadline of the recurring task
-     * @param taskRecurrence recurrence of the task
      * @return new Deadline object for the recurring task.
      */
-    public OptionalField<Time> getRecurringTime(OptionalField<Time> oldTime, Recurrence taskRecurrence) {
+    private OptionalField<Time> getRecurringTime(OptionalField<Time> oldTime) {
         if (oldTime.isNull()) {
             return oldTime;
         } else {
-            Time newTime = getRecurringTime(oldTime.getField(), taskRecurrence);
+            Time newTime = getRecurringTime(oldTime.getField());
             return new OptionalField<>(newTime);
         }
     }
 
     /**
      * Returns a new Task object if the task is recurring and the deadline has expired.
-     *
-     * @param newDeadline is the new Recurring Deadline.
      */
-    public Task makeNewRecurringTask(Time newDeadline, OptionalField<Time> newStartTime) {
+    public Task makeNewRecurringTask() {
         DoneStatus defaultDoneStatus = new DoneStatus(false);
-            return new Task(name, newStartTime, newDeadline, module, description, workload,
-                    defaultDoneStatus, recurrence, tags);
+
+        boolean isUnchanged;
+        Time newDeadline = getRecurringTime(this.getDeadline());
+        OptionalField<Time> newStartTime = this.getStartTimeWrapper();
+
+        isUnchanged = newDeadline.equals(this.getDeadline());
+
+        if (!isUnchanged) {
+            newStartTime = getRecurringTime(this.getStartTimeWrapper());
+        }
+
+        return new Task(name, newStartTime, newDeadline, module, description, workload,
+                defaultDoneStatus, recurrence, tags);
     }
 
     /**
