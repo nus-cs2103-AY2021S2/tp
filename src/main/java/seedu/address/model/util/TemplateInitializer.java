@@ -21,7 +21,7 @@ public class TemplateInitializer {
     private DietPlanList dietPlanListTemplate;
 
     /**
-     * Initialise a TemplateInitializer instance.
+     * Initialises a TemplateInitializer instance.
      */
     public TemplateInitializer() {
         this.uniqueFoodListTemplate = createFoodTemplate();
