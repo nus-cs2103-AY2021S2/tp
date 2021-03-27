@@ -34,7 +34,7 @@ title: User Guide
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `addNote c/CONTENT`, `CONTENT` is a parameter which can be used as `addnote c/This is a note`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -48,12 +48,12 @@ title: User Guide
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `listcommand`, `exit` and `clearcontact`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-
-* For commands that only take in one parameters (such as `open`, `close`, `` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  
+* Extraneous parameter for commands that only take in one parameters (such as `open`, `close`, and `setdividerc) will not be ignored.<br>
+  e.g. if the command specifies `open -c 123`, the command will be invalid.
+  
   
 </div>
 
@@ -252,6 +252,32 @@ Examples:
 * `editmodenote`
   * note content will be editable
 
+#### Save and quit edit mode: `save`
+
+Save edited content and quit edits mode and.
+
+Format: `save`
+
+* The program have to be in edit mode.
+* All changes will be saved.
+
+Examples:
+* `save`
+  * exit edit mode and save all changes.
+
+#### Quit edit mode : `quit`
+
+Quit edits mode.
+
+Format: `quit`
+
+* The program have to be in edit mode.
+* All changes will be discarded.
+
+Examples:
+* `quit`
+  * quit edit mode and discard all changes.
+  
 
 ### Contact Features
 
@@ -294,23 +320,26 @@ Examples:
 
 #### Locating contacts: `findcontact`
 
-Finds contacts whose names contain any of—or tags contain all of—the given keywords.
+Finds contacts whose names and emails contain any of—or tags contain all of—the given keywords.
 
-Format: `findcontact [n/NAME_KEYWORD]... [t/TAG_KEYWORD]...`
+Format: `findcontact [n/NAME_KEYWORD]... [e/EMAIL_KEYWORD]... [t/TAG_KEYWORD]...`
 
 * The search is case-insensitive. e.g `n/hans` will match the name `Hans`
 * The order of the keywords does not matter. e.g. `n/Hans n/Bo` will match the name `Bo Hans`
-* Only the name and tags are searched.
-* Names and tags will be matched if they contain the given keywords e.g. `n/Han` will match the name `Hans`
+* Only the name, email, and tags are searched.
+* Names, emails, and tags will be matched if they contain the given keywords e.g. `n/Han` will match the name `Hans`
 * Contacts matching at least one name keyword will be returned (i.e. `OR` search).
   e.g. `n/Hans n/Bo` will return `Hans Gruber`, `Bo Yang`
+* Contacts matching at least one email keyword will be returned (i.e. `OR` search).
+  e.g. `e/@mail.com e/@mail.net` will return contacts with the following emails: `hans@mail.com`, `bo@mail.net`
 * Contacts matching all of the given tag keywords will be returned (i.e. `AND` search).
-  e.g. `t/friends` will return all contacts that are tagged with `Friends`.
+  e.g. `t/friends t/university` will only return all contacts that are tagged with both `Friends` and `University`
 
 Examples:
 * `findcontact n/John` returns `john` and `John Doe`
 * `findcontact n/alex n/david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+* (More examples to be added...)
 
 #### Deleting a contact : `deletecontact`
 
@@ -338,41 +367,34 @@ Examples:
 * `listcontact` followed by `emailcontact 2` opens a new message composition window targeting the 2nd contact in the contacts list.
 * `findcontact n/Alice` followed by `emailcontact 1` opens a new message composition window targeting the 1st contact in the results of the `findcontact` command.
 
+#### Sorting the contacts list by most frequently-contacted: `mostfreqcontact`
+
+Sorts the contacts list in descending order based on the number of email sending attempts to each contact.
+
+Format: `mostfreqcontact`
+
+* Each sucessful execution of `emailcommand` will be counted as an email sending attempt, regardless of whether an email was actually sent or not.
+* The ordering of the contacts list after sorting will replace the original ordering. (i.e., the sorted ordering is stored by Dictionote)
+
 #### Clearing the contacts list : `clearcontact`
 
 Clears the contacts list from all contacts.
 
 Format: `clearcontact`
 
-#### Save and quit edit mode: `save`
-
-Save edited content and quit edits mode and.
-
-Format: `save`
-
-* The program have to be in edit mode.
-* All changes will be saved.
-
-Examples:
-* `save`
-  * exit edit mode and save all changes.
-
-#### Quit edit mode : `quit`
-
-Quit edits mode.
-
-Format: `quit`
-
-* The program have to be in edit mode.
-* All changes will be discarded.
-
-Examples:
-* `quit`
-  * quit edit mode and discard all changes.
-
 
 ### User Interface Feature
+Dictionote allows the user to manipulate the user-interface via command. 
+The following are the 5 region where the user can manipulate
 
+![Ui Panel ](images/UiPanel.png)
+
+The region name is as follow :
+1. Contact Panel
+1. Dictionary List Panel
+1. Dictionary Content Panel
+1. Note List Panel
+1. Dictionary Content Panel
 #### Opening UI Panel: `open`
 
 Open selected UI Panel.
@@ -405,10 +427,10 @@ Format: `close Option`
 * The following `Option` are supported
     * `-a`: All panel
     * `-c`: Contact panel
-    * `-d`: Dictionary panel
+    * `-d`: Both dictionary list panel and dictionary content panel
     * `-dc`: Dictionary content panel
     * `-dl`: Dictionary list panel
-    * `-n`: Note panel
+    * `-n`: Both note list panel and note content panel
     * `-nc`: Note content panel
     * `-nl`: Note list panel
     * `-l`: Both dictionary list and note list panel
@@ -419,61 +441,84 @@ Examples:
 * `close -a`
     * close all panel
 
-#### Set contact divider position: `setdividerc`
+#### Setting UI Divider Position
+Dictionote allows the user to manipulate the divider between the region via command.
+The following are the 4 divider where the user can manipulate
+
+![Ui Panel ](images/UiDivider.png)
+
+The divider name is as follow :
+1. Contact Divider
+1. Dictionary Divider
+1. Note Divider 
+1. Main Divider
+
+The following images show the position the divider will be set when user enter a value from 1 to 9 horizontally and vertically
+
+![Ui Panel ](images/UiDividerConfig.png)
+
+##### Set contact divider position: `setdividerc`
 
 Sets the position of the contact divider.
 The note divider is the divider separating the contact and others user interface.
 
 Format: `setdividerc Position`
 
-* The `Position` **must be a between 10 to 90** (inclusive)
-* The `Position` **must be a positive integer** 10, 11, 12, …​
+* The `Position` **must be a between 1 to 9** (inclusive)
+* The `Position` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `setdividerc 10`
-  * set the contact divider at 10% mark from the left
+* `setdividerc 8`
 
-#### Set dictionary divider position: `setdividerd`
+##### Set dictionary divider position: `setdividerd`
 
 Sets the position of the dictionary divider.
 The dictionary divider is the divider separating the dictionary list and dictionary content.
 
 Format: `setdividerd Position`
 
-* The `Position` **must be a between 10 to 90** (inclusive)
-* The `Position` **must be a positive integer** 10, 11, 12, …​
+* The `Position` **must be a between 1 to 9** (inclusive)
+* The `Position` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `setdividerd 10`
-  * set the position of dictionary divider at 10% mark from the left
+* `setdividerd 5`
+  * set the position of dictionary divider at 5 marked in the image
 
-#### Set note divider position: `setdividern`
+##### Set note divider position: `setdividern`
 
 Sets the position of the note divider.
 The note divider is the divider separating the note list and note content.
 
 Format: `setdividern Position`
 
-* The `Position` **must be a between 10 to 90** (inclusive).
-* The `Position` **must be a positive integer** 10, 11, 12, …​
+* The `Position` **must be a between 1 to 9** (inclusive)
+* The `Position` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `setdividern 10`
-  * set the position of note divider at 10% mark from the left
+* `setdividern 6`
 
-#### Set main divider position: `setdividerm`
+##### Set main divider position: `setdividerm`
 
 Sets the position of the main divider.
 The main divider is the divider separating the note and dictionary.
 
 Format: `setdividerm Position`
 
-* The `Position` **must be a between 10 to 90** (inclusive).
-* The `Position` **must be a positive integer** 10, 11, 12, …​
+* The `Position` **must be a between 1 to 9** (inclusive)
+* The `Position` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `setdividerm 10`
-  * set the position of main divider at 10% mark from the left
+* `setdividerm 3`
+
+#### Toggle Divider Orientation
+Dictionote allows the user to change the orientation of the divider between the region via command.
+The following are the 2 divider where the user can manipulate
+
+![Ui Panel ](images/UiOrientation.png)
+
+The divider name is as follow :
+1. Dictionary Divider
+1. Note Divider
 
 #### Toggle dictionary divider orientation: `toggledividerd`
 
@@ -485,7 +530,6 @@ Format: `toggledividerd`
 
 Examples:
 * `togglerdividerd`
-  * toggle the orientation of the dictionary divider.
 
 #### Toggle note divider orientation: `toggledividern`
 
@@ -497,7 +541,6 @@ Format: `toggledividern`
 
 Examples:
 * `toggledividern`
-  * toggle the orientation of the note divider.
 
 
 ### Others Feature
@@ -559,20 +602,19 @@ Action | Format, Examples
 **Save changes to note** | `savenote`
 ***Contact Features*** | -
 **Add contact** | `addcontact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addcontact n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Delete contact** | `deletecontact INDEX`<br> e.g., `deletecontact 3`
-**Send email to contact** | `emailcontact INDEX`
-**Edit contact** | `editcontact INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`editcontact 2 n/James Lee e/jameslee@example.com`
-**Find contacts** | `findcontact [n/NAME_KEYWORD]... [t/TAG_KEYWORD]...`<br> e.g., `findcontact n/James t/family`
 **List all contacts** | `listcontact`
+**Edit contact** | `editcontact INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`editcontact 2 n/James Lee e/jameslee@example.com`
+**Find contacts** | `findcontact [n/NAME_KEYWORD]... [e/EMAIL_KEYWORD]... [t/TAG_KEYWORD]...`<br> e.g., `findcontact n/James e/@mail.com t/family`
+**Delete contact** | `deletecontact INDEX`<br> e.g., `deletecontact 3`
+**Send email to contact** | `emailcontact INDEX`<br> e.g., `emailcontact 2`
+**Sort contacts by most-frequent** | `mostfreqcontact`
 **Clear contacts list** | `clearcontact`
-**Save and quit edit mode** | `save`
-**Quit edit mode** | `quit`
 ***UI Features*** | -
 **Open** | `open Option` <br> e.g., `open -c`
 **Close** | `close Option` <br> e.g., `close -c`
-**Set contact divider position** | `setdividerc Position`
-**Set dictionary divider position** | `setdividerd Position`
-**Set note divider position** | `setdividern Position`
-**Set main divider position** | `setdividerm Position`
+**Set contact divider position** | `setdividerc POSITION`
+**Set dictionary divider position** | `setdividerd POSITION`
+**Set note divider position** | `setdividern POSITION`
+**Set main divider position** | `setdividerm POSITION`
 **Toggle dictionary divider orientation** | `toggledividerd`
 **Toggle note divider orientation** | `toggledividern`
