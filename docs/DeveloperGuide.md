@@ -145,7 +145,17 @@ The proposed sorting feature allows a user to sort the `TaskTracker` according t
 2. `taskName` - Task Name (Lexicographical order)
 3. `moduleCode` - Module Code (Lexicographical order)
 4. `priorityTag` - Priority Tag (High -> Medium -> Low)
-5. `weightage` - Task weightage (descending order - highest weightage first)
+5. `weightage` - Task weightage (descending order: highest weightage first)
+
+The sorting operation is exposed in the `Model` interface as `Model#sortTasks(Comparator)`. The `SortingFlag` determines which type of `Comparator` is to be used for the actual sorting implementation. It is noteworthy to mention that the sorting is performed only on the `UniqueTaskList`  that is displayed on the UI; no actual sorting of JSON data is performed.
+
+Given below is an example usage scenario and how the sorting mechanism behaves at each step.
+
+Step 1. The user launches the application, and it is assumed that there is existing data in the `TaskTracker`. The user executes the command `sort moduleCode` in order to sort the tasks by module code. The `sort` command creates a new SortingFlag with type `MODULE_CODE`, and creates a `ModuleCodeComparator` to be used for sorting.
+
+Step 2. The `sort` command then calls the `Model#sortTasks(Comparator)`  method, and passes the `ModuleCodeComparator` as a parameter to be used for the sorting.
+
+Step 3. The `Model#sortTasks(Comparator)` method then sorts the `UniqueTaskList`, and the sorted list is then reflected in the UI.
 
 ### \[Proposed\] Undo/redo feature
 
