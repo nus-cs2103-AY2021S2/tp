@@ -2,11 +2,13 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.booking.Booking;
 import seedu.address.model.residence.Residence;
 
 public class ResidenceCard extends UiPart<Region> {
@@ -24,7 +26,11 @@ public class ResidenceCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
-    private Label bookingList;
+    private Label bookingListTitle;
+    @FXML
+    private FlowPane bookingTitlePane;
+    @FXML
+    private FlowPane bookingListPane;
     @FXML
     private FlowPane cleanStatusTags;
     @FXML
@@ -39,13 +45,20 @@ public class ResidenceCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(residence.getResidenceName().getValue());
         address.setText(residence.getResidenceAddress().getValue());
-        bookingList.setText(residence.getBookingList().toString());
+        bookingListTitle.setText("BOOKINGS");
         cleanStatusTags.getChildren().add(new Label(residence.getCleanStatusTag().getValue()));
 
         residence.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        ObservableList<Booking> bookingList = residence.getBookingList().getValue();
+        bookingList.stream().sorted(Comparator.comparing(booking -> booking.getStart()))
+                .forEach(booking -> bookingListPane.getChildren()
+                        .add(new Label(String.valueOf(bookingList.indexOf(booking) + 1) + ". " + booking.toString())));
     }
+
+
 
     @Override
     public boolean equals(Object other) {

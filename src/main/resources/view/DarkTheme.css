@@ -87,7 +87,7 @@
     -fx-border-width: 1;
     -fx-background-color: derive(#1d1d1d, 20%);
 }
-//////
+
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
@@ -389,4 +389,19 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 13;
+}
+
+#bookingListPane {
+    -fx-background-color: #ffdde6 ;
+    -fx-border-radius: 3;
+}
+
+#bookingListPane .label {
+    -fx-font-size: 13;
+    -fx-text-fill: #333333;
+}
+
+#bookingTitlePane .label {
+    -fx-text-fill: white;
+    -fx-background-color: #3e7b91;
 }
