@@ -19,8 +19,8 @@ import seedu.address.model.task.todo.Todo;
 public class UpdateTodoCommandParser implements Parser<UpdateTodoCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the UpdateTodoCommand.
-     * and returns an UpdateTodoCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the {@code UpdateTodoCommand}.
+     * and returns an {@code UpdateTodoCommand} object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format.
      */

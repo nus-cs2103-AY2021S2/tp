@@ -51,13 +51,25 @@ public class TodoList {
     /**
      * Set the {@code Todo} specified by index with a new {@code Todo}.
      *
-     * @param index index specifies the target {@code Todo}.
+     * @param i index specifies the target {@code Todo}.
      * @param todo new {@code Todo} for this index.
      */
-    public void setTodo(Integer index, CompletableTodo todo) {
+    public void setTodo(Integer i, CompletableTodo todo) {
         requireNonNull(todo);
 
-        this.todos.set(index, todo);
+        this.todos.set(i, todo);
+    }
+
+    /**
+     * Get the {@code Todo} specified by index.
+     *
+     * @param i index specifies the target {@code Todo}.
+     * @return {@code Todo} at this index.
+     */
+    public CompletableTodo getTodo(Integer i) {
+        requireNonNull(i);
+
+        return this.todos.get(i);
     }
 
     /**

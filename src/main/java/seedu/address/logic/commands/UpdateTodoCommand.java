@@ -12,6 +12,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.TodoList;
 import seedu.address.model.task.CompletableTodo;
 
 /**
@@ -23,7 +24,7 @@ public class UpdateTodoCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates a todo of a project specified "
             + "by 2 index numbers: project index and target todo index.\n"
-            + "Parameters: PROJECT_INDEX "
+            + "Parameters: PROJECT_INDEX (must be a positive integer)"
             + PREFIX_UPDATE_INDEX + "TARGET_TODO_INDEX "
             + PREFIX_DESCRIPTION + "DESCRIPTION\n"
             + "Example:\n" + COMMAND_WORD + " 1 "
@@ -41,9 +42,9 @@ public class UpdateTodoCommand extends Command {
      * Constructs an {@code updateTodoCommand} with a {@code projectIndex},
      * {@code targetTodoIndex} and a {@code Todo}.
      *
-     * @param projectIndex     index of the project in the filtered project list.
+     * @param projectIndex index of the project in the filtered project list.
      * @param targetTodoIndex index of the {@code Todo} in the {@code TodoList} to update.
-     * @param todo            new todo given for updating.
+     * @param todo new {@code Todo} given for updating.
      */
     public UpdateTodoCommand(Index projectIndex, Index targetTodoIndex, CompletableTodo todo) {
         requireAllNonNull(projectIndex, targetTodoIndex, todo);
@@ -62,23 +63,33 @@ public class UpdateTodoCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
         Project projectRelated = lastShownList.get(projectIndex.getZeroBased());
+        TodoList todos = projectRelated.getTodos();
 
-        if (targetTodoIndex.getZeroBased() >= projectRelated.getTodos().size()) {
+        if (targetTodoIndex.getZeroBased() >= todos.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TODO_DISPLAYED_INDEX);
         }
 
-        if (projectRelated.getTodos().hasTodo(todo)) {
+        if (todos.hasTodo(todo) && !todos.getTodo(targetTodoIndex.getZeroBased()).equals(todo)) {
             throw new CommandException(MESSAGE_DUPLICATE_TODO);
         }
 
-        if (projectRelated.getTodos().checkIsDone(targetTodoIndex.getZeroBased())) {
-            projectRelated.getTodos().setTodo(targetTodoIndex.getZeroBased(), todo);
-            projectRelated.getTodos().markAsDone(targetTodoIndex.getZeroBased());
+        if (todos.checkIsDone(targetTodoIndex.getZeroBased())) {
+            todos.setTodo(targetTodoIndex.getZeroBased(), todo);
+            todos.markAsDone(targetTodoIndex.getZeroBased());
         } else {
-            projectRelated.getTodos().setTodo(targetTodoIndex.getZeroBased(), todo);
+            todos.setTodo(targetTodoIndex.getZeroBased(), todo);
         }
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
         return new CommandResult(String.format(MESSAGE_UPDATE_TODO_SUCCESS, todo));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof UpdateTodoCommand // instanceof handles nulls
+                && projectIndex.equals(((UpdateTodoCommand) other).projectIndex) // state check
+                && targetTodoIndex.equals(((UpdateTodoCommand) other).targetTodoIndex)
+                && todo.equals(((UpdateTodoCommand) other).todo));
     }
 }
 
