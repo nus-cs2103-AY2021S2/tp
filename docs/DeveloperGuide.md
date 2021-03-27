@@ -315,7 +315,7 @@ The following activity diagram summarizes what happens when a user executes the 
 The execution of finding a reader using keywords and finding a book using keywords is very similar (you may want to
 refer to the diagrams under [**`Finding books with keywords`**](#finding-books-with-keywords)).
 
-The only differences are that `FindReaderCommandParser` is used to parse the argument(s) and instead of 
+The only differences are that `FindReaderCommandParser` is used to parse the argument(s) and instead of
 `FindBookCommandParser`, and an object of `FindReaderCommand` is created. In order to find a reader using keywords,
 `Model#updateFilteredReaderList()` is called instead of `Model#updateFilteredBookList()`.
 
