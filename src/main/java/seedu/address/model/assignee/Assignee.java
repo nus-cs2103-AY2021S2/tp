@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; name is valid as declared in {@link #isValidAssigneeName(String)}
  */
 public class Assignee {
-    public static final String MESSAGE_CONSTRAINTS = "Assignee must be a member in the displayed member's list, "
+    public static final String MESSAGE_CONSTRAINTS = "Assignees must be a member in the displayed member's list, "
             + "with the exact same name!";
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
