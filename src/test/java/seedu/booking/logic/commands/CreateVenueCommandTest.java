@@ -121,7 +121,7 @@ public class CreateVenueCommandTest {
 
         @Override
         public void addBooking(Booking booking) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override

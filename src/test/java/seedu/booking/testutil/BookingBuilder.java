@@ -21,7 +21,7 @@ public class BookingBuilder {
     public static final VenueName DEFAULT_VENUE = VENUE1.getVenueName();
     private static final Description DEFAULT_DESCRIPTION = new Description("Good");
     private static final StartTime DEFAULT_BOOKING_START = new StartTime(LocalDateTime.of(2021, 03, 01, 12, 30, 00));
-    private static final EndTime DEFAULT_BOOKING_END = new EndTime(LocalDateTime.of(2021, 03, 01, 12, 30, 00));
+    private static final EndTime DEFAULT_BOOKING_END = new EndTime(LocalDateTime.of(2021, 03, 01, 13, 30, 00));
     private static final Id DEFAULT_ID = new Id(1);
 
     private Email bookerEmail;
