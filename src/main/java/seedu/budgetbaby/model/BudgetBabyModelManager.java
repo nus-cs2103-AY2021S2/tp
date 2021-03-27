@@ -158,7 +158,7 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
         Predicate<FinancialRecord> findAC = fr -> fr.getAmount().getValue().equals(amount.getValue())
                 && fr.getTags().contains(category);
 
-        Predicate<FinancialRecord> findDAC = fr -> fr.getDescription().description.equals(description.description)
+        Predicate<FinancialRecord> findAll = fr -> fr.getDescription().description.equals(description.description)
                 && fr.getAmount().getValue().equals(amount.getValue())
                 && fr.getTags().contains(category);
 
@@ -179,7 +179,7 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
         } else if (category == null) {
             updateFilteredFinancialRecordList(findDA);
         } else {
-            updateFilteredFinancialRecordList(findDAC);
+            updateFilteredFinancialRecordList(findAll);
         }
     }
 
