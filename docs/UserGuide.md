@@ -3,7 +3,10 @@ layout: page
 title: User Guide
 ---
 
-HeliBook is a **desktop app for managing you children's contacts and their related appointments, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, HeliBook can get your contact management tasks done faster than traditional GUI apps.
+HeliBook is a **desktop app for managing you children's contacts and their related appointments, 
+optimized for use via a Command Line Interface** (CLI) while still having the benefits of a 
+Graphical User Interface (GUI). 
+If you can type fast, HeliBook can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -189,10 +192,18 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the address book or clears all contacts with the specified tags.
 
-Format: `clear`
+<div markdown="span" class="alert alert-primary">:warning: **Warning:**
+The tags here do not differentiate between ChildTags and regular Tags. 
+This command will delete all entries that match **ANY** of the given tags.
+</div>
 
+Format: `clear [t/TAG]…​`
+
+Examples:
+* `clear` deletes all entries in the address book.
+* `clear t/teacher` deletes all contacts with the tag `teacher`
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -245,7 +256,7 @@ that works with regular tags such as 'Find' or 'Sort' will also work with Child 
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tc/CHILDTAG]…​ [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
+**Clear** | `clear [t/TAG]…​`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tc/CHILDTAG]…​ [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
