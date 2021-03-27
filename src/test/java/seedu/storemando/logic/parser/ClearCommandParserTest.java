@@ -4,12 +4,9 @@ import static seedu.storemando.commons.core.Messages.MESSAGE_INVALID_COMMAND_FOR
 import static seedu.storemando.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.storemando.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-import java.util.Arrays;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.storemando.logic.commands.ClearCommand;
-import seedu.storemando.model.item.LocationContainsKeywordsPredicate;
 import seedu.storemando.model.item.LocationContainsPredicate;
 
 public class ClearCommandParserTest {
