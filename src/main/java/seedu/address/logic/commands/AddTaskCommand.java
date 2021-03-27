@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
 /**
- * Adds a person to the address book.
+ * Adds a task to the address book.
  */
 public class AddTaskCommand extends Command {
 
@@ -42,7 +42,7 @@ public class AddTaskCommand extends Command {
     private final Task toAddTask;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddTaskCommand to add the specified {@code Task}
      */
     public AddTaskCommand(Task task) {
         requireNonNull(task);

@@ -3,6 +3,9 @@ package seedu.address.model.task;
 import java.time.LocalDate;
 import java.util.function.Predicate;
 
+/**
+ * Tests that a {@code Task}'s {@code Deadline} is before a specified date.
+ */
 public class DeadlineBeforeDatePredicate implements Predicate<Task> {
     private final String date;
 
