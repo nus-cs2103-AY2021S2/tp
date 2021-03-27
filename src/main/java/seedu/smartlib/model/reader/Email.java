@@ -27,7 +27,7 @@ public class Email {
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@"
             + DOMAIN_FIRST_CHARACTER_REGEX + DOMAIN_MIDDLE_REGEX + DOMAIN_LAST_CHARACTER_REGEX;
 
-    public final String value;
+    private final String value;
 
     /**
      * Constructs an {@code Email}.

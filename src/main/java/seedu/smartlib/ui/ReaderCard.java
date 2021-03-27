@@ -8,6 +8,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.smartlib.model.reader.Reader;
+import seedu.smartlib.model.tag.Tag;
 
 /**
  * An UI component that displays information of a {@code Reader}.
@@ -55,8 +56,8 @@ public class ReaderCard extends UiPart<Region> {
         address.setText(reader.getAddress().toString());
         email.setText(reader.getEmail().toString());
         reader.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .sorted(Comparator.comparing(Tag::getTagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.getTagName())));
         reader.getBorrows().forEach((key, value) -> borrows.getChildren()
                 .add(new Label(key.getName().toString() + ", borrowed on " + value.getValue() + ".")));
     }

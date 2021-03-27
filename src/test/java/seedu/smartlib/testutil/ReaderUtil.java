@@ -35,7 +35,7 @@ public class ReaderUtil {
         sb.append(PREFIX_EMAIL + reader.getEmail().toString() + " ");
         sb.append(PREFIX_ADDRESS + reader.getAddress().toString() + " ");
         reader.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+            s -> sb.append(PREFIX_TAG + s.getTagName() + " ")
         );
         return sb.toString();
     }
@@ -54,7 +54,7 @@ public class ReaderUtil {
             if (tags.isEmpty()) {
                 sb.append(PREFIX_TAG);
             } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.getTagName()).append(" "));
             }
         }
         return sb.toString();
