@@ -166,12 +166,12 @@ additional commands that are unnecessary.
 #### Actual Implementation
 
 The revised approach was to implement a `find-fr` command that enables 
-users to filter up to all 3 fields in a single function. For example, `search-fr d/Shoe
+users to filter up to all 3 fields in a single function. For example, `find-fr d/Shoe
 a/30 c/Apparel` would filter and display items that match all conditions provided (i.e. 
 records with description `Shoe`, amount `30` and category `Apparel`).
 
 The proposed `find` mechanism is facilitated by `BudgetBabyModelManager` which contains
-a FilteredList `filteredFinancialRecords` that is to be altered and displayed to the
+a filtered list `filteredFinancialRecords` that is to be altered and displayed to the
 user according to the `find-fr` command.
 
 The command is parsed from `BudgetBabyCommandParser` to the `FindFrCommandParser` class,
@@ -196,9 +196,9 @@ description `Lunch`, amount `10` and category `Food`. The `find-fr` command indi
 `updateFilteredFinancialRecordList` method, causing `filteredFinancialRecords` to display the matching
 records without modifying the contents of the original financial records list.
 
-    - Note: If no matching financial record(s) is/are found,
-    then the list will not be updated and a log message
-    indicating no records found will be shown.
+- Note: If no matching financial record(s) is/are found,
+then the list will not be updated and a log message
+indicating no records found will be shown.
 
 The following sequence diagram shows how the find operation works:
 ![](images/FindSequenceDiagram.png)
@@ -253,7 +253,7 @@ available financial records.
 The following sequence diagram shows how the find operation works:
 ![](images/ResetSequenceDiagram.png)
 
-The following activity diagram summarizes what happens when a user executes `reset-filter`:
+The following activity diagram summarizes what happens when a user executes `reset-filter`: </br>
 ![](images/ResetActivityDiagram.png)
 
 ### Statistics Feature
