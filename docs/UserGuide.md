@@ -37,27 +37,36 @@ This user guide uses various formatting styles to facilitate reading and to comm
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+### Download and Launch
+
+1. Ensure you have **Java `11` or above** installed in your Computer.
 
 1. Download the latest `pocketestate.jar` from [here](https://github.com/AY2021S2-CS2103T-T13-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your PocketEstate.
+1. Copy the file to the folder you want to use as the **home folder** for PocketEstate.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. **Double-click** the file to start the app. A Graphical User Interface (GUI) similar to the below should appear in a few seconds. Note how the app contains some sample data.<br><br>
+   
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+### Trying out
 
-   * **`list all`** : Lists all properties and appointments in the app.
+1. Let's try out your first command by adding a new property! <br>Type `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-6-2021` into the command box and press Enter to execute it.
+1. Scroll down to the bottom of the property list to see your newly added property.
+1. Want to view the properties in order of their asking price? Type the command `sort property o/desc k/price ` and press Enter. The property list will now be ordered in descending order, with the property having the highest asking price at the top.
+1. Now let us try adding a new appointment. Type `add appointment n/Meet Jacob for dinner r/At Orchard Central's food court d/19-4-2021 t/1930`. Scroll down to the bottom of the appointment list to see your newly added appointment.
+1. Forgot the next appointment date to meet Simon? Let's try to find out! Type `find appointment simon` and press Enter. There it is! Your appointment with Simon is on Sep 20, 2021.
 
-   * **`add property`**`n/Mayfair t/Condo a/1 Jurong East Street 32 p/609477 d/31-12-2021` : Adds a property with the corresponding information to the PocketEstate app.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+ Some example commands you can try:
 
-   * **`delete property`**`2` : Deletes the 2nd property shown in the current list of properties.
-
+   * `list all` : Lists all properties and appointments in the app.
+   * `delete property 2` : Deletes the 2nd property shown in the current list of properties.
+   * `clear appointment` : Clears all existing appointment data from the app.
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+For a quick reference of the available commands and their syntax, refer to the [Command Summary](#command-summary) section.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
