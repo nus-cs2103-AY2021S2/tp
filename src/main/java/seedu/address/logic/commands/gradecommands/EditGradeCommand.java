@@ -6,12 +6,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADED_ITEM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_GRADE;
 
+import java.util.List;
 import java.util.Optional;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.grade.Grade;
 import seedu.address.model.grade.GradeEnum;
@@ -54,10 +57,24 @@ public class EditGradeCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        List<Grade> lastShownList = model.getFilteredGradeList();
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_GRADE_DISPLAYED_INDEX);
+        }
+
+        Grade gradeToEdit = lastShownList.get(index.getZeroBased());
+        Grade editedGrade = createEditedGrade(gradeToEdit, editGradeDescriptor);
+
+        if (!gradeToEdit.equals(editedGrade) && model.hasGrade(editedGrade)) {
+            throw new CommandException(MESSAGE_DUPLICATE_GRADE);
+        }
+
+        model.setGrade(gradeToEdit, editedGrade);
         model.updateFilteredGradeList(PREDICATE_SHOW_ALL_GRADE);
-        return new CommandResult(MESSAGE_EDIT_GRADE_SUCCESS);
+        return new CommandResult(String.format(MESSAGE_EDIT_GRADE_SUCCESS, editedGrade));
     }
 
     /**

@@ -17,7 +17,7 @@ import seedu.address.model.grade.Grade;
 public class AddGradeCommand extends Command {
 
     public static final String COMMAND_WORD = "add_grade";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a grade to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a grade to the grade book. "
             + "Parameters: "
             + PREFIX_SUBJECT_NAME + "SUBJECT NAME "
             + PREFIX_GRADED_ITEM + "GRADED ITEM "
