@@ -25,6 +25,13 @@ public class Book {
 
     /**
      * Every field must be present and not null.
+     *
+     * @param name Name of the book
+     * @param author Author of the book
+     * @param publisher Publisher of the book
+     * @param isbn ISBN of the book
+     * @param barcode Barcode of the book
+     * @param genre Genre of the book
      */
     public Book(Name name, Author author, Publisher publisher, Isbn isbn, Barcode barcode, Genre genre) {
         requireAllNonNull(name, author, publisher, isbn, genre);
@@ -39,6 +46,14 @@ public class Book {
 
     /**
      * Every field must be present and not null.
+     *
+     * @param name Name of the book
+     * @param author Author of the book
+     * @param publisher Publisher of the book
+     * @param isbn ISBN of the book
+     * @param barcode Barcode of the book
+     * @param genre Genre of the book
+     * @param borrowerName Reader who borrowed the book
      */
     public Book(Name name, Author author, Publisher publisher, Isbn isbn, Barcode barcode, Genre genre,
                 Name borrowerName) {
@@ -138,7 +153,7 @@ public class Book {
                 && otherBook.getPublisher().equals(getPublisher())
                 && otherBook.getIsbn().equals(getIsbn())
                 && otherBook.getGenre().equals(getGenre())
-                && otherBook.getBarcode().equals(getBarcode()); // TODO: add BookStub for tests
+                && otherBook.getBarcode().equals(getBarcode());
     }
 
     @Override
@@ -166,4 +181,5 @@ public class Book {
 
         return builder.toString();
     }
+
 }
