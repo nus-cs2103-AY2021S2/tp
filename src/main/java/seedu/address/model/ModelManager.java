@@ -8,10 +8,8 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import com.fasterxml.jackson.core.filter.FilteringGeneratorDelegate;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import seedu.address.AppParameters;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
@@ -37,9 +35,9 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(addressBook, appointmentBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook +
-                ", appointment book: " + appointmentBook +
-                " and user prefs: " + userPrefs);
+        logger.fine("Initializing with address book: " + addressBook
+                + ", appointment book: " + appointmentBook
+                + " and user prefs: " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.appointmentBook = new AppointmentBook(appointmentBook);

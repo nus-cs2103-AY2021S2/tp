@@ -1,12 +1,11 @@
 package seedu.address.model.appointment;
 
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-
-import java.time.LocalDateTime;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents an Appointment's dateTime in the appointment book.
@@ -14,14 +13,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class DateTime {
 
-    public static final String MESSAGE_CONSTRAINTS = "DateTimes should not be blank and must be " +
-            "of the format dd/MM/yyyy HH:mm";
-
     private static final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
-    public static final String PLACEHOLDER = "NIL";
+    private static final String MESSAGE_CONSTRAINTS = "DateTimes should not be blank and must be "
+            + "of the format dd/MM/yyyy HH:mm";
+    private static final String PLACEHOLDER = "NIL";
 
-    public final String dateTime;
+    private final String dateTime;
 
     /**
      * Constructs an {@code DateTime}.
