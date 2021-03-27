@@ -167,6 +167,11 @@ public interface Model {
     boolean hasPatientInAppointmentSchedule(Patient patient);
 
     /**
+     * Returns true if patient has existing appointments in the appointment schedule.
+     */
+    boolean hasDoctorInAppointmentSchedule(Doctor doctor);
+
+    /**
      * Returns true if an appointment that conflicts with {@code appointment} exists in the appointment schedule.
      */
     boolean hasConflictingAppointment(Appointment appointment);
