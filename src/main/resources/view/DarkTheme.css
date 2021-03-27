@@ -172,6 +172,10 @@
     -fx-text-fill: black !important;
 }
 
+.result-display .corner {
+    -fx-background-color: transparent;
+}
+
 .status-bar .label {
     -fx-font-family: "Tisa Sans Pro Light";
     -fx-text-fill: white;
