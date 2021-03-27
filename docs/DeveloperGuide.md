@@ -137,6 +137,16 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Sorting Feature
+
+The proposed sorting feature allows a user to sort the `TaskTracker` according to specified flags. This feature makes use of  `SortingFlag` which indicates the attribute by which `Task`s are to be sorted by. Currently, this feature supports sorting by the following attributes:
+
+1. `dateTime` - Deadline Date & Time (Chronological order)
+2. `taskName` - Task Name (Lexicographical order)
+3. `moduleCode` - Module Code (Lexicographical order)
+4. `priorityTag` - Priority Tag (High -> Medium -> Low)
+5. `weightage` - Task weightage (descending order - highest weightage first)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
