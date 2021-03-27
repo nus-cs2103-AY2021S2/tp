@@ -33,7 +33,9 @@ public class ViewWindow extends UiPart<Stage> {
     @FXML
     private Label reviews;
     @FXML
-    private FlowPane tags;
+    private FlowPane tagCategory;
+    @FXML
+    private FlowPane tagSchool;
 
     /**
      * Creates a new ViewWindow.
@@ -106,13 +108,16 @@ public class ViewWindow extends UiPart<Stage> {
      * @param entryDetails Entry details
      */
     public void setEntryContent(HashMap<String, String> entryDetails) {
-        tags.getChildren().clear();
+        tagCategory.getChildren().clear();
+        tagSchool.getChildren().clear();
         name.setText(entryDetails.get("name") + "\n\n");
-        price.setText(String.format("price: $%s", entryDetails.get("price")));
+        price.setText(String.format("Price: $%s", entryDetails.get("price")));
         rating.setText(String.format("Rating: %s / 5", entryDetails.get("rating")));
-        address.setText(entryDetails.get("address") + "\n\n");
+        address.setText(String.format("Address: %s\n", entryDetails.get("address")));
         reviews.setText(String.format("Reviews:\n%s\n\n", entryDetails.get("reviews")));
-        Arrays.stream(entryDetails.get("tags").split(";"))
-                .forEach(tag -> tags.getChildren().add(new Label(tag)));
+        Arrays.stream(entryDetails.get("categories").split(";"))
+                .forEach(tag -> tagCategory.getChildren().add(new Label(tag)));
+        Arrays.stream(entryDetails.get("schools").split(";"))
+                .forEach(tag -> tagSchool.getChildren().add(new Label(tag)));
     }
 }
