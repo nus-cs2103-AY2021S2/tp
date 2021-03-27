@@ -113,7 +113,6 @@ public class ParserUtil {
      * @throws ParseException if the given {@code address} is invalid.
      */
     public static ResidenceAddress parseAddress(String address) throws ParseException {
-        System.out.println(address);
         requireNonNull(address);
         String trimmedAddress = address.trim();
         if (!ResidenceAddress.isValidResidenceAddress(trimmedAddress)) {
