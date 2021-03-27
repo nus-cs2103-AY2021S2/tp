@@ -21,25 +21,33 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final AppointmentBook appointmentBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyAppointmentBook appointmentBook,
+                        ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(addressBook, appointmentBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + addressBook + " appointment book: " + appointmentBook
+                + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
+        this.appointmentBook = new AppointmentBook(appointmentBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new AppointmentBook(), new UserPrefs());
+    }
+
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+        this(addressBook, new AppointmentBook(), userPrefs);
     }
 
     //=========== UserPrefs ==================================================================================
@@ -88,6 +96,46 @@ public class ModelManager implements Model {
     public ReadOnlyAddressBook getAddressBook() {
         return addressBook;
     }
+
+    //=========== AppointmentBook ================================================================================
+
+    /**
+     * Returns the user prefs' appointment book file path.
+     */
+    @Override
+    public Path getAppointmentBookFilePath() {
+        return userPrefs.getAppointmentBookFilePath();
+    }
+
+    /**
+     * Sets the user prefs' appointment book file path.
+     *
+     * @param appointmentBookFilePath
+     */
+    @Override
+    public void setAppointmentBookFilePath(Path appointmentBookFilePath) {
+        requireNonNull(appointmentBookFilePath);
+        userPrefs.setAppointmentBookFilePath(appointmentBookFilePath);
+    }
+
+    /**
+     * Replaces appointment book data with the data in {@code appointmentBook}.
+     *
+     * @param appointmentBook
+     */
+    @Override
+    public void setAppointmentBook(ReadOnlyAppointmentBook appointmentBook) {
+        this.appointmentBook.resetData(appointmentBook);
+    }
+
+    /**
+     * Returns the AppointmentBook
+     */
+    @Override
+    public ReadOnlyAppointmentBook getAppointmentBook() {
+        return appointmentBook;
+    }
+
 
     @Override
     public boolean hasPerson(Person person) {
