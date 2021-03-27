@@ -14,7 +14,7 @@ ClientBook can help _you_ accomplish your client management tasks faster than tr
 * [**1**. Why ClientBook?](#why-clientbook)
 * [**2.** Quick Start](#quick-start)
 * [**3.** Overview](#Overview)
-  * [**3.1 **Feature Summary](#feature-summary)
+  * [**3.1** Feature Summary](#feature-summary)
   * [**3.2** What information can we store for each client contact?](#what-information-can-we-store-for-each-client-contact)
 * [**4.** Feature Description](#feature-description)
   * [**4.1** `help`: Viewing help](#help-viewing-help)
