@@ -19,7 +19,7 @@ import seedu.address.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-//    private HeliBookStorage heliBookStorage;
+    //    private HeliBookStorage heliBookStorage;
     private JsonAddressBookStorage addressBookStorage;
     private JsonAppointmentBookStorage appointmentBookStorage;
     private UserPrefsStorage userPrefsStorage;
@@ -27,11 +27,11 @@ public class StorageManager implements Storage {
     /**
      * Creates a {@code StorageManager} with the given {@code HeliBookStorage} and {@code UserPrefStorage}.
      */
-//    public StorageManager(HeliBookStorage heliBookStorage, UserPrefsStorage userPrefsStorage) {
+    //    public StorageManager(HeliBookStorage heliBookStorage, UserPrefsStorage userPrefsStorage) {
     public StorageManager(JsonAddressBookStorage addressBookStorage, JsonAppointmentBookStorage appointmentBookStorage,
                           UserPrefsStorage userPrefsStorage) {
         super();
-//        this.heliBookStorage = heliBookStorage;
+        //        this.heliBookStorage = heliBookStorage;
         this.addressBookStorage = addressBookStorage;
         this.appointmentBookStorage = appointmentBookStorage;
         this.userPrefsStorage = userPrefsStorage;
@@ -98,7 +98,8 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyAppointmentBook> readAppointmentBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyAppointmentBook> readAppointmentBook(Path filePath)
+            throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
         return appointmentBookStorage.readAppointmentBook(filePath);
     }
