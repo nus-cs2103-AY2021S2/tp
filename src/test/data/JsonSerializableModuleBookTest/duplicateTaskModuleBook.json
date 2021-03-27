@@ -7,14 +7,16 @@
     "description": "hmmm",
     "workload": "2",
     "doneStatus": "false",
+    "recurrence": "",
     "tagged": [ "median" ]
   }, {
     "name": "Quiz",
+    "deadline": "2021-12-12 12:00",
     "startTime": "2021-01-12 11:00",
-    "deadline": "2021-01-12 13:00",
     "module": "CS3243",
     "description": "Is it easy?",
     "workload": "2",
+    "recurrence": "",
     "doneStatus": "false"
   } ]
 }

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_RECURRENCE;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TASK_NAME;
@@ -28,6 +29,7 @@ public class AddCommand extends Command {
             + "[" + PREFIX_START_TIME + "START TIME] "
             + PREFIX_DEADLINE + "DEADLINE "
             + PREFIX_WORKLOAD + "WORKLOAD "
+            + "[" + PREFIX_RECURRENCE + "RECURRENCE]"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TASK_NAME + "TP v1.2 "
@@ -36,6 +38,7 @@ public class AddCommand extends Command {
             + PREFIX_MODULE + "CS2103T "
             + PREFIX_DESCRIPTION + "Finish basic commands for TP "
             + PREFIX_WORKLOAD + "1 "
+            + PREFIX_RECURRENCE + "monthly "
             + PREFIX_TAG + "highPriority ";
 
     public static final String MESSAGE_SUCCESS = "New task added successfully:\n%1$s";
@@ -52,8 +55,11 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (model.hasTask(toAdd)) {
+        if (model.hasTask(toAdd) && !toAdd.isRecurring()) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
+        }
+        if (toAdd.isRecurring() && model.hasRecurringTask(toAdd)) {
+            throw new CommandException(RecurCommand.MESSAGE_DUPLICATE_RECURRENCE);
         }
         if (toAdd.isTimeInvalid()) {
             throw new CommandException(Task.INVALID_START_TIME);

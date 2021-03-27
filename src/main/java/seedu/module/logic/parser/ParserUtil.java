@@ -14,6 +14,7 @@ import seedu.module.model.tag.Tag;
 import seedu.module.model.task.Description;
 import seedu.module.model.task.Module;
 import seedu.module.model.task.Name;
+import seedu.module.model.task.Recurrence;
 import seedu.module.model.task.Time;
 import seedu.module.model.task.Workload;
 
@@ -140,5 +141,18 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+    /**
+     * Parses a {@code String recurrence} into a {@code Recurrence}.
+     * Leading and trailing whitespaces are trimmed.
+     *
+     * @throws ParseException if the given {@code recurrence} is not valid.
+     */
+    public static Recurrence parseRecurrence(String recurrence) throws ParseException {
+        String trimmedRecurrence = recurrence.trim().toLowerCase();
+        if (!Recurrence.isValidRecurrence(trimmedRecurrence)) {
+            throw new ParseException(Recurrence.MESSAGE_CONSTRAINTS);
+        }
+        return new Recurrence(recurrence);
     }
 }

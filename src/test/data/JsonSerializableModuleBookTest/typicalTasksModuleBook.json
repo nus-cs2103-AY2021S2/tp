@@ -11,12 +11,13 @@
     "tagged" : [ "medianPriority" ]
   }, {
     "name" : "Midterm",
-    "startTime" : "2021-03-06 08:30",
-    "deadline" : "2021-03-06 10:30",
+    "startTime" : "2021-12-12 06:30",
+    "deadline" : "2021-12-12 08:30",
     "module" : "CS3243",
     "description" : "Not include CSP.",
     "workload": "2",
     "doneStatus": "false",
+    "recurrence": "monthly",
     "tagged" : [ "highPriority" ]
   }, {
     "name" : "TP",
@@ -25,7 +26,8 @@
     "module" : "CS2103T",
     "description" : "Wrap up v1.2.",
     "workload": "3",
-    "doneStatus": "true"
+    "doneStatus": "true",
+    "recurrence": ""
   }, {
     "name" : "Tutorial",
     "startTime" : "",
@@ -34,6 +36,7 @@
     "description" : "Try to get full mark.",
     "workload": "2",
     "doneStatus": "false",
+    "recurrence": "",
     "tagged" : [ "easy" ]
   }, {
     "name" : "Project",
@@ -42,7 +45,8 @@
     "module" : "CS3243",
     "description" : "This is really challenging.",
     "workload": "3",
-    "doneStatus": "false"
+    "doneStatus": "false",
+    "recurrence": ""
   }, {
     "name" : "PAQ",
     "startTime" : "",
@@ -50,7 +54,8 @@
     "module" : "IS1103",
     "description" : "Strange questions.",
     "workload": "1",
-    "doneStatus": "true"
+    "doneStatus": "true",
+    "recurrence": ""
   }, {
     "name" : "OP 2",
     "startTime" : "",
@@ -58,7 +63,8 @@
     "module" : "CS2101",
     "description" : "Need to divide ourselves into two groups.",
     "workload": "2",
-    "doneStatus": "false"
+    "doneStatus": "false",
+    "recurrence": ""
   }
   ]
 }

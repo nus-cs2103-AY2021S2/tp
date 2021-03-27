@@ -15,6 +15,7 @@ import seedu.module.model.task.Description;
 import seedu.module.model.task.DoneStatus;
 import seedu.module.model.task.Module;
 import seedu.module.model.task.Name;
+import seedu.module.model.task.Recurrence;
 import seedu.module.model.task.Task;
 import seedu.module.model.task.Time;
 import seedu.module.model.task.Workload;
@@ -34,6 +35,7 @@ class JsonAdaptedTask {
     private final String description;
     private final String workload;
     private final String doneStatus;
+    private final String recurrence;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -41,9 +43,10 @@ class JsonAdaptedTask {
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("startTime") String startTime,
-            @JsonProperty("deadline") String deadline, @JsonProperty("module") String module,
-            @JsonProperty("description") String description, @JsonProperty("workload") String workload,
-            @JsonProperty("doneStatus") String doneStatus, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                           @JsonProperty("deadline") String deadline, @JsonProperty("module") String module,
+                           @JsonProperty("description") String description, @JsonProperty("workload") String workload,
+                           @JsonProperty("doneStatus") String doneStatus, @JsonProperty("recurrence") String recurrence,
+                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.startTime = startTime;
         this.deadline = deadline;
@@ -51,6 +54,11 @@ class JsonAdaptedTask {
         this.description = description;
         this.workload = workload;
         this.doneStatus = doneStatus;
+        if (recurrence == null || recurrence.equals("")) {
+            this.recurrence = "";
+        } else {
+            this.recurrence = recurrence;
+        }
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -71,6 +79,11 @@ class JsonAdaptedTask {
         description = source.getDescription().value;
         workload = source.getWorkload().toString();
         doneStatus = source.getDoneStatus().value;
+        if (!source.isRecurring()) {
+            recurrence = "";
+        } else {
+            recurrence = source.getRecurrence().value;
+        }
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -153,16 +166,36 @@ class JsonAdaptedTask {
 
         final DoneStatus modelDoneStatus = new DoneStatus(doneStatus);
 
-        final Set<Tag> modelTags = new HashSet<>(taskTags);
-
-        if (isDeadLine) {
-            return new Task(modelName, modelDeadline, modelModule, modelDescription,
-                    modelWorkload, modelDoneStatus, modelTags);
+        Recurrence modelRecurrence;
+        boolean isRecurringTask;
+        if (recurrence.equals("")) {
+            modelRecurrence = null;
+            isRecurringTask = false;
         } else {
+            if (!Recurrence.isValidRecurrence(recurrence)) {
+                throw new IllegalValueException(Recurrence.MESSAGE_CONSTRAINTS);
+            }
+            modelRecurrence = new Recurrence(recurrence);
+            isRecurringTask = true;
+        }
+
+        final Set<Tag> modelTags = new HashSet<>(taskTags);
+        if (!isRecurringTask && !isDeadLine) {
             return new Task(modelName, modelStartTime, modelDeadline, modelModule, modelDescription,
                     modelWorkload, modelDoneStatus, modelTags);
+
+        } else if (!isRecurringTask && isDeadLine) {
+            return new Task(modelName, modelDeadline, modelModule, modelDescription,
+                    modelWorkload, modelDoneStatus, modelTags);
+
+        } else if (isRecurringTask && !isDeadLine) {
+            return new Task(modelName, modelStartTime, modelDeadline, modelModule, modelDescription,
+                    modelWorkload, modelDoneStatus, modelRecurrence, modelTags);
+
+        } else {
+            return new Task(modelName, modelDeadline, modelModule, modelDescription,
+                    modelWorkload, modelDoneStatus, modelRecurrence, modelTags);
         }
 
     }
-
 }

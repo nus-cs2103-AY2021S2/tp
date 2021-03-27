@@ -155,6 +155,5 @@ public class TaskTest {
         // different isDeadline -> returns false
         editedQuiz = new TaskBuilder(QUIZ).deactivateStartTime().build();
         assertFalse(QUIZ.equals(editedQuiz));
-        assertFalse(editedQuiz.equals(QUIZ));
     }
 }

@@ -1,9 +1,11 @@
 package seedu.module.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.module.logic.commands.RecurCommand.MESSAGE_DUPLICATE_RECURRENCE;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_RECURRENCE;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TASK_NAME;
@@ -26,6 +28,7 @@ import seedu.module.model.task.Description;
 import seedu.module.model.task.DoneStatus;
 import seedu.module.model.task.Module;
 import seedu.module.model.task.Name;
+import seedu.module.model.task.Recurrence;
 import seedu.module.model.task.Task;
 import seedu.module.model.task.Time;
 import seedu.module.model.task.Workload;
@@ -47,6 +50,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_MODULE + "MODULE] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_WORKLOAD + "WORKLOAD] "
+            + "[" + PREFIX_RECURRENCE + "RECURRENCE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DEADLINE + "2021-03-15 "
@@ -83,13 +87,18 @@ public class EditCommand extends Command {
         Task taskToEdit = lastShownList.get(index.getZeroBased());
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
 
-        if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
+        if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask) && !taskToEdit.isRecurring()) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
+        }
+
+        if (taskToEdit.isRecurring() && model.hasRecurringTask(editedTask) && taskToEdit.equals(editedTask)) {
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_RECURRENCE, taskToEdit.getRecurrence()));
         }
 
         if (editedTask.isTimeInvalid()) {
             throw new CommandException(Task.INVALID_START_TIME);
         }
+
         model.setTask(taskToEdit, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
@@ -109,16 +118,25 @@ public class EditCommand extends Command {
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Workload updatedWorkload = editTaskDescriptor.getWorkload().orElse(taskToEdit.getWorkload());
         DoneStatus originalDoneStatus = taskToEdit.getDoneStatus();
+        Recurrence updatedRecurrence = editTaskDescriptor.getRecurrence().orElse(taskToEdit.getRecurrence());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
-        if (updatedStartTime == null) {
-            return new Task(updatedName, updatedDeadline, updatedModule, updatedDescription,
-                    updatedWorkload, originalDoneStatus, updatedTags);
-        } else {
+        if (!taskToEdit.isRecurring() && !taskToEdit.isDeadline()) {
             return new Task(updatedName, updatedStartTime, updatedDeadline, updatedModule, updatedDescription,
                     updatedWorkload, originalDoneStatus, updatedTags);
-        }
 
+        } else if (!taskToEdit.isRecurring() && taskToEdit.isDeadline()) {
+            return new Task(updatedName, updatedDeadline, updatedModule, updatedDescription,
+                    updatedWorkload, originalDoneStatus, updatedTags);
+
+        } else if (taskToEdit.isRecurring() && !taskToEdit.isDeadline()) {
+            return new Task(updatedName, updatedStartTime, updatedDeadline, updatedModule, updatedDescription,
+                    updatedWorkload, originalDoneStatus, updatedRecurrence, updatedTags);
+
+        } else {
+            return new Task(updatedName, updatedDeadline, updatedModule, updatedDescription,
+                    updatedWorkload, originalDoneStatus, updatedRecurrence, updatedTags);
+        }
     }
 
     @Override
@@ -150,6 +168,7 @@ public class EditCommand extends Command {
         private Module module;
         private Description description;
         private Workload workload;
+        private Recurrence recurrence;
         private Set<Tag> tags;
 
         public EditTaskDescriptor() {}
@@ -165,6 +184,7 @@ public class EditCommand extends Command {
             setModule(toCopy.module);
             setDescription(toCopy.description);
             setWorkload(toCopy.workload);
+            setRecurrence(toCopy.recurrence);
             setTags(toCopy.tags);
         }
 
@@ -172,7 +192,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, startTime, deadline, module, description, workload, tags);
+            return CollectionUtil.isAnyNonNull(name, startTime, deadline, module, description, workload, recurrence,
+                    tags);
         }
 
         public void setName(Name name) {
@@ -240,6 +261,14 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public Optional<Recurrence> getRecurrence() {
+            return Optional.ofNullable(recurrence);
+        }
+
+        public void setRecurrence(Recurrence recurrence) {
+            this.recurrence = recurrence;
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -261,6 +290,7 @@ public class EditCommand extends Command {
                     && getModule().equals(e.getModule())
                     && getDescription().equals(e.getDescription())
                     && getWorkload().equals(e.getWorkload())
+                    && getRecurrence().equals(e.getRecurrence())
                     && getTags().equals(e.getTags());
         }
     }

@@ -5,6 +5,7 @@ import static seedu.module.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_RECURRENCE;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TASK_NAME;
@@ -34,8 +35,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TASK_NAME, PREFIX_START_TIME, PREFIX_DEADLINE,
-                    PREFIX_MODULE, PREFIX_DESCRIPTION, PREFIX_WORKLOAD, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_TASK_NAME, PREFIX_DEADLINE, PREFIX_START_TIME,
+                    PREFIX_MODULE, PREFIX_DESCRIPTION, PREFIX_WORKLOAD, PREFIX_RECURRENCE, PREFIX_TAG);
 
         Index index;
 
@@ -65,6 +66,11 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_WORKLOAD).isPresent()) {
             editTaskDescriptor.setWorkload(ParserUtil.parseWorkload(argMultimap.getValue(PREFIX_WORKLOAD).get()));
         }
+
+        if (argMultimap.getValue(PREFIX_RECURRENCE).isPresent()) {
+            editTaskDescriptor.setRecurrence(ParserUtil.parseRecurrence(argMultimap.getValue(PREFIX_RECURRENCE).get()));
+        }
+
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editTaskDescriptor::setTags);
 
         if (!editTaskDescriptor.isAnyFieldEdited()) {

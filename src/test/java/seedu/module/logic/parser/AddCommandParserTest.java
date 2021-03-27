@@ -24,7 +24,9 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Task expectedTask = new TaskBuilder(PRACTICAL).withTags(CommandTestUtil.VALID_TAG_PRIORITY_LOW).build();
+        Task expectedTask = new TaskBuilder(PRACTICAL)
+                .withRecurrence(CommandTestUtil.VALID_RECURRENCE_PRACTICAL)
+                .withTags(CommandTestUtil.VALID_TAG_PRIORITY_LOW).build();
 
         // whitespace only preamble
         assertParseSuccess(parser,
@@ -35,6 +37,7 @@ public class AddCommandParserTest {
                         + CommandTestUtil.MODULE_DESC_PRACTICAL
                         + CommandTestUtil.DESCRIPTION_DESC_PRACTICAL
                         + CommandTestUtil.WORKLOAD_DESC_2
+                        + CommandTestUtil.RECURRENCE_DESC_PRACTICAL
                         + CommandTestUtil.TAG_DESC_LOW,
                 new AddCommand(expectedTask));
 
@@ -47,6 +50,7 @@ public class AddCommandParserTest {
                         + CommandTestUtil.MODULE_DESC_PRACTICAL
                         + CommandTestUtil.DESCRIPTION_DESC_PRACTICAL
                         + CommandTestUtil.WORKLOAD_DESC_2
+                        + CommandTestUtil.RECURRENCE_DESC_PRACTICAL
                         + CommandTestUtil.TAG_DESC_LOW,
                 new AddCommand(expectedTask));
 
@@ -59,6 +63,7 @@ public class AddCommandParserTest {
                         + CommandTestUtil.MODULE_DESC_PRACTICAL
                         + CommandTestUtil.DESCRIPTION_DESC_PRACTICAL
                         + CommandTestUtil.WORKLOAD_DESC_2
+                        + CommandTestUtil.RECURRENCE_DESC_PRACTICAL
                         + CommandTestUtil.TAG_DESC_LOW,
                 new AddCommand(expectedTask));
 
@@ -71,6 +76,7 @@ public class AddCommandParserTest {
                         + CommandTestUtil.MODULE_DESC_PRACTICAL
                         + CommandTestUtil.DESCRIPTION_DESC_PRACTICAL
                         + CommandTestUtil.WORKLOAD_DESC_2
+                        + CommandTestUtil.RECURRENCE_DESC_PRACTICAL
                         + CommandTestUtil.TAG_DESC_LOW,
                 new AddCommand(expectedTask));
 
@@ -83,6 +89,7 @@ public class AddCommandParserTest {
                         + CommandTestUtil.MODULE_DESC_PRACTICAL
                         + CommandTestUtil.DESCRIPTION_DESC_PRACTICAL
                         + CommandTestUtil.WORKLOAD_DESC_2
+                        + CommandTestUtil.RECURRENCE_DESC_PRACTICAL
                         + CommandTestUtil.TAG_DESC_LOW,
                 new AddCommand(expectedTask));
 
@@ -95,6 +102,7 @@ public class AddCommandParserTest {
                         + CommandTestUtil.DESCRIPTION_DESC_LAB
                         + CommandTestUtil.DESCRIPTION_DESC_PRACTICAL
                         + CommandTestUtil.WORKLOAD_DESC_2
+                        + CommandTestUtil.RECURRENCE_DESC_PRACTICAL
                         + CommandTestUtil.TAG_DESC_LOW,
                 new AddCommand(expectedTask));
 
@@ -107,11 +115,13 @@ public class AddCommandParserTest {
                         + CommandTestUtil.DESCRIPTION_DESC_PRACTICAL
                         + CommandTestUtil.WORKLOAD_DESC_1
                         + CommandTestUtil.WORKLOAD_DESC_2
+                        + CommandTestUtil.RECURRENCE_DESC_PRACTICAL
                         + CommandTestUtil.TAG_DESC_LOW,
                 new AddCommand(expectedTask));
 
         // multiple tags - all accepted
         Task expectedTaskMultipleTags = new TaskBuilder(PRACTICAL)
+                .withRecurrence(CommandTestUtil.VALID_RECURRENCE_PRACTICAL)
                 .withTags(CommandTestUtil.VALID_TAG_PRIORITY_LOW, CommandTestUtil.VALID_TAG_PRIORITY_HIGH).build();
         assertParseSuccess(parser,
                 CommandTestUtil.TASK_NAME_DESC_PRACTICAL
@@ -120,6 +130,7 @@ public class AddCommandParserTest {
                         + CommandTestUtil.MODULE_DESC_PRACTICAL
                         + CommandTestUtil.DESCRIPTION_DESC_PRACTICAL
                         + CommandTestUtil.WORKLOAD_DESC_2
+                        + CommandTestUtil.RECURRENCE_DESC_PRACTICAL
                         + CommandTestUtil.TAG_DESC_HIGH
                         + CommandTestUtil.TAG_DESC_LOW,
                 new AddCommand(expectedTaskMultipleTags));
@@ -141,14 +152,15 @@ public class AddCommandParserTest {
 
         // zero tags
         Task expectedTaskWithStartTime = new TaskBuilder(LAB).activateStartTime(CommandTestUtil.VALID_START_TIME_LAB)
-                .withTags().build();
+                .withRecurrence(CommandTestUtil.VALID_RECURRENCE_LAB).withTags().build();
         assertParseSuccess(parser,
                 CommandTestUtil.TASK_NAME_DESC_LAB
                         + CommandTestUtil.START_TIME_DESC_LAB
                         + CommandTestUtil.DEADLINE_DESC_LAB
                         + CommandTestUtil.MODULE_DESC_LAB
                         + CommandTestUtil.DESCRIPTION_DESC_LAB
-                        + CommandTestUtil.WORKLOAD_DESC_1,
+                        + CommandTestUtil.WORKLOAD_DESC_1
+                        + CommandTestUtil.RECURRENCE_DESC_LAB,
                 new AddCommand(expectedTaskWithStartTime));
     }
 
