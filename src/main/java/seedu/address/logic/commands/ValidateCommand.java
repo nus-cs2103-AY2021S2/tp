@@ -22,6 +22,8 @@ public class ValidateCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Showing validity of plans";
 
+    public static final String MESSAGE_NO_MASTER = "You must set a master plan first!";
+
     private Plan masterPlan;
     private Semester currentSemester;
 
