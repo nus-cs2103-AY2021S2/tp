@@ -169,6 +169,24 @@ This section describes some noteworthy details on how [Sochedule](#41-sochedule)
 
 #### 4.1.2 Implementation
 
+**Implementation of ClearCommand**  
+The following is a detailed explanation on how ClearCommand is implemented.
+
+**Step 1**: User executes `clear` command to clear task and event lists.
+An `ClearCommandParser` object is created, and the `ClearCommandParser#parse(String args)` method is called.
+A `ClearCommand` object is returned.
+
+**Step 2**: On `ClearCommand#execute()`, `Model#setSochedule(new Sochedule())` is called.
+This will replace Sochedule data with a new empty Sochedule.
+For brevity, lower level implementation is omitted.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message will be appended with `CommandResult#MESSAGE_SUCCESS`.
+
+The sequence diagram for `ClearCommand` can be found below.
+
+![Sequence Diagram of Clear Command](images/ClearCommandSequenceDiagram.png)
+
 **Implementation of SummaryCommand**  
 The following is a detailed explanation on how SummaryCommand is implemented.
 
@@ -197,6 +215,26 @@ The sequence diagram for `SummaryCommand` can be found below.
 
 #### 4.2.2 Implementation
 
+**Implementation of DeleteTaskCommand**  
+The following is a detailed explanation on how DeleteTaskCommand is implemented.
+
+**Step 1**: User executes `delete_task Index` command to delete the task at the given index.
+An `DeleteTaskParser` object is created, and the `DeleteTaskParser#parse(String args)` method is called.
+The method conducts parses the `args` and conducts validation checks to ensure that it complies with the specification.
+A `DeleteTaskCommand` object is returned.
+
+**Step 2**: On `DeleteTaskCommand#execute()`, `Model#deleteTasks(Task taskToDelete)` is called.
+This will delete the task at the specified index.
+For brevity, lower level implementation of `Model#deleteTasks(Task taskToDelete)` is omitted.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message will be appended with `CommandResult#MESSAGE_DELETE_TASK_SUCCESS`.
+The UI will also update as the underlying task list has been modified.
+
+The sequence diagram for `DeleteTaskCommand` can be found below.
+
+![Sequence Diagram of DeleteTask Command](images/DeleteTaskCommandSequenceDiagram.png)
+
 **Implementation of SortTaskCommand**  
 The following is a detailed explanation on how SortTaskCommand is implemented.
 
@@ -214,9 +252,8 @@ A success message will be appended with `CommandResult#MESSAGE_SORT_TASK_SUCCESS
 The UI will also update as the underlying task list has been modified.
 
 The sequence diagram for `sortTaskCommand` can be found below.
-  <p align="center">
-      <img src="images/SortTaskSequenceDiagram.png">
-  </p>
+
+![Sequence Diagram of SortTask Command](images/SortTaskSequenceDiagram.png)
 
 ### 4.3 Event
 
