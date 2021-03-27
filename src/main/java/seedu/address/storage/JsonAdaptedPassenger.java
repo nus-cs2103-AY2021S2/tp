@@ -145,14 +145,12 @@ class JsonAdaptedPassenger {
 
         final Set<Tag> modelTags = new HashSet<>(passengerTags);
 
-        if (priceStr == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Price.class.getSimpleName()));
-        }
-        if (!Price.isValidPrice(priceStr)) {
+        final boolean priceIsValid = Optional.ofNullable(priceStr).map(Price::isValidPrice).orElse(true);
+        if (!priceIsValid) {
             throw new IllegalValueException(Price.MESSAGE_CONSTRAINTS);
         }
-        double priceNum = Double.parseDouble(priceStr);
-        final Optional<Price> modelPrice = Optional.of(new Price(priceNum));
+
+        final Optional<Price> modelPrice = Optional.ofNullable(priceStr).map(Double::parseDouble).map(Price::new);
 
         if (Driver.isValidDriver(driverStr)) {
             final Driver modelDriver = new Driver(driverStr);
