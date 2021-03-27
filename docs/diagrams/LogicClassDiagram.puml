@@ -18,9 +18,9 @@ Class Prefix
 }
 
 package Command {
-    Class XYZCommand
-    Class CommandResult
-    Class "{abstract}\nCommand" as Command
+Class XYZCommand
+Class CommandResult
+Class "{abstract}\nCommand" as Command
 }
 
 Interface Logic <<Interface>>
