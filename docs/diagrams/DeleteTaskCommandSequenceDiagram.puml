@@ -1,0 +1,64 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SocheduleParser" as SocheduleParser LOGIC_COLOR
+participant ":DeleteTaskCommandParser" as DeleteTaskCommandParser LOGIC_COLOR
+participant "s:DeleteTaskCommand" as DeleteTaskCommand LOGIC_COLOR
+participant "CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : parse(delete_task)
+activate LogicManager
+
+LogicManager -> SocheduleParser : parseCommand(undo)
+activate SocheduleParser
+
+SocheduleParser -> DeleteTaskCommandParser: parse(args)
+activate DeleteTaskCommandParser
+
+create DeleteTaskCommand
+DeleteTaskCommandParser -> DeleteTaskCommand
+activate DeleteTaskCommand
+DeleteTaskCommandParser <--DeleteTaskCommand : s
+deactivate DeleteTaskCommand
+
+SocheduleParser <--DeleteTaskCommandParser : s
+deactivate DeleteTaskCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteTaskCommandParser -[hidden]->[
+destroy DeleteTaskCommandParser
+
+LogicManager <-- SocheduleParser : s
+deactivate SocheduleParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SocheduleParser -[hidden]->[
+destroy SocheduleParser
+
+LogicManager -> DeleteTaskCommand : execute()
+activate DeleteTaskCommand
+
+DeleteTaskCommand -> Model : deleteTasks(Task taskToDelete)
+activate Model
+DeleteTaskCommand <-- Model
+deactivate Model
+
+create CommandResult
+DeleteTaskCommand -> CommandResult
+activate CommandResult
+DeleteTaskCommand <-- CommandResult
+deactivate CommandResult
+
+LogicManager <-- DeleteTaskCommand
+deactivate DeleteTaskCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteTaskCommand -[hidden]->[
+destroy DeleteTaskCommand
+
+[<-- LogicManager : CommandResult
+@enduml
