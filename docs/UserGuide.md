@@ -301,7 +301,7 @@ Action | Format, Examples
 **Edit appointment** | `edit appointment INDEX [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]`<br> e.g.,`edit appointment 3 d/2021-03-28 r/at M hotel`
 **Add new status** | `update INDEX new AMOUNT`<br> e.g.,`update 1 new 600000`
 **Update status** | `update INDEX [proceed][cancel]`<br> e.g. `update 3 proceed`
-**Find properties** | `find property [KEYWORD] [OPTION...]` <br> Options: <br> <ul><li>`t/[HOUSING TYPE]`</li><li>`pm/[PRICE LOWER LIMIT]`</li><li>`pl/[PRICE UPPER LIMIT]`</li></ul> e.g., `find property bishan north t/hdb pl/$1,000,000`
+**Find properties** | `find property [KEYWORD] [OPTION...]` <br> Options: <br> <ul> <li> `t/[HOUSING TYPE]` </li> <li> `pm/[PRICE LOWER LIMIT]` </li> <li> `pl/[PRICE UPPER LIMIT]` </li> </ul> e.g., `find property bishan north t/hdb pl/$1,000,000`
 **Find appointments** | `find property [KEYWORD]` <br> e.g., `find appointment bob`
 **Find clients** | `find client [CLIENT NAME]` <br> e.g., `find client alice`
 **List all** | `list all`
