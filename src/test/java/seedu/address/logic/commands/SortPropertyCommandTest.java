@@ -9,7 +9,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_SORTING_KEY_PRO
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SORTING_ORDER_ASC;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SORTING_ORDER_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBook;
 
 import java.util.Comparator;
 
@@ -17,8 +16,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.SortPropertyCommand.SortPropertyDescriptor;
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.property.Property;
 import seedu.address.testutil.SortPropertyDescriptorBuilder;
 import seedu.address.testutil.TypicalModelManager;
