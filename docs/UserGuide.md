@@ -396,7 +396,9 @@ The region name is as follow :
 1. Note List Panel
 1. Dictionary Content Panel
 
-#### Opening UI Panel: `open`
+#### Opening and Closing UI Panel
+
+##### Opening UI Panel: `open`
 
 Open selected UI Panel.
 
@@ -419,7 +421,7 @@ Examples:
 * `open -a`
     * show all panel
 
-#### Closing UI Panel: `close`
+##### Closing UI Panel: `close`
 
 Close selected UI Panel.
 
@@ -520,7 +522,7 @@ The divider name is as follow :
 1. Dictionary Divider
 1. Note Divider
 
-#### Toggle dictionary divider orientation: `toggledividerd`
+##### Toggle dictionary divider orientation: `toggledividerd`
 
 Toggle the orientation of the dictionary divider.
 If the current orientation of the dictionary divider on horizontal,
@@ -531,7 +533,7 @@ Format: `toggledividerd`
 Examples:
 * `togglerdividerd`
 
-#### Toggle note divider orientation: `toggledividern`
+##### Toggle note divider orientation: `toggledividern`
 
 Toggle the orientation of the note divider.
 If the current orientation of the note divider horizontal,
