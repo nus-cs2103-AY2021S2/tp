@@ -1,9 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import seedu.address.commons.core.Messages;
-import seedu.address.model.Model;
 
+import seedu.address.model.Model;
 import seedu.address.model.task.TaskContainsAssigneePredicate;
 
 /**
@@ -16,7 +15,7 @@ public class FindMemberTasksCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Listed all Tasks belonging to specified name!";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the tasks assigned to a Member.\n"
-            + "Parameters: " +  "NAME \n"
+            + "Parameters: " + "NAME \n"
             + "Example: " + COMMAND_WORD + " Rachel Tan";
 
     private final TaskContainsAssigneePredicate predicate;
@@ -29,8 +28,7 @@ public class FindMemberTasksCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredTaskList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 
     @Override

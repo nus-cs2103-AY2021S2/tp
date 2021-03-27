@@ -78,7 +78,7 @@ Format: `addTask TITLE -d DESCRIPTION -b DEADLINE [-s STATUS] [-p PRIORITY]`
 * If status field is not provided, the Task will be assigned a default status value of uncompleted.
 * Status field can only take on the values completed or uncompleted
 * If priority field is not provided, the Task will be assigned a default priority of unassigned.
-* Priority field can only take on the values high, medium or low if a value is specified by the user
+* Priority field can only take on the values high, medium, low or unassigned if a value is specified by the user
 
 Examples: `addTask assignment -d Math quiz 2 -b 2021-04-04 -s completed -p high`
 
@@ -233,7 +233,12 @@ Find all tasks assigned to a single Member
 
 Format: `findTasksFor NAME`
 
-Examples: `findTasksFor`
+**:bulb: Tips:**
+- The NAME specified can only belong to 1 Member
+- A NAME that does not exist in the Member List will return 0 tasks listed 
+
+Examples: `findTasksFor Alex Yeoh`
+
 
 <a name="clear"></a>
 ### 18. Clear all data in application: `clear`

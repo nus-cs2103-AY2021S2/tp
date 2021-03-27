@@ -226,10 +226,6 @@ public class ParserUtil {
         requireNonNull(priority);
         String trimmedPriority = priority.trim();
 
-        if (Priority.isUnassigned(trimmedPriority)) {
-            throw new ParseException(Priority.MESSAGE_CANNOT_SPECIFY_UNASSIGNED);
-        }
-
         if (!Priority.isValidValue(trimmedPriority)) {
             throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
         }

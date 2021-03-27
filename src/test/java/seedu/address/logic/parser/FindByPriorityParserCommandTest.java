@@ -51,7 +51,7 @@ public class FindByPriorityParserCommandTest {
         assertParseFailure(parser, "low high", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FindByPriorityCommand.MESSAGE_USAGE));
 
-        assertParseFailure(parser, "extreme", String.format(Priority.MESSAGE_CANNOT_FIND_PRIORITY,
+        assertParseFailure(parser, "extreme", String.format(Priority.MESSAGE_CONSTRAINTS,
                 FindByPriorityCommand.MESSAGE_USAGE));
     }
 }
