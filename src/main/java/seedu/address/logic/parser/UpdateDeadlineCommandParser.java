@@ -30,7 +30,8 @@ public class UpdateDeadlineCommandParser implements Parser<UpdateDeadlineCommand
                 PREFIX_UPDATE_INDEX, PREFIX_DESCRIPTION, PREFIX_DEADLINE_DATE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_UPDATE_INDEX) || argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateDeadlineCommand.MESSAGE_USAGE));
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateDeadlineCommand.MESSAGE_USAGE));
         }
 
         Index projectIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
