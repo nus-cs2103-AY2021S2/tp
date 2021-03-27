@@ -118,6 +118,19 @@ public class AddressBook implements ReadOnlyAddressBook {
         // TODO: refine later
     }
 
+    public String getNotifications() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Here are the things you might want to take note of:\n\n");
+        int length = sb.length() + 1;
+        boolean hasNotif = false;
+        sb.append(persons.getNotifications());
+        sb.append(meetings.getNotifications());
+        if (sb.length() > length) {
+            return sb.toString();
+        }
+        return "Your schedule is clear today!\n";
+    }
+
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();

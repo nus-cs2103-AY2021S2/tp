@@ -9,6 +9,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -160,6 +162,27 @@ public class UniquePersonListTest {
     public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
         List<Person> listWithDuplicatePersons = Arrays.asList(ALICE, ALICE);
         assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPersons(listWithDuplicatePersons));
+    }
+
+    @Test
+    public void getNotifications_emptyList() {
+        assertEquals(uniquePersonList.getNotifications(), new String());
+    }
+
+    @Test
+    public void getNotifications_success() {
+        String template = "%s's birthday is coming up in %d days.\n";
+        Person editedAlice = new PersonBuilder(ALICE)
+                .withBirthdate(LocalDate.now().withYear(1983)
+                        .plusDays(5).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+                .build();
+        Person editedBob = new PersonBuilder(BOB)
+                .withBirthdate(LocalDate.now().withYear(1987)
+                        .plusDays(21).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+                .build();
+        uniquePersonList.add(editedAlice);
+        uniquePersonList.add(editedBob);
+        assertEquals(uniquePersonList.getNotifications(), String.format(template, ALICE.getName().fullName, 5));
     }
 
     @Test

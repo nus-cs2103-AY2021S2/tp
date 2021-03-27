@@ -3,6 +3,7 @@ package seedu.address.model.meeting;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -11,6 +12,7 @@ import java.util.TreeMap;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.meeting.exceptions.MeetingClashException;
+import seedu.address.model.meeting.exceptions.NoMeetingException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 
@@ -45,8 +47,16 @@ public class UniqueMeetingList implements Iterable<Person> {
         } else if (internalList.stream().anyMatch(person -> person.equals(toAdd))) {
             throw new DuplicatePersonException();
         }
-        toAdd.getMeeting().map(meeting -> meetingMap.put(meeting, toAdd)).isEmpty();
-        internalList.setAll(meetingMap.values());
+        boolean sucessSet = toAdd.getMeeting()
+                .map(meeting -> {
+                    meetingMap.put(meeting, toAdd);
+                    return meetingMap.get(meeting);
+                })
+                .map(person -> person.equals(toAdd))
+                .orElse(true);
+        if (sucessSet) {
+            internalList.setAll(meetingMap.values());
+        }
     }
 
     /**
@@ -58,12 +68,29 @@ public class UniqueMeetingList implements Iterable<Person> {
             if (!original.getMeeting().equals(updated.getMeeting()) && clash(updated).isPresent()) {
                 throw new MeetingClashException();
             }
-            original.getMeeting().map(meetingMap::remove).isEmpty();
+            boolean sucessSet = original.getMeeting()
+                    .map(meetingMap::remove)
+                    .map(person -> person.equals(original))
+                    .orElse(true);
+            if (!sucessSet) {
+                reconstructMap();
+                return;
+            }
         } else {
             assert original.getMeeting().equals(updated.getMeeting());
         }
-        updated.getMeeting().map(meeting -> meetingMap.put(meeting, updated)).isEmpty();
-        internalList.setAll(meetingMap.values());
+        boolean sucessSet = updated.getMeeting()
+                .map(meeting -> {
+                    meetingMap.put(meeting, updated);
+                    return meetingMap.get(meeting);
+                })
+                .map(person -> person.equals(updated))
+                .orElse(true);
+        if (sucessSet) {
+            internalList.setAll(meetingMap.values());
+        } else {
+            reconstructMap();
+        }
     }
 
     /**
@@ -71,8 +98,15 @@ public class UniqueMeetingList implements Iterable<Person> {
      */
     public void remove(Person toRemove) {
         requireNonNull(toRemove);
-        toRemove.getMeeting().map(meetingMap::remove);
-        internalList.setAll(meetingMap.values());
+        boolean sucessSet = toRemove.getMeeting()
+                .map(meetingMap::remove)
+                .map(person -> person.equals(toRemove))
+                .orElse(true);
+        if (sucessSet) {
+            internalList.setAll(meetingMap.values());
+        } else {
+            reconstructMap();
+        }
     }
 
     public void setPersons(UniqueMeetingList replacement) {
@@ -90,7 +124,19 @@ public class UniqueMeetingList implements Iterable<Person> {
         requireAllNonNull(persons);
         meetingMap.clear();
         persons.forEach(this::add);
-        internalList.setAll(meetingMap.values());
+    }
+
+    public String getNotifications() {
+        StringBuilder sb = new StringBuilder();
+        String template = "You have a meeting with %s at %s\n";
+        for (Person person : internalList) {
+            person.getMeeting()
+                    .map(meeting -> meeting.dateTime)
+                    .filter(date -> date.toLocalDate().equals(LocalDate.now()))
+                    .map(date -> sb.append(String.format(template, person.getName().fullName, date.toLocalTime())))
+                    .isPresent();
+        }
+        return sb.toString();
     }
 
     /**
@@ -98,6 +144,17 @@ public class UniqueMeetingList implements Iterable<Person> {
      */
     public ObservableList<Person> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    /**
+     * Should never be used but just in case of error
+     */
+    public void reconstructMap() {
+        meetingMap.clear();
+        for (Person person : internalList) {
+            meetingMap.put(person.getMeeting().get(), person);
+        }
+        throw new NoMeetingException();
     }
 
     @Override

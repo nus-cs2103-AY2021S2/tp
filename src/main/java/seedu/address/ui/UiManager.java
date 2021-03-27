@@ -45,6 +45,7 @@ public class UiManager implements Ui {
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
             logger.info("Filling inner components...");
+            mainWindow.handleNotif();
 
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));

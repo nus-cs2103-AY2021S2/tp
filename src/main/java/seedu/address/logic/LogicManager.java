@@ -70,6 +70,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public String getNotifications() {
+        return model.getNotifications();
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
     }
