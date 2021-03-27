@@ -16,6 +16,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.project.EventList;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.Interval;
 import seedu.address.model.task.repeatable.Event;
@@ -29,7 +30,7 @@ public class UpdateEventCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the event "
             + "identified by it's index number within the displayed project.\n"
-            + "Parameters: PROJECT_INDEX "
+            + "Parameters: PROJECT_INDEX (must be a positive integer) "
             + PREFIX_UPDATE_INDEX + "EVENT_INDEX "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_REPEATABLE_INTERVAL + "INTERVAL] "
@@ -71,15 +72,16 @@ public class UpdateEventCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
         Project projectToUpdate = lastShownList.get(projectIndex.getZeroBased());
+        EventList events = projectToUpdate.getEvents();
 
-        if (targetEventIndex.getZeroBased() >= projectToUpdate.getEvents().size()) {
+        if (targetEventIndex.getZeroBased() >= events.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
 
-        Event eventToUpdate = projectToUpdate.getEvent(targetEventIndex.getZeroBased());
+        Event eventToUpdate = events.getEvent(targetEventIndex.getZeroBased());
         Event updatedEvent = createUpdatedEvent(eventToUpdate, updateEventDescriptor);
 
-        if (projectToUpdate.getEvents().hasEvent(updatedEvent) && !eventToUpdate.equals(updatedEvent)) {
+        if (events.hasEvent(updatedEvent) && !eventToUpdate.equals(updatedEvent)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
 
@@ -190,6 +192,7 @@ public class UpdateEventCommand extends Command {
 
             return getDescription().equals(e.getDescription())
                     && getInterval().equals(e.getInterval())
-                    && getDate().equals(e.getDate());        }
+                    && getDate().equals(e.getDate());
+        }
     }
 }
