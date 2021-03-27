@@ -207,7 +207,6 @@ public class EditCommandParserTest {
                 .withWeight(VALID_WEIGHT_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
