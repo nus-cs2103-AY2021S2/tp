@@ -123,6 +123,10 @@ public class Taskify implements ReadOnlyTaskify {
         return tasks.asUnmodifiableObservableList().filtered(t -> t.isTaskCompleted());
     }
 
+    public ObservableList<Task> getTodaysTaskList() {
+        return tasks.asUnmodifiableObservableList().filtered(t -> t.isTodaysTask());
+    }
+
     public ObservableList<Task> getUncompletedTaskList() {
         return tasks.asUnmodifiableObservableList().filtered(t -> t.isTaskUncompleted());
     }

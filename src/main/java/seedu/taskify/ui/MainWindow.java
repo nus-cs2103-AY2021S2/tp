@@ -41,7 +41,7 @@ public class MainWindow extends UiPart<Stage> {
     private ExpiredTaskListPanel expiredTaskListPanel;
     private CompletedTaskListPanel completedTaskListPanel;
     private UncompletedTaskListPanel uncompletedTaskListPanel;
-    private TaskListPanel upcomingTaskListPanel;
+    private TodaysTaskListPanel todaysTaskListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -61,7 +61,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     @FXML
-    private StackPane upcomingTaskListPanelPlaceholder;
+    private StackPane todaysTaskListPanelPlaceholder;
 
     @FXML
     private StackPane expiredTaskListPanelPlaceholder;
@@ -154,9 +154,9 @@ public class MainWindow extends UiPart<Stage> {
 
         uncompletedTaskListPanel = new UncompletedTaskListPanel(logic.getUncompletedFilteredTaskList());
         uncompletedTaskListPanelPlaceholder.getChildren().add(uncompletedTaskListPanel.getRoot());
-
-
-        upcomingTaskListPanel = new TaskListPanel(logic.getFilteredTaskList());
+        
+        todaysTaskListPanel = new TodaysTaskListPanel(logic.getTodaysFilteredTaskList());
+        todaysTaskListPanelPlaceholder.getChildren().add(todaysTaskListPanel.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());

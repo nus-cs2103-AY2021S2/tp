@@ -82,6 +82,7 @@ public class EditCommand extends Command {
         model.updateExpiredFilterTaskList(PREDICATE_SHOW_ALL_TASKS);
         model.updateCompletedFilterTaskList(PREDICATE_SHOW_ALL_TASKS);
         model.updateUncompletedFilterTaskList(PREDICATE_SHOW_ALL_TASKS);
+        model.updateTodaysFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
 

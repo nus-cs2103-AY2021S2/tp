@@ -94,6 +94,8 @@ public interface Model {
 
     ObservableList<Task> getCompletedFilteredTaskList();
 
+    ObservableList<Task> getTodaysFilteredTaskList();
+
     ObservableList<Task> getUncompletedFilteredTaskList();
 
     /**
@@ -106,6 +108,8 @@ public interface Model {
     void updateExpiredFilterTaskList(Predicate<Task> predicate);
 
     void updateCompletedFilterTaskList(Predicate<Task> predicate);
+
+    void updateTodaysFilteredTaskList(Predicate<Task> predicate);
 
     void updateUncompletedFilterTaskList(Predicate<Task> predicate);
 }
