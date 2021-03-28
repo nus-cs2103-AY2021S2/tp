@@ -13,7 +13,6 @@ import java.util.Set;
  */
 public class Groupmate {
 
-    // Identity fields
     private final Name name;
     private final Set<Role> roles = new HashSet<>();
 
