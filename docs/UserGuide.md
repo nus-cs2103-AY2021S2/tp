@@ -54,7 +54,7 @@ This user guide uses various formatting styles to facilitate reading and to comm
 ### 2.2 Trying out
 
 1. Let's try out your first command by adding a new property! Type <br>`add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-6-2021` into the command box and press <kbd>Enter</kbd> to execute it. After that, scroll down to the bottom of the property list to see your newly added property.
-1. Want to view the properties in order of their asking price? Type the command <br>`sort property o/desc k/price` and press <kbd>Enter</kbd>. The property list will now be ordered in descending order, with the property having the highest asking price at the top.
+1. Want to view the properties in order of their asking price? Type the command <br>`sort property o/desc k/price` and press <kbd>Enter</kbd>. The property list will now be in descending order based on price.
 1. Now let's try adding a new appointment. Type <br>`add appointment n/Meet Jacob for dinner r/At Lot One's food court d/19-4-2021 t/1930` and hit the <kbd>Enter</kbd> button. Scroll down to the bottom of the appointment list to see your newly added appointment.
 1. Forgot when you are supposed to meet Simon again? Let's try finding out! Type <br>`find appointment simon` and press <kbd>Enter</kbd>. There it is! Your appointment with Simon is on Sep 20, 2021.
 
@@ -143,7 +143,7 @@ Examples:
 
 #### 3.3.1 Editing a property : `edit property`
 
-Overwrites the information of the property according to the parameters provided.
+Overwrites the information of the property according to the user input provided.
 
 Format: `edit property INDEX [n/NAME] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]​`
 
@@ -163,7 +163,7 @@ Examples:
 
 #### 3.3.2 Editing an appointment : `edit appointment`
 
-Overwrites the information of the appointment according to the paramters provided.
+Overwrites the information of the appointment according to the user input provided.
 
 Format: `edit appointment INDEX [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]`
 
