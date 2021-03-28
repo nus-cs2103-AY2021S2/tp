@@ -1,7 +1,5 @@
 package seedu.student.model.appointment;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.student.model.student.MatriculationNumber;

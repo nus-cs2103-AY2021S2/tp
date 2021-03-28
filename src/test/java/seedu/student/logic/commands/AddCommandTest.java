@@ -173,7 +173,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updateFilteredAppointmentList(Predicate<SameDateAppointmentList> predicate1, Predicate<Appointment> predicate2) {
+        public void updateFilteredAppointmentList(Predicate<SameDateAppointmentList> predicate1,
+                                                  Predicate<Appointment> predicate2) {
 
         }
 

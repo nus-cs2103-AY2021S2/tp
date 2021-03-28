@@ -26,7 +26,6 @@ public class ModelManager implements Model {
     private final StudentBook studentBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
-//    private final FilteredList<SameDateAppointmentList> filteredAppointments;
     private final FilteredList<SameDateAppointmentList> filteredAppointments;
 
     /**
@@ -197,7 +196,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredAppointmentList(Predicate<SameDateAppointmentList> listPredicate, Predicate<Appointment> predicate) {
+    public void updateFilteredAppointmentList(Predicate<SameDateAppointmentList> listPredicate,
+                                              Predicate<Appointment> predicate) {
         requireAllNonNull(listPredicate, predicate);
         filteredAppointments.setPredicate(listPredicate);
         filteredAppointments.stream().forEach(apptFilteredList ->

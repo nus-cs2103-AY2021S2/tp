@@ -54,6 +54,9 @@ public class SameDateAppointmentList implements Iterable<Appointment>, Comparabl
         return internalList.stream().anyMatch(toCheck::isSameAppointment);
     }
 
+    /**
+     * Checks if the instance contains an appointment for the provided matriculation number.
+     */
     public boolean containsMatricNumber(MatriculationNumber matriculationNumber) {
         requireNonNull(matriculationNumber);
         return internalList.stream().anyMatch(appt -> appt.getMatriculationNumber().equals(matriculationNumber));
@@ -113,6 +116,9 @@ public class SameDateAppointmentList implements Iterable<Appointment>, Comparabl
         return filteredAppointments;
     }
 
+    /**
+     * Filters for appointments that satisfy the predicate.
+     */
     public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
         requireNonNull(predicate);
         filteredAppointments.setPredicate(predicate);

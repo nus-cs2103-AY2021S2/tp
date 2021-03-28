@@ -23,7 +23,8 @@ public class AppointmentListContainsMatriculationNumberPredicate implements Pred
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AppointmentListContainsMatriculationNumberPredicate // instanceof handles nulls
-                && keyword.equals(((AppointmentListContainsMatriculationNumberPredicate) other).keyword)); // state check
+                && keyword.equals((
+                        (AppointmentListContainsMatriculationNumberPredicate) other).keyword)); // state check
     }
 
 }
