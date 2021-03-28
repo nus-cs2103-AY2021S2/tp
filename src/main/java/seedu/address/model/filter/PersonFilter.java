@@ -198,19 +198,19 @@ public class PersonFilter implements Predicate<Person> {
             return false;
         }
 
-        boolean isFiltered = false;
-        isFiltered = isFiltered || composedNameFilter.test(person.getName());
-        isFiltered = isFiltered || composedGenderFilter.test(person.getGender());
-        isFiltered = isFiltered || composedPhoneFilter.test(person.getPhone());
-        isFiltered = isFiltered || composedEmailFilter.test(person.getEmail());
-        isFiltered = isFiltered || composedAddressFilter.test(person.getAddress());
+        boolean isFiltered = true;
+        isFiltered = isFiltered && composedNameFilter.test(person.getName());
+        isFiltered = isFiltered && composedGenderFilter.test(person.getGender());
+        isFiltered = isFiltered && composedPhoneFilter.test(person.getPhone());
+        isFiltered = isFiltered && composedEmailFilter.test(person.getEmail());
+        isFiltered = isFiltered && composedAddressFilter.test(person.getAddress());
 
         for (TutorSubject subject : person.getSubjectList()) {
-            isFiltered = isFiltered || composedSubjectNameFilter.test(subject.getName());
-            isFiltered = isFiltered || composedSubjectLevelFilter.test(subject.getLevel());
-            isFiltered = isFiltered || composedSubjectRateFilter.test(subject.getRate());
-            isFiltered = isFiltered || composedSubjectExperienceFilter.test(subject.getExperience());
-            isFiltered = isFiltered || composedSubjectQualificationFilter.test(subject.getQualification());
+            isFiltered = isFiltered && composedSubjectNameFilter.test(subject.getName());
+            isFiltered = isFiltered && composedSubjectLevelFilter.test(subject.getLevel());
+            isFiltered = isFiltered && composedSubjectRateFilter.test(subject.getRate());
+            isFiltered = isFiltered && composedSubjectExperienceFilter.test(subject.getExperience());
+            isFiltered = isFiltered && composedSubjectQualificationFilter.test(subject.getQualification());
         }
 
         return isFiltered;
@@ -246,11 +246,11 @@ public class PersonFilter implements Predicate<Person> {
                 .orElse(x -> true);
 
         this.composedSubjectRateFilter = subjectRateFilters.stream()
-                .reduce((x, y) -> x.or(y))
+                .reduce((x, y) -> x.and(y))
                 .orElse(x -> true);
 
         this.composedSubjectExperienceFilter = subjectExperienceFilters.stream()
-                .reduce((x, y) -> x.or(y))
+                .reduce((x, y) -> x.and(y))
                 .orElse(x -> true);
 
         this.composedSubjectQualificationFilter = subjectQualificationFilters.stream()

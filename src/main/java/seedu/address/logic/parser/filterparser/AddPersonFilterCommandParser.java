@@ -66,49 +66,49 @@ public class AddPersonFilterCommandParser implements Parser<AddPersonFilterComma
                         .collect(Collectors.toList()));
 
         Set<Predicate<Gender>> genderFilters = new LinkedHashSet<Predicate<Gender>>(
-                argMultimap.getAllValues(PREFIX_NAME).stream()
+                argMultimap.getAllValues(PREFIX_GENDER).stream()
                         .map(GenderFilter::new)
                         .collect(Collectors.toList()));
 
         Set<Predicate<Phone>> phoneFilters = new LinkedHashSet<Predicate<Phone>>(
-                argMultimap.getAllValues(PREFIX_NAME).stream()
+                argMultimap.getAllValues(PREFIX_PHONE).stream()
                         .map(PhoneFilter::new)
                         .collect(Collectors.toList()));
 
         Set<Predicate<Email>> emailFilters = new LinkedHashSet<Predicate<Email>>(
-                argMultimap.getAllValues(PREFIX_NAME).stream()
+                argMultimap.getAllValues(PREFIX_EMAIL).stream()
                         .map(EmailFilter::new)
                         .collect(Collectors.toList()));
 
         Set<Predicate<Address>> addressFilters = new LinkedHashSet<Predicate<Address>>(
-                argMultimap.getAllValues(PREFIX_NAME).stream()
+                argMultimap.getAllValues(PREFIX_ADDRESS).stream()
                         .map(AddressFilter::new)
                         .collect(Collectors.toList()));
 
         Set<Predicate<SubjectName>> subjectNameFilters = new LinkedHashSet<Predicate<SubjectName>>(
-                argMultimap.getAllValues(PREFIX_NAME).stream()
+                argMultimap.getAllValues(PREFIX_SUBJECT_NAME).stream()
                         .map(SubjectNameFilter::new)
                         .collect(Collectors.toList()));
 
         Set<Predicate<SubjectLevel>> subjectLevelFilters = new LinkedHashSet<Predicate<SubjectLevel>>(
-                argMultimap.getAllValues(PREFIX_NAME).stream()
+                argMultimap.getAllValues(PREFIX_RATE).stream()
                         .map(SubjectLevelFilter::new)
                         .collect(Collectors.toList()));
 
         Set<Predicate<SubjectRate>> subjectRateFilters = new LinkedHashSet<Predicate<SubjectRate>>(
-                argMultimap.getAllValues(PREFIX_NAME).stream()
+                argMultimap.getAllValues(PREFIX_EDUCATION_LEVEL).stream()
                         .map(SubjectRateFilter::new)
                         .collect(Collectors.toList()));
 
         Set<Predicate<SubjectExperience>> subjectExperienceFilters =
                 new LinkedHashSet<Predicate<SubjectExperience>>(
-                        argMultimap.getAllValues(PREFIX_NAME).stream()
+                        argMultimap.getAllValues(PREFIX_YEAR).stream()
                                 .map(SubjectExperienceFilter::new)
                                 .collect(Collectors.toList()));
 
         Set<Predicate<SubjectQualification>> subjectQualificationFilters =
                 new LinkedHashSet<Predicate<SubjectQualification>>(
-                        argMultimap.getAllValues(PREFIX_NAME).stream()
+                        argMultimap.getAllValues(PREFIX_QUALIFICATION).stream()
                                 .map(SubjectQualificationFilter::new)
                                 .collect(Collectors.toList()));
 
