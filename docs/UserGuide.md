@@ -29,11 +29,11 @@ This User Guide aims to provide you with all the information you need to make th
 Having understood the pain of using a Command Line Interface (CLI) program, we have tried our best to make
 this a very readable User Guide so that you can use our application without difficulties.
 
-If you need help setting up StoreMando, you can refer to the [“Quick Start"](#quickstart)  section.
+If you need help setting up StoreMando, you can refer to the [“Quick Start"](#2.-Quick-start)  section.
 
-To learn more about StoreMando's features and commands, head over to the [“Features"](#features) section.
+To learn more about StoreMando's features and commands, head over to the [“Features"](#3.-Features) section.
 
-If you need an overview of StoreMando’s commands, check out the [“Command Summary"](#commandsummary) section.
+If you need an overview of StoreMando’s commands, check out the [“Command Summary"](#5.-Command-summary) section.
 
 Please note the following symbols used in the User Guide which may serve as points of interests:
 
@@ -61,7 +61,7 @@ Please note the following symbols used in the User Guide which may serve as poin
 
 1. Type the command in the command box and press Enter to execute it.<br>
 
-1. Refer to the [“Features"](#features) below for details of each command.
+1. Refer to the [“Features"](#3.-Features) below for details of each command.
 
 ### 2.2. StoreMando's layout
 
@@ -385,7 +385,7 @@ You can use this command in 2 different ways.
 
   * `clear l/kitchen` clears all the items with location `kitchen`.
 
-### 3.10. Exiting StoreMando : `exit`
+### 3.10. Exiting StoreMando : `exit` 
 
 Done with managing your inventory? Simply key in this command to exit and close the application.
 
