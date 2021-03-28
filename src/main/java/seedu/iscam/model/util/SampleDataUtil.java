@@ -48,12 +48,12 @@ public class SampleDataUtil {
 
     public static Meeting[] getSampleMeetings() {
         return new Meeting[]{
-            //            new Meeting(new Name("Client A"), new DateTime("12-10-2021 10:00"),
-            //                    new Location("Starbucks, Paya Lebar Square"), new Description("Sell insurance plan"),
-            //                    getTagSet("Urgent")),
-            //            new Meeting(new Name("Client B"), new DateTime("13-10-2021 10:00"),
-            //                    new Location("Coffee Bean, NUH"), new Description("Sell insurance plan"),
-            //                    getTagSet("Urgent")),
+            new Meeting(new Name("Client A"), new DateTime("12-10-2021 10:00"),
+                    new Location("Starbucks, Paya Lebar Square"), new Description("Sell insurance plan"),
+                    getTagSet("Urgent")),
+            new Meeting(new Name("Client B"), new DateTime("13-10-2021 10:00"),
+                    new Location("Coffee Bean, NUH"), new Description("Sell insurance plan"),
+                    getTagSet("Urgent")),
             new Meeting(new Name("Client C"), new DateTime("14-10-2021 10:00"),
                     new Location("Toast Box, NEX"), new Description("Sell insurance plan"),
                     getTagSet("Urgent"))
