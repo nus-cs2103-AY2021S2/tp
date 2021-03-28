@@ -32,7 +32,6 @@ import seedu.dictionote.ui.NoteContentConfig;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-    private static String FILE_PATH = "./data/";
 
     private final ContactsList contactsList;
     private final UserPrefs userPrefs;
@@ -266,14 +265,6 @@ public class ModelManager implements Model {
         }
 
         return combinedTag;
-    }
-
-    @Override
-    public void convertTxtNote(Note note) throws IOException {
-        String noteToString = note.toString();
-        BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH + note.createFileName()));
-        writer.write(noteToString);
-        writer.close();
     }
 
     //=========== Dictionary ===================================================================================

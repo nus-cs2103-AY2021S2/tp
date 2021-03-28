@@ -140,12 +140,6 @@ public interface Model {
     void mergeNote(Note firstNote, Note secondNote);
 
     /**
-     * Convert the given note into txt file.
-     * The note must exist in the dictionote book.
-     */
-    void convertTxtNote(Note note) throws IOException;
-
-    /**
      * Set Note UI Configuration Interface
      */
     void setNoteContentConfig(NoteContentConfig noteContentConfig);

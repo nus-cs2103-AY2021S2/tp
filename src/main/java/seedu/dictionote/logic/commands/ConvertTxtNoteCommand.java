@@ -3,6 +3,8 @@ package seedu.dictionote.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.dictionote.commons.core.Messages.MESSAGE_COMMAND_DISABLE_ON_EDIT_MODE;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
@@ -31,6 +33,8 @@ public class ConvertTxtNoteCommand extends Command {
 
     private final Index targetIndex;
 
+    private static String FILE_PATH = "./data/";
+
     public ConvertTxtNoteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
@@ -52,13 +56,20 @@ public class ConvertTxtNoteCommand extends Command {
         Note noteToConvert = lastShownList.get(targetIndex.getZeroBased());
 
         try {
-            model.convertTxtNote(noteToConvert);
+            convertTxtNote(noteToConvert);
         } catch (IOException e) {
             System.out.println("Something is wrong in the converting txt Note Process");
         }
 
         return new CommandResult(String.format(MESSAGE_CONVERT_TXT_NOTE_SUCCESS, noteToConvert),
                 UiAction.OPEN, UiActionOption.NOTE_LIST);
+    }
+
+    private void convertTxtNote(Note note) throws IOException {
+        String noteToString = note.toString();
+        BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH + note.createFileName()));
+        writer.write(noteToString);
+        writer.close();
     }
 
     @Override

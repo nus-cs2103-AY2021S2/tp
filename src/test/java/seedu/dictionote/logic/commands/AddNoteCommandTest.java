@@ -352,11 +352,6 @@ public class AddNoteCommandTest {
         public void mergeNote(Note firstNote, Note secondNote) {
             throw new AssertionError("This method should not be called.");
         }
-
-        @Override
-        public void convertTxtNote(Note note) throws IOException {
-            throw new AssertionError("This method should not be called.");
-        }
     }
 
     /**
