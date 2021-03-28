@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKING_DETAILS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLEAN_STATUS_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -51,6 +51,8 @@ public class CommandTestUtil {
     public static final String VALID_BOOKING_END1 = "050521";
     public static final String VALID_BOOKING_END2 = "300521";
 
+    public static final String BOOKING_DETAILS_DESC_RESIDENCE1 = " " + PREFIX_BOOKING + VALID_BOOKING_DETAILS;
+    public static final String BOOKING_DETAILS_DESC_RESIDENCE2 = " " + PREFIX_BOOKING + VALID_BOOKING_DETAILS;
     public static final String NAME_DESC_RESIDENCE1 = " " + PREFIX_NAME + VALID_NAME_RESIDENCE1;
     public static final String NAME_DESC_RESIDENCE2 = " " + PREFIX_NAME + VALID_NAME_RESIDENCE2;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -89,9 +91,11 @@ public class CommandTestUtil {
         DESC_RESIDENCE1 = new EditResidenceDescriptorBuilder().withName(VALID_NAME_RESIDENCE1)
                 .withAddress(VALID_ADDRESS_RESIDENCE1)
                 .withCleanStatusTag(VALID_CLEAN_TAG).withTags(VALID_TAG_RESERVED).build();
+        //.withBookingDetails(VALID_BOOKING_LIST1)
         DESC_RESIDENCE2 = new EditResidenceDescriptorBuilder().withName(VALID_NAME_RESIDENCE1)
                 .withAddress(VALID_ADDRESS_RESIDENCE2)
                 .withCleanStatusTag(VALID_CLEAN_TAG).withTags(VALID_TAG_RESERVED, VALID_TAG_REPAIR).build();
+        //withBookingDetails(VALID_BOOKING_LIST2)
     }
 
     /**

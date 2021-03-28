@@ -1,6 +1,10 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RESIDENCE;
+
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteBookingCommand;
@@ -14,14 +18,30 @@ public class DeleteBookingCommandParser implements Parser<DeleteBookingCommand> 
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteBookingCommand parse(String args) throws ParseException {
+
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_RESIDENCE, PREFIX_BOOKING);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_RESIDENCE, PREFIX_BOOKING)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteBookingCommand.MESSAGE_USAGE));
+        }
+
         try {
-            Index[] indexArray = ParserUtil.parseTwoIndex(args);
-            Index residenceIndex = indexArray[0];
-            Index bookingIndex = indexArray[1];
+            Index residenceIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_RESIDENCE).get());
+            Index bookingIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_BOOKING).get());
             return new DeleteBookingCommand(residenceIndex, bookingIndex);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteBookingCommand.MESSAGE_USAGE), pe);
         }
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
