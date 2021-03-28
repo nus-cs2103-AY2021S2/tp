@@ -2,11 +2,15 @@ package seedu.student.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.Optional;
 
 import seedu.student.commons.core.index.Index;
 import seedu.student.commons.util.StringUtil;
 import seedu.student.logic.parser.exceptions.ParseException;
+import seedu.student.model.appointment.Appointment;
 import seedu.student.model.student.Address;
 import seedu.student.model.student.Email;
 import seedu.student.model.student.Faculty;
@@ -190,6 +194,42 @@ public class ParserUtil {
                 throw new ParseException(SchoolResidence.MESSAGE_CONSTRAINTS);
             }
             return new SchoolResidence(trimmedSchoolRes);
+        }
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code LocalDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static LocalDate parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        try {
+            return LocalDate.parse(trimmedDate);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(Appointment.MESSAGE_DATE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses a {@code String time} into a {@code LocalTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code time} is invalid.
+     */
+    public static LocalTime parseTime(String time) throws ParseException {
+        requireNonNull(time);
+        String trimmedTime = time.trim();
+        try {
+            LocalTime parsedTime = LocalTime.parse(trimmedTime);
+            if (!Appointment.isValidTime(parsedTime)) {
+                throw new Exception();
+            }
+            return parsedTime;
+        } catch (Exception e) {
+            throw new ParseException(Appointment.MESSAGE_TIME_CONSTRAINTS);
         }
     }
 }
