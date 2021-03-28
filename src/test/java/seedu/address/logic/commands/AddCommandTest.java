@@ -2,8 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -17,13 +16,20 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
+import seedu.address.model.BudgetBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAppointmentBook;
+import seedu.address.model.ReadOnlyGradeBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
+<<<<<<< HEAD
 import seedu.address.model.event.Event;
+=======
+import seedu.address.model.budget.Budget;
+import seedu.address.model.grade.Grade;
+>>>>>>> upstream/master
 import seedu.address.model.person.Person;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
@@ -64,20 +70,20 @@ public class AddCommandTest {
         AddCommand addBobCommand = new AddCommand(bob);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertEquals(addAliceCommand, addAliceCommand);
 
         // same values -> returns true
         AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        assertEquals(addAliceCommandCopy, addAliceCommand);
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertNotEquals(addAliceCommand, 1);
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertNotEquals(addAliceCommand, null);
 
         // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertNotEquals(addBobCommand, addAliceCommand);
     }
 
     /**
@@ -150,6 +156,26 @@ public class AddCommandTest {
         }
 
         @Override
+        public ReadOnlyGradeBook getGradeBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setGradeBook(ReadOnlyGradeBook readOnlyGradeBook) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getGradeBookFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setGradeBookFilePath(Path gradeBookFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
@@ -175,12 +201,22 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Grade> getFilteredGradeList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredGradeList(Predicate<Grade> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -213,6 +249,60 @@ public class AddCommandTest {
         public boolean hasAppointmentDateTime(AppointmentDateTime appointmentDateTime) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public BudgetBook getBudgetBook() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public boolean hasBudget() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public boolean hasBudget(Budget budget) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        public boolean hasGrade(Grade grade) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addGrade(Grade grade) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addBudget(Budget budget) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteBudget() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        public void deleteGrade(Grade grade) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void editBudget(Budget budget) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+
+        public void setGrade(Grade target, Grade editedGrade) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeGradeIndex(int indexToRemove) {
+            throw new AssertionError("This method should not be called.");
+        }
+
 
         @Override
         public ReadOnlyScheduleTracker getScheduleTracker() {
