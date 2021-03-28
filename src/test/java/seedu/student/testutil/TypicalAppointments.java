@@ -29,7 +29,7 @@ public class TypicalAppointments {
             .withMatric(TypicalStudents.BENSON.getMatriculationNumber().toString())
             .withStartTime("10:30").withEndTime("11:00").build();
     public static final Appointment CARL_APPOINTMENT = new AppointmentBuilder()
-            .withMatric(TypicalStudents.BENSON.getMatriculationNumber().toString())
+            .withMatric(TypicalStudents.CARL.getMatriculationNumber().toString())
             .withStartTime("11:00").withEndTime("11:30").build();
 
     // Manually added - Student's details found in {@code CommandTestUtil}

@@ -1,5 +1,7 @@
 package seedu.student.logic.commands.statscommands;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import seedu.student.logic.commands.Command;
@@ -12,18 +14,45 @@ public class StatsApptCommand extends Command {
 
     public static final String COMMAND_WORD = "statsAppt";
 
-    public static final String MESSAGE_STATS_SUCCESS = "";
-    public static final String MESSAGE_STATS_FAILURE = "";
+    public static final String MESSAGE_STATS_SUCCESS = "Number of upcoming appointments in the next week: %d" + "\n"
+            + "Number of appointments in the past week: %d";
+    public static final String MESSAGE_STATS_FAILURE = "No available data on appointments.";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD;
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<Appointment> listAppointments = model.getAppointmentList();
-        StringBuilder sb = new StringBuilder();
-        for (Appointment a : listAppointments) {
-            sb.append(a.getDate() + "\n"); // LocalDate type
+        LocalDate currDate = LocalDate.now();
+        LocalDate pastWeek = currDate.minusWeeks(1);
+        LocalDate nextWeek = currDate.plusWeeks(1);
+
+        LocalTime currTime = LocalTime.now();
+
+        int numPastWeek = 0;
+        int numNextWeek = 0;
+
+        for (Appointment appt : listAppointments) {
+            LocalDate apptDate = appt.getDate();
+            if (apptDate.isAfter(pastWeek) && apptDate.isBefore(currDate)) {
+                numPastWeek++;
+            }
+            if (apptDate.isAfter(currDate) && apptDate.isBefore(nextWeek)) {
+                numNextWeek++;
+            }
+            if (apptDate.equals(currDate)) {
+                LocalTime apptEndTime = appt.getEndTime();
+                LocalTime apptStartTime = appt.getStartTime();
+                if (apptEndTime.isBefore(currTime)) { // Appt is today and has ended
+                    numPastWeek++;
+                }
+                if (apptStartTime.isAfter(currTime)) { // Appt is today but has not started
+                    numNextWeek++;
+                }
+            }
         }
-        return new CommandResult(sb.toString());
+
+        return new CommandResult(String.format(MESSAGE_STATS_SUCCESS, numNextWeek, numPastWeek));
     }
+
 }
