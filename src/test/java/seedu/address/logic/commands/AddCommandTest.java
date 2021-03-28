@@ -167,6 +167,16 @@ public class AddCommandTest {
         public void updateFilteredPassengerList(Predicate<Passenger> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public ObservableList<Pool> getFilteredPoolList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredPoolList(Predicate<Pool> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
