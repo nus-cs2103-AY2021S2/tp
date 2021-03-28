@@ -44,6 +44,7 @@ import seedu.dictionote.logic.commands.SetMainDividerPositionCommand;
 import seedu.dictionote.logic.commands.SetNoteDividerPositionCommand;
 import seedu.dictionote.logic.commands.ShowDictionaryContentCommand;
 import seedu.dictionote.logic.commands.ShowNoteCommand;
+import seedu.dictionote.logic.commands.SortNoteByTimeCommand;
 import seedu.dictionote.logic.commands.SortNoteCommand;
 import seedu.dictionote.logic.commands.ToggleDictionaryOrientationCommand;
 import seedu.dictionote.logic.commands.ToggleNoteOrientationCommand;
@@ -195,6 +196,9 @@ public class DictionoteParser {
 
         case SortNoteCommand.COMMAND_WORD:
             return new SortNoteCommand();
+
+        case SortNoteByTimeCommand.COMMAND_WORD:
+            return new SortNoteByTimeCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

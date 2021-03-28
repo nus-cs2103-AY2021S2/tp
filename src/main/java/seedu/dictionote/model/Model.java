@@ -128,6 +128,11 @@ public interface Model {
     void sortNote();
 
     /**
+     * Sorts the note in the note book chronologically.
+     */
+    void sortNoteByTime();
+
+    /**
      * Merges the given note.
      * The note must exist in the dictionote book.
      */

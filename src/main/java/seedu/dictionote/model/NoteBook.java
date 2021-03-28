@@ -93,6 +93,10 @@ public class NoteBook implements ReadOnlyNoteBook {
         notes.sort();
     }
 
+    public void sortNoteByTime() {
+        notes.sortByTime();
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
