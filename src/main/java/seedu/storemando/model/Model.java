@@ -92,6 +92,13 @@ public interface Model {
      */
     ObservableList<Item> getFilteredItemList();
 
+
+    /**
+     * Clears all the items in a specified location by the given {@code predicate}.
+     */
+
+    void clearLocation(Predicate<Item> predicate);
+
     /**
      * Updates the filter of the filtered item list to filter by the given {@code predicate}.
      *

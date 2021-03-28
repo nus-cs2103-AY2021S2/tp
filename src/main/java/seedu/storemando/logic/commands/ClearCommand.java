@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.storemando.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.storemando.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
-import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.storemando.logic.commands.exceptions.CommandException;
@@ -39,12 +38,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.updateFilteredItemList(predicate);
-        List<Item> filteredList = model.getFilteredItemList();
-        int numberOfItems = filteredList.size();
-        for (int i = 0; i < numberOfItems; i++) {
-            model.deleteItem(filteredList.get(0));
-        }
+        model.clearLocation(predicate);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 

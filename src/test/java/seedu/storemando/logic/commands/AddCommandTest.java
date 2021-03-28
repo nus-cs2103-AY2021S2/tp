@@ -182,6 +182,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void clearLocation(Predicate<Item> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Item> getSortedItemList() {
             throw new AssertionError("This method should not be called.");
         }

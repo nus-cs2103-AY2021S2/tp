@@ -14,14 +14,16 @@ public class ClearCommandParserTest {
     private final ClearCommandParser parser = new ClearCommandParser();
 
     @Test
-    public void parse_emptyArg_throwsParseException() {
+    public void parse_emptyArg_returnsClearCommand() {
         ClearCommand expectedClearCommand = new ClearCommand();
         assertParseSuccess(parser, "  ", expectedClearCommand);
     }
 
     @Test
     public void parse_invalidArg_throwsParseException() {
-        assertParseFailure(parser, "chocolate",
+        assertParseFailure(parser, "bedroom",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, ClearCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "n/bedroom",
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, ClearCommand.MESSAGE_USAGE));
     }
 
@@ -31,6 +33,9 @@ public class ClearCommandParserTest {
         ClearCommand expectedClearCommand =
             new ClearCommand(new LocationContainsPredicate(location));
         assertParseSuccess(parser, " l/kitchen", expectedClearCommand);
+        assertParseSuccess(parser, " l/    kitchen", expectedClearCommand);
+        assertParseSuccess(parser, " l/kitchen    ", expectedClearCommand);
+        assertParseSuccess(parser, " l/   kitchen   ", expectedClearCommand);
     }
 
 }
