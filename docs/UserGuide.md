@@ -9,18 +9,18 @@ title: User Guide
 
 - [Quick Start](#quick-start)
 - [Features](#features)
-    - [Viewing help : `help`](#viewing-help-:-`help`)
-    - [Adding a financial record : `add-fr`](#adding-a-financial-record-:-`add-fr`)
-    - [Listing a month's financial records : `list`](#listing-a-month's-financial-records-:-`list`)
-    - [Viewing a financial record : `view-fr`](#viewing-a-financial-record-:-`view-fr`)
-    - [Deleting a financial record : `delete-fr`](#deleting-a-financial-record-:-`delete-fr`)
-    - [Setting monthly budget : `set-bg`](#setting-monthly-budget-:-`set-bg`)
+    - [Viewing help : `help`](#viewing-help--help)
+    - [Adding a financial record : `add-fr`](#adding-a-financial-record--add-fr)
+    - [Listing a month's financial records : `list`](#listing-a-months-financial-records--list)
+    - [Viewing a financial record : `view-fr`](#viewing-a-financial-record--view-fr)
+    - [Deleting a financial record : `delete-fr`](#deleting-a-financial-record--delete-fr)
+    - [Setting monthly budget : `set-bg`](#setting-monthly-budget--set-bg)
     - [Viewing budget for the current month](#viewing-budget-for-the-current-month)
     - [Checking remaining budget for the current month](#checking-remaining-budget-for-the-current-month)
-    - [Viewing a specific month : `view-month`](#viewing-a-specific-month-:-`view-month`)
-    - [Finding financial records : `find-fr`](#finding-financial-records-:-`find-fr`)
-    - [Resetting filters on financial records : `reset-filter`](#resetting-filters-on-financial-records-:-`reset-filter`)
-    - [Exiting the program : `exit`](#exiting-the-program-:-`exit`)
+    - [Viewing a specific month : `view-month`](#viewing-a-specific-month--view-month)
+    - [Finding financial records : `find-fr`](#finding-financial-records--find-fr)
+    - [Resetting filters on financial records : `reset-filter`](#resetting-filters-on-financial-records--reset-filter)
+    - [Exiting the program : `exit`](#exiting-the-program--exit)
     - [Saving the data](#saving-the-data)
     - [Editing the data file](#editing-the-data-file)
     - [Archiving data files](#archiving-data-files)
@@ -269,7 +269,8 @@ Advanced users are welcome to update data directly by editing that data file.
 If your changes to the data file makes its format invalid, BudgetBaby will discard all data and start with an empty data file at the next run.
 
 
-### Archiving data files `[coming in v2.0]`
+### Archiving data files
+[coming in v2.0]
 
 _Details coming soon ..._
 
