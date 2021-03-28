@@ -15,9 +15,11 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-    Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
 
     //=========== UserPrefs ==================================================================================
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -58,6 +60,8 @@ public interface Model {
 
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
+
+    //=========== Person ================================================================================
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -114,6 +118,8 @@ public interface Model {
     /** Returns the AppointmentBook */
     ReadOnlyAppointmentBook getAppointmentBook();
 
+    //=========== Appointment ================================================================================
+
     /**
      * Returns true if an appointment with the same identity as {@code appointment} exists in the appointment book.
      */
@@ -134,8 +140,8 @@ public interface Model {
     /**
      * Replaces the given appointment {@code target} with {@code editedAppointment}.
      * {@code target} must exist in the appointment book.
-     * The appointment identity of {@code editedAppointment} must not be the same as another existing appointment
-     * in the appointment book.
+     * The person identity of {@code editedAppointment} must not be the same as another existing appointment
+     * in the address book.
      */
     void setAppointment(Appointment target, Appointment editedAppointment);
 

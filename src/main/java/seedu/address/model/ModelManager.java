@@ -85,17 +85,6 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    @Override
-    public Path getAppointmentBookFilePath() {
-        return userPrefs.getAppointmentBookFilePath();
-    }
-
-    @Override
-    public void setAppointmentBookFilePath(Path appointmentBookFilePath) {
-        requireNonNull(appointmentBookFilePath);
-        userPrefs.setAppointmentBookFilePath(appointmentBookFilePath);
-    }
-
     //=========== AddressBook ================================================================================
 
     @Override
@@ -166,6 +155,17 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Path getAppointmentBookFilePath() {
+        return userPrefs.getAppointmentBookFilePath();
+    }
+
+    @Override
+    public void setAppointmentBookFilePath(Path appointmentBookFilePath) {
+        requireNonNull(appointmentBookFilePath);
+        userPrefs.setAppointmentBookFilePath(appointmentBookFilePath);
+    }
+
+    @Override
     public boolean hasAppointment(Appointment appointment) {
         requireNonNull(appointment);
         return appointmentBook.hasAppointment(appointment);
@@ -193,6 +193,7 @@ public class ModelManager implements Model {
     public void setAppointments(List<Appointment> appointments) {
         appointmentBook.setAppointments(appointments);
     }
+
 
     //=========== Filtered Appointment List Accessors =============================================================
     /**
@@ -224,7 +225,8 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return appointmentBook.equals(other.appointmentBook)
+        return addressBook.equals(other.addressBook)
+                && appointmentBook.equals(other.appointmentBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
                 && filteredAppointments.equals(other.filteredAppointments);

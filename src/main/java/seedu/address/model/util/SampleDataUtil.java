@@ -1,7 +1,5 @@
 package seedu.address.model.util;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -66,14 +64,13 @@ public class SampleDataUtil {
 
 
     public static Appointment[] getSampleAppointments() {
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         return new Appointment[] {
             new Appointment(new Name("Parent teacher meeting 1"), new Address("Child 1's school"),
-                    new DateTime(LocalDateTime.now().format(dateFormat)), getPersonSet()),
+                    new DateTime("21/03/2021 10:00"), getPersonSet()),
             new Appointment(new Name("Parent teacher meeting 2"), new Address("Child 2's school"),
-                    new DateTime(LocalDateTime.now().format(dateFormat)), getPersonSet()),
+                    new DateTime("03/10/2021 14:00"), getPersonSet()),
             new Appointment(new Name("Parent teacher meeting 3"), new Address("Child 3's school"),
-                    new DateTime(LocalDateTime.now().format(dateFormat)), getPersonSet())
+                    new DateTime("02/04/2021 11:00"), getPersonSet())
         };
     }
 
