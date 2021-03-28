@@ -3,9 +3,9 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -194,14 +194,18 @@ public class ParserUtil {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        // model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+
+        List<Person> lastShownList = model.getFilteredPersonList();
+        Index targetIndex = parseIndex(contact);
+        Person contactToAdd = lastShownList.get(targetIndex.getZeroBased());
 
         //        String trimmedTag = contact.trim();
         //        if (!Tag.isValidTagName(trimmedTag)) {
         //            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         //        }
         //        return new Tag(trimmedTag);
-        return null;
+        return contactToAdd;
     }
 
     /**
