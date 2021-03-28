@@ -122,19 +122,19 @@ Format: `delete INDEX`
 * `list` followed by `delete 3` deletes the *3rd* person in the address book
 
 
-### Select passengers to be driven: `drive`
+### Select passengers to arrange a carpool: `pool`
 
-Selects passengers from the current view in the GME terminal to be driven.
+Selects passengers from the current view in the GME terminal to arrange a carpool.
 
-Format: `drive n/DRIVER_NAME p/DRIVER_PHONE c/INDEX [c/INDEX c/INDEX...]`
+Format: `pool n/DRIVER_NAME p/DRIVER_PHONE c/INDEX [c/INDEX c/INDEX...]`
 
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * The order of the passengers' index does not matter
-* You must select at least 1 person to drive with one command
+* You must select at least 1 person to pool with one command
 
 **Examples**:
-* `find tag/female` followed by `drive n/Ben p/91234567 c/2 c/3 c/4` selects the the *2nd*, *3rd* and *4th* person in the results of `find tag/female` command, and assigns *Ben* with number *91234567* to be their driver
+* `find tag/female` followed by `pool n/Alice p/91234567 c/2 c/3 c/4` selects the the *2nd*, *3rd* and *4th* person in the results of `find tag/female` command, and assigns *Alice* with number *91234567* to be their driver
 
 
 ### Clearing all entries : `clear`
