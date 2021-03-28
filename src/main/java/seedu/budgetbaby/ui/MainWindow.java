@@ -2,6 +2,7 @@ package seedu.budgetbaby.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckMenuItem;
@@ -17,6 +18,7 @@ import seedu.budgetbaby.logic.BudgetBabyLogic;
 import seedu.budgetbaby.logic.commands.CommandResult;
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
+import seedu.budgetbaby.model.record.FinancialRecord;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -120,7 +122,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        budgetDisplay = new BudgetDisplay(logic.getFilteredMonthList());
+        budgetDisplay = new BudgetDisplay(logic.getFilteredMonthList(), logic.getTopCategories());
         budgetDisplayPlaceHolder.getChildren().add(budgetDisplay.getRoot());
 
         financialRecordListPanel = new FinancialRecordListPanel(logic.getFilteredFinancialRecordList());
@@ -136,6 +138,22 @@ public class MainWindow extends UiPart<Stage> {
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getBudgetBabyFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+    }
+
+    /**
+     * Initialise listeners to handle UI behaviour
+     */
+    void initEventHandlers() {
+        // Automatically updates UI when changes is detected in FilteredFinancialRecordList
+        logic.getFilteredFinancialRecordList().addListener((ListChangeListener.Change<? extends FinancialRecord> c) -> {
+            while (c.next()) {
+                if (c.wasAdded() || c.wasRemoved() || c.wasUpdated()) {
+                    budgetDisplay.updateBudgetUi(logic.getFilteredMonthList());
+                    budgetDisplay.updateTopCategoriesUi(logic.getTopCategories());
+                    financialRecordListPanel.updateObservableList(logic.getFilteredFinancialRecordList());
+                }
+            }
+        });
     }
 
     /**
@@ -195,10 +213,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public FinancialRecordListPanel getFinancialRecordListPanel() {
-        return financialRecordListPanel;
-    }
-
     /**
      * Executes the command and returns the result.
      *
@@ -210,8 +224,9 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.isMonthChanged()) {
-                budgetDisplay.updateObservableList(logic.getFilteredMonthList());
+            if (commandResult.isRefreshUi()) {
+                budgetDisplay.updateBudgetUi(logic.getFilteredMonthList());
+                budgetDisplay.updateTopCategoriesUi(logic.getTopCategories());
                 financialRecordListPanel.updateObservableList(logic.getFilteredFinancialRecordList());
             }
 
