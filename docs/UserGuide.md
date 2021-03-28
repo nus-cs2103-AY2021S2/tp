@@ -310,24 +310,38 @@ Examples:
 
 Want to see which items you are running out of or which items you have to consume soon? Use this command to find out!
 
-You can use this command in 2 different ways.
+You can use this command in 3 different ways.
 
-* #### 3.8.1. Sorting items by quantity
-  Format 1: `sort quantity`
+* #### 3.8.1. Sorting items by ascending quantity
+  Format 1: `sort quantity asc`
   <div markdown="block" class="alert alert-info">
 
   **:information_source: Note about the sort by expiry date command:**<br>
 
-  * `quantity` is case-insensitive. Keying in `sort QUANTITY` is also a valid command.
+  * `quantity` is case-insensitive. Keying in `sort QUANTITY asc` is also a valid command.
     <br></br>
 
   </div>
   
   Example:
-  * `sort quantity` sorts the items in the displayed list in ascending order of quantity.
+  * `sort quantity acs` sorts the items in the displayed list in ascending order of quantity.
+
+* #### 3.8.2. Sorting items by descending quantity
+  Format 2: `sort quantity desc`
+  <div markdown="block" class="alert alert-info">
+
+  **:information_source: Note about the sort by expiry date command:**<br>
+
+  * `quantity` is case-insensitive. Keying in `sort QUANTITY desc` is also a valid command.
+    <br></br>
+
+  </div>
+
+  Example:
+  * `sort quantity desc` sorts the items in the displayed list in descending order of quantity.
   
-* #### 3.8.2. Sorting items by expiry date
-  Format 2: `sort expirydate`
+* #### 3.8.3. Sorting items by expiry date
+  Format 3: `sort expirydate`
   <div markdown="block" class="alert alert-info">
 
   **:information_source: Note about the sort by expiry date command:**<br>
@@ -345,7 +359,27 @@ You can use this command in 2 different ways.
 
 Want to clear your entire inventory? Key in this command to clear all items stored in your inventory.
 
-Format: `clear`
+You can use this command in 2 different ways.
+
+* #### 3.9.1. Clear all items in entire inventory
+  Format 1: `clear`
+  <div markdown="block" class="alert alert-info">
+
+* #### 3.9.2. Clear all items in a specific location
+  Format 2: `clear l/LOCATION`
+  <div markdown="block" class="alert alert-info">
+
+  **:information_source: Notes about the command:**<br>
+  
+  * The search is case-insensitive. e.g 'room' will match 'Room'.
+
+  * The location input will be matched exactly e.g. 'Room' will not match 'Bedroom'. 'Bed' will not match 'Bed room'. 'Living room' will not match 'Room living'.<br></br>
+
+  </div>
+
+  Example:
+
+  * `clear l/kitchen` clears all the items with location `kitchen`.
 
 ### 3.10. Exiting StoreMando : `exit`  <a name = "exit"></a>
 
