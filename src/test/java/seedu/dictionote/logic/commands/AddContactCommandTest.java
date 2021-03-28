@@ -336,6 +336,11 @@ public class AddContactCommandTest {
         }
 
         @Override
+        public void sortNoteByTime() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void sortNote() {
             throw new AssertionError("This method should not be called.");
         }

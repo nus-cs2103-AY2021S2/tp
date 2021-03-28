@@ -23,6 +23,7 @@ import seedu.dictionote.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_POSITION = "Position is not a between 1 to 9 (inclusively).";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -209,5 +210,24 @@ public class ParserUtil {
             throw new ParseException(UiActionOption.MESSAGE_CONSTRAINTS);
         }
         return UiActionOption.getUiActionOption(trimmedOption);
+    }
+
+    /**
+     * Parses {@code position} into an {@code int} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified position is invalid (not between 1 to 9).
+     */
+    public static int parsePosition(String oneBasedIndex) throws ParseException {
+        String trimmedIndex = oneBasedIndex.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(MESSAGE_INVALID_POSITION);
+        }
+
+        int position = Integer.parseInt(trimmedIndex);
+
+        if (position > 9 || position < 1) {
+            throw new ParseException(MESSAGE_INVALID_POSITION);
+        }
+        return position;
     }
 }

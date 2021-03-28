@@ -396,9 +396,11 @@ The region name is as follow :
 1. Note List Panel
 1. Dictionary Content Panel
 
+
 #### Opening and Closing UI Panel
 
 ##### Opening UI Panel: `open`
+
 
 Open selected UI Panel.
 
