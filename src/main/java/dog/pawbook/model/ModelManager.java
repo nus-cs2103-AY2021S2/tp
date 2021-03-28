@@ -15,31 +15,31 @@ import javafx.collections.transformation.FilteredList;
 import javafx.util.Pair;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the database data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final Database database;
     private final UserPrefs userPrefs;
     private final FilteredList<Pair<Integer, Entity>> filteredEntities;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given database and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyDatabase database, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(database, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with database: " + database + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.database = new Database(database);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredEntities = new FilteredList<>(this.addressBook.getEntityList());
+        filteredEntities = new FilteredList<>(this.database.getEntityList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new Database(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -67,59 +67,59 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getDatabaseFilePath() {
+        return userPrefs.getDatabaseFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setDatabaseFilePath(Path databaseFilePath) {
+        requireNonNull(databaseFilePath);
+        userPrefs.setAddressBookFilePath(databaseFilePath);
     }
 
 
     //=========== AddressBook ================================================================================
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setDatabase(ReadOnlyDatabase database) {
+        this.database.resetData(database);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyDatabase getDatabase() {
+        return database;
     }
 
     @Override
     public boolean hasEntity(Entity entity) {
         requireNonNull(entity);
-        return addressBook.hasEntity(entity);
+        return database.hasEntity(entity);
     }
 
     @Override
     public boolean hasEntity(int id) {
-        return addressBook.hasEntity(id);
+        return database.hasEntity(id);
     }
 
     @Override
     public Entity getEntity(int targetID) {
-        return addressBook.getEntity(targetID);
+        return database.getEntity(targetID);
     }
 
     @Override
     public void deleteEntity(int targetID) {
-        addressBook.removeEntity(targetID);
+        database.removeEntity(targetID);
     }
 
     @Override
     public int addEntity(Entity entity) {
-        return addressBook.addEntity(entity);
+        return database.addEntity(entity);
     }
 
     @Override
     public void setEntity(int targetId, Entity editedEntity) {
         requireAllNonNull(editedEntity);
 
-        addressBook.setEntity(targetId, editedEntity);
+        database.setEntity(targetId, editedEntity);
     }
 
     //=========== Filtered Owner List Accessors =============================================================
@@ -135,7 +135,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Pair<Integer, Entity>> getUnfilteredEntityList() {
-        return addressBook.getEntityList();
+        return database.getEntityList();
     }
 
     @Override
@@ -158,7 +158,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return database.equals(other.database)
                 && userPrefs.equals(other.userPrefs)
                 && filteredEntities.equals(other.filteredEntities);
     }

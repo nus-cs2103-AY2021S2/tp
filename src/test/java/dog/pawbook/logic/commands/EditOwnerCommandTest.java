@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import dog.pawbook.commons.core.Messages;
 import dog.pawbook.logic.commands.EditOwnerCommand.EditOwnerDescriptor;
-import dog.pawbook.model.AddressBook;
+import dog.pawbook.model.Database;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.ModelManager;
 import dog.pawbook.model.UserPrefs;
@@ -43,7 +43,7 @@ public class EditOwnerCommandTest {
 
         String expectedMessage = String.format(EditOwnerCommand.MESSAGE_EDIT_OWNER_SUCCESS, editedOwner);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
         expectedModel.setEntity(ID_FIRST_OWNER, editedOwner);
 
         assertCommandSuccess(editOwnerCommand, model, expectedMessage, expectedModel);
@@ -63,7 +63,7 @@ public class EditOwnerCommandTest {
 
         String expectedMessage = String.format(EditOwnerCommand.MESSAGE_EDIT_OWNER_SUCCESS, editedOwner);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
         expectedModel.setEntity(ID_THIRD_OWNER, editedOwner);
 
         assertCommandSuccess(editEntityCommand, model, expectedMessage, expectedModel);
@@ -76,7 +76,7 @@ public class EditOwnerCommandTest {
 
         String expectedMessage = String.format(EditOwnerCommand.MESSAGE_EDIT_OWNER_SUCCESS, editedOwner);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
 
         assertCommandSuccess(editEntityCommand, model, expectedMessage, expectedModel);
     }

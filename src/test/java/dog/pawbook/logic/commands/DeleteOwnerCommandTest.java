@@ -37,7 +37,7 @@ public class DeleteOwnerCommandTest {
 
         String expectedMessage = DeleteOwnerCommand.MESSAGE_SUCCESS + entity;
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getDatabase(), new UserPrefs());
         expectedModel.deleteEntity(pair.getKey());
 
         assertCommandSuccess(deleteOwnerCommand, model, expectedMessage, expectedModel);

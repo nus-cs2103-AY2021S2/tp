@@ -6,7 +6,7 @@ import dog.pawbook.commons.core.GuiSettings;
 import dog.pawbook.logic.commands.CommandResult;
 import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.logic.parser.exceptions.ParseException;
-import dog.pawbook.model.ReadOnlyAddressBook;
+import dog.pawbook.model.ReadOnlyDatabase;
 import dog.pawbook.model.managedentity.Entity;
 import javafx.collections.ObservableList;
 import javafx.util.Pair;
@@ -27,9 +27,9 @@ public interface Logic {
     /**
      * Returns the AddressBook.
      *
-     * @see dog.pawbook.model.Model#getAddressBook()
+     * @see dog.pawbook.model.Model#getDatabase()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyDatabase getDatabase();
 
     /**
      * Returns an unmodifiable view of the filtered list of entities.
@@ -39,7 +39,7 @@ public interface Logic {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getDatabaseFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

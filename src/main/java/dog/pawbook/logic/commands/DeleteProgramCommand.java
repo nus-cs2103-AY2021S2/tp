@@ -10,7 +10,7 @@ import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.program.Program;
 
 /**
- * Deletes a program identified using it's displayed index from the address book.
+ * Deletes a program identified using it's displayed index from the database.
  */
 public class DeleteProgramCommand extends DeleteCommand {
 

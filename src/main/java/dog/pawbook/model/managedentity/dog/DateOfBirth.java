@@ -10,7 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Represents a Dog's breed in the address book.
+ * Represents a Dog's breed in the database.
  * Guarantees: immutable; is valid as declared in {@link #isValidDob(String)}
  */
 public class DateOfBirth {

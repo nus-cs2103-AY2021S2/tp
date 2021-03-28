@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import dog.pawbook.model.AddressBook;
-import dog.pawbook.model.ReadOnlyAddressBook;
+import dog.pawbook.model.Database;
+import dog.pawbook.model.ReadOnlyDatabase;
 import dog.pawbook.model.managedentity.Name;
 import dog.pawbook.model.managedentity.owner.Address;
 import dog.pawbook.model.managedentity.owner.Email;
@@ -40,8 +40,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyDatabase getSampleAddressBook() {
+        Database sampleAb = new Database();
         for (Owner sampleOwner : getSampleOwners()) {
             sampleAb.addEntity(sampleOwner);
         }

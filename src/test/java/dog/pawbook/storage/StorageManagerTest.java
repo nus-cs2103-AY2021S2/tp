@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import dog.pawbook.commons.core.GuiSettings;
-import dog.pawbook.model.AddressBook;
-import dog.pawbook.model.ReadOnlyAddressBook;
+import dog.pawbook.model.Database;
+import dog.pawbook.model.ReadOnlyDatabase;
 import dog.pawbook.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -54,15 +54,15 @@ public class StorageManagerTest {
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
-        AddressBook original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new AddressBook(retrieved));
+        Database original = getTypicalAddressBook();
+        storageManager.saveDatabase(original);
+        ReadOnlyDatabase retrieved = storageManager.readDatabase().get();
+        assertEquals(original, new Database(retrieved));
     }
 
     @Test
     public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+        assertNotNull(storageManager.getDatabaseFilePath());
     }
 
 }

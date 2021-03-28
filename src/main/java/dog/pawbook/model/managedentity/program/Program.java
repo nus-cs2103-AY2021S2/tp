@@ -15,7 +15,7 @@ import dog.pawbook.model.managedentity.Name;
 import dog.pawbook.model.managedentity.tag.Tag;
 
 /**
- * Represents a program in the address book.
+ * Represents a program in the database.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Program extends Entity {

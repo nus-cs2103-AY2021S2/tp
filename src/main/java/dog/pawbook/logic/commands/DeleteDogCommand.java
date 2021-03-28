@@ -17,7 +17,7 @@ import dog.pawbook.model.managedentity.program.Program;
 import javafx.util.Pair;
 
 /**
- * Deletes a owner identified using it's displayed index from the address book.
+ * Deletes a owner identified using it's displayed index from the database.
  */
 public class DeleteDogCommand extends DeleteCommand {
 

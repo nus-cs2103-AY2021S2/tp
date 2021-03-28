@@ -40,7 +40,7 @@ public class DeleteDogCommandTest {
 
         String expectedMessage = DeleteDogCommand.MESSAGE_SUCCESS + entity;
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getDatabase(), new UserPrefs());
         expectedModel.deleteEntity(pair.getKey());
         int ownerId = ((Dog) pair.getValue()).getOwnerId();
         Owner owner = (Owner) model.getEntity(ownerId);

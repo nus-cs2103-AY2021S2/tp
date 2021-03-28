@@ -12,7 +12,7 @@ import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.logic.parser.PawbookParser;
 import dog.pawbook.logic.parser.exceptions.ParseException;
 import dog.pawbook.model.Model;
-import dog.pawbook.model.ReadOnlyAddressBook;
+import dog.pawbook.model.ReadOnlyDatabase;
 import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.storage.Storage;
 import javafx.collections.ObservableList;
@@ -47,7 +47,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveDatabase(model.getDatabase());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -56,8 +56,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyDatabase getDatabase() {
+        return model.getDatabase();
     }
 
     @Override
@@ -66,8 +66,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getDatabaseFilePath() {
+        return model.getDatabaseFilePath();
     }
 
     @Override

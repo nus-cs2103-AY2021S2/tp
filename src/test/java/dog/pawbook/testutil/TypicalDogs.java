@@ -19,7 +19,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import dog.pawbook.model.AddressBook;
+import dog.pawbook.model.Database;
 import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.owner.Owner;
 
@@ -72,8 +72,8 @@ public class TypicalDogs {
     /**
      * Returns an {@code AddressBook} with all the typical dogs.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static Database getTypicalAddressBook() {
+        Database ab = new Database();
         ab.addEntityWithId(DOG_OWNER, 1);
         Set<Integer> ids = new HashSet<>(DOG_OWNER.getDogIdSet());
         for (Dog dog : getTypicalDogs()) {

@@ -24,7 +24,7 @@ import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.logic.parser.exceptions.ParseException;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.ModelManager;
-import dog.pawbook.model.ReadOnlyAddressBook;
+import dog.pawbook.model.ReadOnlyDatabase;
 import dog.pawbook.model.UserPrefs;
 import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.owner.Owner;
@@ -131,7 +131,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getDatabase(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -157,7 +157,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void saveDatabase(ReadOnlyDatabase database, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Represents a Program's date and time in the address book.
+ * Represents a Program's date and time in the database.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
 public class Session {
@@ -65,4 +65,3 @@ public class Session {
         return value.hashCode();
     }
 }
-

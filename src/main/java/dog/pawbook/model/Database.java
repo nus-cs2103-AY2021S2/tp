@@ -10,9 +10,9 @@ import javafx.collections.ObservableList;
 import javafx.util.Pair;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the database level
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class Database implements ReadOnlyDatabase {
 
     private final UniqueEntityList entities;
 
@@ -27,12 +27,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         entities = new UniqueEntityList();
     }
 
-    public AddressBook() {}
+    public Database() {}
 
     /**
      * Creates an AddressBook using the Entities in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public Database(ReadOnlyDatabase toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -50,7 +50,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyDatabase newData) {
         requireNonNull(newData);
 
         setEntities(newData.getEntityList());
@@ -139,8 +139,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && entities.equals(((AddressBook) other).entities));
+                || (other instanceof Database // instanceof handles nulls
+                && entities.equals(((Database) other).entities));
     }
 
     @Override

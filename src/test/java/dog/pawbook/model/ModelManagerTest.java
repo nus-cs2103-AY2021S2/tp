@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import dog.pawbook.commons.core.GuiSettings;
 import dog.pawbook.model.managedentity.NameContainsKeywordsPredicate;
-import dog.pawbook.testutil.AddressBookBuilder;
+import dog.pawbook.testutil.DatabaseBuilder;
 
 public class ModelManagerTest {
 
@@ -26,7 +26,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new Database(), new Database(modelManager.getDatabase()));
     }
 
     @Test
@@ -62,14 +62,14 @@ public class ModelManagerTest {
 
     @Test
     public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
+        assertThrows(NullPointerException.class, () -> modelManager.setDatabaseFilePath(null));
     }
 
     @Test
     public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
         Path path = Paths.get("address/book/file/path");
-        modelManager.setAddressBookFilePath(path);
-        assertEquals(path, modelManager.getAddressBookFilePath());
+        modelManager.setDatabaseFilePath(path);
+        assertEquals(path, modelManager.getDatabaseFilePath());
     }
 
     @Test
@@ -95,8 +95,8 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withOwner(ALICE).withOwner(BENSON).build();
-        AddressBook differentAddressBook = new AddressBook();
+        Database addressBook = new DatabaseBuilder().withOwner(ALICE).withOwner(BENSON).build();
+        Database differentAddressBook = new Database();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
