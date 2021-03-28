@@ -23,7 +23,7 @@ import seedu.address.model.person.passenger.Passenger;
  */
 public class TypicalPassengers {
 
-    //todo edit withPrice() entries if needed
+    // TODO use the screaming snake case for withTripDay and withTripTime
 
     public static final Passenger ALICE = new PassengerBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111")

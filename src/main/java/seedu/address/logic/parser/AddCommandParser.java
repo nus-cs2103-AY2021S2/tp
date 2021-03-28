@@ -39,8 +39,8 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_TRIPDAY,
                         PREFIX_TRIPTIME, PREFIX_PRICE, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_TRIPDAY, PREFIX_TRIPTIME,
-                PREFIX_PRICE) || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_TRIPDAY, PREFIX_TRIPTIME
+                ) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
@@ -50,7 +50,17 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         TripDay tripDay = ParserUtil.parseTripDay(argMultimap.getValue(PREFIX_TRIPDAY).get());
         TripTime tripTime = ParserUtil.parseTripTime(argMultimap.getValue(PREFIX_TRIPTIME).get());
-        Optional<Price> price = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get());
+
+        // TODO tidy up code style
+        Optional<String> priceStr = argMultimap.getValue(PREFIX_PRICE);
+        Optional<Price> price;
+
+        if (priceStr.isPresent()) {
+            price = ParserUtil.parsePrice(priceStr.get());
+        }
+        else {
+            price = Optional.empty();
+        }
 
         Passenger passenger = new Passenger(name, phone, address, tripDay, tripTime, price, tagList);
 

@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PRICE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.PRICE_DESC_CENTS;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -127,8 +127,8 @@ public class FindCommandParserTest {
                 new FindCommand(new PriceContainsKeywordsPredicate(VALID_PRICE_BOB));
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n " + PRICE_DESC_BOB + "\n \t", expectedFindCommand);
+        assertParseSuccess(parser, " \n " + PRICE_DESC_CENTS + "\n \t", expectedFindCommand);
 
-        assertParseSuccess(parser, PRICE_DESC_BOB, expectedFindCommand);
+        assertParseSuccess(parser, PRICE_DESC_CENTS, expectedFindCommand);
     }
 }
