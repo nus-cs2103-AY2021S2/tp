@@ -57,7 +57,7 @@ This guide uses the following features to make it easier for you to navigate aro
 This section provides information on how to quickly start using TutorBuddy.
 
 ### Installation
-Here are a few steps to get you started on Tutor's Pet:
+Here are a few steps to get you started on TutorBuddy:
 
 1. Ensure you have **Java 11** or above installed in your computer.
 
