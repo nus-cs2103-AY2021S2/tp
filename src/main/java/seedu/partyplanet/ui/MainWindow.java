@@ -1,6 +1,5 @@
 package seedu.partyplanet.ui;
 
-import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
