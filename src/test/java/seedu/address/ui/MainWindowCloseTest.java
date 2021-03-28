@@ -1,7 +1,6 @@
 package seedu.address.ui;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
 import java.util.Collections;
@@ -11,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.testfx.api.FxToolkit;
 
-import guitests.guihandles.HelpWindowHandle;
 import guitests.guihandles.StageHandle;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -23,7 +21,7 @@ import seedu.address.storage.StorageManager;
 
 /**
  * @@author {se-edu}-reused
- * Reused with from AB4 https://github.com/se-edu/addressbook-level4/
+ * Reused with modification from AB4 https://github.com/se-edu/addressbook-level4/
  *
  * Contains tests for closing of the {@code MainWindow}.
  */
@@ -59,8 +57,6 @@ public class MainWindowCloseTest extends GuiUnitTest {
 
     @Test
     public void close_externalRequest_exitAppRequestEventPosted() {
-        mainWindowHandle.clickOnMenuHelpButton();
-        assertTrue(HelpWindowHandle.isWindowPresent());
         mainWindowHandle.closeMainWindowExternally();
         // The application will exit when all windows are closed.
         assertEquals(Collections.emptyList(), guiRobot.listWindows());
@@ -89,14 +85,6 @@ public class MainWindowCloseTest extends GuiUnitTest {
          */
         private void closeMainWindowExternally() {
             guiRobot.interact(() -> stage.fireEvent(new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST)));
-        }
-
-        /**
-         * Opens the {@code HelpWindow} by clicking on the menu bar's help button.
-         */
-        private void clickOnMenuHelpButton() {
-            guiRobot.clickOn("Help");
-            guiRobot.clickOn("F1");
         }
     }
 }

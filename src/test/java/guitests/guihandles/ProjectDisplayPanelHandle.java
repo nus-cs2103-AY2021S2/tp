@@ -29,6 +29,7 @@ public class ProjectDisplayPanelHandle extends NodeHandle<Node> {
 
     /**
      * Constructs a {@code ProjectDisplayPanelHandle} handler object.
+     *
      * @param panelNode Node of {@code ProjectDisplayHandle}.
      */
     public ProjectDisplayPanelHandle(Node panelNode) {
