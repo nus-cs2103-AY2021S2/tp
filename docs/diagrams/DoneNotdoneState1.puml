@@ -1,0 +1,17 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title After command "done 5"
+
+package States {
+    class State1 as "__notdoneTask:Task__"
+    class State2 as "__DoneTask:Task__"
+}
+
+State1 -[hidden]right-> State2
+
+class Pointer as "Saved in task list" #FFF
+Pointer -up-> State2
+@end

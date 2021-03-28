@@ -6,16 +6,13 @@ skinparam ClassBorderColor #000000
 title Initial state
 
 package States {
-    class State1 as "__ab0:ModuleBook__"
-    class State2 as "__ab1:ModuleBook__"
-    class State3 as "__ab2:ModuleBook__"
+    class State1 as "__notdoneTask:Task__"
+    class State2 as "__DoneTask:Task__"
 }
 
 State1 -[hidden]right-> State2
-State2 -[hidden]right-> State3
 hide State2
-hide State3
 
-class Pointer as "Current State" #FFF
+class Pointer as "Saved in task list" #FFF
 Pointer -up-> State1
 @end

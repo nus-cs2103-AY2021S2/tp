@@ -24,6 +24,7 @@ Current module codes supported: CS1101S, CS1231S, CS2030, CS2040S, CS2101,
 
 4. Refer to the [Commands](#commands) below for details of each command.
 
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -85,7 +86,7 @@ Current module codes supported: CS1101S, CS1231S, CS2030, CS2040S, CS2101,
    
    * **`recur`** :  Recur tasks
 
-
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -278,6 +279,7 @@ Examples:
 * `recur 2 r/weekly` Recurs the 4th task in ModuleBook3.5 every week.
 * `recur 3 r/daily` Recurs the 3rd task in ModuleBook3.5 every day.
 
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -320,6 +322,7 @@ Action | Format, Examples
 **list** | `list`
 **add** | `add n/TASK NAME m/MODULE d/DESCRIPTION [a/START TIME] b/DEADLINE w/WORKLOAD [t/TAG]…​` <br> e.g., `add n/TP m/CS2103T d/Team tasks b/2021-01-20 20:00 w/3 t/tagname`
 **delete** | `delete INDEX`<br> e.g., `delete 3`
+**deleteTag** | `deleteTag INDEX [t/TAG NAME]`<br> e.g., `delete 3 [t/SoftwareEng]`
 **done** | `done INDEX`<br> e.g., `done 1`
 **notdone** | `notdone INDEX`<br> e.g., `notdone 1`
 **tag** | `tag INDEX [t/TAG NAME]`<br> e.g., `tag 1 [t/SoftwareEng]`
