@@ -5,6 +5,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -35,9 +36,8 @@ public class TimeTablePanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(getClass());
     private final List<LocalDate> dateSlot;
     private final List<Double> hourSlot;
-    private final ObservableList<Event> events;
-    // Used to show dates in schedule view
-    private final LocalDate weekStartDate;
+    private final LocalDate queryDate;
+    private ObservableList<Event> events;
 
     @FXML
     private ScrollPane scrollPane;
@@ -50,6 +50,7 @@ public class TimeTablePanel extends UiPart<Region> {
      */
     public TimeTablePanel(ObservableList<Event> events) {
         super(FXML);
+
         // Only getting current's week events
         this.events = events.filtered((appointment -> {
             LocalDate now = LocalDate.now();
@@ -59,7 +60,7 @@ public class TimeTablePanel extends UiPart<Region> {
             return !apptDate.isBefore(monday) && !apptDate.isAfter(sunday);
         }));
 
-        this.weekStartDate = LocalDate.now();
+        this.queryDate = LocalDate.now(); // Need to allow command to change the week / view a certain week
         this.dateSlot = new ArrayList<>(7);
         this.hourSlot = new ArrayList<>();
     }
@@ -76,6 +77,13 @@ public class TimeTablePanel extends UiPart<Region> {
             return;
         }
         addAppointmentSlotsToGrid();
+    }
+
+    public void reconstruct(ObservableList<Event> events) {
+        this.events = events;
+        gridPane.getChildren().clear();
+        hourSlot.clear();
+        construct();
     }
 
     private int getColSpan(Event event) {
@@ -96,15 +104,6 @@ public class TimeTablePanel extends UiPart<Region> {
         return colIndex - 1;
     }
 
-    /**
-     * Returns the column index that fits into the grid after changing the start index to the earliest timing
-     * and taking into account the slot taken up by the date display
-     */
-    private int getAdjustedColIndex(Appointment appointment) {
-        int currIndex = getColIndex(appointment.getTimeFrom().value.toLocalTime());
-        return currIndex + GRID_INDEX_BUFFER;
-    }
-
     private LocalTime getStartTime() {
         return events.stream()
                 .map(event -> event.getTimeFrom().value.toLocalTime())
@@ -121,11 +120,8 @@ public class TimeTablePanel extends UiPart<Region> {
 
 
     private void constructGrid() {
-        int earliestTimeIndex;
-        int latestTimeIndex;
-
-        earliestTimeIndex = getColIndex(getStartTime());
-        latestTimeIndex = getColIndex(getEndTime());
+        int earliestTimeIndex = getColIndex(getStartTime());
+        int latestTimeIndex = getColIndex(getEndTime());
 
         int numColumns = NUM_OF_HALF_HOURS - earliestTimeIndex - (NUM_OF_HALF_HOURS - latestTimeIndex);
         for (int i = 0; i < numColumns + GRID_INDEX_BUFFER; i++) {
@@ -155,7 +151,6 @@ public class TimeTablePanel extends UiPart<Region> {
                 gridPane.add(pane, i, j);
             }
         }
-
     }
 
     private void addAppointmentSlotsToGrid() {
@@ -163,22 +158,24 @@ public class TimeTablePanel extends UiPart<Region> {
             LocalDate currAppointmentDate = curr.getTimeFrom().value.toLocalDate();
             SlotContainer appointmentSlot = getSlot(curr);
             int colSpan = getColSpan(curr);
-            double hour = curr.getTimeFrom().value.toLocalTime().getHour() + curr.getTimeFrom().value.toLocalTime().getMinute();
+            double hour = curr.getTimeFrom().value.toLocalTime().getHour() + (curr.getTimeFrom().value.toLocalTime().getMinute() / 60.0);
             int colIndex = hourSlot.indexOf(hour);
+
             if (colIndex == 0) {
                 colIndex = GRID_INDEX_BUFFER;
             } else {
-                colIndex = colIndex + 1;
+                colIndex = colIndex + GRID_INDEX_BUFFER;
             }
+
             if (dateSlot.contains(currAppointmentDate)) {
-                int rowIndex = dateSlot.indexOf(currAppointmentDate) + 1;
+                int rowIndex = dateSlot.indexOf(currAppointmentDate) + GRID_INDEX_BUFFER;
                 gridPane.add(appointmentSlot.getRoot(), colIndex, rowIndex, colSpan, ROW_SPAN);
             }
         });
     }
 
     private SlotContainer getSlot(Event event) {
-        //Only two colours - Green for Appointment, Blue for Schedule
+        // Only two colours - Green for Appointment, Blue for Schedule
         if (event instanceof Appointment) {
             return new AppointmentSlot((Appointment) event);
         } else {
@@ -187,19 +184,19 @@ public class TimeTablePanel extends UiPart<Region> {
     }
 
     private void populateDates() {
-        // Allows switching of weeks coming soon
-        LocalDate now = LocalDate.now();
-
         LocalTime start = getStartTime();
         LocalTime end = getEndTime();
+
         for (int i = start.getHour(); i <= end.getHour(); i++) {
             hourSlot.add((double) i);
             hourSlot.add(i + 0.5);
         }
 
         for (int i = 1; i <= 7; i++) { // Add date displays for entire week
-            dateSlot.add(now.with(DayOfWeek.of(i)));
-            DisplayDateSlot slot = new DisplayDateSlot(now.with(DayOfWeek.of(i)));
+            LocalDate currentDate = queryDate.with(DayOfWeek.of(i));
+            dateSlot.add(currentDate);
+
+            DisplayDateSlot slot = new DisplayDateSlot(currentDate);
             gridPane.add(slot.getRoot(), 0, i, 1, ROW_SPAN);
         }
     }
