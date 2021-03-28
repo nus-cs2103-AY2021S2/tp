@@ -194,7 +194,7 @@ public class StorageManager implements Storage {
 
     @Override
     public void saveScheduleTracker(ReadOnlyScheduleTracker scheduleTracker) throws IOException {
-        saveScheduleTracker(scheduleTracker, gradeBookStorage.getGradeBookFilePath());
+        saveScheduleTracker(scheduleTracker, scheduleTrackerStorage.getScheduleTrackerFilePath());
     }
 
     @Override
