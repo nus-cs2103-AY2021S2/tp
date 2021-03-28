@@ -29,13 +29,12 @@ public class ListCommand extends Command {
         if (type.equals("persons")) {
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-            return model.emptyPersonList()?
-                    new CommandResult(MESSAGE_EMPTY_PERSON_LIST)
+            return model.emptyPersonList()
+                    ? new CommandResult(MESSAGE_EMPTY_PERSON_LIST)
                     : new CommandResult(MESSAGE_SUCCESS_PERSONS);
         } else {
             model.updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
-            return model.emptySessionList()?
-                    new CommandResult(MESSAGE_EMPTY_SESSION_LIST)
+            return model.emptySessionList() ? new CommandResult(MESSAGE_EMPTY_SESSION_LIST)
                     : new CommandResult(MESSAGE_SUCCESS_SESSIONS);
         }
     }

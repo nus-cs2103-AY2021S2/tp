@@ -55,7 +55,9 @@ public class LogicManager implements Logic {
             if (command instanceof ExitCommand) {
                 storage.saveSessions(model.getAddressBook());
                 storage.saveAddressBook(model.getAddressBook());
-            } else if (command instanceof AddSessionCommand || command instanceof DeleteSessionCommand || command instanceof EditSessionCommand) {
+            } else if (command instanceof AddSessionCommand
+                    || command instanceof DeleteSessionCommand
+                    || command instanceof EditSessionCommand) {
                 storage.saveSessions(model.getAddressBook());
             } else {
                 storage.saveAddressBook(model.getAddressBook());

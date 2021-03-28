@@ -1,23 +1,26 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.EditSessionCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.session.SessionId;
-import seedu.address.model.tag.Tag;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import seedu.address.logic.commands.EditSessionCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.session.SessionId;
+import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditSessionCommand object
  */
-public class EditSessionCommandParser implements  Parser<EditSessionCommand> {
+public class EditSessionCommandParser implements Parser<EditSessionCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditSessionCommand
@@ -35,7 +38,8 @@ public class EditSessionCommandParser implements  Parser<EditSessionCommand> {
             sessionId = ParserUtil.parseSessionId(argMultimap.getPreamble());
 
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditSessionCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditSessionCommand.MESSAGE_USAGE), pe);
         }
 
         EditSessionCommand.EditSessionDescriptor editSessionDescriptor = new EditSessionCommand.EditSessionDescriptor();

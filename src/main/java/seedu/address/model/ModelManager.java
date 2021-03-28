@@ -152,7 +152,7 @@ public class ModelManager implements Model {
 
     @Override
     public boolean emptySessionList() {
-        return filteredSessions.size()==0;
+        return filteredSessions.size() == 0;
     }
     //=========== Filtered Person List Accessors =============================================================
 
@@ -173,7 +173,7 @@ public class ModelManager implements Model {
 
     @Override
     public boolean emptyPersonList() {
-        return filteredPersons.size()==0;
+        return filteredPersons.size() == 0;
     }
 
 

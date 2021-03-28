@@ -174,10 +174,14 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public boolean emptySessionList() { throw new AssertionError("This method should not be called."); }
+        public boolean emptySessionList() {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
-        public boolean emptyPersonList() { throw new AssertionError("This method should not be called."); }
+        public boolean emptyPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

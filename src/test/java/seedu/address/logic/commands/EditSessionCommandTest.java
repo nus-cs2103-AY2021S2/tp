@@ -1,6 +1,23 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_FIRST_SESSION;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_SECOND_SESSION;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DAY_FIRST_SESSION;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_FIRST_SESSION;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SESSION;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalSessionIds.SESSION_ID_FIRST_CLASS;
+import static seedu.address.testutil.TypicalSessionIds.SESSION_ID_SECOND_CLASS;
+import static seedu.address.testutil.TypicalSessions.getTypicalAddressBook;
+
+import java.util.List;
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -10,16 +27,6 @@ import seedu.address.model.session.Session;
 import seedu.address.model.session.SessionId;
 import seedu.address.testutil.EditSessionDescriptorBuilder;
 import seedu.address.testutil.SessionBuilder;
-
-import java.util.List;
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.testutil.TypicalSessionIds.SESSION_ID_FIRST_CLASS;
-import static seedu.address.testutil.TypicalSessionIds.SESSION_ID_SECOND_CLASS;
-import static seedu.address.testutil.TypicalSessions.getTypicalAddressBook;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -51,7 +58,7 @@ public class EditSessionCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        int size = model.getFilteredSessionList().size()-1;
+        int size = model.getFilteredSessionList().size() - 1;
         Session lastSession = model.getFilteredSessionList().get(size);
         SessionId lastSessionId = lastSession.getClassId();
 
@@ -74,7 +81,8 @@ public class EditSessionCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditSessionCommand editSessionCommand = new EditSessionCommand(SESSION_ID_FIRST_CLASS, new EditSessionCommand.EditSessionDescriptor());
+        EditSessionCommand editSessionCommand = new EditSessionCommand(SESSION_ID_FIRST_CLASS,
+                new EditSessionCommand.EditSessionDescriptor());
         List<Session> lastShownList = model.getFilteredSessionList();
 
         Optional<Session> optSessionToEdit = lastShownList.stream()
@@ -92,8 +100,8 @@ public class EditSessionCommandTest {
 
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
-        Integer outOfBoundSessionCount = Integer.valueOf(Session.getSessionCount())+1;
-        SessionId invalidSessionId= SessionId.fromOneBased(outOfBoundSessionCount);
+        Integer outOfBoundSessionCount = Integer.valueOf(Session.getSessionCount()) + 1;
+        SessionId invalidSessionId = SessionId.fromOneBased(outOfBoundSessionCount);
         EditSessionCommand.EditSessionDescriptor descriptor = new EditSessionDescriptorBuilder().build();
         EditSessionCommand editSessionCommand = new EditSessionCommand(invalidSessionId, descriptor);
 
@@ -106,7 +114,8 @@ public class EditSessionCommandTest {
         final EditSessionCommand standardCommand = new EditSessionCommand(SESSION_ID_FIRST_CLASS, DESC_FIRST_SESSION);
 
         // same values -> returns true
-        EditSessionCommand.EditSessionDescriptor copyDescriptor = new EditSessionCommand.EditSessionDescriptor(DESC_FIRST_SESSION);
+        EditSessionCommand.EditSessionDescriptor copyDescriptor = new EditSessionCommand
+                .EditSessionDescriptor(DESC_FIRST_SESSION);
         EditSessionCommand commandWithSameValues = new EditSessionCommand(SESSION_ID_FIRST_CLASS, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
