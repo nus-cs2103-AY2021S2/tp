@@ -48,7 +48,8 @@ public class SubjectExperienceFilter implements Predicate<SubjectExperience> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SubjectExperienceFilter // instanceof handles nulls
-                && subjectExperienceFilter.equals(((SubjectExperienceFilter) other).subjectExperienceFilter)); // state check
+                && subjectExperienceFilter.equals((
+                        (SubjectExperienceFilter) other).subjectExperienceFilter)); // state check
     }
 
     @Override

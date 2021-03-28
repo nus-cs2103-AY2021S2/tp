@@ -220,11 +220,11 @@ public class PersonFilter implements Predicate<Person> {
         this.composedNameFilter = nameFilters.stream()
                 .reduce((x, y) -> x.or(y))
                 .orElse(x -> true);
-        
+
         this.composedGenderFilter = genderFilters.stream()
                 .reduce((x, y) -> x.or(y))
                 .orElse(x -> true);
-        
+
         this.composedPhoneFilter = phoneFilters.stream()
                 .reduce((x, y) -> x.or(y))
                 .orElse(x -> true);

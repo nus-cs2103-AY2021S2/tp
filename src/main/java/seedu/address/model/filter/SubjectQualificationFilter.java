@@ -43,7 +43,8 @@ public class SubjectQualificationFilter implements Predicate<SubjectQualificatio
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SubjectQualificationFilter // instanceof handles nulls
-                && subjectQualificationFilter.equals(((SubjectQualificationFilter) other).subjectQualificationFilter)); // state check
+                && subjectQualificationFilter.equals((
+                        (SubjectQualificationFilter) other).subjectQualificationFilter)); // state check
     }
 
     @Override

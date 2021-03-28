@@ -100,15 +100,17 @@ public class DeletePersonFilterCommandParser implements Parser<DeletePersonFilte
                         .map(SubjectRateFilter::new)
                         .collect(Collectors.toList()));
 
-        Set<Predicate<SubjectExperience>> subjectExperienceFilters = new LinkedHashSet<Predicate<SubjectExperience>>(
-                argMultimap.getAllValues(PREFIX_NAME).stream()
-                        .map(SubjectExperienceFilter::new)
-                        .collect(Collectors.toList()));
+        Set<Predicate<SubjectExperience>> subjectExperienceFilters =
+                new LinkedHashSet<Predicate<SubjectExperience>>(
+                        argMultimap.getAllValues(PREFIX_NAME).stream()
+                                .map(SubjectExperienceFilter::new)
+                                .collect(Collectors.toList()));
 
-        Set<Predicate<SubjectQualification>> subjectQualificationFilters = new LinkedHashSet<Predicate<SubjectQualification>>(
-                argMultimap.getAllValues(PREFIX_NAME).stream()
-                        .map(SubjectQualificationFilter::new)
-                        .collect(Collectors.toList()));
+        Set<Predicate<SubjectQualification>> subjectQualificationFilters =
+                new LinkedHashSet<Predicate<SubjectQualification>>(
+                        argMultimap.getAllValues(PREFIX_NAME).stream()
+                                .map(SubjectQualificationFilter::new)
+                                .collect(Collectors.toList()));
 
         // TODO: Check if no arguments
         // TODO: Throw ParseException
