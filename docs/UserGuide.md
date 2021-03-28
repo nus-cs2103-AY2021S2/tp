@@ -11,6 +11,7 @@ by graphically managing their student’s information with a Graphical User Inte
 It allows for faster and more effective student management.
 
 **Table of Contents**
+* [About](#about)
 * [Quick start](#quick-start)
 * [Features](#features)
   * [Listing all students: `list_student`](#listing-all-students-list_student)
@@ -66,7 +67,7 @@ Here are a few steps to get you started on Tutor's Pet:
 
 1. Double-click the file to start the application. An application similar to the one below should appear in a few
    seconds.<br>
-   
+
 ![Ui](images/Ui.png)
 
 ### Using TutorBuddy
@@ -75,18 +76,28 @@ This section offers an overview of the layout in TutorBuddy.
 
 There are three main areas in TutorBuddy:
 
-1. the command box and result display box,
+1. the utility area,
 
 1. the main viewing area,
 
-1. the utility area.
+1. the command box and result display box.
 
+![ApplicationOverview](images/ApplicationOverview.png)
 
+1. The utility area consists of 2 tabs: **File**, and **Help**.
+* The **File** tab consists of an exit button. To exit TutorBuddy, click on the exit button. Alternatively, use the `exit` command to exit the application.
+* The **Help** tab consists of a help button. If you require any assistance, click on the help button, copy the link
+  displayed and paste it into any web browser. Alternatively, press <kbd>F1</kbd> to bring up the help window.
+  
+2. The main viewing area consists of 3 tabs: **Home**, **Tuition** and **Calendar**.
+* The **Home** tab contains a reminder section where a user can view their upcoming tuition lessons. There is also
+  a fee section where the user can view their tuition fees for the past 3 months.
+* The **Tuition** tab contains a Student and Session section where a user can view and manage their students and lessons.
+* The **Calendar** tab contains a weekly view of all sessions.
 
-1. The command box is the area for you to enter your commands. The result of each command will be shown in the result
-display box, which is located immediately below the command box.
-   
-   IMAGE
+3. The command box is the area for you to enter your commands. The result of each command will be shown in the result
+   display box, which is located directly above the command box.
+
 * Type a command in the command box and press <kbd>Enter</kbd> to execute it.<br>
 
   Here are some example commands you can try:
@@ -101,20 +112,8 @@ display box, which is located immediately below the command box.
   * **`add_session`**`n/John Doe d/2021-01-01 t/13:00 k/120 s/Biology f/80` : Adds a tuition session for John Doe happening on 2021-01-01.
 
   * **`exit`** : Exits the application.
-  
+
 * Refer to the [Features](#features) below for details of each command.
-   
-2. The main viewing area consists of 3 tabs: **Home**, **Tuition** and **Calendar**.
-    * The **Home** tab contains a reminder section where a user can view their upcoming tuition lessons. There is also
-      a fee section where the user can view their tuition fees for the past 3 months.
-    * The **Tuition** tab contains a Student and Session section where a user can view and manage their students and lessons.
-    * The **Calendar** tab contains a weekly view of all sessions.
-
-
-3. The utility area consists of 2 tabs: **File**, and **Help**.
-    * The **File** tab consists of an exit button. To exit TutorBuddy, click on the exit button. Alternatively, use the `exit` command to exit the application.
-    * The **Help** tab consists of a help button. If you require any assistance, click on the help button, copy the link
-        displayed and paste it into any web browser. Alternatively, press <kbd>F1</kbd> to bring up the help window.
 
 --------------------------------------------------------------------------------------------------------------------
 
