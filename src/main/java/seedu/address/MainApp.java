@@ -26,6 +26,8 @@ import seedu.address.model.ReadOnlyAppointmentBook;
 import seedu.address.model.ReadOnlyGradeBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.schedule.ReadOnlyScheduleTracker;
+import seedu.address.model.schedule.ScheduleTracker;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.AppointmentBookStorage;
@@ -99,6 +101,7 @@ public class MainApp extends Application {
         ReadOnlyAddressBook initialData;
         ReadOnlyAppointmentBook initialAppointments;
         ReadOnlyGradeBook initialGrades;
+        ReadOnlyScheduleTracker initialSchedules;
 
         try {
             addressBookOptional = storage.readAddressBook();
@@ -142,6 +145,7 @@ public class MainApp extends Application {
             initialGrades = new GradeBook();
         }
 
+        initialSchedules = new ScheduleTracker();
         return new ModelManager(initialData, userPrefs, initialAppointments,
                 budgetBook, initialGrades);
     }

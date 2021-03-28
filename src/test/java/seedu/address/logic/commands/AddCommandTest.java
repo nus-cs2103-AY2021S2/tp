@@ -27,6 +27,8 @@ import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.grade.Grade;
 import seedu.address.model.person.Person;
+import seedu.address.model.schedule.ReadOnlyScheduleTracker;
+import seedu.address.model.schedule.Schedule;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -297,6 +299,56 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+
+        @Override
+        public ReadOnlyScheduleTracker getScheduleTracker() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setScheduleTracker(ReadOnlyScheduleTracker scheduleTracker) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Schedule> getFilteredScheduleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasSchedule(Schedule schedule) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addSchedule(Schedule schedule) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteSchedule(Schedule schedule) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteSchedule(int indexToRemove) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setSchedule(Schedule target, Schedule editedSchedule) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasScheduleDateTime(AppointmentDateTime appointmentDateTime) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
