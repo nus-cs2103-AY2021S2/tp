@@ -34,7 +34,9 @@ public class TaskUtil {
     public static String getTaskDetails(Task task) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_TITLE + task.getTitle().fullTitle + " ");
-        sb.append(PREFIX_DEADLINE + task.getDeadline().toString() + " ");
+        if (!task.isDeadlineEmpty()) {
+            sb.append(PREFIX_DEADLINE + task.getDeadline().toString() + " ");
+        }
         sb.append(PREFIX_DURATION + task.getDuration().toString() + " ");
         sb.append(PREFIX_RECURRINGSCHEDULE + task.getRecurringSchedule().value + " ");
         sb.append(PREFIX_DESCRIPTION + task.getDescription().value + " ");

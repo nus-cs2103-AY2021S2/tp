@@ -55,6 +55,15 @@ public class Duration {
         return duration;
     }
 
+    /**
+     * Checks if the value of Duration is Empty.
+     *
+     * @return true if value.isEmpty(), false otherwise.
+     */
+    public boolean isEmptyValue() {
+        return value.isEmpty();
+    }
+
     @Override
     public String toString() {
         return value;

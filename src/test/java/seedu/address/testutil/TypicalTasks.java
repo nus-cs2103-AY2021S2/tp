@@ -29,35 +29,30 @@ public class TypicalTasks {
 
     public static final Task ALICE = new TaskBuilder().withTitle("Assignment 79")
             .withDescription("Build the next Google").withRecurringSchedule("[10/06/2021][Mon][biweekly]")
-            .withDeadline("13/12/2021").withStatus("not done").withDuration("12:30-13:30")
+            .withStatus("not done").withDuration("12:30-13:30")
             .withTags("priorities").build();
     public static final Task BENSON = new TaskBuilder().withTitle("Build a gaming PC")
             .withDescription("buy: coffee, 3080, 40-inch monitor")
-            .withRecurringSchedule("[08/06/2021][Tue][weekly]").withDeadline("12/12/2021").withDuration("12:30-13:30")
-            .withStatus("not done").withTags("findMoney", "priorities").build();
-    public static final Task CARL = new TaskBuilder().withTitle("Countdown to finals").withDeadline("09/09/2021")
+            .withDeadline("12/12/2021").withStatus("not done").withTags("findMoney", "priorities").build();
+    public static final Task CARL = new TaskBuilder().withTitle("Countdown to finals")
             .withDuration("12:30-13:30").withRecurringSchedule("[10/06/2021][Wed][weekly]")
             .withDescription("aiken doeet").withStatus("done").build();
-    public static final Task DANIEL = new TaskBuilder().withTitle("Demo our amazing product").withDeadline("25/09/2021")
+    public static final Task DANIEL = new TaskBuilder().withTitle("Demo our amazing product")
             .withDuration("12:30-13:30").withRecurringSchedule("[05/06/2021][Thu][biweekly]").withStatus("done")
             .withDescription("Number 1 for real").withTags("fact").build();
     public static final Task ELLE = new TaskBuilder().withTitle("Ensure that I eat lunch").withDeadline("20/10/2021")
-            .withDuration("12:30-13:30").withRecurringSchedule("[02/06/2021][Wed][weekly]").withDescription("budget 3$")
-            .withStatus("done").build();
+            .withDescription("budget 3$").withStatus("done").build();
     public static final Task FIONA = new TaskBuilder().withTitle("Final project consult again")
-            .withDeadline("20/10/2021")
-            .withDuration("12:30-13:30").withRecurringSchedule("[03/06/2021][Fri][biweekly]").withDescription("at COM2")
-            .withStatus("done").build();
+            .withDuration("12:30-13:30").withDescription("at COM2").withStatus("done").build();
     public static final Task GEORGE = new TaskBuilder().withTitle("Get ready for 2101 presentation")
-            .withDuration("12:30-13:30").withDeadline("20/05/2022").withRecurringSchedule("[18/06/2021][Sun][weekly]")
+            .withRecurringSchedule("[18/06/2021][Sun][weekly]")
             .withStatus("done").withDescription("remember to shave").build();
 
     // Manually added
-    public static final Task HOON = new TaskBuilder().withTitle("Hoon Meier").withDeadline("04/04/2021")
+    public static final Task HOON = new TaskBuilder().withTitle("Hoon Meier")
             .withDuration("12:30-13:30").withRecurringSchedule("[25/06/2021][Sat][biweekly]")
             .withDescription("little india").withStatus("done").build();
     public static final Task IDA = new TaskBuilder().withTitle("Ida Mueller").withDeadline("05/05/2021")
-            .withDuration("12:30-13:30").withRecurringSchedule("[01/06/2021][Fri][weekly]")
             .withDescription("chicago ave").withStatus("done").build();
 
     // Manually added - Task's details found in {@code CommandTestUtil}
@@ -68,6 +63,9 @@ public class TypicalTasks {
             .withDuration(VALID_DURATION_BOB).withRecurringSchedule(VALID_RECURRINGSCHEDULE_BOB)
             .withDescription(VALID_DESCRIPTION_BOB).withStatus(VALID_STATUS_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    public static final Task AMY_NO_DEADLINE = new TaskBuilder().withTitle(VALID_TITLE_AMY)
+            .withDuration(VALID_DURATION_AMY).withRecurringSchedule(VALID_RECURRINGSCHEDULE_AMY)
+            .withDescription(VALID_DESCRIPTION_AMY).withStatus(VALID_STATUS_AMY).withTags(VALID_TAG_FRIEND).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
