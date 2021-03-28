@@ -28,6 +28,8 @@ import seedu.address.logic.commands.budgetcommands.AddBudgetCommand;
 import seedu.address.logic.commands.budgetcommands.DeleteBudgetCommand;
 import seedu.address.logic.commands.budgetcommands.EditBudgetCommand;
 import seedu.address.logic.commands.budgetcommands.ViewBudgetCommand;
+import seedu.address.logic.commands.filtercommands.AddPersonFilterCommand;
+import seedu.address.logic.commands.filtercommands.DeletePersonFilterCommand;
 import seedu.address.logic.commands.schedulecommands.AddScheduleCommand;
 import seedu.address.logic.commands.schedulecommands.DeleteScheduleCommand;
 import seedu.address.logic.parser.appointmentparser.AddAppointmentCommandParser;
@@ -40,6 +42,8 @@ import seedu.address.logic.parser.budgetparser.DeleteBudgetCommandParser;
 import seedu.address.logic.parser.budgetparser.EditBudgetCommandParser;
 import seedu.address.logic.parser.budgetparser.ViewBudgetCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.filterparser.AddPersonFilterCommandParser;
+import seedu.address.logic.parser.filterparser.DeletePersonFilterCommandParser;
 import seedu.address.logic.parser.scheduleparser.AddScheduleCommandParser;
 import seedu.address.logic.parser.scheduleparser.DeleteScheduleCommandParser;
 
@@ -121,6 +125,12 @@ public class TutorTrackerParser {
 
         case ListAppointmentCommand.COMMAND_WORD:
             return new ListAppointmentCommand();
+
+        case AddPersonFilterCommand.COMMAND_WORD:
+            return new AddPersonFilterCommandParser().parse(arguments);
+
+        case DeletePersonFilterCommand.COMMAND_WORD:
+            return new DeletePersonFilterCommandParser().parse(arguments);
 
         case AddBudgetCommand.COMMAND_WORD:
             return new AddBudgetCommandParser().parse(arguments);
