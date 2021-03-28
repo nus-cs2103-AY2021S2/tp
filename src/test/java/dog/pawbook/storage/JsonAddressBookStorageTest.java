@@ -51,7 +51,7 @@ public class JsonAddressBookStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readDatabase("notJsonFormatAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readDatabase("notJsonFormatDatabase.json"));
     }
 
     @Test
@@ -65,7 +65,7 @@ public class JsonAddressBookStorageTest {
     }
 
     @Test
-    public void readAndSaveAddressBook_allInOrder_success() throws Exception {
+    public void readAndSaveDatabase_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
         Database original = getTypicalAddressBook();
         JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
