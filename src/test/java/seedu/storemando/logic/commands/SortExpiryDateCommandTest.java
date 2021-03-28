@@ -75,6 +75,7 @@ class SortExpiryDateCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new SortQuantityCommand(true)));
+        assertFalse(standardCommand.equals(new SortAscendingQuantityCommand()));
+        assertFalse(standardCommand.equals(new SortDescendingQuantityCommand()));
     }
 }

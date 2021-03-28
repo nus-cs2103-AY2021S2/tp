@@ -2,9 +2,10 @@ package seedu.storemando.logic.parser;
 
 import static seedu.storemando.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import seedu.storemando.logic.commands.SortAscendingQuantityCommand;
 import seedu.storemando.logic.commands.SortCommand;
+import seedu.storemando.logic.commands.SortDescendingQuantityCommand;
 import seedu.storemando.logic.commands.SortExpiryDateCommand;
-import seedu.storemando.logic.commands.SortQuantityCommand;
 import seedu.storemando.logic.parser.exceptions.ParseException;
 
 public class SortCommandParser implements Parser<SortCommand> {
@@ -26,10 +27,10 @@ public class SortCommandParser implements Parser<SortCommand> {
         String[] splitWords = trimmedArgs.split("\\s+");
         if (splitWords.length == 2 && splitWords[0].equalsIgnoreCase(QUANTITY_KEYWORD)
             && splitWords[1].equalsIgnoreCase(ASCENDING_KEYWORD)) {
-            return new SortQuantityCommand(true);
+            return new SortAscendingQuantityCommand();
         } else if (splitWords.length == 2 && splitWords[0].equalsIgnoreCase(QUANTITY_KEYWORD)
             && splitWords[1].equalsIgnoreCase(DESCENDING_KEYWORD)) {
-            return new SortQuantityCommand(false);
+            return new SortDescendingQuantityCommand();
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
