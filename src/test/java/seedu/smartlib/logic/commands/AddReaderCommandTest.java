@@ -124,8 +124,8 @@ public class AddReaderCommandTest {
         }
 
         @Override
-        public void markRecordAsReturned(Record record) {
-
+        public Record markRecordAsReturned(Record record) {
+            return null;
         }
 
         @Override

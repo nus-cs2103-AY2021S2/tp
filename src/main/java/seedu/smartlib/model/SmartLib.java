@@ -2,7 +2,7 @@ package seedu.smartlib.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +24,8 @@ import seedu.smartlib.model.record.UniqueRecordList;
 public class SmartLib implements ReadOnlySmartLib {
 
     public static final int QUOTA = 4;
-    public static final long DURATION = 14L;
+    public static final long DAYS_BORROW_ALLOWED = 14L;
+    public static final int HOURS_BORROW_ALLOWED = (int) DAYS_BORROW_ALLOWED * 24;
 
     private final UniqueBookList books;
     private final UniqueReaderList readers;
@@ -452,7 +453,7 @@ public class SmartLib implements ReadOnlySmartLib {
         }
 
         if (!book.isBorrowed()) {
-            reader.getBorrows().put(book, new DateBorrowed(LocalDate.now()));
+            reader.getBorrows().put(book, new DateBorrowed(LocalDateTime.now()));
             Reader editedReader = new Reader(reader.getName(), reader.getPhone(), reader.getEmail(),
                     reader.getAddress(), reader.getTags(), reader.getBorrows());
             Book editedBook = new Book(book.getName(), book.getAuthor(), book.getPublisher(),

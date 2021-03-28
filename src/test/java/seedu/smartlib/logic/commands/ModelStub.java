@@ -59,7 +59,7 @@ class ModelStub implements Model {
     }
 
     @Override
-    public void markRecordAsReturned(Record record) {
+    public Record markRecordAsReturned(Record record) {
         throw new AssertionError("This method should not be called.");
     }
 

@@ -3,9 +3,10 @@ package seedu.smartlib.model.record;
 import static java.time.temporal.ChronoUnit.DAYS;
 import static java.util.Objects.requireNonNull;
 import static seedu.smartlib.commons.util.AppUtil.checkArgument;
-import static seedu.smartlib.model.SmartLib.DURATION;
+import static seedu.smartlib.model.SmartLib.DAYS_BORROW_ALLOWED;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 
 /**
  * The DateBorrowed class takes note of the date which a book is borrowed from SmartLib.
@@ -13,7 +14,6 @@ import java.time.LocalDate;
 public class DateBorrowed {
 
     public static final String MESSAGE_CONSTRAINTS = "Date should be of the format yyyy-mm-dd ";
-    public static final String VALIDATION_REGEX = "^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$";
 
     private final String value;
 
@@ -22,7 +22,7 @@ public class DateBorrowed {
      *
      * @param date A valid date.
      */
-    public DateBorrowed(LocalDate date) {
+    public DateBorrowed(LocalDateTime date) {
         requireNonNull(date);
         checkArgument(isValidDate(date.toString()), MESSAGE_CONSTRAINTS);
         value = date.toString();
@@ -39,13 +39,17 @@ public class DateBorrowed {
         value = date;
     }
 
+    public String getValue() {
+        return value;
+    }
+
     /**
      * Indicates whether the book associated with a record is overdue.
      *
      * @return true if the book is overdue, and false otherwise.
      */
     public boolean isOverdue() {
-        return DAYS.between(LocalDate.parse(this.value), LocalDate.now()) > DURATION;
+        return DAYS.between(LocalDateTime.parse(this.value), LocalDateTime.now()) > DAYS_BORROW_ALLOWED;
     }
 
     /**
@@ -55,7 +59,13 @@ public class DateBorrowed {
      * @return true if a given string is a valid date, and false otherwise.
      */
     public static boolean isValidDate(String test) {
-        return test.toString().matches(VALIDATION_REGEX);
+        try {
+            LocalDateTime.parse(test);
+        } catch (DateTimeParseException e) {
+            // the given string is not a valid date (cannot be parsed)
+            return false;
+        }
+        return true;
     }
 
     /**

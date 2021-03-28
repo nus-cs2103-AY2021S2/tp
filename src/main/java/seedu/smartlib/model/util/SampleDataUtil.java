@@ -82,11 +82,11 @@ public class SampleDataUtil {
      */
     public static Reader[] getSampleReaders() {
         HashMap<Book, DateBorrowed> berniceMap = new HashMap<>();
-        berniceMap.put(HOBBIT, new DateBorrowed("2021-02-23"));
-        berniceMap.put(OLDMAN, new DateBorrowed("2021-03-02"));
+        berniceMap.put(HOBBIT, new DateBorrowed("2021-01-22T23:30:00"));
+        berniceMap.put(OLDMAN, new DateBorrowed("2021-03-02T13:45:00"));
 
         HashMap<Book, DateBorrowed> alexMap = new HashMap<>();
-        alexMap.put(CLOUDATLAS, new DateBorrowed("2021-02-22"));
+        alexMap.put(CLOUDATLAS, new DateBorrowed("2020-11-23T08:30:00"));
 
         return new Reader[] {
             new Reader(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
@@ -117,9 +117,10 @@ public class SampleDataUtil {
      */
     public static Record[] getSampleRecords() {
         return new Record[] {
-            new Record(CLOUDATLAS.getBarcode(), CLOUDATLAS.getBorrowerName(), new DateBorrowed("2020-11-23")),
-            new Record(HOBBIT.getBarcode(), HOBBIT.getBorrowerName(), new DateBorrowed("2021-01-22")),
-            new Record(OLDMAN.getBarcode(), OLDMAN.getBorrowerName(), new DateBorrowed("2021-03-02"))
+            new Record(CLOUDATLAS.getBarcode(), CLOUDATLAS.getBorrowerName(),
+                    new DateBorrowed("2020-11-23T08:30:00")),
+            new Record(HOBBIT.getBarcode(), HOBBIT.getBorrowerName(), new DateBorrowed("2021-01-22T23:30:00")),
+            new Record(OLDMAN.getBarcode(), OLDMAN.getBorrowerName(), new DateBorrowed("2021-03-02T13:45:00"))
         };
     }
 
