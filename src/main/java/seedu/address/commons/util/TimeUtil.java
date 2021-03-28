@@ -1,15 +1,16 @@
 package seedu.address.commons.util;
 
 import seedu.address.commons.exceptions.DateConversionException;
+import seedu.address.commons.exceptions.TimeConversionException;
 
-import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_PARSER_DATE_CONSTRAINTS;
+import static seedu.address.commons.core.Messages.MESSAGE_PARSER_TIME_CONSTRAINTS;
 
 /**
  * A class for encoding and decoding of Time.
@@ -28,61 +29,27 @@ public class TimeUtil {
 
     /**
      * Encodes a time passed as a String into a LocalTime.
-     * @param time Time in the HH:mm format.
+     * @param time Time in the HHmm or HH:mm format.
      * @return A LocalTime object.
      * @throws DateConversionException Occurs when a date had been passed in with the wrong format.
      */
-    public static LocalTime encodeDate(String time) throws DateConversionException {
-        requireNonNull(date);
+    public static LocalTime encodeTime(String time) throws TimeConversionException {
+        requireNonNull(time);
         try {
-            return checkDateIsNotNegative(LocalDate.parse(date, formatter));
+            return LocalTime.parse(time, formatter);
         } catch (DateTimeParseException e) {
-            throw new DateConversionException(MESSAGE_PARSER_DATE_CONSTRAINTS);
+            throw new TimeConversionException(MESSAGE_PARSER_TIME_CONSTRAINTS);
         }
     }
 
     /**
-     * Decodes a date passed as a LocalDate into a String in the dd MMM uuuu format.
-     * @param date A LocalDate object.
-     * @return A date String in the dd MMM uuuu format.
+     * Decodes a time passed as a LocalTime into a String in the HHmm format.
+     * @param time A LocalTime object.
+     * @return A time String in the HHmm format.
      */
-    public static String decodeDate(LocalDate date) {
-        requireNonNull(date);
-        return date.format(DateTimeFormatter.ofPattern("dd MMM uuuu"));
+    public static String decodeTime(LocalTime time) {
+        requireNonNull(time);
+        return time.format(DateTimeFormatter.ofPattern("HH:mm"));
     }
 
-    /**
-     * Decodes a date passed as a LocalDate into a String in the EEEE, dd MMM uuuu format.
-     * @param date A LocalDate object.
-     * @return A date String in the EEEE, dd MMM uuuu format.
-     */
-    public static String decodeDateWithDay(LocalDate date) {
-        requireNonNull(date);
-        return date.format(DateTimeFormatter.ofPattern("EEEE, dd MMM uuuu"));
-    }
-
-    /**
-     * Decodes a date passed as a LocalDate into a String in the uuuu-MM-dd format.
-     * @param date A LocalDate object.
-     * @return A date String in the uuuu-MM-dd format.
-     */
-    public static String decodeDateForStorage(LocalDate date) {
-        requireNonNull(date);
-        return date.format(DateTimeFormatter.ofPattern("dd-MM-uuuu"));
-    }
-
-    /**
-     * Checks if year is negative.
-     *
-     * @param date {@code LocalDate} to check.
-     * @return {@code date} if year is non-negative.
-     * @throws DateConversionException if {@code date} is negative.
-     */
-    private static LocalDate checkDateIsNotNegative(LocalDate date) throws DateConversionException {
-        if (date.isBefore(LocalDate.ofYearDay(0, 1))) {
-            throw new DateConversionException("Year should be a non-negative 4 digit number.");
-        }
-
-        return date;
-    }
 }
