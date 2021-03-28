@@ -87,6 +87,7 @@ public class UniqueResidenceList implements Iterable<Residence> {
     public void setResidences(UniqueResidenceList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+
     }
 
     /**
@@ -100,6 +101,7 @@ public class UniqueResidenceList implements Iterable<Residence> {
         }
 
         internalList.setAll(residences);
+
     }
 
     /**
