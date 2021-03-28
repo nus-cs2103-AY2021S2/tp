@@ -30,11 +30,14 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
+    private String lastCommand = "";
     private ResultDisplay resultDisplay;
     private Stage primaryStage;
 
     // Handle ctrl+c event for cancelling API calls
     private EventHandler<KeyEvent> keyEventHandler;
+    // Handle ctrl + up-arrow event for retrieving last command
+    private final EventHandler<KeyEvent> lastCommandEventHandler;
 
     @FXML
     private TextField commandTextField;
@@ -50,10 +53,13 @@ public class CommandBox extends UiPart<Region> {
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
         initialiseKeyEventHandler();
+        this.lastCommandEventHandler = this::setLastCommand;
+        setLastCommandKeyEventHandler();
     }
 
     /**
-     * Handles the command received
+     * Handles the command received. Note that if the entered commandText is an empty string or an invalid command,
+     * lastCommand attribute will not be updated.
      *
      * @param commandText command received from user
      * @param isInThread boolean to flag if a command is being ran on a background thread
@@ -62,6 +68,7 @@ public class CommandBox extends UiPart<Region> {
         try {
             commandExecutor.execute(commandText);
             commandTextField.setText("");
+            lastCommand = commandText;
             //to-do remove illegal arg exception Jun Xiong and Tan Jin
         } catch (CommandException | ParseException | RequestException | IllegalArgumentException
                 | AbortRequestException e) {
@@ -149,6 +156,26 @@ public class CommandBox extends UiPart<Region> {
         if (kc.match(event)) {
             Request.getHttpclient().close();
         }
+    }
+
+    /**
+     * Copies the last valid command (if any) into the command box when ctrl + up-arrow is pressed. This will override
+     * existing text in the command box.
+     *
+     * @param event key event for pressed keys
+     */
+    public void setLastCommand(KeyEvent event) {
+        KeyCombination kc = new KeyCodeCombination(KeyCode.UP, KeyCombination.CONTROL_DOWN);
+        if (kc.match(event) && !lastCommand.isEmpty()) {
+            commandTextField.setText(lastCommand);
+        }
+    }
+
+    /**
+     * Sets the key event handler to look out for key input of ctrl + up-arrow from user.
+     */
+    public void setLastCommandKeyEventHandler() {
+        primaryStage.addEventHandler(KeyEvent.KEY_PRESSED, this.lastCommandEventHandler);
     }
 
     /**
