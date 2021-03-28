@@ -29,6 +29,11 @@
     -fx-font-family: "Segoe UI Semibold";
 }
 
+.date-header {
+    -fx-font-weight: bold !important;
+    -fx-text-fill: #ff9800 !important;
+}
+
 .tab-pane {
     -fx-padding: 0 0 0 1;
 }
@@ -130,6 +135,10 @@
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
     -fx-text-fill: #010504;
+}
+
+.label_with_icon {
+    -fx-padding: 0 0 0 5;
 }
 
 .stack-pane {

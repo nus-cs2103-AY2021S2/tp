@@ -7,7 +7,7 @@ title: About Us
 We are a team of Year 2 Computer Science students based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
 Our team members are:
-* [Tran Nguyen Manh Dan](#tran-nguyen-manh-dan)
+* [Dan Tran](#dan-tran)
 * [Lim Si Ting](#lim-si-ting)
 * [Keith Low Jun](#keith-low-jun)
 * [Yoong Yi En](#yoong-yi-en)
@@ -16,34 +16,34 @@ You can reach us at the email `e0406245@u.nus.edu`
 
 ## Project team
 
-### Tran Nguyen Manh Dan
+### Dan Tran
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/picasdan9.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/picasdan9)]
+[[portfolio](team/picasdan9.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: In charge of appointments and UI
 
 ### Lim Si Ting
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sitingst.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/SiTingST)]
+[[portfolio](team/sitingst.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: In charge of storage and user guide  
 
 ### Keith Low Jun
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/fairyinabottle4.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/fairyinabottle4)] [[portfolio](team/fairyinabottle4.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: In charge of students and model 
 
 ### Yoong Yi En
 
@@ -53,5 +53,5 @@ You can reach us at the email `e0406245@u.nus.edu`
 [[portfolio](team/yienyoong.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: In charge of logic and developer guide 
 

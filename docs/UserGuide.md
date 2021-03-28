@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Vax@NUS is a **one stop management app to efficiently track and and schedule COVID-19 vaccinations for NUS students.** It is a desktop app **optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Vax@NUS can get your appointment management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -14,9 +14,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `VaxAtNUS.jar` from [here](https://github.com/AY2021S2-CS2103T-W10-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your Vax@NUS application.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -24,14 +24,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
-
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
-
+   * **`list students`** : Lists all students.
    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
@@ -42,7 +35,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -112,9 +105,9 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a student entry: `add`
 
-Adds a person to the records.
+Adds a student to the records.
 
 Format: `add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS r/SCHOOL_RESIDENCE[optional]`
 
@@ -129,15 +122,15 @@ Edits a student in the records.
 
 Format: `edit INDEX [n/NAME] [i/MATRICULATION_NUMBER] [f/FACULTY] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/VACCINATION_STATUS] [m/MEDICAL_DETAILS] [r/SCHOOL_RESIDENCE]`
 
-* Edits the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index must be a positive integer 1, 2, 3, …​
+* Edits the student at the specified INDEX. The index refers to the index number shown in the displayed student list. The index must be a positive integer 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
 Examples:
 
-* `edit 1 p/91234567 f/MED` Edits the phone number and faculty of the 1st person to be 91234567 and MED respectively.
+* `edit 1 p/91234567 f/MED` Edits the phone number and faculty of the first student to be 91234567 and MED respectively.
 
-* `edit 2 r/KRH`  Edits the school residence of the 2nd person to be KRH
+* `edit 2 r/KRH`  Edits the school residence of the second student to be KRH.
 
 
 ### Listing all students in the records : `list`
@@ -146,34 +139,87 @@ Shows a list of all students in the records.
 
 Format: `list students`
 
-### Searching for a student by matriculation number: `search`
+### Finding a student by matriculation number: `find`
 
-Shows all the details in the records of the student with the matching matriculation number.
+Shows only the details of the student that matches the specified matriculation number.
 
-Format: `search /MATRICULATION_NUMBER`
+Format: `find MATRICULATION_NUMBER`
 
 
 Examples:
-* `search A1234567X` returns `John Doe`
+* `Find A1234567X` returns `John Doe` from the record.
 
-### Deleting a student by their matriculation number: `delete`
+### Filtering the student entries by vaccination status, faculty or school residence : `filter`
 
-Deletes the specified person from the address book.
+Shows only the details of the student entries that matches the specified filter condition.
 
-Format: `delete /MATRICULATION NUMBER`
+Format: <br>
+`filter VACCINATION_STATUS`
+`filter FACULTY`
+`filter SCHOOL_RESIDENCE`
 
-* If the matriculation number does not exist in the records, a popup message will be displayed to inform users that 
-  the matriculation number is not found
+Examples:
+* `filter VACCINATED` 
+* `filter COM` 
+* `filter RVRC` 
+
+
+### Deleting a student by their matriculation number: `deleteStud`
+
+Deletes the specified student from Vax@NUS' records.
+
+Format: `deleteStud MATRICULATION NUMBER`
+
+* If the matriculation number does not exist in the records, an error message will be displayed to inform users that 
+  the matriculation number is not found.
   
 
 Examples:
-* `delete /A7654321J` deletes Betsy Crowe from the records.
+* `deleteStud A7654321J` deletes Betsy Crowe from the records.
 
-### Clearing all student entries : `clear`
 
-Clears all entries from the records.
+### Adding an appointment: `addAppt`
 
-Format: `clear`
+Adds an appointment to Vax@NUS' records. 
+
+Format: `addAppt i/MATRICULATION_NUMBER d/DATE_YYYY-MM-DD ts/START_TIME_HH:MM te/END_TIME_HH:MM`
+
+* The student that the appointment is for must exist in the records before the appointment can be created.
+
+
+Examples:
+* `addAppt i/A1234567X d/2021-12-13 ts/13:00 te/14:00`
+* `addAppt i/A7654321J d/2021-12-13 ts/14:00 te/14:30`
+
+
+### Viewing statistics for student population: `stats`
+
+Displays the statistics of the requested Faculty/School Residence, the whole of NUS or statistics of all Faculties
+and School Residences. 
+
+Format: <br>
+`stats FACULTY`
+`stats SCHOOL_RESIDENCE`
+`stats NUS`
+`stats all`
+
+* If there is no available data for the requested Faculty or School Residence, a message will be displayed to inform
+  users that the requested Faculty or School Residence has no available data.
+  
+
+Examples:
+* `stats COM` displays the percentage of vaccinated students in School of Computing.
+* `stats RC4` displays the percentage of vaccinated students in RC4.
+* `stats DOES_NOT_LIVE_ON_CAMPUS` displays the percentage of vaccinated students not living on campus.
+* `stats NUS` displays the percentage of vaccinated students in NUS.
+* `stats all` displays the list of percentages of vaccinated students in every Faculty and School Residence.
+
+### Viewing statistics for appointments: `statsAppt`
+Displays the number of upcoming and previous appointments within 6 days from the current day and includes the day itself.
+
+Format: <br>
+`statsAppt`
+
 
 ### Exiting the program : `exit`
 
@@ -193,19 +239,33 @@ _Details coming soon ..._
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**Q**: What do I do if I accidentally deleted a student? 
+<br>
+**A**: We regret to inform you that deletion is permanent. You will have to manually re-add the student.
 
+**Q**: What can be included in medical details?
+<br>
+**A**: Allergies and past medical history. 
+
+**Q**: Will I be able to amend a student’s details?
+<br>
+**A**: Unfortunately, this feature is not available at the moment, but plans are in the works to make this a reality.
+
+**Q** : Will I be able to add other types of appointments besides vaccination appointments?
+<br>
+**A** : No, the current version only allows you to add vaccination appointments and not any other type of appointments. 
+ 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS r/SCHOOL_RESIDENCE[optional] m/MEDICAL_DETAILS` <br> e.g., ` add n/John Doe i/A1234567X f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated r/RVRC m/peanut allergy`
-**edit** | `edit INDEX [n/NAME] [i/MATRICULATION_NUMBER] [f/FACULTY] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/VACCINATION_STATUS] [m/MEDICAL_DETAILS] [r/SCHOOL_RESIDENCE]` <br> e.g., `edit 1 p/91234567 f/MED`
+**Add** | `add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS r/SCHOOL_RESIDENCE[optional] m/MEDICAL_DETAILS` <br> e.g., `add n/John Doe i/A1234567X f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated r/RVRC m/peanut allergy`
+**Edit** | `edit INDEX [n/NAME] [i/MATRICULATION_NUMBER] [f/FACULTY] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/VACCINATION_STATUS] [m/MEDICAL_DETAILS] [r/SCHOOL_RESIDENCE]` <br> e.g., `edit 1 p/91234567 f/MED`
 **List Students** | `list students`
-**Search** | `search /MATRICULATION_NUMBER ` <br> e.g., `search A1234567X`
-**Delete** | `delete /MATRICULATION_NUMBER` <br> e.g., `delete A1234567X`
-**Clear** | `clear`
-
+**Find** | `find MATRICULATION_NUMBER` e.g., `find A1234567X`
+**Filter** | `filter VACCINATION_STATUS`  e.g., `filter VACCINATED` <br> `filter FACULTY ` e.g., `filter COM` <br> `filter SCHOOL_RESIDENCE` e.g., `filter RVRC` 
+**Delete Student** | `deleteStud MATRICULATION_NUMBER` e.g., `deleteStud A1234567X`
+**View Student Statistics** | `stats FACULTY` e.g., `stats COM` <br> `stats SCHOOL_RESIDENCE` e.g., `stats RC4` <br> `stats NUS` <br> `stats all` 
+**View Appointment Statistics** | `statsAppt`
