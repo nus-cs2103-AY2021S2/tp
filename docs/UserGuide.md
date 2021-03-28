@@ -110,7 +110,7 @@ Enter the time you wish to complete your task in the format: yyyy-MM-dd HH:mm or
 </div>
 
 
-![add message](images/addTaskUiV1.2.png)
+![add message](images/addTaskUiV1.3.png)
 
 Examples:
 * `add n/v1.2 TP m/CS2103T d/implement basic features b/2021-03-13 23:59 w/3 t/urgent`
