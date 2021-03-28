@@ -3,9 +3,11 @@ layout: page
 title: User Guide
 ---
 # TutorBuddy
-TutorBuddy is an application made for independent tutors as a management tool to cut down on admin overheads,
-by graphically managing their student’s information with a Graphical User Interface (GUI).
-It allows for faster and more effective student management.
+TutorBuddy is a desktop application made for freelance tutors to efficiently manage their students' contacts,
+provide a quick overview of scheduled tuition sessions at a glance, and handle monthly tuition fees calculation.
+TutorBuddy is also optimized for fast typing users to handle their day-to-day administrative responsibilities
+effectively.
+
 
 **Table of Contents**
 * [Quick start](#quick-start)
@@ -28,7 +30,7 @@ It allows for faster and more effective student management.
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have `Java 11` or above installed in your Computer.
 
 2. Download the latest `TutorBuddy.jar` from [here](#).
 
@@ -42,19 +44,19 @@ It allows for faster and more effective student management.
    Some example commands you can try:
 
 **Students**
-  * `list_student`: List all students
-  * `find_student James`: Finds and lists all students that have the keyword **James** in the student's name
-  * `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Sec2 g/95421323 r/Mother`: Adds a student John Doe to the Tutor Buddy application
-  * `delete_student 3`: Deletes the 3rd student in the student list
+* `list_student`: List all students
+* `find_student James`: Finds and lists all students that have the keyword **James** in the student's name
+* `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Sec2 g/95421323 r/Mother`: Adds a student John Doe to the Tutor Buddy application
+* `delete_student 3`: Deletes the 3rd student in the student list
 
 **Tuition Session**
-  * `list_session`: List all tuition sessions
-  * `find_session James`: Finds and lists all tuition sessions that James have
-  * `add_session n/John Doe d/2021-01-01 t/13:00 k/120 s/Biology f/80`: Adds a tuition session for John Doe happening on 14-02-2021
-  * `delete_session n/John Lee i/1`: Deletes the 1st tuition session in John's tuition session list
+* `list_session`: List all tuition sessions
+* `find_session James`: Finds and lists all tuition sessions that James have
+* `add_session n/John Doe d/2021-01-01 t/13:00 k/120 s/Biology f/80`: Adds a tuition session for John Doe happening on 14-02-2021
+* `delete_session n/John Lee i/1`: Deletes the 1st tuition session in John's tuition session list
 
 **General**
-  * `exit`: Exits the application
+* `exit`: Exits the application
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -80,7 +82,7 @@ Format: `find_student KEYWORD [MORE_KEYWORDS]`
 * Students matching at least one keyword will be returned (i.e. `OR` search)
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-Examples:
+Example:
 
 \# | Student Name
 ---- |---------
@@ -88,6 +90,10 @@ Examples:
 2 | Johnz Tan
 3 | Jon Koh
 4 | Samuel Lee
+
+*Figure 1: Current State of Student List*
+
+Example command usages from the current student list shown in Figure 1:
 
 * `find_student John` returns John Lee
 * `find_student Sam` returns nothing
@@ -127,8 +133,18 @@ Examples:
 3 | Jon Koh | jonkoh@gmail.com
 4 | Samuel Lee | sam@gmail.com
 
-* To get emails of all students: `list_student` followed by `emails` returns `johnlee@gmail.com;johnztan@gmail.com;jonkoh@gmail.com;sam@gmail.com;`
-* To get emails of specific students: `find_student john jon` followed by  `emails` returns `johnlee@gmail.com;jonkoh@gmail.com;`
+*Figure 2.1 State of Student List After `list_student` command*
+
+\# | Student Name | Email
+---- |---------|------|
+1 | John Lee | johnlee@gmail.com
+2 | Jon Koh | jonkoh@gmail.com
+
+*Figure 2.2 State of Student List After `find_student john jon` command*
+
+* To get emails of all students (see Figure 2.1): `list_student` followed by `emails` returns `johnlee@gmail.com;johnztan@gmail.com;jonkoh@gmail.com;sam@gmail.com;`
+
+* To get emails of specific students (see Figure 2.2): `find_student john jon` followed by  `emails` returns `johnlee@gmail.com;jonkoh@gmail.com;`
 
 
 ### Listing all tuition sessions: `list_session`
