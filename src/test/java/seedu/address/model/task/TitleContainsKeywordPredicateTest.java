@@ -40,7 +40,8 @@ public class TitleContainsKeywordPredicateTest {
     @Test
     public void test_titleContainsKeywords_returnsTrue() {
         // One keyword
-        TitleContainsKeywordPredicate predicate = new TitleContainsKeywordPredicate(Collections.singletonList("Meeting"));
+        TitleContainsKeywordPredicate predicate = new TitleContainsKeywordPredicate(
+                Collections.singletonList("Meeting"));
         assertTrue(predicate.test(new TaskBuilder().withTitle("Meeting").build()));
 
         // Multiple keywords
