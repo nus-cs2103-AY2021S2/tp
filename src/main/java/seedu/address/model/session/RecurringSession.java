@@ -99,7 +99,8 @@ public class RecurringSession extends Session {
         requireAllNonNull(sessionDate);
         checkArgument(!startAfter(sessionDate), "There exists no session before.");
         int numOfDaysBetween = getSessionDate().numOfDayTo(sessionDate);
-        LocalDate lastLocalDate = sessionDate.getDateTime().minusDays(numOfDaysBetween % interval.getValue()).toLocalDate();
+        LocalDate lastLocalDate = sessionDate.getDateTime()
+                .minusDays(numOfDaysBetween % interval.getValue()).toLocalDate();
         SessionDate lastSessionDate = new SessionDate(
                 LocalDateTime.of(lastLocalDate, getSessionDate().getTime())
                         .toString());
@@ -135,7 +136,7 @@ public class RecurringSession extends Session {
             firstInSpan = new SessionDate(firstInSpanLdt.toString());
         }
 
-        return firstInSpan.numOfDayTo(lastInSpan) / interval.getValue()+ 1;
+        return firstInSpan.numOfDayTo(lastInSpan) / interval.getValue() + 1;
     }
 
     @Override
