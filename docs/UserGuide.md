@@ -75,13 +75,13 @@ Format: `help`
 
 ### Adding a residence: `add`
 
-Adds a new residence to the list of residences,default for CLEANING_STATUS and BOOKING_STATUS is ‘cleaned’ and ‘not-booked’ respectively.
+Adds a new residence to the list of residences, default for CLEANING_STATUS is ‘cleaned’.
 
-Format: ` add n/NAME_OF_APARTMENT a/ADDRESS [b/BOOKING_DETAILS] [clean/[y or n]] [t/TAG] `
+Format: ` add n/NAME_OF_APARTMENT a/ADDRESS [clean/[y or n]] [t/TAG] `
 
 Examples:
 * `add n/Melville Park a/22 Simei Street 1, #10-02, S529948`
-* `add n/Clementi HDB a/459A Clementi Ave 3, #04-257, S121459 b/4 adults clean/n`
+* `add n/Clementi HDB a/459A Clementi Ave 3, #04-257, S121459 clean/n`
 
 ### Listing all residences: `list`
 
