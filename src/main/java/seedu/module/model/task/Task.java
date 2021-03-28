@@ -1,14 +1,17 @@
 package seedu.module.model.task;
 
+import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE;
 import static seedu.module.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.module.commons.core.optionalfield.OptionalField;
 import seedu.module.model.tag.Tag;
 
 /**
@@ -21,46 +24,25 @@ public class Task {
 
     // Identity fields
     private final Name name;
-    private Time startTime;
+    private final OptionalField<Time> startTime;
     private final Time deadline;
     private final Module module;
-    private boolean isRecurringTask;
-    private final boolean isDeadline;
 
     // Data fields
     private final Description description;
     private final Workload workload;
     private final DoneStatus doneStatus;
+    private final OptionalField<Recurrence> recurrence;
     private final Set<Tag> tags = new HashSet<>();
-    private Recurrence recurrence;
 
     /**
      * Every field must be present and not null.
      */
-    //no starttime, no recurrence
-    public Task(Name name, Time deadline, Module module, Description description,
-                Workload workload, DoneStatus doneStatus, Set<Tag> tags) {
+    public Task(Name name, OptionalField<Time> startTime, Time deadline, Module module, Description description,
+                Workload workload, DoneStatus doneStatus, OptionalField<Recurrence> recurrence, Set<Tag> tags) {
         requireAllNonNull(name, deadline, module, description, workload, doneStatus, tags);
         this.name = name;
-        this.deadline = deadline;
-        this.module = module;
-        this.description = description;
-        this.workload = workload;
-        this.doneStatus = doneStatus;
-        this.tags.addAll(tags);
-        this.isRecurringTask = false;
-        this.isDeadline = true;
-    }
-
-    /**
-     * Overloaded constructor for Task when an optional Recurrence is passed in.
-     * Every field must be present and not null.
-     */
-    //no startime, recurrence
-    public Task(Name name, Time deadline, Module module, Description description,
-                Workload workload, DoneStatus doneStatus, Recurrence recurrence, Set<Tag> tags) {
-        requireAllNonNull(name, deadline, module, description, workload, doneStatus, recurrence, tags);
-        this.name = name;
+        this.startTime = startTime;
         this.deadline = deadline;
         this.module = module;
         this.description = description;
@@ -68,48 +50,51 @@ public class Task {
         this.doneStatus = doneStatus;
         this.recurrence = recurrence;
         this.tags.addAll(tags);
-        this.isRecurringTask = true;
-        this.isDeadline = true;
     }
 
     /**
-     * Every field must be present and not null.
+     * Factory method designed for done and notDone command, to get rid of repeat code.
+     *
+     * @param status done or not done status.
+     * @return an edited task object.
      */
-    //starttime, no recurrence
-    public Task(Name name, Time startTime, Time deadline, Module module, Description description,
-                Workload workload, DoneStatus doneStatus, Set<Tag> tags) {
-        requireAllNonNull(name, startTime, deadline, module, description, workload, doneStatus, tags);
-        this.name = name;
-        this.startTime = startTime;
-        this.deadline = deadline;
-        this.module = module;
-        this.description = description;
-        this.workload = workload;
-        this.doneStatus = doneStatus;
-        this.tags.addAll(tags);
-        this.isRecurringTask = false;
-        this.isDeadline = false;
+    public static Task setDoneStatus(Task task, DoneStatus status) {
+        return new Task(task.name, task.startTime, task.deadline, task.module, task.description, task.workload,
+                status, task.recurrence, task.tags);
     }
 
     /**
-     * Overloaded constructor for Task when an optional Recurrence is passed in.
-     * Every field must be present and not null.
+     * Factory method designed for tag and deleteTag command, to get rid of repeat code.
+     *
+     * @param tags new tags.
+     * @return an edited task object.
      */
-    //starttime, recurrence
-    public Task(Name name, Time startTime, Time deadline, Module module, Description description,
-                Workload workload, DoneStatus doneStatus, Recurrence recurrence, Set<Tag> tags) {
-        requireAllNonNull(name, startTime, deadline, module, description, workload, doneStatus, tags);
-        this.name = name;
-        this.startTime = startTime;
-        this.deadline = deadline;
-        this.module = module;
-        this.description = description;
-        this.workload = workload;
-        this.doneStatus = doneStatus;
-        this.tags.addAll(tags);
-        this.recurrence = recurrence;
-        this.isRecurringTask = true;
-        this.isDeadline = false;
+    public static Task setTags(Task task, Set<Tag> tags) {
+        return new Task(task.name, task.startTime, task.deadline, task.module, task.description, task.workload,
+                task.doneStatus, task.recurrence, tags);
+    }
+
+    /**
+     * Factory method for updating recurrence task.
+     *
+     * @param task the task need to be updated.
+     * @return the updated task.
+     */
+    public static Task updateRecurrenceTask(Task task) {
+        DoneStatus defaultDoneStatus = new DoneStatus(false);
+
+        boolean isUnchanged;
+        Time newDeadline = getRecurringTime(task, task.getDeadline());
+        OptionalField<Time> newStartTime = task.getStartTimeWrapper();
+
+        isUnchanged = newDeadline.equals(task.getDeadline());
+
+        if (!isUnchanged) {
+            newStartTime = getRecurringTime(task, task.getStartTimeWrapper());
+        }
+
+        return new Task(task.name, newStartTime, newDeadline, task.module, task.description, task.workload,
+                defaultDoneStatus, task.recurrence, task.tags);
     }
 
     public Name getName() {
@@ -117,7 +102,11 @@ public class Task {
     }
 
     public Time getStartTime() {
-        return startTime;
+        return startTime.getField();
+    }
+
+    public OptionalField<Time> getStartTimeWrapper() {
+        return this.startTime;
     }
 
     public Time getDeadline() {
@@ -141,15 +130,19 @@ public class Task {
     }
 
     public Recurrence getRecurrence() {
-        return recurrence;
+        return recurrence.getField();
+    }
+
+    public OptionalField<Recurrence> getRecurrenceWrapper() {
+        return this.recurrence;
     }
 
     public boolean isRecurring() {
-        return isRecurringTask;
+        return !recurrence.isNull();
     }
 
     public boolean isDeadline() {
-        return isDeadline;
+        return startTime.isNull();
     }
 
     /**
@@ -158,10 +151,10 @@ public class Task {
      * @return if the relationship between startTime and deadLine is invalid
      */
     public boolean isTimeInvalid() {
-        if (this.startTime == null) {
+        if (this.startTime.isNull()) {
             return false;
         }
-        return this.startTime.compareTo(this.deadline) >= 0;
+        return this.startTime.getField().compareTo(this.deadline) >= 0;
     }
 
     /**
@@ -189,34 +182,43 @@ public class Task {
     /**
      * Returns a new valid Deadline for the recurring task if previous recurring deadline has expired.
      *
-     * @param currDeadline current deadline of the recurring task
-     * @param taskRecurrence recurrence of the task
+     * @param task the task need to be updated.
+     * @param oldTime current deadline of the recurring task.
      * @return new Deadline object for the recurring task.
      */
-    public Time getRecurringDeadline(Time currDeadline, Recurrence taskRecurrence) {
-        requireAllNonNull(currDeadline, taskRecurrence);
-        assert(isRecurringTask);
+    private static Time getRecurringTime(Task task, Time oldTime) {
+        requireAllNonNull(oldTime);
+        assert(task.isRecurring());
 
-        String nextRecurringDeadlineStr = currDeadline.value;
+        DateTimeFormatter formatter;
+        String nextRecurringDeadlineStr = oldTime.value;
         Time currTime = Time.makeDeadlineWithTime(LocalDateTime.now());
+        Recurrence taskRecurrence = task.getRecurrence();
 
-        if (currDeadline.compareTo(currTime) < 0) {
+        String dateValue = oldTime.value.split(" ")[0];
+        if (oldTime.value.length() == dateValue.length()) {
+            formatter = ISO_LOCAL_DATE;
+        } else {
+            formatter = Time.DATE_TIME_FORMATTER_WITH_TIME;
+        }
+
+        if (oldTime.compareTo(currTime) < 0) {
             // deadline is expired
             switch (taskRecurrence.getRecurrenceType()) {
             case daily:
                 //change date to day + 1
-                nextRecurringDeadlineStr = currDeadline.getTime().plusDays(1)
-                        .format(Time.DATE_TIME_FORMATTER_WITH_TIME);
+                nextRecurringDeadlineStr = oldTime.getTime().plusDays(1)
+                        .format(formatter);
                 break;
             case weekly:
                 //change date to day + 7
-                nextRecurringDeadlineStr = currDeadline.getTime().plusDays(7)
-                        .format(Time.DATE_TIME_FORMATTER_WITH_TIME);
+                nextRecurringDeadlineStr = oldTime.getTime().plusDays(7)
+                        .format(formatter);
                 break;
             case monthly:
                 //change date to month + 1
-                nextRecurringDeadlineStr = currDeadline.getTime().plusMonths(1)
-                        .format(Time.DATE_TIME_FORMATTER_WITH_TIME);
+                nextRecurringDeadlineStr = oldTime.getTime().plusMonths(1)
+                        .format(formatter);
                 break;
             default:
                 // throw new CommandException(MESSAGE_INVALID_RECURRENCE);
@@ -224,23 +226,23 @@ public class Task {
             return new Time(nextRecurringDeadlineStr);
         } else {
             //deadline is still valid
-            return currDeadline;
+            return oldTime;
         }
     }
 
     /**
-     * Returns a new Task object if the task is recurring and the deadline has expired.
+     * Overloaded getRecurringTime method for optional time.
      *
-     * @param newDeadline is the new Recurring Deadline.
+     * @param task the task need to be updated.
+     * @param oldTime current deadline of the recurring task
+     * @return new Deadline object for the recurring task.
      */
-    public Task makeNewRecurringTask(Time newDeadline, Time newStartTime) {
-        DoneStatus defaultDoneStatus = new DoneStatus(false);
-        if (isDeadline) {
-            return new Task(getName(), newDeadline, getModule(), getDescription(), getWorkload(), defaultDoneStatus,
-                    getRecurrence(), getTags());
+    private static OptionalField<Time> getRecurringTime(Task task, OptionalField<Time> oldTime) {
+        if (oldTime.isNull()) {
+            return oldTime;
         } else {
-            return new Task(getName(), newStartTime, newDeadline, getModule(), getDescription(), getWorkload(),
-                    defaultDoneStatus, getRecurrence(), getTags());
+            Time newTime = Task.getRecurringTime(task, oldTime.getField());
+            return new OptionalField<>(newTime);
         }
     }
 
@@ -260,56 +262,15 @@ public class Task {
 
         Task otherTask = (Task) other;
 
-        if (!isRecurring() && !isDeadline()) {
-            return otherTask.getName().equals(getName())
-                    && otherTask.getStartTime() == getStartTime()
-                    && otherTask.getDeadline().equals(getDeadline())
-                    && otherTask.getModule().equals(getModule())
-                    && otherTask.getDescription().equals(getDescription())
-                    && otherTask.getWorkload().equals(getWorkload())
-                    && otherTask.getDoneStatus().equals(getDoneStatus())
-                    && otherTask.isDeadline() == isDeadline()
-                    && otherTask.isRecurring() == isRecurring()
-                    && otherTask.getTags().equals(getTags());
-
-        } else if (!isRecurring() && isDeadline()) {
-            return otherTask.getName().equals(getName())
-                    && otherTask.getDeadline().equals(getDeadline())
-                    && otherTask.getModule().equals(getModule())
-                    && otherTask.getDescription().equals(getDescription())
-                    && otherTask.getWorkload().equals(getWorkload())
-                    && otherTask.getDoneStatus().equals(getDoneStatus())
-                    && otherTask.isDeadline() == isDeadline()
-                    && otherTask.isRecurring() == isRecurring()
-                    && otherTask.getTags().equals(getTags());
-
-        } else if (isRecurring() && !isDeadline()) {
-            return otherTask.getName().equals(getName())
-                    && otherTask.getStartTime().equals(getStartTime())
-                    && otherTask.getDeadline().equals(getDeadline())
-                    && otherTask.getModule().equals(getModule())
-                    && otherTask.getDescription().equals(getDescription())
-                    && otherTask.getWorkload().equals(getWorkload())
-                    && otherTask.getDoneStatus().equals(getDoneStatus())
-                    && otherTask.getRecurrence().equals(getRecurrence())
-                    && otherTask.isDeadline() == isDeadline()
-                    && otherTask.isRecurring() == isRecurring()
-                    && otherTask.getTags().equals(getTags());
-
-        } else if (isRecurring() && isDeadline()) {
-            return otherTask.getName().equals(getName())
-                    && otherTask.getDeadline().equals(getDeadline())
-                    && otherTask.getModule().equals(getModule())
-                    && otherTask.getDescription().equals(getDescription())
-                    && otherTask.getWorkload().equals(getWorkload())
-                    && otherTask.getDoneStatus().equals(getDoneStatus())
-                    && otherTask.getRecurrence().equals(getRecurrence())
-                    && otherTask.isDeadline() == isDeadline()
-                    && otherTask.isRecurring() == isRecurring()
-                    && otherTask.getTags().equals(getTags());
-        } else {
-            return false;
-        }
+        return otherTask.getName().equals(getName())
+                && otherTask.getStartTimeWrapper().equals(getStartTimeWrapper())
+                && otherTask.getDeadline().equals(getDeadline())
+                && otherTask.getModule().equals(getModule())
+                && otherTask.getDescription().equals(getDescription())
+                && otherTask.getWorkload().equals(getWorkload())
+                && otherTask.getDoneStatus().equals(getDoneStatus())
+                && otherTask.getRecurrenceWrapper().equals(getRecurrenceWrapper())
+                && otherTask.getTags().equals(getTags());
     }
 
     @Override
@@ -322,7 +283,8 @@ public class Task {
         final StringBuilder builder = new StringBuilder();
         builder.append("Name: ")
                 .append(getName());
-        if (isDeadline) {
+
+        if (isDeadline()) {
             builder.append("; Deadline: ")
                     .append(getDeadline());
         } else {
@@ -340,7 +302,7 @@ public class Task {
                 .append("; Completion Status: ")
                 .append(getDoneStatus());
 
-        if (isRecurringTask) {
+        if (isRecurring()) {
             builder.append("; Recurring: ").append(getRecurrence());
         }
 
@@ -372,11 +334,11 @@ public class Task {
          */
         @Override
         public int compare(Task t1, Task t2) {
-            if (t1.isDeadline && t2.isDeadline) {
+            if (t1.isDeadline() && t2.isDeadline()) {
                 return t1.getDeadline().compareTo(t2.getDeadline());
-            } else if (t1.isDeadline) {
+            } else if (t1.isDeadline()) {
                 return t1.getDeadline().compareTo(t2.getStartTime());
-            } else if (t2.isDeadline) {
+            } else if (t2.isDeadline()) {
                 return t1.getStartTime().compareTo(t2.getDeadline());
             } else {
                 return t1.getStartTime().compareTo(t2.getStartTime());

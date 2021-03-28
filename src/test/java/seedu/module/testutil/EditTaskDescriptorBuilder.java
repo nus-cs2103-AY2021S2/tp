@@ -4,6 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import seedu.module.commons.core.optionalfield.OptionalField;
 import seedu.module.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.module.model.tag.Tag;
 import seedu.module.model.task.Description;
@@ -32,9 +33,14 @@ public class EditTaskDescriptorBuilder {
      * Returns an {@code EditTaskDescriptor} with fields containing {@code task}'s details
      */
     public EditTaskDescriptorBuilder(Task task) {
+
+        // This operation is only allowed in test for a convenience builder, to avoid the assertion check in getField.
+        OptionalField<Time> startTimeWrapper = task.getStartTimeWrapper();
+        Time startTime = startTimeWrapper.isNull() ? null : startTimeWrapper.getField();
+
         descriptor = new EditTaskDescriptor();
         descriptor.setName(task.getName());
-        descriptor.setStartTime(task.getStartTime());
+        descriptor.setStartTime(startTime);
         descriptor.setDeadline(task.getDeadline());
         descriptor.setModule(task.getModule());
         descriptor.setDescription(task.getDescription());
