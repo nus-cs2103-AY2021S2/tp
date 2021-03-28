@@ -21,9 +21,10 @@ import seedu.student.logic.commands.FindCommand;
 import seedu.student.logic.commands.HelpCommand;
 import seedu.student.logic.commands.ListCommand;
 import seedu.student.logic.parser.exceptions.ParseException;
+import seedu.student.model.appointment.AppointmentContainsMatriculationNumberPredicate;
 import seedu.student.model.student.MatriculationNumber;
-import seedu.student.model.student.MatriculationNumberContainsKeywordsPredicate;
 import seedu.student.model.student.Student;
+import seedu.student.model.student.StudentContainsMatriculationNumberPredicate;
 import seedu.student.model.student.VaccinationStatusContainsKeywords;
 import seedu.student.testutil.EditStudentDescriptorBuilder;
 import seedu.student.testutil.StudentBuilder;
@@ -78,10 +79,11 @@ public class StudentBookParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        String keywords = "A0287543E";
+        MatriculationNumber matriculationNumber = new MatriculationNumber("A0287543E");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords);
-        assertEquals(new FindCommand(new MatriculationNumberContainsKeywordsPredicate(keywords)), command);
+                FindCommand.COMMAND_WORD + " " + matriculationNumber);
+        assertEquals(new FindCommand(new StudentContainsMatriculationNumberPredicate(matriculationNumber),
+                new AppointmentContainsMatriculationNumberPredicate(matriculationNumber)), command);
     }
 
 

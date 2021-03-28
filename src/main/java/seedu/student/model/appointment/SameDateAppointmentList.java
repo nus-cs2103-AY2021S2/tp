@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.util.Iterator;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,6 +32,7 @@ public class SameDateAppointmentList implements Iterable<Appointment>, Comparabl
      * Creates a list of appointments on the same date.
      */
     public SameDateAppointmentList(LocalDate date) {
+
         this.date = date;
         internalList = FXCollections.observableArrayList();
         internalUnmodifiableList = FXCollections.unmodifiableObservableList(internalList);
@@ -108,6 +110,10 @@ public class SameDateAppointmentList implements Iterable<Appointment>, Comparabl
         return other == this // short circuit if same object
                 || (other instanceof UniqueAppointmentList // instanceof handles nulls
                 && internalList.equals(((SameDateAppointmentList) other).internalList));
+    }
+
+    public List<Appointment> getAppointmentList() {
+        return internalList;
     }
 
     @Override
