@@ -20,11 +20,12 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
     public static final String EXTERNAL_DETAILS = "For more details, refer to our user guide: \n" + USERGUIDE_URL;
-    public static final String CATEGORIES = "Food Categories: FASTFOOD, WESTERN, INDIAN, CHINESE, FUSION, JAPANESE, "
-                    + "KOREAN, MALAY, HALAL, VEGETARIAN, VEGAN, FRUITS, DESSERT, OTHERS, INVALID\n\n";
-    public static final String SCHOOL_LOC = "School Locations:  SOC, FASS, BIZ, SCIENCE, FOE, UTOWN, NUSS, PGP, USC, "
-                    + "CLB, UHALL, SDE, MED, DENT, VENTUS, INVALID\n\n";
-    public static final String HELP_MESSAGE = "add: Adds a food review to the Food Diary.\n"
+    public static final String CATEGORIES = "2. Food Categories:\nFASTFOOD, WESTERN, INDIAN, CHINESE, FUSION, "
+                    + "JAPANESE, KOREAN, MALAY, HALAL, VEGETARIAN, VEGAN, FRUITS, DESSERT, OTHERS, INVALID\n\n\n";
+    public static final String SCHOOL_LOC = "3. School Locations:\nSOC, FASS, BIZ, SCIENCE, FOE, UTOWN, NUSS, "
+                    + "PGP, USC, CLB, UHALL, SDE, MED, DENT, VENTUS, INVALID\n\n\n";
+    public static final String HELP_MESSAGE = "1. List of Commands:\n\n"
+                    + "add: Adds a food review to the Food Diary.\n"
                     + "     add n/Al Amaan ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, "
                     + "Singapore 129588 c/Indian c/Halal s/Ventus\n\n"
                     + "addon: Adds on details (i.e review, price) of the entry "
@@ -46,7 +47,7 @@ public class HelpWindow extends UiPart<Stage> {
                     + "     findall Amaan Restuarant 5/5\n\n"
                     + "view: Opens up a window, showing the details of a specified food review."
                     + "in a full expanded view.\n"
-                    + "     view 1\n\n" + CATEGORIES + SCHOOL_LOC + EXTERNAL_DETAILS;
+                    + "     view 1\n\n\n" + CATEGORIES + SCHOOL_LOC + EXTERNAL_DETAILS;
 
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
@@ -55,14 +56,11 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private Button copyButton;
 
-//    @FXML
-//    private Label helpMessage;
-
     @FXML
     private TextArea helpMessageField;
 
     /**
-     * Creates a new HelpWindow.
+     * Creates a new HelpWindow with a TextArea for the help guide.
      *
      * @param root Stage to use as the root of the HelpWindow.
      */
