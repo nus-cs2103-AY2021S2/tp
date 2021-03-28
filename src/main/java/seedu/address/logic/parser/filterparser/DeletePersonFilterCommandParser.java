@@ -91,12 +91,12 @@ public class DeletePersonFilterCommandParser implements Parser<DeletePersonFilte
                         .collect(Collectors.toList()));
 
         Set<Predicate<SubjectLevel>> subjectLevelFilters = new LinkedHashSet<Predicate<SubjectLevel>>(
-                argMultimap.getAllValues(PREFIX_RATE).stream()
+                argMultimap.getAllValues(PREFIX_EDUCATION_LEVEL).stream()
                         .map(SubjectLevelFilter::new)
                         .collect(Collectors.toList()));
 
         Set<Predicate<SubjectRate>> subjectRateFilters = new LinkedHashSet<Predicate<SubjectRate>>(
-                argMultimap.getAllValues(PREFIX_EDUCATION_LEVEL).stream()
+                argMultimap.getAllValues(PREFIX_RATE).stream()
                         .map(SubjectRateFilter::new)
                         .collect(Collectors.toList()));
 
