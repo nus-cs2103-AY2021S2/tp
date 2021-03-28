@@ -3,8 +3,6 @@ layout: page
 title: User Guide
 ---
 
-
-
 ## Introduction
 HEY MATEz is a desktop application to get rid of CCA leaders' woes by allowing them to track 
 members and tasks within the CCA efficiently. It is
@@ -127,12 +125,12 @@ Delete a member along with all of his/her contact details from the members list.
 
 Format: `deleteMember NAME`
 
+Examples: 
+* `deleteMember Rachel`
+
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 The name you specify must belong to an exisitng Member in the Application
 </div>
-
-Examples: 
-* `deleteMember Rachel`
 
 <a name="viewMembers"></a>
 ### 3. View Members: `viewMembers`
@@ -187,13 +185,13 @@ Format: `addTask TITLE -d DESCRIPTION -b DEADLINE [-s STATUS] [-p PRIORITY] [-a 
 * If you did not specify a value for PRIORITY, the Task will be assigned a default priority of **unassigned**.
 * PRIORITY field can only take on the values **high**, **medium**, **low** or **unassigned**.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="span" class="alert alert-primary">
 :bulb: **Tip:**
 * A task can have any number of assignees (including 0).   
 * To add multiple assignees, simply use multiple assignees prefix. 
 </div>
 
-Example: 
+Examples: 
 * `addTask CCA Timeline -d Plan semester's timeline -b 2021-04-04 -s completed -p high -a Rachel`
 * `addTask CCA Timeline -d Plan semester's timeline -b 2021-04-04 -a Rachel -a James`
 
@@ -203,7 +201,7 @@ Deletes a task from the list by with task INDEX you specified.
 
 Format: `deleteTask INDEX`
 
-Example: 
+Examples: 
 * `deleteTask 1`
 
 <a name="viewTasks"></a>
@@ -212,7 +210,7 @@ Views the list of tasks that the user has added into HEY MATEz.
 
 Format: `viewTasks`
 
-Example: 
+Examples: 
 * `viewTasks`
 
 <a name="editTask"></a>
@@ -227,12 +225,11 @@ Format: `editTask INDEX [-n NEW_TITLE] [-d NEW_DESCRIPTION] [-b NEW_DEADLINE] [-
 * Existing values will be updated to the input values.
 * If the assignee field is being edited, the previous assignees will be overwritten. 
 
-<div markdown="block" class="alert alert-info">
-:bulb: **Tip:**
-* Any number of assignees can be specified here (including 0).    
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**:bulb: **Tip:**
+Any number of assignees can be specified here (including 0).    
 </div>
 
-Example: 
+Examples: 
 * `editTask 1 -n Plan meeting -d Plan board meeting`
 * `editTask 1 -n Plan meeting -d Plan board meeting -b 2021-04-04`
 * `editTask 1 -n Plan meeting -d Plan board meeting -b 2021-04-04 -a Samuel -a Christian`
@@ -338,8 +335,10 @@ Find all tasks assigned to a single Member
 
 Format: `findTasksFor NAME`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The NAME specified can only belong to 1 Member. A NAME that does not exist in the Member List will return 0 tasks listed
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:**
+* The NAME specified can only belong to 1 Member. 
+* A NAME that does not exist in the Member List will return 0 tasks listed
 </div>
 
 Examples: 
