@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PERSON_ID_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -18,6 +19,8 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditPersonCommand;
+import seedu.address.logic.commands.EditPersonCommand.EditPersonPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -27,6 +30,7 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonId;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditPersonPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
@@ -74,6 +78,18 @@ public class AddressBookParserTest {
                     + "Edit command should either be edit_person or edit_session!";
             assertEquals(expected, pe.getMessage());
         }
+    }
+
+    @Test
+    public void parseCommand_edit_person() throws ParseException {
+        Person person = new PersonBuilder().build();
+        EditPersonPersonDescriptor descriptor = new EditPersonPersonDescriptorBuilder(person).build();
+        descriptor.setPersonId(null);
+        descriptor.setPersonType(null);
+        EditPersonCommand command = (EditPersonCommand) parser.parseCommand(EditPersonCommand.COMMAND_WORD
+                + " " + VALID_PERSON_ID_AMY + " " + PersonUtil.getEditPersonPersonDescriptorDetails(descriptor));
+        EditPersonCommand testCommand = new EditPersonCommand(new PersonId(VALID_PERSON_ID_AMY), descriptor);
+        assertEquals(testCommand, command);
     }
 
     @Test
