@@ -1,8 +1,10 @@
 package seedu.smartlib.model.record;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.smartlib.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 
 /**
  * The DateReturned class takes note of the date which a book is returned to SmartLib.
@@ -21,7 +23,7 @@ public class DateReturned {
      */
     public DateReturned(LocalDateTime date) {
         requireNonNull(date);
-        //checkArgument(isValidDate(date.toString()), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDate(date.toString()), MESSAGE_CONSTRAINTS);
         value = date.toString();
     }
 
@@ -32,7 +34,7 @@ public class DateReturned {
      */
     public DateReturned(String date) {
         requireNonNull(date);
-        //checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
         value = date;
     }
 
@@ -47,7 +49,13 @@ public class DateReturned {
      * @return true if a given string is a valid date, and false otherwise.
      */
     public static boolean isValidDate(String test) {
-        return test.matches(VALIDATION_REGEX);
+        try {
+            LocalDateTime.parse(test);
+        } catch (DateTimeParseException e) {
+            // the given string is not a valid date (cannot be parsed)
+            return false;
+        }
+        return true;
     }
 
     /**

@@ -24,7 +24,7 @@ public class ReturnCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Returns the book borrowed by the reader.\n"
             + "Parameters: " + PREFIX_BOOK + "<book name> " + PREFIX_READER + "<reader name>\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_BOOK + "The Hobbit " + PREFIX_READER + "Alex Yeoh";
-    public static final String MESSAGE_SUCCESS = "Record marked as returned./n";
+    public static final String MESSAGE_SUCCESS = "Record marked as returned.\n";
     public static final String MESSAGE_COST = "The total cost is $%.2f";
     public static final String MESSAGE_NO_SUCH_RECORD_FOUND =
             "No such record found. The book has either been returned, or was never borrowed by the reader.";
@@ -66,7 +66,7 @@ public class ReturnCommand extends Command {
     private Record createProperRecord(Model model) {
         Barcode bookBarcode = model.getBookBarcodeForReturn(incompleteRecord.getBookName(),
                 incompleteRecord.getReaderName());
-        return new Record(bookBarcode, incompleteRecord.getReaderName(), incompleteRecord.getDateBorrowed());
+        return new Record(bookBarcode, incompleteRecord.getReaderName(), incompleteRecord.getDateReturned());
     }
 
     private boolean isOverdue(Record r) {
