@@ -150,7 +150,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 - prefers typing to mouse interactions
 - is reasonably comfortable using CLI apps
 
-**Value proposition**: Eliminate the need for human interaction such as requiring HR personnel to manage to maintain social distancing
+**Value proposition**: Greater ease of use in managing driver and passenger profiles as compared to an Excel sheet.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -158,29 +158,28 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-|Priority|As a …​                    |I want to …​                                                     |So that                                                                                         |
-|--------|---------------------------|-----------------------------------------------------------------|------------------------------------------------------------------------------------------------|
-|* * *   |Driver                     |select passengers to be picked up                                |I can carpool with my colleagues                                                                |
-|* * *   |Driver                     |search for specific type of passengers                           |I can see if any passengers fulfil my criteria and view their carpool details                   |
-|* * *   |Driver                     |list all passengers                                              |I can see all the passengers available                                                                                                |
-|* * *   |Passenger                  |create my profile                                                |I can find carpooling drivers and be contacted by the driver if needed                                                                                                |
-|* * *   |Passenger                  |delete my profile                                                |my data will not be stored when I have stopped the service                                      |
-|* *     |Driver                     |filter passengers' destination and pickup point based on location|I don't have to spend too long to pick up or drop off passengers and minimise my travelling time|
-|* *     |Female Passenger           |find only female drivers                                         |I can be comfortable                                                                            |
-|*       |User concerned with privacy|limit the information I want to disclose                         |my private information exposed is limited                                                       |
-|*       |Driver                     |Indicate one-off trips                                           |my passengers would understand this is not a recurring trip                                                                                                |
-|* *     |Passenger                  |edit drop off location                                           |change the destination if needed and be more flexible                                           |
-|*       |Passenger                  |indicate the price willing to pay                                |I can incentivise the drivers to more likely to choose me and pick me up on time                |
+|Priority|As a …​    |I want to …​                                                  |So that                                                                                         |
+|--------|--------------|-----------------------------------------------------------------|------------------------------------------------------------------------------------------------|
+|* * *   |HR Executive  |allocate drivers to passengers to be picked up                   |I can arrange carpooling trips for my colleagues                                                |
+|* * *   |HR Executive  |search for specific type of passengers                           |I can see if any passengers fulfil a criteria and view their carpool details                    |
+|* * *   |HR Executive  |list all passengers                                              |I can see all the passengers available                                                          |
+|* * *   |HR Executive  |create a profile                                                 |I can easily manage and track drivers and passengers                                            |
+|* * *   |HR Executive  |delete employee profile                                          |passenger's data will not be stored when they are no longer looking to carpool                  |
+|* *     |HR Executive  |filter passengers' destination and pickup point based on location|drivers are not heavily inconvenienced to pick up passengers                                    |
+|* *     |HR Executive  |match only with female drivers                                   |so that female colleagues looking to carpool only with female drivers can be easily accomodated |
+|* *     |HR Executive  |edit drop off location                                           |passengers and drivers who have negotiated a new drop off location can be easily updated        |
+|*       |HR Executive  |indicate the price willing to pay                                |drivers are more likely to choose these passengers                                              |
 
 
 ## Use Cases
 
-**Use case: Select a passenger to be picked up**
+**Use case: Allocate drivers to passengers to be picked up**
 
-1. Search or list out passengers available to be picked up
-2. GME shows a list of passengers
-3. Driver choose and view the details of the specific passenger
-4. Driver requests to add the specific passenger to the driver's carpooling group 
+**MSS:**
+1. Search or list out passengers available to be picked up.
+2. GME shows a list of passengers.
+3. HR executive chooses and view the details of the specific passenger.
+4. HR executive allocates drivers to specific passenger to the driver's carpooling group. 
    
     Use case ends.
 
@@ -194,69 +193,67 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 
 **Use case: Search for specific type of passengers**
 
-1. Driver chooses the criteria that the passengers need to fulfil in order to be picked up
-2. Driver initiates the search
-3. GME shows a list of passengers that fulfils the criteria
+**MSS:**
+1. HR executive chooses the criteria that the passengers need to fulfil in order to be picked up.
+2. HR exective initiates the search.
+3. GME shows a list of passengers that fulfils the criteria.
    
    Use case ends.
 
 ***Extensions***
 
-* 3a. No passenger fulfils the criteria
+* 3a. No passenger fulfils the criteria.
+  * 3a1. GME shows empty list.
 
   Use case ends.
 
 --------------------------------------------------------------------------------------------------------------------
 
-**Use case: Creates a passenger profile**
+**Use case: Create a passenger profile**
 
-1. Passenger fills out their name, contact number and pickup address
-2. GME verifies that all the required fields are not empty
-3. GME asks the passenger to confirm all data input is correct
+**MSS:**
+1. HR exeuctive fills out the passenger's name, contact number and pickup address.
+2. GME verifies that all the required fields are not empty.
+3. GME adds passenger's details to GME.
 
-   Use case ends
+   Use case ends.
 
 ***Extensions***
 
-* 1a. Any required field is missing 
-  * 1a1. GME warns the user to input the data missing
+* 2a. Any required field is missing. 
+  * 2a1. GME warns the user to input the data missing.
+    
+    Use case ends.
+    
+--------------------------------------------------------------------------------------------------------------------
+
+**Use case: Delete a passenger profile**
+
+**MSS:**
+1. HR exeuctive indicates they would like to delete a passenger profile.
+2. GME verifies that passenger exists.
+3. GME deletes the specific passenger's profile.
+
+   Use case ends.
+
+***Extensions***
+
+* 2a. Index number of passenger does not exist.
+  * 2a1. GME warns that no such passenger exists. 
     
     Use case ends.
 
-* 1b. User indicates to cancel
-  
+--------------------------------------------------------------------------------------------------------------------
+
+**Use case:** **Match only with female drivers**
+
+**Pre-conditions:** Female passenger profile indicating that they are looking for female drivers only have been created
+
+**MSS:**
+1. HR Executive finds passengers only looking for female drivers.
+2. HR Executive then matches female driver to female passengers looking for female drivers only.
+
     Use case ends.
-
---------------------------------------------------------------------------------------------------------------------
-
-**Use case: Delete a passenger** **profile**
-
-1. Passenger indicates they would like to delete their profile
-2. GME warns the passenger that the action is irreversible and data cannot be recovered
-3. GME verifies that the passenger wish to continue with the action
-4. GME deletes the specific passenger's profile
-
-***Extensions***
-
-* 1a. User indicates to cancel
-
-  Use case ends.
-
---------------------------------------------------------------------------------------------------------------------
-
-**Use case:** **Find only female drivers**
-
-1. Passenger creates the carpooling event.
-2. Passenger choose the criteria with `Driver: female only`
-3. Only female driver will be able to search the passenger that indicated the preference
-
-***Extensions***
-
-- No female driver searches for passenger
-
-  The passenger will not be shown on any list to be chosen to be picked up
-
-  Use case ends
 
 --------------------------------------------------------------------------------------------------------------------
 
