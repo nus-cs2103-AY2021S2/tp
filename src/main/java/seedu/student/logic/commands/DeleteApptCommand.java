@@ -8,6 +8,9 @@ import seedu.student.model.appointment.Appointment;
 import seedu.student.model.student.MatriculationNumber;
 import seedu.student.model.student.Student;
 
+/**
+ * Deletes a student's appointment identified using the student's unique matriculation number.
+ */
 public class DeleteApptCommand extends Command {
     public static final String COMMAND_WORD = "deleteAppt";
 
@@ -22,6 +25,12 @@ public class DeleteApptCommand extends Command {
 
     private final MatriculationNumber matriculationNumber;
 
+    /**
+     * Creates a DeleteApptCommand object responsible for deleting the appointment of the student with the
+     * specified matriculation number.
+     *
+     * @param matriculationNumber Matriculation number of the student who's appointment you want to delete.
+     */
     public DeleteApptCommand(MatriculationNumber matriculationNumber) {
         this.matriculationNumber = matriculationNumber;
     }
