@@ -80,9 +80,7 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveClientBook(model.getClientBook());
-            System.out.println("Saving Client Book");
             storage.saveMeetingBook(model.getMeetingBook());
-            System.out.println("Saving Meeting Book");
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }

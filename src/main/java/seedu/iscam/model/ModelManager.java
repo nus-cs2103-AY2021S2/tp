@@ -220,6 +220,7 @@ public class ModelManager implements Model {
         return filteredMeetings;
     }
 
+    //TODO: header
     @Override
     public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
         requireNonNull(predicate);
@@ -250,17 +251,20 @@ public class ModelManager implements Model {
         return isClientMode;
     }
 
+    //TODO: header
     @Override
     public ObservableMeeting getDetailedMeeting() {
         return detailedMeeting;
     }
 
+    //TODO: header
     @Override
     public void setDetailedMeeting(Meeting meeting) {
         detailedMeeting.setMeeting(meeting);
 
     }
 
+    //TODO: header
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object

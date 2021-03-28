@@ -101,7 +101,6 @@ public class MainApp extends Application {
 
             initialClientBook = clientBookOptional.orElseGet(SampleDataUtil::getSampleClientBook);
             initialMeetingBook = meetingBookOptional.orElseGet(SampleDataUtil::getSampleMeetingBook);
-            logger.info("\n \n \n");
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with "
                     + "an empty ClientBook and MeetingBook");
