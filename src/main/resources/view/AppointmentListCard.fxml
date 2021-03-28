@@ -32,6 +32,7 @@
             <Label fx:id="dateTime" styleClass="cell_small_label" text="\$dateTime" />
             <Label styleClass="cell_small_label" text="Relevant Contacts:" />
             <FlowPane fx:id="contacts" />
+            <FlowPane fx:id="tags" />
         </VBox>
       <rowConstraints>
          <RowConstraints />
