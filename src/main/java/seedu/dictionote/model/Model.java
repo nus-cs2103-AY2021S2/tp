@@ -127,6 +127,11 @@ public interface Model {
      */
     void sortNote();
 
+    /**
+     * Merges the given note.
+     * The note must exist in the dictionote book.
+     */
+    void mergeNote(Note firstNote, Note secondNote);
 
     /**
      * Set Note UI Configuration Interface
