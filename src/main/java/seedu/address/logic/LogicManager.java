@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
@@ -35,9 +36,10 @@ public class LogicManager implements Logic {
      */
     public LogicManager(Model model, Storage storage) {
         this.model = model;
-        model.getFilteredAppointmentList().sorted(new DateTimeComparator());
         this.storage = storage;
         heliBookParser = new HeliBookParser();
+
+        model.orderAppointments();
     }
 
     @Override
@@ -59,6 +61,8 @@ public class LogicManager implements Logic {
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
+
+        model.orderAppointments();
 
         return commandResult;
     }
