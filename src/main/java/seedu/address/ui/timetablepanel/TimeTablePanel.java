@@ -5,12 +5,12 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.HPos;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -23,7 +23,7 @@ import seedu.address.model.schedule.Schedule;
 import seedu.address.ui.UiPart;
 
 /**
- * Panel containing list of Events.
+ * Panel displaying timetable.
  */
 public class TimeTablePanel extends UiPart<Region> {
     private static final String FXML = "timetablepanel/TimeTablePanel.fxml";
@@ -45,8 +45,11 @@ public class TimeTablePanel extends UiPart<Region> {
     @FXML
     private GridPane gridPane;
 
+    @FXML
+    private GridPane timeGridPane;
+
     /**
-     * Creates a {@code AppointmentListPanel} with the given {@code ObservableList}.
+     * Constructs a {@code TimeTablePanel} with Event's {@code ObservableList}.
      */
     public TimeTablePanel(ObservableList<Event> events) {
         super(FXML);
@@ -69,7 +72,7 @@ public class TimeTablePanel extends UiPart<Region> {
      * Fills the grid pane with the slots.
      */
     public void construct() {
-        logger.info("Constructing Schedule Panel.");
+        logger.info("Constructing Timetable.");
         constructGrid();
         populateDates();
         if (events.size() == 0) {
@@ -79,8 +82,12 @@ public class TimeTablePanel extends UiPart<Region> {
         addAppointmentSlotsToGrid();
     }
 
+    /**
+     * Re-populate the grid pane with new events.
+     */
     public void reconstruct(ObservableList<Event> events) {
         this.events = events;
+        gridPane.getColumnConstraints().clear();
         gridPane.getChildren().clear();
         hourSlot.clear();
         construct();
@@ -122,19 +129,31 @@ public class TimeTablePanel extends UiPart<Region> {
     private void constructGrid() {
         int earliestTimeIndex = getColIndex(getStartTime());
         int latestTimeIndex = getColIndex(getEndTime());
-
         int numColumns = NUM_OF_HALF_HOURS - earliestTimeIndex - (NUM_OF_HALF_HOURS - latestTimeIndex);
         for (int i = 0; i < numColumns + GRID_INDEX_BUFFER; i++) {
             ColumnConstraints con = new ColumnConstraints();
+            ColumnConstraints timeGridCon = new ColumnConstraints();
+
             if (i == 0) {
                 con.setPrefWidth(80);
+                timeGridCon.setPrefWidth(150);
+                timeGridCon.setHalignment(HPos.CENTER);
+            } else if (i == 1) {
+                con.setPrefWidth(SINGLE_COLUMN_WIDTH);
+                timeGridCon.setPrefWidth(160);
+                timeGridCon.setHalignment(HPos.RIGHT);
             } else {
                 con.setPrefWidth(SINGLE_COLUMN_WIDTH);
+                timeGridCon.setPrefWidth(200);
+                timeGridCon.setHalignment(HPos.RIGHT);
             }
+
             gridPane.getColumnConstraints().add(con);
             ColumnConstraints conHalf = new ColumnConstraints();
             conHalf.setPrefWidth(SINGLE_COLUMN_WIDTH);
             gridPane.getColumnConstraints().add(conHalf);
+
+            timeGridPane.getColumnConstraints().add(timeGridCon);
         }
 
         for (int i = 0; i < (numColumns + GRID_INDEX_BUFFER) * 2; i++) {
@@ -158,7 +177,8 @@ public class TimeTablePanel extends UiPart<Region> {
             LocalDate currAppointmentDate = curr.getTimeFrom().value.toLocalDate();
             SlotContainer appointmentSlot = getSlot(curr);
             int colSpan = getColSpan(curr);
-            double hour = curr.getTimeFrom().value.toLocalTime().getHour() + (curr.getTimeFrom().value.toLocalTime().getMinute() / 60.0);
+            double hour = curr.getTimeFrom().value.toLocalTime().getHour()
+                    + (curr.getTimeFrom().value.toLocalTime().getMinute() / 60.0);
             int colIndex = hourSlot.indexOf(hour);
 
             if (colIndex == 0) {
@@ -186,10 +206,16 @@ public class TimeTablePanel extends UiPart<Region> {
     private void populateDates() {
         LocalTime start = getStartTime();
         LocalTime end = getEndTime();
-
+        int count = 0;
         for (int i = start.getHour(); i <= end.getHour(); i++) {
             hourSlot.add((double) i);
-            hourSlot.add(i + 0.5);
+            DisplayTimeSlot label = new DisplayTimeSlot(LocalTime.of(i, 0));
+            timeGridPane.add(label.getRoot(), count, 0);
+
+            if (i != end.getHour()) {
+                hourSlot.add(i + 0.5);
+            }
+            count++;
         }
 
         for (int i = 1; i <= 7; i++) { // Add date displays for entire week

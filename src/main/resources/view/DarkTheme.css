@@ -386,19 +386,20 @@
 
 .schedule-grid-cell {
     -fx-background-color: #69c;
-    -fx-border-width: 100;
+    -fx-border-width: 0 0.5 0 0.5;
+    -fx-border-color: black;
     -fx-background-radius: 5;
-    -fx-max-height: 65;
-    -fx-effect: dropshadow(three-pass-box, rgba(51, 102, 153, 0.8), 0, 0, 0, 5);
+    -fx-max-height: 60;
+    -fx-effect: dropshadow(three-pass-box, rgba(51, 102, 153, 0.8), 0, 0, 0, 3);
 }
 
 .appointment-grid-cell {
     -fx-background-color: #9c9;
     -fx-background-radius: 5;
-    -fx-border-width: 0 1 0 1;
+    -fx-border-width: 0 0.5 0 0.5;
     -fx-border-color: black;
-    -fx-max-height: 65;
-    -fx-effect: dropshadow(three-pass-box, rgba(85, 170, 85, 0.8), 0, 0, 0, 5);
+    -fx-max-height: 60;
+    -fx-effect: dropshadow(three-pass-box, rgba(85, 170, 85, 0.8), 0, 0, 0, 3);
 }
 
 .date-display-slot {
