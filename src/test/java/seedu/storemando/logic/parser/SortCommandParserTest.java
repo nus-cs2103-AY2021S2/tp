@@ -6,9 +6,10 @@ import static seedu.storemando.logic.parser.CommandParserTestUtil.assertParseSuc
 
 import org.junit.jupiter.api.Test;
 
+import seedu.storemando.logic.commands.SortAscendingQuantityCommand;
 import seedu.storemando.logic.commands.SortCommand;
+import seedu.storemando.logic.commands.SortDescendingQuantityCommand;
 import seedu.storemando.logic.commands.SortExpiryDateCommand;
-import seedu.storemando.logic.commands.SortQuantityCommand;
 
 class SortCommandParserTest {
     private final SortCommandParser parser = new SortCommandParser();
@@ -23,23 +24,34 @@ class SortCommandParserTest {
     public void parse_invalidArgument_throwsParseException() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE);
 
-        assertParseFailure(parser, "invalid", expectedMessage);
+        //check for correct number of words but wrong words given
+        assertParseFailure(parser, "quantity invalid", expectedMessage);
+        assertParseFailure(parser, "expirydate rising", expectedMessage);
+        assertParseFailure(parser, "asc quantity", expectedMessage);
+        assertParseFailure(parser, "expireddate", expectedMessage);
+        assertParseFailure(parser, "quantity", expectedMessage);
+
+        //check for incorrect number of words given
+        assertParseFailure(parser, "quantity invalid command", expectedMessage);
+        assertParseFailure(parser, "expirydate rising high", expectedMessage);
+        assertParseFailure(parser, "expirydate quantity asc", expectedMessage);
     }
 
     @Test
     public void parse_validArgument_success() {
         SortExpiryDateCommand expectedExpiryDateCommand = new SortExpiryDateCommand();
-        SortQuantityCommand expectedQuantityCommand = new SortQuantityCommand(true);
+        SortAscendingQuantityCommand expectedAscQuantityCommand = new SortAscendingQuantityCommand();
+        SortDescendingQuantityCommand expectedDescQuantityCommand = new SortDescendingQuantityCommand();
 
         //check for valid increasing quantity user inputs
-        assertParseSuccess(parser, "quantity asc", expectedQuantityCommand);
-        assertParseSuccess(parser, "QuAnTiTy Asc", expectedQuantityCommand);
-        assertParseSuccess(parser, "\n     QuAnTiTy Asc", expectedQuantityCommand);
+        assertParseSuccess(parser, "quantity asc", expectedAscQuantityCommand);
+        assertParseSuccess(parser, "QuAnTiTy Asc", expectedAscQuantityCommand);
+        assertParseSuccess(parser, "\n     QuAnTiTy Asc", expectedAscQuantityCommand);
 
-        //check for valid increasing quantity user inputs
-        assertParseSuccess(parser, "quantity desc", expectedQuantityCommand);
-        assertParseSuccess(parser, "QuAnTiTy DeSc", expectedQuantityCommand);
-        assertParseSuccess(parser, "\n     QuAnTiTy DeSc", expectedQuantityCommand);
+        //check for valid decreasing quantity user inputs
+        assertParseSuccess(parser, "quantity desc", expectedDescQuantityCommand);
+        assertParseSuccess(parser, "QuAnTiTy DeSc", expectedDescQuantityCommand);
+        assertParseSuccess(parser, "\n     QuAnTiTy DeSc", expectedDescQuantityCommand);
 
         //check for valid expiryDate user inputs
         assertParseSuccess(parser, "expirydate", expectedExpiryDateCommand);
