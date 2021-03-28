@@ -15,7 +15,7 @@ and distributing tasks will never give you a headache again !:smile:
 * [Quick Start](#quick-start)  
 * [Features](#features)
   + [General Features](#general)
-     [1. Clear all data in application: `clear`](#clear)
+    - [1. Clear all data in application: `clear`](#clear)
     - [2. Exiting the programme: `exit`](#exit)
     - [3. View Help: `help`](#help)
   + [Member Related Features](#members)
