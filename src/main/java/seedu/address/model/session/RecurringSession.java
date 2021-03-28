@@ -45,7 +45,7 @@ public class RecurringSession extends Session {
     private static boolean occursAtDate(SessionDate sessionDate1, SessionDate sessionDate2, Interval interval) {
         requireAllNonNull(sessionDate1, sessionDate2, interval);
         int daysBetween = sessionDate1.numOfDayTo(sessionDate2);
-        return daysBetween >= 0 && daysBetween % interval.value == 0;
+        return daysBetween >= 0 && daysBetween % interval.getValue() == 0;
     }
 
     public Interval getInterval() {
@@ -99,7 +99,7 @@ public class RecurringSession extends Session {
         requireAllNonNull(sessionDate);
         checkArgument(!startAfter(sessionDate), "There exists no session before.");
         int numOfDaysBetween = getSessionDate().numOfDayTo(sessionDate);
-        LocalDate lastLocalDate = sessionDate.getDateTime().minusDays(numOfDaysBetween % interval.value).toLocalDate();
+        LocalDate lastLocalDate = sessionDate.getDateTime().minusDays(numOfDaysBetween % interval.getValue()).toLocalDate();
         SessionDate lastSessionDate = new SessionDate(
                 LocalDateTime.of(lastLocalDate, getSessionDate().getTime())
                         .toString());
@@ -127,15 +127,15 @@ public class RecurringSession extends Session {
         if (startAfter(inclusiveStart)) {
             firstInSpan = getSessionDate();
         } else {
-            int daysDiff = getSessionDate().numOfDayTo(inclusiveStart) % interval.value;
+            int daysDiff = getSessionDate().numOfDayTo(inclusiveStart) % interval.getValue();
             int plusDays = daysDiff == 0
                     ? 0
-                    : interval.value - daysDiff;
+                    : interval.getValue() - daysDiff;
             LocalDateTime firstInSpanLdt = inclusiveStart.getDateTime().plusDays(plusDays);
             firstInSpan = new SessionDate(firstInSpanLdt.toString());
         }
 
-        return firstInSpan.numOfDayTo(lastInSpan) / interval.value + 1;
+        return firstInSpan.numOfDayTo(lastInSpan) / interval.getValue()+ 1;
     }
 
     @Override

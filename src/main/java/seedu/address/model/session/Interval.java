@@ -11,7 +11,7 @@ public class Interval {
 
     public static final String MESSAGE_CONSTRAINTS = "Interval cannot be empty, negative or 0.";
     public static final String VALIDATION_REGEX = "^[1-9]\\d*$";
-    public final int value;
+    private final int value;
 
     /**
      * Constructs a {@code Interval}.
@@ -24,6 +24,9 @@ public class Interval {
         value = Integer.valueOf(interval);
     }
 
+    public int getValue() {
+        return value;
+    }
     /**
      * Returns true if a given interval int is valid.
      */

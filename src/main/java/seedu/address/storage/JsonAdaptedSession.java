@@ -46,4 +46,20 @@ public class JsonAdaptedSession {
     public Session toModelType() throws IllegalValueException {
         return new Session(new SessionDate(sessionDate), new Duration(duration), new Subject(subject), new Fee(fee));
     }
+
+    public String getSessionDate() {
+        return sessionDate;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public String getFee() {
+        return fee;
+    }
 }
