@@ -38,13 +38,10 @@ If you need an overview of StoreMando’s commands, check out the [“Command Su
 Please note the following symbols used in the User Guide which may serve as points of interests:
 
 `command` | The grey highlight indicates commands that can be executed by StoreMando.
---------|------------------
 
 :information_source: | This symbol indicates information that you may wish to take note.
----------------------|------------------
 
 :bulb: | This symbol indicates tips provided by us.
---------|------------------
 
 --------------------------------------------------------------------------------------------------------------------
 ## 2. Quick start <a name = "quickstart"></a>
@@ -69,14 +66,14 @@ Please note the following symbols used in the User Guide which may serve as poin
 
 ### 2.2. StoreMando's layout
 
-1. Main Panel
+#### Main Panel <br>
 The main panel is the display window of items stored in StoreMando. Depending on which command you key in, 
    the main panel will display the corresponding items.
    
-2. Command Box
+#### Command Box <br>
 The command box is where you will be entering commands to be executed by StoreMando.
 
-3. Result Display Box
+#### Result Display Box <br>
 The result display box is where StoreMando’s server replies to every command that you key in. Any success, error or 
    warning messages will be displayed in this box.
    
@@ -164,9 +161,103 @@ Examples:
   be `2022-10-11` if the existing quantity and expiry date of the 1st item are both not `10` and `2022-10-11` respectively.
 * `edit 2 n/Chocolate Bread t/` edits the name of the 2nd item to be `Chocolate Bread` and clears all existing tags if
   there are existing tags and/or existing name of the 2nd item is not `Chocolate Bread`.
+  
 
+### 3.4. Listing items : `list` <a name = "list"></a>
 
-### 3.4. Deleting an item : `delete`  <a name = "delete"></a>
+Want to view all your items? What about items at a specific location or with a specific tag? This command helps you to 
+do just that!
+
+You can use this command in 3 different ways.
+
+* #### 3.4.1. Listing all items in StoreMando 
+  This command allows you to view all the items in the inventory.
+  <br>
+  Format: `list`
+  <br>
+  Example:
+  * `list` displays all the items in the inventory.
+
+* #### 3.4.2. Listing all items at a specific location 
+  This command allows you to view all items at a specific location.
+  <br>
+  Format: `list l/LOCATION`
+  <div markdown="block" class="alert alert-info">
+
+  **:information_source: Notes about the command:**<br>
+  
+  * The search is case-insensitive. e.g 'room' will match 'Room'.
+  * Only full words will be matched e.g. 'Room' will not match 'Bedroom'.
+  * The order of keywords for location search does not matter. e.g. 'Room Living' will match 'Living Room'.
+  * Location matching uses each word in the String to do 'AND' search e.g. 'Room' will match 'Living room' but 'Living room 1' will not match 'Living room'<br>
+    
+  </div>
+  
+  Example:
+  * `list l/kitchen` displays all the items in the kitchen.
+  
+* #### 3.4.3. Listing all items with a specific tag 
+  This command allows you to view all items containing a specific tag.
+  <br>
+  Format: `list t/TAG`
+  <div markdown="block" class="alert alert-info">
+
+  **:information_source: Notes about the command:**<br>
+  * Tag keyword must be a single word. <br>
+  </div>
+  
+  Example:
+  * `list t/favourite` displays all the items with the "favourite" tag.
+  
+  
+  
+### 3.5. Finding items by name : `find`  <a name = "find"></a>
+
+If you can't find an item you are looking for, don't worry. Find command will find and display all items 
+whose names contain any of the given keywords, either partially or in full.
+
+You can use this command in 2 different ways.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the find command:**<br>
+
+* The search is case-insensitive. e.g. `milk` will match `Milk`
+* The order of the keywords does not matter. e.g. `Bread Chocolate` will match `Chocolate Bread`
+* Only the item name is searched.
+* Items matching at least one keyword will be returned. For example, `find Chocolate Milk` will
+  return `Cadbury Chocolate` and `Almond Milk`
+
+</div>
+
+* #### 3.5.1. Find items with complete name match
+  Format: `find KEYWORD [MORE_KEYWORDS]`
+  <div markdown="block" class="alert alert-info">
+
+  **:information_source: Notes about the command:**<br>
+
+  * Only full words will be matched e.g. `Chocolate` will not match `Chocolates`<br>
+  </div>
+
+  Examples:
+  * `find Chocolate` returns `chocolate` and `Chocolate Milk`
+  * `find potato chip` returns `Potato Biscuit` and `chocolate chip`
+
+* #### 3.5.2 Find items with partial name match
+  Format: `find */KEYWORD [MORE_KEYWORDS]`
+  <div markdown="block" class="alert alert-info">
+
+  **:information_source: Notes about the command:**<br>
+
+  * Partial words will be matched e.g. `Choco` will match `Chocolates`<br>
+
+  </div>
+
+  Examples:
+  * `find */Burger` returns `CheeseBurger` and `fishburger`
+  * `find */cheese egg` returns `MacAndCheese` and `eggs`
+  
+### 3.6. Deleting an item : `delete`  <a name = "delete"></a>
 
 Looking to get rid of an existing item from the inventory? Use this command.
 
@@ -187,101 +278,6 @@ Examples:
 * `find Chocolate` followed by `delete 1` deletes the first item in the result of the `find` command.
 * `list Room 2` followed by `delete 3` deletes the third item in the recorded list of items in Room 2.
 
-### 3.5. Listing items : `list` <a name = "list"></a>
-
-Want to view all your items? What about items at a specific location or with a specific tag? This command helps you to 
-do just that!
-
-You can use this command in 3 different ways.
-
-* #### 3.5.1. Listing all items in StoreMando 
-  This command allows you to view all the items in the inventory.
-  <br></br>
-  Format: `list`
-  <br></br>
-  Example:
-  * `list` displays all the items in the inventory.
-
-* #### 3.5.2. Listing all items at a specific location 
-  This command allows you to view all items at a specific location.
-  <br></br>
-  Format: `list l/LOCATION`
-  <div markdown="block" class="alert alert-info">
-
-  **:information_source: Notes about the command:**<br>
-  
-  * The search is case-insensitive. e.g 'room' will match 'Room'.
-  * Only full words will be matched e.g. 'Room' will not match 'Bedroom'.
-  * The order of keywords for location search does not matter. e.g. 'Room Living' will match 'Living Room'.
-  * Location matching uses each word in the String to do 'AND' search e.g. 'Room' will match 'Living room' but 'Living room 1' will not match 'Living room'<br></br>
-    
-  </div>
-  
-  Example:
-  * `list l/kitchen` displays all the items in the kitchen.
-  
-* #### 3.5.3. Listing all items with a specific tag 
-  This command allows you to view all items containing a specific tag.
-  <br></br>
-  Format: `list t/TAG`
-  <div markdown="block" class="alert alert-info">
-
-  **:information_source: Notes about the command:**<br>
-  * Tag keyword must be a single word. <br></br>
-  </div>
-  
-  Example:
-  * `list t/favourite` displays all the items with the "favourite" tag.
-  
-  
-  
-### 3.6. Finding items by name : `find`  <a name = "find"></a>
-
-If you can't find an item you are looking for, don't worry. Find command will find and display all items 
-whose names contain any of the given keywords, either partially or in full.
-
-You can use this command in 2 different ways.
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the find command:**<br>
-
-* The search is case-insensitive. e.g. `milk` will match `Milk`
-* The order of the keywords does not matter. e.g. `Bread Chocolate` will match `Chocolate Bread`
-* Only the item name is searched.
-* Items matching at least one keyword will be returned. For example, `find Chocolate Milk` will
-  return `Cadbury Chocolate` and `Almond Milk`
-
-</div>
-
-* #### 3.6.1. Find items with complete name match
-  Format: `find KEYWORD [MORE_KEYWORDS]`
-  <div markdown="block" class="alert alert-info">
-
-  **:information_source: Notes about the command:**<br>
-
-  * Only full words will be matched e.g. `Chocolate` will not match `Chocolates`<br></br>
-  </div>
-
-  Examples:
-  * `find Chocolate` returns `chocolate` and `Chocolate Milk`
-  * `find potato chip` returns `Potato Biscuit` and `chocolate chip`
-
-* #### 3.6.2 Find items with partial name match
-  Format: `find */KEYWORD [MORE_KEYWORDS]`
-  <div markdown="block" class="alert alert-info">
-
-  **:information_source: Notes about the command:**<br>
-
-  * Partial words will be matched e.g. `Choco` will match `Chocolates`<br></br>
-
-  </div>
-
-  Examples:
-  * `find */Burger` returns `CheeseBurger` and `fishburger`
-  * `find */cheese egg` returns `MacAndCheese` and `eggs`
- 
-  
 ### 3.7. Viewing expiring items : `reminder`  <a name = "reminder"></a>
 
 Want to know which items of yours are expiring soon? Then, this is the right command for you.<br>
@@ -291,9 +287,11 @@ Format: `reminder NUMBER TIME_UNIT`
 
 **:information_source: Notes about the reminder command:**<br>
 
-* `TIME_UNIT` must be either `days` or `weeks`. `day` and `week` **will not work**.
+* `NUMBER` **can be any integer** …​, -7, -3, 0, 3, 7, …​
+* `TIME_UNIT` must be either `days` or `weeks`.
+  * `day` or `week` accepted only when `NUMBER` is in the range of **[-1, 0, 1]**
 *  Items without expiry date will not be shown.
-*  `NUMBER` **must be a positive integer** 1, 2 , 3, …​
+
 
 </div>
 
@@ -304,6 +302,14 @@ Examples:
   banana with an expiry date of 20 March 2021.
   * `reminder 5 days` returns the chocolate only.
   * `reminder 2 weeks` returns both the chocolate and the banana.
+  <br>
+* `reminder -7 days` returns a list containing all items that has been expired for 7 days.
+* `reminder -2 weeks` returns a list containing all items that has been expired for 2 weeks.
+* Given today is 30 March 2021, and the inventory has 2 items: apple with expiry date of 27 March 2021 and
+  banana with an expiry date of 20 March 2021.
+  * `reminder -5 days` returns both the apple and the banana.
+  * `reminder -1 weeks` returns the banana only.
+
 
 
 ### 3.8. Sorting items : `sort` <a name = "sort"></a>
@@ -319,7 +325,7 @@ You can use this command in 3 different ways.
   **:information_source: Note about the sort by expiry date command:**<br>
 
   * `quantity` is case-insensitive. Keying in `sort QUANTITY asc` is also a valid command.
-    <br></br>
+    <br>
 
   </div>
   
@@ -333,7 +339,7 @@ You can use this command in 3 different ways.
   **:information_source: Note about the sort by expiry date command:**<br>
 
   * `quantity` is case-insensitive. Keying in `sort QUANTITY desc` is also a valid command.
-    <br></br>
+    <br>
 
   </div>
 
@@ -348,7 +354,7 @@ You can use this command in 3 different ways.
   
   * Items without expiry date will be pushed to the back of the sorted list.
   * `expirydate` is case-insensitive. Keying in `sort EXPIRYDATE` is also a valid command.
-  <br></br>
+  <br>
   
   </div>
   
@@ -373,7 +379,7 @@ You can use this command in 2 different ways.
   
   * The search is case-insensitive. e.g 'room' will match 'Room'.
 
-  * The location input will be matched exactly e.g. 'Room' will not match 'Bedroom'. 'Bed' will not match 'Bed room'. 'Living room' will not match 'Room living'.<br></br>
+  * The location input will be matched exactly e.g. 'Room' will not match 'Bedroom'. 'Bed' will not match 'Bed room'. 'Living room' will not match 'Room living'.<br>
 
   </div>
 
@@ -411,7 +417,7 @@ and restart with an empty data file at the next run. Proceed with caution!!
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous StoreMando home folder.
 
-**Q**: Can I have two or more inventories in one computer?
+**Q**: Can I have two or more inventories in one computer?<br>
 **A**: Download and install StoreMando in two different folders on your computer so that you will have two different 
 data files in separate locations. You can have as many different inventories as you want using this method!
 
@@ -427,15 +433,15 @@ you to this user guide to provide you with the help you need!
 
 Action | Format, Examples
 --------|------------------
+**[Help](#help)** |  `help`
 **[Add](#add)** | `add n/ITEM_NAME l/LOCATION q/QUANTITY [e/EXPIRY_DATE] [t/TAG]…​` <br> e.g. `add n/koko krunch l/fridge q/1 e/2021-05-27 t/favourite`
-**[Delete](#delete)** | `delete INDEX`<br> e.g. `delete 2`
 **[Edit](#edit)** | `edit INDEX [n/ITEM_NAME] [e/EXPIRY_DATE] [l/LOCATION] [q/QUANTITY] [t/TAG]…​`<br> e.g.`update 1 l/freezer q/2 `
 **[List](#list)** | `list` `list [l/LOCATION]` `list [t/TAG]`<br> e.g. `list` `list l/fridge` `list t/favourite`
 **[Find](#find)** | `find [*/]KEYWORD [MORE KEYWORDS]`<br> e.g. `find koko krunch` `find */choco`
-**[Reminder](#reminder)** | `reminder number TIME_UNIT`<br> e.g. `reminder 7 days` `reminder 2 weeks`
-**[Sort](#sort)** | `sort quantity` `sort expiryDate`
-**[Help](#help)** |  `help`
-**[Clear](#clear)** | `clear`
+**[Delete](#delete)** | `delete INDEX`<br> e.g. `delete 2`
+**[Reminder](#reminder)** | `reminder NUMBER TIME_UNIT_KEYWORD`<br> e.g. `reminder -7 days` `reminder 2 weeks`
+**[Sort](#sort)** | `sort quantity asc` `sort quantity desc` `sort expiryDate`
+**[Clear](#clear)** | `clear` `clear l/LOCATION` <br> e.g. `clear l/bedroom`
 **[Exit](#exit)** | `exit`
 
 --------------------------------------------------------------------------------------------------------------------
