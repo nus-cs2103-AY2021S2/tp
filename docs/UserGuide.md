@@ -110,11 +110,10 @@ Format: `add-fr d/FR_DESCRIPTION a/FR_AMOUNT`
 
 <div markdown="span" class="alert alert-primary">
 
-**:bulb: Tips:**
-<ul>
-    <li>You must replace `FR_DESCRIPTION` with the description of your financial record.</li>
-    <li>You must replace `FR_AMOUNT` with a **positive number** containing up to **two decimal places**.</li> 
-</ul>
+**:bulb: Tips:** <br>
+
+- You must replace `FR_DESCRIPTION` with the description of your financial record.
+- You must replace `FR_AMOUNT` with a **positive number** containing up to **two decimal places**.
 
 </div>
 
@@ -133,12 +132,11 @@ Format: `delete-fr FR_INDEX`
 
 <div markdown="span" class="alert alert-primary">
 
-**:bulb: Tips:**
-<ul>
-    <li>You must replace `FR_INDEX` with the index of the finacial record you want to delete.</li>
-    <li>`FR_INDEX` refers to the index number shown in the displayed financial record list.</li>
-    <li>`FR_INDEX` must be a **positive integer** (e.g. 1, 2, 3, …​)</li>
-</ul>
+**:bulb: Tips:**<br>
+-You must replace `FR_INDEX` with the index of the finacial record you want to delete.
+-`FR_INDEX` refers to the index number shown in the displayed financial record list.
+-`FR_INDEX` must be a **positive integer** (e.g. 1, 2, 3, …​)
+
 
 </div>
 
@@ -156,27 +154,14 @@ Format: `set-bg BG_AMOUNT`
 
 <div markdown="span" class="alert alert-primary">
 
-**:bulb: Tips:**
-<ul>
-    <li>You must replace `BG_AMOUNT` with a **positive number** containing up to **two decimal places**.</li>
-</ul>
-
+**:bulb: Tips:**<br>
+-You must replace `BG_AMOUNT` with a **positive number** containing up to **two decimal places**.
 </div>
 
 Examples:
 
 - `set-bg 100`
 - `set-bg 1300.50`
-
-### Viewing budget for the current month
-
-The UI will display the current monthly budget set by you automatically. If you have not set a budget it displays a
-default budget of $1000.
-
-### Checking remaining budget for the current month
-
-The UI will display and update your remaining budget for the current month automatically whenever you update your list
-of financial records.
 
 ### Viewing a specific month : `view-month`
 
@@ -196,14 +181,10 @@ Format: `view-month MM-YYYY`
 
 <div markdown="span" class="alert alert-primary">
 
-**:bulb: Tips:**
-<ul>
-    <li>The month you input must follow the format `MM-YYYY` (e.g. 09-2020)</li>
-    <li>`MM` is the month number and `YYYY` is the year number</li>
-    <li>You must use a month number with 2 digits and the year number with 4 digits</li>
-</ul>
-
-
+**:bulb: Tips:**<br>
+-The month you input must follow the format `MM-YYYY` (e.g. 09-2020)
+-`MM` is the month number and `YYYY` is the year number
+-You must use a month number with 2 digits and the year number with 4 digits
 </div>
 
 Examples:
