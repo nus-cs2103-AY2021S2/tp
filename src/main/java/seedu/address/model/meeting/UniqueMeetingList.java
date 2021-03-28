@@ -85,7 +85,7 @@ public class UniqueMeetingList implements Iterable<Meeting> {
     public Optional<Meeting> getMeetingAtInstant(LocalDateTime localDateTime) {
         requireNonNull(localDateTime);
         return internalList.stream()
-                .filter( meeting -> meeting.containsTime(localDateTime))
+                .filter(meeting -> meeting.containsTime(localDateTime))
                 .findFirst();
     }
 
@@ -105,8 +105,7 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         if (!target.isSameMeeting(editedMeeting) && contains(editedMeeting)) {
             throw new DuplicateMeetingException();
         }
-
-        if(!target.isSameMeeting(editedMeeting) && clashes(editedMeeting)) {
+        if (!target.isSameMeeting(editedMeeting) && clashes(editedMeeting)) {
             throw new MeetingTimeClashException();
         }
 

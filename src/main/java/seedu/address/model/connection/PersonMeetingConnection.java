@@ -1,12 +1,16 @@
 package seedu.address.model.connection;
 
 import static java.util.Objects.requireNonNull;
+
 import java.util.HashMap;
+
 import seedu.address.model.connection.exceptions.ConnectionNoFoundException;
+import seedu.address.model.connection.exceptions.DuplicateConnectionException;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.UniqueMeetingList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
 
 /**
  * Represents a connection between persons and meetings.
@@ -72,8 +76,12 @@ public class PersonMeetingConnection {
     public void addPersonMeetingConnection(Person person, Meeting meeting) {
         UniquePersonList personList = personsInMeeting.getOrDefault(meeting, new UniquePersonList());
         UniqueMeetingList meetingList = meetingsInPerson.getOrDefault(person, new UniqueMeetingList());
-        personList.add(person);
-        meetingList.add(meeting);
+        try {
+            personList.add(person);
+            meetingList.add(meeting);
+        } catch (DuplicatePersonException e) {
+            throw new DuplicateConnectionException();
+        }
         personsInMeeting.put(meeting, personList);
         meetingsInPerson.put(person, meetingList);
     }
