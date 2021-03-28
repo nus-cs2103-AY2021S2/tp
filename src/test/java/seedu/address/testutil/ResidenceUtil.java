@@ -1,6 +1,6 @@
 //package seedu.address.testutil;
 //
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKING_DETAILS;
+//import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKING;
 //import static seedu.address.logic.parser.CliSyntax.PREFIX_CLEAN_STATUS_TAG;
 //import static seedu.address.logic.parser.CliSyntax.PREFIX_RESIDENCE_ADDRESS;
 //import static seedu.address.logic.parser.CliSyntax.PREFIX_RESIDENCE_NAME;
@@ -40,7 +40,7 @@
 //        //    sb.append(PREFIX_CLEAN_STATUS_TAG + residence.getCleanStatusTag().getValue() + " ");
 //        //}
 //        residence.getBookingList().getValue().stream().forEach(
-//                s -> sb.append(PREFIX_BOOKING_DETAILS + s.visitorName + " " + ... )
+//                s -> sb.append(PREFIX_BOOKING + s.visitorName + " " + ... )
 //        );
 //        residence.getTags().stream().forEach(
 //            s -> sb.append(PREFIX_TAG + s.tagName + " ")
@@ -57,7 +57,7 @@
 //                .append(name.getValue()).append(" "));
 //        descriptor.getResidenceAddress().ifPresent(address -> sb.append(PREFIX_RESIDENCE_ADDRESS)
 //                .append(address.getValue()).append(" "));
-//        descriptor.getBookingDetails().ifPresent(booking -> sb.append(PREFIX_BOOKING_DETAILS)
+//        descriptor.getBookingDetails().ifPresent(booking -> sb.append(PREFIX_BOOKING)
 //                .append(booking.getValue()).append(" "));
 //        descriptor.getCleanStatusTag().ifPresent(cleanStatusTag -> sb.append(PREFIX_CLEAN_STATUS_TAG)
 //                .append(cleanStatusTag.getDesc()).append(" "));

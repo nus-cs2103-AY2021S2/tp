@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKING_DETAILS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLEAN_STATUS_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RESIDENCE_ADDRESS;
@@ -34,7 +34,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_RESIDENCE_ADDRESS,
-                        PREFIX_BOOKING_DETAILS, PREFIX_CLEAN_STATUS_TAG, PREFIX_TAG);
+                        PREFIX_BOOKING, PREFIX_CLEAN_STATUS_TAG, PREFIX_TAG);
 
         Index index;
 
@@ -56,9 +56,9 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         // Removed since bookingList is default placeholder for all residences and
         // booking details no longer seems necessary
-        //if (argMultimap.getValue(PREFIX_BOOKING_DETAILS).isPresent()) {
+        //if (argMultimap.getValue(PREFIX_BOOKING).isPresent()) {
         //    editResidenceDescriptor.setBookingDetails(
-        //            ParserUtil.parseBookingTime(argMultimap.getValue(PREFIX_BOOKING_DETAILS).get()));
+        //            ParserUtil.parseBookingTime(argMultimap.getValue(PREFIX_BOOKING).get()));
         //}
 
         if (argMultimap.getValue(PREFIX_CLEAN_STATUS_TAG).isPresent()) {
