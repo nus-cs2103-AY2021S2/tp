@@ -26,12 +26,12 @@ public class LocationTest {
         // null location
         assertThrows(NullPointerException.class, () -> Location.isValidLocation(null));
 
-        // invalid addresses
+        // invalid location
         assertFalse(Location.isValidLocation("")); // empty string
         assertFalse(Location.isValidLocation(" ")); // spaces only
         assertFalse(Location.isValidLocation(" kitchen")); // space at the start
 
-        // valid addresses
+        // valid location
         assertTrue(Location.isValidLocation("Blk 456, Den Road, #01-355"));
         assertTrue(Location.isValidLocation("kitchen ")); // trailing space
         assertTrue(Location.isValidLocation("-")); // one character

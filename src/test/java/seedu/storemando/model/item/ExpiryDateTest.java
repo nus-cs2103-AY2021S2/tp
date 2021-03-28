@@ -63,53 +63,20 @@ public class ExpiryDateTest {
 
 
         // invalid expiryDate DD below boundary and above boundary
-        assertFalse(ExpiryDate.isValidExpiryDate("0000-01-32"));
-        assertFalse(ExpiryDate.isValidExpiryDate("2022-02-29"));
-        assertFalse(ExpiryDate.isValidExpiryDate("2022-03-32"));
-        assertFalse(ExpiryDate.isValidExpiryDate("2022-04-31"));
-        assertFalse(ExpiryDate.isValidExpiryDate("2022-05-32"));
-        assertFalse(ExpiryDate.isValidExpiryDate("2022-06-31"));
-        assertFalse(ExpiryDate.isValidExpiryDate("2022-07-32"));
         assertFalse(ExpiryDate.isValidExpiryDate("2022-08-32"));
         assertFalse(ExpiryDate.isValidExpiryDate("2022-09-31"));
         assertFalse(ExpiryDate.isValidExpiryDate("2022-10-32"));
         assertFalse(ExpiryDate.isValidExpiryDate("2022-11-31"));
         assertFalse(ExpiryDate.isValidExpiryDate("2022-12-32"));
         assertFalse(ExpiryDate.isValidExpiryDate("0000-01-00"));
-        assertFalse(ExpiryDate.isValidExpiryDate("2022-02-00"));
-        assertFalse(ExpiryDate.isValidExpiryDate("2022-03-00"));
-        assertFalse(ExpiryDate.isValidExpiryDate("2022-04-00"));
-        assertFalse(ExpiryDate.isValidExpiryDate("2022-05-00"));
-        assertFalse(ExpiryDate.isValidExpiryDate("2022-06-00"));
-        assertFalse(ExpiryDate.isValidExpiryDate("2022-07-00"));
-        assertFalse(ExpiryDate.isValidExpiryDate("2022-08-00"));
-        assertFalse(ExpiryDate.isValidExpiryDate("2022-09-00"));
-        assertFalse(ExpiryDate.isValidExpiryDate("2022-10-00"));
-        assertFalse(ExpiryDate.isValidExpiryDate("2022-11-00"));
-        assertFalse(ExpiryDate.isValidExpiryDate("2022-12-00"));
 
         // invalid expiryDate MM below boundary and above boundary
         assertFalse(ExpiryDate.isValidExpiryDate("2020-00-01"));
         assertFalse(ExpiryDate.isValidExpiryDate("2020-13-01"));
 
-        // valid expiryDate of every month with last dates
-        assertTrue(ExpiryDate.isValidExpiryDate("2022-10-10"));
-        assertTrue(ExpiryDate.isValidExpiryDate("2022-01-01"));
-        assertTrue(ExpiryDate.isValidExpiryDate("0001-10-10"));
+        // valid expiryDate of months with last dates
         assertTrue(ExpiryDate.isValidExpiryDate("0000-01-31"));
         assertTrue(ExpiryDate.isValidExpiryDate("2022-02-28"));
-        assertTrue(ExpiryDate.isValidExpiryDate("2022-03-31"));
-        assertTrue(ExpiryDate.isValidExpiryDate("2022-04-30"));
-        assertTrue(ExpiryDate.isValidExpiryDate("2022-05-31"));
-        assertTrue(ExpiryDate.isValidExpiryDate("2022-06-30"));
-        assertTrue(ExpiryDate.isValidExpiryDate("2022-07-31"));
-        assertTrue(ExpiryDate.isValidExpiryDate("2022-08-31"));
-        assertTrue(ExpiryDate.isValidExpiryDate("2022-09-30"));
-        assertTrue(ExpiryDate.isValidExpiryDate("2022-10-31"));
-        assertTrue(ExpiryDate.isValidExpiryDate("2022-11-30"));
-        assertTrue(ExpiryDate.isValidExpiryDate("2022-12-31"));
-        assertTrue(ExpiryDate.isValidExpiryDate("-2022-12-31"));
-
     }
 
     @Test
@@ -166,7 +133,5 @@ public class ExpiryDateTest {
         anotherExpiryDate = new ExpiryDate("2022-10-10");
         assertFalse(expiryDate.equals(anotherExpiryDate));
 
-        // different types
-        assertFalse(new ExpiryDate("2020-10-10").equals(new Object()));
     }
 }
