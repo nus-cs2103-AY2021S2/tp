@@ -5,7 +5,7 @@ title: User Guide
 
 Link.me is a **desktop app aimed at insurance agents for managing clients, optimized for use via a 
 Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
-If you can type fast, Link.me can get your contact management tasks done faster than traditional GUI apps.
+If you can type fast, Link.me can get your client management tasks done faster than traditional GUI apps.
 
 ---
 
@@ -28,13 +28,13 @@ If you can type fast, Link.me can get your contact management tasks done faster 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * **`list`** : Lists all contacts.
+    * **`list`** : Lists all clients.
 
-    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the app.
+    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a client named `John Doe` to the app.
 
-    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+    * **`delete`**`3` : Deletes the 3rd client shown in the current list.
 
-    * **`clear`** : Deletes all contacts.
+    * **`clear`** : Deletes all clients.
 
     * **`exit`** : Exits the app.
 
@@ -73,7 +73,7 @@ list of commands.
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * The commands of Link.me generally follow the following format:
-  `COMMAND [PERSON_INDEX] [PREFIX/] [DESCRIPTION]`
+  `COMMAND [client_INDEX] [PREFIX/] [DESCRIPTION]`
 
 </div>
 
@@ -86,9 +86,9 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a client: `add`
 
-Adds a person to the app.
+Adds a client to the app.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER b/BIRTHDATE [t/TAG] [start/CONTRACT_START_DATE] [plan/INSURANCE_PLAN] [premium/INSURANCE_PREMIUM] [claimed/AMOUNT_CLAIMED_TO_DATE]`
 
@@ -96,42 +96,42 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER b/BIRTHDATE [t/TAG
 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A client can have any number of tags (including 0)
 </div>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/M b/1995-01-01 t/Investment start/2010-01-01 plan/Pro-Achiever premium/2400 claimed/0`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/91234567 t/Life g/F b/1998-02-03 plan/Guaranteed Protect Plus p$/1500`
 
-### Listing all persons : `list`
+### Listing all clients : `list`
 
-Shows a list of all persons in the app.
+Shows a list of all clients in the app.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a client : `edit`
 
-Edits an existing person in the app.
+Edits an existing client in the app.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [t/TAG] [start/CONTRACT_START_DATE] [plan/INSURANCE_PLAN] [premium/INSURANCE_PREMIUM] [claimed/AMOUNT_CLAIMED_TO_DATE]`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the client will be removed i.e. adding of tags is not cumulative.
+* You can remove all the client’s tags by typing `t/` without
     specifying any tags after it.
 * For other optional fields excluding tags, you may type `[FIELD_TYPE]/` to clear the field.
 
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-*  `edit 2 t/medical plan/Protecc Life premium/` Edits the insurance tag of the 2nd person to be `medical`, edits the plan name to `Protecc Life` and clears the insurance premium field.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
+*  `edit 2 t/medical plan/Protecc Life premium/` Edits the insurance tag of the 2nd client to be `medical`, edits the plan name to `Protecc Life` and clears the insurance premium field.
 
-### Locating persons by name: `find`
+### Locating clients by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds clients whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -139,7 +139,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* clients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -147,19 +147,19 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a client : `delete`
 
-Deletes the specified person from the app.
+Deletes the specified client from the app.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the app.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd client in the app.
+* `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
@@ -183,7 +183,7 @@ New schedule commands overwrite the original meeting scheduled with a client.
 Format: `schedule INDEX m/DESCRIPTION @ DATE_TIME`
 
 * Adds the client at the specified `INDEX`, and the `DATE_TIME` of the meeting, to the schedule list.
-* The `INDEX` refers to the index number shown in the displayed person list.
+* The `INDEX` refers to the index number shown in the displayed client list.
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
 * `DATE_TIME` refers to the date and time of the scheduled meeting
 * `DATE_TIME` should be inputted in the specific datetime format `yyyy-mm-dd HH:MM`
@@ -200,7 +200,7 @@ Unscheduling meetups with a certain client.
 Format: `schedule INDEX m/remove`
 
 * Removes a scheduled meeting with the client at the specified `INDEX`.
-* The `INDEX` refers to the index number shown in the displayed person list.
+* The `INDEX` refers to the index number shown in the displayed client list.
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
@@ -210,7 +210,7 @@ Example:
 
 
 ### Filtering by tag : `filter`
-Filters the contacts by address, gender, tags, insurance plan name or age.
+Filters the clients by address, gender, tags, insurance plan name or age.
 
 Format of filter command: `filter [keyword 1] [keyword 2] [keyword 3] ....`
 
@@ -221,17 +221,17 @@ Format of keyword:
 * tag: `t/[tag name]`
 * insurance plan name: `plan/[plan name]`
 
-Lists all contacts that have a matching tag.
+Lists all clients that have a matching tag.
 
 Only tags that are exactly the same will be matched.
 
 Examples:
 
 `filter a/Clementi g/M t/medical plan/Protecc` returns:
-* contacts that has "Clementi" in their address, or
-* contacts that are Male, or
-* contacts with the "Medical" tag, or
-* contacts with the insurance plan "Protecc"
+* clients that has "Clementi" in their address, or
+* clients that are Male, or
+* clients with the "Medical" tag, or
+* clients with the insurance plan "Protecc"
 
 ### Calling notifications of recent events : `notif`
 
