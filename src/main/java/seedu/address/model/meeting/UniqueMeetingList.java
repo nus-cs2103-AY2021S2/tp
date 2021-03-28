@@ -113,7 +113,6 @@ public class UniqueMeetingList implements Iterable<Meeting> {
             throw new DuplicateMeetingException();
         }
         if (!target.isSameMeeting(editedMeeting) && clashes(editedMeeting)) {
-<<<<<<< HEAD
             throw new MeetingTimeClashException();
         }
 
