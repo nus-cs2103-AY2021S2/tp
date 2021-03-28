@@ -72,7 +72,8 @@ Example: `help`
 Output:
 
 DocBob will open up a help window with command information.
-![image](https://user-images.githubusercontent.com/48408342/112430286-e1463a00-8d78-11eb-87bd-baa45a0b52ba.png)
+![image](https://user-images.githubusercontent.com/48408342/112743708-35952800-8fcc-11eb-9d1a-a7d5b52aac73.png)
+
 
 ### Adding a patients' contact: `add`
 
