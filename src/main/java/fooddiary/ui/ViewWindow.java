@@ -1,13 +1,10 @@
 package fooddiary.ui;
 
-import java.util.Arrays;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import fooddiary.commons.core.LogsCenter;
-import fooddiary.logic.commands.CommandResult;
 import fooddiary.model.entry.Entry;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
