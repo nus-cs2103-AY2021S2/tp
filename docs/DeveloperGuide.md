@@ -164,7 +164,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 |* * *   |HR Executive  |search for specific type of passengers                           |I can see if any passengers fulfil a criteria and view their carpool details                    |
 |* * *   |HR Executive  |list all passengers                                              |I can see all the passengers available                                                          |
 |* * *   |HR Executive  |create a profile                                                 |I can easily manage and track drivers and passengers                                            |
-|* * *   |HR Executive  |delete my profile                                                |passenger's data will not be stored when they are no longer looking to carpool                  |
+|* * *   |HR Executive  |delete employee profile                                          |passenger's data will not be stored when they are no longer looking to carpool                  |
 |* *     |HR Executive  |filter passengers' destination and pickup point based on location|drivers are not heavily inconvenienced to pick up passengers                                    |
 |* *     |HR Executive  |match only with female drivers                                   |so that female colleagues looking to carpool only with female drivers can be easily accomodated |
 |* *     |HR Executive  |edit drop off location                                           |passengers and drivers who have negotiated a new drop off location can be easily updated        |
