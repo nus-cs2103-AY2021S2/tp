@@ -255,19 +255,19 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Resets the current application data by setting to default values from TemplateInitializer.
      */
-    public void resetToTemplate() {
+    public void resetToTemplate(UniqueFoodList foodlist, FoodIntakeList foodIntakeList) {
         TemplateInitializer templateInitializer = new TemplateInitializer();
-        foodList = templateInitializer.getUniqueFoodListTemplate();
-        foodIntakeList = templateInitializer.getFoodListIntakeTemplate();
-        user = templateInitializer.createUser(foodList, foodIntakeList);
+        this.foodList = foodList;
+        this.foodIntakeList = foodIntakeList;
+        this.user = templateInitializer.createUser(foodlist, foodIntakeList);
     }
 
     /**
      * Resets the current application data to blank state.
      */
-    public void resetToBlank() {
-        foodList = new UniqueFoodList();
-        foodIntakeList = new FoodIntakeList();
+    public void resetToBlank(UniqueFoodList foodlist, FoodIntakeList foodIntakeList) {
+        this.foodList = foodlist;
+        this.foodIntakeList = foodIntakeList;
         user = null;
     }
 }
