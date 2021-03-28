@@ -31,6 +31,7 @@ import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonAppointmentBookStorage;
 import seedu.address.storage.JsonGradeBookStorage;
+import seedu.address.storage.JsonScheduleTrackerStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PersonBuilder;
@@ -55,8 +56,12 @@ public class LogicManagerTest {
         JsonGradeBookStorage gradeBookStorage =
                 new JsonGradeBookStorage(temporaryFolder.resolve(
                         "gradeBook.json"));
+        JsonScheduleTrackerStorage scheduleTrackerStorage =
+                new JsonScheduleTrackerStorage(temporaryFolder.resolve(
+                        "scheduleTracker.json"));
+
         StorageManager storage = new StorageManager(addressBookStorage,
-                userPrefsStorage, appointmentBookStorage, gradeBookStorage);
+                userPrefsStorage, appointmentBookStorage, gradeBookStorage, scheduleTrackerStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -91,8 +96,12 @@ public class LogicManagerTest {
         JsonGradeBookStorage gradeBookStorage =
                 new JsonGradeBookStorage(temporaryFolder.resolve(
                         "ioExceptionGradeBook.json"));
+        JsonScheduleTrackerStorage scheduleTrackerStorage =
+                new JsonScheduleTrackerStorage(temporaryFolder.resolve(
+                        "ioExceptionScheduleTracker.json"));
+
         StorageManager storage = new StorageManager(addressBookStorage,
-                userPrefsStorage, appointmentBookStorage, gradeBookStorage);
+                userPrefsStorage, appointmentBookStorage, gradeBookStorage, scheduleTrackerStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command

@@ -35,7 +35,9 @@ import seedu.address.storage.GradeBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonAppointmentBookStorage;
 import seedu.address.storage.JsonGradeBookStorage;
+import seedu.address.storage.JsonScheduleTrackerStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.ScheduleTrackerStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
@@ -77,7 +79,10 @@ public class MainApp extends Application {
         AppointmentBookStorage appointmentBookStorage =
                 new JsonAppointmentBookStorage(userPrefs.getAppointmentBookFilePath());
         GradeBookStorage gradeBookStorage = new JsonGradeBookStorage(userPrefs.getGradeBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage, appointmentBookStorage, gradeBookStorage);
+        ScheduleTrackerStorage scheduleTrackerStorage =
+                new JsonScheduleTrackerStorage(userPrefs.getScheduleTrackerFilePath());
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, appointmentBookStorage,
+                gradeBookStorage, scheduleTrackerStorage);
 
         initLogging(config);
 
