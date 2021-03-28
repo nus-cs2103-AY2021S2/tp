@@ -49,10 +49,11 @@ public class EditCommandTest {
         EntryBuilder entryInList = new EntryBuilder(lastEntry);
         Entry editedEntry = entryInList.withName(CommandTestUtil.VALID_NAME_B)
                 .withRating(CommandTestUtil.VALID_RATING_B)
-                .withTags(CommandTestUtil.VALID_TAG_WESTERN).build();
+                .withTagCategories(CommandTestUtil.VALID_TAG_WESTERN).build();
 
         EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_B)
-                .withRating(CommandTestUtil.VALID_RATING_B).withTags(CommandTestUtil.VALID_TAG_WESTERN).build();
+                .withRating(CommandTestUtil.VALID_RATING_B)
+                .withTagCategories(CommandTestUtil.VALID_TAG_WESTERN).build();
 
         EditCommand editCommand = new EditCommand(indexLastEntry, descriptor);
 

@@ -14,7 +14,8 @@ import fooddiary.model.entry.Name;
 import fooddiary.model.entry.Price;
 import fooddiary.model.entry.Rating;
 import fooddiary.model.entry.Review;
-import fooddiary.model.tag.Tag;
+import fooddiary.model.tag.TagCategory;
+import fooddiary.model.tag.TagSchool;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -30,7 +31,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_RATING,
                         CliSyntax.PREFIX_PRICE, CliSyntax.PREFIX_REVIEW,
-                        CliSyntax.PREFIX_ADDRESS, CliSyntax.PREFIX_TAG);
+                        CliSyntax.PREFIX_ADDRESS, CliSyntax.PREFIX_TAG_CATEGORY, CliSyntax.PREFIX_TAG_SCHOOL);
 
         if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_ADDRESS,
                 CliSyntax.PREFIX_RATING, CliSyntax.PREFIX_PRICE, CliSyntax.PREFIX_REVIEW)
@@ -43,9 +44,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         Price price = ParserUtil.parsePrice(argMultimap.getValue(CliSyntax.PREFIX_PRICE).get());
         List<Review> reviewList = ParserUtil.parseReviews(argMultimap.getValueInList(CliSyntax.PREFIX_REVIEW));
         Address address = ParserUtil.parseAddress(argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(CliSyntax.PREFIX_TAG));
+        Set<TagCategory> tagCategoriesList = ParserUtil.parseTagsCategories(argMultimap
+                                                .getAllValues(CliSyntax.PREFIX_TAG_CATEGORY));
+        Set<TagSchool> tagSchoolList = ParserUtil.parseTagSchool(argMultimap.getAllValues(CliSyntax.PREFIX_TAG_SCHOOL));
 
-        Entry entry = new Entry(name, rating, price, reviewList, address, tagList);
+        Entry entry = new Entry(name, rating, price, reviewList, address, tagCategoriesList, tagSchoolList);
 
         return new AddCommand(entry);
     }

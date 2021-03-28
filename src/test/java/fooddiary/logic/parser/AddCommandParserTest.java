@@ -24,7 +24,8 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Entry expectedEntry = new EntryBuilder(VALID_ENTRY_B).withTags(CommandTestUtil.VALID_TAG_FASTFOOD).build();
+        Entry expectedEntry = new EntryBuilder(VALID_ENTRY_B)
+                .withTagCategories(CommandTestUtil.VALID_TAG_FASTFOOD).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, CommandTestUtil.PREAMBLE_WHITESPACE + CommandTestUtil.NAME_DESC_B
@@ -58,7 +59,7 @@ public class AddCommandParserTest {
 
         // multiple tags - all accepted
         Entry expectedEntryMultipleTags =
-                new EntryBuilder(VALID_ENTRY_B).withTags(CommandTestUtil.VALID_TAG_FASTFOOD,
+                new EntryBuilder(VALID_ENTRY_B).withTagCategories(CommandTestUtil.VALID_TAG_FASTFOOD,
                 CommandTestUtil.VALID_TAG_WESTERN).build();
         assertParseSuccess(parser, CommandTestUtil.NAME_DESC_B + CommandTestUtil.RATING_DESC_B
                 + CommandTestUtil.PRICE_DESC_B + CommandTestUtil.REVIEW_DESC_B + CommandTestUtil.ADDRESS_DESC_B
@@ -69,7 +70,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Entry expectedEntry = new EntryBuilder(VALID_ENTRY_A).withTags().build();
+        Entry expectedEntry = new EntryBuilder(VALID_ENTRY_A).withTagCategories().build();
         assertParseSuccess(parser, CommandTestUtil.NAME_DESC_A + CommandTestUtil.RATING_DESC_A
                 + CommandTestUtil.PRICE_DESC_A + CommandTestUtil.REVIEW_DESC_A
                 + CommandTestUtil.ADDRESS_DESC_A, new AddCommand(expectedEntry));

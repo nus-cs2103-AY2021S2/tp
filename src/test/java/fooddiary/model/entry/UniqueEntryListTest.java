@@ -42,7 +42,7 @@ public class UniqueEntryListTest {
     @Test
     public void contains_entryWithSameIdentityFieldsInList_returnsTrue() {
         uniqueEntryList.add(ENTRY_A);
-        Entry editedA = new EntryBuilder(ENTRY_A).withAddress(VALID_ADDRESS_B).withTags(VALID_TAG_WESTERN)
+        Entry editedA = new EntryBuilder(ENTRY_A).withAddress(VALID_ADDRESS_B).withTagCategories(VALID_TAG_WESTERN)
                 .build();
         assertTrue(uniqueEntryList.contains(editedA));
     }
@@ -85,7 +85,7 @@ public class UniqueEntryListTest {
     @Test
     public void setEntry_editedEntryHasSameIdentity_success() {
         uniqueEntryList.add(ENTRY_A);
-        Entry editedA = new EntryBuilder(ENTRY_A).withAddress(VALID_ADDRESS_B).withTags(VALID_TAG_WESTERN)
+        Entry editedA = new EntryBuilder(ENTRY_A).withAddress(VALID_ADDRESS_B).withTagCategories(VALID_TAG_WESTERN)
                 .build();
         uniqueEntryList.setEntry(ENTRY_A, editedA);
         UniqueEntryList expectedUniqueEntryList = new UniqueEntryList();

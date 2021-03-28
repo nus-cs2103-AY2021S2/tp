@@ -203,6 +203,8 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isViewEntry()) {
                 handleView(commandResult.getEntryDetails());
+            } else {
+                viewWindow.hide();
             }
 
             if (commandResult.isExit()) {

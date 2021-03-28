@@ -16,8 +16,6 @@ import org.junit.jupiter.api.Test;
 import fooddiary.logic.commands.AddCommand;
 import fooddiary.logic.commands.ClearCommand;
 import fooddiary.logic.commands.DeleteCommand;
-import fooddiary.logic.commands.EditCommand;
-import fooddiary.logic.commands.EditCommand.EditEntryDescriptor;
 import fooddiary.logic.commands.ExitCommand;
 import fooddiary.logic.commands.FindCommand;
 import fooddiary.logic.commands.HelpCommand;
@@ -25,10 +23,8 @@ import fooddiary.logic.commands.ListCommand;
 import fooddiary.logic.parser.exceptions.ParseException;
 import fooddiary.model.entry.Entry;
 import fooddiary.model.entry.NameContainsKeywordsPredicate;
-import fooddiary.testutil.EditEntryDescriptorBuilder;
 import fooddiary.testutil.EntryBuilder;
 import fooddiary.testutil.EntryUtil;
-
 
 public class FoodDiaryParserTest {
 
@@ -54,14 +50,14 @@ public class FoodDiaryParserTest {
         assertEquals(new DeleteCommand(INDEX_FIRST_ENTRY), command);
     }
 
-    @Test
-    public void parseCommand_edit() throws Exception {
-        Entry entry = new EntryBuilder().build();
-        EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder(entry).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_ENTRY.getOneBased() + " " + EntryUtil.getEditEntryDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_ENTRY, descriptor), command);
-    }
+    //    @Test
+    //    public void parseCommand_edit() throws Exception {
+    //        Entry entry = new EntryBuilder().build();
+    //        EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder(entry).build();
+    //        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+    //                + INDEX_FIRST_ENTRY.getOneBased() + " " + EntryUtil.getEditEntryDescriptorDetails(descriptor));
+    //        assertEquals(new EditCommand(INDEX_FIRST_ENTRY, descriptor), command);
+    //    }
 
     @Test
     public void parseCommand_exit() throws Exception {

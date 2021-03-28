@@ -11,7 +11,8 @@ import fooddiary.model.entry.Name;
 import fooddiary.model.entry.Price;
 import fooddiary.model.entry.Rating;
 import fooddiary.model.entry.Review;
-import fooddiary.model.tag.Tag;
+import fooddiary.model.tag.TagCategory;
+import fooddiary.model.tag.TagSchool;
 import fooddiary.model.util.SampleDataUtil;
 
 
@@ -31,7 +32,8 @@ public class EntryBuilder {
     private Price price;
     private List<Review> reviews;
     private Address address;
-    private Set<Tag> tags;
+    private Set<TagCategory> categories;
+    private Set<TagSchool> schools;
 
     /**
      * Creates a {@code EntryBuilder} with the default details.
@@ -43,7 +45,8 @@ public class EntryBuilder {
         reviews = new ArrayList<>();
         reviews.add(new Review(DEFAULT_REVIEW));
         address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
+        categories = new HashSet<>();
+        schools = new HashSet<>();
     }
 
     /**
@@ -55,7 +58,8 @@ public class EntryBuilder {
         price = entryToCopy.getPrice();
         reviews = entryToCopy.getReviews();
         address = entryToCopy.getAddress();
-        tags = new HashSet<>(entryToCopy.getTags());
+        categories = new HashSet<>(entryToCopy.getTagCategories());
+        schools = new HashSet<>(entryToCopy.getTagSchools());
     }
 
     /**
@@ -67,10 +71,18 @@ public class EntryBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Entry} that we are building.
+     * Parses the {@code tags} into a {@code Set<TagCategory} and set it to the {@code Entry} that we are building.
      */
-    public EntryBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public EntryBuilder withTagCategories(String ... tags) {
+        this.categories = SampleDataUtil.getTagCategorySet(tags);
+        return this;
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<TagSchool>} and set it to the {@code Entry} that we are building.
+     */
+    public EntryBuilder withTagSchools(String ... tags) {
+        this.schools = SampleDataUtil.getTagSchoolSet(tags);
         return this;
     }
 
@@ -107,7 +119,7 @@ public class EntryBuilder {
     }
 
     public Entry build() {
-        return new Entry(name, rating, price, reviews, address, tags);
+        return new Entry(name, rating, price, reviews, address, categories, schools);
     }
 
 }

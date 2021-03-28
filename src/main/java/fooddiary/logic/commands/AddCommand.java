@@ -21,15 +21,17 @@ public class AddCommand extends Command {
             + CliSyntax.PREFIX_PRICE + "PRICE "
             + CliSyntax.PREFIX_REVIEW + "REVIEW "
             + CliSyntax.PREFIX_ADDRESS + "ADDRESS "
-            + "[" + CliSyntax.PREFIX_TAG + "TAG]...\n"
+            + "[" + CliSyntax.PREFIX_TAG_CATEGORY + "TAG]... "
+            + "[" + CliSyntax.PREFIX_TAG_SCHOOL + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + CliSyntax.PREFIX_NAME + "Subway "
             + CliSyntax.PREFIX_RATING + "5 "
             + CliSyntax.PREFIX_PRICE + "6 "
             + CliSyntax.PREFIX_REVIEW + "I like this food a lot! "
             + CliSyntax.PREFIX_ADDRESS + "3155 Commonwealth Ave W, Singapore 129588 "
-            + CliSyntax.PREFIX_TAG + "FastFood "
-            + CliSyntax.PREFIX_TAG + "Vegan";
+            + CliSyntax.PREFIX_TAG_CATEGORY + "FastFood "
+            + CliSyntax.PREFIX_TAG_CATEGORY + "Vegan"
+            + CliSyntax.PREFIX_TAG_SCHOOL + "SOC";
 
     public static final String MESSAGE_SUCCESS = "New entry added: %1$s";
     public static final String MESSAGE_DUPLICATE_ENTRY = "This entry already exists in the food diary";

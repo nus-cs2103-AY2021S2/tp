@@ -78,35 +78,39 @@ public class NameContainsKeywordsPredicateTest {
         // One keyword
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(
                 Collections.singletonList("FastFood"));
-        assertTrue(predicate.test(new EntryBuilder().withName("KFC").withTags("FastFood").build()));
+        assertTrue(predicate.test(new EntryBuilder().withName("KFC").withTagCategories("FastFood").build()));
 
         // Multiple keywords
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Western", "Indian"));
-        assertTrue(predicate.test(new EntryBuilder().withName("PGP Canteen").withTags("Western", "Indian").build()));
+        assertTrue(predicate.test(new EntryBuilder().withName("PGP Canteen")
+                .withTagCategories("Western", "Indian")
+                .withTagSchools("PGP").build()));
 
         // Only one matching keyword
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("FastFood", "Western"));
-        assertTrue(predicate.test(new EntryBuilder().withName("PGP Canteen").withTags("Western", "Indian").build()));
+        assertTrue(predicate.test(new EntryBuilder().withName("PGP Canteen")
+                .withTagCategories("Western", "Indian").withTagSchools("PGP").build()));
 
         // Mixed-case keywords
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("wEStErN", "INdIan"));
-        assertTrue(predicate.test(new EntryBuilder().withName("PGP Canteen").withTags("Western", "Indian").build()));
+        assertTrue(predicate.test(new EntryBuilder().withName("PGP Canteen")
+                .withTagCategories("Western", "Indian").build()));
     }
 
     @Test
     public void test_tagDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new EntryBuilder().withName("Frontier").withTags("Western").build()));
+        assertFalse(predicate.test(new EntryBuilder().withName("Frontier").withTagCategories("Western").build()));
 
         // Non-matching keyword
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Western"));
-        assertFalse(predicate.test(new EntryBuilder().withName("Techno Edge").withTags("Indian").build()));
+        assertFalse(predicate.test(new EntryBuilder().withName("Techno Edge").withTagCategories("Indian").build()));
 
         // Keywords match review, but does not match tag
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Spicy"));
         assertFalse(predicate.test(new EntryBuilder().withName("Macdonalds").withReviews("Mcspicy not very spicy")
-                .withTags("FastFood").build()));
+                .withTagCategories("FastFood").build()));
     }
 
     @Test

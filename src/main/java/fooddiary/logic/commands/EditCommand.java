@@ -22,7 +22,8 @@ import fooddiary.model.entry.Name;
 import fooddiary.model.entry.Price;
 import fooddiary.model.entry.Rating;
 import fooddiary.model.entry.Review;
-import fooddiary.model.tag.Tag;
+import fooddiary.model.tag.TagCategory;
+import fooddiary.model.tag.TagSchool;
 
 
 /**
@@ -41,7 +42,8 @@ public class EditCommand extends Command {
             + "[" + CliSyntax.PREFIX_PRICE + "PRICE] "
             + "[" + CliSyntax.PREFIX_REVIEW + "REVIEW] "
             + "[" + CliSyntax.PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + CliSyntax.PREFIX_TAG + "TAG]...\n"
+            + "[" + CliSyntax.PREFIX_TAG_CATEGORY + "CATEGORIES]..."
+            + "[" + CliSyntax.PREFIX_TAG_SCHOOL + "SCHOOLS]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + CliSyntax.PREFIX_RATING + "5 "
             + CliSyntax.PREFIX_REVIEW + "I like this food a lot!";
@@ -98,9 +100,12 @@ public class EditCommand extends Command {
         Price updatedPrice = editEntryDescriptor.getPrice().orElse(entryToEdit.getPrice());
         List<Review> updatedReview = editEntryDescriptor.getReviews().orElse(entryToEdit.getReviews());
         Address updatedAddress = editEntryDescriptor.getAddress().orElse(entryToEdit.getAddress());
-        Set<Tag> updatedTags = editEntryDescriptor.getTags().orElse(entryToEdit.getTags());
+        Set<TagCategory> updatedTagCategories = editEntryDescriptor.getTagCategories()
+                                                    .orElse(entryToEdit.getTagCategories());
+        Set<TagSchool> updatedTagSchools = editEntryDescriptor.getTagSchools().orElse(entryToEdit.getTagSchools());
 
-        return new Entry(updatedName, updatedRating, updatedPrice, updatedReview, updatedAddress, updatedTags);
+        return new Entry(updatedName, updatedRating, updatedPrice, updatedReview,
+                updatedAddress, updatedTagCategories, updatedTagSchools);
     }
 
     @Override
@@ -131,7 +136,9 @@ public class EditCommand extends Command {
         private Price price;
         private List<Review> reviews;
         private Address address;
-        private Set<Tag> tags;
+        private Set<TagCategory> tagCategories;
+        private Set<TagSchool> tagSchools;
+
 
         public EditEntryDescriptor() {}
 
@@ -145,14 +152,16 @@ public class EditCommand extends Command {
             setPrice(toCopy.price);
             setReviews(toCopy.reviews);
             setAddress(toCopy.address);
-            setTags(toCopy.tags);
+            setTagCategories(toCopy.tagCategories);
+            setTagSchools(toCopy.tagSchools);
+
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, rating, price, reviews, address, tags);
+            return CollectionUtil.isAnyNonNull(name, rating, price, reviews, address, tagCategories, tagSchools);
         }
 
         public void setName(Name name) {
@@ -206,11 +215,19 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
+         * Sets {@code tags} to this object's {@code tagCategories}.
+         * A defensive copy of {@code tag} is used internally.
+         */
+        public void setTagCategories(Set<TagCategory> tags) {
+            this.tagCategories = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        /**
+         * Sets {@code tags} to this object's {@code tagSchools}.
          * A defensive copy of {@code tags} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setTagSchools(Set<TagSchool> tags) {
+            this.tagSchools = (tags != null) ? new HashSet<>(tags) : null;
         }
 
         /**
@@ -218,8 +235,12 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Set<TagCategory>> getTagCategories() {
+            return (tagCategories != null) ? Optional.of(Collections.unmodifiableSet(tagCategories)) : Optional.empty();
+        }
+
+        public Optional<Set<TagSchool>> getTagSchools() {
+            return (tagSchools != null) ? Optional.of(Collections.unmodifiableSet(tagSchools)) : Optional.empty();
         }
 
         @Override
@@ -242,7 +263,8 @@ public class EditCommand extends Command {
                     && getPrice().equals(e.getPrice())
                     && getReviews().equals(e.getReviews())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getTagCategories().equals(e.getTagCategories())
+                    && getTagSchools().equals(e.getTagSchools());
         }
     }
 }

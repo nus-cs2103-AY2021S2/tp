@@ -6,48 +6,47 @@
     "rating" : "3",
     "price" : "11",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "WESTERN" ]
+    "category" : [ "Western" ],
+    "school" : [ "SCIENCE" ]
   }, {
     "name" : "Restaurant B",
     "reviews" : ["This is a review for Restaurant B."],
     "rating" : "2",
     "price" : "12",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "VEGAN", "DESSERT" ]
+    "category" : [ "Vegan", "Dessert" ],
+    "school": [ "SOC" ]
   }, {
     "name" : "Restaurant C",
     "reviews" : ["This is a review for Restaurant C."],
     "rating" : "1",
     "price" : "13",
-    "address" : "wall street",
-    "tagged" : [ ]
+    "address" : "wall street"
   }, {
     "name" : "Restaurant D",
     "reviews" : ["This is a review for Restaurant D."],
     "rating" : "5",
     "price" : "14",
     "address" : "10th street",
-    "tagged" : [ "FASTFOOD" ]
+    "category" : [ "Fastfood" ],
+    "school" : [ "BIZ" ]
   }, {
     "name" : "Restaurant E",
     "reviews" : ["This is a review for Restaurant E."],
     "rating" : "2",
     "price" : "15",
-    "address" : "michegan ave",
-    "tagged" : [ ]
+    "address" : "michegan ave"
   }, {
     "name" : "Restaurant F",
     "reviews" : ["This is a review for Restaurant F."],
     "rating" : "1",
     "price" : "16",
-    "address" : "little tokyo",
-    "tagged" : [ ]
+    "address" : "little tokyo"
   }, {
     "name" : "Restaurant G",
     "reviews" : ["This is a review for Restaurant G."],
     "rating" : "0",
     "price" : "17",
-    "address" : "4th street",
-    "tagged" : [ ]
-  } ]
+    "address" : "4th street"
+  }]
 }
