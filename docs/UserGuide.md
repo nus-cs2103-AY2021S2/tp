@@ -11,16 +11,14 @@ title: User Guide
 - [Features](#features)
     - [Viewing help : `help`](#viewing-help--help)
     - [Adding a financial record : `add-fr`](#adding-a-financial-record--add-fr)
-    - [Listing a month's financial records : `list`](#listing-a-months-financial-records--list)
-    - [Viewing a financial record : `view-fr`](#viewing-a-financial-record--view-fr)
     - [Deleting a financial record : `delete-fr`](#deleting-a-financial-record--delete-fr)
     - [Setting monthly budget : `set-bg`](#setting-monthly-budget--set-bg)
-    - [Viewing budget for the current month](#viewing-budget-for-the-current-month)
-    - [Checking remaining budget for the current month](#checking-remaining-budget-for-the-current-month)
     - [Viewing a specific month : `view-month`](#viewing-a-specific-month--view-month)
     - [Finding financial records : `find-fr`](#finding-financial-records--find-fr)
     - [Resetting filters on financial records : `reset-filter`](#resetting-filters-on-financial-records--reset-filter)
     - [Exiting the program : `exit`](#exiting-the-program--exit)
+    - [Viewing budget for the current month](#viewing-budget-for-the-current-month)
+    - [Checking remaining budget for the current month](#checking-remaining-budget-for-the-current-month)
     - [Saving the data](#saving-the-data)
     - [Editing the data file](#editing-the-data-file)
     - [Archiving data files](#archiving-data-files)
@@ -97,6 +95,8 @@ Format: `help`
 
 Adds a financial record to the budget tracker.
 
+<img src="images/features/add-fr.png" width="600px">
+
 Format: `add-fr d/FR_DESCRIPTION a/FR_AMOUNT`
 
 <div markdown="span" class="alert alert-primary">
@@ -111,48 +111,11 @@ Examples:
 - `add-fr d/Lunch a/10`
 - `add-fr d/Dinner a/13.50`
 
-### Listing a month's financial records : `list`
-[coming in v1.3, subject to changes]
-
-Lists a month's financial records.
-
-Format: `list MM-YYYY`
-
-<div markdown="span" class="alert alert-primary">
-**:bulb: Tips:**
-
-- The input month must follow the format of `MM-YYYY` (e.g. 09-2020)
-- Month number must take up 2 digits, and the year number 4 digits
-</div>
-
-Examples:
-
-- `list 02-2021`
-
-### Viewing a financial record : `view-fr`
-[coming in v1.3, subject to changes]
-
-Displays a financial record in the budget tracker.
-
-Format: `view-fr FR_INDEX`
-
-<div markdown="span" class="alert alert-primary">
-**:bulb: Tips:**
-
-- Views the financial record at the specified `FR_INDEX`.
-- `FR_INDEX` refers to the index number shown in the displayed financial record list.
-- `FR_INDEX` **must be a positive integer** 1, 2, 3, …
-</div>
-
-
-
-Examples:
-
-- `list 02-2021` followed by `view-fr 10` views the 10th financial record of Feb 2021
-
 ### Deleting a financial record : `delete-fr`
 
 Deletes a financial record from the budget tracker.
+
+<img src="images/features/delete-fr.png" width="600px">
 
 Format: `delete-fr FR_INDEX`
 
@@ -172,6 +135,8 @@ Examples:
 
 Sets the budget for the current month and the following twelve months.
 
+<img src="images/features/set-bg.png" width="600px">
+
 Format: `set-bg BG_AMOUNT`
 
 <div markdown="span" class="alert alert-primary">
@@ -185,14 +150,6 @@ Examples:
 - `set-bg 100`
 - `set-bg 1300.50`
 
-### Viewing budget for the current month
-
-The UI displays the current monthly budget that has been set automatically.
-
-### Checking remaining budget for the current month
-
-The UI displays and updates the remaining budget for the current month automatically.
-
 ### Viewing a specific month : `view-month`
 [coming in v1.3 subject to changes]
 
@@ -204,7 +161,9 @@ Data associated include:
 - Remaining budget amount
 - Financial records
 
-Format: `view MM-YYYY`
+<img src="images/features/view-month.png" width="600px">
+
+Format: `view-month MM-YYYY`
 
 <div markdown="span" class="alert alert-primary">
 **:bulb: Tips:**
@@ -213,11 +172,9 @@ Format: `view MM-YYYY`
 - Month number must take up 2 digits, and the year number 4 digits
 </div>
 
-
-
 Examples:
 
-- `view 01-2021`
+- `view-month 01-2021`
 
 ### Finding financial records : `find-fr`
 
@@ -228,7 +185,9 @@ Data associated include:
 - Category to filter
 - Financial records
 
-Format: `category-filter c/FR_CATEGORY`
+<img src="images/features/find-fr.png" width="600px">
+
+Format: `find-fr c/FR_CATEGORY`
 
 Examples:
 
@@ -242,6 +201,8 @@ Data associated include:
 
 - Financial records
 
+<img src="images/features/reset-filter.png" width="600px">
+
 Format: `reset-filter`
 
 Examples:
@@ -254,6 +215,14 @@ Examples:
 Exits the program.
 
 Format: `exit`
+
+### Viewing budget for the current month :
+
+The UI displays the current monthly budget that has been set automatically.
+
+### Checking remaining budget for the current month :
+
+The UI displays and updates the remaining budget for the current month automatically.
 
 ### Saving the data
 
