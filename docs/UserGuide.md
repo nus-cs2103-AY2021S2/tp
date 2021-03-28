@@ -210,9 +210,16 @@ Example:
 
 
 ### Filtering by tag : `filter`
-Filters the contacts by tag.
+Filters the contacts by address, gender, tags, insurance plan name or age.
 
-Format: `filter TAG`
+Format of filter command: `filter [keyword 1] [keyword 2] [keyword 3] ....`
+
+Format of keyword:
+
+* address: `a/[address name]`
+* gender: `g/[M or F]`
+* tag: `t/[tag name]`
+* insurance plan name: `plan/[plan name]`
 
 Lists all contacts that have a matching tag.
 
@@ -220,7 +227,11 @@ Only tags that are exactly the same will be matched.
 
 Examples:
 
-`filter medical` returns every contact with the tag `medical`
+`filter a/Clementi g/M t/medical plan/Protecc` returns:
+* contacts that has "Clementi" in their address, or
+* contacts that are Male, or
+* contacts with the "Medical" tag, or
+* contacts with the insurance plan "Protecc"
 
 ### Calling notifications of recent events : `notif`
 
@@ -237,14 +248,14 @@ Format: `notif`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Link.me data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Link.me data are saved as a JSON file `[JAR file location]/data/linkme.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, Link.me will discard all data and start with an empty data file at the next run.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -252,7 +263,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Link.me home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
