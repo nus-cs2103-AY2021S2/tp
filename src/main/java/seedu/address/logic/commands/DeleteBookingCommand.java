@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RESIDENCE;
 
 import java.util.List;
 
@@ -24,7 +26,7 @@ public class DeleteBookingCommand extends Command {
             + ": Deletes the booking identified by the booking index of the "
             + "residence identified by residence index used in the displayed residence list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1" + " 1";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_RESIDENCE + "1 " + PREFIX_BOOKING + "1";
 
     public static final String MESSAGE_DELETE_BOOKING_SUCCESS = "Deleted Residence %1$s's Booking %1$s";
 
@@ -43,16 +45,15 @@ public class DeleteBookingCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Residence> lastShownList = model.getFilteredResidenceList();
-        Residence targetResidence = lastShownList.get(residenceIndex.getZeroBased());
-        BookingList bookingList = targetResidence.getBookingList();
         if (residenceIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_RESIDENCE_DISPLAYED_INDEX);
         }
+        Residence targetResidence = lastShownList.get(residenceIndex.getZeroBased());
+        BookingList bookingList = targetResidence.getBookingList();
 
         if (bookingIndex.getZeroBased() >= bookingList.getBookingListSize()) {
             throw new CommandException(Messages.MESSAGE_INVALID_BOOKING_DISPLAYED_INDEX);
         }
-
         Booking bookingToDelete = bookingList.getBooking(bookingIndex.getZeroBased());
         Residence residenceToDeleteBooking = lastShownList.get(residenceIndex.getZeroBased());
         residenceToDeleteBooking.getBookingList().remove(bookingToDelete);
