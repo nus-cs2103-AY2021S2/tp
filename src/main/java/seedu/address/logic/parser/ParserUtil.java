@@ -21,6 +21,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
+import javax.xml.parsers.ParserConfigurationException;
+
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
@@ -79,21 +81,9 @@ public class ParserUtil {
      */
     public static EventPriority parseEventPriority(String eventPriority) throws ParseException {
         requireNonNull(eventPriority);
-        String trimmedEventPriority = eventPriority.trim();
-        String upperCaseEventPriority = trimmedEventPriority.toUpperCase();
-        switch (upperCaseEventPriority) {
-        case ("H"):
-        case ("HIGH"):
-            return EventPriority.HIGH;
-        case ("M"):
-        case ("MEDIUM"):
-            return EventPriority.MEDIUM;
-        case ("L"):
-        case ("LOW"):
-            return EventPriority.LOW;
-        default:
-            throw new ParseException(EventPriority.MESSAGE_CONSTRAINTS);
-        }
+        return Optional.ofNullable(eventPriority)
+                .map(EventPriority::valueOfPriority)
+                .orElseThrow(() -> new ParseException(EventPriority.MESSAGE_CONSTRAINTS));
     }
 
     /**
@@ -119,28 +109,9 @@ public class ParserUtil {
      */
     public static EventStatus parseEventStatus(String status) throws ParseException {
         requireNonNull(status);
-        String trimmedStatus = status.trim().toUpperCase();
-        String eventStatus;
-        switch (trimmedStatus) {
-        case ("BL"):
-            eventStatus = EventStatus.STRING_BACKLOG;
-            break;
-        case ("IP"):
-            eventStatus = EventStatus.STRING_IN_PROGRESS;
-            break;
-        case ("TD"):
-            eventStatus = EventStatus.STRING_TODO;
-            break;
-        case ("D"):
-            eventStatus = EventStatus.STRING_DONE;
-            break;
-        default:
-            eventStatus = trimmedStatus;
-        }
-        Optional<EventStatus> eventStatusOptional = Arrays.stream(EventStatus.values())
-                .filter(statusValue -> statusValue.toString().equals(eventStatus))
-                .findFirst();
-        return eventStatusOptional.orElseThrow(() -> new ParseException(EventStatus.MESSAGE_CONSTRAINTS));
+        return Optional.ofNullable(status)
+                .map(EventStatus::valueOfStatus)
+                .orElseThrow(() -> new ParseException(EventStatus.MESSAGE_CONSTRAINTS));
     }
 
     /**
