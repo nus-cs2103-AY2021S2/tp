@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -25,7 +26,7 @@ public class ViewCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) INDEX (must be a positive integer) INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 2 3";
 
-    public static final String MESSAGE_VIEW_GARMENT_SUCCESS = "Viewing Garments: %1$s";
+    public static final String MESSAGE_VIEW_GARMENT_SUCCESS = "Viewing Garments";
     public static final String MESSAGE_DUPLICATE_TYPE = "Duplicate garment types used";
 
     private final List<Index> indexes;
@@ -44,6 +45,9 @@ public class ViewCommand extends Command {
         boolean lowerPresent = false;
         boolean footwearPresent = false;
         for (Index index : this.indexes) {
+            if (index.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_GARMENT_DISPLAYED_INDEX);
+            }
             Garment garmentToView = lastShownList.get(index.getZeroBased());
             Type garmentType= garmentToView.getType();
             if (garmentType.value.equals("upper") && !upperPresent) {

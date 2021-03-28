@@ -22,14 +22,13 @@ public class ViewCommandParser implements Parser<ViewCommand> {
      */
     public ViewCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        String[] indexStrings = trimmedArgs
-                .split(" ");
+        String[] indexStrings = trimmedArgs.split("\\s+");
         List<Index> indexes = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
             try {
                 Index index = ParserUtil.parseIndex(indexStrings[i]);
                 indexes.add(index);
-            } catch (ParseException pe) {
+            } catch (ParseException | ArrayIndexOutOfBoundsException pe) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE), pe);
             }
