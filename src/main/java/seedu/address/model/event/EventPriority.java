@@ -1,11 +1,11 @@
 package seedu.address.model.event;
 
-import java.util.Locale;
-
 public enum EventPriority {
     HIGH("HIGH", "H"),
     MEDIUM("MEDIUM", "M"),
     LOW("LOW", "L");
+
+    public static final String MESSAGE_CONSTRAINTS = "Event priority should be High (h), Medium (m), or Low (l)";
 
     private final String priority;
     private final String shorthand;
@@ -36,5 +36,4 @@ public enum EventPriority {
         return this.priority;
     }
 
-    public static final String MESSAGE_CONSTRAINTS = "Event priority should be High (h), Medium (m), or Low (l)";
 }

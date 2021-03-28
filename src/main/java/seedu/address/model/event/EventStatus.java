@@ -6,6 +6,13 @@ public enum EventStatus {
     IN_PROGRESS("IN_PROGRESS", "IP"),
     DONE("DONE", "D");
 
+    public static final String STRING_BACKLOG = "BACKLOG";
+    public static final String STRING_DONE = "DONE";
+    public static final String STRING_IN_PROGRESS = "IN PROGRESS";
+    public static final String STRING_TODO = "TODO";
+    public static final String MESSAGE_CONSTRAINTS = "Event status should be BACKLOG (bl), TODO (td), "
+            + "IN_PROGRESS (ip), or DONE (d)";
+
     private final String status;
     private final String shorthand;
 
@@ -34,12 +41,5 @@ public enum EventStatus {
     public String toString() {
         return this.status;
     }
-
-    public static final String STRING_TODO = "TODO";
-    public static final String STRING_BACKLOG = "BACKLOG";
-    public static final String STRING_IN_PROGRESS = "IN PROGRESS";
-    public static final String STRING_DONE = "DONE";
-    public static final String MESSAGE_CONSTRAINTS = "Event status should be BACKLOG (bl), TODO (td), "
-            + "IN_PROGRESS (ip), or DONE (d)";
 
 }
