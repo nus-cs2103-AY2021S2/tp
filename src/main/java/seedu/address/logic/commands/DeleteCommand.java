@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
+import seedu.address.commons.core.identifier.Identifier;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.Event;
@@ -24,10 +24,10 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Deleted Event: %1$s";
 
-    private final Index targetIndex;
+    private final Identifier targetIdentifier;
 
-    public DeleteCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    public DeleteCommand(Identifier targetIdentifier) {
+        this.targetIdentifier = targetIdentifier;
     }
 
     @Override
@@ -38,7 +38,7 @@ public class DeleteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_INDEX_NO_EVENTS);
         }
 
-        Optional<Event> optEventToDelete = model.getEventByIdentifier(targetIndex.getOneBased());
+        Optional<Event> optEventToDelete = model.getEventByIdentifier(targetIdentifier.getValue());
         Event eventToDelete = optEventToDelete
                 .orElseThrow(() -> new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_IDENTIFIER));
 
@@ -50,6 +50,6 @@ public class DeleteCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                && targetIdentifier.equals(((DeleteCommand) other).targetIdentifier)); // state check
     }
 }

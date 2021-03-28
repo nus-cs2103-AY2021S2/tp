@@ -22,13 +22,13 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_CS2107;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.IDENTIFIER_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.IDENTIFIER_SECOND_PERSON;
-import static seedu.address.testutil.TypicalIndexes.IDENTIFIER_THIRD_PERSON;
+import static seedu.address.testutil.TypicalIdentifiers.IDENTIFIER_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIdentifiers.IDENTIFIER_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIdentifiers.IDENTIFIER_THIRD_PERSON;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.index.Index;
+import seedu.address.commons.core.identifier.Identifier;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditEventDescriptor;
 import seedu.address.model.event.EventName;
@@ -103,7 +103,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        Index targetIndex = IDENTIFIER_SECOND_PERSON;
+        Identifier targetIndex = IDENTIFIER_SECOND_PERSON;
         String userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_CS2107 + EVENTNAME_DESC_CS2107
                 + EVENTSTATUS_DESC_CS2107;
 
@@ -117,7 +117,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_someFieldsSpecified_success() {
-        Index targetIndex = IDENTIFIER_FIRST_PERSON;
+        Identifier targetIndex = IDENTIFIER_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_CS2030 + EVENTNAME_DESC_CS2030;
 
         EditEventDescriptor descriptor = new EditEventDescriptorBuilder().withDescription(VALID_DESCRIPTION_CS2030)
@@ -130,7 +130,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_oneFieldSpecified_success() {
         // eventname
-        Index targetIndex = IDENTIFIER_THIRD_PERSON;
+        Identifier targetIndex = IDENTIFIER_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + EVENTNAME_DESC_CS2030;
         EditEventDescriptor descriptor = new EditEventDescriptorBuilder().withName(VALID_NAME_CS2030).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -151,7 +151,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
-        Index targetIndex = IDENTIFIER_FIRST_PERSON;
+        Identifier targetIndex = IDENTIFIER_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_CS2030 + EVENTNAME_DESC_CS2030
                 + EVENTSTATUS_DESC_CS2030 + DESCRIPTION_DESC_CS2030 + EVENTNAME_DESC_CS2030;
 
@@ -165,7 +165,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
-        Index targetIndex = IDENTIFIER_FIRST_PERSON;
+        Identifier targetIndex = IDENTIFIER_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + INVALID_NAME_DESC + EVENTNAME_DESC_CS2107;
         EditEventDescriptor descriptor = new EditEventDescriptorBuilder().withName(VALID_NAME_CS2107).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);

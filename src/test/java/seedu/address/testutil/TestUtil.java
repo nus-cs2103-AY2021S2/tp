@@ -5,7 +5,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import seedu.address.commons.core.index.Index;
+import seedu.address.commons.core.identifier.Identifier;
+import seedu.address.commons.core.identifier.Index;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
@@ -33,17 +34,17 @@ public class TestUtil {
     }
 
     /**
-     * Returns the middle index of the person in the {@code model}'s person list.
+     * Returns the middle identifier of the person in the {@code model}'s person list.
      */
-    public static Index getMidIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size() / 2);
+    public static Identifier getMidIdentifier(Model model) {
+        return Identifier.fromIdentifier(model.getFilteredPersonList().size() / 2);
     }
 
     /**
-     * Returns the last index of the person in the {@code model}'s person list.
+     * Returns the last identifier of the person in the {@code model}'s person list.
      */
-    public static Index getLastIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size());
+    public static Identifier getLastIdentifier(Model model) {
+        return Identifier.fromIdentifier(model.getFilteredPersonList().size());
     }
 
     /**
