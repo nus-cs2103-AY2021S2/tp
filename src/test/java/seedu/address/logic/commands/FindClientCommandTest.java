@@ -7,7 +7,8 @@ import static seedu.address.commons.core.Messages.getClientFindSuccessMessage;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAppointments.MEET_ALEX;
 import static seedu.address.testutil.TypicalAppointments.MEET_BOB;
-import static seedu.address.testutil.TypicalProperties.JURONG;
+import static seedu.address.testutil.TypicalModelManager.getTypicalModelManager;
+import static seedu.address.testutil.TypicalProperties.BURGHLEY_DRIVE;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,14 +18,13 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
 import seedu.address.model.property.PropertyClientNamePredicate;
-import seedu.address.testutil.TypicalModelManager;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindAppointmentCommand}.
  */
 public class FindClientCommandTest {
-    private Model model = TypicalModelManager.getTypicalModelManager();
-    private Model expectedModel = TypicalModelManager.getTypicalModelManager();
+    private Model model = getTypicalModelManager();
+    private Model expectedModel = getTypicalModelManager();
 
     @Test
     public void equals() {
@@ -78,7 +78,7 @@ public class FindClientCommandTest {
         expectedModel.updateFilteredPropertyList(predicate2);
         assertCommandSuccess(command, model, getClientFindSuccessMessage(1, 1), expectedModel);
         assertEquals(Collections.singletonList(MEET_BOB), model.getFilteredAppointmentList());
-        assertEquals(Collections.singletonList(JURONG), model.getFilteredPropertyList());
+        assertEquals(Collections.singletonList(BURGHLEY_DRIVE), model.getFilteredPropertyList());
     }
 
     @Test

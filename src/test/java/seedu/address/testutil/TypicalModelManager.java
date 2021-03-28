@@ -1,17 +1,18 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
+import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBook;
+
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
 public class TypicalModelManager {
 
     /**
-     * Returns an {@code AppointmentBook} with all the typical appointments.
+     * Returns a {@code ModelManager} with the typical appointment book and property book.
      */
     public static ModelManager getTypicalModelManager() {
-        ModelManager modelManager =
-            new ModelManager(TypicalAppointments.getTypicalAppointmentBook(),
-                TypicalProperties.getTypicalPropertyBookWithClient(), new UserPrefs());
-        return modelManager;
+        return new ModelManager(getTypicalAppointmentBook(), getTypicalPropertyBook(), new UserPrefs());
     }
+
 }
