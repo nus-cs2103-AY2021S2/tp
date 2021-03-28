@@ -31,3 +31,23 @@ kbd { border-style: outset; border-width: 2px; border-color: #999999; border-rad
   margin: 10px;
 }
 
+.main-command {
+  background-color: #FFC87C;
+  padding: 1px 5px;
+  border-radius: 3px;
+  border: 1px solid #e8e8e8;
+}
+
+.compulsory-param {
+  background-color: #ADD8E6;
+  padding: 1px 5px;
+  border-radius: 3px;
+  border: 1px solid #e8e8e8;
+}
+
+.optional-param {
+  background-color: #D8BFD8;
+  padding: 1px 5px;
+  border-radius: 3px;
+  border: 1px solid #e8e8e8;
+}

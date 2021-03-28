@@ -3,6 +3,8 @@ package seedu.us.among.ui;
 import java.util.logging.Logger;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -21,6 +23,7 @@ import seedu.us.among.logic.commands.exceptions.CommandException;
 import seedu.us.among.logic.parser.exceptions.ParseException;
 import seedu.us.among.logic.request.exceptions.AbortRequestException;
 import seedu.us.among.logic.request.exceptions.RequestException;
+import seedu.us.among.model.endpoint.Endpoint;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -75,7 +78,6 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
 
         //setAccelerators();
-
         helpWindow = new HelpWindow();
     }
 
@@ -123,6 +125,21 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         endpointListPanel = new EndpointListPanel(logic.getFilteredEndpointList());
         endpointListPanelPlaceholder.getChildren().add(endpointListPanel.getRoot());
+
+        endpointListPanel.setEventListener(new ChangeListener<Endpoint>() {
+
+            @Override
+            public void changed(ObservableValue<? extends Endpoint> observable, Endpoint oldValue, Endpoint newValue) {
+                try {
+                    CommandResult commandResult = logic.execute
+                            ("show " + endpointListPanel.getSelectedEndpoint());
+                    resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+                } catch (Exception e) {
+                    logger.warning(e.toString());
+                }
+                logger.info("Selected item: \n" + newValue);
+            }
+        });
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -261,6 +278,7 @@ public class MainWindow extends UiPart<Stage> {
                 this.applicationTheme = new Theme(theme);
                 if (resultDisplay != null) {
                     resultDisplay.setErrorGifType(theme);
+                    resultDisplay.setSpinnerGifType(theme);
                 }
             }
         }
