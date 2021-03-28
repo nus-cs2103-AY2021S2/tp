@@ -73,6 +73,50 @@ public class EditCommandParser implements Parser<EditCommand> {
     }
 
     /**
+     * Parses arguments for {@code EditCommand} when used in a {@code BatchCommand}. Only allows tags and insurance
+     * policies to be edited.
+     *
+     * @param args user input
+     * @return an EditCommand object for execution
+     * @throws ParseException if the user input does not conform to the expected format, or puts in other prefixes.
+     */
+    public EditCommand batchParse(String args) throws ParseException {
+        requireNonNull(args);
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                        PREFIX_TAG, PREFIX_INSURANCE_POLICY);
+
+        if (areOtherPrefixesEntered(argMultimap)) {
+            throw new ParseException(EditCommand.MESSAGE_EXCESS_BATCH_ARGUMENTS);
+        }
+
+        Index index;
+
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+        }
+
+        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+
+        parsePoliciesForEdit(argMultimap.getAllValues(PREFIX_INSURANCE_POLICY))
+                .ifPresent(editPersonDescriptor::setPolicies);
+
+        if (!editPersonDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED_BATCH);
+        }
+
+        return new EditCommand(index, editPersonDescriptor);
+    }
+
+    private boolean areOtherPrefixesEntered(ArgumentMultimap argMultimap) {
+        return argMultimap.getValue(PREFIX_NAME).isPresent() || argMultimap.getValue(PREFIX_PHONE).isPresent()
+                || argMultimap.getValue(PREFIX_EMAIL).isPresent() || argMultimap.getValue(PREFIX_ADDRESS).isPresent();
+    }
+
+    /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
      * If {@code tags} contain only one element which is an empty string, it will be parsed into a
      * {@code Set<Tag>} containing zero tags.

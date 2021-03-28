@@ -1,60 +1,47 @@
 package seedu.address.logic.parser;
 
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.index.Index;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.address.logic.commands.BatchCommand;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.PolicyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.logging.Logger;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-
 public class BatchCommandParser implements Parser<BatchCommand> {
+    private static final String INVALID_BATCH_COMMAND = "Invalid batch operation! Only edit and delete operations "
+            + "are supported.";
 
-    private final Logger logger = LogsCenter.getLogger(getClass());
-
+    /**
+     * Parses input to prepare for a {@code BatchCommand}. Splits user input arguments for the {@BatchCommand} into
+     * the command to be executed in batch, as well as indices and arguments (if any) for this command.
+     *
+     * @param args arguments of the {@BatchCommand} passed in by the user
+     * @return a {@code BatchCommand} with the corresponding command parser and arguments for the command.
+     * @throws ParseException if the user input does not conform to the expected format.
+     */
     public BatchCommand parse(String args) throws ParseException {
         try {
-            logger.info("in batch command parser");
-
             String[] splitCommandAndIndicesAndArgs = args.split("-");
-            logger.info("in batch command parser 1 " + Arrays.toString(splitCommandAndIndicesAndArgs));
             String inputCommand = splitCommandAndIndicesAndArgs[1].trim();
-            logger.info("in batch command parser 2");
             String inputIndices = splitCommandAndIndicesAndArgs[2].trim();
-            logger.info("in batch command parser 3 " + inputIndices);
-            List<Index> listOfParsedIndices = ParserUtil.parseIndices(inputIndices);
-            logger.info("in batch command parser 4");
-            String inputCommandArgs = splitCommandAndIndicesAndArgs[3].trim();
-            logger.info("in batch command parser 5");
-
-            logger.info("in batch command parser " + Arrays.toString(splitCommandAndIndicesAndArgs) + " " + inputCommandArgs);
+            String inputCommandArgs = null;
 
             switch (inputCommand) {
 
             case EditCommand.COMMAND_WORD:
+                inputCommandArgs = splitCommandAndIndicesAndArgs[3].trim();
                 EditCommandParser editCommandParser = new EditCommandParser();
-                return new BatchCommand<>(inputCommand, editCommandParser, listOfParsedIndices, inputCommandArgs);
+                return new BatchCommand<>(editCommandParser, inputIndices, inputCommandArgs);
 
             case DeleteCommand.COMMAND_WORD:
                 DeleteCommandParser deleteCommandParser = new DeleteCommandParser();
-                return new BatchCommand<>(inputCommand, deleteCommandParser, listOfParsedIndices, inputCommandArgs);
+                return new BatchCommand<>(deleteCommandParser, inputIndices, inputCommandArgs);
 
             default:
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+                throw new ParseException(INVALID_BATCH_COMMAND);
             }
-        }
-        catch (ParseException pe) {
-            logger.info("caught a parse exception");
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, BatchCommand.MESSAGE_USAGE), pe);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BatchCommand.MESSAGE_USAGE));
         }
     }
 }
