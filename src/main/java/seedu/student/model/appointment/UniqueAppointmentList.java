@@ -77,9 +77,13 @@ public class UniqueAppointmentList implements Iterable<SameDateAppointmentList> 
      * The appointment must exist in the list.
      */
     public void remove(Appointment toRemove) {
-        assert toRemove != null;
+        requireNonNull(toRemove);
         for (SameDateAppointmentList apptList : internalList) {
-            apptList.getAppointmentList().remove(toRemove);
+            apptList.remove(toRemove);
+            if (apptList.isEmpty()) {
+                internalList.remove(apptList);
+                break;
+            }
         }
     }
 
