@@ -31,12 +31,12 @@ public class TaskTest {
         // null -> returns false
         assertFalse(ASSIGNMENT.isSameTask(null));
 
-        // same name, all other attributes different -> returns true
+        // same name, all other attributes different -> returns false
         Task editedAssignment = new TaskBuilder(ASSIGNMENT).withDeadline(VALID_DEADLINE_TASKONE)
                 .withPriority(VALID_PRIORITY_TASKONE)
                 .withCategories(VALID_CATEGORY_HOMEWORK)
                 .withTags(VALID_TAG_IMPORTANT).build();
-        assertTrue(ASSIGNMENT.isSameTask(editedAssignment));
+        assertFalse(ASSIGNMENT.isSameTask(editedAssignment));
 
         // different name, all other attributes same -> returns false
         editedAssignment = new TaskBuilder(ASSIGNMENT).withName(VALID_NAME_TASKONE).build();

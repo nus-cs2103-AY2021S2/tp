@@ -11,9 +11,7 @@ public interface ReadOnlyUserPrefs {
 
     GuiSettings getGuiSettings();
 
-    Path getTaskListFilePath();
-
-    Path getEventListFilePath();
+    Path getSocheduleFilePath();
 
 
 }

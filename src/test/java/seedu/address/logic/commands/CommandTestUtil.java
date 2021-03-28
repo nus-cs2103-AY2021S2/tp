@@ -4,8 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDDATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTDATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -27,7 +31,7 @@ import seedu.address.model.task.TaskNameContainsKeywordsPredicate;
  */
 public class CommandTestUtil {
 
-    // for logic in sochedule
+    // Task
     public static final String VALID_NAME_TASKONE = "Task One";
     public static final String VALID_NAME_TASKTWO = "Task Two";
     public static final String VALID_DEADLINE_TASKONE = "2022-01-01";
@@ -49,27 +53,48 @@ public class CommandTestUtil {
     public static final String CATEGORY_DESC_PROJECT = " " + PREFIX_CATEGORY + VALID_CATEGORY_PROJECT;
     public static final String TAG_DESC_IMPORTANT = " " + PREFIX_TAG + VALID_TAG_IMPORTANT;
     public static final String TAG_DESC_DIFFICULT = " " + PREFIX_TAG + VALID_TAG_DIFFICULT;
+    // Event
+    public static final String VALID_EVENT_NAME_EVENTONE = "Coding Interview";
+    public static final String VALID_EVENT_NAME_EVENTTWO = "SoC FOP";
+    public static final String VALID_EVENT_STARTDATE_EVENTONE = "2022-03-22";
+    public static final String VALID_EVENT_STARTDATE_EVENTTWO = "2022-07-24";
+    public static final String VALID_EVENT_STARTTIME_EVENTONE = "13:00";
+    public static final String VALID_EVENT_STARTTIME_EVENTTWO = "07:00";
+    public static final String VALID_EVENT_ENDDATE_EVENTONE = "2022-03-22";
+    public static final String VALID_EVENT_ENDDATE_EVENTTWO = "2022-07-31";
+    public static final String VALID_EVENT_ENDTIME_EVENTONE = "15:00";
+    public static final String VALID_EVENT_ENDTIME_EVENTTWO = "22:00";
+    public static final String VALID_EVENT_CATEGORY_WORK = "Work";
+    public static final String VALID_EVENT_CATEGORY_SCHOOL = "School";
+    public static final String VALID_EVENT_TAG_FINAL = "Final";
+    public static final String VALID_EVENT_TAG_FUN = "Fun";
+    // Event to input to parser
+    public static final String NAME_DESC_EVENTONE = " " + PREFIX_NAME + VALID_EVENT_NAME_EVENTONE;
+    public static final String NAME_DESC_EVENTTWO = " " + PREFIX_NAME + VALID_EVENT_NAME_EVENTTWO;
+    public static final String STARTDATE_DESC_EVENTONE = " " + PREFIX_STARTDATE + VALID_EVENT_STARTDATE_EVENTONE;
+    public static final String STARTDATE_DESC_EVENTTWO = " " + PREFIX_STARTDATE + VALID_EVENT_STARTDATE_EVENTTWO;
+    public static final String STARTTIME_DESC_EVENTONE = " " + PREFIX_STARTTIME + VALID_EVENT_STARTTIME_EVENTONE;
+    public static final String STARTTIME_DESC_EVENTTWO = " " + PREFIX_STARTTIME + VALID_EVENT_STARTTIME_EVENTTWO;
+    public static final String ENDDATE_DESC_EVENTONE = " " + PREFIX_ENDDATE + VALID_EVENT_ENDDATE_EVENTONE;
+    public static final String ENDDATE_DESC_EVENTTWO = " " + PREFIX_ENDDATE + VALID_EVENT_ENDDATE_EVENTTWO;
+    public static final String ENDTIME_DESC_EVENTONE = " " + PREFIX_ENDTIME + VALID_EVENT_ENDTIME_EVENTONE;
+    public static final String ENDTIME_DESC_EVENTTWO = " " + PREFIX_ENDTIME + VALID_EVENT_ENDTIME_EVENTTWO;
+    public static final String CATEGORY_DESC_WORK = " " + PREFIX_CATEGORY + VALID_EVENT_CATEGORY_WORK;
+    public static final String CATEGORY_DESC_SCHOOL = " " + PREFIX_CATEGORY + VALID_EVENT_CATEGORY_SCHOOL;
+    public static final String TAG_DESC_FINAL = " " + PREFIX_TAG + VALID_EVENT_TAG_FINAL;
+    public static final String TAG_DESC_FUN = " " + PREFIX_TAG + VALID_EVENT_TAG_FUN;
     // Invalid inputs
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "Invalid&"; // '&' is not allowed in names
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "2&20-01-02"; // not allowed in date
     public static final String INVALID_PRIORITY_DESC = " " + PREFIX_PRIORITY + "15"; // '15' is out of the bound
     public static final String INVALID_CATEGORY_DESC = " " + PREFIX_CATEGORY + "h@mework"; // not allowed in category
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "imp@rtant"; // not allowed in tag
-    // Event
-    public static final String VALID_EVENT_NAME_INTERVIEW = "Coding Interview";
-    public static final String VALID_EVENT_STARTDATE_INTERVIEW = "2022-03-22";
-    public static final String VALID_EVENT_STARTTIME_INTERVIEW = "13:00";
-    public static final String VALID_EVENT_ENDDATE_INTERVIEW = "2022-03-22";
-    public static final String VALID_EVENT_ENDTIME_INTERVIEW = "15:00";
-    public static final String VALID_EVENT_TAG_INTERVIEW = "Final";
-    public static final String VALID_EVENT_CATEGORY_INTERVIEW = "Work";
-    public static final String VALID_EVENT_NAME_ORIENTATION = "SoC FOP";
-    public static final String VALID_EVENT_STARTDATE_ORIENTATION = "2022-07-24";
-    public static final String VALID_EVENT_STARTTIME_ORIENTATION = "07:00";
-    public static final String VALID_EVENT_ENDDATE_ORIENTATION = "2022-07-31";
-    public static final String VALID_EVENT_ENDTIME_ORIENTATION = "22:00";
-    public static final String VALID_EVENT_TAG_ORIENTATION = "Fun";
-    public static final String VALID_EVENT_CATEGORY_ORIENTATION = "School";
+    public static final String INVALID_STARTDATE_DESC = " " + PREFIX_STARTDATE + "2&20-01-02"; // not allowed in date
+    public static final String INVALID_STARTTIME_DESC = " " + PREFIX_STARTTIME + "10:"; // not allowed in time
+    public static final String INVALID_ENDDATE_DESC = " " + PREFIX_ENDDATE + "199*-01-02"; // not allowed in date
+    public static final String INVALID_ENDDATEPAST_DESC = " " + PREFIX_ENDDATE + "1998-01-02"; // not allowed in date
+    public static final String INVALID_ENDTIME_DESC = " " + PREFIX_ENDTIME + "1@:05"; // not allowed in time
+
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

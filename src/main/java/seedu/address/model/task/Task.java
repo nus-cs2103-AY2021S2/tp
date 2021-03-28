@@ -8,6 +8,7 @@ import java.util.Set;
 
 import seedu.address.model.common.Category;
 import seedu.address.model.common.Date;
+import seedu.address.model.common.DatePastPredicate;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Tag;
 
@@ -21,6 +22,7 @@ public class Task {
     private final Date deadline;
     private final Priority priority;
     private final CompletionStatus completionStatus = new CompletionStatus();
+    private final PinnedStatus pinnedStatus = new PinnedStatus();
     private final Set<Category> categories = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
 
@@ -52,6 +54,10 @@ public class Task {
         return this.completionStatus;
     }
 
+    public PinnedStatus getPinnedStatus() {
+        return this.pinnedStatus;
+    }
+
     public Set<Category> getCategories() {
         return this.categories;
     }
@@ -64,12 +70,31 @@ public class Task {
         return completionStatus.isComplete();
     }
 
+    public boolean isPinned() {
+        return pinnedStatus.isPinned();
+    }
+
+    public void pin() {
+        pinnedStatus.pin();
+    }
+
+    public void unpin() {
+        pinnedStatus.unpin();
+    }
+
     public void markTaskAsDone() {
         completionStatus.markAsDone();
     }
 
     /**
-     * Returns true if both tasks have the same name.
+     * Returns true if the deadline of the task hasn't past.
+     */
+    public boolean isDeadlineBeforeNow() {
+        return new DatePastPredicate().test(this.deadline);
+    }
+
+    /**
+     * Returns true if both tasks have the same name, deadline, priority, tags and categories.
      * This defines a weaker notion of equality between two tasks.
      */
     public boolean isSameTask(Task otherTask) {
@@ -78,7 +103,11 @@ public class Task {
         }
 
         return otherTask != null
-                && otherTask.getName().equals(getName());
+                && otherTask.getName().equals(getName())
+                && otherTask.getDeadline().equals(getDeadline())
+                && otherTask.getPriority().equals(getPriority())
+                && otherTask.getCategories().equals(getCategories())
+                && otherTask.getTags().equals(getTags());
     }
 
     /**
@@ -115,7 +144,9 @@ public class Task {
                 .append("; Category: ")
                 .append(getCategories())
                 .append("; Completion Status: ")
-                .append(completionStatus.toString());
+                .append(completionStatus.toString())
+                .append("; Pinned Status: ")
+                .append(pinnedStatus.toString());
 
         Set<seedu.address.model.common.Tag> tags = getTags();
         if (!tags.isEmpty()) {

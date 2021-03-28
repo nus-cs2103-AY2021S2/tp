@@ -60,7 +60,7 @@ public class ModelManager implements Model {
         // null check is temporary during transition to new data
         ModelManager other = (ModelManager) obj;
         return (sochedule == null || sochedule.equals(other.sochedule))
-                && userPrefs.equals(other.userPrefs)
+                && (userPrefs.equals(other.userPrefs))
                 && (filteredTasks == null || filteredTasks.equals(other.filteredTasks))
                 && (filteredEvents == null || filteredEvents.equals(other.filteredEvents));
     }
@@ -143,6 +143,61 @@ public class ModelManager implements Model {
         sochedule.doneTask(task);
     }
 
+    @Override
+    public void pinTask(Task task) {
+        requireAllNonNull(task);
+        sochedule.pinTask(task);
+    }
+
+    @Override
+    public void unpinTask(Task task) {
+        requireAllNonNull(task);
+        sochedule.unpinTask(task);
+    }
+
+    @Override
+    public void sortTasks(String comparingVar) {
+        requireNonNull(comparingVar);
+        sochedule.sortTasks(comparingVar);
+    }
+
+    @Override
+    public void sortTasksDefault() {
+        sochedule.sortTasksDefault();
+    }
+
+    @Override
+    public void clearExpiredTasks() {
+        sochedule.clearExpiredTasks();
+    }
+
+    @Override
+    public void clearCompletedTasks() {
+        sochedule.clearCompletedTasks();
+    }
+
+    /**
+     * Returns the number of completed tasks.
+     */
+    @Override
+    public int getNumCompletedTask() {
+        return sochedule.getNumCompletedTask();
+    }
+
+    /**
+     * Returns the number of overdue tasks.
+     */
+    public int getNumOverdueTask() {
+        return sochedule.getNumOverdueTask();
+    }
+
+    /**
+     * Returns the number of incompleted tasks before deadline.
+     */
+    public int getNumIncompleteTask() {
+        return sochedule.getNumIncompleteTask();
+    }
+
     /**
      * Returns an unmodifiable view of the list of {@code Task}
      */
@@ -180,6 +235,21 @@ public class ModelManager implements Model {
     public void setEvent(Event target, Event editedEvent) {
         requireAllNonNull(target, editedEvent);
         sochedule.setEvent(target, editedEvent);
+    }
+
+    @Override
+    public void sortEvents(String comparingVar) {
+        requireNonNull(comparingVar);
+        sochedule.sortEvents(comparingVar);
+    }
+
+    @Override
+    public int getNumIncomingEvents() {
+        return sochedule.getNumIncomingEvents();
+    }
+
+    public void clearExpiredEvents() {
+        sochedule.clearExpiredEvents();
     }
 
     /**

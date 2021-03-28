@@ -1,8 +1,11 @@
 package seedu.address.model.common;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalTasks.ASSIGNMENT;
+import static seedu.address.testutil.TypicalTasks.EXERCISE;
 
 import org.junit.jupiter.api.Test;
 
@@ -36,5 +39,11 @@ public class NameTest {
         assertTrue(Name.isValidName("cs2103 lecture")); // alphanumeric characters
         assertTrue(Name.isValidName("Official Meeting")); // with capital letters
         assertTrue(Name.isValidName("CS2103 Software Programming Lecture 2")); // long names
+    }
+
+    @Test
+    public void compareTest() {
+        assertEquals(ASSIGNMENT.getName().compareTo(EXERCISE.getName()),
+                ASSIGNMENT.getName().fullName.compareTo(EXERCISE.getName().fullName));
     }
 }

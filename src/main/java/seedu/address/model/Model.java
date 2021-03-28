@@ -87,11 +87,62 @@ public interface Model {
     void doneTask(Task task);
 
     /**
+     * Pins the given task.
+     * {@code task} must not already exist in the Sochedule.
+     */
+    void pinTask(Task task);
+
+    /**
+     * Unpins the given task.
+     * {@code task} must not already exist in the Sochedule.
+     */
+    void unpinTask(Task task);
+
+    /**
      * Replaces the given task {@code target} with {@code editedTask}.
      * {@code target} must exist in the Sochedule.
      * The task identity of {@code editedTask} must not be the same as another existing task in the Sochedule.
      */
     void setTask(Task target, Task editedTask);
+
+    /**
+     * Sorts the contents of this list given {@code comparingVar}.
+     * {@code comparingVar} must be a valid parameter.
+     *
+     * @param comparingVar The value to be used for sorting.
+     */
+    void sortTasks(String comparingVar);
+
+    /**
+     * Sorts the contents of this list using current {@code comparingVar}.
+     */
+    void sortTasksDefault();
+
+    /**
+     * Returns the number of completed tasks.
+     */
+    int getNumCompletedTask();
+
+    /**
+     * Returns the number of overdue tasks.
+     */
+    int getNumOverdueTask();
+
+    /**
+     * Returns the number of incompleted tasks before deadline.
+     */
+    int getNumIncompleteTask();
+
+    /**
+     * Clear expired tasks (deadline past).
+     */
+    void clearExpiredTasks();
+
+    /**
+     * Clear completed tasks.
+     */
+    void clearCompletedTasks();
+
 
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
@@ -127,6 +178,24 @@ public interface Model {
      * The event identity of {@code editedEvent} must not be the same as another existing event in the Sochedule.
      */
     void setEvent(Event target, Event editedEvent);
+
+    /**
+     * Sorts the contents of this list given {@code comparingVar}.
+     * {@code comparingVar} must be a valid parameter.
+     *
+     * @param comparingVar The value to be used for sorting.
+     */
+    void sortEvents(String comparingVar);
+
+    /**
+     * Returns number of events happening in the next 7 days.
+     */
+    int getNumIncomingEvents();
+
+    /**
+     * Clear expired events (end date time past).
+     */
+    void clearExpiredEvents();
 
     /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();

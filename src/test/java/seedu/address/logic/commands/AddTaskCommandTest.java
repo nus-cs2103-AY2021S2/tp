@@ -104,11 +104,31 @@ public class AddTaskCommandTest {
             throw new AssertionError("This method should not be called.");
         }
         @Override
+        public void pinTask(Task target) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void unpinTask(Task target) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
         public void setTask(Task target, Task editedTask) {
             throw new AssertionError("This method should not be called.");
         }
         @Override
         public void setEvent(Event target, Event editedEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void clearExpiredTasks() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void clearCompletedTasks() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void clearExpiredEvents() {
             throw new AssertionError("This method should not be called.");
         }
         @Override
@@ -125,6 +145,39 @@ public class AddTaskCommandTest {
         }
         @Override
         public void updateFilteredEventList(Predicate<Event> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void sortTasks(String comparingVar) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void sortTasksDefault() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int getNumCompletedTask() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int getNumOverdueTask() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int getNumIncompleteTask() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortEvents(String comparingVar) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int getNumIncomingEvents() {
             throw new AssertionError("This method should not be called.");
         }
     }

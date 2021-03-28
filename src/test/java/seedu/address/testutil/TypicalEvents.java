@@ -1,19 +1,19 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_CATEGORY_INTERVIEW;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_CATEGORY_ORIENTATION;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_ENDDATE_INTERVIEW;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_ENDDATE_ORIENTATION;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_ENDTIME_INTERVIEW;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_ENDTIME_ORIENTATION;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_NAME_INTERVIEW;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_NAME_ORIENTATION;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_STARTDATE_INTERVIEW;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_STARTDATE_ORIENTATION;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_STARTTIME_INTERVIEW;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_STARTTIME_ORIENTATION;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_TAG_INTERVIEW;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_TAG_ORIENTATION;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_CATEGORY_SCHOOL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_CATEGORY_WORK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_ENDDATE_EVENTONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_ENDDATE_EVENTTWO;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_ENDTIME_EVENTONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_ENDTIME_EVENTTWO;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_NAME_EVENTONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_NAME_EVENTTWO;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_STARTDATE_EVENTONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_STARTDATE_EVENTTWO;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_STARTTIME_EVENTONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_STARTTIME_EVENTTWO;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_TAG_FINAL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_TAG_FUN;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -71,15 +71,15 @@ public class TypicalEvents {
             .build();
 
     // Manually added - Event's details found in {@code CommandTestUtil}
-    public static final Event INTERVIEW = new EventBuilder().withName(VALID_EVENT_NAME_INTERVIEW)
-            .withStartDate(VALID_EVENT_STARTDATE_INTERVIEW).withStartTime(VALID_EVENT_STARTTIME_INTERVIEW)
-            .withEndDate(VALID_EVENT_ENDDATE_INTERVIEW).withEndTime(VALID_EVENT_ENDTIME_INTERVIEW)
-            .withTags(VALID_EVENT_TAG_INTERVIEW).withCategories(VALID_EVENT_CATEGORY_INTERVIEW)
+    public static final Event EVENTONE = new EventBuilder().withName(VALID_EVENT_NAME_EVENTONE)
+            .withStartDate(VALID_EVENT_STARTDATE_EVENTONE).withStartTime(VALID_EVENT_STARTTIME_EVENTONE)
+            .withEndDate(VALID_EVENT_ENDDATE_EVENTONE).withEndTime(VALID_EVENT_ENDTIME_EVENTONE)
+            .withCategories(VALID_EVENT_CATEGORY_WORK).withTags(VALID_EVENT_TAG_FINAL)
             .build();
-    public static final Event ORIENTATION = new EventBuilder().withName(VALID_EVENT_NAME_ORIENTATION)
-            .withStartDate(VALID_EVENT_STARTDATE_ORIENTATION).withStartTime(VALID_EVENT_STARTTIME_ORIENTATION)
-            .withEndDate(VALID_EVENT_ENDDATE_ORIENTATION).withEndTime(VALID_EVENT_ENDTIME_ORIENTATION)
-            .withTags(VALID_EVENT_TAG_ORIENTATION).withCategories(VALID_EVENT_CATEGORY_ORIENTATION)
+    public static final Event EVENTTWO = new EventBuilder().withName(VALID_EVENT_NAME_EVENTTWO)
+            .withStartDate(VALID_EVENT_STARTDATE_EVENTTWO).withStartTime(VALID_EVENT_STARTTIME_EVENTTWO)
+            .withEndDate(VALID_EVENT_ENDDATE_EVENTTWO).withEndTime(VALID_EVENT_ENDTIME_EVENTTWO)
+            .withCategories(VALID_EVENT_CATEGORY_SCHOOL).withTags(VALID_EVENT_TAG_FUN)
             .build();
 
     public static final String KEYWORD_MATCHING_CODE = "Code"; // A keyword that matches MEIER

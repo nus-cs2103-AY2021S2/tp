@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
  * Represents a Time in SOChedule.
  * Guarantees: immutable; time is valid as declared in {@link #isValidTime(String)}.
  */
-public class Time {
+public class Time implements Comparable<Time> {
 
     public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
     public static final String MESSAGE_CONSTRAINTS =
@@ -59,5 +59,10 @@ public class Time {
      */
     public String toString() {
         return this.time != null ? this.time.format(TIME_FORMATTER) : "";
+    }
+
+    @Override
+    public int compareTo(Time other) {
+        return this.time.compareTo(other.time);
     }
 }
