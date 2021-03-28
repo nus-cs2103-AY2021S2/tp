@@ -1,16 +1,18 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.assignee.Assignee;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskStatus;
 import seedu.address.model.task.Title;
@@ -56,7 +58,6 @@ public class DoneTaskCommand extends Command {
         assert doneTask != null;
 
         model.setTask(taskToMarkDone, doneTask);
-        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(MESSAGE_DONE_TASK_SUCCESS);
     }
 
@@ -81,7 +82,11 @@ public class DoneTaskCommand extends Command {
 
         TaskStatus updatedStatus = TaskStatus.COMPLETED;
 
-        return new Task(updatedTitle, updatedDescription, updatedDeadline, updatedStatus);
+        Priority updatedPriority = taskToDone.getPriority();
+        Set<Assignee> updatedAssignees = taskToDone.getAssignees();
+
+        return new Task(updatedTitle, updatedDescription, updatedDeadline, updatedStatus, updatedPriority,
+                updatedAssignees);
     }
 
     @Override
