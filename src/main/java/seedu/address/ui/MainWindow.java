@@ -16,7 +16,6 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.ui.timetablepanel.TimeTablePanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,7 +33,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private ResultBarFooter resultDisplay;
     private HelpWindow helpWindow;
-    private MainPanel mainPanel;
+    private TimeTableWindow timetableWindow;
     private TutorListPanel tutorListPanel;
     private CalendarView calendarView;
     private AppointmentListPanel appointmentListPanel;
@@ -73,6 +72,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        timetableWindow = new TimeTableWindow(logic.getFilteredEventList());
     }
 
     public Stage getPrimaryStage() {
@@ -161,6 +161,18 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the help window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleTimetable() {
+        if (!timetableWindow.isShowing()) {
+            timetableWindow.show(logic.getFilteredEventList());
+        } else {
+            timetableWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -190,6 +202,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowTimetable()) {
+                handleTimetable();
             }
 
             if (commandResult.isExit()) {
