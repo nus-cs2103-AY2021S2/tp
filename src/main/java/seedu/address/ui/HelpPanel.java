@@ -67,8 +67,8 @@ public class HelpPanel extends UiPart<Region> {
         usageCol.setSortable(false);
         usageCol.setCellValueFactory(new PropertyValueFactory<>("usage"));
 
-        commandCol.prefWidthProperty().bind(table.widthProperty().multiply(0.08));
-        usageCol.prefWidthProperty().bind(table.widthProperty().multiply(0.88));
+        commandCol.prefWidthProperty().bind(table.widthProperty().multiply(0.16));
+        usageCol.prefWidthProperty().bind(table.widthProperty().multiply(0.82));
 
         commandCol.setResizable(false);
         usageCol.setResizable(false);
@@ -94,33 +94,27 @@ public class HelpPanel extends UiPart<Region> {
 
     private static ObservableList<CommandSyntax> getProjectCommands() {
         return FXCollections.observableArrayList(
-                new CommandSyntax("add", "add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]"),
-                new CommandSyntax("add", "add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]"),
-                new CommandSyntax("add", "add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]"),
-                new CommandSyntax("add", "add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]"),
-                new CommandSyntax("add", "add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]"),
-                new CommandSyntax("add", "add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]"),
-                new CommandSyntax("add", "add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]"),
-                new CommandSyntax("add", "add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]"),
-                new CommandSyntax("add", "add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]"),
-                new CommandSyntax("add", "add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]"),
-                new CommandSyntax("add", "add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]")
+                new CommandSyntax("addP", "addP n/PROJECT_NAME"),
+                new CommandSyntax("addEto", "addEto PROJECT_INDEX d/DESCRIPTION i/INTERVAL at/DATE"),
+                new CommandSyntax("addDto", "addDto PROJECT_INDEX d/DESCRIPTION by/DATE"),
+                new CommandSyntax("addTto", "addTto PROJECT_INDEX d/DESCRIPTION"),
+                new CommandSyntax("addCto",
+                        "addCto PROJECT_INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…"),
+                new CommandSyntax("deleteP", "deleteP PROJECT_INDEX"),
+                new CommandSyntax("deleteE", "deleteE PROJECT_INDEX r/EVENT_INDEX"),
+                new CommandSyntax("deleteD", "deleteD PROJECT_INDEX r/DEADLINE_INDEX"),
+                new CommandSyntax("deleteT", "deleteT PROJECT_INDEX r/TODO_INDEX"),
+                new CommandSyntax("deleteCfrom", "deleteCfrom PROJECT_INDEX r/CONTACT_INDEX")
         );
     }
 
     private static ObservableList<CommandSyntax> getContactCommands() {
         return FXCollections.observableArrayList(
-                new CommandSyntax("add", "add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]"),
-                new CommandSyntax("add", "add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]"),
-                new CommandSyntax("add", "add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]"),
-                new CommandSyntax("add", "add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]"),
-                new CommandSyntax("add", "add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]"),
-                new CommandSyntax("add", "add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]"),
-                new CommandSyntax("add", "add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]"),
-                new CommandSyntax("add", "add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]"),
-                new CommandSyntax("add", "add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]"),
-                new CommandSyntax("add", "add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]"),
-                new CommandSyntax("add", "add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]")
+                new CommandSyntax("add", "add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…"),
+                new CommandSyntax("find", "find KEYWORD [MORE_KEYWORDS]"),
+                new CommandSyntax("edit",
+                        "edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…"),
+                new CommandSyntax("delete", "delete INDEX")
         );
     }
 }

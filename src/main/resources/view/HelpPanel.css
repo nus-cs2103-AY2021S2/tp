@@ -25,7 +25,7 @@
 }
 
 .table-view .table-column {
-    -fx-alignment: center;
+    -fx-alignment: left;
 }
 
 .table-cell {
