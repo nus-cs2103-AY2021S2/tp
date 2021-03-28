@@ -181,7 +181,7 @@ public class ParserUtil {
         requireNonNull(numberOfWeeks);
         String trimmedNumberOfWeeks = numberOfWeeks.trim();
         if (!StringUtil.isNonZeroUnsignedLong(trimmedNumberOfWeeks)) {
-            throw new ParseException(MESSAGE_INVALID_NUMBER_OF_DAYS);
+            throw new ParseException(MESSAGE_INVALID_NUMBER_OF_WEEKS);
         }
         long longNumberOfWeeks = Long.parseLong(trimmedNumberOfWeeks);
         return longNumberOfWeeks;
