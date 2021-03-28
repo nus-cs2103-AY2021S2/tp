@@ -420,7 +420,7 @@ and restart with an empty data file at the next run. Proceed with caution!!
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous StoreMando home folder.
 
-**Q**: Can I have two or more inventories in one computer?
+**Q**: Can I have two or more inventories in one computer?<br>
 **A**: Download and install StoreMando in two different folders on your computer so that you will have two different 
 data files in separate locations. You can have as many different inventories as you want using this method!
 
