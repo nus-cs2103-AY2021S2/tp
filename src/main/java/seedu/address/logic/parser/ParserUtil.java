@@ -6,6 +6,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.fee.Month;
+import seedu.address.model.fee.Year;
 import seedu.address.model.session.Duration;
 import seedu.address.model.session.Fee;
 import seedu.address.model.session.SessionDate;
@@ -154,6 +156,53 @@ public class ParserUtil {
             throw new ParseException(SessionDate.MESSAGE_CONSTRAINTS);
         }
         return new SessionDate(trimmedDate, trimmedTime);
+    }
+
+    /**
+     * Parses {@code String month} into a {@code Month month}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code month} is invalid.
+     */
+    public static Month parseMonth(String month) throws ParseException {
+        requireAllNonNull(month);
+        String trimmedMonth = month.trim();
+        int intMonth;
+
+        try {
+            intMonth = Integer.parseInt(trimmedMonth);
+        } catch (Exception ex) {
+            throw new ParseException(Month.MESSAGE_CONSTRAINTS);
+        }
+
+        if (!Month.isValidMonth(intMonth)) {
+            throw new ParseException(Month.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Month(intMonth);
+    }
+
+    /**
+     * Parses {@code String year} into a {@code Year year}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code year} is invalid.
+     */
+    public static Year parseYear(String year) throws ParseException {
+        requireAllNonNull(year);
+        String trimmedYear = year.trim();
+        int intYear;
+
+        try {
+            intYear = Integer.parseInt(trimmedYear);
+        } catch (Exception ex) {
+            throw new ParseException(Year.MESSAGE_CONSTRAINTS);
+        }
+
+        if (!Year.isValidYear(intYear)) {
+            throw new ParseException(Year.MESSAGE_CONSTRAINTS);
+        }
+        return new Year(intYear);
     }
 
     /**
