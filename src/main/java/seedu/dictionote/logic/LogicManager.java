@@ -65,7 +65,7 @@ public class LogicManager implements Logic {
             if (command instanceof AddNoteCommand || command instanceof DeleteNoteCommand
                 || command instanceof EditNoteCommand || command instanceof MarkAsDoneNoteCommand
                 || command instanceof SortNoteCommand || command instanceof MarkAsUndoneNoteCommand
-                || command instanceof EditModeSaveCommand || command instanceof SortNoteByTimeCommand) {
+                || command instanceof EditModeSaveCommand || command instanceof SortNoteByTimeCommand
                 || command instanceof MergeNoteCommand) {
                 storage.saveNoteBook(model.getNoteBook());
             } else if (command instanceof AddContentCommand) {
