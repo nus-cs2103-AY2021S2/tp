@@ -132,7 +132,7 @@ public class MainWindow extends UiPart<Stage> {
             public void changed(ObservableValue<? extends Endpoint> observable, Endpoint oldValue, Endpoint newValue) {
                 try {
                     CommandResult commandResult = logic.execute
-                            ("show " + (endpointListPanel.getSelectedEndpoint() + 1));
+                            ("show " + endpointListPanel.getSelectedEndpoint());
                     resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
                 } catch (Exception e) {
                     e.printStackTrace();

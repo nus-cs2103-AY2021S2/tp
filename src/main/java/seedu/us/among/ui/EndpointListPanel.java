@@ -32,7 +32,7 @@ public class EndpointListPanel extends UiPart<Region> {
     }
 
     public int getSelectedEndpoint() {
-        return endpointListView.getSelectionModel().getSelectedIndex();
+        return endpointListView.getSelectionModel().getSelectedIndex() + 1;
     }
 
     public void setEventListener(ChangeListener<? super Endpoint> listener) {
