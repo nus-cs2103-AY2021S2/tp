@@ -84,7 +84,7 @@ public class StorageUtil {
      * Verifies that the given phone String is a valid Phone, and returns it as a {@code Phone} if so.
      *
      * @param phone the name to verify.
-     * @return the name, as a {@code Phone}.
+     * @return the phone number, as a {@code Phone}.
      * @throws IllegalValueException if the given phone is invalid or empty.
      */
     public Phone verifyAndReturnPhone(String phone) throws IllegalValueException {
@@ -102,7 +102,7 @@ public class StorageUtil {
      * Verifies that the given address String is a valid Address, and returns it as a {@code Address} if so.
      *
      * @param address the name to verify.
-     * @return the name, as a {@code Address}.
+     * @return the address, as a {@code Address}.
      * @throws IllegalValueException if the given address is invalid or empty.
      */
     public Address verifyAndReturnAddress(String address) throws IllegalValueException {
@@ -120,7 +120,7 @@ public class StorageUtil {
      * Verifies that the given tripDay String is a valid TripDay, and returns it as a {@code TripDay} if so.
      *
      * @param tripDay the name to verify.
-     * @return the name, as a {@code TripDay}.
+     * @return the trip day, as a {@code TripDay}.
      * @throws IllegalValueException if the given tripDay is invalid or empty.
      */
     public TripDay verifyAndReturnTripDay(String tripDay) throws IllegalValueException {
@@ -144,7 +144,7 @@ public class StorageUtil {
      * Verifies that the given tripTime String is a valid TripTime, and returns it as a {@code TripTime} if so.
      *
      * @param tripTime the name to verify.
-     * @return the name, as a {@code TripTime}.
+     * @return the trip time, as a {@code TripTime}.
      * @throws IllegalValueException if the given tripTime is invalid or empty.
      */
     public TripTime verifyAndReturnTripTime(String tripTime) throws IllegalValueException {
@@ -168,7 +168,7 @@ public class StorageUtil {
      * Verifies that the given price String is a valid Price, and returns it as a {@code Price} if so.
      *
      * @param price the name to verify.
-     * @return the name, as a {@code Price}, if the price is not empty, null otherwise.
+     * @return the price, as a {@code Price}, if the price is not empty, null otherwise.
      * @throws IllegalValueException if the given price is invalid.
      */
     public Price verifyAndReturnPrice(String price) throws IllegalValueException {
