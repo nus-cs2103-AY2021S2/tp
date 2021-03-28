@@ -6,7 +6,7 @@ title: User Guide
 Welcome to **FriendDex**, a **relationship management tool** looking to enhance your social life while not compromising on getting things done quickly. 
 Managing your relationships should not be any more tedious than doing your laundry.
 
-Although optimized for Command Line Interface enthusiasts, it should be easy enough for anyone to use it.
+Although optimized for Command Line Interface enthusiasts, the intuitive interface allows anyone to get started with it immediately.
 To help you get started, read the [Quick start](#quick-start) section below.
 
 * Table of Contents
@@ -14,7 +14,7 @@ To help you get started, read the [Quick start](#quick-start) section below.
 
 --------------------------------------------------------------------------------------------------------------------
 ## About 
-This document shows you the details of the [User Interface](#UI) [Features](#Features) present in **FriendDex**. 
+This document walks you through  the [User Interface](#UI) [Features](#Features) present in **FriendDex**.
 
 Note the following symbols and formatting used in this document.
 
@@ -137,7 +137,7 @@ indexes to the group.
 Format: `add-group n/GROUP_NAME p/INDEX…​`
 
 * You should provide at least one index.
-* If the group name you provide already exists, the friends at the specified `INDEX…​` will be added to the group.
+* If the group name you provided already exists, the friends at the specified `INDEX…​` will be added to the group.
 * If some friends specified already exist in the group, they will be ignored.
 
 Examples:
@@ -270,7 +270,7 @@ Format: `add-debt INDEX DEBT_AMOUNT`
 Examples:
 * `add-debt 1 100` adds 100 to the debt owed to the 1st listed friend.
 
-### Subtracting debt: `subtract `
+### Subtracting debt: `subtract-debt`
 
 Subtracts a specified amount to the debt owed to the friend at the specified `INDEX`.
 
@@ -286,6 +286,7 @@ Format: `subtract-debt INDEX DEBT_AMOUNT`
 
 Examples:
 `subtract-debt 1 100` subtracts 100 to the debt owed to the 1st listed friend.
+
 ### Locating persons by name : `find`
 
 Finds persons whose names contain any of the given keywords.
