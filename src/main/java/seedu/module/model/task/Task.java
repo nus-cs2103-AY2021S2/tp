@@ -75,6 +75,17 @@ public class Task {
     }
 
     /**
+     * Factory method designed for tag and deleteTag command, to get rid of repeat code.
+     *
+     * @param recurrence new recurrence.
+     * @return an edited task object.
+     */
+    public static Task setRecurrence(Task task, OptionalField<Recurrence> recurrence) {
+        return new Task(task.name, task.startTime, task.deadline, task.module, task.description, task.workload,
+                task.doneStatus, recurrence, task.tags);
+    }
+
+    /**
      * Factory method for updating recurrence task.
      *
      * @param task the task need to be updated.
