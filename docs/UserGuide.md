@@ -83,13 +83,15 @@ Double click the file to start the app.
 
 3. Alternatively, you can use the command line to run RemindMe. 
    Open your command line by searching cmd in your desktop search bar.
-Type in `java -jar RemindMe.jar` in the command box and press Enter to execute it.
+Type in `java -jar RemindMe.jar` in the command box and press Enter to execute it.<br>
+<br>
+<br>
 The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](./images/Ui.png)
+   ![Ui](./images/Ui2.png)
 <br>
 <br>   
 
-4. Press start to proceed to the main window.
+4. Press start to proceed to the main window as shown below.
    ![UiMainWindow](images/UiMainWindow.png)
 <br>
 <br>         
@@ -554,6 +556,7 @@ You may browse through the calendar over the months by clicking the
 left arrow button `<` and right arrow button `>` on the top right of the calendar window.
 Additionally, you may click on `today` button to browse back to the month of current day's date.
 
+<div class="page-break-before"></div>
 
 ### 3.9 Saving the data
 Saving of data is automatic by the application whenever you 
@@ -580,6 +583,8 @@ There are 3 ways to exit the application.
 application to exit the program.
    
 ![exit3](images/exit3.png)
+
+<div class="page-break-before"></div>
 
 ## 4. FAQ
 
@@ -609,3 +614,4 @@ Action | Description, Format
 **Exit program** | `exit` `E` 
 
 [Back to Table of Contents](#table-of-contents)
+
