@@ -169,7 +169,7 @@ Example: `addTask CCA Timeline -d Plan semester's timeline -b 2021-04-04 -s comp
 * If status field is not provided, the Task will be assigned a default status value of uncompleted.
 * Status field can only take on the values completed or uncompleted.
 * If priority field is not provided, the Task will be assigned a default priority of unassigned.
-* Priority field can only take on the values high, medium or low if a value is specified by the user.
+* Priority field can only take on the values high, medium, low or unassigned if a value is specified by the user
 
 <div markdown="block" class="alert alert-info">
 :bulb: **Tip:**
@@ -288,8 +288,95 @@ Example: `viewUnassignedTasks`
 View the list of uncompleted tasks.
 
 Format: `viewUncompletedTasks`
+Examples: `viewUncompletedTasks`
 
-Example: `viewUncompletedTasks`
+<a name="addMember"></a>
+### 13. Add Member: `addMember`
+
+Adds a member along with his/ her contract number to contact list.
+
+Format: `addMember NAME -p PHONE_NUMBER -e EMAIL [-r ROLE]`
+
+Examples: `addMember Dylan -p 64529356 -e test@test.com -r Member`
+* The field ROLE is optional
+* If role field is not specified, person will be assigned a default role of member.
+
+<a name="deleteMember"></a>
+### 14. Delete Member: `deleteMember`
+
+Delete a member along with his/ her contact details from the contact list.
+
+Format: `deleteMember NAME`
+
+Examples: `deleteMember Rachel`
+
+<a name="viewMembers"></a>
+### 15. View Member: `viewMembers`
+
+View the list of members the user has added.
+
+Format: `viewMembers `
+
+Examples: `viewMembers `
+
+<a name="editMember"></a>
+### 16. Edit Member: `editMember`
+
+Format: `editMember NAME IN LIST [-n NEW_NAME] [-p NEW_PHONE_NUMBER] [-e NEW_EMAIL] [-r ROLE]`
+* Edits the person at the specified NAME IN LIST.
+* The fields NEW NAME, NEW PHONE NUMBER, NEW EMAIL, NEW ROLE are all optional
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+Examples: `editMember Alice -n Alice Lim -p 95231156 -e tasha@test.com -r Events head`
+
+<a name="findMember"></a>
+### 17. Find Members by Keywords: `findMembers`
+
+Find all members whose details contain any of the specified keywords.
+
+Format: `findMembers KEYWORD [MORE_KEYWORDS]`
+
+Examples: `findMembers Rachel 98562154 john@gmail.com`
+
+<a name="findTasksFor"></a>
+### 18. Find Tasks Assigned to a Single Member: `findMembers`
+
+Find all tasks assigned to a single Member
+
+Format: `findTasksFor NAME`
+
+**:bulb: Tips:**
+- The NAME specified can only belong to 1 Member
+- A NAME that does not exist in the Member List will return 0 tasks listed 
+
+Examples: `findTasksFor Alex Yeoh`
+
+
+<a name="clear"></a>
+### 19. Clear all data in application: `clear`
+Clears all entries from the application.
+
+Format: `clear`
+
+Examples: `clear`
+
+<a name="exit"></a>
+### 20. Exiting the programme: `exit`
+Exits the program.
+
+Format: `exit`
+
+Examples: `exit`
+
+<a name="help"></a>
+### 21. View Help: `help`
+Shows a message explaining how to access the help page.
+
+Format: `help`
+
+Examples: `help`
+
 
 --------------------------------------------------------------------------------------------------------------------
 ## Data Storage 

@@ -6,7 +6,6 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.FindByPriorityCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.task.Priority;
 import seedu.address.model.task.PriorityContainsKeywordPredicate;
 
 /**
@@ -30,10 +29,8 @@ public class FindByPriorityCommandParser implements Parser<FindByPriorityCommand
 
         String keyword = parsedArgs[0];
 
-        if (!Priority.isValidValue(keyword)) {
-            throw new ParseException(String.format(Priority.MESSAGE_CANNOT_FIND_PRIORITY,
-                    FindByPriorityCommand.MESSAGE_USAGE));
-        }
+        // Used to check if priority is valid
+        ParserUtil.parsePriority(keyword);
 
         String[] nameKeywords = {keyword};
 

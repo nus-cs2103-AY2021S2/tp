@@ -101,6 +101,10 @@ public class Task {
         return Collections.unmodifiableSet(assignees);
     }
 
+    public boolean hasAssignee(Assignee assignee) {
+        return assignees.contains(assignee);
+    }
+
     public boolean isUnassigned() {
         return assignees.isEmpty();
     }
