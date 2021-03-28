@@ -5,12 +5,28 @@ title: User Guide
 
 # BudgetBaby User Guide :baby: :money_with_wings:
 
-**BudgetBaby** is a **desktop app for setting monthly budgets and tracking expenses**. It is **optimized for use via a Command Line Interface** (CLI) so that entering and editing financial records and budgets can be done faster by typing in commands while still having the benefits of a Graphical User Interface (GUI).
+**BudgetBaby** is a **budget and expenses tracking desktop app for University students and/or those who are looking to better manage their finances**. It is **optimized for use via a Command Line Interface** (CLI) so that entering and editing financial records and budgets can be done faster by typing in commands while still having the benefits of a Graphical User Interface (GUI).
 
-- Table of Contents
-  {:toc}
-
----
+- [Quick Start](##Quick start)
+- [Features](##Features)
+    - [Viewing help : `help`](###Viewing help)
+    - [Adding a financial record : `add-fr`](###Adding a financial record)
+    - [Listing a month's financial records : `list`](###Listing a month's financial records)
+    - [Viewing a financial record : `view-fr`](###Viewing a financial record)
+    - [Deleting a financial record : `delete-fr`](###Deleting a financial record)
+    - [Setting monthly budget : `set-bg`](###Setting monthly budget)
+    - [Viewing budget for the current month](###Viewing budget for the current month)
+    - [Checking remaining budget for the current month](###Checking remaining budget for the current month)
+    - [Viewing a specific month : `view-month`](###Viewing a specific month)
+    - [Finding a financial record : `find-fr`](###Finding a financial record)
+    - [Resetting filters on financial records : `reset-filter`](###Resetting filters on financial records)
+    - [Exiting the program : `exit`](###Exiting the program)
+    - [Saving the data](###Saving the data)
+    - [Editing the data file](###Editing the data file)
+    - [Archiving data files](###Archiving data files)
+- [FAQ](##FAQ)
+- [Command Summary](##Command summary)
+- [Credits](##Credits)
 
 ## Quick start
 

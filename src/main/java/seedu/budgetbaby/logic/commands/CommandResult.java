@@ -12,9 +12,9 @@ public class CommandResult {
     private final String feedbackToUser;
 
     /**
-     * Current display month is changed.
+     * The application should refresh the Ui.
      */
-    private final boolean monthChanged;
+    private final boolean refreshUi;
 
     /**
      * Help information should be shown to the user.
@@ -29,9 +29,9 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean monthChanged, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean refreshUi, boolean showHelp, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.monthChanged = monthChanged;
+        this.refreshUi = refreshUi;
         this.showHelp = showHelp;
         this.exit = exit;
     }
@@ -48,8 +48,8 @@ public class CommandResult {
         return feedbackToUser;
     }
 
-    public boolean isMonthChanged() {
-        return monthChanged;
+    public boolean isRefreshUi() {
+        return refreshUi;
     }
 
     public boolean isShowHelp() {
