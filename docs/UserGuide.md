@@ -21,12 +21,6 @@ FriendDex is a **relationship management tool for CLI enthusiasts** looking to e
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
-   
-The command bar right at the top will be where you type your commands.
-The results display below the command bar will tell you if your command is successful or the modifications that are needed to make your command work.
-The group panel on the left will show all the groups currently in FriendDex.
-The middle panel will list down the people stored in FriendDex. It will either show all of them, or some depending on the commands you used.
-The details panel on the right will supply additional information to you based on the commands given.
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -41,7 +35,16 @@ The details panel on the right will supply additional information to you based o
 
    * **`exit`** : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command. 
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Autocomplete
+
+![Autocomplete](images/Autocomplete.png)
+
+There is no need to remember commands as FriendDex will suggest commands to you as you type. To use a suggested command, press up/down to the desired command and press enter. 
+The suggested command will be automatically typed into the command bar.  
 
 --------------------------------------------------------------------------------------------------------------------
 
