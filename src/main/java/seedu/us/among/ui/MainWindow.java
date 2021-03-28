@@ -135,7 +135,7 @@ public class MainWindow extends UiPart<Stage> {
                             ("show " + endpointListPanel.getSelectedEndpoint());
                     resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    logger.warning(e.toString());
                 }
                 logger.info("Selected item: \n" + newValue);
             }
