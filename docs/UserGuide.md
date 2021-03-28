@@ -42,14 +42,74 @@ If you can type fast, Link.me can get your client management tasks done faster t
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-
-## Features
-
+## Overview of Features
 The features of Link.me mainly revolve around adding and editing clients as Link.me is first and foremost a client
-managing app. Features of Link.me including adding, editing and deleting clients, as well as methods to quickly find
-clients through finding and filtering. Link.me also supports peripheral features such as meeting scheduling, client 
-remarking and notifying the user to important upcoming events. See [Command summary](#command-summary) below for a full
-list of commands.
+managing app. 
+
+Features of Link.me including adding, editing and deleting clients, as well as methods to quickly find
+clients through finding and filtering. Link.me also supports peripheral features such as meeting scheduling, client
+remarking and notifying the user to important upcoming events. 
+
+See [Features](#features) below for details on how to use each command.
+
+### View help
+
+You can view a message explaining how to access the help page.
+
+### List all clients
+You can list all the clients currently stored in Link.me.
+
+### Add a client
+
+You can add a client to Link.me, by specifying each of the fields below:
+* Name
+* Phone number
+* Email
+* Address
+* Gender
+* Birthdate
+* Tags (optional)
+
+### Edit a client
+
+You can edit the information of existing clients.
+
+### Search for clients by name
+
+You can find clients whose name matches the given keywords.
+
+### Delete clients
+
+You can delete clients from Link.me.
+
+### Schedule and remove meetings
+
+You can schedule and remove meetings with clients.
+
+### Filter clients
+
+You can filter clients by their address, gender, age, tags or insurance plan name.
+
+### Display notifications
+
+You can open a notification window which informs you of upcoming meetings and client birthdays.
+
+### Record, clear and view notes
+
+You can record, clear and view notes for each client in Link.me.
+
+### Clear all clients
+
+You can clear all clients from Link.me. 
+
+### Exit program
+
+You can exit Link.me.
+
+
+
+--------------------------------------------------------------------------------------------------------------------
+## Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -86,14 +146,13 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-
-### Adding a client: `add`
+### Adding a person: `add`
 
 Adds a client to your Link.me.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER b/BIRTHDATE [t/TAG] [start/CONTRACT_START_DATE] [plan/INSURANCE_PLAN] [premium/INSURANCE_PREMIUM] [claimed/AMOUNT_CLAIMED_TO_DATE]`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER b/BIRTHDATE [t/TAG]...`
 
-* `BIRTH_DATE` and `CONTRACT_START_DATE` should be inputted in the specific datetime format yyyy-mm-dd
+* `BIRTHDATE` should be given in the format yyyy-mm-dd
 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -101,8 +160,8 @@ A client can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/M b/1995-01-01 t/Investment start/2010-01-01 plan/Pro-Achiever premium/2400 claimed/0`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/91234567 t/Life g/F b/1998-02-03 plan/Guaranteed Protect Plus p$/1500`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/M b/1995-01-01 t/investment`
+* `add n/Betsy Crowe t/medical e/betsycrowe@example.com a/Newgate Prison p/91234567 t/life g/F b/1998-02-03`
 
 ### Listing all of your clients : `list`
 
@@ -114,7 +173,7 @@ Format: `list`
 
 Edits an existing client in your Link.me.
 
-Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [t/TAG] [start/CONTRACT_START_DATE] [plan/INSURANCE_PLAN] [premium/INSURANCE_PREMIUM] [claimed/AMOUNT_CLAIMED_TO_DATE]`
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [t/TAG]...`
 
 * Edits your client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -122,13 +181,13 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GENDER] [
 * When editing tags, the existing tags of your client will be removed i.e. adding of tags is not cumulative.
 * You can remove all your client’s tags by typing `t/` without
     specifying any tags after it.
-* For other optional fields excluding tags, you may type `[FIELD_TYPE]/` to clear the field.
 
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
 *  `edit 2 t/medical plan/Protecc Life premium/` Edits the insurance tag of the 2nd client to be `medical`, edits the plan name to `Protecc Life` and clears the insurance premium field.
+
 
 ### Locating clients by name: `find`
 
@@ -209,11 +268,10 @@ Example:
 * `schedule 2 m/remove` removes meeting scheduled with your client indexed 2 on the display.
 
 
-
 ### Filtering by tag : `filter`
 Filters your clients by address, gender, tags, insurance plan name or age.
 
-Format of filter command: `filter [keyword 1] [keyword 2] [keyword 3] ....`
+Format of filter command: `filter KEYWORD [MORE_KEYWORDS]`
 
 Format of keyword:
 
@@ -224,7 +282,7 @@ Format of keyword:
 
 Lists all of your clients that has attributes that match your search keywords.
 
-Only tags that are exactly the same will be matched.
+Only attributes that are exactly the same will be matched.
 
 Examples:
 
@@ -245,6 +303,57 @@ The notification window is also shown on startup of your Link.melication.
 ![notif message](images/notifMessage.png)
 
 Format: `notif`
+
+### Recording, clearing and viewing notes : `note`
+
+#### Recording a note
+
+Records a note for a specified client.
+
+Format: `note INDEX r/NOTE`
+
+* Adds the provided `NOTE` to the client specified at `INDEX`.
+
+Example:
+
+* `note 3 r/Wants to upgrade insurance coverage` adds the note "Wants to upgrade insurance coverage" to the 3rd client.
+
+#### Clearing notes
+
+Clears all existing notes from a specified client.
+
+Format: `note INDEX c/`
+
+* Clears all notes from the client specified at `INDEX`.
+
+Example:
+
+* `note 4 c/` clears all notes from the 4th client.
+
+#### Viewing notes
+
+View all existing notes from a specified client. Notes will be displayed in a popup box, with each note listed as a bullet point.
+
+Format: `note INDEX v/`
+
+* View notes from the client specified at `INDEX`.
+
+Example:
+
+* `note 4 v/` generates a popup box displaying the notes taken for the 4th client.
+
+
+### Clearing all entries : `clear`
+
+Clears all entries from the app.
+
+Format: `clear`
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
 
 
 ### Saving the data
@@ -270,15 +379,16 @@ If your changes to the data file makes its format invalid, Link.me will discard 
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER b/BIRTHDATE [t/TAG] [start/CONTRACT_START_DATE] [plan/INSURANCE_PLAN] [premium/INSURANCE_PREMIUM] [claimed/AMOUNT_CLAIMED_TO_DATE]`
-**Clear** | `clear`
-**Delete** | `delete INDEX`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [t/TAG] [start/CONTRACT_START_DATE] [plan/INSURANCE_PLAN] [premium/INSURANCE_PREMIUM] [claimed/AMOUNT_CLAIMED_TO_DATE]`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`
-**Filter** | `filter TAG`
-**List** | `list`
-**Help** | `help`
-**Notif** | `notif`
-**Schedule** | `schedule INDEX DATE_TIME`
+Action      | Format, Examples
+------------|------------------
+**Add**     | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER b/BIRTHDATE [t/TAG] [start/CONTRACT_START_DATE] [plan/INSURANCE_PLAN] [premium/INSURANCE_PREMIUM] [claimed/AMOUNT_CLAIMED_TO_DATE]`
+**Clear**   | `clear`
+**Delete**  | `delete INDEX`
+**Edit**    | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [t/TAG] [start/CONTRACT_START_DATE] [plan/INSURANCE_PLAN] [premium/INSURANCE_PREMIUM] [claimed/AMOUNT_CLAIMED_TO_DATE]`
+**Find**    | `find KEYWORD [MORE_KEYWORDS]`
+**Filter**  | `filter KEYWORD [MORE_KEYWORDS]`
+**List**    | `list`
+**Help**    | `help`
+**Notif**   | `notif`
+**Schedule**| `schedule INDEX DATE_TIME`
+**Note**    | `note INDEX r/NOTE', `note INDEX c/', `note INDEX v/'
