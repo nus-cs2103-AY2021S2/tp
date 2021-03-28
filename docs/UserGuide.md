@@ -443,8 +443,8 @@ Action | Format, Examples
 **[Find](#find)** | `find [*/]KEYWORD [MORE KEYWORDS]`<br> e.g. `find koko krunch` `find */choco`
 **[Delete](#delete)** | `delete INDEX`<br> e.g. `delete 2`
 **[Reminder](#reminder)** | `reminder number TIME_UNIT`<br> e.g. `reminder 7 days` `reminder 2 weeks`
-**[Sort](#sort)** | `sort quantity` `sort expiryDate`
-**[Clear](#clear)** | `clear`
+**[Sort](#sort)** | `sort quantity asc` `sort quantity desc` `sort expiryDate`
+**[Clear](#clear)** | `clear` `clear l/LOCATION` <br> `clear l/bedroom`
 **[Exit](#exit)** | `exit`
 
 --------------------------------------------------------------------------------------------------------------------
