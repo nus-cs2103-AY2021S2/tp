@@ -83,13 +83,15 @@ Double click the file to start the app.
 
 3. Alternatively, you can use the command line to run RemindMe. 
    Open your command line by searching cmd in your desktop search bar.
-Type in `java -jar RemindMe.jar` in the command box and press Enter to execute it.
+Type in `java -jar RemindMe.jar` in the command box and press Enter to execute it.<br>
+<br>
+<br>
 The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](./images/Ui.png)
 <br>
 <br>   
 
-4. Press start to proceed to the main window.
+4. Press start to proceed to the main window as shown below.
    ![UiMainWindow](images/UiMainWindow.png)
 <br>
 <br>         
