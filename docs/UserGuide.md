@@ -9,13 +9,13 @@ HEY MATEz is a desktop application to get rid of CCA leaders' woes by allowing t
 members and tasks within the CCA efficiently. It is
 a Command Line Interface (CLI) application while still retaining a Graphical User Interface (GUI)
 as this application is catered to students who are used to typing on the keyboard frequently. With HEY MATEz, planning 
-and distributing tasks will never be headache :smile:
+and distributing tasks will never give you a headache again !:smile:
 
 * [Introduction](#introduction)  
 * [Quick Start](#quick-start)  
 * [Features](#features)
   + [General Features](#general)
-    - [1. Clear all data in application: `clear`](#clear)
+     [1. Clear all data in application: `clear`](#clear)
     - [2. Exiting the programme: `exit`](#exit)
     - [3. View Help: `help`](#help)
   + [Member Related Features](#members)
