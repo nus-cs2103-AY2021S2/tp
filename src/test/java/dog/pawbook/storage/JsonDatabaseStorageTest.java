@@ -95,7 +95,7 @@ public class JsonDatabaseStorageTest {
     }
 
     @Test
-    public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
+    public void saveDatabase_nullDatabase_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveDatabase(null, "SomeFile.json"));
     }
 

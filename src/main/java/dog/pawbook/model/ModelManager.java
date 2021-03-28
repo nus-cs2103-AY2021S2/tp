@@ -74,7 +74,7 @@ public class ModelManager implements Model {
     @Override
     public void setDatabaseFilePath(Path databaseFilePath) {
         requireNonNull(databaseFilePath);
-        userPrefs.setAddressBookFilePath(databaseFilePath);
+        userPrefs.setDatabaseFilePath(databaseFilePath);
     }
 
 
