@@ -143,7 +143,7 @@ public class Task {
         Task otherTask = (Task) other;
         return otherTask.getTitle().equals(getTitle())
                 && otherTask.getDescription().equals(getDescription())
-                && otherTask.getDeadline().equals((getDeadline()));
+                && otherTask.getDeadline().equals(getDeadline());
     }
 
     @Override

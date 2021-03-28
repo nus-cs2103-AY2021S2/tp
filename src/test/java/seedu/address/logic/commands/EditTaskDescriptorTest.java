@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_TASK1;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_TASK2;
 import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_TASK1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNEE_MARATHON;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_MEETING;
@@ -12,7 +13,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_MEETING;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.EditTaskDescriptorBuilder;
-
 
 public class EditTaskDescriptorTest {
     @Test
@@ -51,5 +51,8 @@ public class EditTaskDescriptorTest {
         editedTask = new EditTaskDescriptorBuilder(DESC_TASK2).withPriority("low").build();
         assertFalse(DESC_TASK2.equals(editedTask));
 
+        // different assignee -> returns false
+        editedTask = new EditTaskDescriptorBuilder(DESC_TASK2).withAssignees(VALID_ASSIGNEE_MARATHON).build();
+        assertFalse(DESC_TASK2.equals(editedTask));
     }
 }

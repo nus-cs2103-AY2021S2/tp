@@ -1,13 +1,19 @@
 package seedu.address.testutil;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
+import seedu.address.model.assignee.Assignee;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
+
 /**
- * A utility class to help with building EditPersonDescriptor objects.
+ * A utility class to help with building EditTaskDescriptor objects.
  */
 public class EditTaskDescriptorBuilder {
 
@@ -29,6 +35,7 @@ public class EditTaskDescriptorBuilder {
         descriptor.setTitle(task.getTitle());
         descriptor.setDescription(task.getDescription());
         descriptor.setDeadline(task.getDeadline());
+        descriptor.setAssignees(task.getAssignees());
     }
 
     /**
@@ -63,8 +70,15 @@ public class EditTaskDescriptorBuilder {
         return this;
     }
 
-
-
+    /**
+     * Parses the {@code assignees} into a {@code Set<Assignee>} and set it to the {@code EditTaskDescriptor}
+     * that we are building.
+     */
+    public EditTaskDescriptorBuilder withAssignees(String... assignees) {
+        Set<Assignee> assigneeSet = Stream.of(assignees).map(Assignee::new).collect(Collectors.toSet());
+        descriptor.setAssignees(assigneeSet);
+        return this;
+    }
 
     public EditTaskDescriptor build() {
         return descriptor;

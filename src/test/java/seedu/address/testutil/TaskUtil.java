@@ -9,7 +9,7 @@ import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import seedu.address.model.task.Task;
 
 /**
- * A utility class for Person.
+ * A utility class for Task.
  */
 public class TaskUtil {
 
