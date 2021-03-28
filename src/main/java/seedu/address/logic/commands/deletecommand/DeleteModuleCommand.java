@@ -38,13 +38,10 @@ public class DeleteModuleCommand extends DeleteCommand {
 
         //check for Title
         Module moduleToCheck = new Module(moduleTitle);
-        System.out.println(lastShownList);
-        System.out.println(moduleToCheck.toString());
         if (!listContainsModule(lastShownList, moduleToCheck)) {
             throw new CommandException(Messages.MESSAGE_INVALID_MODULE_TITLE);
         }
         int indexOfModule = getIndex(lastShownList, moduleToCheck);
-        System.out.println("index: " + indexOfModule);
         Module moduleToDelete = lastShownList.get(indexOfModule);
         model.deleteModule(moduleToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete));
