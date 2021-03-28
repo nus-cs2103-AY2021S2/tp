@@ -156,10 +156,9 @@ class JsonAdaptedStudent {
 
         if (schoolResidence.isBlank()) {
             modelSchoolRes = new SchoolResidence(NO_SCHOOL_RESIDENCE);
-        } else {
-            if (!SchoolResidence.isValidResidence(schoolResidence)) {
-                throw new IllegalValueException(SchoolResidence.MESSAGE_CONSTRAINTS);
-            }
+        } else if (!SchoolResidence.isValidResidence(schoolResidence)) {
+            throw new IllegalValueException(SchoolResidence.MESSAGE_CONSTRAINTS);
+        } else{
             modelSchoolRes = new SchoolResidence(schoolResidence);
         }
 
