@@ -3,6 +3,7 @@ package seedu.cakecollate.logic.commands;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.showOrderAtIndex;
 import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
+import static seedu.cakecollate.testutil.TypicalOrderItems.getTypicalOrderItemsModel;
 import static seedu.cakecollate.testutil.TypicalOrders.getTypicalCakeCollate;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -22,8 +23,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalCakeCollate(), new UserPrefs());
-        expectedModel = new ModelManager(model.getCakeCollate(), new UserPrefs());
+        model = new ModelManager(getTypicalCakeCollate(), getTypicalOrderItemsModel(), new UserPrefs());
+        expectedModel = new ModelManager(model.getCakeCollate(), getTypicalOrderItemsModel(), new UserPrefs());
     }
 
     @Test

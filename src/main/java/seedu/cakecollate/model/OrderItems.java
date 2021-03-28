@@ -101,5 +101,4 @@ public class OrderItems implements ReadOnlyOrderItems {
     public int hashCode() {
         return orderItems.hashCode();
     }
-
 }

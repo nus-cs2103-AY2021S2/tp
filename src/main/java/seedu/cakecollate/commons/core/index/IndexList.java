@@ -23,7 +23,7 @@ public class IndexList {
     }
 
     public List<Index> getIndexList() {
-        return this.indexList;
+        return this.indexList; // unmodifiable?
     }
 
     /** Checks whether two @code IndexList}s are equal.

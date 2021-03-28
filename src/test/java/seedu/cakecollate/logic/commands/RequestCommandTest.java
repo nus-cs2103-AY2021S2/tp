@@ -9,6 +9,7 @@ import static seedu.cakecollate.logic.commands.CommandTestUtil.assertCommandSucc
 import static seedu.cakecollate.logic.commands.CommandTestUtil.showOrderAtIndex;
 import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
 import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_SECOND_ORDER;
+import static seedu.cakecollate.testutil.TypicalOrderItems.getTypicalOrderItemsModel;
 import static seedu.cakecollate.testutil.TypicalOrders.getTypicalCakeCollate;
 
 import org.junit.jupiter.api.Test;
@@ -30,7 +31,7 @@ public class RequestCommandTest {
 
     private static final String REQUEST_STUB = "Some request";
 
-    private Model model = new ModelManager(getTypicalCakeCollate(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalCakeCollate(), getTypicalOrderItemsModel(), new UserPrefs());
 
     @Test
     public void execute_addRequestUnfilteredList_success() {
@@ -42,7 +43,8 @@ public class RequestCommandTest {
 
         String expectedMessage = String.format(RequestCommand.MESSAGE_ADD_REQUEST_SUCCESS, editedOrder);
 
-        Model expectedModel = new ModelManager(new CakeCollate(model.getCakeCollate()), new UserPrefs());
+        Model expectedModel = new ModelManager(new CakeCollate(model.getCakeCollate()), getTypicalOrderItemsModel(),
+                new UserPrefs());
         expectedModel.setOrder(firstOrder, editedOrder);
 
         assertCommandSuccess(requestCommand, model, expectedMessage, expectedModel);
@@ -61,7 +63,8 @@ public class RequestCommandTest {
 
         String expectedMessage = String.format(RequestCommand.MESSAGE_ADD_REQUEST_SUCCESS, editedOrder);
 
-        Model expectedModel = new ModelManager(new CakeCollate(model.getCakeCollate()), new UserPrefs());
+        Model expectedModel = new ModelManager(new CakeCollate(model.getCakeCollate()), getTypicalOrderItemsModel(),
+                new UserPrefs());
         expectedModel.setOrder(firstOrder, editedOrder);
 
         assertCommandSuccess(requestCommand, model, expectedMessage, expectedModel);

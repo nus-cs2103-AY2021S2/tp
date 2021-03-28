@@ -7,6 +7,7 @@ import static seedu.cakecollate.logic.commands.CommandTestUtil.assertCommandSucc
 import static seedu.cakecollate.logic.commands.CommandTestUtil.showOrderAtIndex;
 import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
 import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_SECOND_ORDER;
+import static seedu.cakecollate.testutil.TypicalOrderItems.getTypicalOrderItemsModel;
 import static seedu.cakecollate.testutil.TypicalOrders.getTypicalCakeCollate;
 
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ import seedu.cakecollate.model.order.Order;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalCakeCollate(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalCakeCollate(), getTypicalOrderItemsModel(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -39,7 +40,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getCakeCollate(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getCakeCollate(), getTypicalOrderItemsModel(), new UserPrefs());
         expectedModel.deleteOrder(orderToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -68,7 +69,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete);
 
-        Model expectedModel = new ModelManager(model.getCakeCollate(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getCakeCollate(), getTypicalOrderItemsModel(), new UserPrefs());
         expectedModel.deleteOrder(orderToDelete);
         showNoOrder(expectedModel);
 

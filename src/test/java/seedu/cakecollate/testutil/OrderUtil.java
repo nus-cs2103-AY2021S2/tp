@@ -56,8 +56,8 @@ public class OrderUtil {
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
 
-        if (descriptor.getOrderDescription().isPresent()) {
-            Set<OrderDescription> orderDescriptionSet = descriptor.getOrderDescription().get();
+        if (descriptor.getOrderDescriptions().isPresent()) {
+            Set<OrderDescription> orderDescriptionSet = descriptor.getOrderDescriptions().get();
             if (orderDescriptionSet.isEmpty()) {
                 sb.append(PREFIX_ORDER_DESCRIPTION);
             } else {
