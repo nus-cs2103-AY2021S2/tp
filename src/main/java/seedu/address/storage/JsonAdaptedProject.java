@@ -30,7 +30,7 @@ class JsonAdaptedProject {
     private final List<JsonAdaptedEvent> eventList = new ArrayList<>();
     private final List<JsonAdaptedTodo> todoList = new ArrayList<>();
     private final List<JsonAdaptedDeadline> deadlineList = new ArrayList<>();
-    private final List<JsonAdaptedContact> contactList = new ArrayList<>();
+    private final List<JsonAdaptedContact> participantsList = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedProject} with the given project details.
@@ -40,7 +40,7 @@ class JsonAdaptedProject {
                               @JsonProperty("events") List<JsonAdaptedEvent> eventList,
                               @JsonProperty("todos") List<JsonAdaptedTodo> todoList,
                               @JsonProperty("deadlines") List<JsonAdaptedDeadline> deadlineList,
-                              @JsonProperty("participants") List<JsonAdaptedContact> contactList) {
+                              @JsonProperty("participants") List<JsonAdaptedContact> participantsList) {
         this.projectName = projectName;
 
         if (eventList != null) {
@@ -55,8 +55,8 @@ class JsonAdaptedProject {
             this.deadlineList.addAll(deadlineList);
         }
 
-        if (contactList != null) {
-            this.contactList.addAll(contactList);
+        if (participantsList != null) {
+            this.participantsList.addAll(participantsList);
         }
     }
 
@@ -72,7 +72,7 @@ class JsonAdaptedProject {
                 .map(JsonAdaptedTodo::new).collect(Collectors.toList()));
         deadlineList.addAll(source.getDeadlines().stream()
                 .map(JsonAdaptedDeadline::new).collect(Collectors.toList()));
-        contactList.addAll(source.getParticipants().stream()
+        participantsList.addAll(source.getParticipants().stream()
                 .map(JsonAdaptedContact::new).collect(Collectors.toList()));
     }
 
@@ -110,7 +110,7 @@ class JsonAdaptedProject {
         }
 
         final List<Contact> projectContacts = new ArrayList<>();
-        for (JsonAdaptedContact contact : contactList) {
+        for (JsonAdaptedContact contact : participantsList) {
             projectContacts.add(contact.toModelType());
         }
 
