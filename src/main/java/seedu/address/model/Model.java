@@ -125,8 +125,13 @@ public interface Model {
     /**
      * Returns command alias of the alias in aliases.
      * If alias is not found, null is returned.
-     * */
+     */
     CommandAlias getCommandAlias(Alias alias);
+
+    /**
+     * Returns the number of aliases.
+     */
+    int getNumOfAlias();
 
     /**
      * Updates display filter that determines PersonCard control visibility.
@@ -139,4 +144,9 @@ public interface Model {
      * @return predicate that returns true if prefix linked control should be shown.
      */
     DisplayFilterPredicate getDisplayFilter();
+
+    /**
+     * Returns aliases in an ObservableList of String.
+     */
+    ObservableList<String> getObservableStringAliases();
 }

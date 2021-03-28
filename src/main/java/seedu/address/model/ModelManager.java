@@ -171,6 +171,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<String> getObservableStringAliases() {
+        return aliases.getObservableStringAliases();
+    }
+
+    @Override
     public void addAlias(CommandAlias commandAlias) {
         aliases.addAlias(commandAlias);
     }
@@ -196,6 +201,11 @@ public class ModelManager implements Model {
     public CommandAlias getCommandAlias(Alias alias) {
         requireNonNull(alias);
         return aliases.getCommandAlias(alias);
+    }
+
+    @Override
+    public int getNumOfAlias() {
+        return aliases.getNumOfAlias();
     }
 
     @Override
