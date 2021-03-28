@@ -43,7 +43,6 @@ Class UniqueNoteList
 Package Dictionary {
 Class Content
 Class Definition
-Class UniqueContentList
 Class UniqueDefinitionList
 }
 }
@@ -74,6 +73,8 @@ Contact *--> "*" Tag
 
 NoteBook *--> "1" UniqueNoteList
 UniqueNoteList o--> "*" Note
+Note *--> "*" Tag
+
 
 DictionaryBook *--> "1" UniqueDefinitionList
 UniqueDefinitionList o--> "*" Definition
