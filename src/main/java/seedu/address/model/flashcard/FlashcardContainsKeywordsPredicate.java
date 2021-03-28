@@ -16,7 +16,7 @@ public class FlashcardContainsKeywordsPredicate implements Predicate<Flashcard> 
     /**
      * Creates a FlashcardContainsKeywordsPredicate with list of keywords to match.
      *
-     * @param keywords list of keywords to match.
+     * @param keywords list of keywords to match, cannot be null.
      */
     public FlashcardContainsKeywordsPredicate(List<String> keywords) {
         requireNonNull(keywords);
@@ -25,8 +25,6 @@ public class FlashcardContainsKeywordsPredicate implements Predicate<Flashcard> 
 
     @Override
     public boolean test(Flashcard flashcard) {
-        assert(keywords != null);
-
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil
                         .sentenceContainsPartWordIgnoreCase(flashcard.getQuestion().fullQuestion, keyword))
