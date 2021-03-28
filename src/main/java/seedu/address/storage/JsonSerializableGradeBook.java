@@ -14,13 +14,12 @@ import seedu.address.model.grade.Grade;
 
 public class JsonSerializableGradeBook {
 
-    public static final String MESSAGE_DUPLICATE_GRADE = "Persons list contains "
-            + "duplicate grade(s).";
+    public static final String MESSAGE_DUPLICATE_GRADE = "Grades list contains duplicate grade(s).";
 
     private final List<JsonAdaptedGrade> grades = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableGradeBook} with the given persons.
+     * Constructs a {@code JsonSerializableGradeBook} with the given grades.
      */
     @JsonCreator
     public JsonSerializableGradeBook(@JsonProperty("grades") List<JsonAdaptedGrade> gradeList) {

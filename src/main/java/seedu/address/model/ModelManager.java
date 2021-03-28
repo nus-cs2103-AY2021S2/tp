@@ -17,6 +17,7 @@ import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.appointment.DateViewPredicate;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.event.Event;
+import seedu.address.model.filter.PersonFilter;
 import seedu.address.model.grade.Grade;
 import seedu.address.model.person.Person;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
@@ -36,6 +37,8 @@ public class ModelManager implements Model {
     private final ScheduleTracker scheduleTracker;
 
     private final UserPrefs userPrefs;
+
+    private final PersonFilter personFilter;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Appointment> filteredAppointment;
     private final FilteredList<Grade> filteredGrades;
@@ -56,13 +59,15 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.appointmentBook = new AppointmentBook(appointmentBook);
-        this.gradeBook = new GradeBook(gradeBook);
         this.scheduleTracker = new ScheduleTracker(SampleDataUtil.getSampleScheduleTracker());
+        this.gradeBook = new GradeBook(gradeBook);
+        this.budgetBook = new BudgetBook(budgetBook);
         this.userPrefs = new UserPrefs(userPrefs);
+
+        this.personFilter = new PersonFilter();
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredAppointment = new FilteredList<>(this.appointmentBook.getAppointmentList());
         filteredGrades = new FilteredList<>(this.gradeBook.getGradeList());
-        this.budgetBook = new BudgetBook(budgetBook);
         this.filteredSchedule = new FilteredList<>(this.scheduleTracker.getScheduleList());
     }
 
@@ -413,6 +418,31 @@ public class ModelManager implements Model {
         return filteredGrades;
     }
 
+    //=========== PersonFilter =====================================================================
+    @Override
+    public boolean hasPersonFilter(PersonFilter personFilter) {
+        return this.personFilter.has(personFilter);
+    }
+
+    @Override
+    public void addPersonFilter(PersonFilter personFilter) {
+        this.personFilter.add(personFilter);
+
+        // Required workaround for bug where filtered list would not trigger update
+        this.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+        this.updateFilteredPersonList(this.personFilter);
+    }
+
+    @Override
+    public void removePersonFilter(PersonFilter personFilter) {
+        this.personFilter.remove(personFilter);
+
+        // Required workaround for bug where filtered list would not trigger update
+        this.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+        this.updateFilteredPersonList(this.personFilter);
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -430,8 +460,9 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && appointmentBook.equals(other.appointmentBook)
                 && filteredPersons.equals(other.filteredPersons)
+                && personFilter.equals(other.personFilter)
+                && appointmentBook.equals(other.appointmentBook)
                 && budgetBook.equals(other.budgetBook)
                 && filteredSchedule.equals(other.filteredSchedule);
     }

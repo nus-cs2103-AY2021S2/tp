@@ -28,6 +28,12 @@ import seedu.address.logic.commands.budgetcommands.AddBudgetCommand;
 import seedu.address.logic.commands.budgetcommands.DeleteBudgetCommand;
 import seedu.address.logic.commands.budgetcommands.EditBudgetCommand;
 import seedu.address.logic.commands.budgetcommands.ViewBudgetCommand;
+import seedu.address.logic.commands.filtercommands.AddPersonFilterCommand;
+import seedu.address.logic.commands.filtercommands.DeletePersonFilterCommand;
+import seedu.address.logic.commands.gradecommands.AddGradeCommand;
+import seedu.address.logic.commands.gradecommands.DeleteGradeCommand;
+import seedu.address.logic.commands.gradecommands.EditGradeCommand;
+import seedu.address.logic.commands.gradecommands.ListGradeCommand;
 import seedu.address.logic.commands.eventcommands.ViewTimeTableCommand;
 import seedu.address.logic.commands.schedulecommands.AddScheduleCommand;
 import seedu.address.logic.commands.schedulecommands.DeleteScheduleCommand;
@@ -43,6 +49,11 @@ import seedu.address.logic.parser.budgetparser.DeleteBudgetCommandParser;
 import seedu.address.logic.parser.budgetparser.EditBudgetCommandParser;
 import seedu.address.logic.parser.budgetparser.ViewBudgetCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.filterparser.AddPersonFilterCommandParser;
+import seedu.address.logic.parser.filterparser.DeletePersonFilterCommandParser;
+import seedu.address.logic.parser.gradeparser.AddGradeCommandParser;
+import seedu.address.logic.parser.gradeparser.DeleteGradeCommandParser;
+import seedu.address.logic.parser.gradeparser.EditGradeCommandParser;
 import seedu.address.logic.parser.scheduleparser.AddScheduleCommandParser;
 import seedu.address.logic.parser.scheduleparser.DeleteScheduleCommandParser;
 import seedu.address.logic.parser.scheduleparser.EditScheduleCommandParser;
@@ -126,6 +137,25 @@ public class TutorTrackerParser {
         case ListAppointmentCommand.COMMAND_WORD:
             return new ListAppointmentCommand();
 
+        /* Grade Commands */
+        case AddGradeCommand.COMMAND_WORD:
+            return new AddGradeCommandParser().parse(arguments);
+
+        case EditGradeCommand.COMMAND_WORD:
+            return new EditGradeCommandParser().parse(arguments);
+
+        case DeleteGradeCommand.COMMAND_WORD:
+            return new DeleteGradeCommandParser().parse(arguments);
+
+        case ListGradeCommand.COMMAND_WORD:
+            return new ListGradeCommand();
+
+        case AddPersonFilterCommand.COMMAND_WORD:
+            return new AddPersonFilterCommandParser().parse(arguments);
+
+        case DeletePersonFilterCommand.COMMAND_WORD:
+            return new DeletePersonFilterCommandParser().parse(arguments);
+
         case AddBudgetCommand.COMMAND_WORD:
             return new AddBudgetCommandParser().parse(arguments);
 
@@ -147,6 +177,9 @@ public class TutorTrackerParser {
 
         case DeleteScheduleCommand.COMMAND_WORD:
             return new DeleteScheduleCommandParser().parse(arguments);
+
+        case ListScheduleCommand.COMMAND_WORD:
+            return new ListScheduleCommand();
 
         case ListScheduleCommand.COMMAND_WORD:
             return new ListScheduleCommand();

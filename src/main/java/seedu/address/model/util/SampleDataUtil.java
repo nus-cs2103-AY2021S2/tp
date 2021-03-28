@@ -13,6 +13,8 @@ import seedu.address.model.ReadOnlyGradeBook;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.grade.Grade;
+import seedu.address.model.grade.GradeEnum;
+import seedu.address.model.grade.GradedItem;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
@@ -90,12 +92,18 @@ public class SampleDataUtil {
     }
 
     public static Grade[] getSampleGrade() {
-        return new Grade[] {
-            new Grade(new SubjectName("English"), "Midterm", "A"),
-            new Grade(new SubjectName("Physics"), "Lab 2", "B+")
+        return new Grade[]{
+            new Grade(new SubjectName("Science"),
+                    new GradedItem("Lab 1"),
+                    GradeEnum.valueOf("A")),
+            new Grade(new SubjectName("Mathematics"),
+                    new GradedItem("Final"),
+                    GradeEnum.valueOf("B")),
+            new Grade(new SubjectName("English"),
+                    new GradedItem("Midterm"),
+                    GradeEnum.valueOf("C"))
         };
     }
-
     public static Schedule[] getSampleSchedule() {
         return new Schedule[] {
             new Schedule(new Title("Math Tuition Homework"),
@@ -108,6 +116,7 @@ public class SampleDataUtil {
                     new Description("Chapter 6"))
         };
     }
+
 
 
     public static ReadOnlyScheduleTracker getSampleScheduleTracker() {

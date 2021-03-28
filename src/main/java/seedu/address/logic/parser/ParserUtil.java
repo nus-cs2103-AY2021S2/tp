@@ -12,6 +12,8 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.budget.Budget;
+import seedu.address.model.grade.GradeEnum;
+import seedu.address.model.grade.GradedItem;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
@@ -306,6 +308,36 @@ public class ParserUtil {
             throw new ParseException(AppointmentDateTime.MESSAGE_CONSTRAINTS);
         }
         return new AppointmentDateTime(trimmedDateTime);
+    }
+
+    /**
+     * Parses a {@code String gradedItem} into a {@code GradedItem}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code gradedItem} is invalid.
+     */
+    public static GradedItem parseGradedItem(String gradedItem) throws ParseException {
+        requireNonNull(gradedItem);
+        String trimmedGradedItem = gradedItem.trim();
+        if (!GradedItem.isValidGradedItem(trimmedGradedItem)) {
+            throw new ParseException(GradedItem.MESSAGE_CONSTRAINTS);
+        }
+        return new GradedItem(trimmedGradedItem);
+    }
+
+    /**
+     * Parses a {@code String gradedItem} into a {@code GradedItem}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code gradedItem} is invalid.
+     */
+    public static GradeEnum parseGrade(String grade) throws ParseException {
+        requireNonNull(grade);
+        String trimmedGrade = grade.trim();
+        if (!GradeEnum.isValidGrade(trimmedGrade)) {
+            throw new ParseException(GradeEnum.MESSAGE_CONSTRAINTS);
+        }
+        return GradeEnum.valueOf(trimmedGrade);
     }
 
     /**
