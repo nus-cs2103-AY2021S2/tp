@@ -22,6 +22,7 @@ import seedu.student.model.ReadOnlyUserPrefs;
 import seedu.student.model.StudentBook;
 import seedu.student.model.appointment.Appointment;
 import seedu.student.model.appointment.SameDateAppointmentList;
+import seedu.student.model.student.MatriculationNumber;
 import seedu.student.model.student.Student;
 import seedu.student.testutil.StudentBuilder;
 
@@ -126,6 +127,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Student> getStudentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isExistingMatricNumber(MatriculationNumber matricNum) {
+            return true;
+        }
+
+        @Override
         public boolean hasStudent(Student student) {
             throw new AssertionError("This method should not be called.");
         }
@@ -147,6 +158,11 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredStudentList(Predicate<Student> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredAppointmentList(Predicate<SameDateAppointmentList> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

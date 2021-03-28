@@ -40,9 +40,9 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
 
         MatriculationNumber matriculationNumber = ParserUtil.parseMatric(argMultimap
                 .getValue(PREFIX_MATRICULATION_NUMBER).get());
-        LocalDate date = LocalDate.parse(argMultimap.getValue(PREFIX_DATE).get());
-        LocalTime startTime = LocalTime.parse(argMultimap.getValue(PREFIX_START_TIME).get());
-        LocalTime endTime = LocalTime.parse(argMultimap.getValue(PREFIX_END_TIME).get());
+        LocalDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+        LocalTime startTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_START_TIME).get());
+        LocalTime endTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_END_TIME).get());
 
         Appointment appointment = new Appointment(matriculationNumber, date, startTime, endTime);
 

@@ -16,7 +16,9 @@ import org.junit.jupiter.api.Test;
 import seedu.student.model.Model;
 import seedu.student.model.ModelManager;
 import seedu.student.model.UserPrefs;
-import seedu.student.model.student.MatriculationNumberContainsKeywordsPredicate;
+import seedu.student.model.appointment.AppointmentContainsMatriculationNumberPredicate;
+import seedu.student.model.student.MatriculationNumber;
+import seedu.student.model.student.StudentContainsMatriculationNumberPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -27,20 +29,30 @@ public class FindCommandTest {
 
     @Test
     public void equals() {
-        MatriculationNumberContainsKeywordsPredicate firstPredicate =
-                new MatriculationNumberContainsKeywordsPredicate(MATRIC_NUMBER_FOURTH_STUDENT);
-        MatriculationNumberContainsKeywordsPredicate secondPredicate =
-                new MatriculationNumberContainsKeywordsPredicate(MATRIC_NUMBER_FIFTH_STUDENT);
 
+        MatriculationNumber firstMatriculationNumber = new MatriculationNumber(MATRIC_NUMBER_FOURTH_STUDENT);
+        MatriculationNumber secondMatriculationNumber = new MatriculationNumber(MATRIC_NUMBER_FIFTH_STUDENT);
 
-        FindCommand findFirstCommand = new FindCommand(firstPredicate);
-        FindCommand findSecondCommand = new FindCommand(secondPredicate);
+        StudentContainsMatriculationNumberPredicate firstStudentPredicate =
+                new StudentContainsMatriculationNumberPredicate(firstMatriculationNumber);
+
+        StudentContainsMatriculationNumberPredicate secondStudentPredicate =
+                new StudentContainsMatriculationNumberPredicate(secondMatriculationNumber);
+
+        AppointmentContainsMatriculationNumberPredicate firstAppointmentPredicate =
+                new AppointmentContainsMatriculationNumberPredicate(firstMatriculationNumber);
+
+        AppointmentContainsMatriculationNumberPredicate secondAppointmentPredicate =
+                new AppointmentContainsMatriculationNumberPredicate(secondMatriculationNumber);
+
+        FindCommand findFirstCommand = new FindCommand(firstStudentPredicate, firstAppointmentPredicate);
+        FindCommand findSecondCommand = new FindCommand(secondStudentPredicate, secondAppointmentPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
+        FindCommand findFirstCommandCopy = new FindCommand(firstStudentPredicate, firstAppointmentPredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -56,17 +68,27 @@ public class FindCommandTest {
     @Test
     public void execute_zeroKeywords_noStudentFound() {
         String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 0);
-        MatriculationNumberContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredStudentList(predicate);
+        StudentContainsMatriculationNumberPredicate studentPredicate = prepareStudentPredicate("A0876534R");
+        AppointmentContainsMatriculationNumberPredicate appointmentPredicate = prepareAppointmentPredicate("A0876534R");
+        FindCommand command = new FindCommand(studentPredicate, appointmentPredicate);
+        expectedModel.updateFilteredStudentList(studentPredicate);
+        expectedModel.updateFilteredAppointmentList(appointmentPredicate);
+
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredStudentList());
     }
 
     /**
-     * Parses {@code userInput} into a {@code MatriculationNumberContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code StudentContainsMatriculationNumberPredicate}.
      */
-    private MatriculationNumberContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new MatriculationNumberContainsKeywordsPredicate(userInput);
+    private StudentContainsMatriculationNumberPredicate prepareStudentPredicate(String userInput) {
+        return new StudentContainsMatriculationNumberPredicate(new MatriculationNumber(userInput));
+    }
+
+    /**
+     * Parses {@code userInput} into a {@code AppointmentContainsMatriculationNumberPredicate}.
+     */
+    private AppointmentContainsMatriculationNumberPredicate prepareAppointmentPredicate(String userInput) {
+        return new AppointmentContainsMatriculationNumberPredicate(new MatriculationNumber(userInput));
     }
 }

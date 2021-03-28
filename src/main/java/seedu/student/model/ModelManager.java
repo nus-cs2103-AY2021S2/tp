@@ -13,6 +13,7 @@ import seedu.student.commons.core.GuiSettings;
 import seedu.student.commons.core.LogsCenter;
 import seedu.student.model.appointment.Appointment;
 import seedu.student.model.appointment.SameDateAppointmentList;
+import seedu.student.model.student.MatriculationNumber;
 import seedu.student.model.student.Student;
 
 /**
@@ -93,6 +94,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Student> getStudentList() {
+        return studentBook.getStudentList();
+    }
+
+    @Override
+    public boolean isExistingMatricNumber(MatriculationNumber matricNum) {
+        return studentBook.isExistingMatricNumber(matricNum);
+    }
+
+    @Override
     public boolean hasStudent(Student student) {
         requireNonNull(student);
         return studentBook.hasStudent(student);
@@ -159,6 +170,12 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<SameDateAppointmentList> getFilteredAppointmentList() {
         return filteredAppointments;
+    }
+
+    @Override
+    public void updateFilteredAppointmentList(Predicate<SameDateAppointmentList> predicate) {
+        requireNonNull(predicate);
+        filteredAppointments.setPredicate(predicate);
     }
 
     @Override
