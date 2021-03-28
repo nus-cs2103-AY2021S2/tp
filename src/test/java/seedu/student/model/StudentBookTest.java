@@ -20,6 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.student.model.appointment.Appointment;
 import seedu.student.model.appointment.SameDateAppointmentList;
+import seedu.student.model.student.MatriculationNumber;
 import seedu.student.model.student.Student;
 import seedu.student.model.student.exceptions.DuplicateStudentException;
 import seedu.student.testutil.StudentBuilder;
@@ -99,6 +100,11 @@ public class StudentBookTest {
         @Override
         public ObservableList<Student> getStudentList() {
             return students;
+        }
+
+        @Override
+        public boolean isExistingMatricNumber(MatriculationNumber matricNum) {
+            return true;
         }
 
         @Override
