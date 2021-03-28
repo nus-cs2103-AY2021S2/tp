@@ -6,7 +6,7 @@ import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_B
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BANANA;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_ESSENTIAL;
 import static seedu.storemando.testutil.Assert.assertThrows;
 import static seedu.storemando.testutil.TypicalItems.APPLE;
 import static seedu.storemando.testutil.TypicalItems.BANANA;
@@ -36,12 +36,12 @@ public class ItemTest {
 
         // same name and location, all other attributes different -> returns true
         Item editedApple = new ItemBuilder(APPLE).withQuantity(VALID_QUANTITY_BANANA)
-            .withExpiryDate(VALID_EXPIRYDATE_BANANA).withTags(VALID_TAG_HUSBAND).build();
+            .withExpiryDate(VALID_EXPIRYDATE_BANANA).withTags(VALID_TAG_ESSENTIAL).build();
         assertTrue(APPLE.isSameItem(editedApple));
 
         // same name, all other attributes different -> returns false
         editedApple = new ItemBuilder(APPLE).withQuantity(VALID_QUANTITY_BANANA).withExpiryDate(VALID_EXPIRYDATE_BANANA)
-            .withLocation(VALID_LOCATION_BANANA).withTags(VALID_TAG_HUSBAND).build();
+            .withLocation(VALID_LOCATION_BANANA).withTags(VALID_TAG_ESSENTIAL).build();
         assertFalse(APPLE.isSameItem(editedApple));
 
         // different name, all other attributes same -> returns false
@@ -116,7 +116,7 @@ public class ItemTest {
         assertFalse(APPLE.equals(editedApple));
 
         // different tags -> returns false
-        editedApple = new ItemBuilder(APPLE).withTags(VALID_TAG_HUSBAND).build();
+        editedApple = new ItemBuilder(APPLE).withTags(VALID_TAG_ESSENTIAL).build();
         assertFalse(APPLE.equals(editedApple));
     }
 }

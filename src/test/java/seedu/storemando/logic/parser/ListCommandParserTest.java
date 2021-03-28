@@ -24,7 +24,7 @@ public class ListCommandParserTest {
 
     @Test
     public void parse_invalidArg_throwsParseException() {
-        assertParseFailure(parser, "chocolate",
+        assertParseFailure(parser, "favourite",
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
     }
 
@@ -38,9 +38,9 @@ public class ListCommandParserTest {
 
     @Test
     public void parse_validTagArgs_returnsListCommand() {
-        String[] locationKeyword = {"favourite"};
+        String[] tagKeyword = {"favourite"};
         ListCommand expectedListCommand =
-            new ListCommand(new TagContainsKeywordsPredicate(Arrays.asList(locationKeyword)));
+            new ListCommand(new TagContainsKeywordsPredicate(Arrays.asList(tagKeyword)));
         assertParseSuccess(parser, " t/favourite", expectedListCommand);
     }
 
