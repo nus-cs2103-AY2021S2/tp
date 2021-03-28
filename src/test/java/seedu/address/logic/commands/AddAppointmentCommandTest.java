@@ -50,8 +50,8 @@ public class AddAppointmentCommandTest {
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(validAppointment);
         ModelStub modelStub = new ModelStubWithAppointment(validAppointment);
 
-        assertThrows(CommandException.class, AddAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT,
-                () -> addAppointmentCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT, (
+                ) -> addAppointmentCommand.execute(modelStub));
     }
 
     @Test
