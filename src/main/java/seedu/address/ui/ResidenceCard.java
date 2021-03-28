@@ -5,9 +5,11 @@ import java.util.Comparator;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.model.booking.Booking;
 import seedu.address.model.residence.Residence;
 
@@ -35,6 +37,10 @@ public class ResidenceCard extends UiPart<Region> {
     private FlowPane cleanStatusTags;
     @FXML
     private FlowPane tags;
+    @FXML
+    private ScrollPane bookingListScrollPane;
+    @FXML
+    private VBox bookingListVBox;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -53,9 +59,10 @@ public class ResidenceCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
         ObservableList<Booking> bookingList = residence.getBookingList().getValue();
-        bookingList.stream().sorted(Comparator.comparing(booking -> booking.getStart()))
-                .forEach(booking -> bookingListPane.getChildren()
-                        .add(new Label(String.valueOf(bookingList.indexOf(booking) + 1) + ". " + booking.toString())));
+        bookingList.stream().forEach(booking -> bookingListPane.getChildren().add(new Label("  "
+                + String.valueOf(bookingList.indexOf(booking) + 1)
+                + ". "
+                + booking.toString())));
     }
 
 

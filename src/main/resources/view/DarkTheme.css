@@ -405,3 +405,17 @@
     -fx-text-fill: white;
     -fx-background-color: #3e7b91;
 }
+
+#bookingListVBox {
+    -fx-background-image: url(/images/ScrollPaneBackground.png);
+}
+
+#bookingListScrollPane {
+    /*-fx-border-style: dotted;*/
+    -fx-border-color: #7772b6;
+    -fx-border-radius: 2px;
+}
+
+#bookingListScrollPane .scroll-bar:vertical .thumb {
+    -fx-background-color: #fffef2;
+}
