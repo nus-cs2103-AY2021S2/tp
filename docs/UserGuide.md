@@ -66,18 +66,18 @@ the app crashing.
 
 --------------------------------------------------------------------------------------------------------------------
 ## UI 
-
+![UiAnnotated](images/UiAnnotated.png)
 ### Group Panel
 The left panel of FriendDex shows the list of groups that are available in the application.
 
 To list the friends within a specific group, use `list n/GROUP_NAME`. See [List Command](#listing-all-persons--list) for specific details.
 
-### Friends Panel
+### Friend Panel
 The centre panel shows the currently listed friends in the application.
 Commands such as `list`, `find`, `add`, `clear`, `delete` will change the listed friends. 
 See [Features](#features) for specific details. 
 
-### Details Panel
+### Detail Panel
 The right panel of FriendDex is a multi-purpose details panel. It displays upcoming events by default, and can be toggled to display different information.
 
 #### Upcoming Events
