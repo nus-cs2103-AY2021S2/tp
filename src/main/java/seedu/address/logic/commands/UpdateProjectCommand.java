@@ -9,6 +9,7 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.uicommands.ViewProjectAndOverviewUiCommand;
 import seedu.address.model.Model;
 import seedu.address.model.project.DeadlineList;
 import seedu.address.model.project.EventList;
@@ -72,7 +73,8 @@ public class UpdateProjectCommand extends Command {
 
         model.setProject(projectToEdit, updatedProject);
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
-        return new CommandResult(String.format(MESSAGE_UPDATE_PROJECT_SUCCESS, updatedProject.getProjectName()));
+        return new CommandResult(String.format(MESSAGE_UPDATE_PROJECT_SUCCESS, updatedProject.getProjectName()),
+                new ViewProjectAndOverviewUiCommand(targetIndex));
     }
 
     /**

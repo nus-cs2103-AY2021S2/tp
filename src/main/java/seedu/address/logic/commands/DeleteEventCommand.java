@@ -10,6 +10,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.uicommands.ViewProjectAndOverviewUiCommand;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
 
@@ -64,7 +65,8 @@ public class DeleteEventCommand extends Command {
         projectToEdit.deleteEvent(targetEventIndex.getZeroBased());
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
 
-        return new CommandResult(String.format(Messages.MESSAGE_DELETE_EVENT_SUCCESS, targetEventIndex.getOneBased()));
+        return new CommandResult(String.format(Messages.MESSAGE_DELETE_EVENT_SUCCESS, targetEventIndex.getOneBased()),
+                new ViewProjectAndOverviewUiCommand(projectIndex));
     }
 
     @Override

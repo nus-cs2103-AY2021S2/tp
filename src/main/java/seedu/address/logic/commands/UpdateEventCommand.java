@@ -15,6 +15,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.uicommands.ViewProjectAndOverviewUiCommand;
 import seedu.address.model.Model;
 import seedu.address.model.project.EventList;
 import seedu.address.model.project.Project;
@@ -87,7 +88,8 @@ public class UpdateEventCommand extends Command {
 
         projectToUpdate.setEvent(targetEventIndex.getZeroBased(), updatedEvent);
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
-        return new CommandResult(String.format(MESSAGE_UPDATE_EVENT_SUCCESS, updatedEvent));
+        return new CommandResult(String.format(MESSAGE_UPDATE_EVENT_SUCCESS, updatedEvent),
+                new ViewProjectAndOverviewUiCommand(projectIndex));
     }
 
     /**

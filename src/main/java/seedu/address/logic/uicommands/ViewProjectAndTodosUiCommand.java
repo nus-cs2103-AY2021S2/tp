@@ -8,29 +8,31 @@ import seedu.address.ui.MainWindow;
 
 /**
  * View a panel containing information about a specified project.
+ * Ensures that the todos panel is visible.
  */
-public class ViewProjectUiCommand extends UiCommand {
+public class ViewProjectAndTodosUiCommand extends UiCommand {
     private final Index projectIndex;
 
     /**
-     * Constructs a {@code ViewProjectUiCommand} with the specified {@code projectIndex}.
+     * Constructs a {@code ViewProjectAndTodosUiCommand} with the specified {@code projectIndex}.
      *
      * @param projectIndex The {@code projectIndex} of the project to be viewed.
      */
-    public ViewProjectUiCommand(Index projectIndex) {
+    public ViewProjectAndTodosUiCommand(Index projectIndex) {
         this.projectIndex = projectIndex;
     }
 
     @Override
     public void execute(MainWindow mainWindow) throws UiCommandException {
         mainWindow.selectProject(projectIndex);
+        mainWindow.displayTodosTab();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ViewProjectUiCommand // instanceof handles nulls
-                && projectIndex.equals(((ViewProjectUiCommand) other).projectIndex)); // state check
+                || (other instanceof ViewProjectAndTodosUiCommand // instanceof handles nulls
+                && projectIndex.equals(((ViewProjectAndTodosUiCommand) other).projectIndex)); // state check
     }
 
     @Override
