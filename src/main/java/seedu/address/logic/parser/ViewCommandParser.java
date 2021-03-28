@@ -21,7 +21,9 @@ public class ViewCommandParser implements Parser<ViewCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ViewCommand parse(String args) throws ParseException {
-        String[] indexStrings = args.split(" ");
+        String trimmedArgs = args.trim();
+        String[] indexStrings = trimmedArgs
+                .split(" ");
         List<Index> indexes = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
             try {
