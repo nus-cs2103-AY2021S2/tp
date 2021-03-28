@@ -42,7 +42,7 @@ class JsonAdaptedPool {
                            @JsonProperty("passengers") List<JsonAdaptedPassenger> passengers,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                            @JsonProperty("driver") JsonAdaptedDriver driver) {
-        this.tripDayStr = tripTimeStr;
+        this.tripDayStr = tripDayStr;
         this.tripTimeStr = tripTimeStr;
         this.passengers = passengers;
         if (tagged != null) {
