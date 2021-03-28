@@ -52,6 +52,14 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck :: isConflict);
     }
+
+    public boolean clashesExceptOne(Meeting target, Meeting toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream()
+                .filter(x -> !x.equals(target))
+                .anyMatch(toCheck :: isConflict);
+    }
+
     /**
      * Adds a meeting to the list.
      * The meeting must not already exist in the list.
@@ -105,6 +113,24 @@ public class UniqueMeetingList implements Iterable<Meeting> {
             throw new DuplicateMeetingException();
         }
         if (!target.isSameMeeting(editedMeeting) && clashes(editedMeeting)) {
+            throw new MeetingTimeClashException();
+        }
+
+        internalList.set(index, editedMeeting);
+    }
+
+    public void updateMeeting(Meeting target, Meeting editedMeeting) {
+        requireAllNonNull(target, editedMeeting);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new MeetingNotFoundException();
+        }
+
+        if (!target.isSameMeeting(editedMeeting) && contains(editedMeeting)) {
+            throw new DuplicateMeetingException();
+        }
+        if (!target.isSameMeeting(editedMeeting) && clashesExceptOne(target, editedMeeting)) {
             throw new MeetingTimeClashException();
         }
 
