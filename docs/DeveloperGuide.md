@@ -13,6 +13,10 @@ title: Developer Guide
 <!-- prettier-ignore-end -->
 
 ---
+## **Introduction**
+Focuris is a desktop application for managing events with a KanBan board, which is a board where your events displayed 
+according to the level of completion of each event, which consists of Backlog, Todo, In-Progress and Done. It functions
+via a Command-Line Interface (CLI) that allows more efficient management of events.
 
 ## **Setting up, getting started**
 
@@ -24,6 +28,9 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
+Focuris 
+
+ 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
 The **_Architecture Diagram_** given above explains the high-level design of the App. Given below is a quick overview of each component.
@@ -33,6 +40,8 @@ The **_Architecture Diagram_** given above explains the high-level design of the
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
+
+### **Overall Components**
 
 **`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 
@@ -61,7 +70,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="diagrams/ArchitectureSequenceDiagram.png" width="574" />
+![interact_with_each_other](diagrams/ArchitectureSequenceDiagram.png)
 
 The sections below give more details of each component.
 
@@ -80,6 +89,8 @@ The `UI` component,
 
 - Executes user commands using the `Logic` component.
 - Listens for changes to `Model` data so that the UI can be updated with the modified data.
+- `HelpWindow` will only be shown when executing the `help` command.
+- `KanbanPanel` is displayed as the default view.
 
 ### Logic component
 
@@ -88,7 +99,7 @@ The `UI` component,
 **API** :
 [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `EventBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a todo event).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -122,12 +133,12 @@ The `Model`,
 
 The `Storage` component,
 
-- can save `UserPref` objects in json format and read it back.
-- can save the event book data in json format and read it back.
+- can save `UserPref` objects in JSON format and read it back.
+- can save the event book data in JSON format and read it back.
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.focuris.commons` package.
 
 ---
 
@@ -172,14 +183,14 @@ The following class diagram illustrates how the priority feature is implemented:
 
 ---
 
-## **Appendix: Requirements**
+## **Appendix A: Requirements**
 
 ### Product scope
 
 **Target user profile**:
 
-- NUS Computing Student
-- has a need to manage a significant number of contacts, schedule, and school timetable
+- NUS Computing Students
+- has a need to manage a significant number of events
 - prefer desktop apps over other types
 - can type fast
 - prefers typing to mouse interactions
@@ -188,7 +199,6 @@ The following class diagram illustrates how the priority feature is implemented:
 **Value proposition**:
 
 - Adding of various different types of events, such as, lectures, tutorials, recitations, labs, and tasks
-- Adding of events to friends in the address book
 - Ability to find a common timeslot where all your friends are available to meet based on their schedules added
 - See events that are taken in conjunction with your friends
 - Prioritize your tasks and events by assigning priorities to each event
@@ -374,17 +384,45 @@ Use case ends.
 2.  Should be able to hold up to 1000 events without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-_{More to be added}_
 
 ### Glossary
 
-- **Mainstream OS**: Windows, Linux, Unix, OS-X
-- **Private contact detail**: A contact detail that is not meant to be shared with others
-- **Sprint**: A time-boxed iteration of a continuous development cycle, where a planned amount of work is completed by the team.
+**Mainstream OS**: Windows, Linux, Unix, OS-X
+
+**Event**: A task that needs to be completed by the user. 
+- An event consists of a title, description and identifier that we use 
+  to track each event. 
+- The stage of completion of an event can be split into four types: 
+    1) Backlog
+    2) Todo
+    3) In Progress
+    4) Done
+- An event can also have three different degrees of priorities:
+    1) High
+    2) Medium
+    3) Low
+     
+**Backlog**: A set of events that the user has agreed to work on next. This could be events that are currently being 
+planned to be worked on or pending or any upcoming events, but we leave the definition loose up to the user.
+
+**Todo**: A set of events that the user has to work on as effective of immediately or have been delegated to already. 
+We leave the definition loose up to the user.
+
+**In Progress**: A set of events that the user is currently working on. We leave the definition loose up to the user.
+
+**Done**: A set of events that the user has completed. This could be events that are currently being 
+planned to be worked on or pending, but we leave the definition loose up to the user.
+     
+**Kanban**: Meaning signboard or billboard in Japanese. It is a method of managing and improving work flow across human
+systems. It is often used via a Kanban Board, where cards are used to represent work items and columns are used to 
+represent each stage of the work process. An example of a Kanban Board is our application itself.
+
+     
+**Sprint**: A time-boxed iteration of a continuous development cycle, where a planned amount of work is completed by the team.
 
 ---
 
-## **Appendix: Instructions for manual testing**
+## **Appendix A: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -407,8 +445,6 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
 
 ### Saving data
 
