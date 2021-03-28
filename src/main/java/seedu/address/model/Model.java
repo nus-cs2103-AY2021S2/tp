@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -119,4 +120,20 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
+
+    /**
+     * Gets the total fee between 2 time period  from {@code startPeriod} to {@code endPeriod}
+     * @param startPeriod Start of time period
+     * @param endPeriod End of time period
+     * @return Total fee between the 2 time period
+     */
+    double getFee(LocalDateTime startPeriod, LocalDateTime endPeriod);
+
+    /**
+     * Gets the total fee between 2 time period for a particular student from {@code startPeriod} to {@code endPeriod}
+     * @param startPeriod Start of time period
+     * @param endPeriod End of time period
+     * @return Total fee between the 2 time period
+     */
+    double getFeePerStudent(Student student, LocalDateTime startPeriod, LocalDateTime endPeriod);
 }
