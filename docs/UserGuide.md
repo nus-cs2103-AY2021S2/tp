@@ -187,7 +187,7 @@ Exits the program.
 
 Format: `exit`
 
-### Editing a patient information[Coming soon] : `edit`
+### Editing a patient information : `edit`
 
 Edits an existing person in the list.
 
@@ -204,7 +204,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
 
-### Locating patient by name[Coming soon] : `find`
+### Locating patient by name : `find`
 
 Finds patients whose names contain any of the given keywords.
 
