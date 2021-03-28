@@ -3,7 +3,7 @@ package seedu.address.commons.core.identifier;
 /**
  * Represents a one-based identifier for the events
  *
- * {@code Index} should be used right from the start (when parsing in a new user input), so that if the current
+ * {@code Identifier} should be used right from the start (when parsing in a new user input), so that if the current
  * component wants to communicate with another component, it can send an {@code Index} to avoid having to know what
  * base the other component is using for its index. However, after receiving the {@code Index}, that component can
  * convert it back to an int if the index will not be passed to a different component again.
@@ -12,7 +12,7 @@ public class Identifier {
     private final int value;
 
     /**
-     * Index can only be created by calling {@link Identifier#fromIdentifier(int)} or
+     * Identifier can only be created by calling {@link Identifier#fromIdentifier(int)} or
      */
     Identifier(int value) {
         if (value <= 0) {
