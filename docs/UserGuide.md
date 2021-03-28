@@ -304,7 +304,7 @@ Examples:
   * `reminder 2 weeks` returns both the chocolate and the banana.
   <br>
 * `reminder -7 days` returns a list containing all items that has been expired for 7 days.
-* `reminder 2 weeks` returns a list containing all items that has been expired for 2 weeks.
+* `reminder -2 weeks` returns a list containing all items that has been expired for 2 weeks.
 * Given today is 30 March 2021, and the inventory has 2 items: apple with expiry date of 27 March 2021 and
   banana with an expiry date of 20 March 2021.
   * `reminder -5 days` returns the apple only.
