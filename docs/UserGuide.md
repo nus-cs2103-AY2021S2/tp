@@ -3,40 +3,74 @@ layout: page
 title: User Guide
 ---
 
-PocketEstate enables easy organization of mass clientele property information through sorting of information by price, location and housing type, that may otherwise be difficult to manage.
+Welcome to the PocketEstate User Guide! Learn how to use PocketEstate to efficiently organize property data, manage clientele information and keep track of your upcoming appointments.
 
-* Table of Contents
+## Table of Contents
+
+1. Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Introduction
+
+### What is PocketEstate?
+
+PocketEstate is a desktop application for property agents to efficiently and effectively manage property data and appointment schedules. With PocketEstate, you can easily organize your property and clientele information, as well as keeping track of your schedules and deadlines.
+
+PocketEstate is also highly optimized for users who can type fast and prefer typing over other means of input, allowing fast completion of most tasks solely via Command Line Interface (CLI).
+
+### Using this User Guide
+
+This user guide uses various formatting styles to facilitate reading and to communicate ideas more effectively. Here are some important conventions to take note of when reading this user guide:
+
+| Conventions               | Meaning                                                      |
+|---------------------------|--------------------------------------------------------------|
+| **Bold**                  | Important information                                        |
+| :information_source: Note | Additional information                                       |
+| :bulb: Tip                | Helpful tips                                                 |
+| :exclamation: Caution     | Things to watch out for                                      |
+| <kbd>Keyboard</kdb>       | Keyboard buttons                                             |
+| `Code`                    | Represents a user input or some important code-related terms |
+| [SQUARE_BRACKETS]         | Optional parameters of a command                             |
+| UPPER_CASE                | Parameters of a command to be supplied by the user           |
+| ...                       | Parameters of a command that can be used multiple times      |
+
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+### Download and Launch
+
+1. Ensure you have **Java 11 or above** installed in your Computer.
 
 1. Download the latest `pocketestate.jar` from [here](https://github.com/AY2021S2-CS2103T-T13-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your PocketEstate.
+1. Copy the file to the folder you want to use as the **home folder** for PocketEstate.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. **Double-click** the file to start the app. A Graphical User Interface (GUI) similar to the below should appear in a few seconds. Note how the app contains some sample data.<br><br>
+   
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+### Trying out
 
-   * **`list all`** : Lists all properties and appointments in the app.
+1. Let's try out your first command by adding a new property! <br>Type `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-6-2021` into the command box and press <kbd>Enter</kbd> to execute it. After that, scroll down to the bottom of the property list to see your newly added property.
+1. Want to view the properties in order of their asking price? Type the command `sort property o/desc k/price` and press <kbd>Enter</kbd>. The property list will now be ordered in descending order, with the property having the highest asking price at the top.
+1. Now let's try adding a new appointment. <br>Type `add appointment n/Meet Jacob for dinner r/At Orchard Central's food court d/19-4-2021 t/1930` and hit the <kbd>Enter</kbd> button. Scroll down to the bottom of the appointment list to see your newly added appointment.
+1. Forgot when you are supposed to meet Simon again? Let's try finding out! Type `find appointment simon` and press <kbd>Enter</kbd>. There it is! Your appointment with Simon is on Sep 20, 2021.
 
-   * **`add property`**`n/Mayfair t/Condo a/1 Jurong East Street 32 p/609477 d/31-12-2021` : Adds a property with the corresponding information to the PocketEstate app.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+ Some example commands you can try:
 
-   * **`delete property`**`2` : Deletes the 2nd property shown in the current list of properties.
+   * `list all` : Lists all properties and appointments in the app.
+   * `delete property 2` : Deletes the 2nd property shown in the current list of properties.
+   * `clear appointment` : Clears all existing appointment data from the app.
+   * `exit` : Exits the app.
 
-   * **`exit`** : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
+For a quick reference of the available commands and their syntax, refer to the [Command Summary](#command-summary) section.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Commands
 
 <div markdown="block" class="alert alert-info">
 
@@ -62,7 +96,9 @@ PocketEstate enables easy organization of mass clientele property information th
 
 </div>
 
-### Viewing help : `help`
+### General
+
+#### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -70,8 +106,15 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+#### Exiting the program : `exit`
 
-### Adding a property: `add property`
+Exits the program.
+
+Format: `exit`
+
+### Adding
+
+#### Adding a property: `add property`
 
 Adds a property to the app.
 
@@ -84,7 +127,7 @@ Examples:
 * `add property n/Mayfair t/Condo a/1 Jurong East Street 32 p/609477 d/31-12-2021`
 * `add property n/Mayfair t/Condo a/1 Jurong East Street 32 p/609477 d/31-12-2021 r/Urgent to sell cn/Alice cc/91234567 ce/alice@gmail.com ca/$800,000 tags/4 bedrooms, No need for renovation`
 
-### Adding an appointment: `add appointment`
+#### Adding an appointment: `add appointment`
 
 Adds an appointment to the app.
 
@@ -93,35 +136,9 @@ Format: `add appointment n/NAME r/REMARKS d/DATE t/TIME​`
 Examples:
 * `add appointment n/Meet Alex r/At M Hotel d/17-2-2021 t/1500`
 
-### Listing all properties and appointments : `list all`
+### Editing
 
-Shows a list of all properties and appointments in the app.
-
-### Listing all properties : `list property`
-
-Shows a list of all properties in the app.
-
-### Listing all appointments : `list appointment`
-
-Shows a list of all appointments in the app.
-
-### Sorting : `sort`
-
-Sorts and shows a list of properties or appointments that is sorted according to the comparator provided.
-
-Formats:
-* `sort appointment o/<asc or desc> k/<datetime or name>`
-* `sort property o/<asc or desc> k/<price or address or postalcode or deadline or name>`
-
-Description:
-* Sorts appointment or property by the specified sorting key in ascending or descending order.
-* The sorting key and sorting order fields must be specified.
-
-Examples:
-*  `sort appointment o/asc k/datetime` Sorts `appointment` by `datetime` in ascending order.
-*  `sort property o/desc k/price` Sorts `property` by `price` in descending order.
-
-### Editing a property : `edit property`
+#### Editing a property : `edit property`
 
 Overwrites the information of the property according to the flags provided.
 
@@ -129,7 +146,7 @@ Formats: `edit property INDEX [n/NAME] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_C
 
 <div markdown="block" class="alert alert-info">
 
-**:bulb: Reminder:**<br>
+**:bulb: Tip:**<br>
 
 * There can be multiple tags but different tags should be separated with a comma. <br> e.g. `tags/TAGS_SEPARATED_BY_COMMAS` can be used as `tags/Freehold`, `tags/Freehold, 5 bedrooms`, `tags/Freehold, 5 bedrooms, Near MRT` etc.
 
@@ -143,7 +160,7 @@ Description:
 Examples:
 *  `edit property 1 r/Urgent to sell cn/Alice` Edits the remark and client name of the 1st property to be `Urgent to sell` and `Alice` respectively.
 
-### Editing an appointment : `edit appointment`
+#### Editing an appointment : `edit appointment`
 
 Overwrites the information of the appointment according to the flags provided.
 
@@ -157,7 +174,42 @@ Description:
 Examples:
 *  `edit appointment 3 d/21-03-2021 r/at M hotel` Edits the date and remark of the 3rd appointment to be `21-03-2021` and `at M hotel` respectively.
 
-### Updating the status of a property : `update`
+### Deleting
+
+#### Removing an entry : `delete`
+
+Deletes the specified property or appointment from the app.
+
+Formats:
+* `delete appointment INDEX`
+* `delete property INDEX`
+
+Description:
+* Deletes the appointment or property at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …
+* The field INDEX must be provided.
+
+Examples:
+*  `delete appointment 7` Deletes the `appointment` at index `7`.
+*  `delete property 7` Deletes the `property` at index `7`.
+
+### Listing
+
+#### Listing all properties and appointments : `list all`
+
+Shows a list of all properties and appointments in the app.
+
+#### Listing all properties : `list property`
+
+Shows a list of all properties in the app.
+
+#### Listing all appointments : `list appointment`
+
+Shows a list of all appointments in the app.
+
+
+### Updating status
+
+#### Updating the status of a property : `update`
 
 Updates the status of a property from Option to Purchase, to Sales and Purchase Agreement to Completion
 
@@ -177,23 +229,27 @@ Examples:
 *  `update 1 u/new 600000` Creates a new status with amount 600000 for the 1st property.
 *  `update 3 u/proceed` Moves the status of the 3rd property to next one.
 
-### Removing an entry : `delete`
+### Sorting
 
-Deletes the specified property or appointment from the app.
+#### Sorting : `sort`
+
+Sorts and shows a list of properties or appointments that is sorted according to the comparator provided.
 
 Formats:
-* `delete appointment INDEX`
-* `delete property INDEX`
+* `sort appointment o/<asc or desc> k/<datetime or name>`
+* `sort property o/<asc or desc> k/<price or address or postalcode or deadline or name>`
 
 Description:
-* Deletes the appointment or property at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …
-* The field INDEX must be provided.
+* Sorts appointment or property by the specified sorting key in ascending or descending order.
+* The sorting key and sorting order fields must be specified.
 
 Examples:
-*  `delete appointment 7` Deletes the `appointment` at index `7`.
-*  `delete property 7` Deletes the `property` at index `7`.
+*  `sort appointment o/asc k/datetime` Sorts `appointment` by `datetime` in ascending order.
+*  `sort property o/desc k/price` Sorts `property` by `price` in descending order.
 
-### Searching properties: `find property`
+### Searching
+
+#### Searching properties: `find property`
 
 Finds properties that match the criterion provided.
 
@@ -226,7 +282,7 @@ Examples:
 * `find property pm/500000`
 * `find property bishan north t/hdb pl/$1,000,000`
 
-### Searching appointments: `find appointment`
+#### Searching appointments: `find appointment`
 
 Finds appointments that match the criterion provided.
 
@@ -240,7 +296,7 @@ Examples:
 * `find appointment bob`
 * `find appointment sunday`
 
-### Searching clients: `find client`
+#### Searching clients: `find client`
 
 Finds appointments that matches the keywords and properties whose clients matches the same keywords. Both are done at the same time. 
 
@@ -250,7 +306,9 @@ Formats:
 Description:
 * There can be 0 or more keywords. Keywords are case insensitive. 
 
-### Clearing all entries : `clear`
+### Clearing
+
+#### Clearing all entries : `clear`
 
 Clears all properties or appointments or both from the app.
 
@@ -259,25 +317,34 @@ Formats:
 * `clear appointment`
 * `clear all`
 
-### Exiting the program : `exit`
+## Storage
 
-Exits the program.
+#### Saving the data
 
-Format: `exit`
+PocketEstate data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually. PocketEstate data are saved as a JSON file after any command that modifies the data of the app.
 
-### Saving the data
+* The default property storage data file used is `[JAR file location]/data/propertybook.json`. 
+* The default appointment storage data file used is `[JAR file location]/data/appointmentbook.json`.
 
-PocketEstate data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+#### Editing the data files
 
-### Editing the data file
-
-PocketEstate data are saved as a JSON file `[JAR file location]/data/pocketestate.json`. Advanced users are welcome to update data directly by editing that data file.
+Advanced users are welcome to update data directly by editing the data files.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, PocketEstate will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, PocketEstate will discard all data and start with an empty data file at the next run. For example, if the property storage data file is corrupted but the appointment storage data file is in the correct format, PocketEstate will start with an empty data file for properties and use the original data file for appointments.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+#### Specifying the data files
+
+It is also possible to specify your own property and/or appointment storage data files. In the `preferences.json` file that is generated when you first launch the app, you may edit the values of `propertyBookFilePath` and/or `appointmentBookFilePath` to your own property and appointment storage file paths respectively.
+
+![Edit preferences.json file](images/editPreferencesJsonFile.png)
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** For advanced users, it is also possible to specify your own configuration file, which contains your preferred preference file path. Refer to <a href="#launching-application-via-command-line">Appendix: Launching application via command line</a> for more information.
+
+</div>
+
+#### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
@@ -310,3 +377,24 @@ Action | Format, Examples
 **Sort** | `sort appointment o/<asc or desc> k/<datetime or name>`<br> e.g., `sort appointment o/asc k/datetime`<br><br>`sort property o/<asc or desc> k/<price or address or postalcode or deadline or name>`<br> e.g., `sort property o/asc k/price`
 **Remove an entry** | `delete appointment INDEX` <br> e.g. `delete appointment 7` <br><br> `delete property INDEX` <br> e.g. `delete property 7`
 **Help** | `help`
+
+## Appendix
+
+### Launching application via command line
+
+For advanced users, it is also possible to launch the app via the command line. Doing so will allow you the option of specifying your own configuration file.  The configuration file can be used to specify the location of the preferences file, which contains the preferred storage file paths for both property and appointment data.
+
+The default file paths used are:
+
+* Configuration file: `[JAR file location]/config.json`
+* Preferences file: `[JAR file location]/preferences.json`
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** However, if the specified configuration file or the preferences file is in an incorrect format, the default file paths will be used.
+</div>
+
+To launch PocketEstate via the command line, 
+
+1. First, open up your command prompt or terminal.
+1. Then, `cd` into the base directory containing the `pocketestate.jar` file.
+1. Run `java -jar pocketestate.jar --config={path_to_config_file.json}`, replacing `{path_to_config_file.json}` with your own JSON configuration file.<br>
+E.g. `java -jar pocketestate.jar --config=myConfigFile.json`
