@@ -21,11 +21,10 @@ public class GetMonthlyFeeCommandTest {
     @Test
     public void execute_correctMonthlyFee() throws CommandException {
         GetMonthlyFeeCommand getMonthlyFeeCommand = new GetMonthlyFeeCommand(ALICE.getName(),
-            new Month(1), new Year(2021));
+            new Month(2), new Year(2021));
         CommandResult commandResult = getMonthlyFeeCommand.execute(model);
 
-        assertEquals(String.format("Monthly fee for %s on %s, %s is $%s", ALICE.getName(),
-            new Month(1).getMonthName(), new Year(2021), "120.90"),
+        assertEquals("Monthly fee for Alice Pauline on February, 2021 is $120.90",
             commandResult.getFeedbackToUser());
     }
 }

@@ -32,10 +32,10 @@ public class TypicalStudents {
             .withPhone("94351253").withStudyLevel("Sec 2").withGuardianPhone("82813844")
             .withRelationship("Mother")
             .addSessions(
-                new SessionBuilder().withSessionDate("2021-01-05", "12:00").withFee("39.40").build(),
-                new SessionBuilder().withSessionDate("2021-01-01", "12:00").withFee("81.50").build(),
+                new SessionBuilder().withSessionDate("2021-02-05", "12:00").withFee("39.40").build(),
+                new SessionBuilder().withSessionDate("2021-02-01", "12:00").withFee("81.50").build(),
                 new SessionBuilder().withSessionDate("2021-03-01", "12:00").withFee("29.31").build(),
-                new SessionBuilder().withSessionDate("2020-01-01", "12:00").withFee("50.28").build()
+                new SessionBuilder().withSessionDate("2020-02-01", "12:00").withFee("50.28").build()
             )
             .build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
