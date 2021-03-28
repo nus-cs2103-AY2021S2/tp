@@ -48,6 +48,11 @@ public class Messages {
                     + "\t- dd/MM/yyyy\t(e.g. 01/01/2021)\n"
                     + "\t- dd.MM.yyyy\t(e.g. 01.01.2021)";
 
+    public static final String MESSAGE_PARSER_TIME_CONSTRAINTS =
+            "Time should be a valid time in one of the following formats:\n"
+                    + "\t- HH:mm\t(e.g. 17:30)\n"
+                    + "\t- HHmm\t(e.g. 1730)";
+
     public static final String MESSAGE_NO_EVENTS_TO_DISPLAY = "You have no events today!";
     public static final String MESSAGE_NO_DEADLINES_TO_DISPLAY = "You have no deadlines today!";
 

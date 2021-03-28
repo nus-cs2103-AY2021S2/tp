@@ -17,21 +17,17 @@ import static seedu.address.commons.core.Messages.MESSAGE_PARSER_DATE_CONSTRAINT
 public class TimeUtil {
 
     private static DateTimeFormatter timeFormat1 = DateTimeFormatter.ofPattern("HHmm");
-    private static DateTimeFormatter timeFormat2 = DateTimeFormatter.ofPattern("HHmm a");
-    private static DateTimeFormatter timeFormat3 = DateTimeFormatter.ofPattern("HH:mm");
-    private static DateTimeFormatter timeFormat4 = DateTimeFormatter.ofPattern("HH:mm a");
+    private static DateTimeFormatter timeFormat2 = DateTimeFormatter.ofPattern("HH:mm");
 
     private static DateTimeFormatter formatter =
             new DateTimeFormatterBuilder()
                     .appendOptional(timeFormat1)
                     .appendOptional(timeFormat2)
-                    .appendOptional(timeFormat3)
-                    .appendOptional(timeFormat4)
                     .toFormatter()
                     .withResolverStyle(ResolverStyle.STRICT);
 
     /**
-     * Encodes a date passed as a String into a LocalDate.
+     * Encodes a time passed as a String into a LocalTime.
      * @param date Date in the uuuu-mm-dd format.
      * @return A LocalDate object.
      * @throws DateConversionException Occurs when a date had been passed in with the wrong format.
