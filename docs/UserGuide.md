@@ -3,6 +3,7 @@ layout: page
 title: User Guide
 ---
 
+<a name="introduction"></a>
 ## Introduction
 HEY MATEz is a desktop application to get rid of CCA leaders' woes by allowing them to track 
 members and tasks within the CCA efficiently. It is
@@ -10,12 +11,17 @@ a Command Line Interface (CLI) application while still retaining a Graphical Use
 as this application is catered to students who are used to typing on the keyboard frequently. With HEY MATEz, planning 
 and distributing tasks will never be headache :smile:
 
-* Table of Contents
-{:toc}
+* [Introduction](#introduction)  
+* [Quick Start](#quick-start)  
+* [Features](#features)
+  + [General Features](#general)
+  + [Member Related Features](#members)
+  + [Task Related Features](#tasks)
+
 
 --------------------------------------------------------------------------------------------------------------------
-
-## Quick start
+<a name="quick-start"></a>
+## Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer. You can install Java `11` [here](https://www.oracle.com/sg/java/technologies/javase-jdk11-downloads.html).
 
@@ -43,6 +49,7 @@ and distributing tasks will never be headache :smile:
 
 -------------------------------------------------------------------------------------------------------------
 
+<a name="features"></a>
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -74,7 +81,8 @@ and distributing tasks will never be headache :smile:
 
 --------------------------------------------------------------------------------------------------------------------
 
-##    General Features
+<a name="general"></a>
+## General Features
 
 <a name="clear"></a>
 ### 1. Clear all data in application: `clear`
@@ -102,7 +110,8 @@ Example: `help`
 
 -------------------------------------------------------------------------------------------------------------
 
-##    Member Related Features
+<a name="members"></a>
+## Member Related Features
 
 <a name="addMember"></a>
 ### 1. Add Member: `addMember`
@@ -171,7 +180,8 @@ Examples:
 * `findMembers Rachel 98562154 john@gmail.com`
 
 -------------------------------------------------------------------------------------------------------------
-##    Task Related Features
+<a name="tasks"></a>
+## Task Related Features
 
 <a name="addTask"></a>
 ### 1. Add Task: `addTask`
@@ -214,7 +224,7 @@ Examples:
 * `viewTasks`
 
 <a name="editTask"></a>
-### 4. Edit Task: `editTask`
+###     4. Edit Task: `editTask`
 Edits the task at the task index that is specified with the new details you have keyed in.
 
 Format: `editTask INDEX [-n NEW_TITLE] [-d NEW_DESCRIPTION] [-b NEW_DEADLINE] [-s NEW_STATUS] [-p NEW_PRIORITY] [-a NEW_ASSIGNEE]`
