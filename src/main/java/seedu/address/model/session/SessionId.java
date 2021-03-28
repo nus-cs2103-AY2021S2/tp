@@ -1,9 +1,8 @@
 package seedu.address.model.session;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.session.exceptions.InvalidSessionIdException;
-
 import static java.util.Objects.requireNonNull;
+
+import seedu.address.model.session.exceptions.InvalidSessionIdException;
 
 public class SessionId {
 
