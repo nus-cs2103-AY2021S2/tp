@@ -30,7 +30,6 @@ public class AppointmentListPanel extends UiPart<Region> {
         super(FXML);
         appointmentsGroupListView.setItems(appointmentLists);
         appointmentsGroupListView.setCellFactory(listView -> new AppointmentsGroupListViewCell(studentList));
-        appointmentsGroupListView.getItems().stream().forEach(x -> System.out.println(x));
     }
 
     /**
