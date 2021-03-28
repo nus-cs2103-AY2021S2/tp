@@ -5,6 +5,8 @@ title: User Guide
 
 Vax@NUS is a **one stop management app to efficiently track and and schedule COVID-19 vaccinations for NUS students.** It is a desktop app **optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Vax@NUS can get your appointment management tasks done faster than traditional GUI apps.
 
+:information_source: This icon indicates helpful notes 
+
 * Table of Contents
 {:toc}
 
@@ -19,7 +21,7 @@ Vax@NUS is a **one stop management app to efficiently track and and schedule COV
 1. Copy the file to the folder you want to use as the _home folder_ for your Vax@NUS application.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/currentUI.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -33,7 +35,7 @@ Vax@NUS is a **one stop management app to efficiently track and and schedule COV
 
 ## Parameter Formats
 
-**NOTE: The following parameter formats must be followed:**
+**:information_source: NOTE: The following parameter formats must be followed:**
 > The `MATRICULATION_NUMBER` of a student is a unique 9-character alphanumeric sequence that begins with A, followed by
 > 7 numbers and ends with an alphabet.
 
@@ -81,7 +83,7 @@ Vax@NUS is a **one stop management app to efficiently track and and schedule COV
 
 <div markdown="block" class="alert alert-info">
 
-**Notes about the command format:**<br>
+**:information_source: NOTE ABOUT THE COMMAND FORMAT :**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -103,7 +105,7 @@ Vax@NUS is a **one stop management app to efficiently track and and schedule COV
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -112,7 +114,7 @@ Format: `help`
 
 ### Adding a student entry: `add`
 
-Adds a student to the records.
+Adds a student to Vax@NUS' records.
 
 Format: `add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS r/SCHOOL_RESIDENCE[optional]`
 
@@ -123,7 +125,7 @@ Examples:
 
 ### Editing a student entry: `edit`
 
-Edits a student in the records.
+Edits a student in Vax@NUS' records.
 
 Format: `edit INDEX [n/NAME] [i/MATRICULATION_NUMBER] [f/FACULTY] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/VACCINATION_STATUS] [m/MEDICAL_DETAILS] [r/SCHOOL_RESIDENCE]`
 
@@ -138,25 +140,25 @@ Examples:
 * `edit 2 r/KRH`  Edits the school residence of the second student to be KRH.
 
 
-### Listing all students in the records : `list`
+### Listing all students : `list`
 
-Shows a list of all students in the records.
+Shows a list of all students in Vax@NUS' records.
 
 Format: `list students`
 
-### Finding a student by matriculation number: `find`
+### Finding a student : `find`
 
-Shows only the details of the student that matches the specified matriculation number.
+Shows the particular Vax@NUS' student records and students' appointment that matches the specified matriculation number.
 
 Format: `find MATRICULATION_NUMBER`
 
 
 Examples:
-* `Find A1234567X` returns `John Doe` from the record.
+* `Find A1234567X` returns `John Doe` and John Doe's appointment if it exists from the record.
 
-### Filtering the student entries by vaccination status, faculty or school residence : `filter`
+### Filtering student records: `filter`
 
-Shows only the details of the student entries that matches the specified filter condition.
+Shows all Vax@NUS' student records that matches the specified filter condition.
 
 Format: <br>
 `filter VACCINATION_STATUS`
@@ -169,7 +171,7 @@ Examples:
 * `filter RVRC` 
 
 
-### Deleting a student by their matriculation number: `deleteStud`
+### Deleting a student : `deleteStud`
 
 Deletes the specified student from Vax@NUS' records.
 
