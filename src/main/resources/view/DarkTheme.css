@@ -1,4 +1,4 @@
-@import "./TisaSansPro.css";
+@import "./Font.css";
 
 .background {
     -fx-background-color: derive(#1d1d1d, 20%);
