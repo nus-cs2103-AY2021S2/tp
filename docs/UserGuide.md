@@ -143,14 +143,14 @@ Format: `clear`
 
 deletes the specified booking from the specified residence
 
-Format: `deleteb INDEX1 INDEX2`
+Format: `deleteb r/INDEX1 b/INDEX2`
 
 * Deletes the booking at the specified `INDEX1` from the residence at the specified `INDEX2`
 * `INDEX1` and `INDEX2` refers to the index number as shown in ResidenceTracker (i.e. **NOT** zero-indexed).
 * `INDEX1` and `INDEX2` must be **positive integer** (>0)
 
 Examples:
-* `list` followed by `deleteb 3 2` deletes the 2nd booking from the third residence.
+* `list` followed by `deleteb r/3 b/2` deletes the 2nd booking from the 3rd residence.
 ### Exiting the program : `exit`
 
 Exits the program.
