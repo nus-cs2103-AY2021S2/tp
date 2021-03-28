@@ -436,14 +436,14 @@ you to this user guide to provide you with the help you need!
 
 Action | Format, Examples
 --------|------------------
+**[Help](#help)** |  `help`
 **[Add](#add)** | `add n/ITEM_NAME l/LOCATION q/QUANTITY [e/EXPIRY_DATE] [t/TAG]…​` <br> e.g. `add n/koko krunch l/fridge q/1 e/2021-05-27 t/favourite`
-**[Delete](#delete)** | `delete INDEX`<br> e.g. `delete 2`
 **[Edit](#edit)** | `edit INDEX [n/ITEM_NAME] [e/EXPIRY_DATE] [l/LOCATION] [q/QUANTITY] [t/TAG]…​`<br> e.g.`update 1 l/freezer q/2 `
 **[List](#list)** | `list` `list [l/LOCATION]` `list [t/TAG]`<br> e.g. `list` `list l/fridge` `list t/favourite`
 **[Find](#find)** | `find [*/]KEYWORD [MORE KEYWORDS]`<br> e.g. `find koko krunch` `find */choco`
+**[Delete](#delete)** | `delete INDEX`<br> e.g. `delete 2`
 **[Reminder](#reminder)** | `reminder number TIME_UNIT`<br> e.g. `reminder 7 days` `reminder 2 weeks`
 **[Sort](#sort)** | `sort quantity` `sort expiryDate`
-**[Help](#help)** |  `help`
 **[Clear](#clear)** | `clear`
 **[Exit](#exit)** | `exit`
 
