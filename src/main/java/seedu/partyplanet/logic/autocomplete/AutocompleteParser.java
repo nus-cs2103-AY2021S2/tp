@@ -1,11 +1,8 @@
 package seedu.partyplanet.logic.autocomplete;
 
-import static seedu.partyplanet.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.partyplanet.logic.commands.HelpCommand;
 import seedu.partyplanet.logic.commands.exceptions.CommandException;
 import seedu.partyplanet.logic.parser.exceptions.ParseException;
 import seedu.partyplanet.model.Model;
@@ -17,7 +14,9 @@ public class AutocompleteParser {
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
-    
+    /**
+     * Parses input string and retrieves the relevant Autocomplete Util.
+     */
     public String parse(String input, Model model) throws ParseException, CommandException {
 
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(input.trim());
