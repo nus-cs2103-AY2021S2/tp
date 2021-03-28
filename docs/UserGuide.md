@@ -59,14 +59,14 @@ This user guide uses various formatting styles to facilitate reading and to comm
 1. Forgot when you are supposed to meet Simon again? Let's try finding out! Type <br>`find appointment simon` and press <kbd>Enter</kbd>. There it is! Your appointment with Simon is on Sep 20, 2021.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
- Some example commands you can try:
+ Some other example commands you can try:
 
 {::nomarkdown}
 <ul>
-  <li>`list all` : Lists all properties and appointments in the app.</li>
-  <li>`delete property 2` : Deletes the 2nd property shown in the current list of properties.</li>
-  <li>`clear appointment` : Clears all existing appointment data from the app.</li>
-  <li>`exit` : Exits the app.</li>
+  <li>{:/}`list all`{::nomarkdown} : Lists all properties and appointments in the app.</li>
+  <li>{:/}`delete property 2`{::nomarkdown} : Deletes the 2nd property shown in the current list of properties.</li>
+  <li>{:/}`clear appointment`{::nomarkdown} : Clears all existing appointment data from the app.</li>
+  <li>{:/}`exit`{::nomarkdown} : Exits the app.</li>
 </ul>
 {:/}
 
