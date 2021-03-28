@@ -24,13 +24,13 @@ nav-text: User Guide
 
 ## 1. Welcome to imPoster
 
-Are you an aspiring API developer? Or would you like a peek into the world of how applications communicate with one another? Then **imPoster** is the app just for you! But hold on, what is imPoster?
+Are you an aspiring [**Application Programming Interface (API)**](#7-glossary) developer? Or would you like a peek into the world of how applications communicate with one another? Then **imPoster** is the app just for you! But hold on, what is imPoster?
 
-imPoster is a desktop application for beginners of API development to quickly grasp the basics. Whether you are looking to **explore**, **test**, or **build** your very own APIs, the simple and minimalistic style of imPoster will quickly get you up and going.
+imPoster is a desktop application for beginners of API development to quickly go hands-on with the basics. Whether you are looking to **explore**, **test**, or **build** your very own APIs, the simple and minimalistic style of imPoster will quickly get you up and going.
 
-This user guide assumes its users to have a **basic understanding** of APIs. If you are wondering [what an API is](#81-what-is-an-api), an appendix has been provided for users who may be unfamiliar with the concept. However, it is highly recommended for users to refer to proper tutorial contents for the basics of APIs prior to using the application.
+This user guide assumes that users have a **basic understanding** of APIs. If you are wondering [what an API is](#81-what-is-an-api), an appendix has been provided for users who may be unfamiliar with the concept. However, it is highly recommended for users to refer to proper tutorial contents for the basics of APIs prior to using the application.
 
-For fast typists, imPoster is also highly optimised for the command line and can be fully operated through keyboard commands. Users who are familiar with **CURL** will also be happy to know that we share a very similar command line syntax. If you have yet to do so, be sure to download our [latest releases](https://imposter-dev.tk) from our main website and give us a try!
+For fast typists, imPoster is also highly optimised for the command line and can be fully operated through keyboard commands. Users who are familiar with [**CURL**](#7-glossary) will also be happy to know that we share a very similar command line syntax. If you have yet to do so, be sure to download our [latest releases](https://imposter-dev.tk) from our main website and give us a try!
 
 <div style="page-break-after: always;"></div>
 
@@ -41,14 +41,14 @@ Before diving into the rest of the contents in our user guide, the following are
 | Syntax              | Description                                    |
 | ------------------- | ---------------------------------------------- |
 | **Bold**            | Important words to note                        |
+| `Markdown`          | Important examples                             |
 | <kbd>Keyboard</kbd> | Keyboard actions                               |
 | <div markdown="span" class="alert alert-warning custom-table-format">:bulb: Tips</div> | Useful tips |
 | <div markdown="span" class="alert alert-danger custom-table-format">:exclamation: Caution</div> | Things to watch out for |
-| <img class="custom-table-format" src="images/red_box.png" > | Annotations |
-| `Markdown`          | Indicates full or part of a user command       |
-| UPPER_CASE          | Parameters of a user command                   |
-| [Square Brackets]   | Optional parameters of a user command          |
-| ...                 | Parameters that may be added multiple times    |
+| <span class="main-command">Main Command</span> | Indicates the keyword describing the main action of a command |
+| <span class="compulsory-param">Compulsory Parameter</span> | Indicates the compulsory parameters/prefixes of a command |
+| <span class="optional-param">Optional Parameter</span> | Indicates the optional parameters/prefixes of a command |
+| [Repeated Parameters]   | Indicates the parameters/prefixes that may be repeated multiple times    |
 
 
 <div style="page-break-after: always;"></div>
@@ -57,25 +57,28 @@ Before diving into the rest of the contents in our user guide, the following are
 
 1. Ensure you have **Java 11 or above** installed in your Computer.
 
-1. Download the latest **imposter.jar** from
+2. Download the latest **imposter.jar** from
    [here](https://github.com/AY2021S2-CS2103T-T12-4/tp/releases).
 
-1. Move the file to the folder you wish to use as the **home folder** for
+3. Move the file to the folder you wish to use as the **home folder** for
    imPoster.
 
-1. **Double-click** the file to start the application. A graphical user interface (GUI) similar to the one
+4. **Double-click** the file to start the application. A graphical user interface (GUI) similar to the one
    below should appear after a few seconds. Note the **4 main components** in the layout of the application:<br>
 
-<p align="center">
-  <img width="800px" src="images/startscreen.png" >
-</p>
+    <p align="center">
+      <img width="900px" src="images/startscreen.png" >
+    </p>
 
-1. Try making your first API call through our application with the first endpoint shown in the **Endpoint List**. Type `send 1` in the **Command Box** and then press <kbd>Enter</kbd>.
-2. After which, try scrolling through the responses shown in the **Result Display** as well!
-3. For a quick **overview** of all available commands, please refer to our [Command Summary](#6-command-summary).
-4. For the **details** of each command, please proceed to the next section on [Commands](#4-commands).
+5. Try making your first API call through our application with the first [**endpoint**](#7-glossary) shown in the **Endpoint List**. Type <span class="main-command">send</span> <span class="compulsory-param">1</span> in the **Command Box** and then press <kbd>Enter</kbd>.
 
-**Note:** imPoster data are saved automatically into a JSON file `[JAR file location]/data/imposter.json` after any command that changes the data. Advanced users are welcome to update data directly by editing that data file.
+6. After which, try scrolling through the responses shown in the **Result Display** as well!
+
+7. For a quick **overview** of all available commands, please refer to our [Command Summary](#6-command-summary).
+
+8. For the **details** of each command, please proceed to the next section on [Commands](#4-commands).
+
+**Note:** imPoster data are saved automatically into a JSON file `<JAR file location>/data/imposter.json` after any command that changes the data. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
 imPoster will start with an empty file if a modification to it causes the data to be invalid.
@@ -95,9 +98,11 @@ Commands are classified into 2 categories, namely **general** and **endpoint**. 
 
 As an example, a basic command to add an endpoint could look like the following:
 
-`add -x GET -u https://google.com`
+<span class="main-command">add</span> <span class="compulsory-param">-x GET</span> <span class="compulsory-param">-u https://google.com</span>
 
-In the above example, `add` is the command word, `-x` and `-u` are the prefixes while `GET` and `https://google.com` are the parameters. Note that the parameters allowed differ for each command and may be optional. For your convenience, a list of all parameters along with their prefixes and descriptions have been included in the following table:
+In the example above, <span class="main-command">add</span> is the command word while <span class="compulsory-param">-x</span> and <span class="compulsory-param">-u</span> are the prefixes of the <span class="compulsory-param">GET</span> and <span class="compulsory-param">https://google.com</span> parameters respectively. Note that the parameters allowed differ for each command and may be optional. For your convenience, a list of all parameters along with their prefixes and descriptions have been included in the following table:
+
+<a name="prefix-table"></a>
 
 | Parameter    | Prefix | Description                                                           |
 | ------------ | ------ | --------------------------------------------------------------------- |
@@ -110,35 +115,35 @@ In the above example, `add` is the command word, `-x` and `-u` are the prefixes 
 | TAG          |   -t   | The tag to label an endpoint                 |
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
-Being familiar with the <a href="#2-navigating-the-user-guide"> syntaxes </a> will allow you to navigate the user guide even more easily
+Check out the screenshot of each command for an idea of the expected output in the application's **Result Display**!
 </div>
 
 <div style="page-break-after: always;"></div>
 
 ### 4.1 General
 
-General commands are typically basic commands that are unrelated to API endpoints.
-
 #### 4.1.1 View help: `help`
 
 **Description:** Get the link to the user guide to the application in the form of a pop up window.
 
-**Format:** `help`
+**Format:** <span class="main-command">help</span>
 
-**Example:** `help`
+**Example & Output:** <span class="main-command">help</span>
 
-![help message](images/helpMessage.png)
+<p align="center">
+  <img width="450px" src="images/helpMessage.png" >
+</p>
 
 #### 4.1.2 Toggle theme: `toggle`
 
-**Description:** Toggle the theme for the application.
+**Description:** Toggle the theme for the application **(light, dark, or imposter)**.
 
-**Format:** `toggle THEME`
+**Format:** <span class="main-command">toggle</span> <span class="compulsory-param">THEME</span>
 
-**Example:** `toggle light`
+**Example & Output:** <span class="main-command">toggle</span> <span class="compulsory-param">light</span>
 
 <p align="center">
-  <img width="550px" src="images/commands/toggle.png" >
+  <img width="450px" src="images/commands/toggle.png" >
 </p>
 
 <div style="page-break-after: always;"></div>
@@ -147,61 +152,57 @@ General commands are typically basic commands that are unrelated to API endpoint
 
 **Description:** Exit the application.
 
-**Format:** `exit`
+**Format:** <span class="main-command">exit</span>
 
-**Example:** `exit`
+**Example:** <span class="main-command">exit</span>
 
 ### 4.2 Endpoint
-
-Endpoint commands, as the name suggest, deals with API endpoints.
 
 #### 4.2.1 Add an API endpoint: `add`
 
 **Description:** Add an API endpoint to the API endpoint list.
 
-**Format:** `add -x METHOD -u URL [-d DATA] [-h HEADER]… [-t TAG]…`
+**Format:** <span class="main-command">add</span> <span class="compulsory-param">-x METHOD</span> <span class="compulsory-param">-u URL</span> <span class="optional-param">-d DATA</span> <span class="optional-param">[-h HEADER]</span> <span class="optional-param">[-t TAG]</span>
 
-**Examples:** `add -x GET -u https://api.data.gov.sg/v1/environment/pm25`
+**Example & Output:** <span class="main-command">add</span> <span class="compulsory-param">-x GET</span> <span class="compulsory-param">-u https://api.data.gov.sg/v1/environment/pm25</span>
 
 <p align="center">
-  <img width="550px" src="images/commands/add.png" >
+  <img width="450px" src="images/commands/add.png" >
 </p>
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
-An endpoint can have any number of **unique** tags and headers but only a maximum of 1 data field
+Multiple headers/tags must be unique and duplicates will be ignored
 </div>
 
 <div style="page-break-after: always;"></div>
 
 #### 4.2.2 Edit an API endpoint: `edit`
 
-**Description:** Edit the API endpoint at the specified index shown in the API endpoint list (at least one optional argument must be provided).
+**Description:** Edit the API endpoint at the specified index shown in the API endpoint list **(at least one optional argument must be provided)**.
 
-**Format:** `edit INDEX [-x METHOD] [-u URL] [-d DATA] [-h HEADER]… [-t TAG]…`
+**Format:** <span class="main-command">edit</span> <span class="compulsory-param">INDEX</span> <span class="optional-param">-x METHOD</span> <span class="optional-param">-u URL</span> <span class="optional-param">-d DATA</span> <span class="optional-param">[-h HEADER]</span> <span class="optional-param">[-t TAG]</span>
 
-**Examples:** `edit 1 -x POST -u https://reqres.in/api/users -d {"name": "john doe", "job": "developer"}`
+**Example & Output:** <span class="main-command">edit</span> <span class="compulsory-param">1</span> <span class="optional-param">-x POST</span> <span class="optional-param">-u https://reqres.in/api/users</span> <span class="optional-param">-d {"name": "john doe", "job": "developer"}</span>
 
 <p align="center">
-  <img width="550px" src="images/commands/edit.png" >
+  <img width="450px" src="images/commands/edit.png" >
 </p>
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
-Multiple tags must be unique and duplicates will be ignored
+Multiple headers/tags must be unique and duplicates will be ignored
 </div>
-
-<div style="page-break-after: always;"></div>
 
 #### 4.2.3 Show an API endpoint: `show`
 
 **Description:** Show the details of the API endpoint at the specified index shown in the API endpoint list (index must 
 be a positive integer).
 
-**Format:** `show INDEX`
+**Format:** <span class="main-command">show</span> <span class="compulsory-param">INDEX</span>
 
-**Examples:** `show 1`
+**Example & Output:** <span class="main-command">show</span> <span class="compulsory-param">1</span>
 
 <p align="center">
-  <img width="550px" src="images/commands/show.png" >
+  <img width="450px" src="images/commands/show.png" >
 </p>
 
 <div style="page-break-after: always;"></div>
@@ -210,30 +211,28 @@ be a positive integer).
 
 **Description:** Remove the API endpoint at the specified index showin in the API endpoint list.
 
-**Format:** `remove INDEX`
+**Format:** <span class="main-command">remove</span> <span class="compulsory-param">INDEX</span>
 
-**Examples:** `remove 1`
+**Example & Output:** <span class="main-command">remove</span> <span class="compulsory-param">1</span>
 
 <p align="center">
-  <img width="550px" src="images/commands/remove.png" >
+  <img width="450px" src="images/commands/remove.png" >
 </p>
-
-<div style="page-break-after: always;"></div>
 
 #### 4.2.5 Find a saved API endpoint: `find`
 
-**Description:** Find API routes containing the search word in any of its fields (**defaults to all** if not specified).
+**Description:** Find API routes containing the search word in any of its fields **(defaults to all fields if not specified and requires at least one keyword)**.
 
-**Format:** `find KEYWORD [MORE_KEYWORDS]…`
+**Format:** <span class="main-command">find</span> <span class="optional-param">[KEYWORD]</span>
 
-**Examples:** `find github transport`
+**Example & Output:** <span class="main-command">find</span> <span class="optional-param">github</span> <span class="optional-param">transport</span>
 
 <p align="center">
-  <img width="550px" src="images/commands/find.png" >
+  <img width="450px" src="images/commands/find.png" >
 </p>
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
-You may include prefixes (e.g. `-x`, `-u`, `-t` etc) to scope your search terms!
+You may include [prefixes](#prefix-table) to scope your search terms!
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -242,73 +241,65 @@ You may include prefixes (e.g. `-x`, `-u`, `-t` etc) to scope your search terms!
 
 **Description:** Show a list of all API endpoints in the API endpoint list.
 
-**Format:** `list`
+**Format:** <span class="main-command">list</span>
 
-**Example:** `list`
+**Example & Output:** <span class="main-command">list</span>
 
 <p align="center">
-  <img width="550px" src="images/commands/list.png" >
+  <img width="450px" src="images/commands/list.png" >
 </p>
-
-<div style="page-break-after: always;"></div>
 
 #### 4.2.7 Clear all saved API endpoints: `clear`
 
 **Description:** Clear all API endpoints in the API endpoint list.
 
-**Format:** `clear`
+**Format:** <span class="main-command">clear</span>
 
-**Example:** `clear`
+**Example & Output:** <span class="main-command">clear</span>
 
 <p align="center">
-  <img width="550px" src="images/commands/clear.png" >
+  <img width="450px" src="images/commands/clear.png" >
 </p>
 
 <div style="page-break-after: always;"></div>
 
 #### 4.2.8 Call a saved API endpoint: `send`
 
-**Description:** Call an API endpoint from the API endpoint list.
+**Description:** Call an API endpoint from the API endpoint list **(an ongoing call can be cancelled with <kbd>ctrl</kbd> + <kbd>d</kbd>)**.
 
-**Format** `send INDEX`
+**Format** <span class="main-command">send</span> <span class="compulsory-param">INDEX</span>
 
-**Examples:** `send 1`
+**Example & Output:** <span class="main-command">send</span> <span class="compulsory-param">1</span>
 
 <p align="center">
-  <img width="550px" src="images/commands/send.png" >
+  <img width="450px" src="images/commands/send.png" >
 </p>
-
-<div markdown="span" class="alert alert-warning">:bulb: **Tip:**
-You may cancel an API call with <kbd>ctrl</kbd> + <kbd>d</kbd>
-</div>
-
-<div style="page-break-after: always;"></div>
 
 #### 4.2.9 Call an API endpoint directly without saving: `run`
 
-**Description:** Call an API endpoint on the fly (without saving). Two command formats are available. The first format performs a standard call to an API endpoint. (First Format)
+**Description:** Call an API endpoint on the fly (without saving) **(an ongoing call can be cancelled with <kbd>ctrl</kbd> + <kbd>d</kbd>)**.
 
-**Format:** `run -x METHOD -u URL [-d DATA] [-h HEADER]…`
+**Format:** <span class="main-command">run</span> <span class="compulsory-param">-x METHOD</span> <span class="compulsory-param">-u URL</span> <span class="optional-param">-d DATA</span> <span class="optional-param">[-h HEADER]</span>
 
-**Examples:** `run -x GET -u https://api.data.gov.sg/v1/environment/pm25`
+**Example & Output:** <span class="main-command">run</span> <span class="compulsory-param">-x GET</span> <span class="compulsory-param">-u https://api.data.gov.sg/v1/environment/pm25</span>
 
 <p align="center">
-  <img width="550px" src="images/commands/run.png" >
+  <img width="450px" src="images/commands/run.png" >
 </p>
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
-You may cancel an API call with <kbd>ctrl</kbd> + <kbd>d</kbd>
+A shorthand for <span class="compulsory-param">GET</span> requests can be done without specifying <span class="compulsory-param">-x</span> and <span class="compulsory-param">-u</span> (for example: <span class="main-command">run</span> <span class="compulsory-param">https://api.data.gov.sg/v1/environment/pm25</span>).
 </div>
 
-<div markdown="span" class="alert alert-warning">:bulb: **Tip:**
-A shorthand for `GET` requests can be done without specifying `-x` and `-u` (for example: `run https://api.data.gov.sg/v1/environment/pm25`).
-</div>
+<div style="page-break-after: always;"></div>
 
 ## 5. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br> **A**: Install the
 application in the other computer and overwrite the empty data file it creates
 with the file that contains the data of your previous imPoster home folder.
+
+{more to be added}
 
 <div style="page-break-after: always;"></div>
 
@@ -346,8 +337,12 @@ A quick overview of all supported commands, their formats and examples are given
 | -------------------------------------------- | --------------------------------------------------------- |
 | **API (Application Programming Interface)** | An interface for two systems to interact with each other  |
 | **Endpoint** | The point of entry in a communication channel for two systems to interact with each other |
-| **JSON (JavaScript Object Notation)** | A lightweight format for data storage. A more detailed explanation can be found [here](#84-json-format) |
-| **CURL (Client URL)** | A command-line tool used in the transfer of data via different network protocols. |
+| **Request** | A process in which information is sent out to an endpoint through one of the [request methods](#83-request-methods) |
+| **Response** | The information obtained from an endpoint after a request is sent to it (commonly in the [JSON format](#84-json-format)) |
+| **Parameter**   | Information passed in as part of a command with its type identified by a prefix (e.g. <span class="compulsory-param">METHOD</span>) |
+| **Prefix**   | Characters used to identify the following parameter (e.g. <span class="compulsory-param">-x</span> is the prefix for the parameter <span class="compulsory-param">METHOD</span>) |
+| **JSON (JavaScript Object Notation)** | A lightweight format for data storage (a more detailed explanation can be found [here](#84-json-format)) |
+| **CURL (Client URL)** | A command-line tool used in the transfer of data via different network protocols |
 
 <div style="page-break-after: always;"></div>
 
@@ -360,6 +355,8 @@ Broadly speaking, an **API** is an interface that enables and defines how **two 
 <p align="center">
   <img width="700px" src="images/ApiExplanation.png" >
 </p>
+
+Note that for the **waiter** to pass the order to the **kitchen**, a **window/door** is required to allow communication and this is represented by the term [**endpoint**](#7-glossary) which is frequently used in relation to an API.
 
 ### 8.2 Why learn about APIs?
 
