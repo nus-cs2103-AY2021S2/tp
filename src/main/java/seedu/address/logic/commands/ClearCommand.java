@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
@@ -16,7 +17,7 @@ import seedu.address.model.tag.Tag;
 
 
 /**
- * Clears the address book if given no arguments, all clears all Persons with a particular tag.
+ * Clears the address book if given no arguments or clears all Persons with a particular tag.
  */
 public class ClearCommand extends Command {
 
@@ -40,7 +41,8 @@ public class ClearCommand extends Command {
             model.setAddressBook(new AddressBook());
             return new CommandResult(MESSAGE_SUCCESS);
         } else {
-            Iterator<Person> personIterator = model.getAddressBook().getPersonList().iterator();
+            ObservableList<Person> personList = model.getAddressBook().getPersonList();
+            Iterator<Person> personIterator = personList.iterator();
             List<Person> personsToDelete = new ArrayList<>();
             while (personIterator.hasNext()) {
                 Person person = personIterator.next();
