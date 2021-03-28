@@ -19,10 +19,16 @@ public class HelpWindow extends UiPart<Stage> {
                                              + "tp/blob/master/docs/UserGuide.md";
 
     public static final String ADD_PROMPT = "add - Adds a residence into ResidenceTracker."
-                                          + "\nEnter \"add n/NAME_OF_RESIDENCE a/ADDRESS [b/BOOKING_DETAILS] "
+                                          + "\nEnter \"add n/NAME_OF_RESIDENCE a/ADDRESS "
                                           + "[clean/[y or n]] [t/TAG]...\""
                                           + "\nExample: add n/Clementi HDB a/459A Clementi Ave 3, #04-257, S121459 "
-                                          + "b/4 adults clean/n t/Reserved\n\n";
+                                          + "clean/n t/Reserved\n\n";
+
+    public static final String ADDB_PROMPT = "add - Adds a booking to a residence."
+                                           + "\nEnter \"addb n/NAME_OF_BOOKER p/PHONE_OF_BOOKER "
+                                           + "s/START_TIME e/END_TIME\""
+                                           + "\nExample: add n/John p/91234567 "
+                                           + "s/01-01-2021 e/02-01-2021\n\n";
 
     public static final String CLEAR_PROMPT = "clear - Clears all entries from the residence tracker."
                                             + "\nEnter \"clear\"\n\n";
@@ -31,6 +37,11 @@ public class HelpWindow extends UiPart<Stage> {
                                              + "based on index."
                                              + "\nEnter \"delete INDEX\""
                                              + "\nExample: delete 3\n\n";
+
+    public static final String DELETEB_PROMPT = "delete - Deletes the specified booking from the specified residence."
+                                              + "based on index."
+                                              + "\nEnter \"deleteb RESIDENCE_INDEX BOOKING_INDEX\""
+                                              + "\nExample: delete 3 2\n\n";
 
     public static final String EDIT_PROMPT = "edit - Edits fields of an existing residence (other than bookings)."
                                            + "\nEnter \"edit INDEX c/n \""
@@ -48,8 +59,10 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String HELP_MESSAGE = "List of commands:\n"
                                             + ADD_PROMPT
+                                            + ADDB_PROMPT
                                             + CLEAR_PROMPT
                                             + DELETE_PROMPT
+                                            + DELETEB_PROMPT
                                             + EDIT_PROMPT
                                             + FIND_PROMPT
                                             + LIST_PROMPT
