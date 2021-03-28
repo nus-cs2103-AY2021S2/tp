@@ -48,6 +48,6 @@ public class FoodIntake {
 
     @Override
     public String toString() {
-        return this.food.toString() + ": " + this.food.getKiloCalories() + " calories";
+        return this.food.toString() + ": " + String.format("%.2f", this.food.getKiloCalories()) + " calories";
     }
 }
