@@ -150,6 +150,8 @@ public interface Model {
      */
     public boolean clashes(Meeting toCheck);
 
+    public boolean clashesExceptOne(Meeting meetingNotIncluded, Meeting toCheck);
+
     /**
      * Gets a list of meetings from the model that overlap with this meeting.
      */

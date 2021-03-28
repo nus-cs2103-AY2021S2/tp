@@ -104,6 +104,10 @@ public class MeetingBook implements ReadOnlyMeetingBook {
         return meetings.clashes(toCheck);
     }
 
+    public boolean clashesExceptOne(Meeting meetingNotIncluded, Meeting toCheck) {
+        return meetings.clashesExceptOne(meetingNotIncluded, toCheck);
+    }
+
     /**
      * Gets a list of meetings that overlap with this meeting.
      */

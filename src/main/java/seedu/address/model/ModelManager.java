@@ -232,6 +232,10 @@ public class ModelManager implements Model {
         return meetingBook.clashes(toCheck);
     }
 
+    public boolean clashesExceptOne(Meeting meetingNotIncluded, Meeting toCheck) {
+        return meetingBook.clashesExceptOne(meetingNotIncluded, toCheck);
+    }
+
     /**
      * Gets a list of meetings from the model that overlap with this meeting.
      */

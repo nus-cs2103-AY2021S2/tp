@@ -65,6 +65,7 @@ public class AddMeetingCommand extends Command {
         if (model.hasMeeting(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
         }
+
         if (model.clashes(toAdd)) {
             List<Meeting> listOfClashingMeetings = model.getClashes(toAdd);
             String formatMeetingListString = CommandDisplayUtil.formatElementsIntoRows(listOfClashingMeetings);
