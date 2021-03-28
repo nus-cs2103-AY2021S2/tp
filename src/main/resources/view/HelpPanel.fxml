@@ -5,6 +5,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
@@ -25,5 +27,20 @@
         </HBox.margin>
       </Button>
   </HBox>
-
+  <ScrollPane fitToWidth="true">
+    <VBox styleClass="commands-display-vbox">
+      <Label styleClass="label-header" text="Projects" />
+      <TableView fx:id="projectsTableView">
+        <VBox.margin>
+          <Insets top="10.0"/>
+        </VBox.margin>
+      </TableView>
+      <Label styleClass="label-header" text="Contacts" />
+      <TableView fx:id="contactsTableView">
+        <VBox.margin>
+          <Insets top="10.0"/>
+        </VBox.margin>
+      </TableView>
+    </VBox>
+  </ScrollPane>
 </VBox>

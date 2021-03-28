@@ -2,6 +2,37 @@
     -fx-background-color: -DP_1_ELEVATION;
 }
 
+.commands-display-vbox {
+    -fx-alignment: center;
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+
+.table-view .scroll-bar * {
+    -fx-min-width: 0;
+    -fx-pref-width: 0;
+    -fx-max-width: 0;
+
+    -fx-min-height: 0;
+    -fx-pref-height: 0;
+    -fx-max-height: 0;
+}
+
+.table-view .column-header-background {
+    -fx-max-height: 0;
+    -fx-pref-height: 0;
+    -fx-min-height: 0;
+}
+
+.label-header {
+    -fx-text-fill: white;
+    -fx-font-size: 24;
+    -fx-text-alignment: center;
+    -fx-padding: 0 0 10px 0;
+    -fx-pref-height: 50px;
+    -fx-border-radius: 0;
+}
+
 #helpMessage {
     -fx-padding: 20 10;
     -fx-text-fill: white;
