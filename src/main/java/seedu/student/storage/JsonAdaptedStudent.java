@@ -154,6 +154,11 @@ class JsonAdaptedStudent {
         }
         final MedicalDetails modelMedDetails = new MedicalDetails(medicalDetails);
 
+        if (schoolResidence == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    SchoolResidence.class.getSimpleName()));
+        }
+        
         if (schoolResidence.isBlank()) {
             modelSchoolRes = new SchoolResidence(NO_SCHOOL_RESIDENCE);
         } else if (!SchoolResidence.isValidResidence(schoolResidence)) {
