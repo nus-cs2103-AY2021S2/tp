@@ -224,8 +224,7 @@ Format: `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`
 * `FEE` should be the total tuition fee for the total duration
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-TutorBuddy takes care of overlapping session for you so that you don't have to worry about it.<br>
-(Overlapping session will return an error)
+TutorBuddy takes care of overlapping session for you by giving a gentle prompt, so you don't have to worry about it.
 </div>
 
 Examples:
@@ -262,7 +261,7 @@ Examples:
 Clears all entries from the TutorBuddy application.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-TutorBuddy gives you some "sample" data to work with at the start. <br>
+TutorBuddy gives you some sample data to work with at the start. <br>
 After trying out the application, you can run the `clear` command to start working with a fresh piece of TutorBuddy in a split second.
 </div>
 
