@@ -36,7 +36,7 @@ For fast typists, imPoster is also highly optimised for the command line and can
 
 ## 2. Navigating the User Guide
 
-Before diving into the rest of the contents in our user guide, the following are some important syntaxes to take note of to facilitate your reading:
+Before diving into the rest of the contents in our user guide, the following are some important syntax to take note of to facilitate your reading:
 
 | Syntax              | Description                                    |
 | ------------------- | ---------------------------------------------- |
@@ -64,13 +64,15 @@ Before diving into the rest of the contents in our user guide, the following are
    imPoster.
 
 4. **Double-click** the file to start the application. A graphical user interface (GUI) similar to the one
-   below should appear after a few seconds. Note the **4 main components** in the layout of the application:<br>
+   below should appear after a few seconds. Note the **3 main components** in the layout of the application:<br>
 
     <p align="center">
       <img width="900px" src="images/startscreen.png" >
     </p>
 
-5. Try making your first API call through our application with the first [**endpoint**](#7-glossary) shown in the **Endpoint List**. Type <span class="main-command">send</span> <span class="compulsory-param">1</span> in the **Command Box** and then press <kbd>Enter</kbd>.
+5. Try making your first API call through our application with the first [**endpoint**](#7-glossary) shown in the 
+   sample **Endpoint List**. Type <span class="main-command">send</span> <span class="compulsory-param">1</span> in 
+   the **Command Box** and then press <kbd>Enter</kbd>.
 
 6. After which, try scrolling through the responses shown in the **Result Display** as well!
 
@@ -78,10 +80,13 @@ Before diving into the rest of the contents in our user guide, the following are
 
 8. For the **details** of each command, please proceed to the next section on [Commands](#4-commands).
 
+9. When you are ready to start testing your APIs, remove the sample **Endpoint List** by typing <span 
+   class="main-command">clear</span> in the **Command Box** and then press <kbd>Enter</kbd>.
+   
 **Note:** imPoster data are saved automatically into a JSON file `<JAR file location>/data/imposter.json` after any command that changes the data. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
-imPoster will start with an empty file if a modification to it causes the data to be invalid.
+imPoster will start with an empty file if a modification to the data file causes the data to be invalid.
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -124,7 +129,8 @@ Check out the screenshot of each command for an idea of the expected output in t
 
 #### 4.1.1 View help: `help`
 
-**Description:** Get the link to the user guide to the application in the form of a pop up window.
+**Description:** Get the relevant helpful information such as the link to the user guide, and the command summary 
+table in the form of a pop up window.
 
 **Format:** <span class="main-command">help</span>
 
@@ -209,7 +215,7 @@ be a positive integer).
 
 #### 4.2.4 Remove an API endpoint: `remove`
 
-**Description:** Remove the API endpoint at the specified index showin in the API endpoint list.
+**Description:** Remove the API endpoint at the specified index shown in the API endpoint list.
 
 **Format:** <span class="main-command">remove</span> <span class="compulsory-param">INDEX</span>
 
@@ -327,7 +333,7 @@ A quick overview of all supported commands, their formats and examples are given
 | **List**   | `list`                                |
 | **Clear**  | `clear`                               |
 | **Send**   | `send INDEX` <br>                     |
-| **Run (Detailed)**    | `run -x METHOD -u URL [-d DATA] [-h HEADER]…` <br> |
+| **Run**    | `run -x METHOD -u URL [-d DATA] [-h HEADER]…` <br> |
 
 <div style="page-break-after: always;"></div>
 
@@ -350,7 +356,7 @@ A quick overview of all supported commands, their formats and examples are given
 
 ### 8.1 What is an API?
 
-Broadly speaking, an **API** is an interface that enables and defines how **two systems** interact with one another. In a classic analogy, the interaction above is usually likened to a **waiter** communicating a **customer** order to the restaurant **kitchen**. In this analogy, the **customer** and **kitchen** represents the **two systems** and the **waiter** represents the **API** allowing them to communicate. The **order** and **food** delivered then corresponds to the terms **request** and **response** associated with an API call. The annotated diagrams below capture these interactions and may aid in providing a better understanding:
+Broadly speaking, an **API** is an interface that enables and defines how **two systems** interact with one another. In a classic analogy, the interaction above is usually likened to a **waiter** communicating a **customer** order to the restaurant **kitchen**. In this analogy, the **customer** and **kitchen** represents the **two systems**, and the **waiter** represents the **API** allowing them to communicate. The **order** and **food** delivered then corresponds to the terms **request** and **response** associated with an API call. The annotated diagrams below capture these interactions and may aid in providing a better understanding:
 
 <p align="center">
   <img width="700px" src="images/ApiExplanation.png" >
