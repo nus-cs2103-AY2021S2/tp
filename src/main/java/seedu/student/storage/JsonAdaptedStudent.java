@@ -166,5 +166,4 @@ class JsonAdaptedStudent {
         return new Student(modelName, modelMatric, modelFaculty, modelPhone, modelEmail, modelAddress, modelVacStatus,
                 modelMedDetails, modelSchoolRes);
     }
-
 }
