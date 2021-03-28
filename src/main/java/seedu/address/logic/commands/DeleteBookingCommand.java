@@ -28,7 +28,7 @@ public class DeleteBookingCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_RESIDENCE + "1 " + PREFIX_BOOKING + "1";
 
-    public static final String MESSAGE_DELETE_BOOKING_SUCCESS = "Deleted Residence %1$s's Booking %1$s";
+    public static final String MESSAGE_DELETE_BOOKING_SUCCESS = "Deleted Residence %1$d's Booking: %2$s";
 
     private final Index residenceIndex;
     private final Index bookingIndex;

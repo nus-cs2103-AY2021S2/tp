@@ -117,8 +117,7 @@ public class Booking implements Comparable<Booking> {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("Name: ")
-                .append(getName())
+        builder.append(getName())
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Start: ")

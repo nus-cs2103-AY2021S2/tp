@@ -1,7 +1,13 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKING_END_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKING_START_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLEAN_STATUS_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RESIDENCE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RESIDENCES;
 
 import java.time.LocalDate;
@@ -20,15 +26,22 @@ import seedu.address.model.residence.BookingList;
 import seedu.address.model.residence.Residence;
 
 public class EditBookingCommand extends Command {
+
     public static final String COMMAND_WORD = "editb";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the booking identified "
-            + "by the index number used in the displayed residence list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the booking identified by "
+            + "booking index of the residence identified by the residence index provided"
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_CLEAN_STATUS_TAG + "n]\n"
-            + "Example: " + COMMAND_WORD + "1 "
-            + PREFIX_CLEAN_STATUS_TAG + "y";
+            + "Parameters: "
+            + PREFIX_RESIDENCE + " INDEX of residence "
+            + PREFIX_BOOKING + "INDEX of booking "
+            + "[" + PREFIX_NAME + "Name] "
+            + "[" + PREFIX_PHONE + "Phone] "
+            + "[" + PREFIX_BOOKING_START_DATE + "Start Date] "
+            + "[" + PREFIX_BOOKING_END_DATE + "End Date]\n"
+            + "Example: " + COMMAND_WORD + PREFIX_RESIDENCE + " 1 "
+            + PREFIX_BOOKING + " 1"
+            + PREFIX_BOOKING_START_DATE + "01-01-2020 ";
 
     public static final String MESSAGE_EDIT_BOOKING_SUCCESS = "Edited Booking: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -40,7 +53,9 @@ public class EditBookingCommand extends Command {
     private final EditBookingDescriptor editBookingDescriptor;
 
     /**
-     *
+     * @param residenceIndex index of the residence in the filtered residence list to edit
+     * @param bookingIndex index of the booking in the booking list of the residence to edit
+     * @param editBookingDescriptor details to edit the booking with
      */
     public EditBookingCommand(Index residenceIndex, Index bookingIndex, EditBookingDescriptor editBookingDescriptor) {
         requireNonNull(residenceIndex);
@@ -82,8 +97,8 @@ public class EditBookingCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Residence} with the details of {@code residenceToEdit}
-     * edited with {@code editResidenceDescriptor}.
+     * Creates and returns a {@code Booking} with the details of {@code bookingToEdit}
+     * edited with {@code editBookingDescriptor}.
      */
     private static Booking createEditedBooking(Booking bookingToEdit,
                                                EditBookingDescriptor editBookingDescriptor) {
@@ -121,8 +136,8 @@ public class EditBookingCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the booking with. Each non-empty field value will replace the
+     * corresponding field value of the booking.
      */
     public static class EditBookingDescriptor {
         private Name name;
@@ -134,7 +149,8 @@ public class EditBookingCommand extends Command {
         }
 
         /**
-         *
+         * Copy constructor.
+         * A defensive copy of {@code tags} is used internally.
          */
         public EditBookingDescriptor(EditBookingDescriptor toCopy) {
             setName(toCopy.name);

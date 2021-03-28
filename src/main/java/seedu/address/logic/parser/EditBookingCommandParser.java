@@ -17,8 +17,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 public class EditBookingCommandParser implements Parser<EditBookingCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
-     * and returns an EditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the EditBookingCommand
+     * and returns an EditBookingCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
@@ -34,9 +34,9 @@ public class EditBookingCommandParser implements Parser<EditBookingCommand> {
         try {
             residenceIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_RESIDENCE).get());
             bookingIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_BOOKING).get());
-        } catch (ParseException pe) {
+        } catch (ParseException | RuntimeException ex) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditBookingCommand.MESSAGE_USAGE), pe);
+                    EditBookingCommand.MESSAGE_USAGE), ex);
         }
 
         EditBookingDescriptor editBookingDescriptor = new EditBookingDescriptor();
