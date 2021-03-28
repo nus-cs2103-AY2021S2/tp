@@ -27,7 +27,7 @@ public class CommandResultTest {
         assertFalse(commandResult.equals(0.5f));
 
         // different feedbackToUser value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("different")));
+        assertFalse(commandResult.equals(new CommandResult("different", false, false)));
 
         // different showHelp value -> returns false
         assertFalse(commandResult.equals(new CommandResult(
@@ -36,12 +36,6 @@ public class CommandResultTest {
         // different exit value -> returns false
         assertFalse(commandResult.equals(new CommandResult(
                 "feedback", false, true)));
-
-        // different showCards value -> returns false
-        assertFalse(commandResult.equals(new CommandResult(
-                "feedback", false, false)));
-
-
     }
 
     @Test
@@ -61,11 +55,5 @@ public class CommandResultTest {
         // different exit value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult(
                 "feedback", false, true).hashCode());
-
-        // different showCards value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult(
-                "feedback", false, false).hashCode());
-
-
     }
 }

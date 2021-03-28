@@ -189,6 +189,12 @@ public class ModelManager implements Model {
         requireNonNull(quizInstance);
         return quizInstance.getCurrentQuizIndex();
     }
+
+    /**
+     * Checks if the attempt provided matches the correct answer of the current quiz.
+     * @param attempt The answer which the user entered.
+     * @return True if the answer matches, false otherwise.
+     */
     public boolean isCorrectAttempt(Answer attempt) {
         requireNonNull(quizInstance);
         return quizInstance.isCorrectAttempt(attempt);
