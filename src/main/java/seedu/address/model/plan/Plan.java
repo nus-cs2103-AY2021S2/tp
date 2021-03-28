@@ -182,6 +182,32 @@ public class Plan {
     }
 
     /**
+     * Gets number of Semesters a Plan has.
+     * Currently only used in PlanListPanelWithTable javafx tables.
+     * @return The number of Semesters a Plan has.
+     */
+    public Integer getNumSemester() {
+        return semesters.size();
+    }
+
+    /**
+     * Gets number of MCs a Plan has.
+     * Currently only used in PlanListPanelWithTable javafx tables.
+     * @return The number of MCs a Plan has.
+     */
+    public Integer getNumMcs() {
+        Integer numMc = 0;
+
+        for (Semester s : semesters) {
+            for (Module m : s.getModules()) {
+                numMc += m.getMCs();
+            }
+        }
+
+        return numMc;
+    }
+
+    /**
      * Returns Description of Plan.
      */
     public Description getDescription() {
