@@ -13,7 +13,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.fee.Month;
 import seedu.address.model.fee.Year;
-import seedu.address.model.session.Session;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 
