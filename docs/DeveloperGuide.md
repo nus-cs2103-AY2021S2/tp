@@ -28,10 +28,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-Focuris 
-
- 
-<img src="images/ArchitectureDiagram.png" width="450" />
+![Architecture_Diagram](images/ArchitectureDiagram.png)
 
 The **_Architecture Diagram_** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
