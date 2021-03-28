@@ -5,10 +5,12 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import seedu.partyplanet.logic.commands.exceptions.CommandException;
 import seedu.partyplanet.model.Model;
 import seedu.partyplanet.model.person.Person;
+import seedu.partyplanet.model.person.predicates.TagsContainsExactTagPredicate;
 import seedu.partyplanet.model.tag.Tag;
 
 /**
@@ -75,7 +77,8 @@ public class DeleteContactWithTagCommand extends DeleteCommand {
      */
     private boolean containsAllTags(Person person) {
         for (Tag t : targetTags) {
-            if (!person.getTags().contains(t)) {
+            Predicate<Person> predicate = new TagsContainsExactTagPredicate(t.tagName);
+            if (!predicate.test(person)) {
                 return false;
             }
         }
@@ -87,7 +90,8 @@ public class DeleteContactWithTagCommand extends DeleteCommand {
      */
     private boolean containsAnyTags(Person person) {
         for (Tag t : targetTags) {
-            if (person.getTags().contains(t)) {
+            Predicate<Person> predicate = new TagsContainsExactTagPredicate(t.tagName);
+            if (predicate.test(person)) {
                 return true;
             }
         }
