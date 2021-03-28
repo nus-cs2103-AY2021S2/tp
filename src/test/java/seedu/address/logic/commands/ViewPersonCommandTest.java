@@ -14,7 +14,7 @@ import seedu.address.model.person.PersonTypePredicate;
 
 
 
-public class ViewCommandTest {
+public class ViewPersonCommandTest {
     private Model model;
     private Model expectedModel;
 
@@ -27,7 +27,7 @@ public class ViewCommandTest {
     @Test
     public void execute_viewStudent() {
         PersonType personType = new PersonType("student");
-        assertCommandSuccess(new ViewCommand(new PersonTypePredicate(personType)),
-                model, ViewCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ViewPersonCommand(new PersonTypePredicate(personType)),
+                model, ViewPersonCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

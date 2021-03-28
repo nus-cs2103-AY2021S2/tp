@@ -9,8 +9,8 @@ import seedu.address.model.person.PersonTypePredicate;
 
 
 
-public class ViewCommand extends Command {
-    public static final String COMMAND_WORD = "view";
+public class ViewPersonCommand extends Command {
+    public static final String COMMAND_WORD = "view_person";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": View all students or tutors, or view a specific person by personID.\n"
@@ -22,11 +22,11 @@ public class ViewCommand extends Command {
     public static final String MESSAGE_NO_PERSON_FOUND = "There is no person found under the specified parameter!";
     private final PersonPredicate predicate;
 
-    public ViewCommand(PersonTypePredicate predicate) {
+    public ViewPersonCommand(PersonTypePredicate predicate) {
         this.predicate = predicate;
     }
 
-    public ViewCommand(PersonIdPredicate predicate) {
+    public ViewPersonCommand(PersonIdPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -44,7 +44,7 @@ public class ViewCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ViewCommand // instanceof handles nulls
-                && predicate.equals(((ViewCommand) other).predicate)); // state check
+                || (other instanceof ViewPersonCommand // instanceof handles nulls
+                && predicate.equals(((ViewPersonCommand) other).predicate)); // state check
     }
 }
