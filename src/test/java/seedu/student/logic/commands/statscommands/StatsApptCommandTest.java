@@ -36,14 +36,14 @@ public class StatsApptCommandTest {
     private LocalTime currTime = LocalTime.now();
     // private LocalTime currTime = LocalTime.of(02, 15);
     private LocalTime midnight = LocalTime.of(00, 00);
-    int currHour = currTime.getHour();
+    private int currHour = currTime.getHour();
     private String generalTimeString = String.format("%02d", currHour) + ":00";
     private LocalTime generalTime = LocalTime.parse(generalTimeString);
 
     private LocalTime aliceStartTime = generalTime.plusHours(4);
 
-    public LocalTime bensonStartTime = generalTime.plusHours(1);
-    public LocalDate bensonDate = bensonStartTime.equals(midnight) ? currDate.plusDays(1) : currDate;
+    private LocalTime bensonStartTime = generalTime.plusHours(1);
+    private LocalDate bensonDate = bensonStartTime.equals(midnight) ? currDate.plusDays(1) : currDate;
 
     private LocalTime carlStartTime = generalTime.minusHours(4);
 
