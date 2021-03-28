@@ -6,6 +6,7 @@ title: User Guide
 Welcome to the PocketEstate User Guide! Learn how to use PocketEstate to efficiently organize property data, manage clientele information and keep track of your upcoming appointments.
 
 ## Table of Contents
+{: .no_toc}
 
 1. Table of Contents
 {:toc}
@@ -30,7 +31,7 @@ This user guide uses various formatting styles to facilitate reading and to comm
 | :information_source: Note | Additional information                                       |
 | :bulb: Tip                | Helpful tips                                                 |
 | :exclamation: Caution     | Things to watch out for                                      |
-| <kbd>Keyboard</kdb>       | Keyboard buttons                                             |
+| <kbd>Keyboard</kbd>       | Keyboard buttons                                             |
 | `Code`                    | Represents a user input or some important code-related terms |
 | [SQUARE_BRACKETS]         | Optional parameters of a command                             |
 | UPPER_CASE                | Parameters of a command to be supplied by the user           |
