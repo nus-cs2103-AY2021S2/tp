@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -35,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private MeetingListPanel meetingListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private Alert notifWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -70,6 +72,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
     }
 
     public Stage getPrimaryStage() {
@@ -149,9 +152,25 @@ public class MainWindow extends UiPart<Stage> {
     public void handleHelp() {
         if (!helpWindow.isShowing()) {
             helpWindow.show();
+            logger.info("Displaying help window...");
         } else {
             helpWindow.focus();
         }
+    }
+
+    /**
+     * Opens the notification window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleNotif() {
+        notifWindow = new Alert(Alert.AlertType.INFORMATION);
+        notifWindow.getDialogPane().getStylesheets().add("view/DarkTheme.css");
+        notifWindow.initOwner(getPrimaryStage());
+        notifWindow.setTitle("Notification");
+        notifWindow.setHeaderText("Welcome to Link.me!");
+        notifWindow.setContentText(logic.getNotifications());
+        notifWindow.showAndWait();
+        logger.info("Displaying notif window...");
     }
 
     void show() {
@@ -191,6 +210,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowNotif()) {
+                handleNotif();
             }
 
             return commandResult;

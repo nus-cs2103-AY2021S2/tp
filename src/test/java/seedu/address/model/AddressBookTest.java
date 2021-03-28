@@ -105,6 +105,11 @@ public class AddressBookTest {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
     }
 
+    @Test
+    public void getNotifications_emptyList() {
+        assertEquals(addressBook.getNotifications(), "Your schedule is clear today!\n");
+    }
+
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */

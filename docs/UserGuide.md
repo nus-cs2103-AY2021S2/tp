@@ -7,8 +7,10 @@ Link.me is a **desktop app aimed at insurance agents for managing clients, optim
 Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
 If you can type fast, Link.me can get your contact management tasks done faster than traditional GUI apps.
 
-* Table of Contents
-  {:toc}
+---
+
+* Table of Contents 
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -42,6 +44,12 @@ If you can type fast, Link.me can get your contact management tasks done faster 
 
 ## Features
 
+The features of Link.me mainly revolve around adding and editing clients as Link.me is first and foremost a client
+managing app. Features of Link.me including adding, editing and deleting clients, as well as methods to quickly find
+clients through finding and filtering. Link.me also supports peripheral features such as meeting scheduling, client 
+remarking and notifying the user to important upcoming events. See [Command summary](#command-summary) below for a full
+list of commands.
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
@@ -63,6 +71,9 @@ If you can type fast, Link.me can get your contact management tasks done faster 
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+* The commands of Link.me generally follow the following format:
+  `COMMAND [PERSON_INDEX] [PREFIX/] [DESCRIPTION]`
 
 </div>
 
@@ -167,6 +178,8 @@ Format: `exit`
 #### Scheduling a meetup.
 Schedule a date and time with a specified client in the app.
 
+New schedule commands overwrite the original meeting scheduled with a client.
+
 Format: `schedule INDEX m/DESCRIPTION @ DATE_TIME`
 
 * Adds the client at the specified `INDEX`, and the `DATE_TIME` of the meeting, to the schedule list.
@@ -177,8 +190,8 @@ Format: `schedule INDEX m/DESCRIPTION @ DATE_TIME`
 
 Example:
 
-* `schedule 24601 m/Insurance Plan @ 2020-02-28 14:30` schedules a Insurance Plan meeting with client no.24601 
-  at 2020/2/28 2:30 pm.
+* `schedule 2 m/Insurance Plan @ 2020-02-28 14:30` schedules a Insurance Plan meeting with the client indexed 2 on the 
+  display at 2020/2/28 2:30 pm.
 
 #### Unscheduling a meetup
 
@@ -192,7 +205,8 @@ Format: `schedule INDEX m/remove`
 
 Example:
 
-* `schedule 24601 m/remove` removes meetings scheduled with client 24601.
+* `schedule 2 m/remove` removes meeting scheduled with the client indexed 2 on the display.
+
 
 
 ### Filtering by tag : `filter`
@@ -207,6 +221,19 @@ Only tags that are exactly the same will be matched.
 Examples:
 
 `filter medical` returns every contact with the tag `medical`
+
+### Calling notifications of recent events : `notif`
+
+Generates a list of notifications.
+
+Lists all client birthdays within the next two weeks then lists all meetings occurring today in order of time.
+
+The notification window is also shown on startup of the application.
+
+![notif message](images/notifMessage.png)
+
+Format: `notif`
+
 
 ### Saving the data
 
@@ -241,4 +268,5 @@ Action | Format, Examples
 **Filter** | `filter TAG`
 **List** | `list`
 **Help** | `help`
+**Notif** | `notif`
 **Schedule** | `schedule INDEX DATE_TIME`
