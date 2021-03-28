@@ -18,7 +18,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -27,9 +26,9 @@ import seedu.address.model.AppointmentBook;
 import seedu.address.model.Model;
 import seedu.address.model.PropertyBook;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
+import seedu.address.model.appointment.AppointmentDateTimePredicate;
 import seedu.address.model.property.Property;
-import seedu.address.model.property.PropertyContainsKeywordsPredicate;
+import seedu.address.model.property.PropertyAddressPostalCodePredicate;
 import seedu.address.model.util.DateTimeFormat;
 import seedu.address.testutil.EditPropertyDescriptorBuilder;
 import seedu.address.testutil.SortAppointmentDescriptorBuilder;
@@ -50,10 +49,10 @@ public class CommandTestUtil {
     public static final String VALID_POSTAL_MAYFAIR = "609477";
     public static final String VALID_POSTAL_BURGHLEY_DRIVE = "558977";
     public static final String VALID_DEADLINE_MAYFAIR = "31-12-2021";
-    public static final LocalDate VALID_DEADLINE_LOCALDATE_MAYFAIR = 
+    public static final LocalDate VALID_DEADLINE_LOCALDATE_MAYFAIR =
             LocalDate.parse(VALID_DEADLINE_MAYFAIR, DateTimeFormat.INPUT_DATE_FORMAT);
     public static final String VALID_DEADLINE_BURGHLEY_DRIVE = "31-07-2021";
-    public static final LocalDate VALID_DEADLINE_LOCALDATE_BURGHLEY_DRIVE = 
+    public static final LocalDate VALID_DEADLINE_LOCALDATE_BURGHLEY_DRIVE =
             LocalDate.parse(VALID_DEADLINE_BURGHLEY_DRIVE, DateTimeFormat.INPUT_DATE_FORMAT);
     public static final String VALID_PROPERTY_TAG_BALCONY = "Balcony";
     public static final String VALID_PROPERTY_TAG_4_BEDROOMS = "4 bedrooms";
@@ -246,8 +245,10 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredAppointmentList().size());
 
         Appointment appointment = model.getFilteredAppointmentList().get(targetIndex.getZeroBased());
-        final String[] splitName = appointment.getName().name.split("\\s+");
-        model.updateFilteredAppointmentList(new AppointmentContainsKeywordsPredicate(Arrays.asList(splitName[1])));
+
+        final LocalDate date = appointment.getDate().date;
+        final LocalTime time = appointment.getTime().time;
+        model.updateFilteredAppointmentList(new AppointmentDateTimePredicate(date, time));
 
         assertEquals(1, model.getFilteredAppointmentList().size());
     }
@@ -260,8 +261,9 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPropertyList().size());
 
         Property property = model.getFilteredPropertyList().get(targetIndex.getZeroBased());
-        final String[] splitName = property.getName().name.split("\\s+");
-        model.updateFilteredPropertyList(new PropertyContainsKeywordsPredicate(Arrays.asList(splitName[1])));
+        final String address = property.getAddress().propertyAddress;
+        final String postal = property.getPostalCode().postal;
+        model.updateFilteredPropertyList(new PropertyAddressPostalCodePredicate(address, postal));
 
         assertEquals(1, model.getFilteredPropertyList().size());
     }

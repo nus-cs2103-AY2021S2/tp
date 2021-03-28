@@ -14,7 +14,7 @@ import static seedu.address.testutil.TypicalProperties.JURONG;
 import static seedu.address.testutil.TypicalProperties.MAYFAIR;
 import static seedu.address.testutil.TypicalProperties.WOODLANDS_CRESCENT;
 import static seedu.address.testutil.TypicalProperties.getTypicalProperties;
-import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBookWithClient;
+import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBook;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,8 +39,8 @@ import seedu.address.model.property.PropertyTypePredicate;
  * Contains integration tests (interaction with the Model) for {@code FindAppointmentCommand}.
  */
 public class FindPropertyCommandTest {
-    private Model model = new ModelManager(getTypicalPropertyBookWithClient(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalPropertyBookWithClient(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalPropertyBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalPropertyBook(), new UserPrefs());
 
     @Test
     public void equalsKeywords() {

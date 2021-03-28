@@ -67,6 +67,6 @@ public class TypicalProperties {
     */
 
     public static List<Property> getTypicalProperties() {
-        return new ArrayList<>(Arrays.asList(MAYFAIR, BURGHLEY_DRIVE, WOODLANDS_CRESCENT));
+        return new ArrayList<>(Arrays.asList(MAYFAIR, BURGHLEY_DRIVE, WOODLANDS_CRESCENT, JURONG));
     }
 }
