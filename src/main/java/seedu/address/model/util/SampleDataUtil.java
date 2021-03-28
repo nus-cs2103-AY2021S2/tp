@@ -1,6 +1,5 @@
 package seedu.address.model.util;
 
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -12,6 +11,7 @@ import seedu.address.model.Name;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAppointmentBook;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.DateTime;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -66,11 +66,11 @@ public class SampleDataUtil {
     public static Appointment[] getSampleAppointments() {
         return new Appointment[] {
             new Appointment(new Name("Parent teacher meeting 1"), new Address("Child 1's school"),
-                    LocalDateTime.now(), getPersonSet()),
+                    new DateTime("21/03/2021 10:00"), getPersonSet()),
             new Appointment(new Name("Parent teacher meeting 2"), new Address("Child 2's school"),
-                    LocalDateTime.now(), getPersonSet()),
+                    new DateTime("03/10/2021 14:00"), getPersonSet()),
             new Appointment(new Name("Parent teacher meeting 3"), new Address("Child 3's school"),
-                    LocalDateTime.now(), getPersonSet())
+                    new DateTime("02/04/2021 11:00"), getPersonSet())
         };
     }
 

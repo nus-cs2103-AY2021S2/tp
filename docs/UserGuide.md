@@ -193,6 +193,52 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+### Adding an appointment : `addAppt`
+
+Adds an appointment to the appointment book.
+
+Format: `addAppt n/NAME a/ADDRESS d/DATE [c/CONTACT INDEX]...`
+
+* Contact in the address book at the specified `CONTACT INDEX` is added to the appointment.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* `DATE` has to be in the format "`dd`/`MM`/`yyyy` `HH`:`mm`".
+
+Examples:
+* `addAppt n/Parent teacher meeting a/Child 1's School d/27/03/2021 14:00`
+
+### Deleting an appointment : `deleteAppt`
+
+Deletes the specified appointment from the appointment book.
+
+Format: `deleteAppt INDEX`
+
+* Deletes the appointment at the specified `INDEX`.
+* The index refers to the index number shown in the displayed appointment list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `deleteAppt 2` deletes the 2nd appointment in the appointment book.
+* `findAppt ptm` followed by `deleteAppt 1` deletes the 1st appointment in the results of the `findAppt` command.
+
+### Finding appointments by name: `findAppt`
+
+Finds appointments whose names contain any of the given keywords.
+
+Format: `findAppt KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `ptm` will match `PTM`
+* The order of the keywords does not matter. e.g. `Teacher meeting` will match `Meeting teacher`
+* Only the name is searched.
+* Incomplete words will also be matched e.g. `PT` will match `PTM`
+* Persons matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Teacher meeting` will return `Speak to ballet teacher`, `PSG meeting`
+* If *n* appointments can be found, message “*n* appointments listed!” will be displayed
+  e.g. when 0 results, "0 appointments listed!" is displayed
+
+Examples:
+* `findAppt ptm` returns `PTM`
+
 ### Exiting the program : `exit`
 
 Exits the program.
