@@ -9,7 +9,7 @@ import seedu.student.model.student.MatriculationNumber;
 import seedu.student.model.student.Student;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a student identified using their unique matriculation number.
  */
 public class DeleteStudentCommand extends Command {
 
