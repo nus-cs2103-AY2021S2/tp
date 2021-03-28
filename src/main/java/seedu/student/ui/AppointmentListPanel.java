@@ -49,7 +49,7 @@ public class AppointmentListPanel extends UiPart<Region> {
         protected void updateItem(SameDateAppointmentList list, boolean empty) {
             super.updateItem(list, empty);
 
-            if (empty || list == null || list.isFilteredEmpty()) {
+            if (empty || list == null) {
                 setGraphic(null);
                 setText(null);
             } else {

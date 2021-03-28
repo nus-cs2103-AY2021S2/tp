@@ -144,10 +144,6 @@ public class SameDateAppointmentList implements Iterable<Appointment>, Comparabl
         return internalList.isEmpty();
     }
 
-    public boolean isFilteredEmpty() {
-        return getFilteredAppointmentList().size() == 0;
-    }
-
     @Override
     public int hashCode() {
         return internalList.hashCode();
