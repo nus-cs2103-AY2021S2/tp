@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.contact.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.exceptions.DuplicatePersonException;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.exceptions.DuplicateProjectException;
@@ -52,10 +52,10 @@ public class ColabFolderTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Contact editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        ColabFolderStub newData = new ColabFolderStub(newPersons, new ArrayList<>());
+        List<Contact> newContacts = Arrays.asList(ALICE, editedAlice);
+        ColabFolderStub newData = new ColabFolderStub(newContacts, new ArrayList<>());
 
         assertThrows(DuplicatePersonException.class, () -> colabFolder.resetData(newData));
     }
@@ -103,7 +103,7 @@ public class ColabFolderTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInColabFolder_returnsTrue() {
         colabFolder.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Contact editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(colabFolder.hasPerson(editedAlice));
     }
@@ -122,17 +122,17 @@ public class ColabFolderTest {
      * A stub ReadOnlyColabFolder whose lists can violate interface constraints.
      */
     private static class ColabFolderStub implements ReadOnlyColabFolder {
-        private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Contact> contacts = FXCollections.observableArrayList();
         private final ObservableList<Project> projects = FXCollections.observableArrayList();
 
-        ColabFolderStub(Collection<Person> persons, Collection<Project> projects) {
-            this.persons.setAll(persons);
+        ColabFolderStub(Collection<Contact> contacts, Collection<Project> projects) {
+            this.contacts.setAll(contacts);
             this.projects.setAll(projects);
         }
 
         @Override
-        public ObservableList<Person> getPersonList() {
-            return persons;
+        public ObservableList<Contact> getPersonList() {
+            return contacts;
         }
 
         @Override

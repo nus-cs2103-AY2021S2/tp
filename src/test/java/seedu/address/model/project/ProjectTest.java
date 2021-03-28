@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.contact.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.CompletableTodo;
 import seedu.address.model.task.Interval;
@@ -67,7 +67,7 @@ public class ProjectTest {
         deadlines.add(deadline);
         DeadlineList deadlineList = new DeadlineList(deadlines);
 
-        ArrayList<Person> participants = new ArrayList<>();
+        ArrayList<Contact> participants = new ArrayList<>();
         participants.add(ALICE);
         ParticipantList participantList = new ParticipantList(participants);
 

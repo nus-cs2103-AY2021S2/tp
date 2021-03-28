@@ -14,7 +14,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.contact.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.project.Project;
 
 /**
@@ -43,15 +43,15 @@ public class AddContactToCommand extends Command {
     public static final String MESSAGE_DUPLICATE_CONTACT = "This participant already exists under project %1$s";
 
     private final Index projectToAddToIndex;
-    private final Person personToAdd;
+    private final Contact contactToAdd;
 
     /**
      * Creates an AddContactToCommand to add the specified {@code Person} to the specified {@code Project}
      */
-    public AddContactToCommand(Index projectIndex, Person person) {
-        requireAllNonNull(projectIndex, person);
+    public AddContactToCommand(Index projectIndex, Contact contact) {
+        requireAllNonNull(projectIndex, contact);
         projectToAddToIndex = projectIndex;
-        personToAdd = person;
+        contactToAdd = contact;
     }
 
     @Override
@@ -66,16 +66,16 @@ public class AddContactToCommand extends Command {
 
         Project projectToAddTo = requireNonNull(lastShownProjectList.get(projectToAddToIndex.getZeroBased()));
 
-        if (projectToAddTo.hasParticipant(personToAdd)) {
+        if (projectToAddTo.hasParticipant(contactToAdd)) {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_CONTACT, projectToAddTo.getProjectName()));
         }
 
         // logic goes here
-        projectToAddTo.addParticipant(personToAdd);
+        projectToAddTo.addParticipant(contactToAdd);
         model.updateFilteredProjectList(model.PREDICATE_SHOW_ALL_PROJECTS);
 
         return new CommandResult(
-                String.format(MESSAGE_SUCCESS, personToAdd.getName(), projectToAddTo.getProjectName())
+                String.format(MESSAGE_SUCCESS, contactToAdd.getName(), projectToAddTo.getProjectName())
         );
     }
 
@@ -84,7 +84,7 @@ public class AddContactToCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof AddContactToCommand // instanceof handles nulls
                 && projectToAddToIndex.equals(((AddContactToCommand) other).projectToAddToIndex)
-                && personToAdd.equals(((AddContactToCommand) other).personToAdd)
+                && contactToAdd.equals(((AddContactToCommand) other).contactToAdd)
             );
     }
 }

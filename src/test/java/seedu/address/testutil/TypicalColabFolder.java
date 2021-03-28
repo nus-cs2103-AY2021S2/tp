@@ -4,7 +4,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalPersons;
 import static seedu.address.testutil.TypicalProjects.getTypicalProjects;
 
 import seedu.address.model.ColabFolder;
-import seedu.address.model.contact.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.project.Project;
 
 /**
@@ -16,8 +16,8 @@ public class TypicalColabFolder {
      */
     public static ColabFolder getTypicalColabFolder() {
         ColabFolder colabFolder = new ColabFolder();
-        for (Person person : getTypicalPersons()) {
-            colabFolder.addPerson(person);
+        for (Contact contact : getTypicalPersons()) {
+            colabFolder.addPerson(contact);
         }
         for (Project project : getTypicalProjects()) {
             colabFolder.addProject(project);

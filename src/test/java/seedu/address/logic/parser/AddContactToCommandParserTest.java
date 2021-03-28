@@ -30,9 +30,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddContactToCommand;
 import seedu.address.model.contact.Address;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Name;
-import seedu.address.model.contact.Person;
 import seedu.address.model.contact.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
@@ -43,40 +43,40 @@ public class AddContactToCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() {
         Index expectedProjectIndex = Index.fromOneBased(1);
-        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Contact expectedContact = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         // all field appear once
         assertParseSuccess(parser, INDEX_STANDALONE_ONE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                         + ADDRESS_DESC_BOB + TAG_DESC_FRIEND,
-                new AddContactToCommand(expectedProjectIndex, expectedPerson)
+                new AddContactToCommand(expectedProjectIndex, expectedContact)
         );
 
         // multiple names - last name accepted
         assertParseSuccess(parser, INDEX_STANDALONE_ONE + NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB
                 + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_FRIEND,
-                new AddContactToCommand(expectedProjectIndex, expectedPerson));
+                new AddContactToCommand(expectedProjectIndex, expectedContact));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, INDEX_STANDALONE_ONE + NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB
                 + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_FRIEND,
-                new AddContactToCommand(expectedProjectIndex, expectedPerson));
+                new AddContactToCommand(expectedProjectIndex, expectedContact));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, INDEX_STANDALONE_ONE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY
                 + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_FRIEND,
-                new AddContactToCommand(expectedProjectIndex, expectedPerson));
+                new AddContactToCommand(expectedProjectIndex, expectedContact));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, INDEX_STANDALONE_ONE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_AMY + ADDRESS_DESC_BOB + TAG_DESC_FRIEND,
-                new AddContactToCommand(expectedProjectIndex, expectedPerson));
+                new AddContactToCommand(expectedProjectIndex, expectedContact));
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Contact expectedContactMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, INDEX_STANDALONE_ONE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                new AddContactToCommand(expectedProjectIndex, expectedPersonMultipleTags));
+                new AddContactToCommand(expectedProjectIndex, expectedContactMultipleTags));
     }
 
     @Test

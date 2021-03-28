@@ -13,7 +13,7 @@ import guitests.guihandles.PersonCardHandle;
 import guitests.guihandles.PersonListPanelHandle;
 import guitests.guihandles.ProjectCardHandle;
 import guitests.guihandles.ResultDisplayHandle;
-import seedu.address.model.contact.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.CompletableTodo;
@@ -40,12 +40,12 @@ public class GuiTestAssert {
     /**
      * Asserts that {@code actualCard} displays the details of {@code expectedPerson}.
      */
-    public static void assertCardDisplaysPerson(Person expectedPerson, PersonCardHandle actualCard) {
-        assertEquals(expectedPerson.getName().fullName, actualCard.getName());
-        assertEquals(expectedPerson.getPhone().value, actualCard.getPhone());
-        assertEquals(expectedPerson.getEmail().value, actualCard.getEmail());
-        assertEquals(expectedPerson.getAddress().value, actualCard.getAddress());
-        assertEquals(expectedPerson.getTags().stream().map(tag -> tag.tagName).sorted().collect(Collectors.toList()),
+    public static void assertCardDisplaysPerson(Contact expectedContact, PersonCardHandle actualCard) {
+        assertEquals(expectedContact.getName().fullName, actualCard.getName());
+        assertEquals(expectedContact.getPhone().value, actualCard.getPhone());
+        assertEquals(expectedContact.getEmail().value, actualCard.getEmail());
+        assertEquals(expectedContact.getAddress().value, actualCard.getAddress());
+        assertEquals(expectedContact.getTags().stream().map(tag -> tag.tagName).sorted().collect(Collectors.toList()),
                 actualCard.getTags());
     }
 
@@ -92,10 +92,10 @@ public class GuiTestAssert {
      * Asserts that the list in {@code personListPanelHandle} displays the details of {@code persons} correctly and
      * in the correct order.
      */
-    public static void assertListMatching(PersonListPanelHandle personListPanelHandle, Person... persons) {
-        for (int i = 0; i < persons.length; i++) {
+    public static void assertListMatching(PersonListPanelHandle personListPanelHandle, Contact... contacts) {
+        for (int i = 0; i < contacts.length; i++) {
             personListPanelHandle.navigateToCard(i);
-            assertCardDisplaysPerson(persons[i], personListPanelHandle.getPersonCardHandle(i));
+            assertCardDisplaysPerson(contacts[i], personListPanelHandle.getPersonCardHandle(i));
         }
     }
 
@@ -103,8 +103,8 @@ public class GuiTestAssert {
      * Asserts that the list in {@code personListPanelHandle} displays the details of {@code persons} correctly and
      * in the correct order.
      */
-    public static void assertListMatching(PersonListPanelHandle personListPanelHandle, List<Person> persons) {
-        assertListMatching(personListPanelHandle, persons.toArray(new Person[0]));
+    public static void assertListMatching(PersonListPanelHandle personListPanelHandle, List<Contact> contacts) {
+        assertListMatching(personListPanelHandle, contacts.toArray(new Contact[0]));
     }
 
     /**

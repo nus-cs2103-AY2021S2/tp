@@ -9,7 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyColabFolder;
-import seedu.address.model.contact.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.project.Project;
 
 /**
@@ -33,7 +33,7 @@ public interface Logic {
     ReadOnlyColabFolder getColabFolder();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Contact> getFilteredPersonList();
 
     /**
      * Returns the user prefs' CoLAB folder file path.

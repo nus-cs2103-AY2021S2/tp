@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
 import seedu.address.model.ColabFolder;
-import seedu.address.model.contact.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.project.Project;
 
 /**
@@ -24,8 +24,8 @@ public class ColabFolderBuilder {
     /**
      * Adds a new {@code Person} to the {@code ColabFolder} that we are building.
      */
-    public ColabFolderBuilder withPerson(Person person) {
-        colabFolder.addPerson(person);
+    public ColabFolderBuilder withPerson(Contact contact) {
+        colabFolder.addPerson(contact);
         return this;
     }
 

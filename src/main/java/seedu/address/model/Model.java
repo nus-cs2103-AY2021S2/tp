@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.contact.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.project.Project;
 
 /**
@@ -13,7 +13,7 @@ import seedu.address.model.project.Project;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Contact> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<Project> PREDICATE_SHOW_ALL_PROJECTS = unused -> true;
@@ -63,37 +63,37 @@ public interface Model {
     /**
      * Returns true if a person with the same identity as {@code person} exists in the CoLAB folder.
      */
-    boolean hasPerson(Person person);
+    boolean hasPerson(Contact contact);
 
     /**
      * Deletes the given person.
      * The person must exist in the CoLAB folder.
      */
-    void deletePerson(Person target);
+    void deletePerson(Contact target);
 
     /**
      * Adds the given person.
      * {@code person} must not already exist in the CoLAB folder.
      */
-    void addPerson(Person person);
+    void addPerson(Contact contact);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the CoLAB folder.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the CoLAB folder.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setPerson(Contact target, Contact editedContact);
 
     //=========== Filtered Person List Accessors =============================================================
 
     /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Contact> getFilteredPersonList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredPersonList(Predicate<Contact> predicate);
 
     //=========== Projects File ==============================================================================
 

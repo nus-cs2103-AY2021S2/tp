@@ -12,7 +12,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddContactToCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.contact.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,27 +23,27 @@ public class PersonUtil {
     /**
      * Returns an add command string for adding the {@code person}.
      */
-    public static String getAddCommand(Person person) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+    public static String getAddCommand(Contact contact) {
+        return AddCommand.COMMAND_WORD + " " + getPersonDetails(contact);
     }
 
     /**
      * Returns an add command string for adding the {@code person}.
      */
-    public static String getAddCtoCommand(Index projectIndex, Person person) {
-        return AddContactToCommand.COMMAND_WORD + " " + projectIndex.getOneBased() + " " + getPersonDetails(person);
+    public static String getAddCtoCommand(Index projectIndex, Contact contact) {
+        return AddContactToCommand.COMMAND_WORD + " " + projectIndex.getOneBased() + " " + getPersonDetails(contact);
     }
 
     /**
      * Returns the part of command string for the given {@code person}'s details.
      */
-    public static String getPersonDetails(Person person) {
+    public static String getPersonDetails(Contact contact) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + person.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        person.getTags().stream().forEach(
+        sb.append(PREFIX_NAME + contact.getName().fullName + " ");
+        sb.append(PREFIX_PHONE + contact.getPhone().value + " ");
+        sb.append(PREFIX_EMAIL + contact.getEmail().value + " ");
+        sb.append(PREFIX_ADDRESS + contact.getAddress().value + " ");
+        contact.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();

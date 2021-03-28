@@ -20,7 +20,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.contact.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.project.Project;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.ProjectBuilder;
@@ -36,10 +36,10 @@ public class DeleteContactFromCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() throws DateConversionException {
-        Person personToDelete = new PersonBuilder().build();
+        Contact contactToDelete = new PersonBuilder().build();
         Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         Project editedProject = new ProjectBuilder(projectToEdit).build();
-        editedProject.addParticipant(personToDelete);
+        editedProject.addParticipant(contactToDelete);
 
         model.setProject(
                 projectToEdit,
@@ -52,7 +52,7 @@ public class DeleteContactFromCommandTest {
         DeleteContactFromCommand deleteContactFromCommand = new DeleteContactFromCommand(INDEX_FIRST, lastContactIndex);
 
         String expectedMessage = String.format(MESSAGE_DELETE_PROJECT_SUCCESS,
-                personToDelete.getName(), projectToEdit.getProjectName());
+                contactToDelete.getName(), projectToEdit.getProjectName());
 
         ModelManager expectedModel = new ModelManager(getTypicalColabFolder(), new UserPrefs());
 
@@ -61,10 +61,10 @@ public class DeleteContactFromCommandTest {
 
     @Test
     public void execute_invalidProjectIndex_throwsCommandException() {
-        Person personToDelete = new PersonBuilder().build();
+        Contact contactToDelete = new PersonBuilder().build();
         Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         Project editedProject = new ProjectBuilder(projectToEdit).build();
-        editedProject.addParticipant(personToDelete);
+        editedProject.addParticipant(contactToDelete);
 
         model.setProject(
                 projectToEdit,
@@ -84,10 +84,10 @@ public class DeleteContactFromCommandTest {
 
     @Test
     public void equals() {
-        Person personToDelete = new PersonBuilder().build();
+        Contact contactToDelete = new PersonBuilder().build();
         Project project1ToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         Project editedProject1 = new ProjectBuilder(project1ToEdit).build();
-        editedProject1.addParticipant(personToDelete);
+        editedProject1.addParticipant(contactToDelete);
 
         model.setProject(
                 project1ToEdit,
@@ -96,7 +96,7 @@ public class DeleteContactFromCommandTest {
 
         Project project2ToEdit = model.getFilteredProjectList().get(INDEX_SECOND.getZeroBased());
         Project editedProject2 = new ProjectBuilder(project2ToEdit).build();
-        editedProject2.addParticipant(personToDelete);
+        editedProject2.addParticipant(contactToDelete);
 
 
         model.setProject(

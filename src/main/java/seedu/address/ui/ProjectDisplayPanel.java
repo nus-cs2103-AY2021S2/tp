@@ -14,7 +14,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.contact.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.CompletableTodo;
@@ -52,7 +52,7 @@ public class ProjectDisplayPanel extends UiPart<Region> {
     private ListView<CompletableTodo> completableTodoListView;
 
     @FXML
-    private ListView<Person> participantListView;
+    private ListView<Contact> participantListView;
 
     /**
      * Creates a {@code ProjectDisplayPanel}.
@@ -82,7 +82,7 @@ public class ProjectDisplayPanel extends UiPart<Region> {
         completableTodoListView.setCellFactory(listView -> new ProjectDisplayPanel.CompletableTodoListViewCell());
     }
 
-    private void setUpGroupmatesList(ObservableList<Person> groupmates) {
+    private void setUpGroupmatesList(ObservableList<Contact> groupmates) {
         participantListView.prefHeightProperty()
                 .bind(Bindings.size(groupmates).multiply(GROUPMATES_CARD_HEIGHT).add(SAFETY_MARGIN));
         participantListView.setItems(new FilteredList<>(groupmates));
@@ -174,16 +174,16 @@ public class ProjectDisplayPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonDisplayCard}.
      */
-    class ParticipantListViewCell extends ListCell<Person> {
+    class ParticipantListViewCell extends ListCell<Contact> {
         @Override
-        protected void updateItem(Person person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(Contact contact, boolean empty) {
+            super.updateItem(contact, empty);
 
-            if (empty || person == null) {
+            if (empty || contact == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                setGraphic(new PersonCard(contact, getIndex() + 1).getRoot());
             }
         }
     }

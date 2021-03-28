@@ -28,7 +28,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyColabFolder;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.contact.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.project.Project;
 import seedu.address.storage.JsonColabFolderStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
@@ -88,8 +88,8 @@ public class LogicManagerTest {
         // Execute add contact command
         String addContactCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
-        expectedModel.addPerson(expectedPerson);
+        Contact expectedContact = new PersonBuilder(AMY).withTags().build();
+        expectedModel.addPerson(expectedContact);
         assertCommandFailure(addContactCommand, CommandException.class, expectedMessage, expectedModel);
 
         // Execute add project command

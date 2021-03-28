@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
-import seedu.address.model.contact.Person;
+import seedu.address.model.contact.Contact;
 
 /**
  * @@author {se-edu}-reused
@@ -80,12 +80,12 @@ public class PersonCardHandle extends NodeHandle<Node> {
     /**
      * Returns true if this handle contains {@code person}.
      */
-    public boolean equals(Person person) {
-        return getName().equals(person.getName().fullName)
-                && getAddress().equals(person.getAddress().value)
-                && getPhone().equals(person.getPhone().value)
-                && getEmail().equals(person.getEmail().value)
-                && getTags().equals(person.getTags().stream()
+    public boolean equals(Contact contact) {
+        return getName().equals(contact.getName().fullName)
+                && getAddress().equals(contact.getAddress().value)
+                && getPhone().equals(contact.getPhone().value)
+                && getEmail().equals(contact.getEmail().value)
+                && getTags().equals(contact.getTags().stream()
                         .map(tag -> tag.tagName)
                         .sorted()
                         .collect(Collectors.toList()));

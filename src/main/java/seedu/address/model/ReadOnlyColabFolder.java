@@ -1,7 +1,7 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.contact.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.project.Project;
 
 /**
@@ -13,7 +13,7 @@ public interface ReadOnlyColabFolder {
      * Returns an unmodifiable view of the persons list.
      * This list will not contain any duplicate persons.
      */
-    ObservableList<Person> getPersonList();
+    ObservableList<Contact> getPersonList();
 
     /**
      * Returns an unmodifiable view of the projects list.

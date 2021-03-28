@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.contact.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.project.DeadlineList;
 import seedu.address.model.project.EventList;
 import seedu.address.model.project.ParticipantList;
@@ -109,7 +109,7 @@ class JsonAdaptedProject {
             projectDeadlines.add(deadline.toModelType());
         }
 
-        final List<Person> projectParticipants = new ArrayList<>();
+        final List<Contact> projectParticipants = new ArrayList<>();
         for (JsonAdaptedPerson person : participantsList) {
             projectParticipants.add(person.toModelType());
         }

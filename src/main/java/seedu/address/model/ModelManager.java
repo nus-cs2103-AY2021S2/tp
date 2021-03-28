@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.contact.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.project.Project;
 
 /**
@@ -22,7 +22,7 @@ public class ModelManager implements Model {
 
     private final ColabFolder colabFolder;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Contact> filteredContacts;
     private final FilteredList<Project> filteredProjects;
 
     /**
@@ -36,7 +36,7 @@ public class ModelManager implements Model {
 
         this.colabFolder = new ColabFolder(colabFolder);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.colabFolder.getPersonList());
+        filteredContacts = new FilteredList<>(this.colabFolder.getPersonList());
         filteredProjects = new FilteredList<>(this.colabFolder.getProjectsList());
     }
 
@@ -60,7 +60,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return colabFolder.equals(other.colabFolder)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons)
+                && filteredContacts.equals(other.filteredContacts)
                 && filteredProjects.equals(other.filteredProjects);
     }
 
@@ -115,30 +115,30 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
+    public boolean hasPerson(Contact contact) {
+        requireNonNull(contact);
 
-        return colabFolder.hasPerson(person);
+        return colabFolder.hasPerson(contact);
     }
 
     @Override
-    public void deletePerson(Person target) {
+    public void deletePerson(Contact target) {
         requireNonNull(target);
 
         colabFolder.removePerson(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        colabFolder.addPerson(person);
+    public void addPerson(Contact contact) {
+        colabFolder.addPerson(contact);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setPerson(Contact target, Contact editedContact) {
+        requireAllNonNull(target, editedContact);
 
-        colabFolder.setPerson(target, editedPerson);
+        colabFolder.setPerson(target, editedContact);
     }
 
     @Override
@@ -177,15 +177,15 @@ public class ModelManager implements Model {
      * {@code versionedColabFolder}.
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Contact> getFilteredPersonList() {
+        return filteredContacts;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredPersonList(Predicate<Contact> predicate) {
         requireNonNull(predicate);
 
-        filteredPersons.setPredicate(predicate);
+        filteredContacts.setPredicate(predicate);
     }
 
     //=========== Filtered Projects List Accessors ==========================================================

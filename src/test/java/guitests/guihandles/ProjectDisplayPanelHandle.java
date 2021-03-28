@@ -4,7 +4,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TabPane;
-import seedu.address.model.contact.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.CompletableTodo;
 import seedu.address.model.task.repeatable.Event;
@@ -25,7 +25,7 @@ public class ProjectDisplayPanelHandle extends NodeHandle<Node> {
     private final ListView<Event> eventListView;
     private final ListView<CompletableDeadline> completableDeadlineListView;
     private final ListView<CompletableTodo> completableTodoListView;
-    private final ListView<Person> participantListView;
+    private final ListView<Contact> participantListView;
 
     /**
      * Constructs a {@code ProjectDisplayPanelHandle} handler object.

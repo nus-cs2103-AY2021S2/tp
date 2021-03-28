@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ColabFolder;
 import seedu.address.model.ReadOnlyColabFolder;
-import seedu.address.model.contact.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.project.Project;
 
 /**
@@ -55,11 +55,11 @@ class JsonSerializableColabFolder {
         ColabFolder colabFolder = new ColabFolder();
 
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (colabFolder.hasPerson(person)) {
+            Contact contact = jsonAdaptedPerson.toModelType();
+            if (colabFolder.hasPerson(contact)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            colabFolder.addPerson(person);
+            colabFolder.addPerson(contact);
         }
 
         for (JsonAdaptedProject jsonAdaptedProject : projects) {

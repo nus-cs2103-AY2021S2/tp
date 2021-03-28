@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.exceptions.DateConversionException;
-import seedu.address.model.contact.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.project.DeadlineList;
 import seedu.address.model.project.EventList;
 import seedu.address.model.project.ParticipantList;
@@ -120,13 +120,13 @@ public class TypicalProjects {
     }
 
     private static ParticipantList getCS2103TParticipantsList() {
-        Person dahn = new PersonBuilder().withName("Dahn").withAddress("1 CoLAB Road")
+        Contact dahn = new PersonBuilder().withName("Dahn").withAddress("1 CoLAB Road")
                 .withEmail("dahn@colab.com").withPhone("91234561").build();
-        Person ruochen = new PersonBuilder().withName("Ruochen").withAddress("1 CoLAB Road")
+        Contact ruochen = new PersonBuilder().withName("Ruochen").withAddress("1 CoLAB Road")
                 .withEmail("ruochen@colab.com").withPhone("91234562").build();
-        Person samuel = new PersonBuilder().withName("Samuel").withAddress("1 CoLAB Road")
+        Contact samuel = new PersonBuilder().withName("Samuel").withAddress("1 CoLAB Road")
                 .withEmail("samuel@colab.com").withPhone("91234563").build();
-        Person vevek = new PersonBuilder().withName("Vevek").withAddress("1 CoLAB Road")
+        Contact vevek = new PersonBuilder().withName("Vevek").withAddress("1 CoLAB Road")
                 .withEmail("vevek@colab.com").withPhone("91234564").build();
 
         ParticipantList participantList = new ParticipantList();
@@ -187,13 +187,13 @@ public class TypicalProjects {
     }
 
     private static ParticipantList getCS2101ParticipantsList() throws DateConversionException {
-        Person dahn = new PersonBuilder().withName("Dahn").withAddress("1 CoLAB Road")
+        Contact dahn = new PersonBuilder().withName("Dahn").withAddress("1 CoLAB Road")
                 .withEmail("dahn@colab.com").withPhone("91234561").build();
-        Person ruochen = new PersonBuilder().withName("Ruochen").withAddress("1 CoLAB Road")
+        Contact ruochen = new PersonBuilder().withName("Ruochen").withAddress("1 CoLAB Road")
                 .withEmail("ruochen@colab.com").withPhone("91234562").build();
-        Person samuel = new PersonBuilder().withName("Samuel").withAddress("1 CoLAB Road")
+        Contact samuel = new PersonBuilder().withName("Samuel").withAddress("1 CoLAB Road")
                 .withEmail("samuel@colab.com").withPhone("91234563").build();
-        Person vevek = new PersonBuilder().withName("Vevek").withAddress("1 CoLAB Road")
+        Contact vevek = new PersonBuilder().withName("Vevek").withAddress("1 CoLAB Road")
                 .withEmail("vevek@colab.com").withPhone("91234564").build();
 
         ParticipantList participantList = new ParticipantList();
