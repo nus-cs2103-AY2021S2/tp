@@ -12,6 +12,8 @@ import seedu.address.model.person.driver.Driver;
  * Jackson-friendly version of {@link Driver}.
  */
 class JsonAdaptedDriver {
+    public static final String MODEL_CLASS_NAME = "Driver";
+    public static final ModelUtil MODEL_UTIL = new ModelUtil(MODEL_CLASS_NAME);
 
     private final String name;
     private final String phone;
@@ -39,13 +41,10 @@ class JsonAdaptedDriver {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public Driver toModelType() throws IllegalValueException {
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        return new Driver(new Name(name), new Phone(phone));
+        final Name modelName = MODEL_UTIL.verifyAndReturnName(name);
+        final Phone modelPhone = MODEL_UTIL.verifyAndReturnPhone(phone);
+
+        return new Driver(modelName, modelPhone);
     }
 
 }

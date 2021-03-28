@@ -1,11 +1,6 @@
 package seedu.address.storage;
 
-import java.time.DayOfWeek;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -28,8 +23,9 @@ import seedu.address.model.tag.Tag;
  * Jackson-friendly version of {@link Passenger}.
  */
 class JsonAdaptedPassenger {
-
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Passenger's %s field is missing!";
+    public static final String MODEL_CLASS_NAME = "Passenger";
+    public static final ModelUtil MODEL_UTIL = new ModelUtil(MODEL_CLASS_NAME);
 
     private final String name;
     private final String phone;
@@ -80,71 +76,16 @@ class JsonAdaptedPassenger {
      * @throws IllegalValueException if there were any data constraints violated in the adapted passenger.
      */
     public Passenger toModelType() throws IllegalValueException {
-        final List<Tag> passengerTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            passengerTags.add(tag.toModelType());
-        }
+        final Set<Tag> modelTags = MODEL_UTIL.convertAdaptedTagsToModel(tagged);
 
-        if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
-        }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        }
-        final Name modelName = new Name(name);
+        final Name modelName = MODEL_UTIL.verifyAndReturnName(name);
+        final Phone modelPhone = MODEL_UTIL.verifyAndReturnPhone(phone);
+        final Address modelAddress = MODEL_UTIL.verifyAndReturnAddress(address);
+        final TripDay modelTripDay = MODEL_UTIL.verifyAndReturnTripDay(tripDayStr);
+        final TripTime modelTripTime = MODEL_UTIL.verifyAndReturnTripTime(tripTimeStr);
 
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        final Phone modelPhone = new Phone(phone);
+        final Optional<Price> modelPrice = Optional.ofNullable(MODEL_UTIL.verifyAndReturnPrice(priceStr));
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-        }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
-        final Address modelAddress = new Address(address);
-
-        if (tripDayStr == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TripDay.class.getSimpleName()));
-        }
-        DayOfWeek day;
-        try {
-            day = DayOfWeek.valueOf(tripDayStr);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalValueException(TripDay.MESSAGE_CONSTRAINTS);
-        }
-        final TripDay modelTripDay = new TripDay(day);
-
-        if (tripTimeStr == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    TripTime.class.getSimpleName()));
-        }
-        DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HHmm");
-        LocalTime parsedTimeObject;
-        try {
-            parsedTimeObject = LocalTime.parse(tripTimeStr, timeFormat);
-        } catch (DateTimeParseException e) {
-            throw new IllegalValueException(TripTime.MESSAGE_CONSTRAINTS);
-        }
-        final TripTime modelTripTime = new TripTime(parsedTimeObject);
-
-        final Set<Tag> modelTags = new HashSet<>(passengerTags);
-
-        final Optional<Price> modelPrice;
-        if (!priceStr.isEmpty()) {
-            if (!Price.isValidPrice(priceStr)) {
-                throw new IllegalValueException(Price.MESSAGE_CONSTRAINTS);
-            }
-
-            modelPrice = Optional.of(priceStr).map(Double::parseDouble).map(Price::new);
-        } else {
-            modelPrice = Optional.empty();
-        }
 
         return new Passenger(modelName, modelPhone, modelAddress, modelTripDay, modelTripTime, modelPrice,
                 modelTags);

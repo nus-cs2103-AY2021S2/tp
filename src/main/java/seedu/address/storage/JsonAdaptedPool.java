@@ -1,11 +1,6 @@
 package seedu.address.storage;
 
-import java.time.DayOfWeek;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -26,6 +21,8 @@ import seedu.address.model.tag.Tag;
  */
 class JsonAdaptedPool {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Pool's %s field is missing!";
+    public static final String MODEL_CLASS_NAME = "Pool";
+    public static final ModelUtil MODEL_UTIL = new ModelUtil(MODEL_CLASS_NAME);
 
 
     private final String tripDayStr;
@@ -69,41 +66,13 @@ class JsonAdaptedPool {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public Pool toModelType() throws IllegalValueException {
-        final Set<Passenger> modelPassengers = new HashSet<>();
-        for (JsonAdaptedPassenger passenger : passengers) {
-            modelPassengers.add(passenger.toModelType());
-        }
-
-        final Set<Tag> modelTags = new HashSet<>();
-        for (JsonAdaptedTag tag : tagged) {
-            modelTags.add(tag.toModelType());
-        }
-
         final Driver modelDriver = driver.toModelType();
 
-        if (tripDayStr == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TripDay.class.getSimpleName()));
-        }
-        DayOfWeek day;
-        try {
-            day = DayOfWeek.valueOf(tripDayStr);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalValueException(TripDay.MESSAGE_CONSTRAINTS);
-        }
-        final TripDay modelTripDay = new TripDay(day);
+        final TripDay modelTripDay = MODEL_UTIL.verifyAndReturnTripDay(tripDayStr);
+        final TripTime modelTripTime = MODEL_UTIL.verifyAndReturnTripTime(tripTimeStr);
 
-        if (tripTimeStr == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    TripTime.class.getSimpleName()));
-        }
-        DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HHmm");
-        LocalTime parsedTimeObject;
-        try {
-            parsedTimeObject = LocalTime.parse(tripTimeStr, timeFormat);
-        } catch (DateTimeParseException e) {
-            throw new IllegalValueException(TripTime.MESSAGE_CONSTRAINTS);
-        }
-        final TripTime modelTripTime = new TripTime(parsedTimeObject);
+        final Set<Passenger> modelPassengers = MODEL_UTIL.convertAdaptedPassengersToModel(passengers);
+        final Set<Tag> modelTags = MODEL_UTIL.convertAdaptedTagsToModel(tagged);
 
         return new Pool(modelDriver, modelTripDay, modelTripTime, modelPassengers, modelTags);
     }
