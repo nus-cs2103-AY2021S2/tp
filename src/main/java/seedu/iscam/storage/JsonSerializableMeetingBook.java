@@ -19,7 +19,7 @@ import seedu.iscam.model.util.meetingbook.ReadOnlyMeetingBook;
 @JsonRootName(value = "meetingbook")
 class JsonSerializableMeetingBook {
 
-    public static final String MESSAGE_DUPLICATE_CLIENT = "Meetings list contains duplicate meeting(s).";
+    public static final String MESSAGE_DUPLICATE_MEETING = "Meetings list contains duplicate meeting(s).";
 
     private final List<JsonAdaptedMeeting> meetings = new ArrayList<>();
 
@@ -50,7 +50,7 @@ class JsonSerializableMeetingBook {
         for (JsonAdaptedMeeting jsonAdaptedMeeting : meetings) {
             Meeting meeting = jsonAdaptedMeeting.toModelType();
             if (meetingBook.hasMeeting(meeting)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_CLIENT);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_MEETING);
             }
             meetingBook.addMeeting(meeting);
         }

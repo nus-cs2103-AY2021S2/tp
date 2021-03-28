@@ -38,6 +38,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setClientBookFilePath(newUserPrefs.getClientBookFilePath());
+        setMeetingBookFilePath(newUserPrefs.getMeetingBookFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -79,7 +80,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && clientBookFilePath.equals(o.clientBookFilePath);
+                && clientBookFilePath.equals(o.clientBookFilePath)
+                && meetingBookFilePath.equals(o.meetingBookFilePath);
     }
 
     @Override

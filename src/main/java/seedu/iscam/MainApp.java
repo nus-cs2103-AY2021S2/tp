@@ -82,39 +82,37 @@ public class MainApp extends Application {
         Optional<ReadOnlyClientBook> clientBookOptional;
         ReadOnlyClientBook initialClientBook;
 
-        try {
-            clientBookOptional = storage.readClientBook();
-            if (!clientBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample ClientBook");
-            }
-            initialClientBook = clientBookOptional.orElseGet(SampleDataUtil::getSampleClientBook);
-        } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty ClientBook");
-            initialClientBook = new ClientBook();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty ClientBook");
-            initialClientBook = new ClientBook();
-        }
-
         Optional<ReadOnlyMeetingBook> meetingBookOptional;
         ReadOnlyMeetingBook initialMeetingBook;
 
-        initialMeetingBook = new MeetingBook();
+        //initialMeetingBook = new MeetingBook();
 
-        //try {
-        //    meetingBookOptional = READ FROM STORAGE
-        //    if (!meetingBookOptional.isPresent()) {
-        //        logger.info("Meeting data file not found. Will be starting with a sample MeetingBook");
-        //    }
-        //    initialMeetingBook = meetingBookOptional.orElseGet(SampleDataUtil::GET SAMPLE MEETING BOOK);
-        //} catch (DataConversionException e) {
-        //    logger.warning("Meeting Data file not in the correct format. Will be starting with an empty MeetingBook");
-        //    initialMeetingBook = new MeetingBook();
-        //} catch (IOException e) {
-        //    logger.warning("Problem while reading from the file. Will be starting with an empty MeetingBook");
-        //    initialMeetingBook = new MeetingBook();
-        //}
+        try {
+            clientBookOptional = storage.readClientBook();
+            meetingBookOptional = storage.readMeetingBook();
 
+            if (!clientBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample ClientBook");
+            }
+            if (!meetingBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample MeetingBook");
+            }
+            logger.info("Data file found. Loading ClientBook and MeetingBook");
+
+            initialClientBook = clientBookOptional.orElseGet(SampleDataUtil::getSampleClientBook);
+            initialMeetingBook = meetingBookOptional.orElseGet(SampleDataUtil::getSampleMeetingBook);
+            logger.info("\n \n \n");
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with "
+                    + "an empty ClientBook and MeetingBook");
+            initialClientBook = new ClientBook();
+            initialMeetingBook = new MeetingBook();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with "
+                    + "an empty ClientBook and MeetingBook");
+            initialClientBook = new ClientBook();
+            initialMeetingBook = new MeetingBook();
+        }
         return new ModelManager(initialClientBook, initialMeetingBook, userPrefs);
     }
 

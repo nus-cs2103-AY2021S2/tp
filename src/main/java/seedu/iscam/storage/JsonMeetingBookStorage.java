@@ -57,6 +57,7 @@ public class JsonMeetingBookStorage implements MeetingBookStorage {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
         }
+
     }
 
     @Override
