@@ -64,8 +64,8 @@ public class DeliveryListParser {
         case RemarkCommand.COMMAND_WORD:
             return new RemarkCommandParser().parse(arguments);
 
-        case FilterCommand.COMMAND_WORD:
-            return new FilterCommand();
+        case CompletedCommand.COMMAND_WORD:
+            return new CompletedCommand();
 
         case DoneCommand.COMMAND_WORD:
             return new DoneCommandParser().parse(arguments);
