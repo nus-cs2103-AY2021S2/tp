@@ -1,6 +1,7 @@
 package seedu.address.model.project;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -49,6 +50,30 @@ public class EventList {
         }
 
         this.events.add(event);
+    }
+
+    /**
+     * Set the {@code Event} specified by index with a new {@code Event}.
+     *
+     * @param i index number specifies the target {@code Event}.
+     * @param event new {@code Event} for this index.
+     */
+    public void setEvent(Integer i, Event event) {
+        requireAllNonNull(event, i);
+
+        this.events.set(i, event);
+    }
+
+    /**
+     * Get the {@code Event} specified by index in {@code EventList}.
+     *
+     * @param i index number specifies the target {@code Event}.
+     * @return The {@code Event} specified.
+     */
+    public Event getEvent(Integer i) {
+        requireNonNull(i);
+
+        return events.get(i);
     }
 
     /**
@@ -123,6 +148,15 @@ public class EventList {
             }
         }
         return false;
+    }
+
+    /**
+     * Returns the size of the {@code EventList}.
+     *
+     * @return size of the {@code EventList}.
+     */
+    public int size() {
+        return events.size();
     }
 
     @Override
