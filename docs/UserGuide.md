@@ -145,9 +145,9 @@ Examples:
 
 #### 3.3.1 Editing a property : `edit property`
 
-Overwrites the information of the property according to the flags provided.
+Overwrites the information of the property according to the parameters provided.
 
-Formats: `edit property INDEX [n/NAME] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]​`
+Format: `edit property INDEX [n/NAME] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]​`
 
 <div markdown="block" class="alert alert-info">
 
@@ -167,9 +167,9 @@ Examples:
 
 #### 3.3.2 Editing an appointment : `edit appointment`
 
-Overwrites the information of the appointment according to the flags provided.
+Overwrites the information of the appointment according to the paramters provided.
 
-Formats: `edit appointment INDEX [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]`
+Format: `edit appointment INDEX [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]`
 
 Description:
 * Edits the entry at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …​
@@ -313,14 +313,17 @@ Description:
 
 ### 3.9 Clearing
 
-#### 3.9.1 Clearing all entries : `clear`
+#### 3.9.1 Clearing all entries : `clear all`
 
-Clears all properties or appointments or both from the app.
+Clears all properties and appointments from the app.
 
-Formats:
-* `clear property`
-* `clear appointment`
-* `clear all`
+#### 3.9.2 Clearing all properties : `clear property`
+
+Clears all properties from the app.
+
+#### 3.9.3 Clearing all appointments : `clear appointment`
+
+Clears all appointments from the app.
 
 ## 4. Storage
 
@@ -328,8 +331,10 @@ Formats:
 
 PocketEstate data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually. PocketEstate data are saved as a JSON file after any command that modifies the data of the app.
 
-* The default property storage data file used is `[JAR file location]/data/propertybook.json`. 
-* The default appointment storage data file used is `[JAR file location]/data/appointmentbook.json`.
+The default storage data file paths used are:
+
+* Property storage data file: `[JAR file location]/data/propertybook.json`. 
+* Appointment storage data file: `[JAR file location]/data/appointmentbook.json`.
 
 #### 4.2 Editing the data files
 
