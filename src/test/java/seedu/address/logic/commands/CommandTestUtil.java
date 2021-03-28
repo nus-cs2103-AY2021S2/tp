@@ -67,8 +67,8 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditCustomerDescriptor DESC_AMY;
-    public static final EditCommand.EditCustomerDescriptor DESC_BOB;
+    public static final EditCustomerCommand.EditCustomerDescriptor DESC_AMY;
+    public static final EditCustomerCommand.EditCustomerDescriptor DESC_BOB;
 
     public static final int VALID_QUANTITY_1 = 1;
     public static final int VALID_QUANTITY_2 = 2;

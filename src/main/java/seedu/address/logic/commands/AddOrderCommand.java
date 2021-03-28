@@ -36,7 +36,7 @@ public class AddOrderCommand extends AddCommand {
             + PREFIX_ORDER_DATE + "2020-12-30";
 
     public static final String MESSAGE_SUCCESS = "New order added: %1$s";
-    public static final String MESSAGE_NO_CUSTOMERS_FOUND = "No customer in the address book owns the phone number";
+    public static final String MESSAGE_NO_CUSTOMERS_FOUND = "No customer in the address book owns the phone number.";
 
     private final CheeseType toAddCheeseType;
     private final Phone customerPhone;

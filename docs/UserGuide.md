@@ -54,7 +54,7 @@ faster than traditional GUI apps.
 
 Adds an order to CHIM.
 
-Format: `addorder t/CHEESE_TYPE q/QUANTITY p/PHONE_NUMBER`
+Format: `addorder t/CHEESE_TYPE q/QUANTITY p/PHONE_NUMBER [d/ORDER_DATE]`
 * The specified `QUANTITY` must be a positive integer.
 * The specified `PHONE_NUMBER` must belong to an existing user.
 
@@ -64,7 +64,7 @@ Example: `addorder t/Parmesan q/2 p/65555555`
 
 Adds a cheese to CHIM.
 
-Format: `addcheese t/CHEESE_TYPE q/QUANTITY`
+Format: `addcheese t/CHEESE_TYPE q/QUANTITY [d/MANUFACTURE_DATE] [m/MATURITY_DATE] [d/EXPIRY_DATE]`
 * The specified `QUANTITY` must be a positive integer.
 
 Example: `addcheese t/Parmesan q/2`
@@ -73,9 +73,36 @@ Example: `addcheese t/Parmesan q/2`
 
 Adds a customer to CHIM.
 
-Format: `addcustomer n/CUSTOMER_NAME p/PHONE_NUMBER a/ADDRESS`
+Format: `addcustomer n/CUSTOMER_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/tags...]`
 
-Example: `addcustomer n/John Doe p/65555555 a/Blk 436 Serangoon Gardens St 26 #01-01`
+Example: `addcustomer n/John Doe p/65555555 e/johndoe@gmail.com a/Blk 436 Serangoon Gardens St 26 #01-01`
+
+### Editing an order: `editorder`
+
+Edits an existing uncompleted order in CHIM.
+
+Format: `editorder INDEX [t/CHEESE_TYPE] [q/QUANTITY] [p/PHONE_NUMBER] [d/ORDER_DATE]`
+* The specified `INDEX` and `QUANTITY` must be a positive integer.
+* The specified `PHONE_NUMBER` must belong to an existing user.
+
+Example: `editorder 2 t/Parmesan q/2 p/65555555`
+
+### Editing a cheese: `editcheese`
+
+Edits an existing unassigned cheese in CHIM.
+
+Format: `editcheese INDEX [t/CHEESE_TYPE] [d/MANUFACTURE_DATE] [m/MATURITY_DATE] [d/EXPIRY_DATE]`
+* The specified `INDEX` must be a positive integer.
+
+Example: `editcheese 1 t/Parmesan d/2021-03-12`
+
+### Editing a customer: `editcustomer`
+
+Edits an existing customer in CHIM.
+
+Format: `editcustomer [n/CUSTOMER_NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/tags...]`
+
+Example: `addcustomer 4 n/Jane Lim p/65558888`
 
 ### Delete an order: `deleteorder`
 
