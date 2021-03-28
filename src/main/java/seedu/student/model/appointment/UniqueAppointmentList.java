@@ -59,6 +59,7 @@ public class UniqueAppointmentList implements Iterable<SameDateAppointmentList> 
         SameDateAppointmentList apptList = new SameDateAppointmentList(toAdd.getDate());
         apptList.add(toAdd);
         internalList.add(apptList);
+        FXCollections.sort(internalList);
     }
 
     /**

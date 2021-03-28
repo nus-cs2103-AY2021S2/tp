@@ -57,11 +57,11 @@ public class DeleteCommandTest {
         showStudentWithMatricNum(model, matricNumberToDelete);
 
         List<Student> studentListTest = model.getFilteredStudentList();
+
         Student studentToDelete = DeleteCommand.getStudent(studentListTest, matricNumberToDelete);
         DeleteCommand deleteCommand = new DeleteCommand(matricNumberToDelete);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
-
 
         Model expectedModel = new ModelManager(model.getStudentBook(), new UserPrefs());
         expectedModel.deleteStudent(studentToDelete);
@@ -69,8 +69,6 @@ public class DeleteCommandTest {
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
-
-
 
     //    @Test
     //    public void execute_invalidIndexFilteredList_throwsCommandException() {

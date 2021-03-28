@@ -8,8 +8,8 @@ import seedu.student.commons.core.Messages;
 import seedu.student.logic.commands.exceptions.CommandException;
 import seedu.student.model.Model;
 import seedu.student.model.student.MatriculationNumber;
-import seedu.student.model.student.MatriculationNumberContainsKeywordsPredicate;
 import seedu.student.model.student.Student;
+import seedu.student.model.student.StudentContainsMatriculationNumberPredicate;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -26,7 +26,7 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_DELETE_STUDENT_SUCCESS = "Deleted Student: %1$s"; // add name + matric number
 
     private final MatriculationNumber matriculationNumber;
-    private final MatriculationNumberContainsKeywordsPredicate predicate;
+    private final StudentContainsMatriculationNumberPredicate predicate;
 
 
     /**
@@ -37,7 +37,7 @@ public class DeleteCommand extends Command {
     public DeleteCommand(MatriculationNumber matriculationNumber) {
         this.matriculationNumber = matriculationNumber;
 
-        predicate = new MatriculationNumberContainsKeywordsPredicate(matriculationNumber.toString());
+        predicate = new StudentContainsMatriculationNumberPredicate(matriculationNumber);
     }
 
     /**
