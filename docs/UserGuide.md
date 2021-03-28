@@ -262,5 +262,5 @@ Action | Format, Examples
 **exit** | `exit`
 
 ## Issues
-In the event of any issues while using the app and or UG, please contact the team at the emails below
+In the event of any issues while using the app and or UG, please contact the team at the emails below <br>
 prerthanmunireternam@yahoo.com
