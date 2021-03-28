@@ -1,10 +1,13 @@
 package seedu.address.ui;
 
+import java.time.LocalDate;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -16,6 +19,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.scheduler.Timetable;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -52,7 +56,19 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     @FXML
+    private TabPane displayTabs;
+
+    @FXML
+    private Tab meetingsTab;
+
+    @FXML
+    private Tab timetableTab;
+
+    @FXML
     private StackPane meetingDashboardPlaceholder;
+
+    @FXML
+    private StackPane timetableHolder;
 
 
     /**
@@ -126,6 +142,11 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        Timetable timetable = new Timetable(LocalDate.now());
+
+        TimetableView timetableView = new TimetableView(timetable.getReadOnlyWeeklySchedule());
+        timetableHolder.getChildren().add(timetableView.getRoot());
 
         // Yuheng To Maurice: I made my modification to the logic so now you can add meetings into the UI.
         meetingDashboard = new MeetingDashboard(logic.getFilteredMeetingList());

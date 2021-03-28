@@ -6,6 +6,10 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import javafx.beans.property.ReadOnlyBooleanProperty;
+import javafx.beans.property.ReadOnlyStringProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 /**
  * Represents a day in a timetable. Starting from 0000, ending at next day 0000, subdivided into intervals.
  */
@@ -38,7 +42,7 @@ public class DaySchedule {
      * @param period
      * @return
      */
-    public HalfHourTimeSlot getPeriod(int period) {
+    private HalfHourTimeSlot getPeriod(int period) {
         return periodArray[period];
     }
 
@@ -64,7 +68,7 @@ public class DaySchedule {
         if (periodArray[period].isBooked()) {
             throw new BookingException(MESSAGE_BOOKING_FAILURE);
         }
-        periodArray[period].setBooked(true);
+        periodArray[period].setIsBooked(true);
     }
 
     /**
@@ -75,7 +79,7 @@ public class DaySchedule {
     public void freeSlot(LocalTime localTime) {
         int period = getPeriodIndex(localTime);
         //mark the period as free
-        periodArray[period].setBooked(false);
+        periodArray[period].setIsBooked(false);
     }
 
     /**
@@ -91,7 +95,7 @@ public class DaySchedule {
             }
         }
         for (int i = start; i <= end; i++) {
-            periodArray[i].setBooked(true);
+            periodArray[i].setIsBooked(true);
         }
     }
 
@@ -124,7 +128,7 @@ public class DaySchedule {
             end -= 1;
         }
         for (int i = start; i <= end; i++) {
-            periodArray[i].setBooked(false);
+            periodArray[i].setIsBooked(false);
         }
     }
 
@@ -145,4 +149,27 @@ public class DaySchedule {
     public DayOfWeek getDayOfWeek() {
         return this.dayOfWeek;
     }
+
+    //============ Ui method ==================================================
+
+    public ReadOnlyBooleanProperty getSlotBookedProperty(int period) {
+        return periodArray[period].getisBookedProperty();
+    }
+
+    /**
+     * From period i, returns the string representation of the period.
+     * @return "[isBooked] (start - end)"
+     */
+    public String getTimeDisplayString(int index) {
+        return periodArray[index].toString();
+    }
+    /**
+     * Gets the observable String of the description of the booking
+     */
+    public ReadOnlyStringProperty getStringProperty(int index) {
+        return new SimpleStringProperty("Hello fksonosndmqlmqlkmlmqlkwdmklq");
+    }
+
+
+
 }
