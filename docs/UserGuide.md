@@ -12,7 +12,8 @@ FriendDex is a **relationship management tool for CLI enthusiasts** looking to e
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer. Your Computer's operating system (OS) needs to be Windows, macOS or Linux. Another point to note is the OS version you are using should still be supported by the respective companies.
+   For more detailed Java installation instructions, please refer [here](https://docs.oracle.com/en/java/javase/11/install/preface.html#).
 
 2. Download the latest `frienddex.jar` from [here](https://github.com/AY2021S2-CS2103T-W14-1/tp/releases).
 
@@ -20,6 +21,12 @@ FriendDex is a **relationship management tool for CLI enthusiasts** looking to e
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
+   
+The command bar right at the top will be where you type your commands.
+The results display below the command bar will tell you if your command is successful or the modifications that are needed to make your command work.
+The group panel on the left will show all the groups currently in FriendDex.
+The middle panel will list down the people stored in FriendDex. It will either show all of them, or some depending on the commands you used.
+The details panel on the right will supply additional information to you based on the commands given.
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
