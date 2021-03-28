@@ -75,13 +75,13 @@ Format: `help`
 
 ### Adding a residence: `add`
 
-Adds a new residence to the list of residences,default for CLEANING_STATUS and BOOKING_STATUS is ‘cleaned’ and ‘not-booked’ respectively.
+Adds a new residence to the list of residences, default for CLEANING_STATUS is ‘cleaned’.
 
-Format: ` add n/NAME_OF_APARTMENT a/ADDRESS [b/BOOKING_DETAILS] [clean/[y or n]] [t/TAG] `
+Format: ` add n/NAME_OF_APARTMENT a/ADDRESS [clean/[y or n]] [t/TAG] `
 
 Examples:
 * `add n/Melville Park a/22 Simei Street 1, #10-02, S529948`
-* `add n/Clementi HDB a/459A Clementi Ave 3, #04-257, S121459 b/4 adults clean/n `
+* `add n/Clementi HDB a/459A Clementi Ave 3, #04-257, S121459 clean/n`
 
 ### Listing all residences: `list`
 
@@ -91,17 +91,16 @@ Format: `list`
 
 ### Editing a residence: `edit`
 
-Edits the bookingList/cleaning status of an existing residence
+Edits the cleaning status of an existing residence.
 
-Format: `edit b/3 adults [INDEX] clean/n [INDEX]`
+Format: `edit clean/n [INDEX]`
 
 * Edits the residence status at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields (either clean or book status) must be provided.
-* If both fields are provided, `INDEX` field should be of the same value.
+* The clean status field must be provided.
 
 Examples:
-*  `edit clean/y 1` Edits the clean status of the 1st residence on the list from `Unclean` to `Clean`. Booking status remains unchanged from original value.
-*  `edit b/3 adults clean/y 2 `  Edits the bookingList details of the 2nd residence on the list from `4 adults` to `3 adults` and the clean status of the same residence on the list from `Unclean` to `Clean`.
+*  `edit clean/y 1` Edits the clean status of the 1st residence on the list from `Unclean` to `Clean`.
+*  `edit clean/n 2 `  Edits the clean status of the 2nd residence on the list from `Clean` to `Unclean`.
 
 ### Locating residences by name: `find`
 
@@ -139,13 +138,23 @@ Clears all entries from the residence tracker.
 
 Format: `clear`
 
+### Adding a booking: `addb`
+
+Adds a new booking to the specified residence.
+
+Format: `addb RESIDENCE_INDEX n/NAME_OF_BOOKER p/PHONE_OF_BOOKER s/START_TIME e/END_TIME`
+
+Examples:
+* `addb 1 n/John p/91234567 s/01-01-2021 e/02-01-2021`
+* `addb 2 n/Jane Tan p/6581234567 s/31-12-2021 e/05-01-2022`
+
 ### Deleting a booking from a residence: `deleteb`
 
-deletes the specified booking from the specified residence
+Deletes the specified booking from the specified residence.
 
 Format: `deleteb r/INDEX1 b/INDEX2`
 
-* Deletes the booking at the specified `INDEX1` from the residence at the specified `INDEX2`
+* Deletes the booking at the specified `INDEX2` from the residence at the specified `INDEX1`
 * `INDEX1` and `INDEX2` refers to the index number as shown in ResidenceTracker (i.e. **NOT** zero-indexed).
 * `INDEX1` and `INDEX2` must be **positive integer** (>0)
 
@@ -186,10 +195,12 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME_OF_RESIDENCE a/ADDRESS [b/BOOKING_DETAILS] [clean/[y or n]] [t/TAG] …​` <br> e.g., `add n/Clementi HDB a/459A Clementi Ave 3, #04-257, S121459 b/4 adults clean/n`
+**Add** | `add n/NAME_OF_RESIDENCE a/ADDRESS [clean/[y or n]] [t/TAG] …​` <br> e.g., `add n/Clementi HDB a/459A Clementi Ave 3, #04-257, S121459 clean/n`
+**Addb** | `add n/NAME_OF_BOOKER p/PHONE_OF_BOOKER s/START_TIME e/END_TIME` <br> e.g., `add n/John a/91234567 s/01-01-2021 e/02-01-2021`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit b/UPDATED_BOOKING_DETAILS [INDEX] clean/[y or n] [INDEX]`<br> e.g.,`edit b/3 adults 2 clean/n 2`
+**Deleteb** | `deleteb r/RESIDENCE_INDEX b/BOOKING_INDEX`<br> e.g., `delete r/3 b/2`
+**Edit** | `edit clean/[y or n] [INDEX]`<br> e.g.,`edit clean/n 2`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Heights`
 **List** | `list`
 **Help** | `help`

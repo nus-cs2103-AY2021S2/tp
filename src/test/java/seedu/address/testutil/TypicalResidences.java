@@ -22,14 +22,11 @@ public class TypicalResidences {
 
     public static final Residence RESIDENCE_A = new ResidenceBuilder().withName("Amber Heights")
             .withAddress("123, Jurong West Ave 6, #08-111").withTags("valuable").build();
-    //.withBookingDetails("Test Booking")
     public static final Residence RESIDENCE_B = new ResidenceBuilder().withName("Beverly Hills")
             .withAddress("311, Clementi Ave 2, #02-25").withTags("repair", "popular")
             .withCleanStatusTags("n").build();
-    //.withBookingDetails("")
     public static final Residence RESIDENCE_C = new ResidenceBuilder().withName("Casuarina Apartment")
             .withAddress("wall street").build();
-    //.withBookingDetails("C booked")
     public static final Residence RESIDENCE_D = new ResidenceBuilder().withName("Dover Condominium")
             .withAddress("10th street").withTags("forFriends").build();
     public static final Residence RESIDENCE_E = new ResidenceBuilder().withName("Emerald Hills")
@@ -42,7 +39,6 @@ public class TypicalResidences {
     // Manually added
     public static final Residence EXTRA_R1 = new ResidenceBuilder().withName("Hillview")
             .withAddress("little india").build();
-    // .withBookingDetails("Cleaning")
     public static final Residence EXTRA_R2 = new ResidenceBuilder().withName("iSuites")
             .withAddress("chicago ave").build();
 
@@ -50,11 +46,9 @@ public class TypicalResidences {
     public static final Residence RESIDENCE1 = new ResidenceBuilder().withName(VALID_NAME_RESIDENCE1)
             .withAddress(VALID_ADDRESS_RESIDENCE1)
             .withCleanStatusTags(VALID_CLEAN_TAG).withTags(VALID_TAG_RESERVED).build();
-    //.withBookingDetails(VALID_BOOKING_LIST1)
     public static final Residence RESIDENCE2 = new ResidenceBuilder().withName(VALID_NAME_RESIDENCE2)
             .withAddress(VALID_ADDRESS_RESIDENCE2)
             .withCleanStatusTags(VALID_CLEAN_TAG).withTags(VALID_TAG_REPAIR, VALID_TAG_RESERVED).build();
-    //.withBookingDetails(VALID_BOOKING_LIST2)
 
     public static final String KEYWORD_MATCHING_HILLS = "Hills"; // A keyword that matches MEIER
 
