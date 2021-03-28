@@ -12,6 +12,10 @@ import java.util.function.Predicate;
 
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Views garments identified using displayed indexes
+ * from the wardrobe
+ */
 public class ViewCommand extends Command {
 
     public static final String COMMAND_WORD = "view";
