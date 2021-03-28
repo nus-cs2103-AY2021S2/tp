@@ -595,7 +595,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
     
-**Use case 12: Recur tasks**
+**Use case 13: Recur tasks**
 
 **MSS**
 
