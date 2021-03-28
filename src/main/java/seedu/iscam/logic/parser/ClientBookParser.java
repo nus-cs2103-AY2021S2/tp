@@ -18,7 +18,6 @@ import seedu.iscam.logic.commands.ListCommand;
 import seedu.iscam.logic.commands.ShowCommand;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.logic.parser.exceptions.ParseFormatException;
-import seedu.iscam.logic.parser.exceptions.ShowCommandParser;
 
 /**
  * Parses user input.
