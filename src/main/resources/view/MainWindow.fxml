@@ -56,6 +56,10 @@
             <Insets top="10" right="10" bottom="10" left="10" />
           </padding>
           <StackPane fx:id="bookListPanelPlaceholder" HBox.hgrow="ALWAYS"/>
+          <padding>
+            <Insets top="10" right="10" bottom="10" left="10" />
+          </padding>
+          <StackPane fx:id="recordListPanelPlaceholder" HBox.hgrow="ALWAYS"/>
         </HBox>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />

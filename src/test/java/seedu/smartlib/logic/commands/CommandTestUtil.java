@@ -22,10 +22,13 @@ import seedu.smartlib.commons.core.index.Index;
 import seedu.smartlib.logic.commands.exceptions.CommandException;
 import seedu.smartlib.model.Model;
 import seedu.smartlib.model.SmartLib;
+import seedu.smartlib.model.book.Barcode;
 import seedu.smartlib.model.book.Book;
 import seedu.smartlib.model.book.BookNameContainsKeywordsPredicate;
 import seedu.smartlib.model.reader.NameContainsKeywordsPredicate;
 import seedu.smartlib.model.reader.Reader;
+import seedu.smartlib.model.record.Record;
+import seedu.smartlib.model.record.RecordContainsBarcodePredicate;
 import seedu.smartlib.testutil.EditReaderDescriptorBuilder;
 
 /**
@@ -174,5 +177,19 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredBookList().size());
     }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the record at the given {@code targetIndex} in the
+     * {@code model}'s smartlib.
+     */
+    public static void showRecordAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredRecordList().size());
+
+        Record record = model.getFilteredRecordList().get(targetIndex.getZeroBased());
+        final Barcode barcode = record.getBookBarcode();
+        model.updateFilteredRecordList((new RecordContainsBarcodePredicate(barcode)));
+        assertEquals(1, model.getFilteredRecordList().size());
+    }
+
 
 }

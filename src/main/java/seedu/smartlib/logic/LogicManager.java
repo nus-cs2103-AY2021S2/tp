@@ -16,6 +16,7 @@ import seedu.smartlib.model.Model;
 import seedu.smartlib.model.ReadOnlySmartLib;
 import seedu.smartlib.model.book.Book;
 import seedu.smartlib.model.reader.Reader;
+import seedu.smartlib.model.record.Record;
 import seedu.smartlib.storage.Storage;
 
 /**
@@ -91,6 +92,16 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Book> getFilteredBookList() {
         return model.getFilteredBookList();
+    }
+
+    /**
+     * Returns SmartLib's immutable list of books.
+     *
+     * @return SmartLib's immutable list of books
+     */
+    @Override
+    public ObservableList<Record> getFilteredRecordList() {
+        return model.getFilteredRecordList();
     }
 
     /**
