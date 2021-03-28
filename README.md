@@ -3,7 +3,7 @@
 ## User Interface
 ![Ui](docs/images/Ui.png)
 
-##About ResidenceTracker<br>
+## About ResidenceTracker<br>
 ResidenceTracker is a command line based desktop application that assists landlords in managing their residences that they are listing out on the Airbnb platform for rent.
 
 * It gives user convenience by providing a centralised overview of all of the user's residences and the respective bookingList/cleaning statuses of each residence. 
