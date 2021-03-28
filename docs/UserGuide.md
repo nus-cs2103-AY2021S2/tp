@@ -247,7 +247,7 @@ A person can have any number of tags and insurance policies (including 0).
 
 * Edits the client at the specified `INDEX`.
     * `INDEX` refers to the index number shown in the displayed client list.
-    * `INDEX` must be more than 1, and less than or equal to the index of the last item in the displayed list.
+    * `INDEX` must be at least 1, and less than or equal to the index of the last item in the displayed list.
 * At least one of the optional fields must be provided.
 
 <div markdown="block" class="alert alert-info">
@@ -269,22 +269,17 @@ A person can have any number of tags and insurance policies (including 0).
 
 ### `list`: List all clients 
 
-**Purpose**: Shows a list of all clients in ClientBook. Optional flags can be added to show a list with only the specified attributes.
+**Purpose**: Shows a list of all clients in ClientBook. Optional identifiers can be specified to show a list with only the desired attributes.
 
 **Format**: `list [-n] [-p] [-e] [-a] [-i] [-t]`
 
 **Examples**: 
-* Shows a list of all clients and all their information.
+*  `list` without any specified identifiers shows a list of all clients and all their information.
   * `list`
     
     ![list](images/list.png)
     
-*  Shows a list of all clients and their insurance policy number.
-   * `list -i`
-
-     ![list policy](images/list-policy.png)
-
-*  Shows a list of all clients and their phone number and insurance policy number.
+*  One or more identifiers can be used to make `list` only show the specified information. The following command shows a list of all clients and their phone number and insurance policy number.
    * `list -p -i`
     
      ![list phone](images/list-phone-policy-annotate.png)
@@ -364,8 +359,6 @@ Optional identifiers can be added to show the list of matched clients with only 
 
 **Examples**:
 * `delete 2` deletes the 2nd person in the currently displayed list.
-
-  ![delete 2](images/delete-2.png)
 
 * `find n/Charlotte` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
