@@ -17,7 +17,7 @@ import seedu.address.model.session.Subject;
         include = JsonTypeInfo.As.PROPERTY,
         property = "type")
 @JsonSubTypes(
-        @JsonSubTypes.Type(value = JsonAdaptedRecurringSession.class, name = "RecurringSession"))
+        @JsonSubTypes.Type(value = JsonAdaptedRecurringSession.class))
 public class JsonAdaptedSession {
     private final String sessionDate;
     private final String duration;
