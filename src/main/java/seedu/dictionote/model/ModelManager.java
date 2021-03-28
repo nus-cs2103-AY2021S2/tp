@@ -209,6 +209,11 @@ public class ModelManager implements Model {
     public void sortNote() {
         noteBook.sortNote();
     }
+
+    public void sortNoteByTime() {
+        noteBook.sortNoteByTime();
+    }
+
     //=========== Dictionary ===================================================================================
     @Override
     public boolean hasContent(Content content) {

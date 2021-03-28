@@ -127,6 +127,11 @@ public interface Model {
      */
     void sortNote();
 
+    /**
+     * Sorts the note in the note book chronologically.
+     */
+    void sortNoteByTime();
+
 
     /**
      * Set Note UI Configuration Interface

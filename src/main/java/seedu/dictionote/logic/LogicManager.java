@@ -7,17 +7,7 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.dictionote.commons.core.GuiSettings;
 import seedu.dictionote.commons.core.LogsCenter;
-import seedu.dictionote.logic.commands.AddContentCommand;
-import seedu.dictionote.logic.commands.AddDefinitionCommand;
-import seedu.dictionote.logic.commands.AddNoteCommand;
-import seedu.dictionote.logic.commands.Command;
-import seedu.dictionote.logic.commands.CommandResult;
-import seedu.dictionote.logic.commands.DeleteNoteCommand;
-import seedu.dictionote.logic.commands.EditModeSaveCommand;
-import seedu.dictionote.logic.commands.EditNoteCommand;
-import seedu.dictionote.logic.commands.MarkAsDoneNoteCommand;
-import seedu.dictionote.logic.commands.MarkAsUndoneNoteCommand;
-import seedu.dictionote.logic.commands.SortNoteCommand;
+import seedu.dictionote.logic.commands.*;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.logic.parser.DictionoteParser;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
@@ -63,7 +53,7 @@ public class LogicManager implements Logic {
             if (command instanceof AddNoteCommand || command instanceof DeleteNoteCommand
                 || command instanceof EditNoteCommand || command instanceof MarkAsDoneNoteCommand
                 || command instanceof SortNoteCommand || command instanceof MarkAsUndoneNoteCommand
-                || command instanceof EditModeSaveCommand) {
+                || command instanceof EditModeSaveCommand || command instanceof SortNoteByTimeCommand) {
                 storage.saveNoteBook(model.getNoteBook());
             } else if (command instanceof AddContentCommand) {
                 storage.saveDictionary(model.getDictionary());

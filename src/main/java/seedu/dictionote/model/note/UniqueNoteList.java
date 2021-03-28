@@ -3,6 +3,7 @@ package seedu.dictionote.model.note;
 import static java.util.Objects.requireNonNull;
 import static seedu.dictionote.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -121,5 +122,10 @@ public class UniqueNoteList implements Iterable<Note> {
 
     public void sort() {
         FXCollections.sort(internalList, Note::compareTo);
+    }
+
+    public void sortByTime() {
+        Comparator<Note> compare = (x,y) -> x.getLastEditTime().compareTo(y.getLastEditTime());
+        FXCollections.sort(internalList, compare.reversed());
     }
 }
