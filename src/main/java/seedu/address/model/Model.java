@@ -8,8 +8,11 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.budget.Budget;
+import seedu.address.model.filter.PersonFilter;
 import seedu.address.model.grade.Grade;
 import seedu.address.model.person.Person;
+import seedu.address.model.schedule.ReadOnlyScheduleTracker;
+import seedu.address.model.schedule.Schedule;
 
 /**
  * The API of the Model component.
@@ -21,6 +24,7 @@ public interface Model {
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENT = unused -> true;
     Predicate<Grade> PREDICATE_SHOW_ALL_GRADE = unused -> true;
+    Predicate<Schedule> PREDICATE_SHOW_ALL_SCHEDULE = unused -> true;
 
     /**
      * Returns the user prefs.
@@ -77,6 +81,7 @@ public interface Model {
 
     /**
      * Sets appointment book file path.
+     *
      * @param appointmentBookFilePath To be supplied by user
      */
     void setAppointmentBookFilePath(Path appointmentBookFilePath);
@@ -263,4 +268,89 @@ public interface Model {
      */
     void removeGradeIndex(int indexToRemove);
 
+    /**
+     * Checks if any of the filters are in person filter.
+     *
+     * @param personFilter Filters to check for inside model's person filter.
+     * @return true if model's person filter contains a filter that was passed in.
+     */
+    boolean hasPersonFilter(PersonFilter personFilter);
+
+    /**
+     * Adds filters to person filter.
+     *
+     * @param personFilter Filters to add to model's person filter.
+     */
+    void addPersonFilter(PersonFilter personFilter);
+
+    /**
+     * Removes filters from person filter.
+     *
+     * @param personFilter Filters to remove from model's person filter.
+     */
+    void removePersonFilter(PersonFilter personFilter);
+
+    /**
+     * Returns the AddressBook
+     */
+    ReadOnlyScheduleTracker getScheduleTracker();
+
+    /**
+     * Replaces address book data with the data in {@code scheduleTracker}.
+     */
+    void setScheduleTracker(ReadOnlyScheduleTracker scheduleTracker);
+
+    /**
+     * Returns an unmodifiable view of the filtered schedule list
+     */
+    ObservableList<Schedule> getFilteredScheduleList();
+
+    /**
+     * Updates the filter of the filtered schedule list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredScheduleList(Predicate<Schedule> predicate);
+
+    /**
+     * Checks if Schedule exists in schedule list.
+     *
+     * @param schedule Schedule to check
+     * @return True if schedule is already in schedule list
+     */
+    boolean hasSchedule(Schedule schedule);
+
+    /**
+     * @param schedule Schedule to add (schedule must not already exist)
+     */
+    void addSchedule(Schedule schedule);
+
+    /**
+     * Removes schedule from schedule list.
+     *
+     * @param schedule Schedule to be removed must be present
+     */
+    void deleteSchedule(Schedule schedule);
+
+    /**
+     * Method that removes schedule based on index
+     *
+     * @param indexToRemove
+     */
+    void deleteSchedule(int indexToRemove);
+
+    /**
+     * Replaces the given schedule {@code target} with {@code editedSchedule}.
+     * {@code target} must exist in the schedule tracker.
+     * The {@code editedSchedule} must not be the same as another existing schedule in the schedule tracker.
+     */
+    void setSchedule(Schedule target, Schedule editedSchedule);
+
+    /**
+     * Checks if {@code AppointmentDateTime} exists in the schedule tracker.
+     *
+     * @param appointmentDateTime Schedule DateTime to be checked
+     * @return true if Schedule DateTime exists in the schedule list
+     */
+    boolean hasScheduleDateTime(AppointmentDateTime appointmentDateTime);
 }
