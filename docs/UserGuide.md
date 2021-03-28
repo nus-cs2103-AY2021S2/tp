@@ -82,7 +82,7 @@ Format: `find_student KEYWORD [MORE_KEYWORDS]`
 * Students matching at least one keyword will be returned (i.e. `OR` search)
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-Example:
+Examples:
 
 \# | Student Name
 ---- |---------
