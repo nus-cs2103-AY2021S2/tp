@@ -86,7 +86,17 @@ public class Person {
     }
 
     public Blacklist getBlacklist() {
-        return this.blacklist;
+        return blacklist;
+    }
+
+    public boolean getBlacklistStatus() {
+        return blacklist.getStatus();
+    }
+
+    public Person toggleBlacklistStatus() {
+        Blacklist newBlacklist = blacklist.toggleStatus();
+        return new Person(name, phone, email, address,
+                remark, modeOfContact, newBlacklist, tags);
     }
 
     /**
