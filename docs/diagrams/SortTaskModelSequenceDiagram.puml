@@ -1,0 +1,40 @@
+@startuml
+!include style.puml
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+participant ":Sochedule" as Sochedule MODEL_COLOR
+participant "tasks:UniqueTaskList" as UniqueTaskList MODEL_COLOR
+participant ":TaskComparator" as TaskComparator MODEL_COLOR
+participant "<<class>>\n FXCollections" as FXCollections MODEL_COLOR
+end box
+
+[-> ModelManager : sortTasks(comparingVar)
+activate ModelManager
+
+ModelManager -> Sochedule : sortTasks(comparingVar)
+activate Sochedule
+
+Sochedule -> UniqueTaskList : sort(comparingVar)
+activate UniqueTaskList
+
+UniqueTaskList -> TaskComparator : setComparingVar(comparingVar)
+activate TaskComparator
+
+UniqueTaskList <--TaskComparator
+deactivate TaskComparator
+
+UniqueTaskList -> FXCollections : sort(internalList, TaskComparator)
+activate FXCollections
+
+UniqueTaskList <-- FXCollections
+deactivate FXCollections
+
+Sochedule <-- UniqueTaskList
+deactivate UniqueTaskList
+
+ModelManager <-- Sochedule
+deactivate Sochedule
+
+[<-- ModelManager
+@enduml

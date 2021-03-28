@@ -236,7 +236,7 @@ The sequence diagram for `DeleteTaskCommand` can be found below.
 ![Sequence Diagram of DeleteTask Command](images/DeleteTaskCommandSequenceDiagram.png)
 
 **Implementation of SortTaskCommand**  
-The following is a detailed explanation on how SortTaskCommand is implemented.
+The following is a detailed explanation on how SortTaskCommand is implemented in the Logic component.
 
 **Step 1**: User executes `sort SORT_VAR` command to sort the tasks based on the `SORT_VAR` provided.
 An `SortTaskParser` object is created, and the `SortTaskParser#parse(String args)` method is called. 
@@ -255,7 +255,11 @@ The sequence diagram for `sortTaskCommand` can be found below.
 
 ![Sequence Diagram of SortTask Command](images/SortTaskSequenceDiagram.png)
 
-**Implementation of PinTaskCommand/UnpinTaskCommand**
+***Lower Level implementation***  
+The following is a brief explanation , as shown in a sequence diagram, of how sorting is implemented inside the Model component.
+![Sequence Diagram of SortTaskCommand in Model Component](images/SortTaskModelSequenceDiagram.png)
+
+**Implementation of PinTaskCommand/UnpinTaskCommand**  
 The following is a detailed explanation on how PinTaskCommand is implemented.
 UnpinTaskCommand is largely similar in implementation to PinTaskCommand and will be omitted for brevity.
 
@@ -274,10 +278,13 @@ For brevity, lower level implementation of `Model#pinTask(Task task)` is omitted
 A success message will be appended with `CommandResult#MESSAGE_PIN_TASK_SUCCESS`.
 The UI will also update as the underlying task list has been modified.
 
-Since the sequence diagram for `PinTaskCommand` is similar to `SortTaskCommand`, it is omitted for brevity.
-
-Key differences as follows:
+The sequence diagram for `PinTaskCommand` can be found below.
+It is largely similar to `SortTaskCommand`, with a some minor differences:
 * Instead of `SortTask`-related parsers and commands, `PinTask`-related parsers and commands are created and activated.
+* Additional call to `Model#sortTaskDefault()` after `Model#pinTask(Task)`
+
+![Sequence Diagram of PinTaskCommand](images/PinTaskSequenceDiagram.png)
+
 
 ### 4.3 Event
 
