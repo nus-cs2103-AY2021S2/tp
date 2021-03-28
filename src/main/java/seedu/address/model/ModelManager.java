@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.passenger.Passenger;
+import seedu.address.model.pool.Pool;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -95,14 +96,31 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasPool(Pool pool) {
+        requireNonNull(pool);
+        return addressBook.hasPool(pool);
+    }
+
+    @Override
     public void deletePassenger(Passenger passenger) {
         addressBook.removePassenger(passenger);
+    }
+
+    @Override
+    public void deletePool(Pool pool) {
+        addressBook.removePool(pool);
     }
 
     @Override
     public void addPassenger(Passenger passenger) {
         addressBook.addPassenger(passenger);
         updateFilteredPassengerList(PREDICATE_SHOW_ALL_PASSENGERS);
+    }
+
+    @Override
+    public void addPool(Pool pool) {
+        addressBook.addPool(pool);
+        // TODO some kind of update filtered pool list
     }
 
     @Override

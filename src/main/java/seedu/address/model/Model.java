@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.passenger.Passenger;
+import seedu.address.model.pool.Pool;
 
 /**
  * The API of the Model component.
@@ -58,16 +59,33 @@ public interface Model {
     boolean hasPassenger(Passenger passenger);
 
     /**
+     * Returns true if a pool with the same identity as {@code pool} exists in the address book.
+     */
+    boolean hasPool(Pool pool);
+
+    /**
      * Deletes the given passenger.
      * The passenger must exist in the address book.
      */
     void deletePassenger(Passenger passenger);
 
     /**
+     * Deletes the given pool.
+     * The passenger must exist in the address book.
+     */
+    void deletePool(Pool pool);
+
+    /**
      * Adds the given passenger.
      * {@code passenger} must not already exist in the address book.
      */
     void addPassenger(Passenger passenger);
+
+    /**
+     * Adds the given pool.
+     * {@code pool} must not already exist in the address book.
+     */
+    void addPool(Pool pool);
 
     /**
      * Replaces the given passenger {@code target} with {@code editedPassenger}.
