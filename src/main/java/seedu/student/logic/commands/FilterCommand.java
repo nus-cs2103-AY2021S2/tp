@@ -9,7 +9,7 @@ import seedu.student.model.Model;
 import seedu.student.model.student.Student;
 
 /**
- * Finds and lists all persons in address book whose student entries field matches the argument keyword.
+ * Finds and lists all students in student book whose student entries field matches the argument keyword.
  * Keyword matching is case sensitive.
  */
 public class FilterCommand extends Command {
@@ -32,7 +32,7 @@ public class FilterCommand extends Command {
         requireNonNull(model);
         model.updateFilteredStudentList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW, model.getFilteredStudentList().size()));
+                String.format(Messages.MESSAGE_STUDENT_IS_LISTED, model.getFilteredStudentList().size()));
     }
 
     @Override
