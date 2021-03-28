@@ -282,7 +282,7 @@ _Details coming soon ..._
 | **Delete a Financial Record**       | `delete-fr FR_INDEX` <br> e.g., `delete-fr 10`                              |
 | **Find a Financial Record**         | `find-fr c/FR_CATEGORY` <br> e.g., `find-fr c/Food`                         |
 | **Set Monthly Budget**              | `set-bg BG_AMOUNT​` <br> e.g., `set-bg 100`                              |
-| **View a Month**                    | `view MM-YYYY` <br> e.g., `view 01-2021`                                    |
+| **View a Particular Month**         | `view MM-YYYY` <br> e.g., `view 01-2021`                                    |
 | **Reset Filter**                    | `reset-filter`                                                              |
 | **Help**                            | `help`                                                                      |
 | **Exit**                            | `exit`                                                                      |
