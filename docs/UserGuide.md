@@ -14,7 +14,7 @@ ClientBook can help _you_ accomplish your client management tasks faster than tr
 
 * [**1**. Why ClientBook?](#why-clientbook)
 * [**2.** Quick Start](#quick-start)
-* [**3.** Overview](#Overview)
+* [**3.** Overview](#overview)
   * [**3.1** Feature Summary](#feature-summary)
   * [**3.2** What information can we store for each client contact?](#what-information-can-we-store-for-each-client-contact)
 * [**4.** Feature Description](#feature-description)
@@ -57,7 +57,7 @@ If you are an experienced user, we have provided a convenient [Summary of Comman
 ## Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-   * To check if you have this installed or for instructions on how to install, refer to our FAQ [here](#FAQ).
+   * To check if you have this installed or for instructions on how to install, refer to our FAQ [here](#frequently-asked-questions).
 
 1. Download the latest `clientbook.jar` [here](https://github.com/AY2021S2-CS2103T-W15-2/tp/releases/tag/v1.2).
 1. Copy the file to the folder (we will be referring to this folder as the _home folder_) where you want to store the ClientBook application and your client information.
@@ -335,22 +335,18 @@ Optional identifiers can be added to show the list of matched clients with only 
 
 **Purpose**: Launches a popup window to show all the policies associated with the selected contact, if the selected contact has any policies.
 
-![without policy URL](images/without_policy_URL.png)
-
 **Format**: `policy INDEX`
 
 * Selects the client at the specified `INDEX`.
-* The index refers to the index number shown in the displayed client list.
-* The index must be more than 1, and less than or equal to the index of the last item in the displayed list.
+* `INDEX` refers to the index number shown in the displayed client list.
+* `INDEX` must be more than 1, and less than or equal to the index of the last item in the displayed list.
 
 **Examples**:
-* `list` followed by `policy 2` displays the policies associated with the 2nd person in the address book.
+* `policy 2` displays the policies associated with the 2nd person in the currently displayed list.
   
   ![with policy URL](images/with-policy-URL-annotate.png)
   
 * `find n/Bernice` followed by `policy 1` displays the policies associated with the 1st person in the results of the `find` command.
-  
-  ![with policy URL](images/find-then-policy.png)
 
 [Return to Table of Contents](#table-of-contents)
 <br><br>
@@ -363,17 +359,15 @@ Optional identifiers can be added to show the list of matched clients with only 
 **Format**: `delete INDEX`
 
 * Deletes the client at the specified `INDEX`.
-* The index refers to the index number shown in the displayed client list.
-* The index must be more than 1, and less than or equal to the index of the last item in the displayed list.
+* `INDEX` refers to the index number shown in the displayed client list.
+* `INDEX` must be more than 1, and less than or equal to the index of the last item in the displayed list.
 
 **Examples**:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `delete 2` deletes the 2nd person in the currently displayed list.
 
   ![delete 2](images/delete-2.png)
 
 * `find n/Charlotte` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
-  ![delete charlotte](images/delete-charlotte.png)
 
 [Return to Table of Contents](#table-of-contents)
 <br><br>
@@ -392,8 +386,6 @@ Optional identifiers can be added to show the list of matched clients with only 
 **Examples**:
 * Sort the current list of clients by name in **descending** number of insurance policies.
     * `sort -i -des`
-
-      ![sort](images/sort-policy-des.png)
 
 * Sort the current list of clients by name in **descending** alphabetical order.
     * `sort -n -des`
