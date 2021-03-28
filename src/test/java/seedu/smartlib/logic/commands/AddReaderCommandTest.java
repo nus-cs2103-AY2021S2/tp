@@ -229,6 +229,11 @@ public class AddReaderCommandTest {
         }
 
         @Override
+        public ObservableList<Record> getFilteredRecordList() {
+            return null;
+        }
+
+        @Override
         public void updateFilteredBookList(Predicate<Book> predicate) {
 
         }

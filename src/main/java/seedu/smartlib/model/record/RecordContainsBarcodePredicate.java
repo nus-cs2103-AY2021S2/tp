@@ -43,8 +43,8 @@ public class RecordContainsBarcodePredicate implements Predicate<Record> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.smartlib.model.record.RecordContainsBarcodePredicate // instanceof handles nulls
-                && barcode.equals(((seedu.smartlib.model.record.RecordContainsBarcodePredicate) other).barcode)); // state check
+                || (other instanceof seedu.smartlib.model.record.RecordContainsBarcodePredicate
+                && barcode.equals(((seedu.smartlib.model.record.RecordContainsBarcodePredicate) other).barcode));
     }
 
 }

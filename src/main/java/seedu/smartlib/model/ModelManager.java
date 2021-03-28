@@ -428,6 +428,16 @@ public class ModelManager implements Model {
     }
 
     /**
+     * Returns an unmodifiable view of the filtered record list.
+     *
+     * @return an unmodifiable view of the filtered record list.
+     */
+    @Override
+    public ObservableList<Record> getFilteredRecordList() {
+        return filteredRecords;
+    }
+
+    /**
      * Returns an unmodifiable view of the filtered book list.
      *
      * @return an unmodifiable view of the filtered book list.

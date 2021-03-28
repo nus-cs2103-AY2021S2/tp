@@ -179,6 +179,11 @@ public interface Model {
     ObservableList<Book> getFilteredBookList();
 
     /**
+     * Returns an unmodifiable view of the filtered record list.
+     */
+    ObservableList<Record> getFilteredRecordList();
+
+    /**
      * Updates the filter of the filtered book list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
@@ -198,5 +203,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredRecordList(Predicate<Record> predicate);
+
 
 }
