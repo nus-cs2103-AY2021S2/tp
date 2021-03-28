@@ -15,9 +15,14 @@ and distributing tasks will never be headache :smile:
 * [Quick Start](#quick-start)  
 * [Features](#features)
   + [General Features](#general)
+    - [Clear all data in application](#clear)
   + [Member Related Features](#members)
   + [Task Related Features](#tasks)
-
+* [Data Storage](#dataStorage)
+  + [Saving the data](#savingData)
+  + [Editing the data file](#editData)
+* [FAQ](#faq)
+* [Summary](#summary)
 
 --------------------------------------------------------------------------------------------------------------------
 <a name="quick-start"></a>
@@ -340,6 +345,7 @@ Format: `viewUncompletedTasks`
 Examples: 
 * `viewUncompletedTasks`
 
+<a name="findTasksFor"></a>
 ### 13. Find Tasks Assigned to a Single Member: `findMembers`
 
 Find all tasks assigned to a single Member
@@ -355,12 +361,15 @@ Examples:
 * `findTasksFor Bernice Teo Hui Min`
 
 --------------------------------------------------------------------------------------------------------------------
+<a name="dataStorage"></a>
 ## Data Storage 
 
+<a name="savingData"></a>
 ### Saving the data
 
 HEY MATEz data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
+<a name="editData"></a>
 ### Editing the data file
 
 HEY MATEz data is saved as a JSON file `[JAR file location]/data/heymatez.json`. Advanced users are welcome to update data directly by editing that data file.
@@ -371,6 +380,7 @@ If your changes to the data file makes its format invalid, HEY MATEz will discar
 
 --------------------------------------------------------------------------------------------------------------------
 
+<a name="faq"></a>
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
@@ -378,6 +388,7 @@ If your changes to the data file makes its format invalid, HEY MATEz will discar
 
 --------------------------------------------------------------------------------------------------------------------
 
+<a name="summary"></a>
 ## Command summary
 
 Action | Format, Examples
