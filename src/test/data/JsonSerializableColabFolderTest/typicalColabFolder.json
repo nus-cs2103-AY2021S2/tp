@@ -1,6 +1,6 @@
 {
   "_comment": "CoLAB save file which contains the same values as in TypicalColabFolder#getTypicalColabFolder()",
-  "persons" : [ {
+  "contacts" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",

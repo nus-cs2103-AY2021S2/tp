@@ -12,9 +12,9 @@ import seedu.address.model.contact.Contact;
  * @@author {se-edu}-reused
  * Reused from AB4 https://github.com/se-edu/addressbook-level4/
  *
- * Provides a handle to a person card in the person list panel.
+ * Provides a handle to a {@code ContactCard} in the contact list panel.
  */
-public class PersonCardHandle extends NodeHandle<Node> {
+public class ContactCardHandle extends NodeHandle<Node> {
     private static final String ID_FIELD_ID = "#id";
     private static final String NAME_FIELD_ID = "#name";
     private static final String ADDRESS_FIELD_ID = "#address";
@@ -30,10 +30,10 @@ public class PersonCardHandle extends NodeHandle<Node> {
     private final List<Label> tagLabels;
 
     /**
-     * Constructs a {@code PersonCardHandle} handler object.
-     * @param cardNode Node of {@code PersonCard}.
+     * Constructs a {@code ContactCardHandle} handler object.
+     * @param cardNode Node of {@code ContactCard}.
      */
-    public PersonCardHandle(Node cardNode) {
+    public ContactCardHandle(Node cardNode) {
         super(cardNode);
 
         idLabel = getChildNode(ID_FIELD_ID);
@@ -78,7 +78,7 @@ public class PersonCardHandle extends NodeHandle<Node> {
     }
 
     /**
-     * Returns true if this handle contains {@code person}.
+     * Returns true if this handle contains {@code contact}.
      */
     public boolean equals(Contact contact) {
         return getName().equals(contact.getName().fullName)

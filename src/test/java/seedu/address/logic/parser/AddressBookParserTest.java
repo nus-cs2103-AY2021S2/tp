@@ -33,7 +33,7 @@ import seedu.address.logic.commands.DeleteEventCommand;
 import seedu.address.logic.commands.DeleteProjectCommand;
 import seedu.address.logic.commands.DeleteTodoCommand;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditContactDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -48,11 +48,11 @@ import seedu.address.model.task.Interval;
 import seedu.address.model.task.deadline.Deadline;
 import seedu.address.model.task.repeatable.Event;
 import seedu.address.model.task.todo.Todo;
+import seedu.address.testutil.ContactBuilder;
+import seedu.address.testutil.ContactUtil;
 import seedu.address.testutil.DeadlineBuilder;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditContactDescriptorBuilder;
 import seedu.address.testutil.EventBuilder;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.TodoBuilder;
 
 public class AddressBookParserTest {
@@ -61,17 +61,17 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Contact contact = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(contact));
+        Contact contact = new ContactBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(ContactUtil.getAddCommand(contact));
         assertEquals(new AddCommand(contact), command);
     }
 
     @Test
     public void parseCommand_addCto() throws Exception {
-        Contact contact = new PersonBuilder().build();
+        Contact contact = new ContactBuilder().build();
         Index projectIndex = Index.fromOneBased(1);
         AddContactToCommand command = (AddContactToCommand) parser.parseCommand(
-                PersonUtil.getAddCtoCommand(projectIndex, contact)
+                ContactUtil.getAddCtoCommand(projectIndex, contact)
         );
         assertEquals(new AddContactToCommand(projectIndex, contact), command);
     }
@@ -181,10 +181,10 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Contact contact = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(contact).build();
+        Contact contact = new ContactBuilder().build();
+        EditContactDescriptor descriptor = new EditContactDescriptorBuilder(contact).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + INDEX_FIRST.getOneBased() + " " + ContactUtil.getEditContactDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST, descriptor), command);
     }
 

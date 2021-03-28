@@ -172,7 +172,7 @@ public class ProjectDisplayPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonDisplayCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Contact} using a {@code ContactDisplayCard}.
      */
     class ParticipantListViewCell extends ListCell<Contact> {
         @Override
@@ -183,7 +183,7 @@ public class ProjectDisplayPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(contact, getIndex() + 1).getRoot());
+                setGraphic(new ContactCard(contact, getIndex() + 1).getRoot());
             }
         }
     }

@@ -36,8 +36,8 @@ public class SampleDataUtil {
 
     public static ReadOnlyColabFolder getSampleColabFolder() {
         ColabFolder sampleAb = new ColabFolder();
-        for (Contact sampleContact : getSamplePersons()) {
-            sampleAb.addPerson(sampleContact);
+        for (Contact sampleContact : getSampleContacts()) {
+            sampleAb.addContact(sampleContact);
         }
         for (Project sampleProject : getSampleProjects()) {
             sampleAb.addProject(sampleProject);
@@ -45,7 +45,7 @@ public class SampleDataUtil {
         return sampleAb;
     }
 
-    public static Contact[] getSamplePersons() {
+    public static Contact[] getSampleContacts() {
         return new Contact[] {
             new Contact(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),

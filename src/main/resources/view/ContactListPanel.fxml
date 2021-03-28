@@ -6,5 +6,5 @@
 
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <Label text="Contacts" styleClass="cell_huge_label"/>
-  <ListView fx:id="personListView" VBox.vgrow="ALWAYS"/>
+  <ListView fx:id="contactListView" VBox.vgrow="ALWAYS"/>
 </VBox>

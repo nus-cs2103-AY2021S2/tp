@@ -7,7 +7,7 @@ import seedu.address.model.project.Project;
 /**
  * A utility class to help with building {@code ColabFolder} objects.
  * Example usage: <br>
- *     {@code ColabFolder ab = new ColabFolderBuilder().withPerson("John", "Doe").build();}
+ *     {@code ColabFolder ab = new ColabFolderBuilder().withContact("John", "Doe").build();}
  */
 public class ColabFolderBuilder {
 
@@ -22,17 +22,17 @@ public class ColabFolderBuilder {
     }
 
     /**
-     * Adds a new {@code Person} to the {@code ColabFolder} that we are building.
+     * Adds a new {@code Contact} to the {@code ColabFolder} that we are building.
      */
-    public ColabFolderBuilder withPerson(Contact contact) {
-        colabFolder.addPerson(contact);
+    public ColabFolderBuilder withContact(Contact contact) {
+        colabFolder.addContact(contact);
         return this;
     }
 
     /**
      * Adds a new {@code Project} to the {@code ColabFolder} that we are building.
      */
-    public ColabFolderBuilder withPerson(Project project) {
+    public ColabFolderBuilder withContact(Project project) {
         colabFolder.addProject(project);
         return this;
     }

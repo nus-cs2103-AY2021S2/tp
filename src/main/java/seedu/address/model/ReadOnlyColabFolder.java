@@ -10,10 +10,10 @@ import seedu.address.model.project.Project;
 public interface ReadOnlyColabFolder {
 
     /**
-     * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
+     * Returns an unmodifiable view of the contact list.
+     * This list will not contain any duplicate contacts.
      */
-    ObservableList<Contact> getPersonList();
+    ObservableList<Contact> getContactList();
 
     /**
      * Returns an unmodifiable view of the projects list.

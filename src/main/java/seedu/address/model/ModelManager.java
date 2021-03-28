@@ -36,7 +36,7 @@ public class ModelManager implements Model {
 
         this.colabFolder = new ColabFolder(colabFolder);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredContacts = new FilteredList<>(this.colabFolder.getPersonList());
+        filteredContacts = new FilteredList<>(this.colabFolder.getContactList());
         filteredProjects = new FilteredList<>(this.colabFolder.getProjectsList());
     }
 
@@ -115,30 +115,30 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Contact contact) {
+    public boolean hasContact(Contact contact) {
         requireNonNull(contact);
 
-        return colabFolder.hasPerson(contact);
+        return colabFolder.hasContact(contact);
     }
 
     @Override
-    public void deletePerson(Contact target) {
+    public void deleteContact(Contact target) {
         requireNonNull(target);
 
-        colabFolder.removePerson(target);
+        colabFolder.removeContact(target);
     }
 
     @Override
-    public void addPerson(Contact contact) {
-        colabFolder.addPerson(contact);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addContact(Contact contact) {
+        colabFolder.addContact(contact);
+        updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
     }
 
     @Override
-    public void setPerson(Contact target, Contact editedContact) {
+    public void setContact(Contact target, Contact editedContact) {
         requireAllNonNull(target, editedContact);
 
-        colabFolder.setPerson(target, editedContact);
+        colabFolder.setContact(target, editedContact);
     }
 
     @Override
@@ -170,19 +170,19 @@ public class ModelManager implements Model {
         colabFolder.setProject(target, editedProject);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Contact List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Contact} backed by the internal list of
      * {@code versionedColabFolder}.
      */
     @Override
-    public ObservableList<Contact> getFilteredPersonList() {
+    public ObservableList<Contact> getFilteredContactList() {
         return filteredContacts;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Contact> predicate) {
+    public void updateFilteredContactList(Predicate<Contact> predicate) {
         requireNonNull(predicate);
 
         filteredContacts.setPredicate(predicate);

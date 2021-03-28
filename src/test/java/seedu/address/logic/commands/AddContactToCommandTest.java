@@ -19,7 +19,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.project.Project;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.ContactBuilder;
 
 public class AddContactToCommandTest {
 
@@ -33,7 +33,7 @@ public class AddContactToCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() throws Exception {
         Project validProject = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
-        Contact validContact = new PersonBuilder().withName("Tom").build();
+        Contact validContact = new ContactBuilder().withName("Tom").build();
 
         CommandResult commandResult = new AddContactToCommand(INDEX_FIRST, validContact).execute(model);
 
@@ -43,7 +43,7 @@ public class AddContactToCommandTest {
 
     @Test
     public void execute_invalidProjectIndex_throwsCommandException() {
-        Contact contactToAdd = new PersonBuilder().build();
+        Contact contactToAdd = new ContactBuilder().build();
         AddContactToCommand addContactToCommand = new AddContactToCommand(INDEX_THIRD, contactToAdd);
 
         assertThrows(
@@ -53,8 +53,8 @@ public class AddContactToCommandTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Contact contactToAdd = new PersonBuilder().build();
+    public void execute_duplicateContact_throwsCommandException() {
+        Contact contactToAdd = new ContactBuilder().build();
         Project projectToAddTo = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         AddContactToCommand addContactToCommand = new AddContactToCommand(INDEX_FIRST, contactToAdd);
 
@@ -71,7 +71,7 @@ public class AddContactToCommandTest {
 
     @Test
     public void equals() {
-        Contact contactToAdd = new PersonBuilder().build();
+        Contact contactToAdd = new ContactBuilder().build();
         AddContactToCommand addOneToOneCommand = new AddContactToCommand(INDEX_FIRST, contactToAdd);
         AddContactToCommand addOneToTwoCommand = new AddContactToCommand(INDEX_SECOND, contactToAdd);
 
@@ -88,7 +88,7 @@ public class AddContactToCommandTest {
         // null -> returns false
         assertNotEquals(addOneToOneCommand, null);
 
-        // different person -> returns false
+        // different contact -> returns false
         assertNotEquals(addOneToTwoCommand, addOneToOneCommand);
     }
 }

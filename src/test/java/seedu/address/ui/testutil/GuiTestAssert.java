@@ -8,9 +8,9 @@ import java.util.stream.Collectors;
 
 import guitests.guihandles.CompletableDeadlineCardHandle;
 import guitests.guihandles.CompletableTodoCardHandle;
+import guitests.guihandles.ContactCardHandle;
+import guitests.guihandles.ContactListPanelHandle;
 import guitests.guihandles.EventCardHandle;
-import guitests.guihandles.PersonCardHandle;
-import guitests.guihandles.PersonListPanelHandle;
 import guitests.guihandles.ProjectCardHandle;
 import guitests.guihandles.ResultDisplayHandle;
 import seedu.address.model.contact.Contact;
@@ -28,7 +28,7 @@ public class GuiTestAssert {
     /**
      * Asserts that {@code actualCard} displays the same values as {@code expectedCard}.
      */
-    public static void assertCardEquals(PersonCardHandle expectedCard, PersonCardHandle actualCard) {
+    public static void assertCardEquals(ContactCardHandle expectedCard, ContactCardHandle actualCard) {
         assertEquals(expectedCard.getId(), actualCard.getId());
         assertEquals(expectedCard.getAddress(), actualCard.getAddress());
         assertEquals(expectedCard.getEmail(), actualCard.getEmail());
@@ -38,9 +38,9 @@ public class GuiTestAssert {
     }
 
     /**
-     * Asserts that {@code actualCard} displays the details of {@code expectedPerson}.
+     * Asserts that {@code actualCard} displays the details of {@code expectedContact}.
      */
-    public static void assertCardDisplaysPerson(Contact expectedContact, PersonCardHandle actualCard) {
+    public static void assertCardDisplaysContact(Contact expectedContact, ContactCardHandle actualCard) {
         assertEquals(expectedContact.getName().fullName, actualCard.getName());
         assertEquals(expectedContact.getPhone().value, actualCard.getPhone());
         assertEquals(expectedContact.getEmail().value, actualCard.getEmail());
@@ -89,29 +89,29 @@ public class GuiTestAssert {
     }
 
     /**
-     * Asserts that the list in {@code personListPanelHandle} displays the details of {@code persons} correctly and
+     * Asserts that the list in {@code contactListPanelHandle} displays the details of {@code contacts} correctly and
      * in the correct order.
      */
-    public static void assertListMatching(PersonListPanelHandle personListPanelHandle, Contact... contacts) {
+    public static void assertListMatching(ContactListPanelHandle contactListPanelHandle, Contact... contacts) {
         for (int i = 0; i < contacts.length; i++) {
-            personListPanelHandle.navigateToCard(i);
-            assertCardDisplaysPerson(contacts[i], personListPanelHandle.getPersonCardHandle(i));
+            contactListPanelHandle.navigateToCard(i);
+            assertCardDisplaysContact(contacts[i], contactListPanelHandle.getContactCardHandle(i));
         }
     }
 
     /**
-     * Asserts that the list in {@code personListPanelHandle} displays the details of {@code persons} correctly and
+     * Asserts that the list in {@code contactListPanelHandle} displays the details of {@code contacts} correctly and
      * in the correct order.
      */
-    public static void assertListMatching(PersonListPanelHandle personListPanelHandle, List<Contact> contacts) {
-        assertListMatching(personListPanelHandle, contacts.toArray(new Contact[0]));
+    public static void assertListMatching(ContactListPanelHandle contactListPanelHandle, List<Contact> contacts) {
+        assertListMatching(contactListPanelHandle, contacts.toArray(new Contact[0]));
     }
 
     /**
-     * Asserts the size of the list in {@code personListPanelHandle} equals to {@code size}.
+     * Asserts the size of the list in {@code contactListPanelHandle} equals to {@code size}.
      */
-    public static void assertListSize(PersonListPanelHandle personListPanelHandle, int size) {
-        int numberOfPeople = personListPanelHandle.getListSize();
+    public static void assertListSize(ContactListPanelHandle contactListPanelHandle, int size) {
+        int numberOfPeople = contactListPanelHandle.getListSize();
         assertEquals(size, numberOfPeople);
     }
 

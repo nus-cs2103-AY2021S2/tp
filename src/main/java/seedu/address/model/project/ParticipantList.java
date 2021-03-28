@@ -100,7 +100,7 @@ public class ParticipantList {
      * @return whether the {@code Person} is in this {@code ParticipantList}.
      */
     public boolean contains(Contact contact) {
-        return stream().anyMatch(contact::isSamePerson);
+        return stream().anyMatch(contact::isSameContact);
     }
 
     @Override

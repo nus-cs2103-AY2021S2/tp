@@ -120,13 +120,13 @@ public class TypicalProjects {
     }
 
     private static ParticipantList getCS2103TParticipantsList() {
-        Contact danh = new PersonBuilder().withName("Danh").withAddress("1 CoLAB Road")
+        Contact danh = new ContactBuilder().withName("Danh").withAddress("1 CoLAB Road")
                 .withEmail("danh@colab.com").withPhone("91234561").build();
-        Contact ruochen = new PersonBuilder().withName("Ruochen").withAddress("1 CoLAB Road")
+        Contact ruochen = new ContactBuilder().withName("Ruochen").withAddress("1 CoLAB Road")
                 .withEmail("ruochen@colab.com").withPhone("91234562").build();
-        Contact samuel = new PersonBuilder().withName("Samuel").withAddress("1 CoLAB Road")
+        Contact samuel = new ContactBuilder().withName("Samuel").withAddress("1 CoLAB Road")
                 .withEmail("samuel@colab.com").withPhone("91234563").build();
-        Contact vevek = new PersonBuilder().withName("Vevek").withAddress("1 CoLAB Road")
+        Contact vevek = new ContactBuilder().withName("Vevek").withAddress("1 CoLAB Road")
                 .withEmail("vevek@colab.com").withPhone("91234564").build();
 
         ParticipantList participantList = new ParticipantList();
@@ -187,13 +187,13 @@ public class TypicalProjects {
     }
 
     private static ParticipantList getCS2101ParticipantsList() throws DateConversionException {
-        Contact danh = new PersonBuilder().withName("Danh").withAddress("1 CoLAB Road")
+        Contact danh = new ContactBuilder().withName("Danh").withAddress("1 CoLAB Road")
                 .withEmail("danh@colab.com").withPhone("91234561").build();
-        Contact ruochen = new PersonBuilder().withName("Ruochen").withAddress("1 CoLAB Road")
+        Contact ruochen = new ContactBuilder().withName("Ruochen").withAddress("1 CoLAB Road")
                 .withEmail("ruochen@colab.com").withPhone("91234562").build();
-        Contact samuel = new PersonBuilder().withName("Samuel").withAddress("1 CoLAB Road")
+        Contact samuel = new ContactBuilder().withName("Samuel").withAddress("1 CoLAB Road")
                 .withEmail("samuel@colab.com").withPhone("91234563").build();
-        Contact vevek = new PersonBuilder().withName("Vevek").withAddress("1 CoLAB Road")
+        Contact vevek = new ContactBuilder().withName("Vevek").withAddress("1 CoLAB Road")
                 .withEmail("vevek@colab.com").withPhone("91234564").build();
 
         ParticipantList participantList = new ParticipantList();

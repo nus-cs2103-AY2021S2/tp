@@ -48,7 +48,7 @@ public class DeleteContactFromCommand extends Command {
         Project projectToEdit = lastShownList.get(targetProjectIndex.getZeroBased());
 
         if (targetContactIndex.getZeroBased() >= projectToEdit.getParticipants().size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX);
         }
         Contact contactToDelete = projectToEdit.getParticipant(targetContactIndex.getZeroBased());
 

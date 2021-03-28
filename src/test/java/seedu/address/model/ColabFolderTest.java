@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalColabFolder.getTypicalColabFolder;
-import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalContacts.ALICE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,10 +21,10 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.contact.Contact;
-import seedu.address.model.contact.exceptions.DuplicatePersonException;
+import seedu.address.model.contact.exceptions.DuplicateContactException;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.exceptions.DuplicateProjectException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.ContactBuilder;
 import seedu.address.testutil.ProjectBuilder;
 
 public class ColabFolderTest {
@@ -33,7 +33,7 @@ public class ColabFolderTest {
 
     @Test
     public void constructor_listsAreEmpty_success() {
-        assertEquals(Collections.emptyList(), colabFolder.getPersonList());
+        assertEquals(Collections.emptyList(), colabFolder.getContactList());
         assertEquals(Collections.emptyList(), colabFolder.getProjectsList());
     }
 
@@ -50,14 +50,14 @@ public class ColabFolderTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
-        Contact editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+    public void resetData_withDuplicateContact_throwsDuplicateContactException() {
+        // Two contacts with the same identity fields
+        Contact editedAlice = new ContactBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Contact> newContacts = Arrays.asList(ALICE, editedAlice);
         ColabFolderStub newData = new ColabFolderStub(newContacts, new ArrayList<>());
 
-        assertThrows(DuplicatePersonException.class, () -> colabFolder.resetData(newData));
+        assertThrows(DuplicateContactException.class, () -> colabFolder.resetData(newData));
     }
 
     @Test
@@ -69,8 +69,8 @@ public class ColabFolderTest {
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> colabFolder.hasPerson(null));
+    public void hasContact_nullContact_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> colabFolder.hasContact(null));
     }
 
     @Test
@@ -79,8 +79,8 @@ public class ColabFolderTest {
     }
 
     @Test
-    public void hasPerson_personNotInColabFolder_returnsFalse() {
-        assertFalse(colabFolder.hasPerson(ALICE));
+    public void hasContact_contactNotInColabFolder_returnsFalse() {
+        assertFalse(colabFolder.hasContact(ALICE));
     }
 
     @Test
@@ -89,9 +89,9 @@ public class ColabFolderTest {
     }
 
     @Test
-    public void hasPerson_personInColabFolder_returnsTrue() {
-        colabFolder.addPerson(ALICE);
-        assertTrue(colabFolder.hasPerson(ALICE));
+    public void hasContact_contactInColabFolder_returnsTrue() {
+        colabFolder.addContact(ALICE);
+        assertTrue(colabFolder.hasContact(ALICE));
     }
 
     @Test
@@ -101,16 +101,16 @@ public class ColabFolderTest {
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInColabFolder_returnsTrue() {
-        colabFolder.addPerson(ALICE);
-        Contact editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+    public void hasContact_contactWithSameIdentityFieldsInColabFolder_returnsTrue() {
+        colabFolder.addContact(ALICE);
+        Contact editedAlice = new ContactBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(colabFolder.hasPerson(editedAlice));
+        assertTrue(colabFolder.hasContact(editedAlice));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> colabFolder.getPersonList().remove(0));
+    public void getContactList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> colabFolder.getContactList().remove(0));
     }
 
     @Test
@@ -131,7 +131,7 @@ public class ColabFolderTest {
         }
 
         @Override
-        public ObservableList<Contact> getPersonList() {
+        public ObservableList<Contact> getContactList() {
             return contacts;
         }
 
@@ -154,7 +154,7 @@ public class ColabFolderTest {
         // objects are equal according to equals(): _must_ be equal
         assertEquals(hashcode1, colabFolder2.hashCode());
 
-        colabFolder1.removePerson(ALICE);
+        colabFolder1.removeContact(ALICE);
         int hashcode3 = colabFolder1.hashCode();
 
         // objects are unequal according to equals(): _should_ be distinct

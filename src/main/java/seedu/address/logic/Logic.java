@@ -32,8 +32,8 @@ public interface Logic {
      */
     ReadOnlyColabFolder getColabFolder();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Contact> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of contacts */
+    ObservableList<Contact> getFilteredContactList();
 
     /**
      * Returns the user prefs' CoLAB folder file path.

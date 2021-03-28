@@ -11,33 +11,33 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddContactToCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditContactDescriptor;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.tag.Tag;
 
 /**
- * A utility class for Person.
+ * A utility class for Contact.
  */
-public class PersonUtil {
+public class ContactUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code Contact}.
      */
     public static String getAddCommand(Contact contact) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(contact);
+        return AddCommand.COMMAND_WORD + " " + getContactDetails(contact);
     }
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code Contact}.
      */
     public static String getAddCtoCommand(Index projectIndex, Contact contact) {
-        return AddContactToCommand.COMMAND_WORD + " " + projectIndex.getOneBased() + " " + getPersonDetails(contact);
+        return AddContactToCommand.COMMAND_WORD + " " + projectIndex.getOneBased() + " " + getContactDetails(contact);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code Contact}'s details.
      */
-    public static String getPersonDetails(Contact contact) {
+    public static String getContactDetails(Contact contact) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + contact.getName().fullName + " ");
         sb.append(PREFIX_PHONE + contact.getPhone().value + " ");
@@ -50,9 +50,9 @@ public class PersonUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditContactDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
+    public static String getEditContactDescriptorDetails(EditContactDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));

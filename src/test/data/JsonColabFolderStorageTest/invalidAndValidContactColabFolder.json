@@ -1,7 +1,12 @@
 {
-  "persons": [ {
-    "name": "Person with invalid name field: Ha!ns Mu@ster",
+  "contacts" : [ {
+    "name": "Valid Contact",
     "phone": "9482424",
+    "email": "hans@example.com",
+    "address": "4th street"
+  }, {
+    "name": "Contact With Invalid Phone Field",
+    "phone": "948asdf2424",
     "email": "hans@example.com",
     "address": "4th street"
   } ],

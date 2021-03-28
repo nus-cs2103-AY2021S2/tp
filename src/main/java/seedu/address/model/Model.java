@@ -13,7 +13,7 @@ import seedu.address.model.project.Project;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Contact> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Contact> PREDICATE_SHOW_ALL_CONTACTS = unused -> true;
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<Project> PREDICATE_SHOW_ALL_PROJECTS = unused -> true;
@@ -61,39 +61,40 @@ public interface Model {
     ReadOnlyColabFolder getColabFolder();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the CoLAB folder.
+     * Returns true if a Contact with the same identity as {@code contact} exists in the CoLAB folder.
      */
-    boolean hasPerson(Contact contact);
+    boolean hasContact(Contact contact);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the CoLAB folder.
+     * Deletes the given Contact.
+     * The Contact must exist in the CoLAB folder.
      */
-    void deletePerson(Contact target);
+    void deleteContact(Contact target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the CoLAB folder.
+     * Adds the given Contact.
+     * {@code contact} must not already exist in the CoLAB folder.
      */
-    void addPerson(Contact contact);
+    void addContact(Contact contact);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given Contact {@code target} with {@code editedContact}.
      * {@code target} must exist in the CoLAB folder.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the CoLAB folder.
+     * The Contact identity of {@code editedContact} must not be the same as
+     * another existing contact in the CoLAB folder.
      */
-    void setPerson(Contact target, Contact editedContact);
+    void setContact(Contact target, Contact editedContact);
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Contact List Accessors =============================================================
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Contact> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered contact list */
+    ObservableList<Contact> getFilteredContactList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered contact list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Contact> predicate);
+    void updateFilteredContactList(Predicate<Contact> predicate);
 
     //=========== Projects File ==============================================================================
 

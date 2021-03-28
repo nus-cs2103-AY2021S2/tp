@@ -22,7 +22,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.project.Project;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.ContactBuilder;
 import seedu.address.testutil.ProjectBuilder;
 
 public class DeleteContactFromCommandTest {
@@ -36,7 +36,7 @@ public class DeleteContactFromCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() throws DateConversionException {
-        Contact contactToDelete = new PersonBuilder().build();
+        Contact contactToDelete = new ContactBuilder().build();
         Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         Project editedProject = new ProjectBuilder(projectToEdit).build();
         editedProject.addParticipant(contactToDelete);
@@ -61,7 +61,7 @@ public class DeleteContactFromCommandTest {
 
     @Test
     public void execute_invalidProjectIndex_throwsCommandException() {
-        Contact contactToDelete = new PersonBuilder().build();
+        Contact contactToDelete = new ContactBuilder().build();
         Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         Project editedProject = new ProjectBuilder(projectToEdit).build();
         editedProject.addParticipant(contactToDelete);
@@ -84,7 +84,7 @@ public class DeleteContactFromCommandTest {
 
     @Test
     public void equals() {
-        Contact contactToDelete = new PersonBuilder().build();
+        Contact contactToDelete = new ContactBuilder().build();
         Project project1ToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         Project editedProject1 = new ProjectBuilder(project1ToEdit).build();
         editedProject1.addParticipant(contactToDelete);
@@ -128,7 +128,7 @@ public class DeleteContactFromCommandTest {
         // null -> returns false
         assertNotEquals(deleteContactFromProject1Command, null);
 
-        // different person -> returns false
+        // different contact -> returns false
         assertNotEquals(deleteContactFromProject1Command, deleteContactFromProject2Command);
     }
 

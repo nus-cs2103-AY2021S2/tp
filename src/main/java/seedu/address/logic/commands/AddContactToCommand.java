@@ -46,7 +46,7 @@ public class AddContactToCommand extends Command {
     private final Contact contactToAdd;
 
     /**
-     * Creates an AddContactToCommand to add the specified {@code Person} to the specified {@code Project}
+     * Creates an AddContactToCommand to add the specified {@code Contact} to the specified {@code Project}
      */
     public AddContactToCommand(Index projectIndex, Contact contact) {
         requireAllNonNull(projectIndex, contact);
