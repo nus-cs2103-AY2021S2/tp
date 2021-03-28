@@ -20,18 +20,18 @@ import seedu.address.model.task.TaskStatus;
 import seedu.address.model.task.Title;
 
 /**
- * Clear all assignees from a task identified using it's displayed index from the address book.
+ * Remove all members assigned to a task, identified by the task's index in the task list.
  */
 public class ClearAssigneesCommand extends Command {
-    public static final String COMMAND_WORD = "clearAssignees";
+    public static final String COMMAND_WORD = "removeAssignees";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the assignees from the task identified by the index number used "
+            + ": Removes all members assigned to a task, identified by the task's index "
             + " in the displayed task list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_CLEARED_ASSIGNEES_SUCCESS = "Cleared Assignees from Task: %1$s";
+    public static final String MESSAGE_CLEARED_ASSIGNEES_SUCCESS = "Removed all Members Assigned to Task: %1$s";
 
     private final Index targetIndex;
 

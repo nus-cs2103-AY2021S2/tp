@@ -134,7 +134,7 @@ Example: `viewMembers `
 
 Format: `editMember NAME_IN_LIST [-n NEW_NAME] [-p NEW_PHONE_NUMBER] [-e NEW_EMAIL] [-r ROLE]`
 
-Example: `editMember Alice -n Alice Lim -e newAlice@gmail.com -r Events head`
+Example: `editMember Alice -e newAlice@gmail.com -r Events head`
 
 * Edits the member at the specified NAME_IN_LIST.
 * The fields NEW_NAME, NEW_PHONE_NUMBER, NEW_EMAIL, NEW_ROLE are all optional
@@ -175,7 +175,7 @@ Example: `addTask CCA Timeline -d Plan semester's timeline -b 2021-04-04 -s comp
 :bulb: **Tip:**
 * A task can have any number of assignees (including 0).   
 * To add multiple assignees, simply use multiple assignees prefix. 
-* Example: [-a ASSIGNEE] [-a MORE_ASSIGNEE]
+* Example: addTask TITLE ... [-a ASSIGNEE] [-a MORE_ASSIGNEE]
 </div>
 
 <a name="deleteTask"></a>
@@ -212,7 +212,7 @@ Example: `editTask 1 -n Plan meeting -d Plan board meeting -b 2021-04-04`
 :bulb: **Tip:**
 * Any number of assignees can be specified here (including 0).   
 * To specify multiple assignees, simply use multiple assignees prefix. 
-* Example: [-a ASSIGNEE] [-a MORE_ASSIGNEE]
+* Example: editTask INDEX [-a ASSIGNEE] [-a MORE_ASSIGNEE]
 </div>
 
 <a name="doneTask"></a>
@@ -265,9 +265,9 @@ Format: `findPriority PRIORITY`
 Example: `findPriority high`
 
 <a name="removeAssignees"></a>
-### 10. Remove all Assignees from a Task: `removeAssignees`
+### 10. Remove all Members Assigned to a Task: `removeAssignees`
 
-Remove all assignees from a task by specifying the task's INDEX.
+Remove all members assigned to a task by specifying the task's INDEX.
 
 Format: `removeAssignees INDEX`
 
@@ -410,21 +410,21 @@ Action | Format, Examples
 **Clear Data** | `clear`
 **Exit Program** | `exit`
 ||
-**Add Member** | `addMember NAME -p PHONE_NUMBER -e EMAIL -r ROLE` <br> e.g., `addMember Dylan -p 64529356 -e dylan@gmail.com -r Member`
+**Add Member** | `addMember NAME -p PHONE_NUMBER -e EMAIL [-r ROLE]` <br> e.g., `addMember Dylan -p 64529356 -e dylan@gmail.com -r Member`
 **Delete Member** | `deleteMember NAME` <br> e.g., `deleteMember Rachel`
 **View Members** | `viewMembers`<br> e.g., `viewMembers`
-**Edit Member** | `editMember NAME_IN_LIST -n NEW_NAME -p NEW_PHONE_NUMBER -e NEW_EMAIL -r ROLE​`<br> e.g.,`editMember Alice -n Alice Lim -e newAlice@gmail.com -r Events head`
+**Edit Member** | `editMember NAME_IN_LIST [-n NEW_NAME] [-p NEW_PHONE_NUMBER] [-e NEW_EMAIL] [-r ROLE]`<br> e.g.,`editMember Alice -e newAlice@gmail.com -r Events head`
 **Find Members by Keywords** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `findMembers Rachel 98562154 john@gmail.com`
 ||
-**Add Task** | `addTask TITLE -d DESCRIPTION -b DEADLINE -s STATUS -p PRIORITY` <br> e.g., Example: `addTask CCA Timeline -d Plan semester's timeline -b 2021-04-04 -s completed -p high -a Rachel`
+**Add Task** | `addTask TITLE -d DESCRIPTION -b DEADLINE [-s STATUS] [-p PRIORITY] [-a ASSIGNEE]` <br> e.g., Example: `addTask CCA Timeline -d Plan semester's timeline -b 2021-04-04 -s completed -p high -a Rachel`
 **Delete Task** | `deleteTask INDEX` <br> e.g., `deleteTask 1`
 **View Tasks** | `viewTasks`<br> e.g., `viewTasks`
-**Edit Task** | `editTask INDEX -n NEW_TITLE -d NEW_DESCRIPTION -b NEW_DEADLINE -s NEW_STATUS -p NEW_PRIORITY`<br> e.g.,`editTask 1 -n Plan meeting -d Plan board meeting -b 2021-04-04`
+**Edit Task** | `editTask INDEX [-n NEW_TITLE] [-d NEW_DESCRIPTION] [-b NEW_DEADLINE] [-s NEW_STATUS] [-p NEW_PRIORITY] [-a NEW_ASSIGNEE]`<br> e.g.,`editTask 1 -n Plan meeting -d Plan board meeting -b 2021-04-04`
 **Mark Task as Completed** | `done INDEX`<br> e.g., `done 1`
 **Mark Task as Uncompleted** | `undo INDEX`<br> e.g., `undo 1`
-**Find Tasks by Keywords** | `findTasks KEYWORD MORE_KEYWORDS`<br> e.g., `findTasks Meeting Proposal Draft`
+**Find Tasks by Keywords** | `findTasks KEYWORD [MORE_KEYWORDS]`<br> e.g., `findTasks Meeting Proposal Draft`
 **Find Tasks by Priority** | `findPriority PRIORITY`<br> e.g., `findPriority HIGH`
 **Find Tasks by Deadline** | `findBefore DATE`<br> e.g., `findBefore 2021-04-05`
-**Remove all Assignees from a Task** | `removeAssignees INDEX`<br> e.g., `removeAssignees 2`
+**Remove all Members Assigned to a Task** | `removeAssignees INDEX`<br> e.g., `removeAssignees 2`
 **View Unassigned Tasks** | `viewUnassignedTasks`<br> e.g., `viewUnassignedTasks`
 **View Uncompleted Tasks** | `viewUncompletedTasks`<br> e.g., `viewUncompletedTasks`
