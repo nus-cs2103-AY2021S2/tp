@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKING_END_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKING_START_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CLEAN_STATUS_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RESIDENCE;
