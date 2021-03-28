@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.uicommands.ShowContactsUiCommand;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
@@ -55,7 +56,7 @@ public class AddCommand extends Command {
         }
 
         model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), new ShowContactsUiCommand());
     }
 
     @Override
