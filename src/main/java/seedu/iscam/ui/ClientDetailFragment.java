@@ -24,7 +24,7 @@ public class ClientDetailFragment extends UiPart<Region> {
 
     private Client client;
     private ObservableList<Meeting> meetingList;
-    private final Image PLACEHOLDER_IMAGE = new Image(this.getClass()
+    private final Image placeholderImage = new Image(this.getClass()
             .getResourceAsStream("/images/person_icon.png"));
 
     @FXML
@@ -56,10 +56,10 @@ public class ClientDetailFragment extends UiPart<Region> {
 
     public void setClientDetails(Client client) {
         this.client = client;
-        Circle imageMask = new Circle(60,60,60);
+        Circle imageMask = new Circle(60, 60, 60);
         profileImage.setClip(imageMask);
         // TODO: Modify this to accommodate client profile images
-        profileImage.setImage(PLACEHOLDER_IMAGE);
+        profileImage.setImage(placeholderImage);
         name.setText(client.getName().fullName);
         phone.setText(client.getPhone().value);
         clientLocation.setText(client.getLocation().value);
