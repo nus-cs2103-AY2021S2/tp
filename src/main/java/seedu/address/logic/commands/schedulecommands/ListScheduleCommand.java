@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.schedulecommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.schedule.ScheduleModel.PREDICATE_SHOW_ALL_SCHEDULE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_SCHEDULE;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;

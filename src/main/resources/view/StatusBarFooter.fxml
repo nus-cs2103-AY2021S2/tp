@@ -11,6 +11,6 @@
     </columnConstraints>
     <TextArea fx:id="resultDisplay" editable="false" styleClass="result-display" wrapText="true" />
     <rowConstraints>
-        <RowConstraints maxHeight="85" />
+        <RowConstraints minHeight="75" />
     </rowConstraints>
 </GridPane>

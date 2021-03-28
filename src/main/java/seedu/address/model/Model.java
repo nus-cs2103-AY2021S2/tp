@@ -8,6 +8,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.budget.Budget;
+import seedu.address.model.event.Event;
 import seedu.address.model.grade.Grade;
 import seedu.address.model.person.Person;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
@@ -23,6 +24,7 @@ public interface Model {
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENT = unused -> true;
     Predicate<Schedule> PREDICATE_SHOW_ALL_SCHEDULE = unused -> true;
+    Predicate<Event> PREDICATE_SHOW_ALL_EVENT = unused -> true;
 
     /**
      * Returns the user prefs.
@@ -309,24 +311,11 @@ public interface Model {
     void deleteSchedule(Schedule schedule);
 
     /**
-     * Method that removes schedule based on index
-     *
-     * @param indexToRemove
-     */
-    void deleteSchedule(int indexToRemove);
-
-    /**
      * Replaces the given schedule {@code target} with {@code editedSchedule}.
      * {@code target} must exist in the schedule tracker.
      * The {@code editedSchedule} must not be the same as another existing schedule in the schedule tracker.
      */
     void setSchedule(Schedule target, Schedule editedSchedule);
 
-    /**
-     * Checks if {@code AppointmentDateTime} exists in the schedule tracker.
-     *
-     * @param appointmentDateTime Schedule DateTime to be checked
-     * @return true if Schedule DateTime exists in the schedule list
-     */
-    boolean hasScheduleDateTime(AppointmentDateTime appointmentDateTime);
+    ObservableList<Event> getFilteredEventList();
 }

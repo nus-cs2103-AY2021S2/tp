@@ -145,7 +145,7 @@ public class MainApp extends Application {
             initialGrades = new GradeBook();
         }
 
-        initialSchedules = new ScheduleTracker();
+        initialSchedules = new ScheduleTracker(SampleDataUtil.getSampleScheduleTracker());
         return new ModelManager(initialData, userPrefs, initialAppointments,
                 budgetBook, initialGrades);
     }

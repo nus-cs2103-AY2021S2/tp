@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_FROM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_TO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
-import static seedu.address.model.schedule.ScheduleModel.PREDICATE_SHOW_ALL_SCHEDULE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_SCHEDULE;
 
 import java.util.List;
 import java.util.Optional;
