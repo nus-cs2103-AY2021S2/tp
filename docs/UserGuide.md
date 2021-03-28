@@ -192,7 +192,7 @@ Examples:
 * `addAppt i/A7654321J d/2021-12-13 ts/14:00 te/14:30`
 
 
-### Viewing statistics: `stats`
+### Viewing statistics for student population: `stats`
 
 Displays the statistics of the requested Faculty/School Residence, the whole of NUS or statistics of all Faculties
 and School Residences. 
@@ -213,6 +213,13 @@ Examples:
 * `stats DOES_NOT_LIVE_ON_CAMPUS` displays the percentage of vaccinated students not living on campus.
 * `stats NUS` displays the percentage of vaccinated students in NUS.
 * `stats all` displays the list of percentages of vaccinated students in every Faculty and School Residence.
+
+### Viewing statistics for appointments: `statsAppt`
+Displays the number of upcoming and previous appointments within 6 days from the current day and includes the day itself.
+
+Format: <br>
+`statsAppt`
+
 
 ### Exiting the program : `exit`
 
@@ -260,4 +267,5 @@ Action | Format, Examples
 **Find** | `find MATRICULATION_NUMBER` e.g., `find A1234567X`
 **Filter** | `filter VACCINATION_STATUS`  e.g., `filter VACCINATED` <br> `filter FACULTY ` e.g., `filter COM` <br> `filter SCHOOL_RESIDENCE` e.g., `filter RVRC` 
 **Delete Student** | `deleteStud MATRICULATION_NUMBER` e.g., `deleteStud A1234567X`
-**View Statistics** | `stats FACULTY` e.g., `stats COM` <br> `stats SCHOOL_RESIDENCE` e.g., `stats RC4` <br> `stats NUS` <br> `stats all` 
+**View Student Statistics** | `stats FACULTY` e.g., `stats COM` <br> `stats SCHOOL_RESIDENCE` e.g., `stats RC4` <br> `stats NUS` <br> `stats all` 
+**View Appointment Statistics** | `statsAppt`
