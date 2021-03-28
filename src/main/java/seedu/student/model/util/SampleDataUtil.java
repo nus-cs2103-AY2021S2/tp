@@ -1,7 +1,11 @@
 package seedu.student.model.util;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import seedu.student.model.ReadOnlyStudentBook;
 import seedu.student.model.StudentBook;
+import seedu.student.model.appointment.Appointment;
 import seedu.student.model.student.Address;
 import seedu.student.model.student.Email;
 import seedu.student.model.student.Faculty;
@@ -48,10 +52,20 @@ public class SampleDataUtil {
         };
     }
 
+    public static Appointment[] getSampleAppointments() {
+        return new Appointment[] {
+            new Appointment(new MatriculationNumber("A0182345T"), LocalDate.parse("2021-01-01"),
+                    LocalTime.parse("10:00"), LocalTime.parse("10:30"))
+        };
+    }
+
     public static ReadOnlyStudentBook getSampleStudentBook() {
         StudentBook sampleAb = new StudentBook();
         for (Student sampleStudent : getSampleStudents()) {
             sampleAb.addStudent(sampleStudent);
+        }
+        for (Appointment sampleAppointment : getSampleAppointments()) {
+            sampleAb.addAppointment(sampleAppointment);
         }
         return sampleAb;
     }
