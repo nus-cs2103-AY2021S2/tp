@@ -192,7 +192,6 @@ Arguments additional to adding a single tuition session:
   e.g. `INTERVAL` = 7 for weekly sessions
 * `ENDDATE` should be an ending date of the recurring session, consistent with `DATE` and `INTERVAL`
 
-
 Examples:
 * `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80 b/7 e/2021-01-29`
 ### Deleting a tuition session: `delete_session`
