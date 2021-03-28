@@ -1,5 +1,6 @@
 ---
-layout: page title: Juhaer's Project Portfolio Page
+layout: page 
+title: Juhaer's Project Portfolio Page
 ---
 
 ## Project: TimeForWheels
