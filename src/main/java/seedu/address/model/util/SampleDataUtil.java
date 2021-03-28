@@ -80,6 +80,7 @@ public class SampleDataUtil {
                     EventPriority.MEDIUM, new Description("Due on 28 Mar 2021")),
             new Event(new EventName("CS2101 OP1"), EventStatus.DONE,
                     EventPriority.HIGH, new Description("OP1 Preparations")) };
+
     }
 
     /**

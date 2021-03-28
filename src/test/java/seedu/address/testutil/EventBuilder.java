@@ -62,8 +62,6 @@ public class EventBuilder {
         status = eventToCopy.getStatus();
         priority = eventToCopy.getPriority();
         description = eventToCopy.getDescription();
-        tags = new HashSet<>(eventToCopy.getTags());
-        persons = new HashSet<>(eventToCopy.getPersons());
         identifier = eventToCopy.getIdentifier();
     }
 

@@ -114,13 +114,14 @@ Focuris is a **desktop application** for **managing events** with a KanBan board
 
 ### 2.1.2 Attribute Summary
 
-| [Attribute](#attributes) | Prefix    | Description                              | Constraints                                                                                                                                             |
-| ------------------------ | --------- | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| NAME                     | `n/`      | Name of your Event                       | Event names should not contain any [special characters](#special-characters) or be blank                                                                |
-| DESCRIPTION              | `d/`      | Description of your Event                | Event descriptions should not contain any [special characters](#special-characters) or be blank                                                         |
-| PRIORITY                 | `p/`      | Priority of your Event                   | Event priorities should be either `high`, `medium` or `low`. Priorities are case insensitive, meaning `high` or `HiGH` would be understood the same way |
-| IDENTIFIER               | No Prefix | Identifier of your Event in Focuris      | Event identifier should exist in the KanBan board.                                                                                                      |
-| KEYWORD                  | No Prefix | Keywords for searching Events in Focuris | No Constraints                                                                                                                                          |
+| [Attribute](#attributes) | Prefix    | Description                              | Constraints                                                                                                                                                                                                                                                      |
+| ------------------------ | --------- | ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| NAME                     | `n/`      | Name of your Event                       | Event names should not contain any [special characters](#special-characters) or be blank                                                                                                                                                                         |
+| DESCRIPTION              | `d/`      | Description of your Event                | Event descriptions should not contain any [special characters](#special-characters) or be blank                                                                                                                                                                  |
+| PRIORITY                 | `p/`      | Priority of your Event                   | Event priorities should be either `high`, `medium` or `low`. <br/> Priorities can be shorthanded to be `h` , `m` or `l` respectively. <br/>Priorities are case insensitive, meaning `high` or `HiGH` would be understood the same way.                           |
+| STATUS                   | `s/`      | Status of your Event                     | Event statuses should be either `backlog`, `todo`, `in_progress` or `done`. <br/> Statuses can be shorthanded to be `bl` , `td`, `ip` or `d` respectively. <br/> Statuses are case insensitive, meaning `backlog` or `BackLog` would be understood the same way. |
+| IDENTIFIER               | No Prefix | Identifier of your Event in Focuris      | Event identifier should exist in the KanBan board.                                                                                                                                                                                                               |
+| KEYWORD                  | No Prefix | Keywords for searching Events in Focuris | No Constraints                                                                                                                                                                                                                                                   |
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -210,12 +211,13 @@ todo n/NAME d/DESCRIPTION [p/PRIORITY]
 
 **Figure 1. Shows the result after execution of Example Command 1 in the table below.**
 
-| No  | Example Command                                                               | Expected Command Result                                                                                        |
-| --- | ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| 1   | `todo n/Household Chores d/Cleaning the kitchen p/high`                       | New Todo added: Household Chores; Status: TODO; Description: Cleaning the kitchen                              |
-| 2   | `todo n/CS2030 Assignment 1 d/Due on 23 Mar 2021 p/high`                      | New Todo added: CS2030 Assignment 1; Status: TODO; Description: Due on 23 Mar 2021                             |
-| 3   | `todo n/Lunch with John d/At VivoCity on Friday p/medium`                     | New Todo added: Lunch with John; Status: TODO; Description: At VivoCity on Friday                              |
-| 4   | `todo n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T` | New Todo added: Complete Homework; Status: TODO; Description: Complete weekly quiz and group tasks for CS2103T |
+| No  | Example Command                                                               | Expected Command Result                                                                                                        |
+| --- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| 1   | `todo n/Household Chores d/Cleaning the kitchen p/high`                       | New Todo added: Household Chores; Priority: HIGH; Description: Cleaning the kitchen; Status: TODO;                             |
+| 2   | `todo n/CS2030 Assignment 1 d/Due on 23 Mar 2021 p/high`                      | New Todo added: CS2030 Assignment 1; Priority: HIGH; Description: Due on 23 Mar 2021; Status: TODO;                            |
+| 3   | `todo n/Lunch with John d/At VivoCity on Friday p/medium`                     | New Todo added: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: TODO;                           |
+| 4   | `todo n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T` | New Todo added: Complete Homework; Priority: LOW; Description: Complete weekly quiz and group tasks for CS2103T; Status: TODO; |
+| 5   | `todo n/Run d/Exercise p/h`                                                   | New Todo added: Run; Priority: HIGH; Description: Exercise; Status: TODO;                                                      |
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -237,13 +239,13 @@ log n/NAME d/DESCRIPTION [p/PRIORITY]
 
 **Figure 2. Shows the result after execution of Example Command 1 in the table below.**
 
-| No  | Example Command                                                              | Expected Command Result                                                                                              |
-| --- | ---------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| 1   | `log n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T` | New BackLog added: Complete Homework; Status: BACKLOG; Description: Complete weekly quiz and group tasks for CS2103T |
-| 2   | `log n/Household Chores d/Cleaning the kitchen p/high`                       | New BackLog added: Household Chores; Status: BACKLOG; Description: Cleaning the kitchen                              |
-| 3   | `log n/CS2030 Assignment 1 d/Due on 23 Mar 2021 p/high`                      | New BackLog added: CS2030 Assignment 1; Status: BACKLOG; Description: Due on 23 Mar 2021                             |
-| 4   | `log n/Lunch with John d/At VivoCity on Friday p/medium`                     | New BackLog added: Lunch with John; Status: BACKLOG; Description: At VivoCity on Friday                              |
-
+| No  | Example Command                                                              | Expected Command Result                                                                                                              |
+| --- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| 1   | `log n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T` | New BackLog added: Complete Homework; Priority: LOW; Description: Complete weekly quiz and group tasks for CS2103T; Status: BACKLOG; |
+| 2   | `log n/Household Chores d/Cleaning the kitchen p/high`                       | New BackLog added: Household Chores; Priority: HIGH; Description: Cleaning the kitchen; Status: BACKLOG;                             |
+| 3   | `log n/CS2030 Assignment 1 d/Due on 23 Mar 2021 p/high`                      | New BackLog added: CS2030 Assignment 1; Priority: HIGH; Description: Due on 23 Mar 2021; Status: BACKLOG;                            |
+| 4   | `log n/Lunch with John d/At VivoCity on Friday p/medium`                     | New BackLog added: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: BACKLOG;                           |
+| 5   | `log n/Run d/Exercise p/h`                                                   | New BackLog added: Run; Priority: HIGH; Description: Exercise; Status: BACKLOG;                                                      |
 [Return to Table of Contents](#table-of-contents)
 
 <div class="page-break-before"></div>
@@ -264,13 +266,13 @@ prog n/NAME d/DESCRIPTION [p/PRIORITY]
 
 **Figure 3. Shows the result after execution of Example Command 1 below.**
 
-| No  | Example Command                                                               | Expected Command Result                                                                                                      |
-| --- | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| 1   | `prog n/CS2030 Assignment d/Due on 23 May 2021 p/medium`                      | New In-Progress added: CS2030 Assignment 1; Status: IN_PROGRESS; Description: Due on 23 Mar 2021                             |
-| 2   | `prog n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T` | New In-Progress added: Complete Homework; Status: IN_PROGRESS; Description: Complete weekly quiz and group tasks for CS2103T |
-| 3   | `prog n/Household Chores d/Cleaning the kitchen p/high`                       | New In-Progress added: Household Chores; Status: IN_PROGRESS; Description: Cleaning the kitchen                              |
-| 4   | `prog n/Lunch with John d/At VivoCity on Friday p/medium`                     | New In-Progress added: Lunch with John; Status: IN_PROGRESS; Description: At VivoCity on Friday                              |
-
+| No  | Example Command                                                               | Expected Command Result                                                                                                                      |
+| --- | ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | `prog n/CS2030 Assignment d/Due on 23 May 2021 p/medium`                      | New In-Progress added: CS2030 Assignment 1; Priority: MEDIUM; Description: Due on 23 Mar 2021; ; Status: IN_PROGRESS;                        |
+| 2   | `prog n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T` | New In-Progress added: Complete Homework; Priority: LOW; Description: Complete weekly quiz and group tasks for CS2103T; Status: IN_PROGRESS; |
+| 3   | `prog n/Household Chores d/Cleaning the kitchen p/high`                       | New In-Progress added: Household Chores; Priority: HIGH; Description: Cleaning the kitchen; Status: IN_PROGRESS;                             |
+| 4   | `prog n/Lunch with John d/At VivoCity on Friday p/medium`                     | New In-Progress added: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: IN_PROGRESS;                           |
+| 5   | `prog n/Run d/Exercise p/h`                                                   | New In-Progress added: Run; Priority: HIGH; Description: Exercise; Status: IN_PROGRESS;                                                      |
 [Return to Table of Contents](#table-of-contents)
 
 <div class="page-break-before"></div>
@@ -302,6 +304,7 @@ Existing event will have its data overwritten by the new values taken in by the 
 - `edit 1 n/CS2030 d/Assignment` Edits the event name and event description of the event with identifier `#1` to be `CS2030` and `Assignment` respectively.
 - `edit 2 s/backlog` Edits the status of the event with identifier `#2` to be `BACKLOG`
 - `edit 3 n/CS1101S d/Streams assignment s/in_progress p/high` Edits event the event name, description, status and priority of the event with identifier `#3` to be `CS1101S`, `Streams assignment`, `IN_PROGRESS`, `HIGH` respectively.
+- `edit 4 s/d p/l` Edits the status and the priority of the event with identifier `#4` to be `DONE` and `LOW` respectively.
 
 ![Edit command screenshot before](./images/user-guide/edit-example-1.png)
 
@@ -431,7 +434,7 @@ list
 
 ![list example](./images/user-guide/list-example-1.png)
 
-**Figure 11. Execution of list command**
+**Figure 11. Execution of list command after find command in Figure 10**
 
 [Return to Table of Contents](#table-of-contents)
 

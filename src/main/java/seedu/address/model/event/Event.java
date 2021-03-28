@@ -2,13 +2,8 @@ package seedu.address.model.event;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
-import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents an Event in Focuris.
@@ -28,8 +23,6 @@ public class Event {
     // Data Fields
     private final Description description;
     private final EventPriority priority;
-    private final Set<Tag> tags = new HashSet<>();
-    private final Set<Person> persons = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -95,22 +88,6 @@ public class Event {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(this.tags);
-    }
-
-    /**
-     * Returns an immutable Person set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Person> getPersons() {
-        return Collections.unmodifiableSet(this.persons);
-    }
-
-    /**
      * Returns true if both events have the same name.
      * This defines a weaker notion of equality between two Events.
      */
@@ -143,38 +120,26 @@ public class Event {
         Event otherEvent = (Event) other;
         return otherEvent.getName().equals(getName())
                 && otherEvent.getStatus().equals(getStatus())
-                && otherEvent.getDescription().equals(getDescription())
-                && otherEvent.getTags().equals(getTags())
-                && otherEvent.getPersons().equals(getPersons());
+                && otherEvent.getPriority().equals(getPriority())
+                && otherEvent.getDescription().equals(getDescription());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(eventName, status, description,
-                tags, persons);
+        return Objects.hash(eventName, priority, description, status);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Status: ")
-                .append(getStatus())
+                .append("; Priority: ")
+                .append(getPriority())
                 .append("; Description: ")
-                .append(getDescription());
-
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
-
-        Set<Person> persons = getPersons();
-        if (!persons.isEmpty()) {
-            builder.append("; Persons: ");
-            persons.forEach(builder::append);
-        }
+                .append(getDescription())
+                .append("; Status: ")
+                .append(getStatus());
 
         return builder.toString();
     }

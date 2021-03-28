@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
@@ -29,7 +28,7 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * Parses {@code oneBasedIndex} into an {@code Identifier} and returns it. Leading and trailing whitespaces will be
      * trimmed.
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
@@ -79,18 +78,9 @@ public class ParserUtil {
      */
     public static EventPriority parseEventPriority(String eventPriority) throws ParseException {
         requireNonNull(eventPriority);
-        String trimmedEventPriority = eventPriority.trim();
-        String upperCaseEventPriority = trimmedEventPriority.toUpperCase();
-        switch (upperCaseEventPriority) {
-        case ("HIGH"):
-            return EventPriority.HIGH;
-        case ("MEDIUM"):
-            return EventPriority.MEDIUM;
-        case ("LOW"):
-            return EventPriority.LOW;
-        default:
-            throw new ParseException(EventPriority.MESSAGE_CONSTRAINTS);
-        }
+        return Optional.ofNullable(eventPriority)
+                .map(EventPriority::valueOfPriority)
+                .orElseThrow(() -> new ParseException(EventPriority.MESSAGE_CONSTRAINTS));
     }
 
     /**
@@ -102,7 +92,7 @@ public class ParserUtil {
     public static Description parseDescription(String description) throws ParseException {
         requireNonNull(description);
         String trimmedDescription = description.trim();
-        if (!Name.isValidName(trimmedDescription)) {
+        if (!Description.isValidDescription(trimmedDescription)) {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
         return new Description(trimmedDescription);
@@ -116,11 +106,9 @@ public class ParserUtil {
      */
     public static EventStatus parseEventStatus(String status) throws ParseException {
         requireNonNull(status);
-        String trimmedStatus = status.trim().toUpperCase();
-        Optional<EventStatus> eventStatusOptional = Arrays.stream(EventStatus.values())
-                .filter(statusValue -> statusValue.toString().equals(trimmedStatus))
-                .findFirst();
-        return eventStatusOptional.orElseThrow(() -> new ParseException(EventStatus.MESSAGE_CONSTRAINTS));
+        return Optional.ofNullable(status)
+                .map(EventStatus::valueOfStatus)
+                .orElseThrow(() -> new ParseException(EventStatus.MESSAGE_CONSTRAINTS));
     }
 
     /**
