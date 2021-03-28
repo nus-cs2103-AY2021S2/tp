@@ -365,7 +365,6 @@
     -fx-font-size: 11;
 }
 
-
 .error {
     -fx-text-fill: #f92672 !important; /* The error class should always override the default text-fill style 9 */
 }
