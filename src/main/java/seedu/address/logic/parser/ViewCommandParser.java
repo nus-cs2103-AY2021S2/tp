@@ -5,6 +5,8 @@ import static seedu.address.model.person.PersonType.isValidPersonType;
 
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.PersonId;
+import seedu.address.model.person.PersonIdPredicate;
 import seedu.address.model.person.PersonType;
 import seedu.address.model.person.PersonTypePredicate;
 
@@ -21,12 +23,19 @@ public class ViewCommandParser implements Parser<ViewCommand> {
      */
     public ViewCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim().toLowerCase();
-        if (trimmedArgs.isEmpty() || !isValidPersonType(trimmedArgs)) {
+        if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }
 
-        return new ViewCommand(new PersonTypePredicate(new PersonType(trimmedArgs)));
+        if (isValidPersonType(trimmedArgs)) {
+            return new ViewCommand(new PersonTypePredicate(new PersonType(trimmedArgs)));
+        } else if (PersonId.isValidPersonId(trimmedArgs)) {
+            return new ViewCommand(new PersonIdPredicate(new PersonId(trimmedArgs)));
+        } else {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+        }
 
     }
 

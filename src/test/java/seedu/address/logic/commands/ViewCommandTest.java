@@ -24,6 +24,7 @@ public class ViewCommandTest {
 
     @Test
     public void execute_viewStudent() {
+        assert false;
         PersonType personType = new PersonType("student");
         assertCommandSuccess(new ViewCommand(new PersonTypePredicate(personType)),
                 model, ViewCommand.MESSAGE_SUCCESS, expectedModel);
