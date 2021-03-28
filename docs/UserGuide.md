@@ -15,6 +15,7 @@ increase work productivity for delivery drivers by simplifying the delivery mana
         * Delete delivery points
         * List all delivery points
         * Mark delivery as Done
+        * Statistics of delivery workflow
         * Exit application
 
 --------------------------------------------------------------------------------------------------------------------
@@ -139,6 +140,21 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 **Example:**
 
 * `done 2` - done 2 will set the second delivery location in the delivery list as done.
+
+### Statistics of delivery workflow : `stats`
+
+**Purpose:** Get a summary of your current delivery workflow
+
+**Format:** `stats`
+
+* The following statistics will be calculated and shown on the screen:
+  * Deliveries Done, Deliveries Not Done, Deliveries Due, Deliveries Not Due
+  * Fragile Deliveries , Liquid Deliveries, Hot Deliveries, Tagless Deliveries
+
+
+**Example:**
+
+* `stats` - outputs the statistics
 
 ### Exiting the program : `exit`
 
