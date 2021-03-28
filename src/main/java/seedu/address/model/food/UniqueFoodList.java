@@ -5,6 +5,7 @@ import java.util.Objects;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.food.exceptions.FoodItemNotFoundException;
+import seedu.address.model.util.TemplateInitializer;
 
 public class UniqueFoodList {
 
@@ -103,6 +104,15 @@ public class UniqueFoodList {
             counter++;
         }
         return stringBuilder.toString();
+    }
+
+    public void resetToTemplate() {
+        TemplateInitializer templateInitializer = new TemplateInitializer();
+        this.foodList = templateInitializer.getUniqueFoodListTemplate().getFoodList();
+    }
+
+    public void resetToBlank() {
+        this.foodList = FXCollections.observableArrayList();
     }
 
     @Override
