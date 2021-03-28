@@ -628,18 +628,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Software System: Delivery App**
 
-**Use case: UC11 - Find all delivery entries by the keyword(s).**
+**Use case: UC11 - Find all delivery entries by the specified criteria.**
+
+**Criteria: Name, Telephone Number, Address, Date**
 
 **Actor: Delivery driver (app user)**
 
 **Guarantees:**
 
-* Getting the list of existing delivery entries with details containing the specified keyword(s).
+* Getting the list of existing delivery entries with details containing the specified keyword related to the given
+  criterion.
 
 **MSS**
 
-1. User requests to see all delivery entries with the matching keyword(s).
-2. Delivery App lists out all existing delivery entries with details containing the specified keyword(s).
+1. User requests to see all delivery entries with the matching keywords related to a given criteria..
+2. Delivery App lists out all existing delivery entries with details containing the specified keyword matching the said
+   criterion.
 
    Use case ends.
 
