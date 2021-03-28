@@ -15,6 +15,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.appointment.DateViewPredicate;
 import seedu.address.model.budget.Budget;
+import seedu.address.model.filter.AppointmentFilter;
 import seedu.address.model.filter.PersonFilter;
 import seedu.address.model.grade.Grade;
 import seedu.address.model.person.Person;
@@ -36,6 +37,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
 
     private final PersonFilter personFilter;
+    private final AppointmentFilter appointmentFilter;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Appointment> filteredAppointment;
     private final FilteredList<Grade> filteredGrades;
@@ -62,6 +64,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
 
         this.personFilter = new PersonFilter();
+        this.appointmentFilter = new AppointmentFilter();
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredAppointment = new FilteredList<>(this.appointmentBook.getAppointmentList());
         filteredGrades = new FilteredList<>(this.gradeBook.getGradeList());
@@ -430,6 +433,32 @@ public class ModelManager implements Model {
         this.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         this.updateFilteredPersonList(this.personFilter);
+    }
+
+    //=========== AppointmentFilter =====================================================================
+    @Override
+    public boolean hasAppointmentFilter(AppointmentFilter appointmentFilter) {
+        return this.appointmentFilter.has(appointmentFilter);
+    }
+
+    @Override
+    public void addAppointmentFilter(AppointmentFilter appointmentFilter) {
+        this.appointmentFilter.add(appointmentFilter);
+
+        // Required workaround for bug where filtered list would not trigger update
+        this.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENT);
+
+        this.updateFilteredAppointmentList(this.appointmentFilter);
+    }
+
+    @Override
+    public void removeAppointmentFilter(AppointmentFilter appointmentFilter) {
+        this.appointmentFilter.remove(appointmentFilter);
+
+        // Required workaround for bug where filtered list would not trigger update
+        this.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENT);
+
+        this.updateFilteredAppointmentList(this.appointmentFilter);
     }
 
     @Override
