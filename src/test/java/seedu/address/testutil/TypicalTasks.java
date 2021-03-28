@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.HeyMatez;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
@@ -36,19 +36,19 @@ public class TypicalTasks {
     private TypicalTasks() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical tasks.
+     * Returns an {@code HeyMatez} with all the typical tasks.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static HeyMatez getTypicalHeyMatez() {
+        HeyMatez hm = new HeyMatez();
         for (Task task : getTypicalTasks()) {
-            ab.addTask(task);
+            hm.addTask(task);
         }
 
         for (Person person : getTypicalPersons()) {
-            ab.addPerson(person);
+            hm.addPerson(person);
         }
 
-        return ab;
+        return hm;
     }
 
     public static List<Task> getTypicalTasks() {

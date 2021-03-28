@@ -12,7 +12,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
-import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTasks.getTypicalHeyMatez;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.HeyMatez;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -32,7 +32,7 @@ import seedu.address.testutil.TaskBuilder;
 
 public class EditTaskCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalHeyMatez(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -42,7 +42,7 @@ public class EditTaskCommandTest {
 
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getHeyMatez(), new UserPrefs());
         expectedModel.setTask(model.getFilteredTaskList().get(0), editedTask);
 
         assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
@@ -64,7 +64,7 @@ public class EditTaskCommandTest {
 
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new HeyMatez(model.getHeyMatez()), new UserPrefs());
         expectedModel.setTask(lastTask, editedTask);
 
         assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
@@ -78,7 +78,7 @@ public class EditTaskCommandTest {
 
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getHeyMatez(), new UserPrefs());
 
         assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
     }
@@ -96,7 +96,7 @@ public class EditTaskCommandTest {
 
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new HeyMatez(model.getHeyMatez()), new UserPrefs());
         expectedModel.setTask(model.getFilteredTaskList().get(0), editedTask);
 
         assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
@@ -106,7 +106,7 @@ public class EditTaskCommandTest {
     public void execute_invalidTaskIndexUnfilteredList_failure() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
         Index outOfBound = INDEX_SECOND_TASK;
-        assertTrue(outOfBound.getZeroBased() < model.getAddressBook().getTaskList().size());
+        assertTrue(outOfBound.getZeroBased() < model.getHeyMatez().getTaskList().size());
 
         EditTaskCommand editTaskCommand = new EditTaskCommand(outOfBound,
                 new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_MARATHON).build());
@@ -116,14 +116,14 @@ public class EditTaskCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book.
+     * but smaller than size of hey matez.
      */
     @Test
     public void execute_invalidTaskIndexFilteredList_failure() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
         Index outOfBound = INDEX_SECOND_TASK;
 
-        assertTrue(outOfBound.getZeroBased() < model.getAddressBook().getTaskList().size());
+        assertTrue(outOfBound.getZeroBased() < model.getHeyMatez().getTaskList().size());
 
         EditTaskCommand editTaskCommand = new EditTaskCommand(outOfBound,
                 new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_MARATHON).build());

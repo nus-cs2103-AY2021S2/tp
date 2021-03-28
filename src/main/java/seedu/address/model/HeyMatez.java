@@ -14,7 +14,7 @@ import seedu.address.model.task.TaskList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class HeyMatez implements ReadOnlyHeyMatez {
 
     private final UniquePersonList persons;
     private final TaskList tasks;
@@ -31,12 +31,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         tasks = new TaskList();
     }
 
-    public AddressBook() {}
+    public HeyMatez() {}
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public HeyMatez(ReadOnlyHeyMatez toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -54,7 +54,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyHeyMatez newData) {
         requireNonNull(newData);
 
         setTasks(newData.getTaskList());
@@ -159,9 +159,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons)
-                && tasks.equals(((AddressBook) other).tasks));
+                || (other instanceof HeyMatez // instanceof handles nulls
+                && persons.equals(((HeyMatez) other).persons)
+                && tasks.equals(((HeyMatez) other).tasks));
     }
 
     @Override

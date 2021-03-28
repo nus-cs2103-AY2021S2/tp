@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalHeyMatez;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,13 +22,13 @@ public class DeleteMemberCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalHeyMatez(), new UserPrefs());
     }
 
     @Test
     public void execute_deletePerson_success() {
-        Person validPerson = model.getAddressBook().getPersonList().get(0);
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Person validPerson = model.getHeyMatez().getPersonList().get(0);
+        Model expectedModel = new ModelManager(model.getHeyMatez(), new UserPrefs());
         expectedModel.deletePerson(validPerson);
 
         assertCommandSuccess(new DeleteMemberCommand(validPerson.getName()), model,

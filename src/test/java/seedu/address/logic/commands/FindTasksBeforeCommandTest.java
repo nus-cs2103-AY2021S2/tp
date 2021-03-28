@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalTasks.HOMEWORK;
 import static seedu.address.testutil.TypicalTasks.MARATHON;
 import static seedu.address.testutil.TypicalTasks.RETURNBOOK;
-import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTasks.getTypicalHeyMatez;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -22,8 +22,8 @@ import seedu.address.model.task.DeadlineBeforeDatePredicate;
 
 
 public class FindTasksBeforeCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalHeyMatez(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalHeyMatez(), new UserPrefs());
 
     @Test
     public void equals() {

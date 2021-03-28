@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_TASK;
-import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTasks.getTypicalHeyMatez;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,15 +22,15 @@ public class UndoTaskCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalHeyMatez(), new UserPrefs());
     }
 
     @Test
     public void execute_undoTask_success() {
-        Task validTask = model.getAddressBook().getTaskList().get(0);
+        Task validTask = model.getHeyMatez().getTaskList().get(0);
         Task undoTask = new TaskBuilder(validTask).withTaskStatus(TaskBuilder.COMPLETED_STATUS).build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getHeyMatez(), new UserPrefs());
         model.setTask(validTask, undoTask);
 
         assertCommandSuccess(new UndoTaskCommand(INDEX_THIRD_TASK), model,
@@ -39,7 +39,7 @@ public class UndoTaskCommandIntegrationTest {
 
     @Test
     public void execute_undo_throwsIndexNotValid() {
-        Index index = Index.fromOneBased(model.getAddressBook().getTaskList().size() + 1);
+        Index index = Index.fromOneBased(model.getHeyMatez().getTaskList().size() + 1);
         assertCommandFailure(new UndoTaskCommand(index), model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 

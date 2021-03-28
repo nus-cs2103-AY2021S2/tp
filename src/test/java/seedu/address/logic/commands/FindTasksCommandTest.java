@@ -23,8 +23,8 @@ import seedu.address.testutil.TypicalTasks;
  * Contains integration tests (interaction with the Model) for {@code FindTasksCommand}.
  */
 public class FindTasksCommandTest {
-    private Model model = new ModelManager(TypicalTasks.getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(TypicalTasks.getTypicalHeyMatez(), new UserPrefs());
+    private Model expectedModel = new ModelManager(model.getHeyMatez(), new UserPrefs());
 
     @Test
     public void equals() {
