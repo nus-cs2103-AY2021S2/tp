@@ -6,7 +6,7 @@ title: User Guide
 A-Bash Book is an enhanced version of Address Book 3 app for managing your contacts, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you type fast, A-Bash Book will allow you to quickly complete your contact management tasks.
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -150,6 +150,32 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Selecting persons : `select`
+
+Enables user to select person objects to apply actions on.
+
+Format: `select [SUB_COMMAND]`
+
+Sub Command Format:
+* `select show`
+* `select clear`
+* `select shown`
+* `select INDEX`
+
+Selected person will have a highlighted index number to indicate selection status.
+
+![Select UI Example](images/select_ui_example.png)
+
+Examples:
+
+| Example | Description |
+| --------------- | -------- |
+| `select show` | Shows the selected person(s) |
+| `select shown`| Select the currently shown person in the person list |
+| `select clear` | Clears the current selection |
+| `select 1` | Select the person with index 1 |
+| `select 1 2` | Select persons with index 1 and 2 |
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -208,7 +234,7 @@ Examples:
 |`alias add f find`   | associates a new f command to find, such that the f command will behave identically to the find command (ie. f Alex Yeoh will now return contacts equals or similar to Alex Yeoh).|
 |`alias delete ls`| will remove the alias `ls`|
 |`alias delete d`| will remove the alias `d`|
-|`alias list`       |        will open another window showing a list of all your aliases.|
+|`alias list` | will open another window showing a list of all your aliases. |
 
 ### Filter
 
