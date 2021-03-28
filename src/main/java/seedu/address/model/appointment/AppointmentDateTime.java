@@ -106,11 +106,11 @@ public class AppointmentDateTime {
         return value.format(formatter);
     }
 
-    public boolean isAfter​(AppointmentDateTime other) {
+    public boolean isAfter(AppointmentDateTime other) {
         return this.value.isAfter(other.value);
     }
 
-    public boolean isBefore​(AppointmentDateTime other) {
+    public boolean isBefore(AppointmentDateTime other) {
         return this.value.isBefore(other.value);
     }
 

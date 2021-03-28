@@ -80,10 +80,10 @@ public class AppointmentDateTimeFilter implements Predicate<AppointmentDateTime>
                 && appointmentDateTime.equals(appointmentDateTimeFilter);
 
         isFiltered = isFiltered || appointmentDateTimeFilterInequality.contains(">")
-                && appointmentDateTime.isAfter​(appointmentDateTimeFilter);
+                && appointmentDateTime.isAfter(appointmentDateTimeFilter);
 
         isFiltered = isFiltered || appointmentDateTimeFilterInequality.contains("<")
-                && appointmentDateTime.isBefore​(appointmentDateTimeFilter);
+                && appointmentDateTime.isBefore(appointmentDateTimeFilter);
 
         return isFiltered;
     }
