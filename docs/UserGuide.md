@@ -38,13 +38,10 @@ If you need an overview of StoreMando’s commands, check out the [“Command Su
 Please note the following symbols used in the User Guide which may serve as points of interests:
 
 `command` | The grey highlight indicates commands that can be executed by StoreMando.
---------|------------------
 
 :information_source: | This symbol indicates information that you may wish to take note.
----------------------|------------------
 
 :bulb: | This symbol indicates tips provided by us.
---------|------------------
 
 --------------------------------------------------------------------------------------------------------------------
 ## 2. Quick start <a name = "quickstart"></a>
