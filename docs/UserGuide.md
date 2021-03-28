@@ -80,12 +80,12 @@ Adds a financial record to the budget tracker.
 
 Format: `add-fr d/FR_DESCRIPTION a/FR_AMOUNT`
 
-[comment]: <> (<div markdown="span" class="alert alert-primary"></div>)
-
+<div markdown="span" class="alert alert-primary">
 **:bulb: Tips:**
 
 - Adds a financial record with the description `FR_DESCRIPTION`.
 - The `FR_AMOUNT` must be a positive double (e.g. 10, 13.50).
+</div>
 
 Examples:
 
@@ -98,12 +98,12 @@ Lists a month's financial records.
 
 Format: `list MM-YYYY`
 
-[comment]: <> (<div markdown="span" class="alert alert-primary"></div>)
-
+<div markdown="span" class="alert alert-primary">
 **:bulb: Tips:**
 
 - The input month must follow the format of `MM-YYYY` (e.g. 09-2020)
 - Month number must take up 2 digits, and the year number 4 digits
+</div>
 
 Examples:
 
@@ -115,13 +115,15 @@ Displays a financial record in the budget tracker.
 
 Format: `view-fr FR_INDEX`
 
-[comment]: <> (<div markdown="span" class="alert alert-primary"></div>)
-
+<div markdown="span" class="alert alert-primary">
 **:bulb: Tips:**
 
 - Views the financial record at the specified `FR_INDEX`.
 - `FR_INDEX` refers to the index number shown in the displayed financial record list.
 - `FR_INDEX` **must be a positive integer** 1, 2, 3, …
+</div>
+
+
 
 Examples:
 
@@ -133,13 +135,13 @@ Deletes a financial record from the budget tracker.
 
 Format: `delete-fr FR_INDEX`
 
-[comment]: <> (<div markdown="span" class="alert alert-primary"></div>)
-
+<div markdown="span" class="alert alert-primary">
 **:bulb: Tips:**
 
 - Deletes the financial record at the specified `FR_INDEX`.
 - `FR_INDEX` refers to the index number shown in the displayed financial record list.
 - `FR_INDEX` **must be a positive integer** (e.g. 1, 2, 3, …​)
+</div>
 
 Examples:
 
@@ -151,11 +153,11 @@ Sets the budget for the current month and the following twelve months.
 
 Format: `set-bg BG_AMOUNT`
 
-[comment]: <> (<div markdown="span" class="alert alert-primary"></div>)
-
+<div markdown="span" class="alert alert-primary">
 **:bulb: Tips:**
 
 - `BG_AMOUNT` must be a positive double (e.g. 100, 1300.50)
+</div>
 
 Examples:
 
@@ -181,12 +183,14 @@ Data associated include:
 
 Format: `view MM-YYYY`
 
-[comment]: <> (<div markdown="span" class="alert alert-primary"></div>)
-
+<div markdown="span" class="alert alert-primary">
 **:bulb: Tips:**
 
 - The input month must follow the format of `MM-YYYY` (e.g. 09-2020)
 - Month number must take up 2 digits, and the year number 4 digits
+</div>
+
+
 
 Examples:
 
@@ -202,8 +206,6 @@ Data associated include:
 
 Format: `category-filter c/FR_CATEGORY`
 
-[comment]: <> (<div markdown="span" class="alert alert-primary"></div>)
-
 Examples:
 
 - `category-filter c/Food`
@@ -216,8 +218,6 @@ Data associated include:
 - Financial records
 
 Format: `reset-filter`
-
-<div markdown="span" class="alert alert-primary"></div>
 
 Examples:
 
@@ -238,12 +238,10 @@ BudgetBaby data are saved in the hard disk automatically after any command that 
 BudgetBaby data are saved as a JSON file `[JAR file location]/data/budgetbaby.json`.
 Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning"></div>
 
 **:exclamation: Caution:**
 If your changes to the data file makes its format invalid, BudgetBaby will discard all data and start with an empty data file at the next run.
 
-[comment]: <> (</div>)
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -274,4 +272,4 @@ _Details coming soon ..._
 
 ## Credits
 
-This user guide format has been adapted from [addressbook level 3 User Guide](https://github.com/nus-cs2103-AY1920S2/addressbook-level3/blob/master/docs/UserGuide.adoc)
+This user guide format has been adapted from [AddressBook Level 3 User Guide](https://github.com/nus-cs2103-AY1920S2/addressbook-level3/blob/master/docs/UserGuide.adoc)
