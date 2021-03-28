@@ -35,6 +35,7 @@ import seedu.dictionote.logic.commands.ListNoteCommand;
 import seedu.dictionote.logic.commands.MarkAllAsUndoneNoteCommand;
 import seedu.dictionote.logic.commands.MarkAsDoneNoteCommand;
 import seedu.dictionote.logic.commands.MarkAsUndoneNoteCommand;
+import seedu.dictionote.logic.commands.MergeNoteCommand;
 import seedu.dictionote.logic.commands.MostFreqContactCommand;
 import seedu.dictionote.logic.commands.OpenCommand;
 import seedu.dictionote.logic.commands.ShowDictionaryContentCommand;
@@ -145,6 +146,9 @@ public class DictionoteParser {
 
         case MarkAllAsUndoneNoteCommand.COMMAND_WORD:
             return new MarkAllAsUndoneNoteCommand();
+
+        case MergeNoteCommand.COMMAND_WORD:
+            return new MergeNoteCommandParser().parse(arguments);
 
         case ShowNoteCommand.COMMAND_WORD:
             return new ShowNoteCommandParser().parse(arguments);

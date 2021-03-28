@@ -209,6 +209,15 @@ public class ModelManager implements Model {
     public void sortNote() {
         noteBook.sortNote();
     }
+
+    @Override
+    public void mergeNote(Note firstNote, Note secondNote, Note updatedNote) {
+        noteBook.deleteNote(firstNote);
+        noteBook.deleteNote(secondNote);
+        noteBook.addNote(updatedNote);
+        updateFilteredNoteList(PREDICATE_SHOW_ALL_NOTES);
+    }
+    
     //=========== Dictionary ===================================================================================
     @Override
     public boolean hasContent(Content content) {
