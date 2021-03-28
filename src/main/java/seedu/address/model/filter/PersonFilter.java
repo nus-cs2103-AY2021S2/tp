@@ -205,13 +205,22 @@ public class PersonFilter implements Predicate<Person> {
         isFiltered = isFiltered && composedEmailFilter.test(person.getEmail());
         isFiltered = isFiltered && composedAddressFilter.test(person.getAddress());
 
-        for (TutorSubject subject : person.getSubjectList()) {
-            isFiltered = isFiltered && composedSubjectNameFilter.test(subject.getName());
-            isFiltered = isFiltered && composedSubjectLevelFilter.test(subject.getLevel());
-            isFiltered = isFiltered && composedSubjectRateFilter.test(subject.getRate());
-            isFiltered = isFiltered && composedSubjectExperienceFilter.test(subject.getExperience());
-            isFiltered = isFiltered && composedSubjectQualificationFilter.test(subject.getQualification());
+        boolean isAnySubjectFiltered = false;
+        if (person.getSubjectList().asUnmodifiableObservableList().isEmpty()) {
+            isAnySubjectFiltered = true;
         }
+
+        for (TutorSubject subject : person.getSubjectList()) {
+            boolean isSubjectFiltered = true;
+            isSubjectFiltered = isSubjectFiltered && composedSubjectNameFilter.test(subject.getName());
+            isSubjectFiltered = isSubjectFiltered && composedSubjectLevelFilter.test(subject.getLevel());
+            isSubjectFiltered = isSubjectFiltered && composedSubjectRateFilter.test(subject.getRate());
+            isSubjectFiltered = isSubjectFiltered && composedSubjectExperienceFilter.test(subject.getExperience());
+            isSubjectFiltered = isSubjectFiltered && composedSubjectQualificationFilter.test(
+                    subject.getQualification());
+            isAnySubjectFiltered = isAnySubjectFiltered || isSubjectFiltered;
+        }
+        isFiltered = isFiltered && isAnySubjectFiltered;
 
         return isFiltered;
     }
