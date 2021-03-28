@@ -10,6 +10,7 @@ import java.util.Set;
 import seedu.address.model.Address;
 import seedu.address.model.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.ChildTag;
 import seedu.address.model.tag.Tag;
 
 /**
