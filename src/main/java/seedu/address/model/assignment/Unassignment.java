@@ -18,12 +18,6 @@ public class Unassignment {
      */
     public Unassignment(PersonId studentId, PersonId tutorId, SessionId sessionId) {
         requireAllNonNull(sessionId);
-        if (studentId == null) {
-            requireAllNonNull(tutorId);
-        }
-        if (tutorId == null) {
-            requireAllNonNull(studentId);
-        }
         this.sessionId = sessionId;
         this.studentId = studentId;
         this.tutorId = tutorId;
