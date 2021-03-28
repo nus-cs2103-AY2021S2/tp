@@ -3,10 +3,38 @@ layout: page
 title: User Guide
 ---
 
-FriendDex is a **relationship management tool for CLI enthusiasts** looking to enhance their social life while not compromising on getting things done quickly. Managing your relationship goals should not be any more tedious than coding.
+Welcome to **FriendDex**, a **relationship management tool** looking to enhance your social life while not compromising on getting things done quickly. 
+Managing your relationships should not be any more tedious than doing your laundry.
+
+Although optimized for Command Line Interface enthusiasts, it should be easy enough for anyone to use it.
+To help you get started, read the [Quick start](#quick-start) section below.
 
 * Table of Contents
 {:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+## About 
+This document shows you the details of the [User Interface](#UI) [Features](#Features) present in **FriendDex**. 
+
+Note the following symbols and formatting used in this document.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes:**<br>
+
+* This block is used for detailing the relevant key information such as formatting, 
+handling exceptional cases or explaining keywords used in the section.
+</div>
+
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:**
+This block is used to provide you extra details about the feature that provides further conveniences to you.
+</div>
+
+<div markdown="span" class="alert alert-warning">
+:exclamation: **Caution:** This block is used to point out any dangerous actions that may result in the loss of data or
+the app crashing.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -26,7 +54,7 @@ FriendDex is a **relationship management tool for CLI enthusiasts** looking to e
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the FriendDex.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/01-01-1998` : Adds a contact named `John Doe` to the FriendDex.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -35,6 +63,31 @@ FriendDex is a **relationship management tool for CLI enthusiasts** looking to e
    * **`exit`** : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+## UI 
+
+### Group Panel
+The left panel of FriendDex shows the list of groups that are available in the application.
+
+To list the friends within a specific group, use `list n/GROUP_NAME`. See [List Command](#listing-all-persons--list) for specific details.
+
+### Friends Panel
+The centre panel shows the currently listed friends in the application.
+Commands such as `list`, `find`, `add`, `clear`, `delete` will change the listed friends. 
+See [Features](#features) for specific details. 
+
+### Details Panel
+The right panel of FriendDex is a multi-purpose details panel. It displays upcoming events by default, and can be toggled to display different information.
+
+#### Upcoming Events
+
+By default, FriendDex displays your upcoming events on the details panel, such as upcoming birthdays and special dates.
+
+#### Full Details of a Person
+
+As a person in the FriendDex can contain a lot of information, not all of it is displayed in the main list of persons.
+Upon execution of the `details` command, FriendDex will display the full details of the specified person on the details panel.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -83,9 +136,9 @@ indexes to the group.
 
 Format: `add-group n/GROUP_NAME p/INDEX…​`
 
-* At least one index must be provided.
-* If the group name already exists, the persons at the specified `INDEX…​` will be added to the group.
-* If some persons specified already exist in the group, they will be ignored.
+* You should provide at least one index.
+* If the group name you provide already exists, the friends at the specified `INDEX…​` will be added to the group.
+* If some friends specified already exist in the group, they will be ignored.
 
 Examples:
 * `add-group n/Close Friends  p/1 2 3 4 5`
@@ -97,7 +150,7 @@ Adds a person to FriendDex.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+You can provide any number of tags (including 0)
 </div>
 
 Examples:
@@ -110,7 +163,7 @@ Adds a profile picture to an existing person in FriendDex.
 
 Format: `add-picture INDEX FILE_PATH`
 
-* The image of the person should be at `FILE_PATH`.
+* The image of the friend should be at the `FILE_PATH` you provided.
 
 Examples:
 * `add-picture 1 /Users/john/Desktop/jake.png`
@@ -118,7 +171,10 @@ Examples:
 ### Listing all persons : `list`
 
 Shows a list of all persons in FriendDex.
-Can optionally provide a group name to list all friends in that group.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can optionally provide a group name to list all friends in that group.
+</div>
 
 Format: `list [n/GROUP_NAME]`
 
@@ -195,13 +251,50 @@ Format: `del-date INDEX i/DATE_INDEX`
 * Deletes a special date with the person at the specified `INDEX`.
 
 Examples:
-* `del-date 1 i/2` deletes the 2nd special date from the 1st person in FriendDex.
+* `del-date 1 i/2` deletes the 2nd special date from the 1st listed friend.
 
+### Adding debt : `add-debt`
+
+Adds a specified amount to the debt owed to the friend at the specified `INDEX`.
+
+Format: `add-debt INDEX DEBT_AMOUNT`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes: Add Debt Command**<br>
+
+* `DEBT_AMOUNT` provided should be a **positive number** of up to 2 decimal places 
+  e.g `10.10` or `10.1000` and **not** `10.103`.
+</div>
+
+Examples:
+* `add-debt 1 100` adds 100 to the debt owed to the 1st listed friend.
+
+### Subtracting debt: `subtract `
+
+Subtracts a specified amount to the debt owed to the friend at the specified `INDEX`.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes: Subtract Debt Command**<br>
+
+* `DEBT_AMOUNT` provided should be a **positive number** of up to 2 decimal places,
+  e.g `10.10` or `10.1000` and **not** `10.103`.
+</div>
+
+Format: `subtract-debt INDEX DEBT_AMOUNT`
+
+Examples:
+`subtract-debt 1 100` subtracts 100 to the debt owed to the 1st listed friend.
 ### Locating persons by name : `find`
 
 Finds persons whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS] [p/]`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes: Find Command**<br>
 
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -210,7 +303,7 @@ Format: `find KEYWORD [MORE_KEYWORDS] [p/]`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 * If the `p/` flag is set, then the argument(s) `KEYWORD [MORE KEYWORDS]` will be treated as a regular expression.
-
+</div>
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
@@ -267,20 +360,6 @@ Format: <code>set-goal INDEX f/w[eek[ly]] &vert; m[onth[ly]] &vert; y[ear[ly]] &
 
 Example:
 * `set-goal 1 f/week`
-
---------------------------------------------------------------------------------------------------------------------
-
-## Details Panel
-The right panel of FriendDex is a multi-purpose details panel. It displays upcoming events by default, and can be toggled to display different information.
-
-### Upcoming Events
-
-By default, FriendDex displays your upcoming events on the details panel, such as upcoming birthdays and special dates.
-
-### Full Details of a Person
-
-As a person in the FriendDex can contain a lot of information, not all of it is displayed in the main list of persons.
-Upon execution of the `details` command, FriendDex will display the full details of the specified person on the details panel.
 
 --------------------------------------------------------------------------------------------------------------------
 
