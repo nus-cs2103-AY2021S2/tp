@@ -407,7 +407,10 @@
 }
 
 #bookingListVBox {
-    -fx-background-image: url(/images/ScrollPaneBackground.png);
+    -fx-background-image:url(/images/background.png);
+    -fx-background-repeat:no-repeat ;
+    -fx-background-size:100% 100%;
+    -fx-background-attachment: fixed;
 }
 
 #bookingListScrollPane {
@@ -417,5 +420,8 @@
 }
 
 #bookingListScrollPane .scroll-bar:vertical .thumb {
+    -fx-background-color: #fffef2;
+}
+#bookingListScrollPane .scroll-bar:horizontal .thumb {
     -fx-background-color: #fffef2;
 }
