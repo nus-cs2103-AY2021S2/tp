@@ -230,25 +230,22 @@ Currently, the implementation of the `Meeting` class is placing the `Meeting` as
 While it certainly makes more sense for extensions and many-to-many relations to adopt such a implementation, 
 it would cause an issue where we would have to examine and update every meeting object to edit the person 
 if we were to update and change a Person as the current implementation does not give the `Person` object an immutable 
-unique identifier upon construction. 
+unique identifier upon construction. As a result, the current implementation of the Meeting list takes in the `Person` class as the element of the list, and 
+accesses the meeting attribute within the `Person` object when needed.
 
-As a result, the current implementation of the Meeting list takes in the `Person` class as the element of the list, and 
-accesses the meeting attribute within the `Person` object when needed. To be more exact, the storage structure of the
-`Meetings` is actually a `TreeMap` with the `Meeting` as the key and its owner `Person` as the value. `Meetings` are 
-iterable and take the iteration value by the datetime of its occurrence. 
-
-In regards to the editing of the `UniqueMeetingList`, we implemented it in such a way that the meeting list is edited
+In regard to the editing of the `UniqueMeetingList`, we implemented it in such a way that the meeting list is edited
 everytime the `UniquePersonList` is edited. Hence the impact of the alteration only remains on the `Model` component and
 the `Ui` components, with the `Logic` component only impacted in terms of accessing the `Model`.
 
-In the future, this implementation may be scraped in favor for an implementation where the `Meeting` class acts as the 
-wrapper for the `Person` class, but for the sake of functionality, we shall keep the current implementation as is.
-
 The implementation of the `ScheduleCommand` integrates both adding and removing for the sake of simplicity of
 implementation as well as usability, as the team has concluded that having different commands that does similiar actions
-in regards to the data is overkill and would be a hassle to implement and use. Hence, we've taken the liberty to set the
+in regard to the data is overkill and would be a hassle to implement and use. Hence, we've taken the liberty to set the
 removal of a meeting as a type of "special input" case that is processed directly in the parser, rather than sending
 into a further and smaller parser.
+
+In future installments, this implementation may be scraped in favor for an implementation where the `Meeting` class acts
+as the wrapper for the `Person` class, but for the sake of functionality, we shall keep the current implementation as 
+is.
 
 
 ### Representing birthdates of clients
