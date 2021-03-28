@@ -77,9 +77,7 @@ For a quick reference of the available commands and their syntax, refer to the [
 
 ## 3. Commands
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
+<div markdown="block" class="alert alert-info">**:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add property n/NAME`, `NAME` is a parameter which can be used as <br>`add property n/Bishan`.
@@ -149,9 +147,7 @@ Overwrites the information of the property according to the parameters provided.
 
 Format: `edit property INDEX [n/NAME] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]​`
 
-<div markdown="block" class="alert alert-info">
-
-**:bulb: Tip:**<br>
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
 
 * There can be multiple tags but different tags should be separated with a comma. <br> e.g. `tags/TAGS_SEPARATED_BY_COMMAS` can be used as `tags/Freehold`, `tags/Freehold, 5 bedrooms`, `tags/Freehold, 5 bedrooms, Near MRT` etc.
 
