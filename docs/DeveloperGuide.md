@@ -157,6 +157,21 @@ Sorting would occur in the sorted list layer, and the filtering will be applied 
 This has the benefit of still sharing the references with the original observable list, 
 so modifications will still be reflected in the correct data structures.
 
+###Timetable feature
+
+The timetable feature will be help the user visualise the free times. 
+It also aid the user in scheduling meetings faster.
+There are two possible implementations for the model below:
+
+One: Create a two-dimensional array to represent the schedule 
+with days as the row and columns being the half hour time slots
+This will serve as the model of a person's free schedule. Slots which are occupied will have
+their state marked as so. 
+
+Pros: A Ui can listen to the model and the display can be updated quickly with each change.
+
+Cons: Takes up more space. Problems handling meetings with not nice start and ending times.
+
 
 ### \[Proposed\] Undo/redo feature
 
