@@ -16,6 +16,8 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
+    //=========== UserPrefs ==================================================================================
+
     /** {@code Predicate} that always evaluate to true */
     Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
 
@@ -39,6 +41,8 @@ public interface Model {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
+    //=========== AddressBook ================================================================================
+
     /**
      * Returns the user prefs' address book file path.
      */
@@ -56,6 +60,8 @@ public interface Model {
 
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
+
+    //=========== Person ================================================================================
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -81,6 +87,8 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    void setPersons(List<Person> persons);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
@@ -90,11 +98,7 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    void setPersons(List<Person> persons);
-
-
-
-
+    //=========== AppointmentBook ================================================================================
 
     /**
      * Returns the user prefs' appointment book file path.
@@ -113,6 +117,8 @@ public interface Model {
 
     /** Returns the AppointmentBook */
     ReadOnlyAppointmentBook getAppointmentBook();
+
+    //=========== Appointment ================================================================================
 
     /**
      * Returns true if an appointment with the same identity as {@code appointment} exists in the appointment book.
@@ -139,7 +145,7 @@ public interface Model {
      */
     void setAppointment(Appointment target, Appointment editedAppointment);
 
-    void setAppointment(List<Appointment> appointment);
+    void setAppointments(List<Appointment> appointments);
 
     /** Returns an unmodifiable view of the filtered appointment list */
     ObservableList<Appointment> getFilteredAppointmentList();

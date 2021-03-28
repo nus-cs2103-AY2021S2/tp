@@ -81,6 +81,9 @@ public class AddCommandTest {
      * A default model stub that have all of the methods failing.
      */
     private class ModelStub implements Model {
+
+        //=========== UserPrefs ==================================================================================
+
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -101,6 +104,8 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        //=========== AddressBook ================================================================================
+
         @Override
         public Path getAddressBookFilePath() {
             throw new AssertionError("This method should not be called.");
@@ -108,16 +113,6 @@ public class AddCommandTest {
 
         @Override
         public void setAddressBookFilePath(Path addressBookFilePath) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public Path getAppointmentBookFilePath() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setAppointmentBookFilePath(Path appointmentBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -137,51 +132,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAppointmentBook getAppointmentBook() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasAppointment(Appointment appointment) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteAppointment(Appointment target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addAppointment(Appointment appointment) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setAppointment(Appointment target, Appointment editedAppointment) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setAppointment(List<Appointment> appointment) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Appointment> getFilteredAppointmentList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setAppointmentBook(ReadOnlyAppointmentBook newData) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
@@ -197,6 +147,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setPersons(List<Person> persons) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -206,10 +161,53 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        //=========== AppointmentBook ================================================================================
+
         @Override
-        public void setPersons(List<Person> persons) {
+        public Path getAppointmentBookFilePath() {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        public void setAppointmentBookFilePath(Path appointmentBookFilePath) {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        public void setAppointmentBook(ReadOnlyAppointmentBook appointmentBook) {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        public ReadOnlyAppointmentBook getAppointmentBook() {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        public boolean hasAppointment(Appointment appointment) {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        public void deleteAppointment(Appointment target) {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        public void addAppointment(Appointment appointment) {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        public void setAppointment(Appointment target, Appointment editedAppointment) {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        public void setAppointments(List<Appointment> appointments) {
             throw new AssertionError("This method should not be called.");
         }
+
+        public ObservableList<Appointment> getFilteredAppointmentList() {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+            throw new AssertionError("This method should not be called.");
+        };
+
     }
 
     /**

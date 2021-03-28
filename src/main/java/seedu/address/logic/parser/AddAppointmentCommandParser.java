@@ -16,6 +16,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Address;
 import seedu.address.model.Name;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.DateTime;
 import seedu.address.model.person.Person;
 
 public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand> {
@@ -38,7 +39,8 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         }
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        LocalDateTime date = LocalDateTime.now(); // to edit
+        DateTime date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+        // LocalDateTime date = LocalDateTime.now(); // to edit
 
         Set<Person> contactList = ParserUtil.parseContacts(argMultimap.getAllValues(PREFIX_CONTACT));
         contactList.addAll(contactList);

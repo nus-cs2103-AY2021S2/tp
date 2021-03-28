@@ -87,33 +87,39 @@ public class MainApp extends Application {
         Optional<ReadOnlyAppointmentBook> appointmentBookOptional;
         ReadOnlyAddressBook initialAddressData;
         ReadOnlyAppointmentBook initialAppointmentData;
+
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+                logger.info("AddressBook data file not found. Will be starting with a sample AddressBook");
             }
             initialAddressData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
             logger.info("AddressBook successfully loaded!");
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+            logger.warning("AddressBook data file not in the correct format. "
+                    + "Will be starting with an empty AddressBook");
             initialAddressData = new AddressBook();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the AddressBook file. "
+                    + "Will be starting with an empty AddressBook");
             initialAddressData = new AddressBook();
         }
 
         try {
             appointmentBookOptional = storage.readAppointmentBook();
             if (!appointmentBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AppointmentBook");
+                logger.info("AppointmentBook data file not found. "
+                        + "Will be starting with a sample AppointmentBook");
             }
             initialAppointmentData = appointmentBookOptional.orElseGet(SampleDataUtil::getSampleAppointmentBook);
             logger.info("AppointmentBook successfully loaded!");
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AppointmentBook");
+            logger.warning("AppointmentBook data file not in the correct format. "
+                    + "Will be starting with an empty AppointmentBook");
             initialAppointmentData = new AppointmentBook();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AppointmentBook");
+            logger.warning("Problem while reading from the AppointmentBook file. "
+                    + "Will be starting with an empty AppointmentBook");
             initialAppointmentData = new AppointmentBook();
         }
 
