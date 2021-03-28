@@ -22,7 +22,7 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String SCHOOL_LOC = "3. School Locations:\nSOC, FASS, BIZ, SCIENCE, FOE, UTOWN, NUSS, "
                     + "PGP, USC, CLB, UHALL, SDE, MED, DENT, VENTUS, INVALID\n\n\n";
     public static final String HELP_MESSAGE = "1. List of Commands:\n\n"
-                    + "add: Adds a food review to the Food Diary.\n"
+                    + "add: Adds an entry to the Food Diary.\n"
                     + "     add n/Al Amaan ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, "
                     + "Singapore 129588 c/Indian c/Halal s/Ventus\n\n"
                     + "addon: Adds on details (i.e review, price) of the entry "
