@@ -147,28 +147,7 @@ To be updated by Yu Heem
 
 ### [Completed] Find Financial Record Feature : `find-fr`
 
-#### Initial Proposed Implementation
-
-The initial plan was to implement a `category-filter` command which filters
-the financial records based on a specified category. After this feature was
-developed, the planned extensions were to implement other filter commands
-(i.e. `description-filter` and `amount-filter`) that would enable users to
-filter financial records across a larger scope. These 2 extensions would work
-similar to `category-filter`, only with the exception of flags as part of
-user input to filter by description, amount or category. While this proposed
-implementation was to improve the overall usability of the application, the
-similarity in development and functionalities across all 3 features gave strong
-reasons to implement a single feature that combines and serves the intended
-function of all 3 features. Not only would this retain the initial plan of
-improving the flexibility and usability of the application, it would eliminate
-additional commands that are unnecessary.
-
-#### Actual Implementation
-
-The revised approach was to implement a `find-fr` command that enables 
-users to filter up to all 3 fields in a single function. For example, `find-fr d/Shoe
-a/30 c/Apparel` would filter and display items that match all conditions provided (i.e. 
-records with description `Shoe`, amount `30` and category `Apparel`).
+#### Proposed Implementation
 
 The proposed `find` mechanism is facilitated by `BudgetBabyModelManager` which contains
 a filtered list `filteredFinancialRecords` that is to be altered and displayed to the
