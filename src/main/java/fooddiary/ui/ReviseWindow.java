@@ -120,7 +120,8 @@ public class ReviseWindow extends UiPart<Stage> {
     /**
      * Sets the content entry to be ready for revision.
      *
-     * @param entry Entry
+     * @param entry entry
+     * @param index index of entry
      */
     public void setEntryContent(Entry entry, Index index) {
         nameText.setText(entry.getName().fullName);
@@ -141,5 +142,8 @@ public class ReviseWindow extends UiPart<Stage> {
                 .collect(Collectors.joining());
         tagCategoryText.setText(tagCategories);
         tagSchoolText.setText(tagSchools);
+        this.index = index;
     }
+
+
 }
