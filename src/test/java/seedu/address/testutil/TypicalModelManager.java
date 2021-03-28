@@ -9,19 +9,10 @@ import seedu.address.model.UserPrefs;
 public class TypicalModelManager {
 
     /**
-     * Returns a {@code ModelManager} with the typical appointmentbook and propertybook.
+     * Returns a {@code ModelManager} with the typical appointment book and property book.
      */
     public static ModelManager getTypicalModelManager() {
         return new ModelManager(getTypicalAppointmentBook(), getTypicalPropertyBook(), new UserPrefs());
     }
 
-    ///**
-    // * Returns an {@code AppointmentBook} with all the typical appointments.
-    // */
-    //public static ModelManager getTypicalModelManager() {
-    //    ModelManager modelManager =
-    //            new ModelManager(TypicalAppointments.getTypicalAppointmentBook(),
-    //                    TypicalProperties.getTypicalPropertyBook(), new UserPrefs());
-    //    return modelManager;
-    //}
 }

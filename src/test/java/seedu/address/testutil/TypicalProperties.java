@@ -52,25 +52,8 @@ public class TypicalProperties {
         return propertyBook;
     }
 
-    /**
-     * Returns a {@code PropertyBook} with all the typical properties and client.
-     */
-    /*
-    public static PropertyBook getTypicalPropertyBookWithClient() {
-        PropertyBook propertyBook = new PropertyBook();
-        for (Property property : getTypicalProperties()) {
-            propertyBook.addProperty(property);
-        }
-        propertyBook.addProperty(JURONG);
-        return propertyBook;
-    }
-    */
-
     public static List<Property> getTypicalProperties() {
         return new ArrayList<>(Arrays.asList(MAYFAIR, BURGHLEY_DRIVE, WOODLANDS_CRESCENT, JURONG));
     }
 
-    //public static List<Property> getTypicalPropertiesWithClient() {
-    //    return new ArrayList<>(Arrays.asList(WOODLANDS_CRESCENT, MAYFAIR, BURGHLEY_DRIVE, JURONG));
-    //}
 }
