@@ -1,5 +1,6 @@
 package seedu.student.ui;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -30,6 +31,7 @@ public class AppointmentListPanel extends UiPart<Region> {
         super(FXML);
         appointmentsGroupListView.setItems(appointmentLists);
         appointmentsGroupListView.setCellFactory(listView -> new AppointmentsGroupListViewCell(studentList));
+        appointmentsGroupListView.getItems().stream().forEach(x -> System.out.println(x));
     }
 
     /**
@@ -48,7 +50,7 @@ public class AppointmentListPanel extends UiPart<Region> {
         protected void updateItem(SameDateAppointmentList list, boolean empty) {
             super.updateItem(list, empty);
 
-            if (empty || list == null) {
+            if (empty || list == null || list.isFilteredEmpty()) {
                 setGraphic(null);
                 setText(null);
             } else {

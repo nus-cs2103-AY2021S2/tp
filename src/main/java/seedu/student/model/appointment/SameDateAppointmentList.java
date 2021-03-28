@@ -5,9 +5,11 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.student.model.appointment.exceptions.DuplicateAppointmentException;
 import seedu.student.model.appointment.exceptions.OverlappingAppointmentException;
 import seedu.student.model.student.MatriculationNumber;
@@ -28,6 +30,7 @@ public class SameDateAppointmentList implements Iterable<Appointment>, Comparabl
     private final LocalDate date;
     private final ObservableList<Appointment> internalList;
     private final ObservableList<Appointment> internalUnmodifiableList;
+    private final FilteredList<Appointment> filteredAppointments;
 
     /**
      * Creates a list of appointments on the same date.
@@ -36,6 +39,7 @@ public class SameDateAppointmentList implements Iterable<Appointment>, Comparabl
         this.date = date;
         internalList = FXCollections.observableArrayList();
         internalUnmodifiableList = FXCollections.unmodifiableObservableList(internalList);
+        filteredAppointments = new FilteredList<>(internalUnmodifiableList);
     }
 
     public LocalDate getDate() {
@@ -105,6 +109,15 @@ public class SameDateAppointmentList implements Iterable<Appointment>, Comparabl
         return internalUnmodifiableList;
     }
 
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return filteredAppointments;
+    }
+
+    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        requireNonNull(predicate);
+        filteredAppointments.setPredicate(predicate);
+    }
+
     @Override
     public Iterator<Appointment> iterator() {
         return internalList.iterator();
@@ -123,6 +136,10 @@ public class SameDateAppointmentList implements Iterable<Appointment>, Comparabl
 
     public boolean isEmpty() {
         return internalList.isEmpty();
+    }
+
+    public boolean isFilteredEmpty() {
+        return getFilteredAppointmentList().size() == 0;
     }
 
     @Override
