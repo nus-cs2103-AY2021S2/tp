@@ -196,11 +196,11 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME_OF_RESIDENCE a/ADDRESS [clean/[y or n]] [t/TAG] …​` <br> e.g., `add n/Clementi HDB a/459A Clementi Ave 3, #04-257, S121459 clean/n`
-**Add** | `add n/NAME_OF_BOOKER p/PHONE_OF_BOOKER s/START_TIME e/END_TIME` <br> e.g., `add n/John a/91234567 s/01-01-2021 e/02-01-2021`
+**Addb** | `add n/NAME_OF_BOOKER p/PHONE_OF_BOOKER s/START_TIME e/END_TIME` <br> e.g., `add n/John a/91234567 s/01-01-2021 e/02-01-2021`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Deleteb** | `deleteb r/RESIDENCE_INDEX b/BOOKING_INDEX`<br> e.g., `delete r/3 b/2`
-**Edit** | `edit b/UPDATED_BOOKING_DETAILS [INDEX] clean/[y or n] [INDEX]`<br> e.g.,`edit b/3 adults 2 clean/n 2`
+**Edit** | `edit clean/[y or n] [INDEX]`<br> e.g.,`edit clean/n 2`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Heights`
 **List** | `list`
 **Help** | `help`
