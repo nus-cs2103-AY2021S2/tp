@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import seedu.module.commons.core.optionalfield.OptionalField;
+
 /**
  * Stores mapping of prefixes to their respective arguments.
  * Each key may be associated with multiple argument values.
@@ -45,6 +47,19 @@ public class ArgumentMultimap {
     public Optional<String> getValue(Prefix prefix) {
         List<String> values = getAllValues(prefix);
         return values.isEmpty() ? Optional.empty() : Optional.of(values.get(values.size() - 1));
+    }
+
+    /**
+     * Returns the last value of {@code prefix} with wrapper.
+     *
+     * @param prefix requested.
+     * @return the last value of {@code prefix} with wrapper.
+     */
+    public OptionalField<String> getLastValue(Prefix prefix) {
+        List<String> values = getAllValues(prefix);
+        return values.isEmpty()
+                ? new OptionalField<>(null)
+                : new OptionalField<>(values.get(values.size() - 1));
     }
 
     /**

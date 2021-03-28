@@ -118,22 +118,16 @@ public class EditCommand extends Command {
         assert taskToEdit != null;
 
         Name updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
+        OptionalField<Time> updatedStartTime = editTaskDescriptor.getStartTime()
+                .orElse(taskToEdit.getStartTimeWrapper());
         Time updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
         Module updatedModule = editTaskDescriptor.getModule().orElse(taskToEdit.getModule());
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Workload updatedWorkload = editTaskDescriptor.getWorkload().orElse(taskToEdit.getWorkload());
         DoneStatus originalDoneStatus = taskToEdit.getDoneStatus();
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
-
-        // Get optional field startTime.
-        Optional<Time> wrappedStartTime = editTaskDescriptor.getStartTime();
-        OptionalField<Time> updatedStartTime = wrappedStartTime.map(OptionalField::new)
-                .orElseGet(taskToEdit::getStartTimeWrapper);
-
-        // Get optional field recurrence.
-        Optional<Recurrence> wrappedRecurrence = editTaskDescriptor.getRecurrence();
-        OptionalField<Recurrence> updatedRecurrence = wrappedRecurrence.map(OptionalField::new)
-                .orElseGet(taskToEdit::getRecurrenceWrapper);
+        OptionalField<Recurrence> updatedRecurrence = editTaskDescriptor.getRecurrence()
+                .orElse(taskToEdit.getRecurrenceWrapper());
 
         return new Task(updatedName, updatedStartTime, updatedDeadline, updatedModule, updatedDescription,
                 updatedWorkload, originalDoneStatus, updatedRecurrence, updatedTags);
@@ -164,12 +158,12 @@ public class EditCommand extends Command {
      */
     public static class EditTaskDescriptor {
         private Name name;
-        private Time startTime;
+        private OptionalField<Time> startTime;
         private Time deadline;
         private Module module;
         private Description description;
         private Workload workload;
-        private Recurrence recurrence;
+        private OptionalField<Recurrence> recurrence;
         private Set<Tag> tags;
 
         public EditTaskDescriptor() {}
@@ -205,11 +199,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setStartTime(Time startTime) {
+        public void setStartTime(OptionalField<Time> startTime) {
             this.startTime = startTime;
         }
 
-        public Optional<Time> getStartTime() {
+        public Optional<OptionalField<Time>> getStartTime() {
             return Optional.ofNullable(startTime);
         }
 
@@ -262,11 +256,11 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
-        public Optional<Recurrence> getRecurrence() {
+        public Optional<OptionalField<Recurrence>> getRecurrence() {
             return Optional.ofNullable(recurrence);
         }
 
-        public void setRecurrence(Recurrence recurrence) {
+        public void setRecurrence(OptionalField<Recurrence> recurrence) {
             this.recurrence = recurrence;
         }
 
