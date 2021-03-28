@@ -5,13 +5,10 @@ import java.util.logging.Logger;
 import fooddiary.commons.core.LogsCenter;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
-
-
 
 /**
  * Controller for a help page
@@ -121,18 +118,6 @@ public class HelpWindow extends UiPart<Stage> {
     public void focus() {
         getRoot().requestFocus();
     }
-
-//    /**
-//     * Sets the default size based on {@code guiSettings}.
-//     */
-//    private void setWindowDefaultSize(GuiSettings guiSettings) {
-//        primaryStage.setHeight(guiSettings.getWindowHeight());
-//        primaryStage.setWidth(guiSettings.getWindowWidth());
-//        if (guiSettings.getWindowCoordinates() != null) {
-//            primaryStage.setX(guiSettings.getWindowCoordinates().getX());
-//            primaryStage.setY(guiSettings.getWindowCoordinates().getY());
-//        }
-//    }
 
     /**
      * Copies the URL to the user guide to the clipboard.
