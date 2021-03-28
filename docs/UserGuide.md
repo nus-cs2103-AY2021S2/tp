@@ -16,22 +16,24 @@ title: User Guide
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `budgetbaby.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `budgetbaby.jar` from [here](https://github.com/AY2021S2-CS2103T-W14-2/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your BudgetBaby.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
 
-   <img src="images/Ui.png" width="500px">
+   <img src="images/Ui.png" width="600px">
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    - **`add-fr`** `d/Lunch a/10` : Add a financial record for `lunch` which cost `10` dollars.
-    
+
    - **`delete-fr`** `3` : Deletes the 3rd financial record shown in the current list.
 
    - **`set-bg`** `500` : Sets the current month's budget at `500` dollars.
+
+   - **`view-month`** `01-2021` : Displays the financial records and budget of the month `January 2021`.
 
    - **`exit`** : Exits the app.
 
@@ -175,6 +177,7 @@ The UI displays and updates the remaining budget for the current month automatic
 Displays data associated with a specific month.
 
 Data associated include:
+
 - Budget set
 - Remaining budget amount
 - Financial records
@@ -197,6 +200,7 @@ Examples:
 Filters financial records based on specified category.
 
 Data associated include:
+
 - Category to filter
 - Financial records
 
@@ -213,6 +217,7 @@ Examples:
 Resets all filters on financial records.
 
 Data associated include:
+
 - Financial records
 
 Format: `reset-filter`
@@ -260,17 +265,17 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action                              | Format, Examples                                                           |
-| ----------------------------------- | -----------------------------------------------------------------------    |
+| Action                              | Format, Examples                                                        |
+| ----------------------------------- | ----------------------------------------------------------------------- |
 | **Add a Financial Record**          | `add-fr d/FR_DESCRIPTION a/FR_AMOUNT​` <br> e.g., `add-fr d/Lunch a/10` |
 | **List a Month's Financial Record** | `list MM-YYYY​` <br> e.g., `list 02-2021`                               |
-| **View a Financial Record**         | `view-fr FR_INDEX` <br> e.g., `view-fr 10`                                 |
-| **Delete a Financial Record**       | `delete-fr FR_INDEX` <br> e.g., `delete-fr 10`                             |
+| **View a Financial Record**         | `view-fr FR_INDEX` <br> e.g., `view-fr 10`                              |
+| **Delete a Financial Record**       | `delete-fr FR_INDEX` <br> e.g., `delete-fr 10`                          |
 | **Set Monthly Budget**              | `set-bg BG_AMOUNT​` <br> e.g., `set-bg 100`                             |
 | **View Monthly Budget**             | `view-bg​`                                                              |
-| **View a Month**                    | `view MM-YYYY` <br> e.g., `view 01-2021`                                   |
-| **Help**                            | `help`                                                                     |
-| **Exit**                            | `exit`                                                                     |
+| **View a Month**                    | `view MM-YYYY` <br> e.g., `view 01-2021`                                |
+| **Help**                            | `help`                                                                  |
+| **Exit**                            | `exit`                                                                  |
 
 ## Credits
 
