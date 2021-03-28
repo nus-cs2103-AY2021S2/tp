@@ -138,9 +138,9 @@ List out all deadlines (might be unsorted)
 
 Format: `list`
 
-### Mark a deadline as done: `done`
+### Toggle the status of a task: `done`
 
-Marks deadline in the application to be done.
+Toggle the status of a deadline from finished to unfinished or from unfinished to finished.
 
 Format: `done INDEX`
 * The index refers to the index number shown in the displayed person list.
@@ -148,7 +148,8 @@ Format: `done INDEX`
 * Index must be available on the list else an error will be thrown
 
 Example:
-* Using `list` to show all deadlines, the user wants to mark the 5th deadline as done. Users use command `done 5` to mark the 5th deadline as done.
+* Task 3 has finished. `done 3` will mark task 3 to be unfinished. If the user type `done 3` again, it will mark task 3 to be finished again.
+* Task 1 hasn't finished. `done 1` will mark task 1 to be finished.
 
 ### Sort deadlines: `sort`
 
@@ -169,18 +170,17 @@ Clears all deadlines from the application.
 
 Format: `clear`
 
-### Showing time-based alerts: `show`
+### Show tasks that due soon: `dueIn`
 
-Shows alert(s) for incoming deadlines based on the time range (if given).
+Show tasks that are due within the days/weeks specified by the user (if any).
 
-Format: `show [start/START_DATE] [end/END_DATE]`
-* If no time range is given, alert(s) shown will be deadlines from next week until the next 2 weeks.
-* If only `START_DATE` is given, alert(s) shown will be from **the `START_DATE` until the latest deadline**.
-* If only `END_DATE` is given, alert(s) shown will be from **today’s date until the `END_DATE`**.
+Format: `dueIn [start/START_DATE] [end/END_DATE]`
+* If no parameters given, tasks shown will be deadlines that will be due by **next week**.
+* `NUMBER_OF_DAYS` & `NUMBER_OF_WEEKS` must be a positive integer
+* If both `day/` & `week/` given, the `NUMBER_OF_DAYS` will be used.
 
 Example:
-* `alert start/10-10-2020` will show deadlines starting from 10 October 2020 onwards.
-* If today is 10 March 2021, `alert` will show deadlines from 17 March - 23 March 2021.
+* Task 1's deadline is 10 March 2020. Task 2's deadline is 11 March 2020. Today is 3 March 2020. `dueIn`, `dueIn day/7`, and `dueIn week/1` will lists task 1 on the list.
 ### Saving the data
 
 `semester.config` data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -217,7 +217,7 @@ Action | Format, Examples
 **edit** | `edit INDEX [tn/TASK NAME] [mn/MODULE NAME] [mc/MODULE CODE] [d/ DEADLINE DATE] [t/DEADLINE TIME] [n/NOTES] [pt/PRIORITY]` <br> e.g, `edit 2 tn/Assignment 7`
 **clear** |`clear`
 **pt** | `pt [/LOW] [/MEDIUM] [/HIGH] INDEX` <br> e.g, `pt /MEDIUM 3`
-**show** | `show [start/START_DATE] [end/END_DATE]` <br> e.g, `show`  `show end/10-10-2020` <br>`show start/10-10-2020 end/11-10-2020`
+**dueIn** | `dueIn [day/NUMBER_OF_DAYS] [week/NUMBER_OF_WEEKS]` <br> e.g, `dueIn`  `dueIn day/10` `dueIn week/2`
 
 
 
