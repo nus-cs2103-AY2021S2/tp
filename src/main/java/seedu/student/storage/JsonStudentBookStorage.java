@@ -52,7 +52,9 @@ public class JsonStudentBookStorage implements StudentBookStorage {
         }
 
         try {
+
             return Optional.of(jsonStudentBook.get().toModelType());
+
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);

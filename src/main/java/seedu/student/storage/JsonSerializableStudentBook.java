@@ -48,7 +48,7 @@ class JsonSerializableStudentBook {
     }
 
     /**
-     * Converts this student book into the model's {@code AddressBook} object.
+     * Converts this student book into the model's {@code StudentBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

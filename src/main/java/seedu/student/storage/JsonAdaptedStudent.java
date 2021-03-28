@@ -22,6 +22,8 @@ class JsonAdaptedStudent {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Student's %s field is missing!";
 
+    private static final String NO_SCHOOL_RESIDENCE =  "DOES_NOT_LIVE_ON_CAMPUS";
+
     private final String name;
     private final String matriculationNumber;
     private final String faculty;
@@ -77,6 +79,9 @@ class JsonAdaptedStudent {
      * @throws IllegalValueException if there were any data constraints violated in the adapted student.
      */
     public Student toModelType() throws IllegalValueException {
+
+        final SchoolResidence modelSchoolRes;
+
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -150,11 +155,14 @@ class JsonAdaptedStudent {
         }
         final MedicalDetails modelMedDetails = new MedicalDetails(medicalDetails);
 
-        if (!SchoolResidence.isValidResidence(schoolResidence)) {
-            throw new IllegalValueException(SchoolResidence.MESSAGE_CONSTRAINTS);
+        if(schoolResidence.isBlank()){
+            modelSchoolRes = new SchoolResidence(NO_SCHOOL_RESIDENCE);
+        } else{
+            if (!SchoolResidence.isValidResidence(schoolResidence)) {
+                throw new IllegalValueException(SchoolResidence.MESSAGE_CONSTRAINTS);
+            }
+            modelSchoolRes = new SchoolResidence(schoolResidence);
         }
-
-        final SchoolResidence modelSchoolRes = new SchoolResidence(schoolResidence);
 
         return new Student(modelName, modelMatric, modelFaculty, modelPhone, modelEmail, modelAddress, modelVacStatus,
                 modelMedDetails, modelSchoolRes);
