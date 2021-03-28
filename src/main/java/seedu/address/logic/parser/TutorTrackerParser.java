@@ -28,12 +28,12 @@ import seedu.address.logic.commands.budgetcommands.AddBudgetCommand;
 import seedu.address.logic.commands.budgetcommands.DeleteBudgetCommand;
 import seedu.address.logic.commands.budgetcommands.EditBudgetCommand;
 import seedu.address.logic.commands.budgetcommands.ViewBudgetCommand;
+import seedu.address.logic.commands.filtercommands.AddPersonFilterCommand;
+import seedu.address.logic.commands.filtercommands.DeletePersonFilterCommand;
 import seedu.address.logic.commands.gradecommands.AddGradeCommand;
 import seedu.address.logic.commands.gradecommands.DeleteGradeCommand;
 import seedu.address.logic.commands.gradecommands.EditGradeCommand;
 import seedu.address.logic.commands.gradecommands.ListGradeCommand;
-import seedu.address.logic.commands.filtercommands.AddPersonFilterCommand;
-import seedu.address.logic.commands.filtercommands.DeletePersonFilterCommand;
 import seedu.address.logic.commands.schedulecommands.AddScheduleCommand;
 import seedu.address.logic.commands.schedulecommands.DeleteScheduleCommand;
 import seedu.address.logic.parser.appointmentparser.AddAppointmentCommandParser;
@@ -46,11 +46,11 @@ import seedu.address.logic.parser.budgetparser.DeleteBudgetCommandParser;
 import seedu.address.logic.parser.budgetparser.EditBudgetCommandParser;
 import seedu.address.logic.parser.budgetparser.ViewBudgetCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.filterparser.AddPersonFilterCommandParser;
+import seedu.address.logic.parser.filterparser.DeletePersonFilterCommandParser;
 import seedu.address.logic.parser.gradeparser.AddGradeCommandParser;
 import seedu.address.logic.parser.gradeparser.DeleteGradeCommandParser;
 import seedu.address.logic.parser.gradeparser.EditGradeCommandParser;
-import seedu.address.logic.parser.filterparser.AddPersonFilterCommandParser;
-import seedu.address.logic.parser.filterparser.DeletePersonFilterCommandParser;
 import seedu.address.logic.parser.scheduleparser.AddScheduleCommandParser;
 import seedu.address.logic.parser.scheduleparser.DeleteScheduleCommandParser;
 
@@ -167,7 +167,6 @@ public class TutorTrackerParser {
         /* Schedule Commands */
         case AddScheduleCommand.COMMAND_WORD:
             return new AddScheduleCommandParser().parse(arguments);
-            
         case DeleteScheduleCommand.COMMAND_WORD:
             return new DeleteScheduleCommandParser().parse(arguments);
 
