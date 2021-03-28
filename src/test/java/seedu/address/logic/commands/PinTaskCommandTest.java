@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.address.testutil.TypicalTasks.getTypicalSochedule;
@@ -34,8 +33,10 @@ public class PinTaskCommandTest {
     private Model model = new ModelManager(getTypicalSochedule(), new UserPrefs());
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
+    public void execute_validIndexList_success() {
         Task taskToPin = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        Task taskToPinCopy = copyTask(taskToPin); //copy to preserve integrity
+        model.setTask(taskToPin, taskToPinCopy);
         PinTaskCommand pinTaskCommand = new PinTaskCommand(INDEX_FIRST_TASK);
 
         String expectedMessage = PinTaskCommand.MESSAGE_PIN_TASK_SUCCESS;
@@ -51,47 +52,12 @@ public class PinTaskCommandTest {
         expectedModel.setTask(taskToPin, copiedTask);
         expectedModel.pinTask(copiedTask);
 
-        assertEquals(model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased()), copiedTask);
+        assertEquals(model.getFilteredTaskList(), expectedModel.getFilteredTaskList());
     }
 
     @Test
-    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
+    public void execute_invalidIndexList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
-        PinTaskCommand pinTaskCommand = new PinTaskCommand(outOfBoundIndex);
-
-        assertCommandFailure(pinTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
-    }
-
-    @Test
-    public void execute_validIndexFilteredList_success() {
-        showTaskAtIndex(model, INDEX_FIRST_TASK);
-        Task taskToPin = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        PinTaskCommand pinTaskCommand = new PinTaskCommand(INDEX_FIRST_TASK);
-
-        String expectedMessage = PinTaskCommand.MESSAGE_PIN_TASK_SUCCESS;
-        try {
-            CommandResult result = pinTaskCommand.execute(model);
-            assertEquals(result, new CommandResult(expectedMessage));
-        } catch (CommandException ce) {
-            throw new AssertionError("Execution of command should not fail.", ce);
-        }
-
-        ModelManager expectedModel = new ModelManager(model.getSochedule(), new UserPrefs());
-        Task copiedTask = copyTask(taskToPin);
-        expectedModel.setTask(taskToPin, copiedTask);
-        expectedModel.pinTask(copiedTask);
-
-        assertEquals(model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased()), copiedTask);
-    }
-
-    @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showTaskAtIndex(model, INDEX_FIRST_TASK);
-
-        Index outOfBoundIndex = INDEX_SECOND_TASK;
-        // ensures that outOfBoundIndex is still in bounds of sochedule's task list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getSochedule().getTaskList().size());
-
         PinTaskCommand pinTaskCommand = new PinTaskCommand(outOfBoundIndex);
 
         assertCommandFailure(pinTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
@@ -137,14 +103,5 @@ public class PinTaskCommandTest {
             copiedTask.markTaskAsDone();
         }
         return copiedTask;
-    }
-
-    /**
-     * Updates {@code model}'s filtered list to show no task.
-     */
-    private void showNoTask(Model model) {
-        model.updateFilteredTaskList(p -> false);
-
-        assertTrue(model.getFilteredTaskList().isEmpty());
     }
 }
