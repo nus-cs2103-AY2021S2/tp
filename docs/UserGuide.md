@@ -177,6 +177,18 @@ Format: `deleteStud MATRICULATION NUMBER`
 Examples:
 * `deleteStud A7654321J` deletes Betsy Crowe from the records.
 
+### Deleting an appointment by the student's matriculation number: `deleteAppt`
+
+Deletes the appointment of the student with the specified matriculation number from Vax@NUS' records. 
+
+Format: `deleteAppt MATRICULATION NUMBER`
+
+* If the matriculation number or appointment does not exist in the records, an error message will be displayed to inform users that
+  the matriculation number or appointment is not found.
+
+Examples:
+* `deleteAppt A7654321J` deletes Betsy Crowe's appointments from the records, provided she had an appointment scheduled previously.
+
 
 ### Adding an appointment: `addAppt`
 
@@ -267,5 +279,6 @@ Action | Format, Examples
 **Find** | `find MATRICULATION_NUMBER` e.g., `find A1234567X`
 **Filter** | `filter VACCINATION_STATUS`  e.g., `filter VACCINATED` <br> `filter FACULTY ` e.g., `filter COM` <br> `filter SCHOOL_RESIDENCE` e.g., `filter RVRC` 
 **Delete Student** | `deleteStud MATRICULATION_NUMBER` e.g., `deleteStud A1234567X`
+**Delete Appointment** | `deleteAppt MATRICULATION_NUMBER` e.g., `deleteAppt A1234567X`
 **View Student Statistics** | `stats FACULTY` e.g., `stats COM` <br> `stats SCHOOL_RESIDENCE` e.g., `stats RC4` <br> `stats NUS` <br> `stats all` 
 **View Appointment Statistics** | `statsAppt`
