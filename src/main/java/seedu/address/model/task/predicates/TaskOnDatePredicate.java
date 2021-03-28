@@ -1,6 +1,9 @@
-package seedu.address.model.task;
+package seedu.address.model.task.predicates;
 
 import java.util.function.Predicate;
+
+import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Task;
 
 /**
  * Predicate testing whether the task being tested falls on the date provided. Uses

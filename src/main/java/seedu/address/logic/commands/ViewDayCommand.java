@@ -13,9 +13,9 @@ public class ViewDayCommand extends Command {
     public static final String COMMAND_WORD = "view";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": View all tasks for the day and shows free timings for "
-            + "the day.\n"
-            + "Parameters: DAY\n"
-            + "Example: " + COMMAND_WORD + " 01/01/2021";
+            + "the day. Date specified should be a future date after today.\n"
+            + "Parameters: DATE\n"
+            + "Example: " + COMMAND_WORD + " 01/01/2022";
 
     private final Predicate<Task> predicate;
 

@@ -5,7 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import seedu.address.logic.commands.ViewDayCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Deadline;
-import seedu.address.model.task.TaskOnDatePredicate;
+import seedu.address.model.task.predicates.TaskOnDatePredicate;
 
 /**
  * Parses input arguments and creates a new ViewDayCommand object

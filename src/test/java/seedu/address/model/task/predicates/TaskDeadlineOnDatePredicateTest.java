@@ -1,10 +1,11 @@
-package seedu.address.model.task;
+package seedu.address.model.task.predicates;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.task.Deadline;
 import seedu.address.testutil.TaskBuilder;
 
 class TaskDeadlineOnDatePredicateTest {
