@@ -169,6 +169,18 @@ public class Project {
     }
 
     /**
+     * Set the {@code Event} specified by index with a new {@code Event}.
+     *
+     * @param i index number specifies the target {@code Event}.
+     * @param event new {@code Event} for this index.
+     */
+    public void setEvent(Integer i, Event event) {
+        requireAllNonNull(event, i);
+
+        this.events.setEvent(i, event);
+    }
+
+    /**
      *  Deletes a participant from {@code ParticipantList} field of this {@code Project}.
      *
      * @param i Index of {@code Person} to be deleted.
