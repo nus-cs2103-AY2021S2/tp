@@ -119,7 +119,7 @@ public class StudentBuilder {
     }
 
     /**
-     * Adds {@code Sessions} who are non null to the {@code sessions} of the {@code Student}.
+     * Adds {@code Sessions} that are non null to the {@code sessions} of the {@code Student}.
      */
     public StudentBuilder addSessions(Session ...sessions) {
         for (Session session: sessions) {
