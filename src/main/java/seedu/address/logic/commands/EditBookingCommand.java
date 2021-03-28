@@ -1,5 +1,13 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLEAN_STATUS_TAG;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RESIDENCES;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -8,18 +16,8 @@ import seedu.address.model.Model;
 import seedu.address.model.booking.Booking;
 import seedu.address.model.booking.Name;
 import seedu.address.model.booking.Phone;
+import seedu.address.model.residence.BookingList;
 import seedu.address.model.residence.Residence;
-
-import java.time.LocalDate;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CLEAN_STATUS_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RESIDENCES;
 
 public class EditBookingCommand extends Command {
     public static final String COMMAND_WORD = "editb";
@@ -32,14 +30,18 @@ public class EditBookingCommand extends Command {
             + "Example: " + COMMAND_WORD + "1 "
             + PREFIX_CLEAN_STATUS_TAG + "y";
 
-    public static final String MESSAGE_EDIT_RESIDENCE_SUCCESS = "Edited Residence: %1$s";
+    public static final String MESSAGE_EDIT_BOOKING_SUCCESS = "Edited Booking: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_RESIDENCE = "This residence already exists in the residence tracker.";
+    public static final String MESSAGE_OVERLAP_BOOKING = "The edited booking overlaps with other existing bookings.";
+    public static final String MESSAGE_NOT_VALID_START_DATE = "Invalid start date, should not be later than end date";
 
     private final Index residenceIndex;
     private final Index bookingIndex;
     private final EditBookingDescriptor editBookingDescriptor;
 
+    /**
+     *
+     */
     public EditBookingCommand(Index residenceIndex, Index bookingIndex, EditBookingDescriptor editBookingDescriptor) {
         requireNonNull(residenceIndex);
         requireNonNull(bookingIndex);
@@ -53,21 +55,30 @@ public class EditBookingCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Residence> lastShownList = model.getFilteredResidenceList();
-        
+
         if (residenceIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_RESIDENCE_DISPLAYED_INDEX);
         }
+        Residence targetResidence = lastShownList.get(residenceIndex.getZeroBased());
+        Residence residenceToEdit = lastShownList.get(residenceIndex.getZeroBased());
+        BookingList bookingListToEdit = residenceToEdit.getBookingList();
+        if (bookingIndex.getZeroBased() >= bookingListToEdit.getBookingListSize()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_BOOKING_DISPLAYED_INDEX);
+        }
+        Booking bookingToEdit = bookingListToEdit.getBooking(bookingIndex.getZeroBased());
+        Booking editedBooking = createEditedBooking(bookingToEdit, editBookingDescriptor);
 
-        Residence residenceToEdit = lastShownList.get(index.getZeroBased());
-        Residence editedResidence = createEditedResidence(residenceToEdit, editResidenceDescriptor);
-
-        if (!residenceToEdit.isSameResidence(editedResidence) && model.hasResidence(editedResidence)) {
-            throw new CommandException(MESSAGE_DUPLICATE_RESIDENCE);
+        if (!editedBooking.isValidBookingTime(editedBooking.getStart(), editedBooking.getEnd())) {
+            throw new CommandException(MESSAGE_NOT_VALID_START_DATE);
         }
 
-        model.setResidence(residenceToEdit, editedResidence);
+        if (residenceToEdit.getBookingList().containsExclude(bookingToEdit, editedBooking)) {
+            throw new CommandException(MESSAGE_OVERLAP_BOOKING);
+        }
+        bookingListToEdit.setBooking(bookingToEdit, editedBooking);
+        model.setResidence(targetResidence, residenceToEdit);
         model.updateFilteredResidenceList(PREDICATE_SHOW_ALL_RESIDENCES);
-        return new CommandResult(String.format(MESSAGE_EDIT_RESIDENCE_SUCCESS, editedResidence));
+        return new CommandResult(String.format(MESSAGE_EDIT_BOOKING_SUCCESS, editedBooking));
     }
 
     /**
@@ -122,6 +133,9 @@ public class EditBookingCommand extends Command {
         public EditBookingDescriptor() {
         }
 
+        /**
+         *
+         */
         public EditBookingDescriptor(EditBookingDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);

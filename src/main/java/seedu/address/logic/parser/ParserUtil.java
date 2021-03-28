@@ -140,6 +140,15 @@ public class ParserUtil {
     }
 
     /**
+     *
+     */
+    public static LocalDate parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        LocalDate trimmedDate = LocalDate.parse(date.trim(), DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        return trimmedDate;
+    }
+
+    /**
      * Parses a {@code String clean status(y or n)} into a {@code CleanStatusTag}.
      * Leading and trailing whitespaces will be trimmed.
      *

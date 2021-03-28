@@ -47,6 +47,20 @@ public class BookingList implements Iterable<Booking> {
     }
 
     /**
+     * Checks if edited Booking overlaps with any other bookings in the current booking list.
+     */
+    public boolean containsExclude(Booking toExclude, Booking toCheck) {
+        requireNonNull(toCheck);
+        ObservableList<Booking> copyOfInternalList = FXCollections.observableArrayList();
+        Iterator<Booking> iterator = internalList.iterator();
+        while (iterator.hasNext()) {
+            copyOfInternalList.add(iterator.next());
+        }
+        copyOfInternalList.remove(toExclude);
+        return copyOfInternalList.stream().anyMatch(toCheck::doesOverlap);
+    }
+
+    /**
      * Adds a booking to the list.
      * The booking must not overlap with another booking which already exists in the list.
      */
@@ -69,10 +83,6 @@ public class BookingList implements Iterable<Booking> {
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new BookingNotFoundException();
-        }
-
-        if (contains(editedBooking)) {
-            throw new OverlappingBookingException();
         }
 
         internalList.set(index, editedBooking);
