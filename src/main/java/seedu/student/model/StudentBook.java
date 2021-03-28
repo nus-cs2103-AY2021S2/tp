@@ -159,9 +159,17 @@ public class StudentBook implements ReadOnlyStudentBook {
     }
 
     @Override
-    public boolean isExistingMatricNumber(MatriculationNumber matricNum) {
+    public boolean isExistingMatricNumber(MatriculationNumber matriculationNumber) {
         return students.asUnmodifiableObservableList().stream()
-                .anyMatch(student -> student.getMatriculationNumber().equals(matricNum));
+                .anyMatch(student -> student.getMatriculationNumber().equals(matriculationNumber));
+    }
+
+    @Override
+    public Student getStudent(MatriculationNumber matricNum) {
+        return students.asUnmodifiableObservableList().stream()
+                .filter(student -> student.getMatriculationNumber().equals(matricNum))
+                .findAny()
+                .orElse(null);
     }
 
     @Override
