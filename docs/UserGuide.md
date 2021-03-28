@@ -11,16 +11,14 @@ title: User Guide
 - [Features](#features)
   - [Viewing help : `help`](#viewing-help--help)
   - [Adding a financial record : `add-fr`](#adding-a-financial-record--add-fr)
-  - [Listing a month's financial records : `list`](#listing-a-months-financial-records--list)
-  - [Viewing a financial record : `view-fr`](#viewing-a-financial-record--view-fr)
   - [Deleting a financial record : `delete-fr`](#deleting-a-financial-record--delete-fr)
   - [Setting monthly budget : `set-bg`](#setting-monthly-budget--set-bg)
-  - [Viewing budget for the current month](#viewing-budget-for-the-current-month)
-  - [Checking remaining budget for the current month](#checking-remaining-budget-for-the-current-month)
   - [Viewing a specific month : `view-month`](#viewing-a-specific-month--view-month)
   - [Finding financial records : `find-fr`](#finding-financial-records--find-fr)
   - [Resetting filters on financial records : `reset-filter`](#resetting-filters-on-financial-records--reset-filter)
   - [Exiting the program : `exit`](#exiting-the-program--exit)
+  - [Viewing budget for the current month](#viewing-budget-for-the-current-month)
+  - [Checking remaining budget for the current month](#checking-remaining-budget-for-the-current-month)
   - [Saving the data](#saving-the-data)
   - [Editing the data file](#editing-the-data-file)
   - [Archiving data files](#archiving-data-files)
@@ -97,6 +95,8 @@ Format: `help`
 
 You can use this command to add a financial record to the budget tracker.
 
+<img src="images/features/add-fr.png" width="600px">
+
 Format: `add-fr d/FR_DESCRIPTION a/FR_AMOUNT`
 
 <div markdown="span" class="alert alert-primary">
@@ -117,6 +117,8 @@ Examples:
 
 You can use this command to delete a financial record from the budget tracker.
 
+<img src="images/features/delete-fr.png" width="600px">
+
 Format: `delete-fr FR_INDEX`
 
 <div markdown="span" class="alert alert-primary">
@@ -136,6 +138,8 @@ Examples:
 ### Setting monthly budget : `set-bg`
 
 You can use this command to set the budget for the current month and the following twelve months.
+
+<img src="images/features/set-bg.png" width="600px">
 
 Format: `set-bg BG_AMOUNT`
 
@@ -172,7 +176,9 @@ Data associated with a month include:
 - Your remaining budget for the month
 - Your list of finacial records for the month
 
-Format: `view MM-YYYY`
+<img src="images/features/view-month.png" width="600px">
+
+Format: `view-month MM-YYYY`
 
 <div markdown="span" class="alert alert-primary">
 
@@ -186,7 +192,7 @@ Format: `view MM-YYYY`
 
 Examples:
 
-- `view 01-2021`
+- `view-month 01-2021`
 
 ### Finding financial records : `find-fr`
 
@@ -197,7 +203,9 @@ Data associated include:
 - Category to filter
 - Financial records
 
-Format: `category-filter c/FR_CATEGORY`
+<img src="images/features/find-fr.png" width="600px">
+
+Format: `find-fr c/FR_CATEGORY`
 
 Examples:
 
@@ -210,6 +218,8 @@ You can use this command to reset all filters on financial records.
 Data associated include:
 
 - Financial records
+
+<img src="images/features/reset-filter.png" width="600px">
 
 Format: `reset-filter`
 
@@ -224,6 +234,14 @@ Examples:
 You can use this command to exit the program.
 
 Format: `exit`
+
+### Viewing budget for the current month :
+
+The UI displays the current monthly budget that has been set automatically.
+
+### Checking remaining budget for the current month :
+
+The UI displays and updates the remaining budget for the current month automatically.
 
 ### Saving the data
 
