@@ -2,7 +2,7 @@ package dog.pawbook.logic.commands;
 
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static dog.pawbook.testutil.TypicalOwners.getTypicalAddressBook;
+import static dog.pawbook.testutil.TypicalOwners.getTypicalDatabase;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,7 +24,7 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalDatabase(), new UserPrefs());
     }
 
     @Test

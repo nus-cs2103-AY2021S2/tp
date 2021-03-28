@@ -40,7 +40,7 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyDatabase getSampleAddressBook() {
+    public static ReadOnlyDatabase getSampleDatabase() {
         Database sampleAb = new Database();
         for (Owner sampleOwner : getSampleOwners()) {
             sampleAb.addEntity(sampleOwner);

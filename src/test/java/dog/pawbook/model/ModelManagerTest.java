@@ -61,12 +61,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setDatabaseFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setDatabaseFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setDatabaseFilePath_validPath_setsDatabaseFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setDatabaseFilePath(path);
         assertEquals(path, modelManager.getDatabaseFilePath());
@@ -78,12 +78,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasOwner_ownerNotInAddressBook_returnsFalse() {
+    public void hasOwner_ownerNotInDatabase_returnsFalse() {
         assertFalse(modelManager.hasEntity(ALICE));
     }
 
     @Test
-    public void hasOwner_ownerInAddressBook_returnsTrue() {
+    public void hasOwner_ownerInDatabase_returnsTrue() {
         modelManager.addEntity(ALICE);
         assertTrue(modelManager.hasEntity(ALICE));
     }

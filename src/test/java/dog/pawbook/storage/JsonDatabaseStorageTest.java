@@ -4,7 +4,7 @@ import static dog.pawbook.testutil.Assert.assertThrows;
 import static dog.pawbook.testutil.TypicalOwners.ALICE;
 import static dog.pawbook.testutil.TypicalOwners.HOON;
 import static dog.pawbook.testutil.TypicalOwners.IDA;
-import static dog.pawbook.testutil.TypicalOwners.getTypicalAddressBook;
+import static dog.pawbook.testutil.TypicalOwners.getTypicalDatabase;
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -67,7 +67,7 @@ public class JsonDatabaseStorageTest {
     @Test
     public void readAndSaveDatabase_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
-        Database original = getTypicalAddressBook();
+        Database original = getTypicalDatabase();
         JsonDatabaseStorage jsonDatabaseStorage = new JsonDatabaseStorage(filePath);
 
         // Save in new file and read back

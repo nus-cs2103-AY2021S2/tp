@@ -70,9 +70,9 @@ public class TypicalDogs {
     private TypicalDogs() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical dogs.
+     * Returns an {@code Database} with all the typical dogs.
      */
-    public static Database getTypicalAddressBook() {
+    public static Database getTypicalDatabase() {
         Database ab = new Database();
         ab.addEntityWithId(DOG_OWNER, 1);
         Set<Integer> ids = new HashSet<>(DOG_OWNER.getDogIdSet());

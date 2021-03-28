@@ -25,7 +25,7 @@ public class JsonSerializableDatabaseTest {
         JsonSerializableDatabase dataFromFile = JsonUtil.readJsonFile(TYPICAL_OWNERS_FILE,
                 JsonSerializableDatabase.class).get();
         Database addressBookFromFile = dataFromFile.toModelType();
-        Database typicalOwnersAddressBook = TypicalOwners.getTypicalAddressBook();
+        Database typicalOwnersAddressBook = TypicalOwners.getTypicalDatabase();
         assertEquals(addressBookFromFile, typicalOwnersAddressBook);
     }
 

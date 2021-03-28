@@ -60,9 +60,9 @@ public class TypicalOwners {
     private TypicalOwners() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical owners.
+     * Returns an {@code Database} with all the typical owners.
      */
-    public static Database getTypicalAddressBook() {
+    public static Database getTypicalDatabase() {
         Database ab = new Database();
         for (Owner owner : getTypicalOwners()) {
             ab.addEntity(owner);

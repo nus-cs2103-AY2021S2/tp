@@ -2,7 +2,7 @@ package dog.pawbook.model;
 
 import static dog.pawbook.testutil.Assert.assertThrows;
 import static dog.pawbook.testutil.TypicalOwners.ALICE;
-import static dog.pawbook.testutil.TypicalOwners.getTypicalAddressBook;
+import static dog.pawbook.testutil.TypicalOwners.getTypicalDatabase;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -33,7 +33,7 @@ public class DatabaseTest {
 
     @Test
     public void resetData_withValidReadOnlyDatabase_replacesData() {
-        Database newData = getTypicalAddressBook();
+        Database newData = getTypicalDatabase();
         database.resetData(newData);
         assertEquals(newData, database);
     }
