@@ -11,7 +11,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Region;
 
 /**
@@ -23,6 +22,7 @@ public class HelpPanel extends UiPart<Region> {
     public static final String URL_COPIED = "URL has been copied.";
 
     private static final int ROW_HEIGHT = 25;
+    private static final int SAFETY_MARGIN = 5;
 
     private static final String FXML = "HelpPanel.fxml";
 
@@ -56,13 +56,8 @@ public class HelpPanel extends UiPart<Region> {
         table.setItems(commands);
         table.setFixedCellSize(ROW_HEIGHT);
         table.setSelectionModel(null);
-        table.addEventFilter(ScrollEvent.ANY, event -> {
-            if (event.getDeltaX() != 0) {
-                event.consume();
-            }
-        });
         table.prefHeightProperty()
-                .bind(Bindings.size(table.getItems()).multiply(ROW_HEIGHT));
+                .bind(Bindings.size(table.getItems()).multiply(ROW_HEIGHT).add(SAFETY_MARGIN));
 
         TableColumn<CommandSyntax, String> commandCol = new TableColumn<>("Command");
         commandCol.setSortable(false);
@@ -72,8 +67,8 @@ public class HelpPanel extends UiPart<Region> {
         usageCol.setSortable(false);
         usageCol.setCellValueFactory(new PropertyValueFactory<>("usage"));
 
-        commandCol.prefWidthProperty().bind(table.widthProperty().multiply(0.15));
-        usageCol.prefWidthProperty().bind(table.widthProperty().multiply(0.85));
+        commandCol.prefWidthProperty().bind(table.widthProperty().multiply(0.08));
+        usageCol.prefWidthProperty().bind(table.widthProperty().multiply(0.88));
 
         commandCol.setResizable(false);
         usageCol.setResizable(false);

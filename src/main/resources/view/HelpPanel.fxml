@@ -27,6 +27,7 @@
         </HBox.margin>
       </Button>
   </HBox>
+
   <ScrollPane fitToWidth="true">
     <VBox styleClass="commands-display-vbox">
       <Label styleClass="label-header" text="Projects" />

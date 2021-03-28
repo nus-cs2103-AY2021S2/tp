@@ -8,6 +8,37 @@
     -fx-border-width: 0;
 }
 
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-min-width: 500;
+    -fx-pref-width: 500;
+    -fx-max-width: 500;
+}
+
+.table-view .table-column {
+    -fx-alignment: center;
+}
+
+.table-cell {
+    -fx-text-fill: white;
+    -fx-padding: 5 0;
+}
+
+.table-row-cell {
+    -fx-background-color: transparent;
+    -fx-border-radius: 0;
+    -fx-table-cell-border-color: transparent;
+}
+
 .table-view .scroll-bar * {
     -fx-min-width: 0;
     -fx-pref-width: 0;
@@ -28,8 +59,7 @@
     -fx-text-fill: white;
     -fx-font-size: 24;
     -fx-text-alignment: center;
-    -fx-padding: 0 0 10px 0;
-    -fx-pref-height: 50px;
+    -fx-padding: 5 0 5 0;
     -fx-border-radius: 0;
 }
 
