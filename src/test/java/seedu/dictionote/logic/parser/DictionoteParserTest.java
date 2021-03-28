@@ -36,6 +36,10 @@ import seedu.dictionote.logic.commands.ExitCommand;
 import seedu.dictionote.logic.commands.FindContactCommand;
 import seedu.dictionote.logic.commands.HelpCommand;
 import seedu.dictionote.logic.commands.ListCommandCommand;
+import seedu.dictionote.logic.commands.ListCommandContactCommand;
+import seedu.dictionote.logic.commands.ListCommandDictionaryCommand;
+import seedu.dictionote.logic.commands.ListCommandNoteCommand;
+import seedu.dictionote.logic.commands.ListCommandUiCommand;
 import seedu.dictionote.logic.commands.ListContactCommand;
 import seedu.dictionote.logic.commands.OpenCommand;
 import seedu.dictionote.logic.commands.SetContactDividerPositionCommand;
@@ -134,6 +138,38 @@ public class DictionoteParserTest {
     public void parseCommand_listCommand() throws Exception {
         assertTrue(parser.parseCommand(ListCommandCommand.COMMAND_WORD) instanceof ListCommandCommand);
         assertTrue(parser.parseCommand(ListCommandCommand.COMMAND_WORD + " 3") instanceof ListCommandCommand);
+    }
+
+    @Test
+    public void parseCommand_listCommandDictionary() throws Exception {
+        assertTrue(parser.parseCommand(ListCommandDictionaryCommand.COMMAND_WORD)
+            instanceof ListCommandDictionaryCommand);
+        assertTrue(parser.parseCommand(ListCommandDictionaryCommand.COMMAND_WORD + " 3")
+            instanceof ListCommandDictionaryCommand);
+    }
+
+    @Test
+    public void parseCommand_listCommandNote() throws Exception {
+        assertTrue(parser.parseCommand(ListCommandNoteCommand.COMMAND_WORD)
+            instanceof ListCommandNoteCommand);
+        assertTrue(parser.parseCommand(ListCommandNoteCommand.COMMAND_WORD + " 3")
+            instanceof ListCommandNoteCommand);
+    }
+
+    @Test
+    public void parseCommand_listCommandContact() throws Exception {
+        assertTrue(parser.parseCommand(ListCommandContactCommand.COMMAND_WORD)
+            instanceof ListCommandContactCommand);
+        assertTrue(parser.parseCommand(ListCommandContactCommand.COMMAND_WORD + " 3")
+            instanceof ListCommandContactCommand);
+    }
+
+    @Test
+    public void parseCommand_listCommandUi() throws Exception {
+        assertTrue(parser.parseCommand(ListCommandUiCommand.COMMAND_WORD)
+            instanceof ListCommandUiCommand);
+        assertTrue(parser.parseCommand(ListCommandUiCommand.COMMAND_WORD + " 3")
+            instanceof ListCommandUiCommand);
     }
 
     @Test
