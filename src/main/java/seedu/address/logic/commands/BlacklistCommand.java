@@ -83,8 +83,9 @@ public class BlacklistCommand extends Command {
      * {@code editedPerson}.
      */
     private String generateSuccessMessage(Person editedPerson) {
-        String message = blacklist.getStatus() ?
-                MESSAGE_BLACKLIST_SUCCESS : MESSAGE_UNBLACKLIST_SUCCESS;
+        String message = blacklist.getStatus()
+                ? MESSAGE_BLACKLIST_SUCCESS
+                : MESSAGE_UNBLACKLIST_SUCCESS;
         return String.format(message, editedPerson);
     }
 
