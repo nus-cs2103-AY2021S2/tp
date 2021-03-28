@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.sql.Time;
 import java.time.LocalDate;
 import java.util.logging.Logger;
 
@@ -143,9 +144,7 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        Timetable timetable = new Timetable(LocalDate.now());
-
-        TimetableView timetableView = new TimetableView(timetable.getReadOnlyWeeklySchedule());
+        TimetableView timetableView = new TimetableView();
         timetableHolder.getChildren().add(timetableView.getRoot());
 
         // Yuheng To Maurice: I made my modification to the logic so now you can add meetings into the UI.
