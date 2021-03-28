@@ -3,9 +3,9 @@ layout: page
 title: User Guide
 ---
 
-Finding it difficult to keep track of your insurance clients? Life as an insurance isn't easy. We understand. Link.me 
-is a **desktop app aimed at insurance agents for managing clients, optimized for use via a 
-Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+Finding it difficult to keep track of your insurance clients? Life as an insurance agent isn't easy. We understand. Link.me 
+is a **desktop app built for insurance agents** to help you manage your clients. It is **optimized for use via a 
+Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). 
 If you can type fast, Link.me can get your client management tasks done faster than traditional GUI apps.
 
 ---
@@ -19,14 +19,14 @@ If you can type fast, Link.me can get your client management tasks done faster t
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `linkme.jar` from [here](https://github.com/AY2021S2-CS2103T-W12-3/tp/releases).
+2. Download the latest `linkme.jar` from [here](https://github.com/AY2021S2-CS2103T-W12-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for `Link.me`.
+3. Copy the file to the folder you want to use as the _home folder_ for `Link.me`.
 
-1. Double-click the file to start your Link.me. The GUI similar to the below should appear in a few seconds. Note how your Link.me contains some sample data.<br>
+4. Double-click the file to start `Link.me`. A window similar to the one shown below should appear in a few seconds. Note how your Link.me already contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
     * **`list`** : Lists all of your clients.
@@ -37,20 +37,19 @@ If you can type fast, Link.me can get your client management tasks done faster t
 
     * **`clear`** : Deletes all of your clients.
 
-    * **`exit`** : Exits your Link.me.
+    * **`exit`** : Exits Link.me.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#features) section below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Overview of Features
 The features of Link.me mainly revolve around adding and editing clients as Link.me is first and foremost a client
 managing app. 
 
-Features of Link.me including adding, editing and deleting clients, as well as methods to quickly find
-clients through finding and filtering. Link.me also supports peripheral features such as meeting scheduling, client
+Features of Link.me include adding, editing, deleting, searching for and filtering clients. Link.me also supports peripheral features such as meeting scheduling, client
 remarking and notifying the user to important upcoming events. 
 
-See [Features](#features) below for details on how to use each command.
+Details on how to use each command are explained in the [Features](#features) section below.
 
 ### View help
 
@@ -100,7 +99,7 @@ You can record, clear and view notes for each client in Link.me.
 
 ### Clear all clients
 
-You can clear all clients from Link.me. 
+You can remove all clients from Link.me. 
 
 ### Exit program
 
@@ -148,7 +147,7 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a client to your Link.me.
+Adds a client to Link.me.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER b/BIRTHDATE [t/TAG]...`
 
@@ -165,13 +164,13 @@ Examples:
 
 ### Listing all of your clients : `list`
 
-Shows a list of all your clients in your Link.me.
+Shows a list of all your clients in Link.me.
 
 Format: `list`
 
 ### Editing a client : `edit`
 
-Edits an existing client in your Link.me.
+Edits an existing client in Link.me.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [t/TAG]...`
 
@@ -186,7 +185,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GENDER] [
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
-*  `edit 2 t/medical plan/Protecc Life premium/` Edits the insurance tag of the 2nd client to be `medical`, edits the plan name to `Protecc Life` and clears the insurance premium field.
+*  `edit 2 t/medical` Edits the insurance tag of the 2nd client to be `medical`.
 
 
 ### Locating clients by name: `find`
@@ -209,7 +208,7 @@ Examples:
 
 ### Deleting a client : `delete`
 
-Deletes the specified client from your Link.me.
+Deletes the specified client from Link.me.
 
 Format: `delete INDEX`
 
@@ -218,25 +217,45 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd client in your Link.me.
+* `list` followed by `delete 2` deletes the 2nd client in Link.me.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
-### Clearing all entries : `clear`
+### Adding/editing insurance plans of a client : `plan`
 
-Clears all entries from your Link.me. 
+#### Adding an insurance plan
+Adds a new insurance plan of an existing client.
 
-Format: `clear`
+Format: `plan INDEX i/PLAN_NAME $PREMIUM`
 
-### Exiting the program : `exit`
+* `INDEX` refers to the index number shown in the displayed client list.
+* `INDEX` **must be a positive integer** 1, 2, 3, …​
+* `PLAN_NAME` refers to the name of the insurance plan
+* `PREMIUM` refers to the yearly premium amount that the client pays for this plan 
+* `PREMIUM` **must be a positive integer** 1, 2, 3, …​
 
-Exits the program.
+Example:
 
-Format: `exit`
+* `plan 3 i/Protecc $4000` Adds a new insurance plan Protecc with a yearly premium amount of $4000 to the 3rd client.
+
+#### Removing an insurance plan
+
+Removes an existing insurance plan of an existing client.
+
+Format: `plan INDEX i/remove PLAN_INDEX`
+
+* `INDEX` refers to the index number shown in the displayed client list.
+* `INDEX` **must be a positive integer** 1, 2, 3, …​
+* `PLAN_INDEX` refers to the index number shown in the displayed plan list.
+* `PLAN_INDEX` **must be a positive integer** 1, 2, 3, …​
+
+Example:
+
+* `plan 2 i/remove 3` Removes the 3rd insurance plan of the 2nd client in the displayed client list.
 
 ### Scheduling/Unscheduling a meetup with a client : `schedule`
 
-#### Scheduling a meetup.
-Schedule a date and time with a specified client in your Link.me.
+#### Scheduling a meetup
+Schedules a meeting date and time with a specified client in Link.me.
 
 New schedule commands overwrite the original meeting scheduled with a client.
 
@@ -250,12 +269,12 @@ Format: `schedule INDEX m/DESCRIPTION @ DATE_TIME`
 
 Example:
 
-* `schedule 2 m/Insurance Plan @ 2020-02-28 14:30` schedules a Insurance Plan meeting with your client indexed 2 on the 
-  display at 2020/2/28 2:30 pm.
+* `schedule 2 m/Insurance Plan @ 2020-02-28 14:30` schedules a Insurance Plan meeting with your client indexed 2 in the 
+  displayed list on 28th October 2020 2:30 pm.
 
 #### Unscheduling a meetup
 
-Unscheduling meetups with a certain client.
+Unschedules a meetup with a certain client.
 
 Format: `schedule INDEX m/remove`
 
@@ -265,7 +284,7 @@ Format: `schedule INDEX m/remove`
 
 Example:
 
-* `schedule 2 m/remove` removes meeting scheduled with your client indexed 2 on the display.
+* `schedule 2 m/remove` removes meeting scheduled with your client indexed 2 in the displayed list.
 
 
 ### Filtering by tag : `filter`
@@ -298,7 +317,7 @@ Generates a list of notifications.
 
 Lists all client birthdays within the next two weeks then lists all meetings occurring today in order of time.
 
-The notification window is also shown on startup of your Link.melication.
+The notification window is also shown on startup of Link.me.
 
 ![notif message](images/notifMessage.png)
 
@@ -343,9 +362,9 @@ Example:
 * `note 4 v/` generates a popup box displaying the notes taken for the 4th client.
 
 
-### Clearing all entries : `clear`
+### Clearing all clients : `clear`
 
-Clears all entries from the app.
+Removes all clients in Link.me. 
 
 Format: `clear`
 
@@ -358,37 +377,40 @@ Format: `exit`
 
 ### Saving the data
 
-Link.me data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Link.me data is saved in the hard disk automatically after any command that modifies existing data. There is no need to save manually.
 
 ### Editing the data file
 
-Link.me data are saved as a JSON file `[JAR file location]/data/linkme.json`. Advanced users are welcome to update data directly by editing that data file.
+Link.me data is saved as a JSON file `[JAR file location]/data/linkme.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, Link.me will discard all data and start with an empty data file at the next run.
+If your changes to the data file make its format invalid, Link.me will discard all data and start with an empty data file at the next run.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install your Link.me in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Link.me home folder.
+**Q**: How do I transfer my data to another computer?<br>
+**A**: Install Link.me in the other computer and overwrite the empty data file it creates with the data file in your current Link.me home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-Action      | Format, Examples
+Action      | Format
 ------------|------------------
-**Add**     | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER b/BIRTHDATE [t/TAG] [start/CONTRACT_START_DATE] [plan/INSURANCE_PLAN] [premium/INSURANCE_PREMIUM] [claimed/AMOUNT_CLAIMED_TO_DATE]`
+**Add**     | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER b/BIRTHDATE [t/TAG]...`
 **Clear**   | `clear`
 **Delete**  | `delete INDEX`
-**Edit**    | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [t/TAG] [start/CONTRACT_START_DATE] [plan/INSURANCE_PLAN] [premium/INSURANCE_PREMIUM] [claimed/AMOUNT_CLAIMED_TO_DATE]`
-**Find**    | `find KEYWORD [MORE_KEYWORDS]`
+**Edit**    | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [t/TAG]...`
+**Exit**    | `exit`
 **Filter**  | `filter KEYWORD [MORE_KEYWORDS]`
-**List**    | `list`
+**Find**    | `find KEYWORD [MORE_KEYWORDS]`
 **Help**    | `help`
+**List**    | `list`
+**Note**    | `note INDEX r/NOTE` (record), `note INDEX c/` (clear), `note INDEX v/` (view)
 **Notif**   | `notif`
-**Schedule**| `schedule INDEX DATE_TIME`
-**Note**    | `note INDEX r/NOTE', `note INDEX c/', `note INDEX v/'
+**Plan**    | `plan INDEX i/PLAN_NAME $PREMIUM` (add), `plan INDEX i/remove PLAN_INDEX` (remove)
+**Schedule**| `schedule INDEX m/DESCRIPTION @ DATE_TIME` (schedule), `schedule INDEX m/remove` (unschedule)
+
