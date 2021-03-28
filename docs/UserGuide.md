@@ -35,14 +35,14 @@ and distributing tasks will never give you a headache again! :smile:
     - [8. Find Tasks due before certain date: `findBefore`](#findBefore)
     - [9. Find Tasks by Priority: `findPriority`](#findPriority)
     - [10. Remove all Members Assigned to a Task: `removeAssignees`](#removeAssignees)
-    - [11. View List of Unassigned Tasks: `viewUnassignedTasks`](#viewUnassignedTasks)
-    - [12. View List of Uncompleted Tasks: `viewUncompletedTasks`](#viewUncompletedTasks)
-    - [13. Find Tasks Assigned to a Single Member: `findMembers`](#findMembers)
+    - [11. View List of Unassigned Tasks: `viewUnassignedTasks`](#findUnassigned)
+    - [12. View List of Uncompleted Tasks: `viewUncompletedTasks`](#findUncompleted)
+    - [13. Find Tasks Assigned to a Single Member: `findTasksFor`](#findTasksFor)
 * [Data Storage](#dataStorage)
   + [Saving the data](#savingData)
   + [Editing the data file](#editData)
 * [FAQ](#faq)
-* [Summary](#summary)
+* [Command Summary](#summary)
 
 --------------------------------------------------------------------------------------------------------------------
 <a name="quick-start"></a>
@@ -190,7 +190,7 @@ Format: `editMember NAME_IN_LIST [-n NEW_NAME] [-p NEW_PHONE_NUMBER] [-e NEW_EMA
 Examples: 
 * `editMember Alice -e newAlice@gmail.com -r Events head`
 
-<a name="findmember"></a>
+<a name="findMember"></a>
 ### 5. Find Members by Keywords: `findMembers`
 
 Find all members whose details contain any of the specified keywords.
@@ -365,7 +365,7 @@ Examples:
 * `viewUncompletedTasks`
 
 <a name="findTasksFor"></a>
-### 13. Find Tasks Assigned to a Single Member: `findMembers`
+### 13. Find Tasks Assigned to a Single Member: `findTasksFor`
 
 Find all tasks assigned to a single Member
 
