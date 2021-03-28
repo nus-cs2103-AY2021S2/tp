@@ -423,7 +423,7 @@ Step 5. `FilterCommand#execute(Model model)` then calls
 Step 6. FlashBack is then updated with the new filtered flashcard list.
 
 The following sequence diagram shows how the filter operation works:<br>
-<img src="images/FilterSequenceDiagram.png" alt="FilterSequenceDiagram" width="1750" height="850"/>
+<img src="images/FilterSequenceDiagram.png" alt="FilterSequenceDiagram" width="1750" height="800"/>
 
 <div markdown="span" class="alert alert-info">
 
