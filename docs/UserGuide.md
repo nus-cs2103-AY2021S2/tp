@@ -29,11 +29,11 @@ This User Guide aims to provide you with all the information you need to make th
 Having understood the pain of using a Command Line Interface (CLI) program, we have tried our best to make
 this a very readable User Guide so that you can use our application without difficulties.
 
-If you need help setting up StoreMando, you can refer to the <a href="#quickstart"> Quick Start </a> section.
+If you need help setting up StoreMando, you can refer to the [“Quick Start"](#quickstart)  section.
 
-To learn more about StoreMando's features and commands, head over to the <a href="#features"> Features </a> section.
+To learn more about StoreMando's features and commands, head over to the [“Features"](#features) section.
 
-If you need an overview of StoreMando’s commands, check out the <a href="#commandsummary"> Command Summary </a> section.
+If you need an overview of StoreMando’s commands, check out the [“Command Summary"](#commandsummary) section.
 
 Please note the following symbols used in the User Guide which may serve as points of interests:
 
@@ -44,7 +44,7 @@ Please note the following symbols used in the User Guide which may serve as poin
 :bulb: | This symbol indicates tips provided by us.
 
 --------------------------------------------------------------------------------------------------------------------
-## <a id="quickstart"> 2. Quick start </a>
+## 2. Quick start
 
 
 ### 2.1. Installation
@@ -61,7 +61,7 @@ Please note the following symbols used in the User Guide which may serve as poin
 
 1. Type the command in the command box and press Enter to execute it.<br>
 
-1. Refer to the <a href="#features"> Features </a> below for details of each command.
+1. Refer to the [“Features"](#features) below for details of each command.
 
 ### 2.2. StoreMando's layout
 
@@ -78,7 +78,7 @@ The result display box is where StoreMando’s server replies to every command t
    
 --------------------------------------------------------------------------------------------------------------------
 
-## <a id="features"> 3. Features </a>
+## 3. Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -106,7 +106,7 @@ The result display box is where StoreMando’s server replies to every command t
 
 </div>
 
-### <a id="help"> 3.1. Viewing help : `help` </a>
+### 3.1. Viewing help : `help`
 
 If you are unsure about the commands and want to seek help, this command opens up this User Guide on your browser 
 **if you are connected to the internet**, where you can get detailed information on how to use each feature in 
@@ -116,7 +116,7 @@ User Guide.
 
 Format: `help`
 
-### <a id="add"> 3.2. Adding an item : `add` </a>
+### 3.2. Adding an item : `add`
 
 Have an item to add to the inventory? Then this command is the right one for you!
 
@@ -136,7 +136,7 @@ Examples:
   2021-05-11, and "favourite" tag to the kitchen cupboard.
 
 
-### <a id="edit"> 3.3. Editing an item : `edit` </a>
+### 3.3. Editing an item : `edit`
 
 If you want to edit any details of an existing item in the inventory, you can do so by using this command. You don't 
 have to worry about adding any wrong information as you can edit them any time!
@@ -162,7 +162,7 @@ Examples:
   there are existing tags and/or existing name of the 2nd item is not `Chocolate Bread`.
   
 
-### <a id = "list"> 3.4. Listing items : `list` </a>
+### 3.4. Listing items : `list`
 
 Want to view all your items? What about items at a specific location or with a specific tag? This command helps you to 
 do just that!
@@ -210,7 +210,7 @@ You can use this command in 3 different ways.
   
   
   
-### <a id="find"> 3.5. Finding items by name : `find` </a>
+### 3.5. Finding items by name : `find`
 
 If you can't find an item you are looking for, don't worry. Find command will find and display all items 
 whose names contain any of the given keywords, either partially or in full.
@@ -256,7 +256,7 @@ You can use this command in 2 different ways.
   * `find */Burger` returns `CheeseBurger` and `fishburger`
   * `find */cheese egg` returns `MacAndCheese` and `eggs`
   
-### <a id = "delete"> 3.6. Deleting an item : `delete` </a>
+### 3.6. Deleting an item : `delete`
 
 Looking to get rid of an existing item from the inventory? Use this command.
 
@@ -277,7 +277,7 @@ Examples:
 * `find Chocolate` followed by `delete 1` deletes the first item in the result of the `find` command.
 * `list Room 2` followed by `delete 3` deletes the third item in the recorded list of items in Room 2.
 
-### <a id = "reminder"> 3.7. Viewing expiring items : `reminder` </a>
+### 3.7. Viewing expiring items : `reminder`
 
 Want to know which items of yours are expiring soon? Then, this is the right command for you.<br>
 
@@ -311,7 +311,7 @@ Examples:
 
 
 
-### <a id = "sort"> 3.8. Sorting items : `sort` </a>
+### 3.8. Sorting items : `sort`
 
 Want to see which items you are running out of or which items you have to consume soon? Use this command to find out!
 
@@ -360,7 +360,7 @@ You can use this command in 3 different ways.
   Example: 
   * `sort expiryDate` sorts the items in the displayed list from the earliest expiry date to the latest.
 
-### <a id = "clear"> 3.9. Clearing StoreMando : `clear` </a>
+### 3.9. Clearing StoreMando : `clear`
 
 Want to clear your entire inventory? Key in this command to clear all items stored in your inventory.
 
@@ -368,7 +368,6 @@ You can use this command in 2 different ways.
 
 * #### 3.9.1. Clear all items in entire inventory
   Format 1: `clear`
-  <div markdown="block" class="alert alert-info">
 
 * #### 3.9.2. Clear all items in a specific location
   Format 2: `clear l/LOCATION`
@@ -386,7 +385,7 @@ You can use this command in 2 different ways.
 
   * `clear l/kitchen` clears all the items with location `kitchen`.
 
-### <a id="exit"> 3.10. Exiting StoreMando : `exit` </a>
+### 3.10. Exiting StoreMando : `exit`
 
 Done with managing your inventory? Simply key in this command to exit and close the application.
 
@@ -428,20 +427,20 @@ data files in separate locations. You can have as many inventories as you want u
 you to this user guide to provide you with the help you need!
 
 --------------------------------------------------------------------------------------------------------------------
-## <a id="commandsummary"> 5. Command summary </a>
+## 5. Command summary
 
 Action | Format, Examples
 --------|------------------
-**<a href="#help"> Help </a>** |  `help`
-**<a href="#add"> Add </a>** | `add n/ITEM_NAME l/LOCATION q/QUANTITY [e/EXPIRY_DATE] [t/TAG]…​` <br> e.g. `add n/koko krunch l/fridge q/1 e/2021-05-27 t/favourite`
-**<a href="#edit"> Edit </a>** | `edit INDEX [n/ITEM_NAME] [e/EXPIRY_DATE] [l/LOCATION] [q/QUANTITY] [t/TAG]…​`<br> e.g.`update 1 l/freezer q/2 `
-**<a href="#list"> List </a>** | `list` `list [l/LOCATION]` `list [t/TAG]`<br> e.g. `list` `list l/fridge` `list t/favourite`
-**<a href="#find"> Find </a>** | `find [*/]KEYWORD [MORE KEYWORDS]`<br> e.g. `find koko krunch` `find */choco`
-**<a href="#delete"> Delete </a>** | `delete INDEX`<br> e.g. `delete 2`
-**<a href="#reminder"> Reminder </a>** | `reminder NUMBER TIME_UNIT_KEYWORD`<br> e.g. `reminder -7 days` `reminder 2 weeks`
-**<a href="#sort"> Sort </a>** | `sort quantity asc` `sort quantity desc` `sort expiryDate`
-**<a href="#clear"> Clear </a>** | `clear` `clear l/LOCATION` <br> e.g. `clear l/bedroom`
-**<a href="#exit"> Exit </a>** | `exit`
+**[“Help"](#help)** |  `help`
+**[“Add"](#add)** | `add n/ITEM_NAME l/LOCATION q/QUANTITY [e/EXPIRY_DATE] [t/TAG]…​` <br> e.g. `add n/koko krunch l/fridge q/1 e/2021-05-27 t/favourite`
+**[“Edit"](#edit)** | `edit INDEX [n/ITEM_NAME] [e/EXPIRY_DATE] [l/LOCATION] [q/QUANTITY] [t/TAG]…​`<br> e.g.`update 1 l/freezer q/2 `
+**[“List"](#list)** | `list` `list [l/LOCATION]` `list [t/TAG]`<br> e.g. `list` `list l/fridge` `list t/favourite`
+**[“Find"](#find)** | `find [*/]KEYWORD [MORE KEYWORDS]`<br> e.g. `find koko krunch` `find */choco`
+**[“Delete"](#delete)** | `delete INDEX`<br> e.g. `delete 2`
+**[“Reminder"](#reminder)** | `reminder NUMBER TIME_UNIT_KEYWORD`<br> e.g. `reminder -7 days` `reminder 2 weeks`
+**[“Sort"](#sort)** | `sort quantity asc` `sort quantity desc` `sort expiryDate`
+**[“Clear"](#clear)** | `clear` `clear l/LOCATION` <br> e.g. `clear l/bedroom`
+**[“Exit"](#exit)** | `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
