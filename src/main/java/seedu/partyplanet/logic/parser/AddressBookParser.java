@@ -20,6 +20,7 @@ import seedu.partyplanet.logic.commands.ExitCommand;
 import seedu.partyplanet.logic.commands.FindCommand;
 import seedu.partyplanet.logic.commands.HelpCommand;
 import seedu.partyplanet.logic.commands.ListCommand;
+import seedu.partyplanet.logic.commands.RedoCommand;
 import seedu.partyplanet.logic.commands.TagsCommand;
 import seedu.partyplanet.logic.commands.ToggleThemeCommand;
 import seedu.partyplanet.logic.commands.UndoCommand;
@@ -81,6 +82,9 @@ public class AddressBookParser {
 
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
+
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
 
         case EAddCommand.COMMAND_WORD:
             return new EAddCommandParser().parse(arguments);
