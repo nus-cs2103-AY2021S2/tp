@@ -26,7 +26,7 @@ ClientBook can help _you_ accomplish your client management tasks faster than tr
   * [**4.6** `policy`: Display policies associated with a client](#policy-display-policies-associated-with-a-client)
   * [**4.7** `delete`Delete client contact](#delete-delete-client-contact)
   * [**4.8** `sort`: Sort list of clients](#sort-sort-list-of-clients)
-  * [**4.9** ` lock`: Lock ClientBook with a user-selected password](#lock-lock-clientbook-with-a-user-selected-password)
+  * [**4.9** `lock`: Lock ClientBook with a user-selected password](#lock-lock-clientbook-with-a-user-selected-password)
   * [**4.10** `unlock`: Unlock ClientBook](#unlock-unlock-clientbook)
   * [**4.11** `exit`: Exiting the program](#exit-exiting-the-program)
   * [**4.12** Saving data](#saving-data)
@@ -243,7 +243,7 @@ A person can have any number of tags and insurance policies (including 0).
 
 **Purpose**: Edits an existing client contact in the ClientBook.
 
-**Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER] [t/TAG]…​`
+**Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER]…​ [t/TAG]…​`
 
 * Edits the client at the specified `INDEX`.
     * `INDEX` refers to the index number shown in the displayed client list.
@@ -370,10 +370,10 @@ Optional identifiers can be added to show the list of matched clients with only 
 
 **Purpose**: Sorts the current list of clients in ClientBook.
 
-**Format**: `sort -ATTRIBUTE -DIRECTION`
+**Format**: `sort -IDENTIFIER -DIRECTION`
 
-* Sorts the list of clients according to the specified `ATTRIBUTE` and `DIRECTION`.
-* The specified `ATTRIBUTE` can be `-n` to sort by name alphabetically or `-i` to sort by number of insurance policies, but not both.
+* Sorts the list of clients according to the specified `IDENTIFIER` and `DIRECTION`.
+* The specified `IDENTIFIER` can be `-n` to sort by name alphabetically or `-i` to sort by number of insurance policies, but not both.
 * The specified `DIRECTION` can be `-asc` for ascending order or `-des` for descending order, but not both.
 
 **Examples**:
@@ -511,11 +511,11 @@ If you get an error message (`Java command not found`), it means that Java is no
 [**Help**](#viewing-help--help) | `help` | `help` |
 [**Add**](#add-client-contact-add) | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [i/POLICY_ID] [t/TAG]…​` | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 i/Policy_1023 t/premium t/lifeinsurance` |
 [**Edit**](#edit-client-contact-edit) | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER]…​ [t/TAG]…​` | `edit 2 n/James Lee e/jameslee@example.com` |
-[**List**](#list-all-clients--list) | `list [-ATTRIBUTE]` | `list -i` |
-[**Find**](#search-for-client-contact-based-on-keywords-find) | `find FLAG/KEYWORD [& MORE_KEYWORDS] [-ATTRIBUTES]…​` | `find a/Bedok & Clementi -p` |
+[**List**](#list-all-clients--list) | `list [-IDENTIFIER]` | `list -i` |
+[**Find**](#search-for-client-contact-based-on-keywords-find) | `find IDENTIFIER/KEYWORD [& MORE_KEYWORDS] [-IDENTIFIERS]…​` | `find a/Bedok & Clementi -p` |
 [**Policy**](#display-policies-associated-with-selected-client-policy) | `policy INDEX` | `policy 4` |
 [**Delete**](#delete-client-delete) | `delete INDEX` | `delete 3` |
-[**Sort**](#sort-list-of-clients-sort) | `sort -ATTRIBUTE -DIRECTION` | `sort -n -d` |
+[**Sort**](#sort-list-of-clients-sort) | `sort -IDENTIFIER -DIRECTION` | `sort -n -d` |
 [**Lock**](#lock-clientbook-with-a-user-selected-password-lock) | `lock [CURRENT_PASSWORD] NEW_PASSWORD` | `lock 123 456` |
 [**Unlock**](#unlock-clientbook--unlock) | `unlock [CURRENT_PASSWORD]` | `unlock 456` |
 [**Exit**](#exiting-the-program--exit) | `exit` | `exit` |
