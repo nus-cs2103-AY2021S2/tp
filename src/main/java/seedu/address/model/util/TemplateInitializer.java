@@ -1,7 +1,6 @@
 package seedu.address.model.util;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import seedu.address.model.diet.DietPlan;
 import seedu.address.model.diet.DietPlanList;

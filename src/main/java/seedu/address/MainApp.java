@@ -132,7 +132,6 @@ public class MainApp extends Application {
             TemplateInitializer initializer = new TemplateInitializer();
             uniqueFoodList = uniqueFoodListOptional.orElse(initializer.getUniqueFoodListTemplate());
             foodIntakeList = foodIntakeListOptional.orElse(initializer.getFoodListIntakeTemplate());
-            //dietPlanList = dietPlanListOptional.orElse(initializer.getDietPlanListTemplate());
             dietPlanList = dietPlanListOptional.orElseGet(SampleDataUtil::getSampleDietPlanList);
             user = userOptional.orElse(initializer.createUser(uniqueFoodList, foodIntakeList));
         } catch (DataConversionException e) {

@@ -31,4 +31,7 @@ public class CliSyntax {
     /* Prefix definitions for plan */
     public static final Prefix PREFIX_PLAN = new Prefix("p/");
 
+    /* Prefix definitions for reset */
+    public static final Prefix PREFIX_RESET_TYPE = new Prefix("t/");
+
 }
