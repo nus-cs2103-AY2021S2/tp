@@ -113,13 +113,6 @@ public class Month {
     }
 
     /**
-     * Returns the remaining budget left for the month.
-     */
-    public Double getRemainingBudget() {
-        return budget.getAmount() - records.getTotalExpenses();
-    }
-
-    /**
      * Returns total expenses of the month.
      * @return total expenses
      */

@@ -2,6 +2,7 @@ package seedu.budgetbaby.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.time.YearMonth;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -13,6 +14,7 @@ import seedu.budgetbaby.logic.commands.CommandResult;
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.logic.parser.BudgetBabyParser;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
+import seedu.budgetbaby.logic.statistics.CategoryStatistics;
 import seedu.budgetbaby.logic.statistics.MonthStatistics;
 import seedu.budgetbaby.logic.statistics.Statistics;
 import seedu.budgetbaby.model.BudgetBabyModel;
@@ -61,6 +63,11 @@ public class BudgetBabyLogicManager implements BudgetBabyLogic {
     }
 
     @Override
+    public void setCurrentDisplayMonth(YearMonth month) {
+        model.setCurrentDisplayMonth(month);
+    }
+
+    @Override
     public ReadOnlyBudgetTracker getBudgetTracker() {
         return model.getBudgetTracker();
     }
@@ -78,6 +85,11 @@ public class BudgetBabyLogicManager implements BudgetBabyLogic {
     @Override
     public List<MonthStatistics> getPastMonthStatistics() {
         return statistics.getPastMonthStatistics();
+    }
+
+    @Override
+    public List<CategoryStatistics> getTopCategories() {
+        return statistics.getTopCategories();
     }
 
     @Override
