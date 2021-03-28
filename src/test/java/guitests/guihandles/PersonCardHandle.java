@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Person;
 
 /**
  * @@author {se-edu}-reused

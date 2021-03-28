@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
 import seedu.address.model.ColabFolder;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Person;
 import seedu.address.model.project.Project;
 
 /**

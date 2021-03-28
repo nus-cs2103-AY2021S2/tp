@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Person;
 
 public class ParticipantListTest {
 

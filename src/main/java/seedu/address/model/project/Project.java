@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.transformation.FilteredList;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Person;
 import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.CompletableTodo;
 import seedu.address.model.task.deadline.Deadline;

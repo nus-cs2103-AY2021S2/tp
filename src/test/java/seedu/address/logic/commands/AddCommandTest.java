@@ -20,7 +20,7 @@ import seedu.address.model.ColabFolder;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyColabFolder;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Person;
 import seedu.address.model.project.Project;
 import seedu.address.testutil.PersonBuilder;
 

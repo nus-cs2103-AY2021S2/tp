@@ -4,7 +4,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalPersons;
 import static seedu.address.testutil.TypicalProjects.getTypicalProjects;
 
 import seedu.address.model.ColabFolder;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Person;
 import seedu.address.model.project.Project;
 
 /**
