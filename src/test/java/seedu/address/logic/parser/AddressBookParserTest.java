@@ -25,6 +25,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonId;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -47,19 +48,32 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+    public void parseCommand_delete() {
+        try {
+            DeleteCommand command = (DeleteCommand) parser.parseCommand(
+                    DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+            assert false;
+        } catch (ParseException pe) {
+            String expected = "Invalid command format! \n"
+                    + "Delete command should either be delete_person or delete_session!";
+            assertEquals(expected, pe.getMessage());
+        }
     }
 
     @Test
-    public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+    public void parseCommand_edit() {
+
+        try {
+            Person person = new PersonBuilder().build();
+            EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+            EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+                    + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+            assert false;
+        } catch (ParseException pe) {
+            String expected = "Invalid command format! \n"
+                    + "Edit command should either be edit_person or edit_session!";
+            assertEquals(expected, pe.getMessage());
+        }
     }
 
     @Test
