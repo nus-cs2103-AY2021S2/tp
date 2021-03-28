@@ -4,13 +4,17 @@ import java.util.Comparator;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
+import javafx.scene.shape.Circle;
 import seedu.iscam.model.client.Client;
+import seedu.iscam.model.meeting.Meeting;
 import seedu.iscam.model.util.clientbook.ObservableClient;
 
 
@@ -19,6 +23,7 @@ public class ClientDetailFragment extends UiPart<Region> {
     private static final String FXML = "ClientDetailFragment.fxml";
 
     private Client client;
+    private ObservableList<Meeting> meetingList;
     private final Image PLACEHOLDER_IMAGE = new Image(this.getClass()
             .getResourceAsStream("/images/person_icon.png"));
 
@@ -34,19 +39,26 @@ public class ClientDetailFragment extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private ListView<Meeting> clientMeetingListView;
 
     /**
      * Creates a ClientDetailFragment that observes the given ObservableClient
      * @param observableClient ObservableClient to monitor
      */
-    public ClientDetailFragment(ObservableClient observableClient) {
+    public ClientDetailFragment(ObservableClient observableClient, ObservableList<Meeting> meetingList) {
         super(FXML);
         observableClient.addListener(new ClientListener());
+        this.meetingList = meetingList;
         profileImage.setPreserveRatio(true);
+
     }
 
     public void setClientDetails(Client client) {
         this.client = client;
+        Circle imageMask = new Circle(60,60,60);
+        profileImage.setClip(imageMask);
+        // TODO: Modify this to accommodate client profile images
         profileImage.setImage(PLACEHOLDER_IMAGE);
         name.setText(client.getName().fullName);
         phone.setText(client.getPhone().value);
@@ -55,6 +67,8 @@ public class ClientDetailFragment extends UiPart<Region> {
         client.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        clientMeetingListView.setItems(meetingList);
+        clientMeetingListView.setCellFactory(listview -> new MeetingListPanel.MeetingListViewCell());
     }
 
     @Override

@@ -17,6 +17,7 @@ import seedu.iscam.logic.commands.HelpCommand;
 import seedu.iscam.logic.commands.ListCommand;
 import seedu.iscam.logic.commands.ShowCommand;
 import seedu.iscam.logic.parser.BookParser;
+import seedu.iscam.logic.parser.ShowCommandParser;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.logic.parser.exceptions.ParseFormatException;
 

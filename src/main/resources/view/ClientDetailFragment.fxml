@@ -8,14 +8,11 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.image.ImageView?>
-<HBox xmlns:fx="http://javafx.com/fxml/1" id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8">
-    <GridPane HBox.hgrow="ALWAYS">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="300" prefWidth="300"/>
-        </columnConstraints>
-        <HBox alignment="TOP_LEFT" minHeight="300" GridPane.columnIndex="0">
-            <ImageView fx:id="profileImage" fitHeight="100"/>
-            <VBox alignment="TOP_LEFT" minHeight="300">
+<?import javafx.scene.control.ListView?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8">
+        <HBox alignment="TOP_LEFT" minHeight="140" VBox.vgrow="NEVER">
+            <ImageView fx:id="profileImage" fitHeight="120"/>
+            <VBox alignment="TOP_LEFT" >
                 <padding>
                     <Insets top="10" right="10" bottom="10" left="10"/>
                 </padding>
@@ -27,5 +24,9 @@
                 <Label fx:id="remark" styleClass="details_small_label" />
             </VBox>
         </HBox>
-    </GridPane>
-</HBox>
+        <HBox alignment="TOP_LEFT" minHeight="300" VBox.vgrow="ALWAYS">
+            <VBox alignment="TOP_LEFT">
+                <ListView fx:id="clientMeetingListView" VBox.vgrow="ALWAYS"/>
+            </VBox>
+        </HBox>
+</VBox>

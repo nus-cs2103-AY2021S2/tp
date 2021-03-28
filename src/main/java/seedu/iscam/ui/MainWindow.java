@@ -135,7 +135,7 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        ClientDetailFragment clientDetailFragment = new ClientDetailFragment(logic.getDetailedClient());
+        ClientDetailFragment clientDetailFragment = new ClientDetailFragment(logic.getDetailedClient(), logic.getFilteredMeetingList());
         clientDetailFragmentPlaceholder.getChildren().add(clientDetailFragment.getRoot());
     }
 
@@ -213,7 +213,7 @@ public class MainWindow extends UiPart<Stage> {
         public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
             clientDetailFragmentPlaceholder.getChildren().clear();
             if (newValue) {
-                ClientDetailFragment clientDetailFragment = new ClientDetailFragment(logic.getDetailedClient());
+                ClientDetailFragment clientDetailFragment = new ClientDetailFragment(logic.getDetailedClient(), logic.getFilteredMeetingList());
                 clientDetailFragmentPlaceholder.getChildren().add(clientDetailFragment.getRoot());
             } else {
                 meetingListPanel = new MeetingListPanel(logic.getFilteredMeetingList());
