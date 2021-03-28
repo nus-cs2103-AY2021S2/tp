@@ -3,7 +3,8 @@ layout: page
 title: Setting up and getting started
 ---
 
-* Table of Contents {:toc}
+* Table of Contents 
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -25,7 +26,7 @@ If you plan to use Intellij IDEA (highly recommended):
    IDEA.<br>
    :exclamation: Note: Importing a Gradle project is slightly different from importing a normal Java project.
 1. **Verify the setup**:
-    1. Run the `seedu.location.Main` and try a few commands.
+    1. Run the `seedu.storemando.Main` and try a few commands.
     1. [Run the tests](Testing.md) to ensure they all pass.
 
 --------------------------------------------------------------------------------------------------------------------

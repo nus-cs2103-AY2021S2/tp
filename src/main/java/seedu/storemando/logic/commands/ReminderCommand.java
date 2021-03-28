@@ -30,7 +30,8 @@ public class ReminderCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.updateFilteredItemList(predicate);
+        model.updateCurrentPredicate(predicate);
+        model.updateFilteredItemList(model.getCurrentPredicate());
         ItemComparatorByExpiryDate comparator = new ItemComparatorByExpiryDate();
         model.updateSortedItemList(comparator);
         model.setItems(model.getSortedItemList());
