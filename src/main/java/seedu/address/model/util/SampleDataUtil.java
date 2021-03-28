@@ -46,7 +46,7 @@ public class SampleDataUtil {
                 new Type("Landed"),
                 new Address("12 Burghley Drive"),
                 new PostalCode("558977"),
-                new Deadline(LocalDate.parse("21-07-2021", DateTimeFormat.INPUT_DATE_FORMAT)),
+                new Deadline(LocalDate.parse("31-07-2021", DateTimeFormat.INPUT_DATE_FORMAT)),
                 new Remark("Lowest selling price is $5,040,0000"),
                 getTagSet("99 year leasehold", "Balcony")),
             new Property(new Name("Woodlands Crescent"), new Type("Hdb"),
