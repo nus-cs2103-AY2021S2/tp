@@ -35,9 +35,16 @@ import seedu.dictionote.logic.commands.ListNoteCommand;
 import seedu.dictionote.logic.commands.MarkAllAsUndoneNoteCommand;
 import seedu.dictionote.logic.commands.MarkAsDoneNoteCommand;
 import seedu.dictionote.logic.commands.MarkAsUndoneNoteCommand;
+import seedu.dictionote.logic.commands.MergeNoteCommand;
+import seedu.dictionote.logic.commands.MostFreqContactCommand;
 import seedu.dictionote.logic.commands.OpenCommand;
+import seedu.dictionote.logic.commands.SetContactDividerPositionCommand;
+import seedu.dictionote.logic.commands.SetDictionaryDividerPositionCommand;
+import seedu.dictionote.logic.commands.SetMainDividerPositionCommand;
+import seedu.dictionote.logic.commands.SetNoteDividerPositionCommand;
 import seedu.dictionote.logic.commands.ShowDictionaryContentCommand;
 import seedu.dictionote.logic.commands.ShowNoteCommand;
+import seedu.dictionote.logic.commands.SortNoteByTimeCommand;
 import seedu.dictionote.logic.commands.SortNoteCommand;
 import seedu.dictionote.logic.commands.ToggleDictionaryOrientationCommand;
 import seedu.dictionote.logic.commands.ToggleNoteOrientationCommand;
@@ -124,6 +131,9 @@ public class DictionoteParser {
         case EmailContactCommand.COMMAND_WORD:
             return new EmailContactCommandParser().parse(arguments);
 
+        case MostFreqContactCommand.COMMAND_WORD:
+            return new MostFreqContactCommand();
+
         case ListNoteCommand.COMMAND_WORD:
             return new ListNoteCommand();
 
@@ -142,6 +152,9 @@ public class DictionoteParser {
         case MarkAllAsUndoneNoteCommand.COMMAND_WORD:
             return new MarkAllAsUndoneNoteCommand();
 
+        case MergeNoteCommand.COMMAND_WORD:
+            return new MergeNoteCommandParser().parse(arguments);
+
         case ShowNoteCommand.COMMAND_WORD:
             return new ShowNoteCommandParser().parse(arguments);
 
@@ -153,6 +166,18 @@ public class DictionoteParser {
 
         case CloseCommand.COMMAND_WORD:
             return new CloseCommandParser().parse(arguments);
+
+        case SetContactDividerPositionCommand.COMMAND_WORD:
+            return new SetContactDividerPositionCommand(ParserUtil.parsePosition(arguments));
+
+        case SetDictionaryDividerPositionCommand.COMMAND_WORD:
+            return new SetDictionaryDividerPositionCommand(ParserUtil.parsePosition(arguments));
+
+        case SetNoteDividerPositionCommand.COMMAND_WORD:
+            return new SetNoteDividerPositionCommand(ParserUtil.parsePosition(arguments));
+
+        case SetMainDividerPositionCommand.COMMAND_WORD:
+            return new SetMainDividerPositionCommand(ParserUtil.parsePosition(arguments));
 
         case ToggleNoteOrientationCommand.COMMAND_WORD:
             return new ToggleNoteOrientationCommand();
@@ -171,6 +196,9 @@ public class DictionoteParser {
 
         case SortNoteCommand.COMMAND_WORD:
             return new SortNoteCommand();
+
+        case SortNoteByTimeCommand.COMMAND_WORD:
+            return new SortNoteByTimeCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

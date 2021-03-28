@@ -127,6 +127,16 @@ public interface Model {
      */
     void sortNote();
 
+    /**
+     * Sorts the note in the note book chronologically.
+     */
+    void sortNoteByTime();
+
+    /**
+     * Merges the given note.
+     * The note must exist in the dictionote book.
+     */
+    void mergeNote(Note firstNote, Note secondNote);
 
     /**
      * Set Note UI Configuration Interface
@@ -206,6 +216,11 @@ public interface Model {
      * {@code contact} must exist in the contacts list.
      */
     void emailContact(Contact contact);
+
+    /**
+     * Sorts the contacts in the contacts list by their frequency counters.
+     */
+    void sortContactsByFrequencyCounter();
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.

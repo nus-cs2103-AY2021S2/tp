@@ -77,7 +77,7 @@ public class EditNoteCommand extends Command {
         Note noteToEdit = lastShownList.get(index.getZeroBased());
         Note editedNote = createEditedNote(noteToEdit, editNoteDescriptor);
 
-        if (!noteToEdit.isSameNote(editedNote)) {
+        if (noteToEdit.isSameNote(editedNote)) {
             throw new CommandException(MESSAGE_NOTHING_CHANGE_NOTE);
         }
 

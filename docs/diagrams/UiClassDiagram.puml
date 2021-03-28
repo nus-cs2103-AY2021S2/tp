@@ -6,13 +6,22 @@ skinparam classBackgroundColor UI_COLOR
 
 package UI <<Rectangle>>{
 Interface Ui <<Interface>>
+Interface DictionaryContentConfig <<Interface>>
+Interface NoteContentConfig <<Interface>>
 Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
+Class ContactListPanel
+Class ContactCard
+Class DictionaryListPanel
+Class DictionaryListContentCard
+Class DictionaryListDefinitionCard
+Class DictionaryContentPanel
+Class NoteListPanel
+Class NoteCard
+Class NoteContentPanel
 Class StatusBarFooter
 Class CommandBox
 }
@@ -33,28 +42,58 @@ UiManager -down-> MainWindow
 MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
-MainWindow *-down-> PersonListPanel
+MainWindow *-down-> ContactListPanel
 MainWindow *-down-> StatusBarFooter
+MainWindow *-down-> DictionaryListPanel
+MainWindow *-down-> NoteListPanel
+MainWindow *-down-> DictionaryContentPanel
+MainWindow *-down-> NoteContentPanel
 
-PersonListPanel -down-> PersonCard
+ContactListPanel -down-> ContactCard
+DictionaryListPanel -down-> DictionaryListContentCard
+DictionaryListPanel -down-> DictionaryListDefinitionCard
+NoteListPanel -down-> NoteCard
 
-MainWindow -left-|> UiPart
 
+ContactCard..> Model
+DictionaryListContentCard..> Model
+DictionaryListDefinitionCard..> Model
+NoteCard..> Model
+DictionaryContentConfig..> Model
+NoteContentConfig..> Model
+UiManager -up-> Logic
+MainWindow -right-> Logic
+
+
+CommandBox -[hidden]up- ResultDisplay
+StatusBarFooter -[hidden]up- CommandBox
+HelpWindow -[hidden]left- StatusBarFooter
+ContactListPanel -[hidden]left- HelpWindow
+NoteListPanel -[hidden]left- ContactListPanel
+DictionaryListPanel -[hidden]left- NoteListPanel
+NoteContentPanel -[hidden]left- DictionaryListPanel
+DictionaryContentPanel -[hidden]left- NoteContentPanel
+
+UiPart -[hidden]down- Model
+
+
+NoteContentPanel .down.|> NoteContentConfig
+DictionaryContentPanel .down.|> DictionaryContentConfig
+
+HelpWindow --|> UiPart
 ResultDisplay --|> UiPart
-CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
+ContactListPanel --|> UiPart
+ContactCard --|> UiPart
+DictionaryListPanel --|> UiPart
+DictionaryListContentCard --|> UiPart
+DictionaryListDefinitionCard --|> UiPart
+NoteListPanel --|> UiPart
+NoteCard --|> UiPart
 StatusBarFooter --|> UiPart
-HelpWindow -down-|> UiPart
+CommandBox --|> UiPart
+DictionaryContentPanel --|> UiPart
+NoteContentPanel --|> UiPart
 
-PersonCard ..> Model
-UiManager -right-> Logic
-MainWindow -left-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
-HelpWindow -[hidden]left- CommandBox
-CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
 
-MainWindow -[hidden]-|> UiPart
 @enduml

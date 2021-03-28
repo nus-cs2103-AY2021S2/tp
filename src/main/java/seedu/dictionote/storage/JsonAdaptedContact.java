@@ -13,6 +13,7 @@ import seedu.dictionote.commons.exceptions.IllegalValueException;
 import seedu.dictionote.model.contact.Address;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.contact.Email;
+import seedu.dictionote.model.contact.FrequencyCounter;
 import seedu.dictionote.model.contact.Name;
 import seedu.dictionote.model.contact.Phone;
 import seedu.dictionote.model.tag.Tag;
@@ -29,6 +30,7 @@ class JsonAdaptedContact {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final int frequency;
 
     /**
      * Constructs a {@code JsonAdaptedContact} with the given person details.
@@ -36,7 +38,8 @@ class JsonAdaptedContact {
     @JsonCreator
     public JsonAdaptedContact(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                               @JsonProperty("email") String email, @JsonProperty("address") String address,
-                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                              @JsonProperty("frequency") int frequency) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -44,6 +47,7 @@ class JsonAdaptedContact {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.frequency = frequency;
 
     }
 
@@ -58,6 +62,7 @@ class JsonAdaptedContact {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        frequency = source.getFrequencyCounter().value;
     }
 
     /**
@@ -104,7 +109,14 @@ class JsonAdaptedContact {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Contact(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        if (!FrequencyCounter.isValidFrequencyCounter(frequency)) {
+            throw new IllegalValueException(FrequencyCounter.MESSAGE_CONSTRAINTS);
+        }
+
+        final FrequencyCounter modelFrequency = new FrequencyCounter(frequency);
+
+        return new Contact(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelFrequency);
     }
 
 }
