@@ -134,12 +134,12 @@ Delete a member along with all of his/her contact details from the members list.
 
 Format: `deleteMember NAME`
 
-Examples: 
-* `deleteMember Rachel`
-
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 The name you specify must belong to an exisitng Member in the Application
 </div>
+
+Examples:
+* `deleteMember Rachel`
 
 <a name="viewMembers"></a>
 ### 3. View Members: `viewMembers`
