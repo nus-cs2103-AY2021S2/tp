@@ -64,10 +64,11 @@ public class ClientDetailFragment extends UiPart<Region> {
         phone.setText(client.getPhone().value);
         clientLocation.setText(client.getLocation().value);
         email.setText(client.getEmail().value);
+        tags.getChildren().clear();
         client.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        clientMeetingListView.setItems(meetingList);
+        clientMeetingListView.setItems(meetingList.filtered(meeting -> meeting.getClientName().equals(client.getName())));
         clientMeetingListView.setCellFactory(listview -> new MeetingListPanel.MeetingListViewCell());
     }
 
