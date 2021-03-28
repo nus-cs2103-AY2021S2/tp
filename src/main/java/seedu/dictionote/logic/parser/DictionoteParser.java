@@ -180,7 +180,7 @@ public class DictionoteParser {
 
         case SortNoteCommand.COMMAND_WORD:
             return new SortNoteCommand();
-            
+
         case ConvertTxtNoteCommand.COMMAND_WORD:
             return new ConvertTxtNoteCommandParser().parse(arguments);
 

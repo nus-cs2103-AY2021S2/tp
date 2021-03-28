@@ -32,6 +32,7 @@ import seedu.dictionote.ui.NoteContentConfig;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+    private static String FILE_PATH = "./data/";
 
     private final ContactsList contactsList;
     private final UserPrefs userPrefs;
@@ -44,9 +45,6 @@ public class ModelManager implements Model {
     private final FilteredList<Definition> filteredDefinition;
     private DictionaryContentConfig dictionaryContentConfig;
     private NoteContentConfig noteContentConfig;
-
-    private static String FILE_PATH = "./data/";
-
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.

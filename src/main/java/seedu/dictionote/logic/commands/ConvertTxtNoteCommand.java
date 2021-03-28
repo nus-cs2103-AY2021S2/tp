@@ -1,5 +1,11 @@
 package seedu.dictionote.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.dictionote.commons.core.Messages.MESSAGE_COMMAND_DISABLE_ON_EDIT_MODE;
+
+import java.io.IOException;
+import java.util.List;
+
 import seedu.dictionote.commons.core.Messages;
 import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.logic.commands.enums.UiAction;
@@ -7,12 +13,6 @@ import seedu.dictionote.logic.commands.enums.UiActionOption;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.note.Note;
-
-import java.io.IOException;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.dictionote.commons.core.Messages.MESSAGE_COMMAND_DISABLE_ON_EDIT_MODE;
 
 /**
  * Converts a note identified using it's displayed index from the notes list into txt file.
@@ -50,12 +50,11 @@ public class ConvertTxtNoteCommand extends Command {
         }
 
         Note noteToConvert = lastShownList.get(targetIndex.getZeroBased());
-        
+
         try {
             model.convertTxtNote(noteToConvert);
-        }
-        catch (IOException e){
-            System.out.println("MEMEMEMEEMK");
+        } catch (IOException e) {
+            System.out.println("Something is wrong in the converting txt Note Process");
         }
 
         return new CommandResult(String.format(MESSAGE_CONVERT_TXT_NOTE_SUCCESS, noteToConvert),

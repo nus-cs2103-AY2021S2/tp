@@ -172,10 +172,10 @@ public class Note implements Comparable<Note> {
         return this.getNote().compareTo(otherNote.getNote());
     }
 
-    public String createFileName(){
-        return this.getNote()+".txt";    
+    public String createFileName() {
+        return this.getNote() + ".txt";
     }
-    
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
