@@ -76,7 +76,7 @@ and distributing tasks will never be headache :smile:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## General Features
+##    General Features
 
 <a name="clear"></a>
 ### 1. Clear all data in application: `clear`
@@ -104,7 +104,7 @@ Example: `help`
 
 -------------------------------------------------------------------------------------------------------------
 
-## Member Related Features
+##    Member Related Features
 
 <a name="addMember"></a>
 ### 1. Add Member: `addMember`
@@ -173,7 +173,7 @@ Examples:
 * `findMembers Rachel 98562154 john@gmail.com`
 
 -------------------------------------------------------------------------------------------------------------
-## Task Related Features
+##    Task Related Features
 
 <a name="addTask"></a>
 ### 1. Add Task: `addTask`
