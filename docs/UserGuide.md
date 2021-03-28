@@ -9,13 +9,13 @@ HEY MATEz is a desktop application to get rid of CCA leaders' woes by allowing t
 members and tasks within the CCA efficiently. It is
 a Command Line Interface (CLI) application while still retaining a Graphical User Interface (GUI)
 as this application is catered to students who are used to typing on the keyboard frequently. With HEY MATEz, planning 
-and distributing tasks will never be headache :smile:
+and distributing tasks will never give you a headache again !:smile:
 
 * [Introduction](#introduction)  
 * [Quick Start](#quick-start)  
 * [Features](#features)
   + [General Features](#general)
-    - [1. Clear all data in application: `clear`](#clear)
+     [1. Clear all data in application: `clear`](#clear)
     - [2. Exiting the programme: `exit`](#exit)
     - [3. View Help: `help`](#help)
   + [Member Related Features](#members)
@@ -25,9 +25,19 @@ and distributing tasks will never be headache :smile:
     - [4. Edit Member: `editMember`](#editMember)
     - [5. Find Members by Keywords: `findMembers`](#findMember)
   + [Task Related Features](#tasks)
-    - [1. Clear all data in application: `clear`](#clear)
-    - [2. Exiting the programme: `exit`](#exit)
-    - [3. View Help: `help`](#help)
+    - [1. Add Task: `addTask`](#addTask)
+    - [2. Delete Task: `deleteTask`](#deleteTask)
+    - [3. View Tasks: `viewTasks`](#viewTasks)
+    - [4. Edit Task: `editTask`](#editTask)
+    - [5. Mark Task as Completed: `done`](#doneTask)
+    - [6. Mark Task as Uncompleted: `undo`](#undoTask)
+    - [7. Find Tasks by Keywords: `findTasks`](#findTask)
+    - [8. Find Tasks due before certain date: `findBefore`](#findBefore)
+    - [9. Find Tasks by Priority: `findPriority`](#findPriority)
+    - [10. Remove all Members Assigned to a Task: `removeAssignees`](#removeAssignees)
+    - [11. View List of Unassigned Tasks: `viewUnassignedTasks`](#viewUnassignedTasks)
+    - [12. View List of Uncompleted Tasks: `viewUncompletedTasks`](#viewUncompletedTasks)
+    - [13. Find Tasks Assigned to a Single Member: `findMembers`](#findMembers)
 * [Data Storage](#dataStorage)
   + [Saving the data](#savingData)
   + [Editing the data file](#editData)
