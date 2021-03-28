@@ -165,7 +165,7 @@ public class CommandBox extends UiPart<Region> {
      * @param event key event for pressed keys
      */
     public void setLastCommand(KeyEvent event) {
-        KeyCombination kc = new KeyCodeCombination(KeyCode.UP, KeyCombination.CONTROL_DOWN);
+        KeyCombination kc = new KeyCodeCombination(KeyCode.UP, KeyCombination.SHORTCUT_DOWN);
         if (kc.match(event) && !lastCommand.isEmpty()) {
             commandTextField.setText(lastCommand);
         }
