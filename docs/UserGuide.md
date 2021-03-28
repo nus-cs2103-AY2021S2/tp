@@ -31,6 +31,52 @@ Vax@NUS is a **one stop management app to efficiently track and and schedule COV
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Parameter Formats
+
+**NOTE: The following parameter formats must be followed:**
+> The `MATRICULATION_NUMBER` of a student is a unique 9-character alphanumeric sequence that begins with A, followed by
+> 7 numbers and ends with an alphabet.
+
+> The `FACULTY` of a student must be one of the following:
+> * FASS (for Faculty of Arts and Social Sciences)
+> * BIZ (for NUS Business School)
+> * COM (for School of Computing)
+> * SCALE (for School of Continuing and Lifelong Education)
+> * DEN (for Faculty of Dentistry)
+> * SDE (for School of Design and Environment)
+> * DNUS (for Duke-NUS Medical School)
+> * ENG (for Faculty of Engineering)
+> * ISEP (for Integrative Sciences and Engineering)
+> * LAW (for Faculty of Law)
+> * MED (for Yong Loo Lin School of Medicine)
+> * MUSIC (for Yong Siew Toh Conservatory of Music)
+> * SPH (for Saw Swee Hock School of Public Health)
+> * SPP (for Lee Kuan Yew School of Public Policy)
+> * SCI (for Faculty of Science)
+> * USP (for University Scholars Programme)
+> * YNC (for Yale-NUS College)
+
+> The `VACCINATION_STATUS` of a student must only be `vaccinated` or `not vaccinated`
+
+> The `[SCHOOL_RESIDENCE]` of a student must be one of the following:
+> * PGPH (for Prince George's Park House)
+> * PGPR (for Prince George's Park Residences)
+> * KE7H (for King Edward VII Hall)
+> * SH (for Sheares Hall)
+> * KRH (for Kent Ridge Hall)
+> * TH (for Temasek Hall)
+> * EH (for Eusoff Hall)
+> * RH (for Raffles Hall)
+> * RVRC (for Ridge View Residential College)
+> * YNC (for Yale-NUS College)
+> * TC (for Tembusu College)
+> * CAPT (for College of Alice and Peter Tan)
+> * RC4 (for Residential College 4)
+> * USP (for University Scholars Programme)
+> * UTR (for Utown Residences)
+
+----------------------------------------------------------------------
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -52,47 +98,6 @@ Vax@NUS is a **one stop management app to efficiently track and and schedule COV
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
   
-**NOTE: The following parameter formats must be followed:**
-> The `MATRICULATION_NUMBER` of a student is a unique 9-character alphanumeric sequence that begins with A, followed by 
-  > 7 numbers and ends with an alphabet. 
-
-> The `FACULTY` of a student must be one of the following:
-  > * FASS (for Faculty of Arts and Social Sciences)
-  > * BIZ (for NUS Business School) 
-  > * COM (for School of Computing)
-  > * SCALE (for School of Continuing and Lifelong Education)
-  > * DEN (for Faculty of Dentistry)
-  > * SDE (for School of Design and Environment)
-  > * DNUS (for Duke-NUS Medical School)
-  > * ENG (for Faculty of Engineering)
-  > * ISEP (for Integrative Sciences and Engineering)
-  > * LAW (for Faculty of Law)
-  > * MED (for Yong Loo Lin School of Medicine)
-  > * MUSIC (for Yong Siew Toh Conservatory of Music)
-  > * SPH (for Saw Swee Hock School of Public Health)
-  > * SPP (for Lee Kuan Yew School of Public Policy)
-  > * SCI (for Faculty of Science)
-  > * USP (for University Scholars Programme)
-  > * YNC (for Yale-NUS College)
-  
-> The `VACCINATION_STATUS` of a student must only be `vaccinated` or `not vaccinated`
-
-> The `[SCHOOL_RESIDENCE]` of a student must be one of the following:
-  > * PGPH (for Prince George's Park House)
-  > * PGPR (for Prince George's Park Residences)
-  > * KE7H (for King Edward VII Hall)
-  > * SH (for Sheares Hall)
-  > * KRH (for Kent Ridge Hall)
-  > * TH (for Temasek Hall)
-  > * EH (for Eusoff Hall)
-  > * RH (for Raffles Hall)
-  > * RVRC (for Ridge View Residential College)
-  > * YNC (for Yale-NUS College)
-  > * TC (for Tembusu College)
-  > * CAPT (for College of Alice and Peter Tan)
-  > * RC4 (for Residential College 4)
-  > * USP (for University Scholars Programme)
-  > * UTR (for Utown Residences)
 
 </div>
 
@@ -191,8 +196,21 @@ Examples:
 * `addAppt i/A1234567X d/2021-12-13 ts/13:00 te/14:00`
 * `addAppt i/A7654321J d/2021-12-13 ts/14:00 te/14:30`
 
+### Editing an appointment: `editAppt`
 
-### Viewing statistics: `stats`
+Edits an appointment to that already exists in Vax@NUS' records.
+
+Format: `editAppt i/MATRICULATION_NUMBER d/DATE_YYYY-MM-DD ts/START_TIME_HH:MM`
+
+* The edited appointment must not clash with an existing appointment.
+
+
+Examples:
+* `editAppt i/A1234567X d/2021-12-13 ts/14:00`
+* `editAppt i/A7654321J d/2021-12-13 ts/14:00`
+
+
+### Viewing statistics for student population: `stats`
 
 Displays the statistics of the requested Faculty/School Residence, the whole of NUS or statistics of all Faculties
 and School Residences. 
@@ -213,6 +231,13 @@ Examples:
 * `stats DOES_NOT_LIVE_ON_CAMPUS` displays the percentage of vaccinated students not living on campus.
 * `stats NUS` displays the percentage of vaccinated students in NUS.
 * `stats all` displays the list of percentages of vaccinated students in every Faculty and School Residence.
+
+### Viewing statistics for appointments: `statsAppt`
+Displays the number of upcoming and previous appointments within 6 days from the current day and includes the day itself.
+
+Format: <br>
+`statsAppt`
+
 
 ### Exiting the program : `exit`
 
@@ -238,16 +263,15 @@ _Details coming soon ..._
 
 **Q**: What can be included in medical details?
 <br>
-**A**: Allergies and past medical history. 
-
-**Q**: Will I be able to amend a student’s details?
-<br>
-**A**: Unfortunately, this feature is not available at the moment, but plans are in the works to make this a reality.
+**A**: Allergies and past medical history.
 
 **Q** : Will I be able to add other types of appointments besides vaccination appointments?
 <br>
 **A** : No, the current version only allows you to add vaccination appointments and not any other type of appointments. 
- 
+
+**Q** : Am I able to change an appointment at a specific time to another student?
+<br>
+**A** : No, you will need to delete that appointment first, then add the new appointment at that specific time with the new student. 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Summary
@@ -260,4 +284,5 @@ Action | Format, Examples
 **Find** | `find MATRICULATION_NUMBER` e.g., `find A1234567X`
 **Filter** | `filter VACCINATION_STATUS`  e.g., `filter VACCINATED` <br> `filter FACULTY ` e.g., `filter COM` <br> `filter SCHOOL_RESIDENCE` e.g., `filter RVRC` 
 **Delete Student** | `deleteStud MATRICULATION_NUMBER` e.g., `deleteStud A1234567X`
-**View Statistics** | `stats FACULTY` e.g., `stats COM` <br> `stats SCHOOL_RESIDENCE` e.g., `stats RC4` <br> `stats NUS` <br> `stats all` 
+**View Student Statistics** | `stats FACULTY` e.g., `stats COM` <br> `stats SCHOOL_RESIDENCE` e.g., `stats RC4` <br> `stats NUS` <br> `stats all` 
+**View Appointment Statistics** | `statsAppt`

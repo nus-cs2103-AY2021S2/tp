@@ -58,6 +58,14 @@ public class AppointmentBuilder {
     }
 
     /**
+     *Sets the {@code date} of the {@code Appointment} that we are building
+     */
+    public AppointmentBuilder withDate(LocalDate date) {
+        this.date = date;
+        return this;
+    }
+
+    /**
      *Sets the {@code startTime} of the {@code Appointment} that we are building
      */
     public AppointmentBuilder withStartTime(String startTime) {
@@ -66,10 +74,10 @@ public class AppointmentBuilder {
     }
 
     /**
-     *Sets the {@code endTime} of the {@code Appointment} that we are building
+     *Sets the {@code startTime} of the {@code Appointment} that we are building
      */
-    public AppointmentBuilder withEndTime(String endTime) {
-        this.endTime = LocalTime.parse(endTime);
+    public AppointmentBuilder withStartTime(LocalTime startTime) {
+        this.startTime = startTime;
         return this;
     }
 
@@ -79,7 +87,7 @@ public class AppointmentBuilder {
      * @return a person object.
      */
     public Appointment build() {
-        return new Appointment(matriculationNumber, date, startTime, endTime);
+        return new Appointment(matriculationNumber, date, startTime);
     }
 
 }

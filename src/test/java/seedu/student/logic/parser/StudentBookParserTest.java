@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.student.logic.commands.AddCommand;
 import seedu.student.logic.commands.ClearCommand;
-import seedu.student.logic.commands.DeleteCommand;
+import seedu.student.logic.commands.DeleteStudentCommand;
 import seedu.student.logic.commands.EditCommand;
 import seedu.student.logic.commands.EditCommand.EditStudentDescriptor;
 import seedu.student.logic.commands.ExitCommand;
@@ -49,9 +49,9 @@ public class StudentBookParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + MATRIC_NUMBER_FIRST_STUDENT);
-        assertEquals(new DeleteCommand(new MatriculationNumber(MATRIC_NUMBER_FIRST_STUDENT)), command);
+        DeleteStudentCommand command = (DeleteStudentCommand) parser.parseCommand(
+                DeleteStudentCommand.COMMAND_WORD + " " + MATRIC_NUMBER_FIRST_STUDENT);
+        assertEquals(new DeleteStudentCommand(new MatriculationNumber(MATRIC_NUMBER_FIRST_STUDENT)), command);
     }
 
     @Test
