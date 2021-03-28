@@ -106,11 +106,17 @@ public class UniqueFoodList {
         return stringBuilder.toString();
     }
 
+    /**
+     * Resets the current foodList to the default sample template content.
+     */
     public void resetToTemplate() {
         TemplateInitializer templateInitializer = new TemplateInitializer();
         this.foodList = templateInitializer.getUniqueFoodListTemplate().getFoodList();
     }
 
+    /**
+     * Resets the current foodList to a new empty list.
+     */
     public void resetToBlank() {
         this.foodList = FXCollections.observableArrayList();
     }
