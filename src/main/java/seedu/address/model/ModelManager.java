@@ -12,14 +12,12 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.event.DescriptionContainsKeywordsPredicate;
 import seedu.address.model.event.GeneralEvent;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Description;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.Title;
-import seedu.address.model.module.TitleContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 
 /**
@@ -183,7 +181,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredModuleList(TitleContainsKeywordsPredicate predicate) {
+    public void updateFilteredModuleList(Predicate<Module> predicate) {
         requireNonNull(predicate);
         filteredModules.setPredicate(predicate);
     }
@@ -194,7 +192,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredEventList(DescriptionContainsKeywordsPredicate predicate) {
+    public void updateFilteredEventList(Predicate<GeneralEvent> predicate) {
         requireNonNull(predicate);
         filteredEvents.setPredicate(predicate);
     }

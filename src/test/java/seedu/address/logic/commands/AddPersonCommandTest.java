@@ -22,14 +22,12 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyRemindMe;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.RemindMe;
-import seedu.address.model.event.DescriptionContainsKeywordsPredicate;
 import seedu.address.model.event.GeneralEvent;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Description;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.Title;
-import seedu.address.model.module.TitleContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -291,7 +289,7 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public void updateFilteredModuleList(TitleContainsKeywordsPredicate predicate) {
+        public void updateFilteredModuleList(Predicate<Module> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -301,7 +299,7 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public void updateFilteredEventList(DescriptionContainsKeywordsPredicate predicate) {
+        public void updateFilteredEventList(Predicate<GeneralEvent> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
