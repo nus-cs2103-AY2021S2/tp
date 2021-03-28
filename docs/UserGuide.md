@@ -21,7 +21,7 @@ It allows for faster and more effective student management.
   * [Adding a tuition session: `add_session`](#adding-a-tuition-session-add_session)
   * [Deleting a tuition session: `delete_session`](#deleting-a-tuition-session-delete_session)
   * [Getting monthly fee for a particular student: `fee`](#getting-monthly-fee-for-a-particular-student-fee)
-  * [Clears all entries in the program: `exit`](#clearing-all-entries--clear)
+  * [Clears all entries in the program: `clear`](#clearing-all-entries--clear)
   * [Exit the program: `exit`](#exit-the-program-exit)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
