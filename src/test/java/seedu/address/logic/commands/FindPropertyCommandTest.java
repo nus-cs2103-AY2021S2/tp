@@ -10,11 +10,11 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_PRICE_LESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_PRICE_MORE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
+import static seedu.address.testutil.TypicalModelManager.getTypicalModelManager;
 import static seedu.address.testutil.TypicalProperties.JURONG;
 import static seedu.address.testutil.TypicalProperties.MAYFAIR;
 import static seedu.address.testutil.TypicalProperties.WOODLANDS_CRESCENT;
 import static seedu.address.testutil.TypicalProperties.getTypicalProperties;
-import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBook;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,8 +27,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.FindPropertyCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyContainsKeywordsPredicate;
 import seedu.address.model.property.PropertyPredicateList;
@@ -36,11 +34,11 @@ import seedu.address.model.property.PropertyPricePredicate;
 import seedu.address.model.property.PropertyTypePredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindAppointmentCommand}.
+ * Contains integration tests (interaction with the Model) for {@code FindPropertyCommand}.
  */
 public class FindPropertyCommandTest {
-    private Model model = new ModelManager(getTypicalPropertyBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalPropertyBook(), new UserPrefs());
+    private Model model = getTypicalModelManager();
+    private Model expectedModel = getTypicalModelManager();
 
     @Test
     public void equalsKeywords() {

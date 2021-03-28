@@ -14,4 +14,14 @@ public class TypicalModelManager {
     public static ModelManager getTypicalModelManager() {
         return new ModelManager(getTypicalAppointmentBook(), getTypicalPropertyBook(), new UserPrefs());
     }
+
+    ///**
+    // * Returns an {@code AppointmentBook} with all the typical appointments.
+    // */
+    //public static ModelManager getTypicalModelManager() {
+    //    ModelManager modelManager =
+    //            new ModelManager(TypicalAppointments.getTypicalAppointmentBook(),
+    //                    TypicalProperties.getTypicalPropertyBook(), new UserPrefs());
+    //    return modelManager;
+    //}
 }
