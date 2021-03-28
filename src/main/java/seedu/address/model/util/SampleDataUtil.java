@@ -161,7 +161,7 @@ public class SampleDataUtil {
     }
 
     private static ParticipantList getCS2103TParticipantsList() throws DateConversionException {
-        Contact dahn = new Contact(new Name("Dahn"), new Phone("91234561"), new Email("dahn@colab.com"),
+        Contact danh = new Contact(new Name("Danh"), new Phone("91234561"), new Email("danh@colab.com"),
                 new Address("1 CoLAB Road"), new HashSet<>());
         Contact ruochen = new Contact(new Name("Ruochen"), new Phone("91234562"), new Email("ruochen@colab.com"),
                 new Address("1 CoLAB Road"), new HashSet<>());
@@ -171,7 +171,7 @@ public class SampleDataUtil {
                 new Address("1 CoLAB Road"), new HashSet<>());
 
         ParticipantList participantList = new ParticipantList();
-        participantList.addParticipant(dahn);
+        participantList.addParticipant(danh);
         participantList.addParticipant(ruochen);
         participantList.addParticipant(samuel);
         participantList.addParticipant(vevek);
@@ -225,7 +225,7 @@ public class SampleDataUtil {
     }
 
     private static ParticipantList getCS2101ParticipantsList() throws DateConversionException {
-        Contact dahn = new Contact(new Name("Dahn"), new Phone("91234561"), new Email("dahn@colab.com"),
+        Contact danh = new Contact(new Name("Danh"), new Phone("91234561"), new Email("danh@colab.com"),
                 new Address("1 CoLAB Road"), new HashSet<>());
         Contact ruochen = new Contact(new Name("Ruochen"), new Phone("91234562"), new Email("ruochen@colab.com"),
                 new Address("1 CoLAB Road"), new HashSet<>());
@@ -235,7 +235,7 @@ public class SampleDataUtil {
                 new Address("1 CoLAB Road"), new HashSet<>());
 
         ParticipantList participantList = new ParticipantList();
-        participantList.addParticipant(dahn);
+        participantList.addParticipant(danh);
         participantList.addParticipant(ruochen);
         participantList.addParticipant(samuel);
         participantList.addParticipant(vevek);

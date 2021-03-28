@@ -120,8 +120,8 @@ public class TypicalProjects {
     }
 
     private static ParticipantList getCS2103TParticipantsList() {
-        Contact dahn = new PersonBuilder().withName("Dahn").withAddress("1 CoLAB Road")
-                .withEmail("dahn@colab.com").withPhone("91234561").build();
+        Contact danh = new PersonBuilder().withName("Danh").withAddress("1 CoLAB Road")
+                .withEmail("danh@colab.com").withPhone("91234561").build();
         Contact ruochen = new PersonBuilder().withName("Ruochen").withAddress("1 CoLAB Road")
                 .withEmail("ruochen@colab.com").withPhone("91234562").build();
         Contact samuel = new PersonBuilder().withName("Samuel").withAddress("1 CoLAB Road")
@@ -130,7 +130,7 @@ public class TypicalProjects {
                 .withEmail("vevek@colab.com").withPhone("91234564").build();
 
         ParticipantList participantList = new ParticipantList();
-        participantList.addParticipant(dahn);
+        participantList.addParticipant(danh);
         participantList.addParticipant(ruochen);
         participantList.addParticipant(samuel);
         participantList.addParticipant(vevek);
@@ -187,8 +187,8 @@ public class TypicalProjects {
     }
 
     private static ParticipantList getCS2101ParticipantsList() throws DateConversionException {
-        Contact dahn = new PersonBuilder().withName("Dahn").withAddress("1 CoLAB Road")
-                .withEmail("dahn@colab.com").withPhone("91234561").build();
+        Contact danh = new PersonBuilder().withName("Danh").withAddress("1 CoLAB Road")
+                .withEmail("danh@colab.com").withPhone("91234561").build();
         Contact ruochen = new PersonBuilder().withName("Ruochen").withAddress("1 CoLAB Road")
                 .withEmail("ruochen@colab.com").withPhone("91234562").build();
         Contact samuel = new PersonBuilder().withName("Samuel").withAddress("1 CoLAB Road")
@@ -197,7 +197,7 @@ public class TypicalProjects {
                 .withEmail("vevek@colab.com").withPhone("91234564").build();
 
         ParticipantList participantList = new ParticipantList();
-        participantList.addParticipant(dahn);
+        participantList.addParticipant(danh);
         participantList.addParticipant(ruochen);
         participantList.addParticipant(samuel);
         participantList.addParticipant(vevek);
