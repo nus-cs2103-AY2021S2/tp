@@ -1,15 +1,11 @@
 package seedu.address.testutil;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.session.Day;
-import seedu.address.model.session.Session;
-import seedu.address.model.session.SessionId;
-import seedu.address.model.session.Subject;
-import seedu.address.model.session.Timeslot;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import seedu.address.model.AddressBook;
+import seedu.address.model.session.Session;
 
 /**
  * A utility class containing a list of {@code Session} objects to be used in tests.
@@ -55,7 +51,7 @@ public class TypicalSessions {
     }
 
     public static List<Session> getTypicalSessions() {
-        return new ArrayList<>(Arrays.asList(FIRST_SESSION , SECOND_SESSION , THIRD_SESSION
-                , FOURTH_SESSION , FIFTH_SESSION , SIXTH_SESSION , SEVENTH_SESSION));
+        return new ArrayList<>(Arrays.asList(FIRST_SESSION , SECOND_SESSION , THIRD_SESSION,
+                FOURTH_SESSION , FIFTH_SESSION , SIXTH_SESSION , SEVENTH_SESSION));
     }
 }

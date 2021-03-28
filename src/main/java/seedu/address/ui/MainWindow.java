@@ -168,7 +168,7 @@ public class MainWindow extends UiPart<Stage> {
         sessionListPanel = new SessionListPanel(logic.getFilteredSessionList());
         sessionListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-        viewIndividualPlaceholder.getItems().addAll(sessionListPanelPlaceholder,personListPanelPlaceholder);
+        viewIndividualPlaceholder.getItems().addAll(sessionListPanelPlaceholder , personListPanelPlaceholder);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -263,7 +263,7 @@ public class MainWindow extends UiPart<Stage> {
                 fillInnerPartsWithSessions();
             }
 
-            if(commandResult.getFeedbackToUser().equals(ViewSessionCommand.MESSAGE_SUCCESS)) {
+            if (commandResult.getFeedbackToUser().equals(ViewSessionCommand.MESSAGE_SUCCESS)) {
                 fillSplitPane();
             }
 

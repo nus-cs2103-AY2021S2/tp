@@ -72,10 +72,11 @@ public class SampleDataUtil {
                 new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
                 getTagSet("friends")));
-        testSessionOne.assignStudent(new Student(new PersonId("s/3"), new Name("Charlotte Oliveiro"), new Phone("93210283"),
-                        new Email("charlotte@example.com"),
-                        new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                        getTagSet("neighbours")));
+        testSessionOne.assignStudent(new Student(new PersonId("s/3"),
+                new Name("Charlotte Oliveiro"), new Phone("93210283"),
+                new Email("charlotte@example.com"),
+                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+                getTagSet("neighbours")));
         testSessionOne.assignStudent(new Student(new PersonId("s/2"), new Name("Bernice Yu"), new Phone("99272758"),
                 new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
@@ -84,7 +85,7 @@ public class SampleDataUtil {
                 new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                 getTagSet("family")));
-        testSessionOne.assignStudent( new Student(new PersonId("s/5"), new Name("Irfan Ibrahim"), new Phone("92492021"),
+        testSessionOne.assignStudent(new Student(new PersonId("s/5"), new Name("Irfan Ibrahim"), new Phone("92492021"),
                 new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
                 getTagSet("classmates")));

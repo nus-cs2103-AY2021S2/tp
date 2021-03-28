@@ -2,7 +2,7 @@ package seedu.address.model.session;
 
 import java.util.function.Predicate;
 
-public class SessionIdPredicate implements Predicate<Session>{
+public class SessionIdPredicate implements Predicate<Session> {
     private final SessionId sessionId;
 
     public SessionIdPredicate(SessionId sessionId) {
@@ -22,7 +22,6 @@ public class SessionIdPredicate implements Predicate<Session>{
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Session // instanceof handles nulls
-                && sessionId.equals(((Session)other).getClassId())); // state check
+                && sessionId.equals(((Session) other).getClassId())); // state check
     }
-
 }
