@@ -96,6 +96,9 @@ public class CommandHistory {
         }
     }
 
+    /**
+     * A class to represent the pointer to a {@code CommandHistory} object.
+     */
     static class Pointer {
         private int currPosition;
         private boolean isPointingToHistory;
