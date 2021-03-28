@@ -10,7 +10,6 @@ import seedu.dictionote.model.note.Note;
 import seedu.dictionote.model.tag.Tag;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -56,46 +55,10 @@ public class MergeNoteCommand extends Command{
 
         Note firstNote = lastShownList.get(firstIndex.getZeroBased());
         Note secondNote = lastShownList.get(secondIndex.getZeroBased());
-        Note updatedNote = combineNote(firstNote, secondNote);
-        model.mergeNote(firstNote, secondNote, updatedNote);
+        model.mergeNote(firstNote, secondNote);
+        
         return new CommandResult(String.format(MESSAGE_MERGE_NOTE_SUCCESS, firstNote, secondNote),
                 UiAction.OPEN, UiActionOption.NOTE_LIST);
-    }
-    
-    private Note combineNote(Note firstNote, Note secondNote) {
-        String firstNoteContent = firstNote.getNote();
-        String secondNoteContent = secondNote.getNote();
-        String combinedNote = firstNoteContent + " " + secondNoteContent;
-
-        Set<Tag> firstNoteTag = firstNote.getTags();
-        Set<Tag> secondNoteTag = secondNote.getTags();
-        Set<Tag> combinedTag = combineTag(firstNoteTag, secondNoteTag);
-
-        LocalDateTime createTime = now();
-
-        LocalDateTime lastEditTime = now();
-        
-        Boolean firstNoteIsDone = firstNote.isDone();
-        Boolean secondNoteIsDone = secondNote.isDone();
-        Boolean combinedIsDone = firstNoteIsDone && secondNoteIsDone;
-        
-        return new Note(combinedNote, combinedTag, createTime, lastEditTime, combinedIsDone);
-    }
-    
-    private Set<Tag> combineTag(Set<Tag> firstNoteTag, Set<Tag> secondNoteTag) {
-        Set<Tag> combinedTag = new HashSet<>();
-        
-        for (Tag tag : firstNoteTag) {
-            combinedTag.add(tag);
-        }
-        
-        for (Tag tag : secondNoteTag) {
-            if (!firstNoteTag.contains(tag)) {
-                combinedTag.add(tag);
-            }
-        }
-        
-        return combinedTag;
     }
 
     @Override

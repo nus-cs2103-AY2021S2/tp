@@ -155,6 +155,23 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredNoteList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the note at the given {@code targetIndex} in the
+     * {@code model}'s dictionote book.
+     */
+    public static void showNoteAtTwoIndexes(Model model, Index firstTargetIndex, Index secondTargetIndex) {
+        assertTrue(firstTargetIndex.getZeroBased() < model.getFilteredNoteList().size());
+        assertTrue(secondTargetIndex.getZeroBased() < model.getFilteredNoteList().size());
+
+        Note firstNote = model.getFilteredNoteList().get(firstTargetIndex.getZeroBased());
+        Note secondNote = model.getFilteredNoteList().get(secondTargetIndex.getZeroBased());
+        
+        Predicate<Note> showSelectedNotesPredicate = x -> (x.equals(firstNote) || x.equals(secondNote));
+        model.updateFilteredNoteList(showSelectedNotesPredicate);
+
+        assertEquals(2, model.getFilteredNoteList().size());
+    }
+
 
     /**
      * Updates {@code model}'s filtered list to show only the content at the given {@code targetIndex} in the
