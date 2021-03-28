@@ -17,7 +17,7 @@
     <Image url="@/images/address_book_32.png" />
   </icons>
   <scene>
-    <Scene>
+    <Scene fx:id="scene">
       <stylesheets>
         <URL value="@PinkPastelTheme.css" />
         <URL value="@ExtensionsPinkPastel.css" />
@@ -26,6 +26,10 @@
       <VBox>
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
+            <Menu mnemonicParsing="false" text="Themes">
+              <MenuItem mnemonicParsing="false" onAction="#setThemePastel" text="Pastel" />
+              <MenuItem mnemonicParsing="false" onAction="#setThemeDark" text="Dark" />
+            </Menu>
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
