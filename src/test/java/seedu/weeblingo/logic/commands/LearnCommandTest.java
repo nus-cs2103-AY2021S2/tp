@@ -15,7 +15,7 @@ public class LearnCommandTest {
     @Test
     public void execute_learn_success() {
         CommandResult expectedCommandResult = new CommandResult(
-                MESSAGE_SUCCESS, false, false, true, true);
+                MESSAGE_SUCCESS, false, false);
         assertCommandSuccess(new LearnCommand(), model, expectedCommandResult, expectedModel);
     }
 

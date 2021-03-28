@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.weeblingo.commons.core.GuiSettings;
 import seedu.weeblingo.commons.core.LogsCenter;
+import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.flashcard.Flashcard;
 
 /**
@@ -194,6 +195,16 @@ public class ModelManager implements Model {
         return quizInstance.getCurrentQuizIndex();
     }
 
+    /**
+     * Checks if the attempt provided matches the correct answer of the current quiz.
+     * @param attempt The answer which the user entered.
+     * @return True if the answer matches, false otherwise.
+     */
+    public boolean isCorrectAttempt(Answer attempt) {
+        requireNonNull(quizInstance);
+        return quizInstance.isCorrectAttempt(attempt);
+    }
+
     public void clearQuizInstance() {
         quizInstance = null;
     }
@@ -214,5 +225,25 @@ public class ModelManager implements Model {
 
     public int getCurrentMode() {
         return this.mode.getCurrentMode();
+    }
+
+    public void switchModeQuiz() {
+        this.mode.switchModeQuiz();
+    }
+
+    public void switchModeLearn() {
+        this.mode.switchModeLearn();
+    }
+
+    public void switchModeMenu() {
+        this.mode.switchModeMenu();
+    }
+
+    public void switchModeQuizSession() {
+        this.mode.switchModeQuizSession();
+    }
+
+    public void switchModeCheckSuccess() {
+        this.mode.switchModeCheckSuccess();
     }
 }
