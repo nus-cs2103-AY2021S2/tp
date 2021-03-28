@@ -1,6 +1,7 @@
 package seedu.address.model.util;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -79,6 +80,9 @@ public class SampleDataUtil {
         return Arrays.stream(strings)
                 .map(Tag::new)
                 .collect(Collectors.toSet());
+    }
+    public static List<SessionId> getSessionIds(String... strings) {
+        return Arrays.stream(strings).map(SessionId::new).collect(Collectors.toList());
     }
 
 }

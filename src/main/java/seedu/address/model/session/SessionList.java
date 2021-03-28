@@ -2,13 +2,15 @@ package seedu.address.model.session;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Iterator;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.SessionNotFoundException;
 
 
 /**
- * A list of sessions tht does not allow nulls.
+ * A list of sessions that does not allow nulls.
  *
  * Supports a minimal set of list operations.
  */
@@ -53,5 +55,13 @@ public class SessionList {
      */
     public ObservableList<Session> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    public ObservableList<Session> getInternalList() {
+        return internalList;
+    }
+
+    public Iterator<Session> iterator() {
+        return internalList.iterator();
     }
 }
