@@ -17,6 +17,7 @@ import seedu.timeforwheels.logic.commands.FindCommand;
 import seedu.timeforwheels.logic.commands.HelpCommand;
 import seedu.timeforwheels.logic.commands.ListCommand;
 import seedu.timeforwheels.logic.commands.RemarkCommand;
+import seedu.timeforwheels.logic.commands.StatsCommand;
 import seedu.timeforwheels.logic.parser.exceptions.ParseException;
 
 
@@ -76,6 +77,9 @@ public class DeliveryListParser {
 
         case DoneCommand.COMMAND_WORD:
             return new DoneCommandParser().parse(arguments);
+
+        case StatsCommand.COMMAND_WORD:
+            return new StatsCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
