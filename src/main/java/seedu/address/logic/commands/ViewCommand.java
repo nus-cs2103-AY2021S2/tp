@@ -4,8 +4,9 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.model.Model;
 import seedu.address.model.person.PersonPredicate;
-import seedu.address.model.person.PersonTypePredicate;
 import seedu.address.model.person.PersonIdPredicate;
+import seedu.address.model.person.PersonTypePredicate;
+
 
 
 public class ViewCommand extends Command {
@@ -25,7 +26,9 @@ public class ViewCommand extends Command {
         this.predicate = predicate;
     }
 
-    public ViewCommand(PersonIdPredicate predicate) {this.predicate = predicate;}
+    public ViewCommand(PersonIdPredicate predicate) {
+        this.predicate = predicate;
+    }
 
 
     @Override
