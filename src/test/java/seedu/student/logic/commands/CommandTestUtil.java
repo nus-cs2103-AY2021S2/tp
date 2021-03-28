@@ -56,8 +56,6 @@ public class CommandTestUtil {
     public static final String VALID_DATE_BOB_APPOINTMENT = "2021-01-02";
     public static final String VALID_START_TIME_AMY_APPOINTMENT = "16:00";
     public static final String VALID_START_TIME_BOB_APPOINTMENT = "17:00";
-    public static final String VALID_END_TIME_AMY_APPOINTMENT = "16:30";
-    public static final String VALID_END_TIME_BOB_APPOINTMENT = "17:30";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -84,10 +82,6 @@ public class CommandTestUtil {
             + VALID_START_TIME_AMY_APPOINTMENT;
     public static final String START_TIME_DESC_BOB_APPOINTMENT = " " + PREFIX_START_TIME
             + VALID_START_TIME_BOB_APPOINTMENT;
-    public static final String END_TIME_DESC_AMY_APPOINTMENT = " " + PREFIX_END_TIME
-            + VALID_END_TIME_AMY_APPOINTMENT;
-    public static final String END_TIME_DESC_BOB_APPOINTMENT = " " + PREFIX_END_TIME
-            + VALID_END_TIME_BOB_APPOINTMENT;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_MATRIC_DESC = " " + PREFIX_MATRICULATION_NUMBER

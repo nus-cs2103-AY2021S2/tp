@@ -24,18 +24,15 @@ public class Appointment implements Comparable<Appointment> {
     // Data fields
     private final LocalDate date;
     private final LocalTime startTime;
-    private final LocalTime endTime;
 
     /**
      * Every field must be present and not null.
      */
-    public Appointment(MatriculationNumber matriculationNumber, LocalDate date, LocalTime startTime,
-                       LocalTime endTime) {
-        requireAllNonNull(matriculationNumber, date, startTime, endTime);
+    public Appointment(MatriculationNumber matriculationNumber, LocalDate date, LocalTime startTime) {
+        requireAllNonNull(matriculationNumber, date, startTime);
         this.matriculationNumber = matriculationNumber;
         this.date = date;
         this.startTime = startTime;
-        this.endTime = endTime;
     }
 
     public LocalDate getDate() {
@@ -47,7 +44,7 @@ public class Appointment implements Comparable<Appointment> {
     }
 
     public LocalTime getEndTime() {
-        return endTime;
+        return startTime.plusMinutes(30);
     }
 
     public MatriculationNumber getMatriculationNumber() {
@@ -76,7 +73,7 @@ public class Appointment implements Comparable<Appointment> {
         if (!otherAppointment.date.isEqual(date)) {
             return false;
         }
-        return otherAppointment.startTime.isBefore(endTime) && otherAppointment.endTime.isAfter(startTime);
+        return otherAppointment.startTime.isBefore(getEndTime()) && otherAppointment.getEndTime().isAfter(startTime);
     }
 
     /**
@@ -95,13 +92,13 @@ public class Appointment implements Comparable<Appointment> {
 
         Appointment otherAppointment = (Appointment) other;
         return otherAppointment.date.isEqual(date) && otherAppointment.matriculationNumber.equals(matriculationNumber)
-                && otherAppointment.startTime.equals(startTime) && otherAppointment.endTime.equals(endTime);
+                && otherAppointment.startTime.equals(startTime) && otherAppointment.getEndTime().equals(getEndTime());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(matriculationNumber, date, startTime, endTime);
+        return Objects.hash(matriculationNumber, date, startTime);
     }
 
     @Override

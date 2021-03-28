@@ -3,7 +3,6 @@ package seedu.student.model.appointment;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.student.logic.commands.CommandTestUtil.VALID_DATE_BOB_APPOINTMENT;
-import static seedu.student.logic.commands.CommandTestUtil.VALID_END_TIME_BOB_APPOINTMENT;
 import static seedu.student.logic.commands.CommandTestUtil.VALID_MATRIC_BOB;
 import static seedu.student.logic.commands.CommandTestUtil.VALID_START_TIME_BOB_APPOINTMENT;
 import static seedu.student.testutil.TypicalAppointments.ALICE_APPOINTMENT;
@@ -25,8 +24,7 @@ public class AppointmentTest {
 
         // same matriculation number, all other attributes different -> returns true
         Appointment editedAliceAppointment = new AppointmentBuilder(ALICE_APPOINTMENT)
-                .withDate(VALID_DATE_BOB_APPOINTMENT).withStartTime(VALID_START_TIME_BOB_APPOINTMENT)
-                .withEndTime(VALID_END_TIME_BOB_APPOINTMENT).build();
+                .withDate(VALID_DATE_BOB_APPOINTMENT).withStartTime(VALID_START_TIME_BOB_APPOINTMENT).build();
         assertTrue(ALICE_APPOINTMENT.isSameAppointment(editedAliceAppointment));
 
         // different matriculation number, all other attributes same -> returns false
@@ -60,11 +58,6 @@ public class AppointmentTest {
         // different start time -> returns false
         editedAliceAppointment = new AppointmentBuilder(ALICE_APPOINTMENT)
                 .withStartTime(VALID_START_TIME_BOB_APPOINTMENT).build();
-        assertFalse(ALICE_APPOINTMENT.equals(editedAliceAppointment));
-
-        // different end time -> returns false
-        editedAliceAppointment = new AppointmentBuilder(ALICE_APPOINTMENT)
-                .withEndTime(VALID_END_TIME_BOB_APPOINTMENT).build();
         assertFalse(ALICE_APPOINTMENT.equals(editedAliceAppointment));
     }
 }
