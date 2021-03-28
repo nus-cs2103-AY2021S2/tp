@@ -2,7 +2,7 @@
   <img width="341" height="381" src="https://user-images.githubusercontent.com/48408342/112603571-29845b80-8e50-11eb-8dee-bb88603fffb8.png">
 </p>
 
-**DocBob** is a **desktop app for managing your patient's information, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Bob can get your patient's **medical information** and **scheduled appointments** faster than any other patient's information management app in the market. Bob will serve you dilligently and make sure you will never forget an appointment with a patient ever again!
+**DocBob** is a **desktop app for managing your patient's information, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Bob can get your patient's **medical information** and **scheduled appointments** faster than any other patient's information management app in the market. Bob will serve you dilligently and make sure you never forget an appointment with a patient ever again!
 
 The purpose of this User Guide is to help new users(doctors) understand how to get the app running and learn about the basic commands and their usages.
 
@@ -71,17 +71,21 @@ Example: `help`
 
 Output:
 
-DocBob will open up a help window with the help information.
+DocBob will open up a help window with command information.
 ![image](https://user-images.githubusercontent.com/48408342/112430286-e1463a00-8d78-11eb-87bd-baa45a0b52ba.png)
 
 ### Adding a patients' contact: `add`
 
 Adds a patient to DocBob's contact list.
 
-Format: `add n/Name p/phoneNumber e/Email a/Address h/Height w/Weight`
+Format: `add n/Name p/phoneNumber e/Email a/Address h/Height w/Weight [t/TAG]`
 
-Examples:
-* `add n/Shrek p/66666666 e/shrek@swampmail.com a/Swamp h/243cm w/94kg`
+Example:
+* `add n/Shrek p/66666666 e/shrek@swampmail.com a/Swamp h/243cm w/94kg t/smelly`
+
+Output:
+
+`New patient added: Shrek; Phone: 66666666; Email: shrek@swampmail.com; Address: Swamp; Height: 243cm; Weight: 94kg; Tags: [smelly]`
 
 ### Deleting a patients' contact : `delete`
 
@@ -90,8 +94,12 @@ Deletes a patient from DocBob's contact list, identified by the index number sho
 Format : `delete INDEX`
 where INDEX must be a positive integer (1,2,3,...)
 
-Examples:
+Example:
 * `delete 1`
+
+Output:
+
+`Deleted Person: Shrek; Phone: 66666666; Email: shrek@swampmail.com; Address: Swamp; Height: 243cm; Weight: 94kg; Tags: [smelly]`
 
 ### Listing out all patients' contacts : `list`
 
@@ -114,8 +122,11 @@ where INDEX must be a positive integer (1,2,3,...)
 and DATE is DDMMYYYYhhmm or DDMMhhmm
 
 Examples:
-* `appt 12 d/200420210930`
 * `appt 3 d/25120800`
+
+Output:
+
+`Appointment added: Sat, 25 Dec, 08:00`
 
 ### Listing out your upcoming appointments : `listappt`
 
@@ -145,6 +156,11 @@ where INDEX must be a positive integer (1,2,3,...)
 
 Examples:
 * `mrec 3`
+
+Output:
+
+![image](https://user-images.githubusercontent.com/48408342/112743647-aee04b00-8fcb-11eb-8ac4-9ccf999bde49.png)
+
 
 ### View all information regarding a patient : `view`
 
