@@ -10,6 +10,7 @@ import static seedu.student.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -23,6 +24,7 @@ import seedu.student.model.ReadOnlyUserPrefs;
 import seedu.student.model.StudentBook;
 import seedu.student.model.appointment.Appointment;
 import seedu.student.model.appointment.SameDateAppointmentList;
+import seedu.student.model.student.MatriculationNumber;
 import seedu.student.model.student.Student;
 import seedu.student.testutil.AppointmentBuilder;
 import seedu.student.testutil.StudentBuilder;
@@ -135,6 +137,16 @@ public class AddAppointmentCommandTest {
         }
 
         @Override
+        public ObservableList<Student> getStudentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isExistingMatricNumber(MatriculationNumber matricNum) {
+            return true;
+        }
+
+        @Override
         public boolean hasStudent(Student student) {
             throw new AssertionError("This method should not be called.");
         }
@@ -155,7 +167,17 @@ public class AddAppointmentCommandTest {
         }
 
         @Override
+        public Student getStudent(MatriculationNumber matriculationNumber) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredStudentList(Predicate<Student> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredAppointmentList(Predicate<SameDateAppointmentList> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -176,6 +198,11 @@ public class AddAppointmentCommandTest {
 
         @Override
         public ObservableList<SameDateAppointmentList> getFilteredAppointmentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public List<Appointment> getAppointmentList() {
             throw new AssertionError("This method should not be called.");
         }
     }

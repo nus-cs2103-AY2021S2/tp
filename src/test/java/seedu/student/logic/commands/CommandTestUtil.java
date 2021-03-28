@@ -24,8 +24,8 @@ import seedu.student.logic.commands.exceptions.CommandException;
 import seedu.student.model.Model;
 import seedu.student.model.StudentBook;
 import seedu.student.model.student.MatriculationNumber;
-import seedu.student.model.student.MatriculationNumberContainsKeywordsPredicate;
 import seedu.student.model.student.Student;
+import seedu.student.model.student.StudentContainsMatriculationNumberPredicate;
 import seedu.student.testutil.EditStudentDescriptorBuilder;
 
 /**
@@ -56,8 +56,6 @@ public class CommandTestUtil {
     public static final String VALID_DATE_BOB_APPOINTMENT = "2021-01-02";
     public static final String VALID_START_TIME_AMY_APPOINTMENT = "16:00";
     public static final String VALID_START_TIME_BOB_APPOINTMENT = "17:00";
-    public static final String VALID_END_TIME_AMY_APPOINTMENT = "16:30";
-    public static final String VALID_END_TIME_BOB_APPOINTMENT = "17:30";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -84,10 +82,6 @@ public class CommandTestUtil {
             + VALID_START_TIME_AMY_APPOINTMENT;
     public static final String START_TIME_DESC_BOB_APPOINTMENT = " " + PREFIX_START_TIME
             + VALID_START_TIME_BOB_APPOINTMENT;
-    public static final String END_TIME_DESC_AMY_APPOINTMENT = " " + PREFIX_END_TIME
-            + VALID_END_TIME_AMY_APPOINTMENT;
-    public static final String END_TIME_DESC_BOB_APPOINTMENT = " " + PREFIX_END_TIME
-            + VALID_END_TIME_BOB_APPOINTMENT;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_MATRIC_DESC = " " + PREFIX_MATRICULATION_NUMBER
@@ -173,8 +167,8 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredStudentList().size());
 
         Student student = model.getFilteredStudentList().get(targetIndex.getZeroBased());
-        final String matriculationNumber = student.getMatriculationNumber().toString();
-        model.updateFilteredStudentList(new MatriculationNumberContainsKeywordsPredicate(matriculationNumber));
+        final MatriculationNumber matriculationNumber = student.getMatriculationNumber();
+        model.updateFilteredStudentList(new StudentContainsMatriculationNumberPredicate(matriculationNumber));
 
         assertEquals(1, model.getFilteredStudentList().size());
     }
@@ -195,10 +189,9 @@ public class CommandTestUtil {
         }
 
         assertTrue(student != null);
-        final String[] splitName = student.getMatriculationNumber().toString().split("\\s+");
-        model.updateFilteredStudentList(new MatriculationNumberContainsKeywordsPredicate((splitName[0])));
+        final MatriculationNumber studentMatriculationNumber = student.getMatriculationNumber();
+        model.updateFilteredStudentList(new StudentContainsMatriculationNumberPredicate((studentMatriculationNumber)));
 
         assertEquals(1, model.getFilteredStudentList().size());
     }
-
 }

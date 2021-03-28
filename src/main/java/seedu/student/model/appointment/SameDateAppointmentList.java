@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.util.Iterator;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,7 +23,7 @@ import seedu.student.model.appointment.exceptions.OverlappingAppointmentExceptio
  *
  * @see Appointment#isSameAppointment(Appointment)
  */
-public class SameDateAppointmentList implements Iterable<Appointment> {
+public class SameDateAppointmentList implements Iterable<Appointment>, Comparable<SameDateAppointmentList> {
     private final LocalDate date;
     private final ObservableList<Appointment> internalList;
     private final ObservableList<Appointment> internalUnmodifiableList;
@@ -31,6 +32,7 @@ public class SameDateAppointmentList implements Iterable<Appointment> {
      * Creates a list of appointments on the same date.
      */
     public SameDateAppointmentList(LocalDate date) {
+
         this.date = date;
         internalList = FXCollections.observableArrayList();
         internalUnmodifiableList = FXCollections.unmodifiableObservableList(internalList);
@@ -71,6 +73,7 @@ public class SameDateAppointmentList implements Iterable<Appointment> {
             throw new DuplicateAppointmentException();
         }
         internalList.add(toAdd);
+        FXCollections.sort(internalList);
     }
 
     /**
@@ -109,6 +112,10 @@ public class SameDateAppointmentList implements Iterable<Appointment> {
                 && internalList.equals(((SameDateAppointmentList) other).internalList));
     }
 
+    public List<Appointment> getAppointmentList() {
+        return internalList;
+    }
+
     @Override
     public int hashCode() {
         return internalList.hashCode();
@@ -116,5 +123,10 @@ public class SameDateAppointmentList implements Iterable<Appointment> {
 
     public boolean sameDate(Appointment toCheck) {
         return date.isEqual(toCheck.getDate());
+    }
+
+    @Override
+    public int compareTo(SameDateAppointmentList o) {
+        return date.compareTo(o.date);
     }
 }

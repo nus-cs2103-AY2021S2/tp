@@ -70,5 +70,6 @@
     "vaccinationStatus" : "not vaccinated",
     "medicalDetails" : "none",
     "schoolResidence" : "RVRC"
-  } ]
+  } ],
+  "appointments": []
 }

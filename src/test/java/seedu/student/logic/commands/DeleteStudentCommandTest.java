@@ -10,8 +10,6 @@ import static seedu.student.testutil.TypicalMatricNumbers.MATRIC_NUMBER_FOURTH_S
 import static seedu.student.testutil.TypicalMatricNumbers.MATRIC_NUMBER_SECOND_STUDENT;
 import static seedu.student.testutil.TypicalStudents.getTypicalStudentBook;
 
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.student.commons.core.Messages;
@@ -23,32 +21,32 @@ import seedu.student.model.student.Student;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
+ * {@code DeleteStudentCommand}.
  */
-public class DeleteCommandTest {
+public class DeleteStudentCommandTest {
 
     private Model model = new ModelManager(getTypicalStudentBook(), new UserPrefs());
 
     @Test
     public void execute_validMatricNumUnfilteredList_success() {
-        List<Student> studentListTest = model.getFilteredStudentList();
         MatriculationNumber matricNumberToDelete = new MatriculationNumber(MATRIC_NUMBER_FOURTH_STUDENT);
-        Student studentToDelete = DeleteCommand.getStudent(studentListTest, matricNumberToDelete);
-        DeleteCommand deleteCommand = new DeleteCommand(matricNumberToDelete);
+        Student studentToDelete = model.getStudent(matricNumberToDelete);
+        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(matricNumberToDelete);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
+        String expectedMessage = String.format(DeleteStudentCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getStudentBook(), new UserPrefs());
         expectedModel.deleteStudent(studentToDelete);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteStudentCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidMatricNumUnfilteredList_throwsCommandException() {
-        DeleteCommand deleteCommand = new DeleteCommand(new MatriculationNumber(MATRIC_NUMBER_FIRST_STUDENT));
+        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(new MatriculationNumber(
+                MATRIC_NUMBER_FIRST_STUDENT));
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_NONEXISTENT_MATRIC_NUM);
+        assertCommandFailure(deleteStudentCommand, model, Messages.MESSAGE_NONEXISTENT_MATRIC_NUM);
     }
 
     @Test
@@ -56,42 +54,31 @@ public class DeleteCommandTest {
         MatriculationNumber matricNumberToDelete = new MatriculationNumber(MATRIC_NUMBER_FOURTH_STUDENT);
         showStudentWithMatricNum(model, matricNumberToDelete);
 
-        List<Student> studentListTest = model.getFilteredStudentList();
-        Student studentToDelete = DeleteCommand.getStudent(studentListTest, matricNumberToDelete);
-        DeleteCommand deleteCommand = new DeleteCommand(matricNumberToDelete);
+        Student studentToDelete = model.getStudent(matricNumberToDelete);
+        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(matricNumberToDelete);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
-
+        String expectedMessage = String.format(DeleteStudentCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
 
         Model expectedModel = new ModelManager(model.getStudentBook(), new UserPrefs());
         expectedModel.deleteStudent(studentToDelete);
         showNoStudent(expectedModel);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteStudentCommand, model, expectedMessage, expectedModel);
     }
-
-
-
-    //    @Test
-    //    public void execute_invalidIndexFilteredList_throwsCommandException() {
-    //        MatriculationNumber matricNumberToDelete = new MatriculationNumber(MATRIC_NUMBER_FIRST_STUDENT);
-    //        // showStudentWithMatricNum(model, matricNumberToDelete);
-    //
-    //        DeleteCommand deleteCommand = new DeleteCommand(matricNumberToDelete);
-    //
-    //        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_NONEXISTENT_MATRIC_NUM);
-    //    }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(new MatriculationNumber(MATRIC_NUMBER_FIRST_STUDENT));
-        DeleteCommand deleteSecondCommand = new DeleteCommand(new MatriculationNumber(MATRIC_NUMBER_SECOND_STUDENT));
+        DeleteStudentCommand deleteFirstCommand = new DeleteStudentCommand(new MatriculationNumber(
+                MATRIC_NUMBER_FIRST_STUDENT));
+        DeleteStudentCommand deleteSecondCommand = new DeleteStudentCommand(new MatriculationNumber(
+                MATRIC_NUMBER_SECOND_STUDENT));
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(new MatriculationNumber(MATRIC_NUMBER_FIRST_STUDENT));
+        DeleteStudentCommand deleteFirstCommandCopy = new DeleteStudentCommand(new MatriculationNumber(
+                MATRIC_NUMBER_FIRST_STUDENT));
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

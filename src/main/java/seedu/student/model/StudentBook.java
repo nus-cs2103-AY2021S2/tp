@@ -3,11 +3,13 @@ package seedu.student.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.student.model.appointment.Appointment;
 import seedu.student.model.appointment.SameDateAppointmentList;
 import seedu.student.model.appointment.UniqueAppointmentList;
+import seedu.student.model.student.MatriculationNumber;
 import seedu.student.model.student.Student;
 import seedu.student.model.student.UniqueStudentList;
 
@@ -52,6 +54,10 @@ public class StudentBook implements ReadOnlyStudentBook {
         this.students.setStudents(students);
     }
 
+    public void setAppointments(List<SameDateAppointmentList> appointments) {
+        this.appointments.setAppointments(appointments);
+    }
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -59,7 +65,7 @@ public class StudentBook implements ReadOnlyStudentBook {
         requireNonNull(newData);
 
         setStudents(newData.getStudentList());
-
+        setAppointments(newData.getAppointmentList());
     }
 
     //// student-level operations
@@ -153,8 +159,28 @@ public class StudentBook implements ReadOnlyStudentBook {
     }
 
     @Override
+    public boolean isExistingMatricNumber(MatriculationNumber matriculationNumber) {
+        return students.asUnmodifiableObservableList().stream()
+                .anyMatch(student -> student.getMatriculationNumber().equals(matriculationNumber));
+    }
+
+    @Override
+    public Student getStudent(MatriculationNumber matricNum) {
+        return students.asUnmodifiableObservableList().stream()
+                .filter(student -> student.getMatriculationNumber().equals(matricNum))
+                .findAny()
+                .orElse(null);
+    }
+
+    @Override
     public ObservableList<SameDateAppointmentList> getAppointmentList() {
         return appointments.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public List<Appointment> getFlatAppointmentList() {
+        return appointments.asUnmodifiableObservableList().stream()
+                .flatMap(list -> list.asUnmodifiableObservableList().stream()).collect(Collectors.toList());
     }
 
     @Override

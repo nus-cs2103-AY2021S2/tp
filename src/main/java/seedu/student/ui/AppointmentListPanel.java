@@ -9,6 +9,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.student.commons.core.LogsCenter;
 import seedu.student.model.appointment.SameDateAppointmentList;
+import seedu.student.model.student.Student;
 
 /**
  * Panel containing the list of persons.
@@ -24,10 +25,11 @@ public class AppointmentListPanel extends UiPart<Region> {
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
 
-    public AppointmentListPanel(ObservableList<SameDateAppointmentList> lists) {
+    public AppointmentListPanel(ObservableList<SameDateAppointmentList> appointmentLists,
+                                ObservableList<Student> studentList) {
         super(FXML);
-        appointmentsGroupListView.setItems(lists);
-        appointmentsGroupListView.setCellFactory(listView -> new AppointmentsGroupListViewCell());
+        appointmentsGroupListView.setItems(appointmentLists);
+        appointmentsGroupListView.setCellFactory(listView -> new AppointmentsGroupListViewCell(studentList));
     }
 
     /**
@@ -35,6 +37,13 @@ public class AppointmentListPanel extends UiPart<Region> {
      * using a {@code SameDateAppointmentListContainer}.
      */
     class AppointmentsGroupListViewCell extends ListCell<SameDateAppointmentList> {
+        private ObservableList<Student> studentList;
+
+        public AppointmentsGroupListViewCell(ObservableList<Student> studentList) {
+            super();
+            this.studentList = studentList;
+        }
+
         @Override
         protected void updateItem(SameDateAppointmentList list, boolean empty) {
             super.updateItem(list, empty);
@@ -43,7 +52,7 @@ public class AppointmentListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new SameDateAppointmentListContainer(list).getRoot());
+                setGraphic(new SameDateAppointmentListContainer(list, studentList).getRoot());
             }
         }
     }
