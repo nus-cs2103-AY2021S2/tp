@@ -32,6 +32,7 @@ import seedu.address.logic.commands.ShowOverviewTabCommand;
 import seedu.address.logic.commands.ShowTodayCommand;
 import seedu.address.logic.commands.ShowTodosTabCommand;
 import seedu.address.logic.commands.UpdateEventCommand;
+import seedu.address.logic.commands.UpdateProjectCommand;
 import seedu.address.logic.commands.ViewProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -127,6 +128,9 @@ public class AddressBookParser {
 
         case UpdateEventCommand.COMMAND_WORD:
             return new UpdateEventCommandParser().parse(arguments);
+            
+        case UpdateProjectCommand.COMMAND_WORD:
+            return new UpdateProjectCommandParser().parse(arguments);
 
         case ViewProjectCommand.COMMAND_WORD:
             return new ViewProjectCommandParser().parse(arguments);
