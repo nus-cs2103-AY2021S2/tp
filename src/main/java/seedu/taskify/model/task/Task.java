@@ -2,6 +2,7 @@ package seedu.taskify.model.task;
 
 import static seedu.taskify.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
@@ -68,6 +69,14 @@ public class Task {
 
     public boolean isTaskUncompleted() {
         return !this.getStatus().toString().equals("Completed");
+    }
+
+    /**
+     * Checks whether a task has a deadline date on the current day
+     */
+    public boolean isTodaysTask() {
+        LocalDate todaysDate = LocalDateTime.now().toLocalDate();
+        return this.date.getLocalDateTime().toLocalDate().equals(todaysDate);
     }
 
     /**

@@ -12,6 +12,7 @@ public class CommandResult {
     private static boolean showHome = true;
     private static boolean showExpired = false;
     private static boolean showCompleted = false;
+    private static boolean showTodays = true;
     private static boolean showUncompleted = false;
     private static final String ALREADY_IN_HOMETAB = "You are already in home tab!";
 

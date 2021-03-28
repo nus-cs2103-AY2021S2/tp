@@ -24,6 +24,7 @@ public class ModelManager implements Model {
     private final FilteredList<Task> filteredTasks;
     private final FilteredList<Task> expiredFilteredTasks;
     private final FilteredList<Task> completedFilteredTasks;
+    private final FilteredList<Task> todaysFilteredTasks;
     private final FilteredList<Task> uncompletedFilteredTasks;
 
     /**
@@ -40,6 +41,7 @@ public class ModelManager implements Model {
         filteredTasks = new FilteredList<>(this.taskify.getTaskList());
         expiredFilteredTasks = new FilteredList<>(this.taskify.getExpiredTaskList());
         completedFilteredTasks = new FilteredList<>(this.taskify.getCompletedTaskList());
+        todaysFilteredTasks = new FilteredList<>(this.taskify.getTodaysTaskList());
         uncompletedFilteredTasks = new FilteredList<>(this.taskify.getUncompletedTaskList());
     }
 
@@ -146,6 +148,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Task> getTodaysFilteredTaskList() {
+        return todaysFilteredTasks;
+    }
+
+    @Override
     public ObservableList<Task> getUncompletedFilteredTaskList() {
         return uncompletedFilteredTasks;
     }
@@ -166,6 +173,12 @@ public class ModelManager implements Model {
     public void updateCompletedFilterTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         completedFilteredTasks.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateTodaysFilteredTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        todaysFilteredTasks.setPredicate(predicate);
     }
 
     @Override

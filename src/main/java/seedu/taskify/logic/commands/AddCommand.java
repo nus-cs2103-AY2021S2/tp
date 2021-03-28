@@ -26,7 +26,7 @@ public class AddCommand extends Command {
                                                        + "Example: " + COMMAND_WORD + " "
                                                        + PREFIX_NAME + "Finish 2103T Tutorial "
                                                        + PREFIX_DESCRIPTION + "Draw UML diagram "
-                                                       + PREFIX_DATE + "2020-04-13 10:30 "
+                                                       + PREFIX_DATE + "2021-04-13 10:30 "
                                                        + PREFIX_TAG + "CS2103T ";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
