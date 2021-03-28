@@ -5,14 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalContacts.ALICE;
+import static seedu.address.testutil.TypicalContacts.BOB;
 
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Contact;
 
 public class ParticipantListTest {
 
@@ -29,14 +29,14 @@ public class ParticipantListTest {
 
     @Test
     public void constructor_singleParticipant_success() {
-        ArrayList<Person> participants = new ArrayList<>();
+        ArrayList<Contact> participants = new ArrayList<>();
         participants.add(ALICE);
         assertDoesNotThrow(() -> new ParticipantList(participants));
     }
 
     @Test
     public void getPaticipants_validParticipantsList_equalsOriginalList() {
-        ArrayList<Person> participants = new ArrayList<>();
+        ArrayList<Contact> participants = new ArrayList<>();
         participants.add(ALICE);
         ParticipantList participantList = new ParticipantList(participants);
         assertEquals(participants, participantList.getParticipants());
@@ -44,7 +44,7 @@ public class ParticipantListTest {
 
     @Test
     public void size_validParticipantsList_correct() {
-        ArrayList<Person> participants = new ArrayList<>();
+        ArrayList<Contact> participants = new ArrayList<>();
         participants.add(ALICE);
         ParticipantList participantList = new ParticipantList(participants);
         assertEquals(participants.size(), participantList.size());
@@ -55,7 +55,7 @@ public class ParticipantListTest {
 
     @Test
     public void get_validParticipantsList_correct() {
-        ArrayList<Person> participants = new ArrayList<>();
+        ArrayList<Contact> participants = new ArrayList<>();
         participants.add(ALICE);
         ParticipantList participantList = new ParticipantList(participants);
         assertEquals(participants.get(0), participantList.get(0));
@@ -67,7 +67,7 @@ public class ParticipantListTest {
 
     @Test
     public void delete_validParticipantsList_correct() {
-        ArrayList<Person> participants = new ArrayList<>();
+        ArrayList<Contact> participants = new ArrayList<>();
         participants.add(ALICE);
         participants.add(BOB);
         ParticipantList participantList = new ParticipantList(participants);

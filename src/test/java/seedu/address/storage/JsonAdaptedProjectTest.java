@@ -30,8 +30,8 @@ public class JsonAdaptedProjectTest {
     private static final List<JsonAdaptedTodo> VALID_TODO_LIST = VALID_PROJECT.getTodos().stream()
             .map(JsonAdaptedTodo::new)
             .collect(Collectors.toList());
-    private static final List<JsonAdaptedPerson> VALID_PARTICIPANT_LIST = VALID_PROJECT.getParticipants().stream()
-            .map(JsonAdaptedPerson::new)
+    private static final List<JsonAdaptedContact> VALID_PARTICIPANT_LIST = VALID_PROJECT.getParticipants().stream()
+            .map(JsonAdaptedContact::new)
             .collect(Collectors.toList());
 
     @Test

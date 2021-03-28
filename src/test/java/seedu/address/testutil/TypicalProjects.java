@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.exceptions.DateConversionException;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.project.DeadlineList;
 import seedu.address.model.project.EventList;
 import seedu.address.model.project.ParticipantList;
@@ -120,17 +120,17 @@ public class TypicalProjects {
     }
 
     private static ParticipantList getCS2103TParticipantsList() {
-        Person dahn = new PersonBuilder().withName("Dahn").withAddress("1 CoLAB Road")
-                .withEmail("dahn@colab.com").withPhone("91234561").build();
-        Person ruochen = new PersonBuilder().withName("Ruochen").withAddress("1 CoLAB Road")
+        Contact danh = new ContactBuilder().withName("Danh").withAddress("1 CoLAB Road")
+                .withEmail("danh@colab.com").withPhone("91234561").build();
+        Contact ruochen = new ContactBuilder().withName("Ruochen").withAddress("1 CoLAB Road")
                 .withEmail("ruochen@colab.com").withPhone("91234562").build();
-        Person samuel = new PersonBuilder().withName("Samuel").withAddress("1 CoLAB Road")
+        Contact samuel = new ContactBuilder().withName("Samuel").withAddress("1 CoLAB Road")
                 .withEmail("samuel@colab.com").withPhone("91234563").build();
-        Person vevek = new PersonBuilder().withName("Vevek").withAddress("1 CoLAB Road")
+        Contact vevek = new ContactBuilder().withName("Vevek").withAddress("1 CoLAB Road")
                 .withEmail("vevek@colab.com").withPhone("91234564").build();
 
         ParticipantList participantList = new ParticipantList();
-        participantList.addParticipant(dahn);
+        participantList.addParticipant(danh);
         participantList.addParticipant(ruochen);
         participantList.addParticipant(samuel);
         participantList.addParticipant(vevek);
@@ -187,17 +187,17 @@ public class TypicalProjects {
     }
 
     private static ParticipantList getCS2101ParticipantsList() throws DateConversionException {
-        Person dahn = new PersonBuilder().withName("Dahn").withAddress("1 CoLAB Road")
-                .withEmail("dahn@colab.com").withPhone("91234561").build();
-        Person ruochen = new PersonBuilder().withName("Ruochen").withAddress("1 CoLAB Road")
+        Contact danh = new ContactBuilder().withName("Danh").withAddress("1 CoLAB Road")
+                .withEmail("danh@colab.com").withPhone("91234561").build();
+        Contact ruochen = new ContactBuilder().withName("Ruochen").withAddress("1 CoLAB Road")
                 .withEmail("ruochen@colab.com").withPhone("91234562").build();
-        Person samuel = new PersonBuilder().withName("Samuel").withAddress("1 CoLAB Road")
+        Contact samuel = new ContactBuilder().withName("Samuel").withAddress("1 CoLAB Road")
                 .withEmail("samuel@colab.com").withPhone("91234563").build();
-        Person vevek = new PersonBuilder().withName("Vevek").withAddress("1 CoLAB Road")
+        Contact vevek = new ContactBuilder().withName("Vevek").withAddress("1 CoLAB Road")
                 .withEmail("vevek@colab.com").withPhone("91234564").build();
 
         ParticipantList participantList = new ParticipantList();
-        participantList.addParticipant(dahn);
+        participantList.addParticipant(danh);
         participantList.addParticipant(ruochen);
         participantList.addParticipant(samuel);
         participantList.addParticipant(vevek);

@@ -9,7 +9,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.project.Project;
 
 /**
@@ -48,15 +48,15 @@ public class DeleteContactFromCommand extends Command {
         Project projectToEdit = lastShownList.get(targetProjectIndex.getZeroBased());
 
         if (targetContactIndex.getZeroBased() >= projectToEdit.getParticipants().size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX);
         }
-        Person personToDelete = projectToEdit.getParticipant(targetContactIndex.getZeroBased());
+        Contact contactToDelete = projectToEdit.getParticipant(targetContactIndex.getZeroBased());
 
         projectToEdit.deleteParticipant(targetContactIndex.getZeroBased());
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
 
         return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS,
-                personToDelete.getName(), projectToEdit.getProjectName()));
+                contactToDelete.getName(), projectToEdit.getProjectName()));
     }
 
     @Override
