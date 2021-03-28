@@ -62,7 +62,7 @@ public class UniqueGeneralEventList implements Iterable<GeneralEvent> {
      */
     public GeneralEvent getGeneralEvent(int index) {
         assert internalList != null;
-        if (index < 1 || index > size() + 1) {
+        if (index < 1 || index > size()) {
             throw new GeneralEventNotFoundException();
         }
         return internalList.get(index - 1);
@@ -101,11 +101,6 @@ public class UniqueGeneralEventList implements Iterable<GeneralEvent> {
         if (!internalList.remove(toRemove)) {
             throw new ModuleNotFoundException();
         }
-    }
-
-    public void setGeneralEvents(UniqueGeneralEventList replacedGeneralEvents) {
-        requireNonNull(replacedGeneralEvents);
-        internalList.setAll(replacedGeneralEvents.internalList);
     }
 
     /**
