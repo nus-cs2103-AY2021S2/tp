@@ -554,6 +554,7 @@ You may browse through the calendar over the months by clicking the
 left arrow button `<` and right arrow button `>` on the top right of the calendar window.
 Additionally, you may click on `today` button to browse back to the month of current day's date.
 
+<div class="page-break-before"></div>
 
 ### 3.9 Saving the data
 Saving of data is automatic by the application whenever you 
@@ -580,6 +581,8 @@ There are 3 ways to exit the application.
 application to exit the program.
    
 ![exit3](images/exit3.png)
+
+<div class="page-break-before"></div>
 
 ## 4. FAQ
 
@@ -609,3 +612,4 @@ Action | Description, Format
 **Exit program** | `exit` `E` 
 
 [Back to Table of Contents](#table-of-contents)
+
