@@ -11,6 +11,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.AppointmentBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -21,7 +22,7 @@ import seedu.address.testutil.PersonBuilder;
 /** Contains unit tests for TagCommand */
 public class TagCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new AppointmentBook(), new UserPrefs());
 
     @Test
     public void execute_singleTagAppendedToNoTags_success() {
@@ -32,7 +33,8 @@ public class TagCommandTest {
 
         String expectedMessage = String.format(TagCommand.MESSAGE_TAG_PERSON_SUCCESS, taggedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new AppointmentBook(),
+                new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(2), taggedPerson);
 
         assertCommandSuccess(tagCommand, model, expectedMessage, expectedModel);
@@ -48,7 +50,8 @@ public class TagCommandTest {
 
         String expectedMessage = String.format(TagCommand.MESSAGE_TAG_REPLACE_PERSON_SUCCESS, taggedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new AppointmentBook(),
+                new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(1), taggedPerson);
 
         assertCommandSuccess(tagCommand, model, expectedMessage, expectedModel);
