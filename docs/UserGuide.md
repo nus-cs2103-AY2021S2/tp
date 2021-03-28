@@ -198,16 +198,21 @@ You can use this command to filter the list of financial records based on a spec
 
 Data associated include:
 
-- Category to filter
+- Description, Amount and Category to filter
 - Financial records
 
 <img src="images/features/find-fr.png" width="600px">
 
-Format: `find-fr c/FR_CATEGORY`
+Format: `find-fr d/FR_DESCRIPTION a/FR_AMOUNT c/FR_CATEGORY`
+
+**:bulb: Tips:**
+
+- `d/FR_DESCRIPTION`, `a/FR_AMOUNT` and `c/FR_CATEGORY` are optional fields, but the command expects at least 1 field present
+- `c/FR_CATEGORY` accepts multiple categories (i.e. `c/Food c/Picnic c/Family`)
 
 Examples:
 
-- `category-filter c/Food`
+- `find-fr d/Lunch a/10 c/Food c/Family`
 
 ### Resetting filters on financial records : `reset-filter`
 

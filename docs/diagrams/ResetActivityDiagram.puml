@@ -1,0 +1,19 @@
+@startuml
+start
+:User executes reset-filter
+           command;
+
+if () then ([valid command])
+    :Update financial
+        records list;
+    :Display updated list;
+    :Output successfully
+       reset message;
+
+else ([else])
+    :Output unknown
+    command error;
+endif
+
+stop
+@enduml

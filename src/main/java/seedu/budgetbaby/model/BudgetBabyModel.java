@@ -2,13 +2,16 @@ package seedu.budgetbaby.model;
 
 import java.nio.file.Path;
 import java.time.YearMonth;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.budgetbaby.commons.core.GuiSettings;
 import seedu.budgetbaby.model.budget.Budget;
 import seedu.budgetbaby.model.month.Month;
+import seedu.budgetbaby.model.record.Amount;
 import seedu.budgetbaby.model.record.Category;
+import seedu.budgetbaby.model.record.Description;
 import seedu.budgetbaby.model.record.FinancialRecord;
 
 /**
@@ -109,7 +112,7 @@ public interface BudgetBabyModel {
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredFinancialRecordList(Predicate<FinancialRecord> predicate);
+    boolean updateFilteredFinancialRecordList(Predicate<FinancialRecord> predicate);
 
     /**
      * Deletes the given financial record.
@@ -129,10 +132,10 @@ public interface BudgetBabyModel {
     void setFinancialRecord(FinancialRecord target, FinancialRecord editedRecord);
 
     /**
-     * Filters the financial records with {@code category}.
-     * {@code category} must exist in the address book.
+     * Iterates through the financial records and searches for the {@code description} {@code amount} {@code category}.
+     * {@code description} {@code amount} {@code category} must exist in the budget tracker.
      */
-    void filterByCategory(Category category);
+    boolean findFinancialRecord(Description description, Amount amount, Set<Category> categories);
 
     /**
      * Resets filters on financial records to display original list
