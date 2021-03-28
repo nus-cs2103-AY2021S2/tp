@@ -162,8 +162,10 @@ public interface Model {
     /** Returns a copy of the person list */
     List<Event> getEventListCopy();
 
-    /** Adds the current state to the StateHistory */
-    void addState();
+    /** Adds the current state to the StateHistory
+     * @param command the command leading to this state.
+     */
+    void addState(String command);
 
     /** Returns the StateHistory */
     StateHistory getStateHistory();

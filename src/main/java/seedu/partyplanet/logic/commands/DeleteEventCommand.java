@@ -45,7 +45,7 @@ public class DeleteEventCommand extends EDeleteCommand {
         for (Event eventToDelete : deletedEvents) {
             model.deleteEvent(eventToDelete);
         }
-        model.addState();
+        model.addState(String.format(MESSAGE_DELETE_EVENT_SUCCESS, displayEvents(deletedEvents)));
         return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, displayEvents(deletedEvents)));
     }
 

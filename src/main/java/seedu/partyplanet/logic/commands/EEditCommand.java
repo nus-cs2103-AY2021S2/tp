@@ -75,7 +75,7 @@ public class EEditCommand extends Command {
         }
 
         model.setEvent(eventToEdit, editedEvent);
-        model.addState();
+        model.addState(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedEvent));
         model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedEvent));
     }

@@ -27,7 +27,7 @@ public class DeleteClearCommand extends DeleteCommand {
 
         // Only save state if there are changes (person deleted)
         if (!deletedPersons.isEmpty()) {
-            model.addState();
+            model.addState(String.format(MESSAGE_DELETE_PERSON_SUCCESS, displayPersons(deletedPersons)));
         }
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, displayPersons(deletedPersons)));
     }

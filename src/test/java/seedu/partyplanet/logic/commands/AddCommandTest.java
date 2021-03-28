@@ -149,7 +149,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addState() {
+        public void addState(String command) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -273,7 +273,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addState() {
+        public void addState(String command) {
             stateHistory.addState(getAddressBook());
         }
 

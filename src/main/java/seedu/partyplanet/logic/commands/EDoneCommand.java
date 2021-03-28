@@ -57,7 +57,7 @@ public class EDoneCommand extends Command {
         for (Event e : doneEvents) {
             model.setEvent(e, e.setDone());
         }
-        model.addState();
+        model.addState(String.format(MESSAGE_EVENT_DONE_SUCCESS, displayEvents(doneEvents)));
         return new CommandResult(String.format(MESSAGE_EVENT_DONE_SUCCESS, displayEvents(doneEvents)));
     }
 
