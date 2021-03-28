@@ -260,10 +260,10 @@ See also:
 
 ### Setting meeting goal: `set-goal`
 
-Format: <code>set-goal INDEX f/w[eek[ly]] &vert; m[onth[ly]] &vert; y[ear[ly]] &vert; n[one]</code>
+Format: <code>set-goal INDEX f/FREQUENCY</code>
 
 * Sets reminder for meeting someone based on the frequency given and the latest meeting the user had with that person.
-* Accepts the following frequencies: weekly (`w`, `week`, `weekly`), monthly (`m`, `month`, `monthly`), yearly (`y`, `year`, `yearly`), and none (`n`, `none`).
+* Accepts the following as FREQUENCY: weekly (`w`, `week`, `weekly`), monthly (`m`, `month`, `monthly`), yearly (`y`, `year`, `yearly`), and none (`n`, `none`).
 
 Example:
 * `set-goal 1 f/week`
@@ -363,5 +363,5 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
 **Theme** | `theme THEME_PATH`<br> e.g. `theme theme/solarized.dark.json`
 **List** | `list [n\GROUP_NAME]` <br> e.g. `list n\Close Friends`
-**Set goal** | `set-goal` <br> e.g., `set-goal 1 f/w`
+**Set goal** | `set-goal INDEX f/FREQUENCY` <br> e.g., `set-goal 1 f/w`
 **Help** | `help`

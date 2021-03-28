@@ -178,7 +178,8 @@ When the command `theme` is invoked, the following happens:
     * `theme` - The `Theme` object currently used.
     * `themePath` - The path of the `json` file.
     * `cssCacheUri` - The temp file containing the `CSS` to be used by `MainWindow.fxml`'s `scene`.
-3. `ThemeManager#applyThemeToScene` is then called. This applies the stylesheet pointed to by `cssCacheUri` to `MainWindow.fxml`'s `scene`.
+3. When the command gets executed, the result is processed by `MainWindow#executeCommand()`. The flag `theme` will be
+set, informing the application that there is a change in `cssCacheUri` and it applies the theme.
 
 The following sequence diagram depicts the simplified workings of the command:
 ![Sequence diagram for theme invocation](images/ThemeCommandSequenceDiagram.png)
