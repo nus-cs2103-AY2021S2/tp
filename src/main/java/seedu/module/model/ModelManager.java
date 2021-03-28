@@ -24,7 +24,6 @@ public class ModelManager implements Model {
     private final ModuleBook moduleBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
-    private final FilteredList<Module> modules;
 
     /**
      * Initializes a ModelManager with the given moduleBook and userPrefs.
@@ -38,7 +37,6 @@ public class ModelManager implements Model {
         this.moduleBook = new ModuleBook(moduleBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredTasks = new FilteredList<>(this.moduleBook.getTaskList());
-        modules = new FilteredList<>(this.moduleBook.getModuleList());
     }
 
     public ModelManager() {
@@ -141,7 +139,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Module> getModuleList() {
-        return modules;
+        return ModuleManager.getExistingModuleList();
     }
 
     @Override

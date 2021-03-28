@@ -47,7 +47,7 @@ public class ModuleManagerTest {
                 .withDescription(VALID_DESCRIPTION_PRACTICAL)
                 .withTags(VALID_TAG_PRIORITY_HIGH).build();
         assertThrows(NullPointerException.class, () -> ModuleManager.insertTaskToMapping(null, editedAlice));
-        ModuleManager.clearMapping();
+        ModuleManager.rebuildMapping();
     }
 
     @Test
@@ -56,7 +56,7 @@ public class ModuleManagerTest {
                 .withDescription(VALID_DESCRIPTION_PRACTICAL)
                 .withTags(VALID_TAG_PRIORITY_HIGH).build();
         assertThrows(NullPointerException.class, () -> ModuleManager.insertTaskToMapping(null, editedAlice));
-        ModuleManager.clearMapping();
+        ModuleManager.rebuildMapping();
     }
 
     @Test
@@ -65,7 +65,7 @@ public class ModuleManagerTest {
                 .withDescription(VALID_DESCRIPTION_PRACTICAL)
                 .withTags(VALID_TAG_PRIORITY_HIGH).build();
         ModuleManager.insertTaskToMapping(editedAlice.getModule(), editedAlice);
-        ModuleManager.clearMapping();
+        ModuleManager.rebuildMapping();
         assertEquals(ModuleManager.getMappingOfModulesToTasks(), new HashMap<>());
     }
 }

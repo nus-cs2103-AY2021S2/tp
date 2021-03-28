@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="ModuleBook App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="800.0" minWidth="1400.0" onCloseRequest="#handleExit" title="ModuleBook App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/modulebookicon.png" />
   </icons>
@@ -63,16 +63,25 @@
                   <children>
                      <VBox fx:id="taskList" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowSpan="2" GridPane.vgrow="ALWAYS">
                         <children>
-                           <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                           <StackPane fx:id="taskListPanelPlaceholder" style="-fx-border-color: white;" VBox.vgrow="ALWAYS" />
                         </children>
                      </VBox>
-                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1" />
-                     <VBox prefHeight="200.0" prefWidth="100.0">
+                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                         <children>
-                           <StackPane fx:id="moduleListPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" />
+                           <StackPane fx:id="statsPlaceholder" style="-fx-border-color: white;" />
+                        </children></VBox>
+                     <VBox>
+                        <children>
+                           <StackPane fx:id="moduleListPanelPlaceholder" style="-fx-border-color: white;" />
                         </children>
+                        <GridPane.margin>
+                           <Insets />
+                        </GridPane.margin>
                      </VBox>
                   </children>
+                  <VBox.margin>
+                     <Insets />
+                  </VBox.margin>
                </GridPane>
         </VBox>
 

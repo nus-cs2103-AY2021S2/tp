@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.module.model.ModuleManager;
 import seedu.module.model.task.Module;
 
 /**
@@ -41,7 +42,7 @@ public class ModuleCard extends UiPart<Region> {
         this.module = module;
         id.setText(displayedIndex + ". ");
         name.setText(module.toString());
-        workloadDistribution.setText(module.getWorkloadCount());
+        workloadDistribution.setText(ModuleManager.getModuleWorkloadInformation(module));
     }
 
     @Override

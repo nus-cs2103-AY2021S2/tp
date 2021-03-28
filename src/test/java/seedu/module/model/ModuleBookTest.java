@@ -103,11 +103,6 @@ public class ModuleBookTest {
         public ObservableList<Task> getTaskList() {
             return tasks;
         }
-
-        @Override
-        public ObservableList<Module> getModuleList() {
-            return null;
-        }
     }
 
 }
