@@ -286,6 +286,73 @@ Examples:
 * `history` Displays all command entries.
 * `history 5` Displays the 5 most recent command entries.
 
+### Undo previous command : `undo`
+
+Restores SunRez to its state before an _undoable_ command was executed.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: _Undoable_ command:**<br>
+An undoable command is one which modifies the data of SunRez.
+
+e.g. `radd`, `redit`, `idel`, `clear`, etc.
+</div>
+
+Format: `undo`
+
+Examples:
+* `rdel 1` <br>
+  `undo` Undoes the `rdel 1` command.
+  
+* `iedit 1 r/20-109 s/Closed` <br>
+  `clear` <br>
+  `undo` Undoes the `clear` command. <br>
+  `undo` Undoes the `iedit 1 r/20-109 s/Closed` command.
+  
+* `history 5` <br>
+  `undo` Fails because `history 5` did not modify SunRez's data.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Shortcuts to undo:**<br>
+1. **GUI:** Select `Edit` -> `Undo` in the menu at the top of SunRez.
+2. **Keyboard:** Press `CTRL+Z` (Windows, Linux) or `CMD+Z` (Mac).
+
+These behave as if you entered `undo` in the command box and hit `ENTER`; an `undo` command will be registered in
+command history.
+</div>
+
+### Redo previously undone command: `redo`
+
+Reverses the previous undo operation.
+
+Format: `redo`
+
+Examples:
+* `rdel 1` <br>
+  `undo` Undoes the `rdel 1` command.
+  `redo` Redoes the `rdel 1` command.
+  
+* `rdel 1` <br>
+  `redo` Fails because there are no previous `undo` commands.
+
+* `iedit 1 r/20-109 s/Closed` <br>
+  `clear` <br>
+  `undo` Undoes the `clear` command. <br>
+  `undo` Undoes the `iedit 1 r/20-109 s/Closed` command. <br>
+  `redo` Redoes the `iedit 1 r/20-109 s/Closed` command. <br>
+  `redo` Redoes the `clear` command.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Shortcuts to redo:**<br>
+1. **GUI:** Select `Edit` -> `Redo` in the menu at the top of SunRez.
+2. **Keyboard:** Press `CTRL+SHIFT+Z` (Windows, Linux) or `CMD+SHIFT+Z` (Mac).
+
+These behave as if you entered `redo` in the command box and hit `ENTER`; a `redo` command will be registered in
+command history.
+</div>
+
 ### Add alias : `alias`
 
 Adds a user-defined alias, which represents a shortcut to a longer command.
