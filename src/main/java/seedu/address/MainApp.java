@@ -145,10 +145,9 @@ public class MainApp extends Application {
             initialGrades = new GradeBook();
         }
 
+        initialSchedules = new ScheduleTracker();
         return new ModelManager(initialData, userPrefs, initialAppointments,
                 budgetBook, initialGrades);
-        initialSchedules = new ScheduleTracker();
-        return new ModelManager(initialData, userPrefs, initialAppointments);
     }
 
     private void initLogging(Config config) {

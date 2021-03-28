@@ -60,10 +60,6 @@ public class ModelManager implements Model {
         filteredAppointment = new FilteredList<>(this.appointmentBook.getAppointmentList());
         filteredGrades = new FilteredList<>(this.gradeBook.getGradeList());
         this.budgetBook = new BudgetBook(budgetBook);
-
-
-        this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        this.filteredAppointment = new FilteredList<>(this.appointmentBook.getAppointmentList());
         this.filteredSchedule = new FilteredList<>(this.scheduleTracker.getScheduleList());
     }
 
@@ -424,7 +420,7 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && appointmentBook.equals(other.appointmentBook)
                 && filteredPersons.equals(other.filteredPersons)
-                && budgetBook.equals(other.budgetBook);
+                && budgetBook.equals(other.budgetBook)
                 && filteredSchedule.equals(other.filteredSchedule);
     }
 

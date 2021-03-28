@@ -12,7 +12,6 @@ import seedu.address.model.grade.Grade;
 import seedu.address.model.person.Person;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
-import seedu.address.model.schedule.ScheduleModel;
 
 /**
  * The API of the Model component.
