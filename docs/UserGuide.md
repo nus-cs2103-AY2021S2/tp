@@ -31,6 +31,52 @@ Vax@NUS is a **one stop management app to efficiently track and and schedule COV
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Parameter Formats
+
+**NOTE: The following parameter formats must be followed:**
+> The `MATRICULATION_NUMBER` of a student is a unique 9-character alphanumeric sequence that begins with A, followed by
+> 7 numbers and ends with an alphabet.
+
+> The `FACULTY` of a student must be one of the following:
+> * FASS (for Faculty of Arts and Social Sciences)
+> * BIZ (for NUS Business School)
+> * COM (for School of Computing)
+> * SCALE (for School of Continuing and Lifelong Education)
+> * DEN (for Faculty of Dentistry)
+> * SDE (for School of Design and Environment)
+> * DNUS (for Duke-NUS Medical School)
+> * ENG (for Faculty of Engineering)
+> * ISEP (for Integrative Sciences and Engineering)
+> * LAW (for Faculty of Law)
+> * MED (for Yong Loo Lin School of Medicine)
+> * MUSIC (for Yong Siew Toh Conservatory of Music)
+> * SPH (for Saw Swee Hock School of Public Health)
+> * SPP (for Lee Kuan Yew School of Public Policy)
+> * SCI (for Faculty of Science)
+> * USP (for University Scholars Programme)
+> * YNC (for Yale-NUS College)
+
+> The `VACCINATION_STATUS` of a student must only be `vaccinated` or `not vaccinated`
+
+> The `[SCHOOL_RESIDENCE]` of a student must be one of the following:
+> * PGPH (for Prince George's Park House)
+> * PGPR (for Prince George's Park Residences)
+> * KE7H (for King Edward VII Hall)
+> * SH (for Sheares Hall)
+> * KRH (for Kent Ridge Hall)
+> * TH (for Temasek Hall)
+> * EH (for Eusoff Hall)
+> * RH (for Raffles Hall)
+> * RVRC (for Ridge View Residential College)
+> * YNC (for Yale-NUS College)
+> * TC (for Tembusu College)
+> * CAPT (for College of Alice and Peter Tan)
+> * RC4 (for Residential College 4)
+> * USP (for University Scholars Programme)
+> * UTR (for Utown Residences)
+
+----------------------------------------------------------------------
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -52,47 +98,6 @@ Vax@NUS is a **one stop management app to efficiently track and and schedule COV
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
   
-**NOTE: The following parameter formats must be followed:**
-> The `MATRICULATION_NUMBER` of a student is a unique 9-character alphanumeric sequence that begins with A, followed by 
-  > 7 numbers and ends with an alphabet. 
-
-> The `FACULTY` of a student must be one of the following:
-  > * FASS (for Faculty of Arts and Social Sciences)
-  > * BIZ (for NUS Business School) 
-  > * COM (for School of Computing)
-  > * SCALE (for School of Continuing and Lifelong Education)
-  > * DEN (for Faculty of Dentistry)
-  > * SDE (for School of Design and Environment)
-  > * DNUS (for Duke-NUS Medical School)
-  > * ENG (for Faculty of Engineering)
-  > * ISEP (for Integrative Sciences and Engineering)
-  > * LAW (for Faculty of Law)
-  > * MED (for Yong Loo Lin School of Medicine)
-  > * MUSIC (for Yong Siew Toh Conservatory of Music)
-  > * SPH (for Saw Swee Hock School of Public Health)
-  > * SPP (for Lee Kuan Yew School of Public Policy)
-  > * SCI (for Faculty of Science)
-  > * USP (for University Scholars Programme)
-  > * YNC (for Yale-NUS College)
-  
-> The `VACCINATION_STATUS` of a student must only be `vaccinated` or `not vaccinated`
-
-> The `[SCHOOL_RESIDENCE]` of a student must be one of the following:
-  > * PGPH (for Prince George's Park House)
-  > * PGPR (for Prince George's Park Residences)
-  > * KE7H (for King Edward VII Hall)
-  > * SH (for Sheares Hall)
-  > * KRH (for Kent Ridge Hall)
-  > * TH (for Temasek Hall)
-  > * EH (for Eusoff Hall)
-  > * RH (for Raffles Hall)
-  > * RVRC (for Ridge View Residential College)
-  > * YNC (for Yale-NUS College)
-  > * TC (for Tembusu College)
-  > * CAPT (for College of Alice and Peter Tan)
-  > * RC4 (for Residential College 4)
-  > * USP (for University Scholars Programme)
-  > * UTR (for Utown Residences)
 
 </div>
 
