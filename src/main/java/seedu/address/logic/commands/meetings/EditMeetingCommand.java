@@ -90,13 +90,7 @@ public class EditMeetingCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
         }
 
-        /*model.deleteMeeting(meetingToEdit);
-        try {
-            model.addMeeting(editedMeeting);
-        } catch (MeetingTimeClashException | DuplicateMeetingException e) {
-            model.addMeeting(meetingToEdit);
-        }*/
-        model.setMeeting(meetingToEdit, editedMeeting);
+        model.updateMeeting(meetingToEdit, editedMeeting);
         model.updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
         return new CommandResult(String.format(MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting));
     }

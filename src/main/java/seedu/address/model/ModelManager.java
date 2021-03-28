@@ -215,6 +215,12 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedMeeting);
         meetingBook.setMeeting(target, editedMeeting);
     }
+
+    public void updateMeeting(Meeting target, Meeting editedMeeting) {
+        requireAllNonNull(target, editedMeeting);
+        meetingBook.updateMeeting(target, editedMeeting);
+    }
+
     //TODO: Set MeetingBook file path in userPrefs? low priority feature(nice to have)
 
     //========= Clashing Meetings ================================================================

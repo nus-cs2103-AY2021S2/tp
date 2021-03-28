@@ -82,6 +82,11 @@ public class MeetingBook implements ReadOnlyMeetingBook {
         meetings.setMeeting(target, editedMeeting);
     }
 
+    public void updateMeeting(Meeting target, Meeting editedMeeting) {
+        requireNonNull(editedMeeting);
+        meetings.updateMeeting(target, editedMeeting);
+    }
+
     /**
      * Removes {@code key} from this {@code MeetingBook}.
      * {@code key} must exist in the meeting book.
