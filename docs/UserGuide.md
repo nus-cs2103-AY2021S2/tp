@@ -260,7 +260,7 @@ See also:
 
 ### Setting meeting goal: `set-goal`
 
-Format: <code>set-goal INDEX f/FREQUENCY</code>
+Format: `set-goal INDEX f/FREQUENCY`
 
 * Sets reminder for meeting someone based on the frequency given and the latest meeting the user had with that person.
 * Accepts the following as FREQUENCY: weekly (`w`, `week`, `weekly`), monthly (`m`, `month`, `monthly`), yearly (`y`, `year`, `yearly`), and none (`n`, `none`).
