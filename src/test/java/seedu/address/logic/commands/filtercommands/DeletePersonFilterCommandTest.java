@@ -4,6 +4,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
 import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalSchedules.getTypicalScheduleTracker;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -32,10 +33,12 @@ public class DeletePersonFilterCommandTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
-                getTypicalAppointmentBook(), new BudgetBook(), getTypicalGradeBook());
+                getTypicalAppointmentBook(), new BudgetBook(), getTypicalGradeBook(),
+                getTypicalScheduleTracker());
 
         expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
-                getTypicalAppointmentBook(), new BudgetBook(), getTypicalGradeBook());
+                getTypicalAppointmentBook(), new BudgetBook(), getTypicalGradeBook(),
+                getTypicalScheduleTracker());
     }
 
     @Test

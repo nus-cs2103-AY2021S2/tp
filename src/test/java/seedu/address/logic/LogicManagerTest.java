@@ -157,7 +157,7 @@ public class LogicManagerTest {
             String expectedMessage) {
         Model expectedModel = new ModelManager(model.getAddressBook(),
                 new UserPrefs(), model.getAppointmentBook(), model.getBudgetBook(),
-                model.getGradeBook());
+                model.getGradeBook(), model.getScheduleTracker());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
