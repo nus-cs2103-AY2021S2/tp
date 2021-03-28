@@ -25,7 +25,7 @@ public class AddAppointmentCommand extends Command {
             + PREFIX_TIME + "TIME \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Meet Jacob for dinner "
-            + PREFIX_REMARK + "At Orchard Central's food court "
+            + PREFIX_REMARK + "At Lot One's food court "
             + PREFIX_DATE + "19-4-2021 "
             + PREFIX_TIME + "1930 ";
 
