@@ -13,7 +13,7 @@ import java.util.Objects;
 public class Booking implements Comparable<Booking> {
 
     public static final String MESSAGE_CONSTRAINTS = "Bookings should be of the format n/PERSON_NAME p/PERSON_PHONE "
-            + "start/BOOKING_START_DATE end/BOOKING_END_DATE and adhere to the following constraints:\n"
+            + "s/BOOKING_START_DATE e/BOOKING_END_DATE and adhere to the following constraints:\n"
             + "1. Names should only contain alphanumeric characters and spaces, and they should not be blank. "
             + "2. Phone numbers should only contain numbers, and they should be at least 3 digits long. "
             + "The start and end dates must adhere to the following:\n"
