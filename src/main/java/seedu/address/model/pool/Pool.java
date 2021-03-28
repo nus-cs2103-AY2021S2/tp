@@ -18,11 +18,12 @@ import seedu.address.model.tag.Tag;
 public class Pool {
 
     // Data fields
+    private final Driver driver;
     private final TripDay tripDay;
     private final TripTime tripTime;
     private final Set<Passenger> passengers;
     private final Set<Tag> tags = new HashSet<>();
-    private Driver driver;
+
 
     /**
      * Every field must be present and not null. Ensures a pool cannot be created with no passengers.
