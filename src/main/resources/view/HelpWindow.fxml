@@ -84,15 +84,15 @@
                         <UserGuide action="Help" example="help" format="help" />
                         <UserGuide action="Toggle" example="toggle light" format="toggle THEME" />
                         <UserGuide action="Exit" example="exit" format="exit" />
-                        <UserGuide action="Add" example="add -x GET -u http://localhost:3000/ -d {&quot;some&quot;: &quot;data&quot;} -h &quot;key: value1&quot; -t local -t data" format="add -x METHOD -u URL [-d DATA] [-h HEADER]… [-t TAG]…" />
-                        <UserGuide action="Edit" example="edit 1 -x GET -u http://localhost:3000/ -d {&quot;some&quot;: &quot;data&quot;} -h &quot;key: value1&quot; -t local -t data" format="edit INDEX [-x METHOD] [-u URL] [-d DATA] [-h HEADER]… [-t TAG]…" />
+                        <UserGuide action="Add" example="add -x GET -u https://api.data.gov.sg/v1/environment/pm25 -d {&quot;some&quot;: &quot;data&quot;} -h &quot;key: value1&quot; -t local" format="add -x METHOD -u URL [-d DATA] [-h HEADER]… [-t TAG]…" />
+                        <UserGuide action="Edit" example="edit 1 -x GET -u https://reqres.in/api/users -d {&quot;some&quot;: &quot;data&quot;} -h &quot;key: value1&quot; -t local -t data" format="edit INDEX [-x METHOD] [-u URL] [-d DATA] [-h HEADER]… [-t TAG]…" />
                         <UserGuide action="Show" example="show 1" format="show INDEX" />
                         <UserGuide action="Remove" example="remove 3" format="remove INDEX" />
-                        <UserGuide action="Find" example="find maps OR find -x get" format="find KEYWORD [MORE_KEYWORDS]…" />
+                        <UserGuide action="Find" example="find github transport" format="find KEYWORD [MORE_KEYWORDS]…" />
                         <UserGuide action="List" example="list" format="list" />
                         <UserGuide action="Clear" example="clear" format="clear" />
                         <UserGuide action="Send" example="send 1" format="send INDEX" />
-                        <UserGuide action="Run" example="run -x GET -u https://api.data.gov.sg/v1/environment/uv-index" format="run -x METHOD -u URL [-d DATA] [-h HEADER]… OR run URL" />
+                        <UserGuide action="Run" example="run -x GET -u https://api.data.gov.sg/v1/environment/uv-index" format="run -x METHOD -u URL [-d DATA] [-h HEADER]…" />
                     </FXCollections>
                 </items>
             </TableView>
