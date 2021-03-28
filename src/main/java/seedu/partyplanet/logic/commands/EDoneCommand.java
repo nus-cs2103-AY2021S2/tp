@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.partyplanet.commons.core.Messages;
 import seedu.partyplanet.commons.core.index.Index;
 import seedu.partyplanet.logic.commands.exceptions.CommandException;
 import seedu.partyplanet.model.Model;
@@ -69,6 +70,8 @@ public class EDoneCommand extends Command {
         if (invalidIndexes.isEmpty()) {
             return new CommandResult(
                 String.format(MESSAGE_EVENT_DONE_SUCCESS, displayEvents(doneEvents)));
+        } else if (doneEvents.isEmpty()) {
+            throw new CommandException(Messages.MESSAGE_NONE_INDEX_VALID);
         } else {
             return new CommandResult(
                 String.format(MESSAGE_EVENT_DONE_SUCCESS + "\n" + MESSAGE_INVALID_EVENT_INDEX,
