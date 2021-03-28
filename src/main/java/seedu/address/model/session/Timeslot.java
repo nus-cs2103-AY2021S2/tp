@@ -54,4 +54,20 @@ public class Timeslot {
     public String toString() {
         return this.start.toString() + " to " + this.end.toString();
     }
+
+    public Time getStart() {
+        return start;
+    }
+
+    public void setStart(Time start) {
+        this.start = start;
+    }
+
+    public Time getEnd() {
+        return end;
+    }
+
+    public void setEnd(Time end) {
+        this.end = end;
+    }
 }

@@ -58,6 +58,7 @@ public class LogicManager implements Logic {
                 storage.saveSessions(model.getAddressBook());
             } else {
                 storage.saveAddressBook(model.getAddressBook());
+                storage.saveSessions(model.getAddressBook());
             }
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);

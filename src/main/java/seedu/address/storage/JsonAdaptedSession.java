@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.PersonId;
 import seedu.address.model.session.Day;
 import seedu.address.model.session.Session;
 import seedu.address.model.session.SessionId;
@@ -29,20 +30,29 @@ class JsonAdaptedSession {
     private final String timeslot;
     private final String subject;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-
+    private JsonAdaptedPersonId tutor;
+    private final List<JsonAdaptedPersonId> students = new ArrayList<>();
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedSession(@JsonProperty("classId") String classId, @JsonProperty("day") String day,
                              @JsonProperty("timeslot") String timeslot, @JsonProperty("subject") String subject,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                              @JsonProperty("tutor") JsonAdaptedPersonId tutor,
+                              @JsonProperty("students") List<JsonAdaptedPersonId> students) {
         this.classId = classId;
         this.day = day;
         this.timeslot = timeslot;
         this.subject = subject;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (tutor != null) {
+            this.tutor = tutor;
+        }
+        if (students != null) {
+            this.students.addAll(students);
         }
     }
 
@@ -57,6 +67,9 @@ class JsonAdaptedSession {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        tutor = new JsonAdaptedPersonId(source.getTutor());
+        students.addAll(source.getStudents().stream()
+                .map(JsonAdaptedPersonId::new).collect(Collectors.toList()));
     }
 
     /**
@@ -68,6 +81,11 @@ class JsonAdaptedSession {
         final List<Tag> sessionTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             sessionTags.add(tag.toModelType());
+        }
+        PersonId tutor = this.tutor.toModelType();
+        List<PersonId> studentList = new ArrayList<>();
+        for (JsonAdaptedPersonId student : students) {
+            studentList.add(student.toModelType());
         }
 
         if (classId == null) {
@@ -99,7 +117,10 @@ class JsonAdaptedSession {
         }
         final Subject modelSubject = new Subject(subject);
         final Set<Tag> modelTags = new HashSet<>(sessionTags);
-        return new Session(modelClassId, modelDay, modelTimeslot, modelSubject, modelTags);
+        Session newSession = new Session(modelClassId, modelDay, modelTimeslot, modelSubject, modelTags);
+        newSession.setTutor(tutor);
+        newSession.getStudents().addAll(studentList);
+        return newSession;
     }
 
 }
