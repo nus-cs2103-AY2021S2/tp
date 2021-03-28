@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.BudgetBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAppointmentBook;
 import seedu.address.model.ReadOnlyGradeBook;
@@ -22,6 +23,7 @@ public class StorageManager implements Storage {
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
     private AppointmentBookStorage appointmentBookStorage;
+    private BudgetBookStorage budgetBookStorage;
     private GradeBookStorage gradeBookStorage;
 
     /**
@@ -35,6 +37,8 @@ public class StorageManager implements Storage {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.appointmentBookStorage = appointmentBookStorage;
+        //TODO improve handling of budget book
+        this.budgetBookStorage = new BudgetBookStorage();
         this.gradeBookStorage = gradeBookStorage;
     }
 
@@ -116,6 +120,24 @@ public class StorageManager implements Storage {
         appointmentBookStorage.saveAppointmentBook(appointmentBook, filePath);
     }
 
+
+    // ================ BudgetBook methods ==========================
+    @Override
+    public BudgetBook readBudgetBook() {
+        return this.budgetBookStorage.loadBudgetBook();
+    }
+
+    @Override
+    public void saveBudgetBook(BudgetBook budgetBook) throws IOException {
+        if (budgetBook.hasBudget()) {
+            budgetBookStorage.saveBudget(budgetBook.getBudget().getValue(),
+                    budgetBook.getBudget().getTotalCost());
+        } else {
+            budgetBookStorage.saveBudget();
+        }
+
+    }
+
     // ================ GradeBook methods ==========================
 
     @Override
@@ -146,4 +168,5 @@ public class StorageManager implements Storage {
         logger.fine("Attempting to write to data file: " + filePath);
         gradeBookStorage.saveGradeBook(gradeBook, filePath);
     }
+
 }

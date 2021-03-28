@@ -53,7 +53,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
         Gender gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get());
 
         SubjectList subjectList = ParserUtil.parseSubjectList(
