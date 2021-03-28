@@ -175,15 +175,15 @@ You can use this command in 3 different ways.
 
 * #### 3.4.1. Listing all items in StoreMando 
   This command allows you to view all the items in the inventory.
-  <br></br>
+  <br>
   Format: `list`
-  <br></br>
+  <br>
   Example:
   * `list` displays all the items in the inventory.
 
 * #### 3.4.2. Listing all items at a specific location 
   This command allows you to view all items at a specific location.
-  <br></br>
+  <br>
   Format: `list l/LOCATION`
   <div markdown="block" class="alert alert-info">
 
@@ -192,7 +192,7 @@ You can use this command in 3 different ways.
   * The search is case-insensitive. e.g 'room' will match 'Room'.
   * Only full words will be matched e.g. 'Room' will not match 'Bedroom'.
   * The order of keywords for location search does not matter. e.g. 'Room Living' will match 'Living Room'.
-  * Location matching uses each word in the String to do 'AND' search e.g. 'Room' will match 'Living room' but 'Living room 1' will not match 'Living room'<br></br>
+  * Location matching uses each word in the String to do 'AND' search e.g. 'Room' will match 'Living room' but 'Living room 1' will not match 'Living room'<br>
     
   </div>
   
@@ -201,12 +201,12 @@ You can use this command in 3 different ways.
   
 * #### 3.4.3. Listing all items with a specific tag 
   This command allows you to view all items containing a specific tag.
-  <br></br>
+  <br>
   Format: `list t/TAG`
   <div markdown="block" class="alert alert-info">
 
   **:information_source: Notes about the command:**<br>
-  * Tag keyword must be a single word. <br></br>
+  * Tag keyword must be a single word. <br>
   </div>
   
   Example:
@@ -239,7 +239,7 @@ You can use this command in 2 different ways.
 
   **:information_source: Notes about the command:**<br>
 
-  * Only full words will be matched e.g. `Chocolate` will not match `Chocolates`<br></br>
+  * Only full words will be matched e.g. `Chocolate` will not match `Chocolates`<br>
   </div>
 
   Examples:
@@ -252,7 +252,7 @@ You can use this command in 2 different ways.
 
   **:information_source: Notes about the command:**<br>
 
-  * Partial words will be matched e.g. `Choco` will match `Chocolates`<br></br>
+  * Partial words will be matched e.g. `Choco` will match `Chocolates`<br>
 
   </div>
 
@@ -305,7 +305,7 @@ Examples:
   banana with an expiry date of 20 March 2021.
   * `reminder 5 days` returns the chocolate only.
   * `reminder 2 weeks` returns both the chocolate and the banana.
-  <br></br>
+  <br>
 * `reminder -7 days` returns a list containing all items that has been expired for 7 days.
 * `reminder 2 weeks` returns a list containing all items that has been expired for 2 weeks.
 * Given today is 30 March 2021, and the inventory has 2 items: apple with expiry date of 27 March 2021 and
@@ -328,7 +328,7 @@ You can use this command in 3 different ways.
   **:information_source: Note about the sort by expiry date command:**<br>
 
   * `quantity` is case-insensitive. Keying in `sort QUANTITY asc` is also a valid command.
-    <br></br>
+    <br>
 
   </div>
   
@@ -342,7 +342,7 @@ You can use this command in 3 different ways.
   **:information_source: Note about the sort by expiry date command:**<br>
 
   * `quantity` is case-insensitive. Keying in `sort QUANTITY desc` is also a valid command.
-    <br></br>
+    <br>
 
   </div>
 
@@ -357,7 +357,7 @@ You can use this command in 3 different ways.
   
   * Items without expiry date will be pushed to the back of the sorted list.
   * `expirydate` is case-insensitive. Keying in `sort EXPIRYDATE` is also a valid command.
-  <br></br>
+  <br>
   
   </div>
   
@@ -382,7 +382,7 @@ You can use this command in 2 different ways.
   
   * The search is case-insensitive. e.g 'room' will match 'Room'.
 
-  * The location input will be matched exactly e.g. 'Room' will not match 'Bedroom'. 'Bed' will not match 'Bed room'. 'Living room' will not match 'Room living'.<br></br>
+  * The location input will be matched exactly e.g. 'Room' will not match 'Bedroom'. 'Bed' will not match 'Bed room'. 'Living room' will not match 'Room living'.<br>
 
   </div>
 
