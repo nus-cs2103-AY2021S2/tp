@@ -241,8 +241,8 @@ Examples:
 Sorts and shows a list of properties or appointments that is sorted according to the comparator provided.
 
 Formats:
-* `sort appointment o/<asc or desc> k/<datetime or name>`
-* `sort property o/<asc or desc> k/<price or address or postalcode or deadline or name>`
+* `sort appointment o/SORTING_ORDER k/SORTING_KEY`
+* `sort property o/SORTING_ORDER k/SORTING_KEY`
 
 Description:
 * Sorts appointment or property by the specified sorting key in ascending or descending order.
@@ -259,13 +259,13 @@ Examples:
 Finds properties that match the criterion provided.
 
 Formats:
-* `find property [KEYWORD] [OPTION...]`
+* `find property [KEYWORD]... [OPTION]...`
 
 Description:
 * There can be 0 or more keywords and 0 or more options, but keywords and options cannot be both empty. All text are case insensitive. 
 
 Options:
-* `t/[PROPERTY_TYPE]`
+* `[t/PROPERTY_TYPE]`
 
     Search for properties whose housing type field contain patterns specified in `[REMARKS]`. 
     
@@ -274,13 +274,13 @@ Options:
     * condo
     * landed
 
-* `pm/[PRICE]`
+* `[pm/PRICE_UPPER_LIMIT]`
 
-    Search for properties with prices more than `[PRICE]`. 
+    Search for properties with prices more than `[PRICE_UPPER_LIMIT]`. 
 
-* `pl/[PRICE]`
+* `[pl/PRICE_LOWER_LIMIT]`
 
-    Search for properties with prices less than `[PRICE]`. 
+    Search for properties with prices less than `[PRICE_LOWER_LIMIT]`. 
 
 Examples:
 * `find property jurong west`
@@ -292,7 +292,7 @@ Examples:
 Finds appointments that match the criterion provided.
 
 Formats:
-* `find appointment [KEYWORD]`
+* `find appointment [KEYWORD]...`
 
 Description:
 * There can be 0 or more keywords. Keywords are case insensitive. 
@@ -306,7 +306,7 @@ Examples:
 Finds appointments that matches the keywords and properties whose clients matches the same keywords. Both are done at the same time. 
 
 Formats:
-* `find client [KEYWORD]`
+* `find client [KEYWORD]...`
 
 Description:
 * There can be 0 or more keywords. Keywords are case insensitive. 
@@ -366,22 +366,23 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add property** | `add property n/NAME t/PROPERTY_TYPE a/ADDRESS p/POSTAL_CODE d/DEADLINE [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]` <br> e.g., `add property n/Mayfair t/Condo a/1 Jurong East Street 32 p/609477 d/31-12-2021 r/Urgent to sell cn/Alice cc/91234567 ce/alice@gmail.com ca/$800,000 tags/4 bedrooms, No need for renovation`
-**Add appointment** | `add appointment n/NAME r/REMARKS d/DATE t/TIME` <br> e.g., `add appointment n/Meet Alex r/At M Hotel d/17-2-2021 t/1500`
-**Clear** | `clear property` <br> `clear appointment` <br> `clear all`
-**Edit property** | `edit property INDEX [n/NAME] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]`<br> e.g.,`edit property 1 r/Urgent to sell cn/Alice`
-**Edit appointment** | `edit appointment INDEX [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]`<br> e.g.,`edit appointment 3 d/2021-03-28 r/at M hotel`
-**Add new status** | `update INDEX new AMOUNT`<br> e.g.,`update 1 new 600000`
-**Update status** | `update INDEX [proceed][cancel]`<br> e.g. `update 3 proceed`
-**Find properties** | `find property [KEYWORD] [OPTION...]` <br> Options: <br>{::nomarkdown}<ul> <li>{:/}`t/[HOUSING TYPE]`{::nomarkdown}</li> <li>{:/}`pm/[PRICE LOWER LIMIT]`{::nomarkdown}</li> <li>{:/}`pl/[PRICE UPPER LIMIT]`{::nomarkdown}</li> </ul>{:/} e.g., `find property bishan north t/hdb pl/$1,000,000`
-**Find appointments** | `find property [KEYWORD]` <br> e.g., `find appointment bob`
-**Find clients** | `find client [CLIENT NAME]` <br> e.g., `find client alice`
+**Help** | `help`
+**Exit** | `exit`
+**Add property** | `add property n/NAME t/PROPERTY_TYPE a/ADDRESS p/POSTAL_CODE d/DEADLINE [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]` <br><br> e.g., `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-6-2021 r/Urgent to sell cn/George cc/91124788 ce/george_4788@gmail.com ca/$750,000 tags/Urgent, 4 bedrooms`
+**Add appointment** | `add appointment n/NAME r/REMARKS d/DATE t/TIME` <br><br> e.g., `add appointment n/Meet Jacob for dinner r/At Lot One's food court d/19-4-2021 t/1930`
+**Edit property** | `edit property INDEX [n/NAME] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]`<br><br> e.g.,`edit property 1 r/Urgent to sell cn/Alice`
+**Edit appointment** | `edit appointment INDEX [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]`<br><br> e.g.,`edit appointment 3 d/28-03-2021 r/at M hotel`
+**Remove an entry** | `delete appointment INDEX` <br> e.g. `delete appointment 7` <br><br> `delete property INDEX` <br> e.g. `delete property 7`
 **List all** | `list all`
 **List property** | `list property`
 **List appointment** | `list appointment`
-**Sort** | `sort appointment o/<asc or desc> k/<datetime or name>`<br> e.g., `sort appointment o/asc k/datetime`<br><br>`sort property o/<asc or desc> k/<price or address or postalcode or deadline or name>`<br> e.g., `sort property o/asc k/price`
-**Remove an entry** | `delete appointment INDEX` <br> e.g. `delete appointment 7` <br><br> `delete property INDEX` <br> e.g. `delete property 7`
-**Help** | `help`
+**Add new status** | `update INDEX new AMOUNT`<br><br> e.g.,`update 1 new 600000`
+**Update status** | `update INDEX u/STATUS`<br><br> e.g. `update 3 u/proceed`
+**Sort** | `sort appointment o/SORTING_ORDER k/SORTING_KEY `<br> e.g., `sort appointment o/asc k/datetime`<br><br>`sort property o/SORTING_ORDER k/SORTING_KEY `<br> e.g., `sort property o/asc k/price`
+**Find property** | `find property [KEYWORD]... [OPTION]...` <br><br> Options: <br>{::nomarkdown}<ul> <li>{:/}`[t/PROPERTY_TYPE]`{::nomarkdown}</li> <li>{:/}`[pl/PRICE_UPPER_LIMIT]`{::nomarkdown}</li> <li>{:/}`[pm/PRICE_LOWER_LIMIT]`{::nomarkdown}</li> </ul>{:/} e.g. `find property bishan north t/hdb pl/$1,000,000`
+**Find appointment** | `find property [KEYWORD]` <br> e.g., `find appointment bob`
+**Find client** | `find client [KEYWORD]` <br> e.g., `find client alice`
+**Clear** | `clear property` <br> `clear appointment` <br> `clear all`
 
 ## Appendix
 
