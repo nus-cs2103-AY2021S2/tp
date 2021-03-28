@@ -16,7 +16,9 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -46,6 +48,7 @@ public class CommandTestUtil {
     public static final LocalTime VALID_TRIPTIME_BOB = LocalTime.of(19, 30);
     public static final double VALID_PRICE_AMY = 1.69;
     public static final double VALID_PRICE_BOB = 6.9;
+    public static final Set<Passenger> EMPTY_PASSENGER_SET = new HashSet<Passenger>();
     public static final String VALID_TRIPDAY_STR_FRIDAY = "FRIDAY";
     public static final String VALID_TRIPDAY_STR_MONDAY = "MONDAY";
     public static final String VALID_TRIPTIME_STR_EVENING = "1800";

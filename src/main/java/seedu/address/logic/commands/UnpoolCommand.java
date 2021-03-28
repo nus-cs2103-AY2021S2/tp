@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PASSENGERS;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.StringJoiner;
@@ -53,21 +52,21 @@ public class UnpoolCommand extends Command {
         if (driver == null) {
             throw new CommandException(MESSAGE_NO_DRIVER);
         }
-
+        // TODO: Code commented out due to changes in program design.
         // Freeze the list so we don't have to manage the model filtering the passengers
-        List<Passenger> listWithDriverSpecified = List.copyOf(model.getFilteredPassengerListByDriver(driver));
-
-        if (listWithDriverSpecified.isEmpty()) {
-            throw new CommandException(MESSAGE_DRIVER_NOT_EXIST);
-        }
+        //List<Passenger> listWithDriverSpecified = List.copyOf(model.getFilteredPassengerListByDriver(driver));
+        //
+        //if (listWithDriverSpecified.isEmpty()) {
+        //    throw new CommandException(MESSAGE_DRIVER_NOT_EXIST);
+        //}
 
         StringJoiner joiner = new StringJoiner(", ");
-
-        for (Passenger passengerToEdit : listWithDriverSpecified) {
-            Passenger editedPassenger = unassignDriverFromPassenger(passengerToEdit);
-            joiner.add(editedPassenger.getName().toString());
-            model.setPassenger(passengerToEdit, editedPassenger);
-        }
+        //
+        //    for (Passenger passengerToEdit : listWithDriverSpecified) {
+        //    Passenger editedPassenger = unassignDriverFromPassenger(passengerToEdit);
+        //    joiner.add(editedPassenger.getName().toString());
+        //    model.setPassenger(passengerToEdit, editedPassenger);
+        //}
 
         model.updateFilteredPassengerList(PREDICATE_SHOW_ALL_PASSENGERS);
 
