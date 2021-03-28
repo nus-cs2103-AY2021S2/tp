@@ -66,14 +66,14 @@ Please note the following symbols used in the User Guide which may serve as poin
 
 ### 2.2. StoreMando's layout
 
-1. Main Panel <br>
+#### Main Panel <br>
 The main panel is the display window of items stored in StoreMando. Depending on which command you key in, 
    the main panel will display the corresponding items.
    
-2. Command Box <br>
+#### Command Box <br>
 The command box is where you will be entering commands to be executed by StoreMando.
 
-3. Result Display Box <br>
+#### Result Display Box <br>
 The result display box is where StoreMando’s server replies to every command that you key in. Any success, error or 
    warning messages will be displayed in this box.
    
@@ -288,8 +288,8 @@ Format: `reminder NUMBER TIME_UNIT`
 **:information_source: Notes about the reminder command:**<br>
 
 * `NUMBER` **can be any integer** …​, -7, -3, 0, 3, 7, …​
-* `TIME_UNIT` must be either `day(s)` or `week(s)`.
-  * `NUMBER` in the range of **[-1, 0, 1]** must have`TIME_UNIT` to be **singular**
+* `TIME_UNIT` must be either `days` or `weeks`.
+  * `day` or `week` accepted only when `NUMBER` is in the range of **[-1, 0, 1]**
 *  Items without expiry date will not be shown.
 
 
@@ -307,8 +307,8 @@ Examples:
 * `reminder -2 weeks` returns a list containing all items that has been expired for 2 weeks.
 * Given today is 30 March 2021, and the inventory has 2 items: apple with expiry date of 27 March 2021 and
   banana with an expiry date of 20 March 2021.
-  * `reminder -5 days` returns the apple only.
-  * `reminder -2 weeks` returns both the apple and the banana.
+  * `reminder -5 days` returns both the apple and the banana.
+  * `reminder -1 weeks` returns the banana only.
 
 
 
