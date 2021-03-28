@@ -8,7 +8,7 @@ Welcome to the PocketEstate User Guide! Learn how to use PocketEstate to efficie
 ## Table of Contents
 {: .no_toc}
 
-1. Table of Contents
+* Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
