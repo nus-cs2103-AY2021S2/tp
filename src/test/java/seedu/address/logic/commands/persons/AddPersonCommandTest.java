@@ -188,6 +188,11 @@ public class AddPersonCommandTest {
         }
 
         @Override
+        public void updateMeeting(Meeting target, Meeting editedMeeting) {
+
+        }
+
+        @Override
         public ObservableList<Meeting> getFilteredMeetingList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -255,6 +260,11 @@ public class AddPersonCommandTest {
         @Override
         public boolean clashes(Meeting toCheck) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean clashesExceptOne(Meeting meetingNotIncluded, Meeting toCheck) {
+            return false;
         }
 
         @Override
