@@ -24,7 +24,7 @@ public class StatsCommandAll extends StatsCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Student> studentList = model.getStudentBook().getStudentList();
+        List<Student> studentList = model.getStudentList();
         for (String residence : listResidences) {
             SchoolResidence currResidence = new SchoolResidence(residence);
             try {

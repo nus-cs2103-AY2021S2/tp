@@ -140,6 +140,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Appointment getAppointment(MatriculationNumber matriculationNumber) {
+        return studentBook.getAppointment(matriculationNumber);
+    }
+
+    @Override
     public boolean hasAppointment(Appointment appointment) {
         requireNonNull(appointment);
         return studentBook.hasAppointment(appointment);
@@ -154,6 +159,11 @@ public class ModelManager implements Model {
     @Override
     public void addAppointment(Appointment appointment) {
         studentBook.addAppointment(appointment);
+    }
+
+    @Override
+    public void deleteAppointment(Appointment appointment) {
+        studentBook.removeAppointment(appointment);
     }
 
     //=========== Filtered Student List Accessors =============================================================
