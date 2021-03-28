@@ -28,9 +28,8 @@ public class Appointment implements Comparable<Appointment> {
     /**
      * Every field must be present and not null.
      */
-    public Appointment(MatriculationNumber matriculationNumber, LocalDate date, LocalTime startTime,
-                       LocalTime endTime) {
-        requireAllNonNull(matriculationNumber, date, startTime, endTime);
+    public Appointment(MatriculationNumber matriculationNumber, LocalDate date, LocalTime startTime) {
+        requireAllNonNull(matriculationNumber, date, startTime);
         this.matriculationNumber = matriculationNumber;
         this.date = date;
         this.startTime = startTime;
