@@ -14,9 +14,9 @@ and distributing tasks will never be headache :smile:
 * [Introduction](#introduction)  
 * [Quick Start](#quick-start)  
 * [Features](#features)
-*     [General Features]
-*     [Member Related Features]
-*     [Task Related Features]
+*     [General Features](#general)
+*     [Member Related Features](#members)
+*     [Task Related Features](#tasks)
 
 --------------------------------------------------------------------------------------------------------------------
 <a name="quick-start"></a>
