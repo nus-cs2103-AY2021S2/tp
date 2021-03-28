@@ -23,8 +23,8 @@ import dog.pawbook.model.ReadOnlyDatabase;
 import dog.pawbook.model.managedentity.Entity;
 import javafx.util.Pair;
 
-public class JsonAddressBookStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
+public class JsonDatabaseStorageTest {
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonDatabaseStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -35,7 +35,7 @@ public class JsonAddressBookStorageTest {
     }
 
     private java.util.Optional<ReadOnlyDatabase> readDatabase(String filePath) throws Exception {
-        return new JsonAddressBookStorage(Paths.get(filePath)).readDatabase(addToTestDataPathIfNotNull(filePath));
+        return new JsonDatabaseStorage(Paths.get(filePath)).readDatabase(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -56,23 +56,23 @@ public class JsonAddressBookStorageTest {
 
     @Test
     public void readDatabase_invalidOwnerDatabase_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readDatabase("invalidOwnerAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readDatabase("invalidOwnerDatabase.json"));
     }
 
     @Test
     public void readDatabase_invalidAndValidOwnerDatabase_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readDatabase("invalidAndValidOwnerAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readDatabase("invalidAndValidOwnerDatabase.json"));
     }
 
     @Test
     public void readAndSaveDatabase_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
         Database original = getTypicalAddressBook();
-        JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
+        JsonDatabaseStorage jsonDatabaseStorage = new JsonDatabaseStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveDatabase(original, filePath);
-        ReadOnlyDatabase readBack = jsonAddressBookStorage.readDatabase(filePath).get();
+        jsonDatabaseStorage.saveDatabase(original, filePath);
+        ReadOnlyDatabase readBack = jsonDatabaseStorage.readDatabase(filePath).get();
         assertEquals(original, new Database(readBack));
 
         // Modify data, overwrite exiting file, and read back
@@ -82,14 +82,14 @@ public class JsonAddressBookStorageTest {
                 .collect(toList());
         int aliceId = targets.get(0).getKey();
         original.removeEntity(aliceId);
-        jsonAddressBookStorage.saveDatabase(original, filePath);
-        readBack = jsonAddressBookStorage.readDatabase(filePath).get();
+        jsonDatabaseStorage.saveDatabase(original, filePath);
+        readBack = jsonDatabaseStorage.readDatabase(filePath).get();
         assertEquals(original, new Database(readBack));
 
         // Save and read without specifying file path
         original.addEntity(IDA);
-        jsonAddressBookStorage.saveDatabase(original); // file path not specified
-        readBack = jsonAddressBookStorage.readDatabase().get(); // file path not specified
+        jsonDatabaseStorage.saveDatabase(original); // file path not specified
+        readBack = jsonDatabaseStorage.readDatabase().get(); // file path not specified
         assertEquals(original, new Database(readBack));
 
     }
@@ -104,7 +104,7 @@ public class JsonAddressBookStorageTest {
      */
     private void saveDatabase(ReadOnlyDatabase database, String filePath) {
         try {
-            new JsonAddressBookStorage(Paths.get(filePath))
+            new JsonDatabaseStorage(Paths.get(filePath))
                     .saveDatabase(database, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);

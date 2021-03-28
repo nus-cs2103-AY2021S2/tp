@@ -11,7 +11,7 @@ import dog.pawbook.model.ReadOnlyDatabase;
 /**
  * Represents a storage for {@link Database}.
  */
-public interface AddressBookStorage {
+public interface DatabaseStorage {
 
     /**
      * Returns the file path of the data file.

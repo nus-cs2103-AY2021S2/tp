@@ -17,13 +17,13 @@ import dog.pawbook.model.ReadOnlyDatabase;
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.
  */
-public class JsonAddressBookStorage implements AddressBookStorage {
+public class JsonDatabaseStorage implements DatabaseStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonDatabaseStorage.class);
 
     private Path filePath;
 
-    public JsonAddressBookStorage(Path filePath) {
+    public JsonDatabaseStorage(Path filePath) {
         this.filePath = filePath;
     }
 
@@ -45,14 +45,14 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     public Optional<ReadOnlyDatabase> readDatabase(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableDatabase> jsonAddressBook = JsonUtil.readJsonFile(
+        Optional<JsonSerializableDatabase> jsonDatabase = JsonUtil.readJsonFile(
                 filePath, JsonSerializableDatabase.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (!jsonDatabase.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonDatabase.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);

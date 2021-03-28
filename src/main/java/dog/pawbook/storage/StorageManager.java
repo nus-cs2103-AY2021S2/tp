@@ -17,15 +17,15 @@ import dog.pawbook.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private DatabaseStorage databaseStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code DatabaseStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(DatabaseStorage databaseStorage, UserPrefsStorage userPrefsStorage) {
         super();
-        this.addressBookStorage = addressBookStorage;
+        this.databaseStorage = databaseStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -51,29 +51,29 @@ public class StorageManager implements Storage {
 
     @Override
     public Path getDatabaseFilePath() {
-        return addressBookStorage.getDatabaseFilePath();
+        return databaseStorage.getDatabaseFilePath();
     }
 
     @Override
     public Optional<ReadOnlyDatabase> readDatabase() throws DataConversionException, IOException {
-        return readDatabase(addressBookStorage.getDatabaseFilePath());
+        return readDatabase(databaseStorage.getDatabaseFilePath());
     }
 
     @Override
     public Optional<ReadOnlyDatabase> readDatabase(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readDatabase(filePath);
+        return databaseStorage.readDatabase(filePath);
     }
 
     @Override
     public void saveDatabase(ReadOnlyDatabase addressBook) throws IOException {
-        saveDatabase(addressBook, addressBookStorage.getDatabaseFilePath());
+        saveDatabase(addressBook, databaseStorage.getDatabaseFilePath());
     }
 
     @Override
     public void saveDatabase(ReadOnlyDatabase database, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveDatabase(database, filePath);
+        databaseStorage.saveDatabase(database, filePath);
     }
 
 }

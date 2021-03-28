@@ -20,8 +20,8 @@ import dog.pawbook.model.ReadOnlyDatabase;
 import dog.pawbook.model.ReadOnlyUserPrefs;
 import dog.pawbook.model.UserPrefs;
 import dog.pawbook.model.util.SampleDataUtil;
-import dog.pawbook.storage.AddressBookStorage;
-import dog.pawbook.storage.JsonAddressBookStorage;
+import dog.pawbook.storage.DatabaseStorage;
+import dog.pawbook.storage.JsonDatabaseStorage;
 import dog.pawbook.storage.JsonUserPrefsStorage;
 import dog.pawbook.storage.Storage;
 import dog.pawbook.storage.StorageManager;
@@ -56,8 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getDatabaseFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        DatabaseStorage databaseStorage = new JsonDatabaseStorage(userPrefs.getDatabaseFilePath());
+        storage = new StorageManager(databaseStorage, userPrefsStorage);
 
         initLogging(config);
 
