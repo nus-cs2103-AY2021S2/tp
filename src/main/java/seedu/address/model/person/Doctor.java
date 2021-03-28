@@ -32,27 +32,18 @@ public class Doctor extends Person {
             return false;
         }
 
-        Doctor OtherDoctor = (Doctor) other;
-        return OtherDoctor.getName().equals(getName())
-                && OtherDoctor.getTags().equals(getTags());
+        Doctor otherDoctor = (Doctor) other;
+        return otherDoctor.getName().equals(getName())
+                && otherDoctor.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, tags);
     }
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getName());
-
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
-        return builder.toString();
+        return super.toString(); // to modify when unique fields arise
     }
 }

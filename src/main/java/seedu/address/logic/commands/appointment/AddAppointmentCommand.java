@@ -20,8 +20,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Timeslot;
-import seedu.address.model.person.Patient;
 import seedu.address.model.person.Doctor;
+import seedu.address.model.person.Patient;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -35,7 +35,7 @@ public class AddAppointmentCommand extends Command {
             + "referencing the indexes in the displayed patient records and doctor records.\n"
             + "Parameters: "
             + PREFIX_PATIENT + "PATIENT (positive integer) "
-            + PREFIX_DOCTOR + "DOCTOR "
+            + PREFIX_DOCTOR + "DOCTOR (positive integer)"
             + PREFIX_TIMESLOT_START + "TIMESLOT START "
             + "[" + PREFIX_TIMESLOT_END + "TIMESLOT END] "
             + "[" + PREFIX_TIMESLOT_DURATION + "TIMESLOT DURATION] "

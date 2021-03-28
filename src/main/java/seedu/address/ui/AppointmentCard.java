@@ -47,7 +47,7 @@ public class AppointmentCard extends UiPart<Region> {
         this.appointment = appointment;
         id.setText(displayedIndex + ". ");
         patientName.setText(appointment.getPatient().getName().fullName);
-        doctorName.setText(appointment.getDoctor());
+        doctorName.setText(appointment.getDoctor().getName().fullName);
         timeslot.setText(appointment.getTimeslot().toString());
         appointment.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

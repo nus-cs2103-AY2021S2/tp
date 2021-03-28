@@ -14,8 +14,8 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Doctor;
+import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -52,5 +52,4 @@ public class AddDoctorCommandParser implements Parser<AddDoctorCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-
 }

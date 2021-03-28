@@ -7,8 +7,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.NonConflictingAppointmentList;
-import seedu.address.model.person.Patient;
 import seedu.address.model.person.Doctor;
+import seedu.address.model.person.Patient;
 
 /**
  * Wraps all data at the appointment-schedule level

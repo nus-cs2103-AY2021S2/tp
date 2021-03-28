@@ -19,7 +19,7 @@ public class ClearDoctorCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setPatientRecords(new AddressBook<>());
+        model.setDoctorRecords(new AddressBook<>());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

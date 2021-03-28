@@ -9,6 +9,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAppointmentSchedule;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Patient;
 
 /**
@@ -28,6 +29,13 @@ public interface Storage extends UserPrefsStorage, AppointmentScheduleStorage {
     Optional<ReadOnlyAddressBook<Patient>> readPatientRecords() throws DataConversionException, IOException;
 
     void savePatientRecords(ReadOnlyAddressBook<Patient> patientRecords) throws IOException;
+
+    // =============== Doctor Records ========================================================================= //
+    Path getDoctorRecordsFilePath();
+
+    Optional<ReadOnlyAddressBook<Doctor>> readDoctorRecords() throws DataConversionException, IOException;
+
+    void saveDoctorRecords(ReadOnlyAddressBook<Doctor> doctorRecords) throws IOException;
 
     // =============== Appointment Schedule ==================================================================== //
     @Override

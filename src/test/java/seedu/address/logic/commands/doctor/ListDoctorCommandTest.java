@@ -1,7 +1,7 @@
-package seedu.address.logic.commands.patient;
+package seedu.address.logic.commands.doctor;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPatientAtIndex;
+import static seedu.address.logic.commands.CommandTestUtil.showDoctorAtIndex;
 import static seedu.address.testutil.TypicalAppObjects.getTypicalAppointmentSchedule;
 import static seedu.address.testutil.TypicalAppObjects.getTypicalDoctorRecords;
 import static seedu.address.testutil.TypicalAppObjects.getTypicalPatientRecords;
@@ -19,7 +19,7 @@ import seedu.address.model.UserPrefs;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListPatientCommand.
  */
-public class ListPatientCommandTest {
+public class ListDoctorCommandTest {
 
     private Model model;
     private Model expectedModel;
@@ -39,12 +39,12 @@ public class ListPatientCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListPatientCommand(), model, ListPatientCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListDoctorCommand(), model, ListDoctorCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showPatientAtIndex(model, INDEX_FIRST_IN_LIST);
-        assertCommandSuccess(new ListPatientCommand(), model, ListPatientCommand.MESSAGE_SUCCESS, expectedModel);
+        showDoctorAtIndex(model, INDEX_FIRST_IN_LIST);
+        assertCommandSuccess(new ListDoctorCommand(), model, ListDoctorCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

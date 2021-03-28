@@ -15,6 +15,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path patientRecordsFilePath = Paths.get("data" , "PatientRecords.json");
+    private Path doctorRecordsFilePath = Paths.get("data" , "DoctorRecords.json");
     private Path appointmentScheduleFilePath = Paths.get("data", "AppointmentSchedule.json");
 
     /**
@@ -48,14 +49,24 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== PatientRecords ================================================================================
     public Path getPatientRecordsFilePath() {
         return patientRecordsFilePath;
     }
 
-    public void setPatientRecordsFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        this.patientRecordsFilePath = addressBookFilePath;
+    public void setPatientRecordsFilePath(Path patientRecordsFilePath) {
+        requireNonNull(patientRecordsFilePath);
+        this.patientRecordsFilePath = patientRecordsFilePath;
+    }
+
+    //=========== DoctorRecords ================================================================================
+    public Path getDoctorRecordsFilePath() {
+        return doctorRecordsFilePath;
+    }
+
+    public void setDoctorRecordsFilePath(Path doctorRecordsFilePath) {
+        requireNonNull(doctorRecordsFilePath);
+        this.doctorRecordsFilePath = doctorRecordsFilePath;
     }
 
     //=========== AppointmentSchedule ========================================================================

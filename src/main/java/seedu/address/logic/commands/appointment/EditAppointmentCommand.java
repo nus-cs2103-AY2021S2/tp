@@ -24,8 +24,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Timeslot;
-import seedu.address.model.person.Patient;
 import seedu.address.model.person.Doctor;
+import seedu.address.model.person.Patient;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -115,11 +115,13 @@ public class EditAppointmentCommand extends Command {
             doctor = appointmentToEdit.getDoctor();
         }
 
+        Appointment editedAppointment = createEditedAppointment(patient, doctor, appointmentToEdit,
+                editAppointmentDescriptor);
 
-        Appointment editedAppointment = createEditedAppointment(patient, doctor, appointmentToEdit, editAppointmentDescriptor);
         if (model.hasConflictingAppointmentExcludingTarget(appointmentToEdit, editedAppointment)) {
             throw new CommandException(MESSAGE_APPOINTMENT_CONFLICT);
         }
+
         model.setAppointment(appointmentToEdit, editedAppointment);
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS, editedAppointment));

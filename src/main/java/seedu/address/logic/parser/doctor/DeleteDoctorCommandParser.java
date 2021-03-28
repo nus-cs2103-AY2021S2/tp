@@ -27,5 +27,4 @@ public class DeleteDoctorCommandParser implements Parser<DeleteDoctorCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteDoctorCommand.MESSAGE_USAGE), pe);
         }
     }
-
 }

@@ -18,31 +18,15 @@ import seedu.address.model.person.Doctor;
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.
  */
-public class JsonDoctorRecordsStorage implements AddressBookStorage<Doctor> {
+public class JsonDoctorRecordsStorage extends AddressBookStorage<Doctor> {
 
     private static final Logger LOGGER = LogsCenter.getLogger(JsonDoctorRecordsStorage.class);
 
-    private Path filePath;
-
     public JsonDoctorRecordsStorage(Path filePath) {
-        this.filePath = filePath;
-    }
-
-    public Path getAddressBookFilePath() {
-        return filePath;
+        super(filePath);
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook<Doctor>> readAddressBook() throws DataConversionException {
-        return readAddressBook(filePath);
-    }
-
-    /**
-     * Similar to {@link #readAddressBook()}.
-     *
-     * @param filePath location of the data. Cannot be null.
-     * @throws DataConversionException if the file is not in the correct format.
-     */
     public Optional<ReadOnlyAddressBook<Doctor>> readAddressBook(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
@@ -62,15 +46,6 @@ public class JsonDoctorRecordsStorage implements AddressBookStorage<Doctor> {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook<Doctor> addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
-    }
-
-    /**
-     * Similar to {@link #saveAddressBook(ReadOnlyAddressBook)}.
-     *
-     * @param filePath location of the data. Cannot be null.
-     */
     public void saveAddressBook(ReadOnlyAddressBook<Doctor> addressBook, Path filePath) throws IOException {
         requireNonNull(addressBook);
         requireNonNull(filePath);

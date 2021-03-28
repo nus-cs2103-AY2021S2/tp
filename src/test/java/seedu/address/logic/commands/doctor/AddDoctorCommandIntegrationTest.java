@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.patient;
+package seedu.address.logic.commands.doctor;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -12,13 +12,13 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Patient;
-import seedu.address.testutil.PatientBuilder;
+import seedu.address.model.person.Doctor;
+import seedu.address.testutil.DoctorBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
  */
-public class AddPatientCommandIntegrationTest {
+public class AddDoctorCommandIntegrationTest {
 
     private Model model;
 
@@ -29,23 +29,24 @@ public class AddPatientCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newPatient_success() {
-        Patient validPatient = new PatientBuilder().build();
+    public void execute_newDoctor_success() {
+        Doctor validDoctor = new DoctorBuilder().build();
 
         Model expectedModel = new ModelManager(model.getPatientRecords(), model.getDoctorRecords(),
-                model.getAppointmentSchedule(), new UserPrefs());
+                model.getAppointmentSchedule(), model.getUserPrefs());
 
-        expectedModel.addPatient(validPatient);
+        expectedModel.addDoctor(validDoctor);
 
-        assertCommandSuccess(new AddPatientCommand(validPatient), model,
-                String.format(AddPatientCommand.MESSAGE_SUCCESS, validPatient), expectedModel);
+        assertCommandSuccess(new AddDoctorCommand(validDoctor), model,
+                String.format(AddDoctorCommand.MESSAGE_SUCCESS, validDoctor), expectedModel);
     }
 
     @Test
-    public void execute_duplicatePatient_throwsCommandException() {
-        Patient patientInList = model.getPatientRecords().getPersonList().get(0);
-        assertCommandFailure(new AddPatientCommand(patientInList), model,
-                AddPatientCommand.MESSAGE_DUPLICATE_PATIENT);
+    public void execute_duplicateDoctor_throwsCommandException() {
+        Doctor doctorInList = model.getDoctorRecords().getPersonList().get(0);
+
+        assertCommandFailure(new AddDoctorCommand(doctorInList), model,
+                AddDoctorCommand.MESSAGE_DUPLICATE_DOCTOR);
     }
 
 }

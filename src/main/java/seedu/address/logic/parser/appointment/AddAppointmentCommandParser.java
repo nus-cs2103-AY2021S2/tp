@@ -43,7 +43,7 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         }
 
         Index patientIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PATIENT).get());
-        String doctor = argMultimap.getValue(PREFIX_DOCTOR).get();
+        Index doctorIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_DOCTOR).get());
         Timeslot timeslot = (argMultimap.getValue(PREFIX_TIMESLOT_END).isPresent())
                 ? ParserUtil.parseTimeslotByEnd(argMultimap.getValue(PREFIX_TIMESLOT_START).get(),
                         argMultimap.getValue(PREFIX_TIMESLOT_END).get())
@@ -51,7 +51,7 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
                         argMultimap.getValue(PREFIX_TIMESLOT_DURATION).get());
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        return new AddAppointmentCommand(patientIndex, doctor, timeslot, tagList);
+        return new AddAppointmentCommand(patientIndex, doctorIndex, timeslot, tagList);
     }
 
     /**

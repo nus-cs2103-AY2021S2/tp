@@ -1,36 +1,37 @@
-package seedu.address.logic.commands.patient;
+package seedu.address.logic.commands.doctor;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalAppObjects.getTypicalAppointmentSchedule;
 import static seedu.address.testutil.TypicalAppObjects.getTypicalDoctorRecords;
 import static seedu.address.testutil.TypicalAppObjects.getTypicalPatientRecords;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.AppointmentSchedule;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
-public class ClearPatientCommandTest {
+public class ClearDoctorCommandTest {
 
     @Test
-    public void execute_emptyPatientRecords_success() {
+    public void execute_emptyDoctorRecords_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new ClearPatientCommand(), model, ClearPatientCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearDoctorCommand(), model, ClearDoctorCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
-    public void execute_nonEmptyPatientRecords_success() {
+    public void execute_nonEmptyDoctorRecords_success() {
+        // empty appointment schedule to prevent conflict
         Model model = new ModelManager(getTypicalPatientRecords(), getTypicalDoctorRecords(),
-                getTypicalAppointmentSchedule(), new UserPrefs());
+                new AppointmentSchedule(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalPatientRecords(), getTypicalDoctorRecords(),
-                getTypicalAppointmentSchedule(), new UserPrefs());
+                new AppointmentSchedule(), new UserPrefs());
 
-        expectedModel.setPatientRecords(new AddressBook<>());
-        assertCommandSuccess(new ClearPatientCommand(), model, ClearPatientCommand.MESSAGE_SUCCESS, expectedModel);
+        expectedModel.setDoctorRecords(new AddressBook<>());
+        assertCommandSuccess(new ClearDoctorCommand(), model, ClearDoctorCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
 }
