@@ -26,6 +26,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.passenger.Passenger;
+import seedu.address.model.pool.DriverNameContainsKeywordsPredicate;
+import seedu.address.model.pool.Pool;
 import seedu.address.testutil.EditPassengerDescriptorBuilder;
 
 /**
@@ -149,6 +151,7 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPassengerList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the passenger at the given {@code targetIndex} in the
      * {@code model}'s address book.
@@ -161,6 +164,24 @@ public class CommandTestUtil {
         model.updateFilteredPassengerList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPassengerList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the pool at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showPoolAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredPoolList().size());
+
+        Pool pool = model.getFilteredPoolList().get(targetIndex.getZeroBased());
+
+        final String keywords = pool.getDriver().getName().fullName + " "
+                + pool.getTripDayAsStr() + " "
+                + pool.getTripTimeAsStr();
+        final String[] splitKeywords = keywords.split("\\s+");
+        model.updateFilteredPoolList(new DriverNameContainsKeywordsPredicate(Arrays.asList(splitKeywords[0])));
+
+        assertEquals(1, model.getFilteredPoolList().size());
     }
 
 }
