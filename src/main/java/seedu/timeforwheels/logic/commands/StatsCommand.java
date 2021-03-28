@@ -62,8 +62,8 @@ public class StatsCommand extends Command {
             }
             for (Tag tag : customerTag) {
                 for (String taglist : tagList) {
-                  if (tag.toString().equals(taglist)) {
-                    tagMap.put(tag.toString(), tagMap.getOrDefault(tag.toString(), 0) + 1);
+                    if (tag.toString().equals(taglist)) {
+                        tagMap.put(tag.toString(), tagMap.getOrDefault(tag.toString(), 0) + 1);
                     }
                 }
             }
