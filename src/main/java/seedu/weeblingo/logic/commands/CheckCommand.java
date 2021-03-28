@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.weeblingo.commons.core.Messages;
 import seedu.weeblingo.logic.commands.exceptions.CommandException;
 import seedu.weeblingo.model.Model;
+import seedu.weeblingo.model.flashcard.Answer;
 
 /**
  * Reveals answer for current quiz question
@@ -20,13 +21,13 @@ public class CheckCommand extends Command {
             + "Parameters: ATTEMPT\n"
             + "Example: " + COMMAND_WORD + " apple";
 
-    private final String attempt;
+    private final Answer attempt;
 
     /**
      * Creates a CheckCommand to check the specified attempt
      * @param attempt
      */
-    public CheckCommand(String attempt) {
+    public CheckCommand(Answer attempt) {
         requireNonNull(attempt);
         this.attempt = attempt;
     }

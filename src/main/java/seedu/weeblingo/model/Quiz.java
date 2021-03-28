@@ -89,8 +89,8 @@ public class Quiz {
         return currentQuiz;
     }
 
-    public boolean isCorrectAttempt(String attempt) {
-        return currentQuiz.getAnswer().equals(new Answer(attempt));
+    public boolean isCorrectAttempt(Answer attempt) {
+        return currentQuiz.getAnswer().equals(attempt);
     }
 
     public Queue<Flashcard> getQuizSessionQueue() {

@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.weeblingo.commons.core.GuiSettings;
 import seedu.weeblingo.commons.core.LogsCenter;
+import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.flashcard.Flashcard;
 
 /**
@@ -188,8 +189,7 @@ public class ModelManager implements Model {
         requireNonNull(quizInstance);
         return quizInstance.getCurrentQuizIndex();
     }
-    @Override
-    public boolean isCorrectAttempt(String attempt) {
+    public boolean isCorrectAttempt(Answer attempt) {
         requireNonNull(quizInstance);
         return quizInstance.isCorrectAttempt(attempt);
     }

@@ -4,6 +4,7 @@ import static seedu.weeblingo.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORM
 
 import seedu.weeblingo.logic.commands.CheckCommand;
 import seedu.weeblingo.logic.parser.exceptions.ParseException;
+import seedu.weeblingo.model.flashcard.Answer;
 
 public class CheckCommandParser implements Parser<CheckCommand> {
 
@@ -18,6 +19,7 @@ public class CheckCommandParser implements Parser<CheckCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, CheckCommand.MESSAGE_USAGE));
         }
-        return new CheckCommand(trimmedArgs);
+        Answer attempt = ParserUtil.parseAnswer(trimmedArgs);
+        return new CheckCommand(attempt);
     }
 }
