@@ -197,8 +197,11 @@ Format: `clear`
 
 Adds an appointment to the appointment book.
 
-Format: `addAppt n/NAME a/ADDRESS d/DATE [c/CONTACTS]...`
+Format: `addAppt n/NAME a/ADDRESS d/DATE [c/CONTACT INDEX]...`
 
+* Contact in the address book at the specified `CONTACT INDEX` is added to the appointment.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
 * `DATE` has to be in the format "`dd`/`MM`/`yyyy` `HH`:`mm`".
 
 Examples:
