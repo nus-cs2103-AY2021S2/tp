@@ -89,14 +89,11 @@ public class UniqueAppointmentList implements Iterable<SameDateAppointmentList> 
             //edit in UniqueAppointmentList
             for (SameDateAppointmentList s : internalList) {
                 if (s.getDate().equals(originalDate)) {
+                    //this one need to update with Yien's remove
                     s.remove(target);
                 }
             }
-            for (SameDateAppointmentList s : internalList) {
-                if (s.getDate().equals(newDate)) {
-                    s.setAppointment(target, editedAppointment);
-                }
-            }
+            add(editedAppointment);
         }
     }
 
