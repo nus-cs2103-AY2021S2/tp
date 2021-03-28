@@ -8,6 +8,7 @@ import static seedu.storemando.logic.commands.CommandTestUtil.showEmptyListAfter
 import static seedu.storemando.testutil.TypicalItems.HEATER;
 import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMando;
 import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMandoSortedByDecreasingQuantity;
+import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMandoSortedByExpiryDate;
 
 import org.junit.jupiter.api.Test;
 
@@ -33,6 +34,24 @@ public class SortDescendingQuantityCommandTest {
 
         assertCommandFailure(new SortDescendingQuantityCommand(), model,
             SortCommand.MESSAGE_NO_ITEMS_TO_SORT);
+    }
+
+    @Test
+    void execute_sortSortedStoreMando_success() {
+        Model model = new ModelManager(getTypicalStoreMandoSortedByDecreasingQuantity(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalStoreMandoSortedByDecreasingQuantity(), new UserPrefs());
+
+        assertCommandSuccess(new SortDescendingQuantityCommand(), model,
+            SortCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
+    void execute_sortStoreMandoSortedByExpiryDate_success() {
+        Model model = new ModelManager(getTypicalStoreMandoSortedByExpiryDate(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalStoreMandoSortedByDecreasingQuantity(), new UserPrefs());
+
+        assertCommandSuccess(new SortDescendingQuantityCommand(), model,
+            SortCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
