@@ -6,21 +6,22 @@ title: User Guide
 Welcome to the PocketEstate User Guide! Learn how to use PocketEstate to efficiently organize property data, manage clientele information and keep track of your upcoming appointments.
 
 ## Table of Contents
+{: .no_toc}
 
-1. Table of Contents
+* Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Introduction
+## 1. Introduction
 
-### What is PocketEstate?
+### 1.1 What is PocketEstate?
 
 PocketEstate is a desktop application for property agents to efficiently and effectively manage property data and appointment schedules. With PocketEstate, you can easily organize your property and clientele information, as well as keeping track of your schedules and deadlines.
 
 PocketEstate is also highly optimized for users who can type fast and prefer typing over other means of input, allowing fast completion of most tasks solely via Command Line Interface (CLI).
 
-### Using this User Guide
+### 1.2 Using this User Guide
 
 This user guide uses various formatting styles to facilitate reading and to communicate ideas more effectively. Here are some important conventions to take note of when reading this user guide:
 
@@ -30,15 +31,15 @@ This user guide uses various formatting styles to facilitate reading and to comm
 | :information_source: Note | Additional information                                       |
 | :bulb: Tip                | Helpful tips                                                 |
 | :exclamation: Caution     | Things to watch out for                                      |
-| <kbd>Keyboard</kdb>       | Keyboard buttons                                             |
-| `Code`                    | Represents a user input or some important code-related terms |
+| <kbd>Keyboard</kbd>       | Keyboard buttons                                             |
+| `Code`                    | Examples                                                     |
 | [SQUARE_BRACKETS]         | Optional parameters of a command                             |
 | UPPER_CASE                | Parameters of a command to be supplied by the user           |
 | ...                       | Parameters of a command that can be used multiple times      |
 
-## Quick start
+## 2. Quick start
 
-### Download and Launch
+### 2.1 Download and Launch
 
 1. Ensure you have **Java 11 or above** installed in your Computer.
 
@@ -50,40 +51,42 @@ This user guide uses various formatting styles to facilitate reading and to comm
    
    ![Ui](images/Ui.png)
 
-### Trying out
+### 2.2 Trying out
 
-1. Let's try out your first command by adding a new property! <br>Type `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-6-2021` into the command box and press <kbd>Enter</kbd> to execute it. After that, scroll down to the bottom of the property list to see your newly added property.
-1. Want to view the properties in order of their asking price? Type the command `sort property o/desc k/price` and press <kbd>Enter</kbd>. The property list will now be ordered in descending order, with the property having the highest asking price at the top.
-1. Now let's try adding a new appointment. <br>Type `add appointment n/Meet Jacob for dinner r/At Orchard Central's food court d/19-4-2021 t/1930` and hit the <kbd>Enter</kbd> button. Scroll down to the bottom of the appointment list to see your newly added appointment.
-1. Forgot when you are supposed to meet Simon again? Let's try finding out! Type `find appointment simon` and press <kbd>Enter</kbd>. There it is! Your appointment with Simon is on Sep 20, 2021.
+1. Let's try out your first command by adding a new property! Type <br>`add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-6-2021` into the command box and press <kbd>Enter</kbd> to execute it. After that, scroll down to the bottom of the property list to see your newly added property.
+1. Want to view the properties in order of their asking price? Type the command <br>`sort property o/desc k/price` and press <kbd>Enter</kbd>. The property list will now be in descending order based on price, with the property having the highest asking price at the top.
+1. Now let's try adding a new appointment. Type <br>`add appointment n/Meet Jacob for dinner r/At Lot One's food court d/19-4-2021 t/1930` and hit the <kbd>Enter</kbd> button. Scroll down to the bottom of the appointment list to see your newly added appointment.
+1. Forgot when you are supposed to meet Simon again? Let's try finding out! Type <br>`find appointment simon` and press <kbd>Enter</kbd>. There it is! Your appointment with Simon is on Sep 20, 2021.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
- Some example commands you can try:
+ Some other example commands you can try:
 
-   * `list all` : Lists all properties and appointments in the app.
-   * `delete property 2` : Deletes the 2nd property shown in the current list of properties.
-   * `clear appointment` : Clears all existing appointment data from the app.
-   * `exit` : Exits the app.
+{::nomarkdown}
+<ul>
+  <li>{:/}`list all`{::nomarkdown} : Lists all properties and appointments in the app.</li>
+  <li>{:/}`delete property 2`{::nomarkdown} : Deletes the 2nd property shown in the current list of properties.</li>
+  <li>{:/}`clear appointment`{::nomarkdown} : Clears all existing appointment data from the app.</li>
+  <li>{:/}`exit`{::nomarkdown} : Exits the app.</li>
+</ul>
+{:/}
 
 For a quick reference of the available commands and their syntax, refer to the [Command Summary](#command-summary) section.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Commands
+## 3. Commands
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
+<div markdown="block" class="alert alert-info">**:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add property n/NAME`, `NAME` is a parameter which can be used as `add property n/Mayfair`.
+  e.g. in `add property n/NAME`, `NAME` is a parameter which can be used as <br>`add property n/Bishan`.
 
 * Items in square brackets are optional.<br>
-  e.g `add property n/NAME t/PROPERTY_TYPE a/ADDRESS p/POSTAL_CODE d/DEADLINE [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS...]` can be used as <br>`add property n/Mayfair t/Condo a/1 Jurong East Street 32 p/609477 d/31-12-2021` <br> or as <br>`add property n/Mayfair t/Condo a/1 Jurong East Street 32 p/609477 d/31-12-2021 r/Urgent to sell cn/Alice cc/91234567 ce/alice@gmail.com ca/$800,000 tags/4 bedrooms, No need for renovation`.
+  e.g `add property n/NAME t/PROPERTY_TYPE a/ADDRESS p/POSTAL_CODE d/DEADLINE [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]` can be used as <br>`add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-6-2021` <br> or as <br>`add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-6-2021 r/Urgent to sell cn/George cc/91124788 ce/george_4788@gmail.com ca/$750,000 tags/Urgent, 4 bedrooms`.
 
 * Items with `…` after them can be used multiple times, including zero times.<br>
-  e.g. `[OPTION]...` can be used as `  ` (i.e. 0 times), `pl/$1,000,000`, `pl/$1,000,000 t/Condo` etc.
+  e.g. `[OPTION]...` can be used as `pl/$1,000,000`, `pl/$1,000,000 t/Condo` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME r/REMARKS`, `r/REMARKS n/NAME` is also acceptable.
@@ -96,9 +99,9 @@ For a quick reference of the available commands and their syntax, refer to the [
 
 </div>
 
-### General
+### 3.1 General
 
-#### Viewing help : `help`
+#### 3.1.1 Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -106,15 +109,15 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-#### Exiting the program : `exit`
+#### 3.1.2 Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Adding
+### 3.2 Adding
 
-#### Adding a property: `add property`
+#### 3.2.1 Adding a property: `add property`
 
 Adds a property to the app.
 
@@ -127,7 +130,7 @@ Examples:
 * `add property n/Mayfair t/Condo a/1 Jurong East Street 32 p/609477 d/31-12-2021`
 * `add property n/Mayfair t/Condo a/1 Jurong East Street 32 p/609477 d/31-12-2021 r/Urgent to sell cn/Alice cc/91234567 ce/alice@gmail.com ca/$800,000 tags/4 bedrooms, No need for renovation`
 
-#### Adding an appointment: `add appointment`
+#### 3.2.2 Adding an appointment: `add appointment`
 
 Adds an appointment to the app.
 
@@ -136,19 +139,17 @@ Format: `add appointment n/NAME r/REMARKS d/DATE t/TIME​`
 Examples:
 * `add appointment n/Meet Alex r/At M Hotel d/17-2-2021 t/1500`
 
-### Editing
+### 3.3 Editing
 
-#### Editing a property : `edit property`
+#### 3.3.1 Editing a property : `edit property`
 
-Overwrites the information of the property according to the flags provided.
+Overwrites the information of the property according to the user input provided.
 
-Formats: `edit property INDEX [n/NAME] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]​`
+Format: `edit property INDEX [n/NAME] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]​`
 
-<div markdown="block" class="alert alert-info">
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 
-**:bulb: Tip:**<br>
-
-* There can be multiple tags but different tags should be separated with a comma. <br> e.g. `tags/TAGS_SEPARATED_BY_COMMAS` can be used as `tags/Freehold`, `tags/Freehold, 5 bedrooms`, `tags/Freehold, 5 bedrooms, Near MRT` etc.
+There can be multiple tags but different tags should be separated with a comma. <br> e.g. `tags/TAGS_SEPARATED_BY_COMMAS` can be used as `tags/Freehold`, `tags/Freehold, 5 bedrooms`, `tags/Freehold, 5 bedrooms, Near MRT` etc.
 
 </div>
 
@@ -160,11 +161,11 @@ Description:
 Examples:
 *  `edit property 1 r/Urgent to sell cn/Alice` Edits the remark and client name of the 1st property to be `Urgent to sell` and `Alice` respectively.
 
-#### Editing an appointment : `edit appointment`
+#### 3.3.2 Editing an appointment : `edit appointment`
 
-Overwrites the information of the appointment according to the flags provided.
+Overwrites the information of the appointment according to the user input provided.
 
-Formats: `edit appointment INDEX [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]`
+Format: `edit appointment INDEX [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]`
 
 Description:
 * Edits the entry at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …​
@@ -174,9 +175,9 @@ Description:
 Examples:
 *  `edit appointment 3 d/21-03-2021 r/at M hotel` Edits the date and remark of the 3rd appointment to be `21-03-2021` and `at M hotel` respectively.
 
-### Deleting
+### 3.4 Deleting
 
-#### Removing an entry : `delete`
+#### 3.4.1 Removing an entry : `delete`
 
 Deletes the specified property or appointment from the app.
 
@@ -192,24 +193,24 @@ Examples:
 *  `delete appointment 7` Deletes the `appointment` at index `7`.
 *  `delete property 7` Deletes the `property` at index `7`.
 
-### Listing
+### 3.5 Listing
 
-#### Listing all properties and appointments : `list all`
+#### 3.5.1 Listing all properties and appointments : `list all`
 
 Shows a list of all properties and appointments in the app.
 
-#### Listing all properties : `list property`
+#### 3.5.2 Listing all properties : `list property`
 
 Shows a list of all properties in the app.
 
-#### Listing all appointments : `list appointment`
+#### 3.5.3 Listing all appointments : `list appointment`
 
 Shows a list of all appointments in the app.
 
 
-### Updating status
+### 3.6 Updating status
 
-#### Updating the status of a property : `update`
+#### 3.6.1 Updating the status of a property : `update`
 
 Updates the status of a property from Option to Purchase, to Sales and Purchase Agreement to Completion
 
@@ -229,15 +230,15 @@ Examples:
 *  `update 1 u/new 600000` Creates a new status with amount 600000 for the 1st property.
 *  `update 3 u/proceed` Moves the status of the 3rd property to next one.
 
-### Sorting
+### 3.7 Sorting
 
-#### Sorting : `sort`
+#### 3.7.1 Sorting : `sort`
 
 Sorts and shows a list of properties or appointments that is sorted according to the comparator provided.
 
 Formats:
-* `sort appointment o/<asc or desc> k/<datetime or name>`
-* `sort property o/<asc or desc> k/<price or address or postalcode or deadline or name>`
+* `sort appointment o/SORTING_ORDER k/SORTING_KEY`
+* `sort property o/SORTING_ORDER k/SORTING_KEY`
 
 Description:
 * Sorts appointment or property by the specified sorting key in ascending or descending order.
@@ -247,47 +248,47 @@ Examples:
 *  `sort appointment o/asc k/datetime` Sorts `appointment` by `datetime` in ascending order.
 *  `sort property o/desc k/price` Sorts `property` by `price` in descending order.
 
-### Searching
+### 3.8 Searching
 
-#### Searching properties: `find property`
+#### 3.8.1 Searching properties: `find property`
 
 Finds properties that match the criterion provided.
 
 Formats:
-* `find property [KEYWORD] [OPTION...]`
+* `find property [KEYWORD]... [OPTION]...`
 
 Description:
 * There can be 0 or more keywords and 0 or more options, but keywords and options cannot be both empty. All text are case insensitive. 
 
 Options:
-* `t/[PROPERTY_TYPE]`
+* `[t/PROPERTY_TYPE]`
 
-    Search for properties whose housing type field contain patterns specified in `[REMARKS]`. 
+    Search for properties whose property type field contain patterns specified in `[t/PROPERTY_TYPE]`. 
     
-    The following housing types are supported: 
+    The following property types are supported: 
     * hdb
     * condo
     * landed
 
-* `pm/[PRICE]`
+* `[pm/PRICE_UPPER_LIMIT]`
 
-    Search for properties with prices more than `[PRICE]`. 
+    Search for properties with prices more than `[PRICE_UPPER_LIMIT]`. 
 
-* `pl/[PRICE]`
+* `[pl/PRICE_LOWER_LIMIT]`
 
-    Search for properties with prices less than `[PRICE]`. 
+    Search for properties with prices less than `[PRICE_LOWER_LIMIT]`. 
 
 Examples:
 * `find property jurong west`
 * `find property pm/500000`
 * `find property bishan north t/hdb pl/$1,000,000`
 
-#### Searching appointments: `find appointment`
+#### 3.8.2 Searching appointments: `find appointment`
 
 Finds appointments that match the criterion provided.
 
 Formats:
-* `find appointment [KEYWORD]`
+* `find appointment [KEYWORD]...`
 
 Description:
 * There can be 0 or more keywords. Keywords are case insensitive. 
@@ -296,37 +297,42 @@ Examples:
 * `find appointment bob`
 * `find appointment sunday`
 
-#### Searching clients: `find client`
+#### 3.8.3 Searching clients: `find client`
 
 Finds appointments that matches the keywords and properties whose clients matches the same keywords. Both are done at the same time. 
 
 Formats:
-* `find client [KEYWORD]`
+* `find client [KEYWORD]...`
 
 Description:
 * There can be 0 or more keywords. Keywords are case insensitive. 
 
-### Clearing
+### 3.9 Clearing
 
-#### Clearing all entries : `clear`
+#### 3.9.1 Clearing all entries : `clear all`
 
-Clears all properties or appointments or both from the app.
+Clears all properties and appointments from the app.
 
-Formats:
-* `clear property`
-* `clear appointment`
-* `clear all`
+#### 3.9.2 Clearing all properties : `clear property`
 
-## Storage
+Clears all properties from the app.
 
-#### Saving the data
+#### 3.9.3 Clearing all appointments : `clear appointment`
+
+Clears all appointments from the app.
+
+## 4. Storage
+
+#### 4.1 Saving the data
 
 PocketEstate data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually. PocketEstate data are saved as a JSON file after any command that modifies the data of the app.
 
-* The default property storage data file used is `[JAR file location]/data/propertybook.json`. 
-* The default appointment storage data file used is `[JAR file location]/data/appointmentbook.json`.
+The default storage data file paths used are:
 
-#### Editing the data files
+* Property storage data file: `[JAR file location]/data/propertybook.json`. 
+* Appointment storage data file: `[JAR file location]/data/appointmentbook.json`.
+
+#### 4.2 Editing the data files
 
 Advanced users are welcome to update data directly by editing the data files.
 
@@ -334,7 +340,7 @@ Advanced users are welcome to update data directly by editing the data files.
 If your changes to the data file makes its format invalid, PocketEstate will discard all data and start with an empty data file at the next run. For example, if the property storage data file is corrupted but the appointment storage data file is in the correct format, PocketEstate will start with an empty data file for properties and use the original data file for appointments.
 </div>
 
-#### Specifying the data files
+#### 4.3 Specifying the data files
 
 It is also possible to specify your own property and/or appointment storage data files. In the `preferences.json` file that is generated when you first launch the app, you may edit the values of `propertyBookFilePath` and/or `appointmentBookFilePath` to your own property and appointment storage file paths respectively.
 
@@ -344,43 +350,44 @@ It is also possible to specify your own property and/or appointment storage data
 
 </div>
 
-#### Archiving data files `[coming in v2.0]`
+#### 4.4 Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## 5. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous PocketEstate home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## 6. Command summary
 
 Action | Format, Examples
 --------|------------------
-**Add property** | `add property n/NAME t/PROPERTY_TYPE a/ADDRESS p/POSTAL_CODE d/DEADLINE [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]` <br> e.g., `add property n/Mayfair t/Condo a/1 Jurong East Street 32 p/609477 d/31-12-2021 r/Urgent to sell cn/Alice cc/91234567 ce/alice@gmail.com ca/$800,000 tags/4 bedrooms, No need for renovation`
-**Add appointment** | `add appointment n/NAME r/REMARKS d/DATE t/TIME` <br> e.g., `add appointment n/Meet Alex r/At M Hotel d/17-2-2021 t/1500`
-**Clear** | `clear property` <br> `clear appointment` <br> `clear all`
-**Edit property** | `edit property INDEX [n/NAME] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]`<br> e.g.,`edit property 1 r/Urgent to sell cn/Alice`
-**Edit appointment** | `edit appointment INDEX [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]`<br> e.g.,`edit appointment 3 d/2021-03-28 r/at M hotel`
-**Add new status** | `update INDEX new AMOUNT`<br> e.g.,`update 1 new 600000`
-**Update status** | `update INDEX [proceed][cancel]`<br> e.g. `update 3 proceed`
-**Find properties** | `find property [KEYWORD] [OPTION...]` <br> Options: <br> <ul> <li> `t/[HOUSING TYPE]` </li> <li> `pm/[PRICE LOWER LIMIT]` </li> <li> `pl/[PRICE UPPER LIMIT]` </li> </ul> e.g., `find property bishan north t/hdb pl/$1,000,000`
-**Find appointments** | `find property [KEYWORD]` <br> e.g., `find appointment bob`
-**Find clients** | `find client [CLIENT NAME]` <br> e.g., `find client alice`
+**Help** | `help`
+**Exit** | `exit`
+**Add property** | `add property n/NAME t/PROPERTY_TYPE a/ADDRESS p/POSTAL_CODE d/DEADLINE [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]` <br><br> e.g., `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-6-2021 r/Urgent to sell cn/George cc/91124788 ce/george_4788@gmail.com ca/$750,000 tags/Urgent, 4 bedrooms`
+**Add appointment** | `add appointment n/NAME r/REMARKS d/DATE t/TIME` <br><br> e.g., `add appointment n/Meet Jacob for dinner r/At Lot One's food court d/19-4-2021 t/1930`
+**Edit property** | `edit property INDEX [n/NAME] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]`<br><br> e.g.,`edit property 1 r/Urgent to sell cn/Alice`
+**Edit appointment** | `edit appointment INDEX [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]`<br><br> e.g.,`edit appointment 3 d/28-03-2021 r/at M hotel`
+**Remove an entry** | `delete appointment INDEX` <br> e.g. `delete appointment 7` <br><br> `delete property INDEX` <br> e.g. `delete property 7`
 **List all** | `list all`
 **List property** | `list property`
 **List appointment** | `list appointment`
-**Sort** | `sort appointment o/<asc or desc> k/<datetime or name>`<br> e.g., `sort appointment o/asc k/datetime`<br><br>`sort property o/<asc or desc> k/<price or address or postalcode or deadline or name>`<br> e.g., `sort property o/asc k/price`
-**Remove an entry** | `delete appointment INDEX` <br> e.g. `delete appointment 7` <br><br> `delete property INDEX` <br> e.g. `delete property 7`
-**Help** | `help`
+**Add new status** | `update INDEX new AMOUNT`<br><br> e.g.,`update 1 new 600000`
+**Update status** | `update INDEX u/STATUS`<br><br> e.g. `update 3 u/proceed`
+**Sort** | `sort appointment o/SORTING_ORDER k/SORTING_KEY `<br> e.g., `sort appointment o/asc k/datetime`<br><br>`sort property o/SORTING_ORDER k/SORTING_KEY `<br> e.g., `sort property o/asc k/price`
+**Find property** | `find property [KEYWORD]... [OPTION]...` <br><br> Options: <br>{::nomarkdown}<ul> <li>{:/}`[t/PROPERTY_TYPE]`{::nomarkdown}</li> <li>{:/}`[pl/PRICE_UPPER_LIMIT]`{::nomarkdown}</li> <li>{:/}`[pm/PRICE_LOWER_LIMIT]`{::nomarkdown}</li> </ul>{:/} e.g. `find property bishan north t/hdb pl/$1,000,000`
+**Find appointment** | `find property [KEYWORD]` <br> e.g., `find appointment bob`
+**Find client** | `find client [KEYWORD]` <br> e.g., `find client alice`
+**Clear** | `clear property` <br> `clear appointment` <br> `clear all`
 
-## Appendix
+## 7. Appendix
 
-### Launching application via command line
+### 7.1 Launching application via command line
 
 For advanced users, it is also possible to launch the app via the command line. Doing so will allow you the option of specifying your own configuration file.  The configuration file can be used to specify the location of the preferences file, which contains the preferred storage file paths for both property and appointment data.
 
