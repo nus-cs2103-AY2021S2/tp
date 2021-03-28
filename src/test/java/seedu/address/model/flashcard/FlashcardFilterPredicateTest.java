@@ -2,6 +2,7 @@ package seedu.address.model.flashcard;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,6 +14,18 @@ import org.junit.jupiter.api.Test;
 import seedu.address.testutil.FlashcardBuilder;
 
 public class FlashcardFilterPredicateTest {
+
+    @Test
+    public void constructor_nullKeywords_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new FlashcardFilterPredicate(null, null,
+                null, null));
+        assertThrows(NullPointerException.class, () -> new FlashcardFilterPredicate(new ArrayList<>(),
+                new ArrayList<>(), new ArrayList<>(), null));
+        assertThrows(NullPointerException.class, () -> new FlashcardFilterPredicate(null, new ArrayList<>(),
+                null, new ArrayList<>()));
+        assertThrows(NullPointerException.class, () -> new FlashcardFilterPredicate(null, null,
+                new ArrayList<>(), null));
+    }
 
     @Test
     public void equals() {

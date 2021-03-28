@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalFlashcards.ACID;
 import static seedu.address.testutil.TypicalFlashcards.ATP;
 import static seedu.address.testutil.TypicalFlashcards.EINSTEIN;
@@ -24,10 +25,17 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.flashcard.FlashcardFilterPredicate;
-
+/**
+ * Contains integration tests (interaction with the Model) for {@code FilterCommand}.
+ */
 public class FilterCommandTest {
     private Model model = new ModelManager(getTypicalFlashBack(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalFlashBack(), new UserPrefs());
+
+    @Test
+    public void constructor_nullPredicate_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new FilterCommand(null));
+    }
 
     @Test
     public void equals() {
