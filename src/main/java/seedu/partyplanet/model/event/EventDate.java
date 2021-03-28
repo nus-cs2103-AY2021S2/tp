@@ -2,7 +2,8 @@ package seedu.partyplanet.model.event;
 
 import seedu.partyplanet.model.date.Date;
 
-/** Represents an Event's date in PartyPlanet.
+/**
+ * Represents an Event's date in PartyPlanet.
  * Guarantees: immutable; is always valid.
  */
 public class EventDate extends Date {

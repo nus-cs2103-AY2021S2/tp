@@ -49,6 +49,8 @@ PartyPlanet can get the planning of your birthday celebrations done faster than 
 
 </div>
 
+## Contact List Commands
+
 ### Adding contacts : `add`
 
 Adds a person to PartyPlanet's Contacts List.
@@ -160,12 +162,7 @@ Examples:
 * `tags` lists out all tags available.
 * `tags -f cs2103` lists out all tags that contain `cs2103`.
 
-### Undoing actions : `undo`
-
-Undoes the most recent action that changed PartyPlanet's Contact List.
-Can be invoked repeatedly until there is no more history from the current session.
-
-Format: `undo`
+## Event List Commands
 
 ### Adding events : `eadd`
 
@@ -230,7 +227,7 @@ Examples:
 
 Deletes event(s) from PartyPlanet's Events List. Similar to `delete`.
 
-Format: `edelete [INDEX (must be a positive integer) [INDEX]...]`
+Format: `edelete [INDEX [INDEX]...]`
 
 * If no parameters:
   * Deletes all events in the current events list.
@@ -242,6 +239,8 @@ Examples:
 
 * `edelete` deletes all events in the current Events List.
 * `edelete 1 2 3` deletes events at 1st, 2nd and 3rd indexes.
+
+## General Commmands
 
 ### Showing help : `help`
 
@@ -256,6 +255,21 @@ Format: `help [COMMAND]`
 Examples:
 * `help` lists all available commands.
 * `help list` shows the syntax and description for the `list` command.
+
+
+### Undoing actions : `undo`
+
+Undoes the most recent action that changed PartyPlanet's Contact or Event List.
+Can be invoked repeatedly until there is no more history from the current session.
+
+Format: `undo`
+
+### Redoing actions : `redo`
+
+Redoes the previous action that changed PartyPlanet's Contact or Event List.
+Can be invoked repeatedly until there are no more previously executed actions from the current session.
+
+Format: `undo`
 
 ### Toggle theme : `theme`
 
@@ -308,7 +322,7 @@ Action | Format, Examples
 **EAdd** | `eadd -n NAME [-d DATE] [-r REMARK]` <br> e.g. `eadd -n April Fools -d 2021-04-01 -r Prank the april babies!`
 **Clear** | `clear`
 **Delete** | `delete [{INDEX [INDEX]…​ | [--any] -t TAG [-t TAG]...}]`<br> e.g. `delete` <br> e.g. `delete 3 4 5` <br> e.g., `delete -t colleague`
-**EDelete** | `edelete [INDEX (must be a positive integer) [INDEX]...]` <br> e.g. `edelete 1 2 3`
+**EDelete** | `edelete [INDEX [INDEX]...]` <br> e.g. `edelete 1 2 3`
 **EDone** | `edone INDEX [INDEX]…​` <br> e.g. `edone 2 3 5`
 **Edit** | `edit {INDEX [-n NAME] [-p PHONE_NUMBER] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] | --remove -t TAG [-t TAG}…​}`<br> e.g.,`edit 2 -n James Lee -e jameslee@example.com`<br> e.g., `edit --remove -t colleague`
 **EEdit** | `eedit INDEX [-n NAME] [-d DATE] [-r REMARK]` <br> e.g. `eedit 3 -r Celebrate during first combined practice`
@@ -317,6 +331,7 @@ Action | Format, Examples
 **EList** | `elist [--exact] [--any] [-n NAME] [-r DETAIL] ... [-s SORT] [-o ORDER]` <br> e.g. `elist --any -n Christmas -r tarts`
 **Find tags** | `tags [-f KEYWORD]`<br> e.g.,`tags`<br> e.g., `tags -f cs2103`
 **Undo** | `undo`
+**Redo** | `redo`
 **Help** | `help [COMMAND]`<br> e.g., `help`<br> e.g.,`help list`
 **Toggle theme** | `theme`
 **Exit** | `exit`

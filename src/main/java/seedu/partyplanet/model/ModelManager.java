@@ -14,6 +14,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.partyplanet.commons.core.GuiSettings;
 import seedu.partyplanet.commons.core.LogsCenter;
+import seedu.partyplanet.commons.util.State;
 import seedu.partyplanet.commons.util.StateHistory;
 import seedu.partyplanet.model.event.Event;
 import seedu.partyplanet.model.person.Person;
@@ -42,7 +43,8 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.eventBook = new EventBook(eventBook);
-        this.stateHistory = new StateHistory(addressBook);
+        State savedState = new State("Loading from saved data", addressBook, eventBook);
+        this.stateHistory = new StateHistory(savedState);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredEvents = new FilteredList<>(this.eventBook.getEventList());
@@ -107,13 +109,13 @@ public class ModelManager implements Model {
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+        return this.addressBook;
     }
 
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return this.addressBook.hasPerson(person);
     }
 
     @Override
@@ -134,13 +136,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addState() {
-        stateHistory.addState(getAddressBook());
+    public void addState(String command) {
+        stateHistory.addState(new State(command, addressBook, eventBook));
     }
 
     @Override
     public StateHistory getStateHistory() {
-        return stateHistory;
+        return this.stateHistory;
     }
 
 
