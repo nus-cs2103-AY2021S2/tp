@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import seedu.address.model.person.Person;
+
 /**
  * Represents the result of a command execution.
  */
@@ -14,16 +16,32 @@ public class CommandResult {
     /** Help information should be shown to the user. */
     private final boolean showHelp;
 
+    /** Editor should be shown to the user. */
+    private final boolean showEdit;
+
+    /** Patient whose view box will be shown to the user. */
+    private final Person patient;
+
     /** The application should exit. */
     private final boolean exit;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean showEdit, Person patient, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
+        this.showEdit = showEdit;
+        this.patient = patient;
         this.exit = exit;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields and {@code showEdit}
+     * set to default value.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+        this(feedbackToUser, showHelp, false, null, exit);
     }
 
     /**
@@ -42,8 +60,20 @@ public class CommandResult {
         return showHelp;
     }
 
+    public boolean isShowEdit() {
+        return showEdit;
+    }
+
+    public boolean isShowViewBox() {
+        return patient != null;
+    }
+
     public boolean isExit() {
         return exit;
+    }
+
+    public Person getPatient() {
+        return patient;
     }
 
     @Override

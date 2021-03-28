@@ -8,32 +8,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import seedu.address.model.person.Person;
-
 /**
  * Represents a Appointment of a Patient.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class MedicalRecord {
     // attributes from appointment
-    private Person person;
     private LocalDateTime date;
     private String zoomMeetingUrl;
     private List<Section> sections;
 
-    /**
-     * Every field must be present and not null.
-     */
-    public MedicalRecord(Person person, LocalDateTime date, List<String> sections) {
-        this.person = person;
-        this.date = date;
-        this.sections = new ArrayList<>();
-        for (String section : sections) {
-            this.sections.add(new Section(section));
-        }
-    }
-
-    //TODO REMOVE PERSON FROM MEDICAL RECORD
     /**
      * Every field must be present and not null.
      */
@@ -46,17 +30,12 @@ public class MedicalRecord {
      * Every field must be present and not null.
      */
     public MedicalRecord(Appointment appointment, List<String> sections) {
-        this.person = appointment.getPerson();
         this.date = appointment.getDate();
         this.zoomMeetingUrl = appointment.getZoomMeetingUrl();
         this.sections = new ArrayList<>();
         for (String section : sections) {
             this.sections.add(new Section(section));
         }
-    }
-
-    public Person getPerson() {
-        return person;
     }
 
     public LocalDateTime getDate() {

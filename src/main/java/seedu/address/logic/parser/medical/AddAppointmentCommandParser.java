@@ -47,13 +47,4 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         System.out.println("prefix date: " + date.toString());
         return new AddAppointmentCommand(index, date);
     }
-
-    //Is this needed in AddAppointmentCommandParser? Seems unused.
-    ///**
-    // * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-    // * {@code ArgumentMultimap}.
-    // */
-    //private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-    //    return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    //}
 }

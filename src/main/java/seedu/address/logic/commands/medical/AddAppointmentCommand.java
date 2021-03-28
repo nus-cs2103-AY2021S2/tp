@@ -17,9 +17,11 @@ import seedu.address.model.Model;
 import seedu.address.model.medical.Appointment;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Height;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Weight;
 import seedu.address.model.tag.Tag;
 
 public class AddAppointmentCommand extends Command {
@@ -27,10 +29,10 @@ public class AddAppointmentCommand extends Command {
     public static final String COMMAND_WORD = "appt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an appointment with a patient "
-            + "by the index number used in the displayed person list. \n"
+            + "identified by the index number used in the displayed person list. \n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_DATE + "DATE] \n" + Appointment.MESSAGE_CONSTRAINTS_DATE_FORMAT
-            + "\n Example: " + COMMAND_WORD + " 1 " + PREFIX_DATE + "24051800";
+            + "\nExample: " + COMMAND_WORD + " 1 " + PREFIX_DATE + "24051800";
 
     public static final String MESSAGE_SUCCESS = "Appointment added: %s";
 
@@ -59,12 +61,12 @@ public class AddAppointmentCommand extends Command {
         }
 
         Person person = lastShownList.get(index.getZeroBased());
-        Appointment appt = new Appointment(person, date);
-        Person editedPerson = createPersonWithAppointment(person, appt);
+        Appointment appointment = new Appointment(date);
+        Person editedPerson = createPersonWithAppointment(person, appointment);
 
         model.setPerson(person, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, appt));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, appointment.getDateDisplay()));
     }
 
     /**
@@ -78,8 +80,12 @@ public class AddAppointmentCommand extends Command {
         Phone updatedPhone = personToEdit.getPhone();
         Email updatedEmail = personToEdit.getEmail();
         Address updatedAddress = personToEdit.getAddress();
+        Height updatedHeight = personToEdit.getHeight();
+        Weight updatedWeight = personToEdit.getWeight();
         Set<Tag> updatedTags = personToEdit.getTags();
-        Person p = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        List<Appointment> updatedAppointments = personToEdit.getAppointments();
+        Person p = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedHeight, updatedWeight,
+                updatedTags, updatedAppointments);
         p.addAppointment(appt);
         return p;
     }

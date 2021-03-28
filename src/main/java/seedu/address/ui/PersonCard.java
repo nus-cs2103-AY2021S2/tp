@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.medical.Appointment;
 import seedu.address.model.person.Person;
 
 /**
@@ -39,7 +40,13 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label height;
+    @FXML
+    private Label weight;
+    @FXML
     private FlowPane tags;
+    @FXML
+    private FlowPane appointments;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -52,9 +59,14 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        height.setText(person.getHeight().value);
+        weight.setText(person.getWeight().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        person.getAppointments().stream()
+                .min(Comparator.comparing(Appointment::getDate))
+                .ifPresent(appt -> appointments.getChildren().add(new Label(appt.getDateDisplay())));
     }
 
     @Override
