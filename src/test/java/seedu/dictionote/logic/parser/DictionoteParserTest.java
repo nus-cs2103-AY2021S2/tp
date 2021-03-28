@@ -38,6 +38,10 @@ import seedu.dictionote.logic.commands.HelpCommand;
 import seedu.dictionote.logic.commands.ListCommandCommand;
 import seedu.dictionote.logic.commands.ListContactCommand;
 import seedu.dictionote.logic.commands.OpenCommand;
+import seedu.dictionote.logic.commands.SetContactDividerPositionCommand;
+import seedu.dictionote.logic.commands.SetDictionaryDividerPositionCommand;
+import seedu.dictionote.logic.commands.SetMainDividerPositionCommand;
+import seedu.dictionote.logic.commands.SetNoteDividerPositionCommand;
 import seedu.dictionote.logic.commands.ShowDictionaryContentCommand;
 import seedu.dictionote.logic.commands.ShowNoteCommand;
 import seedu.dictionote.logic.commands.ToggleDictionaryOrientationCommand;
@@ -198,6 +202,30 @@ public class DictionoteParserTest {
                 CloseCommand.COMMAND_WORD + " " + VALID_UI_OPTIONS[i]);
             assertEquals(new CloseCommand(EXPECTED_UI_OPTION[i]), command);
         }
+    }
+
+    @Test
+    public void parseCommand_setContactDividerPosition() throws Exception {
+        assertTrue(parser.parseCommand(SetContactDividerPositionCommand.COMMAND_WORD + " 6")
+            instanceof SetContactDividerPositionCommand);
+    }
+
+    @Test
+    public void parseCommand_setDictionaryDividerPosition() throws Exception {
+        assertTrue(parser.parseCommand(SetDictionaryDividerPositionCommand.COMMAND_WORD + " 6")
+            instanceof SetDictionaryDividerPositionCommand);
+    }
+
+    @Test
+    public void parseCommand_setNoteDividerPosition() throws Exception {
+        assertTrue(parser.parseCommand(SetNoteDividerPositionCommand.COMMAND_WORD + " 6")
+            instanceof SetNoteDividerPositionCommand);
+    }
+
+    @Test
+    public void parseCommand_setMainDividerPosition() throws Exception {
+        assertTrue(parser.parseCommand(SetMainDividerPositionCommand.COMMAND_WORD + " 6")
+            instanceof SetMainDividerPositionCommand);
     }
 
     @Test
