@@ -343,6 +343,11 @@ public class AddContactCommandTest {
         public void sortNote() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void mergeNote(Note firstNote, Note secondNote) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
