@@ -424,7 +424,6 @@ Step 6. FlashBack is then updated with the new filtered flashcard list.
 
 The following sequence diagram shows how the filter operation works:
 ![FilterSequenceDiagram](images/FilterSequenceDiagram.png)
-<img src="images/FilterSequenceDiagram.png" alt="FilterSequenceDiagram" width="1750" height="760"/>
 
 <div markdown="span" class="alert alert-info">
 
