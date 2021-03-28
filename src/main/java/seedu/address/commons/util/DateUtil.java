@@ -36,7 +36,7 @@ public class DateUtil {
 
     /**
      * Encodes a date passed as a String into a LocalDate.
-     * @param date Date in the yyyy-mm-dd format.
+     * @param date Date in the uuuu-mm-dd format.
      * @return A LocalDate object.
      * @throws DateConversionException Occurs when a date had been passed in with the wrong format.
      */
@@ -50,9 +50,9 @@ public class DateUtil {
     }
 
     /**
-     * Decodes a date passed as a LocalDate into a String in the dd MMM yyyy format.
+     * Decodes a date passed as a LocalDate into a String in the dd MMM uuuu format.
      * @param date A LocalDate object.
-     * @return A date String in the dd MMM yyyy format.
+     * @return A date String in the dd MMM uuuu format.
      */
     public static String decodeDate(LocalDate date) {
         requireNonNull(date);
@@ -60,19 +60,19 @@ public class DateUtil {
     }
 
     /**
-     * Decodes a date passed as a LocalDate into a String in the EEEE, dd MMM yyyy format.
+     * Decodes a date passed as a LocalDate into a String in the EEEE, dd MMM uuuu format.
      * @param date A LocalDate object.
-     * @return A date String in the EEEE, dd MMM yyyy format.
+     * @return A date String in the EEEE, dd MMM uuuu format.
      */
     public static String decodeDateWithDay(LocalDate date) {
         requireNonNull(date);
-        return date.format(DateTimeFormatter.ofPattern("EEEE, dd MMM yyyy"));
+        return date.format(DateTimeFormatter.ofPattern("EEEE, dd MMM uuuu"));
     }
 
     /**
-     * Decodes a date passed as a LocalDate into a String in the yyyy-MM-dd format.
+     * Decodes a date passed as a LocalDate into a String in the uuuu-MM-dd format.
      * @param date A LocalDate object.
-     * @return A date String in the yyyy-MM-dd format.
+     * @return A date String in the uuuu-MM-dd format.
      */
     public static String decodeDateForStorage(LocalDate date) {
         requireNonNull(date);
