@@ -42,7 +42,11 @@ public class Messages {
     public static final String MESSAGE_PARSER_INTERVAL_CONSTRAINTS =
             "Interval should be one of: NONE, DAILY, WEEKLY, FORTNIGHTLY, MONTHLY, YEARLY";
     public static final String MESSAGE_PARSER_DATE_CONSTRAINTS =
-            "Date should be in the form dd-MM-yyyy";
+                    "Date should be a valid date in one of the following formats:\n"
+                    + "\t- dd-MM-yyyy\t(e.g. 01-01-2021)\n"
+                    + "\t- ddMMyyyy\t(e.g. 01012021)\n"
+                    + "\t- dd/MM/yyyy\t(e.g. 01/01/2021)\n"
+                    + "\t- dd.MM.yyyy\t(e.g. 01.01.2021)";
 
     public static final String MESSAGE_NO_EVENTS_TO_DISPLAY = "You have no events today!";
     public static final String MESSAGE_NO_DEADLINES_TO_DISPLAY = "You have no deadlines today!";
