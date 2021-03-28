@@ -4,21 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.module.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
-import java.util.Set;
 
 import seedu.module.commons.core.Messages;
 import seedu.module.commons.core.index.Index;
 import seedu.module.logic.commands.exceptions.CommandException;
 import seedu.module.model.Model;
-import seedu.module.model.tag.Tag;
-import seedu.module.model.task.Description;
 import seedu.module.model.task.DoneStatus;
-import seedu.module.model.task.Module;
-import seedu.module.model.task.Name;
-import seedu.module.model.task.Recurrence;
 import seedu.module.model.task.Task;
-import seedu.module.model.task.Time;
-import seedu.module.model.task.Workload;
 
 public class DoneCommand extends Command {
     public static final String COMMAND_WORD = "done";
@@ -61,28 +53,10 @@ public class DoneCommand extends Command {
     private static Task createDoneTask(Task taskToMarkDone) {
         assert taskToMarkDone != null;
 
-        Name name = taskToMarkDone.getName();
-        Time startTime = taskToMarkDone.getStartTime();
-        Time deadline = taskToMarkDone.getDeadline();
-        Module module = taskToMarkDone.getModule();
-        Description description = taskToMarkDone.getDescription();
-        Workload workload = taskToMarkDone.getWorkload();
         DoneStatus newDoneStatus = new DoneStatus(true);
-        Recurrence recurrence = taskToMarkDone.getRecurrence();
-        Set<Tag> tags = taskToMarkDone.getTags();
 
-        if (!taskToMarkDone.isRecurring() && !taskToMarkDone.isDeadline()) {
-            return new Task(name, startTime, deadline, module, description, workload, newDoneStatus, tags);
+        return Task.setDoneStatus(taskToMarkDone, newDoneStatus);
 
-        } else if (!taskToMarkDone.isRecurring() && taskToMarkDone.isDeadline()) {
-            return new Task(name, deadline, module, description, workload, newDoneStatus, tags);
-
-        } else if (taskToMarkDone.isRecurring() && !taskToMarkDone.isDeadline()) {
-            return new Task(name, startTime, deadline, module, description, workload, newDoneStatus, recurrence, tags);
-
-        } else {
-            return new Task(name, deadline, module, description, workload, newDoneStatus, recurrence, tags);
-        }
     }
 
     @Override

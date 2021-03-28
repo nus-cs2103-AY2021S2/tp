@@ -34,24 +34,24 @@ public class TimeTest {
     @Test
     public void isValidDeadline() {
         // null deadline number
-        assertThrows(NullPointerException.class, () -> Time.isValidDeadline(null));
+        assertThrows(NullPointerException.class, () -> Time.isValidTime(null));
 
         // invalid deadline numbers
-        assertFalse(Time.isValidDeadline("")); // empty string
-        assertFalse(Time.isValidDeadline(" ")); // spaces only
-        assertFalse(Time.isValidDeadline("2001-13-01 12:00")); // Date is out of range
-        assertFalse(Time.isValidDeadline("2001-01-02 34:00")); // Time is out of range
-        assertFalse(Time.isValidDeadline("23:59")); // only HH:mm
-        assertFalse(Time.isValidDeadline("2021/12/20 23:59")); //Date input not yyyy-MM-dd
-        assertFalse(Time.isValidDeadline("2021-02-20 1230PM")); //time input not HH:mm
-        assertFalse(Time.isValidDeadline("12-Jan-2021 12:59PM")); //date not in yyyy-MM-dd
-        assertFalse(Time.isValidDeadline("24/12/21 23:59")); //date not in yyyy-MM-dd
-        assertFalse(Time.isValidDeadline("03-04-2021")); //invalid yyyy-MM-dd input without HH:mm
+        assertFalse(Time.isValidTime("")); // empty string
+        assertFalse(Time.isValidTime(" ")); // spaces only
+        assertFalse(Time.isValidTime("2001-13-01 12:00")); // Date is out of range
+        assertFalse(Time.isValidTime("2001-01-02 34:00")); // Time is out of range
+        assertFalse(Time.isValidTime("23:59")); // only HH:mm
+        assertFalse(Time.isValidTime("2021/12/20 23:59")); //Date input not yyyy-MM-dd
+        assertFalse(Time.isValidTime("2021-02-20 1230PM")); //time input not HH:mm
+        assertFalse(Time.isValidTime("12-Jan-2021 12:59PM")); //date not in yyyy-MM-dd
+        assertFalse(Time.isValidTime("24/12/21 23:59")); //date not in yyyy-MM-dd
+        assertFalse(Time.isValidTime("03-04-2021")); //invalid yyyy-MM-dd input without HH:mm
 
         // valid deadline numbers
-        assertTrue(Time.isValidDeadline("2001-01-02 12:00"));
-        assertTrue(Time.isValidDeadline("2015-01-02 23:00"));
-        assertTrue(Time.isValidDeadline("2021-02-02 23:59"));
-        assertTrue(Time.isValidDeadline("2021-03-17")); //to test for only date input
+        assertTrue(Time.isValidTime("2001-01-02 12:00"));
+        assertTrue(Time.isValidTime("2015-01-02 23:00"));
+        assertTrue(Time.isValidTime("2021-02-02 23:59"));
+        assertTrue(Time.isValidTime("2021-03-17")); //to test for only date input
     }
 }

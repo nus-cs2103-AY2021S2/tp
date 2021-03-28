@@ -29,9 +29,10 @@ public class DoneCommandTest {
         DoneCommand doneCommand = new DoneCommand(INDEX_FIRST_TASK);
 
         ModelManager expectedModel = new ModelManager(model.getModuleBook(), new UserPrefs());
-        Task referenceTask = new Task(taskToMarkDone.getName(), taskToMarkDone.getStartTime(),
+        Task referenceTask = new Task(taskToMarkDone.getName(), taskToMarkDone.getStartTimeWrapper(),
                 taskToMarkDone.getDeadline(), taskToMarkDone.getModule(), taskToMarkDone.getDescription(),
-                taskToMarkDone.getWorkload(), new DoneStatus(true), taskToMarkDone.getTags());
+                taskToMarkDone.getWorkload(), new DoneStatus(true), taskToMarkDone.getRecurrenceWrapper(),
+                taskToMarkDone.getTags());
         expectedModel.setTask(taskToMarkDone, referenceTask);
 
         String expectedMessage = String.format(DoneCommand.MESSAGE_DONE_TASK_SUCCESS, referenceTask);
@@ -45,9 +46,10 @@ public class DoneCommandTest {
         DoneCommand doneCommand = new DoneCommand(INDEX_FOURTH_TASK);
 
         ModelManager expectedModel = new ModelManager(model.getModuleBook(), new UserPrefs());
-        Task referenceTask = new Task(taskToMarkDone.getName(), taskToMarkDone.getDeadline(),
-                taskToMarkDone.getModule(), taskToMarkDone.getDescription(), taskToMarkDone.getWorkload(),
-                new DoneStatus(true), taskToMarkDone.getTags());
+        Task referenceTask = new Task(taskToMarkDone.getName(), taskToMarkDone.getStartTimeWrapper(),
+                taskToMarkDone.getDeadline(), taskToMarkDone.getModule(), taskToMarkDone.getDescription(),
+                taskToMarkDone.getWorkload(), new DoneStatus(true), taskToMarkDone.getRecurrenceWrapper(),
+                taskToMarkDone.getTags());
         expectedModel.setTask(taskToMarkDone, referenceTask);
 
         String expectedMessage = String.format(DoneCommand.MESSAGE_DONE_TASK_SUCCESS, referenceTask);
@@ -66,9 +68,9 @@ public class DoneCommandTest {
     @Test
     public void execute_doneAlreadyUnfilteredList_throwsCommandException() {
         Task originalTask = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        Task taskDone = new Task(originalTask.getName(), originalTask.getStartTime(), originalTask.getDeadline(),
+        Task taskDone = new Task(originalTask.getName(), originalTask.getStartTimeWrapper(), originalTask.getDeadline(),
                 originalTask.getModule(), originalTask.getDescription(), originalTask.getWorkload(),
-                new DoneStatus(true), originalTask.getTags());
+                new DoneStatus(true), originalTask.getRecurrenceWrapper(), originalTask.getTags());
         model.setTask(originalTask, taskDone);
         DoneCommand doneCommand = new DoneCommand(INDEX_FIRST_TASK);
 
@@ -86,9 +88,10 @@ public class DoneCommandTest {
         DoneCommand doneCommand = new DoneCommand(INDEX_FIRST_TASK);
 
         Model expectedModel = new ModelManager(model.getModuleBook(), new UserPrefs());
-        Task referenceTask = new Task(taskToMarkDone.getName(), taskToMarkDone.getStartTime(),
+        Task referenceTask = new Task(taskToMarkDone.getName(), taskToMarkDone.getStartTimeWrapper(),
                 taskToMarkDone.getDeadline(), taskToMarkDone.getModule(), taskToMarkDone.getDescription(),
-                taskToMarkDone.getWorkload(), new DoneStatus(true), taskToMarkDone.getTags());
+                taskToMarkDone.getWorkload(), new DoneStatus(true), taskToMarkDone.getRecurrenceWrapper(),
+                taskToMarkDone.getTags());
         expectedModel.setTask(taskToMarkDone, referenceTask);
 
         String expectedMessage = String.format(DoneCommand.MESSAGE_DONE_TASK_SUCCESS, referenceTask);
@@ -114,9 +117,9 @@ public class DoneCommandTest {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
         Task originalTask = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        Task taskDone = new Task(originalTask.getName(), originalTask.getStartTime(), originalTask.getDeadline(),
+        Task taskDone = new Task(originalTask.getName(), originalTask.getStartTimeWrapper(), originalTask.getDeadline(),
                 originalTask.getModule(), originalTask.getDescription(), originalTask.getWorkload(),
-                new DoneStatus(true), originalTask.getTags());
+                new DoneStatus(true), originalTask.getRecurrenceWrapper(), originalTask.getTags());
         model.setTask(originalTask, taskDone);
         DoneCommand doneCommand = new DoneCommand(INDEX_FIRST_TASK);
 

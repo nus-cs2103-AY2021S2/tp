@@ -5,6 +5,7 @@ import static seedu.module.model.task.Time.DATE_TIME_FORMATTER_WITH_TIME;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.module.commons.core.optionalfield.OptionalField;
 import seedu.module.model.tag.Tag;
 import seedu.module.model.task.Description;
 import seedu.module.model.task.DoneStatus;
@@ -30,15 +31,13 @@ public class TaskBuilder {
     public static final String DEFAULT_RECURRENCE = "monthly";
 
     private Name name;
-    private Time startTime;
+    private OptionalField<Time> startTime;
     private Time deadline;
     private Module module;
     private Description description;
     private Workload workload;
     private DoneStatus doneStatus;
-    private Recurrence recurrence;
-    private boolean isRecurringTask;
-    private boolean isDeadline;
+    private OptionalField<Recurrence> recurrence;
     private Set<Tag> tags;
 
     /**
@@ -46,15 +45,14 @@ public class TaskBuilder {
      */
     public TaskBuilder() {
         name = new Name(DEFAULT_NAME);
+        startTime = new OptionalField<>(null);
         deadline = new Time(DEFAULT_DEADLINE);
         module = new Module(DEFAULT_MODULE);
         description = new Description(DEFAULT_DESCRIPTION);
         workload = new Workload(DEFAULT_WORKLOAD);
         doneStatus = new DoneStatus(DEFAULT_DONE);
-        isRecurringTask = false;
-        this.recurrence = null;
+        recurrence = new OptionalField<>(null);
         tags = new HashSet<>();
-        isDeadline = true;
     }
 
     /**
@@ -62,26 +60,22 @@ public class TaskBuilder {
      */
     public TaskBuilder(Task taskToCopy) {
         name = taskToCopy.getName();
-        startTime = taskToCopy.getStartTime();
+        startTime = taskToCopy.getStartTimeWrapper();
         deadline = taskToCopy.getDeadline();
         module = taskToCopy.getModule();
         description = taskToCopy.getDescription();
         workload = taskToCopy.getWorkload();
         doneStatus = taskToCopy.getDoneStatus();
-
-        recurrence = taskToCopy.getRecurrence();
-        isRecurringTask = taskToCopy.isRecurring();
-
+        recurrence = taskToCopy.getRecurrenceWrapper();
         tags = new HashSet<>(taskToCopy.getTags());
-        isDeadline = taskToCopy.isDeadline();
     }
 
     /**
      * Activate the {@code StartTime} of the {@code Task} that we are building.
      */
     public TaskBuilder activateStartTime() {
-        this.startTime = new Time(this.deadline.time.minusHours(1).format(DATE_TIME_FORMATTER_WITH_TIME));
-        this.isDeadline = false;
+        this.startTime = new OptionalField<>(new Time(this.deadline.time.minusHours(1)
+                .format(DATE_TIME_FORMATTER_WITH_TIME)));
         return this;
     }
 
@@ -92,8 +86,7 @@ public class TaskBuilder {
      * @return a TaskBuilder with startTime field.
      */
     public TaskBuilder activateStartTime(String validTime) {
-        this.startTime = new Time(validTime);
-        this.isDeadline = false;
+        this.startTime = new OptionalField<>(new Time(validTime));
         return this;
     }
 
@@ -101,8 +94,7 @@ public class TaskBuilder {
      * Deactivate the {@code StartTime} of the {@code Task} that we are building.
      */
     public TaskBuilder deactivateStartTime() {
-        this.startTime = null;
-        this.isDeadline = true;
+        this.startTime = new OptionalField<>(null);
         return this;
     }
 
@@ -135,11 +127,9 @@ public class TaskBuilder {
      */
     public TaskBuilder withStartTime(String startTime) {
         if (startTime.equals("")) {
-            this.startTime = null;
-            this.isDeadline = true;
+            this.startTime = new OptionalField<>(null);
         } else {
-            this.isDeadline = false;
-            this.startTime = new Time(startTime);
+            this.startTime = new OptionalField<>(new Time(startTime));
         }
         return this;
     }
@@ -181,10 +171,9 @@ public class TaskBuilder {
      */
     public TaskBuilder withRecurrence(String recurrence) {
         if (recurrence.equals("")) {
-            this.recurrence = null;
+            this.recurrence = new OptionalField<>(null);
         } else {
-            this.isRecurringTask = true;
-            this.recurrence = new Recurrence(recurrence);
+            this.recurrence = new OptionalField<>(new Recurrence(recurrence));
         }
         return this;
     }
@@ -195,16 +184,6 @@ public class TaskBuilder {
      * @return new Task object.
      */
     public Task build() {
-        if (!isRecurringTask && !isDeadline) {
-            return new Task(name, startTime, deadline, module, description, workload, doneStatus, tags);
-
-        } else if (!isRecurringTask && isDeadline) {
-            return new Task(name, deadline, module, description, workload, doneStatus, tags);
-
-        } else if (isRecurringTask && !isDeadline) {
-            return new Task(name, startTime, deadline, module, description, workload, doneStatus, recurrence, tags);
-        } else {
-            return new Task(name, deadline, module, description, workload, doneStatus, recurrence, tags);
-        }
+        return new Task(name, startTime, deadline, module, description, workload, doneStatus, recurrence, tags);
     }
 }

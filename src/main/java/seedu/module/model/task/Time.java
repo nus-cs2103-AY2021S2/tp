@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 
 /**
  * Represents a Task's deadline in the module book.
- * Guarantees: immutable; is valid as declared in {@link #isValidDeadline(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidTime(String)}
  */
 public class Time implements Comparable<Time> {
 
@@ -35,7 +35,7 @@ public class Time implements Comparable<Time> {
      */
     public Time(String deadline) {
         requireNonNull(deadline);
-        checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTime(deadline), MESSAGE_CONSTRAINTS);
         value = deadline;
         String dateValue = value.split(" ")[0];
         if (value.length() == dateValue.length()) {
@@ -70,7 +70,7 @@ public class Time implements Comparable<Time> {
     /**
      * Returns true if a given string is a valid deadline.
      */
-    public static boolean isValidDeadline(String test) {
+    public static boolean isValidTime(String test) {
         return isValidDate(test) || (isValidDateAndTime(test));
     }
 
