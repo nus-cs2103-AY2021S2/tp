@@ -10,6 +10,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Timeslot;
@@ -86,25 +88,30 @@ public class TimeslotParser {
      * @throws NullPointerException if the {@code timeInput} does not
      * conform to the expected time format.
      */
-    public static LocalDateTime parseNextDateTime(String userInput) throws ParseException, NullPointerException {
+    public static LocalDateTime parseNextDateTime(String userInput) throws ParseException {
+        boolean isInvalidTime = false;
+        final Pattern NEXT_DATE_TIME_FORMAT = Pattern.compile("(?<nextKeyword>\\w+)\\s(?<nextTimePeriod>\\w+)"
+                        + "\\s(?<timeInput>.*)", Pattern.CASE_INSENSITIVE);
+        final Matcher nextDateTimeMatcher = NEXT_DATE_TIME_FORMAT.matcher(userInput);
+
         try {
             LocalDateTime currentDateTime = LocalDateTime.now().withSecond(0).withNano(0);
-            String[] nextDateTimeInputArray = userInput.split(REMOVE_WHITESPACE_REGEX);
-            String keyword = nextDateTimeInputArray[1];
             LocalDateTime parsedDate = null;
 
-            if (Arrays.stream(Day.values()).anyMatch(e -> e.name().equals(keyword))) {
-                parsedDate = currentDateTime.with(TemporalAdjusters.next(DayOfWeek.valueOf(keyword)));
-            } else if (keyword.contains("MONTH")) {
-                parsedDate = currentDateTime.plusMonths(1);
-            } else if (keyword.contains("YEAR")) {
-                parsedDate = currentDateTime.plusYears(1);
-            } else {
-                throw new ParseException(MESSAGE_INVALID_TIME_FORMAT);
-            }
+            if (nextDateTimeMatcher.matches()) {
+                final String nextTimePeriod = nextDateTimeMatcher.group("nextTimePeriod");
+                final String timeInput = nextDateTimeMatcher.group("timeInput").trim();
 
-            if (nextDateTimeInputArray.length > 2) {
-                String timeInput = nextDateTimeInputArray[2];
+                if (Arrays.stream(Day.values()).anyMatch(e -> e.name().equals(nextTimePeriod))) {
+                    parsedDate = currentDateTime.with(TemporalAdjusters.next(DayOfWeek.valueOf(nextTimePeriod)));
+                } else if (nextTimePeriod.contains("MONTH")) {
+                    parsedDate = currentDateTime.plusMonths(1);
+                } else if (nextTimePeriod.contains("YEAR")) {
+                    parsedDate = currentDateTime.plusYears(1);
+                } else {
+                    isInvalidTime = true;
+                }
+
                 int[] hoursMinutesArray = parseTime(timeInput);
                 parsedDate = parsedDate.withHour(hoursMinutesArray[0]);
                 parsedDate = parsedDate.withMinute(hoursMinutesArray[1]);
@@ -114,9 +121,10 @@ public class TimeslotParser {
             return parsedDate;
 
         } catch (DateTimeParseException e) {
-            throw new ParseException(MESSAGE_INVALID_NEXT_DATE_TIME_FORMAT);
-        } catch (NullPointerException e) {
-            throw new NullPointerException(MESSAGE_INVALID_TIME_FORMAT);
+            String messageUsage = isInvalidTime ? MESSAGE_INVALID_TIME_FORMAT
+                    : MESSAGE_INVALID_NEXT_DATE_TIME_FORMAT;
+
+            throw new ParseException(messageUsage);
         }
     }
 
@@ -130,9 +138,12 @@ public class TimeslotParser {
      */
     public static int[] parseTime(String timeInput) throws NullPointerException {
         try {
-            String revisedTimeInput = removeMeridian(timeInput);
+            String revisedTimeInput = (timeInput.contains("PM") || timeInput.contains("AM"))
+                    ? removeMeridian(timeInput)
+                    : timeInput;
             String[] hoursMinutesRawArray = revisedTimeInput.split(":");
             int[] hoursMinutesIntegerArray = Arrays.stream(hoursMinutesRawArray).mapToInt(Integer::parseInt).toArray();
+
             if (timeInput.contains("PM")) {
                 hoursMinutesIntegerArray[0] = (hoursMinutesIntegerArray[0]) + 12;
             }
