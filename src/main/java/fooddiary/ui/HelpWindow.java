@@ -45,8 +45,8 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private Button copyButton;
 
-    @FXML
-    private Label helpMessage;
+//    @FXML
+//    private Label helpMessage;
 
     @FXML
     private TextArea helpMessageField;
@@ -58,21 +58,21 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
-        helpMessage.setText(HELP_MESSAGE);
+//        helpMessage.setText(HELP_MESSAGE);
 //        helpMessageField = new TextArea("Hello");
         helpMessageField.setText(HELP_MESSAGE);
 //        helpMessageField.setEditable(false);
 //        assert(helpMessage.getWidth() != 0);
-        double width = helpMessage.getWidth();
+//        double width = helpMessage.getWidth();
 
 //        helpMessageField.setPrefWidth(width);
-        double height = helpMessage.getHeight();
+//        double height = helpMessage.getHeight();
 //        helpMessageField.setPrefHeight(height);
 //        helpMessageField.prefColumnCountProperty().bind(helpMessage.length());
 
 //        helpMessageField.setPrefWidth(600);
-
-        helpMessage.setVisible(false);
+//
+//        helpMessage.setVisible(false);
 //        helpMessageField.textProperty().bindBidirectional(helpMessage.textProperty());
 
 //        root.addAll(helpMessageField);
