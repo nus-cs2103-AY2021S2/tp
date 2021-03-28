@@ -54,6 +54,30 @@ public class DeadlineList {
     }
 
     /**
+     * Get the {@code Deadline} specified by index.
+     *
+     * @param i index specifies the target {@code Deadline}.
+     * @return {@code Deadline} at this index.
+     */
+    public CompletableDeadline getDeadline(Integer i) {
+        requireNonNull(i);
+
+        return this.deadlines.get(i);
+    }
+
+    /**
+     * Set the {@code Deadline} specified by index with a new {@code Deadline}.
+     *
+     * @param index index specifies the target {@code Deadline}.
+     * @param deadline new {@code Deadline} for this index.
+     */
+    public void setDeadline(Integer index, CompletableDeadline deadline) {
+        requireNonNull(deadline);
+
+        this.deadlines.set(index, deadline);
+    }
+
+    /**
      * Returns {@code deadlines} as an {@code ObservableList<CompletableDeadline>}
      *
      * @return An {@code ObservableList<CompletableDeadline>}
@@ -129,6 +153,25 @@ public class DeadlineList {
             }
         }
         return false;
+    }
+
+    /**
+     * Checks if a {@code Deadline} in the {@code DeadlineList} done or not.
+     *
+     * @param index index of that {@code Deadline}.
+     * @return true if that {@code Deadline} is done, false otherwise.
+     */
+    public boolean checkIsDone(Integer index) {
+        return deadlines.get(index).getIsDone();
+    }
+
+    /**
+     * Returns the size of the {@code DeadlineList}.
+     *
+     * @return size of the {@code DeadlineList}.
+     */
+    public int size() {
+        return deadlines.size();
     }
 
     @Override

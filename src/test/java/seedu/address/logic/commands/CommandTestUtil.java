@@ -6,10 +6,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_INTERVAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REPEATABLE_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REPEATABLE_INTERVAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -47,12 +47,12 @@ public class CommandTestUtil {
     public static final String VALID_INDEX_TWO = "2";
     public static final String VALID_DESCRIPTION = " " + PREFIX_DESCRIPTION + "CS2106 Tutorial";
     public static final String VALID_DEADLINE_DATE = " " + PREFIX_DEADLINE_DATE + "01-01-2020";
-    public static final String VALID_REPEATABLE_DATE = " " + PREFIX_REPEATABLE_DATE + "01-01-2020";
-    public static final String VALID_REPEATABLE_INTERVAL = " " + PREFIX_REPEATABLE_INTERVAL + "WEEKLY";
+    public static final String VALID_EVENT_DATE = " " + PREFIX_EVENT_DATE + "01-01-2020";
+    public static final String VALID_EVENT_INTERVAL = " " + PREFIX_EVENT_INTERVAL + "WEEKLY";
     public static final String INVALID_DESCRIPTION = " " + PREFIX_DESCRIPTION + "";
-    public static final String INVALID_DEADLINE_DATE = " " + PREFIX_DEADLINE_DATE + "01012020";
-    public static final String INVALID_REPEATABLE_DATE = " " + PREFIX_REPEATABLE_DATE + "01012020";
-    public static final String INVALID_REPEATABLE_INTERVAL = " " + PREFIX_REPEATABLE_INTERVAL + "Sometimes";
+    public static final String INVALID_DEADLINE_DATE = " " + PREFIX_DEADLINE_DATE + "01/01-2020";
+    public static final String INVALID_EVENT_DATE = " " + PREFIX_EVENT_DATE + "01-01/2020";
+    public static final String INVALID_EVENT_INTERVAL = " " + PREFIX_EVENT_INTERVAL + "Sometimes";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;

@@ -3,12 +3,12 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.INDEX_STANDALONE_ONE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESCRIPTION;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_EVENT_DATE;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_EVENT_INTERVAL;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_INDEX_STANDALONE;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_REPEATABLE_DATE;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_REPEATABLE_INTERVAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_REPEATABLE_DATE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_REPEATABLE_INTERVAL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_DATE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_INTERVAL;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
@@ -32,11 +32,11 @@ public class AddEventCommandParserTest {
     public void parse_allFieldsPresent_success() {
         Index expectedProjectIndex = Index.fromOneBased(1);
         Event expectedEvent = new EventBuilder().withDescription("CS2106 Tutorial")
-                .withAtDate(LocalDate.of(2020, 01, 01)).withInterval(Interval.WEEKLY).build();
+                .withAtDate(LocalDate.of(2020, 1, 1)).withInterval(Interval.WEEKLY).build();
 
         // all field appear
         assertParseSuccess(parser, INDEX_STANDALONE_ONE + VALID_DESCRIPTION
-                + VALID_REPEATABLE_INTERVAL + VALID_REPEATABLE_DATE,
+                        + VALID_EVENT_INTERVAL + VALID_EVENT_DATE,
                 new AddEventCommand(expectedProjectIndex, expectedEvent)
         );
     }
@@ -47,22 +47,22 @@ public class AddEventCommandParserTest {
 
         // missing project index
         assertParseFailure(parser, VALID_DESCRIPTION
-                        + VALID_REPEATABLE_INTERVAL + VALID_REPEATABLE_DATE,
+                        + VALID_EVENT_INTERVAL + VALID_EVENT_DATE,
                 expectedMessage);
 
         // missing description
         assertParseFailure(parser, INDEX_STANDALONE_ONE
-                        + VALID_REPEATABLE_INTERVAL + VALID_REPEATABLE_DATE,
+                        + VALID_EVENT_INTERVAL + VALID_EVENT_DATE,
                 expectedMessage);
 
         // missing interval
         assertParseFailure(parser, INDEX_STANDALONE_ONE + VALID_DESCRIPTION
-                        + VALID_REPEATABLE_DATE,
+                        + VALID_EVENT_DATE,
                 expectedMessage);
 
         // missing date
         assertParseFailure(parser, INDEX_STANDALONE_ONE + VALID_DESCRIPTION
-                        + VALID_REPEATABLE_INTERVAL,
+                        + VALID_EVENT_INTERVAL,
                 expectedMessage);
     }
 
@@ -70,18 +70,18 @@ public class AddEventCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid project index
         assertParseFailure(parser, INVALID_INDEX_STANDALONE + VALID_DESCRIPTION
-                + VALID_REPEATABLE_INTERVAL + VALID_REPEATABLE_DATE, MESSAGE_INVALID_INDEX);
+                + VALID_EVENT_INTERVAL + VALID_EVENT_DATE, MESSAGE_INVALID_INDEX);
 
         // invalid description
         assertParseFailure(parser, INDEX_STANDALONE_ONE + INVALID_DESCRIPTION
-                + VALID_REPEATABLE_INTERVAL + VALID_REPEATABLE_DATE, Messages.MESSAGE_PARSER_DESCRIPTION_CONSTRAINTS);
+                + VALID_EVENT_INTERVAL + VALID_EVENT_DATE, Messages.MESSAGE_PARSER_DESCRIPTION_CONSTRAINTS);
 
         // invalid interval
         assertParseFailure(parser, INDEX_STANDALONE_ONE + VALID_DESCRIPTION
-                + INVALID_REPEATABLE_INTERVAL + VALID_REPEATABLE_DATE, Messages.MESSAGE_PARSER_INTERVAL_CONSTRAINTS);
+                + INVALID_EVENT_INTERVAL + VALID_EVENT_DATE, Messages.MESSAGE_PARSER_INTERVAL_CONSTRAINTS);
 
         // invalid date
         assertParseFailure(parser, INDEX_STANDALONE_ONE + VALID_DESCRIPTION
-                + VALID_REPEATABLE_INTERVAL + INVALID_REPEATABLE_DATE, Messages.MESSAGE_PARSER_DATE_CONSTRAINTS);
+                + VALID_EVENT_INTERVAL + INVALID_EVENT_DATE, Messages.MESSAGE_PARSER_DATE_CONSTRAINTS);
     }
 }
