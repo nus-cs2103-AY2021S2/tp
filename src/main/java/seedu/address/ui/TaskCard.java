@@ -4,10 +4,12 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.task.Task;
+
 
 /**
  * An UI component that displays information of a {@code Task}.
@@ -29,13 +31,13 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label priority;
     @FXML
-    private Label completionStatus;
-    @FXML
-    private Label pinnedStatus;
-    @FXML
     private Label category;
     @FXML
     private FlowPane tags;
+    @FXML
+    private ImageView tickImageView;
+    @FXML
+    private ImageView pinImageView;
 
     /**
      * Creates a {@code TaskCode} with the given {@code Task} and index to display.
@@ -47,12 +49,20 @@ public class TaskCard extends UiPart<Region> {
         name.setText(task.getName().fullName);
         deadline.setText(task.getDeadline().toString());
         priority.setText(task.getPriority().toString());
-        completionStatus.setText(task.getCompletionStatus().toString());
-        pinnedStatus.setText(task.getPinnedStatus().toString());
         category.setText(task.getCategories().toString());
         task.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        if (task.isComplete()) {
+            tickImageView.setVisible(true);
+        } else {
+            tickImageView.setVisible(false);
+        }
+        if (task.isPinned()) {
+            pinImageView.setVisible(true);
+        } else {
+            pinImageView.setVisible(false);
+        }
     }
 
     @Override
