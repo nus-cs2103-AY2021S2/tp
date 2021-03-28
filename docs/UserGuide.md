@@ -147,9 +147,9 @@ Overwrites the information of the property according to the parameters provided.
 
 Format: `edit property INDEX [n/NAME] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 
-* There can be multiple tags but different tags should be separated with a comma. <br> e.g. `tags/TAGS_SEPARATED_BY_COMMAS` can be used as `tags/Freehold`, `tags/Freehold, 5 bedrooms`, `tags/Freehold, 5 bedrooms, Near MRT` etc.
+There can be multiple tags but different tags should be separated with a comma. <br> e.g. `tags/TAGS_SEPARATED_BY_COMMAS` can be used as `tags/Freehold`, `tags/Freehold, 5 bedrooms`, `tags/Freehold, 5 bedrooms, Near MRT` etc.
 
 </div>
 
