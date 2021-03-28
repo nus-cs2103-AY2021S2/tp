@@ -291,7 +291,7 @@ FriendDex data is saved in the hard disk automatically after any command that ch
 
 ### Editing the data file
 
-FriendDex data is saved as a JSON file at `[JAR file location]/data/addressbook.json`. 
+FriendDex data is saved as a JSON file at `[JAR file location]/data/frienddex.json`. 
 Gui-related settings such as theme preference are saved in the same directory under `preferences.json`.
 Advanced users are welcome to update the data directly by making edits to these files.
 
