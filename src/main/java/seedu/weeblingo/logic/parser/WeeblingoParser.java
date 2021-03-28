@@ -15,6 +15,7 @@ import seedu.weeblingo.logic.commands.LearnCommand;
 import seedu.weeblingo.logic.commands.NextCommand;
 import seedu.weeblingo.logic.commands.QuizCommand;
 import seedu.weeblingo.logic.commands.StartCommand;
+import seedu.weeblingo.logic.commands.TagCommand;
 import seedu.weeblingo.logic.parser.exceptions.ParseException;
 
 /**
@@ -71,6 +72,9 @@ public class WeeblingoParser {
 
         case CheckCommand.COMMAND_WORD:
             return new CheckCommandParser().parse(arguments);
+
+        case TagCommand.COMMAND_WORD:
+            return new TagCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
