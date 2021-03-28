@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import fooddiary.commons.core.index.Index;
 import fooddiary.model.entry.Entry;
 
 /**
@@ -13,10 +14,15 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
+    private final Entry entry;
+
+    private final Index index;
+
     /** A view of the specified entry should be shown to the user. */
     private final boolean viewEntry;
 
-    private final Entry entry;
+    /** A window for revision of the specified entry should be shown to the user. */
+    private final boolean enableRevise;
 
     /** Help information should be shown to the user. */
     private final boolean showHelp;
@@ -26,13 +32,15 @@ public class CommandResult {
 
     /**
      * Constructs a {@code CommandResult} with the specified fields,
-     * used for help command
+     * used for help, view, revise, exit
      */
-    public CommandResult(Entry entry, String feedbackToUser, boolean showHelp,
-                         boolean viewEntry, boolean exit) {
+    public CommandResult(Entry entry, Index index, String feedbackToUser, boolean showHelp,
+                         boolean viewEntry, boolean enableRevise, boolean exit) {
         this.entry = entry;
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.viewEntry = viewEntry;
+        this.index = index;
+        this.enableRevise = enableRevise;
         this.showHelp = showHelp;
         this.exit = exit;
     }
@@ -42,7 +50,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(null, feedbackToUser, false, false, false);
+        this(null, null, feedbackToUser, false, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -57,8 +65,16 @@ public class CommandResult {
         return viewEntry;
     }
 
+    public boolean isReviseEntry() {
+        return enableRevise;
+    }
+
     public Entry getEntry() {
         return entry;
+    }
+
+    public Index getIndex() {
+        return index;
     }
 
     public boolean isExit() {
