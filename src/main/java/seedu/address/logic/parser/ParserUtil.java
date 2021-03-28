@@ -3,11 +3,14 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -25,6 +28,8 @@ import seedu.address.model.tag.Tag;
  */
 public class ParserUtil {
 
+    private static final Logger logger = LogsCenter.getLogger("ParserUtil");
+
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
@@ -38,6 +43,23 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    public static List<Index> parseIndices(String oneBasedIndices) throws ParseException {
+        String removeWhitespace = oneBasedIndices.trim();
+        String[] splitByComma = removeWhitespace.split(",");
+        for (int i = 0; i < splitByComma.length; i++) {
+            splitByComma[i] = splitByComma[i].trim();
+        }
+        logger.info("in parser util " + Arrays.toString(splitByComma));
+        List<Index> listOfIndices = new ArrayList<>();
+        for (String index : splitByComma) {
+            if (!StringUtil.isNonZeroUnsignedInteger(index)) {
+                throw new ParseException(MESSAGE_INVALID_INDEX);
+            }
+            listOfIndices.add(Index.fromOneBased(Integer.parseInt(index)));
+        }
+        return listOfIndices;
     }
 
     /**
