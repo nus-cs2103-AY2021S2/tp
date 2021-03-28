@@ -8,6 +8,7 @@ import static seedu.iscam.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
 import org.junit.jupiter.api.Test;
 
 import seedu.iscam.logic.commands.DeleteCommand;
+import seedu.iscam.logic.parser.clientcommands.DeleteCommandParser;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations

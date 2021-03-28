@@ -16,17 +16,17 @@ import seedu.iscam.logic.commands.Command;
 import seedu.iscam.logic.commands.CommandResult;
 import seedu.iscam.logic.commands.exceptions.CommandException;
 import seedu.iscam.logic.parser.BookParser;
-import seedu.iscam.logic.parser.ClientBookParser;
 import seedu.iscam.logic.parser.MeetingBookParser;
+import seedu.iscam.logic.parser.clientcommands.ClientBookParser;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.logic.parser.exceptions.ParseFormatException;
 import seedu.iscam.model.Model;
-import seedu.iscam.model.ObservableClient;
-import seedu.iscam.model.ObservableMeeting;
-import seedu.iscam.model.ReadOnlyClientBook;
-import seedu.iscam.model.ReadOnlyMeetingBook;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.meeting.Meeting;
+import seedu.iscam.model.util.clientbook.ObservableClient;
+import seedu.iscam.model.util.clientbook.ReadOnlyClientBook;
+import seedu.iscam.model.util.meetingbook.ObservableMeeting;
+import seedu.iscam.model.util.meetingbook.ReadOnlyMeetingBook;
 import seedu.iscam.storage.Storage;
 
 

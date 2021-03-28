@@ -35,6 +35,7 @@ import static seedu.iscam.testutil.TypicalClients.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.iscam.logic.commands.AddCommand;
+import seedu.iscam.logic.parser.clientcommands.AddCommandParser;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.client.Email;
 import seedu.iscam.model.client.InsurancePlan;

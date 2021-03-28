@@ -15,6 +15,12 @@ import seedu.iscam.commons.core.GuiSettings;
 import seedu.iscam.commons.core.LogsCenter;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.meeting.Meeting;
+import seedu.iscam.model.util.clientbook.ClientBook;
+import seedu.iscam.model.util.clientbook.ObservableClient;
+import seedu.iscam.model.util.clientbook.ReadOnlyClientBook;
+import seedu.iscam.model.util.meetingbook.MeetingBook;
+import seedu.iscam.model.util.meetingbook.ObservableMeeting;
+import seedu.iscam.model.util.meetingbook.ReadOnlyMeetingBook;
 
 /**
  * Represents the in-memory model of the iscam book data.
@@ -214,6 +220,7 @@ public class ModelManager implements Model {
         return filteredMeetings;
     }
 
+    //TODO: header
     @Override
     public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
         requireNonNull(predicate);
@@ -244,17 +251,20 @@ public class ModelManager implements Model {
         return isClientMode;
     }
 
+    //TODO: header
     @Override
     public ObservableMeeting getDetailedMeeting() {
         return detailedMeeting;
     }
 
+    //TODO: header
     @Override
     public void setDetailedMeeting(Meeting meeting) {
         detailedMeeting.setMeeting(meeting);
 
     }
 
+    //TODO: header
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object

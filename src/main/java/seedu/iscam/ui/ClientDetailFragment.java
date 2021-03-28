@@ -8,8 +8,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
-import seedu.iscam.model.ObservableClient;
 import seedu.iscam.model.client.Client;
+import seedu.iscam.model.util.clientbook.ObservableClient;
 
 
 public class ClientDetailFragment extends UiPart<Region> {

@@ -1,4 +1,4 @@
-package seedu.iscam.model;
+package seedu.iscam.model.util.clientbook;
 
 import javafx.collections.ObservableList;
 import seedu.iscam.model.client.Client;

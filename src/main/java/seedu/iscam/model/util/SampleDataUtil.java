@@ -4,8 +4,6 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.iscam.model.ClientBook;
-import seedu.iscam.model.ReadOnlyClientBook;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.client.Email;
 import seedu.iscam.model.client.InsurancePlan;
@@ -13,6 +11,13 @@ import seedu.iscam.model.client.Phone;
 import seedu.iscam.model.commons.Location;
 import seedu.iscam.model.commons.Name;
 import seedu.iscam.model.commons.Tag;
+import seedu.iscam.model.meeting.DateTime;
+import seedu.iscam.model.meeting.Description;
+import seedu.iscam.model.meeting.Meeting;
+import seedu.iscam.model.util.clientbook.ClientBook;
+import seedu.iscam.model.util.clientbook.ReadOnlyClientBook;
+import seedu.iscam.model.util.meetingbook.MeetingBook;
+import seedu.iscam.model.util.meetingbook.ReadOnlyMeetingBook;
 
 /**
  * Contains utility methods for populating {@code ClientBook} with sample data.
@@ -41,12 +46,34 @@ public class SampleDataUtil {
         };
     }
 
+    public static Meeting[] getSampleMeetings() {
+        return new Meeting[]{
+            new Meeting(new Name("Client A"), new DateTime("12-10-2021 10:00"),
+                    new Location("Starbucks, Paya Lebar Square"), new Description("Sell insurance plan"),
+                    getTagSet("Urgent")),
+            new Meeting(new Name("Client B"), new DateTime("13-10-2021 10:00"),
+                    new Location("Coffee Bean, NUH"), new Description("Sell insurance plan"),
+                    getTagSet("Urgent")),
+            new Meeting(new Name("Client C"), new DateTime("14-10-2021 10:00"),
+                    new Location("Toast Box, NEX"), new Description("Sell insurance plan"),
+                    getTagSet("Urgent"))
+        };
+    }
+
     public static ReadOnlyClientBook getSampleClientBook() {
-        ClientBook sampleAb = new ClientBook();
+        ClientBook sampleCb = new ClientBook();
         for (Client sampleClient : getSampleClients()) {
-            sampleAb.addClient(sampleClient);
+            sampleCb.addClient(sampleClient);
         }
-        return sampleAb;
+        return sampleCb;
+    }
+
+    public static ReadOnlyMeetingBook getSampleMeetingBook() {
+        MeetingBook sampleMb = new MeetingBook();
+        for (Meeting sampleMeeting : getSampleMeetings()) {
+            sampleMb.addMeeting(sampleMeeting);
+        }
+        return sampleMb;
     }
 
     /**

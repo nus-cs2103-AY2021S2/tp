@@ -22,6 +22,7 @@ import seedu.iscam.logic.commands.ExitCommand;
 import seedu.iscam.logic.commands.FindCommand;
 import seedu.iscam.logic.commands.HelpCommand;
 import seedu.iscam.logic.commands.ListCommand;
+import seedu.iscam.logic.parser.clientcommands.ClientBookParser;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.logic.parser.exceptions.ParseFormatException;
 import seedu.iscam.model.client.Client;

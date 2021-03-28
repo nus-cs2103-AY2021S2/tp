@@ -36,6 +36,7 @@ import org.junit.jupiter.api.Test;
 import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.logic.commands.EditCommand;
 import seedu.iscam.logic.commands.EditCommand.EditClientDescriptor;
+import seedu.iscam.logic.parser.clientcommands.EditCommandParser;
 import seedu.iscam.model.client.Email;
 import seedu.iscam.model.client.Phone;
 import seedu.iscam.model.commons.Location;

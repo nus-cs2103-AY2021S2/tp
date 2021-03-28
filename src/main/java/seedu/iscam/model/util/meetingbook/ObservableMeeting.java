@@ -1,4 +1,4 @@
-package seedu.iscam.model;
+package seedu.iscam.model.util.meetingbook;
 
 import java.util.ArrayList;
 import java.util.List;

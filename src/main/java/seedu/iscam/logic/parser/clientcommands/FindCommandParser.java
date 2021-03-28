@@ -1,10 +1,11 @@
-package seedu.iscam.logic.parser;
+package seedu.iscam.logic.parser.clientcommands;
 
 import static seedu.iscam.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
 
 import seedu.iscam.logic.commands.FindCommand;
+import seedu.iscam.logic.parser.Parser;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.logic.parser.exceptions.ParseFormatException;
 import seedu.iscam.model.commons.NameContainsKeywordsPredicate;

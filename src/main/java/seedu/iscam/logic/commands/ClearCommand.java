@@ -2,8 +2,9 @@ package seedu.iscam.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.iscam.model.ClientBook;
 import seedu.iscam.model.Model;
+import seedu.iscam.model.util.clientbook.ClientBook;
+
 
 /**
  * Clears the iscam book.

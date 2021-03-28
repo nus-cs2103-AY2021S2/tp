@@ -18,6 +18,14 @@ import seedu.iscam.logic.commands.RelocateMeetingCommand;
 import seedu.iscam.logic.commands.RescheduleMeetingCommand;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.logic.parser.exceptions.ParseFormatException;
+import seedu.iscam.logic.parser.meetingcommands.AddMeetingCommandParser;
+import seedu.iscam.logic.parser.meetingcommands.DeleteMeetingCommandParser;
+import seedu.iscam.logic.parser.meetingcommands.DoneMeetingCommandParser;
+import seedu.iscam.logic.parser.meetingcommands.EditMeetingCommandParser;
+import seedu.iscam.logic.parser.meetingcommands.FindMeetingsCommandParser;
+import seedu.iscam.logic.parser.meetingcommands.RelocateMeetingCommandParser;
+import seedu.iscam.logic.parser.meetingcommands.RescheduleMeetingCommandParser;
+
 
 /**
  * Parses user input.

@@ -1,4 +1,4 @@
-package seedu.iscam.logic.parser;
+package seedu.iscam.logic.parser.meetingcommands;
 
 import static seedu.iscam.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_CLIENT;
@@ -11,6 +11,11 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.iscam.logic.commands.AddMeetingCommand;
+import seedu.iscam.logic.parser.ArgumentMultimap;
+import seedu.iscam.logic.parser.ArgumentTokenizer;
+import seedu.iscam.logic.parser.Parser;
+import seedu.iscam.logic.parser.ParserUtil;
+import seedu.iscam.logic.parser.Prefix;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.logic.parser.exceptions.ParseFormatException;
 import seedu.iscam.model.commons.Location;
