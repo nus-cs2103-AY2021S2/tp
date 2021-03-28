@@ -17,6 +17,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.DateConversionException;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.uicommands.ViewProjectAndTodosUiCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -55,7 +56,8 @@ public class DeleteTodoCommandTest {
 
         ModelManager expectedModel = new ModelManager(getTypicalColabFolder(), new UserPrefs());
 
-        assertCommandSuccess(deleteTodoCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteTodoCommand, model, expectedMessage,
+                new ViewProjectAndTodosUiCommand(INDEX_FIRST), expectedModel);
     }
 
     @Test

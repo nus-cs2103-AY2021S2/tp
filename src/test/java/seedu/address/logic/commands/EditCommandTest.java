@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.uicommands.ShowContactsUiCommand;
 import seedu.address.model.ColabFolder;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -45,7 +46,7 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(new ColabFolder(model.getColabFolder()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, expectedMessage, new ShowContactsUiCommand(), expectedModel);
     }
 
     @Test
@@ -66,7 +67,7 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(new ColabFolder(model.getColabFolder()), new UserPrefs());
         expectedModel.setPerson(lastPerson, editedPerson);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, expectedMessage, new ShowContactsUiCommand(), expectedModel);
     }
 
     @Test
@@ -78,7 +79,7 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new ColabFolder(model.getColabFolder()), new UserPrefs());
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, expectedMessage, new ShowContactsUiCommand(), expectedModel);
     }
 
     @Test
@@ -95,7 +96,7 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(new ColabFolder(model.getColabFolder()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, expectedMessage, new ShowContactsUiCommand(), expectedModel);
     }
 
     @Test
