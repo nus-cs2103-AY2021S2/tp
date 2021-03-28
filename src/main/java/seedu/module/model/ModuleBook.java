@@ -6,6 +6,8 @@ import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.module.model.task.Module;
+import seedu.module.model.task.ModuleList;
 import seedu.module.model.task.Task;
 import seedu.module.model.task.UniqueTaskList;
 
@@ -16,6 +18,7 @@ import seedu.module.model.task.UniqueTaskList;
 public class ModuleBook implements ReadOnlyModuleBook {
 
     private final UniqueTaskList tasks;
+    private final ModuleList modules;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -26,6 +29,7 @@ public class ModuleBook implements ReadOnlyModuleBook {
      */
     {
         tasks = new UniqueTaskList();
+        modules = new ModuleList();
     }
 
     public ModuleBook() {
@@ -47,6 +51,7 @@ public class ModuleBook implements ReadOnlyModuleBook {
      */
     public void setTasks(List<Task> tasks) {
         this.tasks.setTasks(tasks);
+        this.modules.setModules(ModuleManager.getExistingModuleList());
     }
 
     /**
@@ -105,6 +110,7 @@ public class ModuleBook implements ReadOnlyModuleBook {
             }
             ModuleManager.insertTaskToMapping(taskToAdd.getModule(), taskToAdd);
             tasks.add(taskToAdd);
+            this.modules.setModules(ModuleManager.getExistingModuleList());
         }
     }
 
@@ -119,6 +125,7 @@ public class ModuleBook implements ReadOnlyModuleBook {
             ModuleManager.deleteTaskFromMapping(target.getModule(), target);
             ModuleManager.insertTaskToMapping(editedTask.getModule(), editedTask);
             tasks.setTask(target, editedTask);
+            this.modules.setModules(ModuleManager.getExistingModuleList());
         }
     }
 
@@ -131,6 +138,7 @@ public class ModuleBook implements ReadOnlyModuleBook {
             assert(ModuleManager.moduleIsValid(p.getModule().toString()));
             ModuleManager.deleteTaskFromMapping(p.getModule(), p);
             tasks.remove(p);
+            this.modules.setModules(ModuleManager.getExistingModuleList());
         }
     }
 
@@ -141,7 +149,7 @@ public class ModuleBook implements ReadOnlyModuleBook {
      * @return True if Module is supported
      */
     public boolean checkForSupportedModuleCode(Task task) {
-        return ModuleManager.getListOfExistingModules().contains(task.getModule().toString());
+        return ModuleManager.getListOfSupportingModules().contains(task.getModule().toString());
     }
 
     //// util methods
@@ -155,6 +163,11 @@ public class ModuleBook implements ReadOnlyModuleBook {
     @Override
     public ObservableList<Task> getTaskList() {
         return tasks.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Module> getModuleList() {
+        return modules.asUnmodifiableObservableList();
     }
 
     @Override

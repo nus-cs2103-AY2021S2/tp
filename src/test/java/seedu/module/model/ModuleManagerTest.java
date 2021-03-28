@@ -32,7 +32,7 @@ public class ModuleManagerTest {
         List<String> stub = new ArrayList<>();
         stub.add("ST3131");
         stub.add("ST4332");
-        assertNotEquals(stub, ModuleManager.getListOfExistingModules());
+        assertNotEquals(stub, ModuleManager.getListOfSupportingModules());
     }
 
     @Test

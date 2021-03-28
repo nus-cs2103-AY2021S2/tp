@@ -48,7 +48,7 @@ public class ModuleTest {
      * Constructs a string that is similar to the return message from getWorkloadCount() method in {@code Module}.
      */
     public String getWorkloadCountBuilder(int lowWorkloadCount, int mediumWorkloadCount, int highWorkloadCount) {
-        return String.format("Low workload tasks: %d, medium workload tasks: %d, high workload tasks %d\n",
+        return String.format("Low workload tasks: %d\nmedium workload tasks: %d\nhigh workload tasks %d\n",
                 lowWorkloadCount, mediumWorkloadCount, highWorkloadCount);
     }
 

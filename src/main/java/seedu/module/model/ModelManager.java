@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.module.commons.core.GuiSettings;
 import seedu.module.commons.core.LogsCenter;
+import seedu.module.model.task.Module;
 import seedu.module.model.task.Task;
 
 /**
@@ -23,6 +24,7 @@ public class ModelManager implements Model {
     private final ModuleBook moduleBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
+    private final FilteredList<Module> modules;
 
     /**
      * Initializes a ModelManager with the given moduleBook and userPrefs.
@@ -36,6 +38,7 @@ public class ModelManager implements Model {
         this.moduleBook = new ModuleBook(moduleBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredTasks = new FilteredList<>(this.moduleBook.getTaskList());
+        modules = new FilteredList<>(this.moduleBook.getModuleList());
     }
 
     public ModelManager() {
@@ -134,6 +137,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Task> getFilteredTaskList() {
         return filteredTasks;
+    }
+
+    @Override
+    public ObservableList<Module> getModuleList() {
+        return modules;
     }
 
     @Override

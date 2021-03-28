@@ -1,6 +1,7 @@
 package seedu.module.model;
 
 import javafx.collections.ObservableList;
+import seedu.module.model.task.Module;
 import seedu.module.model.task.Task;
 
 /**
@@ -13,5 +14,11 @@ public interface ReadOnlyModuleBook {
      * This list will not contain any duplicate tasks.
      */
     ObservableList<Task> getTaskList();
+
+    /**
+     * Returns an unmodifiable view of the modules list.
+     * This list will not contain any duplicate modules.
+     */
+    ObservableList<Module> getModuleList();
 
 }

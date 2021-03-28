@@ -60,7 +60,7 @@ public class Module implements Comparable<Module> {
      */
     public static boolean isSupportedModuleCode(String test) {
         ModuleManager.initSupportedModulesInStr();
-        List<String> existingModules = ModuleManager.getListOfExistingModules();
+        List<String> existingModules = ModuleManager.getListOfSupportingModules();
         return existingModules.contains(test);
     }
 
@@ -68,7 +68,7 @@ public class Module implements Comparable<Module> {
      * Returns a count of the number of tasks of each workload rating.
      */
     public String getWorkloadCount() {
-        return String.format("Low workload tasks: %d, medium workload tasks: %d, high workload tasks %d\n",
+        return String.format("Low workload tasks: %d\nmedium workload tasks: %d\nhigh workload tasks %d\n",
                 lowWorkloadCount, mediumWorkloadCount, highWorkloadCount);
     }
 
