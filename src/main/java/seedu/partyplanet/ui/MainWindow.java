@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -29,6 +30,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private Stage primaryStage;
     private Logic logic;
+    private Theme theme;
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
@@ -54,6 +56,9 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
+    @FXML
+    private Scene scene;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -66,6 +71,7 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
+        setUiTheme(logic.getGuiSettings());
 
         setAccelerators();
 
@@ -145,6 +151,13 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Sets the user preference theme based on {@code guiSettings}.
+     */
+    private void setUiTheme(GuiSettings guiSettings) {
+        setTheme(guiSettings.getTheme());
+    }
+
+    /**
      * Opens the help window or focuses on it if it's already opened.
      */
     @FXML
@@ -166,7 +179,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+                (int) primaryStage.getX(), (int) primaryStage.getY(), theme);
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
@@ -196,6 +209,10 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (commandResult.isToggleTheme()) {
+                setTheme(commandResult.getTheme());
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
@@ -204,6 +221,9 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Executes autocomplete and returns the resulting command text.
+     */
     private String autocomplete(String commandText) throws CommandException, ParseException {
         try {
             String completedString = logic.autoComplete(commandText);
@@ -214,5 +234,23 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    /**
+     * Set themes dynamically based on user command.
+     */
+    private void setTheme(Theme theme) {
+        scene.getStylesheets().clear();
+        scene.getStylesheets().addAll(Theme.getStyleSheets(theme));
+        logic.setGuiSettings(new GuiSettings(theme));
+        this.theme = theme;
+    }
+    @FXML
+    private void setThemePastel() {
+        setTheme(Theme.PASTEL);
+    }
+    @FXML
+    private void setThemeDark() {
+        setTheme(Theme.DARK);
     }
 }
