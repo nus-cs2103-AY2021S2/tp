@@ -250,6 +250,11 @@ public class AddMeetingCommandWithConnectionTest {
             requireAllNonNull(target, editedMeeting);
             meetingBook.setMeeting(target, editedMeeting);
         }
+
+        @Override
+        public void updateMeeting(Meeting target, Meeting editedMeeting) {
+
+        }
         //TODO: Set MeetingBook file path in userPrefs? low priority feature(nice to have)
 
         //========= Clashing Meetings ================================================================
@@ -259,6 +264,11 @@ public class AddMeetingCommandWithConnectionTest {
          */
         public boolean clashes(Meeting toCheck) {
             return meetingBook.clashes(toCheck);
+        }
+
+        @Override
+        public boolean clashesExceptOne(Meeting meetingNotIncluded, Meeting toCheck) {
+            return false;
         }
 
         /**
