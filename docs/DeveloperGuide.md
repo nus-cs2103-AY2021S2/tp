@@ -17,6 +17,43 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
+<img src="images/ArchitectureDiagram.png" width="450px">
+
+The **Architecture Diagram** given above explains the high-level design of the
+App. Given below is a quick overview of each component.
+
+`Main` has two classes called `Main` and `MainApp`. It is responsible for:
+* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+
+`Commons` represents a collection of classes used by multiple other components.
+
+The rest of the App consists of four components:
+
+* `UI`: The UI of the App.
+* `Logic`: The command executor.
+* `Model`: Holds the data of the App in memory.
+* `Storage`: Reads data from, and writes data to, the hard disk.
+
+Each of the four components,
+
+* defines its API in an `interface` with the same name as the Component.
+* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
+
+For example, the `Logic` component defines its API in `Logic.java` and exposes
+its functionality using `LogicManager.java` which implements the `Logic` interface.
+Similarly, we have `Model` interface and `ModelManager` class that implements
+`Model`.
+
+**How the architecture components interact withe each other**
+
+The Sequence Diagram below shows how the components interact with each other
+for the scenario where the user issues the command `delete 1`.
+
+<img src="images/ArchitectureSequenceDiagram.png" width="450px">
+
+The sections below give more details of each component.
+
 ### UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
@@ -216,9 +253,9 @@ relationship with `Order`.
 We allow editing of all fields of any `Cheese` instances only when the instances
 are not marked as assigned (to an `Order`). This is essentially to maintain the
 consistency of contract between the `Cheese` and `Order` class, namely `Cheese`
-instances that are used to fulfil an `Order` require to have the same 
-`CheeseType` as the `Order`. This is consistent with the domain design as once 
-an order is marked as complete, the order and cheeses involved are only kept 
+instances that are used to fulfil an `Order` require to have the same
+`CheeseType` as the `Order`. This is consistent with the domain design as once
+an order is marked as complete, the order and cheeses involved are only kept
 as view-only  archives.
 
 #### Editing an Order
@@ -226,7 +263,7 @@ Similarly, we only allow editing of any `Order` instances only when the instance
 are not marked as completed (with a list of assigned `CheeseID`s). An completed
 `Order` is only kept as a view-only archieve. Furthermore, since the `Order` class
 contains dependencies to `Customer` class, if the `Phone` parameter is provided,
-we are required to check that the customer phone exists and a different customer 
+we are required to check that the customer phone exists and a different customer
 is being referenced.
 
 #### Alternative Designs
