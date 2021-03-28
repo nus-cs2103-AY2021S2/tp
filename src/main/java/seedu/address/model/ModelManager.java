@@ -191,7 +191,7 @@ public class ModelManager implements Model {
     @Override
     public double getFee(LocalDateTime startPeriod, LocalDateTime endPeriod) {
         double fee = 0;
-        for (Student student : filteredStudents) {
+        for (Student student : addressBook.getStudentList()) {
             fee += getFeePerStudent(student, startPeriod, endPeriod);
         }
         return fee;
