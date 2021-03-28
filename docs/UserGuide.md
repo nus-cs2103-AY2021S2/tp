@@ -299,6 +299,16 @@ A shorthand for <span class="compulsory-param">GET</span> requests can be done w
 
 <div style="page-break-after: always;"></div>
 
+### 4.3 Miscellaneous
+
+#### 4.3.1 Retrieve the last valid command
+
+**Description:** Given that the last valid command from a user is most likely to be repeated during the API development
+& verification process, a special key combination <kbd>ctrl</kbd> + <kbd>up-arrow</kbd> is available to set the 
+command box with the last command.
+
+**Format:** <kbd>ctrl</kbd> + <kbd>up-arrow</kbd>
+
 ## 5. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br> **A**: Install the
