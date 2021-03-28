@@ -141,6 +141,9 @@ public class ModelManager implements Model {
 
     //=========== Cleared Item List In Location Accessors =============================================================
 
+    /**
+     * Clears all the items in a specified location by the given {@code predicate}.
+     */
     public void clearLocation(Predicate<Item> predicate) {
         updateFilteredItemList(predicate);
         List<Item> filteredList = getFilteredItemList();
