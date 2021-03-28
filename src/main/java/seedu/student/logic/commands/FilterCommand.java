@@ -32,7 +32,7 @@ public class FilterCommand extends Command {
         requireNonNull(model);
         model.updateFilteredStudentList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_STUDENT_IS_LISTED, model.getFilteredStudentList().size()));
+                String.format(Messages.MESSAGE_STUDENTS_ARE_LISTED, model.getFilteredStudentList().size()));
     }
 
     @Override

@@ -52,7 +52,7 @@ public class FindCommand extends Command {
             return new CommandResult(String.format(Messages.MESSAGE_NONEXISTENT_APPOINTMENT,
                     model.getFilteredStudentList().size()));
         } else {
-            return new CommandResult(String.format(Messages.MESSAGE_STUDENT_IS_LISTED
+            return new CommandResult(String.format(Messages.MESSAGE_STUDENTS_ARE_LISTED
                             + Messages.MESSAGE_APPOINTMENT_IS_LISTED, model.getFilteredStudentList().size()));
         }
     }
