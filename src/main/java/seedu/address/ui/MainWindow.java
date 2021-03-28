@@ -31,9 +31,10 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private TutorListPanel tutorListPanel;
     private ResultBarFooter resultDisplay;
     private HelpWindow helpWindow;
+    private TimeTableWindow timetableWindow;
+    private TutorListPanel tutorListPanel;
     private CalendarView calendarView;
     private AppointmentListPanel appointmentListPanel;
 
@@ -71,6 +72,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        timetableWindow = new TimeTableWindow(logic.getFilteredEventList());
     }
 
     public Stage getPrimaryStage() {
@@ -130,6 +132,9 @@ public class MainWindow extends UiPart<Stage> {
 
         calendarView = new CalendarView(this::executeCommand);
         calendarViewPane.getChildren().add(calendarView.getRoot());
+
+        resultDisplay = new ResultBarFooter();
+        statusbarPlaceholder.getChildren().add(resultDisplay.getRoot());
     }
 
     /**
@@ -156,14 +161,15 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the help window or focuses on it if it's already opened.
+     */
     @FXML
-    private void setCalendarNavigation(String direction) throws CommandException {
-        if (direction.equals("next")) {
-            calendarView.handleToNext();
-        } else if (direction.equals("prev")) {
-            calendarView.handleToPrev();
+    public void handleTimetable() {
+        if (!timetableWindow.isShowing()) {
+            timetableWindow.show(logic.getFilteredEventList());
         } else {
-            throw new CommandException("MESSAGE_UNKNOWN_COMMAND");
+            timetableWindow.focus();
         }
     }
 
@@ -183,10 +189,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public TutorListPanel getPersonListPanel() {
-        return tutorListPanel;
-    }
-
     /**
      * Executes the command and returns the result.
      *
@@ -200,6 +202,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowTimetable()) {
+                handleTimetable();
             }
 
             if (commandResult.isExit()) {

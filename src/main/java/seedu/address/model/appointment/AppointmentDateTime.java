@@ -3,6 +3,7 @@ package seedu.address.model.appointment;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
@@ -66,6 +67,23 @@ public class AppointmentDateTime {
                 && value.toLocalDate().isEqual((other.toLocalDate()))); // state check
     }
 
+    /**
+     * Getter method to retrieve value of AppointmentDateTime.
+     * @return LocalDateTime stored
+     */
+    public LocalDateTime getValue() {
+        return value;
+    }
+
+
+    /**
+     * Method to retrieve time in chronunits minutes of the appointment.
+     */
+    public long getDifferenceInMinutes(LocalDateTime timeTo) {
+        Duration durationDifference = Duration.between(this.value, timeTo);
+        return durationDifference.toMinutes();
+    }
+
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mma");
@@ -77,6 +95,14 @@ public class AppointmentDateTime {
      */
     public String toDateString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
+        return value.format(formatter);
+    }
+
+    /**
+     * Returns a time only string for display purpose.
+     */
+    public String toTimeString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
         return value.format(formatter);
     }
 

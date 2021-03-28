@@ -6,16 +6,24 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.AppointmentBook;
+import seedu.address.model.GradeBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAppointmentBook;
+import seedu.address.model.ReadOnlyGradeBook;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
+import seedu.address.model.grade.Grade;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.schedule.Description;
+import seedu.address.model.schedule.ReadOnlyScheduleTracker;
+import seedu.address.model.schedule.Schedule;
+import seedu.address.model.schedule.ScheduleTracker;
+import seedu.address.model.schedule.Title;
 import seedu.address.model.subject.SubjectExperience;
 import seedu.address.model.subject.SubjectLevel;
 import seedu.address.model.subject.SubjectList;
@@ -81,6 +89,34 @@ public class SampleDataUtil {
         };
     }
 
+    public static Grade[] getSampleGrade() {
+        return new Grade[] {
+            new Grade(new SubjectName("English"), "Midterm", "A"),
+            new Grade(new SubjectName("Physics"), "Lab 2", "B+")
+        };
+    }
+
+    public static Schedule[] getSampleSchedule() {
+        return new Schedule[] {
+            new Schedule(new Title("Math Tuition Homework"),
+                    new AppointmentDateTime("2021-03-24 2:00PM"),
+                    new AppointmentDateTime("2021-03-24 3:00PM"),
+                    new Description("Chapter 5")),
+            new Schedule(new Title("Science Tuition Homework"),
+                    new AppointmentDateTime("2021-03-25 3:00PM"),
+                    new AppointmentDateTime("2021-03-25 5:00PM"),
+                    new Description("Chapter 6"))
+        };
+    }
+
+
+    public static ReadOnlyScheduleTracker getSampleScheduleTracker() {
+        ScheduleTracker sampleSt = new ScheduleTracker();
+        for (Schedule sampleSchedule : getSampleSchedule()) {
+            sampleSt.addSchedule(sampleSchedule);
+        }
+        return sampleSt;
+    }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
@@ -116,6 +152,14 @@ public class SampleDataUtil {
         AppointmentBook sampleAb = new AppointmentBook();
         for (Appointment samplePerson : getSampleAppointment()) {
             sampleAb.addAppointment(samplePerson);
+        }
+        return sampleAb;
+    }
+
+    public static ReadOnlyGradeBook getSampleGradeBook() {
+        GradeBook sampleAb = new GradeBook();
+        for (Grade sampleGrade : getSampleGrade()) {
+            sampleAb.addGrade(sampleGrade);
         }
         return sampleAb;
     }
