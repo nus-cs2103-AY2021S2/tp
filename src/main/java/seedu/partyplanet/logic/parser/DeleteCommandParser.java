@@ -61,15 +61,27 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
 
     private DeleteContactCommand createDeleteContactCommand(String args) throws ParseException {
         String[] strIndexes = args.split("\\s+");
-        List<Index> indexes = new ArrayList<>();
+        List<Index> validIndexes = new ArrayList<>();
+        List<String> invalidIndexes = new ArrayList<>();
 
         for (String s : strIndexes) {
-            Index index = ParserUtil.parseIndex(s);
-            if (!indexes.contains(index)) {
-                indexes.add(index);
+            try {
+                Index index = ParserUtil.parseIndex(s);
+                if (!validIndexes.contains(index)) {
+                    validIndexes.add(index);
+                }
+            } catch (ParseException pe) {
+                if (!invalidIndexes.contains(s)) {
+                    invalidIndexes.add(s);
+                }
             }
         }
 
-        return new DeleteContactCommand(indexes);
+        if (validIndexes.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        }
+
+        return new DeleteContactCommand(validIndexes, invalidIndexes);
     }
 }

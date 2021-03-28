@@ -17,12 +17,14 @@ import seedu.partyplanet.model.person.Person;
 public class DeleteContactCommand extends DeleteCommand {
 
     private final List<Index> targetIndexes;
+    private final List<String> invalidIndexes;
 
     /**
      * Creates an DeleteContactCommand to delete the {@code Person} at specified indexes.
      */
-    public DeleteContactCommand(List<Index> targetIndexes) {
+    public DeleteContactCommand(List<Index> targetIndexes, List<String> invalidIndexes) {
         this.targetIndexes = targetIndexes;
+        this.invalidIndexes = invalidIndexes;
     }
 
     @Override
@@ -33,7 +35,8 @@ public class DeleteContactCommand extends DeleteCommand {
 
         for (Index idx : targetIndexes) {
             if (idx.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+                invalidIndexes.add("" + idx.getOneBased());
+                continue;
             }
 
             Person personToDelete = lastShownList.get(idx.getZeroBased());
@@ -43,8 +46,24 @@ public class DeleteContactCommand extends DeleteCommand {
         for (Person personToDelete : deletedPersons) {
             model.deletePerson(personToDelete);
         }
-        model.addState(String.format(MESSAGE_DELETE_PERSON_SUCCESS, displayPersons(deletedPersons)));
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, displayPersons(deletedPersons)));
+
+
+        if (invalidIndexes.isEmpty()) {
+
+            model.addState(String.format(MESSAGE_DELETE_PERSON_SUCCESS, displayPersons(deletedPersons)));
+            return new CommandResult(
+                String.format(MESSAGE_DELETE_PERSON_SUCCESS, displayPersons(deletedPersons)));
+        } else if (deletedPersons.isEmpty()) {
+            throw new CommandException(Messages.MESSAGE_NONE_INDEX_VALID);
+        } else {
+            model.addState(String.format(MESSAGE_DELETE_PERSON_SUCCESS + "\n" + MESSAGE_INVALID_PERSON_INDEX,
+                    displayPersons(deletedPersons),
+                    String.join(", ", invalidIndexes)));
+            return new CommandResult(
+                String.format(MESSAGE_DELETE_PERSON_SUCCESS + "\n" + MESSAGE_INVALID_PERSON_INDEX,
+                        displayPersons(deletedPersons),
+                        String.join(", ", invalidIndexes)));
+        }
     }
 
     /**
@@ -54,7 +73,7 @@ public class DeleteContactCommand extends DeleteCommand {
         return deletedPersons.stream()
                 .map(p -> p.getName().toString())
                 .reduce((a, b) -> a + ", " + b)
-                .get();
+                .orElse("");
     }
 
     @Override
