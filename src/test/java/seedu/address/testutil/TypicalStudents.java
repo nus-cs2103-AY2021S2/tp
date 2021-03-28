@@ -39,7 +39,7 @@ public class TypicalStudents {
             )
             .build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
-            .withAddress("311, ClemenGetMonthlyFeeCommandTestti Ave 2, #02-25")
+            .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withStudyLevel("Primary 2").withGuardianPhone("81902144").withRelationship("Father")
             .addSessions(

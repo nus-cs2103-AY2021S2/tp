@@ -24,8 +24,8 @@ public class GetMonthlyFeeCommandTest {
             new Month(1), new Year(2021));
         CommandResult commandResult = getMonthlyFeeCommand.execute(model);
 
-        assertEquals(String.format("Monthly fee for %s on %s, %s is $%s", ALICE.getName(),
-            new Month(1).getMonthName(), new Year(2021), "120.90"),
+        assertEquals(String.format("Monthly fee for %s on %s, %s is $%.2f", ALICE.getName(),
+            new Month(1).getMonthName(), new Year(2021), 120.90),
             commandResult.getFeedbackToUser());
     }
 }
