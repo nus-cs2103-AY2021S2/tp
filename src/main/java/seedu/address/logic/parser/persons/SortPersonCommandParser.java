@@ -35,7 +35,7 @@ public class SortPersonCommandParser implements Parser<SortPersonCommand> {
                     get());
             return new SortPersonCommand(option, direction);
         } catch (Exception e) {
-            throw new ParseException(String.format(SortPersonCommand.MESSAGE_USAGE));
+            throw new ParseException(SortPersonCommand.MESSAGE_USAGE);
         }
 
     }

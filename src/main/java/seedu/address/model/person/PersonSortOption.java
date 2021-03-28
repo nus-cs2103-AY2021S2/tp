@@ -1,7 +1,5 @@
 package seedu.address.model.person;
 
-import java.util.Arrays;
-
 public enum PersonSortOption {
     NAME("NAME"),
     EMAIL("EMAIL"),
