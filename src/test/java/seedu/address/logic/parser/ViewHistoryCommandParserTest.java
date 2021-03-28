@@ -8,7 +8,8 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.ViewHistoryCommand;
+import seedu.address.logic.commands.commandhistory.ViewHistoryCommand;
+import seedu.address.logic.parser.commandhistory.ViewHistoryCommandParser;
 
 public class ViewHistoryCommandParserTest {
     private static final String VALID_ARG_FIVE = "5";

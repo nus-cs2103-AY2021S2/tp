@@ -1,0 +1,30 @@
+@startuml
+!include ../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+
+package Model {
+Class AddressBook
+package Issue {
+Class UniqueIssueList
+Class Issue
+Class RoomNumber
+Class Description
+Class Timestamp
+Class Status
+Class Category
+Enum "<<enumeration>>\nIssueStatus" as IssueStatus
+}
+}
+
+AddressBook *--> UniqueIssueList
+UniqueIssueList "1" *--> "*" Issue
+Issue *--> "1" RoomNumber
+Issue *--> "1" Description
+Issue *--> "1" Timestamp
+Issue *--> "1" Status
+Issue *--> "1" Category
+Status *--> "1" IssueStatus
+@enduml

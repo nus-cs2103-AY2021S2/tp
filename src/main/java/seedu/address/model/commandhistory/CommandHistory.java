@@ -71,6 +71,7 @@ public class CommandHistory implements ReadOnlyCommandHistory {
      *
      * @param index The index of the entry to return.
      * @return The command history entry at the given {@code index}.
+     * @throws IndexOutOfBoundsException If (index < 0 or index >= size()).
      */
     @Override
     public CommandHistoryEntry get(int index) {

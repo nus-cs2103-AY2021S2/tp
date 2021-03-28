@@ -132,6 +132,328 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+### Resident-Room allocation feature 
+
+The allocation feature is facilitated by `ResidentRoom` which is a pair value of 
+valid `[Resident, Room]` that represents an existing resident allocated to a room. 
+It should be able to support the following operations:
+* `ResidentRoomList#getRoom()` - Returns the room assignment for a given resident.
+* `ResidentRoomList#getResident()` - Returns the resident allocated for a given room.
+
+A `ResidentRoomList` is a supplementary class that tracks all the `ResidentRoom` assignments. It should support
+the following operations. 
+* `ResidentRoomList#allocate()` - Adds a `ResidentRoom` new allocation.
+* `ResidentRoomList#deallocate()` - Removes an existing `ResidentRoom` allocation.
+* `ResidentRoomList#isAllocated()` - Checks if an allocation exists given the resident and room.
+* `ResidentRoomList#isRoomOccupied()` - Checks if a room is occupied. 
+* `ResidentRoomList#isResidentOccupied()` - Checks if a resident is allocated a room.
+
+There are two Resident-Room user allocation and deallocation commands, `alloc` and `dealloc` respectively.  
+
+The `alloc` command will do the following:
+
+Example: `alloc n/John Tan r/03-100`
+* Check that `John Tan` exists.
+* Check that `03-100` exists.
+* Check that `John Tan` has not already been allocated to `03-100`.  
+* Check that no other room is allocated to `John Tan`.  
+* Check that room `03-100` is not occupied by anyone. 
+
+    **If all the above is true,**
+* Set the `ROOM` of `John Tan` to be `03-100`.
+* Set the `OCCUPATION_STATUS` of a room to `Y`.
+
+  ![Activity Diagram of Allocation](images/residentroom/ResidentRoomAllocationDiagram.png)
+
+The `dealloc` command will do the following:
+
+Example: `dealloc n/John Tan r/03-100`
+* Check that `John Tan` exists.
+* Check that `03-100` exists.
+* Check that `John Tan` has been allocated to `03-100`.
+
+    **If all the above is true,**
+* Set the `ROOM` of `John Tan` to be `Room unallocated`.
+* Set the `OCCUPATION_STATUS` of a room to `N`.
+
+The following implementation alternatives were considered: 
+* **Alternative 1 (current choice):** Resident-Room solely keeps track of resident and room allocation
+  performed through `alloc` and `dealloc` commands. Any allocated resident and occupied rooms 
+  cannot be edited.
+  * Pros: 
+    * Simpler to implement.
+    * Better testability for synchronicity between fields.
+  * Cons: 
+    * Less user control.  
+* **Alternative 2:** Resident-Room allocation is modelled as a Parent-Child where the parent is the 
+  `Room` and the child is the `Resident`.
+  *Pros:
+    * Simpler to implement.
+  * Cons:
+    * Lack of 2-way updates. Room number of the `Resident` cannot be updated and viewed. 
+      The problem is reversed if the parent-child roles are swapped where the occupancy 
+      of `Room` cannot be updated and viewed.
+* **Alternative 3:** Resident-Room interface as a lookup. `Room` and `Resident` would look up the 
+`residentRoom` class every time to get its `OCCUPANCY STATUS` and `ROOM NUMBER`.
+  * Pros: 
+    * User has more control and flexibility. 
+  * Cons: 
+    * Creates cascading effect with a lot of dependencies between regular commands
+    such as `redit`, `rdel`, `oedit`, `odel`.
+
+
+### Alias feature
+The `Alias` feature allows users to define a shortcut for a longer command that is often used. The longer command can then be executed by entering the alias instead of the full or partial command.
+
+#### Implementation 
+User-defined `Alias` is stored in `AliasMapping` within `UserPrefs`. `AliasMapping` internally uses `HashMap<String, Alias>` to store the mapping between the name of an `Alias` object and itself. With `AliasMapping` included in `UserPrefs`, `UserPrefs` supports the following methods:
+
+* `UserPrefs#getAliasMapping()` — Returns the current `AliasMapping`.
+
+* `UserPrefs#setAliasMapping(AliasMapping aliasMappings)` — Sets the current mapping to the specified mapping.
+
+* `UserPrefs#addAlias(Alias alias)` — Adds a user-defined `Alias` to the current mapping.
+
+* `UserPrefs#getAlias(String aliasName)` — Returns an `Alias` based on alias name.
+
+* `UserPrefs#containsAlias(String aliasName)` — Checks if the current mapping contains an `Alias` based on alias name.
+
+* `UserPrefs#isReservedKeyword(String aliasName)` — Checks if the alias name is a reserved keyword. This prevents users from using existing commands as alias name.
+
+* `UserPrefs#isRecursiveKeyword(String commandWord)` — Checks if the command word is a recursive keyword. This prevents users from chaining aliases.
+
+#### Alias creation
+User can create a new `Alias` via the `AliasCommand`. The sequence diagram below describes how an `Alias` is created.
+
+![AliasCreationSequenceDiagram](images/alias/AliasCreationSequenceDiagram.png)
+
+#### Alias execution
+
+When a user executes a new command, `AddressBookParser` will follow these steps:
+
+1. If the input begins with an existing command word, parse it as one of those pre-defined command.
+    1. If all parameters are valid, return the corresponding `Command` object.
+    1. Else show error to the user.
+1. Else if the input begins with a mapped `Alias`, replace the alias with the mapped `Command`.
+    1. Parse the mapped `Command` as per normal.
+1. Else show error to the user.
+
+The following diagram illustrates the flow:
+
+![AliasExecutionActivityDiagram](images/alias/AliasExecutionActivityDiagram.png)
+
+### Room Features
+
+The Room family of features consist of the following features: Add Room, Edit Room, List Rooms, Find Room and Delete Room. 
+
+#### The Room Class
+The Room class consists of 4 fields, each of which contain their own methods to verify their respective input. This allows for a low degree of coupling, and individual fields can change their input verification rules without affecting the other classes. Similarly, the Room class can expand to contain more fields without affecting existing fields too.
+
+Examples of verification functions in each of the fields include `RoomNumber#isValidRoomNumber()`, `RoomType#isValidRoomType()`, etc.
+
+![The Room Class](images/room/RoomClass.png)
+
+The `Room` objects are stored in a `UniqueRoomList` which is held by `AddressBook`.  
+
+##### Alternatives considered
+* **Alternative 1 (current choice):** Abstract fields of Room out as separate classes
+    * Pros:
+        * Each field can take care of its own validation
+        * Updating a field does not update the Room class itself
+    * Cons:
+        * More classes to manage and individually track
+        * Might be unintuitive to initially understand
+* **Alternative 2:** Leave fields of Room as member variables of the Room class
+    * Pros:
+        * Everything is self-contained within the Room class, single source of "truth"
+    * Cons
+        * Field verification becomes a responsibility of the Room class which is not desirable (Violation of SRP)
+        * Changes to individual fields would impact the Room class which may unintentionally break other things
+        * Less object oriented approach which goes against the principles of how this project was set up
+
+#### Add Room
+This section will detail the implementation of the Add Room feature via the `oadd` command,
+
+##### Overview of Insertion Process 
+The AddRoomCommand is triggered through the use of `oadd` followed by valid parameters such as room number, type, etc. The entire command string must then be parsed to extract the parameters that were inserted, and if they are all valid, a Room object is constructed and added to the model and saved to the backing store. Upon successful insertion, a feedback message is displayed to the user. 
+
+This process is summarised in the diagram below
+![Adding a Room](images/room/AddRoomCommandActivityDiagram.png)
+
+##### AddRoomCommand
+The `AddRoomCommand` inherits from the `Command` object and overrides the `execute()` method. It checks if the model already has the room being inserted, and if it does not, it will insert the room.
+
+The inheritance from `Command` allows `Logic` to deal with and manipulate polymorphic `Command` objects without dealing with the specific implemetations of each `Command` object.
+
+##### Detailed execution pathway
+The diagram below details how the user's command to add a room propagates through the system to eventually add a room. 
+
+![Adding a Room](images/room/AddRoomCommandSeqDiagram.png)
+
+### Issue Features
+
+The Issue family of features consist of the following features: Add Issue, Edit Issue, List Issue, Find Issue, Delete Issue and Close Issue.
+
+#### The Issue Class
+
+The Issue class consists of 5 fields, each of which contain their own methods to verify their respective input. This allows for a low degree of coupling, and individual fields can change their input verification rules without affecting the other classes. Similarly, the Issue class can expand to contain more fields without affecting existing fields too.
+
+Examples of verification functions in each of the fields include `Category#isValidCategory()`, `Status#isValidStatus()`, etc.
+
+![The Issue Class](images/Issue/IssueClass.png)
+
+The `Issue` objects are stored in an `IssueList` which is held by `AddressBook`.
+
+#### Add Issue
+
+This section will detail the implementation of the Add Issue feature via the `iadd` command.
+
+##### Overview of Insertion Process
+
+The AddIssueCommand is triggered through the use of `iadd` followed by valid parameters such as room number, description, etc. The entire command string must then be parsed to extract the parameters that were inserted, and if they are all valid, an Issue object is constructed and added to the model and saved to the backing store. Upon successful insertion, a feedback message is displayed to the user.
+
+This process is summarised in the diagram below
+![Adding an Issue](images/issue/AddIssueCommandActivityDiagram.png)
+
+##### AddIssueCommand
+
+The `AddIssueCommand` inherits from the `Command` object and overrides the `execute()` method.
+
+The inheritance from `Command` allows `Logic` to deal with and manipulate polymorphic `Command` objects without dealing with the specific implemetations of each `Command` object.
+
+##### Detailed execution pathway
+The diagram below details how the user's command to add an issue propagates through the system to eventually add an issue.
+
+![Adding an Issue](images/issue/AddIssueCommandSeqDiagram.png)
+
+### Command History Feature
+The command history feature has a few sub-features:
+1. View history command: the user can list the command history.
+1. Navigate history: the user can navigate their command history like in a terminal program.
+1. Save/load history: command history persists across SunRez runs.
+
+This section starts with an overview of the command history model then looks at each sub-feature in turn.
+
+#### Implementation
+
+##### Command History Overview
+SunRez command history is represented by a `CommandHistory`, stored in the `ModelManager`. A `CommandHistory` is 
+composed of zero or more `CommandHistoryEntry` objects, each representing a previously entered command. New entries
+can be appended to `CommandHistory`. `CommandHistory` implements the `ReadOnlyCommandHistory` interface, 
+which provides a non-editable view of the implementing `CommandHistory`; this readonly view is used by other components
+that do not need to append to the command history. For example, the view history command reads it to display it - or a 
+filtered portion of it - to the user.
+
+The following class diagram shows an overview of the command history subsystem and its relation to other components.
+
+![CommandHistoryModelClassDiagram](images/commandhistory/CmdHistModelClassDiagram.png)
+
+##### How Command History is Updated
+`Logic#execute()` triggers the update. Only _after_ a command parses and executes successfully will that command's text 
+be appended to the command history via `Model#appendCommandHistoryEntry()`. If either parsing or execution fails,
+then `CommandHistory` will be unchanged. The following sequence diagram shows this process pictorially using the 
+example command `help`.
+
+![CommandHistoryUpdateSequenceDiagram](images/commandhistory/CmdHistUpdateSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** In the sequence diagram above, `parseAndExecute()` is not an actual method; rather it is a simplification
+of a two-step process in the Logic component. The important thing to note is that `CommandHistory` is updated only
+_after_ a command is parsed and executed successfully by the Logic component.
+</div>
+
+
+##### View History
+SunRez allows the user to list the full command history, or a portion of it, through the command `history [COUNT]` where
+`[COUNT]` is an optional integer that the user can specify to limit the number of most-recent entries to be listed.
+If `[COUNT]` is omitted, then the full command history is displayed.
+
+Viewing command history is implemented through `ViewHistoryCommand` and supported by `ReadOnlyCommandHistory`. 
+`ViewHistoryCommand#execute()` accesses command history through the view of a `ReadOnlyCommandHistory`, reads the 
+entries it needs to display, formats the entries into a message, then finally returns the message wrapped in 
+a `CommandResult`, to be displayed to the user. The following sequence diagram illustrates the main interactions
+between `ViewHistoryCommand` and the Model component. It uses the example command of `history 5`. 
+
+![ViewHistorySequenceDiagram](images/commandhistory/CmdHistViewHistorySequenceDiagram.png)
+
+##### Navigate History
+The user navigates their command history via the UP and DOWN arrow keys. The UP and DOWN arrow keys respectively 
+select the previous and next commands in history, if any.
+
+The UP and DOWN key press events are first handled by `CommandBox` in the UI component. `CommandBox` delegates the 
+logic of navigation and keeping track of state (which command we are selecting) to a `CommandHistorySelector`.
+The `CommandHistorySelector` is called via `#selectNext()` and `#selectPrevious()` which are expected
+to respectively return the next and previous commands in history since they were last called. Upon receiving the 
+relevant commands from `CommandHistorySelector`, `CommandBox` will populate its text box with that command's text.
+The following sequence diagram shows the aforementioned relationships.
+
+![AccessHistorySequenceDiagram](images/commandhistory/CmdHistAccessHistorySequenceDiagram.png)
+
+`CommandHistorySelector#selectLast()` can also be called to reset the selection to the most recent command in history.
+This is useful, for example, when a user has navigated to the middle of their command history then executes a new 
+command. At this point, we want navigation to start from the most recent command again - not where the user was
+before he/she executed a command.
+
+Currently, SunRez uses a `SuppliedCommandHistorySelector` as its `CommandHistorySelector`. This implementation uses
+a `Supplier<ReadOnlyCommandHistory>` to view SunRez command history whenever it is called to select a new entry.
+
+##### Save/Load History
+SunRez automatically saves command history after each command execution, and loads command history (if any) upon app 
+start-up. The command history is saved in a plain-text file at `[JAR_file_location]/data/commandhistory.txt`. 
+
+Saving and loading is supported by `CommandHistoryStorage`, an interface that exposes read and write methods. SunRez
+currently uses an implementation of this interface called `PlainTextCommandHistoryStorage`, which serializes each
+command history entry as a single line of plain text in the command history file. The class structure is shown 
+in the class diagram in the _Command History Overview_ subsection above.
+
+Command history is saved immediately after it is updated. `CommandHistoryStorage` creates a serialized string from
+a `ReadOnlyCommandHistory` view of the command history, then writes it to disk using `FileUtil#writeToFile()` as a
+helper. The following sequence diagram shows a simplified view of the storage process from command execution to 
+writing the command history to file. For brevity, `FileUtil` is not shown, and the details of appending a command 
+history entry are abbreviated to `appendCommandHistoryEntry("help")` because they are detailed in the subsection 
+_How Command History is Updated_ above.
+
+![CommandHistoryStorageSequenceDiagram](images/commandhistory/CmdHistStorageSequenceDiagram.png)
+
+#### Design Considerations
+
+##### Aspect: Should history include invalid commands?
+
+* **Alternative 1 (current choice):** Only record valid commands (commands which parse and execute successfully).
+    * Pros:
+        * Less cluttered command history.
+        * A User can still easily correct typos in a failed command because SunRez does not consume the input if it 
+          fails to execute.
+    * Cons: 
+        * Behaves less like a regular shell program, so the user might be expecting different behavior.
+
+* **Alternative 2:** Record all command text that the user tries to execute.
+    * Pros:
+        * Behaves more like a regular shell program.
+    * Cons: 
+        * More cluttered command history.
+        * Arguably does not help the user correct typos in failed commands (see Alternative 1: Pros).
+
+##### Aspect: Should command history selection logic be in `CommandBox`?
+
+* **Alternative 1 (current choice):** No, abstract it out to an interface `CommandHistorySelector` with a backing 
+  implementation.
+    * Pros:
+        * Follows SRP because `CommandBox` is part of the UI component, but history selection is logic. If selection
+        logic is left in `CommandBox`, then it now has two reasons (UI and logic) to change.
+        * Easier to unit test because logic is separated from UI.
+    * Cons:
+        * More complex to implement: one additional interface and class.
+
+* **Alternative 2:** Yes, keep the selection logic in `CommandBox`.
+    * Pros:
+        * Simpler to implement: no additional classes or interfaces; and the selection logic is quite straightforward,
+          so the bloat may be acceptable in the short term.
+        * Arguably, selection only affects the `CommandBox` so the added complexity may not be worth it.
+    * Cons:
+        * Harder to unit test because selection logic is bundled with UI.
+        * Pollutes a UI component with details of logic. If we wish to change the selection logic in future but not
+          the UI, `CommandBox` will still need to change.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -277,7 +599,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | user | allocate a resident to a room | |
 | `* * *` | user | deallocate a resident from a room | |
 | `* *` | power user | access my command history | efficiently repeat similar commands |
-| `* *` | power user | create aliases for longer commands | avoid typing the same command multiple times | 
+| `* *` | power user | access command history from previous sessions | easily reuse commands from previous sessions |
+| `* *` | power user | create aliases for longer commands | avoid typing the same command multiple times |
 
 ## Use cases
 

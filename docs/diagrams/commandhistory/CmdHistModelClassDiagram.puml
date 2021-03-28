@@ -1,0 +1,38 @@
+@startuml
+!include ../style.puml
+
+package UI <<Rectangle>> {
+class CommandBox UI_COLOR_T3
+}
+
+package Model <<Rectangle>> {
+class CommandHistory MODEL_COLOR_T3
+interface ReadOnlyCommandHistory <<interface>> MODEL_COLOR_T3
+class ModelManager MODEL_COLOR_T3
+class CommandHistoryEntry MODEL_COLOR_T3
+}
+
+package Logic <<Rectangle>> {
+class ViewHistoryCommand LOGIC_COLOR_T3
+interface CommandHistorySelector <<interface>> LOGIC_COLOR_T3
+class SuppliedCommandHistorySelector LOGIC_COLOR_T3
+class ViewHistoryCommandParser LOGIC_COLOR_T3
+}
+
+package Storage <<Rectangle>> {
+interface CommandHistoryStorage <<interface>> STORAGE_COLOR_T3
+class PlainTextCommandHistoryStorage STORAGE_COLOR_T3
+}
+
+ReadOnlyCommandHistory <|.. CommandHistory
+CommandBox --> CommandHistorySelector : delegates\nselection logic to >
+CommandHistory *-> "*" CommandHistoryEntry : composed of
+ModelManager -> "1" CommandHistory : has >
+ViewHistoryCommand ..> ReadOnlyCommandHistory : formats >
+ViewHistoryCommandParser ..> ViewHistoryCommand : constructs >
+CommandHistoryStorage ..> ReadOnlyCommandHistory : serializes >
+PlainTextCommandHistoryStorage ..|> CommandHistoryStorage
+CommandHistorySelector <|.. SuppliedCommandHistorySelector
+SuppliedCommandHistorySelector --> ReadOnlyCommandHistory : selects from >
+
+@enduml
