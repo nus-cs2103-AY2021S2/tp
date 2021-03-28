@@ -1,15 +1,12 @@
 @startuml
 !include style.puml
-skinparam arrowThickness 1.1
+skinparam arrowThickness 1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Interface NoteContentConfig <<Interface>>
-Interface DictionaryContentConfig <<Interface>>
-
 Class Model
 Class ModelManager
 Class UserPrefs
@@ -17,13 +14,9 @@ Class ReadOnlyUserPrefs
 Class ReadOnlyContactsList
 Class ReadOnlyDefinitionBook
 Class ReadOnlyNoteBook
-Class FilteredList<Definition>
 Class DefinitionBook
-Class FilteredList<Content>
 Class Dictionary
-Class FilteredList<Contact>
 Class NoteBook
-Class FilteredList<Note>
 Class UserPrefs
 Class DictionaryBook
 Class ContactsList
@@ -66,6 +59,7 @@ ModelManager .up.|> Model
 Model .right.> ObservableList
 ModelManager o--> "1" ContactsList
 ModelManager o--> "1" NoteBook
+ModelManager o--> "1" DictionaryBook
 ModelManager o--> "1" DefinitionBook
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
@@ -92,6 +86,7 @@ Address -[hidden]right-> Email
 
 ModelManager ----->" ~* filtered list" Contact
 ModelManager ----->" ~* filtered list" Note
-ModelManager ----->" ~* filtered list" Dictionary
+ModelManager ----->" ~* filtered list" Content
+ModelManager ----->" ~* filtered list" Definition
 
 @enduml
