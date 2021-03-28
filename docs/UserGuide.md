@@ -26,10 +26,11 @@ For a quick overview of GME’s commands, refer to the [“Command Summary”](#
 
 Please note the following symbols used in the User Guide which may serve as points of interests:
 
-Symbol | Meaning
---------|------------------
-`command` | The grey highlight indicates commands that can be executed by GME.
-:information_source: | This symbol indicates noteworthy information.
+
+`command`: The grey highlight indicates commands that can be executed by GME.
+
+:information_source: : This symbol indicates noteworthy information.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 2. Quick start <a name = "quickstart"></a>
@@ -113,7 +114,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [d/DAY] [t/TIME] [tag/TAG]…
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `tag/` without
   specifying any tags after it.
-  </div>
+</div>
 
 **Examples:**
 * `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -127,7 +128,7 @@ Format: `find PREFIX/KEYWORD` where PREFIX is one of the following: `n`, `a`, `p
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the edit command:**<br>
+**:information_source: Notes about the find command:**<br>
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * Only full words will be matched e.g. `Han` will not match `Hans`
@@ -150,7 +151,7 @@ Format: `delete INDEX`
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the edit command:**<br>
+**:information_source: Notes about the delete command:**<br>
 
 * Deletes the passenger at the specified `INDEX`.
 * The index refers to the index number shown in the displayed passenger list.
@@ -170,7 +171,7 @@ Format: `drive n/DRIVER_NAME p/DRIVER_PHONE c/INDEX [c/INDEX c/INDEX...]`
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the edit command:**<br>
+**:information_source: Notes about the drive command:**<br>
 
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
