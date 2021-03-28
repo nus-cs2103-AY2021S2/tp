@@ -3,9 +3,7 @@ layout: page
 title: User Guide
 ---
 # TutorBuddy
-<div class="">
-<img src="images/TutorBuddyLogo.jpeg" style="margin:0 auto">
-</div>
+![TutorBuddy](images/TutorBuddyLogo.jpeg)
 
 TutorBuddy is an application made for independent tutors as a management tool to cut down on admin overheads,
 by graphically managing their student’s information with a Graphical User Interface (GUI).
