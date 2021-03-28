@@ -24,6 +24,12 @@ public class TimetableView extends UiPart<Region> {
 
     private ObservableList<DaySchedule> timetableList;
 
+    /**
+     * Renders an observable list of daySchedules in each row onto the UI,
+     * with the column being the timeslots.
+     * @param timetableList
+     */
+
     public TimetableView(ObservableList<DaySchedule> timetableList) {
         super(FXML);
         this.timetableList = timetableList;
@@ -39,8 +45,12 @@ public class TimetableView extends UiPart<Region> {
             //rowItem.getValue() returns the DaySchedule instance for particular row
             int finalI = i; //get around variable must be effectively final
             currentCol.setCellValueFactory(rowItem -> rowItem.getValue().getStringProperty(finalI));
+            //currentCol.setCellFactory(tc -> {
+
+            //});
             timetableView.getColumns().add(currentCol);
         }
+
 
     }
 
@@ -66,8 +76,12 @@ public class TimetableView extends UiPart<Region> {
         column.setGraphic(stack);
     }
 
+    /**
+     * Adjusts the cell size of the table so that the timetable is displayed.
+     * @param table
+     */
     public void applyTableStyle(TableView<DaySchedule> table) {
-        //get table  to match the bottom of the screen in fullscreen
+        //Ensures table matches the bottom of the screen in fullscreen when displaying tabs.
         table.setFixedCellSize(92);
         table.prefHeightProperty().bind(Bindings.size(table.getItems()).multiply(table.getFixedCellSize()).add(30));
     }
