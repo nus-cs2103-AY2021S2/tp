@@ -1,0 +1,60 @@
+.calendar-list-view {
+    -fx-background-insets: 0 2 0 0;
+    -fx-background-radius: 5;
+}
+
+.cell_big_label {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 16px;
+    -fx-text-fill: #010504;
+}
+
+.cell_small_label {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
+    -fx-text-fill: #707070;
+}
+
+.cell_small_label_bold {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
+    -fx-text-fill: #707070;
+    -fx-font-weight: bold;
+}
+
+.list-cell {
+    -fx-background-radius: 8;
+    -fx-background-color: #FFF;
+    -fx-border-width: 8px;
+    -fx-border-color: #FFF;
+    -fx-border-radius: 8;
+    -fx-background-insets: 0;
+}
+
+.list-cell:empty {
+    -fx-background-color: #FFF;
+}
+
+.list-cell:filled {
+    -fx-background-color: #ffe482;
+    -fx-border-color: #FFF;
+    -fx-background-insets: 0;
+
+}
+
+.list-cell:filled:hover {
+    -fx-background-color: #fcda5b;
+}
+
+.label {
+    -fx-alignment: center;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
+.label.header {
+    -fx-font-size: 24;
+}
+
+.label.date-header {
+    -fx-font-size: 18;
+}

@@ -35,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private TuitionListPanel tuitionListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private CalendarView calendarView;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -70,6 +71,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        calendarView = new CalendarView(logic);
     }
 
     public Stage getPrimaryStage() {
@@ -151,6 +153,18 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.show();
         } else {
             helpWindow.focus();
+        }
+    }
+
+    /**
+     * Opens the calendar window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleCalendar() {
+        if (!calendarView.isShowing()) {
+            calendarView.show();
+        } else {
+            calendarView.focus();
         }
     }
 
