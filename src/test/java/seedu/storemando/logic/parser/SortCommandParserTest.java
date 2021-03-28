@@ -6,9 +6,10 @@ import static seedu.storemando.logic.parser.CommandParserTestUtil.assertParseSuc
 
 import org.junit.jupiter.api.Test;
 
+import seedu.storemando.logic.commands.SortAscendingQuantityCommand;
 import seedu.storemando.logic.commands.SortCommand;
+import seedu.storemando.logic.commands.SortDescendingQuantityCommand;
 import seedu.storemando.logic.commands.SortExpiryDateCommand;
-import seedu.storemando.logic.commands.SortQuantityCommand;
 
 class SortCommandParserTest {
     private final SortCommandParser parser = new SortCommandParser();
@@ -23,41 +24,38 @@ class SortCommandParserTest {
     public void parse_invalidArgument_throwsParseException() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE);
 
-        assertParseFailure(parser, "location", expectedMessage);
-        assertParseFailure(parser, "name", expectedMessage);
-        assertParseFailure(parser, "item", expectedMessage);
-        assertParseFailure(parser, "store", expectedMessage);
-        assertParseFailure(parser, "expiry", expectedMessage);
-        assertParseFailure(parser, "q", expectedMessage);
-        assertParseFailure(parser, "quantities", expectedMessage);
-        assertParseFailure(parser, "expirDate", expectedMessage);
-        assertParseFailure(parser, "quant1ty", expectedMessage);
-        assertParseFailure(parser, "room", expectedMessage);
+        //check for correct number of words but wrong words given
+        assertParseFailure(parser, "quantity invalid", expectedMessage);
+        assertParseFailure(parser, "expirydate rising", expectedMessage);
+        assertParseFailure(parser, "asc quantity", expectedMessage);
+        assertParseFailure(parser, "expireddate", expectedMessage);
+        assertParseFailure(parser, "quantity", expectedMessage);
 
+        //check for incorrect number of words given
+        assertParseFailure(parser, "quantity invalid command", expectedMessage);
+        assertParseFailure(parser, "expirydate rising high", expectedMessage);
+        assertParseFailure(parser, "expirydate quantity asc", expectedMessage);
     }
 
     @Test
-    public void parse_validArgment_success() {
+    public void parse_validArgument_success() {
         SortExpiryDateCommand expectedExpiryDateCommand = new SortExpiryDateCommand();
-        SortQuantityCommand expectedQuantityCommand = new SortQuantityCommand(true);
+        SortAscendingQuantityCommand expectedAscQuantityCommand = new SortAscendingQuantityCommand();
+        SortDescendingQuantityCommand expectedDescQuantityCommand = new SortDescendingQuantityCommand();
 
         //check for valid increasing quantity user inputs
-        assertParseSuccess(parser, "quantity asc", expectedQuantityCommand);
-        assertParseSuccess(parser, "QUANTITY asc", expectedQuantityCommand);
-        assertParseSuccess(parser, "QuanTITy asc", expectedQuantityCommand);
-        assertParseSuccess(parser, "qUaNtItY asc", expectedQuantityCommand);
+        assertParseSuccess(parser, "quantity asc", expectedAscQuantityCommand);
+        assertParseSuccess(parser, "QuAnTiTy Asc", expectedAscQuantityCommand);
+        assertParseSuccess(parser, "\n     QuAnTiTy Asc", expectedAscQuantityCommand);
 
-        //check for valid increasing quantity user inputs
-        assertParseSuccess(parser, "quantity desc", expectedQuantityCommand);
-        assertParseSuccess(parser, "QUANTITY desc", expectedQuantityCommand);
-        assertParseSuccess(parser, "QuanTITy desc", expectedQuantityCommand);
-        assertParseSuccess(parser, "qUaNtItY desc", expectedQuantityCommand);
+        //check for valid decreasing quantity user inputs
+        assertParseSuccess(parser, "quantity desc", expectedDescQuantityCommand);
+        assertParseSuccess(parser, "QuAnTiTy DeSc", expectedDescQuantityCommand);
+        assertParseSuccess(parser, "\n     QuAnTiTy DeSc", expectedDescQuantityCommand);
 
         //check for valid expiryDate user inputs
-        assertParseSuccess(parser, "expiryDate", expectedExpiryDateCommand);
         assertParseSuccess(parser, "expirydate", expectedExpiryDateCommand);
-        assertParseSuccess(parser, "EXPIRYDATE", expectedExpiryDateCommand);
-        assertParseSuccess(parser, "EXPIRYdate", expectedExpiryDateCommand);
-        assertParseSuccess(parser, "ExPiRyDaTe", expectedExpiryDateCommand);
+        assertParseSuccess(parser, "eXpIrYdAtE", expectedExpiryDateCommand);
+        assertParseSuccess(parser, "\n     eXpIrYdAtE", expectedExpiryDateCommand);
     }
 }

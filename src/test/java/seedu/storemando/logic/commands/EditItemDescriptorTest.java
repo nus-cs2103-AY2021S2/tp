@@ -8,7 +8,7 @@ import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_B
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BANANA;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_ESSENTIAL;
 
 import org.junit.jupiter.api.Test;
 
@@ -53,7 +53,7 @@ public class EditItemDescriptorTest {
         assertFalse(DESC_CHEESE.equals(editedCheese));
 
         // different tags -> returns false
-        editedCheese = new EditItemDescriptorBuilder(DESC_CHEESE).withTags(VALID_TAG_HUSBAND).build();
+        editedCheese = new EditItemDescriptorBuilder(DESC_CHEESE).withTags(VALID_TAG_ESSENTIAL).build();
         assertFalse(DESC_CHEESE.equals(editedCheese));
     }
 }
