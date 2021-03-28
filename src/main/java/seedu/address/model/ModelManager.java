@@ -326,4 +326,23 @@ public class ModelManager implements Model {
         return recommendedDiets;
     }
 
+    //=========== Reset App Accessors =============================================================
+
+    /**
+     * Resets the app to the dummy template data.
+     */
+    public void resetToTemplate() {
+        this.addressBook.resetToTemplate();
+        this.uniqueFoodList.resetToTemplate();
+        this.foodIntakeList.resetToTemplate();
+    }
+
+    /**
+     * Resets the app to blank state.
+     */
+    public void resetToBlank() {
+        this.addressBook.resetToBlank();
+        this.uniqueFoodList.resetToBlank();
+        this.foodIntakeList.resetToBlank();
+    }
 }
