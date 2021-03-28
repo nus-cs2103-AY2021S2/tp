@@ -26,7 +26,9 @@ ResidenceTracker (RT) is a **desktop app for managing contacts, optimized for us
 
    * **`list`** : Lists all residences in the app.
 
-   * **`add`**`n/Clementi HDB a/459A Clementi Ave 3, #04-257, S121459 clean/n book/y` : Adds a residence named `Clementi HDB` to the ResidenceTracker.
+   * **`add`**`n/Clementi HDB a/459A Clementi Ave 3, #04-257, S121459 c/n` : Adds a residence named `Clementi HDB` to the ResidenceTracker.
+   * 
+   * * **`edit`**`1 c/y` : edit the first residence clean status as Clean.
 
    * **`delete`**`3` : Deletes the 3rd residence shown in the current list.
 
@@ -93,14 +95,14 @@ Format: `list`
 
 Edits the cleaning status of an existing residence.
 
-Format: `edit clean/n [INDEX]`
+Format: `edit [INDEX] c/n `
 
 * Edits the residence status at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * The clean status field must be provided.
 
 Examples:
-*  `edit clean/y 1` Edits the clean status of the 1st residence on the list from `Unclean` to `Clean`.
-*  `edit clean/n 2 `  Edits the clean status of the 2nd residence on the list from `Clean` to `Unclean`.
+*  `edit 1 c/y` Edits the clean status of the 1st residence on the list from `Unclean` to `Clean`.
+*  `edit 2 clean/n`  Edits the clean status of the 2nd residence on the list from `Clean` to `Unclean`.
 
 ### Locating residences by name: `find`
 
@@ -200,7 +202,7 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Deleteb** | `deleteb r/RESIDENCE_INDEX b/BOOKING_INDEX`<br> e.g., `delete r/3 b/2`
-**Edit** | `edit clean/[y or n] [INDEX]`<br> e.g.,`edit clean/n 2`
+**Edit** | `edit INDEX c/[y or n]`<br> e.g.,`edit 2 c/n`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Heights`
 **List** | `list`
 **Help** | `help`
