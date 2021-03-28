@@ -22,14 +22,15 @@ public class NameContainsKeywordsPredicate implements Predicate<Reader> {
     }
 
     /**
-     * Tests if the reader contains any of the keywords.
+     * Tests if the reader's name contains any of the keywords.
      *
      * @param reader the reader to be tested.
-     * @return true if the reader contains any of the keywords, and false otherwise.
+     * @return true if the reader's name contains any of the keywords, and false otherwise.
      */
     @Override
     public boolean test(Reader reader) {
-        return keywords.stream()
+        return keywords
+                .stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(reader.getName().toString(), keyword));
     }
 

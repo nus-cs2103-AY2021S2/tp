@@ -1,10 +1,13 @@
 package seedu.smartlib.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.util.function.Predicate;
 
 import seedu.smartlib.commons.core.Messages;
 import seedu.smartlib.model.Model;
-import seedu.smartlib.model.reader.NameContainsKeywordsPredicate;
+import seedu.smartlib.model.reader.Reader;
 
 /**
  * Finds and lists all readers in SmartLib whose name contains any of the argument keywords.
@@ -17,16 +20,19 @@ public class FindReaderCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all readers whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+            + "To find a reader with a certain tag, use \"findreader " + PREFIX_TAG + "TAG [MORE_TAGS]\" instead.\n"
+            + "Note that the current version of our app does not support the searching of "
+            + "keywords and tags within the same command.\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final Predicate<Reader> predicate;
 
     /**
      * Creates an FindReaderCommand to find the specified reader(s).
      *
      * @param predicate a Predicate used to find the specified reader(s).
      */
-    public FindReaderCommand(NameContainsKeywordsPredicate predicate) {
+    public FindReaderCommand(Predicate<Reader> predicate) {
         this.predicate = predicate;
     }
 
