@@ -70,7 +70,7 @@ This user guide uses various formatting styles to facilitate reading and to comm
 </ul>
 {:/}
 
-For a quick reference of the available commands and their syntax, refer to the [Command Summary](#command-summary) section.
+For a quick reference of the available commands and their syntax, refer to the [Command Summary](#6-command-summary) section.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -346,7 +346,7 @@ It is also possible to specify your own property and/or appointment storage data
 
 ![Edit preferences.json file](images/editPreferencesJsonFile.png)
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:** For advanced users, it is also possible to specify your own configuration file, which contains your preferred preference file path. Refer to <a href="#launching-application-via-command-line">Appendix: Launching application via command line</a> for more information.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** For advanced users, it is also possible to specify your own configuration file, which contains your preferred preference file path. Refer to <a href="#71-launching-application-via-command-line">Appendix: Launching application via command line</a> for more information.
 
 </div>
 
