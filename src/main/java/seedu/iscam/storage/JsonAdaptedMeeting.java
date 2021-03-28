@@ -1,6 +1,5 @@
 package seedu.iscam.storage;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -86,7 +85,11 @@ class JsonAdaptedMeeting {
 
         if (dateTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    LocalDateTime.class.getSimpleName()));
+                    DateTime.class.getSimpleName()));
+        }
+
+        if (!DateTime.isValidDateTimeStr(dateTime)) {
+            throw new IllegalValueException(DateTime.MESSAGE_CONSTRAINTS);
         }
 
         final DateTime modelDateTime = new DateTime(dateTime);
