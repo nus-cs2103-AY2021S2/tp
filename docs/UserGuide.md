@@ -3,9 +3,22 @@ layout: page
 title: User Guide
 ---
 # TutorBuddy
+Welcome to the user guide for TutorBuddy!<br/>
+Are you a tuition teacher looking for a reliable way to keep track of
+your 1-to-1 classes? Needing a system to remind you about upcoming classes?
+Or efficient way to calculate your class incomes? <br/>
+Then, you have come to the right place -- TutorBuddy shall help you!
+
 TutorBuddy is an application made for independent tutors as a management tool to cut down on admin overheads,
 by graphically managing their student’s information with a Graphical User Interface (GUI).
 It allows for faster and more effective student management.
+
+### About this guide
+This guide provides a basic introduction for using TutorBuddy, and a detailed description for each feature.<br/>
+Go to [Quick start](#quick-start), for a summary of step to get started with using the application.<br/>
+Go to [Features](#features), for a detailed explanation of each feature. <br/>
+Go to [FAQ](#faq), for answers to Frequently Asked Questions. <br/>
+Go to [Command Summary](#command-summary), for a basic summary to commands.
 
 **Table of Contents**
 * [Quick start](#quick-start)
