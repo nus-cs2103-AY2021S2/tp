@@ -58,7 +58,7 @@ public class SmartLibTest {
         List<Reader> newReaders = Arrays.asList(ALICE, editedAlice);
 
         Record record = new Record(
-                new Barcode(Barcode.MAX_VALUE), new Name("Alex Yeoh"), new DateBorrowed("2020-11-23")
+                new Barcode(Barcode.MAX_VALUE), new Name("Alex Yeoh"), new DateBorrowed("2021-01-22T23:30:00")
         );
         List<Record> newRecords = Arrays.asList(record, record);
 
