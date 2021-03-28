@@ -177,6 +177,8 @@ Format: `pool n/DRIVER_NAME p/DRIVER_PHONE c/INDEX [c/INDEX c/INDEX...]`
 * The index **must be a positive integer** 1, 2, 3, …​
 * The order of the passengers' index does not matter
 * You must select at least 1 person to pool with one command
+</div>
+
 
 **Examples**:
 * `find tag/female` followed by `pool n/Alice p/91234567 c/2 c/3 c/4` selects the the *2nd*, *3rd* and *4th* person in the results of `find tag/female` command, and assigns *Alice* with number *91234567* to be their driver
@@ -204,7 +206,7 @@ GME data is saved as a JSON file `[JAR file location]/data/GreenMileageEfforts.j
 
 --------------------------------------------------------------------------------------------------------------------
 
-# 4. FAQ <a name = "faq"></a>
+## 4. FAQ <a name = "faq"></a>
 
 **Q:** Where can I find the data stored by GME terminal?
 
