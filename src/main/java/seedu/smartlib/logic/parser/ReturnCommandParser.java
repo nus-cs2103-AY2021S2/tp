@@ -5,7 +5,7 @@ import static seedu.smartlib.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMA
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BOOK;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_READER;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
 import seedu.smartlib.commons.core.name.Name;
@@ -34,7 +34,7 @@ public class ReturnCommandParser implements Parser<ReturnCommand> {
 
         Name bookName = ParserUtil.parseName(argMultimap.getValue(PREFIX_BOOK).get());
         Name readerName = ParserUtil.parseName(argMultimap.getValue(PREFIX_READER).get());
-        DateReturned dateReturned = new DateReturned(LocalDate.now());
+        DateReturned dateReturned = new DateReturned(LocalDateTime.now());
         Record record = new Record(bookName, readerName, dateReturned);
 
         return new ReturnCommand(record);

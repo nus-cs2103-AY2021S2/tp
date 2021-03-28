@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.smartlib.commons.util.AppUtil.checkArgument;
 import static seedu.smartlib.model.SmartLib.DURATION;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class DateBorrowed {
 
@@ -19,9 +19,9 @@ public class DateBorrowed {
      *
      * @param date A valid date.
      */
-    public DateBorrowed(LocalDate date) {
+    public DateBorrowed(LocalDateTime date) {
         requireNonNull(date);
-        checkArgument(isValidDate(date.toString()), MESSAGE_CONSTRAINTS);
+        //checkArgument(isValidDate(date.toString()), MESSAGE_CONSTRAINTS);
         value = date.toString();
     }
 
@@ -33,12 +33,12 @@ public class DateBorrowed {
      */
     public DateBorrowed(String date) {
         requireNonNull(date);
-        checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
+        //checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
         value = date;
     }
 
     public boolean isOverdue() {
-        return DAYS.between(LocalDate.parse(this.value), LocalDate.now()) > DURATION;
+        return DAYS.between(LocalDateTime.parse(this.value), LocalDateTime.now()) > DURATION;
     }
 
     /**

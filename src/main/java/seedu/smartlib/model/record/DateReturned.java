@@ -3,7 +3,7 @@ package seedu.smartlib.model.record;
 import static java.util.Objects.requireNonNull;
 import static seedu.smartlib.commons.util.AppUtil.checkArgument;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class DateReturned {
 
@@ -17,9 +17,9 @@ public class DateReturned {
      *
      * @param date A valid date.
      */
-    public DateReturned(LocalDate date) {
+    public DateReturned(LocalDateTime date) {
         requireNonNull(date);
-        checkArgument(isValidDate(date.toString()), MESSAGE_CONSTRAINTS);
+        //checkArgument(isValidDate(date.toString()), MESSAGE_CONSTRAINTS);
         value = date.toString();
     }
 
@@ -31,12 +31,12 @@ public class DateReturned {
      */
     public DateReturned(String date) {
         requireNonNull(date);
-        checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
+        //checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
         value = date;
     }
 
     /**
-     * Returns if a given string is a valid email.
+     * Returns if a given string is a valid date.
      */
     public static boolean isValidDate(String test) {
         return test.toString().matches(VALIDATION_REGEX);

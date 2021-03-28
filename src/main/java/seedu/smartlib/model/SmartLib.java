@@ -2,7 +2,7 @@ package seedu.smartlib.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -347,7 +347,7 @@ public class SmartLib implements ReadOnlySmartLib {
         if (reader == null || book == null) {
             return false;
         }
-        reader.getBorrows().put(bookName, new DateBorrowed(LocalDate.now()));
+        reader.getBorrows().put(bookName, new DateBorrowed(LocalDateTime.now()));
         Reader editedReader = new Reader(reader.getName(), reader.getPhone(), reader.getEmail(),
                 reader.getAddress(), reader.getTags(), reader.getBorrows());
         Book editedBook = new Book(book.getName(), book.getAuthor(), book.getPublisher(),
