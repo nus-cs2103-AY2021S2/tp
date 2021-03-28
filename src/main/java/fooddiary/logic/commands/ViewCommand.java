@@ -2,10 +2,7 @@ package fooddiary.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import fooddiary.commons.core.Messages;
 import fooddiary.commons.core.index.Index;

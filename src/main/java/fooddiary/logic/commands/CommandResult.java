@@ -2,7 +2,6 @@ package fooddiary.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.HashMap;
 import java.util.Objects;
 
 import fooddiary.model.entry.Entry;

@@ -1,6 +1,5 @@
 package fooddiary.ui;
 
-import java.util.HashMap;
 import java.util.logging.Logger;
 
 import fooddiary.commons.core.GuiSettings;
