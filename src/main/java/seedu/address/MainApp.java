@@ -30,6 +30,7 @@ import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
+import seedu.address.ui.MainWindow;
 import seedu.address.ui.Theme;
 import seedu.address.ui.ThemeFactory;
 import seedu.address.ui.ThemeManager;
