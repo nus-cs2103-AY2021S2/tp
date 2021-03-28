@@ -5,16 +5,24 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 
-
-public class TimeTableSlot extends UiPart<Region> {
-    private static final String FXML = "TimeTableSlot.fxml";
+/**
+ * Renders a slot in the timetable.
+ */
+public class TimetableSlot extends UiPart<Region> {
+    private static final String FXML = "TimetableSlot.fxml";
 
     @FXML
     private StackPane meetingSlot;
     @FXML
     private Label meetingLabel;
 
-    public TimeTableSlot(int slotLength, String header) {
+    /**
+     * Constructs the Ui for the slot given the (pixel) length of the slot and the header string.
+     * @param slotLength
+     * @param header
+     */
+
+    public TimetableSlot(double slotLength, String header) {
         super(FXML);
         this.meetingLabel.setText(header);
         meetingSlot.setPrefHeight(slotLength);
