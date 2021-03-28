@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_FATS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROTEINS;
 
-
 import seedu.address.logic.commands.AddFoodItemCommand;
 import seedu.address.logic.commands.UpdateFoodItemCommand.EditFoodDescriptor;
 import seedu.address.model.food.Food;
