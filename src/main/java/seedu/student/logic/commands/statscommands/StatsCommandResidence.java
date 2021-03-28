@@ -20,7 +20,7 @@ public class StatsCommandResidence extends StatsCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Student> studentList = model.getStudentBook().getStudentList();
+        List<Student> studentList = model.getStudentList();
 
         try {
             float stats = calculateRatioVaccinated(studentList, residence);

@@ -3,7 +3,9 @@ layout: page
 title: User Guide
 ---
 
-Vax@NUS is a **one stop management app to efficiently track and and schedule COVID-19 vaccinations for NUS students.** It is a desktop app **optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Vax@NUS can get your appointment management tasks done faster than traditional GUI apps.
+Vax@NUS is a **one stop management app to efficiently track and schedule COVID-19 vaccinations for NUS students.** It is a desktop app **optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Vax@NUS can get your appointment management tasks done faster than traditional GUI apps.
+
+:information_source: This icon indicates helpful notes 
 
 * Table of Contents
 {:toc}
@@ -31,11 +33,57 @@ Vax@NUS is a **one stop management app to efficiently track and and schedule COV
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Parameter Formats
+
+**:information_source: NOTE: The following parameter formats must be followed:**
+> The `MATRICULATION_NUMBER` of a student is a unique 9-character alphanumeric sequence that begins with A, followed by
+> 7 numbers and ends with an alphabet.
+
+> The `FACULTY` of a student must be one of the following:
+> * FASS (for Faculty of Arts and Social Sciences)
+> * BIZ (for NUS Business School)
+> * COM (for School of Computing)
+> * SCALE (for School of Continuing and Lifelong Education)
+> * DEN (for Faculty of Dentistry)
+> * SDE (for School of Design and Environment)
+> * DNUS (for Duke-NUS Medical School)
+> * ENG (for Faculty of Engineering)
+> * ISEP (for Integrative Sciences and Engineering)
+> * LAW (for Faculty of Law)
+> * MED (for Yong Loo Lin School of Medicine)
+> * MUSIC (for Yong Siew Toh Conservatory of Music)
+> * SPH (for Saw Swee Hock School of Public Health)
+> * SPP (for Lee Kuan Yew School of Public Policy)
+> * SCI (for Faculty of Science)
+> * USP (for University Scholars Programme)
+> * YNC (for Yale-NUS College)
+
+> The `VACCINATION_STATUS` of a student must only be `vaccinated` or `not vaccinated`
+
+> The `[SCHOOL_RESIDENCE]` of a student must be one of the following:
+> * PGPH (for Prince George's Park House)
+> * PGPR (for Prince George's Park Residences)
+> * KE7H (for King Edward VII Hall)
+> * SH (for Sheares Hall)
+> * KRH (for Kent Ridge Hall)
+> * TH (for Temasek Hall)
+> * EH (for Eusoff Hall)
+> * RH (for Raffles Hall)
+> * RVRC (for Ridge View Residential College)
+> * YNC (for Yale-NUS College)
+> * TC (for Tembusu College)
+> * CAPT (for College of Alice and Peter Tan)
+> * RC4 (for Residential College 4)
+> * USP (for University Scholars Programme)
+> * UTR (for Utown Residences)
+
+----------------------------------------------------------------------
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
 
-**Notes about the command format:**<br>
+**:information_source: NOTE ABOUT THE COMMAND FORMAT :**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -52,53 +100,12 @@ Vax@NUS is a **one stop management app to efficiently track and and schedule COV
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
   
-**NOTE: The following parameter formats must be followed:**
-> The `MATRICULATION_NUMBER` of a student is a unique 9-character alphanumeric sequence that begins with A, followed by 
-  > 7 numbers and ends with an alphabet. 
-
-> The `FACULTY` of a student must be one of the following:
-  > * FASS (for Faculty of Arts and Social Sciences)
-  > * BIZ (for NUS Business School) 
-  > * COM (for School of Computing)
-  > * SCALE (for School of Continuing and Lifelong Education)
-  > * DEN (for Faculty of Dentistry)
-  > * SDE (for School of Design and Environment)
-  > * DNUS (for Duke-NUS Medical School)
-  > * ENG (for Faculty of Engineering)
-  > * ISEP (for Integrative Sciences and Engineering)
-  > * LAW (for Faculty of Law)
-  > * MED (for Yong Loo Lin School of Medicine)
-  > * MUSIC (for Yong Siew Toh Conservatory of Music)
-  > * SPH (for Saw Swee Hock School of Public Health)
-  > * SPP (for Lee Kuan Yew School of Public Policy)
-  > * SCI (for Faculty of Science)
-  > * USP (for University Scholars Programme)
-  > * YNC (for Yale-NUS College)
-  
-> The `VACCINATION_STATUS` of a student must only be `vaccinated` or `not vaccinated`
-
-> The `[SCHOOL_RESIDENCE]` of a student must be one of the following:
-  > * PGPH (for Prince George's Park House)
-  > * PGPR (for Prince George's Park Residences)
-  > * KE7H (for King Edward VII Hall)
-  > * SH (for Sheares Hall)
-  > * KRH (for Kent Ridge Hall)
-  > * TH (for Temasek Hall)
-  > * EH (for Eusoff Hall)
-  > * RH (for Raffles Hall)
-  > * RVRC (for Ridge View Residential College)
-  > * YNC (for Yale-NUS College)
-  > * TC (for Tembusu College)
-  > * CAPT (for College of Alice and Peter Tan)
-  > * RC4 (for Residential College 4)
-  > * USP (for University Scholars Programme)
-  > * UTR (for Utown Residences)
 
 </div>
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -107,7 +114,7 @@ Format: `help`
 
 ### Adding a student entry: `add`
 
-Adds a student to the records.
+Adds a student to Vax@NUS' records.
 
 Format: `add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS r/SCHOOL_RESIDENCE[optional]`
 
@@ -118,7 +125,7 @@ Examples:
 
 ### Editing a student entry: `edit`
 
-Edits a student in the records.
+Edits a student in Vax@NUS' records.
 
 Format: `edit INDEX [n/NAME] [i/MATRICULATION_NUMBER] [f/FACULTY] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/VACCINATION_STATUS] [m/MEDICAL_DETAILS] [r/SCHOOL_RESIDENCE]`
 
@@ -133,25 +140,25 @@ Examples:
 * `edit 2 r/KRH`  Edits the school residence of the second student to be KRH.
 
 
-### Listing all students in the records : `list`
+### Listing all students : `list`
 
-Shows a list of all students in the records.
+Shows a list of all students in Vax@NUS' records.
 
 Format: `list students`
 
-### Finding a student by matriculation number: `find`
+### Finding a student : `find`
 
-Shows only the details of the student that matches the specified matriculation number.
+Shows the particular Vax@NUS' student records and students' appointment that matches the specified matriculation number.
 
 Format: `find MATRICULATION_NUMBER`
 
 
 Examples:
-* `Find A1234567X` returns `John Doe` from the record.
+* `Find A1234567X` returns `John Doe` and John Doe's appointment if it exists from the record.
 
-### Filtering the student entries by vaccination status, faculty or school residence : `filter`
+### Filtering student records: `filter`
 
-Shows only the details of the student entries that matches the specified filter condition.
+Shows all Vax@NUS' student records that matches the specified filter condition.
 
 Format: <br>
 `filter VACCINATION_STATUS`
@@ -164,7 +171,7 @@ Examples:
 * `filter RVRC` 
 
 
-### Deleting a student by their matriculation number: `deleteStud`
+### Deleting a student : `deleteStud`
 
 Deletes the specified student from Vax@NUS' records.
 
@@ -176,6 +183,18 @@ Format: `deleteStud MATRICULATION NUMBER`
 
 Examples:
 * `deleteStud A7654321J` deletes Betsy Crowe from the records.
+
+### Deleting an appointment by the student's matriculation number: `deleteAppt`
+
+Deletes the appointment of the student with the specified matriculation number from Vax@NUS' records. 
+
+Format: `deleteAppt MATRICULATION NUMBER`
+
+* If the matriculation number or appointment does not exist in the records, an error message will be displayed to inform users that
+  the matriculation number or appointment is not found.
+
+Examples:
+* `deleteAppt A7654321J` deletes Betsy Crowe's appointments from the records, provided she had an appointment scheduled previously.
 
 
 ### Adding an appointment: `addAppt`
@@ -191,8 +210,21 @@ Examples:
 * `addAppt i/A1234567X d/2021-12-13 ts/13:00 te/14:00`
 * `addAppt i/A7654321J d/2021-12-13 ts/14:00 te/14:30`
 
+### Editing an appointment: `editAppt`
 
-### Viewing statistics: `stats`
+Edits an appointment to that already exists in Vax@NUS' records.
+
+Format: `editAppt i/MATRICULATION_NUMBER d/DATE_YYYY-MM-DD ts/START_TIME_HH:MM`
+
+* The edited appointment must not clash with an existing appointment.
+
+
+Examples:
+* `editAppt i/A1234567X d/2021-12-13 ts/14:00`
+* `editAppt i/A7654321J d/2021-12-13 ts/14:00`
+
+
+### Viewing statistics for student population: `stats`
 
 Displays the statistics of the requested Faculty/School Residence, the whole of NUS or statistics of all Faculties
 and School Residences. 
@@ -213,6 +245,13 @@ Examples:
 * `stats DOES_NOT_LIVE_ON_CAMPUS` displays the percentage of vaccinated students not living on campus.
 * `stats NUS` displays the percentage of vaccinated students in NUS.
 * `stats all` displays the list of percentages of vaccinated students in every Faculty and School Residence.
+
+### Viewing statistics for appointments: `statsAppt`
+Displays the number of upcoming and previous appointments within 6 days from the current day and includes the day itself.
+
+Format: <br>
+`statsAppt`
+
 
 ### Exiting the program : `exit`
 
@@ -238,16 +277,15 @@ _Details coming soon ..._
 
 **Q**: What can be included in medical details?
 <br>
-**A**: Allergies and past medical history. 
-
-**Q**: Will I be able to amend a student’s details?
-<br>
-**A**: Unfortunately, this feature is not available at the moment, but plans are in the works to make this a reality.
+**A**: Allergies and past medical history.
 
 **Q** : Will I be able to add other types of appointments besides vaccination appointments?
 <br>
 **A** : No, the current version only allows you to add vaccination appointments and not any other type of appointments. 
- 
+
+**Q** : Am I able to change an appointment at a specific time to another student?
+<br>
+**A** : No, you will need to delete that appointment first, then add the new appointment at that specific time with the new student. 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Summary
@@ -260,4 +298,6 @@ Action | Format, Examples
 **Find** | `find MATRICULATION_NUMBER` e.g., `find A1234567X`
 **Filter** | `filter VACCINATION_STATUS`  e.g., `filter VACCINATED` <br> `filter FACULTY ` e.g., `filter COM` <br> `filter SCHOOL_RESIDENCE` e.g., `filter RVRC` 
 **Delete Student** | `deleteStud MATRICULATION_NUMBER` e.g., `deleteStud A1234567X`
-**View Statistics** | `stats FACULTY` e.g., `stats COM` <br> `stats SCHOOL_RESIDENCE` e.g., `stats RC4` <br> `stats NUS` <br> `stats all` 
+**Delete Appointment** | `deleteAppt MATRICULATION_NUMBER` e.g., `deleteAppt A1234567X`
+**View Student Statistics** | `stats FACULTY` e.g., `stats COM` <br> `stats SCHOOL_RESIDENCE` e.g., `stats RC4` <br> `stats NUS` <br> `stats all` 
+**View Appointment Statistics** | `statsAppt`

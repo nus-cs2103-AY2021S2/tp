@@ -2,7 +2,6 @@ package seedu.student.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.student.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_MATRICULATION_NUMBER;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_START_TIME;
 
@@ -22,12 +21,10 @@ public class AddAppointmentCommand extends Command {
             + "Parameters: "
             + PREFIX_MATRICULATION_NUMBER + "MATRICULATION NUMBER "
             + PREFIX_DATE + "DATE "
-            + PREFIX_START_TIME + "START TIME "
-            + PREFIX_END_TIME + "END_TIME \n"
+            + PREFIX_START_TIME + "START TIME \n"
             + PREFIX_MATRICULATION_NUMBER + "A1234567X "
             + PREFIX_DATE + "2021-03-14 "
-            + PREFIX_START_TIME + "10:00 "
-            + PREFIX_END_TIME + "10:30 \n";
+            + PREFIX_START_TIME + "10:00 \n";
 
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";

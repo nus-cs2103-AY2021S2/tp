@@ -133,6 +133,10 @@ public class StudentBook implements ReadOnlyStudentBook {
         appointments.add(a);
     }
 
+    public void removeAppointment(Appointment key) {
+        appointments.remove(key);
+    }
+
     /**
      * Replaces the given appointment {@code target} in the list with {@code editedAppointment}.
      * {@code target} must exist in the address book.
@@ -159,14 +163,30 @@ public class StudentBook implements ReadOnlyStudentBook {
     }
 
     @Override
-    public boolean isExistingMatricNumber(MatriculationNumber matricNum) {
+    public boolean isExistingMatricNumber(MatriculationNumber matriculationNumber) {
         return students.asUnmodifiableObservableList().stream()
-                .anyMatch(student -> student.getMatriculationNumber().equals(matricNum));
+                .anyMatch(student -> student.getMatriculationNumber().equals(matriculationNumber));
+    }
+
+    @Override
+    public Student getStudent(MatriculationNumber matricNum) {
+        return students.asUnmodifiableObservableList().stream()
+                .filter(student -> student.getMatriculationNumber().equals(matricNum))
+                .findAny()
+                .orElse(null);
     }
 
     @Override
     public ObservableList<SameDateAppointmentList> getAppointmentList() {
         return appointments.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public Appointment getAppointment(MatriculationNumber matricNum) {
+        return getFlatAppointmentList().stream()
+                .filter(appt -> appt.getMatriculationNumber().equals(matricNum))
+                .findAny()
+                .orElse(null);
     }
 
     @Override

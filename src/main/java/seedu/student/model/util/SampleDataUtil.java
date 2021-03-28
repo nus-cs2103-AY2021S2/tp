@@ -55,7 +55,7 @@ public class SampleDataUtil {
     public static Appointment[] getSampleAppointments() {
         return new Appointment[] {
             new Appointment(new MatriculationNumber("A0182345T"), LocalDate.parse("2021-01-01"),
-                    LocalTime.parse("10:00"), LocalTime.parse("10:30"))
+                    LocalTime.parse("10:00"))
         };
     }
 
