@@ -14,7 +14,7 @@ To help you get started, read the [Quick start](#quick-start) section below.
 
 --------------------------------------------------------------------------------------------------------------------
 ## About 
-This document walks you through  the [User Interface](#UI) [Features](#Features) present in **FriendDex**.
+This document walks you through  the [User Interface](#UI) and [Features](#Features) present in **FriendDex**.
 
 Note the following symbols and formatting used in this document.
 
@@ -22,26 +22,24 @@ Note the following symbols and formatting used in this document.
 
 :information_source: **Notes:**<br>
 
-* This block is used for detailing the relevant key information such as formatting, 
-handling exceptional cases or explaining keywords used in the section.
+* This block is used for detailing information about formatting, handling exceptional cases or special keywords used in the corresponding section.
 </div>
 
 <div markdown="span" class="alert alert-primary">
 :bulb: **Tip:**
-This block is used to provide you extra details about the feature that provides further conveniences to you.
+This block is used to provide you extra details about the feature that will enable you to use it more effectively.
 </div>
 
 <div markdown="span" class="alert alert-warning">
-:exclamation: **Caution:** This block is used to point out any dangerous actions that may result in the loss of data or
-the app crashing.
+:exclamation: **Caution:** This block is used to point out any dangerous actions that may result in the loss of data or the app crashing.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer. Your Computer's operating system (OS) needs to be Windows, macOS or Linux. Another point to note is the OS version you are using should still be supported by the respective companies.
-   For more detailed Java installation instructions, please refer [here](https://docs.oracle.com/en/java/javase/11/install/preface.html#).
+1. Ensure you have Java `11` or above installed in your Computer. Your Computer's operating system (OS) needs to be Windows, macOS or Linux, and the OS version you are using should still be supported by the respective companies.
+   For more detailed Java installation instructions, please click [here](https://docs.oracle.com/en/java/javase/11/install/preface.html#).
 
 2. Download the latest `frienddex.jar` from [here](https://github.com/AY2021S2-CS2103T-W14-1/tp/releases).
 
@@ -63,20 +61,13 @@ the app crashing.
 
    * **`exit`** : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command. 
-
---------------------------------------------------------------------------------------------------------------------
-
-## Autocomplete
-
-![Autocomplete](images/Autocomplete.png)
-
-There is no need to remember commands as FriendDex will suggest commands to you as you type. To use a suggested command, press up/down to the desired command and press enter. 
-The suggested command will be automatically typed into the command bar.  
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 ## UI 
+
 ![UiAnnotated](images/UiAnnotated.png)
+
 ### Group Panel
 The left panel of FriendDex shows the list of groups that are available in the application.
 
@@ -91,13 +82,20 @@ See [Features](#features) for specific details.
 The right panel of FriendDex is a multi-purpose details panel. It displays upcoming events by default, and can be toggled to display different information.
 
 #### Upcoming Events
-
 By default, FriendDex displays your upcoming events on the details panel, such as upcoming birthdays and special dates.
 
 #### Full Details of a Person
-
 As a person in the FriendDex can contain a lot of information, not all of it is displayed in the main list of persons.
 Upon execution of the `details` command, FriendDex will display the full details of the specified person on the details panel.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Autocomplete
+
+![Autocomplete](images/Autocomplete.png)
+
+There is no need to remember commands as FriendDex will suggest them to you as you type. To use a suggested command, press up/down to the desired command and hit enter.
+The suggested command will be automatically typed into the command bar.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -431,7 +429,7 @@ A sample theme (Monokai Dark)
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FriendDex home folder.
+**A**: Install the app in the other computer and overwrite the files it creates with the files in your previous FriendDex home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -450,6 +448,8 @@ Action | Format, Examples
 **Remove a meeting** | `del-meeting INDEX i/MEETING_INDEX`<br> e.g. `del-meeting 1 i/2`
 **Add a date** | `add-date INDEX d/DATE desc/DESCRIPTION`<br> e.g. `add-date 1 d/16-02-2021 desc/Anniversary`
 **Delete a date** | `del-date INDEX i/DATE_INDEX`<br> e.g. `del-date 1 i/1`
+**Add debt** | `add-debt INDEX DEBT_AMOUNT`<br> e.g. `add-debt 1 100`
+**Subtract debt** | `subtract-debt INDEX DEBT_AMOUNT`<br> e.g. `subtract-debt 1 100`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
 **Theme** | `theme THEME_PATH`<br> e.g. `theme theme/solarized.dark.json`
 **List** | `list [n\GROUP_NAME]` <br> e.g. `list n\Close Friends`
