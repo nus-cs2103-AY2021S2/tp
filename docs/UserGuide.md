@@ -205,6 +205,8 @@ Action | Format, Examples
 **Done** | `done_task INDEX`<br>e.g., `done_task 1`
 **List** | `list_task`
 **Sort** | `sort_task ARGUMENT`<br>e.g., `sort_task name`
+**Pin** | `pin_task INDEX`<br>e.g., `pin_task 1`
+**Unpin** | `unpin_task INDEX`<br>e.g., `unpin_task 1`
 **Clear completed** | `clear_completed_task`
 **Clear expired** | `clear_expired_task`
 
