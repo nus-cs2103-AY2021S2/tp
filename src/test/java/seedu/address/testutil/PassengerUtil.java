@@ -20,6 +20,8 @@ import seedu.address.model.tag.Tag;
  */
 public class PassengerUtil {
 
+    public static final String EMPTY_PRICE = "";
+
     /**
      * Returns an add command string for adding the {@code passenger}.
      */
@@ -37,7 +39,17 @@ public class PassengerUtil {
         sb.append(PREFIX_ADDRESS + passenger.getAddress().value + " ");
         sb.append(PREFIX_TRIPDAY + passenger.getTripDayAsStr() + " ");
         sb.append(PREFIX_TRIPTIME + passenger.getTripTimeAsStr() + " ");
-        sb.append(PREFIX_PRICE + passenger.getPriceAsStr() + " ");
+
+        // TODO tidy up hacky method
+        // law of demeter might be violated
+        if (passenger.getPrice().isEmpty()) {
+            sb.append(EMPTY_PRICE + " ");
+        }
+        else {
+            sb.append(PREFIX_PRICE + passenger.priceToString() + " ");
+        }
+
+
 
         passenger.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")

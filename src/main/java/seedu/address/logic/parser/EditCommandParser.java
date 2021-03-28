@@ -27,9 +27,6 @@ import seedu.address.model.tag.Tag;
  */
 public class EditCommandParser implements Parser<EditCommand> {
 
-    //todo remove STUB_VALID_PRICE declaration
-    private static final Price STUB_VALID_PRICE = new Price(1.69);
-
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
@@ -65,9 +62,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_TRIPTIME).isPresent()) {
             editPassengerDescriptor.setTripTime(ParserUtil.parseTripTime(argMultimap.getValue(PREFIX_TRIPTIME).get()));
         }
-        //todo remove stub
         if (argMultimap.getValue(PREFIX_PRICE).isPresent()) {
-            editPassengerDescriptor.setPrice(STUB_VALID_PRICE);
+            // TODO law of demeter might be violated here
+            editPassengerDescriptor.setPrice(ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get()).get());
         }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPassengerDescriptor::setTags);

@@ -68,7 +68,7 @@ class JsonAdaptedPassenger {
         address = source.getAddress().value;
         tripDayStr = source.getTripDayAsStr();
         tripTimeStr = source.getTripTimeAsStr();
-        priceStr = source.getPriceAsStr();
+        priceStr = source.priceToString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));

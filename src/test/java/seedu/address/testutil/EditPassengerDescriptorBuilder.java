@@ -12,6 +12,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.passenger.Address;
 import seedu.address.model.person.passenger.Passenger;
+import seedu.address.model.person.passenger.Price;
 import seedu.address.model.pool.TripDay;
 import seedu.address.model.pool.TripTime;
 import seedu.address.model.tag.Tag;
@@ -40,6 +41,15 @@ public class EditPassengerDescriptorBuilder {
         descriptor.setPhone(passenger.getPhone());
         descriptor.setAddress(passenger.getAddress());
         descriptor.setTags(passenger.getTags());
+
+        // TODO very hacky thing because of optional price
+        Price price;
+        if (passenger.getPrice().isPresent()) {
+            price = passenger.getPrice().get();
+        }
+        else {
+            price = null;
+        }
     }
 
     /**
@@ -79,6 +89,14 @@ public class EditPassengerDescriptorBuilder {
      */
     public EditPassengerDescriptorBuilder withTripTime(LocalTime tripTime) {
         descriptor.setTripTime(new TripTime(tripTime));
+        return this;
+    }
+
+    /**
+     * Sets the {@code TripTime} of the {@code EditPassengerDescriptor} that we are building.
+     */
+    public EditPassengerDescriptorBuilder withPrice(double price) {
+        descriptor.setPrice(new Price(price));
         return this;
     }
 
