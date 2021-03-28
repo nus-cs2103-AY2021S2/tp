@@ -345,9 +345,9 @@ otherwise)
   
   Use case ends. 
 
-* 3b. The index keyed in by the user does not exist in the displayed list.
+* 3a. The index keyed in by the user does not exist in the displayed list.
 
-    * 3b1. StoreMando shows an error message.
+    * 3a1. StoreMando shows an error message.
     
       Use case resumes at step 3.
 
@@ -395,9 +395,9 @@ otherwise)
     
       Use case resumes at step 1.
 
-* 1a. The new details keyed in by the user is the same as the existing details of the item.
+* 1b. The new details keyed in by the user is the same as the existing details of the item.
 
-    * 1a1. StoreMando shows an error message.
+    * 1b1. StoreMando shows an error message.
 
       Use case resumes at step 1.    
 
