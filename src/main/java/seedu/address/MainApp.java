@@ -17,6 +17,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.AddressBook;
 import seedu.address.model.AppointmentBook;
+import seedu.address.model.BudgetBook;
 import seedu.address.model.GradeBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -25,6 +26,8 @@ import seedu.address.model.ReadOnlyAppointmentBook;
 import seedu.address.model.ReadOnlyGradeBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.schedule.ReadOnlyScheduleTracker;
+import seedu.address.model.schedule.ScheduleTracker;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.AppointmentBookStorage;
@@ -38,7 +41,6 @@ import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
-
 /**
  * Runs the application.
  */
@@ -84,6 +86,7 @@ public class MainApp extends Application {
         logic = new LogicManager(model, storage);
 
         ui = new UiManager(logic);
+
     }
 
     /**
@@ -98,6 +101,7 @@ public class MainApp extends Application {
         ReadOnlyAddressBook initialData;
         ReadOnlyAppointmentBook initialAppointments;
         ReadOnlyGradeBook initialGrades;
+        ReadOnlyScheduleTracker initialSchedules;
 
         try {
             addressBookOptional = storage.readAddressBook();
@@ -126,6 +130,8 @@ public class MainApp extends Application {
             initialAppointments = new AppointmentBook();
         }
 
+        BudgetBook budgetBook = storage.readBudgetBook();
+
         try {
             gradeBookOptional = storage.readGradeBook();
             if (!gradeBookOptional.isPresent()) {
@@ -139,7 +145,9 @@ public class MainApp extends Application {
             initialGrades = new GradeBook();
         }
 
-        return new ModelManager(initialData, userPrefs, initialAppointments, initialGrades);
+        initialSchedules = new ScheduleTracker();
+        return new ModelManager(initialData, userPrefs, initialAppointments,
+                budgetBook, initialGrades);
     }
 
     private void initLogging(Config config) {

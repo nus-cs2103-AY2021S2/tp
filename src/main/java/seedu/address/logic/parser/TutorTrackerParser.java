@@ -24,16 +24,28 @@ import seedu.address.logic.commands.appointmentcommands.EditAppointmentCommand;
 import seedu.address.logic.commands.appointmentcommands.FindAppointmentCommand;
 import seedu.address.logic.commands.appointmentcommands.ListAppointmentCommand;
 import seedu.address.logic.commands.appointmentcommands.ViewAppointmentCommand;
+import seedu.address.logic.commands.budgetcommands.AddBudgetCommand;
+import seedu.address.logic.commands.budgetcommands.DeleteBudgetCommand;
+import seedu.address.logic.commands.budgetcommands.EditBudgetCommand;
+import seedu.address.logic.commands.budgetcommands.ViewBudgetCommand;
 import seedu.address.logic.commands.filtercommands.AddPersonFilterCommand;
 import seedu.address.logic.commands.filtercommands.DeletePersonFilterCommand;
+import seedu.address.logic.commands.schedulecommands.AddScheduleCommand;
+import seedu.address.logic.commands.schedulecommands.DeleteScheduleCommand;
 import seedu.address.logic.parser.appointmentparser.AddAppointmentCommandParser;
 import seedu.address.logic.parser.appointmentparser.DeleteAppointmentCommandParser;
 import seedu.address.logic.parser.appointmentparser.EditAppointmentCommandParser;
 import seedu.address.logic.parser.appointmentparser.FindAppointmentCommandParser;
 import seedu.address.logic.parser.appointmentparser.ViewAppointmentCommandParser;
+import seedu.address.logic.parser.budgetparser.AddBudgetCommandParser;
+import seedu.address.logic.parser.budgetparser.DeleteBudgetCommandParser;
+import seedu.address.logic.parser.budgetparser.EditBudgetCommandParser;
+import seedu.address.logic.parser.budgetparser.ViewBudgetCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.filterparser.AddPersonFilterCommandParser;
 import seedu.address.logic.parser.filterparser.DeletePersonFilterCommandParser;
+import seedu.address.logic.parser.scheduleparser.AddScheduleCommandParser;
+import seedu.address.logic.parser.scheduleparser.DeleteScheduleCommandParser;
 
 /**
  * Parses user input.
@@ -119,6 +131,24 @@ public class TutorTrackerParser {
 
         case DeletePersonFilterCommand.COMMAND_WORD:
             return new DeletePersonFilterCommandParser().parse(arguments);
+
+        case AddBudgetCommand.COMMAND_WORD:
+            return new AddBudgetCommandParser().parse(arguments);
+
+        case EditBudgetCommand.COMMAND_WORD:
+            return new EditBudgetCommandParser().parse(arguments);
+
+        case DeleteBudgetCommand.COMMAND_WORD:
+            return new DeleteBudgetCommandParser().parse(arguments);
+
+        case ViewBudgetCommand.COMMAND_WORD:
+            return new ViewBudgetCommandParser().parse(arguments);
+
+        /* Schedule Commands */
+        case AddScheduleCommand.COMMAND_WORD:
+            return new AddScheduleCommandParser().parse(arguments);
+        case DeleteScheduleCommand.COMMAND_WORD:
+            return new DeleteScheduleCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

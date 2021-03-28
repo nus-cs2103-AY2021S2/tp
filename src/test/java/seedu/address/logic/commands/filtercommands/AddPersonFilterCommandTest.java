@@ -13,6 +13,7 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.BudgetBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -32,10 +33,10 @@ public class AddPersonFilterCommandTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
-                getTypicalAppointmentBook(), getTypicalGradeBook());
+                getTypicalAppointmentBook(), new BudgetBook(), getTypicalGradeBook());
 
         expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
-                getTypicalAppointmentBook(), getTypicalGradeBook());
+                getTypicalAppointmentBook(), new BudgetBook(), getTypicalGradeBook());
     }
 
     @Test
