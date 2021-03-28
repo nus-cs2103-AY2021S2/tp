@@ -132,6 +132,8 @@ public interface Model {
      */
     void setMeeting(Meeting target, Meeting editedMeeting);
 
+    void updateMeeting(Meeting target, Meeting editedMeeting);
+
     /** Returns an unmodifiable view of the filtered meeting list */
     ObservableList<Meeting> getFilteredMeetingList();
 
@@ -147,6 +149,8 @@ public interface Model {
      * Checks if there is a clash in meeting times within the model.
      */
     public boolean clashes(Meeting toCheck);
+
+    public boolean clashesExceptOne(Meeting meetingNotIncluded, Meeting toCheck);
 
     /**
      * Gets a list of meetings from the model that overlap with this meeting.

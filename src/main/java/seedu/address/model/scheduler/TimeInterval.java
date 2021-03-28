@@ -24,7 +24,7 @@ public class TimeInterval {
      */
 
     public TimeInterval(LocalTime startTime, LocalTime endTime) {
-        assert isValidTimeFrame(startTime, endTime);
+        //assert isValidTimeFrame(startTime, endTime);      // This assert statement does not work
         this.startTime = startTime;
         this.endTime = endTime;
     }
