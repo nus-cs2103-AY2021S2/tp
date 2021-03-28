@@ -519,7 +519,7 @@ If you get an error message (`Java command not found`), it means that Java is no
 [**Add**](#add-client-contact-add) | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [i/POLICY_ID] [t/TAG]…​` | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 i/Policy_1023 t/premium t/lifeinsurance` |
 [**Edit**](#edit-client-contact-edit) | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER]…​ [t/TAG]…​` | `edit 2 n/James Lee e/jameslee@example.com` |
 [**List**](#list-all-clients--list) | `list [-IDENTIFIER]` | `list -i` |
-[**Find**](#search-for-client-contact-based-on-keywords-find) | `find IDENTIFIER/KEYWORD [& MORE_KEYWORDS] [-IDENTIFIERS]…​` | `find a/Bedok & Clementi -p` |
+[**Find**](#search-for-client-contact-based-on-keywords-find) | `find IDENTIFIER/KEYWORD [& KEYWORDS]…​ [-IDENTIFIER]…​` | `find a/Bedok & Clementi -p` |
 [**Policy**](#display-policies-associated-with-selected-client-policy) | `policy INDEX` | `policy 4` |
 [**Delete**](#delete-client-delete) | `delete INDEX` | `delete 3` |
 [**Sort**](#sort-list-of-clients-sort) | `sort -IDENTIFIER -DIRECTION` | `sort -n -d` |
