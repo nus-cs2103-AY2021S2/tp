@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.student.commons.core.GuiSettings;
 import seedu.student.commons.core.LogsCenter;
+import seedu.student.logic.commands.exceptions.CommandException;
 import seedu.student.model.appointment.Appointment;
 import seedu.student.model.appointment.SameDateAppointmentList;
 import seedu.student.model.student.MatriculationNumber;
@@ -125,6 +126,12 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedStudent);
 
         studentBook.setStudent(target, editedStudent);
+    }
+
+    @Override
+    public void setAppointment(Appointment target, Appointment editedAppointment) throws CommandException {
+        requireAllNonNull(target, editedAppointment);
+        studentBook.setAppointment(target, editedAppointment);
     }
 
     @Override

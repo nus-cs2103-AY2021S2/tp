@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.student.commons.core.GuiSettings;
+import seedu.student.logic.commands.exceptions.CommandException;
 import seedu.student.model.appointment.Appointment;
 import seedu.student.model.appointment.SameDateAppointmentList;
 import seedu.student.model.student.MatriculationNumber;
@@ -16,6 +17,8 @@ import seedu.student.model.student.Student;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
+    Predicate<SameDateAppointmentList> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
+
     /**
      *
      *
@@ -103,6 +106,8 @@ public interface Model {
     boolean hasOverlappingAppointment(Appointment appointment);
 
     void addAppointment(Appointment appointment);
+
+    void setAppointment(Appointment target, Appointment editedAppointment) throws CommandException;
 
     ObservableList<SameDateAppointmentList> getFilteredAppointmentList();
 }

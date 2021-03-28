@@ -3,11 +3,14 @@ package seedu.student.model.appointment;
 import static java.util.Objects.requireNonNull;
 import static seedu.student.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.student.logic.commands.exceptions.CommandException;
+import seedu.student.model.appointment.exceptions.DuplicateAppointmentException;
 
 /**
  * TO EDIT
@@ -63,12 +66,38 @@ public class UniqueAppointmentList implements Iterable<SameDateAppointmentList> 
     }
 
     /**
-     * Replaces the student {@code target} in the list with {@code editedStudent}.
+     * Replaces the appointment {@code target} in the list with {@code editedAppointment}.
      * {@code target} must exist in the list.
-     * The student identity of {@code editedStudent} must not be the same as another existing student in the list.
+     * The appointment identity of {@code editedAppointment} must not be the same as another existing
+     * appointment in the list.
      */
-    public void setAppointment(Appointment target, Appointment editedAppointment) {
-        // TODO
+    public void setAppointment(Appointment target, Appointment editedAppointment) throws CommandException {
+        requireAllNonNull(target, editedAppointment);
+        LocalDate originalDate = target.getDate();
+        LocalDate newDate = editedAppointment.getDate();
+        boolean isSameDate = originalDate.equals(newDate);
+        if (isSameDate) {
+            //if it's the same date, find the matching SameDateAppointmentList and set the appointment there
+            //just set the different time in original SameDateAppointmentList and UniqueAppointmentList
+            for (SameDateAppointmentList s : internalList) {
+                if (s.getDate().equals(originalDate)) {
+                    s.setAppointment(target, editedAppointment);
+                }
+            }
+        } else {
+            //different date, need to delete from original SameDateAppointmentList, add to new SameDateAppointmentList,
+            //edit in UniqueAppointmentList
+            for (SameDateAppointmentList s : internalList) {
+                if (s.getDate().equals(originalDate)) {
+                    s.remove(target);
+                }
+            }
+            for (SameDateAppointmentList s : internalList) {
+                if (s.getDate().equals(newDate)) {
+                    s.setAppointment(target, editedAppointment);
+                }
+            }
+        }
     }
 
     /**

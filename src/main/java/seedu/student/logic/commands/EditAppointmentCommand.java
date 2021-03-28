@@ -12,8 +12,6 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
-import seedu.student.commons.core.Messages;
-import seedu.student.commons.core.index.Index;
 import seedu.student.commons.util.CollectionUtil;
 import seedu.student.logic.commands.exceptions.CommandException;
 import seedu.student.model.Model;
@@ -23,18 +21,16 @@ import seedu.student.model.student.MatriculationNumber;
 public class EditAppointmentCommand extends Command {
     public static final String COMMAND_WORD = "editAppt";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits an appointment identified in Vax@NUS "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits an appointment identified in Vax@NUS \n"
             + "by the index number used in the displayed student list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_MATRICULATION_NUMBER + "MATRICULATION NUMBER] "
+            + "Parameters: Matriculation Number "
+            + PREFIX_MATRICULATION_NUMBER + "MATRICULATION NUMBER "
             + "[" + PREFIX_DATE + "DATE] "
-            + "[" + PREFIX_START_TIME + " START TIME] "
-            + "[" + PREFIX_END_TIME + "END TIME] \n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "[" + PREFIX_START_TIME + " START TIME] \n"
+            + "Example: " + PREFIX_MATRICULATION_NUMBER + " A01234567X "
             + PREFIX_DATE + "2021-03-25 "
-            + PREFIX_START_TIME + "11:00 "
-            + PREFIX_END_TIME + "11:30 \n";
+            + PREFIX_START_TIME + "11:00 \n";
 
     public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Edited Appointment: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -90,7 +86,6 @@ public class EditAppointmentCommand extends Command {
                 .orElse(appointmentToEdit.getMatriculationNumber());
         LocalDate updatedDate = editAppointmentDescriptor.getDate().orElse(appointmentToEdit.getDate());
         LocalTime updatedStartTime = editAppointmentDescriptor.getStartTime().orElse(appointmentToEdit.getStartTime());
-        LocalTime updatedEndTime = editAppointmentDescriptor.getEndTime().orElse(appointmentToEdit.getEndTime());
 
         return new Appointment(updatedMatriculationNumber, updatedDate, updatedStartTime, updatedEndTime);
     }

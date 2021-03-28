@@ -2,7 +2,6 @@ package seedu.student.logic.parser;
 
 import static seedu.student.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.student.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_MATRICULATION_NUMBER;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_START_TIME;
 
@@ -42,9 +41,6 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
         }
         if (argMultimap.getValue(PREFIX_START_TIME).isPresent()) {
             editAppointmentDescriptor.setStartTime(LocalTime.parse(argMultimap.getValue(PREFIX_START_TIME).get()));
-        }
-        if (argMultimap.getValue(PREFIX_END_TIME).isPresent()) {
-            editAppointmentDescriptor.setEndTime(LocalTime.parse(argMultimap.getValue(PREFIX_END_TIME).get()));
         }
         if (!editAppointmentDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditAppointmentCommand.MESSAGE_NOT_EDITED);

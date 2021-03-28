@@ -1,11 +1,13 @@
 package seedu.student.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.student.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
+import seedu.student.logic.commands.exceptions.CommandException;
 import seedu.student.model.appointment.Appointment;
 import seedu.student.model.appointment.SameDateAppointmentList;
 import seedu.student.model.appointment.UniqueAppointmentList;
@@ -139,9 +141,8 @@ public class StudentBook implements ReadOnlyStudentBook {
      * The appointment identity of {@code editedAppointment} must not be the same as another existing
      * appointment in the address book.
      */
-    public void setAppointment(Appointment target, Appointment editedAppointment) {
+    public void setAppointment(Appointment target, Appointment editedAppointment) throws CommandException {
         requireNonNull(editedAppointment);
-
         appointments.setAppointment(target, editedAppointment);
     }
 
