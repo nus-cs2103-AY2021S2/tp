@@ -1,5 +1,6 @@
 ---
-layout: page title: User Guide
+layout: page 
+title: User Guide
 ---
 
 # BudgetBaby User Guide :baby: :money_with_wings:
@@ -108,7 +109,7 @@ You can use this command to add a financial record to the budget tracker.
 
 Format: `add-fr d/FR_DESCRIPTION a/FR_AMOUNT`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 **:bulb: Tips:** <br>
 
@@ -130,12 +131,12 @@ You can use this command to delete a financial record from the budget tracker.
 
 Format: `delete-fr FR_INDEX`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 **:bulb: Tips:**<br>
--You must replace `FR_INDEX` with the index of the finacial record you want to delete.
--`FR_INDEX` refers to the index number shown in the displayed financial record list.
--`FR_INDEX` must be a **positive integer** (e.g. 1, 2, 3, …​)
+- You must replace `FR_INDEX` with the index of the finacial record you want to delete.
+- `FR_INDEX` refers to the index number shown in the displayed financial record list.
+- `FR_INDEX` must be a **positive integer** (e.g. 1, 2, 3, …​)
 
 
 </div>
@@ -152,10 +153,10 @@ You can use this command to set the budget for the current month and the followi
 
 Format: `set-bg BG_AMOUNT`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 **:bulb: Tips:**<br>
--You must replace `BG_AMOUNT` with a **positive number** containing up to **two decimal places**.
+- You must replace `BG_AMOUNT` with a **positive number** containing up to **two decimal places**.
 </div>
 
 Examples:
@@ -179,12 +180,12 @@ Data associated with a month include:
 
 Format: `view-month MM-YYYY`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 **:bulb: Tips:**<br>
--The month you input must follow the format `MM-YYYY` (e.g. 09-2020)
--`MM` is the month number and `YYYY` is the year number
--You must use a month number with 2 digits and the year number with 4 digits
+- The month you input must follow the format `MM-YYYY` (e.g. 09-2020)
+- `MM` is the month number and `YYYY` is the year number
+- You must use a month number with 2 digits and the year number with 4 digits
 </div>
 
 Examples:
