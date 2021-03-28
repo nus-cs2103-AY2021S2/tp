@@ -217,6 +217,7 @@ public class ModelManager implements Model {
 
     public void sortNoteByTime() {
         noteBook.sortNoteByTime();
+    }
 
     @Override
     public void mergeNote(Note firstNote, Note secondNote) {
