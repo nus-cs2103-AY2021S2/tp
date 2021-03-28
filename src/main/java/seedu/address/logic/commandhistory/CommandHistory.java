@@ -10,7 +10,7 @@ public class CommandHistory {
     private static CommandHistory commandHistory = null;
 
     private final List<String> history;
-    private Pointer currPointer;
+    private final Pointer currPointer;
     private String currCommand;
 
     private CommandHistory() {
