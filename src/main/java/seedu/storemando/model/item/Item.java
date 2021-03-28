@@ -69,7 +69,7 @@ public class Item {
     }
 
     /**
-     * Returns true if both items have the exactly the same name and location.
+     * Returns true if both items have the exactly the same name, location and expiryDate.
      * This defines a weaker notion of equality between two items.
      */
     public boolean isSameItem(Item otherItem) {
