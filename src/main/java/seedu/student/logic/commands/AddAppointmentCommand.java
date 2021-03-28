@@ -1,7 +1,10 @@
 package seedu.student.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.student.logic.parser.CliSyntax.*;
+import static seedu.student.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.student.logic.parser.CliSyntax.PREFIX_END_TIME;
+import static seedu.student.logic.parser.CliSyntax.PREFIX_MATRICULATION_NUMBER;
+import static seedu.student.logic.parser.CliSyntax.PREFIX_START_TIME;
 
 import seedu.student.logic.commands.exceptions.CommandException;
 import seedu.student.model.Model;
