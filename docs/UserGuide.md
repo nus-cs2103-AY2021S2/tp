@@ -9,18 +9,18 @@ title: User Guide
 
 - [Quick Start](#quick-start)
 - [Features](#features)
-    - [Viewing help : `help`](#viewing-help)
-    - [Adding a financial record : `add-fr`](#adding-a-financial-record)
-    - [Listing a month's financial records : `list`](#listing-a-month's-financial-records)
-    - [Viewing a financial record : `view-fr`](#viewing-a-financial-record)
-    - [Deleting a financial record : `delete-fr`](#deleting-a-financial-record)
-    - [Setting monthly budget : `set-bg`](#setting-monthly-budget)
+    - [Viewing help : `help`](#viewing-help-:-`help`)
+    - [Adding a financial record : `add-fr`](#adding-a-financial-record-:-`add-fr`)
+    - [Listing a month's financial records : `list`](#listing-a-month's-financial-records-:-`list`)
+    - [Viewing a financial record : `view-fr`](#viewing-a-financial-record-:-`view-fr`)
+    - [Deleting a financial record : `delete-fr`](#deleting-a-financial-record-:-`delete-fr`)
+    - [Setting monthly budget : `set-bg`](#setting-monthly-budget-:-`set-bg`)
     - [Viewing budget for the current month](#viewing-budget-for-the-current-month)
     - [Checking remaining budget for the current month](#checking-remaining-budget-for-the-current-month)
-    - [Viewing a specific month : `view-month`](#viewing-a-specific-month)
-    - [Finding a financial record : `find-fr`](#finding-a-financial record)
-    - [Resetting filters on financial records : `reset-filter`](#resetting-filters-on-financial-records)
-    - [Exiting the program : `exit`](#exiting-the-program)
+    - [Viewing a specific month : `view-month`](#viewing-a-specific-month-:-`view-month`)
+    - [Finding financial records : `find-fr`](#finding-financial-records-:-`find-fr`)
+    - [Resetting filters on financial records : `reset-filter`](#resetting-filters-on-financial-records-:-`reset-filter`)
+    - [Exiting the program : `exit`](#exiting-the-program-:-`exit`)
     - [Saving the data](#saving-the-data)
     - [Editing the data file](#editing-the-data-file)
     - [Archiving data files](#archiving-data-files)
@@ -84,7 +84,8 @@ title: User Guide
 
 </div>
 
-### Viewing help : `help` [coming in v1.3]
+### Viewing help : `help`
+[coming in v1.3]
 
 Shows a message explaining how to access the `help` page.
 
@@ -92,7 +93,7 @@ Shows a message explaining how to access the `help` page.
 
 Format: `help`
 
-### Adding a financial record: `add-fr`
+### Adding a financial record : `add-fr`
 
 Adds a financial record to the budget tracker.
 
@@ -127,7 +128,7 @@ Examples:
 
 - `list 02-2021`
 
-### Viewing a financial record: `view-fr` [coming in v1.3, subject to changes]
+### Viewing a financial record : `view-fr` [coming in v1.3, subject to changes]
 
 Displays a financial record in the budget tracker.
 
@@ -182,15 +183,16 @@ Examples:
 - `set-bg 100`
 - `set-bg 1300.50`
 
-### Viewing budget for the current month :
+### Viewing budget for the current month
 
 The UI displays the current monthly budget that has been set automatically.
 
-### Checking remaining budget for the current month :
+### Checking remaining budget for the current month
 
 The UI displays and updates the remaining budget for the current month automatically.
 
-### Viewing a specific month : [coming in v1.3 subject to changes]
+### Viewing a specific month : `view-month`
+[coming in v1.3 subject to changes]
 
 Displays data associated with a specific month.
 
@@ -215,7 +217,7 @@ Examples:
 
 - `view 01-2021`
 
-### Filtering financial records by a category :
+### Finding financial records : `find-fr`
 
 Filters financial records based on a specified category.
 
@@ -230,7 +232,7 @@ Examples:
 
 - `category-filter c/Food`
 
-### Resetting filters on financial records :
+### Resetting filters on financial records : `reset-filter`
 
 Resets all filters on financial records.
 
@@ -244,7 +246,8 @@ Examples:
 
 - `reset-filter`
 
-### Exiting the program : `exit` [coming in v1.3]
+### Exiting the program : `exit`
+[coming in v1.3]
 
 Exits the program.
 
