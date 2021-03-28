@@ -71,4 +71,8 @@ shadowJar {
     archiveName = 'friendDex.jar'
 }
 
+run {
+    enableAssertions = true
+}
+
 defaultTasks 'clean', 'test'
