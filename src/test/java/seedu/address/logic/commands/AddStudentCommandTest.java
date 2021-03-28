@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
@@ -179,6 +180,16 @@ public class AddStudentCommandTest {
 
         @Override
         public void updateFilteredStudentList(Predicate<Student> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public double getFee(LocalDateTime startPeriod, LocalDateTime endPeriod) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public double getFeePerStudent(Student student, LocalDateTime startPeriod, LocalDateTime endPeriod) {
             throw new AssertionError("This method should not be called.");
         }
     }
