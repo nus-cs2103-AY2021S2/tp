@@ -45,7 +45,7 @@ class JsonAdaptedFlashcard {
     public JsonAdaptedFlashcard(Flashcard source) {
         question = source.getQuestion().value;
         answer = source.getAnswer().value;
-        tagged.addAll(source.getTags().stream()
+        tagged.addAll(source.getWeeblingoTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
     }

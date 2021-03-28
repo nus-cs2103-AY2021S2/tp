@@ -35,7 +35,7 @@ public class FlashcardBuilder {
     public FlashcardBuilder(Flashcard flashcardToCopy) {
         question = flashcardToCopy.getQuestion();
         answer = flashcardToCopy.getAnswer();
-        tags = new HashSet<>(flashcardToCopy.getTags());
+        tags = new HashSet<>(flashcardToCopy.getWeeblingoTags());
     }
 
     /**

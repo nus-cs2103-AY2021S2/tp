@@ -20,16 +20,17 @@ public class Flashcard {
 
     // Data fields
     private final Answer answer;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Tag> weeblingoTags = new HashSet<>();
+    private final Set<Tag> userTags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Flashcard(Question question, Answer answer, Set<Tag> tags) {
-        requireAllNonNull(question, answer, tags);
+    public Flashcard(Question question, Answer answer, Set<Tag> weeblingoTags) {
+        requireAllNonNull(question, answer, weeblingoTags);
         this.question = question;
         this.answer = answer;
-        this.tags.addAll(tags);
+        this.weeblingoTags.addAll(weeblingoTags);
     }
 
     public Question getQuestion() {
@@ -44,8 +45,8 @@ public class Flashcard {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Tag> getWeeblingoTags() {
+        return Collections.unmodifiableSet(weeblingoTags);
     }
 
     /**
@@ -78,13 +79,13 @@ public class Flashcard {
         Flashcard otherFlashcard = (Flashcard) other;
         return otherFlashcard.getQuestion().equals(getQuestion())
                 && otherFlashcard.getAnswer().equals(getAnswer())
-                && otherFlashcard.getTags().equals(getTags());
+                && otherFlashcard.getWeeblingoTags().equals(getWeeblingoTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(question, answer, tags);
+        return Objects.hash(question, answer, weeblingoTags);
     }
 
     @Override
@@ -95,7 +96,7 @@ public class Flashcard {
                 .append("; answer: ")
                 .append(getAnswer());
 
-        Set<Tag> tags = getTags();
+        Set<Tag> tags = getWeeblingoTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);

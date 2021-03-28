@@ -49,7 +49,7 @@ public class FlashcardCard extends UiPart<Region> {
         setQuestion(flashcard.getQuestion().value);
         showImage();
         setAnswer(showAnswer ? "Answer: " + flashcard.getAnswer().value : "Answer: ");
-        flashcard.getTags().stream()
+        flashcard.getWeeblingoTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }

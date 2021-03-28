@@ -155,8 +155,6 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleHelp() {
         if (!helpWindow.isShowing()) {
-            assert true;
-            logger.warning("Showing help");
             helpWindow.show();
         } else {
             helpWindow.focus();

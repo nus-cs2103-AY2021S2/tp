@@ -110,6 +110,9 @@ public interface Model {
     /** Sets number of questions for the quiz session */
     void setNumOfQnsForQuizSession(int numberOfQuestions);
 
+    /** Sets a tag */
+    void tagFlashcard(Flashcard target, String tag);
+
     /** Gets the quiz instance, which is this quiz session */
     Quiz getQuizInstance();
 }

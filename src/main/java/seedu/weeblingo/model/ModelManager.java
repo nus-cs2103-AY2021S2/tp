@@ -116,6 +116,11 @@ public class ModelManager implements Model {
         flashcardBook.setFlashcard(target, editedFlashcard);
     }
 
+    @Override
+    public void tagFlashcard(Flashcard target, String tag) {
+
+    }
+
     //=========== Filtered Flashcard List Accessors =============================================================
 
     /**
