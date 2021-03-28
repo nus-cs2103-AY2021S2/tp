@@ -1,7 +1,6 @@
 package seedu.partyplanet.logic.autocomplete;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.partyplanet.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_REMARK;
 
@@ -11,7 +10,6 @@ import java.util.Map;
 import javafx.collections.ObservableList;
 import seedu.partyplanet.commons.core.Messages;
 import seedu.partyplanet.commons.core.index.Index;
-import seedu.partyplanet.logic.commands.EditCommand;
 import seedu.partyplanet.logic.commands.exceptions.CommandException;
 import seedu.partyplanet.logic.parser.ArgumentMultimap;
 import seedu.partyplanet.logic.parser.ArgumentTokenizer;
@@ -22,6 +20,8 @@ import seedu.partyplanet.model.Model;
 import seedu.partyplanet.model.event.Event;
 
 public class EEditAutocompleteUtil {
+
+    private static final String INDEX_NOT_SPECIFIED_MESSAGE = "Index not specified!";
 
     /**
      * Parses an edit command to autocomplete remark.
@@ -40,7 +40,7 @@ public class EEditAutocompleteUtil {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(INDEX_NOT_SPECIFIED_MESSAGE);
         }
 
         ObservableList<Event> filteredEventsList = model.getFilteredEventList();

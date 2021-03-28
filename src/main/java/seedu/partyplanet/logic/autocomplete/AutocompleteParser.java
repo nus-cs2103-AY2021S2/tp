@@ -22,7 +22,7 @@ public class AutocompleteParser {
 
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(input.trim());
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            return input;
         }
 
         final String commandWord = matcher.group("commandWord");
@@ -36,7 +36,7 @@ public class AutocompleteParser {
             return new EEditAutocompleteUtil().parseCommand(arguments, model);
         }
 
-        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+        return input;
     }
 
 }

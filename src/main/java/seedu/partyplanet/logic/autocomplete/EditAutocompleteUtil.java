@@ -1,7 +1,6 @@
 package seedu.partyplanet.logic.autocomplete;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.partyplanet.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -14,13 +13,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.partyplanet.commons.core.Messages;
 import seedu.partyplanet.commons.core.index.Index;
-import seedu.partyplanet.logic.commands.EditCommand;
 import seedu.partyplanet.logic.commands.exceptions.CommandException;
 import seedu.partyplanet.logic.parser.ArgumentMultimap;
 import seedu.partyplanet.logic.parser.ArgumentTokenizer;
@@ -32,6 +29,8 @@ import seedu.partyplanet.model.person.Person;
 import seedu.partyplanet.model.tag.Tag;
 
 public class EditAutocompleteUtil {
+
+    private static final String INDEX_NOT_SPECIFIED_MESSAGE = "Index not specified!";
 
     /**
      * Used to convert Set of {@code Tag}s into a String with Tag Prefixes.
@@ -61,7 +60,7 @@ public class EditAutocompleteUtil {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(INDEX_NOT_SPECIFIED_MESSAGE);
         }
 
         ObservableList<Person> filteredPersonList = model.getFilteredPersonList();
@@ -77,6 +76,7 @@ public class EditAutocompleteUtil {
             PREFIX_BIRTHDAY, person.getBirthday().value,
             PREFIX_EMAIL, person.getEmail().value,
             PREFIX_NAME, person.getName().fullName,
+            PREFIX_PHONE, person.getPhone().value,
             PREFIX_REMARK, person.getRemark().value,
             PREFIX_TAG, ""
         );
@@ -121,7 +121,15 @@ public class EditAutocompleteUtil {
 
                 // Get tags that aren't input by User
                 tags.removeAll(inputTags);
-                output += " " + getTagsAsAutocompletedString(tags);
+
+                // Only add space if there are tags to add in
+                // Else add prefix only
+                String tagsString = getTagsAsAutocompletedString(tags);
+                if (!tagsString.equals("")) {
+                    output += " " + getTagsAsAutocompletedString(tags);
+                } else {
+                    output += " -t";
+                }
                 continue;
             }
 
