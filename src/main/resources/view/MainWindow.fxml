@@ -45,7 +45,7 @@
           </Label>
         </HBox>
 
-        <HBox prefHeight="2160" styleClass="pane-with-border">
+        <HBox prefHeight="9999" styleClass="pane-with-border">
           <VBox fx:id="endpointList" minWidth="320" prefWidth="320" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
             <padding>
               <Insets bottom="10" left="10" right="10" top="10" />

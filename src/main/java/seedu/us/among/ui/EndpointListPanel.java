@@ -3,6 +3,7 @@ package seedu.us.among.ui;
 import java.util.logging.Logger;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -28,6 +29,14 @@ public class EndpointListPanel extends UiPart<Region> {
         super(FXML);
         endpointListView.setItems(endpointList);
         endpointListView.setCellFactory(listView -> new EndpointListViewCell());
+    }
+
+    public int getSelectedEndpoint() {
+        return endpointListView.getSelectionModel().getSelectedIndex();
+    }
+
+    public void setEventListener(ChangeListener<? super Endpoint> listener) {
+        endpointListView.getSelectionModel().selectedItemProperty().addListener(listener);
     }
 
     /**
