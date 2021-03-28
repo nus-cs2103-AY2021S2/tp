@@ -65,6 +65,9 @@ public class SubjectExperienceFilter implements Predicate<SubjectExperience> {
 
         boolean isFiltered = false;
 
+        isFiltered = isFiltered || subjectExperienceFilterInequality.isBlank()
+                && subjectExperience.experience.equals(subjectExperienceFilterNumber);
+
         isFiltered = isFiltered || subjectExperienceFilterInequality.contains("=")
                 && subjectExperience.experience.equals(subjectExperienceFilterNumber);
 

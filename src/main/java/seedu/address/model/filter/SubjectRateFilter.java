@@ -64,6 +64,9 @@ public class SubjectRateFilter implements Predicate<SubjectRate> {
 
         boolean isFiltered = false;
 
+        isFiltered = isFiltered || subjectRateFilterInequality.isBlank()
+                && subjectRate.rate.equals(subjectRateFilterNumber);
+
         isFiltered = isFiltered || subjectRateFilterInequality.contains("=")
                 && subjectRate.rate.equals(subjectRateFilterNumber);
 
