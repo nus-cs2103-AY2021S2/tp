@@ -35,5 +35,11 @@ Given below are my contributions to the project.
 
 1. Update User Guide, by adding features description and enhance existing info.(
    PR: [#16](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/16))
+2. Update Developer Guide, by updating the information about the find command.(
+   PR: [#55](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/55))
 
+* **Community**:
 
+1. Commented on the following PRs: [#50](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/50)
+   , [#52](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/52)
+   , [#54](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/54).
