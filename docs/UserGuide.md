@@ -54,7 +54,7 @@ This user guide uses various formatting styles to facilitate reading and to comm
 ### 2.2 Trying out
 
 1. Let's try out your first command by adding a new property! Type <br>`add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-6-2021` into the command box and press <kbd>Enter</kbd> to execute it. After that, scroll down to the bottom of the property list to see your newly added property.
-1. Want to view the properties in order of their asking price? Type the command <br>`sort property o/desc k/price` and press <kbd>Enter</kbd>. The property list will now be in descending order based on price.
+1. Want to view the properties in order of their asking price? Type the command <br>`sort property o/desc k/price` and press <kbd>Enter</kbd>. The property list will now be in descending order based on price, with the property having the highest asking price at the top.
 1. Now let's try adding a new appointment. Type <br>`add appointment n/Meet Jacob for dinner r/At Lot One's food court d/19-4-2021 t/1930` and hit the <kbd>Enter</kbd> button. Scroll down to the bottom of the appointment list to see your newly added appointment.
 1. Forgot when you are supposed to meet Simon again? Let's try finding out! Type <br>`find appointment simon` and press <kbd>Enter</kbd>. There it is! Your appointment with Simon is on Sep 20, 2021.
 
@@ -263,9 +263,9 @@ Description:
 Options:
 * `[t/PROPERTY_TYPE]`
 
-    Search for properties whose housing type field contain patterns specified in `[REMARKS]`. 
+    Search for properties whose property type field contain patterns specified in `[t/PROPERTY_TYPE]`. 
     
-    The following housing types are supported: 
+    The following property types are supported: 
     * hdb
     * condo
     * landed
