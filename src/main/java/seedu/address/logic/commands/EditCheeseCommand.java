@@ -53,12 +53,12 @@ public class EditCheeseCommand extends EditCommand {
     /**
      * Creates an EditCheeseCommand to edit the specified cheese at {@code index}
      */
-    public EditCheeseCommand(Index index, EditCheeseDescriptor editCustomerDescriptor) {
+    public EditCheeseCommand(Index index, EditCheeseDescriptor editCheeseDescriptor) {
         requireNonNull(index);
-        requireNonNull(editCustomerDescriptor);
+        requireNonNull(editCheeseDescriptor);
 
         this.index = index;
-        this.editCheeseDescriptor = new EditCheeseDescriptor(editCustomerDescriptor);
+        this.editCheeseDescriptor = new EditCheeseDescriptor(editCheeseDescriptor);
     }
 
     @Override
@@ -129,7 +129,6 @@ public class EditCheeseCommand extends EditCommand {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
          */
         public EditCheeseDescriptor(EditCheeseDescriptor toCopy) {
             setCheeseType(toCopy.cheeseType);

@@ -74,9 +74,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User adds an order by specifying the cheese type and quantity of the order, and the phone number of the customer.
-2. CHIM creates the order.
-3. CHIM shows the details of the new order.
+1. User adds an order by specifying the cheese type and quantity of the order, and the phone number of the customer, with optional field order date.
+2. CHIM creates the order and shows the details of the new order.
 
    Use case ends.
 
@@ -90,11 +89,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1b1. CHIM shows an error message.
 
     Use case resumes at step 1.
-
-2a. The current cheese supply is insufficient to fulfil the order.
-  * 2a1. CHIM will show a warning message.
-
-    Use case resumes at step 3.
 
 #### Use case: Input a cheese
 
@@ -128,6 +122,81 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. The given phone number is a duplicated customer.
   * 1b1. CHIM displays an error message.
+
+    Use case resumes at step 1.
+
+#### Use case: Edit an Order
+
+**MSS**
+
+1. User enters an order number to edit with at least 1 field: cheese type, quantity, phone number and order date.
+2. CHIM edits the order and shows details of the new order.
+
+   Use case ends.
+
+**Extensions**
+* 1a. The supplied fields are all the same.
+  * 1a1. CHIM displays an error message.
+
+    Use case resumes at step 1.
+
+* 1b. The order is marked as completed.
+  * 1b1. CHIM shows an error message.
+
+    Use case resumes at step 1.
+
+* 1c. The given cheese quantity is invalid.
+  * 1c1. CHIM shows an error message.
+
+    Use case resumes at step 1.
+
+* 1d. The customer with the given phone number cannot be found.
+  * 1d1. CHIM shows an error message.
+
+    Use case resumes at step 1.
+
+#### Use case: Edit an Cheese
+
+**MSS**
+
+1. User enters a cheese number to edit with at least 1 field: cheese type, manufacture date, maturity date and expiry date.
+2. CHIM edits the cheese and shows details of the new cheese.
+
+   Use case ends.
+
+**Extensions**
+* 1a. The supplied fields are all the same.
+  * 1a1. CHIM displays an error message.
+
+    Use case resumes at step 1.
+
+* 1b. The given cheese is marked as assigned.
+  * 1b1. CHIM shows an error message.
+
+    Use case resumes at step 1.
+
+#### Use case: Edit a Customer
+
+**MSS**
+
+1. User enters a customer number to edit with at least 1 field: name, phone number, email and address.
+2. CHIM edits the customer and shows details of the new customer.
+
+   Use case ends.
+
+**Extensions**
+* 1a. The supplied fields are all the same.
+  * 1a1. CHIM displays an error message.
+
+    Use case resumes at step 1.
+
+* 1b. The given phone number is invalid.
+  * 1b1. CHIM displays an error message.
+
+    Use case resumes at step 1.
+
+* 1c. The given phone number is a duplicated customer.
+  * 1c1. CHIM displays an error message.
 
     Use case resumes at step 1.
 
@@ -287,12 +356,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ***Extensions**
 * 1a. No cheeses match the input given by the user.
   * 1a1. CHIM shows an empty list.
-    
+
    Use case ends.
 
 * 1b. User input is invalid.
   * 1b1. CHIM shows an error message.
-    
+
    Use case ends.
 
 
