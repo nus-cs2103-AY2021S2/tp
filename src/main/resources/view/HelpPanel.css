@@ -24,10 +24,6 @@
     -fx-max-width: 500;
 }
 
-.table-view .table-column {
-    -fx-alignment: left;
-}
-
 .table-cell {
     -fx-text-fill: white;
     -fx-padding: 5 0;
