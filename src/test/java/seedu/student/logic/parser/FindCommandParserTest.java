@@ -6,8 +6,9 @@ import static seedu.student.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.student.logic.commands.FindCommand;
+import seedu.student.model.appointment.AppointmentContainsMatriculationNumberPredicate;
 import seedu.student.model.student.MatriculationNumber;
-import seedu.student.model.student.MatriculationNumberContainsKeywordsPredicate;
+import seedu.student.model.student.StudentContainsMatriculationNumberPredicate;
 
 public class FindCommandParserTest {
 
@@ -22,9 +23,12 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsFindCommand() {
+
+        MatriculationNumber matriculationNumber = new MatriculationNumber("A0202893R");
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new MatriculationNumberContainsKeywordsPredicate("A0202893R"));
+                new FindCommand(new StudentContainsMatriculationNumberPredicate(matriculationNumber),
+                                new AppointmentContainsMatriculationNumberPredicate(matriculationNumber));
         assertParseSuccess(parser, "A0202893R", expectedFindCommand);
 
         // multiple whitespaces between keywords

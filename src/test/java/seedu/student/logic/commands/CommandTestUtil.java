@@ -24,8 +24,8 @@ import seedu.student.logic.commands.exceptions.CommandException;
 import seedu.student.model.Model;
 import seedu.student.model.StudentBook;
 import seedu.student.model.student.MatriculationNumber;
-import seedu.student.model.student.MatriculationNumberContainsKeywordsPredicate;
 import seedu.student.model.student.Student;
+import seedu.student.model.student.StudentContainsMatriculationNumberPredicate;
 import seedu.student.testutil.EditStudentDescriptorBuilder;
 
 /**
@@ -173,8 +173,8 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredStudentList().size());
 
         Student student = model.getFilteredStudentList().get(targetIndex.getZeroBased());
-        final String matriculationNumber = student.getMatriculationNumber().toString();
-        model.updateFilteredStudentList(new MatriculationNumberContainsKeywordsPredicate(matriculationNumber));
+        final MatriculationNumber matriculationNumber = student.getMatriculationNumber();
+        model.updateFilteredStudentList(new StudentContainsMatriculationNumberPredicate(matriculationNumber));
 
         assertEquals(1, model.getFilteredStudentList().size());
     }
@@ -195,10 +195,9 @@ public class CommandTestUtil {
         }
 
         assertTrue(student != null);
-        final String[] splitName = student.getMatriculationNumber().toString().split("\\s+");
-        model.updateFilteredStudentList(new MatriculationNumberContainsKeywordsPredicate((splitName[0])));
+        final MatriculationNumber studentMatriculationNumber = student.getMatriculationNumber();
+        model.updateFilteredStudentList(new StudentContainsMatriculationNumberPredicate((studentMatriculationNumber)));
 
         assertEquals(1, model.getFilteredStudentList().size());
     }
-
 }
