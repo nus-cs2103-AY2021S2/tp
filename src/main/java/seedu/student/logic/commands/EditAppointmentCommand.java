@@ -16,6 +16,7 @@ import seedu.student.commons.util.CollectionUtil;
 import seedu.student.logic.commands.exceptions.CommandException;
 import seedu.student.model.Model;
 import seedu.student.model.appointment.Appointment;
+import seedu.student.model.appointment.SameDateAppointmentList;
 import seedu.student.model.student.MatriculationNumber;
 
 public class EditAppointmentCommand extends Command {
@@ -36,32 +37,36 @@ public class EditAppointmentCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "The appointment overlaps with existing records";
 
-    private final Index index;
+    private final MatriculationNumber matriculationNumber;
     private final EditAppointmentDescriptor editAppointmentDescriptor;
 
     /**
-     * @param index of the appointment in the filtered appointment list to edit
+     * @param matriculationNumber of the student in the appointment in the filtered appointment list to edit
      * @param editAppointmentDescriptor details to edit the appointment with
      */
-    public EditAppointmentCommand(Index index,
-                                  EditAppointmentCommand.EditAppointmentDescriptor editAppointmentDescriptor) {
-        requireNonNull(index);
+    public EditAppointmentCommand(MatriculationNumber matriculationNumber,
+                                  EditAppointmentDescriptor editAppointmentDescriptor) {
+        requireNonNull(matriculationNumber);
         requireNonNull(editAppointmentDescriptor);
 
-        this.index = index;
-        this.editAppointmentDescriptor = new
-                EditAppointmentCommand.EditAppointmentDescriptor(editAppointmentDescriptor);
+        this.matriculationNumber = matriculationNumber;
+        this.editAppointmentDescriptor = new EditAppointmentDescriptor(editAppointmentDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Appointment> lastShownList = model.getFilteredAppointmentList();
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_OUT_OF_INDEX);
+        Appointment appointmentToEdit = null;
+        List<SameDateAppointmentList> lastShownList = model.getStudentBook().getAppointmentList();
+        for (SameDateAppointmentList sList : lastShownList) {
+            for (Appointment a : sList) {
+                if (a.getMatriculationNumber().equals(matriculationNumber)) {
+                    appointmentToEdit = a;
+                }
+            }
         }
+        assert appointmentToEdit != null : "Appointment does not exist in the system";
 
-        Appointment appointmentToEdit = lastShownList.get(index.getZeroBased());
         Appointment editedAppointment = createEditedAppointment(appointmentToEdit, editAppointmentDescriptor);
 
         if (!appointmentToEdit.isSameAppointment(editedAppointment) && model.hasAppointment(editedAppointment)) {
@@ -81,18 +86,15 @@ public class EditAppointmentCommand extends Command {
     private static Appointment createEditedAppointment(Appointment appointmentToEdit,
                                                        EditAppointmentDescriptor editAppointmentDescriptor) {
         assert appointmentToEdit != null;
-
-        MatriculationNumber updatedMatriculationNumber = editAppointmentDescriptor.getMatriculationNumber()
-                .orElse(appointmentToEdit.getMatriculationNumber());
+        MatriculationNumber matriculationNumber = appointmentToEdit.getMatriculationNumber();
         LocalDate updatedDate = editAppointmentDescriptor.getDate().orElse(appointmentToEdit.getDate());
         LocalTime updatedStartTime = editAppointmentDescriptor.getStartTime().orElse(appointmentToEdit.getStartTime());
 
-        return new Appointment(updatedMatriculationNumber, updatedDate, updatedStartTime, updatedEndTime);
+        return new Appointment(matriculationNumber, updatedDate, updatedStartTime);
     }
 
 
     public static class EditAppointmentDescriptor {
-        private MatriculationNumber matriculationNumber;
         private LocalDate date;
         private LocalTime startTime;
         private LocalTime endTime;
@@ -100,7 +102,6 @@ public class EditAppointmentCommand extends Command {
         public EditAppointmentDescriptor() {}
 
         public EditAppointmentDescriptor(EditAppointmentDescriptor toCopy) {
-            setMatriculationNumber(toCopy.matriculationNumber);
             setDate(toCopy.date);
             setStartTime(toCopy.startTime);
             setEndTime(toCopy.endTime);
@@ -110,15 +111,7 @@ public class EditAppointmentCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull( matriculationNumber, date, startTime, endTime);
-        }
-
-        public void setMatriculationNumber(MatriculationNumber matriculationNumber) {
-            this.matriculationNumber = matriculationNumber;
-        }
-
-        public Optional<MatriculationNumber> getMatriculationNumber() {
-            return Optional.ofNullable(matriculationNumber);
+            return CollectionUtil.isAnyNonNull(date, startTime, endTime);
         }
 
         public void setDate(LocalDate date) {
@@ -160,8 +153,7 @@ public class EditAppointmentCommand extends Command {
             // state check
             EditAppointmentCommand.EditAppointmentDescriptor e = (EditAppointmentDescriptor) other;
 
-            return getMatriculationNumber().equals(e.getMatriculationNumber())
-                    && getDate().equals(e.getDate())
+            return  getDate().equals(e.getDate())
                     && getStartTime().equals(e.getStartTime())
                     && getEndTime().equals(e.getEndTime());
         }
