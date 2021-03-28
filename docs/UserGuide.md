@@ -9,18 +9,16 @@ title: User Guide
 
 - [Quick Start](#quick-start)
 - [Features](#features)
-    - [Viewing help : `help`](#viewing-help)
-    - [Adding a financial record : `add-fr`](#adding-a-financial-record)
-    - [Listing a month's financial records : `list`](#listing-a-month's-financial-records)
-    - [Viewing a financial record : `view-fr`](#viewing-a-financial-record)
-    - [Deleting a financial record : `delete-fr`](#deleting-a-financial-record)
-    - [Setting monthly budget : `set-bg`](#setting-monthly-budget)
+    - [Viewing help : `help`](#viewing-help--help)
+    - [Adding a financial record : `add-fr`](#adding-a-financial-record--add-fr)
+    - [Deleting a financial record : `delete-fr`](#deleting-a-financial-record--delete-fr)
+    - [Setting monthly budget : `set-bg`](#setting-monthly-budget--set-bg)
+    - [Viewing a specific month : `view-month`](#viewing-a-specific-month--view-month)
+    - [Finding financial records : `find-fr`](#finding-financial-records--find-fr)
+    - [Resetting filters on financial records : `reset-filter`](#resetting-filters-on-financial-records--reset-filter)
+    - [Exiting the program : `exit`](#exiting-the-program--exit)
     - [Viewing budget for the current month](#viewing-budget-for-the-current-month)
     - [Checking remaining budget for the current month](#checking-remaining-budget-for-the-current-month)
-    - [Viewing a specific month : `view-month`](#viewing-a-specific-month)
-    - [Finding a financial record : `find-fr`](#finding-a-financial record)
-    - [Resetting filters on financial records : `reset-filter`](#resetting-filters-on-financial-records)
-    - [Exiting the program : `exit`](#exiting-the-program)
     - [Saving the data](#saving-the-data)
     - [Editing the data file](#editing-the-data-file)
     - [Archiving data files](#archiving-data-files)
@@ -84,7 +82,8 @@ title: User Guide
 
 </div>
 
-### Viewing help : `help` [coming in v1.3]
+### Viewing help : `help`
+[coming in v1.3]
 
 Shows a message explaining how to access the `help` page.
 
@@ -92,7 +91,7 @@ Shows a message explaining how to access the `help` page.
 
 Format: `help`
 
-### Adding a financial record: `add-fr`
+### Adding a financial record : `add-fr`
 
 Adds a financial record to the budget tracker.
 
@@ -152,6 +151,7 @@ Examples:
 - `set-bg 1300.50`
 
 ### Viewing a specific month : `view-month`
+[coming in v1.3 subject to changes]
 
 Displays data associated with a specific month.
 
@@ -176,7 +176,7 @@ Examples:
 
 - `view-month 01-2021`
 
-### Filtering financial records by a category : `category-filter`
+### Finding financial records : `find-fr`
 
 Filters financial records based on a specified category.
 
@@ -185,9 +185,9 @@ Data associated include:
 - Category to filter
 - Financial records
 
-<img src="images/features/category-filter.png" width="600px">
+<img src="images/features/find-fr.png" width="600px">
 
-Format: `category-filter c/FR_CATEGORY`
+Format: `find-fr c/FR_CATEGORY`
 
 Examples:
 
@@ -209,7 +209,8 @@ Examples:
 
 - `reset-filter`
 
-### Exiting the program : `exit` [coming in v1.3]
+### Exiting the program : `exit`
+[coming in v1.3]
 
 Exits the program.
 
@@ -237,7 +238,8 @@ Advanced users are welcome to update data directly by editing that data file.
 If your changes to the data file makes its format invalid, BudgetBaby will discard all data and start with an empty data file at the next run.
 
 
-### Archiving data files `[coming in v2.0]`
+### Archiving data files
+[coming in v2.0]
 
 _Details coming soon ..._
 
