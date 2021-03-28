@@ -2,7 +2,10 @@
 layout: page
 title: User Guide
 ---
-# TutorBuddy
+<div align="center">
+  <img alt="logo" src="images/tutorbuddy_logo.png">
+</div>
+
 TutorBuddy is an application made for independent tutors as a management tool to cut down on admin overheads,
 by graphically managing their student’s information with a Graphical User Interface (GUI).
 It allows for faster and more effective student management.
@@ -25,38 +28,93 @@ It allows for faster and more effective student management.
 * [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
+## About
+This user guide provides documentation on the installation and usage of TutorBuddy.
+It also provides a comprehensive description of features available to you and
+includes a [quick-start](#quick-start) section that helps you get started.
 
+This guide uses the following features to make it easier for you to navigate around:
+
+* Words that look like [this](#about) can be clicked to jump to the related section.
+* Words that look like `this` refer to keywords used as part of commands or responses from TutorBuddy.
+* Words that look like <kbd>this</kbd> refer to keyboard keys that you can press.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: Boxes with the :information_source: icon contain additional useful information.
+
+</div>
+
+<div markdown="block" class="alert alert-primary">
+
+:bulb: Boxes with the :bulb: icon contain additional tips and tricks to help you get the most out of TutorBuddy.
+
+</div>
+
+--------------------------------------------------------------------------------------------------------------------
 ## Quick start
+This section provides information on how to quickly start using TutorBuddy.
 
-1. Ensure you have Java `11` or above installed in your Computer.
+### Installation
+Here are a few steps to get you started on Tutor's Pet:
 
-2. Download the latest `TutorBuddy.jar` from [here](#).
+1. Ensure you have **Java 11** or above installed in your computer.
 
-3. Copy the file to the folder you want to use as the home folder for your TutorBuddy application.
+1. Download the latest version of TutorBuddy [here](https://github.com/AY2021S1-CS2103T-T10-4/tp/releases).
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data. <br>
-   ![Ui](images/Ui.png)
+1. Move the downloaded TutorBuddy to a folder of your choice. This will be known as the home folder of TutorBuddy.
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`list_student`** and pressing Enter will open the list of all students.<br>
+1. Double-click the file to start the application. An application similar to the one below should appear in a few
+   seconds.<br>
+   
+![Ui](images/Ui.png)
 
-   Some example commands you can try:
+### Using TutorBuddy
 
-**Students**
-  * `list_student`: List all students
-  * `find_student James`: Finds and lists all students that have the keyword **James** in the student's name
-  * `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Sec2 g/95421323 r/Mother`: Adds a student John Doe to the Tutor Buddy application
-  * `delete_student 3`: Deletes the 3rd student in the student list
+This section offers an overview of the layout in TutorBuddy.
 
-**Tuition Session**
-  * `list_session`: List all tuition sessions
-  * `find_session James`: Finds and lists all tuition sessions that James have
-  * `add_session n/John Doe d/2021-01-01 t/13:00 k/120 s/Biology f/80`: Adds a tuition session for John Doe happening on 14-02-2021
-  * `delete_session n/John Lee i/1`: Deletes the 1st tuition session in John's tuition session list
+There are three main areas in TutorBuddy:
 
-**General**
-  * `exit`: Exits the application
+1. the command box and result display box,
 
-6. Refer to the [Features](#features) below for details of each command.
+1. the main viewing area,
+
+1. the utility area.
+
+
+
+1. The command box is the area for you to enter your commands. The result of each command will be shown in the result
+display box, which is located immediately below the command box.
+   
+   IMAGE
+* Type a command in the command box and press <kbd>Enter</kbd> to execute it.<br>
+
+  Here are some example commands you can try:
+
+  * **`list`** : Lists all students and sessions.
+
+  * **`add_student`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Sec2 g/95421323 r/Mother` : Adds a student named `John Doe`
+    to TutorBuddy.
+
+  * **`delete_student`**`3` : Deletes the 3rd student shown in the Student section.
+
+  * **`add_session`**`n/John Doe d/2021-01-01 t/13:00 k/120 s/Biology f/80` : Adds a tuition session for John Doe happening on 2021-01-01.
+
+  * **`exit`** : Exits the application.
+  
+* Refer to the [Features](#features) below for details of each command.
+   
+2. The main viewing area consists of 3 tabs: **Home**, **Tuition** and **Calendar**.
+    * The **Home** tab contains a reminder section where a user can view their upcoming tuition lessons. There is also
+      a fee section where the user can view their tuition fees for the past 3 months.
+    * The **Tuition** tab contains a Student and Session section where a user can view and manage their students and lessons.
+    * The **Calendar** tab contains a weekly view of all sessions.
+
+
+3. The utility area consists of 2 tabs: **File**, and **Help**.
+    * The **File** tab consists of an exit button. To exit TutorBuddy, click on the exit button. Alternatively, use the `exit` command to exit the application.
+    * The **Help** tab consists of a help button. If you require any assistance, click on the help button, copy the link
+        displayed and paste it into any web browser. Alternatively, press <kbd>F1</kbd> to bring up the help window.
 
 --------------------------------------------------------------------------------------------------------------------
 
