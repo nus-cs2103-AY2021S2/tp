@@ -1,5 +1,8 @@
 package seedu.smartlib.model.record;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+
 import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.model.book.Barcode;
 
@@ -146,6 +149,20 @@ public class Record {
         }
 
         return true;
+    }
+
+    /**
+     * Gets the duration of the book being borrowed.
+     *
+     * @return A Duration class that represent the duration the book is borrowed.
+     */
+    public Duration getBorrowDuration() {
+        assert dateBorrowed != null && dateReturned != null : "Date cannot be null";
+
+        LocalDateTime startDate = LocalDateTime.parse(dateBorrowed.getValue());
+        LocalDateTime endDate = LocalDateTime.parse(dateReturned.getValue());
+
+        return Duration.between(startDate, endDate);
     }
 
     /**

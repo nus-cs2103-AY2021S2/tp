@@ -346,7 +346,7 @@ public class ModelManager implements Model {
      * @param record record containing the book to be returned.
      */
     @Override
-    public void markRecordAsReturned(Record record) {
+    public Record markRecordAsReturned(Record record) {
         Record foundRecord = null;
         for (Record r : smartLib.getRecordList()) {
             if (r.equals(record)) {
@@ -357,6 +357,10 @@ public class ModelManager implements Model {
             foundRecord.setDateReturned(record.getDateReturned());
         }
         updateFilteredRecordList(PREDICATE_SHOW_ALL_RECORDS);
+
+        assert foundRecord != null : "The record must exist in this step of execution";
+
+        return foundRecord;
     }
 
     /**

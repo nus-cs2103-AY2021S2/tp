@@ -4,7 +4,7 @@ import static seedu.smartlib.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMA
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BOOK;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_READER;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
 import seedu.smartlib.commons.core.name.Name;
@@ -36,7 +36,7 @@ public class BorrowCommandParser implements Parser<BorrowCommand> {
 
         Name bookName = ParserUtil.parseName(argMultimap.getValue(PREFIX_BOOK).get());
         Name readerName = ParserUtil.parseName(argMultimap.getValue(PREFIX_READER).get());
-        DateBorrowed dateBorrowed = new DateBorrowed(LocalDate.now());
+        DateBorrowed dateBorrowed = new DateBorrowed(LocalDateTime.now());
         IncompleteRecord record = new IncompleteRecord(bookName, readerName, dateBorrowed);
 
         return new BorrowCommand(record);

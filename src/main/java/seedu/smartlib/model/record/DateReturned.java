@@ -1,7 +1,6 @@
 package seedu.smartlib.model.record;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.smartlib.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 
@@ -37,6 +36,10 @@ public class DateReturned {
         value = date;
     }
 
+    public String getValue() {
+        return value;
+    }
+
     /**
      * Indicates whether a given string is a valid date.
      *
@@ -44,7 +47,7 @@ public class DateReturned {
      * @return true if a given string is a valid date, and false otherwise.
      */
     public static boolean isValidDate(String test) {
-        return test.toString().matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX);
     }
 
     /**

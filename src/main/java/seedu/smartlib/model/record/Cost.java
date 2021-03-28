@@ -9,14 +9,17 @@ public class Cost {
 
     /**
      * Creates a cost of overdue book.
+     *
      * @param overdueHour The duration, in hours, that the book was overdue.
      */
     public Cost(int overdueHour) {
+        assert overdueHour >= 0 : "Overdue hours cannot be negative";
         this.overdueHour = overdueHour;
     }
 
     /**
      * Calculate the total cost given the overdue hours.
+     *
      * @return The total cost of the overdue book.
      */
     public double getCost() {

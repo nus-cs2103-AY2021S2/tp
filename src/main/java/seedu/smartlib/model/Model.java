@@ -149,7 +149,7 @@ public interface Model {
     /**
      * Searches for the latest given record and marks it as returned.
      */
-    void markRecordAsReturned(Record record);
+    Record markRecordAsReturned(Record record);
 
     /**
      * Returns the barcode of the first available (i.e. not borrowed) copy of the book in SmartLib.

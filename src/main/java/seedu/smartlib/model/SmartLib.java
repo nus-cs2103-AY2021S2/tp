@@ -2,12 +2,8 @@ package seedu.smartlib.model;
 
 import static java.util.Objects.requireNonNull;
 
-<<<<<<< HEAD
 import java.time.LocalDateTime;
-=======
-import java.time.LocalDate;
 import java.util.ArrayList;
->>>>>>> master
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -28,7 +24,8 @@ import seedu.smartlib.model.record.UniqueRecordList;
 public class SmartLib implements ReadOnlySmartLib {
 
     public static final int QUOTA = 4;
-    public static final long DURATION = 14L;
+    public static final long DAYS_BORROW_ALLOWED = 14L;
+    public static final int HOURS_BORROW_ALLOWED = (int) DAYS_BORROW_ALLOWED * 24;
 
     private final UniqueBookList books;
     private final UniqueReaderList readers;
@@ -449,16 +446,6 @@ public class SmartLib implements ReadOnlySmartLib {
         if (reader == null) {
             return false;
         }
-<<<<<<< HEAD
-        reader.getBorrows().put(bookName, new DateBorrowed(LocalDateTime.now()));
-        Reader editedReader = new Reader(reader.getName(), reader.getPhone(), reader.getEmail(),
-                reader.getAddress(), reader.getTags(), reader.getBorrows());
-        Book editedBook = new Book(book.getName(), book.getAuthor(), book.getPublisher(),
-                book.getIsbn(), book.getBarcode(), book.getGenre(), readerName);
-        setReader(reader, editedReader);
-        setBook(book, editedBook);
-        return true;
-=======
 
         Book book = getBookByBarcode(barcode);
         if (book == null) {
@@ -466,7 +453,7 @@ public class SmartLib implements ReadOnlySmartLib {
         }
 
         if (!book.isBorrowed()) {
-            reader.getBorrows().put(book, new DateBorrowed(LocalDate.now()));
+            reader.getBorrows().put(book, new DateBorrowed(LocalDateTime.now()));
             Reader editedReader = new Reader(reader.getName(), reader.getPhone(), reader.getEmail(),
                     reader.getAddress(), reader.getTags(), reader.getBorrows());
             Book editedBook = new Book(book.getName(), book.getAuthor(), book.getPublisher(),
@@ -477,7 +464,6 @@ public class SmartLib implements ReadOnlySmartLib {
         }
 
         return false;
->>>>>>> master
     }
 
     /**

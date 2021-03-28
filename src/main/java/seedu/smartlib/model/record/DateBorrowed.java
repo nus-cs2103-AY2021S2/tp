@@ -2,8 +2,7 @@ package seedu.smartlib.model.record;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 import static java.util.Objects.requireNonNull;
-import static seedu.smartlib.commons.util.AppUtil.checkArgument;
-import static seedu.smartlib.model.SmartLib.DURATION;
+import static seedu.smartlib.model.SmartLib.DAYS_BORROW_ALLOWED;
 
 import java.time.LocalDateTime;
 
@@ -39,13 +38,17 @@ public class DateBorrowed {
         value = date;
     }
 
+    public String getValue() {
+        return value;
+    }
+
     /**
      * Indicates whether the book associated with a record is overdue.
      *
      * @return true if the book is overdue, and false otherwise.
      */
     public boolean isOverdue() {
-        return DAYS.between(LocalDateTime.parse(this.value), LocalDateTime.now()) > DURATION;
+        return DAYS.between(LocalDateTime.parse(this.value), LocalDateTime.now()) > DAYS_BORROW_ALLOWED;
     }
 
     /**
