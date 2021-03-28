@@ -33,7 +33,7 @@ public class TimeslotParser {
             + "> hh:mm (In 24-Hour format)\n"
             + "> hh:mmam/pm\n"
             + "Example:\n" + PREFIX_TIMESLOT_START
-            + "12/12/21 09:00am";
+            + "12/12/21 01:15pm or 12-12-21 13:15";
     public static final String MESSAGE_INVALID_NEXT_DATE_TIME_FORMAT = "Input format for next date time parameters "
             + "must be:\n"
             + "next DAY TIME\n"
@@ -61,55 +61,19 @@ public class TimeslotParser {
      * conform to the expected date time format.
      */
     public static LocalDateTime parseDateTime(String userInput) throws ParseException {
-
         String formattedInput = userInput.toUpperCase().trim();
-        String[] dateTimeInputArray = formattedInput.split(REMOVE_WHITESPACE_REGEX);
         if (formattedInput.contains("NEXT")) {
             return parseNextDateTime(formattedInput);
         } else {
-            try {
-                String dateInput = dateTimeInputArray[0];
-                String timeInput = dateTimeInputArray[1];
-
-                StringBuilder parsedFormat = parseFormat(dateInput, timeInput);
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern(String.valueOf(parsedFormat));
-                return LocalDateTime.parse(formattedInput, formatter);
-            } catch (DateTimeParseException e) {
-                throw new ParseException(MESSAGE_INVALID_DATE_TIME_FORMAT);
+            for (DateTimeFormat dateTimeFormat : DateTimeFormat.values()) {
+                try {
+                    return LocalDateTime.parse(formattedInput, dateTimeFormat.getDateTimeFormatter());
+                } catch (DateTimeParseException e) {
+                    continue;
+                }
             }
+            throw new ParseException(MESSAGE_INVALID_DATE_TIME_FORMAT);
         }
-    }
-
-    /**
-     * Parses a {@code String dateInput, String timeInput} into their appropriate LocalDateTime
-     * format in {@code StringBuilder}. For Absolute DateTime cases only.
-     */
-    public static StringBuilder parseFormat(String dateInput, String timeInput) {
-        StringBuilder formatter = new StringBuilder("");
-
-        if (dateInput.matches(TimeslotRegex.DATE_SLASH_SHORT)) {
-            formatter.append("dd/MM/yy ");
-        } else if (dateInput.matches(TimeslotRegex.DATE_SLASH_LONG)) {
-            formatter.append("dd/MM/yyyy ");
-        } else if (dateInput.matches(TimeslotRegex.DATE_DASH_SHORT)) {
-            formatter.append("dd-MM-yy ");
-        } else {
-            formatter.append("dd-MM-yyyy ");
-        }
-        return parseTimeFormat(timeInput, formatter);
-    }
-
-    /**
-     * Parses a {@code String timeInput, StringBuilder} into a full {@code StringBuilder} format for
-     * LocalDateTime. 24-Hour Clock and Meridian time Inputs are both accepted.
-     */
-    public static StringBuilder parseTimeFormat(String timeInput, StringBuilder formatter) {
-        if (timeInput.contains("AM") || timeInput.contains("PM")) {
-            formatter.append("hh:mma");
-        } else {
-            formatter.append("HH:mm");
-        }
-        return formatter;
     }
 
     /**
@@ -250,6 +214,9 @@ public class TimeslotParser {
     }
 }
 
+/**
+ * This documents the Days of the Week recognised by the parser for "next" commands
+ */
 enum Day {
     MONDAY,
     TUESDAY,
@@ -258,4 +225,33 @@ enum Day {
     FRIDAY,
     SATURDAY,
     SUNDAY
+}
+
+/**
+ * This documents the Days of the Week recognised by the parser for "next" commands.
+ * Includes formats for absolute datess and time in 24-Hour Clock and Meridian Clock.
+ */
+enum DateTimeFormat {
+    DD_SLASH_MM_SLASH_YY_HR("dd/MM/yy HH:mm"),
+    DD_SLASH_MM_SLASH_YY_MERIDIAN("dd/MM/yy hh:mma"),
+    DD_SLASH_MM_SLASH_YYYY_HR("dd/MM/yyyy HH:mm"),
+    DD_SLASH_MM_SLASH_YYYY_MERIDIAN("dd/MM/yyyy hh:mma"),
+    DD_DASH_MM_DASH_YY_HR("dd-MM-yy HH:mm"),
+    DD_DASH_MM_DASH_YY_MERIDIAN("dd-MM-yy hh:mma"),
+    DD_DASH_MM_DASH_YYYY_HR("dd-MM-yyyy HH:mm"),
+    DD_DASH_MM_DASH_YYYY_MERIDIAN("dd-MM-yyyy hh:mma");
+
+    private String dateTimePattern;
+
+    private DateTimeFormat(String dateTimePattern) {
+        this.dateTimePattern = dateTimePattern;
+    }
+
+    public DateTimeFormatter getDateTimeFormatter() {
+        return DateTimeFormatter.ofPattern(dateTimePattern);
+    }
+
+    public String getDateTimePattern() {
+        return dateTimePattern;
+    }
 }
