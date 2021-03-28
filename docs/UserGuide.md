@@ -377,8 +377,9 @@ Action | Format, Examples
 **List all** | `list all`
 **List property** | `list property`
 **List appointment** | `list appointment`
-**Add new status** | `update INDEX new AMOUNT`<br><br> e.g.,`update 1 new 600000`
-**Update status** | `update INDEX u/STATUS`<br><br> e.g. `update 3 u/proceed`
+**Add new status** | `update INDEX u/new AMOUNT`<br><br> e.g.,`update 1 u/new 600000`
+**Proceed to the next status** | `update INDEX u/proceed`
+**Remove a status** | `update INDEX u/cancel`
 **Sort** | `sort appointment o/SORTING_ORDER k/SORTING_KEY `<br> e.g., `sort appointment o/asc k/datetime`<br><br>`sort property o/SORTING_ORDER k/SORTING_KEY `<br> e.g., `sort property o/asc k/price`
 **Find property** | `find property [KEYWORD]... [OPTION]...` <br><br> Options: <br>{::nomarkdown}<ul> <li>{:/}`[t/PROPERTY_TYPE]`{::nomarkdown}</li> <li>{:/}`[pl/PRICE_UPPER_LIMIT]`{::nomarkdown}</li> <li>{:/}`[pm/PRICE_LOWER_LIMIT]`{::nomarkdown}</li> </ul>{:/} e.g. `find property bishan north t/hdb pl/$1,000,000`
 **Find appointment** | `find property [KEYWORD]` <br> e.g., `find appointment bob`
