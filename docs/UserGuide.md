@@ -9,18 +9,18 @@ title: User Guide
 
 - [Quick Start](#quick-start)
 - [Features](#features)
-  - [Viewing help : `help`](#viewing-help)
-  - [Adding a financial record : `add-fr`](#adding-a-financial-record)
-  - [Listing a month's financial records : `list`](#listing-a-month's-financial-records)
-  - [Viewing a financial record : `view-fr`](#viewing-a-financial-record)
-  - [Deleting a financial record : `delete-fr`](#deleting-a-financial-record)
-  - [Setting monthly budget : `set-bg`](#setting-monthly-budget)
+  - [Viewing help : `help`](#viewing-help--help)
+  - [Adding a financial record : `add-fr`](#adding-a-financial-record--add-fr)
+  - [Listing a month's financial records : `list`](#listing-a-months-financial-records--list)
+  - [Viewing a financial record : `view-fr`](#viewing-a-financial-record--view-fr)
+  - [Deleting a financial record : `delete-fr`](#deleting-a-financial-record--delete-fr)
+  - [Setting monthly budget : `set-bg`](#setting-monthly-budget--set-bg)
   - [Viewing budget for the current month](#viewing-budget-for-the-current-month)
   - [Checking remaining budget for the current month](#checking-remaining-budget-for-the-current-month)
-  - [Viewing a specific month : `view-month`](#viewing-a-specific-month)
-  - [Finding a financial record : `find-fr`](#finding-a-financial record)
-  - [Resetting filters on financial records : `reset-filter`](#resetting-filters-on-financial-records)
-  - [Exiting the program : `exit`](#exiting-the-program)
+  - [Viewing a specific month : `view-month`](#viewing-a-specific-month--view-month)
+  - [Finding financial records : `find-fr`](#finding-financial-records--find-fr)
+  - [Resetting filters on financial records : `reset-filter`](#resetting-filters-on-financial-records--reset-filter)
+  - [Exiting the program : `exit`](#exiting-the-program--exit)
   - [Saving the data](#saving-the-data)
   - [Editing the data file](#editing-the-data-file)
   - [Archiving data files](#archiving-data-files)
@@ -83,7 +83,9 @@ title: User Guide
 
 </div>
 
-### Viewing help : `help` [coming in v1.3]
+### Viewing help : `help`
+
+[coming in v1.3]
 
 You can use this command to access the help page for detailed information on using the UG.
 
@@ -91,7 +93,7 @@ You can use this command to access the help page for detailed information on usi
 
 Format: `help`
 
-### Adding a financial record: `add-fr`
+### Adding a financial record : `add-fr`
 
 You can use this command to add a financial record to the budget tracker.
 
@@ -123,7 +125,7 @@ Format: `delete-fr FR_INDEX`
 
 - You must replace `FR_INDEX` with the index of the finacial record you want to delete.
 - `FR_INDEX` refers to the index number shown in the displayed financial record list.
-- `FR_INDEX` **must be a positive integer** (e.g. 1, 2, 3, …​)
+- `FR_INDEX` must be a **positive integer** (e.g. 1, 2, 3, …​)
 
 </div>
 
@@ -150,15 +152,17 @@ Examples:
 - `set-bg 100`
 - `set-bg 1300.50`
 
-### Viewing budget for the current month :
+### Viewing budget for the current month
 
 The UI will display the current monthly budget set by you automatically. If you have not set a budget it displays a default budget of $1000.
 
-### Checking remaining budget for the current month :
+### Checking remaining budget for the current month
 
 The UI will display and update your remaining budget for the current month automatically whenever you update your list of financial records.
 
-### Viewing a specific month : [coming in v1.3 subject to changes]
+### Viewing a specific month : `view-month`
+
+[coming in v1.3 subject to changes]
 
 You can use this command to display the data associated with a specific month.
 
@@ -184,7 +188,7 @@ Examples:
 
 - `view 01-2021`
 
-### Filtering financial records by a category :
+### Finding financial records : `find-fr`
 
 You can use this command to filter the list of financial records based on a specified category.
 
@@ -199,7 +203,7 @@ Examples:
 
 - `category-filter c/Food`
 
-### Resetting filters on financial records :
+### Resetting filters on financial records : `reset-filter`
 
 You can use this command to reset all filters on financial records.
 
@@ -213,7 +217,9 @@ Examples:
 
 - `reset-filter`
 
-### Exiting the program : `exit` [coming in v1.3]
+### Exiting the program : `exit`
+
+[coming in v1.3]
 
 You can use this command to exit the program.
 
@@ -231,7 +237,9 @@ If you are an advanced user, feel free to update data directly by editing that f
 **:exclamation: Caution:**
 If your changes to the data file makes invalidates its format, BudgetBaby will discard all your data and start with an empty data file at the next run.
 
-### Archiving data files `[coming in v2.0]`
+### Archiving data files
+
+[coming in v2.0]
 
 _Details coming soon ..._
 
