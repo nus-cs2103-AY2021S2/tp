@@ -180,6 +180,7 @@ Format: `addEto PROJECT_INDEX d/DESCRIPTION i/INTERVAL at/DATE`
     * `MONTHLY`
     * `YEARLY`
 * `DATE` must be in `dd-MM-yyyy`, `ddMMyyyy`, `dd/MM/yyyy` or `dd.MM.yyyy` format.
+* `DATE` is limited to the `yyyy` range of 0000 to 9999.
 
 Examples:
 * `addEto 1 d/Project Meeting i/WEEKLY at/24-04-2021`
@@ -195,6 +196,7 @@ Format: `addDto PROJECT_INDEX d/DESCRIPTION by/DATE`
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
 * The index **must be a positive integer** 1, 2, 3, …​
 * `DATE` must be in `dd-MM-yyyy`, `ddMMyyyy`, `dd/MM/yyyy` or `dd.MM.yyyy` format.
+* `DATE` is limited to the `yyyy` range of 0000 to 9999.
 
 Examples:
 * `addDto 1 d/Milestone v1.2 by/01-03-2021`
