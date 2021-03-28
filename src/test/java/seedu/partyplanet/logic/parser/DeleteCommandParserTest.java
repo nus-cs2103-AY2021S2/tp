@@ -25,7 +25,7 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteContactCommand(List.of(INDEX_FIRST_PERSON)));
+        assertParseSuccess(parser, "1", new DeleteContactCommand(List.of(INDEX_FIRST_PERSON), List.of()));
     }
 
     @Test

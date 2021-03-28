@@ -21,4 +21,5 @@ public abstract class DeleteCommand extends Command {
             + " [{INDEX (must be a positive integer) [INDEX]... | [--any] -t TAG [-t TAG]...}]";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted the following persons: %s";
+    public static final String MESSAGE_INVALID_PERSON_INDEX = "Invalid person indexes: %s";
 }

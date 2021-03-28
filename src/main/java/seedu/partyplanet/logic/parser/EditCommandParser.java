@@ -42,7 +42,11 @@ public class EditCommandParser implements Parser<EditCommand> {
                         PREFIX_BIRTHDAY, PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_TAG);
 
         boolean hasIndex = !argMultimap.getPreamble().isEmpty();
-        boolean mentionsDelete = argMultimap.getValue(FLAG_REMOVE).isPresent();
+        boolean mentionsRemove = argMultimap.getValue(FLAG_REMOVE).isPresent();
+
+        if (hasIndex && mentionsRemove) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        }
 
         if (hasIndex) {
 
@@ -81,7 +85,7 @@ public class EditCommandParser implements Parser<EditCommand> {
 
             return new EditFieldCommand(index, editPersonDescriptor);
 
-        } else if (mentionsDelete) {
+        } else if (mentionsRemove) {
 
             if (!argMultimap.getValue(PREFIX_TAG).isPresent()) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
