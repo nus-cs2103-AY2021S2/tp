@@ -24,7 +24,15 @@ public class Book {
     private final Barcode barcode;
 
     /**
+     * Constructor for the Book class.
      * Every field must be present and not null.
+     *
+     * @param name Name of the book.
+     * @param author Author of the book.
+     * @param publisher Publisher of the book.
+     * @param isbn ISBN of the book.
+     * @param barcode Barcode of the book.
+     * @param genre Genre of the book.
      */
     public Book(Name name, Author author, Publisher publisher, Isbn isbn, Barcode barcode, Genre genre) {
         requireAllNonNull(name, author, publisher, isbn, genre);
@@ -38,7 +46,16 @@ public class Book {
     }
 
     /**
+     * Constructor for the Book class.
      * Every field must be present and not null.
+     *
+     * @param name Name of the book.
+     * @param author Author of the book.
+     * @param publisher Publisher of the book.
+     * @param isbn ISBN of the book.
+     * @param barcode Barcode of the book.
+     * @param genre Genre of the book.
+     * @param borrowerName Reader who borrowed the book.
      */
     public Book(Name name, Author author, Publisher publisher, Isbn isbn, Barcode barcode, Genre genre,
                 Name borrowerName) {
@@ -52,57 +69,73 @@ public class Book {
         this.borrowerName = borrowerName;
     }
 
+    /**
+     * Retrieves the name of the reader who borrowed this book.
+     *
+     * @return the name of the reader who borrowed this book.
+     */
     public Name getBorrowerName() {
         return this.borrowerName;
     }
 
+    /**
+     * Indicates whether this book is borrowed to a reader.
+     *
+     * @return true if this book is borrowed to a reader, and false otherwise.
+     */
     public boolean isBorrowed() {
         return this.borrowerName != null;
     }
 
     /**
-     * Gets the Name of Book
-     * @return Name of Book
+     * Gets the name of the book.
+     *
+     * @return name of the book.
      */
     public Name getName() {
         return name;
     }
 
     /**
-     * Gets the Author of Book
-     * @return Author of Book
+     * Gets the author of the book.
+     *
+     * @return author of the book.
      */
     public Author getAuthor() {
         return author;
     }
 
     /**
-     * Gets the Publisher of Book
-     * @return Publisher of Book
+     * Gets the publisher of the book.
+     *
+     * @return publisher of the book.
      */
     public Publisher getPublisher() {
         return publisher;
     }
 
     /**
-     * Gets the Isbn of Book
-     * @return Isbn of Book
+     * Gets the ISBN of the book.
+     *
+     * @return ISBN of the book.
      */
     public Isbn getIsbn() {
         return isbn;
     }
 
     /**
-     * Gets the genre of Book
-     * @return Genre of Book
+     * Gets the genre of the book.
+     *
+     * @return genre of the book.
      */
     public Genre getGenre() {
         return genre;
     }
 
     /**
-     * Gets the barcode of Book
-     * @return Barcode of Book
+     * Gets the barcode of the book.
+     *
+     * @return barcode of the book.
      */
     public Barcode getBarcode() {
         return barcode;
@@ -111,6 +144,9 @@ public class Book {
     /**
      * Returns true if both books have the same name and barcode.
      * This defines a weaker notion of equality between two books.
+     *
+     * @param otherBook the book to be compared with this book.
+     * @return true if both books have the same name and barcode, and false otherwise.
      */
     public boolean isSameBook(Book otherBook) {
         if (otherBook == this) {
@@ -122,6 +158,13 @@ public class Book {
                 && otherBook.getBarcode().equals(getBarcode());
     }
 
+    /**
+     * Checks if this Book is equal to another Book.
+     * A stronger notion of equality between two books.
+     *
+     * @param other the book to be compared with this book.
+     * @return true if this Book is equal to the other Book, and false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -137,15 +180,26 @@ public class Book {
                 && otherBook.getAuthor().equals(getAuthor())
                 && otherBook.getPublisher().equals(getPublisher())
                 && otherBook.getIsbn().equals(getIsbn())
-                && otherBook.getGenre().equals(getGenre()); // TODO: include barcode here and add BookStub
+                && otherBook.getGenre().equals(getGenre())
+                && otherBook.getBarcode().equals(getBarcode());
     }
 
+    /**
+     * Generates a hashcode for this Book.
+     *
+     * @return the hashcode for this Book.
+     */
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, author, publisher, isbn);
     }
 
+    /**
+     * Returns this Book in String format.
+     *
+     * @return this Book in String format.
+     */
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
@@ -165,4 +219,5 @@ public class Book {
 
         return builder.toString();
     }
+
 }

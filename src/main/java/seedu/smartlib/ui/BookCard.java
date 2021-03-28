@@ -16,15 +16,17 @@ public class BookCard extends UiPart<Region> {
     private static final String FXML = "BookListCard.fxml";
 
     /**
+     * The book associated with this BookCard class.
+     */
+    public final Book book;
+
+    /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
      *
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
-
-    public final Book book;
-
     @javafx.fxml.FXML
     private HBox cardPane;
     @FXML
@@ -47,25 +49,30 @@ public class BookCard extends UiPart<Region> {
     private Label borrowerName;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code BookCard} with the given {@code Book} and index to display.
+     *
+     * @param book book to be displayed.
+     * @param displayedIndex index which the book is displayed at.
      */
     public BookCard(Book book, int displayedIndex) {
         super(FXML);
         this.book = book;
         id.setText(displayedIndex + ". ");
-        name.setText(book.getName().fullName);
+        name.setText(book.getName().toString());
         author.setText("Author: " + book.getAuthor().toString());
         publisher.setText("Publisher: " + book.getPublisher().toString());
         isbn.setText("ISBN: " + book.getIsbn().toString());
         barcode.setText("Barcode: " + book.getBarcode().toString());
         genre.setText("Genre: " + book.getGenre().toString());
-        borrowerName.setText(book.isBorrowed() ? "Borrowed by: " + book.getBorrowerName().fullName : "Available");
-        //Todo:
-        //      book.getTags().stream()
-        //                .sorted(Comparator.comparing(tag -> tag.tagName))
-        //                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        borrowerName.setText(book.isBorrowed() ? "Borrowed by: " + book.getBorrowerName().toString() : "Available");
     }
 
+    /**
+     * Checks if this BookCard is equal to another BookCard.
+     *
+     * @param other the other BookCard to be compared.
+     * @return true if this BookCard is equal to the other BookCard, and false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -83,5 +90,5 @@ public class BookCard extends UiPart<Region> {
         return id.getText().equals(card.id.getText())
                 && book.equals(card.book);
     }
-}
 
+}

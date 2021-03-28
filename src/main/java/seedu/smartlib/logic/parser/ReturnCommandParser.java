@@ -12,16 +12,20 @@ import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.logic.commands.ReturnCommand;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
 import seedu.smartlib.model.record.DateReturned;
-import seedu.smartlib.model.record.Record;
+import seedu.smartlib.model.record.IncompleteRecord;
 
 /**
- * Parses input arguments and creates a new {@code ReturnCommand} object
+ * Parses input arguments and creates a new {@code ReturnCommand} object.
  */
 public class ReturnCommandParser implements Parser<ReturnCommand> {
+
     /**
      * Parses the given {@code String} of arguments in the context of the {@code ReturnCommand}
      * and returns a {@code ReturnCommand} object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @param args arguments given in the user input.
+     * @return a ReturnCommand object required for execution.
+     * @throws ParseException if the user input does not conform to the expected format.
      */
     public ReturnCommand parse(String args) throws ParseException {
         requireNonNull(args);
@@ -34,8 +38,9 @@ public class ReturnCommandParser implements Parser<ReturnCommand> {
 
         Name bookName = ParserUtil.parseName(argMultimap.getValue(PREFIX_BOOK).get());
         Name readerName = ParserUtil.parseName(argMultimap.getValue(PREFIX_READER).get());
+
         DateReturned dateReturned = new DateReturned(LocalDateTime.now());
-        Record record = new Record(bookName, readerName, dateReturned);
+        IncompleteRecord record = new IncompleteRecord(bookName, readerName, dateReturned);
 
         return new ReturnCommand(record);
     }
@@ -43,8 +48,13 @@ public class ReturnCommandParser implements Parser<ReturnCommand> {
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
+     *
+     * @param argumentMultimap a map containing the args.
+     * @param prefixes prefixes to be checked.
+     * @return true if none of the prefixes contains empty values, and false otherwise.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
+
 }

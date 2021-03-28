@@ -30,6 +30,9 @@ public class UniqueBookList implements Iterable<Book> {
 
     /**
      * Returns true if the list contains an equivalent book as the given argument.
+     *
+     * @param toCheck the book to be checked.
+     * @return true if the list contains an equivalent book as the given argument, and false otherwise.
      */
     public boolean contains(Book toCheck) {
         requireNonNull(toCheck);
@@ -39,6 +42,8 @@ public class UniqueBookList implements Iterable<Book> {
     /**
      * Adds a book to the list.
      * The book must not already exist in the list.
+     *
+     * @param toAdd the book to be added.
      */
     public void addBook(Book toAdd) {
         requireNonNull(toAdd);
@@ -51,6 +56,8 @@ public class UniqueBookList implements Iterable<Book> {
     /**
      * Removes the equivalent book from the list.
      * The book must exist in the list.
+     *
+     * @param toRemove the book to be removed.
      */
     public void remove(Book toRemove) {
         requireNonNull(toRemove);
@@ -59,6 +66,11 @@ public class UniqueBookList implements Iterable<Book> {
         }
     }
 
+    /**
+     * Updates the books in the unique book list.
+     *
+     * @param replacement the new list of books.
+     */
     public void setBooks(UniqueBookList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -67,6 +79,8 @@ public class UniqueBookList implements Iterable<Book> {
     /**
      * Replaces the contents of this list with {@code books}.
      * {@code books} must not contain duplicate books.
+     *
+     * @param books the new list of books.
      */
     public void setBooks(List<Book> books) {
         requireAllNonNull(books);
@@ -76,18 +90,32 @@ public class UniqueBookList implements Iterable<Book> {
 
         internalList.setAll(books);
     }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
+     *
+     * @return the backing list of books.
      */
     public ObservableList<Book> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
 
+    /**
+     * Returns an iterator for the unique book list.
+     *
+     * @return an iterator for the unique book list.
+     */
     @Override
     public Iterator<Book> iterator() {
         return internalList.iterator();
     }
 
+    /**
+     * Checks if this UniqueBookList is equal to another UniqueBookList.
+     *
+     * @param other the other UniqueBookList to be compared.
+     * @return true if this UniqueBookList is equal to the other UniqueBookList, and false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -95,6 +123,11 @@ public class UniqueBookList implements Iterable<Book> {
                 && internalList.equals(((UniqueBookList) other).internalList));
     }
 
+    /**
+     * Generates a hashcode for this UniqueBookList.
+     *
+     * @return the hashcode for this UniqueBookList.
+     */
     @Override
     public int hashCode() {
         return internalList.hashCode();
@@ -102,6 +135,9 @@ public class UniqueBookList implements Iterable<Book> {
 
     /**
      * Returns true if {@code books} contains only unique books.
+     *
+     * @param books the list of books to be checked.
+     * @return true if {@code books} contains only unique books, and false otherwise.
      */
     private boolean booksAreUnique(List<Book> books) {
         for (int i = 0; i < books.size() - 1; i++) {
@@ -114,6 +150,12 @@ public class UniqueBookList implements Iterable<Book> {
         return true;
     }
 
+    /**
+     * Updates a book in the book list with a new book.
+     *
+     * @param target the book in the book list that is to be updated.
+     * @param editedBook the new book.
+     */
     public void setBook(Book target, Book editedBook) {
         requireAllNonNull(target, editedBook);
 
@@ -128,5 +170,5 @@ public class UniqueBookList implements Iterable<Book> {
 
         internalList.set(index, editedBook);
     }
-}
 
+}

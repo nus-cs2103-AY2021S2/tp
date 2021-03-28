@@ -23,16 +23,30 @@ public class Publisher {
 
     /**
      * Returns true if a given string is a valid publisher's name.
+     *
+     * @param test string to be tested.
+     * @return true if a given string is a valid publisher's name.
      */
     public static boolean isValidPublisher(String test) {
         return Name.isValidName(test);
     }
 
+    /**
+     * Returns this Publisher in String format.
+     *
+     * @return this Publisher in String format.
+     */
     @Override
     public String toString() {
         return fullName.toString();
     }
 
+    /**
+     * Checks if this Publisher is equal to another Publisher.
+     *
+     * @param other the other Publisher to be compared.
+     * @return true if this Publisher is equal to the other Publisher, and false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -40,10 +54,14 @@ public class Publisher {
                 && fullName.equals(((Publisher) other).fullName)); // state check
     }
 
+    /**
+     * Generates a hashcode for this Publisher.
+     *
+     * @return the hashcode for this Publisher.
+     */
     @Override
     public int hashCode() {
         return fullName.hashCode();
     }
 
 }
-

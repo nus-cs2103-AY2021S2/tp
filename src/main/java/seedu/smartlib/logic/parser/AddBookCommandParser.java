@@ -19,12 +19,18 @@ import seedu.smartlib.model.book.Genre;
 import seedu.smartlib.model.book.Isbn;
 import seedu.smartlib.model.book.Publisher;
 
+/**
+ * Parses input arguments and creates a new AddBookCommand object.
+ */
 public class AddBookCommandParser implements Parser<AddBookCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddBookCommand
-     * and returns an AddReaderCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * and returns an AddBookCommand object for execution.
+     *
+     * @param args arguments given in the user input.
+     * @return an AddBookCommand object required for execution.
+     * @throws ParseException if the user input does not conform to the expected format.
      */
     public AddBookCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
@@ -41,7 +47,6 @@ public class AddBookCommandParser implements Parser<AddBookCommand> {
         Publisher publisher = ParserUtil.parsePublisher(argMultimap.getValue(PREFIX_PUBLISHER).get());
         Isbn isbn = ParserUtil.parseIsbn(argMultimap.getValue(PREFIX_ISBN).get());
         Genre genre = ParserUtil.parseGenre(argMultimap.getValue(PREFIX_GENRE).get());
-        //Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Book bookWithTempBarcode = new Book(bookName, author, publisher, isbn,
                 new Barcode(Barcode.TEMP_BARCODE_VALUE), genre);
@@ -52,8 +57,13 @@ public class AddBookCommandParser implements Parser<AddBookCommand> {
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
+     *
+     * @param argumentMultimap a map containing the args.
+     * @param prefixes prefixes to be checked.
+     * @return true if none of the prefixes contains empty values, and false otherwise.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
+
 }

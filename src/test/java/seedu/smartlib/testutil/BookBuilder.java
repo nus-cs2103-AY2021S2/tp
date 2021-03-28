@@ -100,7 +100,7 @@ public class BookBuilder {
     }
 
     public Book build() {
-        return new Book(name, author, publisher, isbn, barcode, genre);
+        return new BookStub(name, author, publisher, isbn, barcode, genre);
     }
 
 }

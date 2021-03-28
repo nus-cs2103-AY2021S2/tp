@@ -5,6 +5,7 @@ import static seedu.smartlib.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -20,8 +21,10 @@ public class StringUtil {
      *       containsWordIgnoreCase("ABc def", "DEF") == true
      *       containsWordIgnoreCase("ABc def", "AB") == false //not a full word match
      *       </pre>
-     * @param sentence cannot be null
-     * @param word cannot be null, cannot be empty, must be a single word
+     *
+     * @param sentence cannot be null.
+     * @param word cannot be null, cannot be empty, must be a single word.
+     * @return true if the sentence contains the word, and false otherwise.
      */
     public static boolean containsWordIgnoreCase(String sentence, String word) {
         requireNonNull(sentence);
@@ -39,7 +42,35 @@ public class StringUtil {
     }
 
     /**
+     * Returns true if the {@code searchWords} contains the {@code word}.
+     *   Ignores case, but a full word match is required.
+     *   <br>examples:<pre>
+     *       containsAnyIgnoreCase("{ABc, def}", "abc") == true
+     *       containsAnyIgnoreCase("{ABc, def}", "DEF") == true
+     *       containsAnyIgnoreCase("{ABc, def}", "AB") == false //not a full word match
+     *       </pre>
+     *
+     * @param searchWords cannot be null.
+     * @param word cannot be null, cannot be empty, must be a single word.
+     * @return true if the searchWords contains the word, and false otherwise.
+     */
+    public static boolean containsAnyIgnoreCase(ArrayList<String> searchWords, String word) {
+        boolean isMatched = false;
+
+        for (int i = 0; i < searchWords.size(); i++) {
+            isMatched = containsWordIgnoreCase(searchWords.get(i), word);
+            if (isMatched == true) {
+                break;
+            }
+        }
+        return isMatched;
+    }
+
+    /**
      * Returns a detailed message of the t, including the stack trace.
+     *
+     * @param t a Throwable object containing a message.
+     * @return the message of the t.
      */
     public static String getDetails(Throwable t) {
         requireNonNull(t);
@@ -53,6 +84,9 @@ public class StringUtil {
      * e.g. 1, 2, 3, ..., {@code Integer.MAX_VALUE} <br>
      * Will return false for any other non-null string input
      * e.g. empty string, "-1", "0", "+1", and " 2 " (untrimmed), "3 0" (contains whitespace), "1 a" (contains letters)
+     *
+     * @param s the integer (in String format) to be checked.
+     * @return true if s represents a non-zero unsigned integer, and false otherwise.
      * @throws NullPointerException if {@code s} is null.
      */
     public static boolean isNonZeroUnsignedInteger(String s) {
@@ -65,4 +99,5 @@ public class StringUtil {
             return false;
         }
     }
+
 }

@@ -15,6 +15,7 @@ import seedu.smartlib.model.record.Record;
  * The API of the Model component.
  */
 public interface Model {
+
     /** {@code Predicate} that always evaluate to true */
     Predicate<Book> PREDICATE_SHOW_ALL_BOOKS = unused -> true;
 
@@ -45,21 +46,23 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' smartlib file path.
+     * Returns the user prefs' SmartLib file path.
      */
     Path getSmartLibFilePath();
 
     /**
-     * Sets the user prefs' smartlib file path.
+     * Sets the user prefs' SmartLib file path.
      */
     void setSmartLibFilePath(Path smartLibFilePath);
 
     /**
-     * Replaces smartlib's data with the data in {@code smartLib}.
+     * Replaces SmartLib's data with the data in {@code smartLib}.
      */
     void setSmartLib(ReadOnlySmartLib smartLib);
 
-    /** Returns the SmartLib */
+    /**
+     * Returns an immutable copy of the SmartLib.
+     */
     ReadOnlySmartLib getSmartLib();
 
     /**
@@ -78,9 +81,9 @@ public interface Model {
     boolean hasBookWithBarcode(Barcode barcode);
 
     /**
-     * Returns true if a book with the same name as {@code bookName} is already borrowed in the registered book base.
+     * Returns true if a book with the same barcode as {@code barcode} is already borrowed in the registered book base.
      */
-    boolean isBookBorrowed(Name bookName);
+    boolean isBookWithBarcodeBorrowed(Barcode barcode);
 
     /**
      * Returns true if a reader with the same identity as {@code reader} exists in the registered reader base.
@@ -94,7 +97,7 @@ public interface Model {
 
     /**
      * Returns true if a reader with the same name as {@code readerName} in the registered reader base
-     * has already borrowed a book.
+     * has already reached his borrow quota.
      */
     boolean canReaderBorrow(Name readerName);
 
@@ -104,28 +107,24 @@ public interface Model {
     boolean hasRecord(Record record);
 
     /**
-     * Update reader and book's status after borrow
-     * @param readerName reader must exist in reader base
-     * @param bookName book must exist in book base
+     * Updates the reader's and book's statuses after borrowing.
      */
-    boolean borrowBook(Name readerName, Name bookName);
+    boolean borrowBook(Name readerName, Barcode barcode);
 
     /**
-     * Update reader and book's status after return
-     * @param readerName reader must exist in reader base
-     * @param bookName book must exist in book base
+     * Updates the reader's and book's statuses after returning.
      */
-    boolean returnBook(Name readerName, Name bookName);
+    boolean returnBook(Name readerName, Barcode barcode);
 
     /**
      * Deletes the given book.
-     * The book must exist in the registered book base.
+     * {@code target} must exist in the registered book base.
      */
     void deleteBook(Book target);
 
     /**
      * Deletes the given reader.
-     * The reader must exist in the registered reader base.
+     * {@code target} must exist in the registered reader base.
      */
     void deleteReader(Reader target);
 
@@ -148,38 +147,56 @@ public interface Model {
     void addRecord(Record record);
 
     /**
-     * Search for the latest given record and mark it as returned
+     * Searches for the latest given record and marks it as returned.
      */
     void markRecordAsReturned(Record record);
 
     /**
+     * Returns the barcode of the first available (i.e. not borrowed) copy of the book in SmartLib.
+     */
+    Barcode getBookBarcode(Name bookName);
+
+    /**
+     * Returns the barcode of the first copy of the specified book borrowed by the reader in SmartLib.
+     */
+    Barcode getBookBarcodeForReturn(Name bookName, Name readerName);
+
+    /**
      * Replaces the given reader {@code target} with {@code editedReader}.
-     * {@code target} must exist in smartlib.
-     * The reader identity of {@code editedReader} must not be the same as another existing reader in smartlib.
+     * {@code target} must exist in SmartLib.
+     * The reader identity of {@code editedReader} must not be the same as another existing reader in SmartLib.
      */
     void setReader(Reader target, Reader editedReader);
 
-    /** Returns an unmodifiable view of the filtered reader list */
+    /**
+     * Returns an unmodifiable view of the filtered reader list.
+     */
     ObservableList<Reader> getFilteredReaderList();
 
-    /** Returns an unmodifiable view of the filtered book list */
+    /**
+     * Returns an unmodifiable view of the filtered book list.
+     */
     ObservableList<Book> getFilteredBookList();
 
     /**
      * Updates the filter of the filtered book list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredBookList(Predicate<Book> predicate);
 
     /**
      * Updates the filter of the filtered reader list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredReaderList(Predicate<Reader> predicate);
 
     /**
      * Updates the filter of the filtered record list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredRecordList(Predicate<Record> predicate);
+
 }

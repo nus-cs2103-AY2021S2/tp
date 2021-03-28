@@ -128,5 +128,6 @@ public class AddBookCommandParserTest {
                         + PUBLISHER_DESC_MAZE + ISBN_DESC_MAZE,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddBookCommand.MESSAGE_USAGE));
     }
+
 }
 

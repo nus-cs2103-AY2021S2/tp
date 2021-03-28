@@ -28,16 +28,66 @@ import seedu.smartlib.model.tag.Tag;
  */
 public class SampleDataUtil {
 
+    private static final Book OLDMAN = new Book(
+            new Name("The Old Man And The Sea"),
+            new Author(new Name("Harmingway")),
+            new Publisher(new Name("Pearson")),
+            new Isbn("1234567890123"),
+            new Barcode(Barcode.MIN_VALUE),
+            new Genre(new Name("Novel")),
+            new Name("Bernice Yu")
+    );
+
+    private static final Book HOBBIT = new Book(
+            new Name("The Hobbit"),
+            new Author(new Name("Tolkien")),
+            new Publisher(new Name("Pearson")),
+            new Isbn("1234567890124"), new Barcode(Barcode.MIN_VALUE + 1),
+            new Genre(new Name("Fantasy")),
+            new Name("Bernice Yu")
+    );
+
+    private static final Book CLOUDATLAS = new Book(
+            new Name("Cloud Atlas"),
+            new Author(new Name("David Mitchell")),
+            new Publisher(new Name("Pearson")),
+            new Isbn("1234567890125"),
+            new Barcode(Barcode.MAX_VALUE),
+            new Genre(new Name("SciFi")),
+            new Name("Alex Yeoh")
+    );
+
+    private static final Book CLOUDNINE = new Book(
+            new Name("Cloud Nine"),
+            new Author(new Name("Tom Hanks")),
+            new Publisher(new Name("Scientific")),
+            new Isbn("1234567890120"),
+            new Barcode(Barcode.MAX_VALUE - 1),
+            new Genre(new Name("SciFi"))
+    );
+
+    private static final Book AVENGERS = new Book(
+            new Name("The Avengers"),
+            new Author(new Name("Marvel")),
+            new Publisher(new Name("Pearson")),
+            new Isbn("1234567890129"),
+            new Barcode(Barcode.MAX_VALUE - 2),
+            new Genre(new Name("Comic"))
+    );
+
     /**
-     * Gets an array of sample readers
-     * @return an array of sample readers
+     * Gets an array of sample readers.
+     *
+     * @return an array of sample readers.
      */
     public static Reader[] getSampleReaders() {
-        HashMap<Name, DateBorrowed> berniceMap = new HashMap<>();
-        berniceMap.put(new Name("The Hobbit"), new DateBorrowed("2021-02-23"));
-        berniceMap.put(new Name("The Old Man And The Sea"), new DateBorrowed("2021-03-02"));
-        HashMap<Name, DateBorrowed> alexMap = new HashMap<>();
-        alexMap.put(new Name("Cloud Atlas"), new DateBorrowed("2021-02-22"));
+        HashMap<Book, DateBorrowed> berniceMap = new HashMap<>();
+        berniceMap.put(HOBBIT, new DateBorrowed("2021-02-23"));
+        berniceMap.put(OLDMAN, new DateBorrowed("2021-03-02"));
+
+        HashMap<Book, DateBorrowed> alexMap = new HashMap<>();
+        alexMap.put(CLOUDATLAS, new DateBorrowed("2021-02-22"));
+
         return new Reader[] {
             new Reader(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
@@ -61,44 +111,31 @@ public class SampleDataUtil {
     }
 
     /**
-     * Gets an array of sample records
-     * @return an array of sample records
+     * Gets an array of sample records.
+     *
+     * @return an array of sample records.
      */
     public static Record[] getSampleRecords() {
         return new Record[] {
-            new Record(new Name("Cloud Atlas"), new Name("Alex Yeoh"), new DateBorrowed("2020-11-23")),
-            new Record(new Name("The Hobbit"), new Name("Bernice Yu"), new DateBorrowed("2021-01-22")),
-            new Record(new Name("The Old Man And The Sea"), new Name("Bernice Yu"), new DateBorrowed("2021-03-02"))
+            new Record(CLOUDATLAS.getBarcode(), CLOUDATLAS.getBorrowerName(), new DateBorrowed("2020-11-23")),
+            new Record(HOBBIT.getBarcode(), HOBBIT.getBorrowerName(), new DateBorrowed("2021-01-22")),
+            new Record(OLDMAN.getBarcode(), OLDMAN.getBorrowerName(), new DateBorrowed("2021-03-02"))
         };
     }
 
     /**
-     * Gets an array of sample records
-     * @return an array of sample records
+     * Gets an array of sample books.
+     *
+     * @return an array of sample books.
      */
     public static Book[] getSampleBooks() {
-        return new Book[] {
-            new Book(new Name("The Old Man And The Sea"), new Author(new Name("Harmingway")),
-                new Publisher(new Name("Pearson")), new Isbn("1234567890123"), new Barcode(Barcode.MIN_VALUE),
-                    new Genre(new Name("Novel")), new Name("Bernice Yu")),
-            new Book(new Name("The Hobbit"), new Author(new Name("Tolkien")),
-                new Publisher(new Name("Pearson")), new Isbn("1234567890124"), new Barcode(Barcode.MIN_VALUE + 1),
-                    new Genre(new Name("Fantasy")), new Name("Bernice Yu")),
-            new Book(new Name("Cloud Atlas"), new Author(new Name("David Mitchell")),
-                new Publisher(new Name("Pearson")), new Isbn("1234567890125"), new Barcode(Barcode.MAX_VALUE),
-                    new Genre(new Name("SciFi")), new Name("Alex Yeoh")),
-            new Book(new Name("Cloud Nine"), new Author(new Name("Tom Hanks")),
-                new Publisher(new Name("Scientific")), new Isbn("1234567890120"), new Barcode(Barcode.MAX_VALUE - 1),
-                new Genre(new Name("SciFi"))),
-            new Book(new Name("The Avengers"), new Author(new Name("Marvel")),
-                new Publisher(new Name("Pearson")), new Isbn("1234567890129"), new Barcode(Barcode.MAX_VALUE - 2),
-                new Genre(new Name("Comic")))
-        };
+        return new Book[] { OLDMAN, HOBBIT, CLOUDATLAS, CLOUDNINE, AVENGERS };
     }
 
     /**
-     * Gets a Stub of SmartLib
-     * @return SmartLib Sample
+     * Gets a Sample of SmartLib.
+     *
+     * @return SmartLib Sample.
      */
     public static ReadOnlySmartLib getSampleSmartLib() {
         SmartLib sampleAb = new SmartLib();
@@ -116,6 +153,9 @@ public class SampleDataUtil {
 
     /**
      * Returns a tag set containing the list of strings given.
+     *
+     * @param strings given list of strings.
+     * @return tag set containing the list of strings given.
      */
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
@@ -124,9 +164,12 @@ public class SampleDataUtil {
     }
 
     /**
-     * Returns a borrow map containing the list of strings given.
+     * Returns a borrow map containing the list of borrow records given.
+     *
+     * @param map given list of borrow records.
+     * @return borrow map containing the list of borrow records given.
      */
-    public static Map<Name, DateBorrowed> getBorrowMap(HashMap<Name, DateBorrowed> map) {
+    private static Map<Book, DateBorrowed> getBorrowMap(HashMap<Book, DateBorrowed> map) {
         return map;
     }
 

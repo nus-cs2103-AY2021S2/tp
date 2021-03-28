@@ -11,7 +11,7 @@ import seedu.smartlib.model.Model;
 import seedu.smartlib.model.book.Book;
 
 /**
- * Deletes a book identified using it's displayed index from the SmarLib registered book base.
+ * Deletes a book identified using it's displayed index from SmartLib's registered book base.
  */
 public class DeleteBookCommand extends Command {
 
@@ -26,10 +26,22 @@ public class DeleteBookCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates an DeleteBookCommand to delete the specified book.
+     *
+     * @param targetIndex index of the book to be deleted from SmartLib's book base.
+     */
     public DeleteBookCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
+    /**
+     * Executes the command and returns the result message.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return feedback message of the operation result for display.
+     * @throws CommandException if an error occurs during command execution.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -44,11 +56,18 @@ public class DeleteBookCommand extends Command {
         return new CommandResult(String.format(MESSAGE_DELETE_BOOK_SUCCESS, bookToDelete));
     }
 
+    /**
+     * Checks if this DeleteBookCommand is equal to another DeleteBookCommand.
+     *
+     * @param other the other DeleteBookCommand to be compared.
+     * @return true if this DeleteBookCommand is equal to the other DeleteBookCommand, and false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteBookCommand // instanceof handles nulls
                 && targetIndex.equals(((DeleteBookCommand) other).targetIndex)); // state check
     }
+
 }
 

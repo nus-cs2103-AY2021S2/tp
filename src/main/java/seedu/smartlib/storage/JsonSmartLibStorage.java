@@ -23,14 +23,31 @@ public class JsonSmartLibStorage implements SmartLibStorage {
 
     private Path filePath;
 
+    /**
+     * Constructs the JsonSmartLibStorage class.
+     *
+     * @param filePath file leading to SmartLib's data.
+     */
     public JsonSmartLibStorage(Path filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Returns the file path of SmartLib.
+     *
+     * @return the file path of SmartLib.
+     */
     public Path getSmartLibFilePath() {
         return filePath;
     }
 
+    /**
+     * Returns SmartLib's data as a {@link ReadOnlySmartLib}.
+     * Returns {@code Optional.empty()} if storage file is not found.
+     *
+     * @return SmartLib's data.
+     * @throws DataConversionException if the data in storage is not in the expected format.
+     */
     @Override
     public Optional<ReadOnlySmartLib> readSmartLib() throws DataConversionException {
         return readSmartLib(filePath);
@@ -59,6 +76,12 @@ public class JsonSmartLibStorage implements SmartLibStorage {
         }
     }
 
+    /**
+     * Saves the given {@link ReadOnlySmartLib} to the storage.
+     *
+     * @param smartLib cannot be null.
+     * @throws IOException if there was any problem writing to the file.
+     */
     @Override
     public void saveSmartLib(ReadOnlySmartLib smartLib) throws IOException {
         saveSmartLib(smartLib, filePath);
@@ -67,7 +90,9 @@ public class JsonSmartLibStorage implements SmartLibStorage {
     /**
      * Similar to {@link #saveSmartLib(ReadOnlySmartLib)}.
      *
+     * @param smartLib cannot be null.
      * @param filePath location of the data. Cannot be null.
+     * @throws IOException if there was any problem writing to the file.
      */
     public void saveSmartLib(ReadOnlySmartLib smartLib, Path filePath) throws IOException {
         requireNonNull(smartLib);

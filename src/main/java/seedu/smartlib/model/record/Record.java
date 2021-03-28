@@ -1,92 +1,124 @@
 package seedu.smartlib.model.record;
 
 import seedu.smartlib.commons.core.name.Name;
+import seedu.smartlib.model.book.Barcode;
 
 /**
- * Record of borrowing activity
+ * The Record class represents a record of a reader's borrowing activity.
  */
 public class Record {
 
-
-    private final Name bookName;
-    private final Name readerName;
+    protected final Barcode barcode;
+    protected final Name readerName;
     // null when creating an returning record to mark existing record as returned
-    private final DateBorrowed dateBorrowed;
+    protected final DateBorrowed dateBorrowed;
     // null when creating an borrowing record, is a returned record when dateReturned non-null
-    private DateReturned dateReturned;
+    protected DateReturned dateReturned;
 
     /**
-     * Creates a borrowing record
-     * @param bookName book that is borrowed
-     * @param readerName reader who borrowed the book
+     * Creates a borrowing record.
+     *
+     * @param barcode barcode of the book that is borrowed.
+     * @param readerName reader who borrowed the book.
+     * @param dateBorrowed borrow date of the book.
      */
-    public Record(Name bookName, Name readerName, DateReturned dateReturned) {
-        this.bookName = bookName;
-        this.readerName = readerName;
-        this.dateBorrowed = null;
-        this.dateReturned = dateReturned;
-    }
-
-    /**
-     * Creates a borrowing record
-     * @param bookName book that is borrowed
-     * @param readerName reader who borrowed the book
-     */
-    public Record(Name bookName, Name readerName, DateBorrowed dateBorrowed) {
-        this.bookName = bookName;
+    public Record(Barcode barcode, Name readerName, DateBorrowed dateBorrowed) {
+        this.barcode = barcode;
         this.readerName = readerName;
         this.dateBorrowed = dateBorrowed;
         this.dateReturned = null;
     }
 
     /**
-     * Creates a borrowing record
-     * @param bookName book that is borrowed
-     * @param readerName reader who borrowed the book
+     * Creates a returning record.
+     *
+     * @param barcode barcode of the book that is borrowed.
+     * @param readerName reader who borrowed the book.
+     * @param dateReturned return date of the book.
      */
-    public Record(Name bookName, Name readerName, DateBorrowed dateBorrowed, DateReturned dateReturned) {
-        this.bookName = bookName;
+    public Record(Barcode barcode, Name readerName, DateReturned dateReturned) {
+        this.barcode = barcode;
+        this.readerName = readerName;
+        this.dateBorrowed = null;
+        this.dateReturned = dateReturned;
+    }
+
+    /**
+     * Creates a borrowing record.
+     *
+     * @param barcode barcode of the book that is borrowed.
+     * @param readerName reader who borrowed the book.
+     * @param dateBorrowed borrow date of the book.
+     * @param dateReturned return date of the book.
+     */
+    public Record(Barcode barcode, Name readerName, DateBorrowed dateBorrowed, DateReturned dateReturned) {
+        this.barcode = barcode;
         this.readerName = readerName;
         this.dateBorrowed = dateBorrowed;
         this.dateReturned = dateReturned;
     }
 
     /**
-     * Mark the record as returned
-     * @param dateReturned date that the book is returned
+     * Marks the record as returned.
+     *
+     * @param dateReturned return date of the book.
      */
     public void returnRecord(DateReturned dateReturned) {
         this.dateReturned = dateReturned;
     }
 
-    public Name getBookName() {
-        return bookName;
+    /**
+     * Retrieves the barcode of the book associated with this record.
+     *
+     * @return the barcode of the book associated with this record.
+     */
+    public Barcode getBookBarcode() {
+        return barcode;
     }
 
+    /**
+     * Retrieves the name of the reader associated with this record.
+     *
+     * @return the name of the reader associated with this record.
+     */
     public Name getReaderName() {
         return readerName;
     }
 
+    /**
+     * Retrieves the borrow date noted in this record.
+     *
+     * @return the borrow date noted in this record.
+     */
     public DateBorrowed getDateBorrowed() {
         return dateBorrowed;
     }
 
+    /**
+     * Retrieves the return date noted in this record.
+     *
+     * @return the return date noted in this record.
+     */
     public DateReturned getDateReturned() {
         return dateReturned;
     }
 
+    /**
+     * Updates the return date noted in this record.
+     *
+     * @param dateReturned the new return date noted in this record.
+     */
     public void setDateReturned(DateReturned dateReturned) {
         this.dateReturned = dateReturned;
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two records.
-     * To facilitate checking when recording record
-     * Whenever getDateReturned not equal or getDateBorrowed not equal,
-     * they are not equal,
-     * if any field missing,
-     * then they are equal
+     * Returns true if both records have the same details.
+     * This defines a weaker notion of equality between two records, to facilitate checking when recording a record.
+     * Whenever getDateReturned or getDateBorrowed are not equal, or if any field is missing, then they are equal.
+     *
+     * @param otherRecord the record to be compared with this record.
+     * @return true if both records have the same details, and false otherwise.
      */
     public boolean isSameRecord(Record otherRecord) {
         if (otherRecord == this) {
@@ -96,15 +128,19 @@ public class Record {
         if (otherRecord == null) {
             return false;
         }
+
         if (!otherRecord.getReaderName().equals(this.getReaderName())) {
             return false;
         }
-        if (!otherRecord.getBookName().equals(this.getBookName())) {
+
+        if (!otherRecord.getBookBarcode().equals(this.getBookBarcode())) {
             return false;
         }
+
         if (otherRecord.getDateReturned() != null && this.getDateReturned() != null) {
             return otherRecord.getDateReturned() == this.getDateReturned();
         }
+
         if (otherRecord.getDateBorrowed() != null && this.getDateBorrowed() != null) {
             return otherRecord.getDateBorrowed() == this.getDateBorrowed();
         }
@@ -112,22 +148,36 @@ public class Record {
         return true;
     }
 
+    /**
+     * Returns true if both records have the same identity and data fields.
+     * This defines a stronger notion of equality between two records.
+     *
+     * @param other the record to be compared with this record.
+     * @return true if both records have the same identity and data fields, and false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
         }
+
         if (other.getClass() != getClass()) {
             return false;
         }
+
         Record otherRecord = (Record) other;
         return isSameRecord(otherRecord);
-
     }
 
+    /**
+     * Returns this Record in String format.
+     *
+     * @return this Record in String format.
+     */
     @Override
     public String toString() {
-        return this.getBookName() + " : " + this.getReaderName() + " : "
+        return this.getBookBarcode() + " : " + this.getReaderName() + " : "
                 + this.getDateBorrowed() + " : " + this.getDateReturned();
     }
+
 }

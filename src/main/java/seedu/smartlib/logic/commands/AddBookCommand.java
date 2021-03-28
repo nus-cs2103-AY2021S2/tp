@@ -15,13 +15,13 @@ import seedu.smartlib.model.book.Barcode;
 import seedu.smartlib.model.book.Book;
 
 /**
- * Adds a reader to the registered reader base.
+ * Adds a book to the registered book base.
  */
 public class AddBookCommand extends Command {
 
     public static final String COMMAND_WORD = "addbook";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a book to the booklist. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a book to SmartLib's booklist. "
             + "Parameters: "
             + PREFIX_BOOK + "BOOKNAME "
             + PREFIX_AUTHOR + "AUTHOR "
@@ -30,18 +30,27 @@ public class AddBookCommand extends Command {
             + PREFIX_GENRE + "GENRE ";
 
     public static final String MESSAGE_SUCCESS = "New book added: %1$s";
-    public static final String MESSAGE_DUPLICATE_BOOK = "This book already exists in the book base";
+    public static final String MESSAGE_DUPLICATE_BOOK = "This book already exists in the book base.";
 
     private final Book bookWithTempBarcode;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddBookCommand to add the specified book.
+     *
+     * @param bookWithTempBarcode the book to be added to SmartLib's book base.
      */
     public AddBookCommand(Book bookWithTempBarcode) {
         requireNonNull(bookWithTempBarcode);
         this.bookWithTempBarcode = bookWithTempBarcode;
     }
 
+    /**
+     * Executes the command and returns the result message.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return feedback message of the operation result for display.
+     * @throws CommandException if an error occurs during command execution.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -62,10 +71,15 @@ public class AddBookCommand extends Command {
         while (model.hasBookWithBarcode(new Barcode(rv))) {
             rv = random.nextInt(Barcode.MAX_VALUE - Barcode.MIN_VALUE) + Barcode.MIN_VALUE;
         }
-        System.out.println(rv);
         return new Barcode(rv);
     }
 
+    /**
+     * Checks if this AddBookCommand is equal to another AddBookCommand.
+     *
+     * @param other the other AddBookCommand to be compared.
+     * @return true if this AddBookCommand is equal to the other AddBookCommand, and false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

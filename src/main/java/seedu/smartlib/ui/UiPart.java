@@ -22,6 +22,8 @@ public abstract class UiPart<T> {
     /**
      * Constructs a UiPart with the specified FXML file URL.
      * The FXML file must not specify the {@code fx:controller} attribute.
+     *
+     * @param fxmlFileUrl the url of the specified FXML file.
      */
     public UiPart(URL fxmlFileUrl) {
         loadFxmlFile(fxmlFileUrl, null);
@@ -29,6 +31,8 @@ public abstract class UiPart<T> {
 
     /**
      * Constructs a UiPart using the specified FXML file within {@link #FXML_FILE_FOLDER}.
+     *
+     * @param fxmlFileName the name of the specified FXML file.
      * @see #UiPart(URL)
      */
     public UiPart(String fxmlFileName) {
@@ -38,6 +42,9 @@ public abstract class UiPart<T> {
     /**
      * Constructs a UiPart with the specified FXML file URL and root object.
      * The FXML file must not specify the {@code fx:controller} attribute.
+     *
+     * @param fxmlFileUrl the url of the specified FXML file.
+     * @param root the root object.
      */
     public UiPart(URL fxmlFileUrl, T root) {
         loadFxmlFile(fxmlFileUrl, root);
@@ -45,6 +52,9 @@ public abstract class UiPart<T> {
 
     /**
      * Constructs a UiPart with the specified FXML file within {@link #FXML_FILE_FOLDER} and root object.
+     *
+     * @param fxmlFileName the name of the specified FXML file.
+     * @param root the root object.
      * @see #UiPart(URL, T)
      */
     public UiPart(String fxmlFileName, T root) {
@@ -53,6 +63,8 @@ public abstract class UiPart<T> {
 
     /**
      * Returns the root object of the scene graph of this UiPart.
+     *
+     * @return the root object of the scene graph of this UiPart.
      */
     public T getRoot() {
         return fxmlLoader.getRoot();
@@ -60,6 +72,7 @@ public abstract class UiPart<T> {
 
     /**
      * Loads the object hierarchy from a FXML document.
+     *
      * @param location Location of the FXML document.
      * @param root Specifies the root of the object hierarchy.
      */

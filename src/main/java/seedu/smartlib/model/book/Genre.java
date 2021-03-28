@@ -23,16 +23,30 @@ public class Genre {
 
     /**
      * Returns true if a given string is a valid genre name.
+     *
+     * @param test string to be tested.
+     * @return true if the given string is a valid genre name.
      */
     public static boolean isValidGenre(String test) {
         return Name.isValidName(test);
     }
 
+    /**
+     * Returns this Genre in String format.
+     *
+     * @return this Genre in String format.
+     */
     @Override
     public String toString() {
         return genreName.toString();
     }
 
+    /**
+     * Checks if this Genre is equal to another Genre.
+     *
+     * @param other the other Genre to be compared.
+     * @return true if this Genre is equal to the other Genre, and false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -41,8 +55,9 @@ public class Genre {
     }
 
     /**
-     * Calculates hashCode of this Genre object
-     * @return hashCode of Genre
+     * Calculates the hashCode of this Genre object.
+     *
+     * @return hashCode of Genre.
      */
     @Override
     public int hashCode() {

@@ -22,9 +22,9 @@ import seedu.smartlib.storage.Storage;
  * The main LogicManager of the app.
  */
 public class LogicManager implements Logic {
+
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
-
     private final Model model;
     private final Storage storage;
     private final SmartLibParser smartLibParser;
@@ -38,6 +38,14 @@ public class LogicManager implements Logic {
         smartLibParser = new SmartLibParser();
     }
 
+    /**
+     * Executes the command and returns the result message.
+     *
+     * @param commandText text which the LogicManager needs to parse.
+     * @return feedback message of the operation result for display.
+     * @throws CommandException if an error occurs during command execution.
+     * @throws ParseException if an error occurs during the execution of the parser.
+     */
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
@@ -55,33 +63,64 @@ public class LogicManager implements Logic {
         return commandResult;
     }
 
+    /**
+     * Returns an immutable copy of SmartLib.
+     *
+     * @return an immutable copy of SmartLib.
+     */
     @Override
     public ReadOnlySmartLib getSmartLib() {
         return model.getSmartLib();
     }
 
+    /**
+     * Returns SmartLib's immutable list of readers.
+     *
+     * @return SmartLib's immutable list of readers.
+     */
     @Override
     public ObservableList<Reader> getFilteredReaderList() {
         return model.getFilteredReaderList();
     }
 
+    /**
+     * Returns SmartLib's immutable list of books.
+     *
+     * @return SmartLib's immutable list of books
+     */
     @Override
     public ObservableList<Book> getFilteredBookList() {
         return model.getFilteredBookList();
     }
 
+    /**
+     * Returns the file path leading to SmartLib.
+     *
+     * @return the file path leading to SmartLib.
+     */
     @Override
     public Path getSmartLibFilePath() {
         return model.getSmartLibFilePath();
     }
 
+    /**
+     * Returns the current GUI settings of the user.
+     *
+     * @return the current GUI settings of the user.
+     */
     @Override
     public GuiSettings getGuiSettings() {
         return model.getGuiSettings();
     }
 
+    /**
+     * Updates the current GUI settings of the user.
+     *
+     * @param guiSettings the new GUI settings of the user.
+     */
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+
 }

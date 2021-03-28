@@ -33,7 +33,7 @@ public class JsonAdaptedReaderTest {
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
     private static final String VALID_BOOKNAME = "bookName";
-    private static final List<JsonAdaptedNameDateBorrowedPair> VALID_BORROWS = new ArrayList<>();
+    private static final List<JsonAdaptedBookDateBorrowedPair> VALID_BORROWS = new ArrayList<>();
 
     @Test
     public void toModelType_validReaderDetails_returnsReader() throws Exception {

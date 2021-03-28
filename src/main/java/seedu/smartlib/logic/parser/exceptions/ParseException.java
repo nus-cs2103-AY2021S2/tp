@@ -7,11 +7,23 @@ import seedu.smartlib.commons.exceptions.IllegalValueException;
  */
 public class ParseException extends IllegalValueException {
 
+    /**
+     * A constructor for the ParseException.
+     *
+     * @param message should contain relevant information on the failed constraint(s).
+     */
     public ParseException(String message) {
         super(message);
     }
 
+    /**
+     * A constructor for the ParseException.
+     *
+     * @param message should contain relevant information on the failed constraint(s).
+     * @param cause of the main exception.
+     */
     public ParseException(String message, Throwable cause) {
         super(message, cause);
     }
+
 }

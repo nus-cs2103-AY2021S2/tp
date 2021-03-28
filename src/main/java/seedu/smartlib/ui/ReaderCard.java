@@ -8,6 +8,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.smartlib.model.reader.Reader;
+import seedu.smartlib.model.tag.Tag;
 
 /**
  * An UI component that displays information of a {@code Reader}.
@@ -17,15 +18,17 @@ public class ReaderCard extends UiPart<Region> {
     private static final String FXML = "ReaderListCard.fxml";
 
     /**
+     * The reader associated with this ReaderCard class.
+     */
+    public final Reader reader;
+
+    /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
      *
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
-
-    public final Reader reader;
-
     @FXML
     private HBox cardPane;
     @FXML
@@ -44,23 +47,32 @@ public class ReaderCard extends UiPart<Region> {
     private FlowPane borrows;
 
     /**
-     * Creates a {@code ReaderCode} with the given {@code Reader} and index to display.
+     * Creates a {@code ReaderCard} with the given {@code Reader} and index to display.
+     *
+     * @param reader reader to be displayed.
+     * @param displayedIndex index which the reader is displayed at.
      */
     public ReaderCard(Reader reader, int displayedIndex) {
         super(FXML);
         this.reader = reader;
         id.setText(displayedIndex + ". ");
-        name.setText(reader.getName().fullName);
-        phone.setText(reader.getPhone().value);
-        address.setText(reader.getAddress().value);
-        email.setText(reader.getEmail().value);
+        name.setText(reader.getName().toString());
+        phone.setText(reader.getPhone().toString());
+        address.setText(reader.getAddress().toString());
+        email.setText(reader.getEmail().toString());
         reader.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .sorted(Comparator.comparing(Tag::getTagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.getTagName())));
         reader.getBorrows().forEach((key, value) -> borrows.getChildren()
-                .add(new Label(key.fullName + ", borrowed on: " + value.value + "|||")));
+                .add(new Label(key.getName().toString() + ", borrowed on " + value.toString() + ".")));
     }
 
+    /**
+     * Checks if this ReaderCard is equal to another ReaderCard.
+     *
+     * @param other the other ReaderCard to be compared.
+     * @return true if this ReaderCard is equal to the other ReaderCard, and false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -75,7 +87,7 @@ public class ReaderCard extends UiPart<Region> {
 
         // state check
         ReaderCard card = (ReaderCard) other;
-        return id.getText().equals(card.id.getText())
-                && reader.equals(card.reader);
+        return id.getText().equals(card.id.getText()) && reader.equals(card.reader);
     }
+
 }

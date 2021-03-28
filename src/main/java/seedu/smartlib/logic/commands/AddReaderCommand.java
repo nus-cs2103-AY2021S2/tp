@@ -39,13 +39,22 @@ public class AddReaderCommand extends Command {
     private final Reader toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Reader}
+     * Creates an AddReaderCommand to add the specified {@code Reader}.
+     *
+     * @param reader the reader to be added to SmartLib's reader base.
      */
     public AddReaderCommand(Reader reader) {
         requireNonNull(reader);
         toAdd = reader;
     }
 
+    /**
+     * Executes the command and returns the result message.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return feedback message of the operation result for display.
+     * @throws CommandException if an error occurs during command execution.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -58,10 +67,17 @@ public class AddReaderCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
+    /**
+     * Checks if this AddReaderCommand is equal to another AddReaderCommand.
+     *
+     * @param other the other AddReaderCommand to be compared.
+     * @return true if this AddReaderCommand is equal to the other AddReaderCommand, and false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddReaderCommand // instanceof handles nulls
                 && toAdd.equals(((AddReaderCommand) other).toAdd));
     }
+
 }

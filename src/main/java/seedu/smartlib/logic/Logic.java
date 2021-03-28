@@ -12,9 +12,10 @@ import seedu.smartlib.model.book.Book;
 import seedu.smartlib.model.reader.Reader;
 
 /**
- * API of the Logic component
+ * API of the Logic component.
  */
 public interface Logic {
+
     /**
      * Executes the command and returns the result.
      * @param commandText The command as entered by the user.
@@ -51,4 +52,5 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
 }

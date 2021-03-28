@@ -32,6 +32,10 @@ class JsonSerializableSmartLib {
 
     /**
      * Constructs a {@code JsonSerializableSmartLib} with the given books, readers and records.
+     *
+     * @param books list of books in the SmartLib.
+     * @param readers list of readers in the SmartLib.
+     * @param records list of records in the SmartLib.
      */
     @JsonCreator
     public JsonSerializableSmartLib(@JsonProperty("books") List<JsonAdaptedBook> books,

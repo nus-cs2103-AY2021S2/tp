@@ -68,6 +68,11 @@ public class ArgumentTokenizer {
      * occurrences of "p/" with whitespace before it. However, if
      * {@code argsString} = "e/hi p/900", {@code prefix} = "p/" and
      * {@code fromIndex} = 0, this method returns 5.
+     *
+     * @param argsString the given arguments string.
+     * @param prefix the given prefix to search.
+     * @param fromIndex the specified index to start the search from.
+     * @return the index of the first occurrence of prefix in argsString starting from the specified index.
      */
     private static int findPrefixPosition(String argsString, String prefix, int fromIndex) {
         int prefixIndex = argsString.indexOf(" " + prefix, fromIndex);
@@ -112,6 +117,11 @@ public class ArgumentTokenizer {
     /**
      * Returns the trimmed value of the argument in the arguments string specified by {@code currentPrefixPosition}.
      * The end position of the value is determined by {@code nextPrefixPosition}.
+     *
+     * @param argsString the given arguments.
+     * @param currentPrefixPosition the current position of the prefix in the argsString.
+     * @param nextPrefixPosition the next position of a prefix in the argsString.
+     * @return the trimmed value of the argument in the arguments string specified by currentPrefixPosition.
      */
     private static String extractArgumentValue(String argsString,
                                         PrefixPosition currentPrefixPosition,
@@ -131,18 +141,35 @@ public class ArgumentTokenizer {
         private int startPosition;
         private final Prefix prefix;
 
+        /**
+         * Constructor for the PrefixPosition class.
+         *
+         * @param prefix the given prefix.
+         * @param startPosition the initial position of the prefix.
+         */
         PrefixPosition(Prefix prefix, int startPosition) {
             this.prefix = prefix;
             this.startPosition = startPosition;
         }
 
+        /**
+         * Returns the initial position of the prefix.
+         *
+         * @return the initial position of the prefix.
+         */
         int getStartPosition() {
             return startPosition;
         }
 
+        /**
+         * Returns the prefix.
+         *
+         * @return the prefix.
+         */
         Prefix getPrefix() {
             return prefix;
         }
+
     }
 
 }
