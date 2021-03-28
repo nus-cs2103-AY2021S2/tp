@@ -311,11 +311,11 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#A9A9A9, 20%);
+    -fx-background-color: derive(#f5F6f8, 20%);
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#C0C0C0, 50%);
+    -fx-background-color: derive(#5a4deb, 50%);
     -fx-background-insets: 3;
 }
 
