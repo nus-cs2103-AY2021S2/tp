@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import seedu.student.model.appointment.Appointment;
 import seedu.student.model.appointment.SameDateAppointmentList;
 import seedu.student.model.appointment.UniqueAppointmentList;
+import seedu.student.model.student.MatriculationNumber;
 import seedu.student.model.student.Student;
 import seedu.student.model.student.UniqueStudentList;
 
@@ -155,6 +156,12 @@ public class StudentBook implements ReadOnlyStudentBook {
     @Override
     public ObservableList<Student> getStudentList() {
         return students.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public boolean isExistingMatricNumber(MatriculationNumber matricNum) {
+        return students.asUnmodifiableObservableList().stream()
+                .anyMatch(student -> student.getMatriculationNumber().equals(matricNum));
     }
 
     @Override

@@ -21,7 +21,7 @@ import seedu.student.model.student.Student;
 public class SameDateAppointmentListContainer extends UiPart<Region> {
 
     private static final String FXML = "SameDateAppointmentListContainer.fxml";
-    private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("EEE, dd MMM YY");
+    private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("EEE, dd MMM yy");
     private final Logger logger = LogsCenter.getLogger(AppointmentListPanel.class);
 
     @FXML
