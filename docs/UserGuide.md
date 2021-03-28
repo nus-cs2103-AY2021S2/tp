@@ -5,26 +5,42 @@ title: User Guide
 
 # BudgetBaby User Guide :baby: :money_with_wings:
 
-**BudgetBaby** is a **desktop app for setting monthly budgets and tracking expenses**. It is **optimized for use via a Command Line Interface** (CLI) so that entering and editing financial records and budgets can be done faster by typing in commands while still having the benefits of a Graphical User Interface (GUI).
+**BudgetBaby** is a **budget and expenses tracking desktop app for University students and/or those who are looking to better manage their finances**. It is **optimized for use via a Command Line Interface** (CLI) so that entering and editing financial records and budgets can be done faster by typing in commands while still having the benefits of a Graphical User Interface (GUI).
 
-- Table of Contents
-  {:toc}
-
----
+- [Quick Start](#quick-start)
+- [Features](#features)
+  - [Viewing help : `help`](#viewing-help)
+  - [Adding a financial record : `add-fr`](#adding-a-financial-record)
+  - [Listing a month's financial records : `list`](#listing-a-month's-financial-records)
+  - [Viewing a financial record : `view-fr`](#viewing-a-financial-record)
+  - [Deleting a financial record : `delete-fr`](#deleting-a-financial-record)
+  - [Setting monthly budget : `set-bg`](#setting-monthly-budget)
+  - [Viewing budget for the current month](#viewing-budget-for-the-current-month)
+  - [Checking remaining budget for the current month](#checking-remaining-budget-for-the-current-month)
+  - [Viewing a specific month : `view-month`](#viewing-a-specific-month)
+  - [Finding a financial record : `find-fr`](#finding-a-financial record)
+  - [Resetting filters on financial records : `reset-filter`](#resetting-filters-on-financial-records)
+  - [Exiting the program : `exit`](#exiting-the-program)
+  - [Saving the data](#saving-the-data)
+  - [Editing the data file](#editing-the-data-file)
+  - [Archiving data files](#archiving-data-files)
+- [FAQ](#faq)
+- [Command Summary](#command-summary)
+- [Credits](#credits)
 
 ## Quick start
 
-1. Ensure that you have Java `11` or above installed in your Computer.
+1. Ensure that you have Java `11` or above installed on your Computer.
 
-1. You can download the latest `budgetbaby.jar` [here](https://github.com/se-edu/addressbook-level3/releases).
+2. You can download the latest `budgetbaby.jar` [here](https://github.com/AY2021S2-CS2103T-W14-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for the BudgetBaby application.
+3. Copy the file to the folder you want to use as the _home folder_ for the BudgetBaby application.
 
-1. Double-click the file to start the app. You should see a GUI similar to the one below appear in a few seconds. Note that the app contains some sample data for you when it starts.<br>
+4. Double-click the file to start the app. You should see a GUI similar to the one below appear in a few seconds. Note that the app contains some sample data for you when it starts that may differ from what is shown below.<br>
 
-   <img src="images/Ui.png" width="500px">
+   <img src="images/Ui.png" width="600px">
 
-1. You can type a command in the command box and press the enter key on your keyboard to execute it. For example, typing the **`help`** command and pressing the enter key will open the help window.<br>
+5. You can type a command in the command box and press the enter key on your keyboard to execute it. For example, typing the **`help`** command and pressing the enter key will open the help window.<br>
    Some example commands you can try:
 
    - **`add-fr`** `d/Lunch a/10` : Add a financial record for `lunch` which cost `10` dollars.
@@ -33,9 +49,11 @@ title: User Guide
 
    - **`set-bg`** `500` : Sets the current month's budget at `500` dollars.
 
+   - **`view-month`** `01-2021` : Displays the financial records and budget of the month `January 2021`.
+
    - **`exit`** : Exits the app.
 
-1. You may refer to the [features](#features) below for details of each command.
+6. You may refer to the [features](#features) below for details of each command.
 
 ---
 
@@ -69,7 +87,7 @@ title: User Guide
 
 You can use this command to access the help page for detailed information on using the UG.
 
-![help message](images/helpMessage.png)
+<img src="images/helpMessage.png" width="600px">
 
 Format: `help`
 
@@ -77,14 +95,16 @@ Format: `help`
 
 You can use this command to add a financial record to the budget tracker.
 
-Format: `add-fr d/FR_DESCRIPTION a/FR_AMOUNT​`
+Format: `add-fr d/FR_DESCRIPTION a/FR_AMOUNT`
 
-<div markdown="span" class="alert alert-primary"></div>
+<div markdown="span" class="alert alert-primary">
 
 **:bulb: Tips:**
 
 - You must replace `FR_DESCRIPTION` with the description of your financial record.
 - You must replace `FR_AMOUNT` with a **positive integer** up to **two decimal places**.
+
+</div>
 
 Examples:
 
@@ -97,13 +117,15 @@ You can use this command to delete a financial record from the budget tracker.
 
 Format: `delete-fr FR_INDEX`
 
-<div markdown="span" class="alert alert-primary"></div>
+<div markdown="span" class="alert alert-primary">
 
 **:bulb: Tips:**
 
 - You must replace `FR_INDEX` with the index of the finacial record you want to delete.
-- The index refers to the index number shown in the displayed financial record list.
-- The index you use **must be a positive integer** 1, 2, 3, …​
+- `FR_INDEX` refers to the index number shown in the displayed financial record list.
+- `FR_INDEX` **must be a positive integer** (e.g. 1, 2, 3, …​)
+
+</div>
 
 Examples:
 
@@ -115,11 +137,13 @@ You can use this command to set the budget for the current month and the followi
 
 Format: `set-bg BG_AMOUNT`
 
-<div markdown="span" class="alert alert-primary"></div>
+<div markdown="span" class="alert alert-primary">
 
 **:bulb: Tips:**
 
 - You must replace `BG_AMOUNT` with a **positive integer** up to **two decimal places**.
+
+</div>
 
 Examples:
 
@@ -128,7 +152,7 @@ Examples:
 
 ### Viewing budget for the current month :
 
-The UI will displays the current monthly budget set by you automatically. If you have not set a budget it displays a default budget of $1000.
+The UI will display the current monthly budget set by you automatically. If you have not set a budget it displays a default budget of $1000.
 
 ### Checking remaining budget for the current month :
 
@@ -146,7 +170,7 @@ Data associated with a month include:
 
 Format: `view MM-YYYY`
 
-<div markdown="span" class="alert alert-primary"></div>
+<div markdown="span" class="alert alert-primary">
 
 **:bulb: Tips:**
 
@@ -154,11 +178,13 @@ Format: `view MM-YYYY`
 - `MM` is the month number and `YYYY` is the year number
 - You must use a month number with 2 digits and the year number with 4 digits
 
+</div>
+
 Examples:
 
 - `view 01-2021`
 
-### Filtering financial records by category :
+### Filtering financial records by a category :
 
 You can use this command to filter the list of financial records based on a specified category.
 
@@ -168,8 +194,6 @@ Data associated include:
 - Financial records
 
 Format: `category-filter c/FR_CATEGORY`
-
-<div markdown="span" class="alert alert-primary"></div>
 
 Examples:
 
@@ -184,8 +208,6 @@ Data associated include:
 - Financial records
 
 Format: `reset-filter`
-
-<div markdown="span" class="alert alert-primary"></div>
 
 Examples:
 
@@ -206,12 +228,8 @@ You do not have to worry about saving your data manually. It will be saved to yo
 Data is saved as a JSON file to the following location `[JAR file location]/data/budgetbaby.json`.
 If you are an advanced user, feel free to update data directly by editing that file.
 
-<div markdown="span" class="alert alert-warning"></div>
-
 **:exclamation: Caution:**
 If your changes to the data file makes invalidates its format, BudgetBaby will discard all your data and start with an empty data file at the next run.
-
-</div>
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -246,4 +264,4 @@ _Details coming soon ..._
 
 ## Credits
 
-This user guide format has been adapted from [addressbook level 3 User Guide](https://github.com/nus-cs2103-AY1920S2/addressbook-level3/blob/master/docs/UserGuide.adoc)
+This user guide format has been adapted from [AddressBook Level 3 User Guide](https://github.com/nus-cs2103-AY1920S2/addressbook-level3/blob/master/docs/UserGuide.adoc)
