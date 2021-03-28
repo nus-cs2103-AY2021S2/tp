@@ -19,6 +19,7 @@ public class PersonListPanel extends UiPart<Region> {
 
     private static final String FXML = "PersonListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+    private static final int INDEX_OUT_OF_BOUNDS = -1;
 
     @FXML
     private ListView<Person> personListView;
@@ -51,10 +52,26 @@ public class PersonListPanel extends UiPart<Region> {
      * @param callback accept value for demo purposes.
      */
     public void selectPrev(Consumer<String> callback) {
-        personListView.getSelectionModel().selectPrevious();
-        int selectedIndex = personListView.getSelectionModel().getSelectedIndex();
-        personListView.scrollTo(selectedIndex);
-        callback.accept(String.valueOf(selectedIndex + 1));
+        int currentIndex = personListView.getSelectionModel().getSelectedIndex();
+
+        if (currentIndex == INDEX_OUT_OF_BOUNDS) {
+            logger.info("First arrow key press");
+            personListView.getSelectionModel().select(0);
+            personListView.scrollTo(0);
+            callback.accept(String.valueOf(1));
+        } else {
+            personListView.getSelectionModel().selectPrevious();
+            int selectedIndex = personListView.getSelectionModel().getSelectedIndex();
+
+            if (currentIndex == selectedIndex) {
+                personListView.getSelectionModel().select(currentIndex);
+                personListView.scrollTo(currentIndex);
+                callback.accept(String.valueOf(currentIndex + 1));
+            } else {
+                personListView.scrollTo(selectedIndex);
+                callback.accept(String.valueOf(selectedIndex + 1));
+            }
+        }
     }
 
     /**
@@ -63,10 +80,26 @@ public class PersonListPanel extends UiPart<Region> {
      * @param callback accept value for demo purposes.
      */
     public void selectNext(Consumer<String> callback) {
-        personListView.getSelectionModel().selectNext();
-        int selectedIndex = personListView.getSelectionModel().getSelectedIndex();
-        personListView.scrollTo(selectedIndex);
-        callback.accept(String.valueOf(selectedIndex + 1));
+        int currentIndex = personListView.getSelectionModel().getSelectedIndex();
+
+        if (currentIndex == INDEX_OUT_OF_BOUNDS) {
+            logger.info("First arrow key press");
+            personListView.getSelectionModel().select(0);
+            personListView.scrollTo(0);
+            callback.accept(String.valueOf(1));
+        } else {
+            personListView.getSelectionModel().selectNext();
+            int selectedIndex = personListView.getSelectionModel().getSelectedIndex();
+
+            if (currentIndex == selectedIndex) {
+                personListView.getSelectionModel().select(currentIndex);
+                personListView.scrollTo(currentIndex);
+                callback.accept(String.valueOf(currentIndex + 1));
+            } else {
+                personListView.scrollTo(selectedIndex);
+                callback.accept(String.valueOf(selectedIndex + 1));
+            }
+        }
     }
 
     /**
