@@ -34,9 +34,15 @@ public class CliSyntax {
     public static final Prefix PREFIX_LOCATION = new Prefix("l/");
 
     /*
-    * Schedule prefix definitions
+     * Grade prefix definitions
+     * Reference: s/Science gi/Final Exam gr/A
+     */
+    public static final Prefix PREFIX_GRADED_ITEM = new Prefix("gi/");
+    public static final Prefix PREFIX_GRADE = new Prefix("gr/");
+
+    /*
+     * Schedule prefix definitions
      */
     public static final Prefix PREFIX_TITLE = new Prefix("t/");
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("ds/");
-
 }
