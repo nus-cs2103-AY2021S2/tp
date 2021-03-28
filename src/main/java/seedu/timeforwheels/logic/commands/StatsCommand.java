@@ -82,9 +82,13 @@ public class StatsCommand extends Command {
             seedu.timeforwheels.model.customer.Date c = customer.getDate();
             Period period = Period.between(c.getLocalDate(), now);
             if (period.getDays() < 0) {
-                deliveriesNotdue += 1;
+                    deliveriesNotdue += 1;
+                }
+            if (period.getDays() > 0) {
+                if (!customer.getDone().toString().equals("[✓]")) {
+                    deliveriesDue +=1;
+                }
             }
-            deliveriesDue = size - deliveriesNotdue;
         }
 
         deliveriesDuePercentage = (deliveriesDue / size) * 100;
