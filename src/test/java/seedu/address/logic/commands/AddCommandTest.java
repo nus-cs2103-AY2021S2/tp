@@ -210,6 +210,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public int getNumOfAlias() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void clearSelectedPersonList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -221,6 +226,11 @@ public class AddCommandTest {
 
         @Override
         public Predicate<Person> getSelectedPersonPredicate() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<String> getObservableStringAliases() {
             throw new AssertionError("This method should not be called.");
         }
     }

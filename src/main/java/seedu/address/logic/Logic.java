@@ -80,4 +80,9 @@ public interface Logic {
      * @return predicate that is true if Person object is selected
      */
     Predicate<Person> getSelectedPersonPredicate();
+
+    /**
+     * Returns aliases in an ObservableList of String.
+     */
+    ObservableList<String> getObservableStringAliases();
 }
