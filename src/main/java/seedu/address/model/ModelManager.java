@@ -120,6 +120,11 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public String getNotifications() {
+        return addressBook.getNotifications();
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

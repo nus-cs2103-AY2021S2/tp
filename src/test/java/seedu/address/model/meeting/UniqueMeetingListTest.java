@@ -8,6 +8,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -15,6 +17,7 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.meeting.exceptions.MeetingClashException;
+import seedu.address.model.meeting.exceptions.NoMeetingException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
@@ -181,6 +184,29 @@ class UniqueMeetingListTest {
         expectedUniqueMeetingList.add(editedBob);
         assertEquals(expectedUniqueMeetingList, uniqueMeetingList);
     }
+
+    @Test
+    public void getNotifications_emptyList() {
+        assertEquals(uniqueMeetingList.getNotifications(), new String());
+        uniqueMeetingList.add(ALICE);
+        assertEquals(uniqueMeetingList.getNotifications(), new String());
+    }
+
+    @Test
+    public void getNotifications_success() {
+        String meetingTime = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + " 23:59";
+        Person editedBob = new PersonBuilder(BOB).withMeeting("Test @ " + meetingTime).build();
+        uniqueMeetingList.add(editedBob);
+        String template = "You have a meeting with %s at %s\n";
+        assertEquals(uniqueMeetingList.getNotifications(),
+                String.format(template, editedBob.getName(), editedBob.getMeeting().get().dateTime.toLocalTime()));
+    }
+
+    @Test
+    public void reconstructMap() {
+        assertThrows(NoMeetingException.class, () -> uniqueMeetingList.reconstructMap());
+    }
+
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
