@@ -37,6 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private ItemListPanel itemListPanel;
     private ResultDisplay resultDisplay;
     private final HelpWindow helpWindow;
+    private LocationListPanel locationListPanel;
 
 
     @FXML
@@ -55,10 +56,10 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane resultDisplayPlaceholder;
 
     @FXML
-    private StackPane chartDisplayPlaceholder;
+    private StackPane chartPanelPlaceholder;
 
     @FXML
-    private StackPane locationDisplayPlaceholder;
+    private StackPane locationPanelPlaceholder;
 
 
     /**
@@ -125,8 +126,12 @@ public class MainWindow extends UiPart<Stage> {
         itemListPanel = new ItemListPanel(logic.getFilteredItemList());
         itemListPanelPlaceholder.getChildren().add(itemListPanel.getRoot());
 
+        locationListPanel = new LocationListPanel(logic.getFilteredItemList());
+        locationPanelPlaceholder.getChildren().add(locationListPanel.getRoot());
+
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
