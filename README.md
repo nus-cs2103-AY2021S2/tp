@@ -6,13 +6,13 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 
 * This is the CS2103T Project for **Team CS2103T-W10-2**, the name of the project is StoreMando.
 
-* This product is a centralized inventory manager that helps to track the location of items in a household, their
-  individual quantities and respective expiry dates (if applicable). <br>
-  The usage of this product can eventually extend to other places outside households, however the core of our
-  development will surround the usage in a household.
-
-* It is named `StoreMando`, a combination of the words Storage and Commando, the goal of our product is to make it the
-  go-to product to track inventory.
+* StoreMando is an integrated platform fully customised for residents in households, residential colleges and halls, to
+  help users manage their items effectively and efficiently. StoreMando allows users to keep track of their items'
+  whereabouts, quantities and expiry dates with a few simple commands. Furthermore, StoreMando also comes with an
+  inbuilt reminder feature to help users keep track of items that are expiring. All items' information is encapsulated
+  clearly on our simple and clean Graphical User Interface (GUI). Our application is optimised for use via the Command
+  Line Interface (CLI) and if users have quick fingers, StoreMando can help users manage their items in the blink of an
+  eye.
 
 * For the detailed documentation of this project, see
   the **[StoreMando Product Website](https://ay2021s2-cs2103t-w10-2.github.io/tp/)**.
