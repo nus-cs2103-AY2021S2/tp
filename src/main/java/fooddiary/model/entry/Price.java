@@ -13,6 +13,7 @@ public class Price {
     public static final String MESSAGE_CONSTRAINTS =
             "Price should only contain a integer (e.g. 7) between 0-999";
     public static final String PRICE_RANGE_DASH = "-";
+    public static final String PRICE_DOLLAR_SIGN = "$";
     public static final String VALIDATION_REGEX = "^[0-9]{1,3}([" + PRICE_RANGE_DASH + "][0-9]{1,3})?$";
     public final String value;
 
