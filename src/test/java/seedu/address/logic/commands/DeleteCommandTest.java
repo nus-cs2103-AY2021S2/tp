@@ -11,6 +11,7 @@ import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalSchedules.getTypicalScheduleTracker;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +29,8 @@ import seedu.address.model.person.Person;
 public class DeleteCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
-            getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook());
+            getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook(),
+            getTypicalScheduleTracker());
 
 
     @Test
@@ -40,7 +42,7 @@ public class DeleteCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
                 model.getAppointmentBook(), model.getBudgetBook(),
-                model.getGradeBook());
+                model.getGradeBook(), model.getScheduleTracker());
         expectedModel.deletePerson(personToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -65,7 +67,7 @@ public class DeleteCommandTest {
 
         Model expectedModel = new ModelManager(model.getAddressBook(),
                 new UserPrefs(), model.getAppointmentBook(), model.getBudgetBook(),
-                model.getGradeBook());
+                model.getGradeBook(), model.getScheduleTracker());
         expectedModel.deletePerson(personToDelete);
         showNoPerson(expectedModel);
 

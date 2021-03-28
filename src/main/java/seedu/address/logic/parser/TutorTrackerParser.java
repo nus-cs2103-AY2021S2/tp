@@ -28,6 +28,7 @@ import seedu.address.logic.commands.budgetcommands.AddBudgetCommand;
 import seedu.address.logic.commands.budgetcommands.DeleteBudgetCommand;
 import seedu.address.logic.commands.budgetcommands.EditBudgetCommand;
 import seedu.address.logic.commands.budgetcommands.ViewBudgetCommand;
+import seedu.address.logic.commands.eventcommands.ViewTimeTableCommand;
 import seedu.address.logic.commands.filtercommands.AddPersonFilterCommand;
 import seedu.address.logic.commands.filtercommands.DeletePersonFilterCommand;
 import seedu.address.logic.commands.gradecommands.AddGradeCommand;
@@ -36,6 +37,8 @@ import seedu.address.logic.commands.gradecommands.EditGradeCommand;
 import seedu.address.logic.commands.gradecommands.ListGradeCommand;
 import seedu.address.logic.commands.schedulecommands.AddScheduleCommand;
 import seedu.address.logic.commands.schedulecommands.DeleteScheduleCommand;
+import seedu.address.logic.commands.schedulecommands.EditScheduleCommand;
+import seedu.address.logic.commands.schedulecommands.ListScheduleCommand;
 import seedu.address.logic.parser.appointmentparser.AddAppointmentCommandParser;
 import seedu.address.logic.parser.appointmentparser.DeleteAppointmentCommandParser;
 import seedu.address.logic.parser.appointmentparser.EditAppointmentCommandParser;
@@ -53,6 +56,7 @@ import seedu.address.logic.parser.gradeparser.DeleteGradeCommandParser;
 import seedu.address.logic.parser.gradeparser.EditGradeCommandParser;
 import seedu.address.logic.parser.scheduleparser.AddScheduleCommandParser;
 import seedu.address.logic.parser.scheduleparser.DeleteScheduleCommandParser;
+import seedu.address.logic.parser.scheduleparser.EditScheduleCommandParser;
 
 /**
  * Parses user input.
@@ -167,8 +171,18 @@ public class TutorTrackerParser {
         /* Schedule Commands */
         case AddScheduleCommand.COMMAND_WORD:
             return new AddScheduleCommandParser().parse(arguments);
+
+        case EditScheduleCommand.COMMAND_WORD:
+            return new EditScheduleCommandParser().parse(arguments);
+
         case DeleteScheduleCommand.COMMAND_WORD:
             return new DeleteScheduleCommandParser().parse(arguments);
+
+        case ListScheduleCommand.COMMAND_WORD:
+            return new ListScheduleCommand();
+
+        case ViewTimeTableCommand.COMMAND_WORD:
+            return new ViewTimeTableCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

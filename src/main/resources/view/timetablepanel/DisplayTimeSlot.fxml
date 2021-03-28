@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<Label xmlns:fx="http://javafx.com/fxml/1" fx:id="time" alignment="CENTER_RIGHT" contentDisplay="CENTER" style="-fx-text-fill: white;"
+       text="10:00AM" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/11"/>
