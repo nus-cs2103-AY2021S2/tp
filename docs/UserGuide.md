@@ -72,7 +72,7 @@ title: User Guide
 
 Shows a message explaning how to access the help page.
 
-![help message](images/helpMessage.png)
+<img src="images/helpMessage.png" width="600px">
 
 Format: `help`
 
