@@ -30,6 +30,17 @@ public class Status {
 
     }
 
+    /**
+     * Constructs a {@code Status} with the boolean switch.
+     */
+    public Status toggle() {
+        if (isDone) {
+            return new Status("Unfinished");
+        } else {
+            return new Status("Finished");
+        }
+    }
+
 
     /**
      * Returns true if isDone is true.
