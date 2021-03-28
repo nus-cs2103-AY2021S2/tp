@@ -58,13 +58,9 @@ Before diving into the rest of the contents in our user guide, the following are
 1. Ensure you have **Java 11 or above** installed in your Computer.
 
 2. Download the latest **imposter.jar** from
-   [here](https://github.com/AY2021S2-CS2103T-T12-4/tp/releases).
+   [here](https://github.com/AY2021S2-CS2103T-T12-4/tp/releases) and move the file to the folder you wish to use as the **home folder** for imPoster.
 
-3. Move the file to the folder you wish to use as the **home folder** for
-   imPoster.
-
-4. **Double-click** the file to start the application. A graphical user interface (GUI) similar to the one
-   below should appear after a few seconds. Note the **3 main components** in the layout of the application:<br>
+4. **Double-click** the file to start the application. A graphical user interface (GUI) containing the annotated **3 main components** should show up as below:<br>
 
     <p align="center">
       <img width="900px" src="images/startscreen.png" >
@@ -83,7 +79,7 @@ Before diving into the rest of the contents in our user guide, the following are
 9. When you are ready to start testing your APIs, remove the sample **Endpoint List** by typing <span 
    class="main-command">clear</span> in the **Command Box** and then press <kbd>Enter</kbd>.
    
-**Note:** imPoster data are saved automatically into a JSON file `<JAR file location>/data/imposter.json` after any command that changes the data. Advanced users are welcome to update data directly by editing that data file.
+**Note:** imPoster data are saved automatically into a JSON file `<JAR file location>/data/imposter.json` after any command that changes the data.
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
 imPoster will start with an empty file if a modification to the data file causes the data to be invalid.
@@ -267,6 +263,10 @@ You may include [prefixes](#prefix-table) to scope your search terms!
   <img width="450px" src="images/commands/clear.png" >
 </p>
 
+<div markdown="span" class="alert alert-warning">:bulb: **Tip:**
+If you wish to generate a set of sample endpoints, you may delete the **imposter.json** file inside the **data** folder!
+</div>
+
 <div style="page-break-after: always;"></div>
 
 #### 4.2.8 Call a saved API endpoint: `send`
@@ -308,6 +308,18 @@ A shorthand for <span class="compulsory-param">GET</span> requests can be done w
 command box with the last command.
 
 **Format:** <kbd>ctrl</kbd> + <kbd>up-arrow</kbd>
+
+#### 4.3.2 Switch focused component
+
+**Description:** As users may wish to switch the focused component (e.g. to type commands in the commandbox or to scroll responses in the result display), the <kbd>tab</kbd> key is available as an option to toggle the focused component (highlighted with an orange outline).
+
+**Format:** <kbd>tab</kbd>
+
+#### 4.3.3 Scroll endpoint list or result display
+
+**Description:** As users may wish to scroll the endpoints in the endpoint list or the responses in result display, the <kbd>Page Up</kbd> and <kbd>Page Down</kbd> keys (<kbd>fn</kbd> + <kbd>up</kbd> and <kbd>fn</kbd> + <kbd>down</kbd> on **MacOS**) are available as options to scroll the 2 components above.
+
+**Format:** <kbd>Page Up</kbd> and <kbd>Page Down</kbd> (<kbd>fn</kbd> + <kbd>up</kbd> and <kbd>fn</kbd> + <kbd>down</kbd> on **MacOS**)
 
 ## 5. FAQ
 
