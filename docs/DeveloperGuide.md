@@ -11,13 +11,13 @@ title: Developer Guide
     * [Logic component](#logic-component)
     * [Model component](#model-component)
     * [Storage component](#storage-component)
+    * [Common classes](#common-classes)
 * [Implementation](#implementation)
     * [Sort feature](#implemented-sort-feature)
     * [Review feature](#implemented-review-feature)
     * [Statistics feature](#implemented-statistics-feature)
     * [UndoRedo feature](#implemented-undoredo-feature)  
     * [Filter feature](#implemented-filter-feature)
-    
 * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 * [Appendix: Requirements](#appendix-requirements)
     * [Product scope](#product-scope)
@@ -422,8 +422,9 @@ Step 5. `FilterCommand#execute(Model model)` then calls
 
 Step 6. FlashBack is then updated with the new filtered flashcard list.
 
-The following sequence diagram shows how the filter operation works:
-![FilterSequenceDiagram](images/FilterSequenceDiagram.png)
+The following sequence diagram shows how the filter operation works:<br>
+<img src="images/FilterSequenceDiagram.png" alt="FilterSequenceDiagram" width="1750" height="850"/>
+
 <div markdown="span" class="alert alert-info">
 
 :information_source: **Note:** The lifeline for `FilterCommandParser` and `FilterCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -681,28 +682,10 @@ Use case ends.
 
 **Use case: UC11 - Filter flashcards**
 
-**MSS**
-
-1. User requests to filter flashcards according to keywords of specified fields.
-1. FlashBack shows a list of flashcards matching keywords of specified fields.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. The list is empty.
-  
-  Use case ends.
-  
-* 1b. The input format is invalid.
-  * 1b1. FlashBack shows an error message.
-    
-    Use case ends.
-    
-* 1c. The keywords of specified fields are empty.
-  * 1c1. FlashBack shows an error message.
-    
-    Use case ends.
+Similar to UC05 except:
+* FlashBack filters and shows flashcards according to keywords of specified fields instead of given keywords
+in step 1 and 2 of MSS
+* FlashBack shows error message if keywords of specified fields are empty instead of given keywords in 1c of Extensions.
 
 ### Non-Functional Requirements
 
@@ -786,7 +769,7 @@ testers are expected to do more *exploratory* testing.
        Expected: The list will be updated, listing the flashcards that have `new` contained in its question, `mid` contained in its priority, and `formula` contained in any of its tags. The result display will state the number of flashcards listed.
        
     1. Test case: `filter c/math physics p/mid`<br>
-       Expected: The list will be updated, listing the flashcards that have either `math` or `physics` contained in its question, and `mid` containted in its priority. The result display will state the number of flashcards listed.
+       Expected: The list will be updated, listing the flashcards that have either `math` or `physics` contained in its question, and `mid` contained in its priority. The result display will state the number of flashcards listed.
        
 ------------------------------------------------------------------------------------------------------------------------
 
