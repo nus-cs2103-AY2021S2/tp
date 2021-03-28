@@ -1,5 +1,7 @@
 package seedu.student.logic.commands.statscommands;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -22,6 +24,8 @@ public class StatsApptCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+
         List<Appointment> listAppointments = model.getAppointmentList();
         LocalDate currDate = LocalDate.now();
         LocalDate pastWeek = currDate.minusWeeks(1);
