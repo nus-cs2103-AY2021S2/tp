@@ -37,7 +37,7 @@ This user guide uses various formatting styles to facilitate reading and to comm
 | UPPER_CASE                | Parameters of a command to be supplied by the user           |
 | ...                       | Parameters of a command that can be used multiple times      |
 
-## 2 Quick start
+## 2. Quick start
 
 ### 2.1 Download and Launch
 
@@ -75,7 +75,7 @@ For a quick reference of the available commands and their syntax, refer to the [
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 3 Commands
+## 3. Commands
 
 <div markdown="block" class="alert alert-info">
 
