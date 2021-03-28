@@ -21,7 +21,7 @@ public class HelpPanel extends UiPart<Region> {
     public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
     public static final String URL_COPIED = "URL has been copied.";
 
-    private static final int ROW_HEIGHT = 25;
+    private static final int ROW_HEIGHT = 30;
     private static final int SAFETY_MARGIN = 5;
 
     private static final String FXML = "HelpPanel.fxml";
@@ -99,7 +99,7 @@ public class HelpPanel extends UiPart<Region> {
                 new CommandSyntax("addDto", "addDto PROJECT_INDEX d/DESCRIPTION by/DATE"),
                 new CommandSyntax("addTto", "addTto PROJECT_INDEX d/DESCRIPTION"),
                 new CommandSyntax("addCto",
-                        "addCto PROJECT_INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…"),
+                        "addCto PROJECT_INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]..."),
                 new CommandSyntax("deleteP", "deleteP PROJECT_INDEX"),
                 new CommandSyntax("deleteE", "deleteE PROJECT_INDEX r/EVENT_INDEX"),
                 new CommandSyntax("deleteD", "deleteD PROJECT_INDEX r/DEADLINE_INDEX"),
@@ -110,10 +110,10 @@ public class HelpPanel extends UiPart<Region> {
 
     private static ObservableList<CommandSyntax> getContactCommands() {
         return FXCollections.observableArrayList(
-                new CommandSyntax("add", "add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…"),
+                new CommandSyntax("add", "add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]..."),
                 new CommandSyntax("find", "find KEYWORD [MORE_KEYWORDS]"),
                 new CommandSyntax("edit",
-                        "edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…"),
+                        "edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]..."),
                 new CommandSyntax("delete", "delete INDEX")
         );
     }

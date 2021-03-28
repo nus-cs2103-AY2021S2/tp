@@ -19,14 +19,13 @@
 .table-view {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
-    -fx-min-width: 500;
-    -fx-pref-width: 500;
-    -fx-max-width: 500;
+    -fx-min-width: 600;
+    -fx-pref-width: 600;
+    -fx-max-width: 600;
 }
 
 .table-cell {
     -fx-text-fill: white;
-    -fx-padding: 5 0;
 }
 
 .table-row-cell {
