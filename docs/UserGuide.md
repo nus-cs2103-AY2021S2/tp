@@ -163,9 +163,9 @@ The command `list_session` will show the following:
 * `find_session Zach` returns nothing-->
 <!-- END OF COMMENT OUT FOR FIND SESSION -->
 
-### Adding a tuition session: `add_session`
+### Adding a single tuition session: `add_session`
 
-Adds a tuition session to the TutorBuddy
+Adds a single tuition session to the TutorBuddy
 
 Format: `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`
 
@@ -178,6 +178,23 @@ Format: `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`
 Examples:
 * `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80`
 
+### Adding a recurring tuition session: `add_rec_session`
+
+Adds a recurring tuition session to the TutorBuddy
+
+Format: `add_rec_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE b/INTERVAL e/LastDate`
+
+Similar to arguments for adding a single tuition session, except:
+* `DATE` refers to the starting date of the session
+
+Arguments additional to adding a single tuition session:  
+* `INTERVAL` should be in days, including the date from and excluding the date to <br/>
+  e.g. `INTERVAL` = 7 for weekly sessions
+* `ENDDATE` should be an ending date of the recurring session, consistent with `DATE` and `INTERVAL`
+
+
+Examples:
+* `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80 b/7 e/2021-01-29`
 ### Deleting a tuition session: `delete_session`
 
 Deletes the specified tuition session from TutorBuddy
