@@ -121,16 +121,6 @@ public class BookingList implements Iterable<Booking> {
     }
 
     /**
-     * Returns the index of a {@code Booking}
-     *
-     * @param booking that contains in the list
-     */
-    public int getIndex(Booking booking) {
-        ObservableList<Booking> tempList = internalUnmodifiableList.sorted();
-        return tempList.indexOf(booking);
-    }
-
-    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Booking> getValue() {
