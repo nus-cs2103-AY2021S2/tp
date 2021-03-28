@@ -69,14 +69,14 @@ Please note the following symbols used in the User Guide which may serve as poin
 
 ### 2.2. StoreMando's layout
 
-1. Main Panel
+1. Main Panel <br>
 The main panel is the display window of items stored in StoreMando. Depending on which command you key in, 
    the main panel will display the corresponding items.
    
-2. Command Box
+2. Command Box <br>
 The command box is where you will be entering commands to be executed by StoreMando.
 
-3. Result Display Box
+3. Result Display Box <br>
 The result display box is where StoreMando’s server replies to every command that you key in. Any success, error or 
    warning messages will be displayed in this box.
    
