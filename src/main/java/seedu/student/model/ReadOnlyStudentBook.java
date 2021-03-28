@@ -25,6 +25,8 @@ public interface ReadOnlyStudentBook {
 
     ObservableList<SameDateAppointmentList> getAppointmentList();
 
+    Appointment getAppointment(MatriculationNumber matricNum);
+
     List<Appointment> getFlatAppointmentList();
 
 }

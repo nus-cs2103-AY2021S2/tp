@@ -6,7 +6,6 @@ import static seedu.student.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.student.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.student.logic.commands.CommandTestUtil.showStudentWithMatricNum;
 import static seedu.student.testutil.TypicalMatricNumbers.MATRIC_NUMBER_FIRST_STUDENT;
-import static seedu.student.testutil.TypicalMatricNumbers.MATRIC_NUMBER_FOURTH_STUDENT;
 import static seedu.student.testutil.TypicalMatricNumbers.MATRIC_NUMBER_SECOND_STUDENT;
 import static seedu.student.testutil.TypicalStudents.getTypicalStudentBook;
 
@@ -18,6 +17,7 @@ import seedu.student.model.ModelManager;
 import seedu.student.model.UserPrefs;
 import seedu.student.model.student.MatriculationNumber;
 import seedu.student.model.student.Student;
+import seedu.student.testutil.TypicalStudents;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -26,20 +26,6 @@ import seedu.student.model.student.Student;
 public class DeleteStudentCommandTest {
 
     private Model model = new ModelManager(getTypicalStudentBook(), new UserPrefs());
-
-    @Test
-    public void execute_validMatricNumUnfilteredList_success() {
-        MatriculationNumber matricNumberToDelete = new MatriculationNumber(MATRIC_NUMBER_FOURTH_STUDENT);
-        Student studentToDelete = model.getStudent(matricNumberToDelete);
-        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(matricNumberToDelete);
-
-        String expectedMessage = String.format(DeleteStudentCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
-
-        ModelManager expectedModel = new ModelManager(model.getStudentBook(), new UserPrefs());
-        expectedModel.deleteStudent(studentToDelete);
-
-        assertCommandSuccess(deleteStudentCommand, model, expectedMessage, expectedModel);
-    }
 
     @Test
     public void execute_invalidMatricNumUnfilteredList_throwsCommandException() {
@@ -51,7 +37,7 @@ public class DeleteStudentCommandTest {
 
     @Test
     public void execute_validMatricNumFilteredList_success() {
-        MatriculationNumber matricNumberToDelete = new MatriculationNumber(MATRIC_NUMBER_FOURTH_STUDENT);
+        MatriculationNumber matricNumberToDelete = TypicalStudents.ALICE.getMatriculationNumber();
         showStudentWithMatricNum(model, matricNumberToDelete);
 
         Student studentToDelete = model.getStudent(matricNumberToDelete);

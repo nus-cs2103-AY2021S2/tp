@@ -16,7 +16,7 @@ public class StatsCommandNus extends StatsCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException { // NUS
         requireNonNull(model);
-        List<Student> studentList = model.getStudentBook().getStudentList();
+        List<Student> studentList = model.getStudentList();
         int totalStudents = studentList.size();
         int counter = 0;
 

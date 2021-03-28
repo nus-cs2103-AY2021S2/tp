@@ -1,5 +1,6 @@
 package seedu.student.model.appointment;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -19,6 +20,7 @@ public class AppointmentContainsMatriculationNumberPredicate implements Predicat
     @Override
     public boolean test(SameDateAppointmentList sameDateAppointmentList) {
         List<Appointment> appointmentList = sameDateAppointmentList.getAppointmentList();
+        List<Appointment> otherAppointments = new ArrayList<Appointment>();
         int appointmentListSize = appointmentList.size();
 
         boolean result = false;
@@ -30,8 +32,14 @@ public class AppointmentContainsMatriculationNumberPredicate implements Predicat
                 break;
             } else {
                 appointmentList.remove(currentAppointment);
+                otherAppointments.add(currentAppointment);
             }
         }
+
+        for (int k = 0; k < otherAppointments.size(); k++) {
+            appointmentList.add(otherAppointments.get(k));
+        }
+
         return result;
     }
 

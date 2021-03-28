@@ -16,7 +16,7 @@ public class DeleteStudentCommand extends Command {
     public static final String COMMAND_WORD = "deleteStud";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by their unique matriculation number assigned by NUS.\n"
+            + ": Deletes the student identified by their unique matriculation number assigned by NUS.\n"
             + "Parameters: Matriculation Number \n"
             + "Example: " + COMMAND_WORD + " A1234567X";
 
