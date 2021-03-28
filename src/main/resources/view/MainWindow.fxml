@@ -11,48 +11,48 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="500.0" minWidth="600.0" onCloseRequest="#handleExit" title="Residence Tracker" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
-  <icons>
-    <Image url="@/images/residence_tracker.png" />
-  </icons>
-  <scene>
-    <Scene>
-      <stylesheets>
-        <URL value="@DarkTheme.css" />
-        <URL value="@Extensions.css" />
-      </stylesheets>
+<fx:root minHeight="500.0" minWidth="800.0" onCloseRequest="#handleExit" title="Residence Tracker" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <icons>
+        <Image url="@/images/residence_tracker.png" />
+    </icons>
+    <scene>
+        <Scene>
+            <stylesheets>
+                <URL value="@DarkTheme.css" />
+                <URL value="@Extensions.css" />
+            </stylesheets>
 
-      <VBox>
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
-          <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
-          </Menu>
-        </MenuBar>
+            <VBox>
+                <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+                    <Menu mnemonicParsing="false" text="File">
+                        <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="Help">
+                        <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+                    </Menu>
+                </MenuBar>
 
-        <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
-          <padding>
-            <Insets bottom="5" left="10" right="10" top="5" />
-          </padding>
-        </StackPane>
+                <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                    <padding>
+                        <Insets bottom="5" left="10" right="10" top="5" />
+                    </padding>
+                </StackPane>
 
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
-          <padding>
-            <Insets bottom="5" left="10" right="10" top="5" />
-          </padding>
-        </StackPane>
+                <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                    <padding>
+                        <Insets bottom="5" left="10" right="10" top="5" />
+                    </padding>
+                </StackPane>
 
-        <VBox fx:id="residenceList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets bottom="10" left="10" right="10" top="10" />
-          </padding>
-          <StackPane fx:id="residenceListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-        </VBox>
+                <VBox fx:id="residenceList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                    <padding>
+                        <Insets bottom="10" left="10" right="10" top="10" />
+                    </padding>
+                    <StackPane fx:id="residenceListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                </VBox>
 
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
-      </VBox>
-    </Scene>
-  </scene>
+                <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+            </VBox>
+        </Scene>
+    </scene>
 </fx:root>
