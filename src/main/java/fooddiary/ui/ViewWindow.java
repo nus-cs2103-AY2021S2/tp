@@ -1,12 +1,18 @@
 package fooddiary.ui;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import fooddiary.commons.core.LogsCenter;
+import fooddiary.logic.commands.CommandResult;
+import fooddiary.model.entry.Entry;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
@@ -15,15 +21,13 @@ import javafx.stage.Stage;
  */
 public class ViewWindow extends UiPart<Stage> {
 
-    private static HashMap<String, String> entryDetails;
+    private static Entry entry;
 
     private static final Logger logger = LogsCenter.getLogger(ViewWindow.class);
     private static final String FXML = "ViewWindow.fxml";
 
     @FXML
     private Label name;
-    @FXML
-    private Label id;
     @FXML
     private Label price;
     @FXML
@@ -33,7 +37,23 @@ public class ViewWindow extends UiPart<Stage> {
     @FXML
     private Label reviews;
     @FXML
-    private FlowPane tags;
+    private Label tagCategoryLabel;
+    @FXML
+    private Label tagCategorySchool;
+    @FXML
+    private TextField nameText;
+    @FXML
+    private TextField priceText;
+    @FXML
+    private TextField ratingText;
+    @FXML
+    private TextField addressText;
+    @FXML
+    private TextArea reviewsText;
+    @FXML
+    private FlowPane tagCategory;
+    @FXML
+    private FlowPane tagSchool;
 
     /**
      * Creates a new ViewWindow.
@@ -42,8 +62,8 @@ public class ViewWindow extends UiPart<Stage> {
      */
     public ViewWindow(Stage root) {
         super(FXML, root);
-        if (entryDetails != null) {
-            setEntryContent(entryDetails);
+        if (entry != null) {
+            setEntryContent(entry);
         }
     }
 
@@ -103,16 +123,24 @@ public class ViewWindow extends UiPart<Stage> {
     /**
      * Sets the content entry to be ready for view.
      *
-     * @param entryDetails Entry details
+     * @param entry Entry details
      */
-    public void setEntryContent(HashMap<String, String> entryDetails) {
-        tags.getChildren().clear();
-        name.setText(entryDetails.get("name") + "\n\n");
-        price.setText(String.format("price: $%s", entryDetails.get("price")));
-        rating.setText(String.format("Rating: %s / 5", entryDetails.get("rating")));
-        address.setText(entryDetails.get("address") + "\n\n");
-        reviews.setText(String.format("Reviews:\n%s\n\n", entryDetails.get("reviews")));
-        Arrays.stream(entryDetails.get("tags").split(";"))
-                .forEach(tag -> tags.getChildren().add(new Label(tag)));
+    public void setEntryContent(Entry entry) {
+        tagCategory.getChildren().clear();
+        tagSchool.getChildren().clear();
+        nameText.setText(entry.getName().fullName);
+        priceText.setText(String.format("$%s", entry.getPrice().value));
+        ratingText.setText(String.format("%s / 5", entry.getRating().value));
+        addressText.setText(entry.getAddress().value);
+        String reviewsStr = entry.getReviews().stream()
+                .map(review -> review.value + "\n\n")
+                .collect(Collectors.joining());
+        reviewsText.setText(reviewsStr);
+        entry.getTagCategories().stream()
+                .sorted(Comparator.comparing(tag -> tag.getTag()))
+                .forEach(tag -> tagCategory.getChildren().add(new Label(tag.getTag())));
+        entry.getTagSchools().stream()
+                .sorted(Comparator.comparing(tag -> tag.getTag()))
+                .forEach(tag -> tagSchool.getChildren().add(new Label(tag.getTag())));
     }
 }

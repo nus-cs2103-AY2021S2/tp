@@ -57,12 +57,12 @@ public class EntryCard extends UiPart<Region> {
         name.setText(entry.getName().fullName);
         rating.setText(String.format("Rating: %s / 5", entry.getRating().value));
         price.setText(String.format("Price: $%s", entry.getPrice().value));
-        address.setText(entry.getAddress().value);
+        address.setText(String.format("Address: %s", entry.getAddress().value));
         String reviewStr = "";
         for (int i = 0; i < entry.getReviews().size(); i++) {
             reviewStr += entry.getReviews().get(i) + "\n";
         }
-        reviews.setText(String.format("Reviews: %s", reviewStr));
+        reviews.setText(String.format("Reviews:\n%s", reviewStr));
 
         entry.getTagCategories().stream()
                 .sorted(Comparator.comparing(TagCategory::getTag))

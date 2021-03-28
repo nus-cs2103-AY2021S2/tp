@@ -9,6 +9,7 @@ import fooddiary.logic.Logic;
 import fooddiary.logic.commands.CommandResult;
 import fooddiary.logic.commands.exceptions.CommandException;
 import fooddiary.logic.parser.exceptions.ParseException;
+import fooddiary.model.entry.Entry;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -155,9 +156,9 @@ public class MainWindow extends UiPart<Stage> {
      * Opens the view window or focuses on it if it's already opened.
      */
     @FXML
-    public void handleView(HashMap<String, String> entryDetails) {
-        assert entryDetails != null : "Entry details are missing";
-        viewWindow.setEntryContent(entryDetails);
+    public void handleView(Entry entry) {
+        assert entry != null : "Entry is missing";
+        viewWindow.setEntryContent(entry);
         if (!viewWindow.isShowing()) {
             viewWindow.show();
         } else {
@@ -202,7 +203,9 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isViewEntry()) {
-                handleView(commandResult.getEntryDetails());
+                handleView(commandResult.getEntry());
+            } else {
+                viewWindow.hide();
             }
 
             if (commandResult.isExit()) {
