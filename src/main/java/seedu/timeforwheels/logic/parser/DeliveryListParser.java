@@ -6,7 +6,18 @@ import static seedu.timeforwheels.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.timeforwheels.logic.commands.*;
+import seedu.timeforwheels.logic.commands.AddCommand;
+import seedu.timeforwheels.logic.commands.ClearCommand;
+import seedu.timeforwheels.logic.commands.Command;
+import seedu.timeforwheels.logic.commands.CompletedCommand;
+import seedu.timeforwheels.logic.commands.DeleteCommand;
+import seedu.timeforwheels.logic.commands.DoneCommand;
+import seedu.timeforwheels.logic.commands.EditCommand;
+import seedu.timeforwheels.logic.commands.ExitCommand;
+import seedu.timeforwheels.logic.commands.FindCommand;
+import seedu.timeforwheels.logic.commands.HelpCommand;
+import seedu.timeforwheels.logic.commands.ListCommand;
+import seedu.timeforwheels.logic.commands.RemarkCommand;
 import seedu.timeforwheels.logic.parser.exceptions.ParseException;
 
 

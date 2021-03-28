@@ -14,7 +14,7 @@ import seedu.timeforwheels.model.customer.NameContainsKeywordsPredicate;
  */
 public class CompletedCommand extends Command {
 
-    public static final String COMMAND_WORD = "filter";
+    public static final String COMMAND_WORD = "completed";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all customers whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
