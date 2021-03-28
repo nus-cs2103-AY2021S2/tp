@@ -24,7 +24,17 @@ class SortCommandParserTest {
     public void parse_invalidArgument_throwsParseException() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE);
 
-        assertParseFailure(parser, "invalid", expectedMessage);
+        //check for correct number of words but wrong words given
+        assertParseFailure(parser, "quantity invalid", expectedMessage);
+        assertParseFailure(parser, "expirydate rising", expectedMessage);
+        assertParseFailure(parser, "asc quantity", expectedMessage);
+        assertParseFailure(parser, "expireddate", expectedMessage);
+        assertParseFailure(parser, "quantity", expectedMessage);
+
+        //check for incorrect number of words given
+        assertParseFailure(parser, "quantity invalid command", expectedMessage);
+        assertParseFailure(parser, "expirydate rising high", expectedMessage);
+        assertParseFailure(parser, "expirydate quantity asc", expectedMessage);
     }
 
     @Test
