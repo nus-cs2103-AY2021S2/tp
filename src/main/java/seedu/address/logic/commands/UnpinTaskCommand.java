@@ -28,7 +28,7 @@ public class UnpinTaskCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_PIN_TASK_SUCCESS = "Unpinned Task";
+    public static final String MESSAGE_UNPIN_TASK_SUCCESS = "Unpinned Task";
     public static final String MESSAGE_TASK_ALREADY_UNPINNED = "This task is not pinned to begin with.";
 
     private final Index targetIndex;
@@ -87,7 +87,7 @@ public class UnpinTaskCommand extends Command {
         model.sortTasksDefault();
         model.updateFilteredTaskList(Model.PREDICATE_SHOW_ALL_TASKS);
 
-        return new CommandResult(MESSAGE_PIN_TASK_SUCCESS);
+        return new CommandResult(MESSAGE_UNPIN_TASK_SUCCESS);
     }
 
     @Override

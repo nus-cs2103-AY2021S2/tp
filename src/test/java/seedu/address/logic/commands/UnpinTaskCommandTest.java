@@ -40,7 +40,7 @@ public class UnpinTaskCommandTest {
         taskToUnpinCopy.pin(); //have to initialize to pinned
         UnpinTaskCommand unpinTaskCommand = new UnpinTaskCommand(INDEX_FIRST_TASK);
 
-        String expectedMessage = UnpinTaskCommand.MESSAGE_PIN_TASK_SUCCESS;
+        String expectedMessage = UnpinTaskCommand.MESSAGE_UNPIN_TASK_SUCCESS;
         try {
             CommandResult result = unpinTaskCommand.execute(model);
             assertEquals(result, new CommandResult(expectedMessage));
