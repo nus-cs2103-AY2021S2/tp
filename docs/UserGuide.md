@@ -2,9 +2,9 @@
   <img width="341" height="381" src="https://user-images.githubusercontent.com/48408342/112603571-29845b80-8e50-11eb-8dee-bb88603fffb8.png">
 </p>
 
-**DocBob** is a **desktop app for managing your patient's information, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Bob can get your patient's **medical information** and **scheduled appointments** faster than any other patient's information management app in the market. Bob will serve you dilligently and make sure you never forget an appointment with a patient ever again!
+**DocBob** is a **desktop app for managing your patient's information, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). The purpose of DocBob is so that doctors and nurses like, yourself, patient's **medical information** and **scheduled appointments** faster than any other patient's information management app in the market.  DocBob is especially beneficial for those who have fast fingers and even faster typing speed.  For those of you with short memories, no worries as Bob will serve you dilligently and make sure you never forget an appointment with a patient ever again!
 
-The purpose of this User Guide is to help new users(doctors) understand how to get the app running and learn about the basic commands and their usages.
+The purpose of this User Guide(UG) is to help new users(doctors and or nurses) understand how to get the app running.  After they have set Bob up, we hope that this UG will help them learn the basic commands and their usages.  To navigate this UG, there is a content list which have been hyperlinked to the appropriate location.  We hope this will ease your usage of the UG
 
 * Table of Contents
 {:toc}
@@ -260,3 +260,7 @@ Action | Format, Examples
 **mrec** | `mrec 3`
 **view** | `view 1`
 **exit** | `exit`
+
+## Issues
+In the event of any issues while using the app and or UG, please contact the team at the emails below
+prerthanmunireternam@yahoo.com
