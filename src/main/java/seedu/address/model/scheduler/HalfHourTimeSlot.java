@@ -1,7 +1,5 @@
 package seedu.address.model.scheduler;
 
-import seedu.address.logic.parser.DateTimeUtil;
-
 import java.time.LocalTime;
 
 /**
