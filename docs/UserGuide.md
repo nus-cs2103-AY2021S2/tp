@@ -200,15 +200,15 @@ Adds a new food item with their nutrients value and stores them in the food list
 
 **Format:** `food_add n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS`
 
-<div class="text-blue mb-2">Test</div>
-
 **Example:** `food_add n/tomato c/10 f/10 p/10`
 
 **Note:** Food item with similar names to existing food item cannot be added. 
 
 **Expected output:**
 
-Success adding food item (tomato (Carbos: 10.0g, Fats: 10.0g, Proteins: 10.0g)) into food list.
+<p align="center">
+  <img src="/docs/images/user-guide/add-food-item-result.png">
+</p>
 
 ### 3.2 Update food item
 
@@ -222,7 +222,9 @@ Updates existing food items with their new nutrients value(s).
 
 **Expected output:**
 
-Successfully updated food item
+<p align="center">
+  <img src="/docs/images/user-guide/update-food-item-result.png">
+</p>
 
 ### 3.3 List food item
 
@@ -234,8 +236,9 @@ Lists all food items that are stored in the application.
 
 **Expected output:**
 
-Here are all the food items: 
-1. tomato (Carbos: 20.0g, Fats: 30.0g, Proteins: 40.0g)
+<p align="center">
+  <img src="/docs/images/user-guide/food-list-result.png">
+</p>
 
 ### 3.4 Delete food item
 
@@ -249,7 +252,9 @@ Deletes the particular food item stored in the application.
 
 **Expected output:**
 
-Successfully deleted food item:  tomato
+<p align="center">
+  <img src="/docs/images/user-guide/delete-food-item.png">
+</p>
 
 ### 3.5 Input food intake
 
@@ -270,7 +275,9 @@ Records a food intake for the given date and stores the food in the food list fo
 
 **Expected output:**
 
-Success adding food item (tomato (Carbos: 10.0g, Fats: 10.0g, Proteins: 10.0g)) into food intake list.
+<p align="center">
+  <img src="/docs/images/user-guide/add-food-intake-new-food-item-result.png">
+</p>
 
 
 ### 3.5.2 Input food intake (For existing food items)
@@ -283,7 +290,9 @@ Records a food intake for the given date using an existing food item. The nutrie
 
 **Expected output:**
 
-Success adding food item (tomato (Carbos: 10.0g, Fats: 10.0g, Proteins: 10.0g)) into food intake list.
+<p align="center">
+  <img src="/docs/images/user-guide/add-food-intake-new-food-item-result.png">
+</p>
 
 ### 3.5.3 Input food intake (For existing food items, using different nutrient value(s))
 
@@ -297,8 +306,9 @@ Records a food intake for the given date and updates the existing food item with
 
 **Expected output:**
 
-Successfully edited food value to: tomato (Carbos: 20.0g, Fats: 35.0g, Proteins: 50.0g).
-Success adding food item (tomato (Carbos: 20.0g, Fats: 35.0g, Proteins: 50.0g)) into food intake list.
+<p align="center">
+  <img src="/docs/images/user-guide/add-food-intake-diff-food-item-result.png">
+</p>
 
 ### 3.6 Update food intake
 
@@ -312,7 +322,9 @@ Updates the nutrient value(s) of an existing food intake matching the given date
 
 **Expected output:**
 
-Food intake successfully updated for (tomato)
+<p align="center">
+  <img src="/docs/images/user-guide/update-food-intake-item-result.png">
+</p>
 
 ### 3.7 Delete food intake
 
@@ -326,7 +338,9 @@ Deletes a food intake item for the specified day.
 
 **Expected output:**
 
-Successfully deleted food intake:  tomato
+<p align="center">
+  <img src="/docs/images/user-guide/delete-food-intake-result.png">
+</p>
 
 ### 3.8 Query food intake
 
@@ -342,11 +356,9 @@ Queries all the food intake(s) on a certain day.
 
 **Expected output:**
 
-Summary Food Intake for the Day (31 Mar 2021):
-1. tomato (Carbos: 10.0g, Fats: 10.0g, Proteins: 10.0g): 170.0 calories
-2. tomato (Carbos: 20.0g, Fats: 35.0g, Proteins: 50.0g): 595.0 calories
-
-Total Daily Calories Intake: 765.0 calories.
+<p align="center">
+  <img src="/docs/images/user-guide/query-food-intake-per-day.png">
+</p>
 
 ### 3.8.2 Query food intake over a period of days
 
@@ -358,20 +370,9 @@ Queries all the existing food intake(s) over a period of days (both inclusive).
 
 **Expected output:**
 
-Summary Food Intake from (1 Mar 2021) to (31 Mar 2021):
-
-Summary Food Intake for the Day (22 Mar 2021):
-1. chilli (Carbos: 45.0g, Fats: 70.0g, Proteins: 50.0g): 1010.0 calories
-2. tomato (Carbos: 10.0g, Fats: 10.0g, Proteins: 10.0g): 170.0 calories
-3. tomato (Carbos: 20.0g, Fats: 35.0g, Proteins: 50.0g): 595.0 calories
-
-Total Daily Calories Intake: 1775.0 calories.
-
-Summary Food Intake for the Day (31 Mar 2021):
-1. tomato (Carbos: 10.0g, Fats: 10.0g, Proteins: 10.0g): 170.0 calories
-2. tomato (Carbos: 20.0g, Fats: 35.0g, Proteins: 50.0g): 595.0 calories
-
-Total Daily Calories Intake: 765.0 calories.
+<p align="center">
+  <img src="/docs/images/user-guide/query-food-intake-period.png">
+</p>
 
 --------------------------------------------------------------------------------------------------------------------
 
