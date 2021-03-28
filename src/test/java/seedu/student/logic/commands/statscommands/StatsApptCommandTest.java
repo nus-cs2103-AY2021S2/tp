@@ -23,8 +23,10 @@ public class StatsApptCommandTest {
     private Model expectedModel = new ModelManager(getTypicalStudentBook(), new UserPrefs());
 
     private LocalDate currDate = LocalDate.now();
+    // private LocalDate currDate = LocalDate.of(2021, 3, 28);
+
     private LocalDate aliceDate = currDate.minusWeeks(1).plusDays(1);
-    private LocalDate bensonDate = currDate;
+
     private LocalDate carlDate = currDate.plusWeeks(1).minusDays(1);
     private LocalDate danielDate = currDate.plusWeeks(1);
     private LocalDate elleDate = currDate.minusWeeks(1);
@@ -32,15 +34,18 @@ public class StatsApptCommandTest {
     private LocalDate georgeDate = currDate.minusWeeks(2);
 
     private LocalTime currTime = LocalTime.now();
-    private String generalTime = Integer.toString(currTime.getHour()) + ":00";
-    private String aliceStartHour = Integer.toString(currTime.getHour() + 4);
-    private String aliceStartTime = aliceStartHour + ":00";
+    // private LocalTime currTime = LocalTime.of(02, 15);
+    private LocalTime midnight = LocalTime.of(00, 00);
+    int currHour = currTime.getHour();
+    private String generalTimeString = String.format("%02d", currHour) + ":00";
+    private LocalTime generalTime = LocalTime.parse(generalTimeString);
 
-    private String bensonStartHour = Integer.toString(currTime.getHour() + 1);
-    private String bensonStartTime = bensonStartHour + ":00";
+    private LocalTime aliceStartTime = generalTime.plusHours(4);
 
-    private String carlStartHour = Integer.toString(currTime.getHour() - 4);
-    private String carlStartTime = carlStartHour + ":00";
+    public LocalTime bensonStartTime = generalTime.plusHours(1);
+    public LocalDate bensonDate = bensonStartTime.equals(midnight) ? currDate.plusDays(1) : currDate;
+
+    private LocalTime carlStartTime = generalTime.minusHours(4);
 
 
     // past week 6 days ago (included in past)

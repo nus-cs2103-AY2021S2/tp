@@ -74,6 +74,14 @@ public class AppointmentBuilder {
     }
 
     /**
+     *Sets the {@code startTime} of the {@code Appointment} that we are building
+     */
+    public AppointmentBuilder withStartTime(LocalTime startTime) {
+        this.startTime = startTime;
+        return this;
+    }
+
+    /**
      * Builds a new Person object.
      *
      * @return a person object.
