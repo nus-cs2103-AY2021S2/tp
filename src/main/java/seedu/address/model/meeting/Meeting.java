@@ -1,7 +1,8 @@
 package seedu.address.model.meeting;
 
-import static seedu.address.commons.util.AppUtil.checkArgument;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.group.Group;
+import seedu.address.model.scheduler.Schedulable;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
@@ -9,9 +10,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.group.Group;
-import seedu.address.model.scheduler.Schedulable;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a meeting in MeetBuddy.
@@ -162,7 +162,7 @@ public class Meeting implements Schedulable {
         }
 
         Set<Index> indices = getConnectionToPerson();
-        if (indices != null) {
+        if (!indices.isEmpty()) {
             builder.append("; Person Related Indices: ");
             for (Index index : indices) {
                 builder.append(index.getOneBased());
