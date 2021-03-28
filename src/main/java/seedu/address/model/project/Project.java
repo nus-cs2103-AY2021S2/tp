@@ -16,7 +16,7 @@ import seedu.address.model.task.repeatable.Event;
 import seedu.address.model.task.todo.Todo;
 
 /**
- * Represents a Project in the address book.
+ * Represents a Project in CoLAB.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Project {
@@ -166,6 +166,18 @@ public class Project {
     public Person getParticipant(Integer i) {
         requireNonNull(i);
         return participants.get(i);
+    }
+
+    /**
+     * Set the {@code Event} specified by index with a new {@code Event}.
+     *
+     * @param i index number specifies the target {@code Event}.
+     * @param event new {@code Event} for this index.
+     */
+    public void setEvent(Integer i, Event event) {
+        requireAllNonNull(event, i);
+
+        this.events.setEvent(i, event);
     }
 
     /**

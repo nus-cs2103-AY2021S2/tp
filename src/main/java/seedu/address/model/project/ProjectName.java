@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Project's name in the address book.
+ * Represents a Project's name.
  * Guarantees: immutable; is valid as declared in {@link #isValidProjectName(String)}
  */
 public class ProjectName {

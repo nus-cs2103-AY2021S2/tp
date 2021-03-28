@@ -187,7 +187,7 @@ public class ParserUtil {
         try {
             return DateUtil.encodeDate(trimmedDate);
         } catch (DateConversionException e) {
-            throw new ParseException(Messages.MESSAGE_PARSER_DATE_CONSTRAINTS);
+            throw new ParseException(e.getMessage());
         }
     }
 

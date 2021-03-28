@@ -5,15 +5,14 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyProjectsFolder;
+import seedu.address.model.ReadOnlyColabFolder;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, ProjectsFolderStorage, UserPrefsStorage {
+public interface Storage extends ColabFolderStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -22,21 +21,11 @@ public interface Storage extends AddressBookStorage, ProjectsFolderStorage, User
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getColabFolderFilePath();
 
     @Override
-    Path getProjectsFolderFilePath();
+    Optional<ReadOnlyColabFolder> readColabFolder() throws DataConversionException, IOException;
 
     @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
-
-    @Override
-    Optional<ReadOnlyProjectsFolder> readProjectsFolder() throws DataConversionException, IOException;
-
-    @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
-
-    @Override
-    void saveProjectsFolder(ReadOnlyProjectsFolder projectsFolder) throws IOException;
-
+    void saveColabFolder(ReadOnlyColabFolder colabFolder) throws IOException;
 }

@@ -17,8 +17,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.ModelManager;
-import seedu.address.storage.JsonAddressBookStorage;
-import seedu.address.storage.JsonProjectsFolderStorage;
+import seedu.address.storage.JsonColabFolderStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 
@@ -38,13 +37,10 @@ public class MainWindowCloseTest extends GuiUnitTest {
 
     @BeforeEach
     public void setUp() throws Exception {
-        JsonAddressBookStorage jsonAddressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
-        JsonProjectsFolderStorage jsonProjectsFolderStorage =
-                new JsonProjectsFolderStorage(temporaryFolder.resolve("projects.json"));
+        JsonColabFolderStorage jsonColabFolderStorage =
+                new JsonColabFolderStorage(temporaryFolder.resolve("colab.json"));
         JsonUserPrefsStorage jsonUserPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storageManager = new StorageManager(jsonAddressBookStorage, jsonProjectsFolderStorage,
-                jsonUserPrefsStorage);
+        StorageManager storageManager = new StorageManager(jsonColabFolderStorage, jsonUserPrefsStorage);
         FxToolkit.setupStage(stage -> {
             this.stage = stage;
             mainWindow = new MainWindow(stage, new LogicManager(new ModelManager(), storageManager));

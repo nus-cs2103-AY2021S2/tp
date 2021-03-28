@@ -1,0 +1,177 @@
+{
+  "_comment": "CoLAB save file which contains the same values as in TypicalColabFolder#getTypicalColabFolder()",
+  "persons" : [ {
+    "name" : "Alice Pauline",
+    "phone" : "94351253",
+    "email" : "alice@example.com",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "tagged" : [ "friends" ]
+  }, {
+    "name" : "Benson Meier",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "tagged" : [ "owesMoney", "friends" ]
+  }, {
+    "name" : "Carl Kurz",
+    "phone" : "95352563",
+    "email" : "heinz@example.com",
+    "address" : "wall street",
+    "tagged" : [ ]
+  }, {
+    "name" : "Daniel Meier",
+    "phone" : "87652533",
+    "email" : "cornelia@example.com",
+    "address" : "10th street",
+    "tagged" : [ "friends" ]
+  }, {
+    "name" : "Elle Meyer",
+    "phone" : "9482224",
+    "email" : "werner@example.com",
+    "address" : "michegan ave",
+    "tagged" : [ ]
+  }, {
+    "name" : "Fiona Kunz",
+    "phone" : "9482427",
+    "email" : "lydia@example.com",
+    "address" : "little tokyo",
+    "tagged" : [ ]
+  }, {
+    "name" : "George Best",
+    "phone" : "9482442",
+    "email" : "anna@example.com",
+    "address" : "4th street",
+    "tagged" : [ ]
+  } ],
+  "projects" : [ {
+    "projectName" : "CS2103T Team Project",
+    "eventList" : [ {
+      "description" : "Weekly Project Meeting",
+      "interval" : "WEEKLY",
+      "isDone" : false,
+      "at" : "31-01-2021"
+    } ],
+    "todoList" : [ {
+      "description" : "Update documentation",
+      "isDone" : true
+    }, {
+      "description" : "Finish add command",
+      "isDone" : false
+    }, {
+      "description" : "Add unit tests",
+      "isDone" : false
+    }, {
+      "description" : "Brainstorm new feature",
+      "isDone" : false
+    } ],
+    "deadlineList" : [ {
+      "description" : "Milestone v1.1",
+      "isDone" : true,
+      "by" : "01-03-2021"
+    }, {
+      "description" : "Milestone v1.2",
+      "isDone" : true,
+      "by" : "15-03-2021"
+    }, {
+      "description" : "Milestone v1.3",
+      "isDone" : false,
+      "by" : "31-03-2021"
+    }, {
+      "description" : "Milestone v1.4",
+      "isDone" : false,
+      "by" : "12-04-2021"
+    } ],
+    "participantsList" : [ {
+      "name" : "Dahn",
+      "phone" : "91234561",
+      "email" : "dahn@colab.com",
+      "address" : "1 CoLAB Road",
+      "tagged" : [ ]
+    }, {
+      "name" : "Ruochen",
+      "phone" : "91234562",
+      "email" : "ruochen@colab.com",
+      "address" : "1 CoLAB Road",
+      "tagged" : [ ]
+    }, {
+      "name" : "Samuel",
+      "phone" : "91234563",
+      "email" : "samuel@colab.com",
+      "address" : "1 CoLAB Road",
+      "tagged" : [ ]
+    }, {
+      "name" : "Vevek",
+      "phone" : "91234564",
+      "email" : "vevek@colab.com",
+      "address" : "1 CoLAB Road",
+      "tagged" : [ ]
+    } ]
+  }, {
+    "projectName" : "CS2101 OP2",
+    "eventList" : [ {
+      "description" : "OP2 Planning Meeting",
+      "interval" : "NONE",
+      "isDone" : false,
+      "at" : "17-03-2021"
+    }, {
+      "description" : "OP2 Consultation",
+      "interval" : "NONE",
+      "isDone" : false,
+      "at" : "23-03-2021"
+    }, {
+      "description" : "OP2 Product Demo",
+      "interval" : "NONE",
+      "isDone" : false,
+      "at" : "06-04-2021"
+    }, {
+      "description" : "OP2 Pitch",
+      "interval" : "NONE",
+      "isDone" : false,
+      "at" : "09-04-2021"
+    } ],
+    "todoList" : [ {
+      "description" : "Split Workload",
+      "isDone" : true
+    }, {
+      "description" : "Do up slides for pitch",
+      "isDone" : false
+    }, {
+      "description" : "Do up video for demo",
+      "isDone" : false
+    } ],
+    "deadlineList" : [ {
+      "description" : "Product Demo Internal Deadline",
+      "isDone" : false,
+      "by" : "05-04-2021"
+    }, {
+      "description" : "Product Pitch Internal Deadline",
+      "isDone" : false,
+      "by" : "08-04-2021"
+    } ],
+    "participantsList" : [ {
+      "name" : "Dahn",
+      "phone" : "91234561",
+      "email" : "dahn@colab.com",
+      "address" : "1 CoLAB Road",
+      "tagged" : [ ]
+    }, {
+      "name" : "Ruochen",
+      "phone" : "91234562",
+      "email" : "ruochen@colab.com",
+      "address" : "1 CoLAB Road",
+      "tagged" : [ ]
+    }, {
+      "name" : "Samuel",
+      "phone" : "91234563",
+      "email" : "samuel@colab.com",
+      "address" : "1 CoLAB Road",
+      "tagged" : [ ]
+    }, {
+      "name" : "Vevek",
+      "phone" : "91234564",
+      "email" : "vevek@colab.com",
+      "address" : "1 CoLAB Road",
+      "tagged" : [ ]
+    } ]
+  } ]
+}

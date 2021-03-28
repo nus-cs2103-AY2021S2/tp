@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import seedu.address.model.project.exceptions.DuplicateDeadlineException;
 import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.deadline.Deadline;
 
@@ -37,13 +38,43 @@ public class DeadlineList {
     }
 
     /**
-     * Adds a deadline to this {@code DeadlineList}.
+     * Adds a deadline to this {@code DeadlineList}.The {@code Deadline} must not already exist in
+     * the {@code DeadlineList}.
      *
      * @param deadline {@code Deadline} to add.
      */
     public void addDeadline(Deadline deadline) {
         requireNonNull(deadline);
+
+        if (hasDeadline(deadline)) {
+            throw new DuplicateDeadlineException();
+        }
+
         this.deadlines.add(deadline);
+    }
+
+    /**
+     * Get the {@code Deadline} specified by index.
+     *
+     * @param i index specifies the target {@code Deadline}.
+     * @return {@code Deadline} at this index.
+     */
+    public CompletableDeadline getDeadline(Integer i) {
+        requireNonNull(i);
+
+        return this.deadlines.get(i);
+    }
+
+    /**
+     * Set the {@code Deadline} specified by index with a new {@code Deadline}.
+     *
+     * @param index index specifies the target {@code Deadline}.
+     * @param deadline new {@code Deadline} for this index.
+     */
+    public void setDeadline(Integer index, CompletableDeadline deadline) {
+        requireNonNull(deadline);
+
+        this.deadlines.set(index, deadline);
     }
 
     /**
@@ -107,6 +138,40 @@ public class DeadlineList {
      */
     public Stream<CompletableDeadline> stream() {
         return deadlines.stream();
+    }
+
+    /**
+     * Checks if the {@code DeadlineList} already contains the specified {@code deadlineToCheck}.
+     *
+     * @param deadlineToCheck The deadline that is to be checked.
+     * @return true if this project contains the specified deadline, false otherwise.
+     */
+    public boolean hasDeadline(CompletableDeadline deadlineToCheck) {
+        for (CompletableDeadline deadline: deadlines) {
+            if (deadlineToCheck.equals(deadline)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if a {@code Deadline} in the {@code DeadlineList} done or not.
+     *
+     * @param index index of that {@code Deadline}.
+     * @return true if that {@code Deadline} is done, false otherwise.
+     */
+    public boolean checkIsDone(Integer index) {
+        return deadlines.get(index).getIsDone();
+    }
+
+    /**
+     * Returns the size of the {@code DeadlineList}.
+     *
+     * @return size of the {@code DeadlineList}.
+     */
+    public int size() {
+        return deadlines.size();
     }
 
     @Override

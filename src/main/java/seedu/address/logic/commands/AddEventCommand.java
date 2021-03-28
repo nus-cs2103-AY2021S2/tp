@@ -3,8 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REPEATABLE_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REPEATABLE_INTERVAL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_INTERVAL;
 
 import java.util.List;
 
@@ -13,6 +13,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.exceptions.DuplicateEventException;
 import seedu.address.model.task.repeatable.Event;
 
 /**
@@ -25,12 +26,12 @@ public class AddEventCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds event to a specified project.\n"
             + "Parameters:\nPROJECT_INDEX\n"
             + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + PREFIX_REPEATABLE_INTERVAL + "INTERVAL "
-            + PREFIX_REPEATABLE_DATE + "REPEATABLE_DATE\n"
+            + PREFIX_EVENT_INTERVAL + "INTERVAL "
+            + PREFIX_EVENT_DATE + "REPEATABLE_DATE\n"
             + "Example:\n" + COMMAND_WORD + " 1 "
             + PREFIX_DESCRIPTION + "Project meeting "
-            + PREFIX_REPEATABLE_INTERVAL + "DAILY "
-            + PREFIX_REPEATABLE_DATE + "24-04-2021";
+            + PREFIX_EVENT_INTERVAL + "DAILY "
+            + PREFIX_EVENT_DATE + "24-04-2021";
 
     private final Index index;
     private final Event toAdd;
@@ -59,13 +60,12 @@ public class AddEventCommand extends Command {
         Project projectToEdit = lastShownList.get(index.getZeroBased());
         assert projectToEdit != null;
 
-        for (Event event: projectToEdit.getEvents().getEvents()) {
-            if (this.toAdd.equals(event)) {
-                throw new CommandException(Messages.MESSAGE_DUPLICATE_EVENT);
-            }
+        try {
+            projectToEdit.addEvent(toAdd);
+        } catch (DuplicateEventException e) {
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_EVENT);
         }
 
-        projectToEdit.addEvent(toAdd);
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
         return new CommandResult(String.format(Messages.MESSAGE_ADD_EVENT_SUCCESS, toAdd));
     }

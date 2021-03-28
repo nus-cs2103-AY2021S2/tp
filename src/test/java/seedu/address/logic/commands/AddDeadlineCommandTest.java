@@ -3,11 +3,10 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalColabFolder.getTypicalColabFolder;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalProjects.getTypicalProjectsFolder;
 
 import java.time.LocalDate;
 
@@ -30,7 +29,7 @@ public class AddDeadlineCommandTest {
 
     @BeforeEach
     public void setUp() throws DateConversionException {
-        model = new ModelManager(getTypicalAddressBook(), getTypicalProjectsFolder(), new UserPrefs());
+        model = new ModelManager(getTypicalColabFolder(), new UserPrefs());
     }
 
     @Test

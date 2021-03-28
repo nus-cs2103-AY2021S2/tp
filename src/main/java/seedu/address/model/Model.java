@@ -40,47 +40,47 @@ public interface Model {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
-    //=========== AddressBook ================================================================================
+    //=========== ColabFolder ================================================================================
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' CoLAB folder file path.
      */
-    Path getAddressBookFilePath();
+    Path getColabFolderFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' CoLAB folder file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setColabFolderFilePath(Path colabFolderFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces CoLAB folder data with the data in {@code colabFolder}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setColabFolder(ReadOnlyColabFolder colabFolder);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the ColabFolder */
+    ReadOnlyColabFolder getColabFolder();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in the CoLAB folder.
      */
     boolean hasPerson(Person person);
 
     /**
      * Deletes the given person.
-     * The person must exist in the address book.
+     * The person must exist in the CoLAB folder.
      */
     void deletePerson(Person target);
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * {@code person} must not already exist in the CoLAB folder.
      */
     void addPerson(Person person);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in the CoLAB folder.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the CoLAB folder.
      */
     void setPerson(Person target, Person editedPerson);
 
@@ -98,45 +98,27 @@ public interface Model {
     //=========== Projects File ==============================================================================
 
     /**
-     * Returns the user prefs' projects folder file path.
-     */
-    Path getProjectsFolderFilePath();
-
-    /**
-     * Sets the user prefs' address book file path.
-     */
-    void setProjectsFolderFilePath(Path projectsFolderFilePath);
-
-    /**
-     * Replaces projects folder data with the data in {@code projectsFolder}.
-     */
-    void setProjectsFolder(ReadOnlyProjectsFolder projectsFolder);
-
-    /** Returns the {@code ProjectsFolder} */
-    ReadOnlyProjectsFolder getProjectsFolder();
-
-    /**
-     * Returns true if a project with the same identity as {@code project} exists in the address book.
+     * Returns true if a project with the same identity as {@code project} exists in the CoLAB folder.
      */
     boolean hasProject(Project project);
 
     /**
      * Deletes the given project.
-     * The project must exist in the projects folder.
+     * The project must exist in the CoLAB folder.
      */
     void deleteProject(Project target);
 
     /**
      * Adds the given project.
-     * {@code project} must not already exist in the projects folder.
+     * {@code project} must not already exist in the CoLAB folder.
      */
     void addProject(Project projects);
 
     /**
      * Replaces the given project {@code target} with {@code editedProject}.
-     * {@code target} must exist in the projects folder.
+     * {@code target} must exist in the CoLAB folder.
      * The project identity of {@code editedProject} must not be the same as
-     * another existing project in the projects folder.
+     * another existing project in the CoLAB folder.
      */
     void setProject(Project target, Project editedProject);
 

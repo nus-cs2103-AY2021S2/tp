@@ -5,10 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showProjectAtIndex;
+import static seedu.address.testutil.TypicalColabFolder.getTypicalColabFolder;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalProjects.getTypicalProjectsFolder;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,18 +26,17 @@ public class DeleteProjectCommandTest {
 
     @BeforeEach
     public void setUp() throws DateConversionException {
-        model = new ModelManager(getTypicalAddressBook(), getTypicalProjectsFolder(), new UserPrefs());
+        model = new ModelManager(getTypicalColabFolder(), new UserPrefs());
     }
 
     @Test
-    public void execute_validIndexUnfilteredList_success() throws DateConversionException {
+    public void execute_validIndexUnfilteredList_success() {
         Project projectToDelete = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         DeleteProjectCommand deleteProjectCommand = new DeleteProjectCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(DeleteProjectCommand.MESSAGE_DELETE_PROJECT_SUCCESS, projectToDelete);
 
-        ModelManager expectedModel = new ModelManager(
-                getTypicalAddressBook(), getTypicalProjectsFolder(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(getTypicalColabFolder(), new UserPrefs());
         expectedModel.deleteProject(projectToDelete);
 
         assertCommandSuccess(deleteProjectCommand, model, expectedMessage, expectedModel);
@@ -53,7 +51,7 @@ public class DeleteProjectCommandTest {
     }
 
     @Test
-    public void execute_validIndexFilteredList_success() throws DateConversionException {
+    public void execute_validIndexFilteredList_success() {
         showProjectAtIndex(model, INDEX_FIRST);
 
         Project projectToDelete = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
@@ -61,8 +59,7 @@ public class DeleteProjectCommandTest {
 
         String expectedMessage = String.format(DeleteProjectCommand.MESSAGE_DELETE_PROJECT_SUCCESS, projectToDelete);
 
-        ModelManager expectedModel = new ModelManager(
-                getTypicalAddressBook(), getTypicalProjectsFolder(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(getTypicalColabFolder(), new UserPrefs());
         expectedModel.deleteProject(projectToDelete);
         showNoProject(expectedModel);
 
@@ -75,7 +72,7 @@ public class DeleteProjectCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND;
         // ensures that outOfBoundIndex is still in bounds of project list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getProjectsFolder().getProjectsList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getColabFolder().getProjectsList().size());
 
         DeleteProjectCommand deleteProjectCommand = new DeleteProjectCommand(outOfBoundIndex);
 

@@ -14,8 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
-    private Path projectsFolderFilePath = Paths.get("data" , "projects.json");
+    private Path colabFolderFilePath = Paths.get("data" , "colab.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -37,8 +36,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
 
         setGuiSettings(newUserPrefs.getGuiSettings());
-        setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
-        setProjectsFolderFilePath(newUserPrefs.getProjectsFolderFilePath());
+        setColabFolderFilePath(newUserPrefs.getColabFolderFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -51,24 +49,14 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
-    public Path getAddressBookFilePath() {
-        return addressBookFilePath;
+    public Path getColabFolderFilePath() {
+        return colabFolderFilePath;
     }
 
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
+    public void setColabFolderFilePath(Path colabFolderFilePath) {
+        requireNonNull(colabFolderFilePath);
 
-        this.addressBookFilePath = addressBookFilePath;
-    }
-
-    public Path getProjectsFolderFilePath() {
-        return projectsFolderFilePath;
-    }
-
-    public void setProjectsFolderFilePath(Path projectsFolderFilePath) {
-        requireNonNull(projectsFolderFilePath);
-
-        this.projectsFolderFilePath = projectsFolderFilePath;
+        this.colabFolderFilePath = colabFolderFilePath;
     }
 
     @Override
@@ -83,21 +71,19 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && addressBookFilePath.equals(o.addressBookFilePath)
-                && projectsFolderFilePath.equals(o.projectsFolderFilePath);
+                && colabFolderFilePath.equals(o.colabFolderFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath, projectsFolderFilePath);
+        return Objects.hash(guiSettings, colabFolderFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal addressbook data file location : " + addressBookFilePath);
-        sb.append("\nLocal projects data file location : " + projectsFolderFilePath);
+        sb.append("\nLocal CoLAB data file location : " + colabFolderFilePath);
         return sb.toString();
     }
 

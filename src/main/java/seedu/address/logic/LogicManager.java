@@ -13,8 +13,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyProjectsFolder;
+import seedu.address.model.ReadOnlyColabFolder;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 import seedu.address.storage.Storage;
@@ -48,8 +47,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
-            storage.saveProjectsFolder(model.getProjectsFolder());
+            storage.saveColabFolder(model.getColabFolder());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -58,8 +56,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyColabFolder getColabFolder() {
+        return model.getColabFolder();
     }
 
     @Override
@@ -68,23 +66,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
-    }
-
-    @Override
-    public ReadOnlyProjectsFolder getProjectsFolder() {
-        return model.getProjectsFolder();
+    public Path getColabFolderFilePath() {
+        return model.getColabFolderFilePath();
     }
 
     @Override
     public ObservableList<Project> getFilteredProjectsList() {
         return model.getFilteredProjectList();
-    }
-
-    @Override
-    public Path getProjectsFolderFilePath() {
-        return model.getProjectsFolderFilePath();
     }
 
     @Override
