@@ -3,9 +3,10 @@ layout: page
 title: User Guide
 ---
 
-Link.me is a **desktop app aimed at insurance agents for managing clients, optimized for use via a 
+Finding it difficult to keep track of your insurance clients? Life as an insurance isn't easy. We understand. Link.me 
+is a **desktop app aimed at insurance agents for managing clients, optimized for use via a 
 Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
-If you can type fast, Link.me can get your contact management tasks done faster than traditional GUI apps.
+If you can type fast, Link.me can get your client management tasks done faster than traditional GUI apps.
 
 ---
 
@@ -22,21 +23,21 @@ If you can type fast, Link.me can get your contact management tasks done faster 
 
 1. Copy the file to the folder you want to use as the _home folder_ for `Link.me`.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start your Link.me. The GUI similar to the below should appear in a few seconds. Note how your Link.me contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * **`list`** : Lists all contacts.
+    * **`list`** : Lists all of your clients.
 
-    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the app.
+    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a client named `John Doe` to your Link.me.
 
-    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+    * **`delete`**`3` : Deletes the 3rd client shown in the current list.
 
-    * **`clear`** : Deletes all contacts.
+    * **`clear`** : Deletes all of your clients.
 
-    * **`exit`** : Exits the app.
+    * **`exit`** : Exits your Link.me.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -133,7 +134,7 @@ You can exit Link.me.
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * The commands of Link.me generally follow the following format:
-  `COMMAND [PERSON_INDEX] [PREFIX/] [DESCRIPTION]`
+  `COMMAND [client_INDEX] [PREFIX/] [DESCRIPTION]`
 
 </div>
 
@@ -145,17 +146,9 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-
-### Listing all persons : `list`
-
-Shows a list of all persons in the app.
-
-Format: `list`
-
-
 ### Adding a person: `add`
 
-Adds a person to the app.
+Adds a client to your Link.me.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER b/BIRTHDATE [t/TAG]...`
 
@@ -163,37 +156,42 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER b/BIRTHDATE [t/TAG
 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A client can have any number of tags (including 0)
 </div>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/M b/1995-01-01 t/investment`
 * `add n/Betsy Crowe t/medical e/betsycrowe@example.com a/Newgate Prison p/91234567 t/life g/F b/1998-02-03`
 
+### Listing all of your clients : `list`
 
+Shows a list of all your clients in your Link.me.
 
-### Editing a person : `edit`
+Format: `list`
 
-Edits an existing person in the app.
+### Editing a client : `edit`
+
+Edits an existing client in your Link.me.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [t/TAG]...`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits your client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of your client will be removed i.e. adding of tags is not cumulative.
+* You can remove all your client’s tags by typing `t/` without
     specifying any tags after it.
 
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-*  `edit 5 t/medical b/1990-01-01` edits the insurance tag of the 5th person to be `medical` and edits the birthdate to be `1990-01-01`.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
+*  `edit 2 t/medical plan/Protecc Life premium/` Edits the insurance tag of the 2nd client to be `medical`, edits the plan name to `Protecc Life` and clears the insurance premium field.
 
-### Locating persons by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+### Locating clients by name: `find`
+
+Finds clients whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -201,7 +199,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* clients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -209,39 +207,50 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a client : `delete`
 
-Deletes the specified person from the app.
+Deletes the specified client from your Link.me.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes your client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the app.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd client in your Link.me.
+* `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
+### Clearing all entries : `clear`
+
+Clears all entries from your Link.me. 
+
+Format: `clear`
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
 
 ### Scheduling/Unscheduling a meetup with a client : `schedule`
 
 #### Scheduling a meetup.
-Schedule a date and time with a specified client in the app.
+Schedule a date and time with a specified client in your Link.me.
 
 New schedule commands overwrite the original meeting scheduled with a client.
 
 Format: `schedule INDEX m/DESCRIPTION @ DATE_TIME`
 
-* Adds the client at the specified `INDEX`, and the `DATE_TIME` of the meeting, to the schedule list.
-* The `INDEX` refers to the index number shown in the displayed person list.
+* Adds your client at the specified `INDEX`, and the `DATE_TIME` of the meeting, to the schedule list.
+* The `INDEX` refers to the index number shown in the displayed client list.
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
 * `DATE_TIME` refers to the date and time of the scheduled meeting
 * `DATE_TIME` should be inputted in the specific datetime format `yyyy-mm-dd HH:MM`
 
 Example:
 
-* `schedule 2 m/Insurance Plan @ 2020-02-28 14:30` schedules a Insurance Plan meeting with the client indexed 2 on the 
+* `schedule 2 m/Insurance Plan @ 2020-02-28 14:30` schedules a Insurance Plan meeting with your client indexed 2 on the 
   display at 2020/2/28 2:30 pm.
 
 #### Unscheduling a meetup
@@ -250,27 +259,38 @@ Unscheduling meetups with a certain client.
 
 Format: `schedule INDEX m/remove`
 
-* Removes a scheduled meeting with the client at the specified `INDEX`.
-* The `INDEX` refers to the index number shown in the displayed person list.
+* Removes a scheduled meeting with your client at the specified `INDEX`.
+* The `INDEX` refers to the index number shown in the displayed client list.
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
 
-* `schedule 2 m/remove` removes meeting scheduled with the client indexed 2 on the display.
+* `schedule 2 m/remove` removes meeting scheduled with your client indexed 2 on the display.
 
 
 ### Filtering by tag : `filter`
-Filters the contacts by tag.
+Filters your clients by address, gender, tags, insurance plan name or age.
 
-Format: `filter TAG`
+Format of filter command: `filter KEYWORD [MORE_KEYWORDS]`
 
-Lists all contacts that have a matching tag.
+Format of keyword:
 
-Only tags that are exactly the same will be matched.
+* address: `a/[address name]`
+* gender: `g/[M or F]`
+* tag: `t/[tag name]`
+* insurance plan name: `plan/[plan name]`
+
+Lists all of your clients that has attributes that match your search keywords.
+
+Only attributes that are exactly the same will be matched.
 
 Examples:
 
-`filter medical` returns every contact with the tag `medical`
+`filter a/Clementi g/M t/medical plan/Protecc` returns:
+* clients that has "Clementi" in their address, or
+* clients that are Male, or
+* clients with the "Medical" tag, or
+* clients with the insurance plan "Protecc"
 
 ### Calling notifications of recent events : `notif`
 
@@ -278,7 +298,7 @@ Generates a list of notifications.
 
 Lists all client birthdays within the next two weeks then lists all meetings occurring today in order of time.
 
-The notification window is also shown on startup of the application.
+The notification window is also shown on startup of your Link.melication.
 
 ![notif message](images/notifMessage.png)
 
@@ -338,14 +358,14 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Link.me data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Link.me data are saved as a JSON file `[JAR file location]/data/linkme.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, Link.me will discard all data and start with an empty data file at the next run.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -353,7 +373,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install your Link.me in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Link.me home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -366,7 +386,7 @@ Action      | Format, Examples
 **Delete**  | `delete INDEX`
 **Edit**    | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [t/TAG] [start/CONTRACT_START_DATE] [plan/INSURANCE_PLAN] [premium/INSURANCE_PREMIUM] [claimed/AMOUNT_CLAIMED_TO_DATE]`
 **Find**    | `find KEYWORD [MORE_KEYWORDS]`
-**Filter**  | `filter TAG`
+**Filter**  | `filter KEYWORD [MORE_KEYWORDS]`
 **List**    | `list`
 **Help**    | `help`
 **Notif**   | `notif`
