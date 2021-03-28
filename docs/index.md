@@ -6,7 +6,7 @@ title: Vax@NUS
 [![CI Status](https://github.com/AY2021S2-CS2103T-W10-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S2-CS2103T-W10-4/tp/actions)
 [![codecov](https://codecov.io/gh/AY2021S2-CS2103T-W10-4/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2021S2-CS2103T-W10-4/tp)
 
-![Ui](images/Ui.png)
+![Ui](images/mockup.png)
 
 * Vax@NUS is an app for **staff at the NUS University Health Centre (UHC)**
   to keep track of the COVID-19 vaccination status of students. <br>
