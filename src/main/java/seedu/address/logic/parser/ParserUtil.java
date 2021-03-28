@@ -172,7 +172,6 @@ public class ParserUtil {
         return Optional.of(new Price(Double.parseDouble(trimmedPrice)));
     }
 
-
     /**
      * Parses {@code Collection<String> indices} into a {@code Set<Index>}.
      */

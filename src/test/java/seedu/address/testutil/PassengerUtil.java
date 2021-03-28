@@ -49,8 +49,6 @@ public class PassengerUtil {
             sb.append(PREFIX_PRICE + passenger.priceToString() + " ");
         }
 
-
-
         passenger.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
