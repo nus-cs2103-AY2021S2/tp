@@ -2,11 +2,6 @@
 layout: page
 title: User Guide
 ---
-
-## Introduction
-
-DietLAH! is a **desktop app with a Command-Line Interface (CLI) that allows users to easily track and maintain their meals so that they are able to maintain their ideal body weight.** If you can type fast, you’ll be able to record your meals and track your weight in this app much faster than other traditional GUI-based diet tracking apps!
-
 ## Table of Contents
 
 <!--ts-->
@@ -37,6 +32,11 @@ DietLAH! is a **desktop app with a Command-Line Interface (CLI) that allows user
      * [3.8.2. Query food intake over a period of days](#382-query-food-intake-over-a-period-of-days)
 * [Command summary](#command-summary)
 <!--te-->
+
+--------------------------------------------------------------------------------------------------------------------
+## Introduction
+
+DietLAH! is a **desktop app with a Command-Line Interface (CLI) that allows users to easily track and maintain their meals so that they are able to maintain their ideal body weight.** If you can type fast, you’ll be able to record your meals and track your weight in this app much faster than other traditional GUI-based diet tracking apps!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -196,7 +196,7 @@ Daily Fat intake: 55 g
 ## 3. Macronutrients Tracker
 ### 3.1 Add food item
 
-Creates a new food item with their nutrients value and stores them in the food list. Food items are used as shortcuts to add food intake items without having to type out the values.
+Adds a new food item with their nutrients value and stores them in the food list. Food items are used as shortcuts to add food intake items without having to type out the values.
 
 **Format:** `food_add n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS`
 
@@ -206,7 +206,9 @@ Creates a new food item with their nutrients value and stores them in the food l
 
 **Expected output:**
 
-Success adding food item (tomato (Carbos: 10.0g, Fats: 10.0g, Proteins: 10.0g)) into food list.
+<p align="center">
+  <img src="/docs/images/user-guide/add-food-item-result.png">
+</p>
 
 ### 3.2 Update food item
 
@@ -220,7 +222,9 @@ Updates existing food items with their new nutrients value(s).
 
 **Expected output:**
 
-Successfully updated food item
+<p align="center">
+  <img src="/docs/images/user-guide/update-food-item-result.png">
+</p>
 
 ### 3.3 List food item
 
@@ -232,8 +236,9 @@ Lists all food items that are stored in the application.
 
 **Expected output:**
 
-Here are all the food items: 
-1. tomato (Carbos: 20.0g, Fats: 30.0g, Proteins: 40.0g)
+<p align="center">
+  <img src="/docs/images/user-guide/food-list-result.png">
+</p>
 
 ### 3.4 Delete food item
 
@@ -247,11 +252,13 @@ Deletes the particular food item stored in the application.
 
 **Expected output:**
 
-Successfully deleted food item:  tomato
+<p align="center">
+  <img src="/docs/images/user-guide/delete-food-item.png">
+</p>
 
 ### 3.5 Input food intake
 
-For tracking the user's diet plan progress, the user is encouraged to track their daily food intake by entering the food name and associated macronutrients (carbohydrates, fats and proteins) in grams. There are a few ways to input a food intake such as using the pre-stored food values, or adding a brand new food intake. The different scenarios are outlined below.
+For tracking the user's diet plan progress, the user is encouraged to track their daily food intake by entering the food name and associated macronutrients (carbohydrates, fats and proteins) in grams. There are a few ways to input a food intake such as using the pre-stored food values, or adding a brand new food intake. For Date input, the user can use the alias `d/today` as a shortcut to input today's date. The actions for Food Intake Item can only be performed based on past and current date. The different scenarios are outlined below.
 
 **Note:** If there are multiple food intakes with the same date and name, the food name will be automatically renamed to include a duplicate count for easy identification. E.g. Chicken rice, Chicken rice 2
 
@@ -268,7 +275,9 @@ Records a food intake for the given date and stores the food in the food list fo
 
 **Expected output:**
 
-Success adding food item (tomato (Carbos: 10.0g, Fats: 10.0g, Proteins: 10.0g)) into food intake list.
+<p align="center">
+  <img src="/docs/images/user-guide/add-food-intake-new-food-item-result.png">
+</p>
 
 
 ### 3.5.2 Input food intake (For existing food items)
@@ -281,7 +290,9 @@ Records a food intake for the given date using an existing food item. The nutrie
 
 **Expected output:**
 
-Success adding food item (tomato (Carbos: 10.0g, Fats: 10.0g, Proteins: 10.0g)) into food intake list.
+<p align="center">
+  <img src="/docs/images/user-guide/add-food-intake-new-food-item-result.png">
+</p>
 
 ### 3.5.3 Input food intake (For existing food items, using different nutrient value(s))
 
@@ -295,8 +306,9 @@ Records a food intake for the given date and updates the existing food item with
 
 **Expected output:**
 
-Successfully edited food value to: tomato (Carbos: 20.0g, Fats: 35.0g, Proteins: 50.0g).
-Success adding food item (tomato (Carbos: 20.0g, Fats: 35.0g, Proteins: 50.0g)) into food intake list.
+<p align="center">
+  <img src="/docs/images/user-guide/add-food-intake-diff-food-item-result.png">
+</p>
 
 ### 3.6 Update food intake
 
@@ -310,7 +322,9 @@ Updates the nutrient value(s) of an existing food intake matching the given date
 
 **Expected output:**
 
-Food intake successfully updated for (tomato)
+<p align="center">
+  <img src="/docs/images/user-guide/update-food-intake-item-result.png">
+</p>
 
 ### 3.7 Delete food intake
 
@@ -324,7 +338,9 @@ Deletes a food intake item for the specified day.
 
 **Expected output:**
 
-Successfully deleted food intake:  tomato
+<p align="center">
+  <img src="/docs/images/user-guide/delete-food-intake-result.png">
+</p>
 
 ### 3.8 Query food intake
 
@@ -340,11 +356,9 @@ Queries all the food intake(s) on a certain day.
 
 **Expected output:**
 
-Summary Food Intake for the Day (31 Mar 2021):
-1. tomato (Carbos: 10.0g, Fats: 10.0g, Proteins: 10.0g): 170.0 calories
-2. tomato (Carbos: 20.0g, Fats: 35.0g, Proteins: 50.0g): 595.0 calories
-
-Total Daily Calories Intake: 765.0 calories.
+<p align="center">
+  <img src="/docs/images/user-guide/query-food-intake-per-day.png">
+</p>
 
 ### 3.8.2 Query food intake over a period of days
 
@@ -356,20 +370,9 @@ Queries all the existing food intake(s) over a period of days (both inclusive).
 
 **Expected output:**
 
-Summary Food Intake from (1 Mar 2021) to (31 Mar 2021):
-
-Summary Food Intake for the Day (22 Mar 2021):
-1. chilli (Carbos: 45.0g, Fats: 70.0g, Proteins: 50.0g): 1010.0 calories
-2. tomato (Carbos: 10.0g, Fats: 10.0g, Proteins: 10.0g): 170.0 calories
-3. tomato (Carbos: 20.0g, Fats: 35.0g, Proteins: 50.0g): 595.0 calories
-
-Total Daily Calories Intake: 1775.0 calories.
-
-Summary Food Intake for the Day (31 Mar 2021):
-1. tomato (Carbos: 10.0g, Fats: 10.0g, Proteins: 10.0g): 170.0 calories
-2. tomato (Carbos: 20.0g, Fats: 35.0g, Proteins: 50.0g): 595.0 calories
-
-Total Daily Calories Intake: 765.0 calories.
+<p align="center">
+  <img src="/docs/images/user-guide/query-food-intake-period.png">
+</p>
 
 --------------------------------------------------------------------------------------------------------------------
 

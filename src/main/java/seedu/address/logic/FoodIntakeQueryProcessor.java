@@ -39,7 +39,8 @@ public class FoodIntakeQueryProcessor {
             counter++;
         }
         foodIntakeCalculator = new FoodIntakeCalculator(carbos, fats, proteins);
-        stringBuilder.append("Total Daily Calories Intake: " + foodIntakeCalculator.getCalories() + " calories.\n");
+        stringBuilder.append("Total Daily Calories Intake: " + String.format("%.2f", foodIntakeCalculator.getCalories())
+                + " calories.\n");
         return stringBuilder.toString();
     }
 
@@ -59,6 +60,7 @@ public class FoodIntakeQueryProcessor {
         for (int i = 0; i < this.foodIntakeList.size(); i++) {
             if (!this.foodIntakeList.get(i).getDate().equals(currDate)) {
                 currDate = this.foodIntakeList.get(i).getDate(); //Set new date when a new data date is different
+                stringBuilder.append("\n------------------------------------------------------------------------\n");
                 stringBuilder.append("Summary Food Intake for the Day ("
                         + foodIntakeList.get(i).getDate().format(DateTimeFormatter.ofPattern(DATE_FORMAT))
                         + "):\n");
@@ -76,7 +78,8 @@ public class FoodIntakeQueryProcessor {
                     || !currDate.isEqual(this.foodIntakeList.get(i + 1).getDate())) {
                 foodIntakeCalculator = new FoodIntakeCalculator(carbos, fats, proteins);
                 stringBuilder.append("Total Daily Calories Intake: "
-                        + foodIntakeCalculator.getCalories() + " calories.\n");
+                        + String.format("%.2f", foodIntakeCalculator.getCalories()) + " calories.\n");
+                stringBuilder.append("------------------------------------------------------------------------");
                 counter = 1;
             }
         }
