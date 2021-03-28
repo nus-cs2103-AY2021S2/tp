@@ -37,7 +37,7 @@ public class AddRecurringSessionCommand extends AddSessionCommand {
             + PREFIX_TIME + "12:00 "
             + PREFIX_DURATION + "90 "
             + PREFIX_SUBJECT + "Math "
-            + PREFIX_FEE + "40"
+            + PREFIX_FEE + "40 "
             + PREFIX_INTERVAL + "7 "
             + PREFIX_END_DATE + "2020-01-15";
 
