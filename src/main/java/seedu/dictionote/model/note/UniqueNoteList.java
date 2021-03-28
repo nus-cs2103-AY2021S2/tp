@@ -124,8 +124,11 @@ public class UniqueNoteList implements Iterable<Note> {
         FXCollections.sort(internalList, Note::compareTo);
     }
 
+    /** Sorting note by time last edited
+     *
+     */
     public void sortByTime() {
-        Comparator<Note> compare = (x,y) -> x.getLastEditTime().compareTo(y.getLastEditTime());
+        Comparator<Note> compare = (x, y) -> x.getLastEditTime().compareTo(y.getLastEditTime());
         FXCollections.sort(internalList, compare.reversed());
     }
 }
