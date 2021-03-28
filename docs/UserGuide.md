@@ -427,5 +427,7 @@ Action | Format, Examples
 **Close an issue** | `iclose INDEX` <br> e.g. `iclose 1`
 **Delete an issue** | `idel INDEX` <br> e.g. `idel 1`
 **View command history** | `history [COUNT]` <br> e.g. `history 5`
+**Undo previous command** | `undo` <br> `CTRL+Z`/`CMD+Z` (keyboard shortcuts) 
+**Redo previously undone command** | `redo` <br> `CTRL+SHIFT+Z`/`CMD+SHIFT+Z` (keyboard shortcuts)
 **Add alias** | `alias a/ALIAS_NAME cmd/COMMAND` <br> e.g. `alias a/il cmd/ilist`
 **Exit the app** | `exit`
