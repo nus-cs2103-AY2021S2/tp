@@ -4,6 +4,9 @@ import static java.time.LocalDateTime.now;
 import static java.util.Objects.requireNonNull;
 import static seedu.dictionote.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -41,6 +44,9 @@ public class ModelManager implements Model {
     private final FilteredList<Definition> filteredDefinition;
     private DictionaryContentConfig dictionaryContentConfig;
     private NoteContentConfig noteContentConfig;
+
+    private static String FILE_PATH = "./data/";
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -258,6 +264,14 @@ public class ModelManager implements Model {
         }
 
         return combinedTag;
+    }
+
+    @Override
+    public void convertTxtNote(Note note) throws IOException {
+        String noteToString = note.toString();
+        BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH + note.createFileName()));
+        writer.write(noteToString);
+        writer.close();
     }
 
     //=========== Dictionary ===================================================================================

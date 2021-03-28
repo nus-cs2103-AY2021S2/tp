@@ -1,5 +1,6 @@
 package seedu.dictionote.model;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
@@ -132,6 +133,12 @@ public interface Model {
      * The note must exist in the dictionote book.
      */
     void mergeNote(Note firstNote, Note secondNote);
+
+    /**
+     * Convert the given note into txt file.
+     * The note must exist in the dictionote book.
+     */
+    void convertTxtNote(Note note) throws IOException;
 
     /**
      * Set Note UI Configuration Interface
