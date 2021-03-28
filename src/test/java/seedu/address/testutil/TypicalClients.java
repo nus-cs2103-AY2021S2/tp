@@ -19,13 +19,13 @@ public class TypicalClients {
     public static final Client CALEB = new ClientBuilder().withClientName("Caleb")
             .withClientContact("84459627").withClientEmail("caleb_goh@gmail.com")
             .withClientAskingPrice("$350,000").build();
-    public static final Client DAVE = new ClientBuilder().withClientName("Dave")
-            .withClientContact("81347564").withClientEmail("dave_likes_swe@hotmail.com.sg")
+    public static final Client DARREN = new ClientBuilder().withClientName("Darren")
+            .withClientContact("81347564").withClientEmail("darren_likes_swe@hotmail.com.sg")
             .withClientAskingPrice("$2,000,000").build();
 
     private TypicalClients() {} // prevents instantiation
 
     public static List<Client> getTypicalClients() {
-        return new ArrayList<>(Arrays.asList(ALICE, BOB, CALEB, DAVE));
+        return new ArrayList<>(Arrays.asList(ALICE, BOB, CALEB, DARREN));
     }
 }

@@ -2,7 +2,7 @@ package seedu.address.testutil;
 
 import static seedu.address.testutil.TypicalClients.BOB;
 import static seedu.address.testutil.TypicalClients.CALEB;
-import static seedu.address.testutil.TypicalClients.DAVE;
+import static seedu.address.testutil.TypicalClients.DARREN;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -36,7 +36,7 @@ public class TypicalProperties {
     public static final Property JURONG = new PropertyBuilder().withName("Jurong")
             .withType("Hdb").withAddress("Jurong Ave 1, #01-01")
             .withPostal("640111").withDeadline(LocalDate.parse("01-04-2021", DateTimeFormat.INPUT_DATE_FORMAT))
-            .withTags("3 bedrooms", "100 square metres").withClient(DAVE)
+            .withTags("3 bedrooms", "100 square metres").withClient(DARREN)
             .build();
 
     private TypicalProperties() {} // prevents instantiation
@@ -70,7 +70,7 @@ public class TypicalProperties {
         return new ArrayList<>(Arrays.asList(MAYFAIR, BURGHLEY_DRIVE, WOODLANDS_CRESCENT, JURONG));
     }
 
-    public static List<Property> getTypicalPropertiesWithClient() {
-        return new ArrayList<>(Arrays.asList(WOODLANDS_CRESCENT, MAYFAIR, BURGHLEY_DRIVE, JURONG));
-    }
+    //public static List<Property> getTypicalPropertiesWithClient() {
+    //    return new ArrayList<>(Arrays.asList(WOODLANDS_CRESCENT, MAYFAIR, BURGHLEY_DRIVE, JURONG));
+    //}
 }
