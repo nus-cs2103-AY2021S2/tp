@@ -61,7 +61,7 @@ Here are a few steps to get you started on Tutor's Pet:
 
 1. Ensure you have **Java 11** or above installed in your computer.
 
-1. Download the latest version of TutorBuddy [here](https://github.com/AY2021S1-CS2103T-T10-4/tp/releases).
+1. Download the latest version of TutorBuddy [here](https://github.com/AY2021S2-CS2103T-T11-1/tp/releases).
 
 1. Move the downloaded TutorBuddy to a folder of your choice. This will be known as the home folder of TutorBuddy.
 
