@@ -1,5 +1,7 @@
 package seedu.address.logic.commandhistory;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +11,7 @@ import java.util.List;
 public class CommandHistory {
     private static CommandHistory commandHistory = null;
 
-    private final List<String> history;
+    private List<String> history;
     private final Pointer currPointer;
     private String currCommand;
 
@@ -39,6 +41,7 @@ public class CommandHistory {
      * @param command command to add to the history list.
      */
     public void addCommand(String command) {
+        requireNonNull(command);
         history.add(command);
         currPointer.resetPosition();
         currCommand = "";
@@ -59,6 +62,7 @@ public class CommandHistory {
      * @return The next string in the command history.
      */
     public String getNext(String command) {
+        requireNonNull(command);
         setCurrentCommand(command);
         currPointer.next(getHistorySize());
         return getCommandString();
@@ -72,6 +76,7 @@ public class CommandHistory {
      * @return The previous string in the command history.
      */
     public String getPrevious(String command) {
+        requireNonNull(command);
         setCurrentCommand(command);
         currPointer.previous(getHistorySize());
         return getCommandString();
@@ -94,6 +99,15 @@ public class CommandHistory {
         if (!currPointer.isPointingToHistory()) {
             currCommand = command;
         }
+    }
+
+    /**
+     * Clears the command history and current command as well as resets the pointer.
+     */
+    public void clearCommandHistory() {
+        history = new ArrayList<>();
+        currPointer.resetPosition();
+        currCommand = "";
     }
 
     /**
