@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 import javafx.collections.ObservableList;
@@ -10,6 +11,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -120,10 +122,33 @@ public class CommandBox extends UiPart<Region> {
      * @param index to accept user entered index.
      */
     public void setAndAppendIndex(String index) {
-        String firstCommand = commandTextField.getText().split(" ")[0];
-        if (firstCommand.equals(DeleteCommand.COMMAND_WORD)) {
-            commandTextField.setText(firstCommand + " " + index);
+        String[] substrings = commandTextField.getText().split(" ");
+        String firstCommand = substrings[0];
+
+        if (firstCommand.equals(DeleteCommand.COMMAND_WORD) || firstCommand.equals(EditCommand.COMMAND_WORD)) {
+            this.setTextValue(firstCommand + " " + index);
         }
+    }
+
+    /**
+     * TODO:
+     * @param availFlags
+     */
+    public void setAndAppendFlag(List<String> availFlags) {
+        if (availFlags.size() == 0) {
+            return;
+        }
+        String toAdd = availFlags.get(0);
+        String existingText = commandTextField.getText();
+        this.setTextValue(existingText + " " + toAdd + " ");
+    }
+
+    /**
+     * TODO:
+     * @return
+     */
+    public String getTextFieldText() {
+        return commandTextField.getText();
     }
 
     /**

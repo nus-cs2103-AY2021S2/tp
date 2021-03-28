@@ -1,6 +1,7 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
+import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -73,4 +74,17 @@ public interface Logic {
      * @return Returns a filtered ObservableList of commands
      */
     ObservableList<String> getAutocompleteCommands(String value);
+
+    /**
+     * TODO:
+     * @return
+     */
+    List<String> getAutocompleteFlags(String command);
+
+    /**
+     * TODO:
+     * @param command
+     * @return
+     */
+    List<String> processAutocompleteFlags(String currentStrings, String command);
 }

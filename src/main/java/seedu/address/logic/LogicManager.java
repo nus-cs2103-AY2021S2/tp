@@ -26,6 +26,8 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.CliSyntax;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.DisplayFilterPredicate;
 import seedu.address.model.Model;
@@ -140,5 +142,31 @@ public class LogicManager implements Logic {
 
             return FXCollections.observableList(filteredCommandList);
         }
+    }
+
+    // TODO: Add Tests
+    @Override
+    public List<String> getAutocompleteFlags(String command) {
+        if (command.equals(AddCommand.COMMAND_WORD)) {
+            List<String> flagList = new ArrayList<>();
+            flagList.add(CliSyntax.PREFIX_NAME.getPrefix());
+            flagList.add(CliSyntax.PREFIX_PHONE.getPrefix());
+            flagList.add(CliSyntax.PREFIX_EMAIL.getPrefix());
+            flagList.add(CliSyntax.PREFIX_ADDRESS.getPrefix());
+            flagList.add(CliSyntax.PREFIX_REMARK.getPrefix());
+            flagList.add(CliSyntax.PREFIX_TAG.getPrefix());
+
+            return flagList;
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
+    // TODO: Add Tests
+    @Override
+    public List<String> processAutocompleteFlags(String currentStrings, String command) {
+        List<String> flags = getAutocompleteFlags(command);
+        flags.removeIf(f -> currentStrings.contains(f));
+        return flags;
     }
 }

@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -14,6 +15,7 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
+import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -77,10 +79,20 @@ public class MainWindow extends UiPart<Stage> {
 
         getRoot().addEventFilter(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
             if (event.getCode() == KeyCode.TAB) {
-                autocompleteListPanel.doTab((value) -> {
-                    commandBox.setTextValue(value);
-                });
-                event.consume();
+                // TODO: Extract code
+                String currentlyInBox = commandBox.getTextFieldText();
+                String command = currentlyInBox.split("-")[0];
+
+                if (command.equals(AddCommand.COMMAND_WORD + " ") || command.equals(AddCommand.COMMAND_WORD + "  ")) {
+                    // Get possible flags for "ADD" command
+                    List<String> availFlags = logic.processAutocompleteFlags(currentlyInBox, AddCommand.COMMAND_WORD);
+                    commandBox.setAndAppendFlag(availFlags);
+                } else {
+                    autocompleteListPanel.processTabKey((value) -> {
+                        commandBox.setTextValue(value);
+                    });
+                    event.consume();
+                }
             }
 
             if (event.getCode() == KeyCode.UP) {
