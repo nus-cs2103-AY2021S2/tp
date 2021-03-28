@@ -39,8 +39,8 @@ public class StartCommand extends Command {
         if (currentMode == Mode.MODE_QUIZ) {
             model.setNumOfQnsForQuizSession(numOfQnsForQuizSession);
             model.startQuiz();
-            model.getMode().switchModeQuizSession();
-            return new CommandResult(MESSAGE_SUCCESS, false, false, true, false);
+            model.switchModeQuizSession();
+            return new CommandResult(MESSAGE_SUCCESS, false, false);
         } else {
             throw new CommandException(Messages.MESSAGE_NOT_IN_QUIZ_MODE);
         }

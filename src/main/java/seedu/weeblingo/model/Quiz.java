@@ -10,6 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.flashcard.Flashcard;
 
 /**
@@ -85,6 +86,10 @@ public class Quiz {
      */
     public Flashcard getCurrentQuestion() {
         return currentQuiz;
+    }
+
+    public boolean isCorrectAttempt(Answer attempt) {
+        return currentQuiz.getAnswer().equals(attempt);
     }
 
     public Queue<Flashcard> getQuizSessionQueue() {

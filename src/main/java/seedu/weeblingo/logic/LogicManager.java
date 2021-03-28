@@ -12,6 +12,7 @@ import seedu.weeblingo.logic.commands.CommandResult;
 import seedu.weeblingo.logic.commands.exceptions.CommandException;
 import seedu.weeblingo.logic.parser.WeeblingoParser;
 import seedu.weeblingo.logic.parser.exceptions.ParseException;
+import seedu.weeblingo.model.Mode;
 import seedu.weeblingo.model.Model;
 import seedu.weeblingo.model.ReadOnlyFlashcardBook;
 import seedu.weeblingo.model.flashcard.Flashcard;
@@ -22,6 +23,7 @@ import seedu.weeblingo.storage.Storage;
  */
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
+    public static final int LIST_INDEX = -1;
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;
@@ -73,11 +75,14 @@ public class LogicManager implements Logic {
     // Gets current index of quiz if quiz started
     @Override
     public int getCurrentIndex() {
-        return model.getCurrentIndex();
+        if (getCurrentMode() == Mode.MODE_QUIZ_SESSION || getCurrentMode() == Mode.MODE_CHECK_SUCCESS) {
+            return model.getCurrentIndex();
+        } else {
+            return LIST_INDEX;
+        }
     };
 
     @Override
-
     public Path getFlashcardBookFilePath() {
         return model.getFlashcardBookFilePath();
     }
@@ -92,8 +97,32 @@ public class LogicManager implements Logic {
         model.setGuiSettings(guiSettings);
     }
 
+    @Override
     public Model getModel() {
         return this.model;
+    }
+
+    @Override
+    public int getCurrentMode() {
+        return this.model.getCurrentMode();
+    }
+
+    @Override
+    public boolean showCards() {
+        if (getCurrentMode() == Mode.MODE_MENU) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    @Override
+    public boolean showAnswer() {
+        if (getCurrentMode() == Mode.MODE_CHECK_SUCCESS || getCurrentMode() == Mode.MODE_LEARN) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
