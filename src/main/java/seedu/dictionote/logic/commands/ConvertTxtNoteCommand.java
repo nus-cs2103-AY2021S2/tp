@@ -31,9 +31,9 @@ public class ConvertTxtNoteCommand extends Command {
 
     public static final String MESSAGE_CONVERT_TXT_NOTE_SUCCESS = "Converted note: %1$s";
 
-    private final Index targetIndex;
-
     private static String FILE_PATH = "./data/";
+
+    private final Index targetIndex;
 
     public ConvertTxtNoteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
