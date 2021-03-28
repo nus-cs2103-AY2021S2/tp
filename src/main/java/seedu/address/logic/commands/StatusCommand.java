@@ -30,7 +30,7 @@ public class StatusCommand extends Command {
             + "Parameters: status (clean or unclean) "
             + "INDEX1 INDEX2... (must be positive integers) "
             + "Example: " + COMMAND_WORD
-            + " clean" + " 1 2 4 ";
+            + " clean 1 2 4 ";
 
     public static final String MESSAGE_STATUS_RESIDENCE_SUCCESS = "Residences with updated status: %1$s";
     public static final String MESSAGE_ERROR_STATUS = "Must input a correct clean status (clean/unclean)";
@@ -93,6 +93,10 @@ public class StatusCommand extends Command {
         return new Residence(updatedName, updatedAddress, updatedBooking, updatedCleanStatus, updatedTags);
     }
 
+    public static String getCommandWord() {
+        return COMMAND_WORD;
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -110,5 +114,4 @@ public class StatusCommand extends Command {
         return indexArray.equals(e.indexArray)
                 && status.equals(e.status);
     }
-
 }

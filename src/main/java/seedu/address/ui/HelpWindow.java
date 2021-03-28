@@ -9,53 +9,117 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.AddBookingCommand;
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.DeleteBookingCommand;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditBookingCommand;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.StatusCommand;
+import seedu.address.logic.parser.CliSyntax;
+import seedu.address.logic.parser.Prefix;
+
 
 /**
  * Controller for a help page
  */
 public class HelpWindow extends UiPart<Stage> {
+    public static final Prefix NAME = CliSyntax.getPrefixName();
+    public static final Prefix PHONE = CliSyntax.getPrefixPhone();
+    public static final Prefix BOOKING = CliSyntax.getPrefixBooking();
+    public static final Prefix RA = CliSyntax.getPrefixResidenceAddress();
+    public static final Prefix CLEAN = CliSyntax.getPrefixCleanStatusTag();
+    public static final Prefix TAG = CliSyntax.getPrefixTag();
+    public static final Prefix START = CliSyntax.getPrefixBookingStartDate();
+    public static final Prefix END = CliSyntax.getPrefixBookingEndDate();
+    public static final Prefix RESIDENCE = CliSyntax.getPrefixResidence();
+
 
     public static final String USERGUIDE_URL = "https://github.com/AY2021S2-CS2103-T16-3/"
                                              + "tp/blob/master/docs/UserGuide.md";
 
-    public static final String ADD_PROMPT = "add - Adds a residence into ResidenceTracker."
-                                          + "\nEnter \"add n/NAME_OF_RESIDENCE a/ADDRESS "
-                                          + "[clean/[y or n]] [t/TAG]...\""
-                                          + "\nExample: add n/Clementi HDB a/459A Clementi Ave 3, #04-257, S121459 "
-                                          + "clean/n t/Reserved\n\n";
+    public static final String ADD_PROMPT = AddCommand.getCommandWord()
+                                          + " - Adds a residence into ResidenceTracker."
+                                          + "\nEnter \"" + AddCommand.getCommandWord()
+                                          + " " + NAME + "NAME_OF_RESIDENCE "
+                                          + RA + "ADDRESS "
+                                          + "[" + CLEAN + "[y or n]]"
+                                          + " [" + TAG + "TAG]...\""
+                                          + "\nExample: " + AddCommand.getCommandWord() + " "
+                                          + NAME + "Clementi HDB " + RA + "459A Clementi Ave 3, #04-257, S121459 "
+                                          + CLEAN + "n " + TAG + "Reserved\n\n";
 
-    public static final String ADDB_PROMPT = "add - Adds a booking to a residence."
-                                           + "\nEnter \"addb n/NAME_OF_BOOKER p/PHONE_OF_BOOKER "
-                                           + "s/START_TIME e/END_TIME\""
-                                           + "\nExample: add n/John p/91234567 "
-                                           + "s/01-01-2021 e/02-01-2021\n\n";
+    public static final String ADDB_PROMPT = AddBookingCommand.getCommandWord()
+                                           + " - Adds a booking to a residence."
+                                           + "\nEnter \""
+                                           + AddBookingCommand.getCommandWord() + " "
+                                           + NAME + "NAME_OF_BOOKER " + PHONE + "PHONE_OF_BOOKER "
+                                           + START + "START_TIME " + END + "END_TIME\""
+                                           + "\nExample: " + AddBookingCommand.getCommandWord()
+                                           + " " + NAME + "John " + PHONE + "91234567 "
+                                           + START + "01-01-2021 " + END + "02-01-2021\n\n";
 
-    public static final String CLEAR_PROMPT = "clear - Clears all entries from the residence tracker."
-                                            + "\nEnter \"clear\"\n\n";
+    public static final String CLEAR_PROMPT = ClearCommand.getCommandWord()
+                                            + " - Clears all entries from the residence tracker."
+                                            + "\nEnter \"" + ClearCommand.getCommandWord() + "\"\n\n";
 
-    public static final String DELETE_PROMPT = "delete - Deletes the specified residence from the list of residences."
+    public static final String DELETE_PROMPT = DeleteCommand.getCommandWord()
+                                             + " - Deletes the specified residence from the list of residences."
                                              + "based on index."
-                                             + "\nEnter \"delete INDEX\""
-                                             + "\nExample: delete 3\n\n";
+                                             + "\nEnter \"" + DeleteCommand.getCommandWord() + "INDEX\""
+                                             + "\nExample: " + DeleteBookingCommand.getCommandWord() + " 3\n\n";
 
-    public static final String DELETEB_PROMPT = "delete - Deletes the specified booking from the specified residence."
+    public static final String DELETEB_PROMPT = DeleteBookingCommand.getCommandWord()
+                                              + " - Deletes the specified booking from the specified residence."
                                               + "based on index."
-                                              + "\nEnter \"deleteb RESIDENCE_INDEX BOOKING_INDEX\""
-                                              + "\nExample: delete 3 2\n\n";
+                                              + "\nEnter \"" + DeleteBookingCommand.getCommandWord()
+                                              + " " + RESIDENCE + "RESIDENCE_INDEX " + BOOKING + "BOOKING_INDEX\""
+                                              + "\nExample: " + DeleteBookingCommand.getCommandWord()
+                                              + " " + RESIDENCE + "3 " + BOOKING + "2\n\n";
 
-    public static final String EDIT_PROMPT = "edit - Edits fields of an existing residence (other than bookings)."
-                                           + "\nEnter \"edit INDEX c/n \""
-                                           + "\nExample: edit 2 c/n\n\n";
+    public static final String EDIT_PROMPT = EditCommand.getCommandWord()
+                                           + " - Edits fields of an existing residence (other than bookings)."
+                                           + "\nEnter \"" + EditCommand.getCommandWord() + " INDEX " + CLEAN + "n\""
+                                           + "\nExample: " + EditCommand.getCommandWord() + " 2 " + CLEAN + "n\n\n";
 
-    public static final String FIND_PROMPT = "find - Finds residences whose name contains the given keyword."
-                                           + "\nEnter \"find KEYWORDS\""
-                                           + "\nExample: find Heights Condo\n\n";
+    public static final String EDITB_PROMPT = EditBookingCommand.getCommandWord()
+                                            + " - Edits the details of the booking identified by "
+                                            + "booking index of the residence identified "
+                                            + "based on the residence's index provided. "
+                                            + "\nExisting values will be overwritten by the input values."
+                                            + "\nEnter \"" + EditBookingCommand.getCommandWord()
+                                            + " " + RESIDENCE + " RESIDENCE_INDEX " + BOOKING + " BOOKING_INDEX "
+                                            + "[" + NAME + "NAME] " + "[" + PHONE + "PHONE] "
+                                            + "[" + START + "START_DATE] " + "[" + END + "END_DATE]\""
+                                            + "\nExample: " + EditBookingCommand.getCommandWord()
+                                            + " " + RESIDENCE + "1 " + BOOKING + "1 " + START + "01-01-2020\n\n";
 
-    public static final String LIST_PROMPT = "list - Shows a list of all residences in ResidenceTracker."
-                                           + "\n Enter \"list\"\n\n";
 
-    public static final String EXIT_PROMPT = "exit - Exits the program."
-                                           + "\n Enter \"exit\"\n\n";
+
+    public static final String STATUS_PROMPT = StatusCommand.getCommandWord()
+                                             + " - Updates multiple residences' clean status "
+                                             + "by the index number used in the displayed residence list."
+                                             + "\nEnter \"" + StatusCommand.getCommandWord()
+                                             + "clean INDEX1 INDEX2 ...\""
+                                             + "\n Example: " + StatusCommand.getCommandWord() + " clean 1 2 4\n\n";
+
+
+    public static final String FIND_PROMPT = FindCommand.getCommandWord()
+                                           + " - Finds residences whose name contains the given keyword."
+                                           + "\nEnter \"" + FindCommand.getCommandWord() + " KEYWORDS\""
+                                           + "\nExample: " + FindCommand.getCommandWord() + " Heights Condo\n\n";
+
+    public static final String LIST_PROMPT = ListCommand.getCommandWord()
+                                           + " - Shows a list of all residences in ResidenceTracker."
+                                           + "\nEnter \"" + ListCommand.getCommandWord() + "\"\n\n";
+
+    public static final String EXIT_PROMPT = ExitCommand.getCommandWord() + " - Exits the program."
+                                           + "\nEnter \"" + ExitCommand.getCommandWord() + "\"\n\n";
+
 
     public static final String HELP_MESSAGE = "List of commands:\n"
                                             + ADD_PROMPT
@@ -64,6 +128,8 @@ public class HelpWindow extends UiPart<Stage> {
                                             + DELETE_PROMPT
                                             + DELETEB_PROMPT
                                             + EDIT_PROMPT
+                                            + EDITB_PROMPT
+                                            + STATUS_PROMPT
                                             + FIND_PROMPT
                                             + LIST_PROMPT
                                             + EXIT_PROMPT;

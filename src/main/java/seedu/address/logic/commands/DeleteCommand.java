@@ -44,6 +44,10 @@ public class DeleteCommand extends Command {
         return new CommandResult(String.format(MESSAGE_DELETE_RESIDENCE_SUCCESS, residenceToDelete));
     }
 
+    public static String getCommandWord() {
+        return COMMAND_WORD;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

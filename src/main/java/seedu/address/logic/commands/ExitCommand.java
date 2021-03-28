@@ -16,4 +16,7 @@ public class ExitCommand extends Command {
         return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);
     }
 
+    public static String getCommandWord() {
+        return COMMAND_WORD;
+    }
 }

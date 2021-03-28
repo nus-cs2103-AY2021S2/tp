@@ -77,6 +77,10 @@ public class EditCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_RESIDENCE_SUCCESS, editedResidence));
     }
 
+    public static String getCommandWord() {
+        return COMMAND_WORD;
+    }
+
     /**
      * Creates and returns a {@code Residence} with the details of {@code residenceToEdit}
      * edited with {@code editResidenceDescriptor}.

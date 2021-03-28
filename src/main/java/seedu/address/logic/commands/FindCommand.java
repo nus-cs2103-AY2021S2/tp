@@ -33,6 +33,10 @@ public class FindCommand extends Command {
                 String.format(Messages.MESSAGE_RESIDENCE_LISTED_OVERVIEW, model.getFilteredResidenceList().size()));
     }
 
+    public static String getCommandWord() {
+        return COMMAND_WORD;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
