@@ -1,14 +1,14 @@
 package seedu.address.model.scheduler;
 
-import javafx.beans.property.ReadOnlyBooleanProperty;
-import javafx.beans.property.ReadOnlyStringProperty;
-import javafx.beans.property.SimpleStringProperty;
+import static java.util.Objects.requireNonNull;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import static java.util.Objects.requireNonNull;
+import javafx.beans.property.ReadOnlyBooleanProperty;
+import javafx.beans.property.ReadOnlyStringProperty;
+import javafx.beans.property.SimpleStringProperty;
 
 /**
  * Represents a day in a timetable. Starting from 0000, ending at next day 0000, subdivided into intervals.

@@ -29,6 +29,7 @@ import seedu.address.model.meeting.MeetingBook;
 import seedu.address.model.meeting.ReadOnlyMeetingBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyAddressBook;
+import seedu.address.model.reminder.ReadOnlyReminderBook;
 import seedu.address.testutil.MeetingBuilder;
 
 class AddMeetingCommandTest {
@@ -242,6 +243,16 @@ class AddMeetingCommandTest {
         }
 
         @Override
+        public ReadOnlyReminderBook getReminderBook() {
+            return null;
+        }
+
+        @Override
+        public void refreshReminderBook() {
+
+        }
+
+        @Override
         public boolean clashes(Meeting toCheck) {
             throw new AssertionError("This method should not be called.");
         }
@@ -264,7 +275,7 @@ class AddMeetingCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single meeting.
      */
     private class MeetingModelStubWith extends AddMeetingCommandTest.ModelStub {
         private final Meeting meeting;
