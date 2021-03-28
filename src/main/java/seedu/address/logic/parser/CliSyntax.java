@@ -20,6 +20,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_END_TIME = new Prefix("ed/");
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("desc/");
     public static final Prefix PREFIX_PRIORITY = new Prefix("pr/");
+    public static final Prefix PREFIX_PERSON_CONNECTION = new Prefix("p/");
 
 
 }

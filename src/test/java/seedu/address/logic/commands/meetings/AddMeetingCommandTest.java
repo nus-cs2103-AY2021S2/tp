@@ -275,7 +275,7 @@ class AddMeetingCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single meeting.
      */
     private class MeetingModelStubWith extends AddMeetingCommandTest.ModelStub {
         private final Meeting meeting;
