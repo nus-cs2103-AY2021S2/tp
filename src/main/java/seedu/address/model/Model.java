@@ -7,6 +7,8 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
+import seedu.address.model.budget.Budget;
+import seedu.address.model.grade.Grade;
 import seedu.address.model.person.Person;
 import seedu.address.model.schedule.ScheduleModel;
 
@@ -80,6 +82,22 @@ public interface Model extends ScheduleModel {
      */
     void setAppointmentBookFilePath(Path appointmentBookFilePath);
 
+
+    ReadOnlyGradeBook getGradeBook();
+
+    void setGradeBook(ReadOnlyGradeBook readOnlyGradeBook);
+
+    /**
+     * @return File path of Grade Book data file
+     */
+    Path getGradeBookFilePath();
+
+    /**
+     * Sets grade book file path.
+     * @param gradeBookFilePath To be supplied by user
+     */
+    void setGradeBookFilePath(Path gradeBookFilePath);
+
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
@@ -115,6 +133,11 @@ public interface Model extends ScheduleModel {
     ObservableList<Appointment> getFilteredAppointmentList();
 
     /**
+     * Returns an unmodifiable view of the filtered grade list
+     */
+    ObservableList<Grade> getFilteredGradeList();
+
+    /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
@@ -127,6 +150,13 @@ public interface Model extends ScheduleModel {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredAppointmentList(Predicate<Appointment> predicate);
+
+    /**
+     * Updates the filter of the filtered grade list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredGradeList(Predicate<Grade> predicate);
 
     /**
      * Checks if Appointment exists in appointment list.
@@ -169,4 +199,69 @@ public interface Model extends ScheduleModel {
      * @return true if Appointment DateTime exists in the appointment list
      */
     boolean hasAppointmentDateTime(AppointmentDateTime appointmentDateTime);
+
+    /**
+     * @return Budget Book
+     */
+    BudgetBook getBudgetBook();
+
+    /**
+     * @return Trus if budget already exists.
+     */
+    boolean hasBudget();
+
+    /**
+     * @param budget Budget to verify whether present.
+     * @return True if budget already exists.
+     */
+    boolean hasBudget(Budget budget);
+
+    /**
+     * Adds budget is present into budget.txt
+     */
+    void addBudget(Budget budget);
+
+    /**
+     * Edited budget with the given budget.
+     * @param budget Budget to update to.
+     */
+    void editBudget(Budget budget);
+
+    /**
+     * Deletes an already existing budget.
+     */
+    void deleteBudget();
+
+
+    /** Returns true if a grade with the same identity as {@code grade} exists in the
+    * grade book.
+    */
+    boolean hasGrade(Grade grade);
+
+    /**
+     * Deletes the given grade.
+     * The grade must exist in the grade book.
+     */
+    void deleteGrade(Grade grade);
+
+    /**
+     * Adds the given grade.
+     * {@code grade} must not already exist in the grade book.
+     */
+    void addGrade(Grade grade);
+
+    /**
+     * Replaces the given grade {@code target} with {@code editedGrade}.
+     * {@code target} must exist in the grade book.
+     * The grade identity of {@code editedGrade} must not be the same as another existing grade in the grade book.
+     */
+    void setGrade(Grade target, Grade editedGrade);
+
+    /**
+     * Method that removes grade based on index
+     *
+     * @param indexToRemove
+     */
+    void removeGradeIndex(int indexToRemove);
+
 }

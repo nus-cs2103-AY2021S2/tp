@@ -14,6 +14,8 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.appointment.DateViewPredicate;
+import seedu.address.model.budget.Budget;
+import seedu.address.model.grade.Grade;
 import seedu.address.model.person.Person;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
@@ -27,35 +29,50 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final AppointmentBook appointmentBook;
+    private final GradeBook gradeBook;
     private final ScheduleTracker scheduleTracker;
 
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Appointment> filteredAppointment;
+    private final FilteredList<Grade> filteredGrades;
     private final FilteredList<Schedule> filteredSchedule;
+
+    private final BudgetBook budgetBook;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
-                        ReadOnlyAppointmentBook appointmentBook) {
+                        ReadOnlyAppointmentBook appointmentBook,
+                        BudgetBook budgetBook, ReadOnlyGradeBook gradeBook) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(addressBook, appointmentBook, userPrefs, budgetBook);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.appointmentBook = new AppointmentBook(appointmentBook);
+        this.gradeBook = new GradeBook(gradeBook);
         this.scheduleTracker = new ScheduleTracker();
         this.userPrefs = new UserPrefs(userPrefs);
+        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredAppointment = new FilteredList<>(this.appointmentBook.getAppointmentList());
+        filteredGrades = new FilteredList<>(this.gradeBook.getGradeList());
+        this.budgetBook = new BudgetBook(budgetBook);
+
 
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.filteredAppointment = new FilteredList<>(this.appointmentBook.getAppointmentList());
         this.filteredSchedule = new FilteredList<>(this.scheduleTracker.getScheduleList());
     }
 
+    /**
+     * Default constructor without params. Initializes with empty books.
+     */
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new AppointmentBook());
+        this(new AddressBook(), new UserPrefs(), new AppointmentBook(),
+                new BudgetBook(), new GradeBook());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -173,7 +190,6 @@ public class ModelManager implements Model {
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     @Override
@@ -233,8 +249,7 @@ public class ModelManager implements Model {
 
     /**
      * Method that removes appointment based on index
-     *
-     * @param indexToRemove
+     * @param indexToRemove Index of appointment to remove
      */
     @Override
     public void removeAppointmentIndex(int indexToRemove) {
@@ -243,7 +258,6 @@ public class ModelManager implements Model {
 
     /**
      * Checks if {@code AppointmentDateTime} exists in the appointment list.
-     *
      * @param appointmentDateTime Appointment DateTime to be checked
      * @return true if Appointment DateTime exists in the appointment list
      */
@@ -251,6 +265,146 @@ public class ModelManager implements Model {
     public boolean hasAppointmentDateTime(AppointmentDateTime appointmentDateTime) {
         return !filteredAppointment.filtered(new DateViewPredicate(appointmentDateTime)).isEmpty();
     }
+
+    //============== Budget ============================================================
+
+    /**
+     * Getter method to retrieve budget book.
+     * @return Budget book.
+     */
+    public BudgetBook getBudgetBook() {
+        return budgetBook;
+    }
+
+    /**
+     * @return True is budget already exists.
+     */
+    @Override
+    public boolean hasBudget() {
+        return budgetBook.hasBudget();
+    }
+
+    /**
+     * @param budget Budget to verify whether present.
+     */
+    @Override
+    public boolean hasBudget(Budget budget) {
+        return budgetBook.hasBudget();
+    }
+
+    /**
+     * Adds budget to budget book. Budget must not be present.
+     * @param budget Budget to add.
+     */
+    @Override
+    public void addBudget(Budget budget) {
+        budgetBook.addBudget(budget);
+    }
+
+    /**
+     * Edits an already present {@code budget}.
+     * @param budget Budget to update to.
+     */
+    @Override
+    public void editBudget(Budget budget) {
+        budgetBook.setBudget(budget);
+    }
+
+    /**
+     * Removes an already existing budget.
+     */
+    @Override
+    public void deleteBudget() {
+        budgetBook.deleteBudget();
+    }
+
+    //=========== GradeList ============================================================================
+    /**
+     * Updates the filter of the filtered appointment list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    @Override
+    public void updateFilteredGradeList(Predicate<Grade> predicate) {
+        requireNonNull(predicate);
+        filteredGrades.setPredicate(predicate);
+    }
+
+    public ReadOnlyGradeBook getGradeBook() {
+        return gradeBook;
+
+    }
+
+    public void setGradeBook(ReadOnlyGradeBook readOnlyGradeBook) {
+        this.gradeBook.resetData(readOnlyGradeBook);
+    }
+
+    /**
+     * @return File path of Grade Book data file
+     */
+    public Path getGradeBookFilePath() {
+        return userPrefs.getGradeBookFilePath();
+    }
+
+    /**
+     * Sets grade book file path.
+     * @param gradeBookFilePath To be supplied by user
+     */
+    public void setGradeBookFilePath(Path gradeBookFilePath) {
+        requireNonNull(gradeBookFilePath);
+        userPrefs.setGradeBookFilePath(gradeBookFilePath);
+    }
+
+    /**
+     * Returns true if a grade with the same identity as {@code grade} exists in the grade book.
+     */
+    public boolean hasGrade(Grade grade) {
+        requireNonNull(grade);
+        return gradeBook.hasGrade(grade);
+    }
+
+    /**
+     * Deletes the given grade.
+     * The grade must exist in the grade book.
+     */
+    public void deleteGrade(Grade target) {
+        gradeBook.removeGrade(target);
+    }
+
+    /**
+     * Adds the given grade.
+     * {@code grade} must not already exist in the grade book.
+     */
+    public void addGrade(Grade grade) {
+        gradeBook.addGrade(grade);
+    }
+
+    /**
+     * Replaces the given grade {@code target} with {@code editedGrade}.
+     * {@code target} must exist in the grade book.
+     * The grade identity of {@code editedGrade} must not be the same as another existing grade in the grade book.
+     */
+    public void setGrade(Grade target, Grade editedGrade) {
+        requireAllNonNull(target, editedGrade);
+        gradeBook.setGrade(target, editedGrade);
+    }
+
+    /**
+     * Method that removes grade based on index
+     * @param indexToRemove index of grade to remove
+     */
+    @Override
+    public void removeGradeIndex(int indexToRemove) {
+        gradeBook.removeGrade(indexToRemove);
+    }
+
+    /**
+     * Returns an unmodifiable view of the filtered grade list
+     */
+    public ObservableList<Grade> getFilteredGradeList() {
+        return filteredGrades;
+    }
+
 
     @Override
     public boolean equals(Object obj) {
@@ -268,7 +422,9 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
+                && appointmentBook.equals(other.appointmentBook)
                 && filteredPersons.equals(other.filteredPersons)
+                && budgetBook.equals(other.budgetBook);
                 && filteredSchedule.equals(other.filteredSchedule);
     }
 
