@@ -28,7 +28,7 @@ public class Session {
     private final Timeslot timeslot;
     private final Subject subject;
     private final Set<Tag> tags = new HashSet<>();
-    private final Person tutor = null;
+    private final PersonId tutor = null;
     private final List<PersonId> students = new ArrayList<>();
 
     /**
@@ -83,7 +83,7 @@ public class Session {
         return subject;
     }
 
-    public Person getTutor() {
+    public PersonId getTutor() {
         return tutor;
     }
 
@@ -100,9 +100,9 @@ public class Session {
      * Adds a student to the session
      * @param student The student to be added
      */
-    public void assignStudent(Person student) {
+    public void assignStudent(PersonId student) {
         requireAllNonNull(student);
-        this.students.add(student.getPersonId());
+        this.students.add(student);
     }
 
     /**

@@ -1,2 +1,4 @@
-package seedu.address.logic.commands;public class ViewCommand {
+package seedu.address.logic.commands;
+
+public class ViewCommand {
 }
