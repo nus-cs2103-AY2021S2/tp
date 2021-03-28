@@ -16,7 +16,7 @@ import seedu.address.model.ReadOnlyGradeBook;
 
 public class JsonGradeBookStorage implements GradeBookStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonGradeBookStorage.class);
 
     private Path filePath;
 
