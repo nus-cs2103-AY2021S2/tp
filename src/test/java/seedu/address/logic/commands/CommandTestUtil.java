@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -29,7 +30,6 @@ import seedu.address.model.task.TitleContainsKeywordPredicate;
 import seedu.address.testutil.EditMemberDescriptorBuilder;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
 
-
 /**
  * Contains helper methods for testing commands.
  */
@@ -49,12 +49,14 @@ public class CommandTestUtil {
     public static final String VALID_DEADLINE_MARATHON = "2021-05-06";
     public static final String VALID_STATUS_MARATHON = "completed";
     public static final String VALID_PRIORITY_MARATHON = "low";
+    public static final String VALID_ASSIGNEE_MARATHON = "Alice Pauline";
 
     public static final String VALID_TITLE_MEETING = "MEETING";
     public static final String VALID_DESCRIPTION_MEETING = "Board meeting";
     public static final String VALID_DEADLINE_MEETING = "2021-07-02";
     public static final String VALID_STATUS_MEETING = "uncompleted";
     public static final String VALID_PRIORITY_MEETING = "high";
+    public static final String VALID_ASSIGNEE_MEETING = "Benson Meier";
 
     public static final String NEW_NAME_DESC_AMY = " " + PREFIX_NEW_NAME + VALID_NAME_AMY;
     public static final String NEW_NAME_DESC_BOB = " " + PREFIX_NEW_NAME + VALID_NAME_BOB;
@@ -69,6 +71,7 @@ public class CommandTestUtil {
     public static final String PRIORITY_TASK2 = " " + PREFIX_PRIORITY + VALID_PRIORITY_MEETING;
     public static final String STATUS_TASK1 = " " + PREFIX_STATUS + VALID_STATUS_MARATHON;
     public static final String STATUS_TASK2 = " " + PREFIX_STATUS + VALID_STATUS_MEETING;
+    public static final String ASSIGNEE_TASK2 = " " + PREFIX_ASSIGNEE + VALID_ASSIGNEE_MEETING;
     public static final String NAME_DESC_AMY = VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = VALID_NAME_BOB;
 
@@ -102,9 +105,11 @@ public class CommandTestUtil {
         DESC_BOB = new EditMemberDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
         DESC_TASK1 = new EditTaskDescriptorBuilder().withTitle(VALID_DESCRIPTION_MARATHON)
-                .withDescription(VALID_DESCRIPTION_MARATHON).withDeadline(VALID_DEADLINE_MARATHON).build();
+                .withDescription(VALID_DESCRIPTION_MARATHON).withDeadline(VALID_DEADLINE_MARATHON)
+                .withAssignees(VALID_ASSIGNEE_MARATHON).build();
         DESC_TASK2 = new EditTaskDescriptorBuilder().withTitle(VALID_DESCRIPTION_MEETING)
-                .withDescription(VALID_DESCRIPTION_MEETING).withPriority("high").build();
+                .withDescription(VALID_DESCRIPTION_MEETING).withPriority("high")
+                .withAssignees(VALID_ASSIGNEE_MEETING).build();
     }
 
     /**

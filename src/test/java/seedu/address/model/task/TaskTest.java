@@ -68,7 +68,6 @@ public class TaskTest {
         // different deadline -> returns false
         editedHomework = new TaskBuilder(HOMEWORK).withDeadline(VALID_DEADLINE_MARATHON).build();
         assertFalse(HOMEWORK.equals(editedHomework));
-
     }
 }
 

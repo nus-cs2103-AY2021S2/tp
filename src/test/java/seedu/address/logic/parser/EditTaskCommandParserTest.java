@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.ASSIGNEE_TASK2;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_TASK1;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_TASK2;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_TASK1;
@@ -11,6 +12,7 @@ import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_TASK1;
 import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_TASK2;
 import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_TASK1;
 import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_TASK2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNEE_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_MARATHON;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_MARATHON;
@@ -123,6 +125,11 @@ public class EditTaskCommandParserTest {
         expectedCommand = new EditTaskCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
+        // assignee
+        userInput = targetIndex.getOneBased() + ASSIGNEE_TASK2;
+        descriptor = new EditTaskDescriptorBuilder().withAssignees(VALID_ASSIGNEE_MEETING).build();
+        expectedCommand = new EditTaskCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
@@ -146,6 +153,5 @@ public class EditTaskCommandParserTest {
                 .withDeadline(VALID_DEADLINE_MARATHON).build();
         EditTaskCommand expectedCommand = new EditTaskCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
-
     }
 }

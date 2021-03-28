@@ -44,5 +44,4 @@ class JsonAdaptedAssignee {
         }
         return new Assignee(assigneeName);
     }
-
 }

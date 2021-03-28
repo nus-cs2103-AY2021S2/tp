@@ -1,11 +1,16 @@
 package seedu.address.testutil;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import seedu.address.model.assignee.Assignee;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskStatus;
 import seedu.address.model.task.Title;
+import seedu.address.model.util.SampleDataUtil;
 
 public class TaskBuilder {
     public static final String DEFAULT_TITLE = "Book venue";
@@ -24,7 +29,7 @@ public class TaskBuilder {
     private Deadline deadline;
     private TaskStatus status;
     private Priority priority;
-
+    private Set<Assignee> assignees;
 
     /**
      * Creates a {@code TaskBuilder} with the default details.
@@ -35,6 +40,7 @@ public class TaskBuilder {
         deadline = new Deadline(DEFAULT_DEADLINE);
         status = TaskStatus.valueOf(DEFAULT_STATUS);
         priority = Priority.valueOf(DEFAULT_PRIORITY);
+        assignees = new HashSet<>();
     }
 
     /**
@@ -46,6 +52,7 @@ public class TaskBuilder {
         deadline = taskToCopy.getDeadline();
         status = taskToCopy.getTaskStatus();
         priority = taskToCopy.getPriority();
+        assignees = new HashSet<>(taskToCopy.getAssignees());
     }
 
     /**
@@ -55,7 +62,6 @@ public class TaskBuilder {
         this.title = new Title(title);
         return this;
     }
-
 
     /**
      * Sets the {@code Description} of the {@code Task} that we are building.
@@ -89,8 +95,16 @@ public class TaskBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code assignees} into a {@code Set<Assignee>} and set it to the {@code Task} that we are building.
+     */
+    public TaskBuilder withAssignees(String ... assignees) {
+        this.assignees = SampleDataUtil.getAssigneeSet(assignees);
+        return this;
+    }
+
     public Task build() {
-        return new Task(title, description, deadline, status, priority);
+        return new Task(title, description, deadline, status, priority, assignees);
     }
 
 }

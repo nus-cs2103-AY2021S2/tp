@@ -1,7 +1,12 @@
 package seedu.address.model.util;
 
+import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.assignee.Assignee;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -39,21 +44,27 @@ public class SampleDataUtil {
         return new Task[] {
             new Task(new Title("End of Year Club Performance Review"),
                     new Description("End of Year Club Performance Review with the other EXCO member"),
-                    new Deadline("2020-12-13"), TaskStatus.valueOf("COMPLETED"), Priority.valueOf("MEDIUM")),
+                    new Deadline("2020-12-13"), TaskStatus.valueOf("COMPLETED"), Priority.valueOf("MEDIUM"),
+                    getAssigneeSet("Alex Yeoh")),
             new Task(new Title("Meeting with EXCO"), new Description("Meeting to discuss about club budget"),
-                    new Deadline("2021-04-01"), TaskStatus.valueOf("UNCOMPLETED"), Priority.valueOf("HIGH")),
+                    new Deadline("2021-04-01"), TaskStatus.valueOf("UNCOMPLETED"), Priority.valueOf("HIGH"),
+                    getAssigneeSet("Bernice Yu")),
             new Task(new Title("Meeting with MINDS stakeholders"),
                     new Description("Meeting with stakeholders to discuss about planning of charity event"),
-                    new Deadline("2021-02-23"), TaskStatus.valueOf("COMPLETED"), Priority.valueOf("MEDIUM")),
+                    new Deadline("2021-02-23"), TaskStatus.valueOf("COMPLETED"), Priority.valueOf("MEDIUM"),
+                    getAssigneeSet("Alex Yeoh")),
             new Task(new Title("Cohesion Planning"),
                     new Description("Plan for Club cohesion. Decide on logistic and games"),
-                    new Deadline("2021-08-30"), TaskStatus.valueOf("UNCOMPLETED"), Priority.valueOf("LOW")),
+                    new Deadline("2021-08-30"), TaskStatus.valueOf("UNCOMPLETED"), Priority.valueOf("LOW"),
+                    getAssigneeSet("Alex Yeoh")),
             new Task(new Title("Buy materials for upcoming Cohesion"),
                     new Description("Buy N95 masks, alcohol wipes for participants to use"),
-                    new Deadline("2021-05-15"), TaskStatus.valueOf("UNCOMPLETED"), Priority.valueOf("UNASSIGNED")),
+                    new Deadline("2021-05-15"), TaskStatus.valueOf("UNCOMPLETED"), Priority.valueOf("UNASSIGNED"),
+                    getAssigneeSet("Bernice Yu")),
             new Task(new Title("NUSSU Hackathon"),
                     new Description("Hackathon event day"),
-                    new Deadline("2021-09-01"), TaskStatus.valueOf("UNCOMPLETED"), Priority.valueOf("HIGH")),
+                    new Deadline("2021-09-01"), TaskStatus.valueOf("UNCOMPLETED"), Priority.valueOf("HIGH"),
+                    getAssigneeSet("Bernice Yu")),
         };
     }
 
@@ -67,5 +78,14 @@ public class SampleDataUtil {
             sampleAb.addTask(sampleTask);
         }
         return sampleAb;
+    }
+
+    /**
+     * Returns an assignee set containing the list of strings given.
+     */
+    public static Set<Assignee> getAssigneeSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(Assignee::new)
+                .collect(Collectors.toSet());
     }
 }
