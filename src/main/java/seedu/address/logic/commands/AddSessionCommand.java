@@ -19,6 +19,7 @@ public class AddSessionCommand extends Command {
     public static final String COMMAND_WORD = "add_session";
     public static final String MESSAGE_SUCCESS = "New session added";
     public static final String SESSION_ALREADY_EXIST_ERROR = "Session already exists";
+    public static final String SESSION_OVERLAP = "Session overlaps with an existing session";
     public static final String STUDENT_DOES_NOT_EXIST = "Student with such a name does not exists.";
     public static final String MESSAGE_ADD_SESSION_SUCCESS = "Added Session: %1$s";
 
@@ -58,6 +59,9 @@ public class AddSessionCommand extends Command {
         }
         if (model.hasSession(sessionToAdd)) {
             throw new CommandException(SESSION_ALREADY_EXIST_ERROR);
+        }
+        if (model.hasOverlappingSession(sessionToAdd)) {
+            throw new CommandException(SESSION_OVERLAP);
         }
         model.addSession(name, sessionToAdd);
         return new CommandResult(String.format(MESSAGE_ADD_SESSION_SUCCESS, sessionToAdd.toString()));

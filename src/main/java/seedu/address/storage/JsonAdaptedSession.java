@@ -38,7 +38,7 @@ public class JsonAdaptedSession {
      */
     public JsonAdaptedSession(Session source) {
         sessionDate = source.getSessionDate().getDateTime().toString();
-        duration = source.getDuration().getValue();
+        duration = source.getDuration().toString();
         subject = source.getSubject().getValue();
         fee = "" + source.getFee().getFee();
     }

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -143,6 +144,12 @@ public class ModelManager implements Model {
         return addressBook.hasSession(session);
     }
 
+    @Override
+    public boolean hasOverlappingSession(Session session) {
+        requireNonNull(session);
+        return addressBook.hasOverlappingSession(session);
+    }
+
     //=========== Filtered Student List Accessors =============================================================
 
     /**
@@ -177,6 +184,30 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredStudents.equals(other.filteredStudents);
+    }
+
+    //=========== Fees =============================================================
+
+    @Override
+    public double getFee(LocalDateTime startPeriod, LocalDateTime endPeriod) {
+        double fee = 0;
+        for (Student student : addressBook.getStudentList()) {
+            fee += getFeePerStudent(student, startPeriod, endPeriod);
+        }
+        return fee;
+    }
+
+    @Override
+    public double getFeePerStudent(Student student, LocalDateTime startPeriod, LocalDateTime endPeriod) {
+        double fee = 0;
+        for (Session session : student.getListOfSessions()) {
+            LocalDateTime dateTime = session.getSessionDate().getDateTime();
+            if (dateTime.compareTo(startPeriod) >= 0 && dateTime.compareTo(endPeriod) < 0) {
+                // This session date is within the period
+                fee += session.getFee().getFee();
+            }
+        }
+        return fee;
     }
 
 }

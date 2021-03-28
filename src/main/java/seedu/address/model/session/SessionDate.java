@@ -1,6 +1,7 @@
 package seedu.address.model.session;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -46,6 +47,23 @@ public class SessionDate {
         } catch (DateTimeParseException e) {
             checkArgument(false, MESSAGE_CONSTRAINTS + e.getMessage());
         }
+    }
+
+    /**
+     * Constructs a {@code SessionDate} using a {@code LocalDateTime} object.
+     */
+    public SessionDate(LocalDateTime localDateTime) {
+        requireAllNonNull(localDateTime);
+        this.dateTime = localDateTime;
+    }
+
+    /**
+     * Creates a new {@code SessionDate} representing the date time where the session ends.
+     * @param duration duration of the session.
+     * @return a new end {@code SessionDate}
+     */
+    public SessionDate getEndSessionDate(Duration duration) {
+        return new SessionDate(this.dateTime.plusMinutes((long) duration.getValue()));
     }
 
     public LocalDateTime getDateTime() {

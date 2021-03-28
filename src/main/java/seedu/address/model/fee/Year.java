@@ -3,7 +3,7 @@ package seedu.address.model.fee;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents the year of the fee
+ * Represents the year of the fee.
  */
 public class Year {
     public static final String MESSAGE_CONSTRAINTS = "Format of year input is incorrect. "
@@ -14,7 +14,7 @@ public class Year {
     /**
      * Constructs a {@code Year}.
      *
-     * @param year The year to get the fees from
+     * @param year The year to get the fees from.
      */
     public Year(int year) {
         checkArgument(isValidYear(year), MESSAGE_CONSTRAINTS);
