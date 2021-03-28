@@ -164,9 +164,103 @@ Examples:
   be `2022-10-11` if the existing quantity and expiry date of the 1st item are both not `10` and `2022-10-11` respectively.
 * `edit 2 n/Chocolate Bread t/` edits the name of the 2nd item to be `Chocolate Bread` and clears all existing tags if
   there are existing tags and/or existing name of the 2nd item is not `Chocolate Bread`.
+  
 
+### 3.4. Listing items : `list` <a name = "list"></a>
 
-### 3.4. Deleting an item : `delete`  <a name = "delete"></a>
+Want to view all your items? What about items at a specific location or with a specific tag? This command helps you to 
+do just that!
+
+You can use this command in 3 different ways.
+
+* #### 3.4.1. Listing all items in StoreMando 
+  This command allows you to view all the items in the inventory.
+  <br></br>
+  Format: `list`
+  <br></br>
+  Example:
+  * `list` displays all the items in the inventory.
+
+* #### 3.4.2. Listing all items at a specific location 
+  This command allows you to view all items at a specific location.
+  <br></br>
+  Format: `list l/LOCATION`
+  <div markdown="block" class="alert alert-info">
+
+  **:information_source: Notes about the command:**<br>
+  
+  * The search is case-insensitive. e.g 'room' will match 'Room'.
+  * Only full words will be matched e.g. 'Room' will not match 'Bedroom'.
+  * The order of keywords for location search does not matter. e.g. 'Room Living' will match 'Living Room'.
+  * Location matching uses each word in the String to do 'AND' search e.g. 'Room' will match 'Living room' but 'Living room 1' will not match 'Living room'<br></br>
+    
+  </div>
+  
+  Example:
+  * `list l/kitchen` displays all the items in the kitchen.
+  
+* #### 3.4.3. Listing all items with a specific tag 
+  This command allows you to view all items containing a specific tag.
+  <br></br>
+  Format: `list t/TAG`
+  <div markdown="block" class="alert alert-info">
+
+  **:information_source: Notes about the command:**<br>
+  * Tag keyword must be a single word. <br></br>
+  </div>
+  
+  Example:
+  * `list t/favourite` displays all the items with the "favourite" tag.
+  
+  
+  
+### 3.5. Finding items by name : `find`  <a name = "find"></a>
+
+If you can't find an item you are looking for, don't worry. Find command will find and display all items 
+whose names contain any of the given keywords, either partially or in full.
+
+You can use this command in 2 different ways.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the find command:**<br>
+
+* The search is case-insensitive. e.g. `milk` will match `Milk`
+* The order of the keywords does not matter. e.g. `Bread Chocolate` will match `Chocolate Bread`
+* Only the item name is searched.
+* Items matching at least one keyword will be returned. For example, `find Chocolate Milk` will
+  return `Cadbury Chocolate` and `Almond Milk`
+
+</div>
+
+* #### 3.5.1. Find items with complete name match
+  Format: `find KEYWORD [MORE_KEYWORDS]`
+  <div markdown="block" class="alert alert-info">
+
+  **:information_source: Notes about the command:**<br>
+
+  * Only full words will be matched e.g. `Chocolate` will not match `Chocolates`<br></br>
+  </div>
+
+  Examples:
+  * `find Chocolate` returns `chocolate` and `Chocolate Milk`
+  * `find potato chip` returns `Potato Biscuit` and `chocolate chip`
+
+* #### 3.5.2 Find items with partial name match
+  Format: `find */KEYWORD [MORE_KEYWORDS]`
+  <div markdown="block" class="alert alert-info">
+
+  **:information_source: Notes about the command:**<br>
+
+  * Partial words will be matched e.g. `Choco` will match `Chocolates`<br></br>
+
+  </div>
+
+  Examples:
+  * `find */Burger` returns `CheeseBurger` and `fishburger`
+  * `find */cheese egg` returns `MacAndCheese` and `eggs`
+  
+### 3.6. Deleting an item : `delete`  <a name = "delete"></a>
 
 Looking to get rid of an existing item from the inventory? Use this command.
 
@@ -187,101 +281,6 @@ Examples:
 * `find Chocolate` followed by `delete 1` deletes the first item in the result of the `find` command.
 * `list Room 2` followed by `delete 3` deletes the third item in the recorded list of items in Room 2.
 
-### 3.5. Listing items : `list` <a name = "list"></a>
-
-Want to view all your items? What about items at a specific location or with a specific tag? This command helps you to 
-do just that!
-
-You can use this command in 3 different ways.
-
-* #### 3.5.1. Listing all items in StoreMando 
-  This command allows you to view all the items in the inventory.
-  <br></br>
-  Format: `list`
-  <br></br>
-  Example:
-  * `list` displays all the items in the inventory.
-
-* #### 3.5.2. Listing all items at a specific location 
-  This command allows you to view all items at a specific location.
-  <br></br>
-  Format: `list l/LOCATION`
-  <div markdown="block" class="alert alert-info">
-
-  **:information_source: Notes about the command:**<br>
-  
-  * The search is case-insensitive. e.g 'room' will match 'Room'.
-  * Only full words will be matched e.g. 'Room' will not match 'Bedroom'.
-  * The order of keywords for location search does not matter. e.g. 'Room Living' will match 'Living Room'.
-  * Location matching uses each word in the String to do 'AND' search e.g. 'Room' will match 'Living room' but 'Living room 1' will not match 'Living room'<br></br>
-    
-  </div>
-  
-  Example:
-  * `list l/kitchen` displays all the items in the kitchen.
-  
-* #### 3.5.3. Listing all items with a specific tag 
-  This command allows you to view all items containing a specific tag.
-  <br></br>
-  Format: `list t/TAG`
-  <div markdown="block" class="alert alert-info">
-
-  **:information_source: Notes about the command:**<br>
-  * Tag keyword must be a single word. <br></br>
-  </div>
-  
-  Example:
-  * `list t/favourite` displays all the items with the "favourite" tag.
-  
-  
-  
-### 3.6. Finding items by name : `find`  <a name = "find"></a>
-
-If you can't find an item you are looking for, don't worry. Find command will find and display all items 
-whose names contain any of the given keywords, either partially or in full.
-
-You can use this command in 2 different ways.
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the find command:**<br>
-
-* The search is case-insensitive. e.g. `milk` will match `Milk`
-* The order of the keywords does not matter. e.g. `Bread Chocolate` will match `Chocolate Bread`
-* Only the item name is searched.
-* Items matching at least one keyword will be returned. For example, `find Chocolate Milk` will
-  return `Cadbury Chocolate` and `Almond Milk`
-
-</div>
-
-* #### 3.6.1. Find items with complete name match
-  Format: `find KEYWORD [MORE_KEYWORDS]`
-  <div markdown="block" class="alert alert-info">
-
-  **:information_source: Notes about the command:**<br>
-
-  * Only full words will be matched e.g. `Chocolate` will not match `Chocolates`<br></br>
-  </div>
-
-  Examples:
-  * `find Chocolate` returns `chocolate` and `Chocolate Milk`
-  * `find potato chip` returns `Potato Biscuit` and `chocolate chip`
-
-* #### 3.6.2 Find items with partial name match
-  Format: `find */KEYWORD [MORE_KEYWORDS]`
-  <div markdown="block" class="alert alert-info">
-
-  **:information_source: Notes about the command:**<br>
-
-  * Partial words will be matched e.g. `Choco` will match `Chocolates`<br></br>
-
-  </div>
-
-  Examples:
-  * `find */Burger` returns `CheeseBurger` and `fishburger`
-  * `find */cheese egg` returns `MacAndCheese` and `eggs`
- 
-  
 ### 3.7. Viewing expiring items : `reminder`  <a name = "reminder"></a>
 
 Want to know which items of yours are expiring soon? Then, this is the right command for you.<br>
