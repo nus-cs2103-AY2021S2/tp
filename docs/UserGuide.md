@@ -291,9 +291,11 @@ Format: `reminder NUMBER TIME_UNIT`
 
 **:information_source: Notes about the reminder command:**<br>
 
-* `TIME_UNIT` must be either `days` or `weeks`. `day` and `week` **will not work**.
+* `NUMBER` **can be any integer** …​, -7, -3, 0, 3, 7, …​
+* `TIME_UNIT` must be either `day(s)` or `week(s)`.
+  * `NUMBER` in the range of **[-1, 0, 1]** must have`TIME_UNIT` to be **singular**
 *  Items without expiry date will not be shown.
-*  `NUMBER` **must be a positive integer** 1, 2 , 3, …​
+
 
 </div>
 
@@ -304,6 +306,14 @@ Examples:
   banana with an expiry date of 20 March 2021.
   * `reminder 5 days` returns the chocolate only.
   * `reminder 2 weeks` returns both the chocolate and the banana.
+  <br></br>
+* `reminder -7 days` returns a list containing all items that has been expired for 7 days.
+* `reminder 2 weeks` returns a list containing all items that has been expired for 2 weeks.
+* Given today is 30 March 2021, and the inventory has 2 items: apple with expiry date of 27 March 2021 and
+  banana with an expiry date of 20 March 2021.
+  * `reminder -5 days` returns the apple only.
+  * `reminder -2 weeks` returns both the apple and the banana.
+
 
 
 ### 3.8. Sorting items : `sort` <a name = "sort"></a>
