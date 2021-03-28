@@ -9,9 +9,6 @@ public class ListCommandCommand extends Command {
 
     public static final String COMMAND_WORD = "listcommand";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
-            + "Example: " + COMMAND_WORD;
-
     public static final String SHOWING_LIST_COMMAND_MESSAGE = "Dictionary Command List: "
         + "- listcommandd for more details\n"
         + FindContentCommand.COMMAND_WORD + ", "
