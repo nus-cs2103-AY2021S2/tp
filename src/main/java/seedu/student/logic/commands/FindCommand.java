@@ -45,10 +45,10 @@ public class FindCommand extends Command {
 
         assert (filteredStudentListSize >= 0 && filteredAppointmentListSize >= 0);
 
-      if(filteredStudentListSize == 0){
+        if (filteredStudentListSize == 0) {
             return new CommandResult(String.format(Messages.MESSAGE_NONEXISTENT_MATRIC_NUM,
                     model.getFilteredStudentList().size()));
-        } else if(filteredAppointmentListSize == 0){
+        } else if (filteredAppointmentListSize == 0) {
             return new CommandResult(String.format(Messages.MESSAGE_NONEXISTENT_APPOINTMENT,
                     model.getFilteredStudentList().size()));
         } else {
