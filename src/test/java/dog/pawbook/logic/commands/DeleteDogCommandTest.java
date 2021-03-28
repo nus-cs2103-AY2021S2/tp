@@ -2,7 +2,7 @@ package dog.pawbook.logic.commands;
 
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static dog.pawbook.testutil.TypicalDogs.getTypicalAddressBook;
+import static dog.pawbook.testutil.TypicalDogs.getTypicalDatabase;
 import static dog.pawbook.testutil.TypicalIndexes.ID_FIRST_DOG;
 import static dog.pawbook.testutil.TypicalIndexes.ID_SECOND_DOG;
 import static java.util.stream.Collectors.toList;
@@ -29,7 +29,7 @@ import javafx.util.Pair;
  */
 public class DeleteDogCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalDatabase(), new UserPrefs());
 
     @Test
     public void execute_validIdUnfilteredList_success() {
@@ -40,7 +40,7 @@ public class DeleteDogCommandTest {
 
         String expectedMessage = DeleteDogCommand.MESSAGE_SUCCESS + entity;
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getDatabase(), new UserPrefs());
         expectedModel.deleteEntity(pair.getKey());
         int ownerId = ((Dog) pair.getValue()).getOwnerId();
         Owner owner = (Owner) model.getEntity(ownerId);

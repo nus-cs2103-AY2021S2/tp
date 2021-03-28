@@ -7,7 +7,7 @@ import javafx.util.Pair;
 /**
  * Unmodifiable view of an address book
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyDatabase {
 
     /**
      * Returns an unmodifiable view of the entity list.

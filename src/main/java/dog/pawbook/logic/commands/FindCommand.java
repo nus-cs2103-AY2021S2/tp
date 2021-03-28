@@ -7,7 +7,7 @@ import dog.pawbook.model.Model;
 import dog.pawbook.model.managedentity.NameContainsKeywordsPredicate;
 
 /**
- * Finds and lists all owners in address book whose name contains any of the argument keywords.
+ * Finds and lists all owners in database whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {

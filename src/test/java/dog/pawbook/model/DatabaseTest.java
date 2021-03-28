@@ -2,7 +2,7 @@ package dog.pawbook.model;
 
 import static dog.pawbook.testutil.Assert.assertThrows;
 import static dog.pawbook.testutil.TypicalOwners.ALICE;
-import static dog.pawbook.testutil.TypicalOwners.getTypicalAddressBook;
+import static dog.pawbook.testutil.TypicalOwners.getTypicalDatabase;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -17,55 +17,55 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.util.Pair;
 
-public class AddressBookTest {
+public class DatabaseTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final Database database = new Database();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getEntityList());
+        assertEquals(Collections.emptyList(), database.getEntityList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> database.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlyDatabase_replacesData() {
+        Database newData = getTypicalDatabase();
+        database.resetData(newData);
+        assertEquals(newData, database);
     }
 
     @Test
     public void hasOwner_nullOwner_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasEntity(null));
+        assertThrows(NullPointerException.class, () -> database.hasEntity(null));
     }
 
     @Test
-    public void hasOwner_ownerNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasEntity(ALICE));
+    public void hasOwner_ownerNotInDatabase_returnsFalse() {
+        assertFalse(database.hasEntity(ALICE));
     }
 
     @Test
-    public void hasOwner_ownerInAddressBook_returnsTrue() {
-        addressBook.addEntity(ALICE);
-        assertTrue(addressBook.hasEntity(ALICE));
+    public void hasOwner_ownerInDatabase_returnsTrue() {
+        database.addEntity(ALICE);
+        assertTrue(database.hasEntity(ALICE));
     }
 
     @Test
     public void getOwnerList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getEntityList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> database.getEntityList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose entities list can violate interface constraints.
+     * A stub ReadOnlyDatabase whose entities list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class DatabaseStub implements ReadOnlyDatabase {
         private final ObservableList<Pair<Integer, Entity>> entitiesWithId = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Pair<Integer, Entity>> owners) {
+        DatabaseStub(Collection<Pair<Integer, Entity>> owners) {
             this.entitiesWithId.setAll(owners);
         }
 

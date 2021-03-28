@@ -13,7 +13,7 @@ import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.owner.Owner;
 
 /**
- * Deletes a owner identified using it's displayed index from the address book.
+ * Deletes a owner identified using it's displayed index from the database.
  */
 public class DeleteOwnerCommand extends DeleteCommand {
 

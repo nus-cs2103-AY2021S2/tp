@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import dog.pawbook.model.AddressBook;
+import dog.pawbook.model.Database;
 import dog.pawbook.model.managedentity.owner.Owner;
 
 /**
@@ -60,10 +60,10 @@ public class TypicalOwners {
     private TypicalOwners() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical owners.
+     * Returns an {@code Database} with all the typical owners.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static Database getTypicalDatabase() {
+        Database ab = new Database();
         for (Owner owner : getTypicalOwners()) {
             ab.addEntity(owner);
         }

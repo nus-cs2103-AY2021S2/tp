@@ -12,7 +12,7 @@ import dog.pawbook.model.managedentity.Name;
 import dog.pawbook.model.managedentity.tag.Tag;
 
 /**
- * Represents a dog in the address book.
+ * Represents a dog in the database.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Dog extends Entity {

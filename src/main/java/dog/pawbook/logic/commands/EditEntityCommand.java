@@ -25,7 +25,7 @@ import dog.pawbook.model.managedentity.program.Program;
 import dog.pawbook.model.managedentity.tag.Tag;
 
 /**
- * Edits the details of an existing owner in the address book.
+ * Edits the details of an existing owner in the database.
  */
 public abstract class EditEntityCommand extends Command {
     public static final String COMMAND_WORD = "edit";

@@ -36,24 +36,24 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' database file path.
      */
-    Path getAddressBookFilePath();
+    Path getDatabaseFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' database file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setDatabaseFilePath(Path addressBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces database data with the data in {@code database}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setDatabase(ReadOnlyDatabase database);
 
     /**
-     * Returns the AddressBook
+     * Returns the Database.
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyDatabase getDatabase();
 
     /**
      * Returns true if an entity with the same identity as {@code entity} exists in Pawbook.
@@ -77,7 +77,7 @@ public interface Model {
     /**
      * Replaces the given entity {@code targetId} with {@code editedEntity}.
      * {@code targetId} must exist in Pawbook.
-     * The entity identity of {@code editedEntity} must not be the same as another existing entity in the address book.
+     * The entity identity of {@code editedEntity} must not be the same as another existing entity in the database.
      */
     void setEntity(int targetId, Entity editedEntity);
 

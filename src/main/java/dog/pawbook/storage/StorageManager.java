@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 import dog.pawbook.commons.core.LogsCenter;
 import dog.pawbook.commons.exceptions.DataConversionException;
-import dog.pawbook.model.ReadOnlyAddressBook;
+import dog.pawbook.model.ReadOnlyDatabase;
 import dog.pawbook.model.ReadOnlyUserPrefs;
 import dog.pawbook.model.UserPrefs;
 
@@ -17,15 +17,15 @@ import dog.pawbook.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private DatabaseStorage databaseStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code DatabaseStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(DatabaseStorage databaseStorage, UserPrefsStorage userPrefsStorage) {
         super();
-        this.addressBookStorage = addressBookStorage;
+        this.databaseStorage = databaseStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -50,30 +50,30 @@ public class StorageManager implements Storage {
     // ================ AddressBook methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getDatabaseFilePath() {
+        return databaseStorage.getDatabaseFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyDatabase> readDatabase() throws DataConversionException, IOException {
+        return readDatabase(databaseStorage.getDatabaseFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyDatabase> readDatabase(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return databaseStorage.readDatabase(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveDatabase(ReadOnlyDatabase addressBook) throws IOException {
+        saveDatabase(addressBook, databaseStorage.getDatabaseFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void saveDatabase(ReadOnlyDatabase database, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        databaseStorage.saveDatabase(database, filePath);
     }
 
 }

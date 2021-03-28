@@ -16,9 +16,9 @@ import org.junit.jupiter.api.Test;
 import dog.pawbook.commons.core.GuiSettings;
 import dog.pawbook.commons.core.Messages;
 import dog.pawbook.logic.commands.exceptions.CommandException;
-import dog.pawbook.model.AddressBook;
+import dog.pawbook.model.Database;
 import dog.pawbook.model.Model;
-import dog.pawbook.model.ReadOnlyAddressBook;
+import dog.pawbook.model.ReadOnlyDatabase;
 import dog.pawbook.model.ReadOnlyUserPrefs;
 import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.owner.Owner;
@@ -108,12 +108,12 @@ public class AddOwnerCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getDatabaseFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setDatabaseFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -123,12 +123,12 @@ public class AddOwnerCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setDatabase(ReadOnlyDatabase database) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyDatabase getDatabase() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -205,8 +205,8 @@ public class AddOwnerCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyDatabase getDatabase() {
+            return new Database();
         }
     }
 

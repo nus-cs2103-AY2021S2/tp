@@ -4,7 +4,7 @@ import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static dog.pawbook.testutil.TypicalIndexes.ID_FIRST_OWNER;
 import static dog.pawbook.testutil.TypicalIndexes.ID_SECOND_OWNER;
-import static dog.pawbook.testutil.TypicalOwners.getTypicalAddressBook;
+import static dog.pawbook.testutil.TypicalOwners.getTypicalDatabase;
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -26,7 +26,7 @@ import javafx.util.Pair;
  */
 public class DeleteOwnerCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalDatabase(), new UserPrefs());
 
     @Test
     public void execute_validIdUnfilteredList_success() {
@@ -37,7 +37,7 @@ public class DeleteOwnerCommandTest {
 
         String expectedMessage = DeleteOwnerCommand.MESSAGE_SUCCESS + entity;
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getDatabase(), new UserPrefs());
         expectedModel.deleteEntity(pair.getKey());
 
         assertCommandSuccess(deleteOwnerCommand, model, expectedMessage, expectedModel);

@@ -12,7 +12,7 @@ import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.RelatedEntityPredicate;
 
 /**
- * Shows all owners in address book whose name contains any of the argument keywords.
+ * Shows all owners in database whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class ViewCommand extends Command {

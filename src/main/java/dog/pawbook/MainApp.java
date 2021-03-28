@@ -13,15 +13,15 @@ import dog.pawbook.commons.util.ConfigUtil;
 import dog.pawbook.commons.util.StringUtil;
 import dog.pawbook.logic.Logic;
 import dog.pawbook.logic.LogicManager;
-import dog.pawbook.model.AddressBook;
+import dog.pawbook.model.Database;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.ModelManager;
-import dog.pawbook.model.ReadOnlyAddressBook;
+import dog.pawbook.model.ReadOnlyDatabase;
 import dog.pawbook.model.ReadOnlyUserPrefs;
 import dog.pawbook.model.UserPrefs;
 import dog.pawbook.model.util.SampleDataUtil;
-import dog.pawbook.storage.AddressBookStorage;
-import dog.pawbook.storage.JsonAddressBookStorage;
+import dog.pawbook.storage.DatabaseStorage;
+import dog.pawbook.storage.JsonDatabaseStorage;
 import dog.pawbook.storage.JsonUserPrefsStorage;
 import dog.pawbook.storage.Storage;
 import dog.pawbook.storage.StorageManager;
@@ -56,8 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        DatabaseStorage databaseStorage = new JsonDatabaseStorage(userPrefs.getDatabaseFilePath());
+        storage = new StorageManager(databaseStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -74,20 +74,20 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyDatabase> addressBookOptional;
+        ReadOnlyDatabase initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
+            addressBookOptional = storage.readDatabase();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleDatabase);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialData = new Database();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialData = new Database();
         }
 
         return new ModelManager(initialData, userPrefs);

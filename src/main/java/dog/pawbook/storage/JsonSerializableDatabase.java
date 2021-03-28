@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import dog.pawbook.commons.exceptions.IllegalValueException;
-import dog.pawbook.model.AddressBook;
-import dog.pawbook.model.ReadOnlyAddressBook;
+import dog.pawbook.model.Database;
+import dog.pawbook.model.ReadOnlyDatabase;
 import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.owner.Owner;
@@ -21,7 +21,7 @@ import javafx.util.Pair;
  * An Immutable AddressBook that is serializable to JSON format.
  */
 @JsonRootName(value = "pawbook")
-class JsonSerializableAddressBook {
+class JsonSerializableDatabase {
 
     public static final String MESSAGE_DUPLICATE_OWNER = "Entities list contains duplicate entit(y|ies).";
     public static final String MESSAGE_INVALID_REFERENCE_IDS = "Entities refer to broken IDs";
@@ -32,7 +32,7 @@ class JsonSerializableAddressBook {
      * Constructs a {@code JsonSerializableAddressBook} with the given owners.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("entities") List<JsonAdaptedEntity> entities) {
+    public JsonSerializableDatabase(@JsonProperty("entities") List<JsonAdaptedEntity> entities) {
         this.entities.addAll(entities);
     }
 
@@ -41,8 +41,8 @@ class JsonSerializableAddressBook {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        entities.addAll(source.getEntityList().stream().map(JsonSerializableAddressBook::adaptEntity)
+    public JsonSerializableDatabase(ReadOnlyDatabase source) {
+        entities.addAll(source.getEntityList().stream().map(JsonSerializableDatabase::adaptEntity)
                 .collect(Collectors.toList()));
     }
 
@@ -69,8 +69,8 @@ class JsonSerializableAddressBook {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public Database toModelType() throws IllegalValueException {
+        Database addressBook = new Database();
         for (JsonAdaptedEntity jsonAdaptedEntity : entities) {
             Pair<Integer, ? extends Entity> idEntityPair = jsonAdaptedEntity.toModelType();
 
