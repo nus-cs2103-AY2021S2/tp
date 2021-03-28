@@ -422,16 +422,18 @@ Use case ends.
   
 Use case ends.
 
-:pencil2: **Use case: Delete Task**
+:pencil2: **Use case: Remove all Members Assigned to a Task**
 
 **MSS**
 
-Similar to deleting a member except that user specifies task index instead of name
+1.  User requests to remove all assignees from a task, using the task's index
+2.  HEY MATEz searches for the task index 
+3.  HEY MATEz removes all members assigned to the task
 
 **Extensions**
-* 1a. The index specified by the user does not exist
-    * 1a1. HEY MATEz shows an error message indicating the index is invalid
-  
+* 2a. The index specified by the user does not exist
+    * 2a1. HEY MATEz shows an error message indicating the index is invalid
+
 Use case ends.
 
 :pencil2: **Use case: View Uncompleted Tasks**

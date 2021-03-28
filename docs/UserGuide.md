@@ -265,9 +265,9 @@ Format: `findPriority PRIORITY`
 Example: `findPriority high`
 
 <a name="removeAssignees"></a>
-### 10. Remove all Assignees from a Task: `removeAssignees`
+### 10. Remove all Members Assigned to a Task: `removeAssignees`
 
-Remove all assignees from a task by specifying the task's INDEX.
+Remove all members assigned to a task by specifying the task's INDEX.
 
 Format: `removeAssignees INDEX`
 
@@ -338,6 +338,6 @@ Action | Format, Examples
 **Find Tasks by Keywords** | `findTasks KEYWORD [MORE_KEYWORDS]`<br> e.g., `findTasks Meeting Proposal Draft`
 **Find Tasks by Priority** | `findPriority PRIORITY`<br> e.g., `findPriority HIGH`
 **Find Tasks by Deadline** | `findBefore DATE`<br> e.g., `findBefore 2021-04-05`
-**Remove all Assignees from a Task** | `removeAssignees INDEX`<br> e.g., `removeAssignees 2`
+**Remove all Members Assigned to a Task** | `removeAssignees INDEX`<br> e.g., `removeAssignees 2`
 **View Unassigned Tasks** | `viewUnassignedTasks`<br> e.g., `viewUnassignedTasks`
 **View Uncompleted Tasks** | `viewUncompletedTasks`<br> e.g., `viewUncompletedTasks`
