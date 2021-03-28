@@ -3,7 +3,8 @@ layout: page
 title: User Guide
 ---
 
-Link.me is a **desktop app aimed at insurance agents for managing clients, optimized for use via a 
+Finding it difficult to keep track of your insurance clients? Life as an insurance isn't easy. We understand. Link.me 
+is a **desktop app aimed at insurance agents for managing clients, optimized for use via a 
 Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
 If you can type fast, Link.me can get your client management tasks done faster than traditional GUI apps.
 
@@ -22,21 +23,21 @@ If you can type fast, Link.me can get your client management tasks done faster t
 
 1. Copy the file to the folder you want to use as the _home folder_ for `Link.me`.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start your Link.me. The GUI similar to the below should appear in a few seconds. Note how your Link.me contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * **`list`** : Lists all clients.
+    * **`list`** : Lists all of your clients.
 
-    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a client named `John Doe` to the app.
+    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a client named `John Doe` to your Link.me.
 
     * **`delete`**`3` : Deletes the 3rd client shown in the current list.
 
-    * **`clear`** : Deletes all clients.
+    * **`clear`** : Deletes all of your clients.
 
-    * **`exit`** : Exits the app.
+    * **`exit`** : Exits your Link.me.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -88,7 +89,7 @@ Format: `help`
 
 ### Adding a client: `add`
 
-Adds a client to the app.
+Adds a client to your Link.me.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER b/BIRTHDATE [t/TAG] [start/CONTRACT_START_DATE] [plan/INSURANCE_PLAN] [premium/INSURANCE_PREMIUM] [claimed/AMOUNT_CLAIMED_TO_DATE]`
 
@@ -103,23 +104,23 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/M b/1995-01-01 t/Investment start/2010-01-01 plan/Pro-Achiever premium/2400 claimed/0`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/91234567 t/Life g/F b/1998-02-03 plan/Guaranteed Protect Plus p$/1500`
 
-### Listing all clients : `list`
+### Listing all of your clients : `list`
 
-Shows a list of all clients in the app.
+Shows a list of all your clients in your Link.me.
 
 Format: `list`
 
 ### Editing a client : `edit`
 
-Edits an existing client in the app.
+Edits an existing client in your Link.me.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [t/TAG] [start/CONTRACT_START_DATE] [plan/INSURANCE_PLAN] [premium/INSURANCE_PREMIUM] [claimed/AMOUNT_CLAIMED_TO_DATE]`
 
-* Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits your client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the client will be removed i.e. adding of tags is not cumulative.
-* You can remove all the client’s tags by typing `t/` without
+* When editing tags, the existing tags of your client will be removed i.e. adding of tags is not cumulative.
+* You can remove all your client’s tags by typing `t/` without
     specifying any tags after it.
 * For other optional fields excluding tags, you may type `[FIELD_TYPE]/` to clear the field.
 
@@ -149,21 +150,21 @@ Examples:
 
 ### Deleting a client : `delete`
 
-Deletes the specified client from the app.
+Deletes the specified client from your Link.me.
 
 Format: `delete INDEX`
 
-* Deletes the client at the specified `INDEX`.
+* Deletes your client at the specified `INDEX`.
 * The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd client in the app.
+* `list` followed by `delete 2` deletes the 2nd client in your Link.me.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the app.
+Clears all entries from your Link.me. 
 
 Format: `clear`
 
@@ -176,13 +177,13 @@ Format: `exit`
 ### Scheduling/Unscheduling a meetup with a client : `schedule`
 
 #### Scheduling a meetup.
-Schedule a date and time with a specified client in the app.
+Schedule a date and time with a specified client in your Link.me.
 
 New schedule commands overwrite the original meeting scheduled with a client.
 
 Format: `schedule INDEX m/DESCRIPTION @ DATE_TIME`
 
-* Adds the client at the specified `INDEX`, and the `DATE_TIME` of the meeting, to the schedule list.
+* Adds your client at the specified `INDEX`, and the `DATE_TIME` of the meeting, to the schedule list.
 * The `INDEX` refers to the index number shown in the displayed client list.
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
 * `DATE_TIME` refers to the date and time of the scheduled meeting
@@ -190,7 +191,7 @@ Format: `schedule INDEX m/DESCRIPTION @ DATE_TIME`
 
 Example:
 
-* `schedule 2 m/Insurance Plan @ 2020-02-28 14:30` schedules a Insurance Plan meeting with the client indexed 2 on the 
+* `schedule 2 m/Insurance Plan @ 2020-02-28 14:30` schedules a Insurance Plan meeting with your client indexed 2 on the 
   display at 2020/2/28 2:30 pm.
 
 #### Unscheduling a meetup
@@ -199,18 +200,18 @@ Unscheduling meetups with a certain client.
 
 Format: `schedule INDEX m/remove`
 
-* Removes a scheduled meeting with the client at the specified `INDEX`.
+* Removes a scheduled meeting with your client at the specified `INDEX`.
 * The `INDEX` refers to the index number shown in the displayed client list.
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
 
-* `schedule 2 m/remove` removes meeting scheduled with the client indexed 2 on the display.
+* `schedule 2 m/remove` removes meeting scheduled with your client indexed 2 on the display.
 
 
 
 ### Filtering by tag : `filter`
-Filters the clients by address, gender, tags, insurance plan name or age.
+Filters your clients by address, gender, tags, insurance plan name or age.
 
 Format of filter command: `filter [keyword 1] [keyword 2] [keyword 3] ....`
 
@@ -221,7 +222,7 @@ Format of keyword:
 * tag: `t/[tag name]`
 * insurance plan name: `plan/[plan name]`
 
-Lists all clients that have a matching tag.
+Lists all of your clients that has attributes that match your search keywords.
 
 Only tags that are exactly the same will be matched.
 
@@ -239,7 +240,7 @@ Generates a list of notifications.
 
 Lists all client birthdays within the next two weeks then lists all meetings occurring today in order of time.
 
-The notification window is also shown on startup of the application.
+The notification window is also shown on startup of your Link.melication.
 
 ![notif message](images/notifMessage.png)
 
@@ -263,7 +264,7 @@ If your changes to the data file makes its format invalid, Link.me will discard 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Link.me home folder.
+**A**: Install your Link.me in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Link.me home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
