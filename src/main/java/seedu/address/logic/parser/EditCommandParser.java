@@ -63,8 +63,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPassengerDescriptor.setTripTime(ParserUtil.parseTripTime(argMultimap.getValue(PREFIX_TRIPTIME).get()));
         }
         if (argMultimap.getValue(PREFIX_PRICE).isPresent()) {
-            // TODO law of demeter might be violated here
-            editPassengerDescriptor.setPrice(ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get()).get());
+            editPassengerDescriptor.setPrice(ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get()));
         }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPassengerDescriptor::setTags);

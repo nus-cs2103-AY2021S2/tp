@@ -23,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Passenger> filteredPassengers;
+    private final FilteredList<Pool> filteredPools;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -36,6 +37,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredPassengers = new FilteredList<>(this.addressBook.getPassengerList());
+        this.filteredPools = new FilteredList<>(this.addressBook.getPoolList());
     }
 
     public ModelManager() {
@@ -114,13 +116,13 @@ public class ModelManager implements Model {
     @Override
     public void addPassenger(Passenger passenger) {
         addressBook.addPassenger(passenger);
-        updateFilteredPassengerList(PREDICATE_SHOW_ALL_PASSENGERS);
+        updateFilteredPassengerList(PREDICATE_SHOW_ALL);
     }
 
     @Override
     public void addPool(Pool pool) {
         addressBook.addPool(pool);
-        // TODO some kind of update filtered pool list
+        updateFilteredPassengerList(PREDICATE_SHOW_ALL);
     }
 
     @Override
@@ -147,6 +149,23 @@ public class ModelManager implements Model {
         filteredPassengers.setPredicate(predicate);
     }
 
+    //=========== Filtered Pool List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Pool} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Pool> getFilteredPoolList() {
+        return filteredPools;
+    }
+
+    @Override
+    public void updateFilteredPoolList(Predicate<Pool> predicate) {
+        requireNonNull(predicate);
+        filteredPools.setPredicate(predicate);
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -163,7 +182,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPassengers.equals(other.filteredPassengers);
+                && filteredPassengers.equals(other.filteredPassengers)
+                && filteredPools.equals(other.filteredPools);
     }
 
 }

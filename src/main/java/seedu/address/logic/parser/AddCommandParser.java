@@ -55,7 +55,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Optional<String> priceStr = argMultimap.getValue(PREFIX_PRICE);
         Optional<Price> price;
         if (priceStr.isPresent()) {
-            price = ParserUtil.parsePrice(priceStr.get());
+            price = Optional.of(ParserUtil.parsePrice(priceStr.get()));
         }
         else {
             price = Optional.empty();
