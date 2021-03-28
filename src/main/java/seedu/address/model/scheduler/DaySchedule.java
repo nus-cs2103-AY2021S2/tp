@@ -167,7 +167,7 @@ public class DaySchedule {
      * Gets the observable String of the description of the booking
      */
     public ReadOnlyStringProperty getStringProperty(int index) {
-        return new SimpleStringProperty("Hello");
+        return new SimpleStringProperty("Hello fksonosndmqlmqlkmlmqlkwdmklq");
     }
 
 
