@@ -217,6 +217,7 @@ public class ModelManager implements Model {
     public void orderAppointments() {
         ObservableList<Appointment> appointmentList = getFilteredAppointmentList();
         SortedList<Appointment> sortedAppointmentList = appointmentList.sorted(new DateTimeComparator());
+
         setAppointments(sortedAppointmentList);
     }
 
