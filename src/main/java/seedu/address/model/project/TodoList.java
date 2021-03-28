@@ -7,8 +7,8 @@ import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.project.exceptions.DuplicateTodoException;
 import seedu.address.model.task.CompletableTodo;
-import seedu.address.model.task.todo.Todo;
 
 /**
  * Represents a list of Todos.
@@ -34,19 +34,48 @@ public class TodoList {
     }
 
     /**
-     * Adds a todo to this {@code TodoList}.
+     * Adds a todo to this {@code TodoList}. The {@code CompletableTodo} must not already exist in the {@code TodoList}.
      *
      * @param todo {@code Todo} to add.
      */
-    public void addTodo(Todo todo) {
+    public void addTodo(CompletableTodo todo) {
         requireNonNull(todo);
+
+        if (hasTodo(todo)) {
+            throw new DuplicateTodoException();
+        }
+
         this.todos.add(todo);
     }
 
     /**
-     * Returns {@code TodoList} as an {@code ObservableList<CompletableTodo>}
+     * Set the {@code Todo} specified by index with a new {@code Todo}.
      *
-     * @return An {@code ObservableList<CompletableTodo>}
+     * @param i index specifies the target {@code Todo}.
+     * @param todo new {@code Todo} for this index.
+     */
+    public void setTodo(Integer i, CompletableTodo todo) {
+        requireNonNull(todo);
+
+        this.todos.set(i, todo);
+    }
+
+    /**
+     * Get the {@code Todo} specified by index.
+     *
+     * @param i index specifies the target {@code Todo}.
+     * @return {@code Todo} at this index.
+     */
+    public CompletableTodo getTodo(Integer i) {
+        requireNonNull(i);
+
+        return this.todos.get(i);
+    }
+
+    /**
+     * Returns {@code TodoList} as an {@code ObservableList<CompletableTodo>}.
+     *
+     * @return An {@code ObservableList<CompletableTodo>}.
      */
     public ObservableList<CompletableTodo> getTodos() {
         return this.todos;
@@ -77,9 +106,9 @@ public class TodoList {
     }
 
     /**
-     * Returns a copy of this {@code TodoList}
+     * Returns a copy of this {@code TodoList}.
      *
-     * @return A copy of this {@code TodoList}
+     * @return A copy of this {@code TodoList}.
      */
     public TodoList getCopy() {
         return new TodoList(getTodos());
@@ -92,6 +121,40 @@ public class TodoList {
      */
     public Stream<CompletableTodo> stream() {
         return this.todos.stream();
+    }
+
+    /**
+     * Checks if the {@code TodoList} already contains the specified {@code todoToCheck}.
+     *
+     * @param todoToCheck The todo that is to be checked.
+     * @return true if this project contains the specified todo, false otherwise.
+     */
+    public boolean hasTodo(CompletableTodo todoToCheck) {
+        for (CompletableTodo todo: todos) {
+            if (todoToCheck.equals(todo)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if a {@code Todo} in the {@code TodoList} done or not.
+     *
+     * @param index index of that {@code Todo}.
+     * @return true if that {@code Todo} is done, false otherwise.
+     */
+    public boolean checkIsDone(Integer index) {
+        return todos.get(index).getIsDone();
+    }
+
+    /**
+     * Returns the size of the {@code TodoList}.
+     *
+     * @return size of the {@code TodoList}.
+     */
+    public int size() {
+        return todos.size();
     }
 
     @Override

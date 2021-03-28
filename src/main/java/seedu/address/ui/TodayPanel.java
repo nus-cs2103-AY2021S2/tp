@@ -52,7 +52,7 @@ public class TodayPanel extends UiPart<Region> {
 
         this.projectsList = colabFolder.getProjectsList();
         this.currentDate = date;
-        this.date.setText(DateUtil.decodeDate(currentDate));
+        this.date.setText(DateUtil.decodeDateWithDay(currentDate));
 
         initEventsSection();
         initDeadlinesSection();

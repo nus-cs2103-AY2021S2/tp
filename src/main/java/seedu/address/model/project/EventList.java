@@ -1,6 +1,7 @@
 package seedu.address.model.project;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.stream.Stream;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import seedu.address.model.project.exceptions.DuplicateEventException;
 import seedu.address.model.task.repeatable.Event;
 
 /**
@@ -36,13 +38,42 @@ public class EventList {
     }
 
     /**
-     * Adds an event to this {@code EventList}.
+     * Adds an event to this {@code EventList}. The {@code Event} must not already exist in the {@code EventList}.
      *
      * @param event {@code Event} to add.
      */
     public void addEvent(Event event) {
         requireNonNull(event);
+
+        if (hasEvent(event)) {
+            throw new DuplicateEventException();
+        }
+
         this.events.add(event);
+    }
+
+    /**
+     * Set the {@code Event} specified by index with a new {@code Event}.
+     *
+     * @param i index number specifies the target {@code Event}.
+     * @param event new {@code Event} for this index.
+     */
+    public void setEvent(Integer i, Event event) {
+        requireAllNonNull(event, i);
+
+        this.events.set(i, event);
+    }
+
+    /**
+     * Get the {@code Event} specified by index in {@code EventList}.
+     *
+     * @param i index number specifies the target {@code Event}.
+     * @return The {@code Event} specified.
+     */
+    public Event getEvent(Integer i) {
+        requireNonNull(i);
+
+        return events.get(i);
     }
 
     /**
@@ -102,6 +133,30 @@ public class EventList {
         requireNonNull(dateOfEvent);
         Predicate<Event> predicate = event -> event.getAt().isEqual(dateOfEvent);
         return events.filtered(predicate);
+    }
+
+    /**
+     * Checks if the {@code EventList} already contains the specified {@code eventToCheck}.
+     *
+     * @param eventToCheck The event that is to be checked.
+     * @return true if this project contains the specified event, false otherwise.
+     */
+    public boolean hasEvent(Event eventToCheck) {
+        for (Event event: events) {
+            if (eventToCheck.equals(event)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Returns the size of the {@code EventList}.
+     *
+     * @return size of the {@code EventList}.
+     */
+    public int size() {
+        return events.size();
     }
 
     @Override

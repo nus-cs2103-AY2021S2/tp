@@ -10,7 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
-import seedu.address.model.task.CompletableTodo;
+import seedu.address.model.project.exceptions.DuplicateTodoException;
 import seedu.address.model.task.todo.Todo;
 
 public class AddTodoCommand extends Command {
@@ -49,13 +49,12 @@ public class AddTodoCommand extends Command {
         Project projectToEdit = lastShownList.get(index.getZeroBased());
         assert projectToEdit != null;
 
-        for (CompletableTodo todo: projectToEdit.getTodos().getTodos()) {
-            if (this.toAdd.equals(todo)) {
-                throw new CommandException(Messages.MESSAGE_DUPLICATE_TODO);
-            }
+        try {
+            projectToEdit.addTodo(toAdd);
+        } catch (DuplicateTodoException e) {
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_TODO);
         }
 
-        projectToEdit.addTodo(toAdd);
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
         return new CommandResult(String.format(Messages.MESSAGE_ADD_TODO_SUCCESS, toAdd));
     }
