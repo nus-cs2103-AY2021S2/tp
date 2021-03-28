@@ -3,6 +3,7 @@ package seedu.dictionote.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.dictionote.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.dictionote.logic.parser.ParserUtil.MESSAGE_INVALID_POSITION;
 import static seedu.dictionote.testutil.Assert.assertThrows;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
 import static seedu.dictionote.testutil.TypicalUiActions.EXPECTED_UI_OPTION;
@@ -220,6 +221,45 @@ public class ParserUtilTest {
             String optionWithWhitespace = WHITESPACE + VALID_UI_OPTIONS[i] + WHITESPACE;
             assertEquals(EXPECTED_UI_OPTION[i], ParserUtil.parseUiActionOption(optionWithWhitespace));
         }
+    }
+
+    @Test
+    public void parsePosition_invalidInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePosition("10 a"));
+    }
+
+    @Test
+    public void parsePosition_outOfRangeInput_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_INVALID_POSITION, ()
+            -> ParserUtil.parsePosition(Long.toString(Integer.MAX_VALUE + 1)));
+
+        assertThrows(ParseException.class, MESSAGE_INVALID_POSITION, ()
+            -> ParserUtil.parsePosition(Long.toString(10)));
+
+        assertThrows(ParseException.class, MESSAGE_INVALID_POSITION, ()
+            -> ParserUtil.parsePosition(Long.toString(0)));
+
+        assertThrows(ParseException.class, MESSAGE_INVALID_POSITION, ()
+            -> ParserUtil.parsePosition(Long.toString(-1)));
+    }
+
+    @Test
+    public void parsePosition_validInput_success() throws Exception {
+        // No whitespaces
+        assertEquals(1, ParserUtil.parsePosition("1"));
+        assertEquals(2, ParserUtil.parsePosition("2"));
+        assertEquals(3, ParserUtil.parsePosition("3"));
+        assertEquals(4, ParserUtil.parsePosition("4"));
+        assertEquals(5, ParserUtil.parsePosition("5"));
+        assertEquals(6, ParserUtil.parsePosition("6"));
+        assertEquals(7, ParserUtil.parsePosition("7"));
+        assertEquals(8, ParserUtil.parsePosition("8"));
+        assertEquals(9, ParserUtil.parsePosition("9"));
+
+        // Leading and trailing whitespaces
+        assertEquals(1, ParserUtil.parsePosition("  1  "));
+        assertEquals(5, ParserUtil.parsePosition("  5  "));
+        assertEquals(9, ParserUtil.parsePosition("  9  "));
     }
 
 }

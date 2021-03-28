@@ -96,10 +96,38 @@ public class ContactsList implements ReadOnlyContactsList {
         // credit to TorstenH. and alexey_s from CodeProject for the URL invocation code.
         // link to the posts: https://www.codeproject.com/questions/398241/how-to-open-url-in-java
         try {
-            userDesktop.mail(contactMailtoLink); // invoke user's OS default mail client.
+            // invoke user's OS default mail client.
+            userDesktop.mail(contactMailtoLink);
+
+            // Update the contact's frequency counter.
+            setContact(contact, incrementContactFrequency(contact));
         } catch (IOException e) {
             throw new InvalidContactMailtoLinkException();
         }
+    }
+
+    /**
+     * Generates a copy of the given {@code Contact} with its frequency counter incremented by one.
+     * @param contact the {@code Contact} object to be updated.
+     * @return a new {@code Contact} object that has the same attributes as the given one, but with a frequency
+     *         counter greater by one.
+     */
+    protected Contact incrementContactFrequency(Contact contact) {
+        return new Contact(
+                contact.getName(),
+                contact.getPhone(),
+                contact.getEmail(),
+                contact.getAddress(),
+                contact.getTags(),
+                contact.getFrequencyCounter().increment()
+        );
+    }
+
+    /**
+     * Sorts the contacts in the contacts list in descending order by their frequency counters.
+     */
+    public void sortByFrequencyCounter() {
+        contacts.sortByFrequencyCounter();
     }
 
     /**

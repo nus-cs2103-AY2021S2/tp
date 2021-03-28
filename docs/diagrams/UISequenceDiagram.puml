@@ -1,0 +1,60 @@
+@startuml
+!include style.puml
+
+box Model UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":DictionoteParser" as DictionoteParser LOGIC_COLOR
+participant "o:OpenCommand" as OpenCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+[-> MainWindow : executeCommand("open -c")
+activate MainWindow
+
+
+MainWindow-> LogicManager : execute("open -c")
+activate LogicManager
+
+LogicManager -> DictionoteParser : parseCommand("open -c")
+activate DictionoteParser
+
+create OpenCommand
+DictionoteParser -> OpenCommand
+activate OpenCommand
+
+OpenCommand --> DictionoteParser : o
+deactivate OpenCommand
+
+DictionoteParser --> LogicManager : o
+deactivate DictionoteParser
+
+LogicManager -> OpenCommand : execute()
+activate OpenCommand
+
+
+create CommandResult
+OpenCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> OpenCommand
+deactivate CommandResult
+
+OpenCommand --> LogicManager : r
+deactivate OpenCommand
+
+LogicManager --> MainWindow : r
+deactivate LogicManager
+
+
+MainWindow --> MainWindow : executeUiAAction(action, option)
+activate MainWindow
+MainWindow --> MainWindow
+deactivate MainWindow
+
+[<--MainWindow
+deactivate MainWindow
+@enduml
