@@ -67,18 +67,12 @@ public class GetMonthlyFeeCommand extends Command {
         Student student = model.getStudentWithName(studentName);
         LocalDateTime currMonthYear;
         LocalDateTime nextMonthYear;
-        double monthlyFee = 0;
 
         currMonthYear = getLocalDate(month, year);
         nextMonthYear = currMonthYear.plusMonths(1);
 
-        for (Session session : student.getListOfSessions()) {
-            LocalDateTime dateTime = session.getSessionDate().getDateTime();
-            if (dateTime.compareTo(currMonthYear) >= 0 && dateTime.compareTo(nextMonthYear) < 0) {
-                // This session date is within the current month
-                monthlyFee += session.getFee().getFee();
-            }
-        }
+        // Get month fee for this month for that particular student
+        double monthlyFee = model.getFeePerStudent(student, currMonthYear, nextMonthYear);
 
         return new CommandResult(String.format("Monthly fee for %s on %s, %s is $%.2f",
             studentName.toString(), month.getMonthName(), year.toString(), monthlyFee));
