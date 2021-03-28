@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.TaskBuilder;
 
-public class TitleContainsPredicateTest {
+public class TitleContainsKeywordPredicateTest {
     @Test
     public void equals() {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
