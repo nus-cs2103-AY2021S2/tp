@@ -259,7 +259,7 @@ public class ModelManager implements Model {
 
         return combinedTag;
     }
-    
+
     //=========== Dictionary ===================================================================================
     @Override
     public boolean hasContent(Content content) {

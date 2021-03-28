@@ -1,15 +1,5 @@
 package seedu.dictionote.logic.commands;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import seedu.dictionote.commons.core.Messages;
-import seedu.dictionote.commons.core.index.Index;
-import seedu.dictionote.model.Model;
-import seedu.dictionote.model.ModelManager;
-import seedu.dictionote.model.UserPrefs;
-import seedu.dictionote.model.note.Note;
-import seedu.dictionote.testutil.TypicalNoteContentConfig;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -24,6 +14,17 @@ import static seedu.dictionote.testutil.TypicalIndexes.INDEX_SECOND_NOTE;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_THIRD_NOTE;
 import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import seedu.dictionote.commons.core.Messages;
+import seedu.dictionote.commons.core.index.Index;
+import seedu.dictionote.model.Model;
+import seedu.dictionote.model.ModelManager;
+import seedu.dictionote.model.UserPrefs;
+import seedu.dictionote.model.note.Note;
+import seedu.dictionote.testutil.TypicalNoteContentConfig;
+
 public class MergeNoteCommandTest {
     private Model model = new ModelManager(getTypicalContactsList(), new UserPrefs(),
             getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
@@ -33,7 +34,7 @@ public class MergeNoteCommandTest {
     public void init() {
         model.setNoteContentConfig(TypicalNoteContentConfig.getTypicalNoteContentConfigWithNote());
     }
-    
+
     @Test
     public void execute_onEditMode_fail() {
         Model editModeModel = new ModelManager();
@@ -71,7 +72,7 @@ public class MergeNoteCommandTest {
     @Test
     public void execute_validIndexFilteredList_success() {
         showNoteAtTwoIndexes(model, INDEX_FIRST_NOTE, INDEX_SECOND_NOTE);
-        
+
         Note firstNoteToMerge = model.getFilteredNoteList().get(INDEX_FIRST_NOTE.getZeroBased());
         Note secondNoteToMerge = model.getFilteredNoteList().get(INDEX_SECOND_NOTE.getZeroBased());
         MergeNoteCommand mergeNoteCommand = new MergeNoteCommand(INDEX_FIRST_NOTE, INDEX_SECOND_NOTE);
@@ -83,7 +84,7 @@ public class MergeNoteCommandTest {
                 getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
         showNoteAtTwoIndexes(expectedModel, INDEX_FIRST_NOTE, INDEX_SECOND_NOTE);
         expectedModel.mergeNote(firstNoteToMerge, secondNoteToMerge);
-        
+
         showNoteAtIndex(expectedModel, INDEX_FIRST_NOTE);
 
         assertCommandSuccess(mergeNoteCommand, model, expectedMessage, expectedModel);
@@ -95,7 +96,7 @@ public class MergeNoteCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_NOTE;
         Index anotherOutOfBoundIndex = INDEX_THIRD_NOTE;
-        
+
         // ensures that outOfBoundIndex is still in bounds of dictionote book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getNoteBook().getNoteList().size());
 
@@ -125,5 +126,4 @@ public class MergeNoteCommandTest {
         // different note -> returns false
         assertFalse(mergeFirstCommand.equals(mergeSecondCommand));
     }
-    
 }

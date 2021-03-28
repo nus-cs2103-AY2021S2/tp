@@ -165,7 +165,7 @@ public class CommandTestUtil {
 
         Note firstNote = model.getFilteredNoteList().get(firstTargetIndex.getZeroBased());
         Note secondNote = model.getFilteredNoteList().get(secondTargetIndex.getZeroBased());
-        
+
         Predicate<Note> showSelectedNotesPredicate = x -> (x.equals(firstNote) || x.equals(secondNote));
         model.updateFilteredNoteList(showSelectedNotesPredicate);
 
