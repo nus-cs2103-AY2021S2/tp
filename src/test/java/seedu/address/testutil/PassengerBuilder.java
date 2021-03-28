@@ -26,6 +26,7 @@ public class PassengerBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final DayOfWeek DEFAULT_TRIPDAY = DayOfWeek.FRIDAY;
     public static final LocalTime DEFAULT_TRIPTIME = LocalTime.of(18, 0);
+    public static final double DEFAULT_PRICE = 1.69;
 
     private Name name;
     private Phone phone;
@@ -44,7 +45,7 @@ public class PassengerBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tripDay = new TripDay(DEFAULT_TRIPDAY);
         tripTime = new TripTime(DEFAULT_TRIPTIME);
-        price = Optional.empty();
+        price = Optional.of(new Price(DEFAULT_PRICE));
         tags = new HashSet<>();
     }
 

@@ -13,16 +13,12 @@ import java.util.Set;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPassengerDescriptor;
 import seedu.address.model.person.passenger.Passenger;
-import seedu.address.model.person.passenger.Price;
 import seedu.address.model.tag.Tag;
 
 /**
  * A utility class for Passenger.
  */
 public class PassengerUtil {
-
-    //todo remove STUB declaration
-    private static final Price STUB_VALID_PRICE = new Price(1.69);
 
     /**
      * Returns an add command string for adding the {@code passenger}.
@@ -41,8 +37,7 @@ public class PassengerUtil {
         sb.append(PREFIX_ADDRESS + passenger.getAddress().value + " ");
         sb.append(PREFIX_TRIPDAY + passenger.getTripDayAsStr() + " ");
         sb.append(PREFIX_TRIPTIME + passenger.getTripTimeAsStr() + " ");
-        //todo remove STUB price usage
-        sb.append(PREFIX_PRICE + STUB_VALID_PRICE.toString() + " ");
+        sb.append(PREFIX_PRICE + passenger.getPriceAsStr() + " ");
 
         passenger.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
