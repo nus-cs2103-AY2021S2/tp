@@ -4,11 +4,15 @@ import static java.util.Objects.requireNonNull;
 import static seedu.partyplanet.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 
 import seedu.partyplanet.commons.core.Messages;
 import seedu.partyplanet.model.Model;
 import seedu.partyplanet.model.person.Person;
+import seedu.partyplanet.model.tag.Tag;
 
 /**
  * Lists all persons in PartyPlanet to the user.
@@ -72,6 +76,11 @@ public class ListCommand extends Command {
         }
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+    }
+
+    private String displayTags(List<Person>) {
+        Map<Tag, Integer> count = new HashMap<>();
+
     }
 
     @Override
