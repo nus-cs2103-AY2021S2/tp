@@ -30,6 +30,7 @@ public class TypicalAppointments {
             .withMatric(TypicalStudents.BENSON.getMatriculationNumber().toString())
             .withStartTime("11:00").build();
 
+
     // Manually added - Student's details found in {@code CommandTestUtil}
     public static final Appointment AMY_APPOINTMENT = new AppointmentBuilder().withMatric(VALID_MATRIC_AMY)
             .withDate(VALID_DATE_AMY_APPOINTMENT).withStartTime(VALID_START_TIME_AMY_APPOINTMENT).build();
