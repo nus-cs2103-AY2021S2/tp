@@ -3,7 +3,7 @@ package seedu.student.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.student.commons.core.Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW;
+import static seedu.student.commons.core.Messages.MESSAGE_NONEXISTENT_MATRIC_NUM;
 import static seedu.student.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.student.testutil.TypicalMatricNumbers.MATRIC_NUMBER_FIFTH_STUDENT;
 import static seedu.student.testutil.TypicalMatricNumbers.MATRIC_NUMBER_FOURTH_STUDENT;
@@ -67,7 +67,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_zeroKeywords_noStudentFound() {
-        String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_NONEXISTENT_MATRIC_NUM, 0);
         StudentContainsMatriculationNumberPredicate studentPredicate = prepareStudentPredicate("A0876534R");
         AppointmentContainsMatriculationNumberPredicate appointmentPredicate = prepareAppointmentPredicate("A0876534R");
         FindCommand command = new FindCommand(studentPredicate, appointmentPredicate);

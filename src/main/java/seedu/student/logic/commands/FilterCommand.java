@@ -16,8 +16,8 @@ public class FilterCommand extends Command {
 
     public static final String COMMAND_WORD = "filter";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds student entry with "
-            + "fields that matches the specified keyword (case-sensitive) and displays the student.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Display student records with "
+            + "fields that matches the specified keyword (case-sensitive).\n"
             + "Parameters: KEYWORD...\n"
             + "Example: " + COMMAND_WORD + " vaccinated";
 
@@ -31,8 +31,13 @@ public class FilterCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredStudentList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_STUDENT_IS_LISTED, model.getFilteredStudentList().size()));
+        if (model.getFilteredStudentList().size() == 0) {
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_NO_STUDENTS_ARE_LISTED, model.getFilteredStudentList().size()));
+        } else {
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_STUDENTS_ARE_LISTED, model.getFilteredStudentList().size()));
+        }
     }
 
     @Override

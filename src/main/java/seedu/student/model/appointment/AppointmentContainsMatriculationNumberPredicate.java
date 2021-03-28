@@ -3,7 +3,6 @@ package seedu.student.model.appointment;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import seedu.student.model.student.MatriculationNumber;
 
@@ -37,7 +36,7 @@ public class AppointmentContainsMatriculationNumberPredicate implements Predicat
             }
         }
 
-        for(int k=0; k< otherAppointments.size(); k++){
+        for (int k = 0; k < otherAppointments.size(); k++) {
             appointmentList.add(otherAppointments.get(k));
         }
 
