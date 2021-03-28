@@ -92,10 +92,9 @@ There are three main areas in TutorBuddy:
   displayed and paste it into any web browser. Alternatively, press <kbd>F1</kbd> to bring up the help window.
   
 2. The main viewing area consists of 3 tabs: **Home**, **Tuition** and **Calendar**.
-* The **Home** tab contains a reminder section where a user can view their upcoming tuition lessons. There is also
-  a fee section where the user can view their tuition fees for the past 3 months.
-* The **Tuition** tab contains a Student and Session section where a user can view and manage their students and lessons.
-* The **Calendar** tab contains a weekly view of all sessions.
+* The **Home** tab gives tutors a quick overview of important matters. This includes their upcoming tuition lessons, as well as tuition fees receivable for the past 3 months.
+* The **Tuition** tab allow tutors to view and manage their students and lessons.
+* The **Calendar** tab allow tutors to have a weekly view of all sessions.
 
 3. The command box is the area for you to enter your commands. The result of each command will be shown in the result
    display box, which is located directly above the command box.
