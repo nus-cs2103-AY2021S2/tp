@@ -111,7 +111,8 @@ Examples:
 - `add-fr d/Lunch a/10`
 - `add-fr d/Dinner a/13.50`
 
-### Listing a month's financial records : `list` [coming in v1.3, subject to changes]
+### Listing a month's financial records : `list`
+[coming in v1.3, subject to changes]
 
 Lists a month's financial records.
 
@@ -128,7 +129,8 @@ Examples:
 
 - `list 02-2021`
 
-### Viewing a financial record : `view-fr` [coming in v1.3, subject to changes]
+### Viewing a financial record : `view-fr`
+[coming in v1.3, subject to changes]
 
 Displays a financial record in the budget tracker.
 
