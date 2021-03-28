@@ -424,6 +424,13 @@ Given below is the full Sequence Diagram for interactions for the `edit 1 -r` + 
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### [Feature] Sorting of contacts by date
+
+From user perspective, typically want to get birthdays of contacts in chronological order.
+
+### Implementation
+
+* Syntax for sorting `list [...] --sort birthday --order ascending`. // Five lines
 
 --------------------------------------------------------------------------------------------------------------------
 
