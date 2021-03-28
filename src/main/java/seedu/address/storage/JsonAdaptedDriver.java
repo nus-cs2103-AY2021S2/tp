@@ -13,7 +13,7 @@ import seedu.address.model.person.driver.Driver;
  */
 class JsonAdaptedDriver {
     public static final String MODEL_CLASS_NAME = "Driver";
-    public static final ModelUtil MODEL_UTIL = new ModelUtil(MODEL_CLASS_NAME);
+    public static final StorageUtil MODEL_UTIL = new StorageUtil(MODEL_CLASS_NAME);
 
     private final String name;
     private final String phone;

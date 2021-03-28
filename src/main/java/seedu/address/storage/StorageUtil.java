@@ -18,11 +18,14 @@ import seedu.address.model.pool.TripDay;
 import seedu.address.model.pool.TripTime;
 import seedu.address.model.tag.Tag;
 
-public class ModelUtil {
+/**
+ * Utility class to verify JsonAdapted classes.
+ */
+public class StorageUtil {
     private static final String MISSING_FIELD_MESSAGE_FORMAT = "%s's %s field is missing!";
     private final String modelClassname;
 
-    public ModelUtil(String modelClassname) {
+    public StorageUtil(String modelClassname) {
         this.modelClassname = modelClassname;
     }
 

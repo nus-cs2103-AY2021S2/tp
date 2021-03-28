@@ -25,7 +25,7 @@ import seedu.address.model.tag.Tag;
 class JsonAdaptedPassenger {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Passenger's %s field is missing!";
     public static final String MODEL_CLASS_NAME = "Passenger";
-    public static final ModelUtil MODEL_UTIL = new ModelUtil(MODEL_CLASS_NAME);
+    public static final StorageUtil MODEL_UTIL = new StorageUtil(MODEL_CLASS_NAME);
 
     private final String name;
     private final String phone;

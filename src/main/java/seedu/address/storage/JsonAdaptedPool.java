@@ -22,7 +22,7 @@ import seedu.address.model.tag.Tag;
 class JsonAdaptedPool {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Pool's %s field is missing!";
     public static final String MODEL_CLASS_NAME = "Pool";
-    public static final ModelUtil MODEL_UTIL = new ModelUtil(MODEL_CLASS_NAME);
+    public static final StorageUtil MODEL_UTIL = new StorageUtil(MODEL_CLASS_NAME);
 
 
     private final String tripDayStr;
