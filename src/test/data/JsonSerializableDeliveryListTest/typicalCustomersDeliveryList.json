@@ -7,7 +7,7 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "remark" : "",
     "date" : "2021-10-10",
-    "tagged" : [ "friends" ],
+    "tagged" : [ "liquid" ],
     "done": "[✓]"
   }, {
     "name" : "Benson Meier",
@@ -16,7 +16,7 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "remark" : "",
     "date" : "2021-10-10",
-    "tagged" : [ "owesMoney", "friends" ],
+    "tagged" : [ "hot", "fragile" ],
     "done": "[✓]"
   }, {
     "name" : "Carl Kurz",
@@ -34,7 +34,7 @@
     "address" : "10th street",
     "remark" : "",
     "date" : "2021-10-10",
-    "tagged" : [ "friends" ],
+    "tagged" : [ "heavy" ],
     "done": "[✓]"
   }, {
     "name" : "Elle Meyer",
@@ -43,7 +43,7 @@
     "address" : "michegan ave",
     "remark" : "",
     "date" : "2021-10-10",
-    "tagged" : [ ],
+    "tagged" : [ "liquid" ],
     "done": "[✓]"
   }, {
     "name" : "Fiona Kunz",

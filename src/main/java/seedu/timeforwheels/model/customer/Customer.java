@@ -71,6 +71,10 @@ public class Customer {
         return date;
     }
 
+    public Set<Tag> getTag() {
+        return this.tags;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
