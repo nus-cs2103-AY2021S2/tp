@@ -5,8 +5,5 @@ public enum EventPriority {
     MEDIUM,
     LOW;
 
-
     public static final String MESSAGE_CONSTRAINTS = "Event priority should be HIGH, MEDIUM, or LOW";
-
-
 }
