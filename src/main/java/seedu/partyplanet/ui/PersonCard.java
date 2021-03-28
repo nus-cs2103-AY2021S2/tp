@@ -77,7 +77,8 @@ public class PersonCard extends UiPart<Region> {
      */
     private void addDetail(String detail) {
         Label label = new Label();
-        label.setText(detail);
+        label.setText("\u2022 " + detail);
+        label.setWrapText(true);
         label.getStyleClass().add("cell_small_label");
         details.getChildren().add(label);
     }
