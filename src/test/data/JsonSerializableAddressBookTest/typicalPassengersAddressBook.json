@@ -63,5 +63,6 @@
     "price" : "1.69",
     "driver" : "No driver assigned to this passenger.",
     "tagged" : [ ]
-  } ]
+  } ],
+  "pools" : [ ]
 }
