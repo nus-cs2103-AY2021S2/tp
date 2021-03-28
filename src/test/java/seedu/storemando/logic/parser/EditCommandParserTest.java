@@ -13,8 +13,8 @@ import static seedu.storemando.logic.commands.CommandTestUtil.LOCATION_DESC_CHEE
 import static seedu.storemando.logic.commands.CommandTestUtil.NAME_DESC_CHEESE;
 import static seedu.storemando.logic.commands.CommandTestUtil.QUANTITY_DESC_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.QUANTITY_DESC_CHEESE;
-import static seedu.storemando.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.storemando.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.storemando.logic.commands.CommandTestUtil.TAG_DESC_ESSENTIAL;
+import static seedu.storemando.logic.commands.CommandTestUtil.TAG_DESC_FAVOURITE;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_CHEESE;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_BANANA;
@@ -22,8 +22,8 @@ import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_CHE
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_CHEESE;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_CHEESE;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_ESSENTIAL;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_FAVOURITE;
 import static seedu.storemando.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.storemando.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.storemando.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -98,11 +98,11 @@ public class EditCommandParserTest {
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Item} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY,
+        assertParseFailure(parser, "1" + TAG_DESC_FAVOURITE + TAG_DESC_ESSENTIAL + TAG_EMPTY,
             Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND,
+        assertParseFailure(parser, "1" + TAG_DESC_FAVOURITE + TAG_EMPTY + TAG_DESC_ESSENTIAL,
             Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND,
+        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FAVOURITE + TAG_DESC_ESSENTIAL,
             Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
@@ -114,12 +114,12 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_ITEM;
 
-        String userInput = targetIndex.getOneBased() + QUANTITY_DESC_BANANA + TAG_DESC_HUSBAND
-            + EXPIRYDATE_DESC_CHEESE + LOCATION_DESC_CHEESE + NAME_DESC_CHEESE + TAG_DESC_FRIEND;
+        String userInput = targetIndex.getOneBased() + QUANTITY_DESC_BANANA + TAG_DESC_ESSENTIAL
+            + EXPIRYDATE_DESC_CHEESE + LOCATION_DESC_CHEESE + NAME_DESC_CHEESE + TAG_DESC_FAVOURITE;
 
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withName(VALID_NAME_CHEESE)
             .withQuantity(VALID_QUANTITY_BANANA).withExpiryDate(VALID_EXPIRYDATE_CHEESE)
-            .withLocation(VALID_LOCATION_CHEESE).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+            .withLocation(VALID_LOCATION_CHEESE).withTags(VALID_TAG_ESSENTIAL, VALID_TAG_FAVOURITE).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -165,8 +165,8 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
-        userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
-        descriptor = new EditItemDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
+        userInput = targetIndex.getOneBased() + TAG_DESC_FAVOURITE;
+        descriptor = new EditItemDescriptorBuilder().withTags(VALID_TAG_FAVOURITE).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -176,13 +176,13 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_ITEM;
 
         String userInput = targetIndex.getOneBased() + QUANTITY_DESC_CHEESE + LOCATION_DESC_CHEESE
-            + EXPIRYDATE_DESC_CHEESE + TAG_DESC_FRIEND + QUANTITY_DESC_CHEESE + LOCATION_DESC_CHEESE
-            + EXPIRYDATE_DESC_CHEESE + TAG_DESC_FRIEND + QUANTITY_DESC_BANANA + LOCATION_DESC_BANANA
-            + EXPIRYDATE_DESC_BANANA + TAG_DESC_HUSBAND;
+            + EXPIRYDATE_DESC_CHEESE + TAG_DESC_FAVOURITE + QUANTITY_DESC_CHEESE + LOCATION_DESC_CHEESE
+            + EXPIRYDATE_DESC_CHEESE + TAG_DESC_FAVOURITE + QUANTITY_DESC_BANANA + LOCATION_DESC_BANANA
+            + EXPIRYDATE_DESC_BANANA + TAG_DESC_ESSENTIAL;
 
         EditCommand.EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withQuantity(VALID_QUANTITY_BANANA)
-            .withExpiryDate(VALID_EXPIRYDATE_BANANA).withLocation(VALID_LOCATION_BANANA).withTags(VALID_TAG_FRIEND,
-                VALID_TAG_HUSBAND).build();
+            .withExpiryDate(VALID_EXPIRYDATE_BANANA).withLocation(VALID_LOCATION_BANANA).withTags(VALID_TAG_FAVOURITE,
+                VALID_TAG_ESSENTIAL).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
