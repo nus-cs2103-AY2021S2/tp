@@ -90,9 +90,9 @@ public class TimeslotParser {
      */
     public static LocalDateTime parseNextDateTime(String userInput) throws ParseException {
         boolean isInvalidTime = false;
-        final Pattern NEXT_DATE_TIME_FORMAT = Pattern.compile("(?<nextKeyword>\\w+)\\s(?<nextTimePeriod>\\w+)"
+        final Pattern nextDateTimeFormat = Pattern.compile("(?<nextKeyword>\\w+)\\s(?<nextTimePeriod>\\w+)"
                         + "\\s(?<timeInput>.*)", Pattern.CASE_INSENSITIVE);
-        final Matcher nextDateTimeMatcher = NEXT_DATE_TIME_FORMAT.matcher(userInput);
+        final Matcher nextDateTimeMatcher = nextDateTimeFormat.matcher(userInput);
 
         try {
             LocalDateTime currentDateTime = LocalDateTime.now().withSecond(0).withNano(0);
