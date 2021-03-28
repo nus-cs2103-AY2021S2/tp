@@ -68,7 +68,7 @@ class JsonAdaptedPassenger {
         address = source.getAddress().value;
         tripDayStr = source.getTripDayAsStr();
         tripTimeStr = source.getTripTimeAsStr();
-        priceStr = source.getPriceAsStr();
+        priceStr = source.getPrice().map(Price::toString).orElse("");
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -135,12 +135,16 @@ class JsonAdaptedPassenger {
 
         final Set<Tag> modelTags = new HashSet<>(passengerTags);
 
-        final boolean priceIsValid = Optional.ofNullable(priceStr).map(Price::isValidPrice).orElse(true);
-        if (!priceIsValid) {
-            throw new IllegalValueException(Price.MESSAGE_CONSTRAINTS);
-        }
+        final Optional<Price> modelPrice;
+        if (!priceStr.isEmpty()) {
+            if (!Price.isValidPrice(priceStr)) {
+                throw new IllegalValueException(Price.MESSAGE_CONSTRAINTS);
+            }
 
-        final Optional<Price> modelPrice = Optional.ofNullable(priceStr).map(Double::parseDouble).map(Price::new);
+            modelPrice = Optional.of(priceStr).map(Double::parseDouble).map(Price::new);
+        } else {
+            modelPrice = Optional.empty();
+        }
 
         return new Passenger(modelName, modelPhone, modelAddress, modelTripDay, modelTripTime, modelPrice,
                 modelTags);
