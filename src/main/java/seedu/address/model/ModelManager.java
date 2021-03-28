@@ -228,6 +228,12 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedMeeting);
         meetingBook.setMeeting(target, editedMeeting);
     }
+
+    public void updateMeeting(Meeting target, Meeting editedMeeting) {
+        requireAllNonNull(target, editedMeeting);
+        meetingBook.updateMeeting(target, editedMeeting);
+    }
+
     //TODO: Set MeetingBook file path in userPrefs? low priority feature(nice to have)
 
     //========= Clashing Meetings ================================================================
@@ -237,6 +243,10 @@ public class ModelManager implements Model {
      */
     public boolean clashes(Meeting toCheck) {
         return meetingBook.clashes(toCheck);
+    }
+
+    public boolean clashesExceptOne(Meeting meetingNotIncluded, Meeting toCheck) {
+        return meetingBook.clashesExceptOne(meetingNotIncluded, toCheck);
     }
 
     /**

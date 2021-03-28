@@ -4,7 +4,7 @@ import seedu.address.logic.parser.DateTimeUtil;
 
 import java.time.LocalTime;
 
-import static seedu.address.commons.util.AppUtil.checkArgument;
+
 
 /**
  * Represents a continuous time interval in a day. Must have explicit start time and end time.
@@ -24,7 +24,7 @@ public class TimeInterval {
      */
 
     public TimeInterval(LocalTime startTime, LocalTime endTime) {
-        assert isValidTimeFrame(startTime, endTime);
+        //assert isValidTimeFrame(startTime, endTime);      // This assert statement does not work
         this.startTime = startTime;
         this.endTime = endTime;
     }

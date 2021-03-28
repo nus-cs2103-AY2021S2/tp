@@ -1,10 +1,14 @@
 
 package seedu.address.logic.parser.meetings;
+
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.CONNECTION1_DESC;
+import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.CONNECTION2_DESC;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.DESCRIPTION_DESC_MEETING1;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.DESCRIPTION_DESC_MEETING2;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.END_DESC_MEETING1;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.END_DESC_MEETING2;
+import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.INVALID_CONNECTION1_DESC;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.INVALID_DATETIME_DESC;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.INVALID_PRIORITY_DESC;
@@ -85,6 +89,39 @@ class AddMeetingCommandParserTest {
                 + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING1
                 + TAG_DESC_MEETING1 + TAG_DESC_MEETING2, new AddMeetingCommand(expectedMeetingMultipleGroups));
 
+    }
+
+    @Test
+    public void parse_personMeetingConnection() {
+        Meeting expectedMeeting = new MeetingBuilder(MEETING1).withGroups(VALID_TAG_MEETING1).build();
+
+        // parse one connection will not influence the meeting object.
+        assertParseSuccess(parser, NAME_DESC_MEETING1 + START_DESC_MEETING1
+            + END_DESC_MEETING1 + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING2
+            + DESCRIPTION_DESC_MEETING1 + TAG_DESC_MEETING1 + CONNECTION1_DESC, new AddMeetingCommand(expectedMeeting));
+
+        assertParseSuccess(parser, NAME_DESC_MEETING1 + START_DESC_MEETING1
+            + END_DESC_MEETING1 + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING2
+            + DESCRIPTION_DESC_MEETING1 + TAG_DESC_MEETING1 + CONNECTION1_DESC + CONNECTION2_DESC,
+            new AddMeetingCommand(expectedMeeting));
+
+        // parse two connection will not influence the meeting object.
+        assertParseSuccess(parser, NAME_DESC_MEETING1 + START_DESC_MEETING1
+            + END_DESC_MEETING1 + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING2
+            + DESCRIPTION_DESC_MEETING1 + TAG_DESC_MEETING1 + CONNECTION1_DESC + CONNECTION2_DESC,
+            new AddMeetingCommand(expectedMeeting));
+
+        // parse invalid connection statement will raise an exception
+        assertParseFailure(parser, NAME_DESC_MEETING1 + START_DESC_MEETING1
+            + END_DESC_MEETING1 + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING2
+            + DESCRIPTION_DESC_MEETING1 + TAG_DESC_MEETING1 + INVALID_CONNECTION1_DESC,
+            "Index of a person or a meeting is not a non-zero unsigned integer.");
+
+        // as long as there is one invalid input of index, it will raise an error
+        assertParseFailure(parser, NAME_DESC_MEETING1 + START_DESC_MEETING1
+                + END_DESC_MEETING1 + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING2
+                + DESCRIPTION_DESC_MEETING1 + TAG_DESC_MEETING1 + CONNECTION1_DESC + INVALID_CONNECTION1_DESC,
+            "Index of a person or a meeting is not a non-zero unsigned integer.");
     }
 
     @Test

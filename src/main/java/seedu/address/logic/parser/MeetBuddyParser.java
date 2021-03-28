@@ -13,6 +13,7 @@ import seedu.address.logic.commands.meetings.AddMeetingCommand;
 import seedu.address.logic.commands.meetings.DeleteMeetingCommand;
 import seedu.address.logic.commands.meetings.SortMeetingCommand;
 import seedu.address.logic.commands.meetings.UnsortMeetingCommand;
+import seedu.address.logic.commands.meetings.EditMeetingCommand;
 import seedu.address.logic.commands.persons.AddPersonCommand;
 import seedu.address.logic.commands.persons.ClearPersonCommand;
 import seedu.address.logic.commands.persons.DeletePersonCommand;
@@ -28,6 +29,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.meetings.AddMeetingCommandParser;
 import seedu.address.logic.parser.meetings.DeleteMeetingCommandParser;
 import seedu.address.logic.parser.meetings.SortMeetingCommandParser;
+import seedu.address.logic.parser.meetings.EditMeetingCommandParser;
 import seedu.address.logic.parser.persons.AddPersonCommandParser;
 import seedu.address.logic.parser.persons.DeletePersonCommandParser;
 import seedu.address.logic.parser.persons.EditPersonCommandParser;
@@ -94,6 +96,9 @@ public class MeetBuddyParser {
         //============================= Meeting ==============================
         case AddMeetingCommand.COMMAND_WORD:
             return new AddMeetingCommandParser().parse(arguments);
+
+        case EditMeetingCommand.COMMAND_WORD:
+            return new EditMeetingCommandParser().parse(arguments);
 
         case DeleteMeetingCommand.COMMAND_WORD:
             return new DeleteMeetingCommandParser().parse(arguments);

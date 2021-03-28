@@ -194,6 +194,11 @@ class AddMeetingCommandTest {
         }
 
         @Override
+        public void updateMeeting(Meeting target, Meeting editedMeeting) {
+
+        }
+
+        @Override
         public ObservableList<Meeting> getFilteredMeetingList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -268,6 +273,11 @@ class AddMeetingCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public boolean clashesExceptOne(Meeting meetingNotIncluded, Meeting toCheck) {
+            return false;
+        }
+
         /**
          * Gets a list of meetings from the model that overlap with this meeting.
          */
@@ -286,7 +296,7 @@ class AddMeetingCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single meeting.
      */
     private class MeetingModelStubWith extends AddMeetingCommandTest.ModelStub {
         private final Meeting meeting;
