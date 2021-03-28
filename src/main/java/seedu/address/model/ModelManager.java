@@ -23,6 +23,8 @@ import seedu.address.model.person.AddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyAddressBook;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.reminder.ReadOnlyReminderBook;
+import seedu.address.model.reminder.ReminderBook;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -41,6 +43,8 @@ public class ModelManager implements Model {
     // TODO: Modify the signature of ModelManager so that we can add connection inside it.
     private final PersonMeetingConnection connection;
 
+    private final ReminderBook reminderBook;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs. MeetingBook will be set to default.
      */
@@ -57,6 +61,7 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         // TODO: Modify the signature of ModelManager so that we can add connection inside it.
         this.connection = new PersonMeetingConnection();
+        this.reminderBook = new ReminderBook(this.meetingBook);
     }
 
     /**
@@ -76,6 +81,7 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         // TODO: Modify the signature of ModelManager so that we can add connection inside it.
         this.connection = new PersonMeetingConnection();
+        this.reminderBook = new ReminderBook(this.meetingBook);
     }
 
     /**
@@ -95,6 +101,8 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         // TODO: Modify the signature of ModelManager so that we can add connection inside it.
         this.connection = connection;
+        this.reminderBook = new ReminderBook(this.meetingBook);
+
     }
 
 
@@ -306,6 +314,16 @@ public class ModelManager implements Model {
         UniquePersonList persons = connection.getPersonsByMeeting(meeting);
         assert persons != null;
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ReadOnlyReminderBook getReminderBook() {
+        return reminderBook;
+    }
+
+    @Override
+    public void refreshReminderBook() {
+        reminderBook.refreshRemindersFromMeetings(this.meetingBook);
     }
 
     //=========== Filtered Person List Accessors =============================================================

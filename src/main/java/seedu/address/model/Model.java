@@ -13,6 +13,7 @@ import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.ReadOnlyMeetingBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyAddressBook;
+import seedu.address.model.reminder.ReadOnlyReminderBook;
 
 /**
  * The API of the Model component.
@@ -111,7 +112,6 @@ public interface Model {
     boolean hasMeeting(Meeting meeting);
 
 
-
     /**
      * Deletes the given meeting.
      * The meeting must exist in the meeting book.
@@ -203,5 +203,13 @@ public interface Model {
      * Empty list will be returned if there is no value found in the hashMap.
      */
     ObservableList<Person> getFilteredPersonListByMeetingConnection(Meeting meeting);
+
+
+    // ------ Reminders ------
+
+    ReadOnlyReminderBook getReminderBook();
+
+    void refreshReminderBook();
+
 
 }
