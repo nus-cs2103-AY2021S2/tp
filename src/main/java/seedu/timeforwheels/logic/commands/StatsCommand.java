@@ -3,15 +3,15 @@ package seedu.timeforwheels.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.timeforwheels.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 
-import seedu.timeforwheels.model.Model;
-import seedu.timeforwheels.model.customer.Customer;
-import seedu.timeforwheels.model.tag.Tag;
-
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
+
+import seedu.timeforwheels.model.Model;
+import seedu.timeforwheels.model.customer.Customer;
+import seedu.timeforwheels.model.tag.Tag;
 
 /**
  * Lists all customer in the delivery list to the user.
@@ -26,18 +26,7 @@ public class StatsCommand extends Command {
             + "Fragile Deliveries : %3$s\n" + "Liquid Deliveries : %4$s\n"
             + "Heavy Deliveries : %5$s\n" + "Hot Deliveries : %6$s\n"
             + "Tagless Deliveries : %7$s\n";
-    public double doneCounter;
-    public int deliveriesDone;
-    public int deliveriesNotDone;
-    public double liquidPercentage;
-    public double heavyPercentage;
-    public double fragilePercentage;
-    public double taglessPercentage;
-    public double donePercentage;
-    public double hotPercentage;
-    public double deliveriesNotdue;
-    public double deliveriesDue;
-    public double deliveriesDuePercentage;
+
 
     public final String[] tagList = {"[hot]", "[liquid]", "[heavy]", "[fragile]"};
     public final HashMap<String, Integer> tagMap = new HashMap<>();
@@ -48,6 +37,18 @@ public class StatsCommand extends Command {
         List<Customer> lastShownList = model.getFilteredCustomerList();
         double size = lastShownList.size();
         double tagless = 0;
+        double doneCounter = 0;
+        int deliveriesDone;
+        int deliveriesNotDone;
+        double liquidPercentage;
+        double heavyPercentage;
+        double fragilePercentage;
+        double taglessPercentage;
+        double donePercentage;
+        double hotPercentage;
+        double deliveriesNotdue = 0;
+        double deliveriesDue = 0;
+        double deliveriesDuePercentage;
 
         for (Customer customer : lastShownList) {
             if (customer.getDone().toString().equals(CHECKMARK)) {
@@ -60,11 +61,11 @@ public class StatsCommand extends Command {
                 tagless += 1;
             }
             for (Tag tag : customerTag) {
-               for (String taglist : tagList) {
-                   if (tag.toString().equals(taglist)) {
-                       tagMap.put(tag.toString(), tagMap.getOrDefault(tag.toString(), 0) + 1);
-                   }
-               }
+                for (String taglist : tagList) {
+                  if (tag.toString().equals(taglist)) {
+                    tagMap.put(tag.toString(), tagMap.getOrDefault(tag.toString(), 0) + 1);
+                    }
+                }
             }
         }
         liquidPercentage = (tagMap.get("[liquid]") / size) * 100;
@@ -75,7 +76,6 @@ public class StatsCommand extends Command {
         donePercentage = (doneCounter / size) * 100;
         deliveriesDone = (int) doneCounter;
         deliveriesNotDone = (int) size - deliveriesDone;
-        doneCounter = 0;
 
         LocalDate now = LocalDate.now();
         for (Customer customer : lastShownList) {
@@ -89,14 +89,13 @@ public class StatsCommand extends Command {
 
         deliveriesDuePercentage = (deliveriesDue / size) * 100;
 
-        int liquid  = tagMap.get("[liquid]");
+        int liquid = tagMap.get("[liquid]");
         int fragile = tagMap.get("[fragile]");
         int hot = tagMap.get("[hot]");
         int heavy = tagMap.get("[heavy]");
         int deliveryDue = (int) deliveriesDue;
         int deliveryNotDue = (int) size - deliveryDue;
         int notag = (int) tagless;
-        deliveriesNotdue = 0;
 
         requireNonNull(model);
         model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
