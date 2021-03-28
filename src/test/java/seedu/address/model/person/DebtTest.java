@@ -22,27 +22,33 @@ public class DebtTest {
     }
 
     @Test
-    public void isValidDebt() {
+    public void isValidDebt_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> Debt.isValidDebt(null));
-
+    }
+    @Test
+    public void isValidDebt_invalidDebt_false() {
         assertFalse(Debt.isValidDebt(""));
         assertFalse(Debt.isValidDebt(" "));
         assertFalse(Debt.isValidDebt("abc"));
+    }
 
+    @Test
+    public void isValidDebt_validDebt_true() {
         assertTrue(Debt.isValidDebt("-2"));
         assertTrue(Debt.isValidDebt("0"));
         assertTrue(Debt.isValidDebt("100.1"));
         assertTrue(Debt.isValidDebt("0.01"));
+
     }
 
     @Test
-    public void add() {
+    public void add_correctDebt_true() {
         Debt result = new Debt("9");
         assertTrue(result.equals(Debt.add(test1, test2)));
     }
 
     @Test
-    public void subtract() {
+    public void subtract_correctDebt_true() {
         Debt result = new Debt("1");
         Debt result2 = new Debt("-1");
 

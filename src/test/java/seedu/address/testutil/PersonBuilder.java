@@ -50,8 +50,8 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         birthday = new Birthday(DEFAULT_BIRTHDAY);
         address = new Address(DEFAULT_ADDRESS);
-        debt = new Debt("0");
         picture = null;
+        debt = new Debt("0");
         tags = new HashSet<>();
         dates = new ArrayList<>();
         meetings = new ArrayList<>();
@@ -172,6 +172,6 @@ public class PersonBuilder {
      */
     public Person build() {
         return new Person(name, phone, email, birthday, address,
-                picture, tags, dates, meetings, debt);
+                picture, debt, tags, dates, meetings);
     }
 }

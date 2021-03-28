@@ -47,8 +47,9 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("birthday") String birthday,
             @JsonProperty("address") String address, @JsonProperty("picture") JsonAdaptedPicture picture,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("dates") List<JsonAdaptedEvent> dates,
-            @JsonProperty("meetings") List<JsonAdaptedEvent> meetings, @JsonProperty("debt") String debt) {
+            @JsonProperty("debt") String debt, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("dates") List<JsonAdaptedEvent> dates,
+            @JsonProperty("meetings") List<JsonAdaptedEvent> meetings) {
 
         this.name = name;
         this.phone = phone;
@@ -76,12 +77,10 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        debt = source.getDebt().value.toString();
         birthday = source.getBirthday().toString();
-
         Optional<Picture> srcPic = source.getPicture();
         picture = srcPic.isEmpty() ? null : new JsonAdaptedPicture(srcPic.get());
-
+        debt = source.getDebt().value.toString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -140,6 +139,11 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        Picture modelPicture = null;
+        if (picture != null) {
+            modelPicture = picture.toModelType();
+        }
+
         if (debt == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Debt.class.getSimpleName()));
         }
@@ -147,11 +151,6 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Debt.MESSAGE_CONSTRAINTS);
         }
         final Debt modelDebt = new Debt(debt);
-
-        Picture modelPicture = null;
-        if (picture != null) {
-            modelPicture = picture.toModelType();
-        }
 
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
@@ -170,6 +169,6 @@ class JsonAdaptedPerson {
         }
 
         return new Person(modelName, modelPhone, modelEmail, modelBirthday, modelAddress, modelPicture,
-                modelTags, modelDates, modelMeetings, modelDebt);
+                modelDebt, modelTags, modelDates, modelMeetings);
     }
 }

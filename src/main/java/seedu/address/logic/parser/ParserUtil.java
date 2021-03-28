@@ -224,9 +224,9 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String} as an {@code Debt}
+     * Parses a {@code String} as a positive {@code Debt}
      */
-    public static Debt parseDebt(String debt) throws ParseException {
+    public static Debt parsePositiveDebt(String debt) throws ParseException {
         requireNonNull(debt);
         String trimmedDebt = debt.trim();
         if (!Debt.isValidDebt(trimmedDebt)) {

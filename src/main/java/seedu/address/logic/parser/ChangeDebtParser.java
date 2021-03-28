@@ -40,7 +40,7 @@ public class ChangeDebtParser implements Parser<ChangeDebtCommand> {
             }
         }
         Index index = ParserUtil.parseIndex(argArr[0]);
-        Debt debt = ParserUtil.parseDebt(argArr[1]);
+        Debt debt = ParserUtil.parsePositiveDebt(argArr[1]);
         if (debt.value < 0) {
             if (isAdd) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,

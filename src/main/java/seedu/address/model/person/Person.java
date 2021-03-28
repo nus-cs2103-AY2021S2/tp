@@ -44,15 +44,15 @@ public class Person {
         this.birthday = birthday;
         this.address = address;
         this.picture = null;
-        this.tags.addAll(tags);
         this.debt = new Debt("0");
+        this.tags.addAll(tags);
     }
 
     /**
      * Used for immutable editing
      */
     public Person(Name name, Phone phone, Email email, Birthday birthday, Address address, Picture picture,
-            Set<Tag> tags, List<Event> dates, List<Event> meetings, Debt debt) {
+                  Debt debt, Set<Tag> tags, List<Event> dates, List<Event> meetings) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -60,10 +60,10 @@ public class Person {
         this.birthday = birthday;
         this.address = address;
         this.picture = picture;
+        this.debt = debt;
         this.tags.addAll(tags);
         this.dates.addAll(dates);
         this.meetings.addAll(meetings);
-        this.debt = debt;
     }
 
     public Name getName() {
@@ -91,7 +91,7 @@ public class Person {
     }
 
     public Person withDebt(Debt debt) {
-        return new Person(name, phone, email, birthday, address, picture, tags, dates, meetings, debt);
+        return new Person(name, phone, email, birthday, address, picture, debt, tags, dates, meetings);
     }
 
     public Optional<Picture> getPicture() {
@@ -99,7 +99,7 @@ public class Person {
     }
 
     public Person withPicture(Picture picture) {
-        return new Person(name, phone, email, birthday, address, picture, tags, dates, meetings, debt);
+        return new Person(name, phone, email, birthday, address, picture, debt, tags, dates, meetings);
     }
 
     /**
@@ -115,7 +115,7 @@ public class Person {
     }
 
     public Person withDates(List<Event> dates) {
-        return new Person(name, phone, email, birthday, address, picture, tags, dates, meetings, debt);
+        return new Person(name, phone, email, birthday, address, picture, debt, tags, dates, meetings);
     }
 
     public List<Event> getMeetings() {
@@ -123,7 +123,7 @@ public class Person {
     }
 
     public Person withMeetings(List<Event> meetings) {
-        return new Person(name, phone, email, birthday, address, picture, tags, dates, meetings, debt);
+        return new Person(name, phone, email, birthday, address, picture, debt, tags, dates, meetings);
     }
 
     /**

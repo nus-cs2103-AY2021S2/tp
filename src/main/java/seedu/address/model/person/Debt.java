@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class Debt {
 
-    public static final String MESSAGE_CONSTRAINTS = "Debt should be a positive float and "
+    public static final String MESSAGE_CONSTRAINTS = "Debt given should be a positive float and "
             + "should only be up 2 decimal places.";
 
     public final Float value;
@@ -71,6 +71,10 @@ public class Debt {
         requireNonNull(first);
         requireNonNull(second);
         return new Debt(first.value - second.value);
+    }
+
+    public String toUi() {
+        return String.format("%.2f", value);
     }
 
     @Override

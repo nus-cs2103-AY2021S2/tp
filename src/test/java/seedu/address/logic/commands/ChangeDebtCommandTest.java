@@ -32,7 +32,7 @@ public class ChangeDebtCommandTest {
         expectedModel.setPerson(firstPerson, editedPerson);
 
         String expectedMessage = String.format(ChangeDebtCommand.MESSAGE_ADD_DEBT_SUCCESS,
-                addedDebt.value, editedPerson.getName());
+                addedDebt.toUi(), editedPerson.getName());
         assertCommandSuccess(cmd, model, expectedMessage, expectedModel);
     }
 
@@ -47,7 +47,7 @@ public class ChangeDebtCommandTest {
         expectedModel.setPerson(firstPerson, editedPerson);
 
         String expectedMessage = String.format(ChangeDebtCommand.MESSAGE_SUBTRACT_DEBT_SUCCESS,
-                subtractedDebt.value, editedPerson.getName());
+                subtractedDebt.toUi(), editedPerson.getName());
         assertCommandSuccess(cmd, model, expectedMessage, expectedModel);
     }
 

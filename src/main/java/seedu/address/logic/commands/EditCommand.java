@@ -114,7 +114,7 @@ public class EditCommand extends Command {
         Debt debt = personToEdit.getDebt();
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedBirthday, updatedAddress, picture,
-                updatedTags, dates, meetings, debt);
+                debt, updatedTags, dates, meetings);
 
     }
 
