@@ -22,6 +22,7 @@ import seedu.taskify.logic.commands.HomeCommand;
 import seedu.taskify.logic.commands.ListCommand;
 import seedu.taskify.logic.commands.SortCommand;
 import seedu.taskify.logic.commands.TagSearchCommand;
+import seedu.taskify.logic.commands.UncompletedCommand;
 import seedu.taskify.logic.commands.ViewCommand;
 import seedu.taskify.logic.parser.exceptions.ParseException;
 
@@ -94,6 +95,9 @@ public class TaskifyParser {
 
         case CompletedCommand.COMMAND_WORD:
             return new CompletedCommand();
+
+        case UncompletedCommand.COMMAND_WORD:
+            return new UncompletedCommand();
 
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
