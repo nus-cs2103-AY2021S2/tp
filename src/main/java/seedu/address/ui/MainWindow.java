@@ -35,7 +35,9 @@ public class MainWindow extends UiPart<Stage> {
     private ResultBarFooter resultDisplay;
     private HelpWindow helpWindow;
     private MainPanel mainPanel;
-    private TimeTablePanel timeTablePanel;
+    private TutorListPanel tutorListPanel;
+    private CalendarView calendarView;
+    private AppointmentListPanel appointmentListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -44,10 +46,16 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
+    private StackPane personListPanelPlaceholder;
+
+    @FXML
     private StackPane statusbarPlaceholder;
 
     @FXML
-    private StackPane tabPanelPlaceholder;
+    private StackPane calendarViewPane;
+
+    @FXML
+    private StackPane appointmentListPanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -110,17 +118,23 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        timeTablePanel = new TimeTablePanel(logic.getFilteredEventList());
-        mainPanel = new MainPanel(logic, this::executeCommand);
-//        tabPanelPlaceholder.getChildren().add(mainPanel.getRoot());
-        timeTablePanel.construct();
-        tabPanelPlaceholder.getChildren().add(timeTablePanel.getRoot());
+        tutorListPanel = new TutorListPanel(logic.getFilteredPersonList());
+        personListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
+
+        appointmentListPanel = new AppointmentListPanel(logic.getFilteredAppointmentList());
+        appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
 
         resultDisplay = new ResultBarFooter();
         statusbarPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        calendarView = new CalendarView(this::executeCommand);
+        calendarViewPane.getChildren().add(calendarView.getRoot());
+
+        resultDisplay = new ResultBarFooter();
+        statusbarPlaceholder.getChildren().add(resultDisplay.getRoot());
     }
 
     /**
@@ -173,7 +187,6 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            timeTablePanel.reconstruct(logic.getFilteredEventList());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
