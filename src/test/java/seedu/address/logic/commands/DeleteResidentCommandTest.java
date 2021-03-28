@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showResidentAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_RESIDENT;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_RESIDENT;
-import static seedu.address.testutil.TypicalResidents.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 
 import org.junit.jupiter.api.Test;
 
@@ -29,8 +29,8 @@ public class DeleteResidentCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Resident residentToDelete = model.getFilteredResidentList().get(INDEX_FIRST_RESIDENT.getZeroBased());
-        DeleteResidentCommand deleteResidentCommand = new DeleteResidentCommand(INDEX_FIRST_RESIDENT);
+        Resident residentToDelete = model.getFilteredResidentList().get(INDEX_FIRST.getZeroBased());
+        DeleteResidentCommand deleteResidentCommand = new DeleteResidentCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(DeleteResidentCommand.MESSAGE_DELETE_RESIDENT_SUCCESS, residentToDelete);
 
@@ -50,10 +50,10 @@ public class DeleteResidentCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showResidentAtIndex(model, INDEX_FIRST_RESIDENT);
+        showResidentAtIndex(model, INDEX_FIRST);
 
-        Resident residentToDelete = model.getFilteredResidentList().get(INDEX_FIRST_RESIDENT.getZeroBased());
-        DeleteResidentCommand deleteResidentCommand = new DeleteResidentCommand(INDEX_FIRST_RESIDENT);
+        Resident residentToDelete = model.getFilteredResidentList().get(INDEX_FIRST.getZeroBased());
+        DeleteResidentCommand deleteResidentCommand = new DeleteResidentCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(DeleteResidentCommand.MESSAGE_DELETE_RESIDENT_SUCCESS, residentToDelete);
 
@@ -66,9 +66,9 @@ public class DeleteResidentCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showResidentAtIndex(model, INDEX_FIRST_RESIDENT);
+        showResidentAtIndex(model, INDEX_FIRST);
 
-        Index outOfBoundIndex = INDEX_SECOND_RESIDENT;
+        Index outOfBoundIndex = INDEX_SECOND;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getResidentList().size());
 
@@ -79,14 +79,14 @@ public class DeleteResidentCommandTest {
 
     @Test
     public void equals() {
-        DeleteResidentCommand deleteFirstCommand = new DeleteResidentCommand(INDEX_FIRST_RESIDENT);
-        DeleteResidentCommand deleteSecondCommand = new DeleteResidentCommand(INDEX_SECOND_RESIDENT);
+        DeleteResidentCommand deleteFirstCommand = new DeleteResidentCommand(INDEX_FIRST);
+        DeleteResidentCommand deleteSecondCommand = new DeleteResidentCommand(INDEX_SECOND);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteResidentCommand deleteFirstCommandCopy = new DeleteResidentCommand(INDEX_FIRST_RESIDENT);
+        DeleteResidentCommand deleteFirstCommandCopy = new DeleteResidentCommand(INDEX_FIRST);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
