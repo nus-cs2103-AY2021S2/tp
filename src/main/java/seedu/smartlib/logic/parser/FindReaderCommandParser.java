@@ -1,12 +1,14 @@
 package seedu.smartlib.logic.parser;
 
 import static seedu.smartlib.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Arrays;
 
 import seedu.smartlib.logic.commands.FindReaderCommand;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
 import seedu.smartlib.model.reader.NameContainsKeywordsPredicate;
+import seedu.smartlib.model.reader.TagContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindReaderCommand object.
@@ -29,8 +31,14 @@ public class FindReaderCommandParser implements Parser<FindReaderCommand> {
         }
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
+        int endOfTag = 2;
 
-        return new FindReaderCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        if (nameKeywords[0].substring(0, endOfTag).equals(PREFIX_TAG.toString())) {
+            nameKeywords[0] = nameKeywords[0].substring(endOfTag); // removes the tag from the search list
+            return new FindReaderCommand(new TagContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        } else {
+            return new FindReaderCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        }
     }
 
 }
