@@ -12,6 +12,8 @@ SOChedule is a one-stop solution for managing tasks and events, optimized for us
 * Listing all tasks: `list_task`
 * Marking a task as done : `done_task`
 * Sorting all tasks: `sort_task`
+* Pinning a task: `pin_task`
+* Unpinning a task: `unpin_task`
 * Clearing completed tasks: `clear_completed_task`
 * Clearing expired tasks: `clear_expired_task`
 * Adding an event: `add_event`
@@ -105,6 +107,30 @@ Format: `sort_task ARGUMENT`
 Examples:
 * `sort_task completion` sorts the task list by completion status.
 * `sort_task name` sorts the task list by name.
+
+### Pinning a task: `pin_task`
+Pins a task from SOChedule Task List.
+
+Format: `pin_task INDEX`
+* Pins the task at the specified INDEX.
+* Already pinned tasks will be unable to be pinned a second time.
+* The index refers to the index number shown in the displayed task list.
+* The index must be a positive and valid integer 1, 2, 3, ...
+* After pinning, the Task List will be sorted either according to previously entered `sort_task` command, or name (by default).
+* Pinned tasks are persistent over instances of SOChedule.
+
+Examples:
+* `pin_task 1` pins the first task in Task List
+
+### Unpinning a task: `unpin_task`
+Unpins a task from SOChedule Task List.
+
+Format: `unpin_task INDEX`
+* Unpins the task at the specified INDEX.
+* Follows similar restrictions to `pin_task`
+
+Examples:
+* `unpin_task 1` unpins the first task in Task List
 
 ### Clearing completed tasks: `clear_completed_task`
 Clear tasks marked as completed.
