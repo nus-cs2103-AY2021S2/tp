@@ -18,7 +18,7 @@
     <Scene fill="BLACK">
          <VBox prefHeight="380.0" prefWidth="548.0" style="-fx-background-color: #383838;">
             <children>
-               <TextArea fx:id="helpMessageField" editable="false" scaleShape="false" style="-fx-control-inner-background: #383838; -fx-text-fill: white; -fx-border-color: transparent; -fx-background-insets: 0; -fx-text-box-border: transparent; -fx-focus-color: #383838; -fx-background-color: transparent; " wrapText="true" VBox.vgrow="ALWAYS" />
+               <TextArea fx:id="helpMessageField" editable="false" scaleShape="false" style="-fx-control-inner-background: derive(#1d1d1d, 30%); -fx-text-fill: white; -fx-border-color: transparent; -fx-background-insets: 0; -fx-text-box-border: transparent; -fx-focus-color: #383838; -fx-background-color: transparent; " wrapText="true" VBox.vgrow="ALWAYS" />
                <VBox prefHeight="42.0" prefWidth="538.0">
                   <children>
                      <HBox alignment="BOTTOM_RIGHT" prefHeight="0.0" VBox.vgrow="ALWAYS">
