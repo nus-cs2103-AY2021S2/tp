@@ -1,6 +1,7 @@
 package seedu.address.model.util;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import seedu.address.model.diet.DietPlan;
 import seedu.address.model.diet.DietPlanList;
@@ -10,11 +11,18 @@ import seedu.address.model.food.Food;
 import seedu.address.model.food.FoodIntake;
 import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
+import seedu.address.model.user.*;
 
 /**
  * Class for generating a template for first-time use.
  */
 public class TemplateInitializer {
+    private static double INIT_USER_WEIGHT = 70;
+    private static double INIT_USER_HEIGHT = 165;
+    private static double INIT_USER_IDEAL_WEIGHT = 60;
+    private static int INIT_USER_AGE = 24;
+    private static String INIT_USER_GENDER = "M";
+    private static int INIT_DIET_PLAN_INDEX = 0;
 
     private UniqueFoodList uniqueFoodListTemplate;
     private FoodIntakeList foodIntakeListTemplate;
@@ -39,6 +47,22 @@ public class TemplateInitializer {
 
     public DietPlanList getDietPlanListTemplate() {
         return this.dietPlanListTemplate;
+    }
+
+    /**
+     * Intialises the User object with the template values.
+     *
+     * @return Food object
+     */
+    public User createUser(UniqueFoodList foodList, FoodIntakeList foodIntakeList) {
+        Bmi bmi = new Bmi(INIT_USER_WEIGHT, INIT_USER_HEIGHT);
+        Gender gender = new Gender("M");
+        Age age = new Age(INIT_USER_AGE);
+        IdealWeight idealWeight = new IdealWeight(INIT_USER_IDEAL_WEIGHT);
+        System.out.println("\n -- making freshhh user -- \n");
+        User user = new User(bmi, foodList.getFoodList(), foodIntakeList, age, gender, idealWeight);
+        user.setActiveDietPlan(getDietPlanListTemplate().getDietPlan(INIT_DIET_PLAN_INDEX));
+        return user;
     }
 
     /**
