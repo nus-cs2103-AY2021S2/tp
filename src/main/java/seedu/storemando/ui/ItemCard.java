@@ -26,11 +26,13 @@ public class ItemCard extends UiPart<Region> {
      */
 
     private static final String FXML = "ItemListCard.fxml";
+    private static final long EXPIRED_NUM = 0;
+    private static final long THREE_DAY_BEFORE_EXPIRING = 3;
 
     public final Item item;
 
-    private ItemExpiringPredicate expiredItemPredicate = new ItemExpiringPredicate((long) 0);
-    private ItemExpiringPredicate itemExpireInThreeDaysPredicate = new ItemExpiringPredicate((long) 3);
+    private ItemExpiringPredicate expiredItemPredicate = new ItemExpiringPredicate(EXPIRED_NUM);
+    private ItemExpiringPredicate itemExpireInThreeDaysPredicate = new ItemExpiringPredicate(THREE_DAY_BEFORE_EXPIRING);
 
     @FXML
     private HBox cardPane;
