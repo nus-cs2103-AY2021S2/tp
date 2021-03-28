@@ -74,20 +74,12 @@ public class AppointmentBuilder {
     }
 
     /**
-     *Sets the {@code endTime} of the {@code Appointment} that we are building
-     */
-    public AppointmentBuilder withEndTime(String endTime) {
-        this.endTime = LocalTime.parse(endTime);
-        return this;
-    }
-
-    /**
      * Builds a new Person object.
      *
      * @return a person object.
      */
     public Appointment build() {
-        return new Appointment(matriculationNumber, date, startTime, endTime);
+        return new Appointment(matriculationNumber, date, startTime);
     }
 
 }

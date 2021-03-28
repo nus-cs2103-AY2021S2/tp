@@ -30,31 +30,28 @@ public class StatsApptCommandTest {
     private LocalTime currTime = LocalTime.now();
     private String aliceStartHour = Integer.toString(currTime.getHour() + 4);
     private String aliceStartTime = aliceStartHour + ":00";
-    private String aliceEndTime = aliceStartHour + ":30";
 
     private String bensonStartHour = Integer.toString(currTime.getHour() + 1);
     private String bensonStartTime = bensonStartHour + ":00";
-    private String bensonEndHour = bensonStartHour + ":30";
 
     private String carlStartHour = Integer.toString(currTime.getHour() - 4);
     private String carlStartTime = carlStartHour + ":00";
-    private String carlEndHour = carlStartHour + ":30";
 
 
     // past week 6 days ago
     public final Appointment aliceAppointment = new AppointmentBuilder()
             .withMatric(TypicalStudents.ALICE.getMatriculationNumber().toString())
-            .withStartTime(aliceStartTime).withEndTime(aliceEndTime).withDate(aliceDate).build();
+            .withStartTime(aliceStartTime).withDate(aliceDate).build();
 
     // upcoming week same day but after current time
     public final Appointment bensonAppointment = new AppointmentBuilder()
             .withMatric(TypicalStudents.BENSON.getMatriculationNumber().toString())
-            .withStartTime(bensonStartTime).withEndTime(bensonEndHour).withDate(bensonDate).build();
+            .withStartTime(bensonStartTime).withDate(bensonDate).build();
 
     // upcoming week 6 days later
     public final Appointment carlAppointment = new AppointmentBuilder()
             .withMatric(TypicalStudents.CARL.getMatriculationNumber().toString())
-            .withStartTime(carlStartTime).withEndTime(carlEndHour).withDate(carlDate).build();
+            .withStartTime(carlStartTime).withDate(carlDate).build();
 
     public List<Appointment> getTypicalAppointments() {
         return new ArrayList<>(Arrays.asList(aliceAppointment, bensonAppointment, carlAppointment));

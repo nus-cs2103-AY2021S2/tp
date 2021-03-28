@@ -2,8 +2,6 @@ package seedu.student.testutil;
 
 import static seedu.student.logic.commands.CommandTestUtil.VALID_DATE_AMY_APPOINTMENT;
 import static seedu.student.logic.commands.CommandTestUtil.VALID_DATE_BOB_APPOINTMENT;
-import static seedu.student.logic.commands.CommandTestUtil.VALID_END_TIME_AMY_APPOINTMENT;
-import static seedu.student.logic.commands.CommandTestUtil.VALID_END_TIME_BOB_APPOINTMENT;
 import static seedu.student.logic.commands.CommandTestUtil.VALID_MATRIC_AMY;
 import static seedu.student.logic.commands.CommandTestUtil.VALID_MATRIC_BOB;
 import static seedu.student.logic.commands.CommandTestUtil.VALID_START_TIME_AMY_APPOINTMENT;
@@ -24,21 +22,20 @@ public class TypicalAppointments {
 
     public static final Appointment ALICE_APPOINTMENT = new AppointmentBuilder()
             .withMatric(TypicalStudents.ALICE.getMatriculationNumber().toString())
-            .withStartTime("10:00").withEndTime("10:30").build();
+            .withStartTime("10:00").build();
     public static final Appointment BENSON_APPOINTMENT = new AppointmentBuilder()
             .withMatric(TypicalStudents.BENSON.getMatriculationNumber().toString())
-            .withStartTime("10:30").withEndTime("11:00").build();
+            .withStartTime("10:30").build();
     public static final Appointment CARL_APPOINTMENT = new AppointmentBuilder()
-            .withMatric(TypicalStudents.CARL.getMatriculationNumber().toString())
-            .withStartTime("11:00").withEndTime("11:30").build();
+            .withMatric(TypicalStudents.BENSON.getMatriculationNumber().toString())
+            .withStartTime("11:00").build();
+
 
     // Manually added - Student's details found in {@code CommandTestUtil}
     public static final Appointment AMY_APPOINTMENT = new AppointmentBuilder().withMatric(VALID_MATRIC_AMY)
-            .withDate(VALID_DATE_AMY_APPOINTMENT).withStartTime(VALID_START_TIME_AMY_APPOINTMENT)
-            .withEndTime(VALID_END_TIME_AMY_APPOINTMENT).build();
+            .withDate(VALID_DATE_AMY_APPOINTMENT).withStartTime(VALID_START_TIME_AMY_APPOINTMENT).build();
     public static final Appointment BOB_APPOINTMENT = new AppointmentBuilder().withMatric(VALID_MATRIC_BOB)
-            .withDate(VALID_DATE_BOB_APPOINTMENT).withStartTime(VALID_START_TIME_BOB_APPOINTMENT)
-            .withEndTime(VALID_END_TIME_BOB_APPOINTMENT).build();
+            .withDate(VALID_DATE_BOB_APPOINTMENT).withStartTime(VALID_START_TIME_BOB_APPOINTMENT).build();
 
     private TypicalAppointments() {} // prevents instantiation
 
