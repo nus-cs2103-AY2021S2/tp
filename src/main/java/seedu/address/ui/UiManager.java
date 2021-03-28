@@ -44,6 +44,8 @@ public class UiManager implements Ui {
             mainWindow = new MainWindow(primaryStage, logic);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
+            logger.info("Filling inner components...");
+            mainWindow.handleNotif();
 
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
@@ -72,7 +74,7 @@ public class UiManager implements Ui {
         alert.setHeaderText(headerText);
         alert.setContentText(contentText);
         alert.getDialogPane().setId(ALERT_DIALOG_PANE_FIELD_ID);
-        alert.showAndWait();
+        alert.show();
     }
 
     /**
