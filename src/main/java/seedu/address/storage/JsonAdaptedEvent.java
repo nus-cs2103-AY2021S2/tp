@@ -65,7 +65,7 @@ class JsonAdaptedEvent {
             throw new IllegalValueException(e.getMessage());
         }
 
-        return new Event(description, eventInterval, isDone, date);
+        return new Event(description, eventInterval, date, isDone);
     }
 
 }

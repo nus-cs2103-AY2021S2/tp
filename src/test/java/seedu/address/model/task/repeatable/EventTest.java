@@ -28,11 +28,11 @@ public class EventTest {
         assertThrows(NullPointerException.class, () -> new Event(null, interval, validDate));
         assertThrows(NullPointerException.class, () -> new Event("test", null, validDate));
         assertThrows(NullPointerException.class, () -> new Event("test", interval, null));
-        assertThrows(NullPointerException.class, () -> new Event(null, interval, false, validDate));
+        assertThrows(NullPointerException.class, () -> new Event(null, interval, validDate, false));
         assertThrows(NullPointerException.class, () -> new Event("test", null,
-                false, validDate));
-        assertThrows(NullPointerException.class, () -> new Event("test", interval, null, validDate));
-        assertThrows(NullPointerException.class, () -> new Event("test", interval, false, null));
+                validDate, false));
+        assertThrows(NullPointerException.class, () -> new Event("test", interval, validDate, null));
+        assertThrows(NullPointerException.class, () -> new Event("test", interval, null, false));
     }
 
     @Test
@@ -42,11 +42,11 @@ public class EventTest {
         String invalidDescription = "";
         assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription, validInterval, validDate));
         assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription, validInterval,
-                false, validDate));
+                validDate, false));
         String invalidDescription2 = " ";
         assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription2, validInterval, validDate));
         assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription2, validInterval,
-                false, validDate));
+                validDate, false));
     }
 
     @Test

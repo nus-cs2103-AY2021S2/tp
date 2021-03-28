@@ -27,7 +27,7 @@ public class Event extends Repeatable {
      * @param isDone Marks whether the Event is Done.
      * @param at Date of the Event.
      */
-    public Event(String description, Interval interval, Boolean isDone, LocalDate at) {
+    public Event(String description, Interval interval, LocalDate at, Boolean isDone) {
         super(description, interval, at, isDone);
     }
 
