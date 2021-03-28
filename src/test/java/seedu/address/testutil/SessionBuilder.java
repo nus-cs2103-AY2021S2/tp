@@ -1,5 +1,8 @@
 package seedu.address.testutil;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import seedu.address.model.session.Day;
 import seedu.address.model.session.Session;
 import seedu.address.model.session.SessionId;
@@ -7,9 +10,6 @@ import seedu.address.model.session.Subject;
 import seedu.address.model.session.Timeslot;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
-
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * A utility class to help with building Session objects.
@@ -69,7 +69,7 @@ public class SessionBuilder {
      * Sets the {@code Day} of the {@code Session} that we are building.
      */
     public SessionBuilder withDay(String day) {
-        this.day= new Day(day);
+        this.day = new Day(day);
         return this;
     }
 
