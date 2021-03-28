@@ -3,8 +3,6 @@ package seedu.address.storage;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.session.Duration;
 import seedu.address.model.session.Fee;
