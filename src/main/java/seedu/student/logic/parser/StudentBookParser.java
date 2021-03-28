@@ -17,6 +17,7 @@ import seedu.student.logic.commands.FilterCommand;
 import seedu.student.logic.commands.FindCommand;
 import seedu.student.logic.commands.HelpCommand;
 import seedu.student.logic.commands.ListCommand;
+import seedu.student.logic.commands.statscommands.StatsApptCommand;
 import seedu.student.logic.commands.statscommands.StatsCommand;
 import seedu.student.logic.parser.exceptions.ParseException;
 
@@ -64,8 +65,12 @@ public class StudentBookParser {
 
         case FilterCommand.COMMAND_WORD:
             return new FilterCommandParser().parse(arguments);
+
         case StatsCommand.COMMAND_WORD:
             return new StatsCommandParser().parse(arguments);
+
+        case StatsApptCommand.COMMAND_WORD:
+            return new StatsApptCommand();
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
