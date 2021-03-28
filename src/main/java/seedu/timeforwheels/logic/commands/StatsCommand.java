@@ -84,7 +84,11 @@ public class StatsCommand extends Command {
             if (period.getDays() < 0) {
                 deliveriesNotdue += 1;
             }
-            deliveriesDue = size - deliveriesNotdue;
+            if (period.getDays() > 0) {
+                if (!customer.getDone().toString().equals("[✓]")) {
+                    deliveriesDue += 1;
+                }
+            }
         }
 
         deliveriesDuePercentage = (deliveriesDue / size) * 100;
