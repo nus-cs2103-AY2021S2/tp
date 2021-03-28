@@ -20,12 +20,12 @@ import org.junit.jupiter.api.Test;
 import seedu.iscam.commons.core.Messages;
 import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.logic.commands.EditCommand.EditClientDescriptor;
-import seedu.iscam.model.ClientBook;
-import seedu.iscam.model.MeetingBook;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.ModelManager;
 import seedu.iscam.model.UserPrefs;
 import seedu.iscam.model.client.Client;
+import seedu.iscam.model.util.clientbook.ClientBook;
+import seedu.iscam.model.util.meetingbook.MeetingBook;
 import seedu.iscam.testutil.ClientBuilder;
 import seedu.iscam.testutil.EditClientDescriptorBuilder;
 

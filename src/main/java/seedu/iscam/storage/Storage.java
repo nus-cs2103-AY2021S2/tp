@@ -5,10 +5,10 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.iscam.commons.exceptions.DataConversionException;
-import seedu.iscam.model.ReadOnlyClientBook;
-import seedu.iscam.model.ReadOnlyMeetingBook;
 import seedu.iscam.model.ReadOnlyUserPrefs;
 import seedu.iscam.model.UserPrefs;
+import seedu.iscam.model.util.clientbook.ReadOnlyClientBook;
+import seedu.iscam.model.util.meetingbook.ReadOnlyMeetingBook;
 
 /**
  * API of the Storage component

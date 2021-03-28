@@ -1,7 +1,7 @@
 package seedu.iscam.testutil;
 
-import seedu.iscam.model.ClientBook;
 import seedu.iscam.model.client.Client;
+import seedu.iscam.model.util.clientbook.ClientBook;
 
 /**
  * A utility class to help with building ClientBook objects.

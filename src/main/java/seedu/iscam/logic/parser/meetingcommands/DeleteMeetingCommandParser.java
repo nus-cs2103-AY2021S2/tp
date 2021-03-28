@@ -1,10 +1,12 @@
-package seedu.iscam.logic.parser;
+package seedu.iscam.logic.parser.meetingcommands;
 
 import static seedu.iscam.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.logic.commands.DeleteCommand;
 import seedu.iscam.logic.commands.DeleteMeetingCommand;
+import seedu.iscam.logic.parser.Parser;
+import seedu.iscam.logic.parser.ParserUtil;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.logic.parser.exceptions.ParseFormatException;
 

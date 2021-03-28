@@ -9,9 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.iscam.commons.exceptions.IllegalValueException;
-import seedu.iscam.model.ClientBook;
-import seedu.iscam.model.ReadOnlyClientBook;
 import seedu.iscam.model.client.Client;
+import seedu.iscam.model.util.clientbook.ClientBook;
+import seedu.iscam.model.util.clientbook.ReadOnlyClientBook;
 
 /**
  * An Immutable ClientBook that is serializable to JSON format.

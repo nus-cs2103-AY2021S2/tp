@@ -7,10 +7,10 @@ import java.util.logging.Logger;
 
 import seedu.iscam.commons.core.LogsCenter;
 import seedu.iscam.commons.exceptions.DataConversionException;
-import seedu.iscam.model.ReadOnlyClientBook;
-import seedu.iscam.model.ReadOnlyMeetingBook;
 import seedu.iscam.model.ReadOnlyUserPrefs;
 import seedu.iscam.model.UserPrefs;
+import seedu.iscam.model.util.clientbook.ReadOnlyClientBook;
+import seedu.iscam.model.util.meetingbook.ReadOnlyMeetingBook;
 
 /**
  * Manages storage of ClientBook data in local storage.
@@ -67,7 +67,7 @@ public class StorageManager implements Storage {
 
     @Override
     public Optional<ReadOnlyClientBook> readClientBook(Path filePath) throws DataConversionException, IOException {
-        logger.fine("Attempting to read data from file: " + filePath);
+        logger.fine("Attempting to read client data from file: " + filePath);
         return clientBookStorage.readClientBook(filePath);
     }
 
@@ -78,7 +78,7 @@ public class StorageManager implements Storage {
 
     @Override
     public void saveClientBook(ReadOnlyClientBook clientBook, Path filePath) throws IOException {
-        logger.fine("Attempting to write to data file: " + filePath);
+        logger.fine("Attempting to write client to data file: " + filePath);
         clientBookStorage.saveClientBook(clientBook, filePath);
     }
 
@@ -96,7 +96,7 @@ public class StorageManager implements Storage {
 
     @Override
     public Optional<ReadOnlyMeetingBook> readMeetingBook(Path filePath) throws DataConversionException, IOException {
-        logger.fine("Attempting to read data from file: " + filePath);
+        logger.fine("Attempting to read meeting data from file: " + filePath);
         return meetingBookStorage.readMeetingBook(filePath);
     }
 
@@ -107,7 +107,7 @@ public class StorageManager implements Storage {
 
     @Override
     public void saveMeetingBook(ReadOnlyMeetingBook meetingBook, Path filePath) throws IOException {
-        logger.fine("Attempting to write to data file: " + filePath);
+        logger.fine("Attempting to write meetings to data file: " + filePath);
         meetingBookStorage.saveMeetingBook(meetingBook, filePath);
     }
 

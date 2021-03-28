@@ -12,7 +12,7 @@ import seedu.iscam.commons.exceptions.DataConversionException;
 import seedu.iscam.commons.exceptions.IllegalValueException;
 import seedu.iscam.commons.util.FileUtil;
 import seedu.iscam.commons.util.JsonUtil;
-import seedu.iscam.model.ReadOnlyMeetingBook;
+import seedu.iscam.model.util.meetingbook.ReadOnlyMeetingBook;
 
 /**
  * A class to access MeetingBook data stored as a json file on the hard disk.
@@ -57,6 +57,7 @@ public class JsonMeetingBookStorage implements MeetingBookStorage {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
         }
+
     }
 
     @Override

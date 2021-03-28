@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.iscam.model.MeetingBook;
 import seedu.iscam.model.meeting.Meeting;
+import seedu.iscam.model.util.meetingbook.MeetingBook;
 
 /**
  * A utility class containing a list of {@code Meeting} objects to be used in tests.

@@ -10,8 +10,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
-import seedu.iscam.model.ObservableClient;
 import seedu.iscam.model.client.Client;
+import seedu.iscam.model.util.clientbook.ObservableClient;
 
 
 public class ClientDetailFragment extends UiPart<Region> {

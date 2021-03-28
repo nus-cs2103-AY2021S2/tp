@@ -16,8 +16,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.iscam.commons.exceptions.DataConversionException;
-import seedu.iscam.model.ClientBook;
-import seedu.iscam.model.ReadOnlyClientBook;
+import seedu.iscam.model.util.clientbook.ClientBook;
+import seedu.iscam.model.util.clientbook.ReadOnlyClientBook;
 
 public class JsonClientBookStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonClientBookStorageTest");

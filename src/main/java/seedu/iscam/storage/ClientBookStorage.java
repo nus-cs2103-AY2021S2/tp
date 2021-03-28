@@ -5,8 +5,8 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.iscam.commons.exceptions.DataConversionException;
-import seedu.iscam.model.ClientBook;
-import seedu.iscam.model.ReadOnlyClientBook;
+import seedu.iscam.model.util.clientbook.ClientBook;
+import seedu.iscam.model.util.clientbook.ReadOnlyClientBook;
 
 /**
  * Represents a storage for {@link ClientBook}.

@@ -21,6 +21,8 @@ import javafx.collections.ObservableList;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.client.exceptions.DuplicateClientException;
 import seedu.iscam.model.meeting.Meeting;
+import seedu.iscam.model.util.clientbook.ClientBook;
+import seedu.iscam.model.util.clientbook.ReadOnlyClientBook;
 import seedu.iscam.testutil.ClientBuilder;
 
 public class ClientBookTest {

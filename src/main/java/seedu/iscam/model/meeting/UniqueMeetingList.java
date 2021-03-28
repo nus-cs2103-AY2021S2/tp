@@ -90,6 +90,7 @@ public class UniqueMeetingList implements Iterable<Meeting> {
     public void setMeetings(List<Meeting> meetings) {
         requireAllNonNull(meetings);
 
+        internalList.setAll(meetings);
     }
 
     private void sortMeetings() {

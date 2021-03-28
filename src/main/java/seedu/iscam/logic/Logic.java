@@ -8,12 +8,13 @@ import seedu.iscam.commons.core.GuiSettings;
 import seedu.iscam.logic.commands.CommandResult;
 import seedu.iscam.logic.commands.exceptions.CommandException;
 import seedu.iscam.logic.parser.exceptions.ParseException;
-import seedu.iscam.model.ObservableClient;
-import seedu.iscam.model.ObservableMeeting;
-import seedu.iscam.model.ReadOnlyClientBook;
-import seedu.iscam.model.ReadOnlyMeetingBook;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.meeting.Meeting;
+import seedu.iscam.model.util.clientbook.ObservableClient;
+import seedu.iscam.model.util.clientbook.ReadOnlyClientBook;
+import seedu.iscam.model.util.meetingbook.ObservableMeeting;
+import seedu.iscam.model.util.meetingbook.ReadOnlyMeetingBook;
+
 
 /**
  * API of the Logic component

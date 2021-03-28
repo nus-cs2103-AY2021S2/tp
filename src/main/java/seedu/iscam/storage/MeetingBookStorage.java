@@ -5,8 +5,8 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.iscam.commons.exceptions.DataConversionException;
-import seedu.iscam.model.MeetingBook;
-import seedu.iscam.model.ReadOnlyMeetingBook;
+import seedu.iscam.model.util.meetingbook.MeetingBook;
+import seedu.iscam.model.util.meetingbook.ReadOnlyMeetingBook;
 
 /**
  * Represents a storage for {@link MeetingBook}.

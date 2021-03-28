@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.iscam.model.ClientBook;
 import seedu.iscam.model.client.Client;
+import seedu.iscam.model.util.clientbook.ClientBook;
 
 /**
  * A utility class containing a list of {@code Client} objects to be used in tests.

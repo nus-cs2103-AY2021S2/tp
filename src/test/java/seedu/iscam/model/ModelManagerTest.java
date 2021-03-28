@@ -18,6 +18,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.iscam.commons.core.GuiSettings;
 import seedu.iscam.model.commons.NameContainsKeywordsPredicate;
+import seedu.iscam.model.util.clientbook.ClientBook;
+import seedu.iscam.model.util.meetingbook.MeetingBook;
 import seedu.iscam.testutil.ClientBookBuilder;
 import seedu.iscam.testutil.MeetingBookBuilder;
 
