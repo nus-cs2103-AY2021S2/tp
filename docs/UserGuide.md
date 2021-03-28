@@ -207,7 +207,7 @@ Adds a new food item with their nutrients value and stores them in the food list
 **Expected output:**
 
 <p align="center">
-  <img src="/docs/images/user-guide/add-food-item-result.png">
+  <img src="images/user-guide/add-food-item-result.png">
 </p>
 
 ### 3.2 Update food item
@@ -223,7 +223,7 @@ Updates existing food items with their new nutrients value(s).
 **Expected output:**
 
 <p align="center">
-  <img src="/docs/images/user-guide/update-food-item-result.png">
+  <img src="images/user-guide/update-food-item-result.png">
 </p>
 
 ### 3.3 List food item
@@ -237,7 +237,7 @@ Lists all food items that are stored in the application.
 **Expected output:**
 
 <p align="center">
-  <img src="/docs/images/user-guide/food-list-result.png">
+  <img src="images/user-guide/food-list-result.png">
 </p>
 
 ### 3.4 Delete food item
@@ -253,7 +253,7 @@ Deletes the particular food item stored in the application.
 **Expected output:**
 
 <p align="center">
-  <img src="/docs/images/user-guide/delete-food-item.png">
+  <img src="images/user-guide/delete-food-item.png">
 </p>
 
 ### 3.5 Input food intake
@@ -276,7 +276,7 @@ Records a food intake for the given date and stores the food in the food list fo
 **Expected output:**
 
 <p align="center">
-  <img src="/docs/images/user-guide/add-food-intake-new-food-item-result.png">
+  <img src="images/user-guide/add-food-intake-new-food-item-result.png">
 </p>
 
 
@@ -291,7 +291,7 @@ Records a food intake for the given date using an existing food item. The nutrie
 **Expected output:**
 
 <p align="center">
-  <img src="/docs/images/user-guide/add-food-intake-new-food-item-result.png">
+  <img src="images/user-guide/add-food-intake-new-food-item-result.png">
 </p>
 
 ### 3.5.3 Input food intake (For existing food items, using different nutrient value(s))
@@ -307,7 +307,7 @@ Records a food intake for the given date and updates the existing food item with
 **Expected output:**
 
 <p align="center">
-  <img src="/docs/images/user-guide/add-food-intake-diff-food-item-result.png">
+  <img src="images/user-guide/add-food-intake-diff-food-item-result.png">
 </p>
 
 ### 3.6 Update food intake
@@ -323,7 +323,7 @@ Updates the nutrient value(s) of an existing food intake matching the given date
 **Expected output:**
 
 <p align="center">
-  <img src="/docs/images/user-guide/update-food-intake-item-result.png">
+  <img src="images/user-guide/update-food-intake-item-result.png">
 </p>
 
 ### 3.7 Delete food intake
@@ -339,7 +339,7 @@ Deletes a food intake item for the specified day.
 **Expected output:**
 
 <p align="center">
-  <img src="/docs/images/user-guide/delete-food-intake-result.png">
+  <img src="images/user-guide/delete-food-intake-result.png">
 </p>
 
 ### 3.8 Query food intake
@@ -357,7 +357,7 @@ Queries all the food intake(s) on a certain day.
 **Expected output:**
 
 <p align="center">
-  <img src="/docs/images/user-guide/query-food-intake-per-day.png">
+  <img src="images/user-guide/query-food-intake-per-day.png">
 </p>
 
 ### 3.8.2 Query food intake over a period of days
@@ -371,7 +371,7 @@ Queries all the existing food intake(s) over a period of days (both inclusive).
 **Expected output:**
 
 <p align="center">
-  <img src="/docs/images/user-guide/query-food-intake-period.png">
+  <img src="images/user-guide/query-food-intake-period.png">
 </p>
 
 --------------------------------------------------------------------------------------------------------------------
