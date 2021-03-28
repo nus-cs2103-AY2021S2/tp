@@ -43,13 +43,13 @@ ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 ModuleBook *--> "1" UniqueTaskList
-UniqueTaskList o--> "*" Task
-Task *--> Name
-Task *--> Deadline
-Task *--> Module
-Task *--> Description
-Task *--> Workload
-Task *--> DoneStatus
+UniqueTaskList o--right> "*" Task
+Task *--> "1" Name
+Task *--> "1" Deadline
+Task *--> "1" Module
+Task *--> "1" Description
+Task *--> "1" Workload
+Task *--> "1" DoneStatus
 Task *--> "*" Tag
 Module ..> Workload
 
@@ -59,5 +59,5 @@ Description -[hidden]right-> Module
 Module -[hidden]right-> DoneStatus
 DoneStatus -[hidden]right-> Workload
 
-ModelManager ----->" ~* filtered list" Task
+ModelManager -----> "*" Task
 @enduml

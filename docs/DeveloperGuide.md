@@ -4,6 +4,12 @@ title: Developer Guide
 ---
 * Table of Contents
 {:toc}
+  
+--------------------------------------------------------------------------------------------------------------------
+
+## **Introduction**
+
+This developer guide is meant for developers who wish to understand the internal workings of ModuleBook3.5. 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -57,6 +63,8 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
+
 ### UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
@@ -93,6 +101,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
@@ -127,11 +137,51 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.modulebook.commons` package.
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Done/notdone feature
+
+#### Implementation
+
+The done/notdone mechanism is facilitated by `Task`. It extends `Task` with a done status, stored internally as a `DoneStatus`. Additionally, it implements the following operations:
+
+* `Task#setDoneStatus(task, doneStatus)` —  Creates a copy of `task` that has new `doneStatus`.
+
+Given below is an example usage scenario and how the done mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `ModuleBook` will be initialized with the initial module book state, and the `currentStatePointer` pointing to that single module book state.
+
+![DoneNotdoneState0](images/DoneNotdoneState0.png)
+
+Step 2. The user executes `done 5` command to mark the 5th task in the module book as done. The `done` command calls `Task#setDoneStatus(task, doneStatus)`, causing the modified copy of the selected task after the `done 5` command executes to be saved in the `tasks` list.
+
+![DoneNotdoneState1](images/DoneNotdoneState1.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the done command fails its execution, it will not call `Task#setDoneStatus(task, doneStatus)`, so the modified copy of the task will not be saved into the `tasks` list.
+
+</div>
+
+The following sequence diagram shows how the done operation works:
+
+![UndoSequenceDiagram](images/DoneSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DoneCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes done command:
+
+![CommitActivityDiagram](images/DoneActivityDiagram.png)
+
+The notdone mechanism is similar to that of the done mechanism, except that the modified copy of the task is set as not done instead.
+
+<div style="page-break-after: always;"></div>
 
 ### \[Proposed\] Undo/redo feature
 
@@ -213,10 +263,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -252,7 +299,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                 | I want to …​                               | So that I can…​                                                                |
 | -------- | ------------------------------------------ | --------------------------------------------- | --------------------------------------------------------------------------------- |
-| `* * *`  | student                                    | add task to list                              | I can keep track of my module-related tasks and stay organized                    |
+| `* * *`  | student                                    | add task to list                              | keep track of my module-related tasks and stay organized                    |
 | `* * *`  | student                                    | delete a task from the list                   | remove the tasks I have completed or don't want anymore                           |
 | `* *`    | meticulous student                         | mark a task as done                           | keep track of tasks that I have completed                                         |
 | `* *`    | student                                    | mark a task as undone                         | keep track of tasks that I've yet to complete or need to make edits to            |
@@ -264,8 +311,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | busy student                               | view workload count for each module           | decide which module requires more effort
 | `*`      | busy student                               | search for tags                               | locate my tasks easily                                                            |
 | `*`      | busy student                               | delete tags                                   | edit tags of my tasks without having to recreate them                             |
-| `*`      | busy student with many repeating tasks     | make a task repeat daily, monthly or weekly   | don't have to key in the same task daily or weekly or monthly                     |                              
+| `*`      | busy student with many repeating tasks     | make a task repeat daily, monthly or weekly   | avoid keying in the same task daily or weekly or monthly                     |                              
 
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -403,7 +451,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       
 * 2c.  The start time of the task is later than its deadline.
       
-    * 2c1. ModuleBook 3.5 shows an error message.
+    * 2c1. ModuleBook3.5 shows an error message.
       
       Use case resumes at step 2.
 
@@ -547,7 +595,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2e.  The start time of the edited task is later than its deadline.
       
-    * 2e1. ModuleBook 3.5 shows an error message.
+    * 2e1. ModuleBook3.5 shows an error message.
       
       Use case resumes at step 2.
     
@@ -577,7 +625,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User request to sorts tasks by deadline.
 
-2.  ModuleBook 3.5 sorts the tasks in descending order of urgency and display them.
+2.  ModuleBook3.5 sorts the tasks in descending order of urgency and display them.
 
     Use case ends.
 
@@ -585,11 +633,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. Invalid format for the sort command.
 
-    * 2a1. ModuleBook 3.5 shows an error message with the correct format for sort and example.
+    * 2a1. ModuleBook3.5 shows an error message with the correct format for sort and example.
 
       Use case resumes at step 2.
     
-**Use case 12: Recur tasks**
+**Use case 13: Recur tasks**
 
 **MSS**
 
@@ -621,6 +669,8 @@ Use case ends.
     
         Use case resumes at step 2.
 
+<div style="page-break-after: always;"></div>
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -633,7 +683,6 @@ Use case ends.
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Module**: A subject in NUS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
