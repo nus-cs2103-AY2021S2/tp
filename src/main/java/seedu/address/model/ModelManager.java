@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.passenger.Passenger;
+import seedu.address.model.pool.Pool;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Passenger> filteredPassengers;
+    private final FilteredList<Pool> filteredPools;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,6 +37,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredPassengers = new FilteredList<>(this.addressBook.getPassengerList());
+        this.filteredPools = new FilteredList<>(this.addressBook.getPoolList());
     }
 
     public ModelManager() {
@@ -127,6 +130,25 @@ public class ModelManager implements Model {
     public void updateFilteredPassengerList(Predicate<Passenger> predicate) {
         requireNonNull(predicate);
         filteredPassengers.setPredicate(predicate);
+    }
+
+    //=========== Filtered Pool List Accessors =============================================================
+
+    @Override
+    public void addPool(Pool pool) {
+        addressBook.addPool(pool);
+        updateFilteredPoolList(PREDICATE_SHOW_ALL_POOLS);
+    }
+
+    @Override
+    public ObservableList<Pool> getFilteredPoolList() {
+        return filteredPools;
+    }
+
+    @Override
+    public void updateFilteredPoolList(Predicate<Pool> predicate) {
+        requireNonNull(predicate);
+        filteredPools.setPredicate(predicate);
     }
 
     @Override

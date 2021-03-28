@@ -70,7 +70,7 @@
               <padding>
                 <Insets top="10" right="10" bottom="10" left="10" />
               </padding>
-              <StackPane fx:id="takenPassengerListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+              <StackPane fx:id="poolListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
             </VBox>
           </GridPane>
         </VBox>

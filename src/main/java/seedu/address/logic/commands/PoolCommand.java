@@ -5,11 +5,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMUTER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PASSENGERS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_POOLS;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.StringJoiner;
+import java.util.*;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -21,6 +19,7 @@ import seedu.address.model.person.driver.Driver;
 import seedu.address.model.person.passenger.Address;
 import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.person.passenger.Price;
+import seedu.address.model.pool.Pool;
 import seedu.address.model.pool.TripDay;
 import seedu.address.model.pool.TripTime;
 import seedu.address.model.tag.Tag;
@@ -82,8 +81,13 @@ public class PoolCommand extends Command {
             joiner.add(editedPassenger.getName().toString());
             model.setPassenger(passengerToEdit, editedPassenger);
         }
+        List<Passenger> tempPassengerSet = new ArrayList<>();
+        passengers.stream()
+                .forEachOrdered(idx -> tempPassengerSet.add(lastShownList.get(idx.getZeroBased())));
+        model.addPool(createPool(tempPassengerSet, driver));
 
         model.updateFilteredPassengerList(PREDICATE_SHOW_ALL_PASSENGERS);
+        model.updateFilteredPoolList(PREDICATE_SHOW_ALL_POOLS);
 
         return new CommandResult(String.format(MESSAGE_POOL_SUCCESS, driver.toString(), joiner.toString()));
     }
@@ -108,6 +112,20 @@ public class PoolCommand extends Command {
 
         return new Passenger(updatedName, updatedPhone, updatedAddress, updatedTripDay, updatedTripTime, price,
                 updatedTags);
+    }
+
+    //TODO comment
+    private static Pool createPool(List<Passenger> passengersToPool, Driver driver) {
+        if (passengersToPool.isEmpty()) {
+            throw new NullPointerException();
+        }
+        requireNonNull(driver);
+
+        TripDay updatedTripDay = passengersToPool.get(0).getTripDay();
+        TripTime updatedTripTime = passengersToPool.get(0).getTripTime();
+
+        //todo fix hashset
+        return new Pool(driver, updatedTripDay, updatedTripTime, new HashSet<>(passengersToPool), new HashSet<Tag>());
     }
 
     @Override

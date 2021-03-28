@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.passenger.Passenger;
+import seedu.address.model.pool.Pool;
 
 /**
  * The API of the Model component.
@@ -13,6 +14,8 @@ import seedu.address.model.person.passenger.Passenger;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Passenger> PREDICATE_SHOW_ALL_PASSENGERS = unused -> true;
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Pool> PREDICATE_SHOW_ALL_POOLS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -81,8 +84,23 @@ public interface Model {
     ObservableList<Passenger> getFilteredPassengerList();
 
     /**
+     * Adds the given pool.
+     * {@code pool} must not already exist in the address book.
+     */
+    void addPool(Pool pool);
+
+    /**
      * Updates the filter of the filtered passenger list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPassengerList(Predicate<Passenger> predicate);
+
+    /** Returns an unmodifiable view of the filtered pool list */
+    ObservableList<Pool> getFilteredPoolList();
+
+    /**
+     * Updates the filter of the filtered pool list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredPoolList(Predicate<Pool> predicate);
 }
