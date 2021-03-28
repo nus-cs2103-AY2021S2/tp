@@ -38,6 +38,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private final HelpWindow helpWindow;
 
+
     @FXML
     private StackPane commandBoxPlaceholder;
 
@@ -52,6 +53,13 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane resultDisplayPlaceholder;
+
+    @FXML
+    private StackPane chartDisplayPlaceholder;
+
+    @FXML
+    private StackPane locationDisplayPlaceholder;
+
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
