@@ -191,6 +191,19 @@ Examples:
 * `addAppt i/A1234567X d/2021-12-13 ts/13:00 te/14:00`
 * `addAppt i/A7654321J d/2021-12-13 ts/14:00 te/14:30`
 
+### Editing an appointment: `editAppt`
+
+Edits an appointment to that already exists in Vax@NUS' records.
+
+Format: `editAppt i/MATRICULATION_NUMBER d/DATE_YYYY-MM-DD ts/START_TIME_HH:MM`
+
+* The edited appointment must not clash with an existing appointment.
+
+
+Examples:
+* `editAppt i/A1234567X d/2021-12-13 ts/14:00`
+* `editAppt i/A7654321J d/2021-12-13 ts/14:00`
+
 
 ### Viewing statistics for student population: `stats`
 
@@ -245,16 +258,15 @@ _Details coming soon ..._
 
 **Q**: What can be included in medical details?
 <br>
-**A**: Allergies and past medical history. 
-
-**Q**: Will I be able to amend a student’s details?
-<br>
-**A**: Unfortunately, this feature is not available at the moment, but plans are in the works to make this a reality.
+**A**: Allergies and past medical history.
 
 **Q** : Will I be able to add other types of appointments besides vaccination appointments?
 <br>
 **A** : No, the current version only allows you to add vaccination appointments and not any other type of appointments. 
- 
+
+**Q** : Am I able to change an appointment at a specific time to another student?
+<br>
+**A** : No, you will need to delete that appointment first, then add the new appointment at that specific time with the new student. 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Summary
