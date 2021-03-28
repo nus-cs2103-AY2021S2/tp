@@ -4,10 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PASSENGER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_MONDAY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPTIME_MORNING;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -27,12 +31,15 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.driver.Driver;
 import seedu.address.model.person.passenger.Passenger;
+import seedu.address.model.pool.TripDay;
+import seedu.address.model.pool.TripTime;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.CommuterBuilder;
 import seedu.address.testutil.DriverBuilder;
-import seedu.address.testutil.DriverUtil;
 import seedu.address.testutil.EditPassengerDescriptorBuilder;
 import seedu.address.testutil.PassengerBuilder;
 import seedu.address.testutil.PassengerUtil;
+import seedu.address.testutil.PoolUtil;
 
 public class AddressBookParserTest {
 
@@ -98,10 +105,17 @@ public class AddressBookParserTest {
     public void parseCommand_pool() throws Exception {
         Driver driver = new DriverBuilder().build();
         Set<Index> commuters = new CommuterBuilder().build();
-        PoolCommand command = (PoolCommand) parser.parseCommand(DriverUtil.getPoolCommand(driver, commuters));
+        Set<Tag> tags = new HashSet<>();
+        TripDay tripDay = new TripDay(VALID_TRIPDAY_MONDAY);
+        TripTime tripTime = new TripTime(VALID_TRIPTIME_MORNING);
 
-        assertEquals(new PoolCommand(driver, commuters), command);
+        PoolCommand command = (PoolCommand) parser.parseCommand(PoolUtil.getPoolCommandString(driver,
+                commuters, tripDay, tripTime, tags));
+
+        assertEquals(new PoolCommand(driver, commuters, tripDay, tripTime, tags), command);
     }
+
+    //TODO add unpool command test
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
