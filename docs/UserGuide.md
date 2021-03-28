@@ -197,7 +197,7 @@ Find all members whose details contain any of the specified keywords.
 
 Format: `findMembers KEYWORD [MORE_KEYWORDS]`
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-primary"> :bulb: **Tip:**
 * Keywords are case-insensitive.
 </div>
 
@@ -220,8 +220,7 @@ Format: `addTask TITLE -d DESCRIPTION -b DEADLINE [-s STATUS] [-p PRIORITY] [-a 
 * If you did not specify a value for PRIORITY, the Task will be assigned a default priority of **unassigned**.
 * PRIORITY field can only take on the values **high**, **medium**, **low** or **unassigned**.
 
-<div markdown="span" class="alert alert-primary">
-:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary"> :bulb: **Tip:**
 * A task can have any number of assignees (including 0).   
 * To add multiple assignees, simply use multiple assignees prefix. 
 </div>
@@ -371,8 +370,7 @@ Find all tasks assigned to a single Member
 
 Format: `findTasksFor NAME`
 
-<div markdown="span" class="alert alert-primary">
-:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary"> :bulb: **Tip:**
 * The NAME specified can only belong to 1 Member. 
 * A NAME that does not exist in the Member List will return 0 tasks listed
 </div>
