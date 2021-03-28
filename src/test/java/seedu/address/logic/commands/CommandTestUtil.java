@@ -160,13 +160,13 @@ public class CommandTestUtil {
      * {@code model}'s sochedule.
      */
     public static void showEventAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredTaskList().size());
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredEventList().size());
 
         Event event = model.getFilteredEventList().get(targetIndex.getZeroBased());
         final String[] splitName = event.getName().fullName.split("\\s+");
         model.updateFilteredEventList(new EventNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredTaskList().size());
+        assertEquals(1, model.getFilteredEventList().size());
     }
 
 }
