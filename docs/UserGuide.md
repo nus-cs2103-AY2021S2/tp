@@ -10,6 +10,7 @@ It allows for faster and more effective student management.
 **Table of Contents**
 * [Quick start](#quick-start)
 * [Features](#features)
+  * [Open help panel: `help`](#viewing-help--help)
   * [Listing all students: `list_student`](#listing-all-students-list_student)
   * [Locating student profile by name: `find_student`](#locating-student-profile-by-name-find_student)
   * [Adding a student: `add_student`](#adding-a-student-add_student)
@@ -20,6 +21,7 @@ It allows for faster and more effective student management.
   * [Adding a tuition session: `add_session`](#adding-a-tuition-session-add_session)
   * [Deleting a tuition session: `delete_session`](#deleting-a-tuition-session-delete_session)
   * [Getting monthly fee for a particular student: `fee`](#getting-monthly-fee-for-a-particular-student-fee)
+  * [Clears all entries in the program: `exit`](#clearing-all-entries--clear)
   * [Exit the program: `exit`](#exit-the-program-exit)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
@@ -54,6 +56,8 @@ It allows for faster and more effective student management.
   * `delete_session n/John Lee i/1`: Deletes the 1st tuition session in John's tuition session list
 
 **General**
+  * `help`: Opens a panel, explaining how to access the help page
+  * `clear`: Clears all entries from the TutorBuddy application
   * `exit`: Exits the application
 
 6. Refer to the [Features](#features) below for details of each command.
@@ -61,6 +65,14 @@ It allows for faster and more effective student management.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
+
+### Viewing help : `help`
+
+Shows a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
 
 ### Listing all students: `list_student`
 
@@ -101,6 +113,12 @@ Adds a student to the TutorBuddy
 Format: `add_student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS l/STUDY_LEVEL g/GUARDIAN_PHONE_NUMBER r/RELATIONSHIP_WITH_GUARDIAN` <br>
 * `STUDENT_PHONE_NUMBER`, `GUARDIAN_PHONE_NUMBER` should be in Singapore's phone formatting (i.e. starting with either 6, 8 or 9 and 8 digits)
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+TutorBuddy only allows students with distinct names, however, its case sensitive. 
+Hence, students with the same name with different cases are treated as non-duplicated students. <br>
+(E.g. TutorBuddy allows students with both John Doe and john doe)
+</div>
+
 Examples:
 * `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Sec2 g/95421323 r/Mother`
 
@@ -110,8 +128,15 @@ Deletes the specified student from TutorBuddy
 
 Format: `delete_student INDEX` <br>
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You could use `find_student` first to filter the list of students you want.<br>
+The INDEX would then be based on the current list instead.<br>
+(E.g. If John Doe is the 500th student, instead of delete_student 500, you can use find_student John Doe and 
+delete_student 1 if the John Doe you would like to delete is the 1st in the list)
+</div>
+
 Examples:
-* `delete_student 2` deletes the 2nd student in the address book
+* `delete_student 2` deletes the 2nd student based on the current list of students
 
 ### Listing students' emails based on current list: `emails`
 Displays concatenated string of students' emails based on current list, separated by `;`. Useful for sending mass emails to students.
@@ -175,6 +200,11 @@ Format: `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`
 * `DURATION` should be in minutes
 * `FEE` should be the total tuition fee for the total duration
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+TutorBuddy takes care of overlapping session for you so that you don't have to worry about it.<br>
+(Overlapping session will return an error)
+</div>
+
 Examples:
 * `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80`
 
@@ -204,6 +234,16 @@ Format: `fee n/STUDENT_NAME m/MONTH y/YEAR`
 Examples:
 * `fee n/John Lee m/1 y/2021` get John Lee monthly fee for January 2021
 
+### Clearing all entries : `clear`
+
+Clears all entries from the TutorBuddy application.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+TutorBuddy gives you some "sample" data to work with at the start. <br>
+After trying out the application, you can run the `clear` command to start working with a fresh piece of TutorBuddy in a split second.
+</div>
+
+Format: `clear`
 
 ### Exit the program: `exit`
 
@@ -246,3 +286,10 @@ Action | Format, Examples
 Action | Format, Examples
 --------|------------------
 **Student fee for a particular month and year** | `fee n/STUDENT_NAME m/MONTH y/YEAR`<br><br>e.g. `fee n/John Lee m/1 y/2021`
+
+**Others**
+
+Action | Format, Examples
+--------|------------------
+**Help** | `help`
+**Clear** | `clear`
