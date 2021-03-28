@@ -64,7 +64,7 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ContactListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -103,11 +103,11 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<Contact>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Contact` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Contact` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
@@ -135,7 +135,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Model for Tasks (Todos, Deadlines & Events)
 
-The classes and implementations used to model various Tasks (e.g. Todos, Deadlines & Events) are facilitated by `CompletableTodo`, `CompletableDeadline` and '`Repeatable` abstract classes. This design is similar to the Person model from AB3.
+The classes and implementations used to model various Tasks (e.g. Todos, Deadlines & Events) are facilitated by `CompletableTodo`, `CompletableDeadline` and '`Repeatable` abstract classes. This design is similar to the Contact model from AB3.
 
 The client creates a concrete `Todo`, `Deadline` or `Event` that encapsulates all information related to these Tasks. Each concrete `Todo`, `Deadline` or `Event` implements the `CompletableTodo`, `CompletableDeadline` and '`Repeatable` abstract classes respectively. Each `Completable` and `Repeatable` abstract class specifies specific behaviors.
 
@@ -253,16 +253,16 @@ Step 5. After the project gets updated, `Model#saveProjectsFolder` is called to 
 
 ##### Aspect: How the target contact is specified when updating contacts
 
-* **Alternative 1 (current choice):** Pass the `Index` object down to `UniquePersonList#setPerson`.
+* **Alternative 1 (current choice):** Pass the `Index` object down to `UniqueContactList#setContact`.
     * Pros: More Consistent in how to pass indexes and locate an element in a `List` throughout the codebase.
-    * Cons: Higher coupling since `UniquePersonList` now relies on `Index`.
+    * Cons: Higher coupling since `UniqueContactList` now relies on `Index`.
 
-* **Alternative 2 (implementation used in AB3):** Pass the target `Person` object to be edited to `UniquePersonList#setPerson`.
-    * Pros: Lower coupling since `Index` is not a dependency of `UniquePersonList`.
-    * Cons: Extra computation of index from the `Person` object since the index is already provided in the command. Passing the original project around does not provide more information than passing only the index.
+* **Alternative 2 (implementation used in AB3):** Pass the target `Contact` object to be edited to `UniqueContactList#setContact`.
+    * Pros: Lower coupling since `Index` is not a dependency of `UniqueContactList`.
+    * Cons: Extra computation of index from the `Contact` object since the index is already provided in the command. Passing the original project around does not provide more information than passing only the index.
 
-* **Alternative 3:** Pass the zero-based index as an integer down to `UniquePersonList#setPerson`.
-    * Pros: Will use less memory (only needs memory for an integer instead of a `Person` object or an `Index` object), no reliance on `Index`.
+* **Alternative 3:** Pass the zero-based index as an integer down to `UniqueContactList#setContact`.
+    * Pros: Will use less memory (only needs memory for an integer instead of a `Contact` object or an `Index` object), no reliance on `Index`.
     * Cons: May be confusing for new developers since some other parts of the code use one-based indexes instead.
 
 ### Add Event to Project Command [Implemented in v1.2]
@@ -567,7 +567,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * CoLAB should work on any _mainstream OS_ on both 32-bit and 64-bit architectures as long as it has Java `11` or above installed.
     * CoLAB should work under _common screen resolutions_. (i.e. the window should not be out of boundary)
 * Performance requirements:
-    * CoLAB should be able to hold _up to 1000 persons_ without a noticeable sluggishness in performance for typical usage.
+    * CoLAB should be able to hold _up to 1000 contacts_ and _1000 projects_ without a noticeable sluggishness in performance for typical usage.
     * The response to any command should be shown _within 1 second_.
 * Constraints:
     * CoLAB should be _backward compatible_ with data files produced by earlier versions as much as possible. If one release is not compatible with earlier versions, a migration guide should be provided.
