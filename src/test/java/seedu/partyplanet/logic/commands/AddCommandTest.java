@@ -261,7 +261,7 @@ public class AddCommandTest {
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
 
-        State savedState = new State("Loading from saved data", getAddressBook(), getEventBook());
+        private State savedState = new State("Loading from saved data", getAddressBook(), getEventBook());
         final StateHistory stateHistory = new StateHistory(savedState);
 
         @Override

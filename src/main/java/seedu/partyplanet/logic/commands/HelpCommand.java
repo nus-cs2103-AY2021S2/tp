@@ -1,7 +1,5 @@
 package seedu.partyplanet.logic.commands;
 
-import java.util.concurrent.ConcurrentMap;
-
 import seedu.partyplanet.model.Model;
 
 /**
@@ -32,6 +30,7 @@ public class HelpCommand extends Command {
             + "Deleting events: " + EDeleteCommand.MESSAGE_USAGE_CONCISE + "\n"
             + "Editing events: " + EEditCommand.MESSAGE_USAGE_CONCISE + "\n"
             + "Marking events as done: " + EDoneCommand.MESSAGE_USAGE_CONCISE + "\n"
+            + "Listing events: " + EListCommand.MESSAGE_USAGE_CONCISE + "\n"
             + "*****GENERAL*****\n"
             + "Undoing mistakes: " + UndoCommand.MESSAGE_USAGE_CONCISE + "\n"
             + "Redoing commands: " + RedoCommand.MESSAGE_USAGE_CONCISE + "\n"
