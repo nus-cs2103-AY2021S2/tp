@@ -93,7 +93,7 @@ public class ResultDisplay extends UiPart<Region> {
     }
 
     public void setErrorGifType(String theme) {
-        if (theme.equalsIgnoreCase("light")) {
+        if (theme.equalsIgnoreCase("light") || theme.equalsIgnoreCase("material")) {
             this.errorGifType = "error-black.gif";
         } else {
             this.errorGifType = "error-white.gif";
@@ -101,7 +101,7 @@ public class ResultDisplay extends UiPart<Region> {
     }
 
     public void setSpinnerGifType(String theme) {
-        if (theme.equalsIgnoreCase("light")) {
+        if (theme.equalsIgnoreCase("light") || theme.equalsIgnoreCase("material")) {
             this.loadingSpinnerPlaceholder.setImage(loadingSpinnerForLight);
         } else {
             this.loadingSpinnerPlaceholder.setImage(loadingSpinnerForDark);
