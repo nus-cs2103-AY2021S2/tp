@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -17,6 +18,7 @@ import seedu.address.model.appointment.DateViewPredicate;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.filter.PersonFilter;
 import seedu.address.model.grade.Grade;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
@@ -492,17 +494,15 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteSchedule(int indexToRemove) {
-        scheduleTracker.removeSchedule(indexToRemove);
-    }
-
-    @Override
     public void setSchedule(Schedule target, Schedule editedSchedule) {
         scheduleTracker.setSchedule(target, editedSchedule);
     }
 
     @Override
-    public boolean hasScheduleDateTime(AppointmentDateTime appointmentDateTime) {
-        return false;
+    public ObservableList<Event> getFilteredEventList() {
+        ObservableList<Event> filteredEvents = FXCollections.observableArrayList();
+        filteredEvents.addAll(filteredAppointment);
+        filteredEvents.addAll(filteredSchedule);
+        return filteredEvents;
     }
 }

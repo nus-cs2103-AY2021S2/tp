@@ -24,6 +24,7 @@ import seedu.address.model.ReadOnlyGradeBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
+import seedu.address.model.event.Event;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.filter.PersonFilter;
 import seedu.address.model.grade.Grade;
@@ -359,6 +360,8 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public ObservableList<Event> getFilteredEventList() {
         public boolean hasScheduleDateTime(AppointmentDateTime appointmentDateTime) {
             throw new AssertionError("This method should not be called.");
         }
