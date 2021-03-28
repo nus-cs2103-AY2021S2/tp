@@ -132,7 +132,7 @@ public class Planner implements ReadOnlyPlanner {
 
     /**
      * Replaces the contents of the task list with {@code tasks}.
-     * {@code meetings} must not contain duplicate tasks.
+     * {@code tasks} must not contain duplicate tasks.
      */
     public void setTask(List<Task> tasks) {
         this.tasks.setTasks(tasks);

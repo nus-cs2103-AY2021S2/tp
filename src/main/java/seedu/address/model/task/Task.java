@@ -121,6 +121,27 @@ public class Task {
     }
 
     /**
+     * Checks if the provided deadline has the same date as this task's deadline.
+     *
+     * @param deadline Deadline to check this task's deadline with.
+     * @return Boolean indicating whether the provided deadline is on the same day as this task's deadline.
+     */
+    public boolean hasSameDeadlineDate(Deadline deadline) {
+        return this.deadline.value != null && this.deadline.equals(deadline);
+    }
+
+    /**
+     * Checks if the provided date string is in the schedule of this task's recurring schedule.
+     * Will return false if there is no dates in the schedule.
+     *
+     * @param dateString Date in string format, to check if it is in this task's schedule.
+     * @return Boolean indicating if the provided date is in the schedule.
+     */
+    public boolean isOnRecurringScheduleDate(String dateString) {
+        return this.recurringSchedule.isInSchedule(dateString);
+    }
+
+    /**
      * Checks if the Deadline attribute contains any data.
      *
      * @return true if the String of Deadline isEmpty, false otherwise.

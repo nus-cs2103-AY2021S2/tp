@@ -19,6 +19,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.ViewDayCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -51,45 +52,34 @@ public class PlannerParser {
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
-
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
-
         //@@author mesyeux
         case DeleteTaskCommand.COMMAND_WORD:
             return new DeleteTaskCommandParser().parse(arguments);
-
         case DeleteFieldCommand.COMMAND_WORD:
             return new DeleteFieldCommandParser().parse(arguments);
         //@@author
-
         case CountdownCommand.COMMAND_WORD:
             return new CountdownCommandParser().parse(arguments);
-
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
-
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
-
         case ListCommand.COMMAND_WORD:
             return new ListCommandParser().parse(arguments);
-
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
-
+        case ViewDayCommand.COMMAND_WORD:
+            return new ViewDayCommandParser().parse(arguments);
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
-
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-
         case DoneCommand.COMMAND_WORD:
             return new DoneCommandParser().parse(arguments);
-
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }

@@ -114,6 +114,17 @@ public class RecurringSchedule implements RecurringDates {
         return recurringScheduleOutput;
     }
 
+    /**
+     * Checks if the provided date string is in this schedule's weekly dates.
+     * Will return false if there is no dates in the schedule.
+     *
+     * @param dateString Date to be checked.
+     * @return Boolean indicating if the date is in this schedule.
+     */
+    public boolean isInSchedule(String dateString) {
+        return weekDates.stream().anyMatch(date -> date.equals(dateString));
+    }
+
     public boolean isEmptyValue() {
         return isEmptyRecurringSchedule;
     }
