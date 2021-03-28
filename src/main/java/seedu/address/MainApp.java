@@ -43,6 +43,7 @@ import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
+
 /**
  * Runs the application.
  */
@@ -58,6 +59,8 @@ public class MainApp extends Application {
             + "be starting with a sample AddressBook";
     private static final String GRADE_BOOK_NOT_FOUND = "Data file not found. Will "
             + "be starting with a sample GradeBook";
+    private static final String SCHEDULE_TRACKER_NOT_FOUND = "Data file not found. Will "
+            + "be starting with a sample Schedule Tracker";
 
     protected Ui ui;
     protected Logic logic;
@@ -103,6 +106,8 @@ public class MainApp extends Application {
         Optional<ReadOnlyAddressBook> addressBookOptional;
         Optional<ReadOnlyAppointmentBook> appointmentBookOptional;
         Optional<ReadOnlyGradeBook> gradeBookOptional;
+        Optional<ReadOnlyScheduleTracker> scheduleTrackerOptional;
+
         ReadOnlyAddressBook initialData;
         ReadOnlyAppointmentBook initialAppointments;
         ReadOnlyGradeBook initialGrades;
@@ -150,9 +155,18 @@ public class MainApp extends Application {
             initialGrades = new GradeBook();
         }
 
-        initialSchedules = new ScheduleTracker(SampleDataUtil.getSampleScheduleTracker());
+        try {
+            scheduleTrackerOptional = storage.readScheduleTracker();
+            if (!scheduleTrackerOptional.isPresent()) {
+                logger.info(SCHEDULE_TRACKER_NOT_FOUND);
+            }
+            initialSchedules = scheduleTrackerOptional.orElseGet(SampleDataUtil::getSampleScheduleTracker);
+        } catch (DataConversionException | IOException e) {
+            initialSchedules = new ScheduleTracker();
+        }
+
         return new ModelManager(initialData, userPrefs, initialAppointments,
-                budgetBook, initialGrades);
+                budgetBook, initialGrades, initialSchedules);
     }
 
     private void initLogging(Config config) {

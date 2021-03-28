@@ -104,6 +104,7 @@ public class SampleDataUtil {
                     GradeEnum.valueOf("C"))
         };
     }
+
     public static Schedule[] getSampleSchedule() {
         return new Schedule[] {
             new Schedule(new Title("Math Tuition Homework"),
@@ -116,8 +117,6 @@ public class SampleDataUtil {
                     new Description("Chapter 6"))
         };
     }
-
-
 
     public static ReadOnlyScheduleTracker getSampleScheduleTracker() {
         ScheduleTracker sampleSt = new ScheduleTracker();
@@ -181,5 +180,4 @@ public class SampleDataUtil {
                 .map(Tag::new)
                 .collect(Collectors.toSet());
     }
-
 }
