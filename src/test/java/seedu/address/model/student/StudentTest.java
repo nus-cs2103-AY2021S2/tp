@@ -83,8 +83,8 @@ public class StudentTest {
 
         // different sessions -> result true
         editedAlice = new StudentBuilder(ALICE)
-                .addSessions(new Session(new SessionDate("2020-10-01", "10:45"),
-                        new Duration("10"), new Subject("Math"), new Fee("10"))).build();
+            .addSessions(new Session(new SessionDate("2020-10-01", "10:45"),
+                new Duration("10"), new Subject("Math"), new Fee("10"))).build();
         assertTrue(ALICE.equals(editedAlice));
     }
 }
