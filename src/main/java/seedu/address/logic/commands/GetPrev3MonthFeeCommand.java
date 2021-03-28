@@ -14,9 +14,9 @@ import seedu.address.model.fee.Year;
  * Gets current month and previous 2 months expected monthly fee based on the current list of sessions
  */
 public class GetPrev3MonthFeeCommand extends Command {
-    public static final String COMMAND_WORD = "3Month_Fee";
+    public static final String COMMAND_WORD = "3_month_fees";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows the total expected monthly fee"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows the totalled fees per month, "
         + "for this month + previous 2 months";
 
     /**
