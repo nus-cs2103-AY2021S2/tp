@@ -119,7 +119,7 @@ public class MainWindow extends UiPart<Stage> {
         //TODO: removed creation of takenPassengerListPanel here as the logic should no longer support getting a
         // passenger list by drivers
 
-        takenPassengerListPanelPlaceholder.getChildren().add(takenPassengerListPanel.getRoot());
+        takenPassengerListPanelPlaceholder.getChildren().add(filteredPassengerListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
