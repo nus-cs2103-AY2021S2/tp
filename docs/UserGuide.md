@@ -85,7 +85,7 @@ For a quick reference of the available commands and their syntax, refer to the [
   e.g. in `add property n/NAME`, `NAME` is a parameter which can be used as <br>`add property n/Bishan`.
 
 * Items in square brackets are optional.<br>
-  e.g `add property n/NAME t/PROPERTY_TYPE a/ADDRESS p/POSTAL_CODE d/DEADLINE [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS...]` can be used as <br>`add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-6-2021` <br> or as <br>`add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-6-2021 r/Urgent to sell cn/George cc/91124788 ce/george_4788@gmail.com ca/$750,000 tags/Urgent, 4 bedrooms`.
+  e.g `add property n/NAME t/PROPERTY_TYPE a/ADDRESS p/POSTAL_CODE d/DEADLINE [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]` can be used as <br>`add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-6-2021` <br> or as <br>`add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-6-2021 r/Urgent to sell cn/George cc/91124788 ce/george_4788@gmail.com ca/$750,000 tags/Urgent, 4 bedrooms`.
 
 * Items with `…` after them can be used multiple times, including zero times.<br>
   e.g. `[OPTION]...` can be used as `pl/$1,000,000`, `pl/$1,000,000 t/Condo` etc.
