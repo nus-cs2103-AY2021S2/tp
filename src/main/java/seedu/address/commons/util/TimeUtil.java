@@ -28,11 +28,11 @@ public class TimeUtil {
 
     /**
      * Encodes a time passed as a String into a LocalTime.
-     * @param date Date in the uuuu-mm-dd format.
-     * @return A LocalDate object.
+     * @param time Time in the HH:mm format.
+     * @return A LocalTime object.
      * @throws DateConversionException Occurs when a date had been passed in with the wrong format.
      */
-    public static LocalDate encodeDate(String date) throws DateConversionException {
+    public static LocalTime encodeDate(String time) throws DateConversionException {
         requireNonNull(date);
         try {
             return checkDateIsNotNegative(LocalDate.parse(date, formatter));
