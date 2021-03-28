@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.student.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -124,8 +125,19 @@ public class ModelManager implements Model {
     @Override
     public void setStudent(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
-
         studentBook.setStudent(target, editedStudent);
+    }
+
+    public Student getStudent(MatriculationNumber matriculationNumber) {
+        requireNonNull(matriculationNumber);
+        assert studentBook != null;
+        assert MatriculationNumber.isValidMatric(matriculationNumber.value);
+        return studentBook.getStudent(matriculationNumber);
+    }
+
+    @Override
+    public List<Appointment> getAppointmentList() {
+        return studentBook.getFlatAppointmentList();
     }
 
     @Override

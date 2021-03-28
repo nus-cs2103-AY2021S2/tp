@@ -58,10 +58,26 @@ public class AppointmentBuilder {
     }
 
     /**
+     *Sets the {@code date} of the {@code Appointment} that we are building
+     */
+    public AppointmentBuilder withDate(LocalDate date) {
+        this.date = date;
+        return this;
+    }
+
+    /**
      *Sets the {@code startTime} of the {@code Appointment} that we are building
      */
     public AppointmentBuilder withStartTime(String startTime) {
         this.startTime = LocalTime.parse(startTime);
+        return this;
+    }
+
+    /**
+     *Sets the {@code startTime} of the {@code Appointment} that we are building
+     */
+    public AppointmentBuilder withStartTime(LocalTime startTime) {
+        this.startTime = startTime;
         return this;
     }
 

@@ -108,6 +108,11 @@ public class StudentBookTest {
         }
 
         @Override
+        public Student getStudent(MatriculationNumber matriculationNumber) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<SameDateAppointmentList> getAppointmentList() {
             return appointments;
         }

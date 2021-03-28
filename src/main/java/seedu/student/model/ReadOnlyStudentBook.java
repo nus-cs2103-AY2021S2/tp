@@ -21,6 +21,8 @@ public interface ReadOnlyStudentBook {
 
     boolean isExistingMatricNumber(MatriculationNumber matricNum);
 
+    Student getStudent(MatriculationNumber matriculationNumber);
+
     ObservableList<SameDateAppointmentList> getAppointmentList();
 
     List<Appointment> getFlatAppointmentList();
