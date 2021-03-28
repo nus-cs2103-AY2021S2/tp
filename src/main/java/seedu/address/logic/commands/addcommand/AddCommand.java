@@ -9,6 +9,4 @@ public abstract class AddCommand extends Command {
             + "\n" + AddModuleCommand.MESSAGE_USAGE
             + "\n" + AddAssignmentCommand.MESSAGE_USAGE
             + "\n" + AddExamCommand.MESSAGE_USAGE;
-
-
 }
