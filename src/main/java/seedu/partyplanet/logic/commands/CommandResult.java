@@ -2,6 +2,7 @@ package seedu.partyplanet.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
 import java.util.Objects;
 
 import seedu.partyplanet.ui.Theme;
