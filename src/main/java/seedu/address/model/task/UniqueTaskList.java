@@ -113,6 +113,13 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     /**
+     * Sorts the contents of this list given using current {@code comparingVar}.
+     */
+    public void sortDefault() {
+        FXCollections.sort(internalList, taskComparator);
+    }
+
+    /**
      * Returns the number of completed tasks.
      */
     public int getNumCompletedTask() {

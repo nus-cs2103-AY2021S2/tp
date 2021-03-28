@@ -255,6 +255,30 @@ The sequence diagram for `sortTaskCommand` can be found below.
 
 ![Sequence Diagram of SortTask Command](images/SortTaskSequenceDiagram.png)
 
+**Implementation of PinTaskCommand/UnpinTaskCommand**
+The following is a detailed explanation on how PinTaskCommand is implemented.
+UnpinTaskCommand is largely similar in implementation to PinTaskCommand and will be omitted for brevity.
+
+**Step 1**: User executes `pin_task INDEX` command to delete the task at the given index.
+An `PinTaskParser` object is created, and the `PinTaskParser#parse(String args)` method is called.
+The method conducts parses the `args` and conducts validation checks to ensure that it complies with the specification.
+A `PinTaskCommand` object is returned.
+
+**Step 2**: On `PinTaskCommand#execute()`, `Model#pinTask(Task task)` is called.
+This will pin the task at the specified index.
+Subsequently, the underlying task list will be sorted by calling `Model#sortTasksDefault()`, with pinned tasks being first in priority, followed by the last sorted variable 
+(if `sort_task` was not called before, task list will be sorted by name).
+For brevity, lower level implementation of `Model#pinTask(Task task)` is omitted.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message will be appended with `CommandResult#MESSAGE_PIN_TASK_SUCCESS`.
+The UI will also update as the underlying task list has been modified.
+
+Since the sequence diagram for `PinTaskCommand` is similar to `SortTaskCommand`, it is omitted for brevity.
+
+Key differences as follows:
+* Instead of `SortTask`-related parsers and commands, `PinTask`-related parsers and commands are created and activated.
+
 ### 4.3 Event
 
 #### 4.3.1 Overview

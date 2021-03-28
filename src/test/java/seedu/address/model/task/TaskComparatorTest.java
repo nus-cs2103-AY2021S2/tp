@@ -14,6 +14,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.task.exceptions.InvalidTaskComparatorVariableException;
+import seedu.address.testutil.TaskBuilder;
 
 public class TaskComparatorTest {
     private static final String INVALID_INPUT = "*%&!#*)";
@@ -87,5 +88,27 @@ public class TaskComparatorTest {
                 taskComparator.compare(ASSIGNMENT, EXERCISE));
         assertEquals(EXERCISE.getDeadline().compareTo(LAB.getDeadline()),
                 taskComparator.compare(EXERCISE, LAB));
+    }
+
+    //none pinned tested in above test cases
+
+    @Test
+    public void compare_twoValidInput_withOnePinned() {
+        Task assignment = new TaskBuilder(ASSIGNMENT).build();
+        assignment.pin();
+        //take reverse ordering of compare as pinned tasks come before unpinned tasks in list
+        assertEquals(assignment.getPinnedStatus().compareTo(EXERCISE.getPinnedStatus()),
+                taskComparator.compare(EXERCISE, assignment));
+    }
+
+    @Test
+    public void compare_twoValidInput_withTwoPinned() {
+        Task assignment = new TaskBuilder(ASSIGNMENT).build();
+        assignment.pin();
+        Task exercise = new TaskBuilder(EXERCISE).build();
+        exercise.pin();
+        //since both are pinned, should default to comparingVar (=name)
+        assertEquals(assignment.getName().compareTo(exercise.getName()),
+                taskComparator.compare(assignment, exercise));
     }
 }
