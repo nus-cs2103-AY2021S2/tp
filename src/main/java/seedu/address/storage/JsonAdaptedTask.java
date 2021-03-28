@@ -138,7 +138,7 @@ class JsonAdaptedTask {
             task.markTaskAsDone();
         }
 
-        if(modelPinnedStatus.isPinned()) {
+        if (modelPinnedStatus.isPinned()) {
             task.pin();
         }
         return task;
