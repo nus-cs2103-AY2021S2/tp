@@ -92,6 +92,12 @@ public interface Model {
     ObservableList<Student> getFilteredStudentList();
 
     /**
+     * @param matriculationNumber Matriculation number of the student you wish to get.
+     * @return The student you want, null if the student does not exist in the system.
+     */
+    Student getStudent(MatriculationNumber matriculationNumber);
+
+    /**
      * Updates the filter of the filtered student list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
