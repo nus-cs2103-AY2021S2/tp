@@ -26,6 +26,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Item> filteredItems;
     private final SortedList<Item> sortedItems;
+    private Predicate<Item> currentPredicate;
 
     /**
      * Initializes a ModelManager with the given storeMando and userPrefs.
@@ -40,6 +41,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredItems = new FilteredList<>(this.storeMando.getItemList());
         sortedItems = new SortedList<>(this.storeMando.getItemList());
+        this.currentPredicate = x -> true;
     }
 
     public ModelManager() {
@@ -155,6 +157,22 @@ public class ModelManager implements Model {
     public void updateSortedItemList(Comparator<Item> cmp) {
         requireNonNull(cmp);
         sortedItems.setComparator(cmp);
+    }
+
+    //=========== Predicate Accessors =============================================================
+
+    @Override
+    public Predicate<Item> getCurrentPredicate() {
+        return currentPredicate;
+    }
+
+    @Override
+    public void updateCurrentPredicate(Predicate<Item> other) {
+        if (other.equals(PREDICATE_SHOW_ALL_ITEMS)) {
+            this.currentPredicate = PREDICATE_SHOW_ALL_ITEMS;
+        } else {
+            this.currentPredicate = getCurrentPredicate().and(other);
+        }
     }
 
     @Override
