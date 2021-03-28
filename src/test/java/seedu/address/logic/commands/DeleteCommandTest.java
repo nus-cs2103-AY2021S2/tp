@@ -6,6 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
+import static seedu.address.testutil.TypicalBudgets.getTypicalBudgetBook;
 import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -26,8 +27,9 @@ import seedu.address.model.person.Person;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalAppointmentBook(),
-            getTypicalGradeBook());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
+            getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook());
+
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -37,7 +39,8 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
-                model.getAppointmentBook(), model.getGradeBook());
+                model.getAppointmentBook(), model.getBudgetBook(),
+                model.getGradeBook());
         expectedModel.deletePerson(personToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -60,8 +63,9 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
-                model.getAppointmentBook(), model.getGradeBook());
+        Model expectedModel = new ModelManager(model.getAddressBook(),
+                new UserPrefs(), model.getAppointmentBook(), model.getBudgetBook(),
+                model.getGradeBook());
         expectedModel.deletePerson(personToDelete);
         showNoPerson(expectedModel);
 

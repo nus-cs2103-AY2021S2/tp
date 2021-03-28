@@ -14,6 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.appointment.DateViewPredicate;
+import seedu.address.model.budget.Budget;
 import seedu.address.model.grade.Grade;
 import seedu.address.model.person.Person;
 
@@ -32,13 +33,16 @@ public class ModelManager implements Model {
     private final FilteredList<Appointment> filteredAppointment;
     private final FilteredList<Grade> filteredGrades;
 
+    private final BudgetBook budgetBook;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
-                        ReadOnlyAppointmentBook appointmentBook, ReadOnlyGradeBook gradeBook) {
+                        ReadOnlyAppointmentBook appointmentBook,
+                        BudgetBook budgetBook, ReadOnlyGradeBook gradeBook) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(addressBook, appointmentBook, userPrefs, budgetBook);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
@@ -49,10 +53,16 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredAppointment = new FilteredList<>(this.appointmentBook.getAppointmentList());
         filteredGrades = new FilteredList<>(this.gradeBook.getGradeList());
+        this.budgetBook = new BudgetBook(budgetBook);
+
     }
 
+    /**
+     * Default constructor without params. Initializes with empty books.
+     */
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new AppointmentBook(), new GradeBook());
+        this(new AddressBook(), new UserPrefs(), new AppointmentBook(),
+                new BudgetBook(), new GradeBook());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -170,7 +180,6 @@ public class ModelManager implements Model {
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     @Override
@@ -230,8 +239,7 @@ public class ModelManager implements Model {
 
     /**
      * Method that removes appointment based on index
-     *
-     * @param indexToRemove
+     * @param indexToRemove Index of appointment to remove
      */
     @Override
     public void removeAppointmentIndex(int indexToRemove) {
@@ -240,13 +248,64 @@ public class ModelManager implements Model {
 
     /**
      * Checks if {@code AppointmentDateTime} exists in the appointment list.
-     *
      * @param appointmentDateTime Appointment DateTime to be checked
      * @return true if Appointment DateTime exists in the appointment list
      */
     @Override
     public boolean hasAppointmentDateTime(AppointmentDateTime appointmentDateTime) {
         return !filteredAppointment.filtered(new DateViewPredicate(appointmentDateTime)).isEmpty();
+    }
+
+    //============== Budget ============================================================
+
+    /**
+     * Getter method to retrieve budget book.
+     * @return Budget book.
+     */
+    public BudgetBook getBudgetBook() {
+        return budgetBook;
+    }
+
+    /**
+     * @return True is budget already exists.
+     */
+    @Override
+    public boolean hasBudget() {
+        return budgetBook.hasBudget();
+    }
+
+    /**
+     * @param budget Budget to verify whether present.
+     */
+    @Override
+    public boolean hasBudget(Budget budget) {
+        return budgetBook.hasBudget();
+    }
+
+    /**
+     * Adds budget to budget book. Budget must not be present.
+     * @param budget Budget to add.
+     */
+    @Override
+    public void addBudget(Budget budget) {
+        budgetBook.addBudget(budget);
+    }
+
+    /**
+     * Edits an already present {@code budget}.
+     * @param budget Budget to update to.
+     */
+    @Override
+    public void editBudget(Budget budget) {
+        budgetBook.setBudget(budget);
+    }
+
+    /**
+     * Removes an already existing budget.
+     */
+    @Override
+    public void deleteBudget() {
+        budgetBook.deleteBudget();
     }
 
     //=========== GradeList ============================================================================
@@ -322,8 +381,7 @@ public class ModelManager implements Model {
 
     /**
      * Method that removes grade based on index
-     *
-     * @param indexToRemove
+     * @param indexToRemove index of grade to remove
      */
     @Override
     public void removeGradeIndex(int indexToRemove) {
@@ -354,7 +412,9 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && appointmentBook.equals(other.appointmentBook)
+                && filteredPersons.equals(other.filteredPersons)
+                && budgetBook.equals(other.budgetBook);
     }
 
 }

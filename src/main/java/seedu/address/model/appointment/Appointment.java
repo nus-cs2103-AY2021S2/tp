@@ -6,6 +6,9 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.subject.SubjectName;
 
+//TODO Add restriction for add_appointment to ensure that tutor must exist in
+// address_book before adding appointment
+
 /**
  * Appointment class to store appointment objects to represent tutee and tutor relations
  */
@@ -88,6 +91,13 @@ public class Appointment {
                 && AppointmentDateTime.isValidDateTime(appointment.getTimeFrom().toDateString())
                 && AppointmentDateTime.isValidDateTime(appointment.getTimeTo().toDateString())
                 && Address.isValidAddress(appointment.getLocation().toString());
+    }
+
+    /**
+     * @return Length of Appointment in hours.
+     */
+    public int getDifferenceInMinutes() {
+        return (int) this.timeFrom.getDifferenceInMinutes(this.timeTo.value);
     }
 
     @Override
