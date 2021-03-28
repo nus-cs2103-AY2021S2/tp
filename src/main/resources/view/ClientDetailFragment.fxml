@@ -7,21 +7,25 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.image.ImageView?>
 <HBox xmlns:fx="http://javafx.com/fxml/1" id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="300" prefWidth="300"/>
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="300" GridPane.columnIndex="0">
-            <padding>
-                <Insets top="10" right="10" bottom="10" left="10"/>
-            </padding>
-            <Label fx:id="name" text="Use show command to display a user here" styleClass="details_large_label"/>
-            <FlowPane fx:id="tags"/>
-            <Label fx:id="phone" styleClass="details_small_label" />
-            <Label fx:id="clientLocation" styleClass="details_small_label" />
-            <Label fx:id="email" styleClass="details_small_label" />
-            <Label fx:id="remark" styleClass="details_small_label" />
-        </VBox>
+        <HBox alignment="TOP_LEFT" minHeight="300" GridPane.columnIndex="0">
+            <ImageView fx:id="profileImage" fitHeight="100"/>
+            <VBox alignment="TOP_LEFT" minHeight="300">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                <Label fx:id="name" text="Use show command to display a user here" styleClass="details_large_label"/>
+                <FlowPane fx:id="tags"/>
+                <Label fx:id="phone" styleClass="details_small_label" />
+                <Label fx:id="clientLocation" styleClass="details_small_label" />
+                <Label fx:id="email" styleClass="details_small_label" />
+                <Label fx:id="remark" styleClass="details_small_label" />
+            </VBox>
+        </HBox>
     </GridPane>
 </HBox>

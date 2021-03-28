@@ -6,6 +6,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import seedu.iscam.model.ObservableClient;
@@ -17,7 +19,11 @@ public class ClientDetailFragment extends UiPart<Region> {
     private static final String FXML = "ClientDetailFragment.fxml";
 
     private Client client;
+    private final Image PLACEHOLDER_IMAGE = new Image(this.getClass()
+            .getResourceAsStream("/images/person_icon.png"));
 
+    @FXML
+    private ImageView profileImage;
     @FXML
     private Label name;
     @FXML
@@ -36,10 +42,12 @@ public class ClientDetailFragment extends UiPart<Region> {
     public ClientDetailFragment(ObservableClient observableClient) {
         super(FXML);
         observableClient.addListener(new ClientListener());
+        profileImage.setPreserveRatio(true);
     }
 
     public void setClientDetails(Client client) {
         this.client = client;
+        profileImage.setImage(PLACEHOLDER_IMAGE);
         name.setText(client.getName().fullName);
         phone.setText(client.getPhone().value);
         clientLocation.setText(client.getLocation().value);
