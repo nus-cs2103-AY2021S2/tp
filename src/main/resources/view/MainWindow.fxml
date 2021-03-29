@@ -40,6 +40,9 @@
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
+
+        <StackPane fx:id="filtersPanelPlaceholder" VBox.vgrow="NEVER" HBox.hgrow="ALWAYS"/>
+
             <HBox>
                <children>
                   <VBox HBox.hgrow="ALWAYS">
