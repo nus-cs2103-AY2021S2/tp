@@ -270,9 +270,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteDoctorAppointments(Doctor doctor) {
-        requireNonNull(doctor);
-        appointmentSchedule.deleteDoctorAppointments(doctor);
+    public void deleteDoctorAppointments(UUID doctorUuid) {
+        requireNonNull(doctorUuid);
+        appointmentSchedule.deleteDoctorAppointments(doctorUuid);
     }
 
     @Override

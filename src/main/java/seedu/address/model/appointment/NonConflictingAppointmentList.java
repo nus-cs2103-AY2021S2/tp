@@ -160,9 +160,9 @@ public class NonConflictingAppointmentList implements Iterable<Appointment> {
     /**
      * Deletes all appointments associated with the input {@code doctor} from the appointment schedule.
      */
-    public void deleteDoctorAppointments(Doctor doctor) {
+    public void deleteDoctorAppointments(UUID doctorUuid) {
         List<Appointment> doctorAppointmentList = internalList.stream().filter(appointment ->
-                appointment.getDoctor().equals(doctor)).collect(Collectors.toList());
+                appointment.getDoctorUuid().equals(doctorUuid)).collect(Collectors.toList());
         doctorAppointmentList.forEach(appointment -> internalList.remove(appointment));
     }
 

@@ -120,8 +120,8 @@ public class AppointmentSchedule implements ReadOnlyAppointmentSchedule {
     /**
      * Deletes all appointments associated with the input {@code doctor} from the appointment schedule.
      */
-    public void deleteDoctorAppointments(Doctor doctor) {
-        appointments.deleteDoctorAppointments(doctor);
+    public void deleteDoctorAppointments(UUID doctorUuid) {
+        appointments.deleteDoctorAppointments(doctorUuid);
     }
 
     /**
