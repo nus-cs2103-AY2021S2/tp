@@ -54,11 +54,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | student user      | mark semesters as done              | advance my study plan according to the semesters that i have completed |
 | `*`      | forgetful student | add and view grades of past modules | keep track of how well i did for different modules without remembering |
 
-_{More to be added}_
-
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `NUS Module Planner` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Add a plan**
 
@@ -140,6 +138,41 @@ _{More to be added}_
   - 3a1. AddressBook shows a warning prompt.
 
   Use case ends.
+
+## **Implementation**
+This section describes some noteworthy details on how certain features are implemented.  
+
+### History feature
+
+#### Implementation
+
+![HistoryObjectDiagram](images/HistoryObjectDiagram.png)
+
+The `history command` makes use of the `History` class to format information about semesters prior to the users `current semester` in their `master plan`. As such, a precondition for the `history command` is that the user must have identified both a `master plan` and `current semester`, otherwise they will be prompted to do so.
+
+ 
+
+![HistoryHashmapClassDiagram](images/HistoryHashmapClassDiagram.png)
+
+The `History` class is a helper class that extends `HashMap` and implements two methods, a constructor and a `toString` method. The following explains the functionality that each method provides and how they are implemented:
+
+##### Constructor:`History#new(Plan p, Semester current)`
+Creates a `History` object (a subclass of `HashMap`) using information about semesters from the Plan `p` up until the `current` semester. The *keys* to the `HashMap` are the prior semesters each corresponding *value* is a List of modules that were done in that semester.
+![HistoryConstructorSequenceDiagram](images/HistoryConstructorSequenceDiagram.png)
+
+##### Method:`History#toString()`
+![HistoryToStringSequenceDiagram](images/HistoryToStringSequenceDiagram.png)
+Builds a formatted string by iterating over each of the semesters stored as keys in the HashMap according to their semester number and in ascending order.
+
+Each semester's `toString()` method is called which internally calls each modules `toString()` method.
+
+##### Overview: History command
+The following presents a final overview of how the `history command` is used:
+
+![HistoryArchitectureSequenceDiagram](images/HistoryArchitectureSequenceDiagram.png)
+
+Do note that the current implementation always creates a new `History` instance whenever the `history command` is provided, to ensure that users are presented with their most updated information.
+
 
 ### Non-Functional Requirements
 
