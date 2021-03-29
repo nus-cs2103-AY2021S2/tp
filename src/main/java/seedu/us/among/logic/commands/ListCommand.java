@@ -9,10 +9,6 @@ import seedu.us.among.model.Model;
  */
 public class ListCommand extends Command {
 
-    public static final boolean SHOW_HELP = false;
-    public static final boolean IS_EXIT = false;
-    public static final boolean IS_LIST = true;
-
     public static final String COMMAND_WORD = "list";
 
     private static final String MESSAGE_SUCCESS = "Listed all saved API endpoints on the left-hand-side panel.\n";
@@ -34,8 +30,8 @@ public class ListCommand extends Command {
         requireNonNull(model);
         model.updateFilteredEndpointList(Model.PREDICATE_SHOW_ALL_ENDPOINTS);
         return model.isEndpointListEmpty()
-                ? new CommandResult(MESSAGE_SUCCESS_WITH_EMPTY_LIST, SHOW_HELP, IS_EXIT, IS_LIST)
+                ? CommandResult.listCommandResult(MESSAGE_SUCCESS_WITH_EMPTY_LIST)
                 :
-                new CommandResult(MESSAGE_SUCCESS_WITH_FILLED_LIST, SHOW_HELP, IS_EXIT, IS_LIST);
+                CommandResult.listCommandResult(MESSAGE_SUCCESS_WITH_FILLED_LIST);
     }
 }

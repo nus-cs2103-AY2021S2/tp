@@ -3,6 +3,7 @@ package seedu.us.among.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.us.among.logic.commands.CommandResult.listCommandResult;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_DATA;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_HEADER;
@@ -113,10 +114,7 @@ public class CommandTestUtil {
      */
     public static void assertListCommandSuccess(ListCommand command, Model actualModel, String expectedMessage,
                                             Model expectedModel) {
-        boolean showHelp = false;
-        boolean isExit = false;
-        boolean isList = true;
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage, showHelp, isExit, isList);
+        CommandResult expectedCommandResult = listCommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
