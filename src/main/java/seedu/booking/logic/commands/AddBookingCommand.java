@@ -38,6 +38,7 @@ public class AddBookingCommand extends Command {
             "This booking's starting time is not earlier than the ending time.";
     public static final String MESSAGE_INVALID_VENUE = "This venue does not exist in the system.";
     public static final String MESSAGE_INVALID_PERSON = "This booker does not exist in the system.";
+    public static final String MESSAGE_OVERLAPPING_BOOKING = "This time slot has been booked.";
     private final Booking toAdd;
 
     /**
@@ -68,6 +69,12 @@ public class AddBookingCommand extends Command {
         if (!model.hasVenueWithVenueName(toAdd.getVenueName())) {
             throw new CommandException(MESSAGE_INVALID_VENUE);
         }
+
+        if (model.hasOverlappedBooking(toAdd)) {
+            throw new CommandException(MESSAGE_OVERLAPPING_BOOKING);
+        }
+
+
 
         model.addBooking(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));

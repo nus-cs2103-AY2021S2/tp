@@ -266,4 +266,8 @@ public class BookingSystem implements ReadOnlyBookingSystem {
         requireAllNonNull(oldEmail, newEmail);
         bookings.updatePersonInBookings(oldEmail, newEmail);
     }
+
+    public boolean hasOverlappedBooking(Booking toAdd) {
+        return bookings.overlaps(toAdd);
+    }
 }

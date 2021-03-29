@@ -212,4 +212,6 @@ public interface Model {
     void updateVenueInBookings(VenueName oldVenueName, VenueName newVenueName);
 
     void updatePersonInBookings(Email oldEmail, Email newEmail);
+
+    boolean hasOverlappedBooking(Booking toAdd);
 }

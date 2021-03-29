@@ -97,8 +97,10 @@ public class Booking {
             return false;
         }
         if (otherBooking.getVenueName().equals(this.venueName)) {
-            return this.bookingStart.value.compareTo(otherBooking.bookingEnd.value) < 0
-                    && this.bookingEnd.value.compareTo(otherBooking.bookingStart.value) > 0;
+            return ((this.bookingStart.value.isAfter(otherBooking.bookingStart.value) || this.bookingStart.value.equals(otherBooking.bookingStart.value))
+                        && (this.bookingStart.value.isBefore(otherBooking.bookingEnd.value) || this.bookingStart.value.equals(otherBooking.bookingEnd.value)))
+                    || ((this.bookingEnd.value.isAfter(otherBooking.bookingStart.value) || this.bookingEnd.value.equals(otherBooking.bookingStart.value))
+                        && (this.bookingEnd.value.isBefore(otherBooking.bookingEnd.value) || this.bookingEnd.value.equals(otherBooking.bookingEnd.value)));
         } else {
             return false;
         }
