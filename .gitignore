@@ -23,7 +23,7 @@ docs/_site/
 
 # Theme files
 /theme/
-!/theme/mocha.dark.json
+!/theme/mocha dark.json
 !/theme/solarized.dark.json
 !/theme/tomorrow.dark.json
 !/src/main/resources/themes/sweetlove.json

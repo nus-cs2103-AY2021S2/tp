@@ -216,6 +216,18 @@
     -fx-opacity: 0.9;
 }
 
+.menu:hover {
+    -fx-background-color: derive($background, 20%);
+}
+
+.menu-item:focused {
+    -fx-background-color: derive($background, 20%);
+}
+
+.menu-item .label {
+    -fx-background-color: derive($background, 20%);
+}
+
 .menu .left-container {
     -fx-background-color: $background;
 }
