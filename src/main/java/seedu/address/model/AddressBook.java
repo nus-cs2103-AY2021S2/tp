@@ -2,12 +2,15 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonId;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.session.Session;
+import seedu.address.model.session.SessionId;
 import seedu.address.model.session.SessionList;
 
 /**
@@ -89,6 +92,36 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedPerson);
 
         persons.setPerson(target, editedPerson);
+    }
+
+    /**
+     * gets the person of specified Id and returns the person
+     * @param personId
+     * @return
+     */
+    public Person getPerson(PersonId personId) {
+        for (Iterator<Person> it = persons.getInternalList().iterator(); it.hasNext();) {
+            Person person = it.next();
+            if (person.getPersonId().getPersonId().equals(personId.getPersonId())) {
+                return person;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * gets the session of specified sessionId and returns the session
+     * @param sessionId
+     * @return
+     */
+    public Session getSession(SessionId sessionId) {
+        for (Iterator<Session> it = sessions.getInternalList().iterator(); it.hasNext();) {
+            Session session = it.next();
+            if (session.getClassId().equals(sessionId)) {
+                return session;
+            }
+        }
+        return null;
     }
 
     /**

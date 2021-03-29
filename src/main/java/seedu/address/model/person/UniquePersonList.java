@@ -139,4 +139,8 @@ public class UniquePersonList implements Iterable<Person> {
     public String toString() {
         return "list of students";
     }
+
+    public ObservableList<Person> getInternalList() {
+        return internalList;
+    }
 }

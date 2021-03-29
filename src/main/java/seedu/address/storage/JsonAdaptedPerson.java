@@ -19,6 +19,7 @@ import seedu.address.model.person.PersonType;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.Tutor;
+import seedu.address.model.session.SessionId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -35,6 +36,7 @@ class JsonAdaptedPerson {
     private final String personType;
     private final String personId;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedSessionId> sessions = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -43,7 +45,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("personType") String personType,
-            @JsonProperty("personId") String personId) {
+            @JsonProperty("personId") String personId, @JsonProperty("sessions") List<JsonAdaptedSessionId> sessions) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -53,6 +55,9 @@ class JsonAdaptedPerson {
         }
         this.personType = personType;
         this.personId = personId;
+        if (sessions != null) {
+            this.sessions.addAll(sessions);
+        }
     }
 
     /**
@@ -68,6 +73,8 @@ class JsonAdaptedPerson {
                 .collect(Collectors.toList()));
         personType = source.getPersonType().toString();
         personId = source.getPersonId().toString();
+        sessions.addAll(source.getSessions().stream().map(JsonAdaptedSessionId::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -79,6 +86,10 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+        final List<SessionId> sessionsList = new ArrayList<>();
+        for (JsonAdaptedSessionId session : sessions) {
+            sessionsList.add(session.toModelType());
         }
 
         if (name == null) {
@@ -135,9 +146,13 @@ class JsonAdaptedPerson {
         final PersonId modelPersonId = new PersonId(personId);
 
         if (modelPersonType.toString().equals("student")) {
-            return new Student(modelPersonId, modelName, modelPhone, modelEmail, modelAddress, modelTags);
+            Student student = new Student(modelPersonId, modelName, modelPhone, modelEmail, modelAddress, modelTags);
+            student.getSessions().addAll(sessionsList);
+            return student;
         } else {
-            return new Tutor(modelPersonId, modelName, modelPhone, modelEmail, modelAddress, modelTags);
+            Tutor tutor = new Tutor(modelPersonId, modelName, modelPhone, modelEmail, modelAddress, modelTags);
+            tutor.getSessions().addAll(sessionsList);
+            return tutor;
         }
     }
 

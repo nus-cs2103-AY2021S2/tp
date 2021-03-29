@@ -15,6 +15,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditPersonCommand.EditPersonPersonDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -22,6 +24,7 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.EditSessionDescriptorBuilder;
+import seedu.address.testutil.EditPersonPersonDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -85,14 +88,32 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
     public static final EditSessionCommand.EditSessionDescriptor DESC_FIRST_SESSION;
     public static final EditSessionCommand.EditSessionDescriptor DESC_SECOND_SESSION;
+    public static final EditPersonPersonDescriptor DESC_AMY;
+    public static final EditPersonPersonDescriptor DESC_BOB;
+
+    public static final EditPersonDescriptor DESC_AMY_EDIT;
+    public static final EditPersonDescriptor DESC_BOB_EDIT;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withPersonType(VALID_PERSON_TYPE_STUDENT)
+        DESC_AMY = new EditPersonPersonDescriptorBuilder().withPersonType(VALID_PERSON_TYPE_STUDENT)
                 .withPersonId(VALID_PERSON_ID_AMY)
                 .withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withPersonType(VALID_PERSON_TYPE_TUTOR)
+        DESC_BOB = new EditPersonPersonDescriptorBuilder().withPersonType(VALID_PERSON_TYPE_TUTOR)
+                .withPersonId(VALID_PERSON_ID_BOB)
+                .withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    }
+
+    static {
+        DESC_AMY_EDIT = new EditPersonDescriptorBuilder().withPersonType(VALID_PERSON_TYPE_STUDENT)
+                .withPersonId(VALID_PERSON_ID_AMY)
+                .withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withTags(VALID_TAG_FRIEND).build();
+        DESC_BOB_EDIT = new EditPersonDescriptorBuilder().withPersonType(VALID_PERSON_TYPE_TUTOR)
                 .withPersonId(VALID_PERSON_ID_BOB)
                 .withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
