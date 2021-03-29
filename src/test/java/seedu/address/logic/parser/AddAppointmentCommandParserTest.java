@@ -12,19 +12,20 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BALLET_RECITAL;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_PTM;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_PTM;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_PTM;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_PTM;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalAppointments.BALLET_RECITAL;
-import static seedu.address.testutil.TypicalAppointments.PTM;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddAppointmentCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Address;
 import seedu.address.model.AppointmentBook;
 import seedu.address.model.Model;
@@ -46,21 +47,21 @@ public class AddAppointmentCommandParserTest {
     }
 
     @Test
-    public void parse_allFieldsPresent_success() {
-        Appointment expectedAppointment = new AppointmentBuilder(PTM).build();
+    public void parse_allFieldsPresent_success() throws ParseException {
+        Appointment expectedAppointment = new AppointmentBuilder(BALLET_RECITAL).build();
         // Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
-        //        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_PTM + ADDRESS_DESC_PTM
-        //                + DATE_DESC_PTM + CONTACT_DESC_2, new AddAppointmentCommand(expectedAppointment));
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BALLET_RECITAL + ADDRESS_DESC_BALLET_RECITAL
+                + DATE_DESC_BALLET_RECITAL, new AddAppointmentCommand(expectedAppointment));
 
         // multiple names - last name accepted
-        //        assertParseSuccess(parser, NAME_DESC_PLAY_DATE + NAME_DESC_PTM + ADDRESS_DESC_PTM
-        //                + DATE_DESC_PTM + CONTACT_DESC_2, new AddAppointmentCommand(expectedAppointment));
+        assertParseSuccess(parser, NAME_DESC_PTM + NAME_DESC_BALLET_RECITAL + ADDRESS_DESC_BALLET_RECITAL
+                + DATE_DESC_BALLET_RECITAL, new AddAppointmentCommand(expectedAppointment));
 
         // multiple addresses - last address accepted
-        //        assertParseSuccess(parser, NAME_DESC_PTM + ADDRESS_DESC_PTM + DATE_DESC_PTM
-        //                + CONTACT_DESC_2, new AddAppointmentCommand(expectedAppointment));
+        assertParseSuccess(parser, NAME_DESC_BALLET_RECITAL + ADDRESS_DESC_BALLET_RECITAL
+                + DATE_DESC_BALLET_RECITAL, new AddAppointmentCommand(expectedAppointment));
     }
 
     @Test
