@@ -13,6 +13,7 @@ import seedu.dictionote.logic.commands.AddNoteCommand;
 import seedu.dictionote.logic.commands.ClearContactCommand;
 import seedu.dictionote.logic.commands.CloseCommand;
 import seedu.dictionote.logic.commands.Command;
+import seedu.dictionote.logic.commands.ConvertTxtNoteCommand;
 import seedu.dictionote.logic.commands.DeleteContactCommand;
 import seedu.dictionote.logic.commands.DeleteNoteCommand;
 import seedu.dictionote.logic.commands.EditContactCommand;
@@ -196,6 +197,9 @@ public class DictionoteParser {
 
         case SortNoteCommand.COMMAND_WORD:
             return new SortNoteCommand();
+
+        case ConvertTxtNoteCommand.COMMAND_WORD:
+            return new ConvertTxtNoteCommandParser().parse(arguments);
 
         case SortNoteByTimeCommand.COMMAND_WORD:
             return new SortNoteByTimeCommand();
