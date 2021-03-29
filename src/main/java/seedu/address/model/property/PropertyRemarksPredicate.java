@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 import seedu.address.model.remark.Remark;
 
 /**
- * Tests that a {@code Property}'s {@code Remarks} matches the string given.
+ * Tests that a {@code Property}'s {@code Remarks} matches the remark given.
  */
 public class PropertyRemarksPredicate implements Predicate<Property> {
     private final Remark keywords;
