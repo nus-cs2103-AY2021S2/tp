@@ -42,7 +42,6 @@ If you can type fast, SpamEZ can get your contact management tasks done faster t
    * **`filter`** `[Computing, Student]` : Filters shown contact based on given keywords.
 
    * **`exit`** : Exits the app.
-
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -71,6 +70,8 @@ If you can type fast, SpamEZ can get your contact management tasks done faster t
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* Commands will only handle `INDEX` values from 1 to 2147483647 (inclusive).
+  Values out of this valid integer range will be treated as invalid inputs.
 </div>
 
 ### Viewing help : `help`
@@ -147,7 +148,7 @@ Format: `delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a valid positive integer** 1, 2, …​, 2147483647
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the contacts list.
@@ -159,7 +160,7 @@ Deletes all contacts within the specified index range.
 
 Format: `massdelete start/INDEX end/INDEX`
 * The index refers to the index number shown in the displayed person list.
-* Both the Start Index and End Index must be a positive integer 1,2,3, ...
+* Both the Start Index and End Index **must be a valid positive integer** 1, 2, …​, 2147483647
 * Start Index < End Index and End Index cannot be larger than the number of contacts in the list.
 
 Example:
@@ -180,7 +181,26 @@ Format: blist INDEX
 
 * Changes the blacklist status of the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a valid positive integer** 1, 2, …​, 2147483647
+
+### Collect details from contacts : `collect`
+
+Collects the specified details of all contacts in the displayed person list.
+The type of detail is specified by the prefix provided. Details will be separated
+by the given separator, or by a semicolon if unspecified.
+
+Format: collect [n/] or [p/] or [e/] or [a/] [s/SEPARATOR]
+
+* Exactly one of the type of detail prefix must be provided.
+  The corresponding fields are as follows.
+  * `n/`: Name
+  * `p/`: Phone
+  * `e/`: Email
+  * `a/`: Address
+* The separator will ignore leading and trailing spaces. 
+  As such, it is not possible to start or end the separator with a space.   
+* Words following any prefix other than `s/` will be ignored.
+* Unrelated prefixes will be ignored.
 
 ### Filter contacts: `filter`
 
@@ -204,7 +224,7 @@ Format: `remark INDEX r/REMARK`
 
 * Adds/Replaces the remark of the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a valid positive integer** 1, 2, …​, 2147483647
 
 Example:
 
@@ -237,10 +257,11 @@ SpamEZ data are saved in the hard disk automatically after any command that chan
 
 ### Editing the data file
 
-SpamEZ data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+SpamEZ data are saved as a JSON file `[JAR file location]/data/addressbook.json`.
+Do not update data directly by editing that data file as it may result in unintended behaviors.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, SpamEZ will discard all data and start with an empty data file at the next run.
+If you edit the data file and make its format invalid, SpamEZ will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -263,6 +284,7 @@ Action | Format, Examples
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Blacklist** | `blist INDEX`<br> e.g., `blist 2`
 **Clear** | `clear`
+**Collect** | `collect [n/] or [p/] or [e/] or [a/] [s/SEPARATOR]`<br> e.g., `collect e/ s/,`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Filter** | `filter [keyword1,keyword2,...]`<br> e.g., `filter[Computing, Student]`
