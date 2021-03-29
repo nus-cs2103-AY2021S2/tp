@@ -9,7 +9,7 @@ import seedu.address.model.tag.ChildTag;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods used for generating UI elements.
+ * Contains utility classes and methods used for generating UI elements.
  */
 public class UiUtil {
     /**
@@ -26,9 +26,9 @@ public class UiUtil {
     }
 
     /**
-     * Converts a Set of tags to a sorted Stream of Tags using the TagComparator class.
+     * Converts a {@code Set<Tag>} to a sorted {@code Stream<Tag>} using the TagComparator class.
      * @param tagSet the set of tags to convert.
-     * @return Stream{@literal <Tag>} of the tags sorted based on TagComparator.
+     * @return {@literal Stream<Tag>} of the tags sorted based on TagComparator.
      */
     public static Stream<Tag> streamTags(Set<Tag> tagSet) {
         return tagSet.stream()
