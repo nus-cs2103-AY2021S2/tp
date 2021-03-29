@@ -86,15 +86,15 @@ Examples:
 * `add n/Alice Tan s/Abc Secondary School p/98765432 e/alicet@example.com a/John street, block 123, #01-01 gn/Mary Tan gp/23456789`
 * `add n/Bob Lee t/sec3 s/Def Secondary School p/87654321 e/bobl@example.com a/Bob street, block 321, #01-02 gn/John Lee gp/12345678 t/classA l/monday 1300`
 
-### Listing all persons : `list`
+### Listing all contacts : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons in TutorsPet.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a contact : `edit`
 
-Edits an existing person in the address book.
+Edits an existing person in TutorsPet.
 
 Format: `edit INDEX [n/NAME] [s/SCHOOL] [p/PHONE] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/TAG] [l/LESSON]…​`
 
@@ -170,7 +170,7 @@ Examples:
 
 ### Viewing a contact details: `detail`
 
-View the specified student's contact from the address book.
+View the specified student's contact from TutorsPet.
 
 Format: `detail INDEX`
 
@@ -179,12 +179,12 @@ Format: `detail INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `detail 2` views the 2nd student in the address book.
+* `list` followed by `detail 2` views the 2nd student in TutorsPet.
 * `find Betsy` followed by `detail 1` views the 1st student in the results of the `find` command.
 
-### Deleting a person : `delete`
+### Deleting a contact : `delete`
 
-Deletes the specified student's contact from the address book.
+Deletes the specified student's contact from TutorsPet.
 
 Format: `delete INDEX`
 
@@ -193,12 +193,12 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd student in the address book.
+* `list` followed by `delete 2` deletes the 2nd student in TutorsPet.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from TutorsPet.
 
 Format: `clear`
 
@@ -210,14 +210,14 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+TutorsPet data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+TutorsPet data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, TutorsPet will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -229,7 +229,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TutorsPet home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
