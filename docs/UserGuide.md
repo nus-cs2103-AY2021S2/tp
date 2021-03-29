@@ -13,10 +13,10 @@ Then, you have come to the right place -- TutorBuddy shall help you!
   <img alt="logo" src="images/tutorbuddy_logo.png">
 </div>
 
-<br>
-TutorBuddy is an application made for independent tutors as a management tool to cut down on admin overheads,
-by graphically managing their student’s information with a Graphical User Interface (GUI).
-It allows for faster and more effective student management.
+TutorBuddy is a desktop application made for freelance tutors to efficiently manage their students' contacts,
+provide a quick overview of scheduled tuition sessions at a glance, and handle monthly tuition fees calculation.
+TutorBuddy is also optimized for fast typing users to handle their day-to-day administrative responsibilities
+effectively.
 
 ### About this guide
 This guide provides a basic introduction for using TutorBuddy, and a detailed description for each feature.<br/>
@@ -37,7 +37,8 @@ Go to [Command Summary](#command-summary), for a basic summary to commands.
   * [Listing students' emails based on current list: `emails`](#listing-students-emails-based-on-current-list-emails)
   * [Listing all tuition sessions: `list_session`](#listing-all-tuition-sessions-list_session)
   <!--* [Locating tuition session by student name / date: `find_session`](#locating-tuition-session-by-student-name--date-find_session)-->
-  * [Adding a tuition session: `add_session`](#adding-a-tuition-session-add_session)
+  * [Adding a tuition session: `add_session`](#adding-a-single-tuition-session-add_session)
+  * [Adding a recurring tuition session: `add_rec_session`](#adding-a-recurring-tuition-session-add_rec_session)
   * [Deleting a tuition session: `delete_session`](#deleting-a-tuition-session-delete_session)
   * [Getting monthly fee for a particular student: `fee`](#getting-monthly-fee-for-a-particular-student-fee)
   * [Clears all entries in the program: `clear`](#clearing-all-entries--clear)
@@ -125,7 +126,9 @@ There are three main areas in TutorBuddy:
 
   * **`delete_student`**`3` : Deletes the 3rd student shown in the Student section.
 
-  * **`add_session`**`n/John Doe d/2021-01-01 t/13:00 k/120 s/Biology f/80` : Adds a tuition session for John Doe happening on 2021-01-01.
+  * **`add_session`**`n/John Doe d/2021-01-01 t/13:00 k/120 s/Biology f/80`: Adds a single tuition session for John Doe happening on 2021-01-01
+
+  * **`add_recurring_session`**`n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80 b/7 e/2021-01-15`: Adds a 7-day recurring session for John Doe happening from 2021-01-01 to 2021-01-15
 
   * **`exit`** : Exits the application.
 
@@ -191,6 +194,10 @@ Examples:
 3 | Jon Koh
 4 | Samuel Lee
 
+*Figure 1: Current State of Student List*
+
+Example command usages from the current student list shown in Figure 1:
+
 * `find_student John` returns John Lee
 * `find_student Sam` returns nothing
 * `find_student Lee` returns "John Lee" and "Samuel Lee"
@@ -236,8 +243,18 @@ Examples:
 3 | Jon Koh | jonkoh@gmail.com
 4 | Samuel Lee | sam@gmail.com
 
-* To get emails of all students: `list_student` followed by `emails` returns `johnlee@gmail.com;johnztan@gmail.com;jonkoh@gmail.com;sam@gmail.com;`
-* To get emails of specific students: `find_student john jon` followed by  `emails` returns `johnlee@gmail.com;jonkoh@gmail.com;`
+*Figure 2.1 State of Student List After `list_student` command*
+
+\# | Student Name | Email
+---- |---------|------|
+1 | John Lee | johnlee@gmail.com
+2 | Jon Koh | jonkoh@gmail.com
+
+*Figure 2.2 State of Student List After `find_student john jon` command*
+
+* To get emails of all students (see Figure 2.1): `list_student` followed by `emails` returns `johnlee@gmail.com;johnztan@gmail.com;jonkoh@gmail.com;sam@gmail.com;`
+
+* To get emails of specific students (see Figure 2.2): `find_student john jon` followed by  `emails` returns `johnlee@gmail.com;jonkoh@gmail.com;`
 
 
 ### Listing all tuition sessions: `list_session`
@@ -272,9 +289,9 @@ The command `list_session` will show the following:
 * `find_session Zach` returns nothing-->
 <!-- END OF COMMENT OUT FOR FIND SESSION -->
 
-### Adding a tuition session: `add_session`
+### Adding a single tuition session: `add_session`
 
-Adds a tuition session to the TutorBuddy
+Adds a single tuition session to the TutorBuddy
 
 Format: `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`
 
@@ -291,6 +308,22 @@ TutorBuddy takes care of overlapping session for you by giving a gentle prompt, 
 Examples:
 * `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80`
 
+### Adding a recurring tuition session: `add_rec_session`
+
+Adds a recurring tuition session to the TutorBuddy
+
+Format: `add_rec_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE b/INTERVAL e/LASTDATE`
+
+Similar to arguments for adding a single tuition session, except:
+* `DATE` refers to the starting date of the session
+
+Arguments additional to adding a single tuition session:  
+* `INTERVAL` should be in days, including the date from and excluding the date to <br/>
+  e.g. `INTERVAL` = 7 for weekly sessions
+* `ENDDATE` should be an ending date of the recurring session, consistent with `DATE` and `INTERVAL`
+
+Examples:
+* `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80 b/7 e/2021-01-29`
 ### Deleting a tuition session: `delete_session`
 
 Deletes the specified tuition session from TutorBuddy
@@ -361,7 +394,8 @@ Action | Format, Examples
 --------|------------------
 **List** | `list_session`
 **Find** | `find_session KEYWORD`<br><br>e.g. `find_session John`
-**Add** | `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`<br><br> e.g. `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80`
+**Add Single** | `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`<br><br> e.g. `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80`
+**Add Recurring** | `add_rec_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE b/INTERVAL e/LASTDATE`<br><br> e.g. `add_rec_session n/John Doe d/2021-01-01 t/20:00 k/120 s/Geography f/80 b/7 e/2021-01-15`
 **Delete** | `delete_session n/STUDENT_NAME i/SESSION_INDEX`<br><br>e.g. `delete_session n/John Lee i/1`
 
 **Fees**
