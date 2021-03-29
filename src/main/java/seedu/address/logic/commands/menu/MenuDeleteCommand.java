@@ -40,7 +40,7 @@ public class MenuDeleteCommand extends Command {
         List<Dish> lastShownList = model.getFilteredDishList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_DISH_DISPLAYED_INDEX);
+            throw new CommandException(String.format(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX, Messages.ITEM_DISH));
         }
 
         Dish dishToDelete = lastShownList.get(targetIndex.getZeroBased());
