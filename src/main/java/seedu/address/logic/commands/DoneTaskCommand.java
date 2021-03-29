@@ -19,7 +19,7 @@ import seedu.address.model.task.Title;
 
 /**
  * Represents a DoneTaskCommand
- * Changes the status of existing task in HEY MATEz to completed
+ * Changes the status of existing task in HeyMatez to completed
  */
 public class DoneTaskCommand extends Command {
     public static final String COMMAND_WORD = "done";

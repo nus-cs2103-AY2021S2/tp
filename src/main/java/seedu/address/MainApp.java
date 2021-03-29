@@ -69,9 +69,9 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s hey matez and {@code userPrefs}. <br>
-     * The data from the sample hey matez will be used instead if {@code storage}'s hey matez is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s hey matez.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s Hey Matez and {@code userPrefs}. <br>
+     * The data from the sample Hey Matez will be used instead if {@code storage}'s Hey Matez  is not found,
+     * or an empty address book will be used instead if errors occur when reading {@code storage}'s Hey Matez .
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyHeyMatez> heyMatezOptional;

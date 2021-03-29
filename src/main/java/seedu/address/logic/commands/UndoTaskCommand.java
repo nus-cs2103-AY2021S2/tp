@@ -19,7 +19,7 @@ import seedu.address.model.task.Title;
 
 /**
  * Represents an Undo Task Command
- * Changes the status of existing task in HEY MATEz to uncompleted
+ * Changes the status of existing task in HeyMatez to uncompleted
  */
 public class UndoTaskCommand extends Command {
     public static final String COMMAND_WORD = "undo";

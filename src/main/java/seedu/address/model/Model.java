@@ -49,7 +49,7 @@ public interface Model {
     void setHeyMatezFilePath(Path heyMatezFilePath);
 
     /**
-     * Replaces hay matez data with the data in {@code heyMatez}.
+     * Replaces hay matez data with the data in {@code HeyMatez}.
      */
     void setHeyMatez(ReadOnlyHeyMatez heyMatez);
 
@@ -57,26 +57,26 @@ public interface Model {
     ReadOnlyHeyMatez getHeyMatez();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in hey matez.
+     * Returns true if a person with the same identity as {@code person} exists in Hey Matez .
      */
     boolean hasPerson(Person person);
 
     /**
      * Deletes the given person.
-     * The person must exist in hey matez.
+     * The person must exist in Hey Matez.
      */
     void deletePerson(Person target);
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in hey matez.
+     * {@code person} must not already exist in Hey Matez .
      */
     void addPerson(Person person);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in hey matez.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in hey matez.
+     * {@code target} must exist in Hey Matez.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in Hey Matez.
      */
     void setPerson(Person target, Person editedPerson);
 
@@ -96,18 +96,18 @@ public interface Model {
 
     /**
      * Replaces the given task {@code target} with {@code editedTask}.
-     * {@code target} must exist in hey matez.
+     * {@code target} must exist in Hey Matez.
      */
     void setTask(Task target, Task editedTask);
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in hey matez.
+     * Returns true if a person with the same identity as {@code person} exists in Hey Matez.
      */
     boolean hasTask(Task task);
 
     /**
      * Deletes the given task.
-     * The task must exist in hey matez.
+     * The task must exist in Hey Matez.
      */
     void deleteTask(Task target);
 

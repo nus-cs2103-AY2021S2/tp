@@ -6,7 +6,7 @@ import seedu.address.model.HeyMatez;
 import seedu.address.model.Model;
 
 /**
- * Clears hey matez.
+ * Clears HeyMatez.
  */
 public class ClearCommand extends Command {
 
