@@ -107,6 +107,7 @@ Helps you better understand what each component that you observe on-screen repre
 # Commands 
 
 ### Add Command
+
 Adds a **dog/owner/program** to Pawbook.
 
 Format:
@@ -138,7 +139,7 @@ delete program [PROGRAM ID]
 ```
 
 - Deletes the dog/owner/program with the given ID.
-- The ID must be a positive integer 1, 2, 3, ...
+- The ID must be a positive integer 1, 2, 3 etc
 
 Examples:
 1. Deletes the dog with ID 1 in Pawbook.<br>
@@ -176,6 +177,24 @@ Examples:
    Program ID 2. <br> 
    Command: `drop d/1 p/2`
    
+### List Command
+
+Display entities filtered by type.
+
+Format:
+```
+list [dog|owner|program]
+```
+
+- At most one keyword needs to be provided
+- If no keyword is provided, i.e. `list`, then all dogs/owner/program will be displayed
+
+Examples:
+1. List all dogs.<br>
+   Command: `list dog`
+2. List all owners.<br>
+   Command: `list owner`
+
 ### Find Command 
 
 Shows the list of search results based on one/many keywords. 
@@ -240,7 +259,7 @@ Action | Format
 **Delete** | 1. `delete dog d/DOGID`<br>2. `delete owner o/OWNERID`<br>3. `delete program p/PROGRAMID`
 **Enrol** | `enrol d/[DOG ID] p/[PROGRAM ID]`
 **Drop** | `drop d/[DOG ID] p/[PROGRAM ID]`
-**List** |`list n/NAME c/CLASS b/BREED t/TAG`
+**List** |`list [dog|owner|program]`
 **Find** | `find [keyword1] [keyword2] [keyword3] ...`
 **View** | `view [ID number]`
 **Help** | `help`
