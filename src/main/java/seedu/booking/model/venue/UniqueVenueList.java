@@ -98,7 +98,7 @@ public class UniqueVenueList implements Iterable<Venue> {
     }
 
     /**
-     * Returns true if the internalList contains a venue with an equivalent name given.
+     * Returns true if internalList contains a venue with an equivalent name given.
      *
      * @param venueNameToCheck to be checked against the list.
      * @return true if the name of the given venue is found in the list.
@@ -163,6 +163,4 @@ public class UniqueVenueList implements Iterable<Venue> {
         }
         return true;
     }
-
-
 }

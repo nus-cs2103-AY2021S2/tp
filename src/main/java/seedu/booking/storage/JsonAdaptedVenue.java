@@ -17,6 +17,7 @@ import seedu.booking.model.venue.VenueName;
 
 public class JsonAdaptedVenue {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Venue's %s field is missing!";
+    public static final String INVALID_FIELD_MESSAGE_FORMAT = "Venue's %s field is invalid!";
 
     private final String name;
     private final String capacity;
@@ -65,22 +66,27 @@ public class JsonAdaptedVenue {
 
         // needs to be changed after implementation of classes for each of the attributes
         if (name == null) {
-            throw new IllegalValueException(MISSING_FIELD_MESSAGE_FORMAT);
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "name"));
         }
 
         final VenueName modelName = new VenueName(name);
 
         if (capacity == null) {
-            throw new IllegalValueException(MISSING_FIELD_MESSAGE_FORMAT);
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, "capacity"));
+        }
+
+        if (Integer.parseInt(capacity) < 1) {
+            throw new IllegalArgumentException(String.format(INVALID_FIELD_MESSAGE_FORMAT, "capacity"));
         }
 
         final Capacity modelCapacity = new Capacity(Integer.parseInt(capacity));
 
-        if (modelCapacity.venueCapacity < 1) {
-            throw new IllegalValueException(MISSING_FIELD_MESSAGE_FORMAT);
-        }
-
         final String modelDescription = description;
+
+        if (modelDescription == null) {
+            throw new IllegalArgumentException(String.format(INVALID_FIELD_MESSAGE_FORMAT, "description"));
+        }
 
         final Set<Tag> modelTags = new HashSet<>(venueTags);
 
