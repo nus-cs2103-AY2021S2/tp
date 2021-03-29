@@ -134,7 +134,7 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        CommandBox commandBox = new CommandBox(this::executeCommand, this::autocomplete);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
@@ -216,6 +216,21 @@ public class MainWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
+            resultDisplay.setFeedbackToUser(e.getMessage());
+            throw e;
+        }
+    }
+
+    /**
+     * Executes autocomplete and returns the resulting command text.
+     */
+    private String autocomplete(String commandText) throws CommandException, ParseException {
+        try {
+            String completedString = logic.autoComplete(commandText);
+            logger.info("Autocomplete Result: " + completedString);
+            return completedString;
+        } catch (CommandException | ParseException e) {
+            logger.info("Invalid autocomplete search: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
