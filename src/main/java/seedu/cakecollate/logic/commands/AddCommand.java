@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -193,7 +194,7 @@ public class AddCommand extends Command {
 
         // state check
         AddCommand a = (AddCommand) other;
-        return orderItemIndexList.equals(a.orderItemIndexList)
+        return (Objects.equals(orderItemIndexList, a.orderItemIndexList))
                 && addOrderDescriptor.equals(a.addOrderDescriptor);
     }
 

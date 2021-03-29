@@ -17,7 +17,8 @@ public class OrderItem {
      * Every field must be present and not null.
      */
     public OrderItem(Type type, Cost cost) {
-        requireAllNonNull(type, cost);
+        // requireAllNonNull(type, cost);
+        requireAllNonNull(type);
         this.type = type;
         this.cost = cost;
     }
