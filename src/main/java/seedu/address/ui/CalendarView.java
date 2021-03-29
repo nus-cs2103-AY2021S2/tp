@@ -177,7 +177,7 @@ public class CalendarView extends UiPart<Region> {
      */
     private void setListViews(ObservableList<Tuition> tuitionList) {
 
-        Comparator<Tuition> cmpSessionDate = Comparator.comparing(a -> a.getSession().getSessionDate().getDateTime());
+        Comparator<Tuition> cmpSessionDate = Comparator.comparing(a -> a.getSession().getSessionDate().getTime());
 
         monListView.setItems(tuitionList
                 .filtered(tuitionItem -> hasSessionOnDate(calendarStartDate, tuitionItem))
