@@ -102,7 +102,7 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredPersonList(PREDICATE_SHOW_MAIN_PERSONS);
     }
 
     @Override
@@ -110,6 +110,20 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public void archivePerson(Person target) {
+        requireNonNull(target);
+        addressBook.archivePerson(target);
+        updateFilteredPersonList(PREDICATE_SHOW_ARCHIVED_PERSONS);
+    }
+
+    @Override
+    public void unarchivePerson(Person target) {
+        requireNonNull(target);
+        addressBook.unarchivePerson(target);
+        updateFilteredPersonList(PREDICATE_SHOW_MAIN_PERSONS);
     }
 
     //=========== Filtered Person List Accessors =============================================================

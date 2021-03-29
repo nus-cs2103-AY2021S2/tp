@@ -93,6 +93,22 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Archives the given person {@code target} in the address book.
+     * {@code target} must exist in the address book.
+     */
+    public void archivePerson(Person target) {
+        persons.archive(target);
+    }
+
+    /**
+     * Unarchives the given person {@code target} in the address book.
+     * {@code target} must exist in the address book.
+     */
+    public void unarchivePerson(Person target) {
+        persons.unarchive(target);
+    }
+
     //// util methods
 
     @Override
