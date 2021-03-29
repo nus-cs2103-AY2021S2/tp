@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import seedu.address.model.person.Person;
 import seedu.address.model.subject.TutorSubject;
 
@@ -28,6 +29,8 @@ public class TutorCard extends UiPart<Region> {
 
     public final Person person;
 
+    private TutorNotesField tutorNotesField;
+
     @FXML
     private HBox cardPane;
     @FXML
@@ -44,6 +47,8 @@ public class TutorCard extends UiPart<Region> {
     private Label subjects;
     @FXML
     private FlowPane tags;
+    @FXML
+    private StackPane notesPane;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -69,6 +74,11 @@ public class TutorCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        if (person.hasNotes()) {
+            tutorNotesField = new TutorNotesField(person.getNotes());
+            notesPane.getChildren().add(tutorNotesField.getRoot());
+        }
     }
 
     private void displaySubjectDetails(TutorSubject subject) {
