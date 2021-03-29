@@ -35,10 +35,11 @@ public class RecurringSchedule implements RecurringDates {
     public static final String INVALID_ENDDATE = "End date should be ahead of current date "
             + "or the input end is less than a week without matching days found !!!";
 
-    private static boolean isEmptyRecurringSchedule;
-    private static List<String> weekDates;
     public final String value;
     public final String output;
+
+    private boolean isEmptyRecurringSchedule;
+    private List<String> weekDates;
 
     /**
      * Recurring Schedule constructor
@@ -112,6 +113,17 @@ public class RecurringSchedule implements RecurringDates {
         String recurringScheduleOutput = recurringSchedule + "\n\nRecurring Sessions:\n"
                 + weekDates.stream().collect(Collectors.joining("\n"));
         return recurringScheduleOutput;
+    }
+
+    /**
+     * Checks if the provided date string is in this schedule's weekly dates.
+     * Will return false if there is no dates in the schedule.
+     *
+     * @param dateString Date to be checked.
+     * @return Boolean indicating if the date is in this schedule.
+     */
+    public boolean isInSchedule(String dateString) {
+        return weekDates.stream().anyMatch(date -> date.equals(dateString));
     }
 
     public boolean isEmptyValue() {

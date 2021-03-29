@@ -45,7 +45,7 @@ public class TypicalTasks {
     public static final Task FIONA = new TaskBuilder().withTitle("Final project consult again")
             .withDuration("12:30-13:30").withDescription("at COM2").withStatus("done").build();
     public static final Task GEORGE = new TaskBuilder().withTitle("Get ready for 2101 presentation")
-            .withRecurringSchedule("[18/06/2021][Sun][weekly]")
+            .withRecurringSchedule("[18/06/2021][thu][weekly]")
             .withStatus("done").withDescription("remember to shave").build();
 
     // Manually added

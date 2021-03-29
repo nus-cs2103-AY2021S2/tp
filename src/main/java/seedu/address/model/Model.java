@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -183,4 +184,23 @@ public interface Model {
      * @throws NullPointerException if {@code comparator} is null.
      */
     void updateSortedTagList(Comparator<Tag> comparator);
+
+    /**
+     * Gets the ObservableCalendarDate to update the calendar with.
+     *
+     * @return The ObservableCalendarDate object that cannot be modified.
+     */
+    ObservableCalendarDate getCalendarDate();
+
+    /**
+     * Sets the calendar date in the ObservableCalendarDate object.
+     *
+     * @param date Date to be set.
+     */
+    void setCalendarDate(LocalDate date);
+
+    /**
+     * Resets the calendar date
+     */
+    void resetCalendarDate();
 }
