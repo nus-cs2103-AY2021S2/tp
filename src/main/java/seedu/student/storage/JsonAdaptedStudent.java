@@ -159,7 +159,6 @@ class JsonAdaptedStudent {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     SchoolResidence.class.getSimpleName()));
         }
-        
         if (!SchoolResidence.isValidResidence(schoolResidence)) {
             throw new IllegalValueException(SchoolResidence.MESSAGE_CONSTRAINTS);
         } else {

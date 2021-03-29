@@ -1,18 +1,18 @@
 package seedu.student.storage;
 
-import org.junit.jupiter.api.Test;
-import seedu.student.commons.exceptions.IllegalValueException;
-import seedu.student.model.student.MatriculationNumber;
-import seedu.student.model.student.Name;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.student.storage.JsonAdaptedAppointment.MISSING_FIELD_MESSAGE_FORMAT;
+import static seedu.student.testutil.Assert.assertThrows;
+import static seedu.student.testutil.TypicalAppointments.ALICE_APPOINTMENT;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.student.storage.JsonAdaptedAppointment.MISSING_FIELD_MESSAGE_FORMAT;
-import static seedu.student.testutil.Assert.assertThrows;
-import static seedu.student.testutil.TypicalAppointments.ALICE_APPOINTMENT;
+import org.junit.jupiter.api.Test;
+
+import seedu.student.commons.exceptions.IllegalValueException;
+import seedu.student.model.student.MatriculationNumber;
 
 public class JsonAdaptedAppointmentTest {
 
@@ -31,7 +31,7 @@ public class JsonAdaptedAppointmentTest {
     @Test
     public void toModelType_invalidMatriculationNumber_throwsIllegalValueException() {
         JsonAdaptedAppointment appointment = new JsonAdaptedAppointment(INVALID_MATRICULATION_NUMBER,
-                VALID_DATE, VALID_START_TIME );
+                VALID_DATE, VALID_START_TIME);
         String expectedMessage = MatriculationNumber.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, appointment::toModelType);
     }

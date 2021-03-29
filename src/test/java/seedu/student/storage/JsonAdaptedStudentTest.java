@@ -1,16 +1,22 @@
 package seedu.student.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.student.storage.JsonAdaptedStudent.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.student.testutil.Assert.assertThrows;
-import static seedu.student.testutil.TypicalStudents.ALICE;
 import static seedu.student.testutil.TypicalStudents.BENSON;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.student.commons.exceptions.IllegalValueException;
-import seedu.student.model.student.*;
+import seedu.student.model.student.Address;
+import seedu.student.model.student.Email;
+import seedu.student.model.student.Faculty;
+import seedu.student.model.student.MatriculationNumber;
+import seedu.student.model.student.MedicalDetails;
+import seedu.student.model.student.Name;
+import seedu.student.model.student.Phone;
+import seedu.student.model.student.SchoolResidence;
+import seedu.student.model.student.VaccinationStatus;
 
 public class JsonAdaptedStudentTest {
     private static final String INVALID_NAME = "R@chel";

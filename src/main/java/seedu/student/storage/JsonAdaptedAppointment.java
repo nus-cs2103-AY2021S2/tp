@@ -61,16 +61,16 @@ class JsonAdaptedAppointment {
         }
         final MatriculationNumber modelMatric = new MatriculationNumber(matriculationNumber);
 
-        if(date == null){
+        if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Date.class.getSimpleName()));
         }
 
-        if(startTime == null){
+        if (startTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "startTime"));
         }
 
-        final  LocalDate modelDate = date;
+        final LocalDate modelDate = date;
         final LocalTime modelStartTime = startTime;
 
         return new Appointment(modelMatric, modelDate, modelStartTime);

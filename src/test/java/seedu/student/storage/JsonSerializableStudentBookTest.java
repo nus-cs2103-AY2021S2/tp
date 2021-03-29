@@ -6,14 +6,11 @@ import static seedu.student.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.Test;
 
 import seedu.student.commons.exceptions.IllegalValueException;
 import seedu.student.commons.util.JsonUtil;
-import seedu.student.model.ReadOnlyStudentBook;
 import seedu.student.model.StudentBook;
-import seedu.student.model.student.Student;
 import seedu.student.testutil.TypicalStudents;
 
 public class JsonSerializableStudentBookTest {
@@ -23,9 +20,12 @@ public class JsonSerializableStudentBookTest {
     private static final Path INVALID_STUDENTS_FILE = TEST_DATA_FOLDER.resolve("invalidStudentsStudentBook.json");
     private static final Path DUPLICATE_STUDENTS_FILE = TEST_DATA_FOLDER.resolve("duplicateStudentsStudentBook.json");
     private static final Path DUPLICATE_JSON_KEY_FILE = TEST_DATA_FOLDER.resolve("duplicateStudentsStudentBook.json");
-    private static final Path NO_STUDENT_FOR_APPOINTMENT_FILE = TEST_DATA_FOLDER.resolve("invalidAppointmentStudentBook.json");
-    private static final Path INVALID_APPOINTMENT_TIME_FILE = TEST_DATA_FOLDER.resolve("invalidAppointmentTimeStudentBook.json");
-    private static final Path INVALID_APPOINTMENT_OVERLAP_FILE = TEST_DATA_FOLDER.resolve("invalidAppointmentOverlapStudentBook.json");
+    private static final Path NO_STUDENT_FOR_APPOINTMENT_FILE = TEST_DATA_FOLDER
+            .resolve("invalidAppointmentStudentBook.json");
+    private static final Path INVALID_APPOINTMENT_TIME_FILE = TEST_DATA_FOLDER
+            .resolve("invalidAppointmentTimeStudentBook.json");
+    private static final Path INVALID_APPOINTMENT_OVERLAP_FILE = TEST_DATA_FOLDER
+            .resolve("invalidAppointmentOverlapStudentBook.json");
 
     @Test
     public void toModelType_validStudentBook() throws Exception {
