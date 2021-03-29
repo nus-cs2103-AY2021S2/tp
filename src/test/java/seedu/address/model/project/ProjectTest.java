@@ -11,8 +11,10 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalProjects.CS1101S_NAME;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
+import org.assertj.core.internal.bytebuddy.asm.Advice;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.Person;
@@ -51,7 +53,8 @@ public class ProjectTest {
     public void constructor_projectWithParameters_isValid() {
         ProjectName name = new ProjectName("Test Project");
 
-        Event event = new Event("Test Event", Interval.NONE, LocalDate.of(2020, 1, 1));
+        Event event = new Event("Test Event", LocalDate.of(2020, 1, 1),
+                LocalTime.of(17, 30), false);
         ArrayList<Event> events = new ArrayList<>();
         events.add(event);
         EventList eventList = new EventList(events);
@@ -155,7 +158,7 @@ public class ProjectTest {
     @Test void addEvent_success() {
         Project project = new ProjectBuilder().withName(CS1101S_NAME.toString()).build();
         assertEquals(0, project.getEvents().getEvents().size());
-        Event event = new Event("event", Interval.NONE, LocalDate.now());
+        Event event = new Event("event", LocalDate.now(), LocalTime.now(), false);
         project.addEvent(event);
         assertEquals(1, project.getEvents().getEvents().size());
         assertEquals(event, project.getEvents().getEvents().get(INDEX_FIRST.getZeroBased()));
@@ -181,7 +184,7 @@ public class ProjectTest {
 
     @Test void deleteEvent_success() {
         EventList eventList = new EventList();
-        eventList.addEvent(new Event("event", Interval.NONE, LocalDate.now()));
+        eventList.addEvent(new Event("event", LocalDate.now(), LocalTime.now(), false));
         Project project = new ProjectBuilder().withName(CS1101S_NAME.toString()).withEventList(eventList).build();
         assertEquals(1, project.getEvents().getEvents().size());
         project.deleteEvent(INDEX_FIRST.getZeroBased());
@@ -205,16 +208,6 @@ public class ProjectTest {
         assertEquals(false, project.getDeadlines().getDeadlines().get(0).getIsDone());
         project.markDeadline(INDEX_FIRST.getZeroBased());
         assertEquals(true, project.getDeadlines().getDeadlines().get(0).getIsDone());
-    }
-
-    @Test void markEvent_success() {
-        EventList eventList = new EventList();
-        eventList.addEvent(new Event("event", Interval.NONE, LocalDate.now()));
-        Project project = new ProjectBuilder().withName(CS1101S_NAME.toString()).withEventList(eventList).build();
-        assertEquals(1, project.getEvents().getEvents().size());
-        assertEquals(false, project.getEvents().getEvents().get(0).getIsDone());
-        project.markEvent(INDEX_FIRST.getZeroBased());
-        assertEquals(true, project.getEvents().getEvents().get(0).getIsDone());
     }
 
     @Test void markTodo_success() {
@@ -256,7 +249,7 @@ public class ProjectTest {
         String project1String = CS1101S_NAME.toString();
         assertEquals(project1String, project1.toString());
         EventList eventList = new EventList();
-        eventList.addEvent(new Event("event", Interval.NONE, LocalDate.now()));
+        eventList.addEvent(new Event("event", LocalDate.now(), LocalTime.now(), false));
         TodoList todoList = new TodoList();
         todoList.addTodo(new Todo("todo"));
         DeadlineList deadlineList = new DeadlineList();
