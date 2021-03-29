@@ -1,8 +1,14 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT_ASKING_PRICE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT_CONTACT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POSTAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_PRICE_LESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_PRICE_MORE;
@@ -14,6 +20,7 @@ import static seedu.address.logic.parser.ParserUtil.parsePropertyDeadline;
 import static seedu.address.logic.parser.ParserUtil.parsePropertyPostal;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -41,95 +48,108 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindPropertyCommand parse(String args) throws ParseException {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TYPE, PREFIX_ADDRESS, PREFIX_POSTAL,
+                        PREFIX_DEADLINE, PREFIX_REMARK, PREFIX_CLIENT_NAME, PREFIX_CLIENT_CONTACT,
+                        PREFIX_CLIENT_EMAIL, PREFIX_CLIENT_ASKING_PRICE, PREFIX_TAGS, PREFIX_PROPERTY_PRICE_MORE,
+                        PREFIX_PROPERTY_PRICE_LESS);
 
-        String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPropertyCommand.MESSAGE_USAGE));
+        String genericKeywords = argMultimap.getPreamble();
+        List<Predicate<Property>> predicates = new ArrayList<>();
+
+        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            predicates.add(new PropertyContainsKeywordsPredicate(argMultimap.getAllValues(PREFIX_NAME)));
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
+        if (argMultimap.getValue(PREFIX_PROPERTY_PRICE_MORE).isPresent()) {
+            argMultimap.getAllValues(PREFIX_PROPERTY_PRICE_MORE)
+                       .forEach(x -> predicates.add(new PropertyPricePredicate(x, false)));
+        }
 
-        List<Predicate<Property>> predicates = new ArrayList<>();
-        List<String> keywords = new ArrayList<>();
+        if (argMultimap.getValue(PREFIX_PROPERTY_PRICE_LESS).isPresent()) {
+            argMultimap.getAllValues(PREFIX_PROPERTY_PRICE_LESS)
+                    .forEach(x -> predicates.add(new PropertyPricePredicate(x, true)));
+        }
 
-        for (int i = 0; i < nameKeywords.length; i++) {
-            String s = nameKeywords[i];
-            if (s.contains("/")) {
-                String key = s.split("/")[1];
-                if (s.startsWith(String.valueOf(PREFIX_PROPERTY_PRICE_MORE))) {
-                    predicates.add(new PropertyPricePredicate(key, false));
-                } else if (s.startsWith(String.valueOf(PREFIX_PROPERTY_PRICE_LESS))) {
-                    predicates.add(new PropertyPricePredicate(key, true));
-                } else if (s.startsWith(String.valueOf(PREFIX_TYPE))) {
-                    predicates.add(new PropertyTypePredicate(key));
-                } else if (s.startsWith(String.valueOf(PREFIX_POSTAL))) {
-                    try {
-                        predicates.add(new PropertyPostalCodePredicate(parsePropertyPostal(key)));
-                    } catch (ParseException e) {
-                        throw new ParseException("Wrong postal code format! \n"
+        if (argMultimap.getValue(PREFIX_TYPE).isPresent()) {
+            argMultimap.getAllValues(PREFIX_TYPE)
+                    .forEach(x -> predicates.add(new PropertyTypePredicate(x)));
+        }
+
+        if (argMultimap.getValue(PREFIX_POSTAL).isPresent()) {
+            List<String> postalCodes = argMultimap.getAllValues(PREFIX_POSTAL);
+            for (String p : postalCodes) {
+                try {
+                    predicates.add(new PropertyPostalCodePredicate(parsePropertyPostal(p)));
+                } catch (ParseException e) {
+                    throw new ParseException("Wrong postal code format! \n"
                             + e.getMessage()
                             + "\n"
                             + FindPropertyCommand.MESSAGE_USAGE);
-                    }
-                } else if (s.startsWith(String.valueOf(PREFIX_ADDRESS))) {
-                    StringBuilder address = new StringBuilder(key);
-                    int j = i + 1;
-                    while (j < nameKeywords.length && !nameKeywords[j].contains("/")) {
-                        address.append(" ");
-                        address.append(nameKeywords[j].strip());
-                        j++;
-                    }
-                    i = j - 1; //reduce by 1 for for loop increment
-                    try {
-                        predicates.add(new PropertyAddressPredicate(parsePropertyAddress(address.toString())));
-                    } catch (ParseException e) {
-                        throw new ParseException("Wrong address format! \n"
-                                + e.getMessage()
-                                + "\n"
-                                + FindPropertyCommand.MESSAGE_USAGE);
-                    }
-                } else if (s.startsWith(String.valueOf(PREFIX_REMARK))) {
-                    StringBuilder remarks = new StringBuilder(key);
-                    int j = i + 1;
-                    while (j < nameKeywords.length && !nameKeywords[j].contains("/")) {
-                        remarks.append(" ");
-                        remarks.append(nameKeywords[j].strip());
-                        j++;
-                    }
-                    i = j - 1; //reduce by 1 for for loop increment
-                    predicates.add(new PropertyRemarksPredicate(remarks.toString()));
-                } else if (s.startsWith(String.valueOf(PREFIX_DEADLINE))) {
-                    try {
-                        predicates.add(new PropertyDeadlinePredicate(parsePropertyDeadline(key)));
-                    } catch (ParseException e) {
+                }
+            }
+        }
+
+        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
+            List<String> addresses = argMultimap.getAllValues(PREFIX_ADDRESS);
+            if (addresses.size() > 1) {
+                throw new ParseException("Too many addresses! Please only use 1 address. \n"
+                        + FindPropertyCommand.MESSAGE_USAGE);
+            } else if (addresses.size() == 0) {
+                throw new ParseException("a/ used but no address found. \n"
+                        + FindPropertyCommand.MESSAGE_USAGE);
+            } else {
+                try {
+                    predicates.add(new PropertyAddressPredicate(parsePropertyAddress(addresses.get(0))));
+                } catch (ParseException e) {
+                    throw new ParseException("Wrong address format! \n"
+                            + e.getMessage()
+                            + "\n"
+                            + FindPropertyCommand.MESSAGE_USAGE);
+                }
+            }
+        }
+
+        if (argMultimap.getValue(PREFIX_REMARK).isPresent()) {
+            List<String> remarks = argMultimap.getAllValues(PREFIX_REMARK);
+            if (remarks.size() == 0) {
+                throw new ParseException("r/ used but no remarks found. \n"
+                        + FindPropertyCommand.MESSAGE_USAGE);
+            }
+            remarks.forEach(s -> predicates.add(new PropertyRemarksPredicate(s)));
+        }
+
+        if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
+            List<String> deadlines = argMultimap.getAllValues(PREFIX_DEADLINE);
+            if (deadlines.size() == 0) {
+                throw new ParseException("d/ used but no deadlines found. \n"
+                        + FindPropertyCommand.MESSAGE_USAGE);
+            }
+            for (String s : deadlines) {
+                try {
+                    predicates.add(new PropertyDeadlinePredicate(parsePropertyDeadline(s)));
+                } catch (ParseException e) {
                         throw new ParseException("Wrong deadline format! \n"
                                 + e.getMessage()
                                 + "\n"
                                 + FindPropertyCommand.MESSAGE_USAGE);
-                    }
-                } else if (s.startsWith(String.valueOf(PREFIX_TAGS))) {
-                    StringBuilder tags = new StringBuilder(key);
-                    int j = i + 1;
-                    while (j < nameKeywords.length && !nameKeywords[j].contains("/")) {
-                        tags.append(" ");
-                        tags.append(nameKeywords[j]);
-                        j++;
-                    }
-                    i = j - 1; //reduce by 1 for for loop increment
-                    predicates.add(new PropertyTagsPredicate(tags.toString()));
-                } else {
-                    throw new ParseException("You have used an unknown parameter! \n"
-                        + FindPropertyCommand.MESSAGE_USAGE);
                 }
-            } else {
-                keywords.add(s);
             }
         }
 
-        if (keywords.size() > 0) {
-            predicates.add(new PropertyContainsKeywordsPredicate(keywords));
+        if (argMultimap.getValue(PREFIX_TAGS).isPresent()) {
+            List<String> tags = argMultimap.getAllValues(PREFIX_TAGS);
+            if (tags.size() == 0) {
+                throw new ParseException("d/ used but no deadlines found. \n"
+                        + FindPropertyCommand.MESSAGE_USAGE);
+            }
+            tags.forEach(s -> predicates.add(new PropertyTagsPredicate(s)));
         }
+
+    //        keywords = Arrays.asList(genericKeywords.split(" "));
+    //        if (keywords.size() > 0) {
+    //            predicates.add(new PropertyContainsKeywordsPredicate(keywords));
+    //        }
 
         return new FindPropertyCommand(new PropertyPredicateList(predicates));
     }
