@@ -29,48 +29,48 @@ public class GroupmateListTest {
 
     @Test
     public void constructor_singleGroupmate_success() {
-        ArrayList<Groupmate> participants = new ArrayList<>();
-        participants.add(SYLPH);
-        assertDoesNotThrow(() -> new GroupmateList(participants));
+        ArrayList<Groupmate> groupmates = new ArrayList<>();
+        groupmates.add(SYLPH);
+        assertDoesNotThrow(() -> new GroupmateList(groupmates));
     }
 
     @Test
     public void getGroupmates_validGroupmateList_equalsOriginalList() {
-        ArrayList<Groupmate> participants = new ArrayList<>();
-        participants.add(SYLPH);
-        GroupmateList groupmateList = new GroupmateList(participants);
-        assertEquals(participants, groupmateList.getGroupmates());
+        ArrayList<Groupmate> groupmates = new ArrayList<>();
+        groupmates.add(SYLPH);
+        GroupmateList groupmateList = new GroupmateList(groupmates);
+        assertEquals(groupmates, groupmateList.getGroupmates());
     }
 
     @Test
     public void size_validGroupmateList_correct() {
-        ArrayList<Groupmate> participants = new ArrayList<>();
-        participants.add(SYLPH);
-        GroupmateList groupmateList = new GroupmateList(participants);
-        assertEquals(participants.size(), groupmateList.size());
-        participants.add(ROXY);
-        groupmateList = new GroupmateList(participants);
-        assertEquals(participants.size(), groupmateList.size());
+        ArrayList<Groupmate> groupmates = new ArrayList<>();
+        groupmates.add(SYLPH);
+        GroupmateList groupmateList = new GroupmateList(groupmates);
+        assertEquals(groupmates.size(), groupmateList.size());
+        groupmates.add(ROXY);
+        groupmateList = new GroupmateList(groupmates);
+        assertEquals(groupmates.size(), groupmateList.size());
     }
 
     @Test
     public void get_validGroupmateList_correct() {
-        ArrayList<Groupmate> participants = new ArrayList<>();
-        participants.add(SYLPH);
-        GroupmateList groupmateList = new GroupmateList(participants);
-        assertEquals(participants.get(0), groupmateList.get(0));
-        participants.add(ROXY);
-        groupmateList = new GroupmateList(participants);
-        assertEquals(participants.get(0), groupmateList.get(0));
-        assertEquals(participants.get(1), groupmateList.get(1));
+        ArrayList<Groupmate> groupmates = new ArrayList<>();
+        groupmates.add(SYLPH);
+        GroupmateList groupmateList = new GroupmateList(groupmates);
+        assertEquals(groupmates.get(0), groupmateList.get(0));
+        groupmates.add(ROXY);
+        groupmateList = new GroupmateList(groupmates);
+        assertEquals(groupmates.get(0), groupmateList.get(0));
+        assertEquals(groupmates.get(1), groupmateList.get(1));
     }
 
     @Test
     public void delete_validGroupmateList_correct() {
-        ArrayList<Groupmate> participants = new ArrayList<>();
-        participants.add(SYLPH);
-        participants.add(ROXY);
-        GroupmateList groupmateList = new GroupmateList(participants);
+        ArrayList<Groupmate> groupmates = new ArrayList<>();
+        groupmates.add(SYLPH);
+        groupmates.add(ROXY);
+        GroupmateList groupmateList = new GroupmateList(groupmates);
         assertEquals(2, groupmateList.size());
         groupmateList.delete(0);
         assertEquals(1, groupmateList.size());

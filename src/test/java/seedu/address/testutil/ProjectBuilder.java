@@ -71,9 +71,9 @@ public class ProjectBuilder {
     }
 
     /**
-     * Sets the {@code ParticipantList} of the {@code Project} that we are building.
+     * Sets the {@code GroupmateList} of the {@code Project} that we are building.
      */
-    public ProjectBuilder withParticipantList(GroupmateList groupmateList) {
+    public ProjectBuilder withGroupmateList(GroupmateList groupmateList) {
         this.groupmateList = groupmateList.getCopy();
         return this;
     }

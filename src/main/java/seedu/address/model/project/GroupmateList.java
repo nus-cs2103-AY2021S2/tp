@@ -14,14 +14,14 @@ public class GroupmateList {
     private final ObservableList<Groupmate> groupmates = FXCollections.observableArrayList();
 
     /**
-     * Constructs an empty {@code ParticipantList}.
+     * Constructs an empty {@code GroupmateList}.
      */
     public GroupmateList() {}
 
     /**
-     * Constructs a {@code ParticipantList}.
+     * Constructs a {@code GroupmateList}.
      *
-     * @param groupmates A list of {@code Person}.
+     * @param groupmates A list of {@code Groupmate}.
      */
     public GroupmateList(List<Groupmate> groupmates) {
         requireNonNull(groupmates);
@@ -30,36 +30,36 @@ public class GroupmateList {
     }
 
     /**
-     * Returns the participants as a {@code ObservableList<Person>}.
+     * Returns the groupmates as a {@code ObservableList<Groupmate>}.
      *
-     * @return the participants as a {@code ObservableList<Person>}.
+     * @return the groupmates as a {@code ObservableList<Groupmate>}.
      */
     public ObservableList<Groupmate> getGroupmates() {
         return groupmates;
     }
 
     /**
-     *  Returns the number of participants in the {@code ParticipantList}.
+     *  Returns the number of groupmates in the {@code GroupmateList}.
      *
-     * @return the number of participants in the {@code ParticipantList}.
+     * @return the number of groupmates in the {@code GroupmateList}.
      */
     public int size() {
         return groupmates.size();
     }
 
     /**
-     *  Returns the {@code Person} at the specified position in this {@code ParticipantList}.
+     *  Returns the {@code Groupmate} at the specified position in this {@code GroupmateList}.
      *
-     * @return the {@code Person} at the specified position in this {@code ParticipantList}.
+     * @return the {@code Groupmate} at the specified position in this {@code GroupmateList}.
      */
     public Groupmate get(int index) {
         return groupmates.get(index);
     }
 
     /**
-     * Deletes a {@code Person} from this {@code ParticipantList}.
+     * Deletes a {@code Groupmate} from this {@code GroupmateList}.
      *
-     * @param i Index of {@code Person} to be deleted.
+     * @param i Index of {@code Groupmate} to be deleted.
      */
     public void delete(Integer i) {
         requireNonNull(i);
@@ -67,37 +67,37 @@ public class GroupmateList {
     }
 
     /**
-     * Returns a copy of this {@code ParticipantList}
+     * Returns a copy of this {@code GroupmateList}
      *
-     * @return A copy of this {@code ParticipantList}
+     * @return A copy of this {@code GroupmateList}
      */
     public GroupmateList getCopy() {
         return new GroupmateList(getGroupmates());
     }
 
     /**
-     * Returns a sequential stream with this {@code ParticipantList} as its source.
+     * Returns a sequential stream with this {@code GroupmateList} as its source.
      *
-     * @return a sequential Stream over the persons in this {@code ParticipantList}.
+     * @return a sequential Stream over the groupmates in this {@code GroupmateList}.
      */
     public Stream<Groupmate> stream() {
         return groupmates.stream();
     }
 
     /**
-     * Adds a person to this {@code ParticipantList}.
+     * Adds a groupmate to this {@code GroupmateList}.
      *
-     * @param groupmate {@code Person} to add.
+     * @param groupmate {@code Groupmate} to add.
      */
     public void addGroupmate(Groupmate groupmate) {
         this.groupmates.add(groupmate);
     }
 
     /**
-     * Returns true if this {@code ParticipantList} has the provided {@code Person}.
+     * Returns true if this {@code GroupmateList} has the provided {@code Groupmate}.
      *
-     * @param groupmate the person to test.
-     * @return whether the {@code Person} is in this {@code ParticipantList}.
+     * @param groupmate the groupmate to test.
+     * @return whether the {@code Groupmate} is in this {@code GroupmateList}.
      */
     public boolean contains(Groupmate groupmate) {
         return stream().anyMatch(groupmate::isSameGroupmate);

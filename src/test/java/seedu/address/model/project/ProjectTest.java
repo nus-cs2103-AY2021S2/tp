@@ -98,16 +98,16 @@ public class ProjectTest {
     }
 
     @Test
-    public void getParticipant_validProject_success() {
+    public void getGroupmate_validProject_success() {
         GroupmateList groupmateList = new GroupmateList();
         groupmateList.addGroupmate(ROXY);
         Project project = new ProjectBuilder().withName(CS1101S_NAME.toString())
-                .withParticipantList(groupmateList).build();
+                .withGroupmateList(groupmateList).build();
         assertEquals(project.getGroupmates().get(0), project.getGroupmate(0));
     }
 
     @Test
-    public void addParticipant_success() {
+    public void addGroupmate_success() {
         Project project = new ProjectBuilder().withName(CS1101S_NAME.toString()).build();
         assertEquals(0, project.getGroupmates().size());
         project.addGroupmate(SYLPH);
@@ -116,23 +116,23 @@ public class ProjectTest {
     }
 
     @Test
-    public void hasParticipant_success() {
+    public void hasGroupmate_success() {
         GroupmateList groupmateList = new GroupmateList();
         groupmateList.addGroupmate(SYLPH);
         Project project = new ProjectBuilder().withName(CS1101S_NAME.toString())
-                .withParticipantList(groupmateList).build();
+                .withGroupmateList(groupmateList).build();
         assertTrue(project.hasGroupmate(SYLPH));
         assertFalse(project.hasGroupmate(ROXY));
         assertFalse(new ProjectBuilder().withName(CS1101S_NAME.toString()).build().hasGroupmate(SYLPH));
     }
 
     @Test
-    public void deleteParticipant_success() {
+    public void deleteGroupmate_success() {
         GroupmateList groupmateList = new GroupmateList();
         groupmateList.addGroupmate(SYLPH);
         groupmateList.addGroupmate(ROXY);
         Project project = new ProjectBuilder().withName(CS1101S_NAME.toString())
-                .withParticipantList(groupmateList).build();
+                .withGroupmateList(groupmateList).build();
         int size = project.getGroupmates().size();
         assertEquals(project.getGroupmate(size - 1), ROXY);
         assertEquals(project.getGroupmate(size - 2), SYLPH);
@@ -268,7 +268,7 @@ public class ProjectTest {
                 .withEventList(eventList)
                 .withTodoList(todoList)
                 .withDeadlineList(deadlineList)
-                .withParticipantList(groupmateList)
+                .withGroupmateList(groupmateList)
                 .build();
         final StringBuilder builder = new StringBuilder();
         builder.append(CS1101S_NAME.toString());

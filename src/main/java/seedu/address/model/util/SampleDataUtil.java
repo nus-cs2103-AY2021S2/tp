@@ -126,7 +126,7 @@ public class SampleDataUtil {
     public static Project getCS2101Project() throws DateConversionException {
         ProjectName projectName = new ProjectName("CS2101 OP2");
         return new Project(projectName, getCS2101EventList(), getCS2101TodosList(),
-                getCS2101DeadlineList(), getCS2101ParticipantsList());
+                getCS2101DeadlineList(), getCS2101GroupmateList());
     }
 
     private static EventList getCS2103TEventList() throws DateConversionException {
@@ -233,7 +233,7 @@ public class SampleDataUtil {
         return todoList;
     }
 
-    private static GroupmateList getCS2101ParticipantsList() {
+    private static GroupmateList getCS2101GroupmateList() {
         Groupmate danh = new Groupmate(new seedu.address.model.groupmate.Name("Danh"), new HashSet<>());
         Groupmate ruochen = new Groupmate(new seedu.address.model.groupmate.Name("Ruochen"), new HashSet<>());
         Groupmate samuel = new Groupmate(new seedu.address.model.groupmate.Name("Samuel"), new HashSet<>());

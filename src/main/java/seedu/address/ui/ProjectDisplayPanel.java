@@ -52,7 +52,7 @@ public class ProjectDisplayPanel extends UiPart<Region> {
     private ListView<CompletableTodo> completableTodoListView;
 
     @FXML
-    private ListView<Groupmate> participantListView;
+    private ListView<Groupmate> groupmateListView;
 
     /**
      * Creates a {@code ProjectDisplayPanel}.
@@ -83,10 +83,10 @@ public class ProjectDisplayPanel extends UiPart<Region> {
     }
 
     private void setUpGroupmatesList(ObservableList<Groupmate> groupmates) {
-        participantListView.prefHeightProperty()
+        groupmateListView.prefHeightProperty()
                 .bind(Bindings.size(groupmates).multiply(GROUPMATES_CARD_HEIGHT).add(SAFETY_MARGIN));
-        participantListView.setItems(new FilteredList<>(groupmates));
-        participantListView.setCellFactory(listView -> new ProjectDisplayPanel.ParticipantListViewCell());
+        groupmateListView.setItems(new FilteredList<>(groupmates));
+        groupmateListView.setCellFactory(listView -> new GroupmateListViewCell());
     }
 
     private void setUpDeadlinesList(ObservableList<CompletableDeadline> deadlines) {
@@ -172,9 +172,9 @@ public class ProjectDisplayPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Contact} using a {@code ContactDisplayCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Groupmate} using a {@code GroupmateCard}.
      */
-    class ParticipantListViewCell extends ListCell<Groupmate> {
+    class GroupmateListViewCell extends ListCell<Groupmate> {
         @Override
         protected void updateItem(Groupmate groupmate, boolean empty) {
             super.updateItem(groupmate, empty);

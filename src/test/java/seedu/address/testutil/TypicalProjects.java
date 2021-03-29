@@ -54,7 +54,7 @@ public class TypicalProjects {
                 .withEventList(getCS2103TEventList())
                 .withDeadlineList(getCS2103TDeadlineList())
                 .withTodoList(getCS2103TTodosList())
-                .withParticipantList(getCS2103TParticipantsList())
+                .withGroupmateList(getCS2103TGroupmateList())
                 .build();
     }
 
@@ -67,7 +67,7 @@ public class TypicalProjects {
                 .withEventList(getCS2101EventList())
                 .withDeadlineList(getCS2101DeadlineList())
                 .withTodoList(getCS2101TodosList())
-                .withParticipantList(getCS2101ParticipantsList())
+                .withGroupmateList(getCS2101GroupmateList())
                 .build();
     }
 
@@ -119,7 +119,7 @@ public class TypicalProjects {
         return todoList;
     }
 
-    private static GroupmateList getCS2103TParticipantsList() {
+    private static GroupmateList getCS2103TGroupmateList() {
         Groupmate danh = new GroupmateBuilder().withName("Danh").build();
         Groupmate ruochen = new GroupmateBuilder().withName("Ruochen").build();
         Groupmate samuel = new GroupmateBuilder().withName("Samuel").build();
@@ -182,7 +182,7 @@ public class TypicalProjects {
         return todoList;
     }
 
-    private static GroupmateList getCS2101ParticipantsList() throws DateConversionException {
+    private static GroupmateList getCS2101GroupmateList() throws DateConversionException {
         Groupmate danh = new GroupmateBuilder().withName("Danh").build();
         Groupmate ruochen = new GroupmateBuilder().withName("Ruochen").build();
         Groupmate samuel = new GroupmateBuilder().withName("Samuel").build();
