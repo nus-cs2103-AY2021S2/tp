@@ -1,13 +1,19 @@
 package fooddiary.ui;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import fooddiary.commons.core.LogsCenter;
 import fooddiary.commons.core.index.Index;
+import fooddiary.logic.commands.EditCommand;
+import fooddiary.logic.commands.exceptions.CommandException;
+import fooddiary.logic.parser.CliSyntax;
+import fooddiary.logic.parser.exceptions.ParseException;
 import fooddiary.model.entry.Entry;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -19,6 +25,7 @@ import javafx.stage.Stage;
 public class ReviseWindow extends UiPart<Stage> {
     private static Entry entry;
     private static Index index;
+    private static MainWindow mainWindow;
 
     private static final Logger logger = LogsCenter.getLogger(ReviseWindow.class);
     private static final String FXML = "ReviseWindow.fxml";
@@ -51,6 +58,8 @@ public class ReviseWindow extends UiPart<Stage> {
     private TextField tagCategoryText;
     @FXML
     private TextField tagSchoolText;
+    @FXML
+    private Button reviseButton;
 
     /**
      * Creates a new ViewWindow.
@@ -60,7 +69,7 @@ public class ReviseWindow extends UiPart<Stage> {
     public ReviseWindow(Stage root) {
         super(FXML, root);
         if (entry != null && index != null) {
-            setEntryContent(entry, index);
+            setEntryContent(entry, index, mainWindow);
         }
     }
 
@@ -123,7 +132,9 @@ public class ReviseWindow extends UiPart<Stage> {
      * @param entry entry
      * @param index index of entry
      */
-    public void setEntryContent(Entry entry, Index index) {
+    public void setEntryContent(Entry entry, Index index, MainWindow mainWindow) {
+        this.index = index;
+        this.mainWindow = mainWindow;
         nameText.setText(entry.getName().fullName);
         priceText.setText(String.format("%s", entry.getPrice().value));
         ratingText.setText(String.format("%s", entry.getRating().value));
@@ -142,8 +153,38 @@ public class ReviseWindow extends UiPart<Stage> {
                 .collect(Collectors.joining());
         tagCategoryText.setText(tagCategories);
         tagSchoolText.setText(tagSchools);
-        this.index = index;
     }
 
+    public void completeRevise() throws CommandException, ParseException {
+        String name = String.format("%s%s", CliSyntax.PREFIX_NAME.toString(), nameText.getText());
+        String rating = String.format("%s%s", CliSyntax.PREFIX_RATING.toString(), ratingText.getText());
+        String price = String.format("%s%s", CliSyntax.PREFIX_PRICE.toString(), priceText.getText());
+
+        String[] reviewsArr = reviewsText.getText().split("\\r?\\n\n|\\r\r");
+        String reviewsStr = "";
+        for (String review : reviewsArr) {
+            reviewsStr += String.format(" %s%s", CliSyntax.PREFIX_REVIEW, review);
+        }
+
+        String[] categoriesArr = tagCategoryText.getText().split(" ");
+        String categoriesStr = "";
+        for (String category : categoriesArr) {
+            categoriesStr += String.format(" %s%s", CliSyntax.PREFIX_TAG_CATEGORY, category);
+        }
+
+        String[] schoolsArr = tagSchoolText.getText().split(" ");
+        String schoolsStr = "";
+        for (String school : schoolsArr) {
+            schoolsStr += String.format(" %s%s", CliSyntax.PREFIX_TAG_SCHOOL, school);
+        }
+
+        String commandToSend = String.format("%s %d %s %s %s %s%s%s", EditCommand.COMMAND_WORD, index.getOneBased(),
+                name, rating, price, reviewsStr, categoriesStr, schoolsStr);
+        try {
+            mainWindow.executeCommand(commandToSend);
+        } catch (CommandException | ParseException e) {
+            this.hide();
+        }
+    }
 
 }

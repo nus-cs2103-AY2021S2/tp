@@ -175,7 +175,7 @@ public class MainWindow extends UiPart<Stage> {
     public void handleRevise(Entry entry, Index index) {
         assert entry != null : "Entry is missing";
         assert index != null : "Index is missing";
-        reviseWindow.setEntryContent(entry, index);
+        reviseWindow.setEntryContent(entry, index, this);
         if (!reviseWindow.isShowing()) {
             reviseWindow.show();
         } else {
@@ -209,7 +209,8 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    @FXML
+    protected CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -228,7 +229,7 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isReviseEntry()) {
                 handleRevise(commandResult.getEntry(), commandResult.getIndex());
             } else {
-                viewWindow.hide();
+                reviseWindow.hide();
             }
 
             if (commandResult.isExit()) {

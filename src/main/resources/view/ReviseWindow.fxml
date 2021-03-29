@@ -42,6 +42,11 @@
                     <TextField fx:id="tagCategoryText" />
                     <Label fx:id="tagSchoolLabel" styleClass="view_label" text="Schools:" />
                     <TextField fx:id="tagSchoolText" />
+                    <Button fx:id="reviseButton" mnemonicParsing="false" onAction="#completeRevise" text="Revise">
+                        <HBox.margin>
+                            <Insets left="5.0" />
+                        </HBox.margin>
+                    </Button>
                 </VBox>
             </ScrollPane>
         </Scene>
