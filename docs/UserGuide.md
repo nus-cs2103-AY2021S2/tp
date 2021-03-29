@@ -253,13 +253,17 @@ Examples:
 
 ### _**4.1.1 Todos**_
 
+`Todos` contain a `DESCRIPTION` field and are useful for tasks that have no due date.
+
+Each `Project` may have `Todos`. Hence, each of the commands related to `Todos` are done w.r.t the `Project` identified by `PROJECT_INDEX`.
+
 #### Adding a todo to a project: `addTto`
 
 Adds a todo to a specified project.
 
 Format: `addTto PROJECT_INDEX d/DESCRIPTION`
 
-* Adds a deadline to the project at the specified `PROJECT_INDEX`.
+* Adds a todo to the project at the specified `PROJECT_INDEX`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
 * The index **must be a positive integer** 1, 2, 3, …​
 
@@ -283,6 +287,10 @@ Examples:
 * `deleteT 2 r/2`
 
 ### _**4.1.2 Deadlines**_
+
+`Deadlines` contain `DESCRIPTION` & `DATE` field and are useful for tasks that have a due date.
+
+Each `Project` may have `Deadlines`. Hence, each of the commands related to `Deadlines` are done w.r.t the `Project` identified by `PROJECT_INDEX`.
 
 #### Adding a deadline to a project: `addDto`
 
@@ -316,6 +324,10 @@ Examples:
 * `deleteD 2 r/2`
 
 ### _**4.1.3 Events**_
+
+`Events` contain `DESCRIPTION`, `DATE`, `TIME` & `REPEAT_WEEKLY` field and are useful for events that occur on a `DATE` at a `TIME` that may be set to `REPEAT_WEEKLY`.
+
+Each `Project` may have `Events`. Hence, each of the commands related to `Events` are done w.r.t the `Project` identified by `PROJECT_INDEX`.
 
 #### Adding an event to a project: `addEto`
 
@@ -358,6 +370,10 @@ Examples:
 * `deleteE 2 r/2`
 
 ### _**4.1.4 Groupmates**_
+
+`Groupmates` contain `NAME` & `ROLE` field and are useful to keep track of `Groupmates` involved in a `Project` with their `ROLE` for the `Project`.
+
+Each `Project` may have `Groupmates`. Hence, each of the commands related to `Groupmates` are done w.r.t the `Project` identified by `PROJECT_INDEX`.
 
 #### Add a groupmate to a project: `addCto`
 
