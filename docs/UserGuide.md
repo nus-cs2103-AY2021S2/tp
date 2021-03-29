@@ -27,9 +27,11 @@ For a quick overview of GME’s commands, refer to the [“Command Summary”](#
 Please note the following symbols used in the User Guide which may serve as points of interests:
 
 
-`command`: The grey highlight indicates commands that can be executed by GME.
+* `command`: The grey highlight indicates commands that can be executed by GME.
 
-:information_source: : This symbol indicates noteworthy information.
+* :information_source: : This symbol indicates noteworthy information.
+
+* :warning: : This symbol indicates information that may irrevesibly corrupt data.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -160,7 +162,7 @@ Format: `delete INDEX`
 </div>
 
 **Examples:**
-* `list` followed by `delete 3` deletes the *3rd* person in the address book
+* `list` followed by `delete 3` deletes the *3rd* person in the passenger list
 
 
 ### Select passengers to arrange a carpool: `pool`
@@ -171,8 +173,9 @@ Format: `pool n/DRIVER_NAME p/DRIVER_PHONE c/INDEX [c/INDEX c/INDEX...]`
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the drive command:**<br>
+**:information_source: Notes about the pool command:**<br>
 
+* GME will not allow you to `delete` a passenger that is assigned to a Pool.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * The order of the passengers' index does not matter
@@ -186,7 +189,7 @@ Format: `pool n/DRIVER_NAME p/DRIVER_PHONE c/INDEX [c/INDEX c/INDEX...]`
 
 ### 3.8 Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the passenger list.
 
 Format: `clear`
 
@@ -203,6 +206,12 @@ GME data is saved in the hard disk automatically after any command that changes 
 ### 3.11 Editing the data file
 
 GME data is saved as a JSON file `[JAR file location]/data/GreenMileageEfforts.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="block" class="alert-warning">
+
+**:warning: GME will replace the JSON file with a new one if it cannot read the file, do make a backup and edit at your own risk.**
+
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -222,7 +231,7 @@ Action | Format, Examples
 **list** | `list`
 **edit** | `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [d/DAY] [t/TIME] [tag/TAG]` <br> e.g., `edit 8 a/Changi Airport d/SATURDAY`
 **delete** | `delete INDEX`<br> e.g.,`delete 3`
-**drive** | `drive n/DRIVER_NAME p/DRIVER_PHONE c/INDEX [c/INDEX c/INDEX...]`<br> e.g., `drive n/Ben p/91234567 c/2 c/3 c/4`
+**pool** | `pool n/DRIVER_NAME p/DRIVER_PHONE c/INDEX [c/INDEX c/INDEX...]`<br> e.g., `drive n/Ben p/91234567 c/2 c/3 c/4`
 **find** | `find a/ADDRESS` or `find n/NAME` or `find p/PHONE NUMBER` or `find tag/TAG` <br> e.g., `find tag/female`
 
 --------------------------------------------------------------------------------------------------------------------
