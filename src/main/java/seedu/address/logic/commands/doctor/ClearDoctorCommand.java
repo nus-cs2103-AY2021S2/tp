@@ -13,7 +13,7 @@ import seedu.address.model.Model;
 public class ClearDoctorCommand extends Command {
 
     public static final String COMMAND_WORD = "clear-doctor";
-    public static final String MESSAGE_SUCCESS = "Doctor records has been cleared!";
+    public static final String MESSAGE_SUCCESS = "Doctor records have been cleared!";
 
 
     @Override

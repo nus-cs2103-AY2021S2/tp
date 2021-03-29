@@ -16,7 +16,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Doctor;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access DoctorRecords data stored as a json file on the hard disk.
  */
 public class JsonDoctorRecordsStorage extends AddressBookStorage<Doctor> {
 

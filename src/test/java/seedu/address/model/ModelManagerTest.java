@@ -31,7 +31,8 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook<Patient>(), new AddressBook<>(modelManager.getDoctorRecords()));
+        assertEquals(new AddressBook<Patient>(), new AddressBook<Patient>(modelManager.getPatientRecords()));
+        assertEquals(new AddressBook<Doctor>(), new AddressBook<Doctor>(modelManager.getDoctorRecords()));
         assertEquals(new AppointmentSchedule(), new AppointmentSchedule(modelManager.getAppointmentSchedule()));
     }
 
@@ -96,6 +97,11 @@ public class ModelManagerTest {
 
     @Test
     public void getFilteredPatientList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPatientList().remove(0));
+    }
+
+    @Test
+    public void getFilteredDoctorList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredDoctorList().remove(0));
     }
 

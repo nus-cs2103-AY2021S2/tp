@@ -11,7 +11,7 @@ public class Messages {
     //=================================Patient related messages===============================================
     public static final String MESSAGE_PATIENTS_LISTED_OVERVIEW = "%1$d patients listed!";
     public static final String MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX = "The patient index provided is invalid";
-    public static final String MESSAGE_FORCE_DELETE_REQUIRED =
+    public static final String MESSAGE_FORCE_DELETE_PATIENT_REQUIRED =
             "The patient has existing appointments in appointment schedule."
             + " Force delete command format required! \n%1$s";
     public static final String MESSAGE_DELETE_PATIENT_SUCCESS = "Deleted Person: %1$s";

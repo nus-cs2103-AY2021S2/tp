@@ -10,7 +10,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
 
 /**
- * A utility class to help with building EditPatientDescriptor objects.
+ * A utility class to help with building EditDoctorDescriptor objects.
  */
 public class EditDoctorDescriptorBuilder {
 
@@ -25,7 +25,7 @@ public class EditDoctorDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPatientDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditDoctorDescriptor} with fields containing {@code doctor}'s details
      */
     public EditDoctorDescriptorBuilder(Doctor doctor) {
         descriptor = new EditDoctorDescriptor();
@@ -34,7 +34,7 @@ public class EditDoctorDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditPatientDescriptor} that we are building.
+     * Sets the {@code Name} of the {@code EditDoctorDescriptor} that we are building.
      */
     public EditDoctorDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
@@ -42,7 +42,7 @@ public class EditDoctorDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPatientDescriptor}
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditDoctorDescriptor}
      * that we are building.
      */
     public EditDoctorDescriptorBuilder withTags(String... tags) {

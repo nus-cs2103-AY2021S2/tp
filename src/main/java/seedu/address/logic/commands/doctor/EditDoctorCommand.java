@@ -24,7 +24,7 @@ import seedu.address.model.tag.Tag;
 
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing person in the DoctorRecords.
  */
 public class EditDoctorCommand extends Command {
 
@@ -45,8 +45,8 @@ public class EditDoctorCommand extends Command {
     private final EditDoctorDescriptor editDoctorDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editDoctorDescriptor details to edit the person with
+     * @param index of the person in the filtered doctor list to edit
+     * @param editDoctorDescriptor details to edit the doctor with
      */
     public EditDoctorCommand(Index index, EditDoctorDescriptor editDoctorDescriptor) {
         requireNonNull(index);
@@ -78,8 +78,8 @@ public class EditDoctorCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code patientToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Doctor} with the details of {@code doctorToEdit}
+     * edited with {@code editDoctorDescriptor}.
      */
     private static Doctor createEditedDoctor(Doctor doctorToEdit, EditDoctorDescriptor editDoctorDescriptor) {
         assert doctorToEdit != null;
@@ -109,8 +109,8 @@ public class EditDoctorCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the doctor with. Each non-empty field value will replace the
+     * corresponding field value of the doctor.
      */
     public static class EditDoctorDescriptor {
         private Name name;

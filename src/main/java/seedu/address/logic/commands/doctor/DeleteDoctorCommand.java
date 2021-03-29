@@ -50,7 +50,7 @@ public class DeleteDoctorCommand extends Command {
         // checks if doctor has any existing appointments
         if (model.hasDoctorInAppointmentSchedule(doctorToDelete)) {
             throw new CommandException(String.format(
-                    Messages.MESSAGE_FORCE_DELETE_REQUIRED, FORCE_DELETE_MESSAGE_USAGE));
+                    Messages.MESSAGE_FORCE_DELETE_PATIENT_REQUIRED, FORCE_DELETE_MESSAGE_USAGE));
         }
 
         model.deleteDoctor(doctorToDelete);

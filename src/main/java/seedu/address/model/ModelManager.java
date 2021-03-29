@@ -16,7 +16,7 @@ import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Patient;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the app data.
  */
 public class ModelManager implements Model {
     private static final Logger LOGGER = LogsCenter.getLogger(ModelManager.class);
@@ -30,7 +30,7 @@ public class ModelManager implements Model {
     private final FilteredList<Appointment> filteredAppointments;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given patientRecords, doctorRecords, appointmentSchedule and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook<Patient> patientRecords, ReadOnlyAddressBook<Doctor> doctorRecords,
                         ReadOnlyAppointmentSchedule appointmentSchedule, ReadOnlyUserPrefs userPrefs) {
@@ -97,6 +97,7 @@ public class ModelManager implements Model {
         this.patientRecords.resetData(patientRecords);
     }
 
+    @Override
     public ReadOnlyAddressBook<Patient> getPatientRecords() {
         return patientRecords;
     }
@@ -129,6 +130,7 @@ public class ModelManager implements Model {
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
      * {@code versionedAddressBook}
      */
+    @Override
     public ObservableList<Patient> getFilteredPatientList() {
         return filteredPatients;
     }

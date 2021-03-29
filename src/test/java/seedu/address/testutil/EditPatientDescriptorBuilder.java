@@ -28,7 +28,7 @@ public class EditPatientDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPatientDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditPatientDescriptor} with fields containing {@code patient}'s details
      */
     public EditPatientDescriptorBuilder(Patient patient) {
         descriptor = new EditPatientDescriptor();

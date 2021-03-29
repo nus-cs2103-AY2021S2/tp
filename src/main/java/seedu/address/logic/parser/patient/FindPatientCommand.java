@@ -14,7 +14,7 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
  */
 public class FindPatientCommand extends Command {
 
-    public static final String COMMAND_WORD = "find";
+    public static final String COMMAND_WORD = "find-patient";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all patients whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"

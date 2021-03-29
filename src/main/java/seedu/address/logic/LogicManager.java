@@ -85,7 +85,7 @@ public class LogicManager implements Logic {
         return model.getPatientRecordsFilePath();
     }
 
-    //=========== PatientRecords ================================================================================
+    //=========== DoctorRecords ================================================================================
     @Override
     public ReadOnlyAddressBook<Doctor> getDoctorRecords() {
         return model.getDoctorRecords();

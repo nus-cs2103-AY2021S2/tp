@@ -38,9 +38,9 @@ public interface Logic {
 
     //=========== PatientRecords ================================================================================
     /**
-     * Returns the AddressBook.
+     * Returns the PatientRecords.
      *
-     * @see seedu.address.model.Model#getDoctorRecords()
+     * @see seedu.address.model.Model#getPatientRecords()
      */
     ReadOnlyAddressBook<Patient> getPatientRecords();
 
