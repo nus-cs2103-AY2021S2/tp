@@ -22,8 +22,8 @@ title: User Guide
   * [Managing Students](#managing-students)
     * [Adding a student: `add_student`](#adding-a-student-add_student)
     * [Locating student by name: `find_student`](#locating-student-by-name-find_student)
+    * [Editing a student: `edit_student`](#editing-a-student-edit_student)    
     * [Deleting a student: `delete_student`](#deleting-a-student-delete_student)
-    * [Editing a student: `edit_student`](#editing-a-student-edit_student)
     * [Listing students' emails based on current list: `emails`](#listing-students-emails-based-on-current-list-emails)
   * [Managing Sessions](#managing-sessions)
     * [Adding a tuition session: `add_session`](#adding-a-single-tuition-session-add_session)
@@ -36,9 +36,11 @@ title: User Guide
 * [Glossary](#glossary)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## Introduction
-TutorBuddy is a desktop application made for freelance tutors to efficiently manage their students' contacts,
-provide a quick overview of scheduled tuition sessions at a glance, and handle monthly tuition fees calculation.
+TutorBuddy is a desktop application made for freelance tutors who give one-to-one tuition to efficiently manage their students' contacts,
+provide a quick overview of scheduled tuition sessions, and handle monthly tuition fees calculation.
 TutorBuddy is also optimized for fast typing users to handle their day-to-day administrative responsibilities
 effectively.
 
@@ -67,6 +69,8 @@ Boxes with the :bulb: icon contain additional tips and tricks to help you get th
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## Quick start
 This section provides information on how to quickly start using TutorBuddy.
 
@@ -90,11 +94,11 @@ This section offers an overview of the layout in TutorBuddy.
 
 There are three main areas in TutorBuddy:
 
-1. the utility area,
+1. Utility area
 
-2. the main viewing area,
+2. Main viewing area
 
-3. the result display box and command box
+3. Result display box and command box
 
 <a name="application-overview"><img alt="application-overview" src="images/ApplicationOverview.png"></a>
 
@@ -120,9 +124,11 @@ There are three main areas in TutorBuddy:
   * **`add_session`**`n/John Doe d/2021-01-01 t/13:00 k/120 s/Biology f/80`: Adds a single tuition session for John Doe happening on 2021-01-01
   * **`add_recurring_session`**`n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80 b/7 e/2021-01-15`: Adds a 7-day recurring session for John Doe happening from 2021-01-01 to 2021-01-15
   * **`exit`** : Exits the application.<br>
-    Refer to the [Commands](#commands) below for details of each command.
+
+Refer to the [Commands](#commands) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Commands
 
@@ -252,6 +258,16 @@ Example command usages from the current student list shown in Figure 1:
 * `find_student Lee` returns "John Lee" and "Samuel Lee"
 * `find_student Johnz Lee` returns "John Lee", "Johnz Tan" and "Samuel Lee"
 
+#### Editing a student: `edit_student`
+
+Edits an existing student's detail(s) in TutorBuddy.
+
+Format: `edit_student STUDENT_INDEX [n/NAME] [p/STUDENT_PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [l/STUDY_LEVEL] [g/GUARDIAN_PHONE_NUMBER] [r/RELATIONSHIP_WITH_GUARDIAN]` <br>
+* `STUDENT_PHONE_NUMBER` and `GUARDIAN_PHONE_NUMBER` should be in Singapore's phone formatting (i.e. starting with either 6, 8 or 9 with 8 digits)
+
+Examples:
+* `edit_student 1 p/98825432 e/alexy@example.com a/Alex street, Block 123, #01-01` edits the student at index 1's `STUDENT_PHONE_NUMBER`, `EMAIL`, and `ADDRESS`
+
 #### Deleting a student: `delete_student`
 
 Deletes the specified student from TutorBuddy.
@@ -266,17 +282,7 @@ The STUDENT_INDEX will be based on the current list.<br>
 </div>
 
 Examples:
-* `delete_student 2` deletes the 2nd student based on the current list of students.
-
-#### Editing a student: `edit_student`
-
-Edits an existing student's detail(s) in TutorBuddy.
-
-Format: `edit_student STUDENT_INDEX [n/NAME] [p/STUDENT_PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [l/STUDY_LEVEL] [g/GUARDIAN_PHONE_NUMBER] [r/RELATIONSHIP_WITH_GUARDIAN]` <br>
-* `STUDENT_PHONE_NUMBER` and `GUARDIAN_PHONE_NUMBER` should be in Singapore's phone formatting (i.e. starting with either 6, 8 or 9 with 8 digits)
-
-Examples:
-* `edit_student 1 p/98825432 e/alexy@example.com a/Alex street, Block 123, #01-01` edits the student at index 1's `STUDENT_PHONE_NUMBER`, `EMAIL`, and `ADDRESS`
+* `delete_student 2` deletes the 2nd student based on the current list of students
 
 #### Listing students' emails based on current list: `emails`
 Displays concatenated string of students' emails based on current list, separated by `;`. Useful for sending mass emails to students.
@@ -347,8 +353,8 @@ Deletes the specified tuition session from TutorBuddy.
 Format: `delete_session n/STUDENT_NAME i/SESSION_INDEX`
 
 * `STUDENT_NAME` should match the exact student’s name in TutorBuddy
-* Deletes the tuition session at the specified `SESSION_INDEX`
 * `SESSION_INDEX` refers to the session index for a particular student
+* Deletes the tuition session at the specified `SESSION_INDEX`
 * The index must be a positive integer 1, 2, 3, …​
 
 Example:
@@ -370,6 +376,7 @@ Example:
 * `fee n/John Lee m/1 y/2021` returns John Lee monthly fee for January 2021
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
@@ -385,12 +392,12 @@ Action | Format
 
 **Students**
 
-Action | Format | Examples(if applicable)
+Action | Format | Examples (if applicable)
 --------|------------------|-------
 **Add** | `add_student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS l/STUDY_LEVEL g/GUARDIAN_PHONE_NUMBER r/RELATIONSHIP_WITH_GUARDIAN` | `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, Block 123, #01-01 l/Sec2 g/95421323 r/Mother`
 **Find** | `find_student KEYWORD [MORE_KEYWORDS]` | `find_student John Alex`
-**Delete** | `delete_student STUDENT_INDEX` | `delete_student 3`
 **Edit** | `edit_student STUDENT_INDEX [n/NAME] [p/STUDENT_PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [l/STUDY_LEVEL] [g/GUARDIAN_PHONE_NUMBER] [r/RELATIONSHIP_WITH_GUARDIAN]` | `edit_student 1 p/98825432 e/alexy@example.com a/Alex street, Block 123, #01-01`
+**Delete** | `delete_student STUDENT_INDEX` | `delete_student 3`
 **List students' emails based on current list** | `emails`
 
 
