@@ -18,6 +18,8 @@ import seedu.student.model.student.VaccinationStatus;
 /**
  * Jackson-friendly version of {@link Student}.
  */
+
+
 class JsonAdaptedStudent {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Student's %s field is missing!";
@@ -109,7 +111,6 @@ class JsonAdaptedStudent {
 
         final Faculty modelFaculty = new Faculty(faculty);
 
-
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
@@ -159,9 +160,7 @@ class JsonAdaptedStudent {
                     SchoolResidence.class.getSimpleName()));
         }
         
-        if (schoolResidence.isBlank()) {
-            modelSchoolRes = new SchoolResidence(NO_SCHOOL_RESIDENCE);
-        } else if (!SchoolResidence.isValidResidence(schoolResidence)) {
+        if (!SchoolResidence.isValidResidence(schoolResidence)) {
             throw new IllegalValueException(SchoolResidence.MESSAGE_CONSTRAINTS);
         } else {
             modelSchoolRes = new SchoolResidence(schoolResidence);

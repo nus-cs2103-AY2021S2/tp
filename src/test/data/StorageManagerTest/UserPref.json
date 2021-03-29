@@ -1,0 +1,13 @@
+{
+  "guiSettings" : {
+    "windowWidth" : 9000.0,
+    "windowHeight" : 500.0,
+    "extra" : "some value ",
+    "windowCoordinates" : {
+      "x" : 100,
+      "y" : 120,
+      "z" : 80
+    }
+  },
+  "studentBookFilePath" : "studentbook.json"
+}

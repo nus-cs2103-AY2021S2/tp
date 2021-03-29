@@ -2,6 +2,7 @@ package seedu.student.storage;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -36,7 +37,7 @@ class JsonAdaptedAppointment {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Appointment} into this class for Jackson use.
      */
     public JsonAdaptedAppointment(Appointment source) {
         matriculationNumber = source.getMatriculationNumber().value;
@@ -45,7 +46,7 @@ class JsonAdaptedAppointment {
     }
 
     /**
-     * Converts this Jackson-friendly adapted student object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted appointment object into the model's {@code Appointment} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted student.
      */
@@ -59,10 +60,14 @@ class JsonAdaptedAppointment {
             throw new IllegalValueException(MatriculationNumber.MESSAGE_CONSTRAINTS);
         }
         final MatriculationNumber modelMatric = new MatriculationNumber(matriculationNumber);
-        //check for overlap of timing
+
         if(date == null){
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    MatriculationNumber.class.getSimpleName()));
+                    Date.class.getSimpleName()));
+        }
+
+        if(startTime == null){
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "startTime"));
         }
 
         final  LocalDate modelDate = date;

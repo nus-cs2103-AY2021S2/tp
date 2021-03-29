@@ -37,7 +37,7 @@ public class StudentBook implements ReadOnlyStudentBook {
     public StudentBook() {}
 
     /**
-     * Creates an AddressBook using the Students in the {@code toBeCopied}
+     * Creates an StudentBook using the Students in the {@code toBeCopied}
      */
     public StudentBook(ReadOnlyStudentBook toBeCopied) {
         this();
