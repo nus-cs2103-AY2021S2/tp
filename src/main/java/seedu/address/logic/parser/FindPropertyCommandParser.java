@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT_ASKING_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT_CONTACT;
@@ -46,11 +47,17 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindPropertyCommand parse(String args) throws ParseException {
+        requireNonNull(args);
+        if (args.strip().equals("")) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPropertyCommand.MESSAGE_USAGE)
+            );
+        }
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TYPE, PREFIX_ADDRESS, PREFIX_POSTAL,
-                        PREFIX_DEADLINE, PREFIX_REMARK, PREFIX_CLIENT_NAME, PREFIX_CLIENT_CONTACT,
-                        PREFIX_CLIENT_EMAIL, PREFIX_CLIENT_ASKING_PRICE, PREFIX_TAGS, PREFIX_PROPERTY_PRICE_MORE,
+                        PREFIX_DEADLINE, PREFIX_REMARK, PREFIX_TAGS, PREFIX_PROPERTY_PRICE_MORE,
                         PREFIX_PROPERTY_PRICE_LESS);
+
 
         String genericKeywords = argMultimap.getPreamble();
         List<Predicate<Property>> predicates = new ArrayList<>();

@@ -38,10 +38,10 @@ public class FindPropertyCommandParserTest {
                 new FindPropertyCommand(new PropertyPredicateList(predicates));
 
         // no leading and trailing whitespaces
-        assertParseSuccess(parser, "Mayfair Jurong", expectedFindCommand);
+        assertParseSuccess(parser, "n/Mayfair Jurong", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Mayfair \n \t Jurong  \t", expectedFindCommand);
+        assertParseSuccess(parser, " n/\n Mayfair \n \t Jurong  \t", expectedFindCommand);
     }
 
     @Test
