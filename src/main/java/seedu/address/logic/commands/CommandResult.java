@@ -16,8 +16,8 @@ public class CommandResult {
     /** Information on which UI command to execute **/
     private final UiCommand uiCommand;
 
-    /** Setting this boolean flag to false will ignore history **/
-    private boolean ignoreHistory;
+    /** Setting this boolean flag to true will ignore history **/
+    private boolean ignoreHistory = false;
 
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser} and {@code uiCommand}.
@@ -49,6 +49,7 @@ public class CommandResult {
 
     /**
      * Returns true if there is a UiCommand.
+     *
      * @return true if UiCommand is not null and false otherwise.
      */
     public boolean hasUiCommand() {
@@ -61,6 +62,7 @@ public class CommandResult {
 
     /**
      * Sets ignore history flag.
+     *
      * @param ignoreHistory new state of ignore history flag.
      * @return this, for method chaining.
      */
