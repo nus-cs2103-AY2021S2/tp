@@ -111,11 +111,6 @@ public interface Model {
     ReadOnlyAppointmentSchedule getAppointmentSchedule();
 
     /**
-     * Returns true if patient has existing appointments in the appointment schedule.
-     */
-    boolean hasPatientInAppointmentSchedule(Patient patient);
-
-    /**
      * Returns true if an appointment that conflicts with {@code appointment} exists in the appointment schedule.
      */
     boolean hasConflictingAppointment(Appointment appointment);
@@ -127,10 +122,20 @@ public interface Model {
     boolean hasConflictingAppointmentExcludingTarget(Appointment target, Appointment appointment);
 
     /**
+     * Returns true if patient has existing appointments in the appointment schedule.
+     */
+    boolean hasPatientInAppointmentSchedule(Patient patient);
+
+    /**
      * Deletes the given appointment.
      * The appointment must exist in the appointment schedule.
      */
     void deleteAppointment(Appointment target);
+
+    /**
+     * Deletes all appointments associated with the input patient from the appointment schedule.
+     */
+    void deletePatientAppointments(Patient patient);
 
     /**
      * Adds the given appointment.

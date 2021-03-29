@@ -31,9 +31,16 @@ public class DeletePatientCommand extends Command {
             + "Example: " + COMMAND_WORD + " --force " + " 1";
 
     private final Index targetIndex;
+    private final boolean isForceDelete;
 
-    public DeletePatientCommand(Index targetIndex) {
+    /**
+     * Constructor: creates a DeletePatientCommand
+     * @param targetIndex index of patient to be deleted
+     * @param isForceDelete true if force delete is required
+     */
+    public DeletePatientCommand(Index targetIndex, boolean isForceDelete) {
         this.targetIndex = targetIndex;
+        this.isForceDelete = isForceDelete;
     }
 
     @Override
@@ -46,6 +53,10 @@ public class DeletePatientCommand extends Command {
         }
 
         Patient patientToDelete = lastShownList.get(targetIndex.getZeroBased());
+
+        if (isForceDelete) {
+            model.deletePatientAppointments(patientToDelete);
+        }
 
         // checks if patient has any existing appointments
         if (model.hasPatientInAppointmentSchedule(patientToDelete)) {

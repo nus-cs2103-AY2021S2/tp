@@ -69,13 +69,6 @@ public class AppointmentSchedule implements ReadOnlyAppointmentSchedule {
     }
 
     /**
-     * Returns true if a patient has existing appointments in the appointment schedule.
-     */
-    public boolean hasPatientInSchedule(Patient patient) {
-        return appointments.hasPatientInSchedule(patient);
-    }
-
-    /**
      * Returns true if an appointment has a conflict with {@code appointment} exists
      * in the appointment schedule.
      */
@@ -91,6 +84,28 @@ public class AppointmentSchedule implements ReadOnlyAppointmentSchedule {
     public boolean hasConflictExcludingTarget(Appointment target, Appointment appointment) {
         requireNonNull(appointment);
         return appointments.hasConflictExcludingTarget(target, appointment);
+    }
+
+    /**
+     * Returns true if a patient has existing appointments in the appointment schedule.
+     */
+    public boolean hasPatientInSchedule(Patient patient) {
+        return appointments.hasPatientInSchedule(patient);
+    }
+
+    /**
+     * Removes {@code toRemove} from this {@code AppointmentSchedule}.
+     * {@code toRemove} must exist in the appointment schedule.
+     */
+    public void removeAppointment(Appointment toRemove) {
+        appointments.remove(toRemove);
+    }
+
+    /**
+     * Deletes all appointments associated with the input patient from the appointment schedule.
+     */
+    public void deletePatientAppointments(Patient patient) {
+        appointments.deletePatientAppointments(patient);
     }
 
     /**
@@ -114,16 +129,7 @@ public class AppointmentSchedule implements ReadOnlyAppointmentSchedule {
         appointments.setAppointment(target, editedAppointment);
     }
 
-    /**
-     * Removes {@code toRemove} from this {@code AppointmentSchedule}.
-     * {@code toRemove} must exist in the appointment schedule.
-     */
-    public void removeAppointment(Appointment toRemove) {
-        appointments.remove(toRemove);
-    }
-
     //// util methods
-
     @Override
     public String toString() {
         return appointments.asUnmodifiableObservableList().size() + " appointments";
