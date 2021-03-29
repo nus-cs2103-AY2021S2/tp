@@ -25,7 +25,7 @@ public class CommandBox extends UiPart<Region> {
     private final AutoCompleter autoCompleter;
 
     private final KeyCombination undo = new KeyCodeCombination(KeyCode.Z, KeyCombination.CONTROL_DOWN);
-    private final KeyCombination redo1 = new KeyCodeCombination(KeyCode.R, KeyCombination.CONTROL_DOWN);
+    private final KeyCombination redo1 = new KeyCodeCombination(KeyCode.Y, KeyCombination.CONTROL_DOWN);
     private final KeyCombination redo2 =
             new KeyCodeCombination(KeyCode.Z, KeyCombination.SHIFT_DOWN, KeyCombination.CONTROL_DOWN);
 
@@ -44,29 +44,23 @@ public class CommandBox extends UiPart<Region> {
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
         commandTextField.setOnKeyPressed(e -> handleUserKey(e.getCode()));
-        commandTextField.addEventHandler(KeyEvent.KEY_RELEASED, e -> undoEventHandler(e));
-        commandTextField.addEventHandler(KeyEvent.KEY_RELEASED, e -> redoEventHandler(e));
+        commandTextField.addEventHandler(KeyEvent.KEY_RELEASED, e -> UndoRedoHandler(e));
         history = new InputHistory();
     }
 
     /**
-     * Handles calling the undo command if CTRL + Z shortcut is used
+     * Handles key combination releases.
+     * Executes undo command if CTRL + Z shortcut is used
+     * Executes redo command if CTRL + SHIFT + Z or CTRL + Y shortcut is used
      */
-    private void undoEventHandler(KeyEvent event) {
+    private void UndoRedoHandler(KeyEvent event) {
         if (undo.match(event)) {
             try {
                 commandExecutor.execute("undo");
             } catch (CommandException | ParseException e) {
                 setStyleToIndicateCommandFailure();
             }
-        }
-    }
-
-    /**
-     * Handles calling the redo command if CTRL + SHIFT + Z or CTRL + R shortcut is used
-     */
-    private void redoEventHandler(KeyEvent event) {
-        if (redo1.match(event) || redo2.match(event)) {
+        } else if (redo1.match(event) || redo2.match(event)) {
             try {
                 commandExecutor.execute("redo");
             } catch (CommandException | ParseException e) {
@@ -74,6 +68,7 @@ public class CommandBox extends UiPart<Region> {
             }
         }
     }
+
 
     /**
      * Handles the Enter button pressed event.

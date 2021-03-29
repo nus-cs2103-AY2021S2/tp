@@ -273,7 +273,7 @@ Can be invoked repeatedly until there are no more previously executed actions fr
 
 Format: `redo`
 
-Shortcut: `CTRL + SHIFT + Z` or `CTRL + R`
+Shortcut: `CTRL + SHIFT + Z` or `CTRL + Y`
 
 ### Toggle theme : `theme`
 
@@ -298,7 +298,7 @@ Retrieves previously entered input.
 * At the most recent input, pressing `Down` arrow key once more clears the text box.
 * `ESC` key clears the text box.
 * `CTRL + Z` key combination undoes the last change to the address or event books.
-* `CTRL + SHIFT + Z` or `CTRL + R` key combinations redo the last undone change to the address or event books.
+* `CTRL + SHIFT + Z` or `CTRL + Y` key combinations redo the last undone change to the address or event books.
 
 ### Coming Soon (Additional Features)
 * Add/Edit/Delete Modules and Tasks/Deliverables
