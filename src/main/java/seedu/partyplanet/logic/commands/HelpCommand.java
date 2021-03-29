@@ -24,7 +24,6 @@ public class HelpCommand extends Command {
             + "Editing contacts: " + EditCommand.MESSAGE_USAGE_CONCISE + "\n"
             + "Listing contacts: " + ListCommand.MESSAGE_USAGE_CONCISE + "\n"
             + "Finding contacts: " + FindCommand.MESSAGE_USAGE_CONCISE + "\n"
-            + "Finding tags: " + TagsCommand.MESSAGE_USAGE_CONCISE + "\n"
             + "*****EVENTBOOK*****\n"
             + "Adding events: " + EAddCommand.MESSAGE_USAGE_CONCISE + "\n"
             + "Deleting events: " + EDeleteCommand.MESSAGE_USAGE_CONCISE + "\n"
@@ -81,8 +80,6 @@ public class HelpCommand extends Command {
         case FindCommand.COMMAND_WORD:
             return new CommandResult(FindCommand.MESSAGE_USAGE, false);
 
-        case TagsCommand.COMMAND_WORD:
-            return new CommandResult(TagsCommand.MESSAGE_USAGE, false);
 
         // EventBook Commands
 

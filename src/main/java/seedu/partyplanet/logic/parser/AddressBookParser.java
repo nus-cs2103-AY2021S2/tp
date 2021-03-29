@@ -21,7 +21,6 @@ import seedu.partyplanet.logic.commands.FindCommand;
 import seedu.partyplanet.logic.commands.HelpCommand;
 import seedu.partyplanet.logic.commands.ListCommand;
 import seedu.partyplanet.logic.commands.RedoCommand;
-import seedu.partyplanet.logic.commands.TagsCommand;
 import seedu.partyplanet.logic.commands.ToggleThemeCommand;
 import seedu.partyplanet.logic.commands.UndoCommand;
 import seedu.partyplanet.logic.parser.exceptions.ParseException;
@@ -73,9 +72,6 @@ public class AddressBookParser {
         case ListCommand.COMMAND_WORD:
             return new ListCommandParser().parse(arguments);
 
-
-        case TagsCommand.COMMAND_WORD:
-            return new TagsCommandParser().parse(arguments);
 
         // EventBook Commands
 
