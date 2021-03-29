@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_UI_PROJECT_NOT_DISPLAYED;
+import static seedu.address.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
 
 import java.time.LocalDate;
 import java.util.logging.Logger;
@@ -39,10 +40,10 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private ContactListPanel contactListPanel;
     private SidePanel sidePanel;
     private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
+    private HelpPanel helpPanel;
     private TodayPanel todayPanel;
     private ProjectDisplayPanel projectDisplayPanel;
 
@@ -79,7 +80,7 @@ public class MainWindow extends UiPart<Stage> {
 
         setAccelerators();
 
-        helpWindow = new HelpWindow();
+        helpPanel = new HelpPanel(this);
     }
 
     public Stage getPrimaryStage() {
@@ -137,7 +138,7 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        contactListPanel = new ContactListPanel(logic.getFilteredContactList());
         projectDisplayPanel = new ProjectDisplayPanel();
     }
 
@@ -175,7 +176,7 @@ public class MainWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | UiCommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
+            setFeedbackToUser(e.getMessage());
             throw new CommandException(e.getMessage(), e);
         }
     }
@@ -184,18 +185,16 @@ public class MainWindow extends UiPart<Stage> {
         uiCommand.execute(this);
     }
 
-    // Methods that change the UI
-
     /**
-     * Opens the help window or focuses on it if it's already opened.
+     * Displays a message in the {@code resultDisplay}.
+     *
+     * @param message The message to display.
      */
-    public void openHelpPanel() {
-        if (!helpWindow.isShowing()) {
-            helpWindow.show();
-        } else {
-            helpWindow.focus();
-        }
+    public void setFeedbackToUser(String message) {
+        resultDisplay.setFeedbackToUser(message);
     }
+
+    // Methods that change the UI
 
     /**
      * Closes the application.
@@ -204,8 +203,17 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
-        helpWindow.hide();
         primaryStage.hide();
+    }
+
+    /**
+     * Displays the help panel.
+     */
+    public void displayHelp() {
+        if (!infoDisplayPlaceholder.getChildren().contains(helpPanel.getRoot())) {
+            infoDisplayPlaceholder.getChildren().clear();
+            infoDisplayPlaceholder.getChildren().add(helpPanel.getRoot());
+        }
     }
 
     /**
@@ -228,9 +236,9 @@ public class MainWindow extends UiPart<Stage> {
      * Shows contacts tab.
      */
     public void displayContacts() {
-        if (!infoDisplayPlaceholder.getChildren().contains(personListPanel.getRoot())) {
+        if (!infoDisplayPlaceholder.getChildren().contains(contactListPanel.getRoot())) {
             infoDisplayPlaceholder.getChildren().clear();
-            infoDisplayPlaceholder.getChildren().add(personListPanel.getRoot());
+            infoDisplayPlaceholder.getChildren().add(contactListPanel.getRoot());
         }
 
         sidePanel.clearSelection();
@@ -286,6 +294,7 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private void handleHelp() {
-        openHelpPanel();
+        resultDisplay.setFeedbackToUser(SHOWING_HELP_MESSAGE);
+        displayHelp();
     }
 }

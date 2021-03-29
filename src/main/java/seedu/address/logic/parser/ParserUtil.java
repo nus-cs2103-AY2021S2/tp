@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,16 +11,18 @@ import java.util.Set;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.DateConversionException;
+import seedu.address.commons.exceptions.TimeConversionException;
 import seedu.address.commons.util.DateUtil;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.commons.util.TimeUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.contact.Address;
+import seedu.address.model.contact.Email;
+import seedu.address.model.contact.Name;
+import seedu.address.model.contact.Phone;
+import seedu.address.model.groupmate.Role;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Interval;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -55,6 +58,21 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code seedu.address.model.groupmate.Name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static seedu.address.model.groupmate.Name parseGroupmateName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!Name.isValidName(trimmedName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new seedu.address.model.groupmate.Name(trimmedName);
     }
 
     /**
@@ -130,6 +148,33 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String role} into a {@code Role}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code role} is invalid.
+     */
+    public static Role parseRole(String role) throws ParseException {
+        requireNonNull(role);
+        String trimmedRole = role.trim();
+        if (!Tag.isValidTagName(trimmedRole)) {
+            throw new ParseException(Role.MESSAGE_CONSTRAINTS);
+        }
+        return new Role(trimmedRole);
+    }
+
+    /**
+     * Parses {@code Collection<String> roles} into a {@code Set<Role>}.
+     */
+    public static Set<Role> parseRoles(Collection<String> roles) throws ParseException {
+        requireNonNull(roles);
+        final Set<Role> roleSet = new HashSet<>();
+        for (String roleName : roles) {
+            roleSet.add(parseRole(roleName));
+        }
+        return roleSet;
+    }
+
+    /**
      * Parses a {@code String name} into a {@code ProjectName}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -160,22 +205,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String Interval} into a {@code Interval}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code Interval} is invalid.
-     */
-    public static Interval parseInterval(String interval) throws ParseException {
-        requireNonNull(interval);
-        String trimmedInterval = interval.trim();
-        try {
-            return Interval.valueOf(trimmedInterval);
-        } catch (IllegalArgumentException iae) {
-            throw new ParseException(Messages.MESSAGE_PARSER_INTERVAL_CONSTRAINTS);
-        }
-    }
-
-    /**
      * Parses a {@code String date} into a {@code LocalDate}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -187,6 +216,42 @@ public class ParserUtil {
         try {
             return DateUtil.encodeDate(trimmedDate);
         } catch (DateConversionException e) {
+            throw new ParseException(e.getMessage());
+        }
+    }
+
+    /**
+     * Parses a {@code String isWeekly} into a {@code Boolean}.
+     * {@code String isWeekly} should be one of: 'Y', 'N', 'y' or 'n'.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code isWeekly} is invalid.
+     */
+    public static Boolean parseIsWeekly(String isWeekly) throws ParseException {
+        requireNonNull(isWeekly);
+        String trimmedIsWeekly = isWeekly.trim();
+
+        if (trimmedIsWeekly.equalsIgnoreCase("Y")) {
+            return true;
+        } else if (trimmedIsWeekly.equalsIgnoreCase("N")) {
+            return false;
+        } else {
+            throw new ParseException(Messages.MESSAGE_PARSER_WEEKLY_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses a {@code String time} into a {@code LocalTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code LocalTime} is invalid.
+     */
+    public static LocalTime parseTime(String time) throws ParseException {
+        requireNonNull(time);
+        String trimmedTime = time.trim();
+        try {
+            return TimeUtil.encodeTime(trimmedTime);
+        } catch (TimeConversionException e) {
             throw new ParseException(e.getMessage());
         }
     }

@@ -7,11 +7,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.task.Interval;
 import seedu.address.model.task.repeatable.Event;
 
 public class EventListTest {
@@ -29,7 +29,7 @@ public class EventListTest {
 
     @Test
     public void constructor_singleEvent_success() {
-        Event event = new Event("Test Event", Interval.NONE, LocalDate.of(2020, 1, 1));
+        Event event = new Event("Test Event", LocalDate.of(2020, 1, 1), LocalTime.of(17, 30), false);
         ArrayList<Event> events = new ArrayList<>();
         events.add(event);
         assertDoesNotThrow(() -> new EventList(events));
@@ -37,7 +37,7 @@ public class EventListTest {
 
     @Test
     public void getEvent_validEvent_equalsOriginalList() {
-        Event event = new Event("Test Event", Interval.NONE, LocalDate.of(2020, 1, 1));
+        Event event = new Event("Test Event", LocalDate.of(2020, 1, 1), LocalTime.of(17, 30), false);
         ArrayList<Event> events = new ArrayList<>();
         events.add(event);
         EventList eventList = new EventList(events);

@@ -28,8 +28,8 @@
         <Label fx:id="eventDescription" text="\$first" styleClass="cell_big_label"/>
       </HBox>
       <HBox>
-        <Label fx:id="interval" styleClass="cell_small_label"/>
         <Label fx:id="date" styleClass="cell_small_label"/>
+        <Label fx:id="time" styleClass="cell_small_label"/>
       </HBox>
     </VBox>
   </GridPane>

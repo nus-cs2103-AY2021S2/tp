@@ -97,7 +97,7 @@ public class DeleteProjectCommandTest {
         // null -> returns false
         assertFalse(deleteFirstProjectCommand.equals(null));
 
-        // different person -> returns false
+        // different contact -> returns false
         assertFalse(deleteFirstProjectCommand.equals(deleteSecondProjectCommand));
     }
 

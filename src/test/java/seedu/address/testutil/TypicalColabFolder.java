@@ -1,10 +1,10 @@
 package seedu.address.testutil;
 
-import static seedu.address.testutil.TypicalPersons.getTypicalPersons;
+import static seedu.address.testutil.TypicalContacts.getTypicalContacts;
 import static seedu.address.testutil.TypicalProjects.getTypicalProjects;
 
 import seedu.address.model.ColabFolder;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.project.Project;
 
 /**
@@ -12,12 +12,12 @@ import seedu.address.model.project.Project;
  */
 public class TypicalColabFolder {
     /**
-     * Returns a {@code ColabFolder} with all the typical persons and projects.
+     * Returns a {@code ColabFolder} with all the typical {@code Contact}s and {@code Project}s.
      */
     public static ColabFolder getTypicalColabFolder() {
         ColabFolder colabFolder = new ColabFolder();
-        for (Person person : getTypicalPersons()) {
-            colabFolder.addPerson(person);
+        for (Contact contact : getTypicalContacts()) {
+            colabFolder.addContact(contact);
         }
         for (Project project : getTypicalProjects()) {
             colabFolder.addProject(project);

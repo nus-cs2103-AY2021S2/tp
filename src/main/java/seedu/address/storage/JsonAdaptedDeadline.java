@@ -55,13 +55,4 @@ class JsonAdaptedDeadline {
         }
     }
 
-    private LocalDate parseDate(String date) throws IllegalValueException {
-        try {
-            return DateUtil.encodeDate(date);
-        } catch (DateConversionException e) {
-            // TODO: update e.getMessage with date constraints
-            throw new IllegalValueException(e.getMessage());
-        }
-    }
-
 }
