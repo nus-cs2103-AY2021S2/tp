@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.task.TitleContainsKeywordsPredicate;
+import seedu.address.model.task.predicates.TitleContainsKeywordsPredicate;
 import seedu.address.testutil.PlannerBuilder;
 
 public class ModelManagerTest {

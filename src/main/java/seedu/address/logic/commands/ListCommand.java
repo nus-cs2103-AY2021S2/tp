@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import seedu.address.model.Model;
-import seedu.address.model.task.TaskDoneStatusPredicate;
+import seedu.address.model.task.predicates.TaskDoneStatusPredicate;
 
 /**
  * Lists all tasks or tasks filtered by status in the planner to the user.

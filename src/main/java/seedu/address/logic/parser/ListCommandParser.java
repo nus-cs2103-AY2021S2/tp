@@ -4,7 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.task.TaskDoneStatusPredicate;
+import seedu.address.model.task.predicates.TaskDoneStatusPredicate;
 
 /**
  * Parses input arguments and creates a new ListCommand object

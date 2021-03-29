@@ -1,4 +1,6 @@
-package seedu.address.model.task;
+package seedu.address.model.task.predicates;
+
+import seedu.address.model.task.Task;
 
 import java.util.function.Predicate;
 
