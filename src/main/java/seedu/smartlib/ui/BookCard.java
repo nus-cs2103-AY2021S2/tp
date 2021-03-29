@@ -64,7 +64,7 @@ public class BookCard extends UiPart<Region> {
         isbn.setText("ISBN: " + book.getIsbn().toString());
         barcode.setText("Barcode: " + book.getBarcode().toString());
         genre.setText("Genre: " + book.getGenre().toString());
-        borrowerName.setText(book.isBorrowed() ? "Borrowed by: " + book.getBorrowerName().toString() : "Available");
+        borrowerName.setText(book.isBorrowed() ? "Borrowed by " + book.getBorrowerName().toString() + " on: " + book.getDateBorrowed().toString() : "Available");
     }
 
     /**

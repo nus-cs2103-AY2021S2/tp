@@ -11,6 +11,7 @@ import seedu.smartlib.model.book.Book;
 import seedu.smartlib.model.book.Genre;
 import seedu.smartlib.model.book.Isbn;
 import seedu.smartlib.model.book.Publisher;
+import seedu.smartlib.model.record.DateBorrowed;
 
 /**
  * Jackson-friendly version of {@link Book}.
@@ -26,6 +27,7 @@ class JsonAdaptedBook {
     private final String barcode;
     private final String genre;
     private final String borrowerName;
+    private final String dateBorrowed;
 
     /**
      * Constructs a {@code JsonAdaptedBook} with the given book details.
@@ -42,7 +44,7 @@ class JsonAdaptedBook {
     public JsonAdaptedBook(@JsonProperty("name") String name, @JsonProperty("author") String author,
                            @JsonProperty("publisher") String publisher, @JsonProperty("isbn") String isbn,
                            @JsonProperty("barcode") String barcode, @JsonProperty("genre") String genre,
-                           @JsonProperty("borrowerName") String borrowerName) {
+                           @JsonProperty("borrowerName") String borrowerName, @JsonProperty("dateBorrowed") String dateBorrowed) {
         this.name = name;
         this.author = author;
         this.publisher = publisher;
@@ -50,6 +52,7 @@ class JsonAdaptedBook {
         this.barcode = barcode;
         this.genre = genre;
         this.borrowerName = borrowerName;
+        this.dateBorrowed = dateBorrowed;
     }
 
     /**
@@ -65,6 +68,7 @@ class JsonAdaptedBook {
         barcode = source.getBarcode().toString();
         genre = source.getGenre().toString();
         borrowerName = source.getBorrowerName() == null ? null : source.getBorrowerName().toString();
+        dateBorrowed = source.getDateBorrowed() == null ? null : source.getDateBorrowed().toString();
     }
 
     /**
@@ -123,12 +127,12 @@ class JsonAdaptedBook {
             throw new IllegalValueException(Genre.MESSAGE_CONSTRAINTS);
         }
         final Genre modelGenre = new Genre(new Name(genre));
-
         if (borrowerName == null) {
             return new Book(modelName, modelAuthor, modelPublisher, modelIsbn, modelBarcode, modelGenre);
         } else {
             final Name readerName = new Name(borrowerName);
-            return new Book(modelName, modelAuthor, modelPublisher, modelIsbn, modelBarcode, modelGenre, readerName);
+            final DateBorrowed newDateBorrowed = new DateBorrowed(dateBorrowed);
+            return new Book(modelName, modelAuthor, modelPublisher, modelIsbn, modelBarcode, modelGenre, readerName, newDateBorrowed);
         }
     }
 
