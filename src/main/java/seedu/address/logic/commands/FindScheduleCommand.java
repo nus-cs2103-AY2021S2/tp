@@ -31,7 +31,8 @@ public class FindScheduleCommand extends Command {
      * @param taskPredicate a predicate that tests a Task's deadline is before or on the by date given.
      * @param eventPredicate a predicate that tests a Event's start date is before or on the by date given.
      */
-    public FindScheduleCommand(TaskDeadlineByDatePredicate taskPredicate, EventStartDateByDatePredicate eventPredicate) {
+    public FindScheduleCommand(TaskDeadlineByDatePredicate taskPredicate,
+                               EventStartDateByDatePredicate eventPredicate) {
         this.taskPredicate = taskPredicate;
         this.eventPredicate = eventPredicate;
     }
