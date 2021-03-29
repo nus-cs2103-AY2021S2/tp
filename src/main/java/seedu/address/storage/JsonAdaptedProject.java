@@ -8,10 +8,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.contact.Contact;
+import seedu.address.model.groupmate.Groupmate;
 import seedu.address.model.project.DeadlineList;
 import seedu.address.model.project.EventList;
-import seedu.address.model.project.ParticipantList;
+import seedu.address.model.project.GroupmateList;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.TodoList;
@@ -30,7 +30,7 @@ class JsonAdaptedProject {
     private final List<JsonAdaptedEvent> eventList = new ArrayList<>();
     private final List<JsonAdaptedTodo> todoList = new ArrayList<>();
     private final List<JsonAdaptedDeadline> deadlineList = new ArrayList<>();
-    private final List<JsonAdaptedContact> participantsList = new ArrayList<>();
+    private final List<JsonAdaptedGroupmate> groupmateList = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedProject} with the given project details.
@@ -40,7 +40,7 @@ class JsonAdaptedProject {
                               @JsonProperty("events") List<JsonAdaptedEvent> eventList,
                               @JsonProperty("todos") List<JsonAdaptedTodo> todoList,
                               @JsonProperty("deadlines") List<JsonAdaptedDeadline> deadlineList,
-                              @JsonProperty("participants") List<JsonAdaptedContact> participantsList) {
+                              @JsonProperty("groupmates") List<JsonAdaptedGroupmate> groupmateList) {
         this.projectName = projectName;
 
         if (eventList != null) {
@@ -55,8 +55,8 @@ class JsonAdaptedProject {
             this.deadlineList.addAll(deadlineList);
         }
 
-        if (participantsList != null) {
-            this.participantsList.addAll(participantsList);
+        if (groupmateList != null) {
+            this.groupmateList.addAll(groupmateList);
         }
     }
 
@@ -72,8 +72,8 @@ class JsonAdaptedProject {
                 .map(JsonAdaptedTodo::new).collect(Collectors.toList()));
         deadlineList.addAll(source.getDeadlines().stream()
                 .map(JsonAdaptedDeadline::new).collect(Collectors.toList()));
-        participantsList.addAll(source.getParticipants().stream()
-                .map(JsonAdaptedContact::new).collect(Collectors.toList()));
+        groupmateList.addAll(source.getGroupmates().stream()
+                .map(JsonAdaptedGroupmate::new).collect(Collectors.toList()));
     }
 
     /**
@@ -109,13 +109,13 @@ class JsonAdaptedProject {
             projectDeadlines.add(deadline.toModelType());
         }
 
-        final List<Contact> projectContacts = new ArrayList<>();
-        for (JsonAdaptedContact contact : participantsList) {
-            projectContacts.add(contact.toModelType());
+        final List<Groupmate> projectContacts = new ArrayList<>();
+        for (JsonAdaptedGroupmate groupmate : groupmateList) {
+            projectContacts.add(groupmate.toModelType());
         }
 
         return new Project(convertedProjectName, new EventList(projectEvents), new TodoList(projectTodos),
-                new DeadlineList(projectDeadlines), new ParticipantList(projectContacts));
+                new DeadlineList(projectDeadlines), new GroupmateList(projectContacts));
     }
 
 }

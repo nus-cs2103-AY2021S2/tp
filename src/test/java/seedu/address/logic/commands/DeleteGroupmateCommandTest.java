@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.DeleteContactFromCommand.MESSAGE_DELETE_PROJECT_SUCCESS;
+import static seedu.address.logic.commands.DeleteGroupmateCommand.MESSAGE_DELETE_PROJECT_SUCCESS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalColabFolder.getTypicalColabFolder;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
@@ -20,12 +20,12 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.contact.Contact;
+import seedu.address.model.groupmate.Groupmate;
 import seedu.address.model.project.Project;
-import seedu.address.testutil.ContactBuilder;
+import seedu.address.testutil.GroupmateBuilder;
 import seedu.address.testutil.ProjectBuilder;
 
-public class DeleteContactFromCommandTest {
+public class DeleteGroupmateCommandTest {
 
     private Model model;
 
@@ -36,10 +36,10 @@ public class DeleteContactFromCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() throws DateConversionException {
-        Contact contactToDelete = new ContactBuilder().build();
+        Groupmate contactToDelete = new GroupmateBuilder().build();
         Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         Project editedProject = new ProjectBuilder(projectToEdit).build();
-        editedProject.addParticipant(contactToDelete);
+        editedProject.addGroupmate(contactToDelete);
 
         model.setProject(
                 projectToEdit,
@@ -47,24 +47,24 @@ public class DeleteContactFromCommandTest {
         );
 
         Index lastContactIndex = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getParticipants().size());
+                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getGroupmates().size());
 
-        DeleteContactFromCommand deleteContactFromCommand = new DeleteContactFromCommand(INDEX_FIRST, lastContactIndex);
+        DeleteGroupmateCommand deleteGroupmateCommand = new DeleteGroupmateCommand(INDEX_FIRST, lastContactIndex);
 
         String expectedMessage = String.format(MESSAGE_DELETE_PROJECT_SUCCESS,
                 contactToDelete.getName(), projectToEdit.getProjectName());
 
         ModelManager expectedModel = new ModelManager(getTypicalColabFolder(), new UserPrefs());
 
-        assertCommandSuccess(deleteContactFromCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteGroupmateCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidProjectIndex_throwsCommandException() {
-        Contact contactToDelete = new ContactBuilder().build();
+        Groupmate contactToDelete = new GroupmateBuilder().build();
         Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         Project editedProject = new ProjectBuilder(projectToEdit).build();
-        editedProject.addParticipant(contactToDelete);
+        editedProject.addGroupmate(contactToDelete);
 
         model.setProject(
                 projectToEdit,
@@ -72,22 +72,22 @@ public class DeleteContactFromCommandTest {
         );
 
         Index lastContactIndex = Index.fromOneBased(model.getFilteredProjectList().get(
-                INDEX_FIRST.getZeroBased()).getParticipants().size());
+                INDEX_FIRST.getZeroBased()).getGroupmates().size());
 
-        DeleteContactFromCommand deleteContactFromCommand = new DeleteContactFromCommand(INDEX_THIRD, lastContactIndex);
+        DeleteGroupmateCommand deleteGroupmateCommand = new DeleteGroupmateCommand(INDEX_THIRD, lastContactIndex);
 
         assertThrows(
                 CommandException.class,
-                Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX, () -> deleteContactFromCommand.execute(model)
+                Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX, () -> deleteGroupmateCommand.execute(model)
         );
     }
 
     @Test
     public void equals() {
-        Contact contactToDelete = new ContactBuilder().build();
+        Groupmate contactToDelete = new GroupmateBuilder().build();
         Project project1ToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         Project editedProject1 = new ProjectBuilder(project1ToEdit).build();
-        editedProject1.addParticipant(contactToDelete);
+        editedProject1.addGroupmate(contactToDelete);
 
         model.setProject(
                 project1ToEdit,
@@ -96,7 +96,7 @@ public class DeleteContactFromCommandTest {
 
         Project project2ToEdit = model.getFilteredProjectList().get(INDEX_SECOND.getZeroBased());
         Project editedProject2 = new ProjectBuilder(project2ToEdit).build();
-        editedProject2.addParticipant(contactToDelete);
+        editedProject2.addGroupmate(contactToDelete);
 
 
         model.setProject(
@@ -105,20 +105,20 @@ public class DeleteContactFromCommandTest {
         );
 
         Index lastContactFromProject1 = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getParticipants().size());
+                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getGroupmates().size());
         Index lastContactFromProject2 = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_SECOND.getZeroBased()).getParticipants().size());
+                model.getFilteredProjectList().get(INDEX_SECOND.getZeroBased()).getGroupmates().size());
 
-        DeleteContactFromCommand deleteContactFromProject1Command = new DeleteContactFromCommand(
+        DeleteGroupmateCommand deleteContactFromProject1Command = new DeleteGroupmateCommand(
                 INDEX_FIRST, lastContactFromProject1);
-        DeleteContactFromCommand deleteContactFromProject2Command = new DeleteContactFromCommand(
+        DeleteGroupmateCommand deleteContactFromProject2Command = new DeleteGroupmateCommand(
                 INDEX_SECOND, lastContactFromProject2);
 
         // same object -> returns true
         assertEquals(deleteContactFromProject1Command, deleteContactFromProject1Command);
 
         // same values -> returns true
-        DeleteContactFromCommand deleteContactFromProject1CommandCopy = new DeleteContactFromCommand(
+        DeleteGroupmateCommand deleteContactFromProject1CommandCopy = new DeleteGroupmateCommand(
                 INDEX_FIRST, lastContactFromProject1);
         assertEquals(deleteContactFromProject1Command, deleteContactFromProject1CommandCopy);
 

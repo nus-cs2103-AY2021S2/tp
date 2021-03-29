@@ -53,12 +53,9 @@
       "isDone" : false,
       "by" : "12-12-3112"
     } ],
-    "participantsList" : [ {
-      "name" : "valid participant",
-      "phone" : "91981",
-      "email" : "email@email.com",
-      "address" : "sidjs",
-      "tagged" : [ ]
+    "groupmates" : [ {
+      "name" : "valid groupmate",
+      "roles" : [ ]
     } ]
   } ]
 }

@@ -10,7 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_UPDATE_INDEX;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.UpdateContactCommand;
 import seedu.address.logic.commands.UpdateEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -52,7 +52,7 @@ public class UpdateEventCommandParser implements Parser<UpdateEventCommand> {
         }
 
         if (!updateEventDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(UpdateContactCommand.MESSAGE_NOT_EDITED);
         }
 
         return new UpdateEventCommand(projectIndex, targetEventIndex, updateEventDescriptor);

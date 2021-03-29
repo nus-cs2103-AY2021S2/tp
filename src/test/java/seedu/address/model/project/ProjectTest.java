@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.TypicalContacts.ALICE;
-import static seedu.address.testutil.TypicalContacts.BOB;
+import static seedu.address.testutil.TypicalGroupmates.ROXY;
+import static seedu.address.testutil.TypicalGroupmates.SYLPH;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalProjects.CS1101S_NAME;
 
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.contact.Contact;
+import seedu.address.model.groupmate.Groupmate;
 import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.CompletableTodo;
 import seedu.address.model.task.Interval;
@@ -67,11 +67,11 @@ public class ProjectTest {
         deadlines.add(deadline);
         DeadlineList deadlineList = new DeadlineList(deadlines);
 
-        ArrayList<Contact> participants = new ArrayList<>();
-        participants.add(ALICE);
-        ParticipantList participantList = new ParticipantList(participants);
+        ArrayList<Groupmate> groupmates = new ArrayList<>();
+        groupmates.add(ROXY);
+        GroupmateList groupmateList = new GroupmateList(groupmates);
 
-        assertDoesNotThrow(() -> new Project(name, eventList, todoList, deadlineList, participantList));
+        assertDoesNotThrow(() -> new Project(name, eventList, todoList, deadlineList, groupmateList));
     }
 
     @Test
@@ -98,49 +98,49 @@ public class ProjectTest {
     }
 
     @Test
-    public void getParticipant_validProject_success() {
-        ParticipantList participantList = new ParticipantList();
-        participantList.addParticipant(ALICE);
+    public void getGroupmate_validProject_success() {
+        GroupmateList groupmateList = new GroupmateList();
+        groupmateList.addGroupmate(ROXY);
         Project project = new ProjectBuilder().withName(CS1101S_NAME.toString())
-                .withParticipantList(participantList).build();
-        assertEquals(project.getParticipants().get(0), project.getParticipant(0));
+                .withGroupmateList(groupmateList).build();
+        assertEquals(project.getGroupmates().get(0), project.getGroupmate(0));
     }
 
     @Test
-    public void addParticipant_success() {
+    public void addGroupmate_success() {
         Project project = new ProjectBuilder().withName(CS1101S_NAME.toString()).build();
-        assertEquals(0, project.getParticipants().size());
-        project.addParticipant(ALICE);
-        assertEquals(1, project.getParticipants().size());
-        assertEquals(ALICE, project.getParticipants().getParticipants().get(0));
+        assertEquals(0, project.getGroupmates().size());
+        project.addGroupmate(SYLPH);
+        assertEquals(1, project.getGroupmates().size());
+        assertEquals(SYLPH, project.getGroupmates().getGroupmates().get(0));
     }
 
     @Test
-    public void hasParticipant_success() {
-        ParticipantList participantList = new ParticipantList();
-        participantList.addParticipant(ALICE);
+    public void hasGroupmate_success() {
+        GroupmateList groupmateList = new GroupmateList();
+        groupmateList.addGroupmate(SYLPH);
         Project project = new ProjectBuilder().withName(CS1101S_NAME.toString())
-                .withParticipantList(participantList).build();
-        assertTrue(project.hasParticipant(ALICE));
-        assertFalse(project.hasParticipant(BOB));
-        assertFalse(new ProjectBuilder().withName(CS1101S_NAME.toString()).build().hasParticipant(ALICE));
+                .withGroupmateList(groupmateList).build();
+        assertTrue(project.hasGroupmate(SYLPH));
+        assertFalse(project.hasGroupmate(ROXY));
+        assertFalse(new ProjectBuilder().withName(CS1101S_NAME.toString()).build().hasGroupmate(SYLPH));
     }
 
     @Test
-    public void deleteParticipant_success() {
-        ParticipantList participantList = new ParticipantList();
-        participantList.addParticipant(ALICE);
-        participantList.addParticipant(BOB);
+    public void deleteGroupmate_success() {
+        GroupmateList groupmateList = new GroupmateList();
+        groupmateList.addGroupmate(SYLPH);
+        groupmateList.addGroupmate(ROXY);
         Project project = new ProjectBuilder().withName(CS1101S_NAME.toString())
-                .withParticipantList(participantList).build();
-        int size = project.getParticipants().size();
-        assertEquals(project.getParticipant(size - 1), BOB);
-        assertEquals(project.getParticipant(size - 2), ALICE);
-        project.deleteParticipant(size - 1);
-        assertEquals(project.getParticipants().size(), size - 1);
-        assertEquals(project.getParticipant(size - 2), ALICE);
-        project.deleteParticipant(size - 2);
-        assertEquals(project.getParticipants().size(), size - 2);
+                .withGroupmateList(groupmateList).build();
+        int size = project.getGroupmates().size();
+        assertEquals(project.getGroupmate(size - 1), ROXY);
+        assertEquals(project.getGroupmate(size - 2), SYLPH);
+        project.deleteGroupmate(size - 1);
+        assertEquals(project.getGroupmates().size(), size - 1);
+        assertEquals(project.getGroupmate(size - 2), SYLPH);
+        project.deleteGroupmate(size - 2);
+        assertEquals(project.getGroupmates().size(), size - 2);
     }
 
     @Test void addDeadline_success() {
@@ -242,7 +242,7 @@ public class ProjectTest {
 
         project1.addTodo(new Todo("todo"));
         int hashcode3 = project1.hashCode();
-        project1.addParticipant(ALICE);
+        project1.addGroupmate(SYLPH);
         int hashcode4 = project1.hashCode();
 
         // objects are unequal according to equals(): _should_ be distinct
@@ -261,14 +261,14 @@ public class ProjectTest {
         todoList.addTodo(new Todo("todo"));
         DeadlineList deadlineList = new DeadlineList();
         deadlineList.addDeadline(new Deadline("deadline", LocalDate.now()));
-        ParticipantList participantList = new ParticipantList();
-        participantList.addParticipant(ALICE);
+        GroupmateList groupmateList = new GroupmateList();
+        groupmateList.addGroupmate(SYLPH);
         Project project2 = new ProjectBuilder()
                 .withName(CS1101S_NAME.toString())
                 .withEventList(eventList)
                 .withTodoList(todoList)
                 .withDeadlineList(deadlineList)
-                .withParticipantList(participantList)
+                .withGroupmateList(groupmateList)
                 .build();
         final StringBuilder builder = new StringBuilder();
         builder.append(CS1101S_NAME.toString());
@@ -278,8 +278,8 @@ public class ProjectTest {
         builder.append(todoList.getTodos().get(0).toString());
         builder.append("; Deadlines: ");
         builder.append(deadlineList.getDeadlines().get(0).toString());
-        builder.append("; Participants: ");
-        builder.append(participantList.get(0).toString());
+        builder.append("; Groupmates: ");
+        builder.append(groupmateList.get(0).toString());
         String project2String = builder.toString();
         assertEquals(project2String, project2.toString());
     }

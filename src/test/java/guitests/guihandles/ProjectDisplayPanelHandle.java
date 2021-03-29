@@ -18,14 +18,14 @@ public class ProjectDisplayPanelHandle extends NodeHandle<Node> {
     private static final String EVENT_LIST_ID = "#eventListView";
     private static final String DEADLINE_LIST_ID = "#completableDeadlineListView";
     private static final String TODO_LIST_ID = "#completableTodoListView";
-    private static final String PARTICIPANT_LIST_ID = "#participantListView";
+    private static final String GROUPMATE_LIST_ID = "#groupmateListView";
 
     private final Label projectName;
     private final TabPane tabPane;
     private final ListView<Event> eventListView;
     private final ListView<CompletableDeadline> completableDeadlineListView;
     private final ListView<CompletableTodo> completableTodoListView;
-    private final ListView<Contact> participantListView;
+    private final ListView<Contact> groupmateListView;
 
     /**
      * Constructs a {@code ProjectDisplayPanelHandle} handler object.
@@ -39,7 +39,7 @@ public class ProjectDisplayPanelHandle extends NodeHandle<Node> {
         eventListView = getChildNode(EVENT_LIST_ID);
         completableDeadlineListView = getChildNode(DEADLINE_LIST_ID);
         completableTodoListView = getChildNode(TODO_LIST_ID);
-        participantListView = getChildNode(PARTICIPANT_LIST_ID);
+        groupmateListView = getChildNode(GROUPMATE_LIST_ID);
     }
 
     public String getProjectName() {

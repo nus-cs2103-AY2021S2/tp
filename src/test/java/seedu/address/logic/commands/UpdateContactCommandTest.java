@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand.EditContactDescriptor;
+import seedu.address.logic.commands.UpdateContactCommand.EditContactDescriptor;
 import seedu.address.model.ColabFolder;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -30,7 +30,7 @@ import seedu.address.testutil.EditContactDescriptorBuilder;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
  */
-public class EditCommandTest {
+public class UpdateContactCommandTest {
 
     private Model model = new ModelManager(getTypicalColabFolder(), new UserPrefs());
 
@@ -38,14 +38,14 @@ public class EditCommandTest {
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Contact editedContact = new ContactBuilder().build();
         EditContactDescriptor descriptor = new EditContactDescriptorBuilder(editedContact).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST, descriptor);
+        UpdateContactCommand updateContactCommand = new UpdateContactCommand(INDEX_FIRST, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
+        String expectedMessage = String.format(UpdateContactCommand.MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
 
         Model expectedModel = new ModelManager(new ColabFolder(model.getColabFolder()), new UserPrefs());
         expectedModel.setContact(model.getFilteredContactList().get(0), editedContact);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(updateContactCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -59,26 +59,26 @@ public class EditCommandTest {
 
         EditContactDescriptor descriptor = new EditContactDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
-        EditCommand editCommand = new EditCommand(indexLastContact, descriptor);
+        UpdateContactCommand updateContactCommand = new UpdateContactCommand(indexLastContact, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
+        String expectedMessage = String.format(UpdateContactCommand.MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
 
         Model expectedModel = new ModelManager(new ColabFolder(model.getColabFolder()), new UserPrefs());
         expectedModel.setContact(lastContact, editedContact);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(updateContactCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCommand editCommand = new EditCommand(INDEX_FIRST, new EditContactDescriptor());
+        UpdateContactCommand updateContactCommand = new UpdateContactCommand(INDEX_FIRST, new EditContactDescriptor());
         Contact editedContact = model.getFilteredContactList().get(INDEX_FIRST.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
+        String expectedMessage = String.format(UpdateContactCommand.MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
 
         Model expectedModel = new ModelManager(new ColabFolder(model.getColabFolder()), new UserPrefs());
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(updateContactCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -87,24 +87,24 @@ public class EditCommandTest {
 
         Contact contactInFilteredList = model.getFilteredContactList().get(INDEX_FIRST.getZeroBased());
         Contact editedContact = new ContactBuilder(contactInFilteredList).withName(VALID_NAME_BOB).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST,
+        UpdateContactCommand updateContactCommand = new UpdateContactCommand(INDEX_FIRST,
                 new EditContactDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
+        String expectedMessage = String.format(UpdateContactCommand.MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
 
         Model expectedModel = new ModelManager(new ColabFolder(model.getColabFolder()), new UserPrefs());
         expectedModel.setContact(model.getFilteredContactList().get(0), editedContact);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(updateContactCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_duplicateContactUnfilteredList_failure() {
         Contact firstContact = model.getFilteredContactList().get(INDEX_FIRST.getZeroBased());
-        EditCommand.EditContactDescriptor descriptor = new EditContactDescriptorBuilder(firstContact).build();
-        EditCommand editCommand = new EditCommand(INDEX_SECOND, descriptor);
+        UpdateContactCommand.EditContactDescriptor descriptor = new EditContactDescriptorBuilder(firstContact).build();
+        UpdateContactCommand updateContactCommand = new UpdateContactCommand(INDEX_SECOND, descriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_CONTACT);
+        assertCommandFailure(updateContactCommand, model, UpdateContactCommand.MESSAGE_DUPLICATE_CONTACT);
     }
 
     @Test
@@ -113,19 +113,19 @@ public class EditCommandTest {
 
         // edit contact in filtered list into a duplicate in contact list
         Contact contactInList = model.getColabFolder().getContactList().get(INDEX_SECOND.getZeroBased());
-        EditCommand editCommand = new EditCommand(INDEX_FIRST,
+        UpdateContactCommand updateContactCommand = new UpdateContactCommand(INDEX_FIRST,
                 new EditContactDescriptorBuilder(contactInList).build());
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_CONTACT);
+        assertCommandFailure(updateContactCommand, model, UpdateContactCommand.MESSAGE_DUPLICATE_CONTACT);
     }
 
     @Test
     public void execute_invalidContactIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredContactList().size() + 1);
         EditContactDescriptor descriptor = new EditContactDescriptorBuilder().withName(VALID_NAME_BOB).build();
-        EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
+        UpdateContactCommand updateContactCommand = new UpdateContactCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX);
+        assertCommandFailure(updateContactCommand, model, Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX);
     }
 
     /**
@@ -139,19 +139,19 @@ public class EditCommandTest {
         // ensures that outOfBoundIndex is still in bounds of contact list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getColabFolder().getContactList().size());
 
-        EditCommand editCommand = new EditCommand(outOfBoundIndex,
+        UpdateContactCommand updateContactCommand = new UpdateContactCommand(outOfBoundIndex,
                 new EditContactDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX);
+        assertCommandFailure(updateContactCommand, model, Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST, DESC_AMY);
+        final UpdateContactCommand standardCommand = new UpdateContactCommand(INDEX_FIRST, DESC_AMY);
 
         // same values -> returns true
         EditContactDescriptor copyDescriptor = new EditContactDescriptor(DESC_AMY);
-        EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST, copyDescriptor);
+        UpdateContactCommand commandWithSameValues = new UpdateContactCommand(INDEX_FIRST, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -161,13 +161,13 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertFalse(standardCommand.equals(new ClearContactCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND, DESC_AMY)));
+        assertFalse(standardCommand.equals(new UpdateContactCommand(INDEX_SECOND, DESC_AMY)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST, DESC_BOB)));
+        assertFalse(standardCommand.equals(new UpdateContactCommand(INDEX_FIRST, DESC_BOB)));
     }
 
 }

@@ -7,27 +7,27 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_TASK_INDEX;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.DeleteContactFromCommand;
+import seedu.address.logic.commands.DeleteGroupmateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new DeleteContactFromCommand object
  */
-public class DeleteContactFromCommandParser implements Parser<DeleteContactFromCommand> {
+public class DeleteContactFromCommandParser implements Parser<DeleteGroupmateCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteContactFromCommand
      * and returns a DeleteContactFromCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public DeleteContactFromCommand parse(String args) throws ParseException {
+    public DeleteGroupmateCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_REMOVE_TASK_INDEX);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_REMOVE_TASK_INDEX) || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteContactFromCommand.MESSAGE_USAGE)
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteGroupmateCommand.MESSAGE_USAGE)
             );
         }
 
@@ -35,7 +35,7 @@ public class DeleteContactFromCommandParser implements Parser<DeleteContactFromC
 
         Index targetContactIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_REMOVE_TASK_INDEX).get());
 
-        return new DeleteContactFromCommand(index, targetContactIndex);
+        return new DeleteGroupmateCommand(index, targetContactIndex);
     }
 
     /**
