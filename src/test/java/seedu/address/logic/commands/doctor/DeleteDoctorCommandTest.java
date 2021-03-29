@@ -33,7 +33,7 @@ public class DeleteDoctorCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Doctor doctorToDelete = model.getFilteredDoctorList().get(INDEX_FIRST_IN_LIST.getZeroBased());
-        DeleteDoctorCommand deleteDoctorCommand = new DeleteDoctorCommand(INDEX_FIRST_IN_LIST);
+        DeleteDoctorCommand deleteDoctorCommand = new DeleteDoctorCommand(INDEX_FIRST_IN_LIST, false);
 
         String expectedMessage = String.format(Messages.MESSAGE_DELETE_DOCTOR_SUCCESS, doctorToDelete);
 
@@ -51,7 +51,7 @@ public class DeleteDoctorCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredDoctorList().size() + 1);
-        DeleteDoctorCommand deleteDoctorCommand = new DeleteDoctorCommand(outOfBoundIndex);
+        DeleteDoctorCommand deleteDoctorCommand = new DeleteDoctorCommand(outOfBoundIndex, false);
 
         assertCommandFailure(deleteDoctorCommand, model, Messages.MESSAGE_INVALID_DOCTOR_DISPLAYED_INDEX);
     }
@@ -61,7 +61,7 @@ public class DeleteDoctorCommandTest {
         showDoctorAtIndex(model, INDEX_FIRST_IN_LIST);
 
         Doctor doctorToDelete = model.getFilteredDoctorList().get(INDEX_FIRST_IN_LIST.getZeroBased());
-        DeleteDoctorCommand deleteDoctorCommand = new DeleteDoctorCommand(INDEX_FIRST_IN_LIST);
+        DeleteDoctorCommand deleteDoctorCommand = new DeleteDoctorCommand(INDEX_FIRST_IN_LIST, false);
 
         String expectedMessage = String.format(Messages.MESSAGE_DELETE_DOCTOR_SUCCESS, doctorToDelete);
 
@@ -86,21 +86,21 @@ public class DeleteDoctorCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getDoctorRecords().getPersonList().size());
 
-        DeleteDoctorCommand deleteDoctorCommand = new DeleteDoctorCommand(outOfBoundIndex);
+        DeleteDoctorCommand deleteDoctorCommand = new DeleteDoctorCommand(outOfBoundIndex, false);
 
         assertCommandFailure(deleteDoctorCommand, model, Messages.MESSAGE_INVALID_DOCTOR_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteDoctorCommand deleteFirstCommand = new DeleteDoctorCommand(INDEX_FIRST_IN_LIST);
-        DeleteDoctorCommand deleteSecondCommand = new DeleteDoctorCommand(INDEX_SECOND_IN_LIST);
+        DeleteDoctorCommand deleteFirstCommand = new DeleteDoctorCommand(INDEX_FIRST_IN_LIST, false);
+        DeleteDoctorCommand deleteSecondCommand = new DeleteDoctorCommand(INDEX_SECOND_IN_LIST, false);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteDoctorCommand deleteFirstCommandCopy = new DeleteDoctorCommand(INDEX_FIRST_IN_LIST);
+        DeleteDoctorCommand deleteFirstCommandCopy = new DeleteDoctorCommand(INDEX_FIRST_IN_LIST, false);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
