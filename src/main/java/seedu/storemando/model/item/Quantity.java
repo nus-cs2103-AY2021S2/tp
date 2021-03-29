@@ -12,8 +12,7 @@ public class Quantity {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-        "Quantity should only contain numbers, and it should be a positive integer greater than 0"
-            + " and less than 1000000";
+        "Quantity specified exceeds the maximum value or isn't a positive integer greater than 0.";
     public static final String VALIDATION_REGEX = "\\d+";
 
     public final String value;
