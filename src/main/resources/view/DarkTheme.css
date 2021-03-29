@@ -59,16 +59,17 @@
 
 .tab .tab-label {
     -fx-alignment: center;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-weight: bold;
     -fx-text-fill: grey;
-    -fx-font-size: 12pt;
+    -fx-font-size: 11pt;
     -fx-padding: 0 0 0 0;
     /*-fx-font-weight: bold;*/
 }
 
 .tab:selected .tab-label {
     -fx-alignment: center;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Segoe UI Bold";
     -fx-text-fill: white;
     -fx-border-color: null;
 }
