@@ -1,6 +1,7 @@
 package fooddiary.logic.commands;
 
 import static fooddiary.model.Model.PREDICATE_SHOW_ALL_ENTRIES;
+import static fooddiary.model.entry.Price.PRICE_RANGE_DASH;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
@@ -113,7 +114,7 @@ public class AddOnCommand extends Command {
     }
 
     private static Price updatePrice(Price currentPrice, Price priceToAddOn) {
-        String[] priceValues = currentPrice.value.split("\\s*-\\s*");
+        String[] priceValues = currentPrice.value.split(PRICE_RANGE_DASH);
         assert priceValues.length == 2 || priceValues.length == 1:
                 "Expected Price values to contain minimum 1 value or maximum two values";
         String updatedPriceValue;
@@ -134,9 +135,9 @@ public class AddOnCommand extends Command {
         if (Integer.parseInt(priceValues[0]) == Integer.parseInt(priceValueToAddOn)) {
             priceRange =  priceValueToAddOn;
         } else if (Integer.parseInt(priceValues[0]) < Integer.parseInt(priceValueToAddOn)) {
-            priceRange = priceValues[0] + " - " + priceValueToAddOn;
+            priceRange = priceValues[0] + PRICE_RANGE_DASH + priceValueToAddOn;
         } else {
-            priceRange = priceValueToAddOn + " - " + priceValues[0];
+            priceRange = priceValueToAddOn + PRICE_RANGE_DASH + priceValues[0];
         }
         return priceRange;
     }
@@ -147,11 +148,11 @@ public class AddOnCommand extends Command {
         String firstPriceValue = priceValues[0];
         String secondPriceValue = priceValues[1];
         if (Integer.parseInt(priceValueToAddOn) < Integer.parseInt(firstPriceValue)) {
-            priceRange = priceValueToAddOn + " - " + Integer.parseInt(secondPriceValue);
+            priceRange = priceValueToAddOn + PRICE_RANGE_DASH + Integer.parseInt(secondPriceValue);
         } else if (Integer.parseInt(priceValueToAddOn) > Integer.parseInt(secondPriceValue)) {
-            priceRange = Integer.parseInt(firstPriceValue) + " - " + priceValueToAddOn;
+            priceRange = Integer.parseInt(firstPriceValue) + PRICE_RANGE_DASH + priceValueToAddOn;
         } else {
-            priceRange = firstPriceValue + " - " + secondPriceValue;
+            priceRange = firstPriceValue + PRICE_RANGE_DASH + secondPriceValue;
         }
         return priceRange;
     }
