@@ -33,7 +33,7 @@ This section serves to familiarise you with information and terms that would hel
 
 ### 2.1 Structure of this Document
 
-We have included a large set of features in CoLAB to give you the greatest flexibility over what you can do with it. As such, this User Guide has been structured in a manner that allows you to easily find what you are looking for. 
+We have included a large set of features in CoLAB to give you the greatest flexibility over what you can do with it. As such, this User Guide has been structured in a manner that allows you to easily find what you are looking for.
 
 In [Section 2.2: Reading this Document](#22-reading-this-document), you will find useful tips on efficiently reading this document.
 
@@ -63,7 +63,7 @@ Different sections of the application window will be referred to by the names de
 
 #### 2.2.3 Command Format
 
-Commands shown in this user guide follow these rules. 
+Commands shown in this user guide follow these rules.
 
 <div markdown="block" class="alert alert-info">
 
@@ -91,7 +91,7 @@ Commands shown in this user guide follow these rules.
 
 #### 2.2.4 Command Parameters
 
-This subsection serves to list out the parameters used in this document. We have set reasonable constraints on the parameters to ensure that the UI displays your information correctly. 
+This subsection serves to list out the parameters used in this document. We have set reasonable constraints on the parameters to ensure that the UI displays your information correctly.
 
 ##### `ADDRESS`
 
@@ -122,7 +122,7 @@ This subsection serves to list out the parameters used in this document. We have
     * be at least 2 characters long
     * start and end with alphanumeric characters
     * consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.
-  
+
 ##### `INDEX`
 
 * Indexes are used to identify specific items in CoLAB. There are 6 types of indexes:
@@ -133,17 +133,17 @@ This subsection serves to list out the parameters used in this document. We have
     * `PROJECT_INDEX` refers to the number shown beside the project name in the side panel.
     * `TODO_INDEX` refers to the number shown beside the todo in the Main Panel when a project is displayed.
 * Indexes **must be a positive integer** 1, 2, 3, …​
-  
+
 ##### `KEYWORD`
 
 * The keyword used to seach for contacts.
 * `MORE KEYWORDS` also follows this definition.
-    
+
 ##### `NAME`
 
 * The name of a contact.
 * Names should only contain alphanumeric characters, and it should not be blank.
-    
+
 ##### `PHONE_NUMBER`
 
 * The phone number of a contact.
