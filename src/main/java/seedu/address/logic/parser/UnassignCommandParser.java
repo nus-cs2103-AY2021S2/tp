@@ -7,30 +7,30 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTOR_ID;
 
 import java.util.Set;
 
-import seedu.address.logic.commands.AssignCommand;
+import seedu.address.logic.commands.UnassignCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Unassignment;
 import seedu.address.model.person.PersonId;
 import seedu.address.model.session.SessionId;
 
 /**
  * Parses input arguments and creates a new AssignCommand object
  */
-public class AssignCommandParser implements Parser<AssignCommand> {
+public class UnassignCommandParser implements Parser<UnassignCommand> {
     @Override
-    public AssignCommand parse(String args) throws ParseException {
+    public UnassignCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_STUDENT_ID, PREFIX_TUTOR_ID,
                 PREFIX_CLASS_ID);
 
         //No class given
         if (!argMultimap.getValue(PREFIX_CLASS_ID).isPresent() || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnassignCommand.MESSAGE_USAGE));
         }
 
         //No people given
         if (!argMultimap.getValue(PREFIX_STUDENT_ID).isPresent()
                 && !argMultimap.getValue(PREFIX_TUTOR_ID).isPresent()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnassignCommand.MESSAGE_USAGE));
         }
 
         SessionId sessionId = ParserUtil.parseSessionId(PREFIX_CLASS_ID + argMultimap.getValue(PREFIX_CLASS_ID).get());
@@ -41,7 +41,7 @@ public class AssignCommandParser implements Parser<AssignCommand> {
             tutorId = ParserUtil.parseTutorId(argMultimap.getValue(PREFIX_TUTOR_ID).get());
         }
 
-        Assignment assignment = new Assignment(studentIds, tutorId, sessionId);
-        return new AssignCommand(assignment);
+        Unassignment unassignment = new Unassignment(studentIds, tutorId, sessionId);
+        return new UnassignCommand(unassignment);
     }
 }

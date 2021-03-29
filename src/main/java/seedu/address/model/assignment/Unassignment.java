@@ -7,20 +7,20 @@ import seedu.address.model.person.PersonId;
 import seedu.address.model.session.SessionId;
 
 /**
- * Represents an Assignment of a person to a class.
+ * Represents an Unassignment of a person to a class.
  */
-public class Assignment {
+public class Unassignment {
     private Set<PersonId> studentIds;
     private PersonId tutorId;
     private SessionId sessionId;
 
     /**
-     * Public Constructor for An Assignment between student/tutors and sessions
+     * Public Constructor for An Unassignment between student/tutors and sessions
      * @param studentIds
      * @param tutorId
      * @param sessionId
      */
-    public Assignment(Set<PersonId> studentIds, PersonId tutorId, SessionId sessionId) {
+    public Unassignment(Set<PersonId> studentIds, PersonId tutorId, SessionId sessionId) {
         requireAllNonNull(sessionId);
         this.sessionId = sessionId;
         this.studentIds = studentIds;
