@@ -18,17 +18,4 @@ public class ThemeManagerTest {
     public void themeManager_init_success() {
         assertEquals(ThemeManager.getTheme(), ThemeFactory.getDefaultTheme());
     }
-
-    @Test
-    public void themeManager_setTheme_success() {
-        ThemeManager.setTheme(
-                ThemeFactory.getDefaultTheme(), "src/test/data/ThemeTest/valid.theme.json");
-        String defaultCss = assertDoesNotThrow(() -> Files
-                .readString(Path.of("src/test/data/ThemeTest/default.template.css")));
-        assertEquals(ThemeFactory.getDefaultTheme(), ThemeManager.getTheme());
-        assertEquals("src/test/data/ThemeTest/valid.theme.json", ThemeManager.getThemePath());
-        String cssCache = assertDoesNotThrow(() -> Files.readString(Path.of(ThemeManager.getCssCacheUri())));
-        assertEquals(defaultCss.replaceAll("\\s", ""), cssCache.replaceAll("\\s", ""));
-    }
-
 }
