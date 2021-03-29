@@ -185,6 +185,17 @@ public class Meeting implements Schedulable {
                 && endLocalDateTime.compareTo(localDateTime) > 0;
     }
 
+    /**
+     * Checks if a meeting is a schedulable object is in conflict with this meeting.
+     * @param schedulable
+     * @return
+     */
+
+    public boolean isConflict(Schedulable schedulable) {
+        return !(this.getTerminateLocalDateTime().compareTo(schedulable.getStartLocalDateTime()) <= 0
+                || this.getStartLocalDateTime().compareTo(schedulable.getTerminateLocalDateTime()) >= 0);
+    }
+
     //==================interface methods =================================================
 
     public LocalDateTime getStartLocalDateTime() {
@@ -195,11 +206,6 @@ public class Meeting implements Schedulable {
         return terminate.toLocalDateTime();
     }
 
-    @Override
-    public boolean isConflict(Schedulable schedulable) {
-        return !(this.getTerminateLocalDateTime().compareTo(schedulable.getStartLocalDateTime()) <= 0
-                || this.getStartLocalDateTime().compareTo(schedulable.getTerminateLocalDateTime()) >= 0);
-    }
 
     @Override
     public String getNameString() {

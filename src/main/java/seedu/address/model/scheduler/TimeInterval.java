@@ -7,7 +7,7 @@ import java.time.LocalTime;
 
 
 /**
- * Represents a continuous time interval in a day. Must have explicit start time and end time.
+ * Represents a continuous LocalDateTime period. Must have explicit start time and end time.
  * Mathematically, it is [startTime,endTime]
  */
 
