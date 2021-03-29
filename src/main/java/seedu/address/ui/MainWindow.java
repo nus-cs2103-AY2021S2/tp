@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -16,6 +17,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.ui.schedulepanel.ScheduleListPanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -38,6 +40,7 @@ public class MainWindow extends UiPart<Stage> {
     private CalendarView calendarView;
     private AppointmentListPanel appointmentListPanel;
     private GradeListPanel gradeListPanel;
+    private ScheduleListPanel scheduleListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -59,6 +62,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane gradeListPanelPlaceholder;
+
+    @FXML
+    private StackPane scheduleListPanelPlaceholder;
+
+    @FXML
+    private TabPane tabPanePlaceHolder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -131,6 +140,9 @@ public class MainWindow extends UiPart<Stage> {
         /* Grade List */
         gradeListPanel = new GradeListPanel(logic.getFilteredGradeList());
         gradeListPanelPlaceholder.getChildren().add(gradeListPanel.getRoot());
+
+        scheduleListPanel = new ScheduleListPanel(logic.getFilteredScheduleList());
+        scheduleListPanelPlaceholder.getChildren().add(scheduleListPanel.getRoot());
 
         resultDisplay = new ResultBarFooter();
         statusbarPlaceholder.getChildren().add(resultDisplay.getRoot());
