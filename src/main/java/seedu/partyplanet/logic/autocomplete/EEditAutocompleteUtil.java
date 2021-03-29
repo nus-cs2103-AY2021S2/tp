@@ -34,7 +34,7 @@ public class EEditAutocompleteUtil {
     public String parseCommand(String arguments, Model model) throws ParseException, CommandException {
         requireNonNull(arguments);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(arguments, PREFIX_DATE, PREFIX_REMARK);
+                ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_DATE, PREFIX_REMARK);
 
         Index index;
         try {
