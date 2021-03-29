@@ -17,10 +17,10 @@ logic -> model : getHistory()
 activate model
 
 create history
-model -[MODEL_COLOR]> history
+model -> history
 activate history
 
-history -[STORAGE_COLOR]-> model
+history --> model
 deactivate history
 
 model -> history : toString()
