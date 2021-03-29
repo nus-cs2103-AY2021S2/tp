@@ -9,9 +9,10 @@ SOChedule is a one-stop solution for managing tasks and events, optimized for us
 ## Feature List
 * Adding a task: `add_task`
 * Deleting a task: `delete_task`
-* Listing all tasks: `list_task`
 * Marking a task as done : `done_task`
+* Editing a task: `edit_task`
 * Finding tasks: `find_task`
+* Listing all tasks: `list_task`
 * Sorting all tasks: `sort_task`
 * Pinning a task: `pin_task`
 * Unpinning a task: `unpin_task`
@@ -21,7 +22,8 @@ SOChedule is a one-stop solution for managing tasks and events, optimized for us
 * Deleting an event: `delete_event`
 * Listing all events: `list_event`
 * Finding events: `find_event`
-* Clearing completed tasks: `clear_expired_event`
+* Clearing expired events: `clear_expired_event`
+* Finding tasks and events before or on a given date: `find_schedule`
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -94,6 +96,21 @@ Format: `done_task INDEX`
 
 Examples:
 * `done_task 1` marks the first task in the task list as completed.
+
+### Editing a task: `edit_task`
+Edits an existing task in SOChedule.
+
+Format: `edit_task INDEX [n/TASKNAME] [d/DEADLINE] [p/PRIORITY] [c/CATEGORY]... [t/TAG]...`
+* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the task will be removed i.e adding of tags is not cumulative.
+* You can remove all the task’s tags by typing `t/` without
+  specifying any tags after it.
+
+Examples:
+* `edit_task 1 n/editedTaskName` edits the name of the first task (if present in SOChedule) to be `editedTaskName`.
+* `edit_task 2 p/3 t/` edits the priority of the second task (if present in SOChedule) to be `3` and clears all existing tags.
 
 ### Finding all matching tasks: `find_task`
 Finds matching tasks from Task List.
