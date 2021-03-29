@@ -80,7 +80,7 @@ Shows a weekly schedule that displays lessons for the week.
 
 ![schedule popup](images/scheduleWindow.png)
 
-Format: `help`
+Format: `schedule`
 
 ### Adding a contact: `add`
 
