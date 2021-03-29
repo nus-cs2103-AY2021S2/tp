@@ -12,6 +12,7 @@ import static seedu.booking.logic.commands.CommandTestUtil.VENUE_CAPACITY_DESC_H
 import static seedu.booking.logic.commands.CommandTestUtil.VENUE_DESCRIPTION_DESC_HALL;
 import static seedu.booking.logic.commands.CommandTestUtil.VENUE_NAME_DESC_FIELD;
 import static seedu.booking.logic.commands.CommandTestUtil.VENUE_NAME_DESC_HALL;
+import static seedu.booking.logic.commands.CommandTestUtil.VENUE_TAGS_DESC_HALL;
 import static seedu.booking.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.booking.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.booking.testutil.TypicalVenues.HALL;
@@ -32,12 +33,12 @@ public class CreateVenueCommandParserTest {
         // whitespace only preamble
         assertParseSuccess(parser,
             PREAMBLE_WHITESPACE + VENUE_NAME_DESC_HALL
-                        + VENUE_CAPACITY_DESC_HALL + VENUE_DESCRIPTION_DESC_HALL,
+                        + VENUE_CAPACITY_DESC_HALL + VENUE_DESCRIPTION_DESC_HALL + VENUE_TAGS_DESC_HALL,
                       new AddVenueCommand(expectedVenue));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, VENUE_NAME_DESC_FIELD + VENUE_NAME_DESC_HALL
-                       + VENUE_CAPACITY_DESC_HALL + VENUE_DESCRIPTION_DESC_HALL,
+                       + VENUE_CAPACITY_DESC_HALL + VENUE_DESCRIPTION_DESC_HALL + VENUE_TAGS_DESC_HALL,
                        new AddVenueCommand(expectedVenue));
     }
 
@@ -75,12 +76,12 @@ public class CreateVenueCommandParserTest {
 
         // missing capacity prefix
         assertParseSuccess(parser, VENUE_NAME_DESC_HALL
-                + VENUE_DESCRIPTION_DESC_HALL,
+                + VENUE_DESCRIPTION_DESC_HALL + VENUE_TAGS_DESC_HALL,
                 new AddVenueCommand(expectedVenueWithoutCapacity));
 
         // missing description prefix
         assertParseSuccess(parser, VENUE_NAME_DESC_HALL
-                + VENUE_CAPACITY_DESC_HALL,
+                + VENUE_CAPACITY_DESC_HALL + VENUE_TAGS_DESC_HALL,
                 new AddVenueCommand(expectedVenueWithoutDescription));
 
     }

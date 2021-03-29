@@ -3,10 +3,12 @@ package seedu.booking.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Set;
 
 import seedu.booking.commons.core.Messages;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.model.Model;
+import seedu.booking.model.Tag;
 import seedu.booking.model.venue.Venue;
 
 /**
@@ -18,10 +20,10 @@ public class ListVenueCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Displays all existing venues.\n"
-            + "Parameters: NILL\n"
+            + "Parameters: NIL\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_VENUE_LISTED_SUCCESS = "Here are all current venues:\n";
+    public static final String MESSAGE_VENUE_LISTED_SUCCESS = "Here are all venues currently in the system:\n";
 
     public static final String MESSAGE_VENUE_LISTED_LINEBREAK = "-------------------------------\n";
 
@@ -29,25 +31,27 @@ public class ListVenueCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Venue> lastShownList = model.getFilteredVenueList();
-        String outputString = "";
+        final StringBuilder outputString = new StringBuilder();
 
         if (lastShownList.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_VENUE_LISTED_EMPTY);
         }
-        System.out.println(outputString);
 
-        outputString += MESSAGE_VENUE_LISTED_SUCCESS;
+        outputString.append(MESSAGE_VENUE_LISTED_SUCCESS);
 
         for (Venue venue : lastShownList) {
-            outputString += MESSAGE_VENUE_LISTED_LINEBREAK;
-            outputString += ("Venue Name: " + venue.getVenueName() + "\n");
-            outputString += ("Capacity: " + String.valueOf(venue.getCapacity()) + "\n");
-            outputString += (MESSAGE_VENUE_LISTED_LINEBREAK);
+            outputString.append(MESSAGE_VENUE_LISTED_LINEBREAK);
+            outputString.append("Venue Name: " + venue.getVenueName() + "\n");
+            outputString.append("Capacity: " + venue.getCapacity() + "\n");
+            outputString.append("Description: " + venue.getDescription() + "\n");
+
+            Set<Tag> tags = venue.getTags();
+            if (!tags.isEmpty()) {
+                outputString.append("Tags: ");
+                tags.forEach(outputString::append);
+            }
+            outputString.append("\n" + MESSAGE_VENUE_LISTED_LINEBREAK);
         }
-
-        System.out.println(outputString);
-
-        return new CommandResult(outputString);
-
+        return new CommandResult(outputString.toString());
     }
 }

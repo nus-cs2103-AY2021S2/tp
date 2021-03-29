@@ -108,7 +108,6 @@ public class Venue {
             builder.append("; Capacity: ")
                     .append(getCapacity());
         }
-        String description = getDescription();
         builder.append("; Description: ").append(getDescription());
 
         Set<Tag> tags = getTags();
