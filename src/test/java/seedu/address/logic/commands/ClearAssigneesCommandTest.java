@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
-import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTasks.getTypicalHeyMatez;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +24,7 @@ import seedu.address.testutil.TaskBuilder;
  * {@code ClearAssigneesCommand}.
  */
 public class ClearAssigneesCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalHeyMatez(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -43,7 +43,7 @@ public class ClearAssigneesCommandTest {
         String expectedMessage = String.format(clearAssigneesCommand.MESSAGE_CLEARED_ASSIGNEES_SUCCESS,
                 clearedTask);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getHeyMatez(), new UserPrefs());
         expectedModel.setTask(taskToClear, clearedTask);
 
         assertCommandSuccess(clearAssigneesCommand, model, expectedMessage, expectedModel);
@@ -77,7 +77,7 @@ public class ClearAssigneesCommandTest {
         String expectedMessage = String.format(ClearAssigneesCommand.MESSAGE_CLEARED_ASSIGNEES_SUCCESS,
                 clearedTask);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getHeyMatez(), new UserPrefs());
 
         expectedModel.setTask(taskToClear, clearedTask);
         showNoTask(expectedModel);
@@ -90,8 +90,8 @@ public class ClearAssigneesCommandTest {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
         Index outOfBoundIndex = INDEX_SECOND_TASK;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getTaskList().size());
+        // ensures that outOfBoundIndex is still in bounds of HeyMatez task list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getHeyMatez().getTaskList().size());
 
         ClearAssigneesCommand clearAssigneesCommand = new ClearAssigneesCommand(outOfBoundIndex);
 

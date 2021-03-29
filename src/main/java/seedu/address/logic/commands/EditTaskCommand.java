@@ -29,7 +29,7 @@ import seedu.address.model.task.TaskStatus;
 import seedu.address.model.task.Title;
 
 /**
- * Edits the details of an existing task in HEY MATEz.
+ * Edits the details of an existing task in HeyMatez.
  */
 public class EditTaskCommand extends Command {
     public static final String COMMAND_WORD = "editTask";
