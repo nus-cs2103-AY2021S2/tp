@@ -14,7 +14,7 @@ import seedu.address.model.colabfolderhistory.exceptions.NoRedoableStateExceptio
 public class RedoCommand extends Command {
 
     public static final String COMMAND_WORD = "redo";
-    public static final String MESSAGE_SUCCESS = "Redo success!";
+    public static final String MESSAGE_SUCCESS = "Redo success! %s";
     public static final String MESSAGE_FAILURE = "No more commands to redo!";
 
     @Override
@@ -26,7 +26,8 @@ public class RedoCommand extends Command {
             model.updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
             model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
 
-            return new CommandResult(MESSAGE_SUCCESS, result.getUiCommand()).setIgnoreHistory(true);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, result.getFeedbackToUser()),
+                    result.getUiCommand()).setIgnoreHistory(true);
         } catch (NoRedoableStateException e) {
             throw new CommandException(MESSAGE_FAILURE);
         }

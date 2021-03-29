@@ -15,7 +15,7 @@ import seedu.address.model.colabfolderhistory.exceptions.NoUndoableStateExceptio
 public class UndoCommand extends Command {
 
     public static final String COMMAND_WORD = "undo";
-    public static final String MESSAGE_SUCCESS = "Undo success!";
+    public static final String MESSAGE_SUCCESS = "Undo success! %s";
     public static final String MESSAGE_FAILURE = "No more commands to undo!";
 
     @Override
@@ -28,10 +28,12 @@ public class UndoCommand extends Command {
             model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
 
             if (result == null) {
-                return new CommandResult(MESSAGE_SUCCESS, new ShowTodayUiCommand()).setIgnoreHistory(true);
+                return new CommandResult(String.format(MESSAGE_SUCCESS, "Viewing Initial State."),
+                        new ShowTodayUiCommand()).setIgnoreHistory(true);
             }
 
-            return new CommandResult(MESSAGE_SUCCESS, result.getUiCommand()).setIgnoreHistory(true);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, result.getFeedbackToUser()),
+                    result.getUiCommand()).setIgnoreHistory(true);
         } catch (NoUndoableStateException e) {
             throw new CommandException(MESSAGE_FAILURE);
         }
