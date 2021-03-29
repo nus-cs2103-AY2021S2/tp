@@ -134,32 +134,32 @@ public class FindCommandParserTest {
     //        assertParseSuccess(parser, PRICE_DESC_BOB, expectedFindCommand);
     //    }
     //
-		//    @Test
-		//    public void parse_validAllArgs_returnsFindCommand() {
-		//        // no leading and trailing whitespaces
-		//        FindCommand expectedAllCommand =
-		//                new FindCommand(new AttributeContainsKeywordsPredicate(Collections.singletonList(VALID_NAME_BOB)));
-		//
-		//        // multiple whitespaces between keywords
-		//        assertParseSuccess(parser, " \n " + PREFIX_ALL + VALID_NAME_BOB + "\n \t", expectedAllCommand);
-		//        assertParseSuccess(parser, " " + PREFIX_ALL + VALID_NAME_BOB, expectedAllCommand);
-		//
-		//        expectedAllCommand =
-		//                new FindCommand(new AttributeContainsKeywordsPredicate(Collections.singletonList(VALID_PHONE_AMY)));
-		//
-		//        assertParseSuccess(parser, " \n " + PREFIX_ALL + VALID_PHONE_AMY + "\n \t", expectedAllCommand);
-		//        assertParseSuccess(parser, " " + PREFIX_ALL + VALID_PHONE_AMY, expectedAllCommand);
-		//
-		//        expectedAllCommand =
-		//                new FindCommand(new AttributeContainsKeywordsPredicate(Collections.singletonList(VALID_ADDRESS_AMY)));
-		//
-		//        assertParseSuccess(parser, " \n " + PREFIX_ALL + VALID_ADDRESS_AMY + "\n \t", expectedAllCommand);
-		//        assertParseSuccess(parser, " " + PREFIX_ALL + VALID_ADDRESS_AMY, expectedAllCommand);
-		//
-		//        expectedAllCommand =
-		//                new FindCommand(new AttributeContainsKeywordsPredicate(Collections.singletonList(VALID_TAG_FRIEND)));
-		//
-		//        assertParseSuccess(parser, " \n " + PREFIX_ALL + VALID_TAG_FRIEND + "\n \t", expectedAllCommand);
-		//        assertParseSuccess(parser, " " + PREFIX_ALL + VALID_TAG_FRIEND, expectedAllCommand);
-		//    }  
+    //    @Test
+    //    public void parse_validAllArgs_returnsFindCommand() {
+    //        // no leading and trailing whitespaces
+    //        FindCommand expectedAllCommand =
+    //                new FindCommand(new AttributeContainsKeywordsPredicate(Collections.singletonList(VALID_NAME_BOB)));
+    //
+    //        // multiple whitespaces between keywords
+    //        assertParseSuccess(parser, " \n " + PREFIX_ALL + VALID_NAME_BOB + "\n \t", expectedAllCommand);
+    //        assertParseSuccess(parser, " " + PREFIX_ALL + VALID_NAME_BOB, expectedAllCommand);
+    //
+    //        expectedAllCommand =
+    //                new FindCommand(new AttributeContainsKeywordsPredicate(Collections.singletonList(VALID_PHONE_AMY)));
+    //
+    //        assertParseSuccess(parser, " \n " + PREFIX_ALL + VALID_PHONE_AMY + "\n \t", expectedAllCommand);
+    //        assertParseSuccess(parser, " " + PREFIX_ALL + VALID_PHONE_AMY, expectedAllCommand);
+    //
+    //        expectedAllCommand =
+    //                new FindCommand(new AttributeContainsKeywordsPredicate(Collections.singletonList(VALID_ADDRESS_AMY)));
+    //
+    //        assertParseSuccess(parser, " \n " + PREFIX_ALL + VALID_ADDRESS_AMY + "\n \t", expectedAllCommand);
+    //        assertParseSuccess(parser, " " + PREFIX_ALL + VALID_ADDRESS_AMY, expectedAllCommand);
+    //
+    //        expectedAllCommand =
+    //                new FindCommand(new AttributeContainsKeywordsPredicate(Collections.singletonList(VALID_TAG_FRIEND)));
+    //
+    //        assertParseSuccess(parser, " \n " + PREFIX_ALL + VALID_TAG_FRIEND + "\n \t", expectedAllCommand);
+    //        assertParseSuccess(parser, " " + PREFIX_ALL + VALID_TAG_FRIEND, expectedAllCommand);
+    //    }
 }
