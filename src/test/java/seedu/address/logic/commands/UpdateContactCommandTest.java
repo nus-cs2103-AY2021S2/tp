@@ -71,7 +71,8 @@ public class UpdateContactCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        UpdateContactCommand updateContactCommand = new UpdateContactCommand(INDEX_FIRST, new UpdateContactDescriptor());
+        UpdateContactCommand updateContactCommand = new UpdateContactCommand(INDEX_FIRST,
+                new UpdateContactDescriptor());
         Contact editedContact = model.getFilteredContactList().get(INDEX_FIRST.getZeroBased());
 
         String expectedMessage = String.format(UpdateContactCommand.MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
@@ -101,7 +102,8 @@ public class UpdateContactCommandTest {
     @Test
     public void execute_duplicateContactUnfilteredList_failure() {
         Contact firstContact = model.getFilteredContactList().get(INDEX_FIRST.getZeroBased());
-        UpdateContactCommand.UpdateContactDescriptor descriptor = new UpdateContactDescriptorBuilder(firstContact).build();
+        UpdateContactCommand.UpdateContactDescriptor descriptor = new UpdateContactDescriptorBuilder(firstContact)
+                .build();
         UpdateContactCommand updateContactCommand = new UpdateContactCommand(INDEX_SECOND, descriptor);
 
         assertCommandFailure(updateContactCommand, model, UpdateContactCommand.MESSAGE_DUPLICATE_CONTACT);

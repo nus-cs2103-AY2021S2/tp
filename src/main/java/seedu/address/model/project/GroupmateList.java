@@ -1,6 +1,7 @@
 package seedu.address.model.project;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -91,6 +92,18 @@ public class GroupmateList {
      */
     public void addGroupmate(Groupmate groupmate) {
         this.groupmates.add(groupmate);
+    }
+
+    /**
+     * Set the {@code Groupmate} specified by index with a new {@code Groupmate}.
+     *
+     * @param i index number specifies the target {@code Groupmate}.
+     * @param groupmate new {@code Groupmate} for this index.
+     */
+    public void setGroupmate(Integer i, Groupmate groupmate) {
+        requireAllNonNull(groupmate, i);
+
+        this.groupmates.set(i, groupmate);
     }
 
     /**

@@ -33,6 +33,7 @@ import seedu.address.logic.commands.ShowTodosTabCommand;
 import seedu.address.logic.commands.UpdateContactCommand;
 import seedu.address.logic.commands.UpdateDeadlineCommand;
 import seedu.address.logic.commands.UpdateEventCommand;
+import seedu.address.logic.commands.UpdateGroupmateCommand;
 import seedu.address.logic.commands.UpdateProjectCommand;
 import seedu.address.logic.commands.UpdateTodoCommand;
 import seedu.address.logic.commands.ViewProjectCommand;
@@ -139,6 +140,9 @@ public class AddressBookParser {
 
         case UpdateProjectCommand.COMMAND_WORD:
             return new UpdateProjectCommandParser().parse(arguments);
+
+        case UpdateGroupmateCommand.COMMAND_WORD:
+            return new UpdateGroupmateCommandParser().parse(arguments);
 
         case ViewProjectCommand.COMMAND_WORD:
             return new ViewProjectCommandParser().parse(arguments);

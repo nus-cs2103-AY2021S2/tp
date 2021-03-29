@@ -52,11 +52,11 @@ import seedu.address.model.task.todo.Todo;
 import seedu.address.testutil.ContactBuilder;
 import seedu.address.testutil.ContactUtil;
 import seedu.address.testutil.DeadlineBuilder;
-import seedu.address.testutil.UpdateContactDescriptorBuilder;
 import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.GroupmateBuilder;
 import seedu.address.testutil.GroupmateUtil;
 import seedu.address.testutil.TodoBuilder;
+import seedu.address.testutil.UpdateContactDescriptorBuilder;
 
 public class AddressBookParserTest {
 

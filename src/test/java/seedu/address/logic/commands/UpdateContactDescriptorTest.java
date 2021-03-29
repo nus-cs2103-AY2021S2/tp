@@ -36,7 +36,8 @@ public class UpdateContactDescriptorTest {
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
         // different name -> returns false
-        UpdateContactDescriptor editedAmy = new UpdateContactDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
+        UpdateContactDescriptor editedAmy = new UpdateContactDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB)
+                .build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false

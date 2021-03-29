@@ -42,7 +42,8 @@ public class UpdateContactCommandParser implements Parser<UpdateContactCommand> 
                     pe);
         }
 
-        UpdateContactCommand.UpdateContactDescriptor updateContactDescriptor = new UpdateContactCommand.UpdateContactDescriptor();
+        UpdateContactCommand.UpdateContactDescriptor updateContactDescriptor =
+                new UpdateContactCommand.UpdateContactDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             updateContactDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
