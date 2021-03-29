@@ -9,7 +9,7 @@ import seedu.address.model.groupmate.Role;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Contact objects.
+ * A utility class to help with building Groupmate objects.
  */
 public class GroupmateBuilder {
 
@@ -19,7 +19,7 @@ public class GroupmateBuilder {
     private Set<Role> roles;
 
     /**
-     * Creates a {@code ContactBuilder} with the default details.
+     * Creates a {@code GroupmateBuilder} with the default details.
      */
     public GroupmateBuilder() {
         name = new Name(DEFAULT_NAME);
@@ -27,7 +27,7 @@ public class GroupmateBuilder {
     }
 
     /**
-     * Initializes the ContactBuilder with the data of {@code groupmateToCopy}.
+     * Initializes the GroupmateBuilder with the data of {@code groupmateToCopy}.
      */
     public GroupmateBuilder(Groupmate groupmateToCopy) {
         name = groupmateToCopy.getName();
@@ -35,7 +35,7 @@ public class GroupmateBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Contact} that we are building.
+     * Sets the {@code Name} of the {@code Groupmate} that we are building.
      */
     public GroupmateBuilder withName(String name) {
         this.name = new Name(name);
@@ -51,9 +51,9 @@ public class GroupmateBuilder {
     }
 
     /**
-     * Builds the {@code Contact} object.
+     * Builds the {@code Groupmate} object.
      *
-     * @return {@code Contact}.
+     * @return {@code Groupmate}.
      */
     public Groupmate build() {
         return new Groupmate(name, roles);

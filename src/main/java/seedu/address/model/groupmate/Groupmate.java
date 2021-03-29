@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 /**
- * Represents a contact in the contact list.
+ * Represents a groupmate in the groupmate list.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Groupmate {
@@ -51,8 +51,8 @@ public class Groupmate {
     }
 
     /**
-     * Returns true if both Contacts have the same identity and data fields.
-     * This defines a stronger notion of equality between two Contacts.
+     * Returns true if both Groupmates have the same identity and data fields.
+     * This defines a stronger notion of equality between two Groupmates.
      */
     @Override
     public boolean equals(Object other) {

@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Contact's name in the contact list.
+ * Represents a Groupmate's name in the groupmate list.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class Name {
