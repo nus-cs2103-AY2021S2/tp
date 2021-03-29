@@ -99,11 +99,12 @@ public class TypicalPassengers {
     /**
      * Returns an {@code AddressBook} with all the typical passengers.
      */
-    public static AddressBook getTypicalAddressBook() {
+    public static AddressBook getTypicalAddressBookPassengers() {
         AddressBook ab = new AddressBook();
         for (Passenger passenger : getTypicalPassengers()) {
             ab.addPassenger(passenger);
         }
+
         return ab;
     }
 

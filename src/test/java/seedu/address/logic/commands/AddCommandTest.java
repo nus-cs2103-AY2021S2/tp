@@ -162,7 +162,6 @@ public class AddCommandTest {
         }
 
         @Override
-
         public void updateFilteredPassengerList(Predicate<Passenger> predicate) {
             throw new AssertionError("This method should not be called.");
         }

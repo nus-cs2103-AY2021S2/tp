@@ -11,7 +11,7 @@ import static seedu.address.testutil.TypicalPassengers.DANIEL;
 import static seedu.address.testutil.TypicalPassengers.ELLE;
 import static seedu.address.testutil.TypicalPassengers.FIONA;
 import static seedu.address.testutil.TypicalPassengers.GEORGE;
-import static seedu.address.testutil.TypicalPassengers.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPassengers.getTypicalAddressBookPassengers;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -29,8 +29,8 @@ import seedu.address.model.person.passenger.AddressContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBookPassengers(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalAddressBookPassengers(), new UserPrefs());
 
     @Test
     public void equals() {

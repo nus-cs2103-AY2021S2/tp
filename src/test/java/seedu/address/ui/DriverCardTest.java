@@ -3,8 +3,8 @@ package seedu.address.ui;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.TypicalDrivers.ALICE;
-import static seedu.address.testutil.TypicalDrivers.BENSON;
+import static seedu.address.testutil.TypicalDrivers.DRIVER_ALICE;
+import static seedu.address.testutil.TypicalDrivers.DRIVER_BENSON;
 import static seedu.address.testutil.TypicalPassengers.BOB;
 import static seedu.address.ui.DriverCard.POOL_MESSAGE;
 
@@ -29,7 +29,7 @@ public class DriverCardTest {
 
     @BeforeEach
     private void setUp() throws TimeoutException {
-        driverCardForTest = DriverCard.newDriverCard(ALICE);
+        driverCardForTest = DriverCard.newDriverCard(DRIVER_ALICE);
         FxToolkit.setupStage(stage -> {
             this.stage = stage;
             this.stage.setScene(new Scene(new StackPane(driverCardForTest.getRoot())));
@@ -48,7 +48,7 @@ public class DriverCardTest {
 
     @Test
     public void equals() {
-        final DriverCard standardDriverCard = DriverCard.newDriverCard(BENSON);
+        final DriverCard standardDriverCard = DriverCard.newDriverCard(DRIVER_BENSON);
 
         // same object -> returns true
         assertTrue(standardDriverCard.equals(standardDriverCard));
@@ -60,6 +60,6 @@ public class DriverCardTest {
         assertFalse(standardDriverCard.equals(new PassengerCard(BOB, 0)));
 
         // different descriptor -> returns false
-        assertFalse(standardDriverCard.equals(DriverCard.newDriverCard(ALICE)));
+        assertFalse(standardDriverCard.equals(DriverCard.newDriverCard(DRIVER_ALICE)));
     }
 }
