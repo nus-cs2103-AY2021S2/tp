@@ -14,3 +14,4 @@ public class LightCommand extends Command{
         return new CommandResult(MESSAGE_SUCCESS, false, false, true, false);
     }
 }
+
