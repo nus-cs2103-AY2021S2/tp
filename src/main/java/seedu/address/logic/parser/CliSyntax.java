@@ -27,5 +27,4 @@ public class CliSyntax {
 
     // Goals
     public static final Prefix PREFIX_FREQUENCY = new Prefix("f/");
-
 }
