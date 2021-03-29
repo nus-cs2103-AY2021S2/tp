@@ -123,16 +123,30 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses carInfo, carBrand, carType, carCoeExpiry.
+     *
+     * @param info
+     * @return
+     * @throws ParseException
+     */
     private static Map.Entry<Car, CoeExpiry> parseCarInfo(String info) throws ParseException {
         info = info.trim();
         String[] parts = info.split("\\|");
+        String[] carDetails = parts[0].split("\\+");
+
         if (parts.length != 2) {
             throw new ParseException(
                 Car.MESSAGE_CONSTRAINTS + " and also " + CoeExpiry.MESSAGE_CONSTRAINTS + "\n" + info);
         }
 
+        if (carDetails.length != 2) {
+            throw new ParseException(Car.MESSAGE_CONSTRAINTS + "\n" + info);
+        }
+
         try {
-            return new AbstractMap.SimpleEntry<>(new Car(parts[0].trim()), new CoeExpiry(parts[1].trim()));
+            return new AbstractMap.SimpleEntry<>(new Car(carDetails[0].trim(), carDetails[1].trim()),
+                    new CoeExpiry(parts[1].trim()));
         } catch (Exception e) {
             throw new ParseException(Car.MESSAGE_CONSTRAINTS + " and " + CoeExpiry.MESSAGE_CONSTRAINTS);
         }
