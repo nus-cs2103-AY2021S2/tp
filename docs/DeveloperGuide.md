@@ -151,6 +151,16 @@ The following activity diagram summarizes what happens when a user adds a new co
 The tags function ties together with the Start function of the application, as users can choose to start a quiz
 containing flashcards that have the same tag only (to be implemented...)
 
+### Quiz Command
+
+The quiz command is used to enter Quiz mode, allowing the user to start various quizzes from there.
+The following activity diagram summarizes what happens when a user enters the Quiz command:
+
+![QuizActivityDiagram](images/QuizActivityDiagram.png)
+
+The following sequence diagram shows how the Quiz command works:
+
+![QuizSequenceDiagram](images/QuizSequenceDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
