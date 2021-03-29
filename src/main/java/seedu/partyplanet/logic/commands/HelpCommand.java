@@ -20,7 +20,6 @@ public class HelpCommand extends Command {
             + "*****ADDRESSBOOK*****\n"
             + "Adding contacts: " + AddCommand.MESSAGE_USAGE_CONCISE + "\n"
             + "Deleting contacts: " + DeleteCommand.MESSAGE_USAGE_CONCISE + "\n"
-            + "Clearing all data: " + ClearCommand.MESSAGE_USAGE_CONCISE + "\n"
             + "Editing contacts: " + EditCommand.MESSAGE_USAGE_CONCISE + "\n"
             + "Listing contacts: " + ListCommand.MESSAGE_USAGE_CONCISE + "\n"
             + "Finding contacts: " + FindCommand.MESSAGE_USAGE_CONCISE + "\n"
@@ -67,9 +66,6 @@ public class HelpCommand extends Command {
 
         case DeleteCommand.COMMAND_WORD:
             return new CommandResult(DeleteCommand.MESSAGE_USAGE, false);
-
-        case ClearCommand.COMMAND_WORD:
-            return new CommandResult(ClearCommand.MESSAGE_USAGE, false);
 
         case EditCommand.COMMAND_WORD:
             return new CommandResult(EditCommand.MESSAGE_USAGE, false);

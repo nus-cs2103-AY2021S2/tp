@@ -13,7 +13,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.partyplanet.logic.commands.AddCommand;
-import seedu.partyplanet.logic.commands.ClearCommand;
 import seedu.partyplanet.logic.commands.DeleteCommand;
 import seedu.partyplanet.logic.commands.DeleteContactCommand;
 import seedu.partyplanet.logic.commands.EditCommand;
@@ -39,12 +38,6 @@ public class AddressBookParserTest {
         Person person = new PersonBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
-    }
-
-    @Test
-    public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
     }
 
     @Test
