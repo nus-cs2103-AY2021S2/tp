@@ -21,7 +21,6 @@ public class JsonAdaptedAppointment {
     private final String address;
     private final DateTime date;
     private final Set<JsonAdaptedPerson> contacts = new HashSet<>();
-    // private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedAppointment} with the given appointment details.
@@ -33,6 +32,7 @@ public class JsonAdaptedAppointment {
         this.name = name;
         this.address = address;
         this.date = date;
+
         if (contacts != null) {
             this.contacts.addAll(contacts);
         }
@@ -45,6 +45,7 @@ public class JsonAdaptedAppointment {
         name = source.getName().fullName;
         address = source.getAddress().value;
         date = source.getDateTime();
+
         contacts.addAll(source.getContacts().stream()
                 .map(JsonAdaptedPerson::new)
                 .collect(Collectors.toList()));
@@ -57,6 +58,7 @@ public class JsonAdaptedAppointment {
      */
     public Appointment toModelType() throws IllegalValueException {
         final Set<Person> appointmentContacts = new HashSet<>();
+
         for (JsonAdaptedPerson person : contacts) {
             appointmentContacts.add(person.toModelType());
         }
