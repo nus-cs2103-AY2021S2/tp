@@ -159,6 +159,10 @@ add dog n/DOGNAME b/BREED d/DATEOFBIRTH s/SEX o/OWNERID t/TAG
 add owner n/OWNERNAME p/PHONE_NUMBER e/EMAIL a/ADDRESS
 add program n/PROGRAMNAME s/TIMEANDDATEOFSESSION t/TAG
 ```
+You can use this command to add an entity (dog/owner/program) to Pawbook.
+
+-Different prefixes should be used for the respective entities to specify details.
+-Tags are optional.
 
 Examples:
 1. Adds a dog named BRUCE belonging to owner with ID 1 in Pawbook.<br>
@@ -167,6 +171,8 @@ Examples:
    Command: `add owner n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`
 3. Creates a program with Program ID 1<br>
    Command: `add program n/1 s/02-02-2020 18:00 t/puppies`
+
+![Add Command](images/AddCommandScreenshot1.png) | ![Add Command Result](images/AddCommandScreenshot2.png)
 
 ### Delete Command
 
@@ -179,6 +185,7 @@ delete dog [DOG ID]
 delete owner [OWNER ID]
 delete program [PROGRAM ID]
 ```
+You can use this command to delete an entity (dog/owner/program) from Pawbook.
 
 - Deletes the dog/owner/program with the given ID.
 - The ID must be a positive integer 1, 2, 3 etc
@@ -191,6 +198,8 @@ Examples:
 3. Deletes the program with ID 3 in Pawbook.<br>
    Command: `delete program 3`
 
+![Delete Command](images/DeleteCommandScreenshot1.png) | ![Delete Command Result](images/DeleteCommandScreenshot2.png)
+
 ### Edit Command
 
 Edits a dog/owner/program from Pawbook.
@@ -201,6 +210,7 @@ edit dog d/[DOG ID] n/[NAME] b/[BREED] d/[DATEOFBIRTH] s/[SEX] o/[OWNERID] [t/TA
 edit owner o/[OWNER ID] n/[NAME] p/[PHONE] e/[EMAIL] a/[ADDRESS] [t/TAGS]...
 edit program o/[PROGRAM ID] n/[NAME] [s/SESSION]... [t/TAGS]...
 ```
+You can use this command to change the details of specific fields of an entity.
 
 - Edits the dog/owner/program with the given ID.
 - The ID must be a positive integer 1, 2, 3, ...
@@ -213,6 +223,9 @@ Examples:
    Command: `edit owner 2 p/12345678`
 3. Edits the program with ID 3 in Pawbook.<br>
    Command: `edit program 3 t/learn`
+
+![Edit Command](images/EditCommandScreenshot1.png) | ![Edit Command Result](images/EditCommandScreenshot2.png)
+
    
 ### Enrol Command
 
@@ -223,11 +236,17 @@ Format:
 enrol d/[DOG ID] p/[PROGRAM ID]
 ```
 
+You can use this command to associate a specific dog with a specific program.
+
+-The dog and program must both be valid.
+
 Examples:
 1. Enrol dog with Dog ID 1 into program with Program ID 2, assuming that Dog ID 1 was previously not enrolled in 
    Program ID 2. <br> 
    Command: `enrol d/1 p/2`
    
+![Enrol Command](images/EnrolCommandScreenshot1.png) | ![Enrol Command Result](images/EnrolCommandScreenshot2.png)
+
 ### Drop Command
 
 Removes a specified dog from a specified program that the dog was previously enrolled in.
@@ -236,12 +255,18 @@ Format:
 ```
 drop d/[DOG ID] p/[PROGRAM ID]
 ```
+You can use this command to delete a specific dog from a specific program.
+
+-The dog and program must both be valid.
+
+-Dog must be enrolled in the program.
 
 Examples:
 1. Remove dog with Dog ID 1 from program with Program ID 2, assuming that Dog ID 1 was previously enrolled in 
    Program ID 2. <br> 
    Command: `drop d/1 p/2`
    
+![Drop Command](images/DropCommandScreenshot1.png) | ![Drop Command Result](images/DropCommandScreenshot2.png)
 ### List Command
 
 Display entities filtered by type.
@@ -250,6 +275,7 @@ Format:
 ```
 list [dog|owner|program]
 ```
+You can use this command to see the all the entries of the specified entity.
 
 - At most one keyword needs to be provided
 - If no keyword is provided, i.e. `list`, then all dogs/owner/program will be displayed
@@ -259,6 +285,8 @@ Examples:
    Command: `list dog`
 2. List all owners.<br>
    Command: `list owner`
+  
+![List Command](images/ListCommandScreenshot1.png) | ![List Command Result](images/ListCommandScreenshot2.png)
 
 ### Find Command 
 
@@ -270,14 +298,17 @@ find [KEYWORD1]
 find [KEYWORD1] [KEYWORD2] 
 find [KEYWORD1] [KEYWORD2] [KEYWORD3] 
 ```
+You can use this command to easily find entities related to the entered keywords.
+
 Examples: 
 1. Find all entities with the name 'Alice'. <br>
    Command: `find alice`
 2. Find all entities with the name 'Alice' or 'Bob' or 'Charlie'.<br>
    Command: `find alice bob charlie`
    
-**Note**: Find is able to take in multiple keywords and returns all results as long as the name contains any one of the 
-keywords. 
+**Note**: Find is able to take in multiple keywords and returns all results as long as the name contains any one of the keywords. 
+
+![Find Command](images/FindCommandScreenshot1.png) | ![Find Command Result](images/FindCommandScreenshot2.png)
 
 ### View Command 
 
@@ -287,6 +318,9 @@ in a program or all the dogs belonging to one owner.
 ```
 view [ENTITY ID] 
 ```
+
+You can use this command to have a quick overview of the entities related to each other.
+
 Examples: 
 1. If entity 1 is a owner, shows a list of the owner and all his dogs. <br>
    Command: `view 1` 
@@ -295,11 +329,15 @@ Examples:
 3. If entity 3 is a program, shows a list of the program and all the dogs enrolled. <br>
    Command: `view 3`
 
+![View Command](images/ViewCommandScreenshot1.png) | ![View Command Result](images/ViewCommandScreenshot2.png)
+
 ### Help Command
 
 If you are unsure about how to use Pawbook, execute the `help` command to view a complete list of application instructions.
 
 Format: `help`
+
+![Help Command](images/HelpCommandScreenshot1.png) | ![Help Command Result](images/HelpCommandScreenshot2.png)
 
 ### Exit Command
 
@@ -307,6 +345,7 @@ Pawbook automatically saves the existing information of the dogs and will close 
 
 Format: `exit`
 
+![Exit Command](images/ExitCommandScreenshot.png)
 -----
 
 ## FAQ
