@@ -1,9 +1,14 @@
 package seedu.address.model.person;
 
+import static java.time.DayOfWeek.SUNDAY;
+
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 import java.util.HashMap;
 import java.util.function.Function;
 
+import seedu.address.commons.util.DateUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class Goal {
@@ -66,11 +71,16 @@ public class Goal {
         return Goal.ENUM_MAP.containsKey(frequencyString);
     }
 
+    /**
+     * Calculates the next goal deadline from the given {@code date}. Deadlines are guaranteed to fall on Sundays.
+     */
     public LocalDate getGoalDeadline(LocalDate date) {
-        if (date == null || this.getFrequency().equals(Frequency.NONE)) {
+        if (date == null || getFrequency().equals(Frequency.NONE)) {
             return null;
         }
-        return FREQUENCY_MAP.get(this.getFrequency()).apply(date);
+
+        LocalDate deadline = FREQUENCY_MAP.get(getFrequency()).apply(date);
+        return deadline.with(TemporalAdjusters.nextOrSame(SUNDAY));
     }
 
     public static boolean isValidGoal(String goal) {

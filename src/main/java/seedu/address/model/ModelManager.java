@@ -206,8 +206,8 @@ public class ModelManager implements Model {
     }
 
     private void updatePersonStreaks() {
-        // Whenever we add/edit/delete a person, we refresh the personStreaks list so UI will be up to date
-        // No need to explicitly run this in the commands
+        // Whenever we add/edit/delete a person, we refresh the personStreaks list so UI will be up to date.
+        // Therefore, there is no need to run this in the Commands.
         personStreaks.setAll(addressBook.getPersonStreaks());
     }
 

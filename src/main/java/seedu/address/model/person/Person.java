@@ -128,15 +128,20 @@ public class Person {
         return new Person(name, phone, email, birthday, goal, address, picture, tags, dates, meetings);
     }
 
-    public LocalDate getGoalDeadline(LocalDate date) {
-        if (this.meetings.isEmpty()) {
+    /**
+     * Compute the next goal deadline using meetings before the {@code beforeDate}
+     */
+    public LocalDate getGoalDeadline(LocalDate beforeDate) {
+        if (meetings.isEmpty()) {
             // user has never met up with this person before
             return DateUtil.ZERO_DAY;
         }
+
         LocalDate latestMeetingDate = meetings.stream()
                 .map(Event::getDate)
-                .filter(x -> x.isBefore(date))
-                .max(LocalDate::compareTo).orElse(DateUtil.ZERO_DAY);
+                .filter(x -> x.isBefore(beforeDate))
+                .max(LocalDate::compareTo)
+                .orElse(DateUtil.ZERO_DAY);
         return goal.getGoalDeadline(latestMeetingDate);
     }
 

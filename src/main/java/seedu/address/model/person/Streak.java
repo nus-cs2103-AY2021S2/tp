@@ -1,7 +1,9 @@
 package seedu.address.model.person;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * Represents a streak in the address book.
@@ -20,8 +22,77 @@ public class Streak implements Comparable<Streak> {
     }
 
     public static Streak from(Goal goal, List<Event> meetings) {
-        // Do the nasty calculations here
-        return new Streak(0);
+        if (goal.isNoneFrequency()) {
+            return Streak.empty();
+        }
+
+        List<LocalDate> dates = meetings.stream()
+                .map(Event::getDate)
+                .sorted(LocalDate::compareTo)
+                .collect(Collectors.toList());
+
+        return calculateToday(goal, dates);
+    }
+
+    private static Streak calculateLifetime(Goal goal, List<LocalDate> dates) {
+        if (dates.size() == 1) {
+            return new Streak(1);
+        }
+
+        // As long as there is a meeting within the next goalDeadline, it is okay.
+        int highestStreak = 1;
+        int currentStreak = 1;
+        int idx = 1;
+        LocalDate currentDate = dates.get(0);
+        while (idx < dates.size()) {
+            LocalDate deadline = goal.getGoalDeadline(currentDate);
+            LocalDate nextDate = dates.get(idx);
+
+            if (nextDate.compareTo(deadline) <= 0) {
+                currentStreak += 1;
+                highestStreak = Math.max(currentStreak, highestStreak);
+            } else {
+                currentStreak = 1;
+            }
+
+            idx++;
+            currentDate = nextDate;
+        }
+
+        return new Streak(highestStreak);
+    }
+
+    private static Streak calculateToday(Goal goal, List<LocalDate> dates) {
+        if (dates.size() == 1) {
+            return new Streak(1);
+        }
+
+        int currentStreak = 1;
+        int idx = 1;
+        LocalDate currentDate = dates.get(0);
+        while (idx < dates.size()) {
+            LocalDate deadline = goal.getGoalDeadline(currentDate);
+            LocalDate nextDate = dates.get(idx);
+
+            if (nextDate.compareTo(deadline) <= 0) {
+                currentStreak += 1;
+            } else {
+                currentStreak = 1;
+            }
+
+            idx++;
+            currentDate = nextDate;
+        }
+
+        // Check that it is possible to continue the streak
+        LocalDate latestDate = currentDate;
+        LocalDate latestGoalDeadline = goal.getGoalDeadline(latestDate);
+
+        if (LocalDate.now().compareTo(latestGoalDeadline) > 0) {
+            return new Streak(1);
+        }
+
+        return new Streak(currentStreak);
     }
 
     @Override
