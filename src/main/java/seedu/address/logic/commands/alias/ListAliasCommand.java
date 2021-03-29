@@ -5,8 +5,12 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.AliasMapping;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
+/**
+ * Lists all current aliases.
+ */
 public class ListAliasCommand extends Command {
     public static final String COMMAND_WORD = "aliases";
 
@@ -16,6 +20,14 @@ public class ListAliasCommand extends Command {
 
     public static final String MESSAGE_SUCCESS_HEADER = "All %d aliases listed: \n";
 
+    /**
+     * Executes an ListAliasCommand to list all aliases.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return result of command execution.
+     * @throws CommandException if input is invalid.
+     * @throws NullPointerException if the input is null.
+     */
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);

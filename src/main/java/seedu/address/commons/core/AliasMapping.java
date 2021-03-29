@@ -151,6 +151,7 @@ public class AliasMapping implements Serializable {
 
     /**
      * Returns the current number of user-defined aliases.
+     *
      * @return Size of the current mapping.
      */
     public int size() {
