@@ -14,6 +14,7 @@ import seedu.dictionote.logic.commands.ClearContactCommand;
 import seedu.dictionote.logic.commands.CloseCommand;
 import seedu.dictionote.logic.commands.Command;
 import seedu.dictionote.logic.commands.CopyContentToNoteCommand;
+import seedu.dictionote.logic.commands.ConvertTxtNoteCommand;
 import seedu.dictionote.logic.commands.DeleteContactCommand;
 import seedu.dictionote.logic.commands.DeleteNoteCommand;
 import seedu.dictionote.logic.commands.EditContactCommand;
@@ -29,6 +30,10 @@ import seedu.dictionote.logic.commands.FindDefinitionCommand;
 import seedu.dictionote.logic.commands.FindNoteCommand;
 import seedu.dictionote.logic.commands.HelpCommand;
 import seedu.dictionote.logic.commands.ListCommandCommand;
+import seedu.dictionote.logic.commands.ListCommandContactCommand;
+import seedu.dictionote.logic.commands.ListCommandDictionaryCommand;
+import seedu.dictionote.logic.commands.ListCommandNoteCommand;
+import seedu.dictionote.logic.commands.ListCommandUiCommand;
 import seedu.dictionote.logic.commands.ListContactCommand;
 import seedu.dictionote.logic.commands.ListContentCommand;
 import seedu.dictionote.logic.commands.ListDefinitionCommand;
@@ -36,10 +41,19 @@ import seedu.dictionote.logic.commands.ListNoteCommand;
 import seedu.dictionote.logic.commands.MarkAllAsUndoneNoteCommand;
 import seedu.dictionote.logic.commands.MarkAsDoneNoteCommand;
 import seedu.dictionote.logic.commands.MarkAsUndoneNoteCommand;
+import seedu.dictionote.logic.commands.MergeNoteCommand;
+import seedu.dictionote.logic.commands.MostFreqContactCommand;
 import seedu.dictionote.logic.commands.OpenCommand;
+import seedu.dictionote.logic.commands.SetContactDividerPositionCommand;
+import seedu.dictionote.logic.commands.SetDictionaryDividerPositionCommand;
+import seedu.dictionote.logic.commands.SetMainDividerPositionCommand;
+import seedu.dictionote.logic.commands.SetNoteDividerPositionCommand;
 import seedu.dictionote.logic.commands.ShowDictionaryContentCommand;
 import seedu.dictionote.logic.commands.ShowNoteCommand;
+import seedu.dictionote.logic.commands.SortNoteByTimeCommand;
 import seedu.dictionote.logic.commands.SortNoteCommand;
+import seedu.dictionote.logic.commands.ToggleDictionaryOrientationCommand;
+import seedu.dictionote.logic.commands.ToggleNoteOrientationCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 
 /**
@@ -126,6 +140,9 @@ public class DictionoteParser {
         case EmailContactCommand.COMMAND_WORD:
             return new EmailContactCommandParser().parse(arguments);
 
+        case MostFreqContactCommand.COMMAND_WORD:
+            return new MostFreqContactCommand();
+
         case ListNoteCommand.COMMAND_WORD:
             return new ListNoteCommand();
 
@@ -144,6 +161,9 @@ public class DictionoteParser {
         case MarkAllAsUndoneNoteCommand.COMMAND_WORD:
             return new MarkAllAsUndoneNoteCommand();
 
+        case MergeNoteCommand.COMMAND_WORD:
+            return new MergeNoteCommandParser().parse(arguments);
+
         case ShowNoteCommand.COMMAND_WORD:
             return new ShowNoteCommandParser().parse(arguments);
 
@@ -156,6 +176,24 @@ public class DictionoteParser {
         case CloseCommand.COMMAND_WORD:
             return new CloseCommandParser().parse(arguments);
 
+        case SetContactDividerPositionCommand.COMMAND_WORD:
+            return new SetContactDividerPositionCommand(ParserUtil.parsePosition(arguments));
+
+        case SetDictionaryDividerPositionCommand.COMMAND_WORD:
+            return new SetDictionaryDividerPositionCommand(ParserUtil.parsePosition(arguments));
+
+        case SetNoteDividerPositionCommand.COMMAND_WORD:
+            return new SetNoteDividerPositionCommand(ParserUtil.parsePosition(arguments));
+
+        case SetMainDividerPositionCommand.COMMAND_WORD:
+            return new SetMainDividerPositionCommand(ParserUtil.parsePosition(arguments));
+
+        case ToggleNoteOrientationCommand.COMMAND_WORD:
+            return new ToggleNoteOrientationCommand();
+
+        case ToggleDictionaryOrientationCommand.COMMAND_WORD:
+            return new ToggleDictionaryOrientationCommand();
+
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
@@ -165,8 +203,26 @@ public class DictionoteParser {
         case ListCommandCommand.COMMAND_WORD:
             return new ListCommandCommand();
 
+        case ListCommandDictionaryCommand.COMMAND_WORD:
+            return new ListCommandDictionaryCommand();
+
+        case ListCommandNoteCommand.COMMAND_WORD:
+            return new ListCommandNoteCommand();
+
+        case ListCommandContactCommand.COMMAND_WORD:
+            return new ListCommandContactCommand();
+
+        case ListCommandUiCommand.COMMAND_WORD:
+            return new ListCommandUiCommand();
+
         case SortNoteCommand.COMMAND_WORD:
             return new SortNoteCommand();
+
+        case ConvertTxtNoteCommand.COMMAND_WORD:
+            return new ConvertTxtNoteCommandParser().parse(arguments);
+
+        case SortNoteByTimeCommand.COMMAND_WORD:
+            return new SortNoteByTimeCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

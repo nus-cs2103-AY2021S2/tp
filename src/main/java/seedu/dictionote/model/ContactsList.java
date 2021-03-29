@@ -9,6 +9,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.dictionote.model.contact.Contact;
+import seedu.dictionote.model.contact.MailtoLink;
 import seedu.dictionote.model.contact.UniqueContactList;
 import seedu.dictionote.model.contact.exceptions.InvalidContactMailtoLinkException;
 
@@ -89,17 +90,47 @@ public class ContactsList implements ReadOnlyContactsList {
      * Invokes the user's OS email client to send a new email to the given contact.
      * {@code contact} must exist in the contacts list.
      */
-    public void emailContact(Contact contact) throws InvalidContactMailtoLinkException {
-        URI contactMailtoLink = URI.create("mailto:" + contact.getEmail());
+    public void emailContactUsingLink(MailtoLink link) throws InvalidContactMailtoLinkException {
+        URI contactMailtoLink = URI.create(link.toString());
         Desktop userDesktop = Desktop.getDesktop();
+
+        Contact receivingContact = link.getTo();
 
         // credit to TorstenH. and alexey_s from CodeProject for the URL invocation code.
         // link to the posts: https://www.codeproject.com/questions/398241/how-to-open-url-in-java
         try {
-            userDesktop.mail(contactMailtoLink); // invoke user's OS default mail client.
+            // invoke user's OS default mail client.
+            userDesktop.mail(contactMailtoLink);
+
+            // Update the contact's frequency counter.
+            setContact(receivingContact, incrementContactFrequency(receivingContact));
         } catch (IOException e) {
             throw new InvalidContactMailtoLinkException();
         }
+    }
+
+    /**
+     * Generates a copy of the given {@code Contact} with its frequency counter incremented by one.
+     * @param contact the {@code Contact} object to be updated.
+     * @return a new {@code Contact} object that has the same attributes as the given one, but with a frequency
+     *         counter greater by one.
+     */
+    protected Contact incrementContactFrequency(Contact contact) {
+        return new Contact(
+                contact.getName(),
+                contact.getPhone(),
+                contact.getEmail(),
+                contact.getAddress(),
+                contact.getTags(),
+                contact.getFrequencyCounter().increment()
+        );
+    }
+
+    /**
+     * Sorts the contacts in the contacts list in descending order by their frequency counters.
+     */
+    public void sortByFrequencyCounter() {
+        contacts.sortByFrequencyCounter();
     }
 
     /**

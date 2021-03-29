@@ -36,10 +36,20 @@ import seedu.dictionote.logic.commands.ExitCommand;
 import seedu.dictionote.logic.commands.FindContactCommand;
 import seedu.dictionote.logic.commands.HelpCommand;
 import seedu.dictionote.logic.commands.ListCommandCommand;
+import seedu.dictionote.logic.commands.ListCommandContactCommand;
+import seedu.dictionote.logic.commands.ListCommandDictionaryCommand;
+import seedu.dictionote.logic.commands.ListCommandNoteCommand;
+import seedu.dictionote.logic.commands.ListCommandUiCommand;
 import seedu.dictionote.logic.commands.ListContactCommand;
 import seedu.dictionote.logic.commands.OpenCommand;
+import seedu.dictionote.logic.commands.SetContactDividerPositionCommand;
+import seedu.dictionote.logic.commands.SetDictionaryDividerPositionCommand;
+import seedu.dictionote.logic.commands.SetMainDividerPositionCommand;
+import seedu.dictionote.logic.commands.SetNoteDividerPositionCommand;
 import seedu.dictionote.logic.commands.ShowDictionaryContentCommand;
 import seedu.dictionote.logic.commands.ShowNoteCommand;
+import seedu.dictionote.logic.commands.ToggleDictionaryOrientationCommand;
+import seedu.dictionote.logic.commands.ToggleNoteOrientationCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.contact.EmailContainsKeywordsPredicate;
@@ -131,6 +141,38 @@ public class DictionoteParserTest {
     }
 
     @Test
+    public void parseCommand_listCommandDictionary() throws Exception {
+        assertTrue(parser.parseCommand(ListCommandDictionaryCommand.COMMAND_WORD)
+            instanceof ListCommandDictionaryCommand);
+        assertTrue(parser.parseCommand(ListCommandDictionaryCommand.COMMAND_WORD + " 3")
+            instanceof ListCommandDictionaryCommand);
+    }
+
+    @Test
+    public void parseCommand_listCommandNote() throws Exception {
+        assertTrue(parser.parseCommand(ListCommandNoteCommand.COMMAND_WORD)
+            instanceof ListCommandNoteCommand);
+        assertTrue(parser.parseCommand(ListCommandNoteCommand.COMMAND_WORD + " 3")
+            instanceof ListCommandNoteCommand);
+    }
+
+    @Test
+    public void parseCommand_listCommandContact() throws Exception {
+        assertTrue(parser.parseCommand(ListCommandContactCommand.COMMAND_WORD)
+            instanceof ListCommandContactCommand);
+        assertTrue(parser.parseCommand(ListCommandContactCommand.COMMAND_WORD + " 3")
+            instanceof ListCommandContactCommand);
+    }
+
+    @Test
+    public void parseCommand_listCommandUi() throws Exception {
+        assertTrue(parser.parseCommand(ListCommandUiCommand.COMMAND_WORD)
+            instanceof ListCommandUiCommand);
+        assertTrue(parser.parseCommand(ListCommandUiCommand.COMMAND_WORD + " 3")
+            instanceof ListCommandUiCommand);
+    }
+
+    @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
@@ -198,6 +240,45 @@ public class DictionoteParserTest {
         }
     }
 
+    @Test
+    public void parseCommand_setContactDividerPosition() throws Exception {
+        assertTrue(parser.parseCommand(SetContactDividerPositionCommand.COMMAND_WORD + " 6")
+            instanceof SetContactDividerPositionCommand);
+    }
+
+    @Test
+    public void parseCommand_setDictionaryDividerPosition() throws Exception {
+        assertTrue(parser.parseCommand(SetDictionaryDividerPositionCommand.COMMAND_WORD + " 6")
+            instanceof SetDictionaryDividerPositionCommand);
+    }
+
+    @Test
+    public void parseCommand_setNoteDividerPosition() throws Exception {
+        assertTrue(parser.parseCommand(SetNoteDividerPositionCommand.COMMAND_WORD + " 6")
+            instanceof SetNoteDividerPositionCommand);
+    }
+
+    @Test
+    public void parseCommand_setMainDividerPosition() throws Exception {
+        assertTrue(parser.parseCommand(SetMainDividerPositionCommand.COMMAND_WORD + " 6")
+            instanceof SetMainDividerPositionCommand);
+    }
+
+    @Test
+    public void parseCommand_toggleNotePanel() throws Exception {
+        assertTrue(parser.parseCommand(
+            ToggleNoteOrientationCommand.COMMAND_WORD) instanceof ToggleNoteOrientationCommand);
+        assertTrue(parser.parseCommand(
+            ToggleNoteOrientationCommand.COMMAND_WORD + " 3") instanceof ToggleNoteOrientationCommand);
+    }
+
+    @Test
+    public void parseCommand_toggleDictionaryPanel() throws Exception {
+        assertTrue(parser.parseCommand(
+            ToggleDictionaryOrientationCommand.COMMAND_WORD) instanceof ToggleDictionaryOrientationCommand);
+        assertTrue(parser.parseCommand(
+            ToggleDictionaryOrientationCommand.COMMAND_WORD + " 3") instanceof ToggleDictionaryOrientationCommand);
+    }
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {

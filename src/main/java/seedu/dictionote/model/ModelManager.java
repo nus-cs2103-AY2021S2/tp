@@ -1,9 +1,13 @@
 package seedu.dictionote.model;
 
+import static java.time.LocalDateTime.now;
 import static java.util.Objects.requireNonNull;
 import static seedu.dictionote.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,10 +16,12 @@ import javafx.collections.transformation.FilteredList;
 import seedu.dictionote.commons.core.GuiSettings;
 import seedu.dictionote.commons.core.LogsCenter;
 import seedu.dictionote.model.contact.Contact;
+import seedu.dictionote.model.contact.MailtoLink;
 import seedu.dictionote.model.dictionary.Content;
 import seedu.dictionote.model.dictionary.Definition;
 import seedu.dictionote.model.dictionary.DisplayableContent;
 import seedu.dictionote.model.note.Note;
+import seedu.dictionote.model.tag.Tag;
 import seedu.dictionote.ui.DictionaryContentConfig;
 import seedu.dictionote.ui.NoteContentConfig;
 
@@ -209,6 +215,56 @@ public class ModelManager implements Model {
     public void sortNote() {
         noteBook.sortNote();
     }
+
+    public void sortNoteByTime() {
+        noteBook.sortNoteByTime();
+    }
+
+    @Override
+    public void mergeNote(Note firstNote, Note secondNote) {
+        noteBook.deleteNote(firstNote);
+        noteBook.deleteNote(secondNote);
+        Note updatedNote = combineNote(firstNote, secondNote);
+        noteBook.addNote(updatedNote);
+        updateFilteredNoteList(PREDICATE_SHOW_ALL_NOTES);
+    }
+
+    private Note combineNote(Note firstNote, Note secondNote) {
+        String firstNoteContent = firstNote.getNote();
+        String secondNoteContent = secondNote.getNote();
+        String combinedNote = firstNoteContent + " " + secondNoteContent;
+
+        Set<Tag> firstNoteTag = firstNote.getTags();
+        Set<Tag> secondNoteTag = secondNote.getTags();
+        Set<Tag> combinedTag = combineTag(firstNoteTag, secondNoteTag);
+
+        LocalDateTime createTime = now();
+
+        LocalDateTime lastEditTime = now();
+
+        Boolean firstNoteIsDone = firstNote.isDone();
+        Boolean secondNoteIsDone = secondNote.isDone();
+        Boolean combinedIsDone = firstNoteIsDone && secondNoteIsDone;
+
+        return new Note(combinedNote, combinedTag, createTime, lastEditTime, combinedIsDone);
+    }
+
+    private Set<Tag> combineTag(Set<Tag> firstNoteTag, Set<Tag> secondNoteTag) {
+        Set<Tag> combinedTag = new HashSet<>();
+
+        for (Tag tag : firstNoteTag) {
+            combinedTag.add(tag);
+        }
+
+        for (Tag tag : secondNoteTag) {
+            if (!firstNoteTag.contains(tag)) {
+                combinedTag.add(tag);
+            }
+        }
+
+        return combinedTag;
+    }
+
     //=========== Dictionary ===================================================================================
     @Override
     public boolean hasContent(Content content) {
@@ -287,9 +343,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void emailContact(Contact contact) {
-        requireNonNull(contact);
-        contactsList.emailContact(contact);
+    public void emailContactUsingLink(MailtoLink link) {
+        requireNonNull(link);
+        contactsList.emailContactUsingLink(link);
+    }
+
+    @Override
+    public void sortContactsByFrequencyCounter() {
+        contactsList.sortByFrequencyCounter();
     }
 
     @Override

@@ -98,6 +98,15 @@ public class UniqueContactList implements Iterable<Contact> {
     }
 
     /**
+     * Sorts the contacts in the contacts list in descending order by their frequency counters.
+     */
+    public void sortByFrequencyCounter() {
+        List<Contact> sortedList =
+                internalList.sorted((c1, c2) -> c2.getFrequencyCounter().value - c1.getFrequencyCounter().value);
+        setContacts(sortedList);
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Contact> asUnmodifiableObservableList() {

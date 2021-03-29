@@ -50,7 +50,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/dictionote/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -85,9 +85,9 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/dictionote/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `DictionaryListPanel`, `DictionaryContentPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -101,7 +101,7 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/dictionote/logic/Logic.java)
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
@@ -120,7 +120,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/dictionote/model/Model.java)
 
 The `Model`,
 
@@ -140,7 +140,7 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/dictionote/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
@@ -172,15 +172,15 @@ As an example, consider running Dictionote on a Windows 10 machine with Microsof
 
 * Assume that the current state of the application is as follows (note the exisiting contacts on the left-side of the application's window):
 
-![ContactEmailFeatureInitState]<!---(images/ContactEmailFeatureInitState.png)-->
+![ContactEmailFeatureInitState](images/ContactEmailFeatureInitState.png)
 
 * After typing in `emailcontact 2` and executing it, the result would be:
 
-![ContactEmailFeatureExecute]<!---(images/ContactEmailFeatureExecute.png)-->
+![ContactEmailFeatureExecute](images/ContactEmailFeatureExecute.png)
 
 * A new window, belonging to Microsoft Outlook's `New Message` function, will pop up:
 
-![ContactEmailFeatureOSClient]<!---(images/ContactEmailFeatureOSClient.png)-->
+![ContactEmailFeatureOSClient](images/ContactEmailFeatureOSClient.png)
 
 * Note that the email of the selected contact, Bob (referred to in the command by his index number), is automatically written in the `To...` field of the email's header information.
 
@@ -195,7 +195,42 @@ Note that if the user does not have a mail client software set as default in the
 * **Alternative 2:** implement basic email features directly into Dictionote.
 	* Pros: Does not depened on the existence of external software in the OS.
 	* Cons: Much harder to implement, as it requires the implementation of network-related functions to handle the connections to email servers.
+	
+	
+#### More implementation details to be added...
 
+### UI features
+
+#### Manipulation UI through Command
+#####  Implementation
+Dictionote provides a dynamic user interface that allows the user to open and close any panel. 
+When executing any given command, dictionote will have to be able to change the user interface. 
+While all commands can open or close the UI panel. The user is also given the ability to manipulate UI through user command. 
+The feature is implemented through the `CommandResult` that all `Command` in the system return.
+
+`CommandResult` store a string `feedbackToUser`, enum `UiAction` and enum `UiActionOption`. `feedbackToUser` will 
+be show on the `ResultDisplay` as the command execution feedback. 
+`UiAction` indicate the action the command the want the `UI` to take. 
+e.g `UiAction.OPEN`, `UiAction.CLOSE`, `UiAction.EXIT`, ... etc. `UiActionOption` is only applicable to some `UiAction`. 
+It indicate the specific option available for the `UiAction`. 
+e.g `UiActionOption.Dictionary` for `UiActionOpen` mean open dictionary panel.
+
+The following is the sequence diagram for  `OPENCOMMAND`
+
+![OpenCommandSequenceDiagram](images/OpenCommandSequenceDiagram.png)
+
+#### Design Consideration
+* **Alternative 1 (current choice):** Make use of the existing command `CommandResult` class
+    * Pros: make use of the existing system and easy to implement
+    * Cons: All command will have to decide on the response. (or use the default setting)
+* Alternative 2: Make use of the Model Component as an intermediary between Command and UI. The command will call a method available on the model to make a change to the UI.
+    * Pros: Only the class that requires to change in UI will be needed to call the method
+    * Cons: Increasing coupling.
+
+
+
+
+<!--
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -276,10 +311,12 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
 
+-->
 
 --------------------------------------------------------------------------------------------------------------------
 

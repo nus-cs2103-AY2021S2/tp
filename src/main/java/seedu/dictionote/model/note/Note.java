@@ -172,20 +172,27 @@ public class Note implements Comparable<Note> {
         return this.getNote().compareTo(otherNote.getNote());
     }
 
+    public String createFileName() {
+        return this.getNote() + ".txt";
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getNote());
+        builder.append(getNote() + "\n");
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
+            builder.append("Tags: ");
             tags.forEach(builder::append);
         }
-        builder.append("; Time Created: ");
-        builder.append(this.createTime.toString());
-        builder.append("; Last Edited: ");
-        builder.append(this.lastEditTime.toString());
+        builder.append("\n");
+        builder.append("Time Created: ");
+        builder.append(this.createTime.toString() + "\n");
+        builder.append("Last Edited: ");
+        builder.append(this.lastEditTime.toString() + "\n");
+        builder.append("Done Status: ");
+        builder.append(this.isDone.toString() + "\n");
 
         return builder.toString();
     }

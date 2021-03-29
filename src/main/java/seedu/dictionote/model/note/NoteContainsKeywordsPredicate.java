@@ -3,8 +3,6 @@ package seedu.dictionote.model.note;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.dictionote.commons.util.StringUtil;
-
 public class NoteContainsKeywordsPredicate implements Predicate<Note> {
     private final List<String> keywords;
 
@@ -14,8 +12,11 @@ public class NoteContainsKeywordsPredicate implements Predicate<Note> {
 
     @Override
     public boolean test(Note note) {
+        if (keywords.isEmpty()) {
+            return true;
+        }
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(note.getNote(), keyword));
+                .anyMatch(keyword -> note.getNote().contains(keyword));
     }
 
     @Override
