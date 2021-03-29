@@ -1,12 +1,13 @@
 package seedu.booking.storage;
 
-import org.junit.jupiter.api.Test;
-import seedu.booking.commons.exceptions.IllegalValueException;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.booking.storage.JsonAdaptedTag.INVALID_FIELD_MESSAGE_FORMAT;
 import static seedu.booking.testutil.Assert.assertThrows;
 import static seedu.booking.testutil.TypicalVenues.HALL;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.booking.commons.exceptions.IllegalValueException;
 
 public class JsonAdaptedTagTest {
     private static final String INVALID_TAG1 = "Ind@@rs";
