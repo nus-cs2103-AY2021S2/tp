@@ -106,6 +106,7 @@ public class PoolCommand extends Command {
             passengersToPool.add(passenger);
         }
 
+        //since passengers in list are unique, passenger fetched from idx should also be unique, so as hashset from list
         Pool toAdd = new Pool(driver, tripDay, tripTime, new HashSet<Passenger>(passengersToPool), tags);
 
         if (model.hasPool(toAdd)) {
@@ -116,20 +117,6 @@ public class PoolCommand extends Command {
         model.updateFilteredPoolList(PREDICATE_SHOW_ALL_POOLS);
 
         return new CommandResult(String.format(MESSAGE_POOL_SUCCESS, toAdd));
-    }
-
-    //TODO comment
-    private static Pool createPool(List<Passenger> passengersToPool, Driver driver) {
-        if (passengersToPool.isEmpty()) {
-            throw new NullPointerException();
-        }
-        requireNonNull(driver);
-
-        TripDay updatedTripDay = passengersToPool.get(0).getTripDay();
-        TripTime updatedTripTime = passengersToPool.get(0).getTripTime();
-
-        //todo fix hashset
-        return new Pool(driver, updatedTripDay, updatedTripTime, new HashSet<>(passengersToPool), new HashSet<Tag>());
     }
 
     @Override

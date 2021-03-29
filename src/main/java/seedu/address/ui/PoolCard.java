@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -20,7 +19,6 @@ public class PoolCard extends UiPart<Region> {
 
     private static final String FXML = "PassengerListCard.fxml";
     private static final String ICON_PATH_PHONE = "/images/phone.png";
-    private static final String ICON_PATH_ADDRESS = "/images/address.png";
     private static final String ICON_PATH_DRIVER = "/images/driver.png";
     private static final String ICON_PATH_TIME = "/images/time.png";
 
@@ -44,8 +42,6 @@ public class PoolCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private VBox cardFieldContainer;
-    @FXML
-    private ColumnConstraints columnConstraints;
 
     /**
      * Creates a {@code PassengerCard} with the given {@code Passenger} and index to display.
@@ -56,9 +52,6 @@ public class PoolCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText("Trip by " + pool.getDriver().getName().toString());
 
-        //TODO: Mark I removed the getDriverAsStr() method below here as the passenger no longer has a driver object
-        // attached to it. Just letting you know in case it causes problems.
-
         // collect the fields that uses the icon and label format
         List<Region> cardFields = new ArrayList<>();
         cardFields.add(new LabelWithIcon(ICON_PATH_DRIVER, pool.getPassengers().stream().map(passenger
@@ -67,9 +60,6 @@ public class PoolCard extends UiPart<Region> {
         cardFields.add(new LabelWithIcon(ICON_PATH_TIME,
                 pool.getTripDay() + " " + pool.getTripTime()).getRoot());
         cardFieldContainer.getChildren().addAll(cardFields);
-
-        //TODO: Mark I removed the getDriver().ifPresentOrElse() block of code below here as the passenger no longer has
-        // a driver object attached to it. Just letting you know in case it causes problems.
     }
 
     @Override
