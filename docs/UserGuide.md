@@ -318,10 +318,10 @@ Want to see which items you are running out of or which items you have to consum
 You can use this command in 3 different ways.
 
 * #### 3.8.1. Sorting items by ascending quantity
-  Format 1: `sort quantity asc`
+  Format: `sort quantity asc`
   <div markdown="block" class="alert alert-info">
 
-  **:information_source: Note about the sort by expiry date command:**<br>
+  **:information_source: Note about the sort by ascending quantity command:**<br>
 
   * `quantity` is case-insensitive. Keying in `sort QUANTITY asc` is also a valid command.
     <br>
@@ -329,13 +329,13 @@ You can use this command in 3 different ways.
   </div>
   
   Example:
-  * `sort quantity acs` sorts the items in the displayed list in ascending order of quantity.
+  * `sort quantity asc` sorts the items in the displayed list in ascending order of quantity.
 
 * #### 3.8.2. Sorting items by descending quantity
-  Format 2: `sort quantity desc`
+  Format: `sort quantity desc`
   <div markdown="block" class="alert alert-info">
 
-  **:information_source: Note about the sort by expiry date command:**<br>
+  **:information_source: Note about the sort by descending quantity command:**<br>
 
   * `quantity` is case-insensitive. Keying in `sort QUANTITY desc` is also a valid command.
     <br>
@@ -346,7 +346,7 @@ You can use this command in 3 different ways.
   * `sort quantity desc` sorts the items in the displayed list in descending order of quantity.
   
 * #### 3.8.3. Sorting items by expiry date
-  Format 3: `sort expirydate`
+  Format: `sort expirydate`
   <div markdown="block" class="alert alert-info">
 
   **:information_source: Note about the sort by expiry date command:**<br>
@@ -369,11 +369,15 @@ You can use this command in 2 different ways.
 * #### 3.9.1. Clear all items in entire inventory
   Format 1: `clear`
 
+  Example:
+
+  * `clear` clears all the items in the inventory.
+  
 * #### 3.9.2. Clear all items in a specific location
   Format 2: `clear l/LOCATION`
   <div markdown="block" class="alert alert-info">
 
-  **:information_source: Notes about the command:**<br>
+  **:information_source: Notes about the clear command:**<br>
   
   * The search is case-insensitive. e.g 'room' will match 'Room'.
 
