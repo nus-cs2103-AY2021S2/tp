@@ -134,9 +134,16 @@ Examples:
 
 #### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of persons in the address book.
 
-Format: `list`
+Format: `list [o/OPTION]`
+
+Currently available options for the `[OPTION]` field include:
+* `fav` Shows list of favourited persons in the address book
+
+Examples:
+* `list` List all persons in the address book
+* `list o/fav` Lists all favourited persons in the address book
 
 #### Editing a person : `edit`
 
@@ -206,7 +213,28 @@ Examples:
 * `sort o/name` returns the contact list sorted in alphabetical order.
 * `sort o/date` returns the contact list sorted in chronological order.
 
-#### Clearing all entries : `clear`
+### Favourite a person : `fav`
+
+Format: `fav INDEX [o/OPTION]`
+
+* Favourite the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Currently available options for the `[OPTION]` field include:
+* `remove` Unfavourites the specified person
+
+Examples:
+* `list` followed by `fav 2` favourites the 2nd person in the address book.
+* `find Betsy` followed by `delete 1` favourites the 1st person in the results of the `find` command.
+* `fav 3 o/remove` unfavourites the 3rd person in the address book.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+When a person is favourited, the star next to their name will become filled/white.
+When a person is unfavourited, the star will turn empty.
+</div>
+
+### Clearing all entries : `clear`
 
 Clears all entries from the address book or clears all contacts with the specified tags.
 
@@ -327,6 +355,7 @@ Action | Format, Examples
 **Clear** | `clear [t/TAG]…​`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tc/CHILDTAG]…​ [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Fav** | `fav INDEX [o/OPTION]` <br> e.g., `fav 3 o/remove`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Tag** | `tag INDEX [o/OPTION] [tc/CHILDTAG]…​ [t/TAG]…​`<br> e.g., `tag 4 t/School t/English`

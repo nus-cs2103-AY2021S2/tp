@@ -16,6 +16,9 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
+    /** {@code Predicate} that evaluates to true if a person is favourited */
+    Predicate<Person> PREDICATE_SHOW_FAVOURITES = person -> person.getFavourite().isFav();
+
     //=========== UserPrefs ==================================================================================
 
     /** {@code Predicate} that always evaluate to true */
@@ -87,8 +90,6 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
-    void setPersons(List<Person> persons);
-
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
@@ -97,6 +98,11 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Sets the person list to the given {@code persons}.
+     */
+    void setPersons(List<Person> persons);
 
     //=========== AppointmentBook ================================================================================
 
