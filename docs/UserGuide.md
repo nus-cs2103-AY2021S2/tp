@@ -128,8 +128,9 @@ Format: `search [n/KEYWORDS] [s/KEYWORDS] [t/KEYWORDS] [MORE_KEYWORDS]`
 Examples:
 * `search n/eliza s/woodlands t/math` returns student whose name is `Eliza`, students who are studying in `woodlands primary school`, and students with the `math` tag
 * `search n/Patrick Lim` returns `patrick lim` and `Lim Zi Ying`
-* `search s/raffles hwa` returns students studying in `Raffles Institution`,
-  `Hwa chong institution`, and also students whose name consists of Hwa or Raffles if there is any.
+* `search s/woodlands` returns students studying in `woodlands primary school` and `woodlands secondary school`
+* `search s/raffles hwa` returns students studying in `Raffles Institution` and `Hwa chong institution`
+
 
 ### Searching for a contact by name: `search n/...`
 Searches for a student’s contact whose contact name contains any of the given keywords.
