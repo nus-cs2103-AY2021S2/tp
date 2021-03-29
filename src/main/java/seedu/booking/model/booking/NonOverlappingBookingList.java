@@ -170,10 +170,17 @@ public class NonOverlappingBookingList implements Iterable<Booking> {
         return true;
     }
 
+    /**
+     * Replaces the old venue name {@code oldVenueName} in the booking with {@code newVenueName}.
+     */
     public void updateVenueInBookings(VenueName oldVenueName, VenueName newVenueName) {
         internalList.stream().filter(x -> x.getVenueName().equals(oldVenueName))
                 .forEach(x -> x.setVenueName(newVenueName));
     }
+
+    /**
+     * Replaces the old person email {@code oldEmail} in the booking with {@code newEmail}.
+     */
     public void updatePersonInBookings(Email oldEmail, Email newEmail) {
         internalList.stream().filter(x -> x.getBookerEmail().equals(oldEmail))
                 .forEach(x -> x.setEmail(newEmail));

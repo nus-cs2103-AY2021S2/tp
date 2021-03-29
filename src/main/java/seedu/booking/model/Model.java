@@ -209,9 +209,21 @@ public interface Model {
      */
     void setBooking(Booking target, Booking editedBooking);
 
+    /**
+     * Replaces the old venue name {@code oldVenueName} in the booking with {@code newVenueName}.
+     * {@code oldVenueName} must exist in the booking system.
+     */
     void updateVenueInBookings(VenueName oldVenueName, VenueName newVenueName);
 
+    /**
+     * Replaces the old person email {@code oldEmail} in the booking with {@code newEmail}.
+     * {@code oldEmail} must exist in the booking system.
+     */
     void updatePersonInBookings(Email oldEmail, Email newEmail);
 
+    /**
+     * Returns true if a booking with the overlapped duration as {@code toAdd} exists in the system.
+     */
     boolean hasOverlappedBooking(Booking toAdd);
+
 }

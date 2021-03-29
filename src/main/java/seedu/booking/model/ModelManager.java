@@ -141,7 +141,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateVenueInBookings(VenueName oldVenueName, VenueName newVenueName){
+    public void updateVenueInBookings(VenueName oldVenueName, VenueName newVenueName) {
         requireAllNonNull(oldVenueName, newVenueName);
         bookingSystem.updateVenueInBookings(oldVenueName, newVenueName);
     }

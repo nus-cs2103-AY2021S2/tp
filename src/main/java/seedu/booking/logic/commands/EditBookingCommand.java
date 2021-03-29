@@ -116,7 +116,8 @@ public class EditBookingCommand extends Command {
         StartTime updatedBookingStart = editBookingDescriptor.getBookingStart().orElse(bookingToEdit.getBookingStart());
         EndTime updatedBookingEnd = editBookingDescriptor.getBookingEnd().orElse(bookingToEdit.getBookingEnd());
         Id updatedId = bookingToEdit.getId();
-        return new Booking(updatedBooker, updatedVenue, updatedDescription, updatedBookingStart, updatedBookingEnd, updatedId);
+        return new Booking(updatedBooker, updatedVenue, updatedDescription,
+                updatedBookingStart, updatedBookingEnd, updatedId);
     }
 
     @Override

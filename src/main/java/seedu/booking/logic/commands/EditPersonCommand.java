@@ -4,7 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.booking.model.Model.*;
+import static seedu.booking.model.Model.PREDICATE_SHOW_ALL_BOOKINGS;
+import static seedu.booking.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 import java.util.Optional;
