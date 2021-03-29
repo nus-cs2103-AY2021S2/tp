@@ -136,6 +136,43 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+
+### Sort feature
+It can be helpful to sort the list of contacts and the list of meetings by a certain criteria.
+For example, sorting contacts by their names could complement the user experience.
+However, there were a few implementations details to consider.
+
+Currently, an essential attribute in the model are the filtered lists, 
+which shows the results of searches and finds. 
+The indexes used in commands like "edit" are taken with respect to these filtered list.
+These filtered lists, however, are backed by immutable observable lists, 
+which helps update the JavaFX GUI. I initially tried to make copies of these observable lists,
+so that I can mutate them through sorting and filtering. However, this would not work,
+since commands like "edit" would be making changes to a copy of the data, 
+not the data itself.
+
+The implementation I went with uses another subclass of observable lists called sorted lists.
+It goes between the link between the original immutable observable list and the filtered lists.
+Sorting would occur in the sorted list layer, and the filtering will be applied on top.
+This has the benefit of still sharing the references with the original observable list, 
+so modifications will still be reflected in the correct data structures.
+
+###Timetable feature
+
+The timetable feature will be help the user visualise the free times. 
+It also aid the user in scheduling meetings faster.
+There are two possible implementations for the model below:
+
+One: Create a two-dimensional array to represent the schedule 
+with days as the row and columns being the half hour time slots
+This will serve as the model of a person's free schedule. Slots which are occupied will have
+their state marked as so. 
+
+Pros: A Ui can listen to the model and the display can be updated quickly with each change.
+
+Cons: Takes up more space. Problems handling meetings with not nice start and ending times.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

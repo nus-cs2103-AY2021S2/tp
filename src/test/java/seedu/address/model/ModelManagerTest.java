@@ -15,6 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.group.Group;
 import seedu.address.model.meeting.MeetingBook;
 import seedu.address.model.person.AddressBook;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -89,6 +90,26 @@ public class ModelManagerTest {
     public void hasPerson_personInAddressBook_returnsTrue() {
         modelManager.addPerson(ALICE);
         assertTrue(modelManager.hasPerson(ALICE));
+    }
+
+    @Test
+    public void findPersonsInGroup_returnsTrue() {
+        modelManager.addPerson(ALICE);
+        modelManager.addPerson(BENSON);
+        Group tableTennis = new Group("table tennis");
+        assertTrue(modelManager.findPersonsInGroup(tableTennis).contains(ALICE));
+        assertTrue(modelManager.findPersonsInGroup(tableTennis).contains(BENSON));
+        Group cs2106 = new Group("CS2106");
+        assertTrue(modelManager.findPersonsInGroup(cs2106).contains(BENSON));
+    }
+
+    @Test
+    public void findPersonsInGroup_returnsFalse() {
+        modelManager.addPerson(ALICE);
+        modelManager.addPerson(BENSON);
+        Group badminton = new Group("badminton");
+        assertFalse(modelManager.findPersonsInGroup(badminton).contains(ALICE));
+        assertFalse(modelManager.findPersonsInGroup(badminton).contains(BENSON));
     }
 
     @Test

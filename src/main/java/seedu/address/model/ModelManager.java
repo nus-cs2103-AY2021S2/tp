@@ -5,16 +5,21 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.connection.PersonMeetingConnection;
+import seedu.address.model.group.Group;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingBook;
 import seedu.address.model.meeting.ReadOnlyMeetingBook;
@@ -34,10 +39,12 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final SortedList<Person> sortedBeforeFilterPersons;
     private final FilteredList<Person> filteredPersons;
 
     // TODO: Modify the signature of ModelManager so that we can add meetings inside it.
     private final MeetingBook meetingBook;
+    private final SortedList<Meeting> sortedBeforeFilterMeetings;
     private final FilteredList<Meeting> filteredMeetings;
 
     // TODO: Modify the signature of ModelManager so that we can add connection inside it.
@@ -55,10 +62,13 @@ public class ModelManager implements Model {
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.meetingBook = new MeetingBook();
-        this.filteredMeetings = new FilteredList<Meeting>(this.meetingBook.getMeetingList());
+        this.sortedBeforeFilterMeetings = new SortedList<>(this.meetingBook.getMeetingList());
+        this.filteredMeetings = new FilteredList<Meeting>(sortedBeforeFilterMeetings);
+
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.sortedBeforeFilterPersons = new SortedList<>(this.addressBook.getPersonList());
+        filteredPersons = new FilteredList<>(sortedBeforeFilterPersons);
         // TODO: Modify the signature of ModelManager so that we can add connection inside it.
         this.connection = new PersonMeetingConnection();
         this.reminderBook = new ReminderBook(this.meetingBook);
@@ -75,10 +85,13 @@ public class ModelManager implements Model {
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.meetingBook = new MeetingBook(meetingBook);
-        this.filteredMeetings = new FilteredList<Meeting>(this.meetingBook.getMeetingList());
+        this.sortedBeforeFilterMeetings = new SortedList<>(this.meetingBook.getMeetingList());
+        this.filteredMeetings = new FilteredList<Meeting>(sortedBeforeFilterMeetings);
+
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.sortedBeforeFilterPersons = new SortedList<>(this.addressBook.getPersonList());
+        filteredPersons = new FilteredList<>(sortedBeforeFilterPersons);
         // TODO: Modify the signature of ModelManager so that we can add connection inside it.
         this.connection = new PersonMeetingConnection();
         this.reminderBook = new ReminderBook(this.meetingBook);
@@ -95,10 +108,13 @@ public class ModelManager implements Model {
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.meetingBook = new MeetingBook(meetingBook);
-        this.filteredMeetings = new FilteredList<Meeting>(this.meetingBook.getMeetingList());
+        this.sortedBeforeFilterMeetings = new SortedList<>(this.meetingBook.getMeetingList());
+        this.filteredMeetings = new FilteredList<Meeting>(sortedBeforeFilterMeetings);
+
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.sortedBeforeFilterPersons = new SortedList<>(this.addressBook.getPersonList());
+        filteredPersons = new FilteredList<>(sortedBeforeFilterPersons);
         // TODO: Modify the signature of ModelManager so that we can add connection inside it.
         this.connection = connection;
         this.reminderBook = new ReminderBook(this.meetingBook);
@@ -179,6 +195,11 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public Set<Person> findPersonsInGroup(Group group) {
+        return addressBook.findPersonsInGroup(group);
     }
 
     //=========== MeetingBook ================================================================================
@@ -353,6 +374,11 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    public void sortFilteredPersonList(Comparator<Person> comparator) {
+        sortedBeforeFilterPersons.setComparator(comparator);
+    }
+
+
     //=========== Filtered Meeting List Accessors =============================================================
 
     /**
@@ -368,6 +394,10 @@ public class ModelManager implements Model {
     public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
         requireNonNull(predicate);
         filteredMeetings.setPredicate(predicate);
+    }
+
+    public void sortFilteredMeetingList(Comparator<Meeting> comparator) {
+        sortedBeforeFilterMeetings.setComparator(comparator);
     }
 
     //=========== Other methods =============================================================

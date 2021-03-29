@@ -11,6 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.connection.PersonMeetingConnection;
+import seedu.address.model.group.Group;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingBook;
 import seedu.address.model.meeting.ReadOnlyMeetingBook;
@@ -26,9 +27,11 @@ import seedu.address.testutil.PersonBuilder;
 
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import static java.util.Objects.requireNonNull;
@@ -216,6 +219,11 @@ public class AddMeetingCommandWithConnectionTest {
             addressBook.setPerson(target, editedPerson);
         }
 
+        @Override
+        public Set<Person> findPersonsInGroup(Group group) {
+            return addressBook.findPersonsInGroup(group);
+        }
+
         //=========== MeetingBook ================================================================================
 
         @Override
@@ -388,6 +396,11 @@ public class AddMeetingCommandWithConnectionTest {
             filteredPersons.setPredicate(predicate);
         }
 
+        @Override
+        public void sortFilteredPersonList(Comparator<Person> comparator) {
+
+        }
+
         //=========== Filtered Meeting List Accessors =============================================================
 
         /**
@@ -405,7 +418,10 @@ public class AddMeetingCommandWithConnectionTest {
             filteredMeetings.setPredicate(predicate);
         }
 
+        @Override
+        public void sortFilteredMeetingList(Comparator<Meeting> comparator) {
+
+        }
+
     }
 }
-
-
