@@ -41,7 +41,7 @@ public class Event {
      * @param description A description of the event.
      */
     public Event(LocalDate date, LocalTime time, String description) {
-        requireAllNonNull(date, time, description);
+        requireAllNonNull(date, description);
         this.date = date;
         this.time = time;
         this.description = description;
