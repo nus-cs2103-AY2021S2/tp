@@ -10,8 +10,8 @@
         <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="25.0" />
         </padding>
-        <Label fx:id="fee" styleClass="cell_extra_big_label" text="\$fee" wrapText="true" />
+        <Label fx:id="monthlyFeeLabel" styleClass="cell_extra_big_label" text="\$monthlyFee" wrapText="true" />
     </VBox>
-    <Label fx:id="month" styleClass="cell_big_label" text="\$month" AnchorPane.rightAnchor="10" AnchorPane.topAnchor="10" />
-    <Label fx:id="year" styleClass="cell_big_label" text="\$year" AnchorPane.bottomAnchor="10" AnchorPane.rightAnchor="10" />
+    <Label fx:id="monthLabel" styleClass="cell_big_label" text="\$month" AnchorPane.rightAnchor="10" AnchorPane.topAnchor="10" />
+    <Label fx:id="yearLabel" styleClass="cell_big_label" text="\$year" AnchorPane.bottomAnchor="10" AnchorPane.rightAnchor="10" />
 </AnchorPane>

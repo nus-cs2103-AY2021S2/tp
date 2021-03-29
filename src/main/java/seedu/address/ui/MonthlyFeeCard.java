@@ -18,20 +18,20 @@ public class MonthlyFeeCard extends UiPart<Region> {
     private static DecimalFormat twoDecimalFormat = new DecimalFormat("0.00");
 
     @FXML
-    private Label fee;
+    private Label monthlyFeeLabel;
     @FXML
-    private Label month;
+    private Label monthLabel;
     @FXML
-    private Label year;
+    private Label yearLabel;
 
     /**
      * Creates a {@code MonthlyFeeCard} with the given {@code MonthlyFee}.
      */
     public MonthlyFeeCard(MonthlyFee monthlyFee) {
         super(FXML);
-        fee.setText("$" + twoDecimalFormat.format(monthlyFee.getMonthlyFee()));
-        month.setText(monthlyFee.getMonth().getMonthName());
-        year.setText(monthlyFee.getYear().toString());
+        monthlyFeeLabel.setText("$" + twoDecimalFormat.format(monthlyFee.getMonthlyFee()));
+        monthLabel.setText(monthlyFee.getMonth().getMonthName());
+        yearLabel.setText(monthlyFee.getYear().toString());
     }
 
     @Override
@@ -48,8 +48,8 @@ public class MonthlyFeeCard extends UiPart<Region> {
 
         // state check
         MonthlyFeeCard card = (MonthlyFeeCard) other;
-        return fee.getText().equals(card.fee.getText())
-            && month.equals(card.month)
-            && year.equals(card.year);
+        return monthlyFeeLabel.getText().equals(card.monthlyFeeLabel.getText())
+            && monthLabel.equals(card.monthLabel)
+            && yearLabel.equals(card.yearLabel);
     }
 }

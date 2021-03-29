@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
 
+import seedu.address.commons.util.DateUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.fee.Month;
@@ -19,15 +19,6 @@ public class GetPrev3MonthFeeCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows the totalled fees per month, "
         + "for this month + previous 2 months";
 
-    /**
-     * Gets the local date time format of the month and year combined
-     * @return LocalDateTime of the month and year combined
-     */
-    private LocalDateTime getLocalDate(Month month, Year year) {
-        requireAllNonNull(month, year);
-        return LocalDateTime.of(year.getYear(), month.getMonth(), 1, 0, 0);
-    }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -39,7 +30,7 @@ public class GetPrev3MonthFeeCommand extends Command {
         LocalDateTime now = LocalDateTime.now();
         Month month = new Month(now.getMonth().getValue());
         Year year = new Year(now.getYear());
-        currMonthYear = getLocalDate(month, year);
+        currMonthYear = DateUtil.convertToLocalDate(month, year);
         nextMonthYear = currMonthYear.plusMonths(1);
 
         for (int i = 0; i < 3; i++) {

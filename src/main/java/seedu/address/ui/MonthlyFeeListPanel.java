@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
 import java.time.LocalDateTime;
 import java.util.logging.Logger;
 
@@ -13,6 +11,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.util.DateUtil;
 import seedu.address.commons.util.FeeUtil;
 import seedu.address.model.fee.Month;
 import seedu.address.model.fee.MonthlyFee;
@@ -20,7 +19,7 @@ import seedu.address.model.fee.Year;
 import seedu.address.model.student.Student;
 
 /**
- * Panel containing the list of the upcoming tuition in 1 week.
+ * Panel containing the list of monthly fees for this month and the previous 2 month.
  */
 public class MonthlyFeeListPanel extends UiPart<Region> {
     private static final String FXML = "MonthlyFeeListPanel.fxml";
@@ -60,15 +59,6 @@ public class MonthlyFeeListPanel extends UiPart<Region> {
     }
 
     /**
-     * Gets the local date time format of the month and year combined
-     * @return LocalDateTime of the month and year combined
-     */
-    private LocalDateTime getLocalDate(Month month, Year year) {
-        requireAllNonNull(month, year);
-        return LocalDateTime.of(year.getYear(), month.getMonth(), 1, 0, 0);
-    }
-
-    /**
      * Populates the monthlyFeeList with {@code MonthlyFee} for the current month + previous 2 months.
      */
     private void populateMonthlyFeeList(ObservableList<Student> studentList,
@@ -79,7 +69,7 @@ public class MonthlyFeeListPanel extends UiPart<Region> {
         LocalDateTime now = LocalDateTime.now();
         Month month = new Month(now.getMonth().getValue());
         Year year = new Year(now.getYear());
-        currMonthYear = getLocalDate(month, year);
+        currMonthYear = DateUtil.convertToLocalDate(month, year);
         nextMonthYear = currMonthYear.plusMonths(1);
 
         for (int i = 0; i < 3; i++) {
