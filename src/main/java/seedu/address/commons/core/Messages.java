@@ -13,19 +13,22 @@ public class Messages {
     public static final String MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX = "The patient index provided is invalid";
     public static final String MESSAGE_FORCE_DELETE_PATIENT_REQUIRED =
             "The patient has existing appointments in appointment schedule."
-            + " Force delete command format required! \n%1$s";
-    public static final String MESSAGE_CLEAR_APPOINTMENTS_REQUIRED =
+                    + " Force delete command format required! \n%1$s";
+    public static final String MESSAGE_CLEAR_APPOINTMENTS_BEFORE_PATIENTS_REQUIRED =
             "Patient records cannot be cleared until appointment schedule is cleared.\n"
-            + "Use the command \"clear-appt\" to clear the appointment schedule.";
-    public static final String MESSAGE_DELETE_PATIENT_SUCCESS = "Deleted Person: %1$s";
+                    + "Use the command \"clear-appt\" to clear the appointment schedule.";
+    public static final String MESSAGE_DELETE_PATIENT_SUCCESS = "Deleted Patient: %1$s";
 
-    //=================================Doctor related messages===============================================
+    //=================================Doctor related messages================================================
     public static final String MESSAGE_DOCTORS_LISTED_OVERVIEW = "%1$d doctors listed!";
     public static final String MESSAGE_INVALID_DOCTOR_DISPLAYED_INDEX = "The doctor index provided is invalid";
     public static final String MESSAGE_FORCE_DELETE_DOCTOR_REQUIRED =
             "The doctor has existing appointments in appointment schedule."
                     + " Force delete command format required! \n%1$s";
-    public static final String MESSAGE_DELETE_DOCTOR_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_CLEAR_APPOINTMENTS_BEFORE_DOCTORS_REQUIRED =
+            "Doctors records cannot be cleared until appointment schedule is cleared.\n"
+                    + "Use the command \"clear-appt\" to clear the appointment schedule.";
+    public static final String MESSAGE_DELETE_DOCTOR_SUCCESS = "Deleted Doctor: %1$s";
 
     //=================================Appointment related messages===========================================
     public static final String MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX =
