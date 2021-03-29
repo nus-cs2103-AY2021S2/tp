@@ -77,7 +77,7 @@ public class MeetingList implements ReadOnlyMeetingList {
 
     /**
      * Replaces the given meeting {@code target} in the list with {@code editedMeeting}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the meeting book.
      * The meeting identity of {@code editedMeeting} must not be the same as another existing meeting
      * in the meeting list.
      */
