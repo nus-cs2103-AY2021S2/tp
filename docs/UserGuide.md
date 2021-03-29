@@ -116,5 +116,8 @@ Eg. `add n/sleek tux s/32 c/white r/formal t/upper`
 Eg. `edit 1 n/polka dotted shirt s/28 c/red r/casual`
 6. Find: `find t/TYPE`<br>
 Eg. find `t/Office`
-7. Exit: `exit`
+7. Match: `match INDEX`
+8. Select: `select INDEX`
+9. View: `view INDEX INDEX INDEX`
+10. Exit: `exit`
 ---
