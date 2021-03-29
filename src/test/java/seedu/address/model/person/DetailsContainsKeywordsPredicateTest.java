@@ -11,6 +11,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
 
+/**
+ * Contains unit tests for {@code DetailsContainsKeywordsPredicate}.
+ */
 public class DetailsContainsKeywordsPredicateTest {
     @Test
     public void equals() {

@@ -34,10 +34,9 @@ public class TaskList implements Iterable<Task> {
         return internalList.stream().anyMatch(toCheck::isSameTask);
     }
 
-
     /**
      * Adds a task to the list.
-     * Task may be a duplicate
+     * Task may be a duplicate.
      */
     public void addTask(Task toAdd) {
         requireNonNull(toAdd);
@@ -57,7 +56,6 @@ public class TaskList implements Iterable<Task> {
         }
         internalList.set(index, editedTask);
     }
-
 
     public void setTasks(TaskList replacement) {
         requireNonNull(replacement);
@@ -108,5 +106,4 @@ public class TaskList implements Iterable<Task> {
     public int hashCode() {
         return internalList.hashCode();
     }
-
 }

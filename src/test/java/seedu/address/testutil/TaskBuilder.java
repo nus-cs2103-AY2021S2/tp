@@ -12,6 +12,9 @@ import seedu.address.model.task.TaskStatus;
 import seedu.address.model.task.Title;
 import seedu.address.model.util.SampleDataUtil;
 
+/**
+ * A utility class to help with building Task objects.
+ */
 public class TaskBuilder {
     public static final String DEFAULT_TITLE = "Book venue";
     public static final String DEFAULT_DESCRIPTION = "Book venue for cca dinner";

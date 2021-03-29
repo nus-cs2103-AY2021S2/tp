@@ -15,7 +15,7 @@ import seedu.address.model.person.Role;
  */
 class JsonAdaptedPerson {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Member's %s field is missing!";
 
     private final String name;
     private final String phone;
@@ -87,5 +87,4 @@ class JsonAdaptedPerson {
 
         return new Person(modelName, modelPhone, modelEmail, modelRole);
     }
-
 }

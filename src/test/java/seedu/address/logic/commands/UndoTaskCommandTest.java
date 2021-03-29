@@ -23,7 +23,7 @@ import seedu.address.testutil.TaskBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DoneTaskCommand}.
+ * {@code UndoTaskCommand}.
  */
 public class UndoTaskCommandTest {
     private Model model = new ModelManager(getTypicalHeyMatez(), new UserPrefs());

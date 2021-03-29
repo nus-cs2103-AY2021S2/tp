@@ -11,6 +11,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.TaskBuilder;
 
+/**
+ * Contains unit tests for {@code PriorityContainsKeywordPredicate}.
+ */
 public class PriorityContainsKeywordPredicateTest {
     @Test
     public void equals() {

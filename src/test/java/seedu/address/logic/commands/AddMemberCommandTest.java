@@ -24,6 +24,10 @@ import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.PersonBuilder;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for
+ * {@code AddMemberCommand}.
+ */
 public class AddMemberCommandTest {
 
     @Test
@@ -187,8 +191,6 @@ public class AddMemberCommandTest {
         };
     }
 
-
-
     /**
      * A Model stub that contains a single person.
      */
@@ -230,5 +232,4 @@ public class AddMemberCommandTest {
             return new HeyMatez();
         }
     }
-
 }

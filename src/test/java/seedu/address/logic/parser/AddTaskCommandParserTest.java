@@ -19,7 +19,9 @@ import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
 
-
+/**
+ * Contains unit tests for {@code AddTaskCommandParser}.
+ */
 public class AddTaskCommandParserTest {
     private AddTaskCommandParser parser = new AddTaskCommandParser();
 
