@@ -23,6 +23,7 @@ import seedu.address.logic.commands.resident.DeleteResidentCommand;
 import seedu.address.logic.commands.resident.EditResidentCommand;
 import seedu.address.logic.commands.resident.FindResidentCommand;
 import seedu.address.logic.commands.resident.ListResidentCommand;
+import seedu.address.logic.commands.resident.ListUnallocatedResidentsCommand;
 import seedu.address.logic.commands.residentroom.AllocateResidentRoomCommand;
 import seedu.address.logic.commands.residentroom.DeallocateResidentRoomCommand;
 import seedu.address.logic.commands.room.AddRoomCommand;
@@ -91,6 +92,9 @@ public class AddressBookParser {
 
         case DeleteResidentCommand.COMMAND_WORD:
             return new DeleteResidentCommandParser().parse(arguments);
+
+        case ListUnallocatedResidentsCommand.COMMAND_WORD:
+            return new ListUnallocatedResidentsCommand();
 
         // ====== Room Commands ======
         case AddRoomCommand.COMMAND_WORD:

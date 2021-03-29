@@ -1,26 +1,27 @@
 package seedu.address.logic.commands.resident;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RESIDENTS;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-
+import seedu.address.model.resident.ResidentUnallocatedPredicate;
 
 /**
  * Lists all persons in the address book to the user.
  */
-public class ListResidentCommand extends Command {
+public class ListUnallocatedResidentsCommand extends Command {
 
-    public static final String COMMAND_WORD = "rlist";
+    public static final String COMMAND_WORD = "rulist";
 
-    public static final String MESSAGE_SUCCESS = "Listed all residents";
+    public static final String MESSAGE_SUCCESS = "Listed all unallocated residents";
+
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredResidentList(PREDICATE_SHOW_ALL_RESIDENTS);
+        ResidentUnallocatedPredicate predicate = new ResidentUnallocatedPredicate();
+        model.updateFilteredResidentList(predicate);
         return new CommandResult(MESSAGE_SUCCESS).setResidentCommand();
     }
 }
