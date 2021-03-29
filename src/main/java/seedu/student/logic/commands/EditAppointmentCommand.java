@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.student.logic.commands.AddAppointmentCommand.MESSAGE_OVERLAPPING_APPOINTMENT;
 import static seedu.student.logic.commands.AddAppointmentCommand.MESSAGE_STUDENT_DOES_NOT_EXIST;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.student.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_MATRICULATION_NUMBER;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.student.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
@@ -110,25 +109,39 @@ public class EditAppointmentCommand extends Command {
         return new Appointment(matriculationNumber, updatedDate, updatedStartTime);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof EditAppointmentCommand // instanceof handles nulls
+                && editAppointmentDescriptor.equals(((EditAppointmentCommand) other).editAppointmentDescriptor));
+    }
 
     public static class EditAppointmentDescriptor {
+        private MatriculationNumber matriculationNumber;
         private LocalDate date;
         private LocalTime startTime;
-        private LocalTime endTime;
 
         public EditAppointmentDescriptor() {}
 
         public EditAppointmentDescriptor(EditAppointmentDescriptor toCopy) {
+            setMatriculationNumber(toCopy.matriculationNumber);
             setDate(toCopy.date);
             setStartTime(toCopy.startTime);
-            setEndTime(toCopy.endTime);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(date, startTime, endTime);
+            return CollectionUtil.isAnyNonNull(date, startTime);
+        }
+
+        public void setMatriculationNumber(MatriculationNumber matriculationNumber) {
+            this.matriculationNumber = matriculationNumber;
+        }
+
+        public Optional<MatriculationNumber> getMatriculationNumber() {
+            return Optional.ofNullable(matriculationNumber);
         }
 
         public void setDate(LocalDate date) {
@@ -147,14 +160,6 @@ public class EditAppointmentCommand extends Command {
             return Optional.ofNullable(startTime);
         }
 
-        public void setEndTime(LocalTime time) {
-            this.endTime = time;
-        }
-
-        public Optional<LocalTime> getEndTime() {
-            return Optional.ofNullable(endTime);
-        }
-
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -170,9 +175,9 @@ public class EditAppointmentCommand extends Command {
             // state check
             EditAppointmentCommand.EditAppointmentDescriptor e = (EditAppointmentDescriptor) other;
 
-            return  getDate().equals(e.getDate())
-                    && getStartTime().equals(e.getStartTime())
-                    && getEndTime().equals(e.getEndTime());
+            return  getMatriculationNumber().equals(e.getMatriculationNumber())
+                    && getDate().equals(e.getDate())
+                    && getStartTime().equals(e.getStartTime());
         }
     }
 }

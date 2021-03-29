@@ -90,4 +90,9 @@ public class AppointmentBuilder {
         return new Appointment(matriculationNumber, date, startTime);
     }
 
+    public Appointment buildAlice() {
+        return new AppointmentBuilder().withMatric(TypicalStudents.ALICE.getMatriculationNumber().value)
+                .withStartTime("09:00").build();
+    }
+
 }

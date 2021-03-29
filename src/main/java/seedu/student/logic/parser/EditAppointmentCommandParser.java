@@ -21,7 +21,7 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
         //assert args.length() >= 2
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_MATRICULATION_NUMBER, PREFIX_DATE, PREFIX_START_TIME);
-        if (!arePrefixesPresent(argMultimap,  PREFIX_MATRICULATION_NUMBER) || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap,  PREFIX_MATRICULATION_NUMBER, PREFIX_DATE, PREFIX_START_TIME) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditAppointmentCommand.MESSAGE_USAGE));
         }
@@ -36,6 +36,7 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
         }
 
         EditAppointmentDescriptor editAppointmentDescriptor = new EditAppointmentDescriptor();
+        editAppointmentDescriptor.setMatriculationNumber(matriculationNumber);
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
             editAppointmentDescriptor.setDate(LocalDate.parse(argMultimap.getValue(PREFIX_DATE).get()));
         }

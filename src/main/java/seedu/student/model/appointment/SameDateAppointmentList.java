@@ -103,8 +103,7 @@ public class SameDateAppointmentList implements Iterable<Appointment>, Comparabl
         int index = internalList.indexOf(target);
         if (index == -1) {
             //throw exception here?
-            throw new CommandException(MESSAGE_NONEXISTENT_APPOINTMENT); //this should be a constant, will define
-            //the constant later
+            throw new CommandException(MESSAGE_NONEXISTENT_APPOINTMENT);
         }
         if (!target.isSameAppointment(editedAppointment) && contains(editedAppointment)) {
             //if the original appointment is not the same as the edited appointment, AND the list already contains
@@ -180,5 +179,14 @@ public class SameDateAppointmentList implements Iterable<Appointment>, Comparabl
     @Override
     public int compareTo(SameDateAppointmentList o) {
         return date.compareTo(o.date);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Appointment a : internalList) {
+            sb.append(a);
+        }
+        return sb.toString();
     }
 }
