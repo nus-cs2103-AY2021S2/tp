@@ -5,11 +5,13 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.exceptions.AppointmentConflictException;
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
+import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Patient;
 
 /**
@@ -45,6 +47,14 @@ public class NonConflictingAppointmentList implements Iterable<Appointment> {
      */
     public boolean hasPatientInSchedule(Patient patient) {
         return internalList.stream().anyMatch(appt -> appt.getPatientUuid().equals(patient.getUuid()));
+    }
+
+
+    /**
+     * Returns true if the list contains appointments that corresponds to the input doctor.
+     */
+    public boolean hasDoctorInSchedule(Doctor doctor) {
+        return internalList.stream().map(appointment -> appointment.getDoctor()).anyMatch(doctor::equals);
     }
 
     /**
@@ -137,6 +147,15 @@ public class NonConflictingAppointmentList implements Iterable<Appointment> {
         FXCollections.sort(internalList);
     }
 
+    /**
+     * Deletes all appointments associated with the input patient from the appointment schedule.
+     */
+    public void deletePatientAppointments(Patient patient) {
+        List<Appointment> patientAppointmentList = internalList.stream().filter(appointment ->
+                appointment.getPatient().equals(patient)).collect(Collectors.toList());
+        patientAppointmentList.forEach(appointment -> internalList.remove(appointment));
+    }
+
     public void setAppointments(NonConflictingAppointmentList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -174,5 +193,4 @@ public class NonConflictingAppointmentList implements Iterable<Appointment> {
     public Iterator<Appointment> iterator() {
         return internalList.iterator();
     }
-
 }

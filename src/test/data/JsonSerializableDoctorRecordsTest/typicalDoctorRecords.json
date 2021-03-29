@@ -1,0 +1,22 @@
+{
+  "_comment": "AddressBook save file which contains the same Doctor values as in TypicalDoctors#getTypicalDoctorRecords()",
+  "doctors" : [ {
+    "name" : "Dr Meredith Grey",
+    "tagged" : [ "GreysAnatomy" ]
+  }, {
+    "name" : "Dr Who",
+    "tagged" : [ "DoctorWho", "TimeLord" ]
+  }, {
+    "name" : "Dr Strange",
+    "tagged" : [ ]
+  }, {
+    "name" : "Dr Jekyll",
+    "tagged" : [ "AndMrHyde" ]
+  }, {
+    "name" : "Dr Murphy",
+    "tagged" : [ ]
+  }, {
+    "name" : "Dr Drake Ramoray",
+    "tagged" : [ ]
+  } ]
+}

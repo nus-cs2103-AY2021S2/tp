@@ -22,6 +22,7 @@ import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDisplay;
 import seedu.address.model.appointment.Timeslot;
+import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Patient;
 import seedu.address.model.tag.Tag;
 
@@ -36,14 +37,14 @@ public class AddAppointmentCommand extends Command {
             + "referencing the indexes in the displayed patient records and doctor records.\n"
             + "Parameters: "
             + PREFIX_PATIENT + "PATIENT (positive integer) "
-            + PREFIX_DOCTOR + "DOCTOR "
+            + PREFIX_DOCTOR + "DOCTOR (positive integer)"
             + PREFIX_TIMESLOT_START + "TIMESLOT START "
             + "[" + PREFIX_TIMESLOT_END + "TIMESLOT END] "
             + "[" + PREFIX_TIMESLOT_DURATION + "TIMESLOT DURATION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PATIENT + "1 "
-            + PREFIX_DOCTOR + "Dr. Grey "
+            + PREFIX_DOCTOR + "2 "
             + PREFIX_TIMESLOT_START + "2021-01-01 00:00 "
             + PREFIX_TIMESLOT_DURATION + "1H 30M "
             + PREFIX_TAG + "severe "
@@ -54,18 +55,18 @@ public class AddAppointmentCommand extends Command {
             + "in the appointment schedule";
 
     public final Index patientIndex;
-    public final String doctor;
+    public final Index doctorIndex;
     public final Timeslot timeslot;
     public final Set<Tag> tagList;
 
     /**
      * Creates an AddCommand to add the specified {@code Appointment}
      */
-    public AddAppointmentCommand(Index patientIndex, String doctor, Timeslot timeslot, Set<Tag> tagList) {
-        requireAllNonNull(patientIndex, doctor, timeslot);
+    public AddAppointmentCommand(Index patientIndex, Index doctorIndex, Timeslot timeslot, Set<Tag> tagList) {
+        requireAllNonNull(patientIndex, doctorIndex, timeslot);
 
         this.patientIndex = patientIndex;
-        this.doctor = doctor;
+        this.doctorIndex = doctorIndex;
         this.timeslot = timeslot;
         this.tagList = tagList;
     }
@@ -80,9 +81,18 @@ public class AddAppointmentCommand extends Command {
         if (patientIndex.getZeroBased() >= displayedPatientRecords.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
-
         Patient patient = displayedPatientRecords.get(patientIndex.getZeroBased());
+
         UUID patientUuid = patient.getUuid();
+        List<Doctor> displayedDoctorRecords = model.getFilteredDoctorList();
+        assert displayedDoctorRecords != null : "getFilteredDoctorList method should not return null";
+
+        if (doctorIndex.getZeroBased() >= displayedDoctorRecords.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_DOCTOR_DISPLAYED_INDEX);
+        }
+        Doctor doctor = displayedDoctorRecords.get(doctorIndex.getZeroBased());
+
+
         Appointment toAdd = new Appointment(patientUuid, doctor, timeslot, tagList);
 
         if (model.hasConflictingAppointment(toAdd)) {
@@ -99,7 +109,7 @@ public class AddAppointmentCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof AddAppointmentCommand // instanceof handles nulls
                 && patientIndex.equals(((AddAppointmentCommand) other).patientIndex)
-                && doctor.equals(((AddAppointmentCommand) other).doctor)
+                && doctorIndex.equals(((AddAppointmentCommand) other).doctorIndex)
                 && timeslot.equals(((AddAppointmentCommand) other).timeslot)
                 && tagList.equals(((AddAppointmentCommand) other).tagList));
     }

@@ -1,0 +1,9 @@
+{
+  "doctors": [ {
+    "name": "Dr Alice",
+    "tagged": [ "friends" ]
+  }, {
+    "name": "Dr Alice",
+    "address": "4th street"
+  } ]
+}

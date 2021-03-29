@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Timeslot;
+import seedu.address.model.person.Doctor;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,7 +23,7 @@ public class JsonAdaptedAppointment {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Appointment's %s field is missing!";
 
     private final String patientUuid;
-    private final String doctor;
+    private final JsonAdaptedDoctor doctor;
     private final JsonAdaptedTimeslot timeslot;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -31,7 +32,7 @@ public class JsonAdaptedAppointment {
      */
     @JsonCreator
     public JsonAdaptedAppointment(@JsonProperty("patient") String patientUuid,
-                                  @JsonProperty("doctor") String doctor,
+                                  @JsonProperty("doctor") JsonAdaptedDoctor doctor,
                                   @JsonProperty("timeslot") JsonAdaptedTimeslot timeslot,
                                   @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.patientUuid = patientUuid;
@@ -48,7 +49,7 @@ public class JsonAdaptedAppointment {
      */
     public JsonAdaptedAppointment(Appointment source) {
         patientUuid = source.getPatientUuid().toString();
-        doctor = source.getDoctor();
+        doctor = new JsonAdaptedDoctor(source.getDoctor());
         timeslot = new JsonAdaptedTimeslot(source.getTimeslot());
 
         tagged.addAll(source.getTags().stream()
@@ -79,7 +80,7 @@ public class JsonAdaptedAppointment {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "doctor"));
         }
 
-        final String modelDoctor = doctor;
+        final Doctor modelDoctor = doctor.toModelType();
 
         if (timeslot == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
