@@ -20,7 +20,9 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
+import seedu.address.model.session.RecurringSession;
 import seedu.address.model.session.Session;
+import seedu.address.model.session.SessionDate;
 import seedu.address.model.student.Student;
 import seedu.address.model.tuition.Tuition;
 
@@ -33,7 +35,7 @@ public class CalendarView extends UiPart<Region> {
     private Logic logic;
     private ObservableList<Tuition> tuitionList;
 
-    // must be a monday
+    // must be a monday, change through setStartDate()
     private LocalDateTime calendarStartDate;
 
     // FXML date headers (mon - sun)
@@ -127,7 +129,6 @@ public class CalendarView extends UiPart<Region> {
                 Student currStudent = studentObservableList.get(i);
                 Session currSession = currStudent.getListOfSessions().get(j);
                 tuitionList.add(new Tuition(currStudent, currSession, i, j));
-                System.out.println(tuitionList);
             }
         }
     }
@@ -136,58 +137,74 @@ public class CalendarView extends UiPart<Region> {
         ObservableList<Student> studentObservableList = logic.getFilteredStudentList();
         studentObservableList.addListener((ListChangeListener<Student>) change -> {
             while (change.next()) {
-                tuitionList.clear();
-                for (int i = 0; i < studentObservableList.size(); i++) {
-                    for (int j = 0; j < studentObservableList.get(i).getListOfSessions().size(); j++) {
-                        Student currStudent = studentObservableList.get(i);
-                        Session currSession = currStudent.getListOfSessions().get(j);
-                        tuitionList.add(new Tuition(currStudent, currSession, i, j));
-                    }
-                }
+                populateTuitions();
             }
         });
     }
 
     private void setListViews(ObservableList<Tuition> tuitionList) {
+        Comparator<Tuition> compareSessionDate = Comparator.comparing(a -> a.getSession().getSessionDate().getDateTime());
+
         monListView.setItems(tuitionList
-                .filtered(tuitionItem -> isSameDay(tuitionItem.getSession().getSessionDate().getDateTime(), calendarStartDate))
-                .sorted(Comparator.comparing(a -> a.getSession().getSessionDate().getDateTime()))
+                .filtered(tuitionItem ->
+                        isSameDay(tuitionItem.getSession().getSessionDate().getDateTime(),
+                                calendarStartDate)
+                )
+                .sorted(compareSessionDate)
         );
         monListView.setCellFactory(listView -> new CalendarViewCell());
 
         tueListView.setItems(tuitionList
-                .filtered(tuitionItem -> isSameDay(tuitionItem.getSession().getSessionDate().getDateTime(), calendarStartDate.plusDays(1)))
-                .sorted(Comparator.comparing(a -> a.getSession().getSessionDate().getDateTime()))
+                .filtered(tuitionItem ->
+                        isSameDay(tuitionItem.getSession().getSessionDate().getDateTime(),
+                                calendarStartDate.plusDays(1))
+                )
+                .sorted(compareSessionDate)
         );
         tueListView.setCellFactory(listView -> new CalendarViewCell());
 
         wedListView.setItems(tuitionList
-                .filtered(tuitionItem -> isSameDay(tuitionItem.getSession().getSessionDate().getDateTime(), calendarStartDate.plusDays(2)))
-                .sorted(Comparator.comparing(a -> a.getSession().getSessionDate().getDateTime()))
+                .filtered(tuitionItem ->
+                        isSameDay(tuitionItem.getSession().getSessionDate().getDateTime(),
+                                calendarStartDate.plusDays(2)) || (tuitionItem.getSession() instanceof RecurringSession && ((RecurringSession) tuitionItem.getSession()).hasSessionOnDate(new SessionDate(calendarStartDate.plusDays(2))))
+                )
+                .sorted(compareSessionDate)
         );
         wedListView.setCellFactory(listView -> new CalendarViewCell());
 
         thurListView.setItems(tuitionList
-                .filtered(tuitionItem -> isSameDay(tuitionItem.getSession().getSessionDate().getDateTime(), calendarStartDate.plusDays(3)))
-                .sorted(Comparator.comparing(a -> a.getSession().getSessionDate().getDateTime()))
+                .filtered(tuitionItem ->
+                        isSameDay(tuitionItem.getSession().getSessionDate().getDateTime(),
+                                calendarStartDate.plusDays(3))
+                )
+                .sorted(compareSessionDate)
         );
         thurListView.setCellFactory(listView -> new CalendarViewCell());
 
         friListView.setItems(tuitionList
-                .filtered(tuitionItem -> isSameDay(tuitionItem.getSession().getSessionDate().getDateTime(), calendarStartDate.plusDays(4)))
-                .sorted(Comparator.comparing(a -> a.getSession().getSessionDate().getDateTime()))
+                .filtered(tuitionItem ->
+                        isSameDay(tuitionItem.getSession().getSessionDate().getDateTime(),
+                                calendarStartDate.plusDays(4))
+                )
+                .sorted(compareSessionDate)
         );
         friListView.setCellFactory(listView -> new CalendarViewCell());
 
         satListView.setItems(tuitionList
-                .filtered(tuitionItem -> isSameDay(tuitionItem.getSession().getSessionDate().getDateTime(), calendarStartDate.plusDays(5)))
-                .sorted(Comparator.comparing(a -> a.getSession().getSessionDate().getDateTime()))
+                .filtered(tuitionItem ->
+                        isSameDay(tuitionItem.getSession().getSessionDate().getDateTime(),
+                                calendarStartDate.plusDays(5))
+                )
+                .sorted(compareSessionDate)
         );
         satListView.setCellFactory(listView -> new CalendarViewCell());
 
         sunListView.setItems(tuitionList
-                .filtered(tuitionItem -> isSameDay(tuitionItem.getSession().getSessionDate().getDateTime(), calendarStartDate.plusDays(6)))
-                .sorted(Comparator.comparing(a -> a.getSession().getSessionDate().getDateTime()))
+                .filtered(tuitionItem ->
+                        isSameDay(tuitionItem.getSession().getSessionDate().getDateTime(),
+                                calendarStartDate.plusDays(6))
+                )
+                .sorted(compareSessionDate)
         );
         sunListView.setCellFactory(listView -> new CalendarViewCell());
     }
