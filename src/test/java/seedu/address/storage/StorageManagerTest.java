@@ -26,7 +26,9 @@ public class StorageManagerTest {
     public void setUp() {
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        JsonShortcutLibraryStorage shortcutLibraryStorage = new JsonShortcutLibraryStorage(
+                getTempFilePath("shlib"));
+        storageManager = new StorageManager(addressBookStorage, userPrefsStorage, shortcutLibraryStorage);
     }
 
     private Path getTempFilePath(String fileName) {

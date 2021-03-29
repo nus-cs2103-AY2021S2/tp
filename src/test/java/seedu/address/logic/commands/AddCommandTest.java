@@ -24,6 +24,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.attribute.Attribute;
 import seedu.address.model.person.Person;
+import seedu.address.model.shortcut.ShortcutLibrary;
 import seedu.address.storage.Authentication;
 import seedu.address.testutil.PersonBuilder;
 
@@ -82,6 +83,7 @@ public class AddCommandTest {
      * A default model stub that have all of the methods failing.
      */
     private class ModelStub implements Model {
+
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -110,6 +112,16 @@ public class AddCommandTest {
         @Override
         public void setAddressBookFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getShortcutLibraryFilePath() {
+            return null;
+        }
+
+        @Override
+        public void setShortcutLibraryFilePath(Path shortcutLibraryFilePath) {
+
         }
 
         @Override
@@ -170,6 +182,36 @@ public class AddCommandTest {
         @Override
         public void updateSortedPersonList(Comparator<Person> comparator) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setShortcutLibrary(ShortcutLibrary shortcutLibrary) {
+
+        }
+
+        @Override
+        public ShortcutLibrary getShortcutLibrary() {
+            return null;
+        }
+
+        @Override
+        public boolean hasShortcut(String shortcutName) {
+            return false;
+        }
+
+        @Override
+        public void deleteShortcut(String shortcutName) {
+
+        }
+
+        @Override
+        public void addShortcut(String shortcutName, String shortcutCommand) {
+
+        }
+
+        @Override
+        public void setShortcut(String target, String shortcutCommand) {
+
         }
     }
 
