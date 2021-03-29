@@ -89,24 +89,25 @@ public class CommandBox extends UiPart<Region> {
         case Z:
             try {
                 if (event.isShiftDown() && event.isShortcutDown()) {
+                    commandTextField.clear();
                     commandExecutor.execute("redo");
-                } else if (event.isControlDown()) {
+                } else if (event.isShortcutDown()) {
+                    commandTextField.clear();
                     commandExecutor.execute("undo");
                 }
             } catch (CommandException | ParseException e) {
                 setStyleToIndicateCommandFailure();
             }
-            commandTextField.clear();
             break;
         case Y:
             try {
                 if (event.isShortcutDown()) {
+                    commandTextField.clear();
                     commandExecutor.execute("redo");
                 }
             } catch (CommandException | ParseException e) {
                 setStyleToIndicateCommandFailure();
             }
-            commandTextField.clear();
             break;
         default:
             break;
