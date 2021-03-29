@@ -1,5 +1,7 @@
 package seedu.partyplanet.model.event;
 
+import static seedu.partyplanet.commons.util.AppUtil.checkArgument;
+
 import seedu.partyplanet.model.date.Date;
 
 /**
@@ -9,8 +11,8 @@ import seedu.partyplanet.model.date.Date;
 public class EventDate extends Date {
 
     public static final String MESSAGE_CONSTRAINTS = "Event dates should be in one of the following formats:\n"
-            + Date.MESSAGE_CONSTRAINTS;
-
+            + MESSAGE_YEAR_FORMATS + "\n" + MESSAGE_NOYEAR_FORMATS;
+    public static final String MESSAGE_YEAR_CONSTRAINTS = "A year is required for the input\n";
     public static final EventDate EMPTY_EVENT_DATE = new EventDate();
 
     /**
@@ -21,7 +23,8 @@ public class EventDate extends Date {
      * @param eventDate A valid eventDate.
      */
     public EventDate(String eventDate) {
-        super(eventDate, true);
+        super(eventDate);
+        checkArgument(hasYear(), MESSAGE_YEAR_CONSTRAINTS);
     }
 
     /**
@@ -37,25 +40,4 @@ public class EventDate extends Date {
     public static boolean isValidEventDate(String test) {
         return isValidDate(test);
     }
-
-
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-        if (!(other instanceof EventDate)) {
-            return false;
-        }
-        if (isEmpty == EventDate.isEmptyDate((EventDate) other)) {
-            return true;
-        }
-        return value.equals(((EventDate) other).value);
-    }
-
-    @Override
-    public int hashCode() {
-        return value.hashCode();
-    }
-
 }

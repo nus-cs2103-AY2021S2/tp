@@ -2,9 +2,11 @@ package seedu.partyplanet.logic.parser;
 
 import static seedu.partyplanet.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.partyplanet.logic.commands.ListCommand.SORT_BIRTHDAY;
+import static seedu.partyplanet.logic.commands.ListCommand.SORT_BIRTHDAY_UPCOMING;
 import static seedu.partyplanet.logic.commands.ListCommand.SORT_NAME;
 import static seedu.partyplanet.logic.parser.CliSyntax.FLAG_ANY;
 import static seedu.partyplanet.logic.parser.CliSyntax.FLAG_EXACT;
+import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_ORDER;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_SORT;
@@ -20,6 +22,7 @@ import java.util.function.Predicate;
 import seedu.partyplanet.logic.commands.ListCommand;
 import seedu.partyplanet.logic.parser.exceptions.ParseException;
 import seedu.partyplanet.model.person.Person;
+import seedu.partyplanet.model.person.predicates.BirthdayContainsMonthPredicate;
 import seedu.partyplanet.model.person.predicates.NameContainsExactKeywordsPredicate;
 import seedu.partyplanet.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.partyplanet.model.person.predicates.TagsContainsExactTagPredicate;
@@ -39,7 +42,7 @@ public class ListCommandParser implements Parser<ListCommand> {
      */
     public ListCommand parse(String args) throws ParseException {
         ArgumentMultimap argMap = ArgumentTokenizer.tokenize(
-                args, PREFIX_NAME, PREFIX_TAG, PREFIX_SORT, PREFIX_ORDER, FLAG_EXACT, FLAG_ANY);
+                args, PREFIX_NAME, PREFIX_TAG, PREFIX_BIRTHDAY, PREFIX_SORT, PREFIX_ORDER, FLAG_EXACT, FLAG_ANY);
 
         if (!argMap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
@@ -53,7 +56,7 @@ public class ListCommandParser implements Parser<ListCommand> {
     /**
      * Returns the overall filtering predicate.
      */
-    private Predicate<Person> getPredicate(ArgumentMultimap argMap) {
+    private Predicate<Person> getPredicate(ArgumentMultimap argMap) throws ParseException {
         List<Predicate<Person>> predicates = getPredicates(argMap);
         return mergePredicates(predicates, argMap);
     }
@@ -61,7 +64,7 @@ public class ListCommandParser implements Parser<ListCommand> {
     /**
      * Returns a list of filtering predicates depending on whether partial search is disabled.
      */
-    private List<Predicate<Person>> getPredicates(ArgumentMultimap argMap) {
+    private List<Predicate<Person>> getPredicates(ArgumentMultimap argMap) throws ParseException {
         boolean isExactSearch = argMap.contains(FLAG_EXACT);
         List<Predicate<Person>> predicates = new ArrayList<>();
         if (isExactSearch) {
@@ -78,6 +81,9 @@ public class ListCommandParser implements Parser<ListCommand> {
             for (String tag : argMap.getAllValues(PREFIX_TAG)) {
                 predicates.add(new TagsContainsTagPredicate(tag));
             }
+        }
+        for (String month : argMap.getAllValues(PREFIX_BIRTHDAY)) {
+            predicates.add(new BirthdayContainsMonthPredicate(month));
         }
         return predicates;
     }
@@ -127,6 +133,9 @@ public class ListCommandParser implements Parser<ListCommand> {
             case "b": // fallthrough
             case "birthday":
                 return SORT_BIRTHDAY;
+            case "u": // fallthrough
+            case "upcoming":
+                return SORT_BIRTHDAY_UPCOMING;
             default:
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
@@ -140,7 +149,7 @@ public class ListCommandParser implements Parser<ListCommand> {
     private Comparator<Person> applySortDirection(
             Comparator<Person> comparator, ArgumentMultimap argMap) throws ParseException {
         Optional<String> orderType = argMap.getValue(PREFIX_ORDER);
-        if (orderType.isEmpty()) {
+        if (orderType.isEmpty() || comparator == SORT_BIRTHDAY_UPCOMING) {
             return comparator; // default
         } else {
             switch (orderType.get().toLowerCase()) {
