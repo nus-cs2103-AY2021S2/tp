@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 
+import java.time.LocalDateTime;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -12,8 +14,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.fee.Month;
 import seedu.address.model.fee.Year;
-
-import java.time.LocalDateTime;
 
 public class GetMonthlyFeeCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
