@@ -78,9 +78,9 @@ public class Event extends Repeatable {
     @Override
     public String toString() {
         if (getIsWeekly() == false) {
-            return this.description + " (at: " + DateUtil.decodeDate(date) + " " + TimeUtil.decodeTime(time) + ")";
+            return this.description + " (on: " + DateUtil.decodeDate(date) + " at:" + TimeUtil.decodeTime(time) + ")";
         }
 
-        return this.description + " (at: " + DateUtil.decodeDate(date) + " " + TimeUtil.decodeTime(time) + " [WEEKLY])";
+        return this.description + " (on: " + DateUtil.decodeDateWithDay(date) + " at:" + TimeUtil.decodeTime(time) + " [WEEKLY])";
     }
 }

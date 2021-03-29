@@ -21,7 +21,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.project.Project;
-import seedu.address.model.task.Interval;
 import seedu.address.model.task.repeatable.Event;
 import seedu.address.testutil.EventBuilder;
 

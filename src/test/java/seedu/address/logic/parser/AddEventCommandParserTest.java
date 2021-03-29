@@ -34,7 +34,8 @@ public class AddEventCommandParserTest {
     public void parse_allFieldsPresent_success() {
         Index expectedProjectIndex = Index.fromOneBased(1);
         Event expectedEvent = new EventBuilder().withDescription("CS2106 Tutorial")
-                .withDate(LocalDate.of(2020, 1, 1)).withTime(LocalTime.of(17, 30)).withIsWeekly(false).build();
+                .withDate(LocalDate.of(2020, 1, 1)).withTime(LocalTime.of(17, 30))
+                .withIsWeekly(false).build();
 
         // all field appear
         assertParseSuccess(parser, INDEX_STANDALONE_ONE + VALID_DESCRIPTION
@@ -81,7 +82,8 @@ public class AddEventCommandParserTest {
 
         // invalid description
         assertParseFailure(parser, INDEX_STANDALONE_ONE + INVALID_DESCRIPTION
-                + VALID_EVENT_DATE + VALID_EVENT_TIME + VALID_EVENT_WEEKLY, Messages.MESSAGE_PARSER_DESCRIPTION_CONSTRAINTS);
+                + VALID_EVENT_DATE + VALID_EVENT_TIME + VALID_EVENT_WEEKLY,
+                Messages.MESSAGE_PARSER_DESCRIPTION_CONSTRAINTS);
 
         // invalid date
         assertParseFailure(parser, INDEX_STANDALONE_ONE + VALID_DESCRIPTION
@@ -93,6 +95,7 @@ public class AddEventCommandParserTest {
 
         // invalid weekly
         assertParseFailure(parser, INDEX_STANDALONE_ONE + VALID_DESCRIPTION
-                + VALID_EVENT_DATE + VALID_EVENT_TIME + INVALID_EVENT_WEEKLY, Messages.MESSAGE_PARSER_WEEKLY_CONSTRAINTS);
+                + VALID_EVENT_DATE + VALID_EVENT_TIME + INVALID_EVENT_WEEKLY,
+                Messages.MESSAGE_PARSER_WEEKLY_CONSTRAINTS);
     }
 }
