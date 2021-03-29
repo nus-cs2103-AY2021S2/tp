@@ -83,7 +83,7 @@ public class UpdateGroupmateCommand extends Command {
         Groupmate groupmateToUpdate = groupmates.get(targetGroupmateIndex.getZeroBased());
         Groupmate updatedGroupmate = createUpdatedGroupmate(groupmateToUpdate, updateGroupmateDescriptor);
 
-        if (groupmates.contains(updatedGroupmate) && !groupmateToUpdate.equals(updatedGroupmate)) {
+        if (groupmates.contains(updatedGroupmate) && !groupmateToUpdate.isSameGroupmate(updatedGroupmate)) {
             throw new CommandException(MESSAGE_DUPLICATE_GROUPMATE);
         }
 
