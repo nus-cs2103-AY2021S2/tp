@@ -1,7 +1,7 @@
 package seedu.address.commons.util;
 
-import seedu.address.commons.exceptions.DateConversionException;
-import seedu.address.commons.exceptions.TimeConversionException;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_PARSER_TIME_CONSTRAINTS;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -9,8 +9,7 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_PARSER_TIME_CONSTRAINTS;
+import seedu.address.commons.exceptions.TimeConversionException;
 
 /**
  * A class for encoding and decoding of Time.
@@ -31,7 +30,7 @@ public class TimeUtil {
      * Encodes a time passed as a String into a LocalTime.
      * @param time Time in the HHmm or HH:mm format.
      * @return A LocalTime object.
-     * @throws DateConversionException Occurs when a date had been passed in with the wrong format.
+     * @throws TimeConversionException Occurs when a date had been passed in with the wrong format.
      */
     public static LocalTime encodeTime(String time) throws TimeConversionException {
         requireNonNull(time);
