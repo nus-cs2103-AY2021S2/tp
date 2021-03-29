@@ -133,7 +133,7 @@ public class Quiz {
         Collections.shuffle(flashcardsToProcess);
         Queue<Flashcard> randomizedQueue = new LinkedList<>();
         for (Flashcard f : flashcardsToProcess) {
-            if (f.getTags().containsAll(tags)) {
+            if (f.getWeeblingoTags().containsAll(tags) || f.getUserTags().containsAll(tags)) {
                 randomizedQueue.offer(f);
             }
         }
