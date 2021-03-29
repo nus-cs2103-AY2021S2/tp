@@ -215,16 +215,25 @@ Shows a list of all appointments in the app.
 Updates the status of a property from Option to Purchase, to Sales and Purchase Agreement to Completion
 
 Formats:
-* `update INDEX u/new AMOUNT`
-* `update INDEX u/proceed`
-* `update INDEX u/cancel`
+* `update INDEX OPTION`
 
 Description:
 * Updates the status of the property at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …​
-* The `new` keyword can only be used on a property without an existing status
-* `proceed` or `cancel` can only be used on a property with an existing status
-* `proceed` would move the status on to the next one. e.g. Option to Sales Agreement or Sales Agreement to Completion
-* `cancel` would remove the status of the property
+  
+Options:
+* `u/new AMOUNT`
+  
+    The `new` keyword can only be used on a property without an existing status
+  
+
+* `u/proceed`
+  
+    Can only be used on a property with an existing status. `proceed` would move the status on to the next one. e.g. Option to Sales Agreement or Sales Agreement to Completion
+  
+
+* `u/cancel`
+
+  Can only be used on a property with an existing status. `cancel` would remove the status of the property
 
 Examples:
 *  `update 1 u/new 600000` Creates a new status with amount 600000 for the 1st property.
@@ -377,9 +386,7 @@ Action | Format, Examples
 **List all** | `list all`
 **List property** | `list property`
 **List appointment** | `list appointment`
-**Add new status** | `update INDEX u/new AMOUNT`<br><br> e.g.,`update 1 u/new 600000`
-**Proceed to the next status** | `update INDEX u/proceed`
-**Remove a status** | `update INDEX u/cancel`
+**Update status** | `update INDEX OPTION`<br><br> Options: <br><ul> <li>`u/new AMOUNT`</li> <li>`u/proceed`</li> <li>`u/cancel`</li> </ul> e.g.,`update 1 u/new 600000`
 **Sort** | `sort appointment o/SORTING_ORDER k/SORTING_KEY `<br> e.g., `sort appointment o/asc k/datetime`<br><br>`sort property o/SORTING_ORDER k/SORTING_KEY `<br> e.g., `sort property o/asc k/price`
 **Find property** | `find property [KEYWORD]... [OPTION]...` <br><br> Options: <br>{::nomarkdown}<ul> <li>{:/}`[t/PROPERTY_TYPE]`{::nomarkdown}</li> <li>{:/}`[pl/PRICE_UPPER_LIMIT]`{::nomarkdown}</li> <li>{:/}`[pm/PRICE_LOWER_LIMIT]`{::nomarkdown}</li> </ul>{:/} e.g. `find property bishan north t/hdb pl/$1,000,000`
 **Find appointment** | `find property [KEYWORD]` <br> e.g., `find appointment bob`
