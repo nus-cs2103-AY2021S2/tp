@@ -30,8 +30,8 @@ public class JsonAdaptedProjectTest {
     private static final List<JsonAdaptedTodo> VALID_TODO_LIST = VALID_PROJECT.getTodos().stream()
             .map(JsonAdaptedTodo::new)
             .collect(Collectors.toList());
-    private static final List<JsonAdaptedPerson> VALID_PARTICIPANT_LIST = VALID_PROJECT.getParticipants().stream()
-            .map(JsonAdaptedPerson::new)
+    private static final List<JsonAdaptedGroupmate> VALID_GROUPMATE_LIST = VALID_PROJECT.getGroupmates().stream()
+            .map(JsonAdaptedGroupmate::new)
             .collect(Collectors.toList());
 
     @Test
@@ -44,7 +44,7 @@ public class JsonAdaptedProjectTest {
     public void toModelType_validParameters_success() {
         JsonAdaptedProject project =
                 new JsonAdaptedProject(VALID_DESCRIPTION, VALID_EVENT_LIST, VALID_TODO_LIST,
-                        VALID_DEADLINE_LIST, VALID_PARTICIPANT_LIST);
+                        VALID_DEADLINE_LIST, VALID_GROUPMATE_LIST);
         assertDoesNotThrow(project::toModelType);
     }
 
@@ -52,7 +52,7 @@ public class JsonAdaptedProjectTest {
     public void toModelType_invalidDescription_throwsIllegalValueException() {
         JsonAdaptedProject project =
                 new JsonAdaptedProject(INVALID_DESCRIPTION, VALID_EVENT_LIST, VALID_TODO_LIST,
-                        VALID_DEADLINE_LIST, VALID_PARTICIPANT_LIST);
+                        VALID_DEADLINE_LIST, VALID_GROUPMATE_LIST);
         String expectedMessage = ProjectName.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
     }
@@ -60,7 +60,7 @@ public class JsonAdaptedProjectTest {
     @Test
     public void toModelType_nullDescription_throwsIllegalValueException() {
         JsonAdaptedProject project = new JsonAdaptedProject(null, VALID_EVENT_LIST, VALID_TODO_LIST,
-                VALID_DEADLINE_LIST, VALID_PARTICIPANT_LIST);
+                VALID_DEADLINE_LIST, VALID_GROUPMATE_LIST);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ProjectName.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
     }

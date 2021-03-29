@@ -35,7 +35,9 @@ public class ProjectListPanel extends UiPart<Region> {
         projectListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Project>() {
             @Override
             public void changed(ObservableValue<? extends Project> observable, Project oldValue, Project newValue) {
-                mainWindow.displayProject(newValue);
+                if (newValue != null) {
+                    mainWindow.displayProject(newValue);
+                }
             }
         });
     }

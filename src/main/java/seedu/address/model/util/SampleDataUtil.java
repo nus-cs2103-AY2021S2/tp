@@ -12,14 +12,16 @@ import seedu.address.commons.exceptions.DateConversionException;
 import seedu.address.commons.exceptions.TimeConversionException;
 import seedu.address.model.ColabFolder;
 import seedu.address.model.ReadOnlyColabFolder;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.contact.Address;
+import seedu.address.model.contact.Contact;
+import seedu.address.model.contact.Email;
+import seedu.address.model.contact.Name;
+import seedu.address.model.contact.Phone;
+import seedu.address.model.groupmate.Groupmate;
+import seedu.address.model.groupmate.Role;
 import seedu.address.model.project.DeadlineList;
 import seedu.address.model.project.EventList;
-import seedu.address.model.project.ParticipantList;
+import seedu.address.model.project.GroupmateList;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.TodoList;
@@ -37,8 +39,8 @@ public class SampleDataUtil {
 
     public static ReadOnlyColabFolder getSampleColabFolder() {
         ColabFolder sampleAb = new ColabFolder();
-        for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+        for (Contact sampleContact : getSampleContacts()) {
+            sampleAb.addContact(sampleContact);
         }
         for (Project sampleProject : getSampleProjects()) {
             sampleAb.addProject(sampleProject);
@@ -46,24 +48,24 @@ public class SampleDataUtil {
         return sampleAb;
     }
 
-    public static Person[] getSamplePersons() {
-        return new Person[] {
-            new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
+    public static Contact[] getSampleContacts() {
+        return new Contact[] {
+            new Contact(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
                 getTagSet("friends")),
-            new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
+            new Contact(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                 getTagSet("colleagues", "friends")),
-            new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
+            new Contact(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                 getTagSet("neighbours")),
-            new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
+            new Contact(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                 getTagSet("family")),
-            new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
+            new Contact(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
                 getTagSet("classmates")),
-            new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
+            new Contact(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
                 getTagSet("colleagues"))
         };
@@ -77,6 +79,17 @@ public class SampleDataUtil {
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
                 .map(Tag::new)
+                .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a role set containing the list of strings given.
+     *
+     * @return A {@code Set<Role>} containing the list of strings given.
+     */
+    public static Set<Role> getRoleSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(Role::new)
                 .collect(Collectors.toSet());
     }
 
@@ -103,7 +116,7 @@ public class SampleDataUtil {
     public static Project getCS2103TProject() throws DateConversionException, TimeConversionException {
         ProjectName projectName = new ProjectName("CS2103T Team Project");
         return new Project(projectName, getCS2103TEventList(), getCS2103TTodosList(),
-                getCS2103TDeadlineList(), getCS2103TParticipantsList());
+                getCS2103TDeadlineList(), getCS2103TGroupmateList());
     }
 
     /**
@@ -114,7 +127,7 @@ public class SampleDataUtil {
     public static Project getCS2101Project() throws DateConversionException, TimeConversionException {
         ProjectName projectName = new ProjectName("CS2101 OP2");
         return new Project(projectName, getCS2101EventList(), getCS2101TodosList(),
-                getCS2101DeadlineList(), getCS2101ParticipantsList());
+                getCS2101DeadlineList(), getCS2101GroupmateList());
     }
 
     private static EventList getCS2103TEventList() throws DateConversionException, TimeConversionException {
@@ -146,7 +159,7 @@ public class SampleDataUtil {
         return deadlineList;
     }
 
-    private static TodoList getCS2103TTodosList() throws DateConversionException {
+    private static TodoList getCS2103TTodosList() {
         Todo todoUpdateDocs = new Todo("Update documentation", DONE);
         Todo todoAddCommand = new Todo("Finish add command", NOT_DONE);
         Todo todoTests = new Todo("Add unit tests", NOT_DONE);
@@ -161,23 +174,19 @@ public class SampleDataUtil {
         return todoList;
     }
 
-    private static ParticipantList getCS2103TParticipantsList() throws DateConversionException {
-        Person dahn = new Person(new Name("Dahn"), new Phone("91234561"), new Email("dahn@colab.com"),
-                new Address("1 CoLAB Road"), new HashSet<>());
-        Person ruochen = new Person(new Name("Ruochen"), new Phone("91234562"), new Email("ruochen@colab.com"),
-                new Address("1 CoLAB Road"), new HashSet<>());
-        Person samuel = new Person(new Name("Samuel"), new Phone("91234563"), new Email("samuel@colab.com"),
-                new Address("1 CoLAB Road"), new HashSet<>());
-        Person vevek = new Person(new Name("Vevek"), new Phone("91234564"), new Email("vevek@colab.com"),
-                new Address("1 CoLAB Road"), new HashSet<>());
+    private static GroupmateList getCS2103TGroupmateList() {
+        Groupmate danh = new Groupmate(new seedu.address.model.groupmate.Name("Danh"), new HashSet<>());
+        Groupmate ruochen = new Groupmate(new seedu.address.model.groupmate.Name("Ruochen"), new HashSet<>());
+        Groupmate samuel = new Groupmate(new seedu.address.model.groupmate.Name("Samuel"), new HashSet<>());
+        Groupmate vevek = new Groupmate(new seedu.address.model.groupmate.Name("Vevek"), new HashSet<>());
 
-        ParticipantList participantList = new ParticipantList();
-        participantList.addParticipant(dahn);
-        participantList.addParticipant(ruochen);
-        participantList.addParticipant(samuel);
-        participantList.addParticipant(vevek);
+        GroupmateList groupmateList = new GroupmateList();
+        groupmateList.addGroupmate(danh);
+        groupmateList.addGroupmate(ruochen);
+        groupmateList.addGroupmate(samuel);
+        groupmateList.addGroupmate(vevek);
 
-        return participantList;
+        return groupmateList;
     }
 
     private static EventList getCS2101EventList() throws DateConversionException, TimeConversionException {
@@ -216,7 +225,7 @@ public class SampleDataUtil {
         return deadlineList;
     }
 
-    private static TodoList getCS2101TodosList() throws DateConversionException {
+    private static TodoList getCS2101TodosList() {
         Todo todoSplitWorkload = new Todo("Split Workload", DONE);
         Todo todoSlidesForPitch = new Todo("Do up slides for pitch", NOT_DONE);
         Todo todoVideoForDemo = new Todo("Do up video for demo", NOT_DONE);
@@ -229,22 +238,18 @@ public class SampleDataUtil {
         return todoList;
     }
 
-    private static ParticipantList getCS2101ParticipantsList() throws DateConversionException {
-        Person dahn = new Person(new Name("Dahn"), new Phone("91234561"), new Email("dahn@colab.com"),
-                new Address("1 CoLAB Road"), new HashSet<>());
-        Person ruochen = new Person(new Name("Ruochen"), new Phone("91234562"), new Email("ruochen@colab.com"),
-                new Address("1 CoLAB Road"), new HashSet<>());
-        Person samuel = new Person(new Name("Samuel"), new Phone("91234563"), new Email("samuel@colab.com"),
-                new Address("1 CoLAB Road"), new HashSet<>());
-        Person vevek = new Person(new Name("Vevek"), new Phone("91234564"), new Email("vevek@colab.com"),
-                new Address("1 CoLAB Road"), new HashSet<>());
+    private static GroupmateList getCS2101GroupmateList() {
+        Groupmate danh = new Groupmate(new seedu.address.model.groupmate.Name("Danh"), new HashSet<>());
+        Groupmate ruochen = new Groupmate(new seedu.address.model.groupmate.Name("Ruochen"), new HashSet<>());
+        Groupmate samuel = new Groupmate(new seedu.address.model.groupmate.Name("Samuel"), new HashSet<>());
+        Groupmate vevek = new Groupmate(new seedu.address.model.groupmate.Name("Vevek"), new HashSet<>());
 
-        ParticipantList participantList = new ParticipantList();
-        participantList.addParticipant(dahn);
-        participantList.addParticipant(ruochen);
-        participantList.addParticipant(samuel);
-        participantList.addParticipant(vevek);
+        GroupmateList groupmateList = new GroupmateList();
+        groupmateList.addGroupmate(danh);
+        groupmateList.addGroupmate(ruochen);
+        groupmateList.addGroupmate(samuel);
+        groupmateList.addGroupmate(vevek);
 
-        return participantList;
+        return groupmateList;
     }
 }

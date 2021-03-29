@@ -14,7 +14,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.groupmate.Groupmate;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.CompletableTodo;
@@ -31,7 +31,7 @@ public class ProjectDisplayPanel extends UiPart<Region> {
 
     private static final int SAFETY_MARGIN = 5; // Applied to each listview to prevent card from being cut off
     private static final int EVENTS_CARD_HEIGHT = 50;
-    private static final int DEADLINES_CARD_HEIGHT = 35;
+    private static final int DEADLINES_CARD_HEIGHT = 45;
     private static final int GROUPMATES_CARD_HEIGHT = 105;
 
     private final Logger logger = LogsCenter.getLogger(ProjectDisplayPanel.class);
@@ -52,7 +52,7 @@ public class ProjectDisplayPanel extends UiPart<Region> {
     private ListView<CompletableTodo> completableTodoListView;
 
     @FXML
-    private ListView<Person> participantListView;
+    private ListView<Groupmate> groupmateListView;
 
     /**
      * Creates a {@code ProjectDisplayPanel}.
@@ -74,7 +74,7 @@ public class ProjectDisplayPanel extends UiPart<Region> {
         setUpEventList(project.getEvents().getEvents());
         setUpDeadlinesList(project.getDeadlines().getDeadlines());
         setUpTodoList(project.getTodos().getTodos());
-        setUpGroupmatesList(project.getParticipants().getParticipants());
+        setUpGroupmatesList(project.getGroupmates().getGroupmates());
     }
 
     private void setUpTodoList(ObservableList<CompletableTodo> todos) {
@@ -82,11 +82,11 @@ public class ProjectDisplayPanel extends UiPart<Region> {
         completableTodoListView.setCellFactory(listView -> new ProjectDisplayPanel.CompletableTodoListViewCell());
     }
 
-    private void setUpGroupmatesList(ObservableList<Person> groupmates) {
-        participantListView.prefHeightProperty()
+    private void setUpGroupmatesList(ObservableList<Groupmate> groupmates) {
+        groupmateListView.prefHeightProperty()
                 .bind(Bindings.size(groupmates).multiply(GROUPMATES_CARD_HEIGHT).add(SAFETY_MARGIN));
-        participantListView.setItems(new FilteredList<>(groupmates));
-        participantListView.setCellFactory(listView -> new ProjectDisplayPanel.ParticipantListViewCell());
+        groupmateListView.setItems(new FilteredList<>(groupmates));
+        groupmateListView.setCellFactory(listView -> new GroupmateListViewCell());
     }
 
     private void setUpDeadlinesList(ObservableList<CompletableDeadline> deadlines) {
@@ -172,18 +172,18 @@ public class ProjectDisplayPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonDisplayCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Groupmate} using a {@code GroupmateCard}.
      */
-    class ParticipantListViewCell extends ListCell<Person> {
+    class GroupmateListViewCell extends ListCell<Groupmate> {
         @Override
-        protected void updateItem(Person person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(Groupmate groupmate, boolean empty) {
+            super.updateItem(groupmate, empty);
 
-            if (empty || person == null) {
+            if (empty || groupmate == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                setGraphic(new GroupmateCard(groupmate, getIndex() + 1).getRoot());
             }
         }
     }

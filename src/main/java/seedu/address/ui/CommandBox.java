@@ -3,7 +3,10 @@ package seedu.address.ui;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
+import seedu.address.logic.commandhistory.CommandHistory;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -16,6 +19,7 @@ public class CommandBox extends UiPart<Region> {
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
 
+    private final CommandHistory commandHistory = CommandHistory.getCommandHistory();
     private final CommandExecutor commandExecutor;
 
     @FXML
@@ -32,6 +36,37 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
+     * Handles the UP and DOWN key code pressed event for navigating through the {@code CommandHistory}.
+     */
+    @FXML
+    private void handleKeyPressed(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.UP) {
+            handleUpPressed();
+        } else if (keyEvent.getCode() == KeyCode.DOWN) {
+            handleDownPressed();
+        }
+    }
+
+
+    private void handleUpPressed() {
+        String previousCommand = commandTextField.getText();
+        String command = commandHistory.getPrevious(previousCommand);
+
+        if (!previousCommand.equals(command)) {
+            setStyleToDefault();
+        }
+
+        commandTextField.setText(command);
+        commandTextField.end();
+    }
+
+    private void handleDownPressed() {
+        String command = commandHistory.getNext(commandTextField.getText());
+        commandTextField.setText(command);
+        commandTextField.end();
+    }
+
+    /**
      * Handles the Enter button pressed event.
      */
     @FXML
@@ -44,6 +79,7 @@ public class CommandBox extends UiPart<Region> {
         try {
             commandExecutor.execute(commandText);
             commandTextField.setText("");
+            commandHistory.addCommand(commandText);
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
         }

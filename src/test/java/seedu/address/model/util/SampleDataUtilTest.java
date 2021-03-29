@@ -17,8 +17,8 @@ public class SampleDataUtilTest {
     }
 
     @Test
-    public void getSamplePersons_personsValid_success() {
-        assertDoesNotThrow(SampleDataUtil::getSamplePersons);
+    public void getSampleContacts_contactsValid_success() {
+        assertDoesNotThrow(SampleDataUtil::getSampleContacts);
         assertDoesNotThrow((ThrowingSupplier<Set<Tag>>) SampleDataUtil::getTagSet);
     }
 

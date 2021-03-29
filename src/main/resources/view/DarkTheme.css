@@ -278,7 +278,7 @@
     -fx-text-fill: white;
 }
 
-#personListView, #projectListView {
+#contactListView, #projectListView {
     -fx-background-color: -DP_1_ELEVATION;
 }
 

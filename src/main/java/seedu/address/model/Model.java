@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.project.Project;
 
 /**
@@ -13,7 +13,7 @@ import seedu.address.model.project.Project;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Contact> PREDICATE_SHOW_ALL_CONTACTS = unused -> true;
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<Project> PREDICATE_SHOW_ALL_PROJECTS = unused -> true;
@@ -61,39 +61,40 @@ public interface Model {
     ReadOnlyColabFolder getColabFolder();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the CoLAB folder.
+     * Returns true if a Contact with the same identity as {@code contact} exists in the CoLAB folder.
      */
-    boolean hasPerson(Person person);
+    boolean hasContact(Contact contact);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the CoLAB folder.
+     * Deletes the given Contact.
+     * The Contact must exist in the CoLAB folder.
      */
-    void deletePerson(Person target);
+    void deleteContact(Contact target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the CoLAB folder.
+     * Adds the given Contact.
+     * {@code contact} must not already exist in the CoLAB folder.
      */
-    void addPerson(Person person);
+    void addContact(Contact contact);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given Contact {@code target} with {@code editedContact}.
      * {@code target} must exist in the CoLAB folder.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the CoLAB folder.
+     * The Contact identity of {@code editedContact} must not be the same as
+     * another existing contact in the CoLAB folder.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setContact(Contact target, Contact editedContact);
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Contact List Accessors =============================================================
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered contact list */
+    ObservableList<Contact> getFilteredContactList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered contact list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredContactList(Predicate<Contact> predicate);
 
     //=========== Projects File ==============================================================================
 

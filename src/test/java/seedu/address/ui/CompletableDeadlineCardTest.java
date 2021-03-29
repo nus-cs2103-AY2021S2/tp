@@ -78,7 +78,7 @@ public class CompletableDeadlineCardTest extends GuiUnitTest {
         // verify id is displayed correctly
         assertEquals(Integer.toString(expectedId) + ". ", deadlineCardHandle.getId());
 
-        // verify person details are displayed correctly
+        // verify contact details are displayed correctly
         assertCardDisplaysCompletableDeadline(expectedDeadline, deadlineCardHandle);
     }
 }

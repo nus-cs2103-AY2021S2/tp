@@ -64,7 +64,7 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ContactListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -82,7 +82,7 @@ The `UI` component,
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a contact).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object also contains a `UiCommand` object, which encapsulates information needed to instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -103,11 +103,11 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<Contact>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Contact` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Contact` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
@@ -135,7 +135,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Model for Tasks (Todos, Deadlines & Events)
 
-The classes and implementations used to model various Tasks (e.g. Todos, Deadlines & Events) are facilitated by `CompletableTodo`, `CompletableDeadline` and '`Repeatable` abstract classes. This design is similar to the Person model from AB3.
+The classes and implementations used to model various Tasks (e.g. Todos, Deadlines & Events) are facilitated by `CompletableTodo`, `CompletableDeadline` and '`Repeatable` abstract classes. This design is similar to the Contact model from AB3.
 
 The client creates a concrete `Todo`, `Deadline` or `Event` that encapsulates all information related to these Tasks. Each concrete `Todo`, `Deadline` or `Event` implements the `CompletableTodo`, `CompletableDeadline` and '`Repeatable` abstract classes respectively. Each `Completable` and `Repeatable` abstract class specifies specific behaviors.
 
@@ -253,16 +253,16 @@ Step 5. After the project gets updated, `Model#saveProjectsFolder` is called to 
 
 ##### Aspect: How the target contact is specified when updating contacts
 
-* **Alternative 1 (current choice):** Pass the `Index` object down to `UniquePersonList#setPerson`.
+* **Alternative 1 (current choice):** Pass the `Index` object down to `UniqueContactList#setContact`.
     * Pros: More Consistent in how to pass indexes and locate an element in a `List` throughout the codebase.
-    * Cons: Higher coupling since `UniquePersonList` now relies on `Index`.
+    * Cons: Higher coupling since `UniqueContactList` now relies on `Index`.
 
-* **Alternative 2 (implementation used in AB3):** Pass the target `Person` object to be edited to `UniquePersonList#setPerson`.
-    * Pros: Lower coupling since `Index` is not a dependency of `UniquePersonList`.
-    * Cons: Extra computation of index from the `Person` object since the index is already provided in the command. Passing the original project around does not provide more information than passing only the index.
+* **Alternative 2 (implementation used in AB3):** Pass the target `Contact` object to be edited to `UniqueContactList#setContact`.
+    * Pros: Lower coupling since `Index` is not a dependency of `UniqueContactList`.
+    * Cons: Extra computation of index from the `Contact` object since the index is already provided in the command. Passing the original project around does not provide more information than passing only the index.
 
-* **Alternative 3:** Pass the zero-based index as an integer down to `UniquePersonList#setPerson`.
-    * Pros: Will use less memory (only needs memory for an integer instead of a `Person` object or an `Index` object), no reliance on `Index`.
+* **Alternative 3:** Pass the zero-based index as an integer down to `UniqueContactList#setContact`.
+    * Pros: Will use less memory (only needs memory for an integer instead of a `Contact` object or an `Index` object), no reliance on `Index`.
     * Cons: May be confusing for new developers since some other parts of the code use one-based indexes instead.
 
 ### Add Event to Project Command [Implemented in v1.2]
@@ -317,11 +317,11 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th contact in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new contact. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -329,7 +329,7 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the contact was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -374,7 +374,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Pros: Will use less memory (e.g. for `delete`, just save the contact being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -423,11 +423,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                 | I want to …​                | So that I can…​                                                     |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               | keep track of details from peers I have crossed paths with             |
-| `* * *`  | user                                       | edit a person's details        | update their details when there is change                              |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* * *`  | user                                       | tag a person with tags         | easily keep track of who the contact is                                |
+| `* * *`  | user                                       | add a new contact               | keep track of details from peers I have crossed paths with             |
+| `* * *`  | user                                       | edit a contact's details        | update their details when there is change                              |
+| `* * *`  | user                                       | delete a contact                | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | find a contact by name          | locate details of contacts without having to go through the entire list |
+| `* * *`  | user                                       | tag a contact with tags         | easily keep track of who the contact is                                |
 | `* *`    | University Student                         | find contacts by modules taken | easily find contacts who take the same module as me                    |
 | `* *`    | Student Teaching Assistant                 | find contacts by tutorial group| easily find contacts of students in my class                           |
 | `* *`    | user                                       | purge all data in the app      | start my address book from fresh                                       |
@@ -440,12 +440,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `CoLAB` and the **Actor** is the `user`, unless specified otherwise)
 
-#### UC1 - Add a person
+#### UC1 - Add a contact
 
 **MSS**
 
-1. User requests to add a person
-2. CoLAB adds the person
+1. User requests to add a contact
+2. CoLAB adds the contact
 
    Use case ends.
 
@@ -457,20 +457,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-#### UC2 - Find details of a specific person
+#### UC2 - Find details of a specific contact
 
 **MSS**
 
-1. User requests to find a person.
-2. CoLAB shows a list of persons that match user's query.
-3. User requests to view more details about a specific person in the list.
-4. CoLAB shows more information about the person in the list.
+1. User requests to find a contact.
+2. CoLAB shows a list of contacts that match user's query.
+3. User requests to view more details about a specific contact in the list.
+4. CoLAB shows more information about the contact in the list.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The list of persons is empty.
+* 2a. The list of contacts is empty.
 
   Use case ends.
 
@@ -481,20 +481,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 
-#### UC3 - Delete a person
+#### UC3 - Delete a contact
 
 **MSS**
 
-1. User requests to list persons.
-2. CoLAB shows a list of persons.
-3. User requests to delete a specific person in the list.
-4. CoLAB deletes the person.
+1. User requests to list contacts.
+2. CoLAB shows a list of contacts.
+3. User requests to delete a specific contact in the list.
+4. CoLAB deletes the contact.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The list of persons is empty.
+* 2a. The list of contacts is empty.
 
   Use case ends.
 
@@ -521,11 +521,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-#### UC5 - Find all persons that take a certain module
+#### UC5 - Find all contacts that take a certain module
 
 **MSS**
 
-1. User requests to list all persons by modules taken.
+1. User requests to list all contacts by modules taken.
 2. CoLAB lists all entries who have taken the modules.
 
    Use case ends.
@@ -538,15 +538,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-* 2a. The list of persons is empty.
+* 2a. The list of contacts is empty.
 
   Use case ends.
 
-#### UC6 - Adding or Modifying information about a person
+#### UC6 - Adding or Modifying information about a contact
 
 **MSS**
 
-1. User requests to edit information about a person.
+1. User requests to edit information about a contact.
 2. CoLAB updates entry with new information.
 
    Use case ends.
@@ -567,7 +567,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * CoLAB should work on any _mainstream OS_ on both 32-bit and 64-bit architectures as long as it has Java `11` or above installed.
     * CoLAB should work under _common screen resolutions_. (i.e. the window should not be out of boundary)
 * Performance requirements:
-    * CoLAB should be able to hold _up to 1000 persons_ without a noticeable sluggishness in performance for typical usage.
+    * CoLAB should be able to hold _up to 1000 contacts_ and _1000 projects_ without a noticeable sluggishness in performance for typical usage.
     * The response to any command should be shown _within 1 second_.
 * Constraints:
     * CoLAB should be _backward compatible_ with data files produced by earlier versions as much as possible. If one release is not compatible with earlier versions, a migration guide should be provided.
@@ -614,17 +614,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a contact
 
-1. Deleting a person while all persons are being shown
+1. Deleting a contact while all contacts are being shown
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
 
     1. Test case: `delete 1`<br>
        Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
     1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+       Expected: No contact is deleted. Error details shown in the status message. Status bar remains the same.
 
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.

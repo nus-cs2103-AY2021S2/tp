@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalColabFolder.getTypicalColabFolder;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.HOON;
-import static seedu.address.testutil.TypicalPersons.IDA;
+import static seedu.address.testutil.TypicalContacts.ALICE;
+import static seedu.address.testutil.TypicalContacts.HOON;
+import static seedu.address.testutil.TypicalContacts.IDA;
 import static seedu.address.testutil.TypicalProjects.getCS2103TProject;
 
 import java.io.IOException;
@@ -54,14 +54,14 @@ public class JsonColabFolderStorageTest {
     }
 
     @Test
-    public void readColabFolder_invalidPersonColabFolder_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readColabFolder("invalidPersonColabFolder.json"));
+    public void readColabFolder_invalidContactColabFolder_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readColabFolder("invalidContactColabFolder.json"));
     }
 
     @Test
-    public void readColabFolder_invalidAndValidPersonColabFolder_throwDataConversionException() {
+    public void readColabFolder_invalidAndValidContactColabFolder_throwDataConversionException() {
         assertThrows(DataConversionException.class, () ->
-                readColabFolder("invalidAndValidPersonColabFolder.json"));
+                readColabFolder("invalidAndValidContactColabFolder.json"));
     }
 
     @Test
@@ -88,8 +88,8 @@ public class JsonColabFolderStorageTest {
         assertEquals(original, new ColabFolder(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(HOON);
-        original.removePerson(ALICE);
+        original.addContact(HOON);
+        original.removeContact(ALICE);
         original.removeProject(getCS2103TProject());
         original.addProject(new ProjectBuilder().build());
         jsonColabFolderStorage.saveColabFolder(original, filePath);
@@ -97,7 +97,7 @@ public class JsonColabFolderStorageTest {
         assertEquals(original, new ColabFolder(readBack));
 
         // Save and read without specifying file path
-        original.addPerson(IDA);
+        original.addContact(IDA);
         original.addProject(new ProjectBuilder().withName("Test Name").build());
         jsonColabFolderStorage.saveColabFolder(original); // file path not specified
         readBack = jsonColabFolderStorage.readColabFolder().get(); // file path not specified

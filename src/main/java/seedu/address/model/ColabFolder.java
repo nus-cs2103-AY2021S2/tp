@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.contact.Contact;
+import seedu.address.model.contact.UniqueContactList;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.UniqueProjectList;
 
@@ -17,7 +17,7 @@ import seedu.address.model.project.UniqueProjectList;
  */
 public class ColabFolder implements ReadOnlyColabFolder {
 
-    private final UniquePersonList persons;
+    private final UniqueContactList contacts;
     private final UniqueProjectList projects;
 
     /*
@@ -28,14 +28,14 @@ public class ColabFolder implements ReadOnlyColabFolder {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        contacts = new UniqueContactList();
         projects = new UniqueProjectList();
     }
 
     public ColabFolder() {}
 
     /**
-     * Creates a {@code ColabFolder} using the persons and projects in {@code toBeCopied}
+     * Creates a {@code ColabFolder} using the Contacts and Projects in {@code toBeCopied}
      */
     public ColabFolder(ReadOnlyColabFolder toBeCopied) {
         this();
@@ -45,11 +45,11 @@ public class ColabFolder implements ReadOnlyColabFolder {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the Contacts list with {@code Contacts}.
+     * {@code contacts} must not contain duplicate Contacts.
      */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
+    public void setContacts(List<Contact> contacts) {
+        this.contacts.setContacts(contacts);
     }
 
     /**
@@ -66,49 +66,49 @@ public class ColabFolder implements ReadOnlyColabFolder {
     public void resetData(ReadOnlyColabFolder newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setContacts(newData.getContactList());
         setProjects(newData.getProjectsList());
     }
 
-    // person-level operations
+    // contact-level operations
 
     /**
-     * Checks if person exists in the {@code ColabFolder}.
+     * Checks if contact exists in the {@code ColabFolder}.
      *
-     * @return true if a person with the same identity as {@code person} exists in the {@code ColabFolder},
+     * @return true if a Contact with the same identity as {@code contact} exists in the {@code ColabFolder},
      * false otherwise.
      */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
+    public boolean hasContact(Contact contact) {
+        requireNonNull(contact);
+        return contacts.contains(contact);
     }
 
     /**
-     * Adds a person to the {@code ColabFolder}.
-     * The person must not already exist in the {@code ColabFolder}.
+     * Adds a Contact to the {@code ColabFolder}.
+     * The Contact must not already exist in the {@code ColabFolder}.
      */
-    public void addPerson(Person p) {
-        persons.add(p);
+    public void addContact(Contact contact) {
+        contacts.add(contact);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given contact {@code target} in the list with {@code editedContact}.
      * {@code target} must exist in the {@code ColabFolder}.
-     * The person identity of {@code editedPerson} must not be the same as another
-     * existing person in the {@code ColabFolder}.
+     * The contact identity of {@code editedContact} must not be the same as another
+     * existing contact in the {@code ColabFolder}.
      */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
+    public void setContact(Contact target, Contact editedContact) {
+        requireNonNull(editedContact);
 
-        persons.setPerson(target, editedPerson);
+        contacts.setContact(target, editedContact);
     }
 
     /**
      * Removes {@code key} from this {@code ColabFolder}.
      * {@code key} must exist in the {@code ColabFolder}.
      */
-    public void removePerson(Person key) {
-        persons.remove(key);
+    public void removeContact(Contact key) {
+        contacts.remove(key);
     }
 
     // project-level operations
@@ -161,15 +161,15 @@ public class ColabFolder implements ReadOnlyColabFolder {
     @Override
     public String toString() {
         return "CoLAB Folder Containing "
-                + persons.asUnmodifiableObservableList().size()
-                + " persons and"
-                + persons.asUnmodifiableObservableList().size()
+                + contacts.asUnmodifiableObservableList().size()
+                + " contacts and"
+                + projects.asUnmodifiableObservableList().size()
                 + " projects";
     }
 
     @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Contact> getContactList() {
+        return contacts.asUnmodifiableObservableList();
     }
 
     @Override
@@ -181,12 +181,12 @@ public class ColabFolder implements ReadOnlyColabFolder {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ColabFolder // instanceof handles nulls
-                && persons.equals(((ColabFolder) other).persons)
+                && contacts.equals(((ColabFolder) other).contacts)
                 && projects.equals(((ColabFolder) other).projects));
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(persons, projects);
+        return Objects.hash(contacts, projects);
     }
 }

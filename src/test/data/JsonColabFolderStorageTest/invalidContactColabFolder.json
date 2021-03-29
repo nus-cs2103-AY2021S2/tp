@@ -1,0 +1,115 @@
+{
+  "contacts": [ {
+    "name": "Contact with invalid name field: Ha!ns Mu@ster",
+    "phone": "9482424",
+    "email": "hans@example.com",
+    "address": "4th street"
+  } ],
+  "projects" : [ {
+    "projectName" : "CS2103T Team Project",
+    "eventList" : [ {
+      "description" : "Test Event",
+      "date" : "31-01-2021",
+      "time" : "17:30",
+      "isWeekly" : false
+    } ],
+    "todoList" : [ {
+      "description" : "Update documentation",
+      "isDone" : true
+    }, {
+      "description" : "Finish add command",
+      "isDone" : false
+    }, {
+      "description" : "Add unit tests",
+      "isDone" : false
+    }, {
+      "description" : "Brainstorm new feature",
+      "isDone" : false
+    } ],
+    "deadlineList" : [ {
+      "description" : "Milestone v1.1",
+      "isDone" : true,
+      "by" : "01-03-2021"
+    }, {
+      "description" : "Milestone v1.2",
+      "isDone" : true,
+      "by" : "15-03-2021"
+    }, {
+      "description" : "Milestone v1.3",
+      "isDone" : false,
+      "by" : "31-03-2021"
+    }, {
+      "description" : "Milestone v1.4",
+      "isDone" : false,
+      "by" : "12-04-2021"
+    } ],
+    "groupmates" : [ {
+      "name" : "Danh",
+      "roles" : [ ]
+    }, {
+      "name" : "Ruochen",
+      "roles" : [ ]
+    }, {
+      "name" : "Samuel",
+      "roles" : [ ]
+    }, {
+      "name" : "Vevek",
+      "roles" : [ ]
+    } ]
+  }, {
+    "projectName" : "CS2101 OP2",
+    "eventList" : [ {
+      "description" : "Test Event",
+      "date" : "31-01-2021",
+      "time" : "17:30",
+      "isWeekly" : false
+    }, {
+      "description" : "Test Event",
+      "date" : "31-01-2021",
+      "time" : "17:30",
+      "isWeekly" : false
+    }, {
+      "description" : "Test Event",
+      "date" : "31-01-2021",
+      "time" : "17:30",
+      "isWeekly" : false
+    }, {
+      "description" : "Test Event",
+      "date" : "31-01-2021",
+      "time" : "17:30",
+      "isWeekly" : falsev
+    } ],
+    "todoList" : [ {
+      "description" : "Split Workload",
+      "isDone" : true
+    }, {
+      "description" : "Do up slides for pitch",
+      "isDone" : false
+    }, {
+      "description" : "Do up video for demo",
+      "isDone" : false
+    } ],
+    "deadlineList" : [ {
+      "description" : "Product Demo Internal Deadline",
+      "isDone" : false,
+      "by" : "05-04-2021"
+    }, {
+      "description" : "Product Pitch Internal Deadline",
+      "isDone" : false,
+      "by" : "08-04-2021"
+    } ],
+    "groupmates" : [ {
+      "name" : "Danh",
+      "roles" : [ ]
+    }, {
+      "name" : "Ruochen",
+      "roles" : [ ]
+    }, {
+      "name" : "Samuel",
+      "roles" : [ ]
+    }, {
+      "name" : "Vevek",
+      "roles" : [ ]
+    } ]
+  } ]
+}

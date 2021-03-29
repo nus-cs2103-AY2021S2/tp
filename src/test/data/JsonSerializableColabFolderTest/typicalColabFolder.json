@@ -1,6 +1,6 @@
 {
   "_comment": "CoLAB save file which contains the same values as in TypicalColabFolder#getTypicalColabFolder()",
-  "persons" : [ {
+  "contacts" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",
@@ -81,30 +81,18 @@
       "isDone" : false,
       "by" : "12-04-2021"
     } ],
-    "participantsList" : [ {
-      "name" : "Dahn",
-      "phone" : "91234561",
-      "email" : "dahn@colab.com",
-      "address" : "1 CoLAB Road",
-      "tagged" : [ ]
+    "groupmates" : [ {
+      "name" : "Danh",
+      "roles" : [ ]
     }, {
       "name" : "Ruochen",
-      "phone" : "91234562",
-      "email" : "ruochen@colab.com",
-      "address" : "1 CoLAB Road",
-      "tagged" : [ ]
+      "roles" : [ ]
     }, {
       "name" : "Samuel",
-      "phone" : "91234563",
-      "email" : "samuel@colab.com",
-      "address" : "1 CoLAB Road",
-      "tagged" : [ ]
+      "roles" : [ ]
     }, {
       "name" : "Vevek",
-      "phone" : "91234564",
-      "email" : "vevek@colab.com",
-      "address" : "1 CoLAB Road",
-      "tagged" : [ ]
+      "roles" : [ ]
     } ]
   }, {
     "projectName" : "CS2101 OP2",
@@ -148,30 +136,18 @@
       "isDone" : false,
       "by" : "08-04-2021"
     } ],
-    "participantsList" : [ {
-      "name" : "Dahn",
-      "phone" : "91234561",
-      "email" : "dahn@colab.com",
-      "address" : "1 CoLAB Road",
-      "tagged" : [ ]
+    "groupmates" : [ {
+      "name" : "Danh",
+      "roles" : [ ]
     }, {
       "name" : "Ruochen",
-      "phone" : "91234562",
-      "email" : "ruochen@colab.com",
-      "address" : "1 CoLAB Road",
-      "tagged" : [ ]
+      "roles" : [ ]
     }, {
       "name" : "Samuel",
-      "phone" : "91234563",
-      "email" : "samuel@colab.com",
-      "address" : "1 CoLAB Road",
-      "tagged" : [ ]
+      "roles" : [ ]
     }, {
       "name" : "Vevek",
-      "phone" : "91234564",
-      "email" : "vevek@colab.com",
-      "address" : "1 CoLAB Road",
-      "tagged" : [ ]
+      "roles" : [ ]
     } ]
   } ]
 }

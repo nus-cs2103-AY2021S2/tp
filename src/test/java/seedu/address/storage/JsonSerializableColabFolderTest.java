@@ -18,8 +18,8 @@ public class JsonSerializableColabFolderTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
             "JsonSerializableColabFolderTest");
     private static final Path TYPICAL_DATA_FILE = TEST_DATA_FOLDER.resolve("typicalColabFolder.json");
-    private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidPersonColabFolder.json");
-    private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicatePersonColabFolder.json");
+    private static final Path INVALID_CONTACT_FILE = TEST_DATA_FOLDER.resolve("invalidContactColabFolder.json");
+    private static final Path DUPLICATE_CONTACT_FILE = TEST_DATA_FOLDER.resolve("duplicateContactColabFolder.json");
     private static final Path INVALID_PROJECT_FILE = TEST_DATA_FOLDER.resolve("invalidProjectColabFolder.json");
     private static final Path DUPLICATE_PROJECT_FILE = TEST_DATA_FOLDER.resolve("duplicateProjectColabFolder.json");
 
@@ -28,22 +28,22 @@ public class JsonSerializableColabFolderTest {
         JsonSerializableColabFolder dataFromFile = JsonUtil.readJsonFile(TYPICAL_DATA_FILE,
                 JsonSerializableColabFolder.class).get();
         ColabFolder colabFolderFromFile = dataFromFile.toModelType();
-        ColabFolder typicalPersonsColabFolder = getTypicalColabFolder();
-        assertEquals(colabFolderFromFile, typicalPersonsColabFolder);
+        ColabFolder typicalContactsColabFolder = getTypicalColabFolder();
+        assertEquals(colabFolderFromFile, typicalContactsColabFolder);
     }
 
     @Test
-    public void toModelType_invalidPersonFile_throwsIllegalValueException() throws Exception {
-        JsonSerializableColabFolder dataFromFile = JsonUtil.readJsonFile(INVALID_PERSON_FILE,
+    public void toModelType_invalidContactFile_throwsIllegalValueException() throws Exception {
+        JsonSerializableColabFolder dataFromFile = JsonUtil.readJsonFile(INVALID_CONTACT_FILE,
                 JsonSerializableColabFolder.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
     @Test
-    public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
-        JsonSerializableColabFolder dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
+    public void toModelType_duplicateContacts_throwsIllegalValueException() throws Exception {
+        JsonSerializableColabFolder dataFromFile = JsonUtil.readJsonFile(DUPLICATE_CONTACT_FILE,
                 JsonSerializableColabFolder.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableColabFolder.MESSAGE_DUPLICATE_PERSON,
+        assertThrows(IllegalValueException.class, JsonSerializableColabFolder.MESSAGE_DUPLICATE_CONTACTS,
                 dataFromFile::toModelType);
     }
 
