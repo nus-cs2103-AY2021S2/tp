@@ -15,6 +15,8 @@ import java.util.List;
  */
 public class RecurringDatesUtil {
     public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+    // Index 0 is placed as empty string so when days of week is retrieved, no additional increment is required
     public static final ArrayList<String> DAYSOFWEEKS = new ArrayList<>(
             Arrays.asList("", "mon", "tue", "wed", "thu", "fri", "sat", "sun"));
 
@@ -38,18 +40,25 @@ public class RecurringDatesUtil {
      * When the recurring schedule is not optional (empty string input)
      *
      * @param recurringSchedule Input string of recurring schedule
+     * @return String format output of recurring schedule detail in user-centric form
      */
-    public static void formatRecurringScheduleInput(String recurringSchedule) {
+    public static String formatRecurringSchedule(String recurringSchedule) {
         String[] recurringScheduleData = recurringSchedule.replaceAll("\\]", "").split("\\[");
         endDate = LocalDate.parse(recurringScheduleData[1], FORMATTER);
         dayOfWeek = recurringScheduleData[2].toLowerCase();
         weekFreq = recurringScheduleData[3].toLowerCase();
+
+        String outputRecurringScheduleDetail = " every " + dayOfWeek + " " + weekFreq + " until "
+                + recurringScheduleData[1];
+        return outputRecurringScheduleDetail;
     }
 
     /**
      * Used to generate the recurring dates from the recurring schedule conditions provided by the user
      *
      * @param numWeeks Number of weeks between current date and end date
+     * @return List of selected week dates that fall within the range of current date and end date
+     *         as well as falling on the chosen day of week
      */
     public static List<String> findWeekDates(int numWeeks) {
         List<String> weekDates = new ArrayList<>();
@@ -79,7 +88,7 @@ public class RecurringDatesUtil {
      *
      * @return Number of weeks in integer format
      */
-    public static int calculateNumberOfWeeksBetweenDates() {
+    public static int calculateNumOfWeeksBetweenDates() {
         LocalDate startingDate = currentDate.with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY));
         LocalDate endingDate = endDate.with(TemporalAdjusters.previousOrSame(DayOfWeek.SATURDAY));
 
