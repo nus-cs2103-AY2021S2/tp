@@ -45,16 +45,16 @@ public class PersonUtil {
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
         sb.append(PREFIX_NOTES + person.getNotes().value + " ");
         person.getTags().stream().forEach(
-                s -> sb.append(PREFIX_TAG + s.tagName + " ")
+            s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         person.getSubjectList().asUnmodifiableObservableList().stream().forEach(
-                s -> {
-                    sb.append(PREFIX_SUBJECT_NAME + s.getName().name + " ");
-                    sb.append(PREFIX_EDUCATION_LEVEL + s.getLevel().level + " ");
-                    sb.append(PREFIX_RATE + s.getRate().rate.toString() + " ");
-                    sb.append(PREFIX_YEAR + s.getExperience().experience.toString() + " ");
-                    sb.append(PREFIX_QUALIFICATION + s.getQualification().qualification + " ");
-                });
+            s -> {
+                sb.append(PREFIX_SUBJECT_NAME + s.getName().name + " ");
+                sb.append(PREFIX_EDUCATION_LEVEL + s.getLevel().level + " ");
+                sb.append(PREFIX_RATE + s.getRate().rate.toString() + " ");
+                sb.append(PREFIX_YEAR + s.getExperience().experience.toString() + " ");
+                sb.append(PREFIX_QUALIFICATION + s.getQualification().qualification + " ");
+            });
         return sb.toString();
     }
 
@@ -80,13 +80,13 @@ public class PersonUtil {
         if (descriptor.getSubjectList().isPresent()) {
             SubjectList subjects = descriptor.getSubjectList().get();
             subjects.asUnmodifiableObservableList().stream().forEach(
-                    s -> {
-                        sb.append(PREFIX_SUBJECT_NAME + s.getName().name + " ");
-                        sb.append(PREFIX_EDUCATION_LEVEL + s.getLevel().level + " ");
-                        sb.append(PREFIX_RATE + s.getRate().rate.toString() + " ");
-                        sb.append(PREFIX_YEAR + s.getExperience().experience.toString() + " ");
-                        sb.append(PREFIX_QUALIFICATION + s.getQualification().qualification + " ");
-                    });
+                s -> {
+                    sb.append(PREFIX_SUBJECT_NAME + s.getName().name + " ");
+                    sb.append(PREFIX_EDUCATION_LEVEL + s.getLevel().level + " ");
+                    sb.append(PREFIX_RATE + s.getRate().rate.toString() + " ");
+                    sb.append(PREFIX_YEAR + s.getExperience().experience.toString() + " ");
+                    sb.append(PREFIX_QUALIFICATION + s.getQualification().qualification + " ");
+                });
         }
 
         return sb.toString();
