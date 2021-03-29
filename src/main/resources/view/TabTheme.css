@@ -1,0 +1,49 @@
+.tab-pane {
+    -fx-tab-min-width: 100px;
+    -fx-background-color: #383838;
+}
+
+.tab-pane .tab-header-area {
+    -fx-padding: 0;
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: #383838;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
+}
+
+.tab-pane .tab {
+    -fx-background-color: #383838;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-border-width: 0 0 3px 0;
+    -fx-border-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-focus-color: transparent;
+    -fx-font-family: "Arial";
+    -fx-padding: 5px 10px;
+}
+
+.tab-pane .tab:selected {
+    -fx-border-color: #80d8ff;
+}
+
+.tab-pane .tab:focused .label {
+    -fx-background-color: transparent;
+}
+
+.tab-pane .tab .tab-label {
+    -fx-alignment: center;
+    -fx-text-fill: white;
+}
+
+.tab-pane .tab:selected .tab-label {
+    -fx-text-fill: white;
+}
+
+.tuitionTitle {
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-alignment: center;
+}
