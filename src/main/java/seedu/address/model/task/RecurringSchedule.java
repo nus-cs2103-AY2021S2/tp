@@ -35,10 +35,11 @@ public class RecurringSchedule implements RecurringDates {
     public static final String INVALID_ENDDATE = "End date should be ahead of current date "
             + "or the input end is less than a week without matching days found !!!";
 
-    private static boolean isEmptyRecurringSchedule;
-    private List<String> weekDates;
     public final String value;
     public final String output;
+
+    private boolean isEmptyRecurringSchedule;
+    private List<String> weekDates;
 
     /**
      * Recurring Schedule constructor
