@@ -13,6 +13,10 @@ public class CurrentWeekPredicate implements Predicate<Event> {
     private final LocalDate mondayDate;
     private final LocalDate sundayDate;
 
+    /**
+     * Constructs a predicate based on the queried date to compute the date on Monday and Sunday.
+     * @param date
+     */
     public CurrentWeekPredicate(LocalDate date) {
         this.mondayDate = date.with(DayOfWeek.MONDAY);
         this.sundayDate = date.with(DayOfWeek.SUNDAY);
