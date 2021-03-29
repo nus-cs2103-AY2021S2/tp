@@ -144,29 +144,33 @@ Examples:
 ## Command summary
 
 ### Others
+
 Action | Format
-------- | ------------------
+-------|------------------
 **View all commands** | `help`
 
 ### Address Book
+
 Action | Format
--------- | ------------------
+--------|------------------
 **Add** | `add n/NAME p/NUMBER e/EMAIL [t/TAG]`
 **Find and View (by name)** | `find KEYWORD [MORE_KEYWORDS]`
 **List** | `list`
 **Delete** | `delete NAME`
 
 ### Schedule
+
 Action | Format
--------- | ------------------
+--------|------------------
 **Add** | `sadd n/NAME sd/START_DATE ed/END_DATE [t/TAG]`
 **Find and View (by name)** | `sfind KEYWORD [MORE_KEYWORDS]`
 **List (by day/week)** | `slist [day/week]`
 **Delete** | `sdelete NAME`
 
 ### Tasks
+
 Action | Format
--------- | ------------------
+--------|------------------
 **Add** | `tadd n/NAME d/DATE [t/TAG]`
 **Find and View (by name)** | `tfind KEYWORD [MORE_KEYWORDS]`
 **List (by day/week)** | `tlist [day/week]`
