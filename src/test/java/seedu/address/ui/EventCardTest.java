@@ -4,12 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.util.DateUtil.encodeDate;
+import static seedu.address.commons.util.TimeUtil.encodeTime;
 import static seedu.address.ui.testutil.GuiTestAssert.assertCardDisplaysEvent;
 
 import org.junit.jupiter.api.Test;
 
 import guitests.guihandles.EventCardHandle;
 import seedu.address.commons.exceptions.DateConversionException;
+import seedu.address.commons.exceptions.TimeConversionException;
 import seedu.address.model.task.Interval;
 import seedu.address.model.task.repeatable.Event;
 import seedu.address.testutil.EventBuilder;
@@ -20,20 +22,20 @@ import seedu.address.testutil.EventBuilder;
 public class EventCardTest extends GuiUnitTest {
 
     @Test
-    public void display_success() throws DateConversionException {
-        // event has no interval
-        Event eventNoInterval = new EventBuilder().withDescription("Display Test")
-                .withInterval(Interval.NONE).withAtDate(encodeDate("12-12-2021")).build();
-        EventCard eventCard = new EventCard(eventNoInterval, 1);
+    public void display_success() throws DateConversionException, TimeConversionException {
+        // event has no weekly repetition
+        Event eventNoWeekly = new EventBuilder().withDescription("Display Test")
+                .withDate(encodeDate("12-12-2021")).withTime(encodeTime("1000")).withIsWeekly(false).build();
+        EventCard eventCard = new EventCard(eventNoWeekly, 1);
         uiPartExtension.setUiPart(eventCard);
-        assertCardDisplay(eventCard, eventNoInterval, 1);
+        assertCardDisplay(eventCard, eventNoWeekly, 1);
 
-        // event has interval
-        Event eventHasInterval = new EventBuilder().withDescription("Display Test")
-                .withInterval(Interval.WEEKLY).withAtDate(encodeDate("12-12-2021")).build();
-        eventCard = new EventCard(eventHasInterval, 2);
+        // event has weekly repetition
+        Event eventHasWeekly = new EventBuilder().withDescription("Display Test")
+                .withDate(encodeDate("12-12-2021")).withTime(encodeTime("1000")).withIsWeekly(true).build();
+        eventCard = new EventCard(eventHasWeekly, 2);
         uiPartExtension.setUiPart(eventCard);
-        assertCardDisplay(eventCard, eventHasInterval, 2);
+        assertCardDisplay(eventCard, eventHasWeekly, 2);
     }
 
     @Test
