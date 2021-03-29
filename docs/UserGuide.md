@@ -455,6 +455,18 @@ list
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Focuris home folder.
 
+**Q**: Does this application require an Internet connection?<br>
+**A**: No, Focuris does not require an Internet connection to use.
+
+**Q**: What is the maximum length of text I can enter into a event name or event description?<br>
+**A**: Focuris does not limit the maximum length of text that can be entered and stored as it will increase the size 
+of the card to fit the text given. However, the general notion we try to promote is **efficiency** and **productivity**,
+ and thus we recommend keeping the text under **20 characters** for the event name, and **40 characters** for the description.
+
+**Q**: Will my data be sent anywhere else or shared with third parties?<br>
+**A**: Your data is stored locally on your own computer. Focuris does not use any Internet connection so no data can be 
+sent to any online servers.
+
 [Return to Table of Contents](#table-of-contents)
 
 <div class="page-break-before"></div>
