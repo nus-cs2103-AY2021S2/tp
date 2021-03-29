@@ -14,7 +14,7 @@ public class FindMemberTasksCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all Tasks belonging to specified name!";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the tasks assigned to a Member.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Find all tasks assigned to a single Member.\n"
             + "Parameters: " + "NAME \n"
             + "Example: " + COMMAND_WORD + " Rachel Tan";
 

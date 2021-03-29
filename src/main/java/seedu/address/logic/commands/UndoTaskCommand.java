@@ -24,8 +24,8 @@ import seedu.address.model.task.Title;
 public class UndoTaskCommand extends Command {
     public static final String COMMAND_WORD = "undo";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Changes the status of the task to uncompleted"
-            + "by the index number used in the displayed task board. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Change the status of a task with the task index "
+            + "you specify from completed to uncompleted. \n"
             + "Parameters: INDEX (must be a positive integer) "
             + "Example: " + COMMAND_WORD + " 1 ";
 

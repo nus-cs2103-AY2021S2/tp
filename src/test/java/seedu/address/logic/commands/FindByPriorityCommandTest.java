@@ -54,9 +54,12 @@ public class FindByPriorityCommandTest {
     @Test
     public void execute_zeroKeywords_noTaskFound() {
         String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 0);
+
         PriorityContainsKeywordPredicate predicate = preparePredicate(" ");
+
         FindByPriorityCommand command = new FindByPriorityCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
+
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredTaskList());
     }

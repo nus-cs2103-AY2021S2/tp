@@ -24,8 +24,8 @@ import seedu.address.model.task.Title;
 public class DoneTaskCommand extends Command {
     public static final String COMMAND_WORD = "done";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Changes the status of the task to be completed"
-            + "by the index number used in the displayed task board. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Change the status of a task with the task index "
+            + "you specify from uncompleted to completed. \n"
             + "Parameters: INDEX (must be a positive integer) "
             + "Example: " + COMMAND_WORD + " 1 ";
 

@@ -2,9 +2,12 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNEE_MARATHON;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNEE_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalHeyMatez;
+import static seedu.address.testutil.TypicalTasks.getTypicalHeyMatez;
 
 import java.util.Collections;
 
@@ -50,13 +53,9 @@ public class FindMemberTasksCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noTaskFound() {
-        String expectedMessage = FindMemberTasksCommand.MESSAGE_SUCCESS;
+    public void execute_zeroKeywords_illegalArgumentException() {
         TaskContainsAssigneePredicate predicate = preparePredicate(" ");
-        FindMemberTasksCommand command = new FindMemberTasksCommand(predicate);
-        expectedModel.updateFilteredTaskList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredTaskList());
+        assertThrows(IllegalArgumentException.class, () -> expectedModel.updateFilteredTaskList(predicate));
     }
 
     @Test
@@ -72,33 +71,31 @@ public class FindMemberTasksCommandTest {
         assertEquals(Collections.emptyList(), model.getFilteredTaskList());
     }
 
-    //    @Test
-    //    public void execute_singleKeyword_existingMember_tasksFound() {
-    //        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 1);
-    //
-    //        //Exists in list
-    //        TaskContainsAssigneePredicate predicate = preparePredicate(ALICE.getName().fullName);
-    //        FindMemberTasksCommand command = new FindMemberTasksCommand(predicate);
-    //        expectedModel.updateFilteredTaskList(predicate);
-    //
-    //        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-    //        assertEquals(Collections.emptyList(), model.getFilteredTaskList());
-    //    }
+    @Test
+    public void execute_singleKeywordExistingMember_tasksFound() {
+        String expectedMessage = FindMemberTasksCommand.MESSAGE_SUCCESS;
 
-    //        @Test
-    //        public void execute_multipleKeywords_existingMember_tasksFound() {
-    //            String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 1);
-    //
-    //            // Does not exist in list
-    //            TaskContainsAssigneePredicate predicate = preparePredicate(ALICE.getName().fullName
-    //                    + BENSON.getName().fullName);
-    //            FindMemberTasksCommand command = new FindMemberTasksCommand(predicate);
-    //            expectedModel.updateFilteredTaskList(predicate);
-    //
-    //            assertCommandSuccess(command, model, expectedMessage, expectedModel);
-    //            assertEquals(Collections.emptyList(), model.getFilteredTaskList());
-    //        }
+        //Exists in list
+        TaskContainsAssigneePredicate predicate = preparePredicate(VALID_ASSIGNEE_MARATHON);
+        FindMemberTasksCommand command = new FindMemberTasksCommand(predicate);
+        expectedModel.updateFilteredTaskList(predicate);
 
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_multipleKeywordsExistingMember_noTasksFound() {
+        String expectedMessage = FindMemberTasksCommand.MESSAGE_SUCCESS;
+
+        // Does not exist in list
+        TaskContainsAssigneePredicate predicate = preparePredicate(VALID_ASSIGNEE_MARATHON + " "
+                + VALID_ASSIGNEE_MEETING);
+        FindMemberTasksCommand command = new FindMemberTasksCommand(predicate);
+        expectedModel.updateFilteredTaskList(predicate);
+
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredTaskList());
+    }
 
     /**
      * Parses {@code userInput} into a {@code DetailsContainsKeywordsPredicate}.

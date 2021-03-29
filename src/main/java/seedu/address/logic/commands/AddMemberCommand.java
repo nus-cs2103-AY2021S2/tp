@@ -21,7 +21,7 @@ public class AddMemberCommand extends Command {
             + "NAME "
             + PREFIX_PHONE + " PHONE "
             + PREFIX_EMAIL + " EMAIL "
-            + PREFIX_ROLE + " ROLE "
+            + "[ " + PREFIX_ROLE + "ROLE ]"
             + "Example: " + COMMAND_WORD
             + " John Doe "
             + PREFIX_PHONE + " 98765432 "
