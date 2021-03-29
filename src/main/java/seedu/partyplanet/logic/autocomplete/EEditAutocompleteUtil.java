@@ -45,7 +45,7 @@ public class EEditAutocompleteUtil {
 
         ObservableList<Event> filteredEventsList = model.getFilteredEventList();
         if (index.getZeroBased() >= filteredEventsList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
 
         Event event = filteredEventsList.get(index.getZeroBased());
