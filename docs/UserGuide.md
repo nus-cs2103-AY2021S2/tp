@@ -15,6 +15,8 @@ increase work productivity for delivery drivers by simplifying the delivery mana
         * Delete delivery points
         * List all delivery points
         * Mark delivery as Done
+        * Statistics of delivery workflow
+        * View completed deliveries
         * Exit application
 
 --------------------------------------------------------------------------------------------------------------------
@@ -89,6 +91,8 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 * `help` - Help returns Adding a delivery task: add Deleting a delivery task: delete Listing the delivery task: list
   Finding a delivery task: find Seeking for tech-support: help
 
+![Ui](images/HelpCommand.png)
+
 ### Viewing all delivery points : `list`
 
 **Purpose:** Shows all the delivery points
@@ -99,18 +103,20 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 
 * `list` - Lists all the delivery points
 
+![Ui](images/ListCommand.png)
+
 ### Adding a delivery point: `add`
 
 **Purpose:** Adds a delivery task to the delivery list.
 
-**Format:** `add a/ADDRESS d/DATETIME`
+**Format:** `add n/NAME p/PHONE a/ADDRESS e/EMAIL d/DATETIME`
 
 **Examples:**
 
-* `add a/John street, block 123, #01-01 d/2021-03-01 1000
+* `add n/Mark p/92841234 a/20 Watten Estate e/mark1998@gmail.com d/2021-02-02
   `
-* `add a/Newgate Prison d/2022-05-01 1200
-  `
+  
+![Ui](images/AddCommand.png)
 
 ### Deleting a delivery task : `delete`
 
@@ -125,6 +131,8 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 **Examples:**
 
 * `delete 2` - delete 2 will delete the second delivery location in the delivery list.
+  
+![Ui](images/DeleteCommand.png)
 
 ### Mark a delivery as done : `done`
 
@@ -139,6 +147,35 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 **Example:**
 
 * `done 2` - done 2 will set the second delivery location in the delivery list as done.
+
+![Ui](images/DoneCommand.png)
+
+### Statistics of delivery workflow : `stats`
+
+**Purpose:** Get a summary of your current delivery workflow
+
+**Format:** `stats`
+
+* The following statistics will be calculated and shown on the screen:
+  * Deliveries Done, Deliveries Not Done, Deliveries Due, Deliveries Not Due
+  * Fragile Deliveries , Liquid Deliveries, Hot Deliveries, Tagless Deliveries
+
+
+**Example:**
+
+* `stats` - outputs the statistics
+
+### View completed deliveries : `completed`
+
+**Purpose:** Filter out the completed deliveries in the delivery list
+
+**Format:** `completed`
+
+**Example:**
+
+* `completed` - outputs the list of completed deliveries
+
+![Ui](images/CompletedCommand.png)
 
 ### Exiting the program : `exit`
 
@@ -165,10 +202,12 @@ the data of your previous AddressBook home folder.
 Action | Format,<br> Example(s)
 --------|------------------
 **Help** | `help`<br> e.g., `help`
-**Add** | `add a/ADDRESS d/DATETIME` <br> e.g., `add `a/123, Clementi Rd, 1234665 d/01-02-2021`
+**Add** | `add a/ADDRESS d/DATETIME` <br> e.g., `add a/123, Clementi Rd, 1234665 d/01-02-2021`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **List** | `list`<br> e.g., `list`
 **Done** | `done INDEX`<br> e.g., `done 2`
+**Stats** | `stats` <br> e.g., `stats`
+**Completed** | `completed` <br> e.g., `completed`
 **Exit** | `exit`<br> e.g., `exit`
 
 
