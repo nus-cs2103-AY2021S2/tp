@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -32,16 +33,16 @@ public class FindPropertyCommandParserTest {
     public void parseValidKeywordsTest() {
         List<Predicate<Property>> predicates = new ArrayList<>();
 
-        predicates.add(new PropertyNamePredicate(Arrays.asList("Mayfair", "Jurong")));
+        predicates.add(new PropertyNamePredicate(Collections.singletonList("Mayfair Jurong")));
 
         FindPropertyCommand expectedFindCommand =
                 new FindPropertyCommand(new PropertyPredicateList(predicates));
 
         // no leading and trailing whitespaces
-        assertParseSuccess(parser, "n/Mayfair Jurong", expectedFindCommand);
+        assertParseSuccess(parser, " n/Mayfair Jurong", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " n/\n Mayfair \n \t Jurong  \t", expectedFindCommand);
+        assertParseSuccess(parser, " n/ Mayfair     Jurong ", expectedFindCommand);
     }
 
     @Test
@@ -54,7 +55,7 @@ public class FindPropertyCommandParserTest {
         FindPropertyCommand expectedFindCommand =
                 new FindPropertyCommand(new PropertyPredicateList(predicates));
 
-        assertParseSuccess(parser, "pl/1000000", expectedFindCommand);
+        assertParseSuccess(parser, " pl/1000000", expectedFindCommand);
 
         // price more
         predicates = new ArrayList<>();
@@ -63,7 +64,7 @@ public class FindPropertyCommandParserTest {
         expectedFindCommand =
                 new FindPropertyCommand(new PropertyPredicateList(predicates));
 
-        assertParseSuccess(parser, "pm/1000000", expectedFindCommand);
+        assertParseSuccess(parser, " pm/1000000", expectedFindCommand);
 
         // price range
         predicates = new ArrayList<>();
@@ -73,7 +74,7 @@ public class FindPropertyCommandParserTest {
         expectedFindCommand =
                 new FindPropertyCommand(new PropertyPredicateList(predicates));
 
-        assertParseSuccess(parser, "pm/1000000 pl/2000000", expectedFindCommand);
+        assertParseSuccess(parser, " pm/1000000 pl/2000000", expectedFindCommand);
 
         // price with symbols
         // price less
@@ -83,7 +84,7 @@ public class FindPropertyCommandParserTest {
         expectedFindCommand =
                 new FindPropertyCommand(new PropertyPredicateList(predicates));
 
-        assertParseSuccess(parser, "pl/$1,000,000", expectedFindCommand);
+        assertParseSuccess(parser, " pl/$1,000,000", expectedFindCommand);
 
         // price more
         predicates = new ArrayList<>();
@@ -92,7 +93,7 @@ public class FindPropertyCommandParserTest {
         expectedFindCommand =
                 new FindPropertyCommand(new PropertyPredicateList(predicates));
 
-        assertParseSuccess(parser, "pm/$1,000,000", expectedFindCommand);
+        assertParseSuccess(parser, " pm/$1,000,000", expectedFindCommand);
     }
 
     @Test
@@ -105,9 +106,9 @@ public class FindPropertyCommandParserTest {
                 new FindPropertyCommand(new PropertyPredicateList(predicates));
 
         // normal
-        assertParseSuccess(parser, "t/hdb", expectedFindCommand);
+        assertParseSuccess(parser, " t/hdb", expectedFindCommand);
 
         // capitalised
-        assertParseSuccess(parser, "t/hDb", expectedFindCommand);
+        assertParseSuccess(parser, " t/hDb", expectedFindCommand);
     }
 }
