@@ -21,9 +21,11 @@ public class DoneStatusTest {
     }
 
     @Test
-    public void testDisplayUi() {
-        assertEquals(new DoneStatus(true).displayUi(), "Done!\n");
-        assertEquals(new DoneStatus(false).displayUi(), "Not Done!\n");
+    public void getIsDone() {
+        DoneStatus trueDoneStatus = new DoneStatus(true);
+        DoneStatus falseDoneStatus = new DoneStatus(false);
+        assertEquals(trueDoneStatus.getIsDone(), true);
+        assertEquals(falseDoneStatus.getIsDone(), false);
     }
 
     @Test
