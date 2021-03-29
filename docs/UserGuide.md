@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-TutorsPet is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TutorsPet can get your contact management tasks done faster than traditional GUI apps.
+TutorsPet is a **desktop app designed for private tutors to manage students’ information, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TutorsPet helps improve the efficiency and effectiveness of student management by categorizing relevant contact information and keeping track of lesson schedules.
 
 * Table of Contents
 {:toc}
@@ -86,29 +86,31 @@ Examples:
 * `add n/Alice Tan s/Abc Secondary School p/98765432 e/alicet@example.com a/John street, block 123, #01-01 gn/Mary Tan gp/23456789`
 * `add n/Bob Lee t/sec3 s/Def Secondary School p/87654321 e/bobl@example.com a/Bob street, block 321, #01-02 gn/John Lee gp/12345678 t/classA l/monday 1300`
 
-### Listing all persons : `list`
+### Listing all contacts : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all student contacts in TutorsPet. Each student's name, phone number, tags and lessons are displayed. 
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a contact : `edit`
 
-Edits an existing person in the address book.
+Edits an existing student in TutorsPet.
 
 Format: `edit INDEX [n/NAME] [s/SCHOOL] [p/PHONE] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/TAG] [l/LESSON]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the student at the specified `INDEX`.
+* The index refers to the index number shown in the displayed student list.
+* The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags or lessons, the existing tags or lessons of the person will be removed i.e adding of tags or lessons are not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags or lessons, the existing tags or lessons of the student will be removed i.e adding of tags or lessons are not cumulative.
+* You can remove all the student’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-*  `edit 1 l/monday 1300 l/tuesday 1400` Edits the 1st person's contact to add 2 lesson details, `monday 1300` and `tuesday 1400`
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 l/monday 1300 l/tuesday 1400` Edits the 1st student's contact to add 2 lesson details, `monday 1300` and `tuesday 1400`
 
 ### Searching for a contact: `search`
 
@@ -126,9 +128,11 @@ Format: `search [n/KEYWORDS] [s/KEYWORDS] [t/KEYWORDS] [MORE_KEYWORDS]`
 Examples:
 * `search n/eliza s/woodlands t/math` returns student whose name is `Eliza`, students who are studying in `woodlands primary school`, and students with the `math` tag
 * `search n/Patrick Lim` returns `patrick lim` and `Lim Zi Ying`
-* `search s/raffles hwa` returns students studying in `Raffles Institution`,
-  `Hwa chong institution`, and also students whose name consists of Hwa or Raffles if there is any.
+* `search s/woodlands` returns students studying in `woodlands primary school` and `woodlands secondary school`
+* `search s/raffles hwa` returns students studying in `Raffles Institution` and `Hwa chong institution`
 
+
+### Searching for a contact by name: `search n/...`
 Searches for a student’s contact whose contact name contains any of the given keywords.
 
 Format: `search n/KEYWORD [MORE_KEYWORDS]`
@@ -151,7 +155,8 @@ Examples:
 * `search n/eliza` returns `Eliza` and `Eliza Ng`
 * `search n/Patrick Lim` returns `patrick lim` and `Lim Zi Ying`
 
-Searches for contacts from a specific school using keywords
+### Searching for a contact by school: `search s/...`
+Searches for a student's contact from a specific school using keywords
 
 Format: `search s/KEYWORD [MORE_KEYWORDS]`
 
@@ -170,7 +175,9 @@ Examples:
 
 ### Viewing a contact details: `detail`
 
-View the specified student's contact from the address book.
+View the full details of the specified student's contact from TutorsPet.
+The specified student's name, school, phone number, email, address, guardian name and guardian's phone number will
+be displayed. 
 
 Format: `detail INDEX`
 
@@ -179,12 +186,12 @@ Format: `detail INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `detail 2` views the 2nd student in the address book.
-* `find Betsy` followed by `detail 1` views the 1st student in the results of the `find` command.
+* `list` followed by `detail 2` views the details of the 2nd student in TutorsPet.
+* `search n/Betsy` followed by `detail 1` views the details of the 1st student in the results of the `search` command.
 
-### Deleting a person : `delete`
+### Deleting a contact : `delete`
 
-Deletes the specified student's contact from the address book.
+Permanently deletes the specified student's contact from the address book.
 
 Format: `delete INDEX`
 
@@ -193,12 +200,12 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd student in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd student in TutorsPet.
+* `search n/Betsy` followed by `delete 1` deletes the 1st student in the results of the `search` command.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from TutorsPet.
 
 Format: `clear`
 
@@ -210,14 +217,14 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+TutorsPet data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+TutorsPet data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, TutorsPet will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -229,7 +236,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TutorsPet home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
