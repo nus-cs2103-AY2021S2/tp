@@ -1,6 +1,7 @@
 package seedu.address.model.util;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -64,13 +65,17 @@ public class SampleDataUtil {
 
 
     public static Appointment[] getSampleAppointments() {
+        Person[] samplePersons = getSamplePersons();
+
         return new Appointment[] {
-            new Appointment(new Name("Parent teacher meeting 1"), new Address("Child 1's school"),
-                    new DateTime("21/03/2021 10:00"), getPersonSet()),
-            new Appointment(new Name("Parent teacher meeting 2"), new Address("Child 2's school"),
-                    new DateTime("03/10/2021 14:00"), getPersonSet()),
-            new Appointment(new Name("Parent teacher meeting 3"), new Address("Child 3's school"),
-                    new DateTime("02/04/2021 11:00"), getPersonSet())
+            new Appointment(new Name("PTM"), new Address("ABC Primary School"),
+                    new DateTime("21/03/2021 10:00"),
+                    new HashSet<>(Arrays.asList(samplePersons[2]))),
+            new Appointment(new Name("PSG meeting"), new Address("XYZ Secondary School"),
+                    new DateTime("15/04/2021 14:00"),
+                    new HashSet<>(Arrays.asList(samplePersons[5], samplePersons[1]))),
+            new Appointment(new Name("Emily birthday party"), new Address("Our house"),
+                    new DateTime("09/01/2022 18:00"), new HashSet<>())
         };
     }
 
