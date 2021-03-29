@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.exceptions.AppointmentConflictException;
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
+import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Patient;
 
 /**
@@ -46,6 +47,14 @@ public class NonConflictingAppointmentList implements Iterable<Appointment> {
      */
     public boolean hasPatientInSchedule(Patient patient) {
         return internalList.stream().map(appointment -> appointment.getPatient()).anyMatch(patient::equals);
+    }
+
+
+    /**
+     * Returns true if the list contains appointments that corresponds to the input doctor.
+     */
+    public boolean hasDoctorInSchedule(Doctor doctor) {
+        return internalList.stream().map(appointment -> appointment.getDoctor()).anyMatch(doctor::equals);
     }
 
     /**
@@ -184,5 +193,4 @@ public class NonConflictingAppointmentList implements Iterable<Appointment> {
     public Iterator<Appointment> iterator() {
         return internalList.iterator();
     }
-
 }

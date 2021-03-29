@@ -21,6 +21,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.AppointmentSchedule;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Timeslot;
+import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Patient;
 
 /**
@@ -64,13 +65,15 @@ public class TypicalAppObjects {
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     // Manually added - Doctor details
-    public static final String DRGRAY = "Dr. Gray";
-    public static final String DRWHO = "Dr. Who";
-    public static final String DRHOW = "Dr. How";
-    public static final String DRSTRANGE = "Dr. Strange";
-    public static final String DRWHICH = "Dr. Which";
-    public static final String DRWHY = "Dr. Why";
-    public static final String DRWHEN = "Dr. When";
+    public static final Doctor DR_GREY = new DoctorBuilder()
+            .withName("Dr Meredith Grey").withTags("GreysAnatomy").build();
+    public static final Doctor DR_WHO = new DoctorBuilder()
+            .withName("Dr Who").withTags("DoctorWho", "TimeLord").build();
+    public static final Doctor DR_STRANGE = new DoctorBuilder().withName("Dr Strange").build();
+    public static final Doctor DR_JEKYLL = new DoctorBuilder()
+            .withName("Dr Jekyll").withTags("AndMrHyde").build();
+    public static final Doctor DR_MURPHY = new DoctorBuilder().withName("Dr Murphy").build();
+    public static final Doctor DR_DRAKE = new DoctorBuilder().withName("Dr Drake Ramoray").build();
 
     // Manually added - Timeslot details
     public static final Duration APPOINTMENT_DURATION = Duration.ofHours(1);
@@ -90,18 +93,18 @@ public class TypicalAppObjects {
             LocalDateTime.of(2021, 1, 1, 14, 0, 0), APPOINTMENT_DURATION);
 
     // Alice should not have an appointment for DeletePatientCommandTest to test
-    public static final Appointment BENSON_DRWHO = new AppointmentBuilder()
-            .withPatient(BENSON).withDoctor(DRWHO).withTimeslot(TIMESLOT_1HOUR_9AM).build();
-    public static final Appointment CARL_DRHOW = new AppointmentBuilder()
-            .withPatient(CARL).withDoctor(DRHOW).withTimeslot(TIMESLOT_1HOUR_10AM).build();
-    public static final Appointment DANIEL_DRSTRANGE = new AppointmentBuilder()
-            .withPatient(DANIEL).withDoctor(DRSTRANGE).withTimeslot(TIMESLOT_1HOUR_11AM).build();
-    public static final Appointment ELLE_DRWHICH = new AppointmentBuilder()
-            .withPatient(ELLE).withDoctor(DRWHICH).withTimeslot(TIMESLOT_1HOUR_12PM).build();
-    public static final Appointment FIONA_DRWHY = new AppointmentBuilder()
-            .withPatient(FIONA).withDoctor(DRWHY).withTimeslot(TIMESLOT_1HOUR_1PM).build();
-    public static final Appointment GEORGE_DRWHEN = new AppointmentBuilder()
-            .withPatient(GEORGE).withDoctor(DRWHEN).withTimeslot(TIMESLOT_1HOUR_2PM).build();
+    public static final Appointment BENSON_DR_GREY = new AppointmentBuilder()
+            .withPatient(BENSON).withDoctor(DR_GREY).withTimeslot(TIMESLOT_1HOUR_9AM).build();
+    public static final Appointment CARL_DR_WHO = new AppointmentBuilder()
+            .withPatient(CARL).withDoctor(DR_WHO).withTimeslot(TIMESLOT_1HOUR_10AM).build();
+    public static final Appointment DANIEL_DR_STRANGE = new AppointmentBuilder()
+            .withPatient(DANIEL).withDoctor(DR_STRANGE).withTimeslot(TIMESLOT_1HOUR_11AM).build();
+    public static final Appointment ELLE_DR_JEKYLL = new AppointmentBuilder()
+            .withPatient(ELLE).withDoctor(DR_JEKYLL).withTimeslot(TIMESLOT_1HOUR_12PM).build();
+    public static final Appointment FIONA_DR_MURPHY = new AppointmentBuilder()
+            .withPatient(FIONA).withDoctor(DR_MURPHY).withTimeslot(TIMESLOT_1HOUR_1PM).build();
+    public static final Appointment GEORGE_DR_DRAKE = new AppointmentBuilder()
+            .withPatient(GEORGE).withDoctor(DR_DRAKE).withTimeslot(TIMESLOT_1HOUR_2PM).build();
 
     private TypicalAppObjects() {} // prevents instantiation
 
@@ -120,19 +123,39 @@ public class TypicalAppObjects {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 
+    public static AppointmentSchedule getEmptyAppointmentSchedule() {
+        AppointmentSchedule as = new AppointmentSchedule();
+        return as;
+    }
+
+    /**
+     * Returns an {@code AddressBook} with all the typical patients.
+     */
+    public static AddressBook<Doctor> getTypicalDoctorRecords() {
+        AddressBook<Doctor> doctorRecords = new AddressBook<>();
+        for (Doctor doctor : getTypicalDoctors()) {
+            doctorRecords.addPerson(doctor);
+        }
+        return doctorRecords;
+    }
+
+    public static List<Doctor> getTypicalDoctors() {
+        return new ArrayList<>(Arrays.asList(DR_GREY, DR_WHO, DR_STRANGE, DR_JEKYLL, DR_MURPHY, DR_DRAKE));
+    }
+
     /**
      * Returns an {@code AppointmentSchedule} with all the typical appointments.
      */
     public static AppointmentSchedule getTypicalAppointmentSchedule() {
         AppointmentSchedule as = new AppointmentSchedule();
-        for (Appointment appt : getTypicalAppointments()) {
-            as.addAppointment(appt);
+        for (Appointment appointment : getTypicalAppointments()) {
+            as.addAppointment(appointment);
         }
         return as;
     }
 
     public static List<Appointment> getTypicalAppointments() {
-        return new ArrayList<>(Arrays.asList(BENSON_DRWHO, CARL_DRHOW, DANIEL_DRSTRANGE, ELLE_DRWHICH,
-                FIONA_DRWHY, GEORGE_DRWHEN));
+        return new ArrayList<>(Arrays.asList(BENSON_DR_GREY, CARL_DR_WHO, DANIEL_DR_STRANGE, ELLE_DR_JEKYLL,
+                FIONA_DR_MURPHY, GEORGE_DR_DRAKE));
     }
 }
