@@ -10,6 +10,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAliases.getTypicalAlias;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.VALID_INDEXES;
+import static seedu.address.testutil.TypicalIndexes.VALID_INDEX_STRING;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,6 +19,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddAliasCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
@@ -24,6 +27,7 @@ import seedu.address.logic.commands.DeleteAliasCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EmailCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -117,6 +121,20 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD, emptyAliases) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3", emptyAliases) instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_email() throws Exception {
+        assertTrue(parser.parseCommand(
+                EmailCommand.COMMAND_WORD + " " + EmailCommandParser.SPECIAL_INDEX,
+                emptyAliases) instanceof EmailCommand);
+        String inputIndexes = VALID_INDEXES.stream()
+                .map(Index::getOneBased).map(String::valueOf)
+                .collect(Collectors.joining(" "));
+        assertTrue(parser.parseCommand(EmailCommand.COMMAND_WORD + " " + inputIndexes,
+                emptyAliases) instanceof EmailCommand);
+        assertTrue(parser.parseCommand(EmailCommand.COMMAND_WORD + " " + VALID_INDEX_STRING,
+                emptyAliases) instanceof EmailCommand);
     }
 
     @Test
