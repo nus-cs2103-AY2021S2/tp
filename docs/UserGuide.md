@@ -29,7 +29,7 @@ With CoLAB, you can efficiently manage all your school projects through our comp
 
 ## **2.About**
 
-This section serves to familarise you with information and terms that would help you make the best use of this user guide.
+This section serves to familiarise you with information and terms that would help you make the best use of this user guide.
 
 ### 2.1 Structure of this Document
 
@@ -49,7 +49,7 @@ You can also easily sift through CoLAB's various commands and features by referr
 
 ### 2.2 Reading this Document
 
-This subsection serves to provide explanations on the symbols, syntax and technical terms  used throughout this User Guide. Familiarising yourself with this subsection will make the User Guide easier to read.
+This subsection serves to provide explanations on the symbols, syntax and technical terms used throughout this User Guide. Familiarising yourself with this subsection will make the User Guide easier to read.
 
 #### 2.2.1 Sections of the Application Window
 
@@ -62,6 +62,8 @@ Different sections of the application window will be referred to by the names de
 [TODO]
 
 #### 2.2.3 Command Format
+
+Commands shown in this user guide follow these rules. 
 
 <div markdown="block" class="alert alert-info">
 
@@ -82,10 +84,79 @@ Different sections of the application window will be referred to by the names de
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help` and `exit`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
+
+#### 2.2.4 Command Parameters
+
+This subsection serves to list out the parameters used in this document. We have set reasonable constraints on the parameters to ensure that the UI displays your information correctly. 
+
+##### `ADDRESS`
+
+* The address of a contact.
+* Addresses can take any values, but it should not be blank.
+
+##### `DATE`
+
+* The date of a deadline or event.
+* Date can be only be entered in one of these formats:
+    * 23-11-2021
+    * 23/11/2021
+    * 23.11.2021
+    * 23112021
+* The year should be a non-negative number between 0000 and 9999.
+
+##### `DESCRIPTION`
+
+* The description of a deadline, event or todo.
+
+##### `EMAIL`
+
+* The email address of a contact.
+* Emails should be of the format local-part@domain.
+* The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (!#$%&'*+/=?`{|}~^.-).
+* This is followed by a '@' and then a domain name.
+* The domain name must:
+    * be at least 2 characters long
+    * start and end with alphanumeric characters
+    * consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.
+  
+##### `INDEX`
+
+* Indexes are used to identify specific items in CoLAB. There are 6 types of indexes:
+    * `CONTACT_INDEX` refers to the number shown beside the contact in the Main Panel when contacts is displayed.
+    * `DEADLINE_INDEX` refers to the number shown beside the deadline in the Main Panel when a project is displayed.
+    * `EVENT INDEX` refers to the number shown beside the event in the Main Panel when a project is displayed.
+    * `GROUPMATE_INDEX` refers to the number shown beside the groupmate in the Main Panel when a project is displayed.
+    * `PROJECT_INDEX` refers to the number shown beside the project name in the side panel.
+    * `TODO_INDEX` refers to the number shown beside the todo in the Main Panel when a project is displayed.
+* Indexes **must be a positive integer** 1, 2, 3, …​
+  
+##### `KEYWORD`
+
+* The keyword used to seach for contacts.
+* `MORE KEYWORDS` also follows this definition.
+    
+##### `NAME`
+
+* The name of a contact.
+* Names should only contain alphanumeric characters, and it should not be blank.
+    
+##### `PHONE_NUMBER`
+
+* The phone number of a contact.
+* Phone numbers should only contain numbers, and it should be at least 3 digits long.
+
+##### `PROJECT_NAME`
+
+* The name of the project.
+
+##### `TAG`
+
+* The tag associated with a contact.
+* Tags should consist of alphanumeric characters.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -297,11 +368,11 @@ Examples:
 
 Deletes a specified contact from a specified project.
 
-Format: `deleteCfrom PROJECT_INDEX r/CONTACT_INDEX`
+Format: `deleteCfrom PROJECT_INDEX r/GROUPMATE_INDEX`
 
-* Deletes the contact at the specified `CONTACT_INDEX` from the project at the specified `PROJECT_INDEX`.
+* Deletes the contact at the specified `GROUPMATE_INDEX` from the project at the specified `PROJECT_INDEX`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
-* The `CONTACT_INDEX` refers to the number shown beside the contact when viewing the project.
+* The `GROUPMATE_INDEX` refers to the number shown beside the contact when viewing the project.
 * Both indexes **must be a positive integer** 1, 2, 3, …​
 
 Examples:
@@ -352,9 +423,9 @@ Examples:
 
 Edits an existing contact in CoLAB.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit CONTACT_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the contact at the specified `CONTACT_INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the contact will be removed i.e. adding of tags is not cumulative.
@@ -369,9 +440,9 @@ Examples:
 
 Deletes the specified contact from the address book.
 
-Format: `delete INDEX`
+Format: `delete CONTACT_INDEX`
 
-* Deletes the contact at the specified `INDEX`.
+* Deletes the contact at the specified `CONTACT_INDEX`.
 * The index refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
@@ -423,9 +494,9 @@ If your changes to the data file makes its format invalid, CoLAB will discard al
 
 #### View more details about a contact `[coming soon]`
 
-Format: `view INDEX`
+Format: `view CONTACT_INDEX`
 
-* Shows more details about the contact at the specified `INDEX`.
+* Shows more details about the contact at the specified `CONTACT_INDEX`.
 * The index refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
@@ -460,14 +531,14 @@ Action | Format, Examples
 **Add Event to Project** | `addEto PROJECT_INDEX d/DESCRIPTION i/INTERVAL at/DATE`
 **Add Participant to Project** | `addCto PROJECT_INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 **Add Todo to Project** | `addTto PROJECT_INDEX d/DESCRIPTION`
-**Delete Contact** | `delete INDEX`<br> e.g., `delete 3`
+**Delete Contact** | `delete CONTACT_INDEX`<br> e.g., `delete 3`
 **Delete Project** | `deleteP PROJECT_INDEX`
 **Delete Deadline from Project** | `deleteD PROJECT_INDEX r/DEADLINE_INDEX`
 **Delete Event from Project** | `deleteE PROJECT_INDEX r/EVENT_INDEX`
-**Delete Participant from Project** | `deleteCfrom PROJECT_INDEX r/CONTACT_INDEX`
+**Delete Participant from Project** | `deleteCfrom PROJECT_INDEX r/GROUPMATE_INDEX`
 **Delete Todo from Project** | `deleteT PROJECT_INDEX r/TODO_INDEX`
 **Clear Contacts** | `clear`
-**Edit Contact** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit Contact** | `edit CONTACT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find Contact** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List Contacts** | `listC`
 **View Project** | `viewP PROJECT_INDEX`
