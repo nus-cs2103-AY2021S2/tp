@@ -12,7 +12,9 @@ import seedu.address.model.pool.Pool;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true.
+     */
     Predicate<Passenger> PREDICATE_SHOW_ALL_PASSENGERS = unused -> true;
 
     /** {@code Predicate} that always evaluate to true */

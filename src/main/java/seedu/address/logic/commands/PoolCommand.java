@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPTIME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_POOLS;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -50,7 +51,7 @@ public class PoolCommand extends Command {
             + PREFIX_TAG + "female";
 
     public static final String MESSAGE_NO_COMMUTERS = "No commuters were selected.";
-    public static final String MESSAGE_POOL_SUCCESS = "%s successfully created pool: %s";
+    public static final String MESSAGE_POOL_SUCCESS = "Successfully created pool: %s";
     public static final String MESSAGE_DUPLICATE_POOL = "This pool already exists in the GME Terminal";
 
     private final Driver driver;
@@ -97,7 +98,7 @@ public class PoolCommand extends Command {
         }
 
         // obtain passengers from indices
-        Set<Passenger> passengersToPool = new HashSet<>();
+        List<Passenger> passengersToPool = new ArrayList<>();
 
         for (Index idx : passengers) {
             Passenger passenger = lastShownList.get(idx.getZeroBased());
@@ -105,7 +106,8 @@ public class PoolCommand extends Command {
             passengersToPool.add(passenger);
         }
 
-        Pool toAdd = new Pool(driver, tripDay, tripTime, passengersToPool, tags);
+        //since passengers in list are unique, passenger fetched from idx should also be unique, so as hashset from list
+        Pool toAdd = new Pool(driver, tripDay, tripTime, new HashSet<Passenger>(passengersToPool), tags);
 
         if (model.hasPool(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_POOL);

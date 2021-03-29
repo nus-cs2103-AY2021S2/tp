@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_POOLS;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
@@ -120,12 +121,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addPool(Pool pool) {
-        addressBook.addPool(pool);
-        updateFilteredPassengerList(PREDICATE_SHOW_ALL_PASSENGERS);
-    }
-
-    @Override
     public void setPassenger(Passenger target, Passenger editedPassenger) {
         requireAllNonNull(target, editedPassenger);
 
@@ -150,6 +145,12 @@ public class ModelManager implements Model {
     }
 
     //=========== Filtered Pool List Accessors =============================================================
+
+    @Override
+    public void addPool(Pool pool) {
+        addressBook.addPool(pool);
+        updateFilteredPoolList(PREDICATE_SHOW_ALL_POOLS);
+    }
 
     /**
      * Returns an unmodifiable view of the list of {@code Pool} backed by the internal list of

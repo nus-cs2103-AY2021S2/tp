@@ -32,7 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private FilteredPassengerListPanel filteredPassengerListPanel;
-    private TakenPassengerListPanel takenPassengerListPanel;
+    private PoolListPanel poolListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -46,7 +46,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane filteredPassengerListPanelPlaceholder;
 
     @FXML
-    private StackPane takenPassengerListPanelPlaceholder;
+    private StackPane poolListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -118,8 +118,8 @@ public class MainWindow extends UiPart<Stage> {
         filteredPassengerListPanelPlaceholder.getChildren().add(filteredPassengerListPanel.getRoot());
         //TODO: removed creation of takenPassengerListPanel here as the logic should no longer support getting a
         // passenger list by drivers
-
-        takenPassengerListPanelPlaceholder.getChildren().add(filteredPassengerListPanel.getRoot());
+        poolListPanel = new PoolListPanel(logic.getFilteredPoolList());
+        poolListPanelPlaceholder.getChildren().add(poolListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -175,8 +175,8 @@ public class MainWindow extends UiPart<Stage> {
         return filteredPassengerListPanel;
     }
 
-    public TakenPassengerListPanel getTakenPassengerListPanel() {
-        return takenPassengerListPanel;
+    public PoolListPanel getPoolListPanel() {
+        return poolListPanel;
     }
 
     /**
