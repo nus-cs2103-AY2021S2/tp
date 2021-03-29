@@ -27,6 +27,8 @@ import seedu.address.logic.commands.FindPropertyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyAddressPredicate;
+import seedu.address.model.property.PropertyClientContactPredicate;
+import seedu.address.model.property.PropertyClientEmailPredicate;
 import seedu.address.model.property.PropertyNamePredicate;
 import seedu.address.model.property.PropertyDeadlinePredicate;
 import seedu.address.model.property.PropertyPostalCodePredicate;
@@ -56,7 +58,8 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TYPE, PREFIX_ADDRESS, PREFIX_POSTAL,
                         PREFIX_DEADLINE, PREFIX_REMARK, PREFIX_TAGS, PREFIX_PROPERTY_PRICE_MORE,
-                        PREFIX_PROPERTY_PRICE_LESS);
+                        PREFIX_PROPERTY_PRICE_LESS, PREFIX_CLIENT_CONTACT, PREFIX_CLIENT_EMAIL,
+                        PREFIX_CLIENT_NAME);
 
 
         // String genericKeywords = argMultimap.getPreamble();
@@ -161,6 +164,43 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
                         + "\n"
                         + FindPropertyCommand.MESSAGE_USAGE);
             }
+        }
+
+        if (argMultimap.getValue(PREFIX_CLIENT_CONTACT).isPresent()) {
+            List<String> deadlines = argMultimap.getAllValues(PREFIX_CLIENT_CONTACT);
+            if (deadlines.size() > 1) {
+                throw new ParseException("Too many contacts! Please only use 1 contact. \n"
+                        + FindPropertyCommand.MESSAGE_USAGE);
+            }
+            try {
+                deadlines.forEach(s -> predicates.add(new PropertyClientContactPredicate(s)));
+            } catch (IllegalArgumentException e) {
+                throw new ParseException("Wrong client contact format! \n"
+                        + e.getMessage()
+                        + "\n"
+                        + FindPropertyCommand.MESSAGE_USAGE);
+            }
+        }
+
+        if (argMultimap.getValue(PREFIX_CLIENT_EMAIL).isPresent()) {
+            List<String> deadlines = argMultimap.getAllValues(PREFIX_CLIENT_EMAIL);
+            if (deadlines.size() > 1) {
+                throw new ParseException("Too many client emails! Please only use 1 client email. \n"
+                        + FindPropertyCommand.MESSAGE_USAGE);
+            }
+            try {
+                deadlines.forEach(s -> predicates.add(new PropertyClientEmailPredicate(s)));
+            } catch (IllegalArgumentException e) {
+                throw new ParseException("Wrong client email format! \n"
+                        + e.getMessage()
+                        + "\n"
+                        + FindPropertyCommand.MESSAGE_USAGE);
+            }
+        }
+
+        if (argMultimap.getValue(PREFIX_CLIENT_NAME).isPresent()) {
+            List<String> deadlines = argMultimap.getAllValues(PREFIX_CLIENT_NAME);
+            predicates.add(new PropertyNamePredicate(deadlines));
         }
 
         return new FindPropertyCommand(new PropertyPredicateList(predicates));
