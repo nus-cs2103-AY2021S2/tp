@@ -71,12 +71,12 @@ Graphical User Interface (GUI).
   which must be supplied by you. An example of supplied arguments look like this `add-fr n/Lunch a/10`.
 
 - You may choose to omit items in square brackets as they are optional.<br>
-  For example, with the command `add-fr d/FR_DESCRIPTION a/FR_AMOUNT [t/TAG]…`, you may omit the tag and
+  For example, with the command `add-fr d/FR_DESCRIPTION a/FR_AMOUNT [c/FR_CATEGORY]…`, you may omit the category and
   use `add-fr n/Lunch a/10 t/food` or `add-fr n/Lunch a/10`.
 
 - For items suffixed with `…`​ you may repeat it multiple times within the command.<br>
-  For example, with the command `add-fr d/FR_DESCRIPTION a/FR_AMOUNT [t/TAG]…`, you may repeat `[t/TAG]…​` multiple
-  times with `t/food`, `t/transportation`, `t/shopping` etc.
+  For example, with the command `add-fr d/FR_DESCRIPTION a/FR_AMOUNT [c/FR_CATEGORY]…`, you may repeat `[c/FR_CATEGORY]…​` multiple
+  times with `c/food`, `c/transportation`, `c/shopping` etc.
 
 - You may key in arguments in any order.<br>
   For example, you can use `d/FR_DESCRIPTION a/FR_AMOUNT` or `a/FR_AMOUNT d/FR_DESCRIPTION` as both are acceptable.
