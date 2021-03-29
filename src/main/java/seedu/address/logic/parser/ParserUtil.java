@@ -121,7 +121,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String tripDay} into a {@code TripDay}.
      * Leading and trailing whitespaces will be trimmed.
-     * and converted to uppercase for case-insensitive enum instantiation of {@code DayOfWeek}
+     * and converted to uppercase for case-insensitive enum instantiation of {@code DayOfWeek}.
      * @throws ParseException if the given {@code tripDay} is invalid.
      */
     public static TripDay parseTripDay(String tripDay) throws ParseException {
