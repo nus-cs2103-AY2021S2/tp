@@ -1,6 +1,7 @@
 package seedu.address.model.util;
 
 import static seedu.address.commons.util.DateUtil.encodeDate;
+import static seedu.address.commons.util.TimeUtil.encodeTime;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -8,6 +9,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.commons.exceptions.DateConversionException;
+import seedu.address.commons.exceptions.TimeConversionException;
 import seedu.address.model.ColabFolder;
 import seedu.address.model.ReadOnlyColabFolder;
 import seedu.address.model.person.Address;
@@ -87,7 +89,7 @@ public class SampleDataUtil {
     public static Project[] getSampleProjects() {
         try {
             return new Project[] { getCS2103TProject(), getCS2101Project() };
-        } catch (DateConversionException e) {
+        } catch (DateConversionException | TimeConversionException e) {
             assert false : "error with sample projects";
             e.printStackTrace();
             return new Project[] {}; // return empty projects array
@@ -99,7 +101,7 @@ public class SampleDataUtil {
      *
      * @return typical {@code Project}.
      */
-    public static Project getCS2103TProject() throws DateConversionException {
+    public static Project getCS2103TProject() throws DateConversionException, TimeConversionException {
         ProjectName projectName = new ProjectName("CS2103T Team Project");
         return new Project(projectName, getCS2103TEventList(), getCS2103TTodosList(),
                 getCS2103TDeadlineList(), getCS2103TParticipantsList());
@@ -110,15 +112,15 @@ public class SampleDataUtil {
      *
      * @return typical {@code Project}.
      */
-    public static Project getCS2101Project() throws DateConversionException {
+    public static Project getCS2101Project() throws DateConversionException, TimeConversionException {
         ProjectName projectName = new ProjectName("CS2101 OP2");
         return new Project(projectName, getCS2101EventList(), getCS2101TodosList(),
                 getCS2101DeadlineList(), getCS2101ParticipantsList());
     }
 
-    private static EventList getCS2103TEventList() throws DateConversionException {
-        Event eventWeeklyMeeting = new Event("Weekly Project Meeting", Interval.WEEKLY,
-                encodeDate("31-01-2021"));
+    private static EventList getCS2103TEventList() throws DateConversionException, TimeConversionException {
+        Event eventWeeklyMeeting = new Event("Weekly Project Meeting",
+                encodeDate("31-01-2021"), encodeTime("1730") , false);
 
         EventList eventList = new EventList();
         eventList.addEvent(eventWeeklyMeeting);
@@ -179,15 +181,19 @@ public class SampleDataUtil {
         return participantList;
     }
 
-    private static EventList getCS2101EventList() throws DateConversionException {
+    private static EventList getCS2101EventList() throws DateConversionException, TimeConversionException {
         Event eventPlanningMeeting = new Event("OP2 Planning Meeting",
-                Interval.NONE, encodeDate("17-03-2021"));
+                encodeDate("17-03-2021"), encodeTime("2000"), false
+        );
         Event eventOP2Consultation = new Event("OP2 Consultation",
-                Interval.NONE, encodeDate("23-03-2021"));
+                encodeDate("23-03-2021"), encodeTime("1000"), false
+        );
         Event eventOP2ProductDemo = new Event("OP2 Product Demo",
-                Interval.NONE, encodeDate("06-04-2021"));
+                encodeDate("06-04-2021"), encodeTime("1000"), false
+        );
         Event eventOP2Pitch = new Event("OP2 Pitch",
-                Interval.NONE, encodeDate("09-04-2021"));
+                encodeDate("09-04-2021"), encodeTime("1000"), false
+        );
 
         EventList eventList = new EventList();
         eventList.addEvent(eventPlanningMeeting);
