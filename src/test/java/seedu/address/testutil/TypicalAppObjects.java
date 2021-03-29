@@ -65,10 +65,13 @@ public class TypicalAppObjects {
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     // Manually added - Doctor details
-    public static final Doctor DR_GREY = new DoctorBuilder().withName("Dr Meredith Grey").build();
-    public static final Doctor DR_WHO = new DoctorBuilder().withName("Dr Who").build();
+    public static final Doctor DR_GREY = new DoctorBuilder()
+            .withName("Dr Meredith Grey").withTags("GreysAnatomy").build();
+    public static final Doctor DR_WHO = new DoctorBuilder()
+            .withName("Dr Who").withTags("DoctorWho", "TimeLord").build();
     public static final Doctor DR_STRANGE = new DoctorBuilder().withName("Dr Strange").build();
-    public static final Doctor DR_JEKYLL = new DoctorBuilder().withName("Dr Jekyll").build();
+    public static final Doctor DR_JEKYLL = new DoctorBuilder()
+            .withName("Dr Jekyll").withTags("AndMrHyde").build();
     public static final Doctor DR_MURPHY = new DoctorBuilder().withName("Dr Murphy").build();
     public static final Doctor DR_DRAKE = new DoctorBuilder().withName("Dr Drake Ramoray").build();
 
