@@ -88,6 +88,10 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
 
         if (argMultimap.getValue(PREFIX_POSTAL).isPresent()) {
             List<String> postalCodes = argMultimap.getAllValues(PREFIX_POSTAL);
+            if (postalCodes.size() > 1) {
+                throw new ParseException("Too many postal codes! Please only use 1 postal code. \n"
+                        + FindPropertyCommand.MESSAGE_USAGE);
+            }
             for (String p : postalCodes) {
                 try {
                     predicates.add(new PropertyPostalCodePredicate(parsePropertyPostal(p)));
@@ -105,9 +109,6 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
             if (addresses.size() > 1) {
                 throw new ParseException("Too many addresses! Please only use 1 address. \n"
                         + FindPropertyCommand.MESSAGE_USAGE);
-            } else if (addresses.size() == 0) {
-                throw new ParseException("a/ used but no address found. \n"
-                        + FindPropertyCommand.MESSAGE_USAGE);
             } else {
                 try {
                     predicates.add(new PropertyAddressPredicate(parsePropertyAddress(addresses.get(0))));
@@ -122,17 +123,22 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
 
         if (argMultimap.getValue(PREFIX_REMARK).isPresent()) {
             List<String> remarks = argMultimap.getAllValues(PREFIX_REMARK);
-            if (remarks.size() == 0) {
-                throw new ParseException("r/ used but no remarks found. \n"
-                        + FindPropertyCommand.MESSAGE_USAGE);
+            for (String s : remarks) {
+                try {
+                    predicates.add(new PropertyRemarksPredicate(s));
+                } catch (IllegalArgumentException e) {
+                    throw new ParseException("r/ used but no remarks found! \n"
+                            + e.getMessage()
+                            + "\n"
+                            + FindPropertyCommand.MESSAGE_USAGE);
+                }
             }
-            remarks.forEach(s -> predicates.add(new PropertyRemarksPredicate(s)));
         }
 
         if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
             List<String> deadlines = argMultimap.getAllValues(PREFIX_DEADLINE);
-            if (deadlines.size() == 0) {
-                throw new ParseException("d/ used but no deadlines found. \n"
+            if (deadlines.size() > 1) {
+                throw new ParseException("Too many deadlines! Please only use 1 deadline. \n"
                         + FindPropertyCommand.MESSAGE_USAGE);
             }
             for (String s : deadlines) {
@@ -150,7 +156,7 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
         if (argMultimap.getValue(PREFIX_TAGS).isPresent()) {
             List<String> tags = argMultimap.getAllValues(PREFIX_TAGS);
             if (tags.size() == 0) {
-                throw new ParseException("d/ used but no deadlines found. \n"
+                throw new ParseException("t/ used but no tags found. \n"
                         + FindPropertyCommand.MESSAGE_USAGE);
             }
             tags.forEach(s -> predicates.add(new PropertyTagsPredicate(s)));

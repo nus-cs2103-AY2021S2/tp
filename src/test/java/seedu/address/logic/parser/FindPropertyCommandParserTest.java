@@ -3,7 +3,9 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.ParserUtil.parsePropertyDeadline;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -13,11 +15,21 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindPropertyCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.property.Address;
+import seedu.address.model.property.Deadline;
+import seedu.address.model.property.PostalCode;
 import seedu.address.model.property.Property;
+import seedu.address.model.property.PropertyAddressPredicate;
+import seedu.address.model.property.PropertyDeadlinePredicate;
 import seedu.address.model.property.PropertyNamePredicate;
+import seedu.address.model.property.PropertyPostalCodePredicate;
 import seedu.address.model.property.PropertyPredicateList;
 import seedu.address.model.property.PropertyPricePredicate;
+import seedu.address.model.property.PropertyRemarksPredicate;
+import seedu.address.model.property.PropertyTagsPredicate;
 import seedu.address.model.property.PropertyTypePredicate;
+import seedu.address.model.remark.Remark;
 
 public class FindPropertyCommandParserTest {
 
@@ -111,4 +123,138 @@ public class FindPropertyCommandParserTest {
         // capitalised
         assertParseSuccess(parser, " t/hDb", expectedFindCommand);
     }
+
+    @Test
+    public void validPostalCodeTest() {
+        List<Predicate<Property>> predicates = new ArrayList<>();
+
+        predicates.add(new PropertyPostalCodePredicate(new PostalCode("123456")));
+
+        FindPropertyCommand expected =
+                new FindPropertyCommand(new PropertyPredicateList(predicates));
+
+        assertParseSuccess(parser, " p/123456", expected);
+    }
+
+    @Test
+    public void invalidPostalCodeTest() {
+        String expected = "Wrong postal code format! \n"
+                + PostalCode.MESSAGE_CONSTRAINTS
+                + "\n"
+                + FindPropertyCommand.MESSAGE_USAGE;
+        assertParseFailure(parser, " p/aff", expected);
+    }
+
+    @Test
+    public void multiplePostalCodeTest() {
+        String expected = "Too many postal codes! Please only use 1 postal code. \n"
+                + FindPropertyCommand.MESSAGE_USAGE;
+        assertParseFailure(parser, " p/123124 p/124345", expected);
+    }
+
+    @Test
+    public void validAddressTest() {
+        List<Predicate<Property>> predicates = new ArrayList<>();
+
+        predicates.add(new PropertyAddressPredicate(new Address("BLK 123 Kent Ridge Ave 1")));
+
+        FindPropertyCommand expected =
+                new FindPropertyCommand(new PropertyPredicateList(predicates));
+
+        assertParseSuccess(parser, " a/BLK 123 Kent Ridge Ave 1", expected);
+    }
+
+    @Test
+    public void invalidAddressTest() {
+        String expected = "Wrong address format! \n"
+                + Address.MESSAGE_CONSTRAINTS
+                + "\n"
+                + FindPropertyCommand.MESSAGE_USAGE;
+        assertParseFailure(parser, " a/ ", expected);
+    }
+
+    @Test
+    public void multipleAddressTest() {
+        String expected = "Too many addresses! Please only use 1 address. \n"
+                + FindPropertyCommand.MESSAGE_USAGE;
+        assertParseFailure(parser, " a/address 1 a/address 2 a/3rd one ", expected);
+    }
+
+    @Test
+    public void validRemarksTest() {
+        List<Predicate<Property>> predicates = new ArrayList<>();
+
+        predicates.add(new PropertyRemarksPredicate("this is a remark"));
+
+        FindPropertyCommand expected =
+                new FindPropertyCommand(new PropertyPredicateList(predicates));
+
+        assertParseSuccess(parser, " r/this is a remark", expected);
+    }
+
+    @Test
+    public void invalidRemarksTest() {
+        String expected = "r/ used but no remarks found! \n"
+                + Remark.MESSAGE_CONSTRAINTS
+                + "\n"
+                + FindPropertyCommand.MESSAGE_USAGE;
+        assertParseFailure(parser, " r/ ", expected);
+    }
+
+    @Test
+    public void validDeadlineTest() throws ParseException {
+        List<Predicate<Property>> predicates = new ArrayList<>();
+
+        predicates.add(new PropertyDeadlinePredicate(parsePropertyDeadline("12-09-2021")));
+
+        FindPropertyCommand expected =
+                new FindPropertyCommand(new PropertyPredicateList(predicates));
+
+        assertParseSuccess(parser, " d/12-09-2021", expected);
+        assertParseSuccess(parser, " d/12-9-2021", expected);
+    }
+
+    @Test
+    public void invalidDeadlineTest() {
+        String expected = "Wrong deadline format! \n"
+                + Deadline.MESSAGE_CONSTRAINTS
+                + "\n"
+                + FindPropertyCommand.MESSAGE_USAGE;
+        assertParseFailure(parser, " d/not deadline ", expected);
+    }
+
+    @Test
+    public void multipleDeadlineTest() {
+        String expected = "Too many deadlines! Please only use 1 deadline. \n"
+                + FindPropertyCommand.MESSAGE_USAGE;
+        assertParseFailure(parser, " d/12-09-2021 d/1-1-29", expected);
+    }
+
+    @Test
+    public void validTagsTest() {
+        List<Predicate<Property>> predicates = new ArrayList<>();
+
+        predicates.add(new PropertyTagsPredicate("3 bedrooms, need renovation, need this"));
+
+        FindPropertyCommand expected =
+                new FindPropertyCommand(new PropertyPredicateList(predicates));
+
+        assertParseSuccess(parser, " tags/3 bedrooms, need renovation, need this", expected);
+
+        predicates = new ArrayList<>();
+        predicates.add(new PropertyTagsPredicate("3 bedrooms"));
+        expected = new FindPropertyCommand(new PropertyPredicateList(predicates));
+        assertParseSuccess(parser, " tags/3 bedrooms", expected);
+    }
+
+    @Test
+    public void invalidTagsTest() {
+        String expected = "Wrong deadline format! \n"
+                + Deadline.MESSAGE_CONSTRAINTS
+                + "\n"
+                + FindPropertyCommand.MESSAGE_USAGE;
+        assertParseFailure(parser, " d/not deadline ", expected);
+    }
+
+
 }

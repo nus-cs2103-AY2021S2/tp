@@ -28,11 +28,11 @@ public class PropertyTagsPredicate implements Predicate<Property> {
     public boolean test(Property property) {
         List<Tag> tested = new ArrayList<>(property.getTags());
         for (Tag t : tags) {
-            if (!tested.contains(t)) {
-                return false;
+            if (tested.contains(t)) {
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     @Override
