@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -138,6 +139,181 @@ public class UniqueEventList implements Iterable<Event> {
     public void clearExpired() {
         internalList.removeIf(event -> !event.isEndDateTimeBeforeNow());
     }
+
+    /**
+     * Returns status of time in a day, with 0 being free, 1 being busy.
+     */
+    public int[] getTimeStatus(Date date) {
+        int [] timeStatus = new int[1440];
+        //initialise array to 0 (all minutes in the day are free)
+        for (int i = 0; i < 1440; i++) {
+            timeStatus[i] = 0;
+        }
+
+        int numTotalEvents = internalList.size();
+        for (int i = 0; i < numTotalEvents; i++) {
+            Event currEvent = internalList.get(i);
+            if ((date.compareTo(currEvent.getStartDate()) >= 0) && (date.compareTo(currEvent.getEndDate()) <= 0)) {
+                if ((date.equals(currEvent.getStartDate())) && (date.equals(currEvent.getEndDate()))) {
+                    //event within the day
+                    int startTimeCount = getTimeMinuteCount(currEvent.getStartTime());
+                    int endTimeCount = getTimeMinuteCount(currEvent.getEndTime());
+                    for (int j = startTimeCount; j <= endTimeCount; j++) {
+                        timeStatus[j] = 1;
+                    }
+                } else if ((date.compareTo(currEvent.getStartDate()) > 0) && (date.equals(currEvent.getEndDate()))) {
+                    //event started earlier and ends on the day
+                    int endTimeCount = getTimeMinuteCount(currEvent.getEndTime());
+                    for (int j = 0; j <= endTimeCount; j++) {
+                        timeStatus[j] = 1;
+                    }
+                } else if ((date.equals(currEvent.getStartDate())) && (date.compareTo(currEvent.getEndDate()) < 0)) {
+                    //event starts on the day and ends in the future
+                    int startTimeCount = getTimeMinuteCount(currEvent.getStartTime());
+                    for (int j = startTimeCount; j < 1440; j++) {
+                        timeStatus[j] = 1;
+                    }
+                }
+            }
+        }
+        return timeStatus;
+    }
+
+    /**
+     * Returns minute count of time from 00:00.
+     */
+    public int getTimeMinuteCount(Time time) {
+        String timeStr = time.toString();
+        String hourStr = timeStr.split(":")[0];
+        String minuteStr = timeStr.split(":")[1];
+        int hour = Integer.valueOf(hourStr);
+        int minute = Integer.valueOf(minuteStr);
+        int minuteCount = hour * 60 + minute;
+        return minuteCount;
+    }
+
+    /**
+     * Returns time from minute count.
+     */
+    public Time getTimeFromCount(int minuteCount) {
+        int minute = minuteCount % 60;
+        int hour = (minuteCount - minute) / 60;
+        String minuteStr = String.valueOf(minute);
+        String hourStr = String.valueOf(hour);
+        if (minute < 10) {
+            minuteStr = "0" + minuteStr;
+        }
+        if (hour < 10) {
+            hourStr = "0" + hourStr;
+        }
+        String timeStr = hourStr + ":" + minuteStr;
+        Time time = new Time(timeStr);
+        return time;
+    }
+
+    /**
+     * Returns a list of index.
+     */
+    public ArrayList<Integer> getFreeTimeIndex(int[] timeStatus) {
+        ArrayList<Integer> timeIndex = new ArrayList<>();
+        ArrayList<Integer> timeStatusArr = new ArrayList<>();
+        int len = timeStatus.length;
+
+        for (int i = 0; i < len; i++) {
+            timeStatusArr.add(timeStatus[i]);
+        }
+        int status = timeStatusArr.get(0);
+
+
+        int index = timeStatusArr.indexOf(toggle(status));
+        while (index >= 0) {
+            timeIndex.add(index);
+            for (int i = 0; i < index; i++) {
+                timeStatusArr.set(i, toggle(status));
+            }
+            status = timeStatusArr.get(0);
+            index = timeStatusArr.indexOf(toggle(status));
+        }
+        return timeIndex;
+    }
+
+    /**
+     * Returns a list of free time slots.
+     */
+    public ArrayList<String> getFreeTimeSlots(Date date) {
+        int startStatus = getTimeStatus(date)[0];
+        int len = getTimeStatus(date).length;
+        ArrayList<Integer> timeIndex = getFreeTimeIndex(getTimeStatus(date));
+        ArrayList<String> freeTimeSlots = new ArrayList<>();
+        if (startStatus == 0) {
+            int firstBound = 0;
+            int secondBound = timeIndex.get(0) - 1;
+            Time firstTime = getTimeFromCount(firstBound);
+            Time secondTime = getTimeFromCount(secondBound);
+            String timeSlotStr = firstTime.toString() + " to " + secondTime.toString();
+            freeTimeSlots.add(timeSlotStr);
+            for (int i = 1; i < timeIndex.size() - 1; i = i + 2) {
+                firstBound = timeIndex.get(i);
+                secondBound = timeIndex.get(i + 1) - 1;
+                firstTime = getTimeFromCount(firstBound);
+                secondTime = getTimeFromCount(secondBound);
+                if (firstBound == secondBound) {
+                    timeSlotStr = firstTime.toString();
+                } else {
+                    timeSlotStr = firstTime.toString() + " to " + secondTime.toString();
+                }
+                freeTimeSlots.add(timeSlotStr);
+            }
+            if (timeIndex.size() % 2 == 0) {
+                firstBound = timeIndex.get(timeIndex.size() - 1);
+                secondBound = len - 1;
+                firstTime = getTimeFromCount(firstBound);
+                secondTime = getTimeFromCount(secondBound);
+                if (firstBound == secondBound) {
+                    timeSlotStr = firstTime.toString();
+                } else {
+                    timeSlotStr = firstTime.toString() + " to " + secondTime.toString();
+                }
+                freeTimeSlots.add(timeSlotStr);
+            }
+        } else {
+            for (int i = 0; i < timeIndex.size() - 1; i = i + 2) {
+                int firstBound = timeIndex.get(i);
+                int secondBound = timeIndex.get(i + 1) - 1;
+                Time firstTime = getTimeFromCount(firstBound);
+                Time secondTime = getTimeFromCount(secondBound);
+                String timeSlotStr = firstTime.toString() + " to " + secondTime.toString();
+                freeTimeSlots.add(timeSlotStr);
+            }
+            if (timeIndex.size() % 2 == 1) {
+                int firstBound = timeIndex.get(timeIndex.size() - 1);
+                int secondBound = len - 1;
+                Time firstTime = getTimeFromCount(firstBound);
+                Time secondTime = getTimeFromCount(secondBound);
+                String timeSlotStr;
+                if (firstBound == secondBound) {
+                    timeSlotStr = firstTime.toString();
+                } else {
+                    timeSlotStr = firstTime.toString() + " to " + secondTime.toString();
+                }
+                freeTimeSlots.add(timeSlotStr);
+            }
+        }
+        return freeTimeSlots;
+    }
+
+    /**
+     * Returns inverted bit.
+     */
+    public int toggle(int bit) {
+        if (bit == 0) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
