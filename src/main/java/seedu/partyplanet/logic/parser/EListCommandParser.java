@@ -101,7 +101,7 @@ public class EListCommandParser implements Parser<EListCommand> {
             List<String> allValues = argMap.getAllValues(PREFIX_NAME);
             for (int i = 0; i < allValues.size(); i++) {
                 String name = allValues.get(i);
-                predicates.add(new EventDetailContainsKeywordsPredicate(name));
+                predicates.add(new EventNameContainsKeywordsPredicate(name));
                 if (i == allValues.size() - 1) {
                     stringFind += name;
                 } else {
@@ -114,7 +114,7 @@ public class EListCommandParser implements Parser<EListCommand> {
             List<String> allDetails = argMap.getAllValues(PREFIX_REMARK);
             for (int i = 0; i < allDetails.size(); i++) {
                 String detail = allDetails.get(i);
-                predicates.add(new EventNameContainsKeywordsPredicate(detail));
+                predicates.add(new EventDetailContainsKeywordsPredicate(detail));
                 if (i == allDetails.size() - 1) {
                     stringFind += detail;
                 } else {
