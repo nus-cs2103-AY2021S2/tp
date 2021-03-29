@@ -56,6 +56,10 @@ public class Email {
         return test.matches(VALIDATION_REGEX) || test.equals(PLACEHOLDER);
     }
 
+    public String getValue() {
+        return value;
+    }
+
     @Override
     public String toString() {
         return value;
