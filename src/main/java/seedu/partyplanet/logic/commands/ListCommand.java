@@ -7,7 +7,6 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.function.Predicate;
 
 import seedu.partyplanet.commons.core.Messages;
@@ -72,13 +71,15 @@ public class ListCommand extends Command {
         requireNonNull(model);
         model.sortPersonList(comparator);
         model.updateFilteredPersonList(predicate);
-        String tagsRepresentation = "All existing tags: "
-                + displayTags(model.getFilteredPersonList()).replace("[", "").replace("]", "");
+        String tagsRepresentation = displayTags(model.getFilteredPersonList())
+                .replace("[", "").replace("]", "");
         if (model.getPersonListCopy().size() == model.getFilteredPersonList().size()) {
-            return new CommandResult(ListCommand.MESSAGE_SUCCESS + "\n\n" + tagsRepresentation); // No person filtered out
+            return new CommandResult(ListCommand.MESSAGE_SUCCESS // No person filtered out
+                    + String.format(Messages.MESSAGE_PERSONS_LISTED_TAGS, tagsRepresentation));
         }
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW + "\n\n" + tagsRepresentation, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size())
+                        + String.format(Messages.MESSAGE_PERSONS_LISTED_TAGS, tagsRepresentation));
     }
 
     private String displayTags(List<Person> personsToDisplay) {
