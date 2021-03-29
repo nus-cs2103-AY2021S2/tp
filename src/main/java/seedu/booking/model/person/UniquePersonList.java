@@ -145,10 +145,6 @@ public class UniquePersonList implements Iterable<Person> {
 
     }
 
-    public Person getPersonWithEmail(ObservableList<Person> list, Email emailToCheck) {
-        requireNonNull(emailToCheck);
-        Person booker = list.stream().filter(x -> x.getEmail().equals(emailToCheck)).collect(Collectors.toList()).get(0);
-        System.out.println("UniquePersonList" + booker.getName().fullName);
-        return booker;
-    }
+
+
 }

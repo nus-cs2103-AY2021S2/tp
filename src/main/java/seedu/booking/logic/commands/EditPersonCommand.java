@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.booking.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.booking.model.Model.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -71,6 +71,8 @@ public class EditPersonCommand extends Command {
         }
 
         model.setPerson(personToEdit, editedPerson);
+        model.updatePersonInBookings(personToEdit.getEmail(), editedPerson.getEmail());
+        model.updateFilteredBookingList(PREDICATE_SHOW_ALL_BOOKINGS);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }

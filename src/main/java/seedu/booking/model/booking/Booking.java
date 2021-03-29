@@ -18,8 +18,7 @@ public class Booking {
     private static final Random BOOKING_RANDOM = new Random();
 
     // Data fields
-    private final Email bookerEmail;
-    private Person booker;
+    private Email bookerEmail;
     private VenueName venueName;
     private final Description description;
     private final StartTime bookingStart;
@@ -34,7 +33,6 @@ public class Booking {
                    StartTime bookingStart, EndTime bookingEnd, Id id) {
         requireAllNonNull(bookerEmail, venueName, description, bookingStart, bookingEnd);
         this.bookerEmail = bookerEmail;
-        this.booker = new Person(bookerEmail);
         this.venueName = venueName;
         this.description = description;
         this.bookingStart = bookingStart;
@@ -50,7 +48,6 @@ public class Booking {
                    StartTime bookingStart, EndTime bookingEnd) {
         requireAllNonNull(bookerEmail, venueName, description, bookingStart, bookingEnd);
         this.bookerEmail = bookerEmail;
-        this.booker = getTempBooker(bookerEmail);
         this.venueName = venueName;
         this.description = description;
         this.bookingStart = bookingStart;
@@ -62,13 +59,7 @@ public class Booking {
         return bookerEmail;
     }
 
-    public Person getTempBooker(Email bookerEmail) {
-        return new Person(bookerEmail);
-    }
 
-    public void setFinalBooker(Person booker) {
-        this.booker = booker;
-    }
 
     public VenueName getVenueName() {
         return venueName;
@@ -154,8 +145,7 @@ public class Booking {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        //return Objects.hash(bookerEmail, venueName, description, bookingStart, bookingEnd, id);
-        return Objects.hash(getTempBooker(bookerEmail), venueName, description, bookingStart, bookingEnd, id);
+        return Objects.hash(bookerEmail, venueName, description, bookingStart, bookingEnd, id);
     }
 
 
@@ -191,11 +181,11 @@ public class Booking {
                 && otherBooking.getId().equals(getId());
     }
 
-    public Person getBooker() {
-        return booker;
-    }
-
     public void setVenueName(VenueName venueName) {
         this.venueName = venueName;
+    }
+
+    public void setEmail(Email newEmail) {
+        this.bookerEmail = newEmail;
     }
 }

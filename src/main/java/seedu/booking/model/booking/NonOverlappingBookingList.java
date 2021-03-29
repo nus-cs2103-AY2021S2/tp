@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import seedu.booking.model.booking.exceptions.BookingNotFoundException;
 import seedu.booking.model.booking.exceptions.DuplicateBookingException;
 import seedu.booking.model.booking.exceptions.OverlappingBookingException;
+import seedu.booking.model.person.Email;
 import seedu.booking.model.venue.VenueName;
 
 /**
@@ -172,5 +173,9 @@ public class NonOverlappingBookingList implements Iterable<Booking> {
     public void updateVenueInBookings(VenueName oldVenueName, VenueName newVenueName) {
         internalList.stream().filter(x -> x.getVenueName().equals(oldVenueName))
                 .forEach(x -> x.setVenueName(newVenueName));
+    }
+    public void updatePersonInBookings(Email oldEmail, Email newEmail) {
+        internalList.stream().filter(x -> x.getBookerEmail().equals(oldEmail))
+                .forEach(x -> x.setEmail(newEmail));
     }
 }

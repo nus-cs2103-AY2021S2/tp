@@ -25,11 +25,6 @@ public class Person {
         this.email = email;
     }
 
-    public Person(Email bookerEmail) {
-        this.name = null;
-        this.phone = null;
-        this.email = bookerEmail;
-    }
 
 
     public Name getName() {
@@ -95,5 +90,6 @@ public class Person {
                 .append(getEmail());
         return builder.toString();
     }
+
 
 }

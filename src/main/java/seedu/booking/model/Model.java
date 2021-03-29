@@ -81,7 +81,6 @@ public interface Model {
      */
     boolean hasPersonWithEmail(Email email);
 
-    Person personWithEmail(Email email);
 
 
     /**
@@ -211,4 +210,6 @@ public interface Model {
     void setBooking(Booking target, Booking editedBooking);
 
     void updateVenueInBookings(VenueName oldVenueName, VenueName newVenueName);
+
+    void updatePersonInBookings(Email oldEmail, Email newEmail);
 }

@@ -1,6 +1,7 @@
 package seedu.booking.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.booking.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
@@ -254,12 +255,15 @@ public class BookingSystem implements ReadOnlyBookingSystem {
         bookings.setBooking(target, editedBooking);
     }
 
-    public Person personWithEmail(Email email) {
-        requireNonNull(email);
-        return persons.getPersonWithEmail(getPersonList(), email);
-    }
+
 
     public void updateVenueInBookings(VenueName oldVenueName, VenueName newVenueName) {
+        requireAllNonNull(oldVenueName, newVenueName);
         bookings.updateVenueInBookings(oldVenueName, newVenueName);
+    }
+
+    public void updatePersonInBookings(Email oldEmail, Email newEmail) {
+        requireAllNonNull(oldEmail, newEmail);
+        bookings.updatePersonInBookings(oldEmail, newEmail);
     }
 }
