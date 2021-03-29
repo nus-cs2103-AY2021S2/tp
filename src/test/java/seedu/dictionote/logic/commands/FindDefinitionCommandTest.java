@@ -3,12 +3,8 @@ package seedu.dictionote.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.dictionote.commons.core.Messages.MESSAGE_DEFINITIONS_LISTED_OVERVIEW;
-import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.dictionote.testutil.TypicalContacts.getTypicalContactsList;
 import static seedu.dictionote.testutil.TypicalContent.getTypicalDictionary;
-import static seedu.dictionote.testutil.TypicalDefinition.JAVA;
-import static seedu.dictionote.testutil.TypicalDefinition.OOP;
 import static seedu.dictionote.testutil.TypicalDefinition.getTypicalDefinitionBook;
 import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
 
