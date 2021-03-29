@@ -1,5 +1,6 @@
 package seedu.address.model.property;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -12,7 +13,10 @@ public class PropertyNamePredicate implements Predicate<Property> {
     private final List<String> keywords;
 
     public PropertyNamePredicate(List<String> keywords) {
-        this.keywords = keywords;
+        this.keywords = new ArrayList<>();
+        for (String s : keywords) {
+            keywords.add(s.toLowerCase());
+        }
     }
 
     @Override
