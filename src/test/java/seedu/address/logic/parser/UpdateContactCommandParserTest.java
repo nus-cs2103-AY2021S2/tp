@@ -50,7 +50,7 @@ public class UpdateContactCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateContactCommand.MESSAGE_USAGE);
 
-    private EditCommandParser parser = new EditCommandParser();
+    private UpdateContactCommandParser parser = new UpdateContactCommandParser();
 
     @Test
     public void parse_missingParts_failure() {

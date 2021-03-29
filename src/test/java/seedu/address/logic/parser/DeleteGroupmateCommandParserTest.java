@@ -13,7 +13,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteGroupmateCommand;
 
 public class DeleteGroupmateCommandParserTest {
-    private DeleteContactFromCommandParser parser = new DeleteContactFromCommandParser();
+    private DeleteGroupmateCommandParser parser = new DeleteGroupmateCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {

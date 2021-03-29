@@ -17,7 +17,7 @@ import seedu.address.model.groupmate.Role;
 /**
  * Parses input arguments and creates a new EditCommand object
  */
-public class AddContactToCommandParser implements Parser<AddGroupmateCommand> {
+public class AddGroupmateCommandParser implements Parser<AddGroupmateCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddContactToCommand

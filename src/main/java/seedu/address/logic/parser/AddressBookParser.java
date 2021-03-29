@@ -66,13 +66,13 @@ public class AddressBookParser {
         switch (commandWord) {
 
         case AddContactCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+            return new AddContactCommandParser().parse(arguments);
 
         case AddProjectCommand.COMMAND_WORD:
             return new AddProjectCommandParser().parse(arguments);
 
         case AddGroupmateCommand.COMMAND_WORD:
-            return new AddContactToCommandParser().parse(arguments);
+            return new AddGroupmateCommandParser().parse(arguments);
 
         case AddDeadlineCommand.COMMAND_WORD:
             return new AddDeadlineCommandParser().parse(arguments);
@@ -84,13 +84,13 @@ public class AddressBookParser {
             return new AddTodoCommandParser().parse(arguments);
 
         case UpdateContactCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+            return new UpdateContactCommandParser().parse(arguments);
 
         case DeleteContactCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+            return new DeleteContactCommandParser().parse(arguments);
 
         case DeleteGroupmateCommand.COMMAND_WORD:
-            return new DeleteContactFromCommandParser().parse(arguments);
+            return new DeleteGroupmateCommandParser().parse(arguments);
 
         case DeleteProjectCommand.COMMAND_WORD:
             return new DeleteProjectCommandParser().parse(arguments);
@@ -108,7 +108,7 @@ public class AddressBookParser {
             return new ClearContactCommand();
 
         case FindContactCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+            return new FindContactCommandParser().parse(arguments);
 
         case ListContactsCommand.COMMAND_WORD:
             return new ListContactsCommand();
