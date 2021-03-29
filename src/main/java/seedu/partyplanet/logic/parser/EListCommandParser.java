@@ -68,58 +68,43 @@ public class EListCommandParser implements Parser<EListCommand> {
         boolean isExactSearch = argMap.contains(FLAG_EXACT);
         List<Predicate<Event>> predicates = new ArrayList<>();
         if (isExactSearch) {
-            if (argMap.contains(PREFIX_NAME)) {
-                stringFind += "\nRequire exact event name: ";
-            }
+
             List<String> allNames = argMap.getAllValues(PREFIX_NAME);
-            for (int i = 0; i < allNames.size(); i++) {
-                String name = allNames.get(i);
+            if (!allNames.isEmpty()) {
+                stringFind += "\nRequire exact event name: "
+                        + String.join(", ", allNames);
+            }
+            for (String name : allNames) {
                 predicates.add(new EventNameContainsExactKeywordsPredicate(name));
-                if (i == allNames.size() - 1) {
-                    stringFind += name;
-                } else {
-                    stringFind += name + ", ";
-                }
             }
-            if (argMap.contains(PREFIX_REMARK)) {
-                stringFind += "\nRequire exact event detail: ";
-            }
+
             List<String> allDetails = argMap.getAllValues(PREFIX_REMARK);
-            for (int i = 0; i < allDetails.size(); i++) {
-                String detail = allDetails.get(i);
+            if (!allDetails.isEmpty()) {
+                stringFind += "\nRequire exact event detail: "
+                        + String.join(", ", allDetails);
+            }
+            for (String detail : allDetails) {
                 predicates.add(new EventDetailContainsExactKeywordsPredicate(detail));
-                if (i == allDetails.size() - 1) {
-                    stringFind += detail;
-                } else {
-                    stringFind += detail + ", ";
-                }
             }
+
         } else {
-            if (argMap.contains(PREFIX_NAME)) {
-                stringFind += "\nRequire partial event name: ";
+
+            List<String> allNames = argMap.getAllValues(PREFIX_NAME);
+            if (!allNames.isEmpty()) {
+                stringFind += "\nRequire partial event name: "
+                        + String.join(", ", allNames);
             }
-            List<String> allValues = argMap.getAllValues(PREFIX_NAME);
-            for (int i = 0; i < allValues.size(); i++) {
-                String name = allValues.get(i);
+            for (String name : allNames) {
                 predicates.add(new EventNameContainsKeywordsPredicate(name));
-                if (i == allValues.size() - 1) {
-                    stringFind += name;
-                } else {
-                    stringFind += name + ", ";
-                }
             }
-            if (argMap.contains(PREFIX_REMARK)) {
-                stringFind += "\nRequire partial event detail: ";
-            }
+
             List<String> allDetails = argMap.getAllValues(PREFIX_REMARK);
-            for (int i = 0; i < allDetails.size(); i++) {
-                String detail = allDetails.get(i);
+            if (!allDetails.isEmpty()) {
+                stringFind += "\nRequire partial event detail: "
+                        + String.join(", ", allDetails);
+            }
+            for (String detail : allDetails) {
                 predicates.add(new EventDetailContainsKeywordsPredicate(detail));
-                if (i == allDetails.size() - 1) {
-                    stringFind += detail;
-                } else {
-                    stringFind += detail + ", ";
-                }
             }
         }
         return predicates;
