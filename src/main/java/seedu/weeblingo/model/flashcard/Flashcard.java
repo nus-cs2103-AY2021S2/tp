@@ -51,10 +51,10 @@ public class Flashcard {
     }
 
     /**
-     * Returns a mutable tag set of non-default tags set by the user.
+     * Returns a copy of the non-default tags set by the user.
      */
     public Set<Tag> getUserTags() {
-        return this.userTags;
+        return new HashSet<>(userTags);
     }
 
     /**

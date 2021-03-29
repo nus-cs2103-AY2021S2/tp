@@ -80,12 +80,14 @@ public class TagCommand extends Command {
         return false;
     }
 
-    private static Flashcard createTaggedFlashcard(Flashcard flashcardToEdit, Set<Tag> userTags) {
-        assert userTags != null;
+    private static Flashcard createTaggedFlashcard(Flashcard flashcardToEdit, Set<Tag> userTagsToAdd) {
+        assert userTagsToAdd != null;
 
         Question question = flashcardToEdit.getQuestion();
         Answer answer = flashcardToEdit.getAnswer();
         Set<Tag> tags = flashcardToEdit.getWeeblingoTags();
+        Set<Tag> userTags = flashcardToEdit.getUserTags();
+        userTags.addAll(userTagsToAdd);
 
         return new Flashcard(question, answer, tags, userTags);
     }
