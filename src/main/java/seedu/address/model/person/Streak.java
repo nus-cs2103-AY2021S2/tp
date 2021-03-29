@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
@@ -21,7 +23,12 @@ public class Streak implements Comparable<Streak> {
         return new Streak(0);
     }
 
+    /**
+     * Returns a Streak created from the given {@code goal} and {@code List<Event>}
+     */
     public static Streak from(Goal goal, List<Event> meetings) {
+        requireAllNonNull(goal, meetings);
+
         if (goal.isNoneFrequency()) {
             return Streak.empty();
         }
@@ -34,35 +41,9 @@ public class Streak implements Comparable<Streak> {
         return calculateToday(goal, dates);
     }
 
-    private static Streak calculateLifetime(Goal goal, List<LocalDate> dates) {
-        if (dates.size() == 1) {
-            return new Streak(1);
-        }
-
-        // As long as there is a meeting within the next goalDeadline, it is okay.
-        int highestStreak = 1;
-        int currentStreak = 1;
-        int idx = 1;
-        LocalDate currentDate = dates.get(0);
-        while (idx < dates.size()) {
-            LocalDate deadline = goal.getGoalDeadline(currentDate);
-            LocalDate nextDate = dates.get(idx);
-
-            if (nextDate.compareTo(deadline) <= 0) {
-                currentStreak += 1;
-                highestStreak = Math.max(currentStreak, highestStreak);
-            } else {
-                currentStreak = 1;
-            }
-
-            idx++;
-            currentDate = nextDate;
-        }
-
-        return new Streak(highestStreak);
-    }
-
     private static Streak calculateToday(Goal goal, List<LocalDate> dates) {
+        requireAllNonNull(goal, dates);
+
         int currentStreak = 1;
         int idx = 1;
         LocalDate currentDate = dates.get(0);
@@ -126,8 +107,8 @@ public class Streak implements Comparable<Streak> {
 
     @Override
     public String toString() {
-        return "Streak{" +
-                "value=" + value +
-                '}';
+        return "Streak{"
+                + "value=" + value
+                + '}';
     }
 }

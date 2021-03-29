@@ -22,8 +22,9 @@ public class DetailsPanel extends UiPart<Region> {
 
     /**
      * Creates a {@code DetailsPanel} with the given {@code ObservableList}s.
+     *
      * @param upcomingEventsList A list of upcoming events.
-     * @param detailedPerson A list containing a single {@code Person}.
+     * @param detailedPerson     A list containing a single {@code Person}.
      */
     public DetailsPanel(ObservableList<PersonEvent> upcomingEventsList,
             ObservableList<Person> detailedPerson, ObservableList<PersonStreak> personStreaks) {
@@ -31,13 +32,14 @@ public class DetailsPanel extends UiPart<Region> {
         upcomingEventsTab = new UpcomingEventsTab(upcomingEventsList);
         personDetailsTab = new PersonDetailsTab(detailedPerson);
         streaksTab = new StreaksTab(personStreaks);
-//        toggleTab(DetailsPanelTab.UPCOMING_EVENTS);
 
-        toggleTab(DetailsPanelTab.STREAKS);
+        toggleTab(DetailsPanelTab.UPCOMING_EVENTS);
+        // toggleTab(DetailsPanelTab.STREAKS);
     }
 
     /**
      * Toggles which tab is visible on the {@code DetailsPanel}.
+     *
      * @param tab A {@code DetailsPanelTab} enum representing the tab to toggle to.
      */
     public void toggleTab(DetailsPanelTab tab) {

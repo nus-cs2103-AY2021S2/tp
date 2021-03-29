@@ -55,16 +55,6 @@ public class DateUtil {
         return date;
     }
 
-//    public static LocalDate getLastSunday(LocalDate date) {
-//        return LocalDate.now();
-//    }
-
-//    public static LocalDate getNextSunday(LocalDate date) {
-//        // Refactor if can find a better way
-//
-//        switch (date)
-//    }
-
     public static String toString(LocalDate localDate, DateTimeFormatter dateFormatter) {
         return dateFormatter.format(localDate);
     }

@@ -7,7 +7,6 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonStreak;
 
 public class StreaksTab extends UiPart<Region> {
@@ -23,6 +22,9 @@ public class StreaksTab extends UiPart<Region> {
     @FXML
     private ListView<PersonStreak> streaksListView;
 
+    /**
+     * Creates a {@code StreaksTab} with the given {@code ObservableList}.
+     */
     public StreaksTab(ObservableList<PersonStreak> personStreaks) {
         super(FXML);
         streaksTitle.setText("Streaks");

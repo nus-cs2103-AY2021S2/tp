@@ -16,11 +16,14 @@ public class StreakCard extends UiPart<Region> {
     public final PersonStreak personStreak;
 
     @FXML
-    public Label name;
+    private Label name;
 
     @FXML
-    public Label streak;
+    private Label streak;
 
+    /**
+     * Creates a {@code StreakCard} with the given {@code PersonStreak} to display.
+     */
     public StreakCard(PersonStreak personStreak) {
         super(FXML);
         this.personStreak = personStreak;
