@@ -36,11 +36,13 @@ public class SameDateAppointmentListContainer extends UiPart<Region> {
                                             ObservableList<Student> studentList) {
         super(FXML);
         date.setText(appointmentList.getDate().format(dateFormatter).toUpperCase());
-        appointmentListView.setItems(appointmentList.asUnmodifiableObservableList());
+        ObservableList<Appointment> filteredAppointments = appointmentList.getFilteredAppointmentList();
+        appointmentListView.setItems(filteredAppointments);
         appointmentListView.setCellFactory(listView -> new AppointmentListViewCell(studentList));
-        appointmentListView.prefHeightProperty().bind(Bindings.size(appointmentList.asUnmodifiableObservableList())
+        appointmentListView.prefHeightProperty().bind(Bindings.size(filteredAppointments)
                 .multiply(110));
     }
+
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Appointment} using a {@code AppointmentCard}.

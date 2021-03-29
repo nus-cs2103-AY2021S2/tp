@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.student.commons.core.Messages;
 import seedu.student.model.Model;
 import seedu.student.model.appointment.AppointmentContainsMatriculationNumberPredicate;
+import seedu.student.model.appointment.AppointmentListContainsMatriculationNumberPredicate;
 import seedu.student.model.student.StudentContainsMatriculationNumberPredicate;
 
 /**
@@ -22,23 +23,28 @@ public class FindCommand extends Command {
 
     private final StudentContainsMatriculationNumberPredicate predicate;
     private final AppointmentContainsMatriculationNumberPredicate appointmentPredicate;
+    private final AppointmentListContainsMatriculationNumberPredicate appointmentListPredicate;
 
     /**
      *  Creates a FindCommand object responsible for deleting a student by matriculation number.
      * @param studentPredicate
      * @param appointmentPredicate
      */
-    public FindCommand(StudentContainsMatriculationNumberPredicate studentPredicate ,
-                       AppointmentContainsMatriculationNumberPredicate appointmentPredicate) {
+    public FindCommand(StudentContainsMatriculationNumberPredicate studentPredicate,
+                       AppointmentListContainsMatriculationNumberPredicate appointmentListPredicate,
+                       AppointmentContainsMatriculationNumberPredicate appointmentPredicate
+
+    ) {
         this.predicate = studentPredicate;
         this.appointmentPredicate = appointmentPredicate;
+        this.appointmentListPredicate = appointmentListPredicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredStudentList(predicate);
-        model.updateFilteredAppointmentList(appointmentPredicate);
+        model.updateFilteredAppointmentList(appointmentListPredicate, appointmentPredicate);
 
         int filteredStudentListSize = model.getFilteredStudentList().size();
         int filteredAppointmentListSize = model.getFilteredStudentList().size();
