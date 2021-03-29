@@ -4,7 +4,6 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -36,7 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private MeetingListPanel meetingListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private Alert notifWindow;
+    private NotifWindow notifWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -72,6 +71,8 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        notifWindow = new NotifWindow(getPrimaryStage());
 
     }
 
@@ -163,13 +164,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleNotif() {
-        notifWindow = new Alert(Alert.AlertType.INFORMATION);
-        notifWindow.getDialogPane().getStylesheets().add("view/DarkTheme.css");
-        notifWindow.initOwner(getPrimaryStage());
-        notifWindow.setTitle("Notification");
-        notifWindow.setHeaderText("Welcome to Link.me!");
-        notifWindow.setContentText(logic.getNotifications());
-        notifWindow.showAndWait();
+        notifWindow.setMessage(logic.getNotifications());
+        notifWindow.show();
         logger.info("Displaying notif window...");
     }
 
