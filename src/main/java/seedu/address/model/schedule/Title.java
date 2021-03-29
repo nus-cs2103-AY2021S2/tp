@@ -3,6 +3,8 @@ package seedu.address.model.schedule;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Locale;
+
 import seedu.address.model.tag.Filterable;
 
 /**
@@ -48,7 +50,7 @@ public class Title implements Filterable {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Title // instanceof handles nulls
-                && value.equals(((Title) other).value)); // state check
+                && value.equalsIgnoreCase(((Title) other).value)); // state check
     }
 
     @Override
