@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.weeblingo.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -13,6 +14,7 @@ import seedu.weeblingo.commons.core.GuiSettings;
 import seedu.weeblingo.commons.core.LogsCenter;
 import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.flashcard.Flashcard;
+import seedu.weeblingo.model.tag.Tag;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -26,6 +28,7 @@ public class ModelManager implements Model {
     private final Mode mode;
     private Quiz quizInstance;
     private int numOfQnsForQuizSession;
+    private Set<Tag> tagsForQuizSession;
 
     /**
      * Initializes a ModelManager with the given flashcardBook and userPrefs.
@@ -157,16 +160,19 @@ public class ModelManager implements Model {
 
     @Override
     public void startQuiz() {
-        if (numOfQnsForQuizSession == 0) {
+        if (numOfQnsForQuizSession == 0 && tagsForQuizSession == null) {
             this.quizInstance = new Quiz();
             Flashcard next = quizInstance.getNextQuestion();
             updateFilteredFlashcardList(curr -> curr.equals(next));
-        } else {
+        } else if (tagsForQuizSession == null) {
             this.quizInstance = new Quiz(numOfQnsForQuizSession);
             Flashcard next = quizInstance.getNextQuestion();
             updateFilteredFlashcardList(curr -> curr.equals(next));
+        } else {
+            this.quizInstance = new Quiz(tagsForQuizSession);
+            Flashcard next = quizInstance.getNextQuestion();
+            updateFilteredFlashcardList(curr -> curr.equals(next));
         }
-
     }
 
     @Override
@@ -206,6 +212,11 @@ public class ModelManager implements Model {
 
     public void setNumOfQnsForQuizSession(int n) {
         numOfQnsForQuizSession = n;
+    }
+
+    @Override
+    public void setTagsForQuizSession(Set<Tag> tags) {
+        tagsForQuizSession = tags;
     }
 
     public Quiz getQuizInstance() {

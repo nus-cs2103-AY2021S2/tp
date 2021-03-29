@@ -54,11 +54,7 @@ public class WeeblingoParser {
             return new QuizCommand();
 
         case StartCommand.COMMAND_WORD:
-            if (!arguments.isBlank()) {
-                int numberOfQuestions = Integer.parseInt(arguments.replaceAll("\\s+", ""));
-                return new StartCommand(numberOfQuestions);
-            }
-            return new StartCommand();
+            return new StartCommandParser().parse(arguments);
 
         case NextCommand.COMMAND_WORD:
             return new NextCommand();

@@ -1,12 +1,14 @@
 package seedu.weeblingo.model;
 
 import java.nio.file.Path;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.weeblingo.commons.core.GuiSettings;
 import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.flashcard.Flashcard;
+import seedu.weeblingo.model.tag.Tag;
 
 /**
  * The API of the Model component.
@@ -112,6 +114,9 @@ public interface Model {
 
     /** Sets number of questions for the quiz session */
     void setNumOfQnsForQuizSession(int numberOfQuestions);
+
+    /** Sets tags for the quiz session */
+    void setTagsForQuizSession(Set<Tag> tags);
 
     /** Gets the quiz instance, which is this quiz session */
     Quiz getQuizInstance();

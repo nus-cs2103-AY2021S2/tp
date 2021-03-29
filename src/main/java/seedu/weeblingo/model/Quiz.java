@@ -9,9 +9,11 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Set;
 
 import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.flashcard.Flashcard;
+import seedu.weeblingo.model.tag.Tag;
 
 /**
  * Class Quiz represents a quiz session.
@@ -43,6 +45,16 @@ public class Quiz {
     public Quiz(int numberOfQuestions) {
         Flashcard[] flashcardsReadFromDB = getDatabaseOfFlashcards();
         quizSessionQueue = getRandomizedSubsetQueue(flashcardsReadFromDB, numberOfQuestions);
+        startTime = Instant.now();
+    }
+
+    /**
+     * Initializes the quiz session with a queue of flashcards tagged
+     * with the specified tags in randomized order.
+     */
+    public Quiz(Set<Tag> tags) {
+        Flashcard[] flashcardsReadFromDB = getDatabaseOfFlashcards();
+        quizSessionQueue = getRandomizedSubsetQueue(flashcardsReadFromDB, tags);
         startTime = Instant.now();
     }
 
@@ -113,9 +125,29 @@ public class Quiz {
     }
 
     /**
+     *Generates randomized queue that is a subset from the given array of flashcards.
+     * @param flashcardsReadFromDB An array of flashcards, previously read from database.
+     * @param tags Tags used to filter the array of flashcards.
+     * @return A queue of flashcards with randomized order.
+     */
+    private Queue<Flashcard> getRandomizedSubsetQueue(Flashcard[] flashcardsReadFromDB, Set<Tag> tags) {
+        List<Flashcard> flashcardsToProcess = Arrays.asList(flashcardsReadFromDB);
+//        flashcardsToProcess.removeIf(f -> !f.getTags().containsAll(Arrays.asList(tags)));
+        Collections.shuffle(flashcardsToProcess);
+        Queue<Flashcard> randomizedQueue = new LinkedList<>();
+        for (Flashcard f : flashcardsToProcess) {
+            if (f.getTags().containsAll(tags)) {
+                randomizedQueue.offer(f);
+            }
+        }
+        return randomizedQueue;
+    }
+
+    /**
      * Generates randomized queue that is a subset from the given array of flashcards.
      *
      * @param flashcardsReadFromDB An array of flashcards, previously read from database.
+     * @param numberOfQuestions The number of questions to limit the quiz to.
      * @return A queue of flashcards with randomized order.
      */
     private Queue<Flashcard> getRandomizedSubsetQueue(Flashcard[] flashcardsReadFromDB, int numberOfQuestions) {
