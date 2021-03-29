@@ -14,8 +14,8 @@ import seedu.weeblingo.commons.core.GuiSettings;
 import seedu.weeblingo.commons.core.LogsCenter;
 import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.flashcard.Flashcard;
-import seedu.weeblingo.model.tag.Tag;
 import seedu.weeblingo.model.score.Score;
+import seedu.weeblingo.model.tag.Tag;
 
 /**
  * Represents the in-memory model of the address book data.

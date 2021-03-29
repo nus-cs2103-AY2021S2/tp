@@ -8,8 +8,8 @@ import javafx.collections.ObservableList;
 import seedu.weeblingo.commons.core.GuiSettings;
 import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.flashcard.Flashcard;
-import seedu.weeblingo.model.tag.Tag;
 import seedu.weeblingo.model.score.Score;
+import seedu.weeblingo.model.tag.Tag;
 
 /**
  * The API of the Model component.
