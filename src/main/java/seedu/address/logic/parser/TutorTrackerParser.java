@@ -28,6 +28,7 @@ import seedu.address.logic.commands.budgetcommands.AddBudgetCommand;
 import seedu.address.logic.commands.budgetcommands.DeleteBudgetCommand;
 import seedu.address.logic.commands.budgetcommands.EditBudgetCommand;
 import seedu.address.logic.commands.budgetcommands.ViewBudgetCommand;
+import seedu.address.logic.commands.eventcommands.ViewTimeTableCommand;
 import seedu.address.logic.commands.filtercommands.AddPersonFilterCommand;
 import seedu.address.logic.commands.filtercommands.DeletePersonFilterCommand;
 import seedu.address.logic.commands.gradecommands.AddGradeCommand;
@@ -179,6 +180,9 @@ public class TutorTrackerParser {
 
         case ListScheduleCommand.COMMAND_WORD:
             return new ListScheduleCommand();
+
+        case ViewTimeTableCommand.COMMAND_WORD:
+            return new ViewTimeTableCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

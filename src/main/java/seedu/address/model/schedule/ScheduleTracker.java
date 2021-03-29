@@ -87,14 +87,6 @@ public class ScheduleTracker implements ReadOnlyScheduleTracker {
         schedules.remove(key);
     }
 
-    /**
-     * Removes {@code key} from this {@code AppointmentBook}.
-     * {@code key} must exist in the appointment book.
-     */
-    public void removeSchedule(int key) {
-        schedules.remove(key);
-    }
-
     @Override
     public String toString() {
         return schedules.asUnmodifiableObservableList().size() + " appointments";
