@@ -7,7 +7,7 @@ import java.util.Objects;
  * Represents a streak in the address book.
  * Guaranteed to be immutable
  */
-public class Streak {
+public class Streak implements Comparable<Streak> {
 
     private final int value;
 
@@ -22,6 +22,12 @@ public class Streak {
     public static Streak from(Goal goal, List<Event> meetings) {
         // Do the nasty calculations here
         return new Streak(0);
+    }
+
+    @Override
+    public int compareTo(Streak other) {
+        // Highest value comes first
+        return -Integer.compare(value, other.value);
     }
 
     @Override

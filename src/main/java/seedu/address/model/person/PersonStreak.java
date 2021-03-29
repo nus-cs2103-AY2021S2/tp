@@ -17,7 +17,14 @@ public class PersonStreak implements Comparable<PersonStreak> {
 
     @Override
     public int compareTo(PersonStreak other) {
-//        this.streak.compareTo(other)
+        int cmpStreak = streak.compareTo(other.streak);
+        if (cmpStreak != 0) {
+            return cmpStreak;
+        }
+
+        String thisName = person.getName().fullName;
+        String otherName = other.person.getName().fullName;
+        return thisName.compareTo(otherName);
     }
 
     @Override
