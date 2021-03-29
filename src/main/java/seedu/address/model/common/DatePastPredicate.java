@@ -13,7 +13,7 @@ public class DatePastPredicate implements Predicate<Date> {
 
     @Override
     public boolean test(Date date) {
-        return nowDate.isBefore(date.getDate());
+        return nowDate.isBefore(date.getDate()) || nowDate.isEqual(date.getDate());
     }
 
     @Override
