@@ -129,6 +129,7 @@ Searches for a student’s contact whose details contain any of the given keywor
 Format: `search [n/KEYWORDS] [s/KEYWORDS] [t/KEYWORDS] [MORE_KEYWORDS]`
 
 * At least one prefix must be used.
+* Any number of prefixes can be used concurrently.
 * The search is case-insensitive. E.g. `TAN` will match `Tan` .
 * The order of the keywords does not matter. E.g. `Tan Alice` will match `Alice Tan`.
 * Name, school and tags can be searched according to the prefix.
@@ -259,6 +260,7 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [s/SCHOOL] [p/PHONE] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/TAG]…​ [l/LESSON]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Search** | `search KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Search** | `search [n/KEYWORDS] [s/KEYWORDS] [t/KEYWORDS] [MORE_KEYWORDS]`<br> e.g., `search n/James Jake s/woodlands t/science`
+**Schedule** | `schedule`
 **List** | `list`
 **Help** | `help`
