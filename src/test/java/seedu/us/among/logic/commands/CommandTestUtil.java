@@ -72,9 +72,9 @@ public class CommandTestUtil {
     public static final EditCommand.EditEndpointDescriptor DESC_POST;
 
     static {
-        DESC_GET = new EditEndpointDescriptorBuilder().withName(VALID_METHOD_GET).withAddress(VALID_ADDRESS_RANDOM)
+        DESC_GET = new EditEndpointDescriptorBuilder().withMethod(VALID_METHOD_GET).withAddress(VALID_ADDRESS_RANDOM)
                 .withData(VALID_DATA_PAIR).withHeaders(VALID_HEADER_PAIR).withTags(VALID_TAG_COOL).build();
-        DESC_POST = new EditEndpointDescriptorBuilder().withName(VALID_METHOD_POST).withAddress(VALID_ADDRESS_FACT)
+        DESC_POST = new EditEndpointDescriptorBuilder().withMethod(VALID_METHOD_POST).withAddress(VALID_ADDRESS_FACT)
                 .withData(VALID_DATA_PAIR).withHeaders(VALID_HEADER_PAIR)
                 .withTags(VALID_TAG_CAT, VALID_TAG_COOL).build();
     }

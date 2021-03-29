@@ -13,6 +13,7 @@ import static seedu.us.among.logic.commands.CommandTestUtil.INVALID_HEADER_DESC;
 import static seedu.us.among.logic.commands.CommandTestUtil.INVALID_METHOD_DESC;
 import static seedu.us.among.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.us.among.logic.commands.CommandTestUtil.METHOD_DESC_GET;
+import static seedu.us.among.logic.commands.CommandTestUtil.METHOD_DESC_POST;
 import static seedu.us.among.logic.commands.CommandTestUtil.TAG_DESC_CAT;
 import static seedu.us.among.logic.commands.CommandTestUtil.TAG_DESC_COOL;
 import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_FACT;
@@ -21,8 +22,10 @@ import static seedu.us.among.logic.commands.CommandTestUtil.VALID_DATA_PAIR;
 import static seedu.us.among.logic.commands.CommandTestUtil.VALID_HEADER_PAIR;
 import static seedu.us.among.logic.commands.CommandTestUtil.VALID_HEADER_PAIR_NEW;
 import static seedu.us.among.logic.commands.CommandTestUtil.VALID_METHOD_GET;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_METHOD_POST;
 import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_CAT;
 import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_COOL;
+import static seedu.us.among.logic.parser.CliSyntax.PREFIX_HEADER;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.us.among.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.us.among.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -45,6 +48,8 @@ import seedu.us.among.testutil.EditEndpointDescriptorBuilder;
 public class EditCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
+
+    private static final String HEADER_EMPTY = " " + PREFIX_HEADER;
 
     private static final String MESSAGE_INVALID_FORMAT = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
             EditCommand.MESSAGE_USAGE);
@@ -80,18 +85,35 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
+
         assertParseFailure(parser, "1" + INVALID_METHOD_DESC, Method.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
         assertParseFailure(parser, "1" + INVALID_DATA_DESC, Data.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
-        // invalid data followed by valid header
-        assertParseFailure(parser, "1" + INVALID_DATA_DESC + HEADER_DESC_DEFAULT, Data.MESSAGE_CONSTRAINTS);
-
-        // valid header followed by invalid header. The test case for invalid header followed by valid header
+        // invalid data followed by valid data. The test case for invalid data followed by valid data
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
+        assertParseFailure(parser, "1" + INVALID_DATA_DESC + VALID_DATA_PAIR, Data.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_METHOD_DESC + VALID_METHOD_GET, Method.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + " -u {}" + VALID_ADDRESS_FACT, Address.MESSAGE_CONSTRAINTS);
+
+        // valid header followed by invalid header.
         assertParseFailure(parser, "1" + HEADER_DESC_DEFAULT + INVALID_HEADER_DESC, Header.MESSAGE_CONSTRAINTS);
+        // invalid header followed by valid header
+        assertParseFailure(parser, "1" + INVALID_HEADER_DESC + HEADER_DESC_DEFAULT, Header.MESSAGE_CONSTRAINTS);
+
+        assertParseFailure(parser, "1" + HEADER_EMPTY + HEADER_DESC_NEW
+                + HEADER_DESC_DEFAULT, Header.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + HEADER_DESC_NEW + HEADER_EMPTY
+                + HEADER_DESC_DEFAULT, Header.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + HEADER_DESC_NEW + HEADER_DESC_DEFAULT
+                + HEADER_EMPTY, Header.MESSAGE_CONSTRAINTS);
+
+        // valid tag followed by invalid tag.
+        assertParseFailure(parser, "1" + TAG_DESC_COOL + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
+        // invalid tag followed by valid tag
+        assertParseFailure(parser, "1" + INVALID_TAG_DESC + TAG_DESC_COOL, Tag.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code
         // Endpoint} being edited,
@@ -114,7 +136,7 @@ public class EditCommandParserTest {
                 + HEADER_DESC_DEFAULT
                 + TAG_DESC_COOL;
 
-        EditEndpointDescriptor descriptor = new EditEndpointDescriptorBuilder().withName(VALID_METHOD_GET)
+        EditEndpointDescriptor descriptor = new EditEndpointDescriptorBuilder().withMethod(VALID_METHOD_GET)
                 .withAddress(VALID_ADDRESS_RANDOM)
                 .withData(VALID_DATA_PAIR)
                 .withHeaders(VALID_HEADER_PAIR)
@@ -141,7 +163,7 @@ public class EditCommandParserTest {
         // name
         Index targetIndex = INDEX_THIRD_ENDPOINT;
         String userInput = targetIndex.getOneBased() + METHOD_DESC_GET;
-        EditEndpointDescriptor descriptor = new EditEndpointDescriptorBuilder().withName(VALID_METHOD_GET).build();
+        EditEndpointDescriptor descriptor = new EditEndpointDescriptorBuilder().withMethod(VALID_METHOD_GET).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -190,11 +212,63 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
-        // no other valid values specified
+
         Index targetIndex = INDEX_FIRST_ENDPOINT;
-        String userInput = targetIndex.getOneBased() + INVALID_DATA_DESC + DATA_DESC_DEFAULT;
-        EditEndpointDescriptor descriptor = new EditEndpointDescriptorBuilder().withData(VALID_DATA_PAIR).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        String userInput;
+        EditEndpointDescriptor descriptor;
+        EditCommand expectedCommand;
+
+        userInput = targetIndex.getOneBased()
+                + INVALID_METHOD_DESC
+                + METHOD_DESC_POST;
+        descriptor = new EditEndpointDescriptorBuilder().withMethod(VALID_METHOD_POST).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // other valid values specified
+        userInput = targetIndex.getOneBased()
+                + INVALID_METHOD_DESC
+                + METHOD_DESC_POST
+                + DATA_DESC_DEFAULT
+                + HEADER_DESC_DEFAULT;
+        descriptor = new EditEndpointDescriptorBuilder()
+                .withMethod(VALID_METHOD_POST)
+                .withData(VALID_DATA_PAIR)
+                .withHeaders(VALID_HEADER_PAIR)
+                .build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        //address
+        // no other valid values specified
+        userInput = targetIndex.getOneBased()
+                + INVALID_ADDRESS_DESC
+                + ADDRESS_DESC_RANDOM;
+        descriptor = new EditEndpointDescriptorBuilder().withAddress(VALID_ADDRESS_RANDOM).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // other valid values specified
+        userInput = targetIndex.getOneBased()
+                + INVALID_ADDRESS_DESC
+                + ADDRESS_DESC_RANDOM
+                + DATA_DESC_DEFAULT
+                + HEADER_DESC_DEFAULT;
+        descriptor = new EditEndpointDescriptorBuilder()
+                .withAddress(VALID_ADDRESS_RANDOM)
+                .withData(VALID_DATA_PAIR)
+                .withHeaders(VALID_HEADER_PAIR)
+                .build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        //data
+        // no other valid values specified
+        userInput = targetIndex.getOneBased()
+                + INVALID_DATA_DESC
+                + DATA_DESC_DEFAULT;
+        descriptor = new EditEndpointDescriptorBuilder().withData(VALID_DATA_PAIR).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
@@ -203,13 +277,11 @@ public class EditCommandParserTest {
                 + INVALID_DATA_DESC
                 + DATA_DESC_DEFAULT
                 + HEADER_DESC_DEFAULT;
-
         descriptor = new EditEndpointDescriptorBuilder()
                 .withAddress(VALID_ADDRESS_FACT)
                 .withData(VALID_DATA_PAIR)
                 .withHeaders(VALID_HEADER_PAIR)
                 .build();
-
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -220,6 +292,17 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
         EditEndpointDescriptor descriptor = new EditEndpointDescriptorBuilder().withTags().build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_resetHeaders_success() {
+        Index targetIndex = INDEX_THIRD_ENDPOINT;
+        String userInput = targetIndex.getOneBased() + HEADER_EMPTY;
+
+        EditEndpointDescriptor descriptor = new EditEndpointDescriptorBuilder().withHeaders().build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
