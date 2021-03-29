@@ -40,26 +40,25 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
-            + "by the index number used in the displayed task list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of a task. \n\n "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
-            + "[" + PREFIX_DURATION + "15:30 - 18:30] "
+            + "[" + PREFIX_DURATION + "15:30-18:30] "
             + "[" + PREFIX_RECURRINGSCHEDULE + "RECURRINGSCHEDULE] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_DEADLINE + "91234567 "
-            + PREFIX_RECURRINGSCHEDULE + "[10/05/2021][Mon][weekly]";
+            + PREFIX_DEADLINE + "91234567 ";
 
     public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + " "
             + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
-            + "[" + PREFIX_DURATION + "15:30] "
+            + "[" + PREFIX_DURATION + "15:30-18:30] "
+            + "[" + PREFIX_RECURRINGSCHEDULE + "RECURRINGSCHEDULE] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
-            + "[" + PREFIX_TAG + "TAG]\n";
+            + "[" + PREFIX_TAG + "TAG]...\n";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

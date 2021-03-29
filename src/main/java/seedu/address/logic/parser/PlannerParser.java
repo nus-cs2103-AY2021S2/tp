@@ -19,6 +19,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.StatsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -62,6 +63,9 @@ public class PlannerParser {
         case DeleteFieldCommand.COMMAND_WORD:
             return new DeleteFieldCommandParser().parse(arguments);
         //@@author
+
+        case StatsCommand.COMMAND_WORD:
+            return new StatsCommand();
 
         case CountdownCommand.COMMAND_WORD:
             return new CountdownCommandParser().parse(arguments);

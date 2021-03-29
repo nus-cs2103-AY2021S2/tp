@@ -15,14 +15,13 @@ public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the task in the list."
-            + "\n\nParameters: "
-            + "\n" + "sort by a"
-            + "\n" + "sort by d";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the task in the planner.\n\n"
+            + "Parameters: "
+            + "by a/by b";
 
-    public static final String MESSAGE_SUCCESS = "Successfully sorted meeting";
+    public static final String MESSAGE_SUCCESS = "Successfully sorted.";
 
-    public static final String MESSAGE_SORT_TYPE_INVALID = "Invalid Sort Type";
+    public static final String MESSAGE_SORT_TYPE_INVALID = "Invalid sort type";
 
     private final Comparator<Task> comparator;
 

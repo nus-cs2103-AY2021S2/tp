@@ -24,35 +24,35 @@ import seedu.address.model.task.Task;
  */
 public class AddCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "mk";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the planner. \n\n"
             + "Parameters: "
             + PREFIX_TITLE + "TITLE "
-            + "[" + PREFIX_DEADLINE + "DEADLINE "
-            + PREFIX_DURATION + "DURATION "
-            + PREFIX_RECURRINGSCHEDULE + "RECURRINGSCHEDULE "
-            + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + PREFIX_TAG + "TAG]...\n\n"
+            + "[" + PREFIX_DEADLINE + "DEADLINE] "
+            + "[" + PREFIX_DURATION + "DURATION] "
+            + "[" + PREFIX_RECURRINGSCHEDULE + "RECURRINGSCHEDULE] "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "You can only have either (Deadline) or (Duration AND/OR RecurringSchedule) fields, but not both.\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TITLE + "This is a task "
-            + PREFIX_DEADLINE + "12 Oct 2012 "
-            + PREFIX_DURATION + "15:30"
+            + PREFIX_DEADLINE + "20/06/2021 "
             + PREFIX_RECURRINGSCHEDULE + "[10/05/2021][Mon][weekly] "
             + PREFIX_DESCRIPTION + "This is the task's description "
             + PREFIX_TAG + "tag1 "
-            + PREFIX_TAG + "tag2";
+            + PREFIX_TAG + "tag2 ";
 
     public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + " "
             + PREFIX_TITLE + "TITLE "
-            + "[" + PREFIX_DEADLINE + "DEADLINE "
-            + PREFIX_DURATION + "DURATION "
-            + PREFIX_RECURRINGSCHEDULE + "RECURRINGSCHEDULE "
-            + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + PREFIX_TAG + "TAG]\n";
+            + "[" + PREFIX_DEADLINE + "DEADLINE] "
+            + "[" + PREFIX_DURATION + "DURATION] "
+            + "[" + PREFIX_RECURRINGSCHEDULE + "RECURRINGSCHEDULE] "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_TAG + "TAG]... ";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the planner";
+    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the planner.";
     public static final String MESSAGE_DEADLINE_EVENT_CONFLICT = "Task cannot have (Deadline) as well as "
             + "(RecurringSchedule and Duration) at the same time!\nPlease choose either when adding a task.";
     public static final String MESSAGE_DEADLINE_DURATION_CONFLICT = "Task cannot have (Deadline) as well as "

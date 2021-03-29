@@ -28,11 +28,11 @@ It is optimised for users who prefer typing.
    pressing Enter will display a list of commonly used commands for first time users.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`ls`** : Lists all contacts.
 
-   * **`add`**`n/eat dinner` : Adds a task titled `eat dinner` to the todo list.
+   * **`mk`**`n/eat dinner` : Adds a task titled `eat dinner` to the todo list.
 
-   * **`delete-task`**`3` : Deletes the 3rd task shown in the current list.
+   * **`rmt`**`3` : Deletes the 3rd task shown in the current list.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -45,7 +45,7 @@ It is optimised for users who prefer typing.
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/TITLE`, `n/TITLE` is a parameter which can be used as `n/eat dinner`.
+  e.g. in `mk n/TITLE`, `n/TITLE` is a parameter which can be used as `n/eat dinner`.
 
 * Items in square brackets are optional.<br>
   e.g `n/TITLE [t/TAG]` can be used as `n/Join Dance t/leisure` or as `n/Join Dance`.
@@ -60,7 +60,7 @@ It is optimised for users who prefer typing.
   occurrence of the parameter will be taken.<br>
   e.g. if you specify `n/first task n/second task`, only `n/second task` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`)
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`)
   will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
@@ -75,14 +75,14 @@ Displays a list of commonly used possible commands along with each of their form
 Format: `help`
 
 
-### Adding a task: `add`
+### Adding a task: `mk`
 
 Adds a task to the todo list.
 
-Format: `add n/TITLE [set/DEADLINE] [s/START TIME] [d/DESCRIPTION]
+Format: `mk n/TITLE [set/DEADLINE] [s/START TIME] [d/DESCRIPTION]
 [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`
 
-* Only title must be provided.
+* Only title is compulsory.
 * Deadline should be in the format dd/mm/yyyy like `12/05/2021`.
 * Start time should be numeric and should be in 24 hours format with a colon like `22:30`.
 * Description (can be optional) can have multiple lines by adding a line break using <kbd>shift</kbd>+<kbd>enter</kbd>.
@@ -100,27 +100,27 @@ A task can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/eat dinner`
-* `add n/do project r/[29/05/2021][thu][Biweekly]`
+* `mk n/eat dinner`
+* `mk n/do project r/[29/05/2021][thu][Biweekly]`
 
 Example of adding task with multiple lines of description:
 ```
-add n/take a break d/
+mk n/take a break d/
 - do 1
 - do 2 t/trying
 ```
 
-### Listing all tasks : `list`
+### Listing all tasks : `ls`
 
 Shows a list of all tasks in the planner.
 
-Format: `list`
+Format: `ls`
 
-### Adding deadline to a task : `deadline`
+### Adding deadline to a task : `mk`
 
 Adds a deadline to an existing task in the list.
 
-Format: `Add INDEX [set/DATE]…​`
+Format: `mk INDEX [set/DATE]…​`
 
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …​
 * Date field must be provided.
@@ -130,8 +130,8 @@ Format: `Add INDEX [set/DATE]…​`
   specifying any deadline after it.
 
 Examples:
-*  `Add 1 set/2021-05-13` Adds a deadline to the 1st task on the list which is to be `13 May 2021`.
-*  `Add 2 set/` Clears the existing deadline of 2nd task on the list.
+*  `mk 1 set/2021-05-13` Adds a deadline to the 1st task on the list which is to be `13 May 2021`.
+*  `mk 2 set/` Clears the existing deadline of 2nd task on the list.
 
 ### Editing a task : `edit`
 
@@ -201,25 +201,25 @@ Format: `find d/KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find d/write user guide` returns matching tasks with description of following words `user`, `guide`, `write`
 
-### Deleting a task : `delete-task`
+### Deleting a task : `rmt`
 
 Deletes an existing task from the task list.
 
-Format: `delete-task INDEX`
+Format: `rmt INDEX`
 
 * Deletes the task at the specified `INDEX`.
 * The index refers to the index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete-task 2` deletes the 2nd task in the task list.
-* `find Work` followed by `delete-task 1` deletes the 1st task in the result of the `find` command.
+* `ls` followed by `rmt 2` deletes the 2nd task in the task list.
+* `find Work` followed by `rmt 1` deletes the 1st task in the result of the `find` command.
 
-### Deleting a field from a task : `delete-field`
+### Deleting a field from a task : `rmf`
 
 Deletes an existing field from a task in the task list.
 
-Format: `delete-field INDEX FIELD`
+Format: `rmf INDEX FIELD`
 
 * Deletes the specified field of task at `INDEX`.
 * The index refers to the index number shown in the displayed task list.
@@ -229,8 +229,8 @@ Format: `delete-field INDEX FIELD`
 * Title field cannot be deleted.
 
 Examples:
-* `list` followed by `delete-field 2 d/` deletes the description from the 2nd task in the task list.
-* `find Cat` followed by `delete-field 1 t/` deletes all the tags from the 1st task in the result of the
+* `ls` followed by `rmf 2 d/` deletes the description from the 2nd task in the task list.
+* `find Cat` followed by `rmf 1 t/` deletes all the tags from the 1st task in the result of the
   `find` command.
 
 
@@ -275,11 +275,11 @@ that contains the data of your previous PlanIT home folder.
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/TITLE [set/DEADLINE] [s/START TIME] [d/DESCRIPTION] [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`<br> e.g.,`add n/eat dinner t/important`
+**Add** | `mk n/TITLE [set/DEADLINE] [s/START TIME] [d/DESCRIPTION] [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`<br> e.g.,`mk n/eat dinner t/important`
 **Clear** | `clear`
-**Delete-Task** | `delete-task INDEX`<br> e.g., `delete-task 3`
-**Delete-Field** | `delete-field INDEX FIELD`<br> e.g., `delete-field 1 d/`
+**Delete Task** | `rmt INDEX`<br> e.g., `rmt 3`
+**Delete Field** | `rmf INDEX FIELD`<br> e.g., `rmf 1 d/`
 **Edit** | `edit INDEX [n/TITLE] [set/DEADLINE] [s/START TIME] [d/DESCRIPTION] [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`<br>e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`e.g., `find CS2103 team project` <br>`find [t/TAG] `e.g., `find t/CS2103` <br> `find [d/DESCRIPTION] `e.g., `find d/CS2103 milestone postmortem`
-**List** | `list`
+**List** | `ls`
 **Help** | `help`
