@@ -7,7 +7,6 @@ import static seedu.plan.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.plan.testutil.TypicalIndexes.INDEX_FIRST_PLAN;
 import static seedu.plan.testutil.TypicalModules.COMPUTER_ORGANIZATION_MODULE;
 import static seedu.plan.testutil.TypicalModules.SOFTWARE_ENGINEERING_MODULE;
-
 import static seedu.plan.testutil.TypicalPlans.getTypicalModulePlanner;
 
 import org.junit.jupiter.api.Test;
@@ -22,7 +21,7 @@ import seedu.plan.model.plan.Semester;
 
 public class DeleteModuleCommandTest {
     private Model model = new ModelManager(getTypicalModulePlanner(), new UserPrefs());
-    private String INVALID_MODULE_CODE = "abcd";
+    private final String INVALID_MODULE_CODE = "abcd";
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
