@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,7 +37,8 @@ public class AddEventCommandTest {
     @Test
     public void execute_validParameters_success() throws Exception {
         Event validEvent = new EventBuilder().withDescription("CS2106 Tutorial")
-                .withAtDate(LocalDate.of(2020, 01, 01)).withInterval(Interval.WEEKLY).build();
+                .withDate(LocalDate.of(2020, 01, 01)).withTime(LocalTime.of(17, 30))
+                .withIsWeekly(false).build();
 
         CommandResult commandResult = new AddEventCommand(INDEX_FIRST, validEvent).execute(model);
 
@@ -46,7 +48,8 @@ public class AddEventCommandTest {
     @Test
     public void execute_invalidProjectIndex_throwsCommandException() {
         Event eventToAdd = new EventBuilder().withDescription("CS2106 Tutorial")
-                .withAtDate(LocalDate.of(2020, 01, 01)).withInterval(Interval.WEEKLY).build();
+                .withDate(LocalDate.of(2020, 01, 01)).withTime(LocalTime.of(17, 30))
+                .withIsWeekly(false).build();
         // Typical project list contains only 2 projects
         AddEventCommand addEventCommand = new AddEventCommand(INDEX_THIRD, eventToAdd);
 
@@ -59,7 +62,8 @@ public class AddEventCommandTest {
     @Test
     public void execute_duplicateEvent_throwsCommandException() {
         Event eventToAdd = new EventBuilder().withDescription("CS2106 Tutorial")
-                .withAtDate(LocalDate.of(2020, 01, 01)).withInterval(Interval.WEEKLY).build();
+                .withDate(LocalDate.of(2020, 01, 01)).withTime(LocalTime.of(17, 30))
+                .withIsWeekly(false).build();
         Project projectToAddTo = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         AddEventCommand addEventCommand = new AddEventCommand(INDEX_FIRST, eventToAdd);
 
@@ -71,7 +75,8 @@ public class AddEventCommandTest {
     @Test
     public void equals() {
         Event eventToAdd = new EventBuilder().withDescription("CS2106 Tutorial")
-                .withAtDate(LocalDate.of(2020, 01, 01)).withInterval(Interval.WEEKLY).build();
+                .withDate(LocalDate.of(2020, 01, 01)).withTime(LocalTime.of(17, 30))
+                .withIsWeekly(false).build();
         AddEventCommand addEventToOneCommand = new AddEventCommand(INDEX_FIRST, eventToAdd);
         AddEventCommand addEventToTwoCommand = new AddEventCommand(INDEX_SECOND, eventToAdd);
 
