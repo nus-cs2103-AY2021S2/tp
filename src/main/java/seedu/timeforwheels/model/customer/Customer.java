@@ -21,6 +21,7 @@ public class Customer {
     private final Email email;
     private final Remark remark;
     private final Done done;
+    private final Date date;
 
     // Data fields
     private final Address address;
@@ -29,13 +30,15 @@ public class Customer {
     /**
      * Every field must be present and not null.
      */
-    public Customer(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags, Done done) {
+    public Customer(Name name, Phone phone, Email email, Address address, Remark remark,
+                    Date date, Set<Tag> tags, Done done) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.remark = remark;
+        this.date = date;
         this.tags.addAll(tags);
         this.done = done;
     }
@@ -62,6 +65,14 @@ public class Customer {
 
     public Done getDone() {
         return done;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public Set<Tag> getTag() {
+        return this.tags;
     }
 
     /**
@@ -104,13 +115,14 @@ public class Customer {
                 && otherCustomer.getPhone().equals(getPhone())
                 && otherCustomer.getEmail().equals(getEmail())
                 && otherCustomer.getAddress().equals(getAddress())
-                && otherCustomer.getTags().equals(getTags());
+                && otherCustomer.getTags().equals(getTags())
+                && otherCustomer.getDate().equals(getDate());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, done);
+        return Objects.hash(name, phone, email, address, date, tags, done);
     }
 
     @Override
@@ -123,6 +135,8 @@ public class Customer {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress())
+                .append("; Date: ")
+                .append(getDate())
                 .append(getDone());
 
         Set<Tag> tags = getTags();

@@ -2,6 +2,7 @@ package seedu.timeforwheels.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -32,7 +33,8 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "regular "
-            + PREFIX_TAG + "fragile";
+            + PREFIX_TAG + "fragile"
+            + PREFIX_DATE + "2021-10-10";
 
     public static final String MESSAGE_SUCCESS = "The following new customer has been added: %1$s";
     public static final String MESSAGE_DUPLICATE_CUSTOMER = "This customer already exists in the delivery list";

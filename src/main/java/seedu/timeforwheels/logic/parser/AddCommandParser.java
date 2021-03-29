@@ -2,6 +2,7 @@ package seedu.timeforwheels.logic.parser;
 
 import static seedu.timeforwheels.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -14,6 +15,7 @@ import seedu.timeforwheels.logic.commands.AddCommand;
 import seedu.timeforwheels.logic.parser.exceptions.ParseException;
 import seedu.timeforwheels.model.customer.Address;
 import seedu.timeforwheels.model.customer.Customer;
+import seedu.timeforwheels.model.customer.Date;
 import seedu.timeforwheels.model.customer.Done;
 import seedu.timeforwheels.model.customer.Email;
 import seedu.timeforwheels.model.customer.Name;
@@ -37,9 +39,9 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_ADDRESS, PREFIX_TAG);
+                        PREFIX_ADDRESS, PREFIX_DATE, PREFIX_TAG);
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE,
-                PREFIX_EMAIL) || !argMultimap.getPreamble().isEmpty()) {
+                PREFIX_EMAIL, PREFIX_DATE) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddCommand.MESSAGE_USAGE));
         }
@@ -51,7 +53,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Remark remark = new Remark(""); // add command does not allow adding remarks straight away
         Done done = new Done(""); // add command does not allow adding done straight away
-        Customer customer = new Customer(name, phone, email, address, remark, tagList, done);
+        Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+        Customer customer = new Customer(name, phone, email, address, remark, date, tagList, done);
         return new AddCommand(customer);
     }
 

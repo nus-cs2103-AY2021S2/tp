@@ -1,6 +1,7 @@
 package seedu.timeforwheels.testutil;
 
 import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -34,6 +35,7 @@ public class CustomerUtil {
         sb.append(PREFIX_PHONE + customer.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + customer.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + customer.getAddress().value + " ");
+        sb.append(PREFIX_DATE + customer.getDate().value + " ");
         customer.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );

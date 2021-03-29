@@ -20,7 +20,8 @@ public class NameContainsKeywordsPredicate implements Predicate<Customer> {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(customer.getName().fullName, keyword)
                 || StringUtil.containsWordIgnoreCase(customer.getAddress().value, keyword)
-                || StringUtil.containsWordIgnoreCase(customer.getPhone().value, keyword));
+                || StringUtil.containsWordIgnoreCase(customer.getPhone().value, keyword)
+                || StringUtil.containsWordIgnoreCase(customer.getDate().value, keyword));
     }
 
     @Override

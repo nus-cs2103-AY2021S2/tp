@@ -3,6 +3,7 @@ package seedu.timeforwheels.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.timeforwheels.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -32,7 +33,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                        PREFIX_DATE, PREFIX_TAG);
 
         Index index;
 
@@ -56,6 +58,10 @@ public class EditCommandParser implements Parser<EditCommand> {
             editCustomerDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editCustomerDescriptor::setTags);
+
+        if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
+            editCustomerDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get()));
+        }
 
         if (!editCustomerDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);

@@ -54,12 +54,14 @@ public class DoneCommand extends Command {
         if (customerToEdit.getDone().toString().equals("")) {
             editedCustomer = new Customer(customerToEdit.getName(), customerToEdit.getPhone(),
                     customerToEdit.getEmail(), customerToEdit.getAddress(),
-                    customerToEdit.getRemark(), customerToEdit.getTags(), done);
+                    customerToEdit.getRemark(), customerToEdit.getDate(),
+                    customerToEdit.getTags(), done);
 
         } else {
             editedCustomer = new Customer(customerToEdit.getName(), customerToEdit.getPhone(),
                     customerToEdit.getEmail(), customerToEdit.getAddress(),
-                    customerToEdit.getRemark(), customerToEdit.getTags(), new Done(""));
+                    customerToEdit.getRemark(), customerToEdit.getDate(),
+                    customerToEdit.getTags(), new Done(""));
 
         }
 
