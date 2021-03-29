@@ -198,10 +198,7 @@ that uses the list of keywords to find the search results based on the supplied 
 This predicate is passed into the `ModelManager`'s `updateFilteredEntityList()` method and subsequently generates the 
 CommandResult instance that is then passed on in the LogicManager. 
 
-
-
-
-
+![FindActivityDiagram](images/FindActivityDiagram.png)
 
 ### View feature 
 Pawbook allows the user to `view` an entity and all its related entities. For instance, the user may want to `view` all the dogs of one particular owner or all the dogs enrolled in a program. By entering the correct view command with the correct identification number, the entire list will be generated. 
