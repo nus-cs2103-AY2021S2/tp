@@ -42,6 +42,12 @@ public class PocketEstateParser {
     private static final Pattern BASIC_COMMAND_FORMAT =
             Pattern.compile("(?<commandWord>\\S+(\\s(appointment|property|all|client))?)(?<arguments>.*)");
 
+    private static final String INVALID_COMMAND_ADD = "add";
+    private static final String INVALID_COMMAND_EDIT = "edit";
+    private static final String INVALID_COMMAND_SORT = "sort";
+    private static final String INVALID_COMMAND_LIST = "list";
+    private static final String INVALID_COMMAND_CLEAR = "clear";
+
     /**
      * Matches command string to command word and args.
      *
@@ -161,14 +167,13 @@ public class PocketEstateParser {
         case ListAppointmentCommand.COMMAND_WORD:
             return new ListAppointmentCommand();
 
-        case "add":
-        case "edit":
-        case "find":
-        case "sort":
+        case INVALID_COMMAND_ADD:
+        case INVALID_COMMAND_EDIT:
+        case INVALID_COMMAND_SORT:
             throw new ParseException(Messages.missingPropertyAppointmentError(commandWord));
 
-        case "clear":
-        case "list":
+        case INVALID_COMMAND_CLEAR:
+        case INVALID_COMMAND_LIST:
             throw new ParseException(Messages.missingAllPropertyAppointmentError(commandWord));
 
         default:
