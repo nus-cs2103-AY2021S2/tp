@@ -16,28 +16,28 @@ import seedu.address.ui.timetablepanel.TimeTablePanel;
 public class TimeTableWindow extends UiPart<Stage> {
 
     private static final Logger logger = LogsCenter.getLogger(TimeTableWindow.class);
-    private static final String FXML = "TimetableWindow.fxml";
+    private static final String FXML = "timetablepanel/TimeTableWindow.fxml";
     private TimeTablePanel timeTablePanel;
 
     @FXML
-    private StackPane tabPanelPlaceholder;
+    private StackPane timetablePanelPlaceholder;
 
     /**
      * Creates a new HelpWindow.
      *
      * @param root Stage to use as the root of the HelpWindow.
      */
-    public TimeTableWindow(Stage root, ObservableList<Event> events) {
+    public TimeTableWindow(Stage root) {
         super(FXML, root);
-        timeTablePanel = new TimeTablePanel(events);
-        tabPanelPlaceholder.getChildren().add(timeTablePanel.getRoot());
+        timeTablePanel = new TimeTablePanel();
+        timetablePanelPlaceholder.getChildren().add(timeTablePanel.getRoot());
     }
 
     /**
      * Creates a new HelpWindow.
      */
-    public TimeTableWindow(ObservableList<Event> events) {
-        this(new Stage(), events);
+    public TimeTableWindow() {
+        this(new Stage());
     }
 
     /**
