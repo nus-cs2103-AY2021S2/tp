@@ -23,7 +23,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class MainWindow extends UiPart<Stage> {
 
-    private static String FXML = "MainWindow.fxml";
+    private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -147,8 +147,11 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Changes to light mode
+     */
     @FXML
-    public void handleLightChange(){
+    public void handleLightChange() {
         loadFxmlFile(getFxmlFileUrl("MainWindowLight.fxml"), primaryStage);
         fillInnerParts();
     }
@@ -169,8 +172,11 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Changes to dark mode
+     */
     @FXML
-    private void handleDarkChange(){
+    private void handleDarkChange() {
         loadFxmlFile(getFxmlFileUrl("MainWindow.fxml"), primaryStage);
         fillInnerParts();
 

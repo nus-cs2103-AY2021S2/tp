@@ -53,11 +53,11 @@ public class CommandResult {
         return exit;
     }
 
-    public boolean isLight(){
+    public boolean isLight() {
         return light;
     }
 
-    public boolean isDark(){
+    public boolean isDark() {
         return dark;
     }
 

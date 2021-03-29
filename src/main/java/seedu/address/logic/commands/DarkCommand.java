@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import seedu.address.model.Model;
 
 
-public class DarkCommand extends Command{
+public class DarkCommand extends Command {
 
     public static final String COMMAND_WORD = "dark";
 
