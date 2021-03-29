@@ -124,6 +124,7 @@
 
 .list-cell .label {
     -fx-text-fill: black;
+    -fx-wrap-text: true;
 }
 
 .cell_big_label {
@@ -157,6 +158,7 @@
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: black;
+    -fx-wrap-text: true;
 }
 
 .result-display .label {
