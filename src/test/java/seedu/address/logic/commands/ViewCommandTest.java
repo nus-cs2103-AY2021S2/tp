@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalGarments.getTypicalWardrobe;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_GARMENT;
@@ -56,5 +58,18 @@ public class ViewCommandTest {
         String expectedMessage = String.format(ViewCommand.MESSAGE_VIEW_GARMENT_SUCCESS);
 
         assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_invalidIndex_throwsCommandException() {
+        List<Index> indexList = new ArrayList<>();
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredGarmentList().size() + 1);
+        indexList.add(INDEX_FIRST_GARMENT);
+        indexList.add(INDEX_SECOND_GARMENT);
+        indexList.add(outOfBoundIndex);
+
+        ViewCommand viewCommand = new ViewCommand(indexList);
+
+        assertCommandFailure(viewCommand, model, Messages.MESSAGE_INVALID_GARMENT_DISPLAYED_INDEX);
     }
 }
