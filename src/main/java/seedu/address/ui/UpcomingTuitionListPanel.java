@@ -68,9 +68,9 @@ public class UpcomingTuitionListPanel extends UiPart<Region> {
     private void sortByDate(ObservableList<Tuition> finalTuitionList) {
         finalTuitionList.sort(new Comparator<Tuition>() {
             @Override
-            public int compare(Tuition o1, Tuition o2) {
-                return o1.getSession().getSessionDate().getDateTime().compareTo(
-                        o2.getSession().getSessionDate().getDateTime()
+            public int compare(Tuition tuition1, Tuition tuition2) {
+                return tuition1.getSession().getSessionDate().getDateTime().compareTo(
+                        tuition2.getSession().getSessionDate().getDateTime()
                 );
             }
         });
