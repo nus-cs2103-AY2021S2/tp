@@ -16,6 +16,13 @@ import seedu.weeblingo.model.tag.Tag;
 
 public class DeleteCommandParser implements Parser<DeleteCommand> {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of DeleteCommand.
+     *
+     * @param args Given arguments
+     * @return The DeleteCommand
+     * @throws ParseException if the given arguments do not comply with the requirements of the DeleteCommand
+     */
     public DeleteCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =

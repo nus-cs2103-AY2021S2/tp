@@ -1,7 +1,5 @@
 package seedu.weeblingo.model;
 
-import static seedu.weeblingo.storage.LocalDatabasePopulator.getDatabaseOfFlashcards;
-
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Arrays;

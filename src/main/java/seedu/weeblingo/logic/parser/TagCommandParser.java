@@ -14,8 +14,15 @@ import seedu.weeblingo.logic.commands.TagCommand;
 import seedu.weeblingo.logic.parser.exceptions.ParseException;
 import seedu.weeblingo.model.tag.Tag;
 
-public class TagCommandParser implements Parser<TagCommand>{
+public class TagCommandParser implements Parser<TagCommand> {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of TagCommand
+     *
+     * @param args Given arguments
+     * @return The TagCommand
+     * @throws ParseException if the given arguments do not comply with the requirements of the TagCommand
+     */
     public TagCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
