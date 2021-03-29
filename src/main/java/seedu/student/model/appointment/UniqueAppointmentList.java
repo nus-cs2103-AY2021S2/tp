@@ -3,6 +3,7 @@ package seedu.student.model.appointment;
 import static java.util.Objects.requireNonNull;
 import static seedu.student.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -76,7 +77,14 @@ public class UniqueAppointmentList implements Iterable<SameDateAppointmentList> 
      * The appointment must exist in the list.
      */
     public void remove(Appointment toRemove) {
-        // TODO
+        requireNonNull(toRemove);
+        for (SameDateAppointmentList apptList : internalList) {
+            apptList.remove(toRemove);
+            if (apptList.isEmpty()) {
+                internalList.remove(apptList);
+                break;
+            }
+        }
     }
 
     /**
@@ -86,7 +94,17 @@ public class UniqueAppointmentList implements Iterable<SameDateAppointmentList> 
     public void setAppointments(List<SameDateAppointmentList> lists) {
         requireAllNonNull(lists);
         // TODO: validate list of SameDateAppointmentList
-        internalList.setAll(lists);
+        // internalList.setAll(lists);
+        internalList.clear();
+        for (SameDateAppointmentList smdl : lists) {
+            List<Appointment> listAppts = smdl.getAppointmentList();
+            List<Appointment> listApptsCopy = new ArrayList<>(listAppts);
+            SameDateAppointmentList smdlCopy = new SameDateAppointmentList(smdl.getDate());
+            for (Appointment a : listApptsCopy) {
+                smdlCopy.add(a);
+            }
+            internalList.add(smdlCopy);
+        }
     }
 
     /**

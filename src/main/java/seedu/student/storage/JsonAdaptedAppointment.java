@@ -21,7 +21,6 @@ class JsonAdaptedAppointment {
     private final String matriculationNumber;
     private final String date;
     private final String startTime;
-    private final String endTime;
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
@@ -30,12 +29,10 @@ class JsonAdaptedAppointment {
     public JsonAdaptedAppointment(
                               @JsonProperty("matriculationNumber") String matriculationNumber,
                               @JsonProperty("date") String date,
-                              @JsonProperty("startTime") String startTime,
-                              @JsonProperty("endTime") String endTime) {
+                              @JsonProperty("startTime") String startTime) {
         this.matriculationNumber = matriculationNumber;
         this.date = date;
         this.startTime = startTime;
-        this.endTime = endTime;
     }
 
     /**
@@ -45,7 +42,6 @@ class JsonAdaptedAppointment {
         matriculationNumber = source.getMatriculationNumber().value;
         date = source.getDate().toString();
         startTime = source.getStartTime().toString();
-        endTime = source.getEndTime().toString();
     }
 
     /**
@@ -65,9 +61,8 @@ class JsonAdaptedAppointment {
 
         final LocalDate modelDate = LocalDate.parse(date);
         final LocalTime modelStartTime = LocalTime.parse(startTime);
-        final LocalTime modelEndTime = LocalTime.parse(endTime);
 
-        return new Appointment(modelMatric, modelDate, modelStartTime, modelEndTime);
+        return new Appointment(modelMatric, modelDate, modelStartTime);
     }
 
 }

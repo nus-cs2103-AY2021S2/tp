@@ -2,7 +2,6 @@ package seedu.student.logic.parser;
 
 import static seedu.student.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.student.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_MATRICULATION_NUMBER;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_START_TIME;
 
@@ -26,13 +25,11 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddAppointmentCommand parse(String args) throws ParseException {
-        assert args.length() >= 4;
+        assert args.length() >= 3;
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_MATRICULATION_NUMBER, PREFIX_DATE, PREFIX_START_TIME,
-                        PREFIX_END_TIME);
+                ArgumentTokenizer.tokenize(args, PREFIX_MATRICULATION_NUMBER, PREFIX_DATE, PREFIX_START_TIME);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_MATRICULATION_NUMBER, PREFIX_DATE, PREFIX_START_TIME,
-                PREFIX_END_TIME)
+        if (!arePrefixesPresent(argMultimap, PREFIX_MATRICULATION_NUMBER, PREFIX_DATE, PREFIX_START_TIME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddAppointmentCommand.MESSAGE_USAGE));
@@ -42,9 +39,8 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
                 .getValue(PREFIX_MATRICULATION_NUMBER).get());
         LocalDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
         LocalTime startTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_START_TIME).get());
-        LocalTime endTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_END_TIME).get());
 
-        Appointment appointment = new Appointment(matriculationNumber, date, startTime, endTime);
+        Appointment appointment = new Appointment(matriculationNumber, date, startTime);
 
         return new AddAppointmentCommand(appointment);
     }

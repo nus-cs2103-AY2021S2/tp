@@ -47,6 +47,7 @@ public class AppointmentCard extends UiPart<Region> {
     public AppointmentCard(Appointment appointment, int displayedIndex, ObservableList<Student> studentList) {
         super(FXML);
         this.appointment = appointment;
+
         this.student = studentList.stream().filter(student -> student.getMatriculationNumber()
                 .equals(appointment.getMatriculationNumber())).findFirst().get();
         id.setText(displayedIndex + ". ");

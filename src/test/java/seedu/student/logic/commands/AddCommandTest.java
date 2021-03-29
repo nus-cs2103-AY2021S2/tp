@@ -9,6 +9,7 @@ import static seedu.student.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -157,13 +158,24 @@ public class AddCommandTest {
         }
 
         @Override
+        public Student getStudent(MatriculationNumber matriculationNumber) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Appointment getAppointment(MatriculationNumber matriculationNumber) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredStudentList(Predicate<Student> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredAppointmentList(Predicate<SameDateAppointmentList> predicate) {
-            throw new AssertionError("This method should not be called.");
+        public void updateFilteredAppointmentList(Predicate<SameDateAppointmentList> predicate1,
+                                                  Predicate<Appointment> predicate2) {
+
         }
 
         @Override
@@ -182,7 +194,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteAppointment(Appointment appointment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<SameDateAppointmentList> getFilteredAppointmentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public List<Appointment> getAppointmentList() {
             throw new AssertionError("This method should not be called.");
         }
     }
