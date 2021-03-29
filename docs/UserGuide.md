@@ -27,6 +27,7 @@ different purpose they serve. This allow users to easily use the various feature
 Pawbook. 
 
 ## **Contributors**
+
 This document is created by **CS2103T-T10-Group1**.
 * Charles Lee Lin Ta
 * John Alec Mendoza Branzuela
@@ -35,10 +36,31 @@ This document is created by **CS2103T-T10-Group1**.
 * Wei Yutong
 * Zhang Anli
 
+## **Navigating the User Guide**
+The aim of this User Guide is to provide you with all the information you need to utilise Pawbook. We understand the 
+pains of using a Command Line Interface (CLI) program and have bested our efforts into ensuring a very readable guide
+on how to use our program <br>
+
+If you need help setting up Pawbook, you can go to the _[Quick Start](#quick-start)_ section. <br>
+
+If you want to find out more about Pawbook's features and commands, you can go to the _[Commands](#commands)_ section. <br>
+
+If you need an overview regarding the usage of Pawbook's commands, head on to the _[Command Summary](#command-summary)_ section. <br>
+
+Here are some important syntax to take note of to facilitate your reading before continuing.
+
+| **Symbol/Format** | **Meaning** |
+| :------------------:|:-------------|
+|<kbd>Enter</kbd> | This symbol indicates the enter button on the keyboard |
+| `Markdown` | Important examples |
+| **Bold** | Important words to note |
+| [Repeated Parameters] | Indicates the parameters/prefixes that may be repeated multiple times |
+
 # **About the User Guide**
 In this section, you will learn what the different notations and symbols used in Pawbook. 
 
 ## **Syntax Format**
+
 Syntax | Meaning  | Example
 --------|------------------|----------
 **`lower_case/`** |  Prefix | `n/`, `p/`, `t/`
@@ -46,24 +68,36 @@ Syntax | Meaning  | Example
 
 ## **GUI Layout**
 In this section, you will be given an introduction to the layout of Pawbook's Graphical User Interface(GUI). This will 
-help you better understand what each component that you observe on-screen represents.
+help you better understand what each component that you observe on-screen represents. <br>
 
----
+There are a total of two pages that you can navigate to when using Pawbook:
+* Main Page
+* Help Page
+
+###Main Page View
+You will be directed to the main page upon launching Pawbook. On this page, you can see the list of owners, dogs and programs
+that are currently stored in Pawbook. <br>
+
+Here is how the main page should look like:
+<img src="images/UIExample.png" width="790"/>
+
+###Help Page View
+Helps you better understand what each component that you observe on-screen represents.
 
 * Table of Contents
 {:toc}
 
 ---
 
-## **Quick start**
+## **Quick Start**
 1. Ensure you have **Java 11 or above** installed in your Computer.
-2. Download the **latest** pawbook.jar.
-3. Copy the file to the folder you want to use as the home folder for your
-   Pawbook.
-4. Double-click the file to start the app.
+2. Download the **latest** pawbook.jar [here][insertlinkhere].
+3. Copy the _pawbook.jar_ file to the folder you want to use as the root directory for Pawbook.
+4. Double-click the file to start the app. The Graphical User Interface (GUI) should appear in a matter of seconds.
+   <img src="images/UIExample.png" width="790"/>
 5. For new users, type `help` in the command box to view the instruction list
-6. Type the command in the command box and press Enter to execute it. e.g.
-   typing `add` and pressing Enter will allow you to start adding information to
+6. Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g.
+   typing `add` and pressing <kbd>Enter</kbd>  will allow you to start adding information to
    the database.
 
 **NOTE:** Please refer to the features below for details of each command.
@@ -73,7 +107,7 @@ help you better understand what each component that you observe on-screen repres
 # Commands 
 
 ### Add Command
-Adds a dog/owner/program to Pawbook.
+Adds a **dog/owner/program** to Pawbook.
 
 Format:
 
