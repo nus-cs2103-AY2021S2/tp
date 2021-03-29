@@ -1,14 +1,16 @@
 package seedu.address.storage;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.DateConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.commons.exceptions.TimeConversionException;
 import seedu.address.commons.util.DateUtil;
-import seedu.address.model.task.Interval;
+import seedu.address.commons.util.TimeUtil;
 import seedu.address.model.task.repeatable.Event;
 
 /**
@@ -16,23 +18,23 @@ import seedu.address.model.task.repeatable.Event;
  */
 class JsonAdaptedEvent {
     private final String description;
-    private final String interval;
-    private final String at;
-    private final Boolean isDone;
+    private final String date;
+    private final String time;
+    private final Boolean isWeekly;
 
     /**
-     * Constructs a {@code JsonAdaptedEvent} with the given {@code description}, {@code interval},
-     * {@code at} and {@code isDone}.
+     * Constructs a {@code JsonAdaptedEvent} with the given {@code description}, {@code date},
+     * {@code time} and {@code isWeekly}.
      */
     @JsonCreator
     public JsonAdaptedEvent(@JsonProperty("description")String description,
-                            @JsonProperty("interval") String interval,
-                            @JsonProperty("date") String at,
-                            @JsonProperty("isDone") Boolean isDone) {
+                            @JsonProperty("date") String date,
+                            @JsonProperty("time") String time,
+                            @JsonProperty("isWeekly") Boolean isWeekly) {
         this.description = description;
-        this.interval = interval;
-        this.at = at;
-        this.isDone = isDone;
+        this.date = date;
+        this.time = time;
+        this.isWeekly = isWeekly;
     }
 
     /**
@@ -40,9 +42,9 @@ class JsonAdaptedEvent {
      */
     public JsonAdaptedEvent(Event source) {
         description = source.getDescription();
-        interval = source.getRecurrence().name();
-        at = DateUtil.decodeDateForStorage(source.getAt());
-        isDone = source.getIsDone();
+        date = DateUtil.decodeDateForStorage(source.getDate());
+        time = TimeUtil.decodeTime(source.getTime());
+        isWeekly = source.getIsWeekly();
     }
 
     /**
@@ -51,21 +53,21 @@ class JsonAdaptedEvent {
      * @throws IllegalValueException if there were any data constraints violated in the adapted event.
      */
     public Event toModelType() throws IllegalValueException {
-        Interval eventInterval;
+        LocalDate encodedDate;
         try {
-            eventInterval = Interval.valueOf(interval);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalValueException(e.getMessage());
-        }
-
-        LocalDate date;
-        try {
-            date = DateUtil.encodeDate(at);
+            encodedDate = DateUtil.encodeDate(date);
         } catch (DateConversionException e) {
             throw new IllegalValueException(e.getMessage());
         }
 
-        return new Event(description, eventInterval, date, isDone);
+        LocalTime encodedTime;
+        try {
+            encodedTime = TimeUtil.encodeTime(time);
+        } catch (TimeConversionException e) {
+            throw new IllegalValueException(e.getMessage());
+        }
+
+        return new Event(description, encodedDate, encodedTime, isWeekly);
     }
 
 }
