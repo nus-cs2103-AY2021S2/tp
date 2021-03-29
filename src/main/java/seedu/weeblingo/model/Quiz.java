@@ -14,6 +14,7 @@ import java.util.Set;
 import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.flashcard.Flashcard;
 import seedu.weeblingo.model.tag.Tag;
+import seedu.weeblingo.storage.JsonDatabaseReader;
 
 /**
  * Class Quiz represents a quiz session.
@@ -33,7 +34,7 @@ public class Quiz {
      * Initializes the quiz session with a queue of all flashcards with randomized order.
      */
     public Quiz() {
-        Flashcard[] flashcardsReadFromDB = getDatabaseOfFlashcards();
+        Flashcard[] flashcardsReadFromDB = getDatabaseOfFlashcards(JsonDatabaseReader.readDatabaseAsJsonArray());
         quizSessionQueue = getRandomizedQueue(flashcardsReadFromDB);
         startTime = Instant.now();
     }
@@ -43,7 +44,7 @@ public class Quiz {
      * randomized order and the specified number of questions.
      */
     public Quiz(int numberOfQuestions) {
-        Flashcard[] flashcardsReadFromDB = getDatabaseOfFlashcards();
+        Flashcard[] flashcardsReadFromDB = getDatabaseOfFlashcards(JsonDatabaseReader.readDatabaseAsJsonArray());
         quizSessionQueue = getRandomizedSubsetQueue(flashcardsReadFromDB, numberOfQuestions);
         startTime = Instant.now();
     }

@@ -16,6 +16,7 @@ import seedu.weeblingo.model.Mode;
 import seedu.weeblingo.model.Model;
 import seedu.weeblingo.model.ReadOnlyFlashcardBook;
 import seedu.weeblingo.model.flashcard.Flashcard;
+import seedu.weeblingo.model.score.Score;
 import seedu.weeblingo.storage.Storage;
 
 /**
@@ -72,6 +73,12 @@ public class LogicManager implements Logic {
         return model.getFilteredFlashcardList();
     }
 
+    @Override
+    public ObservableList<Score> getFilteredScoreHistoryList() {
+        return model.getFilteredScoreHistory();
+    }
+
+
     // Gets current index of quiz if quiz started
     @Override
     public int getCurrentIndex() {
@@ -125,4 +132,8 @@ public class LogicManager implements Logic {
         }
     }
 
+    @Override
+    public boolean isShowingHistory() {
+        return getCurrentMode() == Mode.MODE_HISTORY;
+    }
 }

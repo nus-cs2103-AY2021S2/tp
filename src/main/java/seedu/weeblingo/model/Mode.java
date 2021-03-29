@@ -9,6 +9,7 @@ public class Mode {
     public static final int MODE_LEARN = 3;
     public static final int MODE_QUIZ_SESSION = 4;
     public static final int MODE_CHECK_SUCCESS = 5;
+    public static final int MODE_HISTORY = 6;
 
     private int currentMode;
 
@@ -36,7 +37,9 @@ public class Mode {
         this.currentMode = MODE_CHECK_SUCCESS;
     }
 
-
+    public void switchModeHistory() {
+        this.currentMode = MODE_HISTORY;
+    }
     /**
      * Returns the current mode of the app.
      *

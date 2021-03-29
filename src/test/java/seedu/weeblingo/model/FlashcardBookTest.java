@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.weeblingo.model.flashcard.Flashcard;
+import seedu.weeblingo.model.score.Score;
 
 public class FlashcardBookTest {
 
@@ -80,14 +81,21 @@ public class FlashcardBookTest {
      */
     private static class FlashcardBookStub implements ReadOnlyFlashcardBook {
         private final ObservableList<Flashcard> flashcards = FXCollections.observableArrayList();
+        private final ObservableList<Score> scores = FXCollections.observableArrayList();
 
-        FlashcardBookStub(Collection<Flashcard> flashcards) {
+        FlashcardBookStub(Collection<Flashcard> flashcards, Collection<Score> scores) {
             this.flashcards.setAll(flashcards);
+            this.scores.setAll(scores);
         }
 
         @Override
         public ObservableList<Flashcard> getFlashcardList() {
             return flashcards;
+        }
+
+        @Override
+        public ObservableList<Score> getScoreHistoryList() {
+            return scores;
         }
     }
 

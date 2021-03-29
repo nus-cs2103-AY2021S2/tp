@@ -12,6 +12,7 @@ import seedu.weeblingo.commons.exceptions.IllegalValueException;
 import seedu.weeblingo.model.FlashcardBook;
 import seedu.weeblingo.model.ReadOnlyFlashcardBook;
 import seedu.weeblingo.model.flashcard.Flashcard;
+import seedu.weeblingo.model.score.Score;
 
 /**
  * An Immutable FlashcardBook that is serializable to JSON format.
@@ -21,14 +22,20 @@ class JsonSerializableFlashcardBook {
 
     public static final String MESSAGE_DUPLICATE_FLASHCARD = "Flashcards list contains duplicate flashcard(s).";
 
+    public static final String MESSAGE_DUPLICATE_SCORE = "Score history list contains duplicate score(s).";
+
     private final List<JsonAdaptedFlashcard> flashcards = new ArrayList<>();
+
+    private final List<JsonAdaptedScore> scores = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableFlashcardBook} with the given flashcards.
      */
     @JsonCreator
-    public JsonSerializableFlashcardBook(@JsonProperty("flashcards") List<JsonAdaptedFlashcard> flashcards) {
+    public JsonSerializableFlashcardBook(@JsonProperty("flashcards") List<JsonAdaptedFlashcard> flashcards,
+                                         @JsonProperty("scores") List<JsonAdaptedScore> scores) {
         this.flashcards.addAll(flashcards);
+        this.scores.addAll(scores);
     }
 
     /**
@@ -39,6 +46,8 @@ class JsonSerializableFlashcardBook {
     public JsonSerializableFlashcardBook(ReadOnlyFlashcardBook source) {
         flashcards.addAll(source.getFlashcardList().stream().map(
                 JsonAdaptedFlashcard::new).collect(Collectors.toList()));
+        scores.addAll(source.getScoreHistoryList().stream().map(
+                JsonAdaptedScore::new).collect(Collectors.toList()));
     }
 
     /**
@@ -55,7 +64,14 @@ class JsonSerializableFlashcardBook {
             }
             flashcardBook.addFlashcard(flashcard);
         }
+
+        for (JsonAdaptedScore jsonAdaptedScore : scores) {
+            Score score = jsonAdaptedScore.toModelType();
+            if (flashcardBook.hasScore(score)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_SCORE);
+            }
+            flashcardBook.addScore(score);
+        }
         return flashcardBook;
     }
-
 }
