@@ -1,5 +1,6 @@
 package fooddiary.testutil;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -11,7 +12,8 @@ import fooddiary.model.entry.Name;
 import fooddiary.model.entry.Price;
 import fooddiary.model.entry.Rating;
 import fooddiary.model.entry.Review;
-import fooddiary.model.tag.Tag;
+import fooddiary.model.tag.TagCategory;
+import fooddiary.model.tag.TagSchool;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -36,9 +38,10 @@ public class EditEntryDescriptorBuilder {
         descriptor.setName(entry.getName());
         descriptor.setRating(entry.getRating());
         descriptor.setPrice(entry.getPrice());
-        descriptor.setReview(entry.getReview());
+        descriptor.setReviews(entry.getReviews());
         descriptor.setAddress(entry.getAddress());
-        descriptor.setTags(entry.getTags());
+        descriptor.setTagCategories(entry.getTagCategories());
+        descriptor.setTagSchools(entry.getTagSchools());
     }
 
     /**
@@ -66,10 +69,12 @@ public class EditEntryDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Review} of the {@code EditPersonDescriptor} that we are building.
+     * Parses the {@code reviews} into a {@code List<Review>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
      */
-    public EditEntryDescriptorBuilder withReview(String review) {
-        descriptor.setReview(new Review(review));
+    public EditEntryDescriptorBuilder withReviews(String... reviews) {
+        List<Review> reviewList = Stream.of(reviews).map(Review::new).collect(Collectors.toList());
+        descriptor.setReviews(reviewList);
         return this;
     }
 
@@ -82,12 +87,22 @@ public class EditEntryDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code tags} into a {@code Set<TagCategory>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
-    public EditEntryDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+    public EditEntryDescriptorBuilder withTagCategories(String... tags) {
+        Set<TagCategory> tagSet = Stream.of(tags).map(TagCategory::new).collect(Collectors.toSet());
+        descriptor.setTagCategories(tagSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<TagSchool>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditEntryDescriptorBuilder withTagSchools(String... tags) {
+        Set<TagSchool> tagSet = Stream.of(tags).map(TagSchool::new).collect(Collectors.toSet());
+        descriptor.setTagSchools(tagSet);
         return this;
     }
 

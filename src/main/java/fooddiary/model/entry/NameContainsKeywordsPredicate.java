@@ -24,8 +24,11 @@ public class NameContainsKeywordsPredicate implements Predicate<Entry> {
         sb.append(" ").append(entry.getRating().value).append("/5");
         sb.append(" ").append("$").append(entry.getPrice().value);
         sb.append(" ").append(entry.getAddress().value);
-        for (Tag t : entry.getTags()) {
-            sb.append(" ").append(t.tagCategory.name());
+        for (Tag t : entry.getTagCategories()) {
+            sb.append(" ").append(t.tag);
+        }
+        for (Tag t : entry.getTagSchools()) {
+            sb.append(" ").append(t.tag);
         }
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(sb.toString(), keyword));

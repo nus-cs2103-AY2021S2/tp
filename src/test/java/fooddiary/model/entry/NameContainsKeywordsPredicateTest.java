@@ -70,7 +70,7 @@ public class NameContainsKeywordsPredicateTest {
 
         // Keywords match review, but does not match name
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Great!"));
-        assertFalse(predicate.test(new EntryBuilder().withName("Frontier").withReview("Food is Great!").build()));
+        assertFalse(predicate.test(new EntryBuilder().withName("Frontier").withReviews("Food is Great!").build()));
     }
 
     @Test
@@ -78,35 +78,39 @@ public class NameContainsKeywordsPredicateTest {
         // One keyword
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(
                 Collections.singletonList("FastFood"));
-        assertTrue(predicate.test(new EntryBuilder().withName("KFC").withTags("FastFood").build()));
+        assertTrue(predicate.test(new EntryBuilder().withName("KFC").withTagCategories("FastFood").build()));
 
         // Multiple keywords
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Western", "Indian"));
-        assertTrue(predicate.test(new EntryBuilder().withName("PGP Canteen").withTags("Western", "Indian").build()));
+        assertTrue(predicate.test(new EntryBuilder().withName("PGP Canteen")
+                .withTagCategories("Western", "Indian")
+                .withTagSchools("PGP").build()));
 
         // Only one matching keyword
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("FastFood", "Western"));
-        assertTrue(predicate.test(new EntryBuilder().withName("PGP Canteen").withTags("Western", "Indian").build()));
+        assertTrue(predicate.test(new EntryBuilder().withName("PGP Canteen")
+                .withTagCategories("Western", "Indian").withTagSchools("PGP").build()));
 
         // Mixed-case keywords
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("wEStErN", "INdIan"));
-        assertTrue(predicate.test(new EntryBuilder().withName("PGP Canteen").withTags("Western", "Indian").build()));
+        assertTrue(predicate.test(new EntryBuilder().withName("PGP Canteen")
+                .withTagCategories("Western", "Indian").build()));
     }
 
     @Test
     public void test_tagDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new EntryBuilder().withName("Frontier").withTags("Western").build()));
+        assertFalse(predicate.test(new EntryBuilder().withName("Frontier").withTagCategories("Western").build()));
 
         // Non-matching keyword
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Western"));
-        assertFalse(predicate.test(new EntryBuilder().withName("Techno Edge").withTags("Indian").build()));
+        assertFalse(predicate.test(new EntryBuilder().withName("Techno Edge").withTagCategories("Indian").build()));
 
         // Keywords match review, but does not match tag
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Spicy"));
-        assertFalse(predicate.test(new EntryBuilder().withName("Macdonalds").withReview("Mcspicy not very spicy")
-                .withTags("FastFood").build()));
+        assertFalse(predicate.test(new EntryBuilder().withName("Macdonalds").withReviews("Mcspicy not very spicy")
+                .withTagCategories("FastFood").build()));
     }
 
     @Test
@@ -133,7 +137,7 @@ public class NameContainsKeywordsPredicateTest {
 
         // Keywords match review, but does not match rating
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Spicy"));
-        assertFalse(predicate.test(new EntryBuilder().withName("Macdonalds").withReview("Mcspicy not very spicy")
+        assertFalse(predicate.test(new EntryBuilder().withName("Macdonalds").withReviews("Mcspicy not very spicy")
                 .withRating("2").build()));
     }
 
@@ -161,7 +165,7 @@ public class NameContainsKeywordsPredicateTest {
 
         // Keywords match review, but does not match price
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Spicy"));
-        assertFalse(predicate.test(new EntryBuilder().withName("Macdonalds").withReview("Mcspicy not very spicy")
+        assertFalse(predicate.test(new EntryBuilder().withName("Macdonalds").withReviews("Mcspicy not very spicy")
                 .withPrice("4").build()));
     }
 
@@ -203,7 +207,7 @@ public class NameContainsKeywordsPredicateTest {
 
         // Keywords match review, but does not match address
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Great!"));
-        assertFalse(predicate.test(new EntryBuilder().withName("Frontier").withReview("Food is Great!")
+        assertFalse(predicate.test(new EntryBuilder().withName("Frontier").withReviews("Food is Great!")
                 .withAddress("12 Science Drive 2, Singapore 117549").build()));
     }
 }

@@ -3,6 +3,8 @@ package fooddiary.ui;
 import java.util.Comparator;
 
 import fooddiary.model.entry.Entry;
+import fooddiary.model.tag.TagCategory;
+import fooddiary.model.tag.TagSchool;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -39,9 +41,11 @@ public class EntryCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
-    private Label review;
+    private Label reviews;
     @FXML
-    private FlowPane tags;
+    private FlowPane tagCategory;
+    @FXML
+    private FlowPane tagSchool;
 
     /**
      * Creates a {@code EntryCode} with the given {@code Entry} and index to display.
@@ -53,11 +57,20 @@ public class EntryCard extends UiPart<Region> {
         name.setText(entry.getName().fullName);
         rating.setText(String.format("Rating: %s / 5", entry.getRating().value));
         price.setText(String.format("Price: $%s", entry.getPrice().value));
-        address.setText(entry.getAddress().value);
-        review.setText(entry.getReview().toString());
-        entry.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagCategory))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagCategory.titleCase())));
+        address.setText(String.format("Address: %s", entry.getAddress().value));
+        String reviewStr = "";
+        for (int i = 0; i < entry.getReviews().size(); i++) {
+            reviewStr += entry.getReviews().get(i) + "\n";
+        }
+        reviews.setText(String.format("Reviews:\n%s", reviewStr));
+
+        entry.getTagCategories().stream()
+                .sorted(Comparator.comparing(TagCategory::getTag))
+                .forEach(tag -> tagCategory.getChildren().add(new Label(tag.getTag())));
+
+        entry.getTagSchools().stream()
+                .sorted(Comparator.comparing(TagSchool::getTag))
+                .forEach(tag -> tagSchool.getChildren().add(new Label(tag.getTag())));
     }
 
     @Override

@@ -1,6 +1,8 @@
 package fooddiary.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import fooddiary.model.entry.Address;
@@ -9,7 +11,8 @@ import fooddiary.model.entry.Name;
 import fooddiary.model.entry.Price;
 import fooddiary.model.entry.Rating;
 import fooddiary.model.entry.Review;
-import fooddiary.model.tag.Tag;
+import fooddiary.model.tag.TagCategory;
+import fooddiary.model.tag.TagSchool;
 import fooddiary.model.util.SampleDataUtil;
 
 
@@ -27,9 +30,10 @@ public class EntryBuilder {
     private Name name;
     private Rating rating;
     private Price price;
-    private Review review;
+    private List<Review> reviews;
     private Address address;
-    private Set<Tag> tags;
+    private Set<TagCategory> categories;
+    private Set<TagSchool> schools;
 
     /**
      * Creates a {@code EntryBuilder} with the default details.
@@ -38,9 +42,11 @@ public class EntryBuilder {
         name = new Name(DEFAULT_NAME);
         rating = new Rating(DEFAULT_RATING);
         price = new Price(DEFAULT_PRICE);
-        review = new Review(DEFAULT_REVIEW);
+        reviews = new ArrayList<>();
+        reviews.add(new Review(DEFAULT_REVIEW));
         address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
+        categories = new HashSet<>();
+        schools = new HashSet<>();
     }
 
     /**
@@ -50,9 +56,10 @@ public class EntryBuilder {
         name = entryToCopy.getName();
         rating = entryToCopy.getRating();
         price = entryToCopy.getPrice();
-        review = entryToCopy.getReview();
+        reviews = entryToCopy.getReviews();
         address = entryToCopy.getAddress();
-        tags = new HashSet<>(entryToCopy.getTags());
+        categories = new HashSet<>(entryToCopy.getTagCategories());
+        schools = new HashSet<>(entryToCopy.getTagSchools());
     }
 
     /**
@@ -64,10 +71,18 @@ public class EntryBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Entry} that we are building.
+     * Parses the {@code tags} into a {@code Set<TagCategory} and set it to the {@code Entry} that we are building.
      */
-    public EntryBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public EntryBuilder withTagCategories(String ... tags) {
+        this.categories = SampleDataUtil.getTagCategorySet(tags);
+        return this;
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<TagSchool>} and set it to the {@code Entry} that we are building.
+     */
+    public EntryBuilder withTagSchools(String ... tags) {
+        this.schools = SampleDataUtil.getTagSchoolSet(tags);
         return this;
     }
 
@@ -96,15 +111,15 @@ public class EntryBuilder {
     }
 
     /**
-     * Sets the {@code Review} of the {@code Entry} that we are building.
+     * Parses the {@code reviews} into a {@code List<Review>} and set it to the {@code Entry} that we are building.
      */
-    public EntryBuilder withReview(String review) {
-        this.review = new Review(review);
+    public EntryBuilder withReviews(String ... reviews) {
+        this.reviews = SampleDataUtil.getReviewList(reviews);
         return this;
     }
 
     public Entry build() {
-        return new Entry(name, rating, price, review, address, tags);
+        return new Entry(name, rating, price, reviews, address, categories, schools);
     }
 
 }

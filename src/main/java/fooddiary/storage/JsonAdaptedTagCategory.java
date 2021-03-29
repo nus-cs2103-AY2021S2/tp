@@ -4,34 +4,33 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import fooddiary.commons.exceptions.IllegalValueException;
-import fooddiary.model.tag.Tag;
-import fooddiary.model.tag.TagCategories;
+import fooddiary.model.tag.TagCategory;
 
 /**
- * Jackson-friendly version of {@link Tag}.
+ * Jackson-friendly version of {@link TagCategory}.
  */
-class JsonAdaptedTag {
+class JsonAdaptedTagCategory {
 
-    private final TagCategories tagCategory;
+    private final String tag;
 
     /**
      * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
      */
     @JsonCreator
-    public JsonAdaptedTag(String tagCategory) {
-        this.tagCategory = TagCategories.find(tagCategory);
+    public JsonAdaptedTagCategory(String tagName) {
+        this.tag = new TagCategory(tagName).getTag();
     }
 
     /**
      * Converts a given {@code Tag} into this class for Jackson use.
      */
-    public JsonAdaptedTag(Tag source) {
-        tagCategory = source.tagCategory;
+    public JsonAdaptedTagCategory(TagCategory source) {
+        this.tag = source.getTag();
     }
 
     @JsonValue
     public String getTagName() {
-        return tagCategory.name();
+        return tag;
     }
 
     /**
@@ -39,11 +38,11 @@ class JsonAdaptedTag {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
-    public Tag toModelType() throws IllegalValueException {
-        if (!Tag.isValidTagName(tagCategory.name())) {
-            throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
+    public TagCategory toModelType() throws IllegalValueException {
+        if (!TagCategory.isValidTagName(tag)) {
+            throw new IllegalValueException(TagCategory.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(tagCategory.name());
+        return new TagCategory(tag);
     }
 
 }
