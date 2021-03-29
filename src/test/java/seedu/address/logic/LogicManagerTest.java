@@ -57,10 +57,10 @@ public class LogicManagerTest {
         String listCommand = ViewMembersCommand.COMMAND_WORD;
         assertCommandSuccess(listCommand, ViewMembersCommand.MESSAGE_SUCCESS, model);
     }
-    
+
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonHeyMatezIoExceptionThrowingStub
+        //Setup LogicManager with JsonHeyMatezIoExceptionThrowingStub
         JsonHeyMatezStorage heyMatezStorage =
                 new JsonHeyMatezIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionHeyMatez.json"));
         JsonUserPrefsStorage userPrefsStorage =
