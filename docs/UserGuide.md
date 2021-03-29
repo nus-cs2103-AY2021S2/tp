@@ -158,6 +158,15 @@ This subsection serves to list out the parameters used in this document. We have
 * The tag associated with a contact.
 * Tags should consist of alphanumeric characters.
 
+##### `TIME`
+
+* The time of an event.
+* Time can be only be entered in one of these formats:
+    * 1730
+    * 17:30
+* The Hour Field (First 2 digits) should be a non-negative number between 00 and 23 (inclusive).
+* The Minute Field (Last 2 digits) should be a non-negative number between 00 and 59 (inclusive).
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **3.Quick start**
