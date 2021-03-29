@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
@@ -15,6 +16,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.AttributeContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.passenger.AddressContainsKeywordsPredicate;
@@ -34,14 +36,17 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     public FindCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_PRICE);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_PRICE,
+                        PREFIX_ALL);
 
-        if (!arePrefixesValid(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_TAG, PREFIX_PRICE)) {
+        if (!arePrefixesValid(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_TAG, PREFIX_PRICE,
+                PREFIX_ALL)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
         List<Prefix> presentPrefixes =
-                presentPrefixes(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_TAG, PREFIX_PRICE);
+                presentPrefixes(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_TAG, PREFIX_PRICE,
+                        PREFIX_ALL);
         assert(presentPrefixes.size() == 1);
 
         Prefix specifiedPrefix = presentPrefixes.get(0);
@@ -80,36 +85,66 @@ public class FindCommandParser implements Parser<FindCommand> {
      * {@code ArgumentMultimap}.
      */
     private static List<String> parseValue(ArgumentMultimap argumentMultimap, Prefix prefix) throws ParseException {
-        List<String> outputList = new ArrayList<>();
+
 
         if (PREFIX_NAME.equals(prefix) && argumentMultimap.getValue(PREFIX_NAME).isPresent()) {
-            for (String s : argumentMultimap.getAllValues(PREFIX_NAME)) {
-                String parsedNameAsString = ParserUtil.parseName(s).toString();
-                outputList.add(parsedNameAsString.trim());
-            }
+            return parseValueHelper(argumentMultimap, PREFIX_NAME);
         } else if (PREFIX_ADDRESS.equals(prefix) && argumentMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            for (String s : argumentMultimap.getAllValues(PREFIX_ADDRESS)) {
-                String parsedAddressAsString = ParserUtil.parseAddress(s).toString();
-                outputList.add(parsedAddressAsString.trim());
-            }
+            return parseValueHelper(argumentMultimap, PREFIX_ADDRESS);
         } else if (PREFIX_PHONE.equals(prefix) && argumentMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            for (String s : argumentMultimap.getAllValues(PREFIX_PHONE)) {
-                String parsedPhoneAsString = ParserUtil.parseAddress(s).toString();
-                outputList.add(parsedPhoneAsString.trim());
-            }
+            return parseValueHelper(argumentMultimap, PREFIX_PHONE);
         } else if (PREFIX_TAG.equals(prefix) && argumentMultimap.getValue(PREFIX_TAG).isPresent()) {
-            for (String s : argumentMultimap.getAllValues(PREFIX_TAG)) {
-                String parsedTagAsString = ParserUtil.parseTag(s).toString();
-                outputList.add(parsedTagAsString.trim());
-            }
+            return parseValueHelper(argumentMultimap, PREFIX_TAG);
         } else if (PREFIX_PRICE.equals(prefix)
                 && argumentMultimap.getValue(PREFIX_PRICE).isPresent()
                 && doesPrefixHaveOneValue(argumentMultimap, PREFIX_PRICE)) {
+            List<String> outputList = new ArrayList<>();
+
             String parsedPriceAsString =
                     ParserUtil.parsePrice(argumentMultimap.getValue(PREFIX_PRICE).get()).toString();
             outputList.add(parsedPriceAsString);
+
+            return outputList;
+        } else if (PREFIX_ALL.equals(prefix)) {
+            return parseValueHelper(argumentMultimap, PREFIX_ALL);
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+    }
+
+    /**
+     * Returns the value for the specified prefix
+     * {@code ArgumentMultimap}.
+     */
+    private static List<String> parseValueHelper(ArgumentMultimap argumentMultimap, Prefix prefix)
+            throws ParseException {
+        List<String> outputList = new ArrayList<>();
+
+        for (String s : argumentMultimap.getAllValues(prefix)) {
+            String argument = "";
+            switch (prefix.toString()) {
+            case "n/":
+                argument = ParserUtil.parseName(s).toString();
+                break;
+            case "a/":
+                argument = ParserUtil.parseAddress(s).toString();
+                break;
+            case "p/":
+                argument = ParserUtil.parsePhone(s).toString();
+                break;
+            case "tag/":
+                argument = ParserUtil.parseTag(s).toString();
+                break;
+            case "pr/":
+                argument = ParserUtil.parsePrice(s).toString();
+                break;
+            case "all/":
+                argument = s;
+                break;
+            default:
+                break;
+            }
+            outputList.add(argument.trim());
         }
 
         return outputList;
@@ -133,6 +168,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         case "pr/":
             Double price = Double.parseDouble(arguments.get(0));
             return new PriceContainsKeywordsPredicate(price);
+        case "all/":
+            return new AttributeContainsKeywordsPredicate(arguments);
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }

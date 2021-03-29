@@ -14,6 +14,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_TRIPTIME = new Prefix("t/");
     public static final Prefix PREFIX_COMMUTER = new Prefix("c/");
     public static final Prefix PREFIX_PRICE = new Prefix("pr/");
+    public static final Prefix PREFIX_ALL = new Prefix("all/");
 
     /**
      * Prevents CliSyntax from being instantiated.
