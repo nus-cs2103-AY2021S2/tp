@@ -204,9 +204,9 @@ public class MainWindow extends UiPart<Stage> {
                     Duration.millis(1000),
                     event -> {
                         time.setText(
-                        LocalDateTime.now().toLocalDate()
-                                .format(DateTimeFormatter.ofPattern("dd-MMM-YYYY")) + "     " +
-                                LocalDateTime.now().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm")));
+                            LocalDateTime.now().toLocalDate()
+                            .format(DateTimeFormatter.ofPattern("dd-MMM-YYYY")) + "     "
+                            + LocalDateTime.now().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm")));
 
                     }
                 )
