@@ -1,5 +1,10 @@
 package seedu.address.ui;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.time.LocalDateTime;
+import java.util.logging.Logger;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -13,11 +18,6 @@ import seedu.address.model.fee.MonthlyFee;
 import seedu.address.model.fee.Year;
 import seedu.address.model.session.Session;
 import seedu.address.model.student.Student;
-
-import java.time.LocalDateTime;
-import java.util.logging.Logger;
-
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Panel containing the list of the upcoming tuition in 1 week.
@@ -71,7 +71,8 @@ public class MonthlyFeeListPanel extends UiPart<Region> {
     /**
      * Populates the tuitionList with {@code Tuition} for all sessions in the studentList.
      */
-    private void populateMonthlyFeeList(ObservableList<Student> studentList, ObservableList<MonthlyFee> monthlyFeeList) {
+    private void populateMonthlyFeeList(ObservableList<Student> studentList,
+        ObservableList<MonthlyFee> monthlyFeeList) {
         LocalDateTime currMonthYear;
         LocalDateTime nextMonthYear;
 
@@ -92,7 +93,8 @@ public class MonthlyFeeListPanel extends UiPart<Region> {
         }
     }
 
-    private double getCurrMonthFee(ObservableList<Student> studentList, LocalDateTime startPeriod, LocalDateTime endPeriod) {
+    private double getCurrMonthFee(ObservableList<Student> studentList, LocalDateTime startPeriod,
+        LocalDateTime endPeriod) {
         double fee = 0;
         for (Student student : studentList) {
             fee += getFeePerStudent(student, startPeriod, endPeriod);

@@ -1,8 +1,5 @@
 package seedu.address.model.fee;
 
-import seedu.address.model.session.Fee;
-
-import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
@@ -15,6 +12,13 @@ public class MonthlyFee {
     private Month month;
     private Year year;
 
+    /**
+     * Constructs a {@code MonthlyFee} object with the respective monthly fee
+     * for a particular month and year.
+     * @param monthlyFee Monthly fee for this month and year.
+     * @param month Month of the monthly fee.
+     * @param year Year of the monthly fee.
+     */
     public MonthlyFee(double monthlyFee, Month month, Year year) {
         requireAllNonNull(monthlyFee, month, year);
         this.monthlyFee = monthlyFee;

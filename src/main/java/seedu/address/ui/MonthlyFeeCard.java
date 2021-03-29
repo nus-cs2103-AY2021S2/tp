@@ -1,11 +1,11 @@
 package seedu.address.ui;
 
+import java.text.DecimalFormat;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import seedu.address.model.fee.MonthlyFee;
-
-import java.text.DecimalFormat;
 
 /**
  * An UI component that displays information of a {@code MonthlyFee}.
