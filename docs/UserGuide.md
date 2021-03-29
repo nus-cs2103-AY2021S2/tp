@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-CakeCollate is a **desktop app for managing cake orders, optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CakeCollate can get your order management tasks done faster than traditional GUI apps.
+CakeCollate is a **desktop app for managing cake orders, optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you're a small-time cake seller in need of an app to consolidate your orders, and you can type fast, CakeCollate can get your order management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -26,7 +26,7 @@ CakeCollate is a **desktop app for managing cake orders, optimized for use via a
 
    * **`list`** : Lists all orders in the CakeCollate database.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 /o strawberry cake 3` : Adds an order with a contact named `John Doe` to CakeCollate.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 o/ strawberry cake 3` : Adds an order with a contact named `John Doe` to CakeCollate.
 
    * **`delete`**`3` : Deletes the 3rd order shown in the current list.
    
@@ -79,15 +79,16 @@ Format: `help`
 
 Adds an order to the CakeCollate database.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] d/DELIVERY_DATE o/ORDER_DESCRIPTION`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE [o/ORDER_DESCRIPTION]... [oi/ORDER_ITEM_INDEX]... [t/TAG]...`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A order can have any number of tags (including 0)
-</div>
+* An order item index refers to the list number of order items on the right of the GUI
+* At least one of either an order item index or an order description must be specified
+* Zero or more tags can be specified for an order
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 /o strawberry cake 3`
-* `add n/Betsy Crowe t/daughter e/betsycrowe@example.com a/Newgate Prison p/1234567 t/friend d/13-05-2100 /o chocolate cake 5 durian cake 10 mochi cake 100`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 o/strawberry cake oi/1` adds an order with all compulsory fields, an order description of strawberry cake and the first item in the list of order items in the GUI.
+* `add n/Betsy Crowe t/daughter e/betsycrowe@example.com a/Newgate Prison p/1234567 t/friend d/13-05-2100 o/chocolate cake o/5 durian cake o/10 mochi cake 100` adds an order with all compulsory fields, three specified order descriptions, and a friend tag.
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 oi/1 4 5` adds an order with all compulsory fields and adds order items 1, 4, 5 of the currently displayed list to the order.
 
 ### List all existing orders : `list`
 
@@ -275,7 +276,7 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] d/DELIVERY_DATE o/ORDER_TYPE` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 /o strawberry cake 3`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] d/DELIVERY_DATE o/ORDER_TYPE` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 o/ strawberry cake 3`
 **Clear** | `clear`
 **Delete** | `delete INDEXES`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
