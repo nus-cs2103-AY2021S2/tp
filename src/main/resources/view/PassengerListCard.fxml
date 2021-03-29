@@ -36,10 +36,5 @@
         </padding>
       </VBox>
     </VBox>
-    <VBox fx:id="driverCardContainer" GridPane.columnIndex="1">
-      <padding>
-        <Insets top="5" right="10" bottom="5" left="0" />
-      </padding>
-    </VBox>
   </GridPane>
 </HBox>

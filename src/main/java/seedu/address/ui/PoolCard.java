@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -51,6 +52,9 @@ public class PoolCard extends UiPart<Region> {
         this.pool = pool;
         id.setText(displayedIndex + ". ");
         name.setText("Trip by " + pool.getDriver().getName().toString());
+        pool.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
         // collect the fields that uses the icon and label format
         List<Region> cardFields = new ArrayList<>();
