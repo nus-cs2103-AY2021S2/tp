@@ -31,8 +31,8 @@ public class ListCommandTest {
                 getTypicalScheduleTracker());
 
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
-                model.getAppointmentBook(), model.getBudgetBook(), model.getGradeBook(),
-                model.getScheduleTracker());
+                getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook(),
+                getTypicalScheduleTracker());
     }
 
     @Test

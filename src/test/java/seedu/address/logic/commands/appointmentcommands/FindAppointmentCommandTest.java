@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_APPOINTMENT_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.ModelManagerBuilder.ModelType.APPOINTMENTBOOK;
 import static seedu.address.testutil.TypicalAppointments.MATHS_APPOINTMENT;
 import static seedu.address.testutil.TypicalAppointments.SCIENCE_APPOINTMENT;
 
@@ -12,13 +13,12 @@ import java.util.Arrays;
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
-
 import seedu.address.model.Model;
 import seedu.address.model.appointment.NamePredicate;
 import seedu.address.testutil.ModelManagerBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) for {@code FindAppointmentCommandTest}.
  */
 public class FindAppointmentCommandTest {
     private final Model model = ModelManagerBuilder.getModelManager();
