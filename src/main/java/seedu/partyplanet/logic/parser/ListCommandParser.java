@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-import seedu.partyplanet.logic.commands.EListCommand;
 import seedu.partyplanet.logic.commands.ListCommand;
 import seedu.partyplanet.logic.parser.exceptions.ParseException;
 import seedu.partyplanet.model.person.Person;
@@ -96,7 +95,8 @@ public class ListCommandParser implements Parser<ListCommand> {
     /**
      * Returns combines a list of filtering predicates depending on whether search is performed for any predicate.
      */
-    private Predicate<Person> mergePredicates(List<Predicate<Person>> predicates, ArgumentMultimap argMap) throws ParseException {
+    private Predicate<Person> mergePredicates(List<Predicate<Person>> predicates, ArgumentMultimap argMap)
+        throws ParseException {
         boolean isAnySearch = argMap.contains(FLAG_ANY);
         if (isAnySearch && predicates.isEmpty()) {
             throw new ParseException(

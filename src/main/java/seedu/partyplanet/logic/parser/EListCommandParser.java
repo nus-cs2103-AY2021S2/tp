@@ -90,7 +90,8 @@ public class EListCommandParser implements Parser<EListCommand> {
     /**
      * Returns combines a list of filtering predicates depending on whether search is performed for any predicate.
      */
-    private Predicate<Event> mergePredicates(List<Predicate<Event>> predicates, ArgumentMultimap argMap) throws ParseException {
+    private Predicate<Event> mergePredicates(List<Predicate<Event>> predicates, ArgumentMultimap argMap)
+        throws ParseException {
         boolean isAnySearch = argMap.contains(FLAG_ANY);
         Predicate<Event> overallPredicate;
         if (isAnySearch && predicates.isEmpty()) {
