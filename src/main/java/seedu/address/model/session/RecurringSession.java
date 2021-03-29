@@ -58,11 +58,17 @@ public class RecurringSession extends Session {
         return lastSessionDate;
     }
 
+    /**
+     * Returns true if recurring session date ends before {@code SessionDate} date.
+     */
     public boolean endBefore(SessionDate sessionDate) {
         requireAllNonNull(sessionDate);
         return lastSessionDate.getDate().isBefore(sessionDate.getDate());
     }
 
+    /**
+     * Returns true if recurring session date starts after {@code SessionDate} date.
+     */
     private boolean startAfter(SessionDate sessionDate) {
         requireAllNonNull(sessionDate);
         return getSessionDate().getDate().isAfter(sessionDate.getDate());

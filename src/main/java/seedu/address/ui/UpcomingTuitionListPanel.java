@@ -107,8 +107,9 @@ public class UpcomingTuitionListPanel extends UiPart<Region> {
                     }
                 } else {
                     LocalDate dateOfSingleSession = currSession.getSessionDate().getDate();
-                    if (isWithinThreeDaysRange(today, dayAfterTomorrow, dateOfSingleSession))
-                    tuitionList.add(new Tuition(currStudent, currSession, i, j));
+                    if (isWithinThreeDaysRange(today, dayAfterTomorrow, dateOfSingleSession)) {
+                        tuitionList.add(new Tuition(currStudent, currSession, i, j));
+                    }
                 }
             }
         }
@@ -117,7 +118,8 @@ public class UpcomingTuitionListPanel extends UiPart<Region> {
     /**
      * Returns true if dateOfSingleSession is between today and the day after tomorrow.
      */
-    private boolean isWithinThreeDaysRange(SessionDate today, SessionDate dayAfterTomorrow, LocalDate dateOfSingleSession) {
+    private boolean isWithinThreeDaysRange(SessionDate today, SessionDate dayAfterTomorrow,
+                                           LocalDate dateOfSingleSession) {
         return today.getDate().compareTo(dateOfSingleSession) <= 0
                 && dateOfSingleSession.compareTo(dayAfterTomorrow.getDate()) < 0;
     }
