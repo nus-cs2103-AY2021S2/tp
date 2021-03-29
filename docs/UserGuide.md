@@ -172,7 +172,7 @@ table in the form of a pop up window.
   <img width="450px" src="images/commands/add.png" >
 </p>
 
-<div markdown="span" class="alert alert-warning">:bulb: **Tip:**
+<div markdown="span" class="alert alert-danger">:exclamation: **Caution**
 Multiple headers/tags must be unique and duplicates will be ignored
 </div>
 
