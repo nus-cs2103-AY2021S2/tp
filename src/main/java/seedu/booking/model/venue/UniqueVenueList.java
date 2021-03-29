@@ -105,7 +105,7 @@ public class UniqueVenueList implements Iterable<Venue> {
      */
     public boolean containsVenueName(ObservableList<Venue> list, VenueName venueNameToCheck) {
         requireNonNull(venueNameToCheck);
-        return list.stream().anyMatch(x -> x.getVenueName().equals(venueNameToCheck));
+        return list.stream().anyMatch(venueNameToCheck::isSameVenueName);
     }
 
     public void setVenues(UniqueVenueList replacement) {
