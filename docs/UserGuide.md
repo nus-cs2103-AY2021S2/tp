@@ -92,7 +92,7 @@ There are three main areas in TutorBuddy:
 * The **File** tab consists of an exit button. To exit TutorBuddy, click on the exit button. Alternatively, use the `exit` command to exit the application.
 * The **Help** tab consists of a help button. If you require any assistance, click on the help button, copy the link
   displayed and paste it into any web browser. Alternatively, press <kbd>F1</kbd> to bring up the help window.
-  
+
 2. The main viewing area consists of 3 tabs: **Home**, **Tuition** and **Calendar**.
 * The **Home** tab gives tutors a quick overview of important matters. This includes their upcoming tuition lessons, as well as tuition fees receivable for the past 3 months.
 * The **Tuition** tab allow tutors to view and manage their students and lessons.
@@ -202,7 +202,7 @@ Format: `delete_student INDEX` <br>
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You could use `find_student` first to filter the list of students you want.<br>
 The INDEX would then be based on the current list instead.<br>
-(E.g. If John Doe is the 500th student, instead of delete_student 500, you can use find_student John Doe and 
+(E.g. If John Doe is the 500th student, instead of delete_student 500, you can use find_student John Doe and
 delete_student 1 if the John Doe you would like to delete is the 1st in the list)
 </div>
 
