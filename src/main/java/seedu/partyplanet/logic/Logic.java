@@ -30,7 +30,7 @@ public interface Logic {
      * @param commandText The command as entered by the user.
      * @return The result of the autocompletion.
      * @throws CommandException If an error occurs during command execution.
-     * @throws ParseExceptionIf an error occurs during parsing.
+     * @throws ParseException If an error occurs during parsing.
      */
     String autoComplete(String commandText) throws CommandException, ParseException;
 
