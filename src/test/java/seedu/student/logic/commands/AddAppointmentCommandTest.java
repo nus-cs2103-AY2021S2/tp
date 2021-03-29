@@ -203,6 +203,11 @@ public class AddAppointmentCommandTest {
         }
 
         @Override
+        public void setAppointment(Appointment target, Appointment editedAppointment) throws CommandException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteAppointment(Appointment appointment) {
             throw new AssertionError("This method should not be called.");
         }

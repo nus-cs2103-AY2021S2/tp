@@ -1,6 +1,7 @@
 package seedu.student.model.appointment;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.student.commons.core.Messages.MESSAGE_NONEXISTENT_APPOINTMENT;
 import static seedu.student.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
@@ -11,6 +12,7 @@ import java.util.function.Predicate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import seedu.student.commons.core.Messages;
 import seedu.student.logic.commands.exceptions.CommandException;
 import seedu.student.model.appointment.exceptions.DuplicateAppointmentException;
 import seedu.student.model.appointment.exceptions.OverlappingAppointmentException;
@@ -101,7 +103,7 @@ public class SameDateAppointmentList implements Iterable<Appointment>, Comparabl
         int index = internalList.indexOf(target);
         if (index == -1) {
             //throw exception here?
-            throw new CommandException("Target appointment does not exist!"); //this should be a constant, will define
+            throw new CommandException(MESSAGE_NONEXISTENT_APPOINTMENT); //this should be a constant, will define
             //the constant later
         }
         if (!target.isSameAppointment(editedAppointment) && contains(editedAppointment)) {
