@@ -17,6 +17,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.shortcut.ShortcutLibrary;
 import seedu.address.storage.Storage;
 
 /**
@@ -28,7 +29,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private AddressBookParser addressBookParser;
 
     private boolean isListModified;
 
@@ -38,7 +39,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        addressBookParser = new AddressBookParser(model.getShortcutLibrary());
         this.isListModified = false;
     }
 
@@ -48,6 +49,10 @@ public class LogicManager implements Logic {
         boolean isFindCommandWithAttributes = command instanceof FindCommand
                 && ((FindCommand) command).isAttributeSpecified();
         return isFindCommandWithAttributes || isListCommandWithAttributes;
+    }
+
+    private void updateAddressBookParser(ShortcutLibrary shortcutLibrary) {
+        this.addressBookParser = new AddressBookParser(shortcutLibrary);
     }
 
     @Override
@@ -72,12 +77,25 @@ public class LogicManager implements Logic {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
 
+        this.updateAddressBookParser(model.getShortcutLibrary());
+
+        try {
+            this.storage.saveShortcutLibrary(model.getShortcutLibrary());
+        } catch (IOException ioe) {
+            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+        }
+
         return commandResult;
     }
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
         return model.getAddressBook();
+    }
+
+    @Override
+    public ShortcutLibrary getShortcutLibrary() {
+        return model.getShortcutLibrary();
     }
 
     @Override
@@ -88,6 +106,11 @@ public class LogicManager implements Logic {
     @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
+    }
+
+    @Override
+    public Path getShortcutLibraryFilePath() {
+        return model.getShortcutLibraryFilePath();
     }
 
     @Override
