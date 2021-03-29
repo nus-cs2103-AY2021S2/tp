@@ -14,7 +14,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_UPDATE_INDEX = new Prefix("u/");
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("d/");
     public static final Prefix PREFIX_DEADLINE_DATE = new Prefix("by/");
-    public static final Prefix PREFIX_EVENT_INTERVAL = new Prefix("i/");
+    public static final Prefix PREFIX_EVENT_WEEKLY = new Prefix("w/");
     public static final Prefix PREFIX_EVENT_DATE = new Prefix("at/");
     public static final Prefix PREFIX_REMOVE_TASK_INDEX = new Prefix("r/");
     public static final Prefix PREFIX_MARK_TASK_INDEX = new Prefix("m/");
