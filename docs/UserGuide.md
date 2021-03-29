@@ -86,20 +86,32 @@ Shows a list of dogs in the specified category/program.
 Format:
 
 ```
-list b/golden retriever
-list c/puppy
-list t/brown
+list b/<BREED>
+list s/<SEX>
+list t/<TAG>
 ```
 Examples:
 1. List all golden retrievers in the school.<br>
    Command: `list b/golden retriever`
-2. List all dogs enrolled in the puppy program.<br>
-   Command: `list c/puppy`
+2. List all male dogs.<br>
+   Command: `list s/Male`
 3. List all brown dogs.<br>
    Command: `list t/brown`
 
 **NOTE:** If the argument is left blank i.e `list`, all the dog profiles in the school will be displayed.
 
+### Drop Command
+
+Removes a specified dog from a specified program that the dog was previously enrolled in.
+
+Format:
+```
+drop d/<DOG ID> p/<PROGRAM ID>
+```
+
+Examples:
+1. Remove dog with Dog ID 1 from program with Program ID 2, assuming that Dog ID 1 was previously enrolled in Program ID 2. <br> 
+   Command: `drop d/1 p/2`
 
 ### Help Command
 
