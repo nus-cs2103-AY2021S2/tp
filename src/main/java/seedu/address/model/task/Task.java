@@ -2,6 +2,7 @@ package seedu.address.model.task;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -145,6 +146,17 @@ public class Task {
      */
     public boolean isRecurringScheduleEmpty() {
         return recurringSchedule.isEmptyValue();
+    }
+
+    /**
+     * Returns true if this task is already done.
+     */
+    public boolean isDone() {
+        return status.isDone();
+    }
+
+    public boolean isWithinSevenDays(LocalDate currentDate) {
+        return deadline.isWithinSevenDays(currentDate);
     }
 
     /**
