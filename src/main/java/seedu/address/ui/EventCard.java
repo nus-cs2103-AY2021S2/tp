@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.commons.util.DateUtil;
+import seedu.address.commons.util.TimeUtil;
 import seedu.address.model.task.repeatable.Event;
 
 /**
@@ -26,9 +27,11 @@ public class EventCard extends UiPart<Region> {
     @FXML
     private Label eventDescription;
     @FXML
-    private Label interval;
-    @FXML
     private Label date;
+    @FXML
+    private Label time;
+    @FXML
+    private Label isWeekly;
 
     /**
      * Creates an {@code EventCard} with the given {@code Event} without an index to display.
@@ -40,8 +43,9 @@ public class EventCard extends UiPart<Region> {
         this.event = event;
         id.setText("");
         eventDescription.setText(event.getDescription());
-        interval.setText(event.getRecurrence().toString());
-        date.setText(DateUtil.decodeDateWithDay(event.getAt()));
+        date.setText(DateUtil.decodeDateWithDay(event.getDate()));
+        time.setText(TimeUtil.decodeTime(event.getTime()));
+        isWeekly.setText(event.getIsWeekly().toString());
     }
 
     /**
@@ -54,8 +58,9 @@ public class EventCard extends UiPart<Region> {
         this.event = event;
         id.setText(displayedIndex + ". ");
         eventDescription.setText(event.getDescription());
-        interval.setText(event.getRecurrence().toString());
-        date.setText(DateUtil.decodeDateWithDay(event.getAt()));
+        date.setText(DateUtil.decodeDateWithDay(event.getDate()));
+        time.setText(TimeUtil.decodeTime(event.getTime()));
+        isWeekly.setText(event.getIsWeekly().toString());
     }
 
     @Override
