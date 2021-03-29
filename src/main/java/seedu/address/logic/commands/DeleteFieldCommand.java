@@ -124,13 +124,16 @@ public class DeleteFieldCommand extends Command {
             logger.info("User tried to delete title");
             throw new CommandException(MESSAGE_INVALID_FIELD_TITLE);
         } else if (isDeadlineField) {
-            logger.info("User tried to delete deadline");
-            throw new CommandException("Cannot delete deadline field.");
+            Deadline updatedDeadline = new Deadline("");
+            return new Task(title, updatedDeadline, oldDuration, oldRecurringSchedule,
+                    oldDescription, oldStatus, oldTags);
         } else if (isDurationField) {
-            logger.info("User tried to delete duration");
-            throw new CommandException("Cannot delete duration field.");
-        } else if (isRecurringScheduleField) { //not implemented yet
-            return new Task(title, oldDeadline, oldDuration, oldRecurringSchedule, oldDescription, oldStatus, oldTags);
+            Duration updatedDuration = new Duration("");
+            return new Task(title, oldDeadline, updatedDuration, oldRecurringSchedule,
+                    oldDescription, oldStatus, oldTags);
+        } else if (isRecurringScheduleField) {
+            RecurringSchedule updatedRecurring = new RecurringSchedule("");
+            return new Task(title, oldDeadline, oldDuration, updatedRecurring, oldDescription, oldStatus, oldTags);
         } else if (isDescriptionField) {
             Description updatedDescription = new Description("");
             return new Task(title, oldDeadline, oldDuration, oldRecurringSchedule,
