@@ -254,6 +254,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deletePatientAppointments(Patient patient) {
+        requireNonNull(patient);
+        appointmentSchedule.deletePatientAppointments(patient);
+    }
+
+    @Override
     public void addAppointment(Appointment appointment) {
         appointmentSchedule.addAppointment(appointment);
         updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);

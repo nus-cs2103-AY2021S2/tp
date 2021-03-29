@@ -168,7 +168,7 @@ public interface Model {
     boolean hasPatientInAppointmentSchedule(Patient patient);
 
     /**
-     * Returns true if patient has existing appointments in the appointment schedule.
+     * Returns true if doctor has existing appointments in the appointment schedule.
      */
     boolean hasDoctorInAppointmentSchedule(Doctor doctor);
 
@@ -183,11 +183,17 @@ public interface Model {
      */
     boolean hasConflictingAppointmentExcludingTarget(Appointment target, Appointment appointment);
 
+
     /**
      * Deletes the given appointment.
      * The appointment must exist in the appointment schedule.
      */
     void deleteAppointment(Appointment target);
+
+    /**
+     * Deletes all appointments associated with the input patient from the appointment schedule.
+     */
+    void deletePatientAppointments(Patient patient);
 
     /**
      * Adds the given appointment.
