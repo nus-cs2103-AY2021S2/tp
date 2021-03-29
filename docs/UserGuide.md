@@ -151,7 +151,7 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 
 ![Ui](images/DoneCommand.png)
 
-### Finding deliveries by a certain criteria: `find <keyword>`
+### Finding deliveries using keyword matching a certain criteria: `find <keyword>`
 **Criteria**: Name, Telephone Number, Address, Date
 
 **Purpose** Find deliveries that match certain criteria
