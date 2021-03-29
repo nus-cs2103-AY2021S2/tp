@@ -66,7 +66,7 @@ NUS Module Planner is a **desktop app for NUS students to manage and plan the mo
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -77,7 +77,6 @@ Format: `help`
 ## General Commands
 
 ### Check graduation : `validate`
-
 Format: `validate [p/PLAN_NUMBER]`
 
 If the optional argument `[p/PLAN_NUMBER]` is provided:
@@ -146,9 +145,10 @@ Example output:
 ## Semester commands
 
 ### Show the number of MCs the user is currently taking: `show MCs`
-Format: `Show MCs`
+Format: `show mcs`
 
 Example output: `Current MCs this semester: xxx`
+
 
 ### Calculate and show the current CAP (Cumulative academic points) of the student: `show CAP`
 Format: `Show CAP`
@@ -156,7 +156,6 @@ Format: `Show CAP`
 This command takes in the grades of modules user has marked as completed and entered their grade, and calculate their CAP using this formula:
 
 ![modular-system](https://user-images.githubusercontent.com/67280376/109455909-9e9f8380-7a92-11eb-9ea1-f49801578a95.png)
-
 
 Example output `Current CAP is: xxx`
 
@@ -214,66 +213,9 @@ The details to output are as follows:
 * Semester number
 * Module code
 
-## Semester commands
-### Show the number of MCs the user is currently taking: `show MCs`
-Format: `Show mcs`
-
-Example output: `The current MCs you are taking is xxx`
-
-### Calculate and show the current CAP (Cumulative academic points) of the student: `show CAP`
-Format: `show cap`
-
-This command takes in the grades of modules user has marked as completed and entered their grade, and calculate their CAP using this formula:
-
-![modular-system](https://user-images.githubusercontent.com/67280376/109455909-9e9f8380-7a92-11eb-9ea1-f49801578a95.png)
-
-Example output `Current CAP is xxx`
-
-### Add/Delete Semester to/from Plan: `adds/deletes`
-Format for adding: `adds p/PLAN_NUMBER s/SEM_NUMBER`
-
-Format for deleting: `deletes p/PLAN_NUMBER s/SEM_NUMBER`
-
-The output will show whether the operation was successful and include the semester number in its output.
-
-Constraints:
-* Trying to add a semester that already exist will not be allowed
-* Trying to delete a semester that does not exist will not be allowed
-
-
-### Show history: `history`
-
-Format: `history`
-
-The above command takes no arguments and shows the user a list of modules that they have completed up until before the *current semester*.
-
-> Tip: The *current semester* is the semester that was marked using the `current semester` command.
-
-Example output:
-[IMG]
-
-
-
-
-## Module commands
-
-### Add/Delete module to/from semester: `add/delete`
-Format for adding: `add m/MODULE_CODE p/PLAN_NUMBER s/SEM_NUMBER`
-
-Format for deleting: `delete m/MODULE_CODE p/PLAN_NUMBER s/SEM_NUMBER`
-
-> Tip: A user can view module info to see more details about it. (See `info`)
-
-This command takes in three arguments, `MODULE_CODE`, `PLAN_NUMBER` and `SEM_NUMBER`, and outputs meta details about the module being added/deleted, as well as whether the addition/deletion was successful or not.
-The details to output are as follows:
-* Module addition/deletion success status
-* Semester number
-* Module code
-
 Constraints:
 * Trying to add a module that already exists will not be allowed
 * Trying to add/delete a nonexistent module code/plan number/semester number will not be allowed
-
 
 Prompts:
 * Adding a module without prerequisites fulfilled results in a warning
@@ -292,6 +234,8 @@ By default, this command takes in one optional argument, `MODULE_CODE` and outpu
 
 Constraints:
 * Module has to exist
+
+## Other commands
 
 ### Clearing all entries : `clear`
 
