@@ -136,12 +136,6 @@ Adds a student to the TutorBuddy
 Format: `add_student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS l/STUDY_LEVEL g/GUARDIAN_PHONE_NUMBER r/RELATIONSHIP_WITH_GUARDIAN` <br>
 * `STUDENT_PHONE_NUMBER`, `GUARDIAN_PHONE_NUMBER` should be in Singapore's phone formatting (i.e. starting with either 6, 8 or 9 and 8 digits)
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-TutorBuddy only allows students with distinct names, however, its case sensitive. 
-Hence, students with the same name with different cases are treated as non-duplicated students. <br>
-(E.g. TutorBuddy allows students with both John Doe and john doe)
-</div>
-
 Examples:
 * `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Sec2 g/95421323 r/Mother`
 
