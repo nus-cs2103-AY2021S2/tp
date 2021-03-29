@@ -57,6 +57,8 @@ public class MarkdownPlainTextParser {
             plainText += "\uD83D\uDCA1 " + divContent.substring(9, 13) + " ";
         } else if (divContent.startsWith(":exclamation:")) {
             plainText += "❗ " + divContent.substring(16, 24) + " ";
+        } else if (divContent.startsWith(":warning:")) {
+            plainText += "⚠ " + divContent.substring(12, 20) + " ";
         } else {
             plainText += divContent + "\n";
         }
