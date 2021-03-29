@@ -89,7 +89,7 @@ The `UI` component,
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `deleteTask 1` Command](images/DeleteTaskSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -173,6 +173,43 @@ with the attached message.
 Below is the sequence diagram:
 
 ![#Interactions Inside the Logic Component for the `done 1` Command](images/DoneTaskSequenceDiagram.png)
+
+### Delete a Task feature
+
+The implementation of the deleting a Task feature is facilitated by the DeleteTaskCommand, which extends from the Command abstract class.
+
+It is also enabled by the following Parser class:
+* `DeleteTaskCommandParser`
+
+The above mentioned Parser class inherits from the `#parse method` from the Parser interface.
+
+* `DeleteTaskCommandParser#parser` - checks if the arguments passed to the current DeleteTaskCommand is valid. 
+  If the arguments are valid, it creates a DeleteTaskCommand instance.
+
+Subsequently, the created `DeleteTaskCommand` object contains an `#execute` method which 
+is responsible for deleting the given Task with respect to the index. 
+
+Below is the usage scenario of how delete task mechanism behaves.
+
+Assumptions:
+1. User has already launched the app
+2. HEY MATEz application has an existing task
+
+Step 1. User executes the `deleteTask 1` command to delete the task at the 1st index in the task list of HEY MATEz. 
+A `DeleteTaskCommandParser` is created and calls the `DeleteTaskCommandParser#parse` on the arguments.
+
+Step 2. `DeleteTaskCommandParser#parse` method checks on the validity of the arguments for a `DeleteTaskCommand`. 
+If it is valid, it will create a new `DeleteTaskCommand` by calling the constructor.
+
+Step 3. The `DeleteTaskCommand#execute` is then called by `Logic Manager`. The task with the same `Index` is retrieved 
+and deleted from the task list using the `deleteTask` method in the `Model` class.
+
+Step 4. Once the execution is completed, the message `MESSAGE_DELETE_TASK_SUCCESS` is used to return a 
+new Command Result with the attached message.
+
+Below is the sequence diagram: 
+
+<img src="images/DeleteTaskSequenceDiagram.png" width="450" />
 
 --------------------------------------------------------------------------------------------------------------------
 
