@@ -2,9 +2,11 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.common.Date;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.UniqueEventList;
 import seedu.address.model.task.Task;
@@ -255,6 +257,13 @@ public class Sochedule implements ReadOnlySochedule {
      */
     public void clearExpiredEvents() {
         events.clearExpired();
+    }
+
+    /**
+     * Returns a list of free time slots.
+     */
+    public ArrayList<String> getFreeTimeSlots(Date date) {
+        return events.getFreeTimeSlots(date);
     }
 
     //// util methods
