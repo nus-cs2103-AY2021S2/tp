@@ -13,28 +13,28 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
 * [Features](#features)
     * [Main mode](#main-mode)
         * [Viewing help](#viewing-help-help): `help`
-        * [Adding a new card](#adding-a-new-card-add): `add`
-        * [Listing all cards](#listing-all-cards--list): `list`
-        * [Deleting a card](#deleting-a-card--delete): `delete`
-        * [Viewing a card](#viewing-a-card--view): `view`
-        * [Finding cards](#finding-cards--find): `find`
-        * [Filtering cards](#filtering-cards-filter): `filter`
-        * [Clearing all cards](#clearing-all-entries--clear): `clear`
+        * [Adding a new flashcard](#adding-a-new-flashcard-add): `add`
+        * [Listing all flashcards](#listing-all-flashcards--list): `list`
+        * [Deleting a flashcard](#deleting-a-flashcard--delete): `delete`
+        * [Viewing a flashcard](#viewing-a-flashcard--view): `view`
+        * [Finding flashcards](#finding-flashcards--find): `find`
+        * [Filtering flashcards](#filtering-flashcards-filter): `filter`
+        * [Clearing all flashcards](#clearing-all-entries--clear): `clear`
         * [Undoing a command](#undoing-a-command--undo): `undo`
         * [Redoing a command](#redoing-a-command--redo): `redo`
         * [Entering review mode](#entering-review-mode-review): `review`
-        * [Sorting all cards](#sorting-all-cards--sort): `sort`
-        * [Viewing statistics of cards](#viewing-statistics-of-cards-stats): `stats`
+        * [Sorting all flashcards](#sorting-all-flashcards--sort): `sort`
+        * [Viewing statistics of flashcards](#viewing-statistics-of-flashcards-stats): `stats`
         * [Exiting the program](#exiting-the-program--exit): `exit`
         * [Saving data](#saving-the-data)
         * [Editing the data file](#editing-the-data-file)
     * [Review mode](#review-mode)
-        * [Showing next card](#showing-next-card--n): `n`
-        * [Showing previous card](#showing-previous-card--p): `p`
+        * [Showing next flashcard](#showing-next-flashcard--n): `n`
+        * [Showing previous flashcard](#showing-previous-flashcard--p): `p`
         * [Showing answer](#showing-answer--a): `a`
         * [Hiding answer](#hiding-answer--h): `h`
-        * [Review flashcard as correct](#review-flashcard-as-correct--t): `t`
-        * [Review flashcard as wrong](#review-flashcard-as-wrong--f): `f` 
+        * [Review a flashcard as correct](#review-a-flashcard-as-correct--t): `t`
+        * [Review a flashcard as wrong](#review-a-flashcard-as-wrong--f): `f` 
         * [Quitting review mode](#quitting-review-mode--q): `q`
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
@@ -54,9 +54,9 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
     * **`help`** : Opens the help window.
     * **`add`**`q/ What is the Einstein’s Equation? a/e=mc^2 c/Physics p/High t/ModernPhysics`: Adds a new flashcard
       named `What is the Einstein's Equation?` to FlashBack.
-    * **`view`**`2`: Views the 2nd card shown in the current list.
-    * **`delete`**`1`: Deletes the 1st card shown in the current list.
-    * **`clear`**: Deletes all cards.
+    * **`view`**`2`: Views the 2nd flashcard shown in the current list.
+    * **`delete`**`1`: Deletes the 1st flashcard shown in the current list.
+    * **`clear`**: Deletes all flashcards.
     * **`exit`**: Exits the application.
 1. Refer to the Features below for details of each command.
 
@@ -97,9 +97,6 @@ Review mode | This is where you can review all your flashcards. You can enter th
 
 * Items with `…​` after them can be used multiple times including zero times. <br>
   e.g. `[t/TAG]…`​ can be used as `t/vocabulary`, `t/vocabulary t/SAT` etc.
-  
-* Items in `<>` brackets are either/or options. Each option is seperated by a `|`. <br>
-e.g. <priority|question> means that user can choose between `priority` and `question`, but not both. 
 
 * Parameters can be in any order. <br>
   e.g. If the command specifies `q/QUESTION a/ANSWER`, `a/ANSWER q/QUESTION` is also acceptable.<br>
@@ -124,12 +121,12 @@ Shows a message explaining how to access the help page.<br><br>
 ![HelpMessage](./images/helpMessage.png) <br><br>
 Format: `help`
 
-### Adding a new card: `add`
+### Adding a new flashcard: `add`
 
-Adds a new card to the card list.<br>
+Adds a new flashcard to the flashcard list.<br>
 Format: `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAG]...` <br />
 <div markdown="span" class="alert alert-primary">:memo: **Note:** <br>
-The `TAG` is optional when adding a new card.<br>
+The `TAG` is optional when adding a new flashcard.<br>
 Priority can only take 1 out of 3 values: `High`, `Mid` or `Low`.
 </div>
 
@@ -139,16 +136,16 @@ Examples:
   ![UIAdd](./images/UiAddResult.png) <br><br>
 * `add q/Independence day of Singapore a/August 9th 1965 c/History p/Mid t/Singapore`
 
-### Editing a card: `edit`
+### Editing a flashcard: `edit`
 
-Edits an existing flashcard in the card list.
+Edits an existing flashcard in the flashcard list.
 
 Format: `edit INDEX [q/NEW QUESTION] [a/NEW ANSWER] [c/NEW CATEGORY] [p/NEW PRIORITY] [t/TAG]`
 
-* Edits the card at the specified `INDEX`.
-* The index refers to the index number shown in the displayed card list.
+* Edits the flashcard at the specified `INDEX`.
+* The index refers to the index number shown in the displayed flashcard list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* At least 1 updated card field must be provided for modification.
+* At least 1 updated flashcard field must be provided for modification.
 
 Examples:
 
@@ -156,33 +153,33 @@ Examples:
   ![UIEdit](./images/UiEditResult.png) <br><br>
 * `edit 3 q/What is the time complexity for Quick Sort? t/Algorithms`
 
-### Listing all cards : `list`
+### Listing all flashcards : `list`
 
-Shows all cards in the card list.
+Shows all flashcards in the flashcard list.
 
 Format: `list`
 
-### Deleting a card : `delete`
+### Deleting a flashcard : `delete`
 
-Deletes the specified card from the card list.
+Deletes the specified flashcard from the flashcard list.
 
 Format: `delete INDEX`
 
-* Deletes the card at the specified `INDEX`.
-* The index refers to the index number shown in the displayed card list.
+* Deletes the flashcard at the specified `INDEX`.
+* The index refers to the index number shown in the displayed flashcard list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 
-* `list` followed by `delete 2` deletes the 2nd card in the card list. <br>
+* `list` followed by `delete 2` deletes the 2nd flashcard in the flashcard list. <br>
   Before executing command `delete 2`: <br><br>
   ![UIBeforeDelete](./images/UiBeforeDelete.png) <br><br>
   After executing command `delete 2`: <br><br>
   ![UIAfterDelete](./images/UiAfterDelete.png)
 
-### Viewing a card : `view`
+### Viewing a flashcard : `view`
 
-Views a specific card from the card list. <br>
+Views a specific flashcard from the flashcard list. <br>
 
 Format: `view INDEX`
 
@@ -195,7 +192,7 @@ Examples:
 * `view 2` shows the 2nd flashcard (in the displayed flashcard list). <br><br>
   ![UIView](./images/UiViewResult.png)
 
-### Finding cards : `find`
+### Finding flashcards : `find`
 
 Finds flashcards containing any of the given keywords.
 
@@ -204,7 +201,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The search is case-insensitive. e.g. `equation` will match `Equation`
 * The order of the keywords does not matter. e.g. `Newton Equation` will match `Equation Newton`
 * Partial words can be matched when searching. e.g. `Wh` will match `What?` but `What?` will not match `What`
-* Any card's fields (e.g. question, answer, category, priority, and tag) matching any keyword will be returned.
+* Any flashcard's fields (e.g. question, answer, category, priority, and tag) matching any keyword will be returned.
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** You can list all flashcards again by using `list` command
@@ -212,14 +209,14 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 </div>
 
 Examples:
-* `find computer` will return cards with `computer` in any of its fields.<br><br>
+* `find computer` will return flashcards with `computer` in any of its fields.<br><br>
 ![result for `find c/ computer`](images/findComputerResult.png) <br><br>
-* `find computer formula` will return cards with `computer` or `formula` in any of its fields.<br><br>
+* `find computer formula` will return flashcards with `computer` or `formula` in any of its fields.<br><br>
 ![result for `find c/ computer`](images/findComputerFormulaResult.png) <br><br>
-* `find phy` will return cards with `phy` contained in any of the words in any of its fields.<br><br>
+* `find phy` will return flashcards with `phy` contained in any of the words in any of its fields.<br><br>
 ![result for `find c/ computer`](images/findPhyResult.png) <br><br>
 
-### Filtering cards: `filter`
+### Filtering flashcards: `filter`
 
 Filter flashcards based on field(s) (e.g. question, category, priority, and tag) input.
 
@@ -230,7 +227,7 @@ Format: `filter [q/QUESTION] [c/CATEGORY] [p/PRIORITY] [t/TAG]`
 * Can filter by multiple keywords for each field. e.g. `filter q/einstein math`
 * The order of the keywords does not matter. e.g. `Newton Equation` will match `Equation Newton`
 * The order of the field input does not matter. e.g. `filter q/QUESTION c/CATEGORY` is same as `filter c/CATEGORY q/QUESTION`
-* Filtered cards must match all field inputs. e.g. `filter q/einstein p/mid` will only display cards with question containing `einstein` and `mid` priority.
+* Filtered flashcards must match all field inputs. e.g. `filter q/einstein p/mid` will only display flashcards with question containing `einstein` and `mid` priority.
 * Partial words can be matched when filtering. e.g. `Wh` will match `What?` but `What?` will not match `What`
 <div markdown="span" class="alert alert-primary">
 
@@ -239,11 +236,11 @@ Format: `filter [q/QUESTION] [c/CATEGORY] [p/PRIORITY] [t/TAG]`
 </div>
 
 Examples:
-* `filter q/charles recursion` will return cards with `charles` or `recursion` contained in its question.<br><br>
+* `filter q/charles recursion` will return flashcards with `charles` or `recursion` contained in its question.<br><br>
   ![result for `find c/ computer`](images/filterCharlesRecursionResult.png) <br><br>
-* `filter p/mid q/formula` will return cards with `formula` contained in its question and `mid` priority.<br><br>
+* `filter p/mid q/formula` will return flashcards with `formula` contained in its question and `mid` priority.<br><br>
   ![result for `find c/ computer`](images/filterMidFormulaResult.png) <br><br>
-* `filter c/com t/ran` will return cards with `com` contained in its category and `ran`contained in any of its tags.<br><br>
+* `filter c/com t/ran` will return flashcards with `com` contained in its category and `ran`contained in any of its tags.<br><br>
   ![result for `find c/ computer`](images/filterComRanResult.png) <br><br>
 
 ### Clearing all entries : `clear`
@@ -285,7 +282,7 @@ Examples:
 `redo` will reverse the `undo` command. <br><br>
 ![UiAfterRedo](./images/UiAfterRedo.png) <br><br>
 
-### Sorting all cards: `sort`
+### Sorting all flashcards: `sort`
 Sorts all flashcards according to a given option.
 <div markdown="span" class="alert alert-primary">
 
@@ -293,7 +290,7 @@ Sorts all flashcards according to a given option.
 
 </div>
 
-Format: `sort <priority|question> <-a|-d>` <br>
+Format: `sort OPTION ORDER` <br>
 Examples:
 
 `sort priority -a` will sort the flashcards by ascending priority. <br>
@@ -312,7 +309,7 @@ When the user enters `review` in the command box, this new window will appear. <
 ![UiReviewMode](./images/UiReviewModeWindow.png) <br><br>
 Format: `review`
 
-### Viewing statistics of cards: `stats`
+### Viewing statistics of flashcards: `stats`
 Shows the statistics of an individual flashcard, or the statistics of all flashcards.
 
 The following statistics are displayed:
@@ -364,12 +361,12 @@ file at the next run.
 
 ## Review mode
 
-### Showing next card : `n`
+### Showing next flashcard : `n`
 
 Moves on to the next flashcard.<br>
 Format: `n`
 
-### Showing previous card : `p`
+### Showing previous flashcard : `p`
 
 Moves back to the previous flashcard. <br>
 Format: `p`
@@ -384,16 +381,16 @@ Format: `a`
 Hides the answer of the current flashcard. <br>
 Format: `h`
 
-### Review flashcard as correct : `t`
+### Review a flashcard as correct : `t`
 
 Marks that the user got the answer correct for the current flashcard. <br>
-Note: This command can only be executed if the answer of the current flash card is shown. <br>
+Note: This command can only be executed if the answer of the current flashcard is shown. <br>
 Format: `t`
 
-### Review flashcard as wrong : `f`
+### Review a flashcard as wrong : `f`
 
 Marks that the user got the answer wrong for the current flashcard. <br>
-Note: This command can only be executed if the answer of the current flash card is shown. <br>
+Note: This command can only be executed if the answer of the current flashcard is shown. <br>
 Format: `f`
 
 ### Quitting review mode : `q`
@@ -438,10 +435,10 @@ Action | Format, Examples
 
 Action          | Format
 ----------------|------------------
-**Next card**   | `n`
-**Previous card** | `p`
+**Next flashcard**   | `n`
+**Previous flashcard** | `p`
 **Show answer** | `a`
-**Review card as correct** | `t`
-**Review card as wrong** | `f`
+**Review flashcard as correct** | `t`
+**Review flashcard as wrong** | `f`
 **Hide answer** | `h`
 **Quit review** | `q`
