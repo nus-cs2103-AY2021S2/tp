@@ -14,10 +14,6 @@
                 <cellValueFactory><PropertyValueFactory property="type" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="cost" text="Cost" prefWidth="100">
-                <cellValueFactory><PropertyValueFactory property="cost" />
-                </cellValueFactory>
-            </TableColumn>
         </columns>
     </TableView>
 </GridPane>
