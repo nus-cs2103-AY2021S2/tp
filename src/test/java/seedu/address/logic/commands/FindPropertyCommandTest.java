@@ -22,6 +22,9 @@ import seedu.address.model.property.Address;
 import seedu.address.model.property.Deadline;
 import seedu.address.model.property.PostalCode;
 import seedu.address.model.property.PropertyAddressPredicate;
+import seedu.address.model.property.PropertyClientContactPredicate;
+import seedu.address.model.property.PropertyClientEmailPredicate;
+import seedu.address.model.property.PropertyClientNamePredicate;
 import seedu.address.model.property.PropertyNamePredicate;
 import seedu.address.model.property.PropertyDeadlinePredicate;
 import seedu.address.model.property.PropertyPostalCodePredicate;
@@ -284,6 +287,45 @@ public class FindPropertyCommandTest {
         expectedModel.updateFilteredPropertyList(predicate.combine());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.singletonList(WOODLANDS_CRESCENT), model.getFilteredPropertyList());
+    }
+
+    @Test
+    public void clientContactTest() {
+        String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR, 1);
+        PropertyPredicateList predicate =
+                new PropertyPredicateList(
+                        Collections.singletonList(
+                                new PropertyClientContactPredicate("98664535")));
+        FindPropertyCommand command = new FindPropertyCommand(predicate);
+        expectedModel.updateFilteredPropertyList(predicate.combine());
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.singletonList(BURGHLEY_DRIVE), model.getFilteredPropertyList());
+    }
+
+    @Test
+    public void clientEmailTest() {
+        String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR, 1);
+        PropertyPredicateList predicate =
+                new PropertyPredicateList(
+                        Collections.singletonList(
+                                new PropertyClientEmailPredicate("bob@gmail.com")));
+        FindPropertyCommand command = new FindPropertyCommand(predicate);
+        expectedModel.updateFilteredPropertyList(predicate.combine());
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.singletonList(BURGHLEY_DRIVE), model.getFilteredPropertyList());
+    }
+
+    @Test
+    public void clientNameTest() {
+        String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR, 1);
+        PropertyPredicateList predicate =
+                new PropertyPredicateList(
+                        Collections.singletonList(
+                                new PropertyClientNamePredicate(Collections.singletonList("bob"))));
+        FindPropertyCommand command = new FindPropertyCommand(predicate);
+        expectedModel.updateFilteredPropertyList(predicate.combine());
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.singletonList(BURGHLEY_DRIVE), model.getFilteredPropertyList());
     }
 
     @Test
