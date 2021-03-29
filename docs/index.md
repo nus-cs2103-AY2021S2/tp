@@ -18,10 +18,16 @@ title: imPoster
 </p>
 <br/>
 
-**imPoster contains most of the features of [Postman](https://www.postman.com/) and is implemented in a simple and minimalistic style** that is easy for anyone to pick up. The latest releases for download are available [here](https://github.com/AY2021S2-CS2103T-T12-4/tp/releases).
+**imPoster contains most of the features of [Postman](https://www.postman.com/) and is implemented in a simple and minimalistic style** that is easy for anyone to pick up. The latest releases for download are available [here](https://imposter-dev.tk).
 
 * If you are interested in using imPoster, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
 * If you are interested about developing imPoster, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+
+A brief snapshot of our application:
+
+<p align="center">
+  <img width="800px" src="images/Ui.png" >
+</p>
 
 
 **Acknowledgements**
