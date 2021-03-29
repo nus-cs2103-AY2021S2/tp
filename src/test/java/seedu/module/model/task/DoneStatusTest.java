@@ -1,6 +1,5 @@
 package seedu.module.model.task;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.module.testutil.Assert.assertThrows;
@@ -18,12 +17,6 @@ public class DoneStatusTest {
     public void constructor_invalidDoneStatus_throwsIllegalArgumentException() {
         String invalidDoneStatus = "invalid boolean string";
         assertThrows(IllegalArgumentException.class, () -> new DoneStatus(invalidDoneStatus));
-    }
-
-    @Test
-    public void testDisplayUi() {
-        assertEquals(new DoneStatus(true).displayUi(), "Done!\n");
-        assertEquals(new DoneStatus(false).displayUi(), "Not Done!\n");
     }
 
     @Test

@@ -58,19 +58,6 @@ public class DoneStatus {
         }
     }
 
-    /**
-     * Converts boolean into a string for Ui display purposes.
-     *
-     * @return String showing whether task is done.
-     */
-    public String displayUi() {
-        if (isDone) {
-            return "Done!\n";
-        } else {
-            return "Not Done!\n";
-        }
-    }
-
     @Override
     public String toString() {
         return isDone ? "Done" : "Not Done";

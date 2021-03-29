@@ -24,6 +24,15 @@ Current module codes supported: CS1101S, CS1231S, CS2030, CS2040S, CS2101,
 
 4. Refer to the [Commands](#commands) below for details of each command.
 
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Features
+
+1. Tasks are colour coded based on done status. 
+   1. Done tasks are coloured green. 
+   1. Tasks that are not done are coloured pink.
+  
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -99,7 +108,7 @@ Format: `list`
 
 ### Adding a task: `add`
 
-Adds a task to ModuleBook3.5.
+Adds a task to ModuleBook3.5. All newly added tasks are not done by default.
 
 Format: `add n/TASK NAME m/MODULE d/DESCRIPTION [a/START TIME] b/DEADLINE w/WORKLOAD [t/TAG]…​`
 
@@ -134,7 +143,7 @@ Examples:
 
 ### Marking a task as done : `done`
 
-Mark an existing task as done.
+Mark an existing task as done. Done tasks are coloured green.
 
 Format: `done INDEX`
 
@@ -149,7 +158,7 @@ Examples:
 
 ### Marking a task as not done : `notdone`
 
-Mark an existing task as not done.
+Mark an existing task as not done. Not done tasks are coloured pink.
 
 Format: `notdone INDEX`
 
