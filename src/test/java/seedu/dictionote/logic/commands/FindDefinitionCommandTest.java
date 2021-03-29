@@ -72,7 +72,7 @@ public class FindDefinitionCommandTest {
 
     @Test
     public void execute_contentKeywords_multipleDefinitionFound() {
-        String expectedMessage = String.format(MESSAGE_DEFINITIONS_LISTED_OVERVIEW, 1);
+        String expectedMessage = String.format(MESSAGE_DEFINITIONS_LISTED_OVERVIEW, 2);
 
         DefinitionContainsKeywordsPredicate definitionPredicate = prepareDefinitionPredicate("been");
 

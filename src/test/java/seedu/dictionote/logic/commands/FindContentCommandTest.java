@@ -72,7 +72,7 @@ public class FindContentCommandTest {
 
     @Test
     public void execute_contentKeywords_multipleContentFound() {
-        String expectedMessage = String.format(MESSAGE_CONTENTS_LISTED_OVERVIEW, 1);
+        String expectedMessage = String.format(MESSAGE_CONTENTS_LISTED_OVERVIEW, 2);
 
         ContentContainsKeywordsPredicate contentPredicate = prepareContentPredicate("been");
 
