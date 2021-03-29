@@ -124,7 +124,7 @@ There are three main areas in TutorBuddy:
 
   * **`exit`** : Exits the application.
 
-* Refer to the [Features](#features) below for details of each command.
+* Refer to the [Commands](#commands) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -170,7 +170,10 @@ This section details the format of the commands available in Tutor's Pet. We wil
 * Date must be input in the format, `yyyy-mm-dd`.
   e.g. `2021-01-01` is allowed, but not `01-01-2021`.
   
+  
 </div>
+
+The following subsections will elaborate on the specific details of each TutorBuddy's command.
 
 ### General
 
@@ -184,23 +187,58 @@ Format: `help`
 
 #### Listing all students: `list_student`
 
-Displays list of all students in TutorBuddy.
+Displays list of all students and all sessions in TutorBuddy.
+
+![list](images/command_list.png)
 
 Format: `list_student` <br>
 
-### Locating student profile by name: `find_student`
+#### Clearing all data : `clear`
 
-Finds students whose names contain any of the given keywords.
+Clears all student and session data.
+
+<div markdown="span" class="alert alert-primary">:bulb: Tip:
+TutorBuddy provides sample data to allow you to try out the application easily. <br>
+Run the `clear` command to start working with TutorBuddy in a clean slate.
+</div>
+
+Format: `clear`
+
+#### Exit the program: `exit`
+
+Exits the program
+
+Format: `exit`
+
+### Managing Students
+
+
+#### Adding a student: `add_student`
+
+Adds a student to TutorBuddy.
+
+Format: `add_student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS l/STUDY_LEVEL g/GUARDIAN_PHONE_NUMBER r/RELATIONSHIP_WITH_GUARDIAN` <br>
+
+<div markdown="block" class="alert alert-info">
+:information_source: `STUDENT_PHONE_NUMBER`, `GUARDIAN_PHONE_NUMBER` should be in Singapore's phone formatting (i.e. starting with either 6, 8 or 9 and with 8 digits)
+</div>
+
+Example:
+* `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Sec2 g/95421323 r/Mother`
+
+#### Locating student by name: `find_student`
+
+Find student(s) whose names contain any of the given keywords.
 
 Format: `find_student KEYWORD [MORE_KEYWORDS]`
-* The search will be case-insensitive. e.g. searching `stonks` will match `STONKS`
-* Only the student’s name will be searched
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Students matching at least one keyword will be returned (i.e. `OR` search)
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* The search will be case-insensitive. e.g. searching `john` will match `JOHN`
+* Only the name of students can be searched
+* The order of the keywords does not matter. e.g. `John Doe` will match `Doe John`
+* Only full words will be matched e.g. `Do` will not match `Doe`
+* Students with name matching at least one keyword will be returned (i.e. `OR` search)
+  e.g. `John Doe` will return `John Tan`, `Peter Doe`
 
-Examples:
+Example:
 
 \# | Student Name
 ---- |---------
@@ -213,43 +251,33 @@ Examples:
 
 Example command usages from the current student list shown in Figure 1:
 
-* `find_student John` returns John Lee
+* `find_student John` returns "John Lee"
 * `find_student Sam` returns nothing
 * `find_student Lee` returns "John Lee" and "Samuel Lee"
-* `find_student Johnz Lee` returns "Johnz Tan", "John Lee" and "Samuel Lee"
+* `find_student Johnz Lee` returns "John Lee", "Johnz Tan" and "Samuel Lee"
 
-### Adding a student: `add_student`
+#### Deleting a student: `delete_student`
 
-Adds a student to the TutorBuddy
+Deletes the specified student from TutorBuddy.
 
-Format: `add_student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS l/STUDY_LEVEL g/GUARDIAN_PHONE_NUMBER r/RELATIONSHIP_WITH_GUARDIAN` <br>
-* `STUDENT_PHONE_NUMBER`, `GUARDIAN_PHONE_NUMBER` should be in Singapore's phone formatting (i.e. starting with either 6, 8 or 9 and 8 digits)
-
-Examples:
-* `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Sec2 g/95421323 r/Mother`
-
-### Deleting a student: `delete_student`
-
-Deletes the specified student from TutorBuddy
-
-Format: `delete_student INDEX` <br>
+Format: `delete_student STUDENT_INDEX` <br>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You could use `find_student` first to filter the list of students you want.<br>
-The INDEX would then be based on the current list instead.<br>
-(E.g. If John Doe is the 500th student, instead of delete_student 500, you can use find_student John Doe and
-delete_student 1 if the John Doe you would like to delete is the 1st in the list)
+Use `find_student` command to filter the list of students you want.<br>
+The STUDENT_INDEX will be based on the current list.<br>
+(E.g. If John Doe is the 500th student, instead of `delete_student 500`, you can use `find_student John Doe` and
+`delete_student 1` if the John Doe you would like to delete is the 1st in the list)
 </div>
 
 Examples:
-* `delete_student 2` deletes the 2nd student based on the current list of students
+* `delete_student 2` deletes the 2nd student based on the current list of students.
 
-### Listing students' emails based on current list: `emails`
+#### Listing students' emails based on current list: `emails`
 Displays concatenated string of students' emails based on current list, separated by `;`. Useful for sending mass emails to students.
 
 Format: `emails`
 
-Examples:
+Example:
 
 \# | Student Name | Email
 ---- |---------|------|
@@ -271,90 +299,64 @@ Examples:
 
 * To get emails of specific students (see Figure 2.2): `find_student john jon` followed by  `emails` returns `johnlee@gmail.com;jonkoh@gmail.com;`
 
+### Managing Sessions
 
-### Listing all tuition sessions: `list_session`
+#### Adding a single tuition session: `add_session`
 
-Shows a list of all tuition sessions in TutorBuddy
-
-Format: `list_session`
-
-<!-- COMMENT OUT FOR FIND SESSION -->
-<!--### Locating tuition session by student name and session index: `find_session`
-
-Find tuition sessions that match the keyword given
-
-Format: `find_session s/STUDENT_NAME i/SESSION_INDEX`
-* The search will be case-insensitive. e.g. searching “stonks” will match “STONKS”
-* For student names:
-  * Any word that a student’s name contains will be matched. For example, if a session student’s name is “moon”, searching “moo” will match it
-
-Examples:<br>
-The command `list_session` will show the following:
-
-\# | Sessions
----- |---------
-1 | John Lee<br>15/2/2021 13:00<br>2h $60/h<br>Computer Science
-2 | Johnz Lee<br>16/2/2021 14:00<br>1.5h $30/h<br>Math
-3 | John Dam<br>18/2/2021 15:00<br>2h $0.10/h<br>Software Engineering
-4 | Sammuel Bruce Lee<br>19/2/2021 18:00<br>2h $30/h<br>Wing Chun
-
-* `find_session John` returns all John in TutorBuddy
-* `find_session Jo` returns all John in TutorBuddy
-* `find_session John Lee` returns all John Lee in TutorBuddy
-* `find_session Zach` returns nothing-->
-<!-- END OF COMMENT OUT FOR FIND SESSION -->
-
-### Adding a single tuition session: `add_session`
-
-Adds a single tuition session to the TutorBuddy
+Adds a single tuition session to TutorBuddy.
 
 Format: `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`
 
+
+<div markdown="span" class="alert alert-primary">:information_source:
 * `STUDENT_NAME` should match the exact student’s name in TutorBuddy
-* `DATE` should be in YYYY-MM-DD format
-* `TIME` should be in HH:MM 24-hr format
 * `DURATION` should be in minutes
 * `FEE` should be the total tuition fee for the total duration
+</div>
+
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 TutorBuddy takes care of overlapping session for you by giving a gentle prompt, so you don't have to worry about it.
 </div>
 
-Examples:
+Example:
 * `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80`
 
-### Adding a recurring tuition session: `add_rec_session`
+#### Adding a recurring tuition session: `add_rec_session`
 
-Adds a recurring tuition session to the TutorBuddy
+Adds a recurring tuition session to TutorBuddy that allows you to specify the number of days between each recurring session.
 
-Format: `add_rec_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE b/INTERVAL e/LASTDATE`
+Format: `add_rec_session n/STUDENT_NAME d/START_DATE e/END_DATE b/INTERVAL t/TIME k/DURATION s/SUBJECT f/FEE `
 
-Similar to arguments for adding a single tuition session, except:
-* `DATE` refers to the starting date of the session
-
-Arguments additional to adding a single tuition session:  
-* `INTERVAL` should be in days, including the date from and excluding the date to <br/>
+Arguments similar to `add_session` command except the following:  
+* `START_DATE` should be the date of the first session
+* `END_DATE` should be the date of the last session
+* `INTERVAL` is the number of days to the next session <br/>
   e.g. `INTERVAL` = 7 for weekly sessions
-* `ENDDATE` should be an ending date of the recurring session, consistent with `DATE` and `INTERVAL`
 
-Examples:
-* `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80 b/7 e/2021-01-29`
-### Deleting a tuition session: `delete_session`
+Example:
+* `add_rec_session n/John Doe d/2021-01-01 e/2021-01-29 b/7 t/18:00 k/120 s/Biology f/80` adds a weekly session that starts on 
+2021-01-01 and ends on 2021-01-29
+  
+#### Deleting a tuition session: `delete_session`
 
-Deletes the specified tuition session from TutorBuddy
+Deletes the specified tuition session from TutorBuddy.
 
 Format: `delete_session n/STUDENT_NAME i/SESSION_INDEX`
 
+* `STUDENT_NAME` should match the exact student’s name in TutorBuddy
 * Deletes the tuition session at the specified `SESSION_INDEX`
-* `SESSION_INDEX` refers to the session index respective to the student specified under `STUDENT_NAME`
+* `SESSION_INDEX` refers to the session index for a particular student
 * The index must be a positive integer 1, 2, 3, …​
 
-Examples:
+Example:
 * `delete_session n/John Lee i/1` deletes John Lee's **first** session
 
-### Getting monthly fee for a particular student: `fee`
+### Fees
 
-Get the monthly fee for a particular student for a particular month and year
+#### Getting monthly fee for a particular student: `fee`
+
+Gets the monthly fee for a particular student for a particular month and year.
 
 Format: `fee n/STUDENT_NAME m/MONTH y/YEAR`
 
@@ -362,25 +364,47 @@ Format: `fee n/STUDENT_NAME m/MONTH y/YEAR`
 * `MONTH` should be a positive integer between 1 and 12
 * `YEAR` should be a positive integer between 1970 and 2037
 
-Examples:
-* `fee n/John Lee m/1 y/2021` get John Lee monthly fee for January 2021
+:
+* `fee n/John Lee m/1 y/2021` returns John Lee monthly fee for January 2021
 
-### Clearing all entries : `clear`
 
-Clears all entries from the TutorBuddy application.
+--------------------------------------------------------------------------------------------------------------------
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-TutorBuddy gives you some sample data to work with at the start. <br>
-After trying out the application, you can run the `clear` command to start working with a fresh piece of TutorBuddy in a split second.
-</div>
+## Command summary
 
-Format: `clear`
+**General**
 
-### Exit the program: `exit`
+Action | Format
+--------|------------------
 
-Exits the program
+**Help** | `help`
+**List all students and sessions** | `list_student`
+**Clear all students and sessions** | `clear`
+**Exit TutorBuddy** | `Exit`
 
-Format: `exit`
+**Students**
+
+Action | Format | Examples(if applicable)
+--------|------------------|-------
+**Add** | `add_student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS l/STUDY_LEVEL g/GUARDIAN_PHONE_NUMBER r/RELATIONSHIP_WITH_GUARDIAN` | `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Sec2 g/95421323 r/Mother`
+**Find** | `find_student KEYWORD [MORE_KEYWORDS]` | `find_student John Alex`
+**Delete** | `delete_student INDEX` | `delete_student 3`
+**List students' emails based on current list** | `emails`
+
+
+**Tuition Sessions**
+
+Action | Format | Examples
+--------|------------------|-------
+**Add Single Session** | `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE` | `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80`
+**Add Recurring Session** | `add_rec_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE b/INTERVAL e/LASTDATE` | `add_rec_session n/John Doe d/2021-01-01 t/20:00 k/120 s/Geography f/80 b/7 e/2021-01-15`
+**Delete Session ** | `delete_session n/STUDENT_NAME i/SESSION_INDEX` | `delete_session n/John Lee i/1`
+
+**Fees**
+
+Action | Format, Examples
+--------|------------------|-------
+**Check fee** | `fee n/STUDENT_NAME m/MONTH y/YEAR` | `fee n/John Lee m/1 y/2021`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -391,38 +415,8 @@ Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Glossary
 
-**Students**
+This glossary provides definitions for the special terms used in this user guide.
 
-Action | Format, Examples
---------|------------------
-**List** | `list_student`
-**Find** | `find_student KEYWORD [MORE_KEYWORDS]`<br><br>e.g. `find_student John Alex`
-**Add** | `add_student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS l/STUDY_LEVEL g/GUARDIAN_PHONE_NUMBER r/RELATIONSHIP_WITH_GUARDIAN`<br><br> e.g., `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Sec2 g/95421323 r/Mother`
-**Delete** | `delete_student INDEX`<br><br>e.g. `delete_student 3`
-**List students' emails based on current list** | `emails`
-
-**Tuition Session**
-
-Action | Format, Examples
---------|------------------
-**List** | `list_session`
-**Find** | `find_session KEYWORD`<br><br>e.g. `find_session John`
-**Add Single** | `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`<br><br> e.g. `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80`
-**Add Recurring** | `add_rec_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE b/INTERVAL e/LASTDATE`<br><br> e.g. `add_rec_session n/John Doe d/2021-01-01 t/20:00 k/120 s/Geography f/80 b/7 e/2021-01-15`
-**Delete** | `delete_session n/STUDENT_NAME i/SESSION_INDEX`<br><br>e.g. `delete_session n/John Lee i/1`
-
-**Fees**
-
-Action | Format, Examples
---------|------------------
-**Fee** | `fee n/STUDENT_NAME m/MONTH y/YEAR`<br><br>e.g. `fee n/John Lee m/1 y/2021`
-
-**Others**
-
-Action | Format, Examples
---------|------------------
-**Help** | `help`
-**Clear** | `clear`
-**Exit** | `exit`
+--------------------------------------------------------------------------------------------------------------------
