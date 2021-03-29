@@ -1,30 +1,65 @@
+# **Pawbook User Guide**
+
 ---
-layout: page
-title: User Guide
----
+# **Table of Contents**
+
+1. [Overview](#overview)
+   * [Introduction](#introduction)
+   * [Purpose](#purpose)
+   * [Contributors](#contributors)
+   * [Navigating the User Guide](#navigating-the-user-guide)
+2. [About the User Guide](#about-the-user-guide)
+   * [Syntax Format](#syntax-format)
+   * [GUI Layout](#gui-layout)
+3. [Quick Start](#quick-start)
+4. [Commands](#commands)
+   * [Add Command](#add-command)
+   * [Delete Command](#delete-command)
+   * [Edit Command](#edit-command)
+   * [Enrol Command](#enrol-command)
+   * [Drop Command](#drop-command)
+   * [List Command](#list-command)
+   * [Find Command](#find-command)
+   * [View Command](#view-command)
+   * [Help Command](#help-command)
+   * [Exit Command](#exit-command)
+5. [FAQ](#faq)
+6. [Command Summary](#command-summary)
+7.  [Glossary](#glossary)
 
 # **Overview**
 
-Welcome to the Pawbook User Guide! In this user guide, we will teach you as a user how to use Pawbook. 
-This user guide contains a quick start guide, a features walkthrough and a command summary table for easy reference. 
-In each feature/functionality, we also provide command formats and command examples to ensure that users can become 
-proficient in using Pawbook.
+Welcome to the Pawbook User Guide! 
+In this section, you will be given a brief overview of what Pawbook is all about and what you can takeaway from this document. 
+We will guide you from a user's perspective as to how to use Pawbook. 
+
+This document contains (but not limited to) a [quick start guide](#quick-start), a [features walkthrough](#commands) and a [command summary table](#command-summary) for easy reference. 
+In each feature or functionality, we further provide command formats and command examples to ensure that users can become proficient in using Pawbook.
 
 ## **Introduction**
+
 Managing a business is definitely not easy, so imagine if your business includes taking care of countless energetic 
-furpals! That's right, we are talking about the job of dog school managers. As dog schools and dog day cares rise in 
-popularity due to the hectic work life of dog owners, the operations of dog schools can get out of hand. But no worries, 
-we have Pawbook to save the day! <br>
+furpals. That's right! We are talking about the job of dog school managers. <br> 
+
+As dog schools and dog day cares rise in popularity due to the hectic work life of dog owners, the operations of dog schools can get out of hand. But no worries, 
+we have Pawbook to save the day!
+
+With Pawbook, you can add and delete owner and dog profiles alike, to easily keep track of dogs and their respective owners.
+Pawbook also allows the managing of the various canine-training programs to cater to your furry customers.
+With the many programs taking place in the school, Pawbook helps to condense your hectic schedule for you. 
+By viewing your schedule, you are able to better plan for the day ahead.
 
 Pawbook is a desktop application for dog school managers to facilitate their bookkeeping of puppies and dogs in the 
-school, optimized for use via a **Command Line Interface (CLI)** while still having the benefits of a **Graphical User 
-Interface (GUI)**. Besides maintaining dog profiles for each unique dog, managers can view daily class schedules on 
-Pawbook to better plan the day’s activities.
+school, optimized for use via a **Command Line Interface (CLI)** which caters to fast-typers who prefer to use a keyboard. 
+You can navigate the application with ease and execute instructions by typing text-based commands in the command box provided.
+
+Pawbook also has the benefits of a **Graphical User Interface (GUI)** to provide you with a visually appealing view, thus bringing you the best user experience.
 
 ## **Purpose**
-The purpose of this user guide is to educate users on the different features/components of Pawbook and what are the 
-different purpose they serve. This allow users to easily use the various features and functionalities provided by 
-Pawbook. 
+
+The aim of this document is to guide novel users on how to get started with Pawbook. 
+It also aids more experienced users by providing a detailed explanation on the different features and components of Pawbook. 
+This allows old and new users alike to easily use the various features and functionalities provided by Pawbook. 
 
 ## **Contributors**
 
@@ -37,7 +72,8 @@ This document is created by **CS2103T-T10-Group1**.
 * Zhang Anli
 
 ## **Navigating the User Guide**
-The aim of this User Guide is to provide you with all the information you need to utilise Pawbook. We understand the 
+
+This document provides you with all the information you need to utilise Pawbook. We understand the 
 pains of using a Command Line Interface (CLI) program and have bested our efforts into ensuring a very readable guide
 on how to use our program <br>
 
@@ -57,6 +93,7 @@ Here are some important syntax to take note of to facilitate your reading before
 | [Repeated Parameters] | Indicates the parameters/prefixes that may be repeated multiple times |
 
 # **About the User Guide**
+
 In this section, you will learn what the different notations and symbols used in Pawbook. 
 
 ## **Syntax Format**
@@ -67,6 +104,7 @@ Syntax | Meaning  | Example
 **`[UPPER_CASE]/`** |  Parameter | [keyword] [entity ID]
 
 ## **GUI Layout**
+
 In this section, you will be given an introduction to the layout of Pawbook's Graphical User Interface(GUI). This will 
 help you better understand what each component that you observe on-screen represents. <br>
 
@@ -74,15 +112,17 @@ There are a total of two pages that you can navigate to when using Pawbook:
 * Main Page
 * Help Page
 
-###Main Page View
+### Main Page View
+
 You will be directed to the main page upon launching Pawbook. On this page, you can see the list of owners, dogs and programs
 that are currently stored in Pawbook. <br>
 
-Here is how the main page should look like:
+Here is how the main page looks like:
 <img src="images/UIExample.png" width="790"/>
 
-###Help Page View
-Helps you better understand what each component that you observe on-screen represents.
+### Help Page View
+
+This page helps you to better understand what each component seen on screen represents.
 
 * Table of Contents
 {:toc}
@@ -90,12 +130,14 @@ Helps you better understand what each component that you observe on-screen repre
 ---
 
 ## **Quick Start**
+
+If this is your first time using Pawbook, follow these simple steps to jump straight into the action:
+
 1. Ensure you have **Java 11 or above** installed in your Computer.
 2. Download the **latest** pawbook.jar [here][insertlinkhere].
 3. Copy the _pawbook.jar_ file to the folder you want to use as the root directory for Pawbook.
-4. Double-click the file to start the app. The Graphical User Interface (GUI) should appear in a matter of seconds.
-   <img src="images/UIExample.png" width="790"/>
-5. For new users, type `help` in the command box to view the instruction list
+4. Double-click the file to start the app. The GUI should appear in a few seconds.
+5. Congratulations, you have successfully launched Pawbook! For new users, type `help` in the command box to view the instruction list
 6. Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g.
    typing `add` and pressing <kbd>Enter</kbd>  will allow you to start adding information to
    the database.
@@ -268,9 +310,25 @@ Format: `exit`
 -----
 
 ## FAQ
-Q: How do I transfer my data to another Computer?<br>
+Q: How do I transfer my data to another Computer? <br>
 A: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the 
 data of your previous Pawbook home folder.
+
+Q: Where is my data saved? <br>
+A: They are stored in the <kbd>data</kbd> folder where the Pawbook application can be found.
+
+Q: How can I make backups of my data in Pawbook? <br>
+A: Copy and paste the <kbd>data</kbd> folder located in the Pawbook home folder to somewhere safe and 
+easy to remember. In order to restore the backup, copy the entire folder back into the same home folder and rewrite the existing folder.
+
+Q: How do I delete all my data in Pawbook? <br>
+A: Delete the <kbd>data</kbd> folder in the Pawbook home folder.
+
+Q: Will my data be compromised? <br>
+A: Fret not! ALl your data on Pawbook is stored in your local device and will not be transferred over the Internet.
+
+Q: Does Pawbook require an internet connection to function? <br>
+A: Pawbook does not access any web services and can be run completely offline.
 
 -----
 
@@ -278,17 +336,19 @@ data of your previous Pawbook home folder.
 
 Action | Format
 --------|------------------
-**Add** | 1. `add dog n/DOGNAME b/BREED d/DATE OF BIRTH s/SEX o/OWNERID t/TAG`<br>2. `add owner n/OWNERNAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...`<br>3. `add  program n/NAME [s/DATE OF SESSION]... [t/tag]...`
-**Delete** | 1. `delete dog d/DOGID`<br>2. `delete owner o/OWNERID`<br>3. `delete program p/PROGRAMID`
+**Add** | 1. `add dog n/DOGNAME b/BREED d/DATE OF BIRTH s/SEX o/OWNERID t/TAG`<br> 2. `add owner n/OWNERNAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...`<br> 3. `add  program n/NAME [s/DATE OF SESSION]... [t/tag]...`
+**Delete** | 1. `delete dog d/DOGID`<br> 2. `delete owner o/OWNERID`<br> 3. `delete program p/PROGRAMID`
 **Enrol** | `enrol d/[DOG ID] p/[PROGRAM ID]`
 **Drop** | `drop d/[DOG ID] p/[PROGRAM ID]`
-**List** |`list [dog|owner|program]`
+**List** | `list [dog/owner/program]`
 **Find** | `find [keyword1] [keyword2] [keyword3] ...`
 **View** | `view [ID number]`
 **Help** | `help`
 **Exit** | `exit`
 
-### Glossary 
+-----
+
+## Glossary 
 
 Term  | Explanation
 -----|------------------
