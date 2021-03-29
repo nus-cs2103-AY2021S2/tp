@@ -3,6 +3,7 @@ package seedu.address.model.project;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -99,7 +100,11 @@ public class UniqueProjectList implements Iterable<Project> {
             throw new DuplicateProjectException();
         }
 
-        internalList.setAll(projects);
+        List<Project> copyOfProjects = new ArrayList<>();
+        for (Project project : projects) {
+            copyOfProjects.add(project.getCopy());
+        }
+        internalList.setAll(copyOfProjects);
     }
 
     /**
