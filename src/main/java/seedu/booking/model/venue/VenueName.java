@@ -3,6 +3,8 @@ package seedu.booking.model.venue;
 import static java.util.Objects.requireNonNull;
 import static seedu.booking.commons.util.AppUtil.checkArgument;
 
+import seedu.booking.commons.util.StringUtil;
+
 /**
  * Represents a Venue's name in the booking system.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
@@ -56,7 +58,17 @@ public class VenueName {
         return venueName.hashCode();
     }
 
-    public boolean isSameVenueName(Venue venue) {
-        return this.venueName.equals(venue.getVenueName());
+    /**
+     * Returns true if both venues have the same venue name.
+     * This notion of equality between two venues.
+     */
+    public boolean isSameVenueName(Venue otherVenue) {
+        return otherVenue.getVenueName() != null
+                && StringUtil.containsWordIgnoreCase(this.removeSpacesInVenueName(),
+                otherVenue.getVenueName().removeSpacesInVenueName());
+    }
+
+    public String removeSpacesInVenueName() {
+        return this.venueName.replace(" ", "");
     }
 }

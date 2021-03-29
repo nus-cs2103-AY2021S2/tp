@@ -1,6 +1,6 @@
 package seedu.booking.logic.commands.multiprocessing;
 
-import seedu.booking.logic.commands.CreateBookingCommand;
+import seedu.booking.logic.commands.AddBookingCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.Description;
@@ -9,7 +9,7 @@ import seedu.booking.model.booking.StartTime;
 import seedu.booking.model.person.Email;
 import seedu.booking.model.venue.VenueName;
 
-public class BookingIntermediate implements Intermediate<CreateBookingCommand> {
+public class BookingIntermediate implements Intermediate<AddBookingCommand> {
 
     private Email bookerEmail;
     private VenueName venueName;
@@ -66,10 +66,10 @@ public class BookingIntermediate implements Intermediate<CreateBookingCommand> {
     }
 
     @Override
-    public CreateBookingCommand parse() throws ParseException {
+    public AddBookingCommand parse() throws ParseException {
         Booking booking = new Booking(bookerEmail, venueName, description,
                 bookingStart, bookingEnd);
-        return new CreateBookingCommand(booking);
+        return new AddBookingCommand(booking);
     }
 
 }
