@@ -2,9 +2,13 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
+import static seedu.address.model.Model.PREDICATE_SHOW_UNDONE_TASKS;
 
 import seedu.address.model.Model;
-import seedu.address.model.task.predicates.TaskDoneStatusPredicate;
+//import seedu.address.model.task.Task;
+//import seedu.address.model.task.predicates.TaskDoneStatusPredicate;
+
+//import java.util.function.Predicate;
 
 /**
  * Lists all tasks or tasks filtered by status in the planner to the user.
@@ -26,25 +30,19 @@ public class ListCommand extends Command {
 
     public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + "[done]/[not done]\n";
 
-    private final TaskDoneStatusPredicate taskDoneStatus;
-
     private final boolean isListEverything;
 
     /**
      * Lists all tasks in the planner based on the status input from the user.
      */
-    public ListCommand(TaskDoneStatusPredicate taskDoneStatus) {
-        this.taskDoneStatus = taskDoneStatus;
-        this.isListEverything = false;
-    }
-
-    /**
-     * Lists all tasks in the planner to the user.
-     */
     public ListCommand(boolean isListEverything) {
         this.isListEverything = isListEverything;
-        this.taskDoneStatus = new TaskDoneStatusPredicate("");
     }
+
+    public boolean getListEverything() {
+        return this.isListEverything;
+    }
+
 
     @Override
     public CommandResult execute(Model model) {
@@ -55,7 +53,7 @@ public class ListCommand extends Command {
             model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
             return new CommandResult(MESSAGE_ALL_TASKS_SUCCESS);
         } else {
-            model.updateFilteredTaskList(taskDoneStatus);
+            model.updateFilteredTaskList(PREDICATE_SHOW_UNDONE_TASKS);
             return new CommandResult(MESSAGE_STATUS_TASKS_SUCCESS);
         }
     }

@@ -4,7 +4,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.task.predicates.TaskDoneStatusPredicate;
 
 /**
  * Parses input arguments and creates a new ListCommand object
@@ -22,11 +21,10 @@ public class ListCommandParser implements Parser<ListCommand> {
 
         String trimmedArgs = args.trim();
         boolean isListNotDoneTask = trimmedArgs.equals("not done");
-        boolean isListDoneTask = trimmedArgs.equals("done");
         boolean isListEverything = trimmedArgs.equals("");
 
-        if (isListDoneTask || isListNotDoneTask) {
-            return new ListCommand(new TaskDoneStatusPredicate(trimmedArgs));
+        if (isListNotDoneTask) {
+            return new ListCommand(false);
         } else if (isListEverything) {
             return new ListCommand(true);
         } else {
