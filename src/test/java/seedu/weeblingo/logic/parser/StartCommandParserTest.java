@@ -1,28 +1,27 @@
 package seedu.weeblingo.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_INTEGER_MIN;
-import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_INTEGER_MIDDLE;
-import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_INTEGER_MAX;
+import static seedu.weeblingo.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.INVALID_START_INTEGER_MAX;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.INVALID_START_INTEGER_MIDDLE;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.INVALID_START_INTEGER_MIN;
-import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_TAG_HIRAGANA;
-import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_TAG_GOJUON;
-import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_TAG_COMBINATION;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.INVALID_START_TAG;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_INTEGER_MAX;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_INTEGER_MIDDLE;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_INTEGER_MIN;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_TAG_COMBINATION;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_TAG_GOJUON;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_TAG_HIRAGANA;
+import static seedu.weeblingo.testutil.Assert.assertThrows;
+
+import java.util.HashSet;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.weeblingo.logic.commands.StartCommand;
 import seedu.weeblingo.logic.parser.exceptions.ParseException;
 import seedu.weeblingo.model.tag.Tag;
-
-import java.util.HashSet;
-import java.util.List;
-
-import static seedu.weeblingo.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.weeblingo.testutil.Assert.assertThrows;
 
 public class StartCommandParserTest {
 
@@ -79,29 +78,25 @@ public class StartCommandParserTest {
 
     @Test
     public void parse_invalidIntegerMax_failure() {
-        assertThrows(ParseException.class,
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, StartCommand.MESSAGE_USAGE),
-            () -> parser.parse(INVALID_START_INTEGER_MAX));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            StartCommand.MESSAGE_USAGE), () -> parser.parse(INVALID_START_INTEGER_MAX));
     }
 
     @Test
     public void parse_invalidIntegerMiddle_failure() {
-        assertThrows(ParseException.class,
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, StartCommand.MESSAGE_USAGE),
-            () -> parser.parse(INVALID_START_INTEGER_MIDDLE));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            StartCommand.MESSAGE_USAGE), () -> parser.parse(INVALID_START_INTEGER_MIDDLE));
     }
 
     @Test
     public void parse_invalidIntegerMin_failure() {
-        assertThrows(ParseException.class,
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, StartCommand.MESSAGE_USAGE),
-            () -> parser.parse(INVALID_START_INTEGER_MIN));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            StartCommand.MESSAGE_USAGE), () -> parser.parse(INVALID_START_INTEGER_MIN));
     }
 
     @Test
     public void parse_invalidTag_failure() {
         assertThrows(ParseException.class,
-            Tag.MESSAGE_CONSTRAINTS,
-            () -> parser.parse(INVALID_START_TAG));
+            Tag.MESSAGE_CONSTRAINTS, () -> parser.parse(INVALID_START_TAG));
     }
 }

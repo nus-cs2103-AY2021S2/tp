@@ -7,7 +7,12 @@ import static seedu.weeblingo.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.weeblingo.logic.commands.*;
+import seedu.weeblingo.logic.commands.EndCommand;
+import seedu.weeblingo.logic.commands.ExitCommand;
+import seedu.weeblingo.logic.commands.HelpCommand;
+import seedu.weeblingo.logic.commands.LearnCommand;
+import seedu.weeblingo.logic.commands.QuizCommand;
+import seedu.weeblingo.logic.commands.StartCommand;
 import seedu.weeblingo.logic.parser.exceptions.ParseException;
 
 public class WeeblingoParserTest {

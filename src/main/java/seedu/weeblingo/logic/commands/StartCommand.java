@@ -2,13 +2,14 @@ package seedu.weeblingo.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Set;
+
 import seedu.weeblingo.commons.core.Messages;
 import seedu.weeblingo.logic.commands.exceptions.CommandException;
 import seedu.weeblingo.model.Mode;
 import seedu.weeblingo.model.Model;
 import seedu.weeblingo.model.tag.Tag;
 
-import java.util.Set;
 
 /**
  * Starts the quiz.

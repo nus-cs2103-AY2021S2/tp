@@ -1,14 +1,13 @@
 package seedu.weeblingo.logic.parser;
 
-import seedu.weeblingo.commons.exceptions.IllegalValueException;
-import seedu.weeblingo.logic.commands.StartCommand;
-import seedu.weeblingo.logic.parser.exceptions.ParseException;
-import seedu.weeblingo.model.tag.Tag;
+import static seedu.weeblingo.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import static seedu.weeblingo.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import seedu.weeblingo.logic.commands.StartCommand;
+import seedu.weeblingo.logic.parser.exceptions.ParseException;
+import seedu.weeblingo.model.tag.Tag;
 
 public class StartCommandParser implements Parser<StartCommand> {
 
