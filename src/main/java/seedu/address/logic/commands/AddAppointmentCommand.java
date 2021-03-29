@@ -24,7 +24,7 @@ public class AddAppointmentCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_DATE + "09-02-2021 (to change this eg based on finalised date format)"
+            + PREFIX_DATE + "09/02/2021 14:00"
             + PREFIX_CONTACT + "john "
             + PREFIX_CHILD + "Alex";
 
