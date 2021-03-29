@@ -228,7 +228,7 @@ Options:
 
 * `u/proceed`
   
-    Can only be used on a property with an existing status. `proceed` would move the status on to the next one. e.g. Option to Sales Agreement or Sales Agreement to Completion
+    Can only be used on a property with an existing status. `proceed` would move the status on to the next one. e.g. Option to Sales Agreement or Sales Agreement to Completion where Option represents the state when the Option to Purchase has been exercised for the property, Sales Agreement represents the state when the Sales and Purchase Agreement has been issued and Completion represents the state when the sales of the property has completed.
   
 
 * `u/cancel`
