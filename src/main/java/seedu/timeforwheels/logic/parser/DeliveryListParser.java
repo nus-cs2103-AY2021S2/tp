@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import seedu.timeforwheels.logic.commands.AddCommand;
 import seedu.timeforwheels.logic.commands.ClearCommand;
 import seedu.timeforwheels.logic.commands.Command;
+import seedu.timeforwheels.logic.commands.CompletedCommand;
 import seedu.timeforwheels.logic.commands.DeleteCommand;
 import seedu.timeforwheels.logic.commands.DoneCommand;
 import seedu.timeforwheels.logic.commands.EditCommand;
@@ -74,6 +75,9 @@ public class DeliveryListParser {
 
         case RemarkCommand.COMMAND_WORD:
             return new RemarkCommandParser().parse(arguments);
+
+        case CompletedCommand.COMMAND_WORD:
+            return new CompletedCommand();
 
         case DoneCommand.COMMAND_WORD:
             return new DoneCommandParser().parse(arguments);
