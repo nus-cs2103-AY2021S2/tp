@@ -3,7 +3,9 @@ package seedu.address.model.property;
 import seedu.address.model.tag.Tag;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 /**
@@ -23,7 +25,16 @@ public class PropertyTagsPredicate implements Predicate<Property> {
 
     @Override
     public boolean test(Property property) {
-        return property.getTags().containsAll(tags);
+        Set<Tag> tested = property.getTags();
+        return tested.containsAll(tags);
+//        for (Tag t : tested) {
+//            for (Tag k : this.tags) {
+//                if (!k.equals(t)) {
+//                    return false;
+//                }
+//            }
+//        }
+//        return true;
     }
 
     @Override
