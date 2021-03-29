@@ -10,7 +10,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.stream.Collectors;
-import seedu.address.MainApp;
+
+import javafx.application.Application;
 
 /**
  * Writes and reads files
@@ -134,7 +135,7 @@ public class FileUtil {
      * Returns the content of a resource as String. Only works on text based resources.
      */
     public static String getResourceAsString(String resourceName) {
-        InputStream inputStream = MainApp.class.getResourceAsStream(resourceName);
+        InputStream inputStream = Application.class.getResourceAsStream(resourceName);
         return new BufferedReader(new InputStreamReader(inputStream))
                 .lines().collect(Collectors.joining("\n"));
     }

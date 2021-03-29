@@ -5,9 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_FILE_NOT_FOUND;
 
 import java.io.IOException;
 import java.util.Objects;
-import java.util.logging.Logger;
 
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;

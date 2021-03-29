@@ -33,6 +33,16 @@ public class ThemeFactory {
 
     private static final Logger logger = LogsCenter.getLogger(ThemeFactory.class);
 
+    /**
+     * Loads a theme from a given file path.
+     *
+     * @param location The location of the JSON theme file. Location can either be a file on the system
+     *                 or some predefined resources
+     * @return The loaded Theme instance.
+     * @throws InvalidThemeException   The theme is malformed or is missing certain variables.
+     * @throws FileNotFoundException   The theme file cannot be located.
+     * @throws DataConversionException An error occurred when parsing the theme.
+     */
     public static Theme load(String location) throws IOException, DataConversionException, InvalidThemeException {
         logger.info("Attempting to load theme " + location);
         if (location.startsWith("@")) {
@@ -45,15 +55,11 @@ public class ThemeFactory {
     }
 
     /**
-     * Loads a theme from a given file path.
-     *
-     * @param path The path of the JSON theme file.
-     * @return The loaded Theme instance.
-     * @throws InvalidThemeException   The theme is malformed or is missing certain variables.
-     * @throws FileNotFoundException   The theme file cannot be located.
-     * @throws DataConversionException An error occurred when parsing the theme.
+     * Loads a theme from the given file path.
+     * @throws IOException If the json cannot be parsed.
      */
-    public static Theme loadFromFile(Path path) throws InvalidThemeException, FileNotFoundException, DataConversionException {
+    private static Theme loadFromFile(Path path)
+            throws InvalidThemeException, FileNotFoundException, DataConversionException {
         Optional<Theme> optionalTheme = JsonUtil.readJsonFile(path, Theme.class);
         if (optionalTheme.isEmpty()) {
             throw new FileNotFoundException();
@@ -65,7 +71,11 @@ public class ThemeFactory {
         }
     }
 
-    public static Theme loadFromResource(String themeResource) throws IOException {
+    /**
+     * Loads a theme from the given resource.
+     * @throws IOException If the json cannot be parsed.
+     */
+    private static Theme loadFromResource(String themeResource) throws IOException {
         URL u = MainApp.class.getResource(themeResource);
         if (u == null) {
             throw new FileNotFoundException("Default theme" + themeResource + "not found");
