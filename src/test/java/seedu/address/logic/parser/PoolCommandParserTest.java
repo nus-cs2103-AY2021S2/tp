@@ -14,10 +14,10 @@ import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FEMALE;
-import static seedu.address.logic.commands.CommandTestUtil.TRIPDAY_DESC_MONDAY;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TRIPDAY_DESC_FRIDAY;
+import static seedu.address.logic.commands.CommandTestUtil.TRIPDAY_DESC_MONDAY;
 import static seedu.address.logic.commands.CommandTestUtil.TRIPTIME_DESC_EVENING;
 import static seedu.address.logic.commands.CommandTestUtil.TRIPTIME_DESC_MORNING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMMUTER_1;
@@ -33,6 +33,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPTIME_STR_MO
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -46,9 +49,6 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.testutil.CommuterBuilder;
 import seedu.address.testutil.DriverBuilder;
-
-import java.util.HashSet;
-import java.util.Set;
 
 public class PoolCommandParserTest {
     private PoolCommandParser parser = new PoolCommandParser();
@@ -129,9 +129,9 @@ public class PoolCommandParserTest {
                 + VALID_TRIPTIME_STR_MORNING + COMMUTER_DESC_1 + COMMUTER_DESC_2, expectedMessage);
 
         // TODO fix this test case
-//        // missing one commuter prefix
-//        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + TRIPDAY_DESC_MONDAY
-//                + TRIPTIME_DESC_MORNING + COMMUTER_DESC_1 + COMMUTER_DESC_2, expectedMessage);
+        //        // missing one commuter prefix
+        //        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + TRIPDAY_DESC_MONDAY
+        //                + TRIPTIME_DESC_MORNING + COMMUTER_DESC_1 + COMMUTER_DESC_2, expectedMessage);
 
         // missing all commuter prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + TRIPDAY_DESC_MONDAY
@@ -166,9 +166,9 @@ public class PoolCommandParserTest {
                 TripTime.MESSAGE_CONSTRAINTS);
 
         // TODO add invalid commuter tests
-//        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + TRIPDAY_DESC_MONDAY
-//                        + TRIPTIME_DESC_MORNING + COMMUTER_DESC_1 + COMMUTER_DESC_2 + TAG_DESC_FRIEND,
-//                Pool.MESSAGE_CONSTRAINTS);
+        //        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + TRIPDAY_DESC_MONDAY
+        //                        + TRIPTIME_DESC_MORNING + COMMUTER_DESC_1 + COMMUTER_DESC_2 + TAG_DESC_FRIEND,
+        //                Pool.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + TRIPDAY_DESC_MONDAY

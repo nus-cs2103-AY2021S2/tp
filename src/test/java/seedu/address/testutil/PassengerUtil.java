@@ -44,8 +44,7 @@ public class PassengerUtil {
         // law of demeter might be violated
         if (passenger.getPrice().isEmpty()) {
             sb.append(EMPTY_PRICE + " ");
-        }
-        else {
+        } else {
             sb.append(PREFIX_PRICE + passenger.priceToString() + " ");
         }
 

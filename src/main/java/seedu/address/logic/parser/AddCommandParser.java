@@ -56,8 +56,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Optional<Price> price;
         if (priceStr.isPresent()) {
             price = Optional.of(ParserUtil.parsePrice(priceStr.get()));
-        }
-        else {
+        } else {
             price = Optional.empty();
         }
 

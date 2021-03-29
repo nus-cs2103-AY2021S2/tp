@@ -46,8 +46,7 @@ public class EditPassengerDescriptorBuilder {
         Price price;
         if (passenger.getPrice().isPresent()) {
             price = passenger.getPrice().get();
-        }
-        else {
+        } else {
             price = null;
         }
     }

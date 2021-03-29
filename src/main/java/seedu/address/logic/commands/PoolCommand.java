@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPTIME;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PASSENGERS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL;
 
 import java.util.HashSet;
 import java.util.List;
@@ -60,7 +60,12 @@ public class PoolCommand extends Command {
     private final Set<Tag> tags;
 
     /**
-     * Creates a PoolCommand to add the specified {@code Passenger}
+     * //TODO edit java docs
+     * @param driver
+     * @param passengers
+     * @param tripDay
+     * @param tripTime
+     * @param tags
      */
     public PoolCommand(Driver driver, Set<Index> passengers, TripDay tripDay, TripTime tripTime, Set<Tag> tags) {
         requireNonNull(driver);
@@ -107,7 +112,7 @@ public class PoolCommand extends Command {
         }
 
         model.addPool(toAdd);
-        model.updateFilteredPassengerList(PREDICATE_SHOW_ALL_PASSENGERS);
+        model.updateFilteredPassengerList(PREDICATE_SHOW_ALL);
 
         return new CommandResult(String.format(MESSAGE_POOL_SUCCESS, toAdd));
     }

@@ -19,7 +19,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPassengerDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.passenger.Price;
 import seedu.address.model.tag.Tag;
 
 /**

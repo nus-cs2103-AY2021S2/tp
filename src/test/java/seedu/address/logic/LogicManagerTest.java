@@ -7,10 +7,8 @@ import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PRICE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PRICE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.TRIPDAY_DESC_FRIDAY;
 import static seedu.address.logic.commands.CommandTestUtil.TRIPTIME_DESC_EVENING;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE_STR_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPassengers.AMY;
 

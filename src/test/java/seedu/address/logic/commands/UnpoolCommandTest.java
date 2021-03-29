@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPoolAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.TypicalPools.getTypicalAddressBook;
@@ -48,34 +47,34 @@ public class UnpoolCommandTest {
     }
 
     // TODO to be implemented once filtering pool is allowed
-//    @Test
-//    public void execute_validIndexFilteredList_success() {
-//        showPoolAtIndex(model, INDEX_FIRST);
-//
-//        Pool poolToRemove = model.getFilteredPoolList().get(INDEX_FIRST.getZeroBased());
-//        UnpoolCommand unpoolCommand = new UnpoolCommand(INDEX_FIRST);
-//
-//        String expectedMessage = String.format(UnpoolCommand.MESSAGE_UNPOOL_SUCCESS, poolToRemove);
-//
-//        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-//        expectedModel.deletePool(poolToRemove);
-//        showNoPassenger(expectedModel);
-//
-//        assertCommandSuccess(unpoolCommand, model, expectedMessage, expectedModel);
-//    }
-//
-//    @Test
-//    public void execute_invalidIndexFilteredList_throwsCommandException() {
-//        showPoolAtIndex(model, INDEX_FIRST);
-//
-//        Index outOfBoundIndex = INDEX_SECOND;
-//        // ensures that outOfBoundIndex is still in bounds of address book list
-//        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPassengerList().size());
-//
-//        UnpoolCommand unpoolCommand = new UnpoolCommand(outOfBoundIndex);
-//
-//        assertCommandFailure(unpoolCommand, model, Messages.MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX);
-//    }
+    //    @Test
+    //    public void execute_validIndexFilteredList_success() {
+    //        showPoolAtIndex(model, INDEX_FIRST);
+    //
+    //        Pool poolToRemove = model.getFilteredPoolList().get(INDEX_FIRST.getZeroBased());
+    //        UnpoolCommand unpoolCommand = new UnpoolCommand(INDEX_FIRST);
+    //
+    //        String expectedMessage = String.format(UnpoolCommand.MESSAGE_UNPOOL_SUCCESS, poolToRemove);
+    //
+    //        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+    //        expectedModel.deletePool(poolToRemove);
+    //        showNoPassenger(expectedModel);
+    //
+    //        assertCommandSuccess(unpoolCommand, model, expectedMessage, expectedModel);
+    //    }
+    //
+    //    @Test
+    //    public void execute_invalidIndexFilteredList_throwsCommandException() {
+    //        showPoolAtIndex(model, INDEX_FIRST);
+    //
+    //        Index outOfBoundIndex = INDEX_SECOND;
+    //        // ensures that outOfBoundIndex is still in bounds of address book list
+    //        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPassengerList().size());
+    //
+    //        UnpoolCommand unpoolCommand = new UnpoolCommand(outOfBoundIndex);
+    //
+    //        assertCommandFailure(unpoolCommand, model, Messages.MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX);
+    //    }
 
     @Test
     public void equals() {

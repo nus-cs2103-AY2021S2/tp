@@ -1,6 +1,5 @@
 package seedu.address.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -10,8 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.AddressBook;
-import seedu.address.testutil.TypicalPassengers;
 
 public class JsonSerializableAddressBookTest {
 
@@ -22,14 +19,14 @@ public class JsonSerializableAddressBookTest {
             TEST_DATA_FOLDER.resolve("duplicatePassengersAddressBook.json");
 
     // TODO toModelType_typicalPassengersFile_success test keeps failing to be rectified
-//    @Test
-//    public void toModelType_typicalPassengersFile_success() throws Exception {
-//        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_PASSENGERS_FILE,
-//                JsonSerializableAddressBook.class).get();
-//        AddressBook addressBookFromFile = dataFromFile.toModelType();
-//        AddressBook typicalPassengersAddressBook = TypicalPassengers.getTypicalAddressBook();
-//        assertEquals(addressBookFromFile, typicalPassengersAddressBook);
-//    }
+    //    @Test
+    //    public void toModelType_typicalPassengersFile_success() throws Exception {
+    //        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_PASSENGERS_FILE,
+    //                JsonSerializableAddressBook.class).get();
+    //        AddressBook addressBookFromFile = dataFromFile.toModelType();
+    //        AddressBook typicalPassengersAddressBook = TypicalPassengers.getTypicalAddressBook();
+    //        assertEquals(addressBookFromFile, typicalPassengersAddressBook);
+    //    }
 
     @Test
     public void toModelType_invalidPassengerFile_throwsIllegalValueException() throws Exception {

@@ -29,7 +29,7 @@ public class PoolCommandParser implements Parser<PoolCommand> {
      */
     public PoolCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
-                PREFIX_TRIPDAY, PREFIX_TRIPTIME, PREFIX_COMMUTER);
+                PREFIX_TRIPDAY, PREFIX_TRIPTIME, PREFIX_COMMUTER, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_TRIPDAY, PREFIX_TRIPTIME,
                 PREFIX_COMMUTER) || !argMultimap.getPreamble().isEmpty()) {

@@ -109,8 +109,7 @@ public class EditCommand extends Command {
         Optional<Price> updatedPrice;
         if (editPassengerDescriptor.getTripTime().isPresent()) {
             updatedPrice = editPassengerDescriptor.getPrice();
-        }
-        else {
+        } else {
             updatedPrice = passengerToEdit.getPrice();
         }
 
