@@ -54,21 +54,26 @@ class JsonSerializableAddressBook {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public AddressBook toModelType() throws IllegalValueException {
-        AddressBook passengerList = new AddressBook();
+        AddressBook addressBook = new AddressBook();
         for (JsonAdaptedPassenger jsonAdaptedPassenger : passengers) {
             Passenger passenger = jsonAdaptedPassenger.toModelType();
-            if (passengerList.hasPassenger(passenger)) {
+            if (addressBook.hasPassenger(passenger)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PASSENGER);
             }
-            passengerList.addPassenger(passenger);
+            addressBook.addPassenger(passenger);
         }
+
+        List<Passenger> modelPassengers = addressBook.getPassengerList();
 
         for (JsonAdaptedPool jsonAdaptedPool : pools) {
             Pool pool = jsonAdaptedPool.toModelType();
-            if (passengerList.hasPool(pool)) {
+            if (addressBook.hasPool(pool)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_POOL);
             }
-            passengerList.addPool(pool);
+            List<Passenger> poolPassengers = modelPassengers.stream()
+                    .filter(x -> pool.getPassengers().contains(x))
+                    .collect(Collectors.toList());
+            addressBook.addPool(pool.newPoolWithGivenPassengers(poolPassengers));
         }
 
         return addressBook;

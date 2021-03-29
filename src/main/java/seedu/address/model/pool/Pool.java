@@ -18,6 +18,7 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details relevant for a trip are present and not null, field values are validated, immutable.
  */
 public class Pool {
+    public static final String INVALID_PASSENGERS_REPLACEMENT = "Attempted to replace passengers with unequal List!";
 
     // Data fields
     private final Driver driver;
@@ -75,6 +76,17 @@ public class Pool {
      */
     public List<Passenger> getPassengers() {
         return Collections.unmodifiableList(passengers);
+    }
+
+    /**
+     * Returns a new pool with a new passenger list. Used to replace the passenger references to those in the
+     * AddressBook.
+     */
+    public Pool newPoolWithGivenPassengers(List<Passenger> passengers) throws IllegalArgumentException {
+        if (!this.passengers.equals(passengers)) {
+            throw new IllegalArgumentException();
+        }
+        return new Pool(driver, tripDay, tripTime, passengers, tags);
     }
 
     /**
