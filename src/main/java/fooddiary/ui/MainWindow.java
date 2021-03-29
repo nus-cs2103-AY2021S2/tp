@@ -220,7 +220,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleHelp();
             }
 
-            if (commandResult.isViewEntry()) {
+            if (commandResult.isEnableView()) {
                 handleView(commandResult.getEntry());
             } else {
                 viewWindow.hide();

@@ -21,12 +21,12 @@ public class ReviseCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_VIEW_ENTRY_SUCCESS = "Revising Entry: %1$s";
+    public static final String MESSAGE_REVISE_ENTRY_SUCCESS = "Revising Entry: %1$s";
 
     private final Index targetIndex;
 
     /**
-     * Creates an ViewCommand to view the specified {@code Entry}
+     * Creates an ReviseCommand to revise the specified {@code Entry}
      */
     public ReviseCommand(Index targetIndex) {
         assert targetIndex.getZeroBased() >= 0 : "Negative integer supplied";
@@ -46,7 +46,7 @@ public class ReviseCommand extends Command {
         assert lastShownList.get(targetIndex.getZeroBased()) != null : "Entry do not exist";
         Entry entry = lastShownList.get(targetIndex.getZeroBased());
 
-        return new CommandResult(entry, targetIndex, String.format(MESSAGE_VIEW_ENTRY_SUCCESS, entry),
+        return new CommandResult(entry, targetIndex, String.format(MESSAGE_REVISE_ENTRY_SUCCESS, entry),
                 false , false, true, false);
     }
 

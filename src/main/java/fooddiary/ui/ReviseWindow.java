@@ -189,7 +189,7 @@ public class ReviseWindow extends UiPart<Stage> {
         try {
             mainWindow.executeCommand(commandToSend);
         } catch (CommandException | ParseException e) {
-            this.hide();
+            hide();
         }
     }
 

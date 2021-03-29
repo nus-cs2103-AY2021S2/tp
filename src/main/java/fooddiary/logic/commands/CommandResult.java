@@ -19,7 +19,7 @@ public class CommandResult {
     private final Index index;
 
     /** A view of the specified entry should be shown to the user. */
-    private final boolean viewEntry;
+    private final boolean enableView;
 
     /** A window for revision of the specified entry should be shown to the user. */
     private final boolean enableRevise;
@@ -35,10 +35,10 @@ public class CommandResult {
      * used for help, view, revise, exit
      */
     public CommandResult(Entry entry, Index index, String feedbackToUser, boolean showHelp,
-                         boolean viewEntry, boolean enableRevise, boolean exit) {
+                         boolean enableView, boolean enableRevise, boolean exit) {
         this.entry = entry;
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.viewEntry = viewEntry;
+        this.enableView = enableView;
         this.index = index;
         this.enableRevise = enableRevise;
         this.showHelp = showHelp;
@@ -61,8 +61,8 @@ public class CommandResult {
         return showHelp;
     }
 
-    public boolean isViewEntry() {
-        return viewEntry;
+    public boolean isEnableView() {
+        return enableView;
     }
 
     public boolean isReviseEntry() {
@@ -93,14 +93,18 @@ public class CommandResult {
         }
 
         CommandResult otherCommandResult = (CommandResult) other;
-        return feedbackToUser.equals(otherCommandResult.feedbackToUser)
+        return entry == otherCommandResult.entry
+                && index == otherCommandResult.index
+                && feedbackToUser.equals(otherCommandResult.feedbackToUser)
+                && enableView == otherCommandResult.enableView
+                && enableRevise == otherCommandResult.enableRevise
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(entry, index, feedbackToUser, showHelp, enableView, enableRevise, exit);
     }
 
 }

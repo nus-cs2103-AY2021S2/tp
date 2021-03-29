@@ -28,11 +28,21 @@ public class CommandResultTest {
         // different feedbackToUser value -> returns false
         assertFalse(commandResult.equals(new CommandResult("different")));
 
+        // different viewEntry value -> returns false
+        assertFalse(commandResult.equals(new CommandResult(null, null, "feedback",
+                false, true, false, false)));
+
+        // different enableRevise value -> returns false
+        assertFalse(commandResult.equals(new CommandResult(null, null, "feedback",
+                false, false, true, false)));
+
         // different showHelp value -> returns false
-        assertFalse(commandResult.equals(new CommandResult(null, null, "feedback", true, false, false, false)));
+        assertFalse(commandResult.equals(new CommandResult(null, null, "feedback",
+                true, false, false, false)));
 
         // different exit value -> returns false
-        assertFalse(commandResult.equals(new CommandResult(null, null, "feedback", false, false, false, true)));
+        assertFalse(commandResult.equals(new CommandResult(null, null, "feedback",
+                false, false, false, true)));
     }
 
     @Test
@@ -44,6 +54,14 @@ public class CommandResultTest {
 
         // different feedbackToUser value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("different").hashCode());
+
+        // different viewEntry value -> returns different hashcode
+        assertNotEquals(commandResult.hashCode(), new CommandResult(null, null, "feedback",
+                false, true, false, false).hashCode());
+
+        // different enableRevise value -> returns different hashcode
+        assertNotEquals(commandResult.hashCode(), new CommandResult(null, null, "feedback",
+                false, false, true, false).hashCode());
 
         // different showHelp value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult(null, null, "feedback",

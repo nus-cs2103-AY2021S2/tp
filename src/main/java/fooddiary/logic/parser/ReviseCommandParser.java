@@ -9,7 +9,7 @@ import fooddiary.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new ReviseCommand object
  */
-public class ReviseCommandParser {
+public class ReviseCommandParser implements Parser<ReviseCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the ReviseCommand
      * and returns a ReviseCommand object for execution.
