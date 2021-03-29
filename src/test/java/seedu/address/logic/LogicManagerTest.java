@@ -23,6 +23,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.diet.DietPlanList;
 import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
+import seedu.address.model.user.User;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonDietPlanListStorage;
 import seedu.address.storage.JsonFoodIntakeListStorage;
@@ -152,7 +153,7 @@ public class LogicManagerTest {
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
                                       String expectedMessage) {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UniqueFoodList(),
-                new FoodIntakeList(), new DietPlanList(), new UserPrefs());
+                new FoodIntakeList(), new DietPlanList(), new UserPrefs(), new User());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

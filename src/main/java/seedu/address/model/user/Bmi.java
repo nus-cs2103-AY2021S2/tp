@@ -12,11 +12,16 @@ public class Bmi {
     private static final String VALIDATION_REGEX = "^[1-9](\\d+)?$|^[1-9](\\d+)?.(\\d+)$";
 
     // Identity fields
-    private final double weight;
-    private final double height;
+
+    private double weight;
+    private double height;
 
     // Data fields
-    private final double bmi;
+    private double bmi;
+
+    public Bmi() {
+        super();
+    }
 
     /**
      * Creates the Bmi object representing the user.
@@ -28,6 +33,8 @@ public class Bmi {
         this.height = height;
         this.bmi = calculateBmi();
     }
+
+
 
     /**
      * Returns the Double value representing the Bmi.

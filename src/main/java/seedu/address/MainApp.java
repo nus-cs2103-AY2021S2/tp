@@ -141,6 +141,7 @@ public class MainApp extends Application {
             uniqueFoodList = initializer.getUniqueFoodListTemplate();
             foodIntakeList = initializer.getFoodListIntakeTemplate();
             dietPlanList = initializer.getDietPlanListTemplate();
+            user = initializer.createUser(uniqueFoodList, foodIntakeList);
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             TemplateInitializer initializer = new TemplateInitializer();
@@ -148,9 +149,10 @@ public class MainApp extends Application {
             uniqueFoodList = initializer.getUniqueFoodListTemplate();
             foodIntakeList = initializer.getFoodListIntakeTemplate();
             dietPlanList = initializer.getDietPlanListTemplate();
+            user = initializer.createUser(uniqueFoodList, foodIntakeList);
         }
 
-        return new ModelManager(initialData, uniqueFoodList, foodIntakeList, dietPlanList, userPrefs);
+        return new ModelManager(initialData, uniqueFoodList, foodIntakeList, dietPlanList, userPrefs, user);
     }
 
     private void initLogging(Config config) {

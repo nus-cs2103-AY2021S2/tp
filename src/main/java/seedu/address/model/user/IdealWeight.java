@@ -8,7 +8,11 @@ public class IdealWeight {
     public static final String MESSAGE_CONSTRAINTS =
             "Ideal Weight should be in kilograms, greater than 1 and may include a decimal!";
     private static final String VALIDATION_REGEX = "^[1-9](\\d+)?$|^[1-9](\\d+)?.(\\d+)$";
-    private final double idealWeight;
+    private double idealWeight;
+
+    public IdealWeight() {
+        super();
+    }
 
     /**
      * Initializes the ideal weight class.

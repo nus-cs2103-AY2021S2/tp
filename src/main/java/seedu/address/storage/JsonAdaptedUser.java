@@ -30,7 +30,7 @@ public class JsonAdaptedUser {
 
     // Data fields
     private final List<Food> foodList;
-    private final FoodIntakeList foodIntakeList;
+    //private final FoodIntakeList foodIntakeList;
     private DietPlan activeDietPlan;
 
     /**
@@ -43,7 +43,7 @@ public class JsonAdaptedUser {
                                  @JsonProperty("gender") String gender,
                                  @JsonProperty("idealWeight") IdealWeight idealWeight,
                                  @JsonProperty("lastUpdated") String lastUpdated,
-                                 @JsonProperty("foodIntakeList") FoodIntakeList foodIntakeList,
+                                 //@JsonProperty("foodIntakeList") List<FoodIntake> foodIntakeList,
                                  @JsonProperty("activeDietPlan") DietPlan activeDietPlan) {
         this.bmi = bmi;
         this.foodList = foodList;
@@ -51,7 +51,8 @@ public class JsonAdaptedUser {
         this.gender = gender;
         this.idealWeight = idealWeight;
         this.lastUpdated = lastUpdated;
-        this.foodIntakeList = foodIntakeList;
+        //this.foodIntakeList = null;
+        //this.foodIntakeList = new FoodIntakeList(FXCollections.observableArrayList(foodIntakeList));
         this.activeDietPlan = activeDietPlan;
     }
 
@@ -65,7 +66,7 @@ public class JsonAdaptedUser {
         gender = source.getGender().gender;
         idealWeight = source.getIdealWeight();
         lastUpdated = source.getLastUpdated();
-        foodIntakeList = source.getFoodIntakeList();
+        //foodIntakeList = source.getFoodIntakeList();
         activeDietPlan = source.getActiveDietPlan();
     }
 
@@ -90,7 +91,7 @@ public class JsonAdaptedUser {
         if (!Gender.isValidGender(gender)) {
             throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
         }
-        User newUser = new User(bmi, foodList, foodIntakeList,
+        User newUser = new User(bmi, foodList, new FoodIntakeList(),
                 new Age(Integer.valueOf(age)), new Gender(gender), idealWeight);
         if (activeDietPlan != null) {
             newUser.setActiveDietPlan(activeDietPlan);

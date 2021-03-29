@@ -44,11 +44,11 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, UniqueFoodList uniqueFoodList, FoodIntakeList foodIntakeList,
-                        DietPlanList dietPlanList, ReadOnlyUserPrefs userPrefs) {
+                        DietPlanList dietPlanList, ReadOnlyUserPrefs userPrefs, User user) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
-        this.addressBook = new AddressBook(addressBook, uniqueFoodList, foodIntakeList);
+        this.addressBook = new AddressBook(addressBook, uniqueFoodList, foodIntakeList, user);
         this.uniqueFoodList = uniqueFoodList;
         this.foodIntakeList = foodIntakeList;
         this.dietPlanList = dietPlanList;
@@ -66,7 +66,7 @@ public class ModelManager implements Model {
      */
     public ModelManager() {
         this(new AddressBook(), new UniqueFoodList(),
-                new FoodIntakeList(), new DietPlanList(), new UserPrefs());
+                new FoodIntakeList(), new DietPlanList(), new UserPrefs(), null);
     }
 
     //=========== UserPrefs ==================================================================================
