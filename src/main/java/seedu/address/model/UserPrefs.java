@@ -15,6 +15,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path flashBackFilePath = Paths.get("data" , "flashback.json");
+    private AliasMap aliasMap = new AliasMap();
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -36,6 +37,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setFlashBackFilePath(newUserPrefs.getFlashBackFilePath());
+        setAliasMap(newUserPrefs.getAliasMap());
     }
 
     public GuiSettings getGuiSettings() {
@@ -54,6 +56,23 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setFlashBackFilePath(Path flashBackFilePath) {
         requireNonNull(flashBackFilePath);
         this.flashBackFilePath = flashBackFilePath;
+    }
+
+    public AliasMap getAliasMap() {
+        return aliasMap;
+    }
+
+    public void setAliasMap(AliasMap aliasMap) {
+        requireNonNull(aliasMap);
+        this.aliasMap = aliasMap;
+    }
+
+    public void addAlias(String command, String name) {
+        aliasMap.addAlias(command, name);
+    }
+
+    public boolean canAddAlias(String command, String name) {
+        return aliasMap.canAddAlias(command, name);
     }
 
     @Override

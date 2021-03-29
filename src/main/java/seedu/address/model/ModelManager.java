@@ -183,4 +183,14 @@ public class ModelManager implements Model {
         sortedFlashcards.setComparator(comparator);
         versionedFlashBack.setFlashcards(sortedFlashcards);
     }
+
+    @Override
+    public void addAlias(String command, String alias) {
+        userPrefs.addAlias(command, alias);
+    }
+
+    @Override
+    public boolean canAddAlias(String command, String alias) {
+        return userPrefs.canAddAlias(command, alias);
+    }
 }
