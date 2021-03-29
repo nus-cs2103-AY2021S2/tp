@@ -51,7 +51,7 @@ public class PoolCommand extends Command {
             + PREFIX_TAG + "female";
 
     public static final String MESSAGE_NO_COMMUTERS = "No commuters were selected.";
-    public static final String MESSAGE_POOL_SUCCESS = "%s successfully created pool: %s";
+    public static final String MESSAGE_POOL_SUCCESS = "Successfully created pool: %s";
     public static final String MESSAGE_DUPLICATE_POOL = "This pool already exists in the GME Terminal";
 
     private final Driver driver;

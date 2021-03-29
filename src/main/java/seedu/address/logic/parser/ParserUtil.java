@@ -126,7 +126,7 @@ public class ParserUtil {
      */
     public static TripDay parseTripDay(String tripDay) throws ParseException {
         requireNonNull(tripDay);
-        String trimmedTripDay = tripDay.trim();
+        String trimmedTripDay = tripDay.trim().toUpperCase();
         DayOfWeek day;
         try {
             day = DayOfWeek.valueOf(trimmedTripDay);
