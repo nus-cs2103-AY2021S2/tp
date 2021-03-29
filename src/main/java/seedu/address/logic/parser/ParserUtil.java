@@ -6,8 +6,11 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.fee.Month;
+import seedu.address.model.fee.Year;
 import seedu.address.model.session.Duration;
 import seedu.address.model.session.Fee;
+import seedu.address.model.session.Interval;
 import seedu.address.model.session.SessionDate;
 import seedu.address.model.session.Subject;
 import seedu.address.model.student.Address;
@@ -157,6 +160,53 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code String month} into a {@code Month month}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code month} is invalid.
+     */
+    public static Month parseMonth(String month) throws ParseException {
+        requireAllNonNull(month);
+        String trimmedMonth = month.trim();
+        int intMonth;
+
+        try {
+            intMonth = Integer.parseInt(trimmedMonth);
+        } catch (Exception ex) {
+            throw new ParseException(Month.MESSAGE_CONSTRAINTS);
+        }
+
+        if (!Month.isValidMonth(intMonth)) {
+            throw new ParseException(Month.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Month(intMonth);
+    }
+
+    /**
+     * Parses {@code String year} into a {@code Year year}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code year} is invalid.
+     */
+    public static Year parseYear(String year) throws ParseException {
+        requireAllNonNull(year);
+        String trimmedYear = year.trim();
+        int intYear;
+
+        try {
+            intYear = Integer.parseInt(trimmedYear);
+        } catch (Exception ex) {
+            throw new ParseException(Year.MESSAGE_CONSTRAINTS);
+        }
+
+        if (!Year.isValidYear(intYear)) {
+            throw new ParseException(Year.MESSAGE_CONSTRAINTS);
+        }
+        return new Year(intYear);
+    }
+
+    /**
      * Parses a {@code String duration} into a {@code Duration}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -201,4 +251,18 @@ public class ParserUtil {
         return new Fee(trimmedFee);
     }
 
+    /**
+     * Parses a {@code String interval} into a {@code Interval}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code interval} is invalid.
+     */
+    public static Interval parseInterval(String interval) throws ParseException {
+        requireNonNull(interval);
+        String trimmedInterval = interval.trim();
+        if (!Interval.isValidInterval(trimmedInterval)) {
+            throw new ParseException(Interval.MESSAGE_CONSTRAINTS);
+        }
+        return new Interval(trimmedInterval);
+    }
 }

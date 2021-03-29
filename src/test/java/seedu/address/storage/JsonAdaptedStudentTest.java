@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.session.RecurringSession;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
@@ -32,7 +33,10 @@ public class JsonAdaptedStudentTest {
     private static final String VALID_GUARDIAN_PHONE = BENSON.getGuardianPhone().toString();
     private static final String VALID_RELATIONSHIP = BENSON.getRelationship();
     private static final List<JsonAdaptedSession> VALID_SESSION = BENSON.getListOfSessions().stream()
-            .map(JsonAdaptedSession::new).collect(Collectors.toList());
+            .map(session -> session instanceof RecurringSession
+                    ? new JsonAdaptedRecurringSession((RecurringSession) session)
+                    : new JsonAdaptedSession(session))
+            .collect(Collectors.toList());
 
 
     @Test

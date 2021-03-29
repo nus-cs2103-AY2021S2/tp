@@ -1,62 +1,56 @@
 package seedu.address.ui;
 
-import java.time.format.DateTimeFormatter;
-
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.model.session.Session;
 import seedu.address.model.student.Student;
-import seedu.address.model.tuition.Tuition;
 
 /**
- * An UI component that displays information of a {@code Tuition}.
+ * An UI component that displays information of a {@Student} and a list the {@code Session} of that {@code Student}.
  */
 public class TuitionCard extends UiPart<Region> {
+    // TODO: Some Ui to differentiate recurring sessions from others.
 
     private static final String FXML = "TuitionListCard.fxml";
-
-    /**
-     * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
-     * As a consequence, UI elements' variable names cannot be set to such keywords
-     * or an exception will be thrown by JavaFX during runtime.
-     *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
-     */
+    private static final int ROW_HEIGHT = 98;
 
     public final Student student;
-    public final Session session;
 
     @FXML
-    private HBox cardPane;
-    @FXML
-    private Label id;
+    private VBox tuitionCardPane;
     @FXML
     private Label name;
     @FXML
-    private Label sessionDate;
-    @FXML
-    private Label duration;
-    @FXML
-    private Label subject;
-    @FXML
-    private Label fee;
+    private ListView<Session> sessionListView;
 
     /**
      * Creates a {@code TuitionCard} with the given {@code Tuition} and index to display.
      */
-    public TuitionCard(Tuition tuition) {
+    public TuitionCard(Student student) {
         super(FXML);
-        this.student = tuition.getStudent();
-        this.session = tuition.getSession();
-        id.setText(tuition.getStudentIndex() + "-" + tuition.getSessionIndex());
+        this.student = student;
         name.setText(student.getName().fullName);
-        sessionDate.setText("Date: " + DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
-                .format(session.getSessionDate().getDateTime()));
-        duration.setText("Duration: " + session.getDuration().getValue() + " mins");
-        subject.setText("Subject: " + session.getSubject().getValue());
-        fee.setText("Fee: $" + String.format("%.2f", session.getFee().getFee()));
+
+        ObservableList<Session> sessionList = FXCollections.observableList(student.getListOfSessions());
+
+        populateSessionListView(sessionList);
+
+        // hard code height to prevent list from being scrollable
+        sessionListView.setPrefHeight(sessionList.size() * ROW_HEIGHT);
+    }
+
+    /**
+     * Populates the sessionListView with all {@code Session} of the given {@Student}.
+     */
+    private void populateSessionListView(ObservableList<Session> sessionList) {
+        sessionListView.setItems(sessionList);
+        sessionListView.setCellFactory(listView -> new SessionListViewCell());
     }
 
     @Override
@@ -73,7 +67,24 @@ public class TuitionCard extends UiPart<Region> {
 
         // state check
         TuitionCard card = (TuitionCard) other;
-        return id.getText().equals(card.id.getText())
-                && session.equals(card.session);
+        return name.getText().equals(card.name.getText())
+                && student.equals(card.student);
+    }
+
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code Session} using a {@code SessionCard}.
+     */
+    class SessionListViewCell extends ListCell<Session> {
+        @Override
+        protected void updateItem(Session session, boolean empty) {
+            super.updateItem(session, empty);
+
+            if (empty || session == null) {
+                setGraphic(null);
+                setText(null);
+            } else {
+                setGraphic(new SessionCard(session, getIndex() + 1).getRoot());
+            }
+        }
     }
 }
