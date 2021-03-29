@@ -75,7 +75,7 @@ public class CompletableTodoCardTest extends GuiUnitTest {
         // verify id is displayed correctly
         assertEquals(Integer.toString(expectedId) + ". ", todoCardHandle.getId());
 
-        // verify person details are displayed correctly
+        // verify contact details are displayed correctly
         assertCardDisplaysCompletableTodo(expectedTodo, todoCardHandle);
     }
 }

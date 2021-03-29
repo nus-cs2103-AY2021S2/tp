@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.project.Project;
 
 /**
@@ -22,7 +22,7 @@ public class ModelManager implements Model {
 
     private final ColabFolder colabFolder;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Contact> filteredContacts;
     private final FilteredList<Project> filteredProjects;
 
     /**
@@ -36,7 +36,7 @@ public class ModelManager implements Model {
 
         this.colabFolder = new ColabFolder(colabFolder);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.colabFolder.getPersonList());
+        filteredContacts = new FilteredList<>(this.colabFolder.getContactList());
         filteredProjects = new FilteredList<>(this.colabFolder.getProjectsList());
     }
 
@@ -60,7 +60,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return colabFolder.equals(other.colabFolder)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons)
+                && filteredContacts.equals(other.filteredContacts)
                 && filteredProjects.equals(other.filteredProjects);
     }
 
@@ -115,30 +115,30 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
+    public boolean hasContact(Contact contact) {
+        requireNonNull(contact);
 
-        return colabFolder.hasPerson(person);
+        return colabFolder.hasContact(contact);
     }
 
     @Override
-    public void deletePerson(Person target) {
+    public void deleteContact(Contact target) {
         requireNonNull(target);
 
-        colabFolder.removePerson(target);
+        colabFolder.removeContact(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        colabFolder.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addContact(Contact contact) {
+        colabFolder.addContact(contact);
+        updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setContact(Contact target, Contact editedContact) {
+        requireAllNonNull(target, editedContact);
 
-        colabFolder.setPerson(target, editedPerson);
+        colabFolder.setContact(target, editedContact);
     }
 
     @Override
@@ -170,22 +170,22 @@ public class ModelManager implements Model {
         colabFolder.setProject(target, editedProject);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Contact List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Contact} backed by the internal list of
      * {@code versionedColabFolder}.
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Contact> getFilteredContactList() {
+        return filteredContacts;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredContactList(Predicate<Contact> predicate) {
         requireNonNull(predicate);
 
-        filteredPersons.setPredicate(predicate);
+        filteredContacts.setPredicate(predicate);
     }
 
     //=========== Filtered Projects List Accessors ==========================================================

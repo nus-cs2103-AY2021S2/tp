@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ColabFolder;
 import seedu.address.model.ReadOnlyColabFolder;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.project.Project;
 
 /**
@@ -20,19 +20,19 @@ import seedu.address.model.project.Project;
 @JsonRootName(value = "colab")
 class JsonSerializableColabFolder {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
-    public static final String MESSAGE_DUPLICATE_PROJECTS = "Projects list contains duplicate project(s).";
+    public static final String MESSAGE_DUPLICATE_CONTACTS = "Contact list contains duplicate contact(s).";
+    public static final String MESSAGE_DUPLICATE_PROJECTS = "Contact list contains duplicate project(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedContact> contacts = new ArrayList<>();
     private final List<JsonAdaptedProject> projects = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableColabFolder} with the given persons.
+     * Constructs a {@code JsonSerializableColabFolder} with the given contacts.
      */
     @JsonCreator
-    public JsonSerializableColabFolder(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+    public JsonSerializableColabFolder(@JsonProperty("contacts") List<JsonAdaptedContact> contacts,
                                        @JsonProperty("projects") List<JsonAdaptedProject> projects) {
-        this.persons.addAll(persons);
+        this.contacts.addAll(contacts);
         this.projects.addAll(projects);
     }
 
@@ -42,7 +42,7 @@ class JsonSerializableColabFolder {
      * @param source future changes to this will not affect the created {@code JsonSerializableColabFolder}.
      */
     public JsonSerializableColabFolder(ReadOnlyColabFolder source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        contacts.addAll(source.getContactList().stream().map(JsonAdaptedContact::new).collect(Collectors.toList()));
         projects.addAll(source.getProjectsList().stream().map(JsonAdaptedProject::new).collect(Collectors.toList()));
     }
 
@@ -54,12 +54,12 @@ class JsonSerializableColabFolder {
     public ColabFolder toModelType() throws IllegalValueException {
         ColabFolder colabFolder = new ColabFolder();
 
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (colabFolder.hasPerson(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+        for (JsonAdaptedContact jsonAdaptedContact : contacts) {
+            Contact contact = jsonAdaptedContact.toModelType();
+            if (colabFolder.hasContact(contact)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_CONTACTS);
             }
-            colabFolder.addPerson(person);
+            colabFolder.addContact(contact);
         }
 
         for (JsonAdaptedProject jsonAdaptedProject : projects) {

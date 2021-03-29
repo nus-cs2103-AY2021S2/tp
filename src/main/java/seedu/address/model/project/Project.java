@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.transformation.FilteredList;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.CompletableTodo;
 import seedu.address.model.task.deadline.Deadline;
@@ -109,23 +109,23 @@ public class Project {
     /**
      * Adds a participant to the {@code ParticipantList}.
      *
-     * @param person {@code Person} to add.
+     * @param contact {@code Person} to add.
      */
-    public void addParticipant(Person person) {
-        requireNonNull(person);
-        this.participants.addParticipant(person);
+    public void addParticipant(Contact contact) {
+        requireNonNull(contact);
+        this.participants.addParticipant(contact);
     }
 
     /**
      * Returns true if a participant with the same identity as {@code person} exists
      * in this {@code Project}'s {@code participants}.
      *
-     * @param person the {@code Person} to compare.
+     * @param contact the {@code Person} to compare.
      * @return true if a participant with the same identity as {@code person} exists under this {@code Project}.
      */
-    public boolean hasParticipant(Person person) {
-        requireNonNull(person);
-        return participants.contains(person);
+    public boolean hasParticipant(Contact contact) {
+        requireNonNull(contact);
+        return participants.contains(contact);
     }
 
     /**
@@ -163,7 +163,7 @@ public class Project {
      *
      * @return the {@code Person}. at the specified position in this {@code Project}'s {@code ParticipantList}.
      */
-    public Person getParticipant(Integer i) {
+    public Contact getParticipant(Integer i) {
         requireNonNull(i);
         return participants.get(i);
     }
@@ -313,7 +313,7 @@ public class Project {
             deadlines.forEach(builder::append);
         }
 
-        List<Person> participants = getParticipants().getParticipants();
+        List<Contact> participants = getParticipants().getParticipants();
         if (!participants.isEmpty()) {
             builder.append("; Participants: ");
             participants.forEach(builder::append);

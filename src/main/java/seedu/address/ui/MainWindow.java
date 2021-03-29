@@ -39,7 +39,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private ContactListPanel contactListPanel;
     private SidePanel sidePanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -137,7 +137,7 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        contactListPanel = new ContactListPanel(logic.getFilteredContactList());
         projectDisplayPanel = new ProjectDisplayPanel();
     }
 
@@ -228,9 +228,9 @@ public class MainWindow extends UiPart<Stage> {
      * Shows contacts tab.
      */
     public void displayContacts() {
-        if (!infoDisplayPlaceholder.getChildren().contains(personListPanel.getRoot())) {
+        if (!infoDisplayPlaceholder.getChildren().contains(contactListPanel.getRoot())) {
             infoDisplayPlaceholder.getChildren().clear();
-            infoDisplayPlaceholder.getChildren().add(personListPanel.getRoot());
+            infoDisplayPlaceholder.getChildren().add(contactListPanel.getRoot());
         }
 
         sidePanel.clearSelection();

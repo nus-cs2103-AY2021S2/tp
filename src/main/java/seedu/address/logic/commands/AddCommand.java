@@ -10,16 +10,16 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.uicommands.ShowContactsUiCommand;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Contact;
 
 /**
- * Adds a person to the contact list.
+ * Adds a contact to the contact list.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to CoLAB. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a contact to CoLAB. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -34,28 +34,28 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in CoLAB";
+    public static final String MESSAGE_SUCCESS = "New contact added: %1$s";
+    public static final String MESSAGE_DUPLICATE_CONTACT = "This contact already exists in CoLAB";
 
-    private final Person toAdd;
+    private final Contact toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Contact}
      */
-    public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(Contact contact) {
+        requireNonNull(contact);
+        toAdd = contact;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (model.hasContact(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_CONTACT);
         }
 
-        model.addPerson(toAdd);
+        model.addContact(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), new ShowContactsUiCommand());
     }
 

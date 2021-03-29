@@ -7,11 +7,11 @@ import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Contact;
 
 public class ParticipantList {
 
-    private final ObservableList<Person> participants = FXCollections.observableArrayList();
+    private final ObservableList<Contact> participants = FXCollections.observableArrayList();
 
     /**
      * Constructs an empty {@code ParticipantList}.
@@ -23,7 +23,7 @@ public class ParticipantList {
      *
      * @param participants A list of {@code Person}.
      */
-    public ParticipantList(List<Person> participants) {
+    public ParticipantList(List<Contact> participants) {
         requireNonNull(participants);
 
         this.participants.addAll(participants);
@@ -34,7 +34,7 @@ public class ParticipantList {
      *
      * @return the participants as a {@code ObservableList<Person>}.
      */
-    public ObservableList<Person> getParticipants() {
+    public ObservableList<Contact> getParticipants() {
         return participants;
     }
 
@@ -52,7 +52,7 @@ public class ParticipantList {
      *
      * @return the {@code Person} at the specified position in this {@code ParticipantList}.
      */
-    public Person get(int index) {
+    public Contact get(int index) {
         return participants.get(index);
     }
 
@@ -80,27 +80,27 @@ public class ParticipantList {
      *
      * @return a sequential Stream over the persons in this {@code ParticipantList}.
      */
-    public Stream<Person> stream() {
+    public Stream<Contact> stream() {
         return participants.stream();
     }
 
     /**
      * Adds a person to this {@code ParticipantList}.
      *
-     * @param person {@code Person} to add.
+     * @param contact {@code Person} to add.
      */
-    public void addParticipant(Person person) {
-        this.participants.add(person);
+    public void addParticipant(Contact contact) {
+        this.participants.add(contact);
     }
 
     /**
      * Returns true if this {@code ParticipantList} has the provided {@code Person}.
      *
-     * @param person the person to test.
+     * @param contact the person to test.
      * @return whether the {@code Person} is in this {@code ParticipantList}.
      */
-    public boolean contains(Person person) {
-        return stream().anyMatch(person::isSamePerson);
+    public boolean contains(Contact contact) {
+        return stream().anyMatch(contact::isSameContact);
     }
 
     @Override
