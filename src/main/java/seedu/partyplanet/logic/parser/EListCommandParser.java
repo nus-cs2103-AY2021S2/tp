@@ -54,7 +54,7 @@ public class EListCommandParser implements Parser<EListCommand> {
     /**
      * Returns the overall filtering predicate.
      */
-    private Predicate<Event> getPredicate(ArgumentMultimap argMap) {
+    private Predicate<Event> getPredicate(ArgumentMultimap argMap) throws ParseException {
         List<Predicate<Event>> predicates = getPredicates(argMap);
         return mergePredicates(predicates, argMap);
     }
@@ -62,7 +62,7 @@ public class EListCommandParser implements Parser<EListCommand> {
     /**
      * Returns a list of filtering predicates depending on whether partial search is disabled.
      */
-    private List<Predicate<Event>> getPredicates(ArgumentMultimap argMap) {
+    private List<Predicate<Event>> getPredicates(ArgumentMultimap argMap) throws ParseException {
         boolean isExactSearch = argMap.contains(FLAG_EXACT);
         List<Predicate<Event>> predicates = new ArrayList<>();
         if (isExactSearch) {
@@ -80,15 +80,23 @@ public class EListCommandParser implements Parser<EListCommand> {
                 predicates.add(new EventDetailContainsKeywordsPredicate(detail));
             }
         }
+        if (isExactSearch && predicates.isEmpty()) {
+            throw new ParseException(
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, EListCommand.MESSAGE_USAGE));
+        }
         return predicates;
     }
 
     /**
      * Returns combines a list of filtering predicates depending on whether search is performed for any predicate.
      */
-    private Predicate<Event> mergePredicates(List<Predicate<Event>> predicates, ArgumentMultimap argMap) {
+    private Predicate<Event> mergePredicates(List<Predicate<Event>> predicates, ArgumentMultimap argMap) throws ParseException {
         boolean isAnySearch = argMap.contains(FLAG_ANY);
         Predicate<Event> overallPredicate;
+        if (isAnySearch && predicates.isEmpty()) {
+            throw new ParseException(
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, EListCommand.MESSAGE_USAGE));
+        }
         if (predicates.isEmpty()) {
             overallPredicate = PREDICATE_SHOW_ALL_EVENTS;
         } else if (isAnySearch) {
