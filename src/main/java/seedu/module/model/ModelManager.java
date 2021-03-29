@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.module.commons.core.GuiSettings;
 import seedu.module.commons.core.LogsCenter;
+import seedu.module.model.task.Module;
 import seedu.module.model.task.Task;
 
 /**
@@ -134,6 +135,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Task> getFilteredTaskList() {
         return filteredTasks;
+    }
+
+    @Override
+    public ObservableList<Module> getModuleList() {
+        return ModuleManager.getExistingModuleList();
     }
 
     @Override

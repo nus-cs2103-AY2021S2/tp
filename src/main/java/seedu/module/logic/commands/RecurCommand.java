@@ -7,6 +7,7 @@ import java.util.List;
 
 import seedu.module.commons.core.Messages;
 import seedu.module.commons.core.index.Index;
+import seedu.module.commons.core.optionalfield.OptionalField;
 import seedu.module.logic.commands.exceptions.CommandException;
 import seedu.module.model.Model;
 import seedu.module.model.task.Recurrence;
@@ -73,7 +74,9 @@ public class RecurCommand extends Command {
     private Task makeNextRecurringTask(Task previousRecurringTask) throws CommandException {
         assert previousRecurringTask != null;
 
-        return Task.updateRecurrenceTask(previousRecurringTask);
+        OptionalField<Recurrence> recurrenceWrapper = new OptionalField<>(recurrence);
+
+        return Task.setRecurrence(previousRecurringTask, recurrenceWrapper);
     }
 
 

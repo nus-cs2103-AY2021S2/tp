@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.module.model.task.Module;
 import seedu.module.model.task.Task;
 import seedu.module.model.task.exceptions.DuplicateTaskException;
 import seedu.module.testutil.TaskBuilder;
@@ -91,9 +92,11 @@ public class ModuleBookTest {
      */
     private static class ModuleBookStub implements ReadOnlyModuleBook {
         private final ObservableList<Task> tasks = FXCollections.observableArrayList();
+        private final ObservableList<Module> modules = FXCollections.observableArrayList();
 
         ModuleBookStub(Collection<Task> tasks) {
             this.tasks.setAll(tasks);
+            this.modules.setAll(ModuleManager.getExistingModuleList());
         }
 
         @Override

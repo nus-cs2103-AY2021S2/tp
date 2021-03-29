@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.module.commons.core.GuiSettings;
+import seedu.module.model.task.Module;
 import seedu.module.model.task.Task;
 
 /**
@@ -89,6 +90,9 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
+
+    /** Returns an unmodifiable view of the module list */
+    ObservableList<Module> getModuleList();
 
     /**
      * Updates the filter of the filtered task list to filter by the given {@code predicate}.

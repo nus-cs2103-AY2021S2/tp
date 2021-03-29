@@ -14,6 +14,7 @@ import seedu.module.logic.parser.ModuleBookParser;
 import seedu.module.logic.parser.exceptions.ParseException;
 import seedu.module.model.Model;
 import seedu.module.model.ReadOnlyModuleBook;
+import seedu.module.model.task.Module;
 import seedu.module.model.task.Task;
 import seedu.module.storage.Storage;
 
@@ -62,6 +63,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Task> getFilteredTaskList() {
         return model.getFilteredTaskList();
+    }
+
+    @Override
+    public ObservableList<Module> getModuleList() {
+        return model.getModuleList();
     }
 
     @Override

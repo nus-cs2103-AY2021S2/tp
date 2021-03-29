@@ -36,11 +36,10 @@ public class EditTaskDescriptorBuilder {
 
         // This operation is only allowed in test for a convenience builder, to avoid the assertion check in getField.
         OptionalField<Time> startTimeWrapper = task.getStartTimeWrapper();
-        Time startTime = startTimeWrapper.isNull() ? null : startTimeWrapper.getField();
 
         descriptor = new EditTaskDescriptor();
         descriptor.setName(task.getName());
-        descriptor.setStartTime(startTime);
+        descriptor.setStartTime(startTimeWrapper);
         descriptor.setDeadline(task.getDeadline());
         descriptor.setModule(task.getModule());
         descriptor.setDescription(task.getDescription());
@@ -60,7 +59,7 @@ public class EditTaskDescriptorBuilder {
      * Sets the {@code StartTime} of the {@code EditTaskDescriptor} that we are building.
      */
     public EditTaskDescriptorBuilder withStartTime(String startTime) {
-        descriptor.setStartTime(new Time(startTime));
+        descriptor.setStartTime(new OptionalField<>(new Time(startTime)));
         return this;
     }
 
