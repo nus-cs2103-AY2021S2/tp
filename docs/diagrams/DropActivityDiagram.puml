@@ -2,10 +2,11 @@
 'https://plantuml.com/activity-diagram-beta
 
 start
-:User executes drop command;
-if () then ([dogID valid)
-else ([programID valid])
-endif
+repeat
+  :User executes drop command;
+  backward:throws CommandException;
+repeat while () is ([else])
+->[dogId valid && programId valid];
 :DropCommandParser processes;
 :returns DropCommand;
 stop

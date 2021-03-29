@@ -79,6 +79,19 @@ Examples:
 3. Deletes the program with ID 3 in Pawbook.<br>
    Command: `delete program 3`
 
+### Enrol Command
+
+Adds a specified dog to a specified program that the dog was previously not enrolled in.
+
+Format:
+```
+enrol d/<DOG ID> p/<PROGRAM ID>
+```
+
+Examples:
+1. Enrol dog with Dog ID 1 into program with Program ID 2, assuming that Dog ID 1 was previously not enrolled in Program ID 2. <br> 
+   Command: `enrol d/1 p/2`
+   
 ### Drop Command
 
 Removes a specified dog from a specified program that the dog was previously enrolled in.
