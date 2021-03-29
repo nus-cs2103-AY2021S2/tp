@@ -157,6 +157,11 @@ public class CheckCommandTest {
         }
 
         @Override
+        public void tagFlashcard(Flashcard target, String tag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Quiz getQuizInstance() {
             throw new AssertionError("This method should not be called.");
         }

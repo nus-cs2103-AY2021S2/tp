@@ -19,6 +19,7 @@ public class FlashcardBuilder {
     private Question question;
     private Answer answer;
     private Set<Tag> tags;
+    private Set<Tag> userTags;
 
     /**
      * Creates a {@code FlashcardBuilder} with the default details.
@@ -27,6 +28,7 @@ public class FlashcardBuilder {
         question = new Question(DEFAULT_QUESTION);
         answer = new Answer(DEFAULT_ANSWER);
         tags = new HashSet<>();
+        userTags = new HashSet<>();
     }
 
     /**
@@ -63,7 +65,7 @@ public class FlashcardBuilder {
     }
 
     public Flashcard build() {
-        return new Flashcard(question, answer, tags);
+        return new Flashcard(question, answer, tags, userTags);
     }
 
 }

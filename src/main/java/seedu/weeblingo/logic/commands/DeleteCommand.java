@@ -36,6 +36,12 @@ public class DeleteCommand extends Command {
 
     private Set<Tag> tags;
 
+    /**
+     * Creates a DeleteCommand representing a user command to delete tags from a flashcard.
+     *
+     * @param index The index of the flashcard to be deleted.
+     * @param tags The tags to be deleted.
+     */
     public DeleteCommand(Index index, Set<Tag> tags) {
         this.index = index;
         this.tags = tags;
@@ -78,6 +84,13 @@ public class DeleteCommand extends Command {
         return new CommandResult(MESSAGE_SUCCESS, false, false);
     }
 
+    /**
+     * Checks if the given tag exists in the given Flashcard's user tags
+     *
+     * @param tag The tag to be checked.
+     * @param flashcard The flashcard to be checked.
+     * @return true if the tag exists, false otherwise.
+     */
     private boolean checkIfTagExists(Tag tag, Flashcard flashcard) {
         for (Tag otherTag : flashcard.getUserTags()) {
             if (otherTag.equals(tag)) {
@@ -87,6 +100,13 @@ public class DeleteCommand extends Command {
         return false;
     }
 
+    /**
+     * Creates a copy of the provided flashcard, but with edited tag values.
+     *
+     * @param flashcardToEdit The flashcard that requires editing.
+     * @param userTagsToRemove The tags that the user wishes to remove from the flashcard.
+     * @return A new flashcard with the tags removed.
+     */
     private static Flashcard createDeletedTagFlashcard(Flashcard flashcardToEdit, Set<Tag> userTagsToRemove) {
         assert userTagsToRemove != null;
 

@@ -10,7 +10,6 @@ import java.util.Set;
 import seedu.weeblingo.commons.core.Messages;
 import seedu.weeblingo.commons.core.index.Index;
 import seedu.weeblingo.logic.commands.exceptions.CommandException;
-import seedu.weeblingo.model.Mode;
 import seedu.weeblingo.model.Model;
 import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.flashcard.Flashcard;
@@ -37,6 +36,12 @@ public class TagCommand extends Command {
 
     private Set<Tag> tags;
 
+    /**
+     * Creates a TagCommand representing a user command to add tags to a flashcard.
+     *
+     * @param index The index of the flashcard to have tags added to.
+     * @param tags The tags to be added.
+     */
     public TagCommand(Index index, Set<Tag> tags) {
         this.index = index;
         this.tags = tags;
@@ -71,6 +76,12 @@ public class TagCommand extends Command {
         return new CommandResult(MESSAGE_SUCCESS, false, false);
     }
 
+    /**
+     * Checks if the given tag(s) already exists in the given Flashcard's user tags
+     *
+     * @param tag The tag to be checked.
+     * @return true if the tag(s) already exist, false otherwise.
+     */
     private boolean checkUserTagsForDuplicates(Tag tag) {
         for (Tag otherTag : tags) {
             if (tag.equals(otherTag)) {
@@ -80,6 +91,14 @@ public class TagCommand extends Command {
         return false;
     }
 
+    /**
+     * Creates a copy of the provided flashcard, but with edited tag values.
+     * Previous tags are kept and not overwritten.
+     *
+     * @param flashcardToEdit The flashcard that requires editing.
+     * @param userTagsToAdd The tags that the user wishes to add to the flashcard.
+     * @return A new flashcard with tags added.
+     */
     private static Flashcard createTaggedFlashcard(Flashcard flashcardToEdit, Set<Tag> userTagsToAdd) {
         assert userTagsToAdd != null;
 
