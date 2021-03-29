@@ -19,7 +19,7 @@ public class Messages {
                     + "Use the command \"clear-appt\" to clear the appointment schedule.";
     public static final String MESSAGE_DELETE_PATIENT_SUCCESS = "Deleted Patient: %1$s";
 
-    //==================================Doctor related messages===============================================
+    //=================================Doctor related messages================================================
     public static final String MESSAGE_DOCTORS_LISTED_OVERVIEW = "%1$d doctors listed!";
     public static final String MESSAGE_INVALID_DOCTOR_DISPLAYED_INDEX = "The doctor index provided is invalid";
     public static final String MESSAGE_FORCE_DELETE_DOCTOR_REQUIRED =
