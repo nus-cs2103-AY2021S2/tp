@@ -223,7 +223,7 @@ public class Book {
                 .append("; Genre: ")
                 .append(getGenre())
                 .append("; Borrower: ")
-                .append(isBorrowed() ? this.borrowerName : "Not borrowed.");
+                .append(isBorrowed() ? this.borrowerName : "None.");
 
         return builder.toString();
     }
