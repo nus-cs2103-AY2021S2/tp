@@ -44,7 +44,8 @@ class JsonAdaptedBook {
     public JsonAdaptedBook(@JsonProperty("name") String name, @JsonProperty("author") String author,
                            @JsonProperty("publisher") String publisher, @JsonProperty("isbn") String isbn,
                            @JsonProperty("barcode") String barcode, @JsonProperty("genre") String genre,
-                           @JsonProperty("borrowerName") String borrowerName, @JsonProperty("dateBorrowed") String dateBorrowed) {
+                           @JsonProperty("borrowerName") String borrowerName,
+                           @JsonProperty("dateBorrowed") String dateBorrowed) {
         this.name = name;
         this.author = author;
         this.publisher = publisher;
@@ -132,7 +133,8 @@ class JsonAdaptedBook {
         } else {
             final Name readerName = new Name(borrowerName);
             final DateBorrowed newDateBorrowed = new DateBorrowed(dateBorrowed);
-            return new Book(modelName, modelAuthor, modelPublisher, modelIsbn, modelBarcode, modelGenre, readerName, newDateBorrowed);
+            return new Book(modelName, modelAuthor, modelPublisher,
+                    modelIsbn, modelBarcode, modelGenre, readerName, newDateBorrowed);
         }
     }
 

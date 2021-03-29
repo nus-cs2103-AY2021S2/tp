@@ -2,7 +2,6 @@ package seedu.smartlib.model.book;
 
 import static seedu.smartlib.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Date;
 import java.util.Objects;
 
 import seedu.smartlib.commons.core.name.Name;
