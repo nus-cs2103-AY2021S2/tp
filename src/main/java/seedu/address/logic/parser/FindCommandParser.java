@@ -89,10 +89,9 @@ public class FindCommandParser implements Parser<FindCommand> {
             }
         } else if (PREFIX_ADDRESS.equals(prefix) && argumentMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             for (String s : argumentMultimap.getAllValues(PREFIX_ADDRESS)) {
-                String parsedAddrAsString = ParserUtil.parseAddress(s).toString();
-                outputList.add(parsedAddrAsString.trim());
+                String parsedAddressAsString = ParserUtil.parseAddress(s).toString();
+                outputList.add(parsedAddressAsString.trim());
             }
-
         } else if (PREFIX_PHONE.equals(prefix) && argumentMultimap.getValue(PREFIX_PHONE).isPresent()) {
             for (String s : argumentMultimap.getAllValues(PREFIX_PHONE)) {
                 String parsedPhoneAsString = ParserUtil.parseAddress(s).toString();
