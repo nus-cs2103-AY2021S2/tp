@@ -1,12 +1,13 @@
 package seedu.address.ui;
 
-// import java.util.Comparator;
+import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.person.Doctor;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -24,7 +25,7 @@ public class DoctorCard extends UiPart<Region> {
      */
 
     // TODO create doctor class and convert person class to doctor class
-    public final String doctor;
+    public final Doctor doctor;
 
     @FXML
     private HBox cardPane;
@@ -33,33 +34,19 @@ public class DoctorCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
-    @FXML
-    private Label address;
-    @FXML
-    private Label email;
-    @FXML
     private FlowPane tags;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public DoctorCard(String doctor, int displayedIndex) {
+    public DoctorCard(Doctor doctor, int displayedIndex) {
         super(FXML);
         this.doctor = doctor;
         id.setText(displayedIndex + ". ");
-        // placeholders while doctor is still a string and not displayed
-        name.setText(doctor);
-        phone.setText("");
-        address.setText("");
-        email.setText("");
-        // name.setText(doctor.getName().fullName);
-        // phone.setText(doctor.getPhone().value);
-        // address.setText(doctor.getAddress().value);
-        // email.setText(doctor.getEmail().value);
-        // doctor.getTags().stream()
-        //         .sorted(Comparator.comparing(tag -> tag.tagName))
-        //         .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        name.setText(doctor.getName().fullName);
+        doctor.getTags().stream()
+                 .sorted(Comparator.comparing(tag -> tag.tagName))
+                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override

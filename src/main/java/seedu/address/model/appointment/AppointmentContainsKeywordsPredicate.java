@@ -36,7 +36,7 @@ public class AppointmentContainsKeywordsPredicate implements Predicate<Appointme
                 .getPatient().getName().fullName, keyword);
 
         Predicate<String> isMatchDoctor = keyword -> StringUtil.containsWordIgnoreCase(appointment
-                .getDoctor(), keyword);
+                .getDoctor().getName().fullName, keyword);
 
         System.out.println(appointment.getAppointmentStart().toString());
         Predicate<String> isMatchTimeStart = keyword
