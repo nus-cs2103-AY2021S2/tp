@@ -157,17 +157,31 @@ Examples:
 
 ### Receiving reminders for orders : `remind`
 
-Obtains a list of reminder for orders that are X days within the current date.
+Displays a list of reminder for orders that are X days within the current date.
 
 Format: `remind DAYS...`
 
-* Lists all orders within the specified day, starting from the current date.
+* Lists all orders within the current date to the numbers of days from the specified date.
 * The `DAYS` refers to the number of days from the current date.
 * The `DAYS` **must be a positive integer starting from 0**.
 
 Examples:
 * `remind 0` lists all orders that have a delivery date for today.
 * `remind 3` lists all orders that have a delivery date within 3 days from today.
+
+### Adding a special request to an order: `request`
+
+Adds a special request to an existing order in the CakeCollate database.
+
+Format: `request INDEX r/REQUEST`
+
+* Adds a special request to the order at the specified `INDEX`. The index refers to the index number shown in the displayed order list. The index **must be a positive integer** 1, 2, 3, …​
+* You can remove an order’s special request by typing `t/` without specifying any requests after it.
+
+Examples:
+* `request 1 r/More sugar, spice and everything nice.` Sets the special request of the 1st order to be `More sugar, spice and everything nice.`
+* `request 2 r/` Removes the 2nd order's current special request.
+
 
 ### Setting the delivery status of an order as undelivered : `undelivered`
 
@@ -269,6 +283,7 @@ Action | Format, Examples
 **List** | `list`
 **Help** | `help`
 **Remind** | `remind DAYS`<br> e.g., `remind 3`
+**Request** | `remind INDEX [r/REQUEST]` <br> e.g., `request 1 r/More sugar, spice and everything nice.`
 **Undelivered** | `undelivered INDEXES`<br> e.g., `undelivered 3 4`
 **Delivered** | `delivered INDEXES`<br> e.g., `delivered 3 4`
 **Cancelled** | `cancelled INDEXES`<br> e.g., `cancelled 3 4`
