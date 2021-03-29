@@ -90,15 +90,15 @@ public class EListCommand extends Command {
         model.sortEventList(comparator);
         model.updateFilteredEventList(predicate);
         if (model.getEventListCopy().size() == model.getFilteredEventList().size()) {
-            return new CommandResult(EListCommand.MESSAGE_SUCCESS); // No event filtered out
+            return new CommandResult(EListCommand.MESSAGE_SUCCESS + "\n" + parseArguments); // No event filtered out
         }
         if (model.getFilteredEventList().size() == 0) {
             return new CommandResult(String.format(Messages.MESSAGE_EVENTS_LISTED_OVERVIEW,
                 model.getFilteredEventList().size()) + " None of the events meet the requirements.");
         }
         return new CommandResult(
-                String.format(Messages.MESSAGE_EVENTS_LISTED_OVERVIEW, model.getFilteredEventList().size()) +
-                    "\n\n" + parseArguments);
+                String.format(Messages.MESSAGE_EVENTS_LISTED_OVERVIEW, model.getFilteredEventList().size())
+                    + "\n" + parseArguments);
     }
 
     @Override

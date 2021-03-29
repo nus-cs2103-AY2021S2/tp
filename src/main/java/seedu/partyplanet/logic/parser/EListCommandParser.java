@@ -31,7 +31,8 @@ import seedu.partyplanet.model.event.predicates.EventNameContainsKeywordsPredica
  */
 public class EListCommandParser implements Parser<EListCommand> {
 
-    public String parseArguments = "";
+    private String stringFind = "";
+    private String stringSort = "";
 
     /**
      * Parses the given {@code String} of arguments in the context of the EListCommand
@@ -49,7 +50,7 @@ public class EListCommandParser implements Parser<EListCommand> {
 
         Predicate<Event> predicate = getPredicate(argMap);
         Comparator<Event> comparator = getComparator(argMap);
-        return new EListCommand(predicate, comparator, parseArguments);
+        return new EListCommand(predicate, comparator, stringFind+stringSort);
     }
 
     /**
@@ -66,36 +67,59 @@ public class EListCommandParser implements Parser<EListCommand> {
     private List<Predicate<Event>> getPredicates(ArgumentMultimap argMap) {
         boolean isExactSearch = argMap.contains(FLAG_EXACT);
         List<Predicate<Event>> predicates = new ArrayList<>();
-        parseArguments += "Listed events follow requirements of:\n\n";
         if (isExactSearch) {
             if (argMap.contains(PREFIX_NAME)) {
-                parseArguments += "Exact event name:\n";
+                stringFind += "\nRequire exact event name: ";
             }
-            for (String name : argMap.getAllValues(PREFIX_NAME)) {
+            List<String> allNames = argMap.getAllValues(PREFIX_NAME);
+            for (int i=0; i < allNames.size(); i++) {
+                String name = allNames.get(i);
                 predicates.add(new EventNameContainsExactKeywordsPredicate(name));
-                parseArguments += "\u2022 " + name + "\n";
+                if (i == allNames.size() - 1) {
+                    stringFind += name;
+                } else {
+                    stringFind += name + ", ";
+                }
             }
             if (argMap.contains(PREFIX_REMARK)) {
-                parseArguments += "Exact event detail:\n";
+                stringFind += "\nRequire exact event detail: ";
             }
-            for (String detail : argMap.getAllValues(PREFIX_REMARK)) {
-                predicates.add(new EventDetailContainsExactKeywordsPredicate(detail));
-                parseArguments += "\u2022 " + detail + "\n";
+            List<String> allDetails = argMap.getAllValues(PREFIX_REMARK);
+            for (int i=0; i < allDetails.size(); i++) {
+                String detail = allDetails.get(i);
+                predicates.add(new EventNameContainsExactKeywordsPredicate(detail));
+                if (i == allDetails.size() - 1) {
+                    stringFind += detail;
+                } else {
+                    stringFind += detail + ", ";
+                }
             }
         } else {
             if (argMap.contains(PREFIX_NAME)) {
-                parseArguments += "Partial event name:\n";
+                stringFind += "\nRequire partial event name: ";
             }
-            for (String name : argMap.getAllValues(PREFIX_NAME)) {
+            List<String> allValues = argMap.getAllValues(PREFIX_NAME);
+            for (int i=0; i < allValues.size(); i++) {
+                String name = allValues.get(i);
                 predicates.add(new EventNameContainsKeywordsPredicate(name));
-                parseArguments += "\u2022 " + name + "\n";
+                if (i == allValues.size() - 1) {
+                    stringFind += name;
+                } else {
+                    stringFind += name + ", ";
+                }
             }
             if (argMap.contains(PREFIX_REMARK)) {
-                parseArguments += "Partial event detail:\n";
+                stringFind += "\nRequire partial event detail: ";
             }
-            for (String detail : argMap.getAllValues(PREFIX_REMARK)) {
-                predicates.add(new EventDetailContainsKeywordsPredicate(detail));
-                parseArguments += "\u2022 " + detail + "\n";
+            List<String> allDetails = argMap.getAllValues(PREFIX_REMARK);
+            for (int i=0; i < allDetails.size(); i++) {
+                String detail = allDetails.get(i);
+                predicates.add(new EventNameContainsKeywordsPredicate(detail));
+                if (i == allDetails.size() - 1) {
+                    stringFind += detail;
+                } else {
+                    stringFind += detail + ", ";
+                }
             }
         }
         return predicates;
@@ -110,13 +134,13 @@ public class EListCommandParser implements Parser<EListCommand> {
         if (predicates.isEmpty()) {
             overallPredicate = PREDICATE_SHOW_ALL_EVENTS;
         } else if (isAnySearch) {
-            parseArguments += "\n Listed events met at least 1 requirement stated above. ";
+            stringFind += "\nListed events met at least 1 requirement stated above. ";
             overallPredicate = x -> false;
             for (Predicate<Event> predicate : predicates) {
                 overallPredicate = overallPredicate.or(predicate);
             }
         } else {
-            parseArguments += "\n Listed events met all requirements stated above. ";
+            stringFind += "\nListed events met all requirements stated above. ";
             overallPredicate = x -> true;
             for (Predicate<Event> predicate : predicates) {
                 overallPredicate = overallPredicate.and(predicate);
@@ -139,21 +163,21 @@ public class EListCommandParser implements Parser<EListCommand> {
     private Comparator<Event> getSortOrder(ArgumentMultimap argMap) throws ParseException {
         Optional<String> sortType = argMap.getValue(PREFIX_SORT);
         if (sortType.isEmpty()) {
-            parseArguments += "Sorted name ";
+            stringSort += "Sorted name ";
             return SORT_NAME; // default
         } else {
             switch (sortType.get().toLowerCase()) {
             case "n": // fallthrough
             case "name":
-                parseArguments += "Sorted name ";
+                stringSort += "Sorted name ";
                 return SORT_NAME;
             case "d": // fallthrough
             case "date":
-                parseArguments += "Sorted date ";
+                stringSort += "Sorted date ";
                 return SORT_EVENTDATE;
             case "u": // fallthrough
             case "upcoming":
-                parseArguments += "Sorted on upcoming event dates. ";
+                stringSort += "Sorted on upcoming event dates. ";
                 return SORT_EVENTDATE_UPCOMING;
             default:
                 throw new ParseException(
@@ -168,21 +192,23 @@ public class EListCommandParser implements Parser<EListCommand> {
     private Comparator<Event> applySortDirection(
             Comparator<Event> comparator, ArgumentMultimap argMap) throws ParseException {
         Optional<String> orderType = argMap.getValue(PREFIX_ORDER);
-        if (orderType.isEmpty() || comparator == SORT_EVENTDATE_UPCOMING) {
-            parseArguments += "in ascending order. ";
+        if (comparator == SORT_EVENTDATE_UPCOMING) {
+            return comparator; // default
+        } else if (orderType.isEmpty()) {
+            stringSort += "in ascending order. ";
             return comparator; // default
         } else {
             switch (orderType.get().toLowerCase()) {
             case "a": // fallthrough
             case "asc":
             case "ascending":
-                parseArguments += "in ascending order. ";
+                stringSort += "in ascending order. ";
                 return comparator;
             case "d": // fallthrough
             case "des":
             case "desc":
             case "descending":
-                parseArguments += "in descending order. ";
+                stringSort += "in descending order. ";
                 return comparator.reversed();
             default:
                 throw new ParseException(
