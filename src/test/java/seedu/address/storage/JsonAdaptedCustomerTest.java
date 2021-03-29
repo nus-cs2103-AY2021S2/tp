@@ -103,7 +103,8 @@ public class JsonAdaptedCustomerTest {
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedCustomer customer =
-            new JsonAdaptedCustomer(VALID_NAME, VALID_PHONE, VALID_EMAIL, null, VALID_DATE_OF_BIRTH, VALID_TAGS, null, null);
+            new JsonAdaptedCustomer(VALID_NAME, VALID_PHONE, VALID_EMAIL, null, VALID_DATE_OF_BIRTH,
+                    VALID_TAGS, null, null);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, customer::toModelType);
     }
@@ -113,7 +114,8 @@ public class JsonAdaptedCustomerTest {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedCustomer customer =
-            new JsonAdaptedCustomer(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_DATE_OF_BIRTH, invalidTags, null, null);
+            new JsonAdaptedCustomer(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_DATE_OF_BIRTH,
+                    invalidTags, null, null);
         assertThrows(IllegalValueException.class, customer::toModelType);
     }
 
