@@ -15,6 +15,7 @@ increase work productivity for delivery drivers by simplifying the delivery mana
         * Delete delivery points
         * List all delivery points
         * Mark delivery as Done
+        * Find delivery using keyword matching a certain criteria  
         * Statistics of delivery workflow
         * View completed deliveries
         * Exit application
@@ -150,6 +151,42 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 
 ![Ui](images/DoneCommand.png)
 
+### Finding deliveries using keyword matching a certain criteria: `find <keyword>`
+**Criteria**: Name, Telephone Number, Address, Date
+
+**Purpose** Find deliveries that match certain criteria
+
+**Format** `find <keywords>`
+
+* One of the following results will show:
+  * Deliveries matching the keywords
+  * No matches found
+    
+**Example**
+1. Finding by name: `find Alex`
+
+   
+   ![Ui](images/FindName.png)
+
+   
+2. Finding by address: `find Tampines`
+
+   
+   ![Ui](images/FindAddress.png)
+
+   
+3. finding by telephone number: `find 87438807`
+
+   
+   ![Ui](images/FindTelephone.png)
+
+   
+4. finding by date of delivery: `find 2021-10-10`
+
+   
+   ![Ui](images/FindDate.png)
+
+
 ### Statistics of delivery workflow : `stats`
 
 **Purpose:** Get a summary of your current delivery workflow
@@ -206,6 +243,7 @@ Action | Format,<br> Example(s)
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **List** | `list`<br> e.g., `list`
 **Done** | `done INDEX`<br> e.g., `done 2`
+**Find** | `find <keyword>` e.g., `find alex`
 **Stats** | `stats` <br> e.g., `stats`
 **Completed** | `completed` <br> e.g., `completed`
 **Exit** | `exit`<br> e.g., `exit`
