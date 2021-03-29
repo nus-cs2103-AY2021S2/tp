@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
  * Represents a Task's Duration in the List.
  * Guarantees: immutable; is valid as declared in {@link #isValidDuration(String)}
  */
-public class Duration implements Comparable<Duration> {
+public class Duration {
     public static final String FIELD_NAME = "Duration";
 
     public static final String MESSAGE_CONSTRAINTS = "Duration should be numeric, consisting of start time and end time"
@@ -38,7 +38,6 @@ public class Duration implements Comparable<Duration> {
         checkArgument(isValidDuration(duration), MESSAGE_CONSTRAINTS);
         this.duration = duration;
         value = duration;
-        parseDuration(duration);
     }
 
     /**
@@ -90,29 +89,5 @@ public class Duration implements Comparable<Duration> {
     @Override
     public int hashCode() {
         return this.duration.hashCode();
-    }
-
-    /**
-     * Compares the start and end time of durations. A duration with an earlier start time will be smaller, and if the
-     * start time is equal, the duration with the earlier end time will be smaller.
-     *
-     * @param other Duration to compare to this duration.
-     * @return 1 if this duration is greater than the given duration, 0 if equal, and -1 if this duration is smaller.
-     */
-    @Override
-    public int compareTo(Duration other) {
-        boolean areTimingNull = startTime == null || endTime == null;
-        boolean areOtherTimingNull = other.startTime == null || other.endTime == null;
-        if (areTimingNull && areOtherTimingNull) {
-            return 0;
-        } else if (areTimingNull) {
-            return -1;
-        } else if (areOtherTimingNull) {
-            return 1;
-        }
-
-        int startTimeComparison = this.startTime.compareTo(other.startTime);
-        int endTimeComparison = this.endTime.compareTo(other.endTime);
-        return startTimeComparison == 0 ? endTimeComparison : startTimeComparison;
     }
 }

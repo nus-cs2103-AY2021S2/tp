@@ -1,7 +1,6 @@
 package seedu.address.model.task.predicates;
 
 import java.util.function.Predicate;
-import java.util.logging.Logger;
 
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Task;

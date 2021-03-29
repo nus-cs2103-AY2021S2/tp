@@ -262,6 +262,11 @@ public class AddCommandTest {
         public void setCalendarDate(LocalDate date) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void resetCalendarDate() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
