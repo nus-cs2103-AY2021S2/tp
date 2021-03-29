@@ -70,19 +70,6 @@ public class FindContentCommandTest {
         assertEquals(TypicalContent.getTypicalContent(), model.getFilteredContentList());
     }
 
-    @Test
-    public void execute_contentKeywords_multipleContentFound() {
-        String expectedMessage = String.format(MESSAGE_CONTENTS_LISTED_OVERVIEW, 2);
-
-        ContentContainsKeywordsPredicate contentPredicate = prepareContentPredicate("been");
-
-        FindContentCommand command = new FindContentCommand(contentPredicate);
-        expectedModel.updateFilteredContentList(contentPredicate);
-
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(WEEK_1, WEEK_14), model.getFilteredContentList());
-    }
-
     /**
      * Parses {@code userInput} into a {@code ContentContainsKeywordsPredicate}.
      */

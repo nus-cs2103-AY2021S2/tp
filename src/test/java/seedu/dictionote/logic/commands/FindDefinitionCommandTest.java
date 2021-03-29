@@ -70,19 +70,6 @@ public class FindDefinitionCommandTest {
         assertEquals(TypicalDefinition.getTypicalDefinition(), model.getFilteredDefinitionList());
     }
 
-    @Test
-    public void execute_contentKeywords_multipleDefinitionFound() {
-        String expectedMessage = String.format(MESSAGE_DEFINITIONS_LISTED_OVERVIEW, 2);
-
-        DefinitionContainsKeywordsPredicate definitionPredicate = prepareDefinitionPredicate("been");
-
-        FindDefinitionCommand command = new FindDefinitionCommand(definitionPredicate);
-        expectedModel.updateFilteredDefinitionList(definitionPredicate);
-
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(OOP, JAVA), model.getFilteredDefinitionList());
-    }
-
     /**
      * Parses {@code userInput} into a {@code ContentContainsKeywordsPredicate}.
      */
