@@ -112,7 +112,7 @@ drop d/<DOG ID> p/<PROGRAM ID>
 Examples:
 1. Remove dog with Dog ID 1 from program with Program ID 2, assuming that Dog ID 1 was previously enrolled in Program ID 2. <br> 
    Command: `drop d/1 p/2`
-
+   
 ### Find Command 
 
 Shows the list of search results based on one/many keywords. 
