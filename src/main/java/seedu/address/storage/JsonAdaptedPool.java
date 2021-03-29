@@ -71,7 +71,7 @@ class JsonAdaptedPool {
         final TripDay modelTripDay = MODEL_UTIL.verifyAndReturnTripDay(tripDayStr);
         final TripTime modelTripTime = MODEL_UTIL.verifyAndReturnTripTime(tripTimeStr);
 
-        final Set<Passenger> modelPassengers = MODEL_UTIL.convertAdaptedPassengersToModel(passengers);
+        final List<Passenger> modelPassengers = MODEL_UTIL.convertAdaptedPassengersToModel(passengers);
         final Set<Tag> modelTags = MODEL_UTIL.convertAdaptedTagsToModel(tagged);
 
         return new Pool(modelDriver, modelTripDay, modelTripTime, modelPassengers, modelTags);

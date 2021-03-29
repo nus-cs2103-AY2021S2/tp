@@ -2,8 +2,10 @@ package seedu.address.model.pool;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -21,14 +23,14 @@ public class Pool {
     private final Driver driver;
     private final TripDay tripDay;
     private final TripTime tripTime;
-    private final Set<Passenger> passengers;
+    private final List<Passenger> passengers;
     private final Set<Tag> tags = new HashSet<>();
 
 
     /**
      * Every field must be present and not null. Ensures a pool cannot be created with no passengers.
      */
-    public Pool(Driver driver, TripDay tripDay, TripTime tripTime, Set<Passenger> passengers, Set<Tag> tags) {
+    public Pool(Driver driver, TripDay tripDay, TripTime tripTime, List<Passenger> passengers, Set<Tag> tags) {
         requireAllNonNull(driver, tripDay, tripTime);
 
         // ensures a trip cannot be created with no passengers
@@ -39,7 +41,7 @@ public class Pool {
         this.tripDay = tripDay;
         this.tripTime = tripTime;
         this.driver = driver;
-        this.passengers = new HashSet<>(passengers);
+        this.passengers = new ArrayList<>(passengers);
         this.tags.addAll(tags);
     }
 
@@ -68,11 +70,11 @@ public class Pool {
     }
 
     /**
-     * Returns an immutable passengers set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable passengers list, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Passenger> getPassengers() {
-        return Collections.unmodifiableSet(passengers);
+    public List<Passenger> getPassengers() {
+        return Collections.unmodifiableList(passengers);
     }
 
     /**
@@ -84,7 +86,7 @@ public class Pool {
     }
 
     /**
-     * Returns true if both trips have same driver, date & time, and passengers.
+     * Returns true if both trips have same driver, date, and time.
      * This defines a weaker notion of equality between two trips.
      */
     public boolean isSamePool(Pool otherPool) {
@@ -95,8 +97,7 @@ public class Pool {
         return otherPool != null
                 && otherPool.getDriver().equals(getDriver())
                 && otherPool.getTripDay().equals(getTripDay())
-                && otherPool.getTripTime().equals(getTripTime())
-                && otherPool.getPassengers().equals(getPassengers());
+                && otherPool.getTripTime().equals(getTripTime());
     }
 
     /**

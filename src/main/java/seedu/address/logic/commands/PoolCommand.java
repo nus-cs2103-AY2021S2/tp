@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPTIME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_POOLS;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.StringJoiner;
@@ -97,7 +97,7 @@ public class PoolCommand extends Command {
         }
 
         // obtain passengers from indices
-        Set<Passenger> passengersToPool = new HashSet<>();
+        List<Passenger> passengersToPool = new ArrayList<>();
 
         for (Index idx : passengers) {
             Passenger passenger = lastShownList.get(idx.getZeroBased());
@@ -114,7 +114,7 @@ public class PoolCommand extends Command {
         model.addPool(toAdd);
         model.updateFilteredPoolList(PREDICATE_SHOW_ALL_POOLS);
 
-        return new CommandResult(String.format(MESSAGE_POOL_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_POOL_SUCCESS, driver, toAdd));
     }
 
     @Override
