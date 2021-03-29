@@ -5,8 +5,8 @@ title: User Guide
 # TutorBuddy
 Welcome to the user guide for TutorBuddy!<br/>
 Are you a tuition teacher looking for a reliable way to keep track of
-your 1-to-1 lessons? Needing a system to remind you about upcoming classes?
-Or an efficient way to calculate your class incomes? <br/>
+your 1-to-1 lessons? Needing a system to remind you about upcoming lessons?
+Or an efficient way to calculate your lesson incomes? <br/>
 Then, you have come to the right place -- TutorBuddy shall help you!
 
 <div align="center">
