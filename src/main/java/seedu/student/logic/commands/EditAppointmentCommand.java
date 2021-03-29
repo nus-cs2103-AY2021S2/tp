@@ -79,9 +79,7 @@ public class EditAppointmentCommand extends Command {
 
         boolean studentExists = model.isExistingMatricNumber(editedAppointment.getMatriculationNumber());
 
-        if (model.hasAppointment(editedAppointment)) {
-            throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
-        } else if (model.hasOverlappingAppointment(editedAppointment)) {
+        if (model.hasOverlappingAppointment(editedAppointment)) {
             throw new CommandException(MESSAGE_OVERLAPPING_APPOINTMENT);
         } else if (!studentExists) {
             throw new CommandException(MESSAGE_STUDENT_DOES_NOT_EXIST);
