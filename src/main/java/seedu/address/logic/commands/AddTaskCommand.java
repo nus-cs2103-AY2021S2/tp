@@ -36,8 +36,8 @@ public class AddTaskCommand extends Command {
             + PREFIX_ASSIGNEE + " Rachel";
 
     public static final String MESSAGE_SUCCESS = "New Task added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TASK = "A task with the same name already exists in the HeyMatez task board! "
-            + "Pick another name!";
+    public static final String MESSAGE_DUPLICATE_TASK = "A task with the same name already exists in the HeyMatez "
+            + "task board! Pick another name!";
 
     private final Task toAddTask;
 
