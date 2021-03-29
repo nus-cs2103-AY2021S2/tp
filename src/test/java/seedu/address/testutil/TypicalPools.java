@@ -41,12 +41,12 @@ public class TypicalPools {
     private TypicalPools() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical passengers.
+     * Returns an {@code AddressBook} with all the typical pools.
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
-        for (Pool passenger : getTypicalPools()) {
-            ab.addPool(passenger);
+        for (Pool pool : getTypicalPools()) {
+            ab.addPool(pool);
         }
         return ab;
     }

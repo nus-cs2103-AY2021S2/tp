@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.passenger.Passenger;
 
 /**
- * Deletes a passenger identified using it's displayed index from the address book.
+ * Deletes a passenger identified using it's displayed index from the passenger list.
  */
 public class DeleteCommand extends Command {
 

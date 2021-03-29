@@ -39,7 +39,7 @@ public class PoolBuilder {
         driver = new Driver(new Name(DEFAULT_DRIVER_NAME_STR), new Phone(DEFAULT_DRIVER_PHONE_STR));
         tripDay = new TripDay(DEFAULT_TRIPDAY);
         tripTime = new TripTime(DEFAULT_TRIPTIME);
-        passengers = new HashSet<>();
+        passengers = new PassengerSetBuilder().withDefaultPassengers().build();
         tags = new HashSet<>();
     }
 
