@@ -196,11 +196,7 @@ public class MainWindow extends UiPart<Stage> {
             int currentMode = logic.getCurrentMode();
             logger.info(String.format("Current mode is %s", currentMode));
 
-            if (commandText.equals("history")) {
-                changePanelInPlaceHolder(flashcardListPanelPlaceholder, flashcardListPanel, scoreHistoryListPanel);
-            } else {
-                changePanelInPlaceHolder(flashcardListPanelPlaceholder, scoreHistoryListPanel, flashcardListPanel);
-            }
+            changePlaceHolderContent(logic.isShowingHistory());
 
             flashcardListPanelPlaceholder.setVisible(logic.showCards());
             flashcardListPanel.updateCard(logic.getCurrentIndex(), logic.showAnswer());
@@ -221,17 +217,18 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    /**
-     * Replace the old list panel in stackPane with new one.
-     *
-     * @param stackPane The stack pane considered to be the container of panels.
-     * @param oldPanel The old list panel to be replaced.
-     * @param newPanel The new list panel to replace the old panel.
-     */
-    private void changePanelInPlaceHolder(StackPane stackPane, ListPanel oldPanel, ListPanel newPanel) {
-        int index = stackPane.getChildren().indexOf(oldPanel.getRoot());
-        if (index != -1) {
-            stackPane.getChildren().set(index, newPanel.getRoot());
+    private void changePlaceHolderContent(boolean isShowingHistory) {
+        int index = -1;
+        if (isShowingHistory) {
+            index = flashcardListPanelPlaceholder.getChildren().indexOf(flashcardListPanel.getRoot());
+            if (index != -1) {
+                flashcardListPanelPlaceholder.getChildren().set(index, scoreHistoryListPanel.getRoot());
+            }
+        } else {
+            index = flashcardListPanelPlaceholder.getChildren().indexOf(scoreHistoryListPanel.getRoot());
+            if (index != -1) {
+                flashcardListPanelPlaceholder.getChildren().set(index, flashcardListPanel.getRoot());
+            }
         }
     }
 

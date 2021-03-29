@@ -196,6 +196,11 @@ public class CheckCommandTest {
         public void switchModeCheckSuccess() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void switchModeHistory() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

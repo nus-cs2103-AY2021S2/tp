@@ -250,6 +250,10 @@ public class ModelManager implements Model {
         this.mode.switchModeMenu();
     }
 
+    public void switchModeHistory() {
+        this.mode.switchModeHistory();
+    }
+
     public void switchModeQuizSession() {
         this.mode.switchModeQuizSession();
     }

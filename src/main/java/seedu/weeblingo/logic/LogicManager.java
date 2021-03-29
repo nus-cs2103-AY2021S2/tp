@@ -132,4 +132,8 @@ public class LogicManager implements Logic {
         }
     }
 
+    @Override
+    public boolean isShowingHistory() {
+        return getCurrentMode() == Mode.MODE_HISTORY;
+    }
 }

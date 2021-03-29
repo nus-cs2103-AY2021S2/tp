@@ -128,13 +128,15 @@ public interface Model {
     /** Gets the quiz instance, which is this quiz session */
     Quiz getQuizInstance();
 
-    public void switchModeQuiz();
+    void switchModeQuiz();
 
-    public void switchModeLearn();
+    void switchModeLearn();
 
-    public void switchModeMenu();
+    void switchModeMenu();
 
-    public void switchModeQuizSession();
+    void switchModeQuizSession();
 
-    public void switchModeCheckSuccess();
+    void switchModeCheckSuccess();
+
+    void switchModeHistory();
 }

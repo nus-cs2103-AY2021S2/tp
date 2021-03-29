@@ -20,6 +20,7 @@ public class ViewHistoryCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredScoreHistory(PREDICATE_SHOW_ALL_SCORES);
+        model.switchModeHistory();
         return new CommandResult(MESSAGE_SUCCESS, false, false);
     }
 }

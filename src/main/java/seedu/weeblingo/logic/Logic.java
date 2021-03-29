@@ -62,15 +62,17 @@ public interface Logic {
     /**
      * Returns current mode Weeblingo is in
      */
-    public int getCurrentMode();
+    int getCurrentMode();
 
     /**
      * True if cards should be shown.
      */
-    public boolean showCards();
+    boolean showCards();
 
     /**
      * True if answer should be shown.
      */
-    public boolean showAnswer();
+    boolean showAnswer();
+
+    boolean isShowingHistory();
 }
