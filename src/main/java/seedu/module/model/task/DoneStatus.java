@@ -34,6 +34,13 @@ public class DoneStatus {
     }
 
     /**
+     * Returns true if task is done, false otherwise.
+     */
+    public Boolean getIsDone() {
+        return isDone;
+    }
+
+    /**
      * Returns true if a given boolean is a valid boolean.
      */
     public static boolean isValidDoneStatus(String test) {
