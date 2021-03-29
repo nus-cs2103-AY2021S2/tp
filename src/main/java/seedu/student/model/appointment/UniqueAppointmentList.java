@@ -3,25 +3,16 @@ package seedu.student.model.appointment;
 import static java.util.Objects.requireNonNull;
 import static seedu.student.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
- * TO EDIT
- * A list of appointments that enforces uniqueness between its elements and does not allow nulls.
- * An appointment is considered unique by comparing using {@code Appointment#isSameAppointment(Appointment)}.
- * As such, adding and updating of appointments uses Appointment#isSameAppointment(Appointment) for equality so as to
- * ensure that the appointment being added or updated is unique in terms of identity in the UniqueAppointmentList.
- * However, the removal of an appointment uses Appointment#equals(Object) so
- * as to ensure that the appointment with exactly the same fields will be removed.
- *
- * Supports a minimal set of list operations.
- *
- * @see Appointment#isSameAppointment(Appointment)
+ * A nested list of appointments grouped by dates to facilitate UI display.
+ * Appointments on the same date are grouped within the class {@code SameDateAppointmentList}.
  */
 public class UniqueAppointmentList implements Iterable<SameDateAppointmentList> {
 
@@ -88,23 +79,12 @@ public class UniqueAppointmentList implements Iterable<SameDateAppointmentList> 
     }
 
     /**
-     * Replaces the contents of this list with {@code students}.
+     * Replaces the contents of this list with a deep clone of {@code apptLists}.
      * {@code students} must not contain duplicate students.
      */
-    public void setAppointments(List<SameDateAppointmentList> lists) {
-        requireAllNonNull(lists);
-        // TODO: validate list of SameDateAppointmentList
-        // internalList.setAll(lists);
-        internalList.clear();
-        for (SameDateAppointmentList smdl : lists) {
-            List<Appointment> listAppts = smdl.getAppointmentList();
-            List<Appointment> listApptsCopy = new ArrayList<>(listAppts);
-            SameDateAppointmentList smdlCopy = new SameDateAppointmentList(smdl.getDate());
-            for (Appointment a : listApptsCopy) {
-                smdlCopy.add(a);
-            }
-            internalList.add(smdlCopy);
-        }
+    public void setAppointments(List<SameDateAppointmentList> apptLists) {
+        requireAllNonNull(apptLists);
+        internalList.setAll(apptLists.stream().map(apptList -> apptList.deepClone()).collect(Collectors.toList()));
     }
 
     /**
