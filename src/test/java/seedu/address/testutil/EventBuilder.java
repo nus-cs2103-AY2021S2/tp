@@ -1,8 +1,8 @@
 package seedu.address.testutil;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
-import seedu.address.model.task.Interval;
 import seedu.address.model.task.repeatable.Event;
 
 /**
@@ -11,23 +11,23 @@ import seedu.address.model.task.repeatable.Event;
 public class EventBuilder {
 
     public static final String DEFAULT_DESCRIPTION = "Event Description";
-    public static final Interval DEFAULT_INTERVAL = Interval.NONE;
     public static final LocalDate DEFAULT_DATE = LocalDate.of(2021, 1, 1);
-    public static final Boolean DEFAULT_IS_DONE = false;
+    public static final LocalTime DEFAULT_TIME = LocalTime.of(17, 30);
+    public static final Boolean DEFAULT_IS_WEEKLY = false;
 
     private String description;
-    private Interval interval;
-    private LocalDate at;
-    private Boolean isDone;
+    private LocalDate date;
+    private LocalTime time;
+    private Boolean isWeekly;
 
     /**
      * Creates a {@code EventBuilder} with the default details.
      */
     public EventBuilder() {
         description = DEFAULT_DESCRIPTION;
-        interval = DEFAULT_INTERVAL;
-        at = DEFAULT_DATE;
-        isDone = DEFAULT_IS_DONE;
+        date = DEFAULT_DATE;
+        time = DEFAULT_TIME;
+        isWeekly = DEFAULT_IS_WEEKLY;
     }
 
     /**
@@ -35,9 +35,9 @@ public class EventBuilder {
      */
     public EventBuilder(Event eventToCopy) {
         description = eventToCopy.getDescription();
-        interval = eventToCopy.getRecurrence();
-        at = eventToCopy.getAt();
-        isDone = eventToCopy.getIsDone();
+        date = eventToCopy.getDate();
+        time = eventToCopy.getTime();
+        isWeekly = eventToCopy.getIsWeekly();
     }
 
     /**
@@ -49,26 +49,26 @@ public class EventBuilder {
     }
 
     /**
-     * Sets the {@code Interval} of the {@code Event} that we are building.
+     * Sets the {@code date} of the {@code Event} that we are building.
      */
-    public EventBuilder withInterval(Interval interval) {
-        this.interval = interval;
+    public EventBuilder withDate(LocalDate date) {
+        this.date = date;
         return this;
     }
 
     /**
-     * Sets the {@code at} date of the {@code Event} that we are building.
+     * Sets the {@code time} of the {@code Event} that we are building.
      */
-    public EventBuilder withAtDate(LocalDate date) {
-        this.at = date;
+    public EventBuilder withTime(LocalTime time) {
+        this.time = time;
         return this;
     }
 
     /**
-     * Sets the {@code isDone} status of the {@code Event} that we are building.
+     * Sets the {@code isWeekly} status of the {@code Event} that we are building.
      */
-    public EventBuilder withIsDone(Boolean isDone) {
-        this.isDone = isDone;
+    public EventBuilder withIsWeekly(Boolean isWeekly) {
+        this.isWeekly = isWeekly;
         return this;
     }
 
@@ -78,7 +78,7 @@ public class EventBuilder {
      * @return {@code Event}.
      */
     public Event build() {
-        return new Event(description, interval, at);
+        return new Event(description, date, time, isWeekly);
     }
 
 }

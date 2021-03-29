@@ -4,10 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_INTERVAL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_WEEKLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_UPDATE_INDEX;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,7 +20,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.EventList;
 import seedu.address.model.project.Project;
-import seedu.address.model.task.Interval;
 import seedu.address.model.task.repeatable.Event;
 
 /**
@@ -33,12 +34,15 @@ public class UpdateEventCommand extends Command {
             + "Parameters: PROJECT_INDEX (must be a positive integer) "
             + PREFIX_UPDATE_INDEX + "EVENT_INDEX "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
-            + "[" + PREFIX_EVENT_INTERVAL + "INTERVAL] "
-            + "[" + PREFIX_EVENT_DATE + "REPEATABLE_DATE]\n"
+            + "[" + PREFIX_EVENT_DATE + "DATE] "
+            + "[" + PREFIX_EVENT_TIME + "TIME]"
+            + "[" + PREFIX_EVENT_WEEKLY + "REPEATS WEEKLY]\n"
             + "Example:\n" + COMMAND_WORD + " 1 "
             + PREFIX_UPDATE_INDEX + "1 "
             + PREFIX_DESCRIPTION + "Project meeting "
-            + PREFIX_EVENT_DATE + "24-04-2021";
+            + PREFIX_EVENT_DATE + "24-04-2021 "
+            + PREFIX_EVENT_TIME + "1830 "
+            + PREFIX_EVENT_WEEKLY + "N";
 
     public static final String MESSAGE_UPDATE_EVENT_SUCCESS = "Edited event: %1$s";
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in this project.";
@@ -71,6 +75,7 @@ public class UpdateEventCommand extends Command {
         if (projectIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
+
         Project projectToUpdate = lastShownList.get(projectIndex.getZeroBased());
         EventList events = projectToUpdate.getEvents();
 
@@ -98,10 +103,12 @@ public class UpdateEventCommand extends Command {
         assert eventToEdit != null;
 
         String updatedDescription = updateEventDescriptor.getDescription().orElse(eventToEdit.getDescription());
-        Interval updatedInterval = updateEventDescriptor.getInterval().orElse(eventToEdit.getRecurrence());
-        LocalDate updatedDate = updateEventDescriptor.getDate().orElse(eventToEdit.getAt());
+        LocalDate updatedDate = updateEventDescriptor.getDate().orElse(eventToEdit.getDate());
+        LocalTime updatedTime = updateEventDescriptor.getTime().orElse(eventToEdit.getTime());
+        Boolean updatedIsWeekly = updateEventDescriptor.getIsWeekly().orElse(eventToEdit.getIsWeekly());
 
-        return new Event(updatedDescription, updatedInterval, updatedDate);
+
+        return new Event(updatedDescription, updatedDate, updatedTime, updatedIsWeekly);
     }
 
     @Override
@@ -129,8 +136,9 @@ public class UpdateEventCommand extends Command {
      */
     public static class UpdateEventDescriptor {
         private String description;
-        private Interval interval;
         private LocalDate date;
+        private LocalTime time;
+        private Boolean isWeekly;
 
         public UpdateEventDescriptor() {}
 
@@ -140,15 +148,16 @@ public class UpdateEventCommand extends Command {
          */
         public UpdateEventDescriptor(UpdateEventDescriptor toCopy) {
             setDescription(toCopy.description);
-            setInterval(toCopy.interval);
             setDate(toCopy.date);
+            setTime(toCopy.time);
+            setIsWeekly(toCopy.isWeekly);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(description, interval, date);
+            return CollectionUtil.isAnyNonNull(description, date, time, isWeekly);
         }
 
         public void setDescription(String description) {
@@ -159,20 +168,28 @@ public class UpdateEventCommand extends Command {
             return Optional.ofNullable(description);
         }
 
-        public void setInterval(Interval interval) {
-            this.interval = interval;
-        }
-
-        public Optional<Interval> getInterval() {
-            return Optional.ofNullable(interval);
-        }
-
         public void setDate(LocalDate date) {
             this.date = date;
         }
 
         public Optional<LocalDate> getDate() {
             return Optional.ofNullable(date);
+        }
+
+        public void setTime(LocalTime time) {
+            this.time = time;
+        }
+
+        public Optional<LocalTime> getTime() {
+            return Optional.ofNullable(time);
+        }
+
+        public void setIsWeekly(Boolean isWeekly) {
+            this.isWeekly = isWeekly;
+        }
+
+        public Optional<Boolean> getIsWeekly() {
+            return Optional.ofNullable(isWeekly);
         }
 
         @Override
@@ -191,8 +208,9 @@ public class UpdateEventCommand extends Command {
             UpdateEventDescriptor e = (UpdateEventDescriptor) other;
 
             return getDescription().equals(e.getDescription())
-                    && getInterval().equals(e.getInterval())
-                    && getDate().equals(e.getDate());
+                    && getDate().equals(e.getDate())
+                    && getTime().equals(e.getTime())
+                    && getIsWeekly().equals(e.getIsWeekly());
         }
     }
 }

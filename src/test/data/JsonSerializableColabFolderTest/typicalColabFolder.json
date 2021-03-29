@@ -47,9 +47,9 @@
     "projectName" : "CS2103T Team Project",
     "eventList" : [ {
       "description" : "Weekly Project Meeting",
-      "interval" : "WEEKLY",
-      "isDone" : false,
-      "at" : "31-01-2021"
+      "date" : "31-01-2021",
+      "time" : "20:00",
+      "isWeekly" : true
     } ],
     "todoList" : [ {
       "description" : "Update documentation",
@@ -98,24 +98,24 @@
     "projectName" : "CS2101 OP2",
     "eventList" : [ {
       "description" : "OP2 Planning Meeting",
-      "interval" : "NONE",
-      "isDone" : false,
-      "at" : "17-03-2021"
+      "date" : "17-03-2021",
+      "time" : "17:30",
+      "isWeekly" : false
     }, {
       "description" : "OP2 Consultation",
-      "interval" : "NONE",
-      "isDone" : false,
-      "at" : "23-03-2021"
+      "date" : "23-03-2021",
+      "time" : "10:00",
+      "isWeekly" : false
     }, {
       "description" : "OP2 Product Demo",
-      "interval" : "NONE",
-      "isDone" : false,
-      "at" : "06-04-2021"
+      "date" : "06-04-2021",
+      "time" : "10:00",
+      "isWeekly" : false
     }, {
       "description" : "OP2 Pitch",
-      "interval" : "NONE",
-      "isDone" : false,
-      "at" : "09-04-2021"
+      "date" : "09-04-2021",
+      "time" : "10:00",
+      "isWeekly" : false
     } ],
     "todoList" : [ {
       "description" : "Split Workload",

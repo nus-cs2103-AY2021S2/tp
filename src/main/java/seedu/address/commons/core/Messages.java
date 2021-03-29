@@ -40,14 +40,21 @@ public class Messages {
 
     public static final String MESSAGE_PARSER_DESCRIPTION_CONSTRAINTS =
             "Description should only contain alphanumeric characters and spaces, and it should not be blank";
-    public static final String MESSAGE_PARSER_INTERVAL_CONSTRAINTS =
-            "Interval should be one of: NONE, DAILY, WEEKLY, FORTNIGHTLY, MONTHLY, YEARLY";
+
+    public static final String MESSAGE_PARSER_WEEKLY_CONSTRAINTS =
+            "Repeat Weekly should be one of: 'Y', 'N', 'y' or 'n'";
+
     public static final String MESSAGE_PARSER_DATE_CONSTRAINTS =
                     "Date should be a valid date in one of the following formats:\n"
                     + "\t- dd-MM-yyyy\t(e.g. 01-01-2021)\n"
                     + "\t- ddMMyyyy\t(e.g. 01012021)\n"
                     + "\t- dd/MM/yyyy\t(e.g. 01/01/2021)\n"
                     + "\t- dd.MM.yyyy\t(e.g. 01.01.2021)";
+
+    public static final String MESSAGE_PARSER_TIME_CONSTRAINTS =
+            "Time should be a valid time in one of the following formats:\n"
+                    + "\t- HH:mm\t(e.g. 17:30)\n"
+                    + "\t- HHmm\t(e.g. 1730)";
 
     public static final String MESSAGE_NO_EVENTS_TO_DISPLAY = "You have no events today!";
     public static final String MESSAGE_NO_DEADLINES_TO_DISPLAY = "You have no deadlines today!";

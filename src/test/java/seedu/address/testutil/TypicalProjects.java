@@ -1,12 +1,14 @@
 package seedu.address.testutil;
 
 import static seedu.address.commons.util.DateUtil.encodeDate;
+import static seedu.address.commons.util.TimeUtil.encodeTime;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.exceptions.DateConversionException;
+import seedu.address.commons.exceptions.TimeConversionException;
 import seedu.address.model.groupmate.Groupmate;
 import seedu.address.model.project.DeadlineList;
 import seedu.address.model.project.EventList;
@@ -14,7 +16,6 @@ import seedu.address.model.project.GroupmateList;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.TodoList;
-import seedu.address.model.task.Interval;
 import seedu.address.model.task.deadline.Deadline;
 import seedu.address.model.task.repeatable.Event;
 import seedu.address.model.task.todo.Todo;
@@ -38,7 +39,7 @@ public class TypicalProjects {
     public static List<Project> getTypicalProjects() {
         try {
             return new ArrayList<>(Arrays.asList(getCS2103TProject(), getCS2101Project()));
-        } catch (DateConversionException e) {
+        } catch (DateConversionException | TimeConversionException e) {
             throw new AssertionError("Unreachable statement executed");
         }
     }
@@ -49,7 +50,7 @@ public class TypicalProjects {
      * Creates a new CS2103T project.
      * @return typical {@code Project}.
      */
-    public static Project getCS2103TProject() throws DateConversionException {
+    public static Project getCS2103TProject() throws DateConversionException, TimeConversionException {
         return new ProjectBuilder().withName("CS2103T Team Project")
                 .withEventList(getCS2103TEventList())
                 .withDeadlineList(getCS2103TDeadlineList())
@@ -62,7 +63,7 @@ public class TypicalProjects {
      * Creates a new CS2101 project.
      * @return typical {@code Project}.
      */
-    public static Project getCS2101Project() throws DateConversionException {
+    public static Project getCS2101Project() throws DateConversionException, TimeConversionException {
         return new ProjectBuilder().withName("CS2101 OP2")
                 .withEventList(getCS2101EventList())
                 .withDeadlineList(getCS2101DeadlineList())
@@ -71,9 +72,9 @@ public class TypicalProjects {
                 .build();
     }
 
-    private static EventList getCS2103TEventList() throws DateConversionException {
+    private static EventList getCS2103TEventList() throws DateConversionException, TimeConversionException {
         Event eventWeeklyMeeting = new EventBuilder().withDescription("Weekly Project Meeting")
-                .withAtDate(encodeDate("31-01-2021")).withInterval(Interval.WEEKLY).build();
+                .withDate(encodeDate("31-01-2021")).withTime(encodeTime("2000")).withIsWeekly(true).build();
 
         EventList eventList = new EventList();
         eventList.addEvent(eventWeeklyMeeting);
@@ -134,15 +135,15 @@ public class TypicalProjects {
         return groupmateList;
     }
 
-    private static EventList getCS2101EventList() throws DateConversionException {
+    private static EventList getCS2101EventList() throws DateConversionException, TimeConversionException {
         Event eventPlanningMeeting = new EventBuilder().withDescription("OP2 Planning Meeting")
-                .withAtDate(encodeDate("17-03-2021")).withInterval(Interval.NONE).build();
+                .withDate(encodeDate("17-03-2021")).withTime(encodeTime("17:30")).withIsWeekly(false).build();
         Event eventOP2Consultation = new EventBuilder().withDescription("OP2 Consultation")
-                .withAtDate(encodeDate("23-03-2021")).withInterval(Interval.NONE).build();
+                .withDate(encodeDate("23-03-2021")).withTime(encodeTime("1000")).withIsWeekly(false).build();
         Event eventOP2ProductDemo = new EventBuilder().withDescription("OP2 Product Demo")
-                .withAtDate(encodeDate("06-04-2021")).withInterval(Interval.NONE).build();
+                .withDate(encodeDate("06-04-2021")).withTime(encodeTime("1000")).withIsWeekly(false).build();
         Event eventOP2Pitch = new EventBuilder().withDescription("OP2 Pitch")
-                .withAtDate(encodeDate("09-04-2021")).withInterval(Interval.NONE).build();
+                .withDate(encodeDate("09-04-2021")).withTime(encodeTime("1000")).withIsWeekly(false).build();
 
         EventList eventList = new EventList();
         eventList.addEvent(eventPlanningMeeting);

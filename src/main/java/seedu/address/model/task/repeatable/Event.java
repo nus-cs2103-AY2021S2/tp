@@ -1,10 +1,11 @@
 package seedu.address.model.task.repeatable;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Objects;
 
 import seedu.address.commons.util.DateUtil;
-import seedu.address.model.task.Interval;
+import seedu.address.commons.util.TimeUtil;
 import seedu.address.model.task.Repeatable;
 
 /**
@@ -15,37 +16,31 @@ public class Event extends Repeatable {
     /**
      * Constructor for Event.
      * @param description Description of the Event.
-     * @param at Date of the Event.
+     * @param date Date of the Event.
+     * @param time Time of the Event.
      */
-    public Event(String description, Interval interval, LocalDate at) {
-        super(description, interval, at);
+    public Event(String description, LocalDate date, LocalTime time) {
+        super(description, date, time);
     }
 
     /**
-     * Constructor for Event.
-     * @param description Description of the Event.
-     * @param isDone Marks whether the Event is Done.
-     * @param at Date of the Event.
+     * Constructor for Repeatable.
+     * @param description Description of the Repeatable.
+     * @param date Date of the Repeatable.
+     * @param time Time of the Repeatable.
+     * @param isWeekly isWeekly Status of the Repeatable
      */
-    public Event(String description, Interval interval, Boolean isDone, LocalDate at) {
-        super(description, interval, at, isDone);
+    public Event(String description, LocalDate date, LocalTime time, Boolean isWeekly) {
+        super(description, date, time, isWeekly);
     }
 
     /**
-     * Returns the Event's interval.
-     * @return Interval interval.
+     * Returns the isWeekly status of the Event.
+     * @return A Boolean representing the Event's isWeekly status.
      */
-    public Interval getRecurrence() {
-        return this.interval;
-    }
-
-    /**
-     * Sets the Event's interval to specified level.
-     * @param interval Level of Interval.
-     */
-    public void setRecurrence(Interval interval) {
-        assert interval != null;
-        this.interval = interval;
+    public Boolean getIsWeekly() {
+        assert this.isWeekly != null;
+        return this.isWeekly;
     }
 
     /**
@@ -65,15 +60,15 @@ public class Event extends Repeatable {
 
         Event otherEvent = (Event) other;
         return otherEvent.getDescription().equals(getDescription())
-                && otherEvent.getIsDone().equals(getIsDone())
-                && otherEvent.getRecurrence().equals(getRecurrence())
-                && otherEvent.getAt().equals(getAt());
+                && otherEvent.getIsWeekly().equals(getIsWeekly())
+                && otherEvent.getTime().equals(getTime())
+                && otherEvent.getDate().equals(getDate());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(description, isDone, at);
+        return Objects.hash(description, isWeekly, date, time);
     }
 
     /**
@@ -82,6 +77,11 @@ public class Event extends Repeatable {
      */
     @Override
     public String toString() {
-        return this.description + " (at: " + DateUtil.decodeDate(at) + ")";
+        if (getIsWeekly() == false) {
+            return this.description + " (on: " + DateUtil.decodeDate(date) + " at:" + TimeUtil.decodeTime(time) + ")";
+        }
+
+        return this.description + " (on: " + DateUtil.decodeDateWithDay(date) + " at:" + TimeUtil.decodeTime(time)
+                + " [WEEKLY])";
     }
 }

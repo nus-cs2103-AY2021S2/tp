@@ -7,7 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_INTERVAL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_WEEKLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
@@ -53,11 +54,13 @@ public class CommandTestUtil {
     public static final String VALID_DESCRIPTION = " " + PREFIX_DESCRIPTION + "CS2106 Tutorial";
     public static final String VALID_DEADLINE_DATE = " " + PREFIX_DEADLINE_DATE + "01-01-2020";
     public static final String VALID_EVENT_DATE = " " + PREFIX_EVENT_DATE + "01-01-2020";
-    public static final String VALID_EVENT_INTERVAL = " " + PREFIX_EVENT_INTERVAL + "WEEKLY";
+    public static final String VALID_EVENT_TIME = " " + PREFIX_EVENT_TIME + "1730";
+    public static final String VALID_EVENT_WEEKLY = " " + PREFIX_EVENT_WEEKLY + "N";
     public static final String INVALID_DESCRIPTION = " " + PREFIX_DESCRIPTION + "";
     public static final String INVALID_DEADLINE_DATE = " " + PREFIX_DEADLINE_DATE + "01/01-2020";
     public static final String INVALID_EVENT_DATE = " " + PREFIX_EVENT_DATE + "01-01/2020";
-    public static final String INVALID_EVENT_INTERVAL = " " + PREFIX_EVENT_INTERVAL + "Sometimes";
+    public static final String INVALID_EVENT_TIME = " " + PREFIX_EVENT_TIME + "17-30";
+    public static final String INVALID_EVENT_WEEKLY = " " + PREFIX_EVENT_WEEKLY + "Maybe";
 
 
     public static final String NAME_DESC_SYLPH = " " + PREFIX_NAME + VALID_NAME_SYLPH;
