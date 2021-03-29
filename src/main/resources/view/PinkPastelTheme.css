@@ -184,7 +184,7 @@
 }
 
 .context-menu {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: derive(rgb(183, 159, 153), 10%);
 }
 
 .context-menu .label {
@@ -203,6 +203,14 @@
 
 .menu .left-container {
     -fx-background-color: black;
+}
+
+.menu:hover, .menu:showing {
+    -fx-background-color: derive(rgb(183, 159, 153), 30%);
+}
+
+.menu-item:focused {
+    -fx-background-color: derive(rgb(183, 159, 153), 50%);
 }
 
 /*
