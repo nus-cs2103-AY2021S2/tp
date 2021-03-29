@@ -30,6 +30,7 @@ import seedu.dictionote.model.ReadOnlyNoteBook;
 import seedu.dictionote.model.ReadOnlyUserPrefs;
 import seedu.dictionote.model.UserPrefs;
 import seedu.dictionote.model.contact.Contact;
+import seedu.dictionote.model.contact.MailtoLink;
 import seedu.dictionote.model.contact.exceptions.InvalidContactMailtoLinkException;
 
 /**
@@ -82,7 +83,7 @@ public class MostFreqContactCommandTest {
 
         for (int i = 0; i < numEmails; i++) {
             contact = m.getFilteredContactList().get(contactIndexNumber);
-            m.emailContact(contact);
+            m.emailContactUsingLink(new MailtoLink(contact));
         }
     }
 
@@ -113,8 +114,8 @@ public class MostFreqContactCommandTest {
         }
 
         @Override
-        public void emailContact(Contact contact) {
-            contactsListStub.emailContact(contact);
+        public void emailContactUsingLink(MailtoLink link) {
+            contactsListStub.emailContactUsingLink(link);
         }
 
         @Override
@@ -136,8 +137,9 @@ public class MostFreqContactCommandTest {
         }
 
         @Override
-        public void emailContact(Contact contact) throws InvalidContactMailtoLinkException {
-            setContact(contact, incrementContactFrequency(contact));
+        public void emailContactUsingLink(MailtoLink link) throws InvalidContactMailtoLinkException {
+            Contact receivingContact = link.getTo();
+            setContact(receivingContact, incrementContactFrequency(receivingContact));
         }
     }
 

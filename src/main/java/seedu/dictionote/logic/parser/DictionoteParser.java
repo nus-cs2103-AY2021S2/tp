@@ -13,6 +13,7 @@ import seedu.dictionote.logic.commands.AddNoteCommand;
 import seedu.dictionote.logic.commands.ClearContactCommand;
 import seedu.dictionote.logic.commands.CloseCommand;
 import seedu.dictionote.logic.commands.Command;
+import seedu.dictionote.logic.commands.ConvertTxtNoteCommand;
 import seedu.dictionote.logic.commands.DeleteContactCommand;
 import seedu.dictionote.logic.commands.DeleteNoteCommand;
 import seedu.dictionote.logic.commands.EditContactCommand;
@@ -28,6 +29,10 @@ import seedu.dictionote.logic.commands.FindDefinitionCommand;
 import seedu.dictionote.logic.commands.FindNoteCommand;
 import seedu.dictionote.logic.commands.HelpCommand;
 import seedu.dictionote.logic.commands.ListCommandCommand;
+import seedu.dictionote.logic.commands.ListCommandContactCommand;
+import seedu.dictionote.logic.commands.ListCommandDictionaryCommand;
+import seedu.dictionote.logic.commands.ListCommandNoteCommand;
+import seedu.dictionote.logic.commands.ListCommandUiCommand;
 import seedu.dictionote.logic.commands.ListContactCommand;
 import seedu.dictionote.logic.commands.ListContentCommand;
 import seedu.dictionote.logic.commands.ListDefinitionCommand;
@@ -194,8 +199,23 @@ public class DictionoteParser {
         case ListCommandCommand.COMMAND_WORD:
             return new ListCommandCommand();
 
+        case ListCommandDictionaryCommand.COMMAND_WORD:
+            return new ListCommandDictionaryCommand();
+
+        case ListCommandNoteCommand.COMMAND_WORD:
+            return new ListCommandNoteCommand();
+
+        case ListCommandContactCommand.COMMAND_WORD:
+            return new ListCommandContactCommand();
+
+        case ListCommandUiCommand.COMMAND_WORD:
+            return new ListCommandUiCommand();
+
         case SortNoteCommand.COMMAND_WORD:
             return new SortNoteCommand();
+
+        case ConvertTxtNoteCommand.COMMAND_WORD:
+            return new ConvertTxtNoteCommandParser().parse(arguments);
 
         case SortNoteByTimeCommand.COMMAND_WORD:
             return new SortNoteByTimeCommand();
