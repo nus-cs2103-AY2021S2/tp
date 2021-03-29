@@ -62,6 +62,7 @@ public class CommandBox extends UiPart<Region> {
 
 
     private void handleUserKey(KeyEvent event) {
+
         switch(event.getCode()) {
         case UP:
             commandTextField.setText(history.getPrevious());
@@ -87,7 +88,7 @@ public class CommandBox extends UiPart<Region> {
             break;
         case Z:
             try {
-                if (event.isShiftDown() && event.isControlDown()) {
+                if (event.isShiftDown() && event.isShortcutDown()) {
                     commandExecutor.execute("redo");
                 } else if (event.isControlDown()) {
                     commandExecutor.execute("undo");
@@ -95,15 +96,17 @@ public class CommandBox extends UiPart<Region> {
             } catch (CommandException | ParseException e) {
                 setStyleToIndicateCommandFailure();
             }
+            commandTextField.clear();
             break;
         case Y:
             try {
-                if (event.isControlDown()) {
+                if (event.isShortcutDown()) {
                     commandExecutor.execute("redo");
                 }
             } catch (CommandException | ParseException e) {
                 setStyleToIndicateCommandFailure();
             }
+            commandTextField.clear();
             break;
         default:
             break;
