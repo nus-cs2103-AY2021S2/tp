@@ -10,7 +10,6 @@ import java.util.Objects;
 public class CommandResult {
 
     private final String feedbackToUser;
-
     private final boolean isResidentCommand;
     private final boolean isRoomCommand;
     private final boolean isResidentRoomCommand;

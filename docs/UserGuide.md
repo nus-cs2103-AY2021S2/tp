@@ -32,7 +32,7 @@ title: User Guide
 
     * **`rlist`** : Lists all residents.
 
-    * **`radd`**`n/Joseph Tan p/84666774 e/e0103994@u.nus.edu y/2 r/01-234` : Adds a resident named `Joseph Tan` with phone number `84666774`, email `e0103994@u.nus.edu`, a 2nd year student, allocated to room `01-234`.
+    * **`radd`**`n/Joseph Tan p/84666774 e/e0103994@u.nus.edu y/2` : Adds a resident named `Joseph Tan` with phone number `84666774`, email `e0103994@u.nus.edu`, a 2nd year student.
 
     * **`rdel`**`3` : Deletes the 3rd resident shown in the current resident list.
 
@@ -76,10 +76,9 @@ Format: `help`
 
 Adds a resident to the housing management system.
 
-Format: `radd n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR [r/ROOM]`
+Format: `radd n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR`
 
 Examples:
-* `radd n/Joseph Tan p/84666774 e/e0103994@u.nus.edu y/2 r/01-234` Adds a resident named `Joseph Tan` with phone number `84666774`, email `e0103994@u.nus.edu`, and as a 2nd year student, allocated to room `01-234`.
 * `radd n/John Doe p/91234567 e/e0123456@u.nus.edu y/3` Adds a resident named `John Doe` with phone number `91234567`, email `e0123456@u.nus.edu`, and as a 3rd year student, without any room allocated.
 
 
@@ -110,10 +109,12 @@ Examples:
 
 Edits the existing resident record at a specified index.
 
-Format: `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROOM]`
+Format: `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]`
 * `INDEX` refers to the index number shown in the displayed resident list. `INDEX` **must be a positive integer: 1, 2, 3, …**.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* `redit` will be blocked if the resident has an active room allocation. Run `dealloc` before making further edits.
+e.g. `dealloc n/John Tan r/03-100`.
 
 Example:
 * `redit 1 p/91234567 e/e0123456@u.nus.edu` Edits the phone number and email address of the 1st resident to be `91234567` and `e0123456@u.nus.edu` respectively.
@@ -125,7 +126,9 @@ Deletes the resident record at a specified index.
 
 Format: `rdel INDEX`
 * `INDEX` refers to the index number shown in the displayed resident list. `INDEX` **must be a positive integer 1,2,3, ...**.
-
+*  A resident allocated to a room cannot be deleted until it is first deallocated. Run `dealloc` commmand before deletion.
+e.g. `dealloc n/John Tan r/03-100`.
+   
 Example:
 * `rdel 1` deletes the 1st resident in the resident list.
 
@@ -186,6 +189,26 @@ Format: `odel INDEX`
 Example:
 * `odel 1` Deletes the 1st room in the room list.
 
+### Allocate resident to room 
+Allocates an existing resident to an existing room. 
+
+Format: `alloc n/NAME r/ROOM_NO`
+* `NAME` and `ROOM_NO` must already exist. 
+*  Both fields must be provided. 
+
+Example:
+* `alloc r/John Tan n/03-100` Allocates resident named John Tan to room 03-100. 
+
+### Deallocate resident from room
+Deallocates an existing resident from an existing room.
+
+Format: `dealloc n/NAME r/ROOM_NO`
+* `NAME` and `ROOM_NO` must already exist.
+* The allocation must already exist. 
+*  Both fields must be provided.
+
+Example:
+* `dealloc r/John Tan n/03-100` Deallocates resident named John Tan from room 03-100.
 
 ### Add an open issue : `iadd`
 
@@ -328,6 +351,8 @@ Action | Format, Examples
 **Find rooms** |  `ofind KEYWORD [MORE_KEYWORDS]` <br> e.g. `ofind 10- 15-`
 **Edit a room record** |  `oedit INDEX [r/ROOM_NO] [t/TYPE] [g/TAG] [o/OCCUPATION_STATUS]` <br> e.g. `oedit 1 o/Y`
 **Delete a room** | `odel INDEX` <br> e.g. `odel 1`
+**Allocate a Resident to Room** | `alloc n/NAME r/ROOM_NO` <br> e.g. `alloc n/John Tan r/03-100` 
+**Deallocate a Resident from Room** | `dealloc n/NAME r/ROOM_NO` <br> e.g. `dealloc n/John Tan r/03-100`
 **Add an open issue** | `iadd r/ROOM_NO d/DESCRIPTION [t/TIMESTAMP] [s/STATUS] [c/CATEGORY]` <br> e.g. `iadd r/10-100 d/Broken light c/Furniture`
 **List all issues** | `ilist`
 **Find issues** | `ifind KEYWORD [MORE_KEYWORDS]` <br> e.g. `ifind wardrobe table`

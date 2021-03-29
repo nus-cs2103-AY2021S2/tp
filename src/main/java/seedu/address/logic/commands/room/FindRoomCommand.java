@@ -31,8 +31,7 @@ public class FindRoomCommand extends Command {
         requireNonNull(model);
         model.updateFilteredRoomList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_ROOMS_LISTED_OVERVIEW, model.getFilteredRoomList().size()))
-                .setRoomCommand();
+                String.format(Messages.MESSAGE_ROOMS_LISTED_OVERVIEW, model.getFilteredRoomList().size()));
     }
 
     @Override

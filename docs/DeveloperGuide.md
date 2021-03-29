@@ -132,6 +132,75 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+### Resident-Room allocation feature 
+
+The allocation feature is facilitated by `ResidentRoom` which is a pair value of 
+valid `[Resident, Room]` that represents an existing resident allocated to a room. 
+It should be able to support the following operations:
+* `ResidentRoomList#getRoom()` - Returns the room assignment for a given resident.
+* `ResidentRoomList#getResident()` - Returns the resident allocated for a given room.
+
+A `ResidentRoomList` is a supplementary class that tracks all the `ResidentRoom` assignments. It should support
+the following operations. 
+* `ResidentRoomList#allocate()` - Adds a `ResidentRoom` new allocation.
+* `ResidentRoomList#deallocate()` - Removes an existing `ResidentRoom` allocation.
+* `ResidentRoomList#isAllocated()` - Checks if an allocation exists given the resident and room.
+* `ResidentRoomList#isRoomOccupied()` - Checks if a room is occupied. 
+* `ResidentRoomList#isResidentOccupied()` - Checks if a resident is allocated a room.
+
+There are two Resident-Room user allocation and deallocation commands, `alloc` and `dealloc` respectively.  
+
+The `alloc` command will do the following:
+
+Example: `alloc n/John Tan r/03-100`
+* Check that `John Tan` exists.
+* Check that `03-100` exists.
+* Check that `John Tan` has not already been allocated to `03-100`.  
+* Check that no other room is allocated to `John Tan`.  
+* Check that room `03-100` is not occupied by anyone. 
+
+    **If all the above is true,**
+* Set the `ROOM` of `John Tan` to be `03-100`.
+* Set the `OCCUPATION_STATUS` of a room to `Y`.
+
+  ![Activity Diagram of Allocation](images/residentroom/ResidentRoomAllocationDiagram.png)
+
+The `dealloc` command will do the following:
+
+Example: `dealloc n/John Tan r/03-100`
+* Check that `John Tan` exists.
+* Check that `03-100` exists.
+* Check that `John Tan` has been allocated to `03-100`.
+
+    **If all the above is true,**
+* Set the `ROOM` of `John Tan` to be `Room unallocated`.
+* Set the `OCCUPATION_STATUS` of a room to `N`.
+
+The following implementation alternatives were considered: 
+* **Alternative 1 (current choice):** Resident-Room solely keeps track of resident and room allocation
+  performed through `alloc` and `dealloc` commands. Any allocated resident and occupied rooms 
+  cannot be edited.
+  * Pros: 
+    * Simpler to implement.
+    * Better testability for synchronicity between fields.
+  * Cons: 
+    * Less user control.  
+* **Alternative 2:** Resident-Room allocation is modelled as a Parent-Child where the parent is the 
+  `Room` and the child is the `Resident`.
+  *Pros:
+    * Simpler to implement.
+  * Cons:
+    * Lack of 2-way updates. Room number of the `Resident` cannot be updated and viewed. 
+      The problem is reversed if the parent-child roles are swapped where the occupancy 
+      of `Room` cannot be updated and viewed.
+* **Alternative 3:** Resident-Room interface as a lookup. `Room` and `Resident` would look up the 
+`residentRoom` class every time to get its `OCCUPANCY STATUS` and `ROOM NUMBER`.
+  * Pros: 
+    * User has more control and flexibility. 
+  * Cons: 
+    * Creates cascading effect with a lot of dependencies between regular commands
+    such as `redit`, `rdel`, `oedit`, `odel`.
+
 
 ### Alias feature
 The `Alias` feature allows users to define a shortcut for a longer command that is often used. The longer command can then be executed by entering the alias instead of the full or partial command.
