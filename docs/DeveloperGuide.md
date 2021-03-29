@@ -96,6 +96,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ### Model component
 
+![Structure of the Model Component](images/ModelClassDiagram.png)
+
 **API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-W14-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
