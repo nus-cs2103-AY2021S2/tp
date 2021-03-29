@@ -213,11 +213,11 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find computer` will return cards with `computer` in any of its fields.<br><br>
-![result for `find c/ computer`](images/findComputerResult.png) <br><br>
+![result for `find computer`](images/findComputerResult.png) <br><br>
 * `find computer formula` will return cards with `computer` or `formula` in any of its fields.<br><br>
-![result for `find c/ computer`](images/findComputerFormulaResult.png) <br><br>
+![result for `find computer formula`](images/findComputerFormulaResult.png) <br><br>
 * `find phy` will return cards with `phy` contained in any of the words in any of its fields.<br><br>
-![result for `find c/ computer`](images/findPhyResult.png) <br><br>
+![result for `find phy`](images/findPhyResult.png) <br><br>
 
 ### Filtering cards: `filter`
 
@@ -246,11 +246,11 @@ Format: `filter [q/QUESTION] [c/CATEGORY] [p/PRIORITY] [t/TAG]`
 
 Examples:
 * `filter q/charles recursion` will return cards with `charles` or `recursion` contained in its question.<br><br>
-  ![result for `find c/ computer`](images/filterCharlesRecursionResult.png) <br><br>
+  ![result for `filter q/charles recursion`](images/filterCharlesRecursionResult.png) <br><br>
 * `filter p/mid q/formula` will return cards with `formula` contained in its question and `mid` priority.<br><br>
-  ![result for `find c/ computer`](images/filterMidFormulaResult.png) <br><br>
+  ![result for `filter p/mid q/formula`](images/filterMidFormulaResult.png) <br><br>
 * `filter c/com t/ran` will return cards with `com` contained in its category and `ran`contained in any of its tags.<br><br>
-  ![result for `find c/ computer`](images/filterComRanResult.png) <br><br>
+  ![result for `filter c/com t/ran`](images/filterComRanResult.png) <br><br>
 
 ### Clearing all entries : `clear`
 
