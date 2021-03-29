@@ -124,7 +124,7 @@ public class RecurringSchedule implements RecurringDates {
      * @param dateString Date to be checked.
      * @return Boolean indicating if the date is in this schedule.
      */
-    public boolean isInSchedule(String dateString) {
+    public boolean isInRecurringSchedule(String dateString) {
         return weekDates.stream().anyMatch(date -> date.equals(dateString));
     }
 

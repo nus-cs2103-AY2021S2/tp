@@ -144,7 +144,7 @@ public class Task {
      * @return Boolean indicating if the provided date is in the schedule.
      */
     public boolean isOnRecurringScheduleDate(String dateString) {
-        return this.recurringSchedule.isInSchedule(dateString);
+        return this.recurringSchedule.isInRecurringSchedule(dateString);
     }
 
     /**
