@@ -6,7 +6,6 @@ import static seedu.booking.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.booking.logic.commands.AddBookingCommand;
 import seedu.booking.logic.commands.AddPersonCommand;
 import seedu.booking.logic.commands.AddVenueCommand;
 import seedu.booking.logic.commands.ClearCommand;
