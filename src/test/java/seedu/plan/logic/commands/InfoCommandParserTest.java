@@ -3,14 +3,15 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
+import static seedu.plan.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.parser.ArgumentMultimap;
-import seedu.address.logic.parser.ArgumentTokenizer;
-import seedu.address.logic.parser.InfoCommandParser;
-import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.plan.logic.commands.InfoCommand;
+import seedu.plan.logic.parser.ArgumentMultimap;
+import seedu.plan.logic.parser.ArgumentTokenizer;
+import seedu.plan.logic.parser.InfoCommandParser;
+import seedu.plan.logic.parser.exceptions.ParseException;
 
 
 

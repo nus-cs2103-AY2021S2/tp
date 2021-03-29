@@ -3,15 +3,16 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.TypicalPlans.getTypicalAddressBook;
+import static seedu.plan.testutil.TypicalPlans.getTypicalModulePlanner;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.storage.JsonModule;
-
+import seedu.plan.logic.commands.CommandResult;
+import seedu.plan.logic.commands.InfoCommand;
+import seedu.plan.model.Model;
+import seedu.plan.model.ModelManager;
+import seedu.plan.model.UserPrefs;
+import seedu.plan.storage.JsonModule;
 
 
 public class InfoCommandTest {
@@ -40,17 +41,17 @@ public class InfoCommandTest {
 
     @Test
     public void execute_success_allModuleInfo() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalModulePlanner(), new UserPrefs());
         InfoCommand testCommand = new InfoCommand();
         assertEquals(testCommand.execute(model), new CommandResult(InfoCommand.MESSAGE_SUCCESS));
         assertEquals(model.getCurrentCommand().getValue(), InfoCommand.COMMAND_WORD);
 
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalModulePlanner(), new UserPrefs());
         testCommand = new InfoCommand("");
         assertEquals(testCommand.execute(model), new CommandResult(InfoCommand.MESSAGE_SUCCESS));
         assertEquals(model.getCurrentCommand().getValue(), InfoCommand.COMMAND_WORD);
 
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalModulePlanner(), new UserPrefs());
         testCommand = new InfoCommand("" + "");
         assertEquals(testCommand.execute(model), new CommandResult(InfoCommand.MESSAGE_SUCCESS));
         assertEquals(model.getCurrentCommand().getValue(), InfoCommand.COMMAND_WORD);
@@ -58,7 +59,7 @@ public class InfoCommandTest {
 
     @Test
     public void execute_success_singleModuleInfo() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalModulePlanner(), new UserPrefs());
         InfoCommand testCommand = new InfoCommand("ABIDE");
         assertEquals(testCommand.execute(model), new CommandResult(InfoCommand.MESSAGE_NOT_FOUND));
 
