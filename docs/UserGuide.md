@@ -341,3 +341,12 @@ Action | Format, Examples
 **Help** | `help [COMMAND]`<br> e.g., `help`<br> e.g.,`help list`
 **Toggle theme** | `theme`
 **Exit** | `exit`
+
+--------------------------------------------------------------------------------------------------------------------
+
+**Acknowledgements**
+
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+* Image used: [VectorStock](https://www.vectorstock.com/royalty-free-vector/birthday-hat-cartoon-vector-22619168)
