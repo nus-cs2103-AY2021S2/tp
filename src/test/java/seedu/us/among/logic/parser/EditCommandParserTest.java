@@ -103,12 +103,12 @@ public class EditCommandParserTest {
         // invalid header followed by valid header
         assertParseFailure(parser, "1" + INVALID_HEADER_DESC + HEADER_DESC_DEFAULT, Header.MESSAGE_CONSTRAINTS);
 
-        assertParseFailure(parser, "1" + HEADER_EMPTY + HEADER_DESC_NEW +
-                HEADER_DESC_DEFAULT, Header.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + HEADER_DESC_NEW + HEADER_EMPTY +
-                HEADER_DESC_DEFAULT, Header.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + HEADER_DESC_NEW + HEADER_DESC_DEFAULT +
-                HEADER_EMPTY, Header.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + HEADER_EMPTY + HEADER_DESC_NEW
+                + HEADER_DESC_DEFAULT, Header.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + HEADER_DESC_NEW + HEADER_EMPTY
+                + HEADER_DESC_DEFAULT, Header.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + HEADER_DESC_NEW + HEADER_DESC_DEFAULT
+                + HEADER_EMPTY, Header.MESSAGE_CONSTRAINTS);
 
         // valid tag followed by invalid tag.
         assertParseFailure(parser, "1" + TAG_DESC_COOL + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
