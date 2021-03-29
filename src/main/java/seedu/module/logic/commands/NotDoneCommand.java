@@ -4,20 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.module.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
-import java.util.Set;
 
 import seedu.module.commons.core.Messages;
 import seedu.module.commons.core.index.Index;
 import seedu.module.logic.commands.exceptions.CommandException;
 import seedu.module.model.Model;
-import seedu.module.model.tag.Tag;
-import seedu.module.model.task.Deadline;
-import seedu.module.model.task.Description;
 import seedu.module.model.task.DoneStatus;
-import seedu.module.model.task.Module;
-import seedu.module.model.task.Name;
 import seedu.module.model.task.Task;
-import seedu.module.model.task.Workload;
 
 public class NotDoneCommand extends Command {
     public static final String COMMAND_WORD = "notdone";
@@ -45,30 +38,24 @@ public class NotDoneCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        Task taskToMarkDone = lastShownList.get(index.getZeroBased());
-        Task doneTask = createNotDoneTask(taskToMarkDone);
+        Task taskToMarkNotDone = lastShownList.get(index.getZeroBased());
+        Task doneTask = createNotDoneTask(taskToMarkNotDone);
 
-        if (taskToMarkDone.equals(doneTask) && model.hasTask(doneTask)) {
+        if (taskToMarkNotDone.equals(doneTask) && model.hasTask(doneTask)) {
             throw new CommandException(MESSAGE_TASK_ALREADY_NOT_DONE);
         }
 
-        model.setTask(taskToMarkDone, doneTask);
+        model.setTask(taskToMarkNotDone, doneTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_NOT_DONE_TASK_SUCCESS, doneTask));
     }
 
-    private static Task createNotDoneTask(Task taskToMarkDone) {
-        assert taskToMarkDone != null;
+    private static Task createNotDoneTask(Task taskToMarkNotDone) {
+        assert taskToMarkNotDone != null;
 
-        Name name = taskToMarkDone.getName();
-        Deadline deadline = taskToMarkDone.getDeadline();
-        Module module = taskToMarkDone.getModule();
-        Description description = taskToMarkDone.getDescription();
-        Workload workload = taskToMarkDone.getWorkload();
         DoneStatus newDoneStatus = new DoneStatus(false);
-        Set<Tag> tags = taskToMarkDone.getTags();
 
-        return new Task(name, deadline, module, description, workload, newDoneStatus, tags);
+        return Task.setDoneStatus(taskToMarkNotDone, newDoneStatus);
     }
 
     @Override

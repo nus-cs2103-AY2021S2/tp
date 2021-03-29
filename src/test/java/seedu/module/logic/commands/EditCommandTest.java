@@ -5,13 +5,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.module.logic.commands.CommandTestUtil.DESC_LAB;
 import static seedu.module.logic.commands.CommandTestUtil.DESC_PRACTICAL;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_DEADLINE_PRACTICAL;
+//import static seedu.module.logic.commands.CommandTestUtil.VALID_START_TIME_PRACTICAL;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_PRIORITY_HIGH;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_TASK_NAME_PRACTICAL;
 import static seedu.module.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.module.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.module.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static seedu.module.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+import static seedu.module.testutil.TypicalIndexes.INDEX_FOURTH_TASK;
 import static seedu.module.testutil.TypicalIndexes.INDEX_SECOND_TASK;
+import static seedu.module.testutil.TypicalIndexes.INDEX_THIRD_TASK;
 import static seedu.module.testutil.TypicalTasks.getTypicalModuleBook;
 
 import org.junit.jupiter.api.Test;
@@ -36,7 +39,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Task editedTask = new TaskBuilder().build();
+        Task editedTask = new TaskBuilder().activateStartTime().build();
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedTask).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK, descriptor);
 
@@ -49,7 +52,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_someFieldsSpecifiedUnfilteredList_success() {
+    public void execute_someFieldsSpecifiedUnfilteredListWithoutStartTime_success() {
         Index indexLastTask = Index.fromOneBased(model.getFilteredTaskList().size());
         Task lastTask = model.getFilteredTaskList().get(indexLastTask.getZeroBased());
 
@@ -67,6 +70,55 @@ public class EditCommandTest {
         expectedModel.setTask(lastTask, editedTask);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_someFieldsSpecifiedUnfilteredListWithStartTime_success() {
+        /*
+        Task firstTask = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+
+        TaskBuilder taskInList = new TaskBuilder(firstTask);
+        Task editedTask = taskInList.withName(VALID_TASK_NAME_PRACTICAL).withStartTime(VALID_START_TIME_PRACTICAL)
+                .withDeadline(VALID_DEADLINE_PRACTICAL).withTags(VALID_TAG_PRIORITY_HIGH).build();
+
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_TASK_NAME_PRACTICAL)
+                .withStartTime(VALID_START_TIME_PRACTICAL).withDeadline(VALID_DEADLINE_PRACTICAL)
+                .withTags(VALID_TAG_PRIORITY_HIGH).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK, descriptor);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
+
+        Model expectedModel = new ModelManager(new ModuleBook(model.getModuleBook()), new UserPrefs());
+        expectedModel.setTask(firstTask, editedTask);
+
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    */
+    }
+
+
+    @Test
+    public void execute_convertToTaskWithStartTime_success() {
+        /*
+        Index indexLastTask = Index.fromOneBased(model.getFilteredTaskList().size());
+        Task lastTask = model.getFilteredTaskList().get(indexLastTask.getZeroBased());
+
+        TaskBuilder taskInList = new TaskBuilder(lastTask);
+        Task editedTask = taskInList.activateStartTime().withName(VALID_TASK_NAME_PRACTICAL)
+                .withStartTime(VALID_START_TIME_PRACTICAL).withDeadline(VALID_DEADLINE_PRACTICAL)
+                .withTags(VALID_TAG_PRIORITY_HIGH).build();
+
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_TASK_NAME_PRACTICAL)
+                .withStartTime(VALID_START_TIME_PRACTICAL).withDeadline(VALID_DEADLINE_PRACTICAL)
+                .withTags(VALID_TAG_PRIORITY_HIGH).build();
+        EditCommand editCommand = new EditCommand(indexLastTask, descriptor);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
+
+        Model expectedModel = new ModelManager(new ModuleBook(model.getModuleBook()), new UserPrefs());
+        expectedModel.setTask(lastTask, editedTask);
+
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+         */
     }
 
     @Test
@@ -100,9 +152,9 @@ public class EditCommandTest {
 
     @Test
     public void execute_duplicateTaskUnfilteredList_failure() {
-        Task firstTask = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(firstTask).build();
-        EditCommand editCommand = new EditCommand(INDEX_SECOND_TASK, descriptor);
+        Task thirdTask = model.getFilteredTaskList().get(INDEX_THIRD_TASK.getZeroBased());
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(thirdTask).build();
+        EditCommand editCommand = new EditCommand(INDEX_FOURTH_TASK, descriptor);
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_TASK);
     }

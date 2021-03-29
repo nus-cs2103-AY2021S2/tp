@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.module.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.module.commons.core.GuiSettings;
 import seedu.module.commons.core.LogsCenter;
+import seedu.module.model.task.Module;
 import seedu.module.model.task.Task;
 
 /**
@@ -95,6 +97,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasRecurringTask(Task task) {
+        requireNonNull(task);
+        return moduleBook.hasRecurringTask(task);
+    }
+
+    @Override
     public void deleteTask(Task target) {
         moduleBook.removeTask(target);
     }
@@ -113,8 +121,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void sortTasks() {
-        moduleBook.sortTasks();
+    public void sortTasks(Comparator<Task> factor) {
+        moduleBook.sortTasks(factor);
         updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
     }
 
@@ -127,6 +135,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Task> getFilteredTaskList() {
         return filteredTasks;
+    }
+
+    @Override
+    public ObservableList<Module> getModuleList() {
+        return ModuleManager.getExistingModuleList();
     }
 
     @Override

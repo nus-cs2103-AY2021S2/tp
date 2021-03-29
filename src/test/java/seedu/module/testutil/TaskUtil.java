@@ -3,16 +3,19 @@ package seedu.module.testutil;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TASK_NAME;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_WORKLOAD;
 
 import java.util.Set;
 
+import seedu.module.commons.core.optionalfield.OptionalField;
 import seedu.module.logic.commands.AddCommand;
 import seedu.module.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.module.model.tag.Tag;
 import seedu.module.model.task.Task;
+import seedu.module.model.task.Time;
 
 /**
  * A utility class for Task.
@@ -35,7 +38,7 @@ public class TaskUtil {
         sb.append(PREFIX_MODULE + task.getModule().value + " ");
         sb.append(PREFIX_DESCRIPTION + task.getDescription().value + " ");
         sb.append(PREFIX_DEADLINE + task.getDeadline().value + " ");
-        sb.append(PREFIX_WORKLOAD + Integer.toString(task.getWorkload().workloadLevel) + " ");
+        sb.append(PREFIX_WORKLOAD + Integer.toString(task.getWorkload().getWorkloadLevel()) + " ");
         task.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -54,6 +57,14 @@ public class TaskUtil {
             .ifPresent(description -> sb.append(PREFIX_DESCRIPTION).append(description.value).append(" "));
         descriptor.getWorkload().ifPresent(workload ->
                 sb.append(PREFIX_WORKLOAD).append(workload.toString()).append(" "));
+        if (descriptor.getStartTime().isPresent()) {
+            OptionalField<Time> time = descriptor.getStartTime().get();
+            if (time.isNull()) {
+                sb.append(PREFIX_START_TIME).append(" ");
+            } else {
+                sb.append(PREFIX_START_TIME).append(time.getField().value).append(" ");
+            }
+        }
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

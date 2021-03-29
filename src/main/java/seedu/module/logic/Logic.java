@@ -8,6 +8,7 @@ import seedu.module.logic.commands.CommandResult;
 import seedu.module.logic.commands.exceptions.CommandException;
 import seedu.module.logic.parser.exceptions.ParseException;
 import seedu.module.model.ReadOnlyModuleBook;
+import seedu.module.model.task.Module;
 import seedu.module.model.task.Task;
 
 /**
@@ -32,6 +33,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of tasks */
     ObservableList<Task> getFilteredTaskList();
+
+    /** Returns an unmodifiable view of the list of modules */
+    ObservableList<Module> getModuleList();
 
     /**
      * Returns the user prefs' module book file path.

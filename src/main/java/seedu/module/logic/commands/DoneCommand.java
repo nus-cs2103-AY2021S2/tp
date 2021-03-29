@@ -4,20 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.module.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
-import java.util.Set;
 
 import seedu.module.commons.core.Messages;
 import seedu.module.commons.core.index.Index;
 import seedu.module.logic.commands.exceptions.CommandException;
 import seedu.module.model.Model;
-import seedu.module.model.tag.Tag;
-import seedu.module.model.task.Deadline;
-import seedu.module.model.task.Description;
 import seedu.module.model.task.DoneStatus;
-import seedu.module.model.task.Module;
-import seedu.module.model.task.Name;
 import seedu.module.model.task.Task;
-import seedu.module.model.task.Workload;
 
 public class DoneCommand extends Command {
     public static final String COMMAND_WORD = "done";
@@ -60,15 +53,10 @@ public class DoneCommand extends Command {
     private static Task createDoneTask(Task taskToMarkDone) {
         assert taskToMarkDone != null;
 
-        Name name = taskToMarkDone.getName();
-        Deadline deadline = taskToMarkDone.getDeadline();
-        Module module = taskToMarkDone.getModule();
-        Description description = taskToMarkDone.getDescription();
-        Workload workload = taskToMarkDone.getWorkload();
         DoneStatus newDoneStatus = new DoneStatus(true);
-        Set<Tag> tags = taskToMarkDone.getTags();
 
-        return new Task(name, deadline, module, description, workload, newDoneStatus, tags);
+        return Task.setDoneStatus(taskToMarkDone, newDoneStatus);
+
     }
 
     @Override

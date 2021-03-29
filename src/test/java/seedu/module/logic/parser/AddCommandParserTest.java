@@ -11,11 +11,11 @@ import org.junit.jupiter.api.Test;
 import seedu.module.logic.commands.AddCommand;
 import seedu.module.logic.commands.CommandTestUtil;
 import seedu.module.model.tag.Tag;
-import seedu.module.model.task.Deadline;
 import seedu.module.model.task.Description;
 import seedu.module.model.task.Module;
 import seedu.module.model.task.Name;
 import seedu.module.model.task.Task;
+import seedu.module.model.task.Time;
 import seedu.module.model.task.Workload;
 import seedu.module.testutil.TaskBuilder;
 
@@ -24,16 +24,20 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Task expectedTask = new TaskBuilder(PRACTICAL).withTags(CommandTestUtil.VALID_TAG_PRIORITY_LOW).build();
+        Task expectedTask = new TaskBuilder(PRACTICAL)
+                .withRecurrence(CommandTestUtil.VALID_RECURRENCE_PRACTICAL)
+                .withTags(CommandTestUtil.VALID_TAG_PRIORITY_LOW).build();
 
         // whitespace only preamble
         assertParseSuccess(parser,
                 CommandTestUtil.PREAMBLE_WHITESPACE
                         + CommandTestUtil.TASK_NAME_DESC_PRACTICAL
+                        + CommandTestUtil.START_TIME_DESC_PRACTICAL
                         + CommandTestUtil.DEADLINE_DESC_PRACTICAL
                         + CommandTestUtil.MODULE_DESC_PRACTICAL
                         + CommandTestUtil.DESCRIPTION_DESC_PRACTICAL
                         + CommandTestUtil.WORKLOAD_DESC_2
+                        + CommandTestUtil.RECURRENCE_DESC_PRACTICAL
                         + CommandTestUtil.TAG_DESC_LOW,
                 new AddCommand(expectedTask));
 
@@ -41,66 +45,92 @@ public class AddCommandParserTest {
         assertParseSuccess(parser,
                 CommandTestUtil.TASK_NAME_DESC_LAB
                         + CommandTestUtil.TASK_NAME_DESC_PRACTICAL
+                        + CommandTestUtil.START_TIME_DESC_PRACTICAL
                         + CommandTestUtil.DEADLINE_DESC_PRACTICAL
                         + CommandTestUtil.MODULE_DESC_PRACTICAL
                         + CommandTestUtil.DESCRIPTION_DESC_PRACTICAL
                         + CommandTestUtil.WORKLOAD_DESC_2
+                        + CommandTestUtil.RECURRENCE_DESC_PRACTICAL
+                        + CommandTestUtil.TAG_DESC_LOW,
+                new AddCommand(expectedTask));
+
+        // multiple startTime - last startTime accepted
+        assertParseSuccess(parser,
+                CommandTestUtil.TASK_NAME_DESC_PRACTICAL
+                        + CommandTestUtil.START_TIME_DESC_LAB
+                        + CommandTestUtil.START_TIME_DESC_PRACTICAL
+                        + CommandTestUtil.DEADLINE_DESC_PRACTICAL
+                        + CommandTestUtil.MODULE_DESC_PRACTICAL
+                        + CommandTestUtil.DESCRIPTION_DESC_PRACTICAL
+                        + CommandTestUtil.WORKLOAD_DESC_2
+                        + CommandTestUtil.RECURRENCE_DESC_PRACTICAL
                         + CommandTestUtil.TAG_DESC_LOW,
                 new AddCommand(expectedTask));
 
         // multiple deadlines - last deadline accepted
         assertParseSuccess(parser,
                 CommandTestUtil.TASK_NAME_DESC_PRACTICAL
+                        + CommandTestUtil.START_TIME_DESC_PRACTICAL
                         + CommandTestUtil.DEADLINE_DESC_LAB
                         + CommandTestUtil.DEADLINE_DESC_PRACTICAL
                         + CommandTestUtil.MODULE_DESC_PRACTICAL
                         + CommandTestUtil.DESCRIPTION_DESC_PRACTICAL
                         + CommandTestUtil.WORKLOAD_DESC_2
+                        + CommandTestUtil.RECURRENCE_DESC_PRACTICAL
                         + CommandTestUtil.TAG_DESC_LOW,
                 new AddCommand(expectedTask));
 
         // multiple modules - last module accepted
         assertParseSuccess(parser,
                 CommandTestUtil.TASK_NAME_DESC_PRACTICAL
+                        + CommandTestUtil.START_TIME_DESC_PRACTICAL
                         + CommandTestUtil.DEADLINE_DESC_PRACTICAL
                         + CommandTestUtil.MODULE_DESC_LAB
                         + CommandTestUtil.MODULE_DESC_PRACTICAL
                         + CommandTestUtil.DESCRIPTION_DESC_PRACTICAL
                         + CommandTestUtil.WORKLOAD_DESC_2
+                        + CommandTestUtil.RECURRENCE_DESC_PRACTICAL
                         + CommandTestUtil.TAG_DESC_LOW,
                 new AddCommand(expectedTask));
 
         // multiple descriptions - last description accepted
         assertParseSuccess(parser,
                 CommandTestUtil.TASK_NAME_DESC_PRACTICAL
+                        + CommandTestUtil.START_TIME_DESC_PRACTICAL
                         + CommandTestUtil.DEADLINE_DESC_PRACTICAL
                         + CommandTestUtil.MODULE_DESC_PRACTICAL
                         + CommandTestUtil.DESCRIPTION_DESC_LAB
                         + CommandTestUtil.DESCRIPTION_DESC_PRACTICAL
                         + CommandTestUtil.WORKLOAD_DESC_2
+                        + CommandTestUtil.RECURRENCE_DESC_PRACTICAL
                         + CommandTestUtil.TAG_DESC_LOW,
                 new AddCommand(expectedTask));
 
         // multiple workloads - last workload accepted
         assertParseSuccess(parser,
                 CommandTestUtil.TASK_NAME_DESC_PRACTICAL
+                        + CommandTestUtil.START_TIME_DESC_PRACTICAL
                         + CommandTestUtil.DEADLINE_DESC_PRACTICAL
                         + CommandTestUtil.MODULE_DESC_PRACTICAL
                         + CommandTestUtil.DESCRIPTION_DESC_PRACTICAL
                         + CommandTestUtil.WORKLOAD_DESC_1
                         + CommandTestUtil.WORKLOAD_DESC_2
+                        + CommandTestUtil.RECURRENCE_DESC_PRACTICAL
                         + CommandTestUtil.TAG_DESC_LOW,
                 new AddCommand(expectedTask));
 
         // multiple tags - all accepted
         Task expectedTaskMultipleTags = new TaskBuilder(PRACTICAL)
+                .withRecurrence(CommandTestUtil.VALID_RECURRENCE_PRACTICAL)
                 .withTags(CommandTestUtil.VALID_TAG_PRIORITY_LOW, CommandTestUtil.VALID_TAG_PRIORITY_HIGH).build();
         assertParseSuccess(parser,
                 CommandTestUtil.TASK_NAME_DESC_PRACTICAL
+                        + CommandTestUtil.START_TIME_DESC_PRACTICAL
                         + CommandTestUtil.DEADLINE_DESC_PRACTICAL
                         + CommandTestUtil.MODULE_DESC_PRACTICAL
                         + CommandTestUtil.DESCRIPTION_DESC_PRACTICAL
                         + CommandTestUtil.WORKLOAD_DESC_2
+                        + CommandTestUtil.RECURRENCE_DESC_PRACTICAL
                         + CommandTestUtil.TAG_DESC_HIGH
                         + CommandTestUtil.TAG_DESC_LOW,
                 new AddCommand(expectedTaskMultipleTags));
@@ -108,15 +138,30 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_optionalFieldsMissing_success() {
-        // zero tags
-        Task expectedTask = new TaskBuilder(LAB).withTags().build();
+        // missing startTime
+        Task expectedTaskWithoutStartTime = new TaskBuilder(LAB)
+                .withTags(CommandTestUtil.VALID_TAG_PRIORITY_HIGH).build();
         assertParseSuccess(parser,
                 CommandTestUtil.TASK_NAME_DESC_LAB
                         + CommandTestUtil.DEADLINE_DESC_LAB
                         + CommandTestUtil.MODULE_DESC_LAB
                         + CommandTestUtil.DESCRIPTION_DESC_LAB
-                        + CommandTestUtil.WORKLOAD_DESC_1,
-                new AddCommand(expectedTask));
+                        + CommandTestUtil.WORKLOAD_DESC_1
+                        + CommandTestUtil.TAG_DESC_HIGH,
+                new AddCommand(expectedTaskWithoutStartTime));
+
+        // zero tags
+        Task expectedTaskWithStartTime = new TaskBuilder(LAB).activateStartTime(CommandTestUtil.VALID_START_TIME_LAB)
+                .withRecurrence(CommandTestUtil.VALID_RECURRENCE_LAB).withTags().build();
+        assertParseSuccess(parser,
+                CommandTestUtil.TASK_NAME_DESC_LAB
+                        + CommandTestUtil.START_TIME_DESC_LAB
+                        + CommandTestUtil.DEADLINE_DESC_LAB
+                        + CommandTestUtil.MODULE_DESC_LAB
+                        + CommandTestUtil.DESCRIPTION_DESC_LAB
+                        + CommandTestUtil.WORKLOAD_DESC_1
+                        + CommandTestUtil.RECURRENCE_DESC_LAB,
+                new AddCommand(expectedTaskWithStartTime));
     }
 
     @Test
@@ -188,6 +233,17 @@ public class AddCommandParserTest {
                         + CommandTestUtil.TAG_DESC_HIGH
                         + CommandTestUtil.TAG_DESC_LOW, Name.MESSAGE_CONSTRAINTS);
 
+        // invalid startTime
+        assertParseFailure(parser,
+                CommandTestUtil.TASK_NAME_DESC_PRACTICAL
+                        + CommandTestUtil.INVALID_START_TIME_DESC
+                        + CommandTestUtil.DEADLINE_DESC_PRACTICAL
+                        + CommandTestUtil.MODULE_DESC_PRACTICAL
+                        + CommandTestUtil.DESCRIPTION_DESC_PRACTICAL
+                        + CommandTestUtil.WORKLOAD_DESC_2
+                        + CommandTestUtil.TAG_DESC_HIGH + CommandTestUtil.TAG_DESC_LOW,
+                Time.MESSAGE_CONSTRAINTS);
+
         // invalid deadline
         assertParseFailure(parser,
                 CommandTestUtil.TASK_NAME_DESC_PRACTICAL
@@ -196,7 +252,7 @@ public class AddCommandParserTest {
                         + CommandTestUtil.DESCRIPTION_DESC_PRACTICAL
                         + CommandTestUtil.WORKLOAD_DESC_2
                         + CommandTestUtil.TAG_DESC_HIGH + CommandTestUtil.TAG_DESC_LOW,
-                Deadline.MESSAGE_CONSTRAINTS);
+                Time.MESSAGE_CONSTRAINTS);
 
         // invalid module
         assertParseFailure(parser,

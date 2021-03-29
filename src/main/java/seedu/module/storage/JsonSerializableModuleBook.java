@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.module.commons.exceptions.IllegalValueException;
 import seedu.module.model.ModuleBook;
+import seedu.module.model.ModuleManager;
 import seedu.module.model.ReadOnlyModuleBook;
 import seedu.module.model.task.Task;
 
@@ -20,6 +21,7 @@ import seedu.module.model.task.Task;
 class JsonSerializableModuleBook {
 
     public static final String MESSAGE_DUPLICATE_TASK = "Tasks list contains duplicate task(s).";
+    public static final String MESSAGE_MODULE_NOT_ALLOWED = "Module code is not allowed.";
 
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
 
@@ -47,10 +49,14 @@ class JsonSerializableModuleBook {
      */
     public ModuleBook toModelType() throws IllegalValueException {
         ModuleBook moduleBook = new ModuleBook();
+        ModuleManager.initSupportedModulesInStr();
         for (JsonAdaptedTask jsonAdaptedTask : tasks) {
             Task task = jsonAdaptedTask.toModelType();
             if (moduleBook.hasTask(task)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TASK);
+            }
+            if (!ModuleManager.moduleIsValid(task.getModule().toString())) {
+                throw new IllegalValueException(MESSAGE_MODULE_NOT_ALLOWED);
             }
             moduleBook.addTask(task);
         }

@@ -10,11 +10,12 @@ package States {
     class State2 as "__ab1:ModuleBook__"
     class State3 as "__ab2:ModuleBook__"
 }
+
 State1 -[hidden]right-> State2
 State2 -[hidden]right-> State3
 hide State2
 hide State3
 
-class Pointer as "Current State" #FFFFF
+class Pointer as "Current State" #FFF
 Pointer -up-> State1
 @end

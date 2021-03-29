@@ -15,15 +15,15 @@ import org.junit.jupiter.api.Test;
 
 import seedu.module.logic.parser.exceptions.ParseException;
 import seedu.module.model.tag.Tag;
-import seedu.module.model.task.Deadline;
 import seedu.module.model.task.Description;
 import seedu.module.model.task.Module;
 import seedu.module.model.task.Name;
+import seedu.module.model.task.Time;
 import seedu.module.model.task.Workload;
 
 
 public class ParserUtilTest {
-    private static final String INVALID_NAME = "R@chel";
+    private static final String INVALID_NAME = "   ";
     private static final String INVALID_DEADLINE = "+651234";
     private static final String INVALID_DESCRIPTION = " ";
     private static final String INVALID_MODULE = "example.com";
@@ -85,25 +85,25 @@ public class ParserUtilTest {
 
     @Test
     public void parseDeadline_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseDeadline((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTime((String) null));
     }
 
     @Test
     public void parseDeadline_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseDeadline(INVALID_DEADLINE));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTime(INVALID_DEADLINE));
     }
 
     @Test
     public void parseDeadline_validValueWithoutWhitespace_returnsDeadline() throws Exception {
-        Deadline expectedDeadline = new Deadline(VALID_DEADLINE);
-        assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE));
+        Time expectedDeadline = new Time(VALID_DEADLINE);
+        assertEquals(expectedDeadline, ParserUtil.parseTime(VALID_DEADLINE));
     }
 
     @Test
     public void parseDeadline_validValueWithWhitespace_returnsTrimmedDeadline() throws Exception {
         String deadlineWithWhitespace = WHITESPACE + VALID_DEADLINE + WHITESPACE;
-        Deadline expectedDeadline = new Deadline(VALID_DEADLINE);
-        assertEquals(expectedDeadline, ParserUtil.parseDeadline(deadlineWithWhitespace));
+        Time expectedDeadline = new Time(VALID_DEADLINE);
+        assertEquals(expectedDeadline, ParserUtil.parseTime(deadlineWithWhitespace));
     }
 
     @Test

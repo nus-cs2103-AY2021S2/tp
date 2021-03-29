@@ -4,13 +4,14 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import seedu.module.commons.core.optionalfield.OptionalField;
 import seedu.module.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.module.model.tag.Tag;
-import seedu.module.model.task.Deadline;
 import seedu.module.model.task.Description;
 import seedu.module.model.task.Module;
 import seedu.module.model.task.Name;
 import seedu.module.model.task.Task;
+import seedu.module.model.task.Time;
 import seedu.module.model.task.Workload;
 
 /**
@@ -32,8 +33,13 @@ public class EditTaskDescriptorBuilder {
      * Returns an {@code EditTaskDescriptor} with fields containing {@code task}'s details
      */
     public EditTaskDescriptorBuilder(Task task) {
+
+        // This operation is only allowed in test for a convenience builder, to avoid the assertion check in getField.
+        OptionalField<Time> startTimeWrapper = task.getStartTimeWrapper();
+
         descriptor = new EditTaskDescriptor();
         descriptor.setName(task.getName());
+        descriptor.setStartTime(startTimeWrapper);
         descriptor.setDeadline(task.getDeadline());
         descriptor.setModule(task.getModule());
         descriptor.setDescription(task.getDescription());
@@ -50,10 +56,18 @@ public class EditTaskDescriptorBuilder {
     }
 
     /**
+     * Sets the {@code StartTime} of the {@code EditTaskDescriptor} that we are building.
+     */
+    public EditTaskDescriptorBuilder withStartTime(String startTime) {
+        descriptor.setStartTime(new OptionalField<>(new Time(startTime)));
+        return this;
+    }
+
+    /**
      * Sets the {@code Deadline} of the {@code EditTaskDescriptor} that we are building.
      */
     public EditTaskDescriptorBuilder withDeadline(String deadline) {
-        descriptor.setDeadline(new Deadline(deadline));
+        descriptor.setDeadline(new Time(deadline));
         return this;
     }
 

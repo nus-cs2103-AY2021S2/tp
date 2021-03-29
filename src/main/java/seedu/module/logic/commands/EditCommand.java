@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_RECURRENCE;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TASK_NAME;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_WORKLOAD;
@@ -17,16 +19,18 @@ import java.util.Set;
 
 import seedu.module.commons.core.Messages;
 import seedu.module.commons.core.index.Index;
+import seedu.module.commons.core.optionalfield.OptionalField;
 import seedu.module.commons.util.CollectionUtil;
 import seedu.module.logic.commands.exceptions.CommandException;
 import seedu.module.model.Model;
 import seedu.module.model.tag.Tag;
-import seedu.module.model.task.Deadline;
 import seedu.module.model.task.Description;
 import seedu.module.model.task.DoneStatus;
 import seedu.module.model.task.Module;
 import seedu.module.model.task.Name;
+import seedu.module.model.task.Recurrence;
 import seedu.module.model.task.Task;
+import seedu.module.model.task.Time;
 import seedu.module.model.task.Workload;
 
 /**
@@ -41,10 +45,12 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TASK_NAME + "NAME] "
+            + "[" + PREFIX_START_TIME + "START TIME] "
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
             + "[" + PREFIX_MODULE + "MODULE] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_WORKLOAD + "WORKLOAD] "
+            + "[" + PREFIX_RECURRENCE + "RECURRENCE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DEADLINE + "2021-03-15 "
@@ -81,8 +87,22 @@ public class EditCommand extends Command {
         Task taskToEdit = lastShownList.get(index.getZeroBased());
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
 
+        /*
+        if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask) && !taskToEdit.isRecurring()) {
+            throw new CommandException(MESSAGE_DUPLICATE_TASK);
+        }
+
+        if (taskToEdit.isRecurring() && model.hasRecurringTask(editedTask) && taskToEdit.equals(editedTask)) {
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_RECURRENCE, taskToEdit.getRecurrence()));
+        }
+        */
+
         if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
+        }
+
+        if (editedTask.isTimeInvalid()) {
+            throw new CommandException(Task.INVALID_START_TIME);
         }
 
         model.setTask(taskToEdit, editedTask);
@@ -98,15 +118,20 @@ public class EditCommand extends Command {
         assert taskToEdit != null;
 
         Name updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
-        Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
+        OptionalField<Time> updatedStartTime = editTaskDescriptor.getStartTime()
+                .orElse(taskToEdit.getStartTimeWrapper());
+        Time updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
         Module updatedModule = editTaskDescriptor.getModule().orElse(taskToEdit.getModule());
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Workload updatedWorkload = editTaskDescriptor.getWorkload().orElse(taskToEdit.getWorkload());
         DoneStatus originalDoneStatus = taskToEdit.getDoneStatus();
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
+        OptionalField<Recurrence> updatedRecurrence = editTaskDescriptor.getRecurrence()
+                .orElse(taskToEdit.getRecurrenceWrapper());
 
-        return new Task(updatedName, updatedDeadline, updatedModule, updatedDescription,
-                updatedWorkload, originalDoneStatus, updatedTags);
+        return new Task(updatedName, updatedStartTime, updatedDeadline, updatedModule, updatedDescription,
+                updatedWorkload, originalDoneStatus, updatedRecurrence, updatedTags);
+
     }
 
     @Override
@@ -133,10 +158,12 @@ public class EditCommand extends Command {
      */
     public static class EditTaskDescriptor {
         private Name name;
-        private Deadline deadline;
+        private OptionalField<Time> startTime;
+        private Time deadline;
         private Module module;
         private Description description;
         private Workload workload;
+        private OptionalField<Recurrence> recurrence;
         private Set<Tag> tags;
 
         public EditTaskDescriptor() {}
@@ -147,10 +174,12 @@ public class EditCommand extends Command {
          */
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setName(toCopy.name);
+            setStartTime(toCopy.startTime);
             setDeadline(toCopy.deadline);
             setModule(toCopy.module);
             setDescription(toCopy.description);
             setWorkload(toCopy.workload);
+            setRecurrence(toCopy.recurrence);
             setTags(toCopy.tags);
         }
 
@@ -158,7 +187,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, deadline, module, description, workload, tags);
+            return CollectionUtil.isAnyNonNull(name, startTime, deadline, module, description, workload, recurrence,
+                    tags);
         }
 
         public void setName(Name name) {
@@ -169,11 +199,19 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setDeadline(Deadline deadline) {
+        public void setStartTime(OptionalField<Time> startTime) {
+            this.startTime = startTime;
+        }
+
+        public Optional<OptionalField<Time>> getStartTime() {
+            return Optional.ofNullable(startTime);
+        }
+
+        public void setDeadline(Time deadline) {
             this.deadline = deadline;
         }
 
-        public Optional<Deadline> getDeadline() {
+        public Optional<Time> getDeadline() {
             return Optional.ofNullable(deadline);
         }
 
@@ -218,6 +256,14 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public Optional<OptionalField<Recurrence>> getRecurrence() {
+            return Optional.ofNullable(recurrence);
+        }
+
+        public void setRecurrence(OptionalField<Recurrence> recurrence) {
+            this.recurrence = recurrence;
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -234,10 +280,12 @@ public class EditCommand extends Command {
             EditTaskDescriptor e = (EditTaskDescriptor) other;
 
             return getName().equals(e.getName())
+                    && getStartTime().equals(e.getStartTime())
                     && getDeadline().equals(e.getDeadline())
                     && getModule().equals(e.getModule())
                     && getDescription().equals(e.getDescription())
                     && getWorkload().equals(e.getWorkload())
+                    && getRecurrence().equals(e.getRecurrence())
                     && getTags().equals(e.getTags());
         }
     }

@@ -12,9 +12,13 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/yhtminceraft1010x.png" width="200px">
 
 [[github](https://github.com/yhtMinceraft1010X)]
+[[portfolio](team/yhtMinceraft1010X.md)]
 
-* Role: Developer, Documentation IC
-* Responsibility: Logic Component
+* Role: Developer, Documentation
+* Responsibilities:
+    * Developer for ModuleBook3.5
+    * Logic Component Checker
+    * Documentation Checker
 
 ### Umer Siddiqui
 
@@ -23,8 +27,11 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](https://github.com/umergta)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Developer for ModuleBook3.5
+* Role: Developer, Documentation
+* Responsibilities:
+    * Developer for ModuleBook3.5
+    * Storage Component Checker
+    * Documentation Checker
 
 ### Lee Ze Xin
 
@@ -33,8 +40,11 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/figo2127)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Developer for ModuleBook3.5
+* Role: Developer, QA Engineer
+* Responsibilities:
+    * Developer for ModuleBook3.5
+    * Model Component Checker
+    * QA Checker
 
 ### Wang Yuanzhe
 
@@ -43,8 +53,12 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](https://github.com/AiwassPrime)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Develop ModuleBook3.5
+* Role: Developer, QA Engineer
+* Responsibilities:
+    * Developer for ModuleBook3.5
+    * Commons Component Checker
+    * Tester
+    * QA Checker
 
 ### He Qiyuan
 
@@ -54,8 +68,14 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](https://github.com/qy-h00)]
 [[portfolio](team/qy-h00.md)]
 
-* Role: Developer
-* Responsibility: Developer for ModuleBook 3.5
+* Role: Developer, QA Engineer
+* Responsibilities:
+    * Developer for ModuleBook3.5
+    * Commons Component Checker
+    * Tester
+    * QA Checker
+    * Project Management
+    
 
 
 

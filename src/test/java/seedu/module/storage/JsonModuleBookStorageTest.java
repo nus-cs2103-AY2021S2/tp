@@ -62,6 +62,7 @@ public class JsonModuleBookStorageTest {
 
     @Test
     public void readAndSaveModuleBook_allInOrder_success() throws Exception {
+
         Path filePath = testFolder.resolve("TempModuleBook.json");
         ModuleBook original = getTypicalModuleBook();
         JsonModuleBookStorage jsonModuleBookStorage = new JsonModuleBookStorage(filePath);
@@ -83,7 +84,6 @@ public class JsonModuleBookStorageTest {
         jsonModuleBookStorage.saveModuleBook(original); // file path not specified
         readBack = jsonModuleBookStorage.readModuleBook().get(); // file path not specified
         assertEquals(original, new ModuleBook(readBack));
-
     }
 
     @Test

@@ -9,6 +9,7 @@ import static seedu.module.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.module.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.module.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static seedu.module.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+import static seedu.module.testutil.TypicalIndexes.INDEX_FOURTH_TASK;
 import static seedu.module.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.module.testutil.TypicalTasks.getTypicalModuleBook;
 
@@ -60,7 +61,7 @@ class TagCommandTest {
     }
 
     @Test
-    void execute_addTwoTagsUnfilteredList_success() {
+    void execute_addTwoTagsUnfilteredListWithStartTime_success() {
         Task firstTask = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         String[] expectedTags = new String[firstTask.getTags().size() + 2];
         for (int i = 0; i < firstTask.getTags().size(); i++) {
@@ -71,6 +72,31 @@ class TagCommandTest {
         Task editedTask = new TaskBuilder(firstTask).withTags(expectedTags).build();
 
         TagCommand tagCommand = new TagCommand(INDEX_FIRST_TASK);
+        Set<Tag> tagStubs = new HashSet<>();
+        tagStubs.add(new Tag(TAG_STUB));
+        tagStubs.add(new Tag(TAG_STUB_MULTIPLE));
+        tagCommand.setTags(tagStubs);
+
+        String expectedMessage = String.format(TagCommand.MESSAGE_TAG_TASK_SUCCESS, editedTask);
+
+        Model expectedModel = new ModelManager(new ModuleBook(model.getModuleBook()), new UserPrefs());
+        expectedModel.setTask(firstTask, editedTask);
+
+        assertCommandSuccess(tagCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    void execute_addTwoTagsUnfilteredListWithoutStartTime_success() {
+        Task firstTask = model.getFilteredTaskList().get(INDEX_FOURTH_TASK.getZeroBased());
+        String[] expectedTags = new String[firstTask.getTags().size() + 2];
+        for (int i = 0; i < firstTask.getTags().size(); i++) {
+            expectedTags[i] = firstTask.getTags().iterator().next().tagName;
+        }
+        expectedTags[expectedTags.length - 1] = TAG_STUB;
+        expectedTags[expectedTags.length - 2] = TAG_STUB_MULTIPLE;
+        Task editedTask = new TaskBuilder(firstTask).withTags(expectedTags).build();
+
+        TagCommand tagCommand = new TagCommand(INDEX_FOURTH_TASK);
         Set<Tag> tagStubs = new HashSet<>();
         tagStubs.add(new Tag(TAG_STUB));
         tagStubs.add(new Tag(TAG_STUB_MULTIPLE));

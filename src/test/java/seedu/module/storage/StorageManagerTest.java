@@ -58,6 +58,7 @@ public class StorageManagerTest {
         storageManager.saveModuleBook(original);
         ReadOnlyModuleBook retrieved = storageManager.readModuleBook().get();
         assertEquals(original, new ModuleBook(retrieved));
+
     }
 
     @Test

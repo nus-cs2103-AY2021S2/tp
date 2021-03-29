@@ -4,15 +4,16 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.module.commons.core.optionalfield.OptionalField;
 import seedu.module.model.ModuleBook;
 import seedu.module.model.ReadOnlyModuleBook;
 import seedu.module.model.tag.Tag;
-import seedu.module.model.task.Deadline;
 import seedu.module.model.task.Description;
 import seedu.module.model.task.DoneStatus;
 import seedu.module.model.task.Module;
 import seedu.module.model.task.Name;
 import seedu.module.model.task.Task;
+import seedu.module.model.task.Time;
 import seedu.module.model.task.Workload;
 
 /**
@@ -21,12 +22,16 @@ import seedu.module.model.task.Workload;
 public class SampleDataUtil {
     public static Task[] getSampleTasks() {
         return new Task[] {
-            new Task(new Name("Midterm"), new Deadline("2021-03-07 08:30"), new Module("CS3243"),
-                new Description("Not include CSP."), new Workload("3"), new DoneStatus(false),
-                getTagSet("highPriority")),
-            new Task(new Name("Team Project"), new Deadline("2021-03-15 16:00"), new Module("CS2103T"),
-                new Description("Wrap up version 1.2."), new Workload("3"),
-                    new DoneStatus(true), getTagSet())
+            new Task(new Name("Midterm"), new OptionalField<>(new Time("2021-03-07 08:30")),
+                    new Time("2021-03-07 10:30"), new Module("CS3243"),
+                    new Description("Not include CSP."), new Workload("3"),
+                    new DoneStatus(false), new OptionalField<>(null),
+                    getTagSet("highPriority")),
+            new Task(new Name("Team Project"), new OptionalField<>(new Time("2021-03-15 14:00")),
+                    new Time("2021-03-15 16:00"), new Module("CS2103T"),
+                    new Description("Wrap up version 1.2."), new Workload("3"),
+                    new DoneStatus(true), new OptionalField<>(null),
+                    getTagSet())
         };
     }
 

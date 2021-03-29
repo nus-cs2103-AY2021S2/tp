@@ -1,10 +1,12 @@
 package seedu.module.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.module.commons.core.GuiSettings;
+import seedu.module.model.task.Module;
 import seedu.module.model.task.Task;
 
 /**
@@ -58,6 +60,11 @@ public interface Model {
     boolean hasTask(Task task);
 
     /**
+     * Returns true if a task with the exact same attributes as {@code task} exists in the module book.
+     */
+    boolean hasRecurringTask(Task task);
+
+    /**
      * Deletes the given task.
      * The task must exist in the module book.
      */
@@ -77,12 +84,15 @@ public interface Model {
     void setTask(Task target, Task editedTask);
 
     /**
-     * Sorts the tasks by deadline.
+     * Sorts the tasks by corresponding factor.
      */
-    void sortTasks();
+    void sortTasks(Comparator<Task> factor);
 
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
+
+    /** Returns an unmodifiable view of the module list */
+    ObservableList<Module> getModuleList();
 
     /**
      * Updates the filter of the filtered task list to filter by the given {@code predicate}.

@@ -2,6 +2,7 @@ package seedu.module.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -27,7 +28,8 @@ public class ModuleBook implements ReadOnlyModuleBook {
         tasks = new UniqueTaskList();
     }
 
-    public ModuleBook() {}
+    public ModuleBook() {
+    }
 
     /**
      * Creates an ModuleBook using the Tasks in the {@code toBeCopied}
@@ -49,9 +51,11 @@ public class ModuleBook implements ReadOnlyModuleBook {
 
     /**
      * Sorts the task list by deadline.
+     *
+     * @param factor the comparator
      */
-    public void sortTasks() {
-        this.tasks.sortTasks();
+    public void sortTasks(Comparator<Task> factor) {
+        this.tasks.sortTasks(factor);
     }
 
     /**
@@ -74,11 +78,34 @@ public class ModuleBook implements ReadOnlyModuleBook {
     }
 
     /**
+     * Returns true if a {@code task} that is recurring exists in the module book.
+     *
+     * @param task for checking
+     * @return true if a task with the same identity as {@code task} exists in the module book.
+     */
+    public boolean hasRecurringTask(Task task) {
+        assert (task.isRecurring());
+        requireNonNull(task);
+        return tasks.containsRecurringTask(task);
+    }
+
+    /**
      * Adds a task to the module book.
      * The task must not already exist in the module book.
      */
     public void addTask(Task p) {
-        tasks.add(p);
+        assert(p != null);
+        if (checkForSupportedModuleCode(p)) {
+            assert(ModuleManager.moduleIsValid(p.getModule().toString()));
+
+            Task taskToAdd = p;
+            //check the deadline and recurrence of the task
+            if (p.isRecurring()) {
+                taskToAdd = Task.updateRecurrenceTask(p);
+            }
+            ModuleManager.insertTaskToMapping(taskToAdd.getModule(), taskToAdd);
+            tasks.add(taskToAdd);
+        }
     }
 
     /**
@@ -87,17 +114,34 @@ public class ModuleBook implements ReadOnlyModuleBook {
      * The task identity of {@code editedTask} must not be the same as another existing task in the module book.
      */
     public void setTask(Task target, Task editedTask) {
-        requireNonNull(editedTask);
-
-        tasks.setTask(target, editedTask);
+        if (checkForSupportedModuleCode(editedTask)) {
+            assert(ModuleManager.moduleIsValid(editedTask.getModule().toString()));
+            ModuleManager.deleteTaskFromMapping(target.getModule(), target);
+            ModuleManager.insertTaskToMapping(editedTask.getModule(), editedTask);
+            tasks.setTask(target, editedTask);
+        }
     }
 
     /**
      * Removes {@code key} from this {@code ModuleBook}.
      * {@code key} must exist in the module book.
      */
-    public void removeTask(Task key) {
-        tasks.remove(key);
+    public void removeTask(Task p) {
+        if (checkForSupportedModuleCode(p)) {
+            assert(ModuleManager.moduleIsValid(p.getModule().toString()));
+            ModuleManager.deleteTaskFromMapping(p.getModule(), p);
+            tasks.remove(p);
+        }
+    }
+
+    /**
+     * Extra check that task contains a supported module code.
+     *
+     * @param task for checking
+     * @return True if Module is supported
+     */
+    public boolean checkForSupportedModuleCode(Task task) {
+        return ModuleManager.getListOfSupportingModules().contains(task.getModule().toString());
     }
 
     //// util methods

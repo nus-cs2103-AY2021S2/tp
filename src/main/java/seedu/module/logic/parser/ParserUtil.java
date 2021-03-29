@@ -9,11 +9,13 @@ import java.util.Set;
 import seedu.module.commons.core.index.Index;
 import seedu.module.commons.util.StringUtil;
 import seedu.module.logic.parser.exceptions.ParseException;
+import seedu.module.model.ModuleManager;
 import seedu.module.model.tag.Tag;
-import seedu.module.model.task.Deadline;
 import seedu.module.model.task.Description;
 import seedu.module.model.task.Module;
 import seedu.module.model.task.Name;
+import seedu.module.model.task.Recurrence;
+import seedu.module.model.task.Time;
 import seedu.module.model.task.Workload;
 
 /**
@@ -57,13 +59,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code deadline} is invalid.
      */
-    public static Deadline parseDeadline(String deadline) throws ParseException {
+    public static Time parseTime(String deadline) throws ParseException {
         requireNonNull(deadline);
         String trimmedDeadline = deadline.trim();
-        if (!Deadline.isValidDeadline(trimmedDeadline)) {
-            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+        if (!Time.isValidTime(trimmedDeadline)) {
+            throw new ParseException(Time.MESSAGE_CONSTRAINTS);
         }
-        return new Deadline(trimmedDeadline);
+        return new Time(trimmedDeadline);
     }
 
     /**
@@ -82,16 +84,19 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String module} into an {@code Module}.
-     * Leading and trailing whitespaces will be trimmed.
+     * Parses a {@code String module} into an {@code Module} that is supported.
+     * Leading and trailing whitespaces are trimmed.
      *
      * @throws ParseException if the given {@code module} is invalid.
      */
     public static Module parseModule(String module) throws ParseException {
         requireNonNull(module);
         String trimmedModule = module.trim();
-        if (!Module.isValidModule(trimmedModule)) {
+        if (!Module.isValidModuleFormat(trimmedModule)) {
             throw new ParseException(Module.MESSAGE_CONSTRAINTS);
+        }
+        if (!ModuleManager.moduleIsValid(trimmedModule)) {
+            throw new ParseException(Module.MESSAGE_MODULE_NOT_SUPPORTED);
         }
         return new Module(trimmedModule);
     }
@@ -136,5 +141,18 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+    /**
+     * Parses a {@code String recurrence} into a {@code Recurrence}.
+     * Leading and trailing whitespaces are trimmed.
+     *
+     * @throws ParseException if the given {@code recurrence} is not valid.
+     */
+    public static Recurrence parseRecurrence(String recurrence) throws ParseException {
+        String trimmedRecurrence = recurrence.trim().toLowerCase();
+        if (!Recurrence.isValidRecurrence(trimmedRecurrence)) {
+            throw new ParseException(Recurrence.MESSAGE_CONSTRAINTS);
+        }
+        return new Recurrence(recurrence);
     }
 }

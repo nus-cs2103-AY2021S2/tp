@@ -9,6 +9,7 @@ import static seedu.module.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -20,6 +21,7 @@ import seedu.module.model.Model;
 import seedu.module.model.ModuleBook;
 import seedu.module.model.ReadOnlyModuleBook;
 import seedu.module.model.ReadOnlyUserPrefs;
+import seedu.module.model.task.Module;
 import seedu.module.model.task.Task;
 import seedu.module.testutil.TaskBuilder;
 
@@ -139,7 +141,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void sortTasks() {
+        public void sortTasks(Comparator<Task> factor) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -149,7 +151,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Module> getModuleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredTaskList(Predicate<Task> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasRecurringTask(Task task) {
             throw new AssertionError("This method should not be called.");
         }
     }

@@ -41,7 +41,7 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label workload;
     @FXML
-    private Label doneStatus;
+    private Label recurrence;
     @FXML
     private FlowPane tags;
 
@@ -53,11 +53,17 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         name.setText(task.getName().fullName);
-        deadline.setText(task.getDeadline().value);
+        deadline.setText(task.isDeadline()
+                ? task.getDeadline().value
+                : task.getStartTime().value + " -> " + task.getDeadline().value);
         description.setText(task.getDescription().value);
         module.setText(task.getModule().value);
         workload.setText(task.getWorkload().displayUi());
-        doneStatus.setText(task.getDoneStatus().displayUi());
+        if (task.isRecurring()) {
+            recurrence.setText(task.getRecurrence().value);
+        } else {
+            recurrence.setText("");
+        }
         task.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
