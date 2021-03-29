@@ -9,7 +9,7 @@ import javafx.scene.layout.Region;
 import seedu.address.ui.UiPart;
 
 /**
- * A region to display the date on the schedule.
+ * A region to display the time on the schedule.
  */
 public class DisplayTimeSlot extends UiPart<Region> {
 
@@ -20,7 +20,7 @@ public class DisplayTimeSlot extends UiPart<Region> {
     private Label time;
 
     /**
-     * Constructor for a slot to be added to the schedule that displays the date.
+     * Constructor for time to be displayed on top of timetable.
      */
     public DisplayTimeSlot(LocalTime localTime) {
         super(FXML);

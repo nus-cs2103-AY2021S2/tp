@@ -12,9 +12,9 @@
             <Insets top="8" left="10" />
         </padding>
         <HBox alignment="CENTER_LEFT">
-            <Label fx:id="title" text="\$title" style="-fx-text-fill: #1a334d" />
+            <Label fx:id="title" text="\$title" style="-fx-text-fill: #1a334d; -fx-font-size: 10pt" />
         </HBox>
-        <Label fx:id="time" text="\$time" style="-fx-text-fill: #1a334d" />
-        <Label fx:id="description" style="-fx-text-fill: #1a334d"  />
+        <Label fx:id="time" text="\$time" style="-fx-text-fill: #1a334d; -fx-font-size: 10pt" />
+        <Label fx:id="description" style="-fx-text-fill: #1a334d; -fx-font-size: 10pt" />
     </VBox>
 </HBox>
