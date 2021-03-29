@@ -192,37 +192,15 @@ This subsection serves to list out the parameters used in this document. We have
 
 ## **4.Features**
 
+This section contains documentation on CoLAB's features and commands.
+
+It is split into 4 subsections,
+* [Projects](#projects)
+* [Contacts](#contacts)
+* [Navigating the UI](#navigating-the-ui)
+* [Others](#others)
+
 ### Projects
-
-#### Viewing a project: `viewP`
-
-Displays a panel with details of a specified project.
-
-Format: `viewP PROJECT_INDEX`
-
-* Displays a panel with details of the project at the specified `PROJECT_INDEX`.
-* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `viewP 1` Displays the first project.
-* `viewP 2` Displays the second project.
-
-#### Viewing the overview tab: `tabO`
-
-Switches to the overview tab of the project that is currently displayed.
-
-Format: `tabO`
-
-* This command can only be used when a project is currently being displayed.
-
-#### Viewing the todos tab: `tabT`
-
-Switches to the todos tab of the project that is currently displayed.
-
-Format: `tabT`
-
-* This command can only be used when a project is currently being displayed.
 
 #### Adding a project: `addP`
 
@@ -395,12 +373,6 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-#### Listing all contacts : `listC`
-
-Shows a list of all contacts in CoLAB.
-
-Format: `listC`
-
 #### Locating contacts by name: `find`
 
 Finds contacts whose names contain any of the given keywords.
@@ -456,7 +428,43 @@ Clears all entries from CoLAB.
 
 Format: `clear`
 
-### Other commands
+### Navigating the UI
+
+#### Listing all contacts : `listC`
+
+Shows a list of all contacts in CoLAB.
+
+Format: `listC`
+
+#### Viewing a project: `viewP`
+
+Displays a panel with details of a specified project.
+
+Format: `viewP PROJECT_INDEX`
+
+* Displays a panel with details of the project at the specified `PROJECT_INDEX`.
+* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `viewP 1` Displays the first project.
+* `viewP 2` Displays the second project.
+
+#### Viewing the overview tab: `tabO`
+
+Switches to the overview tab of the project that is currently displayed.
+
+Format: `tabO`
+
+* This command can only be used when a project is currently being displayed.
+
+#### Viewing the todos tab: `tabT`
+
+Switches to the todos tab of the project that is currently displayed.
+
+Format: `tabT`
+
+* This command can only be used when a project is currently being displayed.
 
 #### View Today Panel : `today`
 
@@ -477,6 +485,8 @@ Format: `help`
 Exits the program.
 
 Format: `exit`
+
+### Others
 
 #### Saving the data
 
