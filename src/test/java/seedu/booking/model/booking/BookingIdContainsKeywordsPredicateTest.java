@@ -38,14 +38,14 @@ public class BookingIdContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_nameContainsKeywords_returnsTrue() {
+    public void test_idContainsKeywords_returnsTrue() {
         // One keyword
         BookingIdContainsKeywordsPredicate predicate = new BookingIdContainsKeywordsPredicate("1");
         assertTrue(predicate.test(new BookingBuilder().withId(new Id(1)).build()));
     }
 
     @Test
-    public void test_nameDoesNotContainKeywords_returnsFalse() {
+    public void test_idDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         BookingIdContainsKeywordsPredicate predicate = new BookingIdContainsKeywordsPredicate("");
         assertFalse(predicate.test(new BookingBuilder().withId(new Id(2)).build()));
