@@ -16,8 +16,10 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.RowConstraints;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.event.CurrentWeekPredicate;
 import seedu.address.model.event.Event;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.ui.UiPart;
@@ -38,6 +40,7 @@ public class TimeTablePanel extends UiPart<Region> {
     private final List<Double> hourSlot;
     private final LocalDate queryDate;
     private ObservableList<Event> events;
+    private CurrentWeekPredicate weekPredicate;
 
     @FXML
     private ScrollPane scrollPane;
@@ -53,19 +56,12 @@ public class TimeTablePanel extends UiPart<Region> {
      */
     public TimeTablePanel(ObservableList<Event> events) {
         super(FXML);
-
-        // Only getting current's week events
-        this.events = events.filtered((appointment -> {
-            LocalDate now = LocalDate.now();
-            LocalDate apptDate = appointment.getTimeFrom().value.toLocalDate();
-            LocalDate monday = now.with(DayOfWeek.MONDAY);
-            LocalDate sunday = now.with(DayOfWeek.SUNDAY);
-            return !apptDate.isBefore(monday) && !apptDate.isAfter(sunday);
-        }));
-
         this.queryDate = LocalDate.now(); // Need to allow command to change the week / view a certain week
         this.dateSlot = new ArrayList<>(7);
         this.hourSlot = new ArrayList<>();
+        this.weekPredicate = new CurrentWeekPredicate(queryDate);
+        // Only getting current's week events
+        this.events = events.filtered(weekPredicate);
     }
 
     /**
@@ -76,7 +72,7 @@ public class TimeTablePanel extends UiPart<Region> {
         constructGrid();
         populateDates();
         if (events.size() == 0) {
-            logger.info("No appointments in schedule");
+            logger.info("No events found");
             return;
         }
         addAppointmentSlotsToGrid();
@@ -86,9 +82,9 @@ public class TimeTablePanel extends UiPart<Region> {
      * Re-populate the grid pane with new events.
      */
     public void reconstruct(ObservableList<Event> events) {
-        this.events = events;
-        gridPane.getColumnConstraints().clear();
-        gridPane.getChildren().clear();
+        this.events = events.filtered(weekPredicate);
+        timeGridPane.getChildren().clear();
+        timeGridPane.getColumnConstraints().clear();
         hourSlot.clear();
         construct();
     }
@@ -115,14 +111,15 @@ public class TimeTablePanel extends UiPart<Region> {
         return events.stream()
                 .map(event -> event.getTimeFrom().value.toLocalTime())
                 .reduce((time1, time2) -> (time1.isBefore(time2) ? time1 : time2))
-                .orElse(LocalTime.of(10, 0));
+                .orElse(LocalTime.of(8, 0));
     }
 
     private LocalTime getEndTime() {
         return events.stream()
                 .map(event -> event.getTimeTo().value.toLocalTime())
                 .reduce((time1, time2) -> (time1.isAfter(time2) ? time1 : time2))
-                .orElse(LocalTime.of(18, 0));
+                .filter((time) -> time.isAfter(LocalTime.of(11, 0)))
+                .orElse(LocalTime.of(12, 0));
     }
 
 
@@ -130,30 +127,43 @@ public class TimeTablePanel extends UiPart<Region> {
         int earliestTimeIndex = getColIndex(getStartTime());
         int latestTimeIndex = getColIndex(getEndTime());
         int numColumns = NUM_OF_HALF_HOURS - earliestTimeIndex - (NUM_OF_HALF_HOURS - latestTimeIndex);
-        for (int i = 0; i < numColumns + GRID_INDEX_BUFFER; i++) {
-            ColumnConstraints con = new ColumnConstraints();
-            ColumnConstraints timeGridCon = new ColumnConstraints();
 
-            if (i == 0) {
-                con.setPrefWidth(80);
-                timeGridCon.setPrefWidth(150);
-                timeGridCon.setHalignment(HPos.CENTER);
-            } else if (i == 1) {
-                con.setPrefWidth(SINGLE_COLUMN_WIDTH);
-                timeGridCon.setPrefWidth(160);
-                timeGridCon.setHalignment(HPos.RIGHT);
-            } else {
-                con.setPrefWidth(SINGLE_COLUMN_WIDTH);
-                timeGridCon.setPrefWidth(200);
-                timeGridCon.setHalignment(HPos.RIGHT);
+        if (gridPane.getRowCount() != 8) {
+            gridPane.getRowConstraints().clear();
+            for (int i = 0; i < 7; i++) {
+                RowConstraints con = new RowConstraints();
+                con.setPrefHeight(65);
+                gridPane.getRowConstraints().add(con);
             }
+        }
 
-            gridPane.getColumnConstraints().add(con);
-            ColumnConstraints conHalf = new ColumnConstraints();
-            conHalf.setPrefWidth(SINGLE_COLUMN_WIDTH);
-            gridPane.getColumnConstraints().add(conHalf);
+        if (gridPane.getColumnCount() != numColumns) {
+            gridPane.getColumnConstraints().clear();
+            for (int i = 0; i < numColumns + GRID_INDEX_BUFFER; i++) {
+                ColumnConstraints con = new ColumnConstraints();
+                ColumnConstraints timeGridCon = new ColumnConstraints();
 
-            timeGridPane.getColumnConstraints().add(timeGridCon);
+                if (i == 0) {
+                    con.setPrefWidth(80);
+                    timeGridCon.setPrefWidth(150);
+                    timeGridCon.setHalignment(HPos.CENTER);
+                } else if (i == 1) {
+                    con.setPrefWidth(SINGLE_COLUMN_WIDTH);
+                    timeGridCon.setPrefWidth(160);
+                    timeGridCon.setHalignment(HPos.RIGHT);
+                } else {
+                    con.setPrefWidth(SINGLE_COLUMN_WIDTH);
+                    timeGridCon.setPrefWidth(200);
+                    timeGridCon.setHalignment(HPos.RIGHT);
+                }
+
+                gridPane.getColumnConstraints().add(con);
+                timeGridPane.getColumnConstraints().add(timeGridCon);
+
+                ColumnConstraints conHalfHour = new ColumnConstraints();
+                conHalfHour.setPrefWidth(SINGLE_COLUMN_WIDTH);
+                gridPane.getColumnConstraints().add(conHalfHour);
+            }
         }
 
         for (int i = 0; i < (numColumns + GRID_INDEX_BUFFER) * 2; i++) {
@@ -217,6 +227,7 @@ public class TimeTablePanel extends UiPart<Region> {
             }
             count++;
         }
+        System.out.println(hourSlot);
 
         for (int i = 1; i <= 7; i++) { // Add date displays for entire week
             LocalDate currentDate = queryDate.with(DayOfWeek.of(i));

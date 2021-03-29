@@ -6,14 +6,14 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox minHeight="482.0" style="-fx-background-color: #383838;" styleClass="timetable-container" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox style="-fx-background-color: #383838;" styleClass="timetable-container" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="25.0" style="-fx-text-fill: white;" styleClass="cell_big_label" text="Showing Timetable Events" VBox.vgrow="ALWAYS">
         <VBox.margin>
             <Insets />
         </VBox.margin>
     </Label>
 
-    <ScrollPane fx:id="scrollPane" style="-fx-background-color: #383838;" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+    <ScrollPane fx:id="scrollPane" style="-fx-background-color: #383838;" vbarPolicy="NEVER" VBox.vgrow="ALWAYS" fitToHeight="true">
         <content>
             <VBox>
                 <children>
