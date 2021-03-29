@@ -84,7 +84,7 @@ Examples:
   <br><br>
   
 **8. Matching multiple garments to create an outfit: `match`**<br>
-[matching of multiple input garments implemented in v1.3]  
+[matching of multiple input garments implemented in v1.3]<br> 
 Finds all articles of clothing that match the colour and dress code,
 but do not match the type(s) of a specified garment, or two specified
 garments of different types.<br>
