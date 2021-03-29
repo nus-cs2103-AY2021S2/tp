@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taskify.testutil.TypicalTasks.getTypicalAddressBook;
 
-import javafx.collections.ObservableList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ObservableList;
 import seedu.taskify.model.Model;
 import seedu.taskify.model.ModelManager;
 import seedu.taskify.model.UserPrefs;

@@ -1,9 +1,11 @@
 package seedu.taskify.logic.commands;
 
+import static seedu.taskify.model.Model.PREDICATE_SHOW_ALL_TASKS;
+
 import seedu.taskify.logic.commands.exceptions.CommandException;
 import seedu.taskify.model.Model;
 
-import static seedu.taskify.model.Model.PREDICATE_SHOW_ALL_TASKS;
+
 
 public class HomeCommand extends Command {
     public static final String COMMAND_WORD = "home";
