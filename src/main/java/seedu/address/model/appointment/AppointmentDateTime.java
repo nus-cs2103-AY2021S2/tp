@@ -99,6 +99,14 @@ public class AppointmentDateTime {
     }
 
     /**
+     * Returns a time only string for display purpose.
+     */
+    public String toTimeString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
+        return value.format(formatter);
+    }
+
+    /**
      * Returns a date time string for storage purpose.
      */
     public String toStorageString() {

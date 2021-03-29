@@ -9,6 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.event.Event;
 import seedu.address.model.grade.Grade;
 import seedu.address.model.person.Person;
 
@@ -42,6 +43,11 @@ public interface Logic {
      * Returns an unmodifiable view of the filtered list of appointments
      */
     ObservableList<Appointment> getFilteredAppointmentList();
+
+    /**
+     * Returns an unmodifiable view of the filtered list of events
+     */
+    ObservableList<Event> getFilteredEventList();
 
     /**
      * Returns an unmodifiable view of the filtered list of grades
