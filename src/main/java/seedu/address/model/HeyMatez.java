@@ -8,7 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskList;
+import seedu.address.model.task.UniqueTaskList;
 
 /**
  * Wraps all data at the address-book level
@@ -17,7 +17,7 @@ import seedu.address.model.task.TaskList;
 public class HeyMatez implements ReadOnlyHeyMatez {
 
     private final UniquePersonList persons;
-    private final TaskList tasks;
+    private final UniqueTaskList tasks;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -28,7 +28,7 @@ public class HeyMatez implements ReadOnlyHeyMatez {
      */
     {
         persons = new UniquePersonList();
-        tasks = new TaskList();
+        tasks = new UniqueTaskList();
     }
 
     public HeyMatez() {}
@@ -133,7 +133,7 @@ public class HeyMatez implements ReadOnlyHeyMatez {
     }
 
     /**
-     * Removes {@code key} from this {@code TaskList}.
+     * Removes {@code key} from this {@code UniqueTaskList}.
      * {@code key} must exist in the task list.
      */
     public void removeTask(Task key) {
