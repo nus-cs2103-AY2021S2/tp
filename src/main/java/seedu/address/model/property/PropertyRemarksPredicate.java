@@ -1,14 +1,11 @@
 package seedu.address.model.property;
 
-import seedu.address.commons.util.StringUtil;
-import seedu.address.model.remark.Remark;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Predicate;
 
+import seedu.address.model.remark.Remark;
+
 /**
- * Tests that a {@code Property}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Property}'s {@code Remarks} matches the string given.
  */
 public class PropertyRemarksPredicate implements Predicate<Property> {
     private final Remark keywords;

@@ -1,10 +1,10 @@
 package seedu.address.model.property;
 
-import seedu.address.model.tag.Tag;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+
+import seedu.address.model.tag.Tag;
 
 /**
  * Tests that a {@code Property}'s {@code Tags} contains the tags given.
@@ -12,6 +12,9 @@ import java.util.function.Predicate;
 public class PropertyTagsPredicate implements Predicate<Property> {
     private final List<Tag> tags;
 
+    /**
+     * Creates a PropertyTagsPredicate
+     */
     public PropertyTagsPredicate(String keyword) {
         String[] keywords = keyword.split(",");
         this.tags = new ArrayList<>();
