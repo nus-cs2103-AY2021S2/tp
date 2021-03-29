@@ -91,4 +91,10 @@ public interface Model {
      * otherwise.
      */
     void sortByName(boolean isAscending);
+
+    /**
+     * Toggles the blacklist status of the given person {@code target}.
+     * {@code target} must exist in the address book.
+     */
+    void toggleBlacklist(Person target);
 }
