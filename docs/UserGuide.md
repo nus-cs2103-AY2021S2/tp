@@ -328,6 +328,8 @@ command box with the last command.
 application in the other computer and overwrite the empty data file it creates
 with the file that contains the data of your previous imPoster home folder.
 
+**Q**: How can I send non-JSON data in the request body?<br> **A**: This current version of imPoster only supports the sending of [JSON](#84-json-format) data in the request body which is the format used by an estimated over 70% of APIs worldwide. We apologise for the inconvenience but rest assured that plans are in place to include support for other data formats in future versions.
+
 {more to be added}
 
 <div style="page-break-after: always;"></div>
@@ -387,6 +389,8 @@ Broadly speaking, an **API** is an interface that enables and defines how **two 
 
 Note that for the **waiter** to pass the order to the **kitchen**, a **window/door** is required to allow communication and this is represented by the term [**endpoint**](#7-glossary) which is frequently used in relation to an API.
 
+<div style="page-break-after: always;"></div>
+
 ### 8.2 Why learn about APIs?
 
 You may be surprised to know that APIs are not only widely used in our daily lives, it is also likely that you have been using them frequently without actually noticing them! For example, the simple act of visiting a website involves an API request which is responsible for bringing back a response to you in the form of a webpage. Even a simple text message to your friend relies on an API to reliably deliver your message! The use of APIs is extensive in today’s highly connected world so even if they are completely unrelated to your job, it helps to have some basic understanding of them!
@@ -409,3 +413,12 @@ JSON is short for JavaScript Object Notation and is a common lightweight format 
 - `{}`
 - `{"name": "john doe"}`
 - `{"persons": {"name": "john doe"}}`
+
+### 8.5 Sample Endpoints
+
+| Method      | URL                                                     | Data (JSON)                                       |
+| ----------- | ----------------------------------------------------------------------------------------------------------- |
+| **GET**     | http://imposter-dev.tk:6000/api/v1/resources/books/all  | N/A                                               |
+| **GET**     | http://imposter-dev.tk:6000/api/v1/resources/books?id=1 | N/A                                               |
+| **GET**     | https://project-billboard.herokuapp.com/laugh           | N/A                                               |
+| **POST**    | https://jsonplaceholder.typicode.com/posts              | title, body, userId                               |
