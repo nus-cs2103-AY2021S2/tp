@@ -43,6 +43,10 @@ public class Date {
         }
     }
 
+    public LocalDate getLocalDate() {
+        return this.date;
+    }
+
     @Override
     public String toString() {
         assert isValidDate(value);
