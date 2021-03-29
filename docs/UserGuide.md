@@ -424,18 +424,18 @@ the data of your previous FlashBack home folder.
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAGS]...` <br> e.g., `add q/ What is the Einstein’s Equation? a/e=mc^2 c/Physics p/High t/ModernPhysics`
-**Delete** | `delete INDEX` <br> e.g., `delete 1`
-**Edit** | `edit INDEX` <br> e.g., `edit 3 a/NEW ANSWER p/NEW PRIORITY`
-**View** | `view INDEX` <br> e.g., `view 2`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find equation`
+**Add** | `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAGS]...` <br> e.g. `add q/ What is the Einstein’s Equation? a/e=mc^2 c/Physics p/High t/ModernPhysics`
+**Delete** | `delete INDEX` <br> e.g. `delete 1`
+**Edit** | `edit INDEX` <br> e.g. `edit 3 a/NEW ANSWER p/NEW PRIORITY`
+**View** | `view INDEX` <br> e.g. `view 2`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find equation`
 **Filter** | `filter [q/QUESTION] [c/CATEGORY] [p/PRIORITY] [t/TAG]`<br> e.g. `filter q/einstein c/phy p/high t/modern` <br> or `filter p/low t/formula`
 **Clear** | `clear`
 **Undo** | `undo`
 **Redo** | `redo`
-**Sort** | `sort OPTION ORDER` <br> e.g., `sort priority -a`
+**Sort** | `sort OPTION ORDER` <br> e.g. `sort priority -a`
 **Review** | `review`
-**Statistics** | `stats [INDEX]` <br> e.g., `stats 4`, `stats`
+**Statistics** | `stats [INDEX]` <br> e.g. `stats 4`, `stats`
 **List** | `list`
 **Help** | `help`
 **Exit** | `exit`
