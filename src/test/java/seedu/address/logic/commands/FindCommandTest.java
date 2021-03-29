@@ -29,7 +29,6 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.passenger.AddressContainsKeywordsPredicate;
-import seedu.address.model.pool.TripDay;
 import seedu.address.model.pool.TripDayContainsKeywordsPredicate;
 import seedu.address.model.pool.TripTimeContainsKeywordsPredicate;
 
@@ -108,7 +107,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_oneTripDAYKeyword_onePassengersFound() {
+    public void execute_oneTripDayKeyword_onePassengersFound() {
         String expectedMessage = String.format(MESSAGE_PASSENGER_LISTED_OVERVIEW, 5);
         TripDayContainsKeywordsPredicate predicate = prepareTripDayPredicate("Monday");
         FindCommand command = new FindCommand(predicate);
@@ -118,7 +117,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_multipleTripDAYKeyword_sixPassengersFound() {
+    public void execute_multipleTripDayKeyword_sixPassengersFound() {
         String expectedMessage = String.format(MESSAGE_PASSENGER_LISTED_OVERVIEW, 10);
         TripDayContainsKeywordsPredicate predicate = prepareTripDayPredicate("Monday Friday");
         FindCommand command = new FindCommand(predicate);
