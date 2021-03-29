@@ -1,9 +1,12 @@
 package seedu.address.model.task;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.TaskBuilder;
 
 public class TaskContainsAssigneePredicateTest {
     @Test
@@ -31,33 +34,50 @@ public class TaskContainsAssigneePredicateTest {
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
-    //    @Test
-    //    public void test_taskContainsAssignee_returnsTrue() {
-    //        // One keyword
-    //        TaskContainsAssigneePredicate predicate = new TaskContainsAssigneePredicate("Meeting");
-    //        assertTrue(predicate.test(new TaskBuilder().withTitle("Meeting").build()));
-    //
-    //        // Multiple keywords
-    //        predicate = new TaskContainsAssigneePredicate(Arrays.asList("Meeting", "CS2103T"));
-    //        assertTrue(predicate.test(new TaskBuilder().withTitle("Meeting").withDescription("CS2103T").build()));
-    //
-    //        // Only one matching keyword
-    //        predicate = new TaskContainsAssigneePredicate(Arrays.asList("Meeting", "CS3243"));
-    //        assertTrue(predicate.test(new TaskBuilder().withTitle("Meeting").withDescription("CS2103T").build()));
-    //
-    //        // Mixed-case keywords
-    //        predicate = new TaskContainsAssigneePredicate(Arrays.asList("mEEtINg", "cs2103"));
-    //        assertTrue(predicate.test(new TaskBuilder().withTitle("Meeting").withDescription("CS2103T").build()));
-    //    }
-    //
-    //    @Test
-    //    public void test_taskDoesNotContainKeywords_returnsFalse() {
-    //        // Zero keywords
-    //        TaskContainsAssigneePredicate predicate = new TaskContainsAssigneePredicate(Collections.emptyList());
-    //        assertFalse(predicate.test(new TaskBuilder().withTitle("Meeting").build()));
-    //
-    //        // Non-matching keyword for both title and description
-    //        predicate = new TaskContainsAssigneePredicate(Arrays.asList("Proposal", "CS3243"));
-    //        assertFalse(predicate.test(new TaskBuilder().withTitle("Meeting").withDescription("CS1101").build()));
-    //    }
+    @Test
+    public void test_taskContainsAssignee_returnsTrue() {
+        // One keyword
+        TaskContainsAssigneePredicate predicate = new TaskContainsAssigneePredicate("Alice");
+        assertTrue(predicate.test(new TaskBuilder().withAssignees("Alice").build()));
+    }
+
+    @Test
+    public void test_invalidArgs_throwInllegalArg() {
+        TaskContainsAssigneePredicate predicate = new TaskContainsAssigneePredicate("");
+        Task task = new TaskBuilder().withTitle("Meeting").build();
+
+        assertThrows(IllegalArgumentException.class, () -> predicate.test(task));
+    }
+
+    @Test
+    public void test_taskDoesNotContainAssigne_returnsFalse() {
+        TaskContainsAssigneePredicate predicate = new TaskContainsAssigneePredicate("Alice");
+        Task task = new TaskBuilder().withTitle("Meeting").build();
+
+        assertFalse(predicate.test(task));
+    }
+
+    @Test
+    public void test_taskContainsMultipleAssignee_returnsFalse() {
+        TaskContainsAssigneePredicate predicate = new TaskContainsAssigneePredicate("Alice");
+        Task task = new TaskBuilder().withAssignees("Alice", "Benoson").build();
+
+        assertTrue(predicate.test(task));
+    }
+
+    @Test
+    public void test_taskContainsMultipleAssignees_searchMultipleNamesreturnsFalse() {
+        TaskContainsAssigneePredicate predicate = new TaskContainsAssigneePredicate("Alice Benson");
+        Task task = new TaskBuilder().withAssignees("Alice", "Benoson").build();
+
+        assertFalse(predicate.test(task));
+    }
+
+    @Test
+    public void test_taskContainsMultipleAssignees_searchMixedCasingsReturnsFalse() {
+        TaskContainsAssigneePredicate predicate = new TaskContainsAssigneePredicate("AliCE");
+        Task task = new TaskBuilder().withAssignees("Alice").build();
+
+        assertFalse(predicate.test(task));
+    }
 }

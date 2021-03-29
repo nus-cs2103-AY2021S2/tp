@@ -17,8 +17,8 @@ public class FindByPriorityCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks with the specified priority "
             + "and displays them as a list with index numbers\n "
-            + "Parameters: PRIORITY VALUE Example: "
-            + COMMAND_WORD + "high";
+            + "Parameters: PRIORITY "
+            + "Example: " + COMMAND_WORD + " high";
 
     private final PriorityContainsKeywordPredicate predicate;
 

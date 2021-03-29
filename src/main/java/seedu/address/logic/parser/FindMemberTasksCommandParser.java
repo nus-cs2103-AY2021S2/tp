@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.logic.commands.FindMemberTasksCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.assignee.Assignee;
 import seedu.address.model.task.TaskContainsAssigneePredicate;
 
 /**
@@ -25,7 +26,11 @@ public class FindMemberTasksCommandParser implements Parser<FindMemberTasksComma
         }
 
         // Check if name is valid
-        ParserUtil.parseAssignee(trimmedArgs);
+        try {
+            ParserUtil.parseAssignee(trimmedArgs);
+        } catch (ParseException e) {
+            throw new ParseException(Assignee.MESSAGE_SEARCH_TASKS_CONSTRAINTS);
+        }
 
         return new FindMemberTasksCommand(new TaskContainsAssigneePredicate(trimmedArgs));
     }

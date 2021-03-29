@@ -27,6 +27,6 @@ public class FindMemberTasksCommandParserTest {
         assertParseSuccess(parser, "Alice", expectedFindMemberTasksCommand);
 
         // multiple whitespaces between keywords
-        assertParseFailure(parser, "Alex Yeoh /t", Assignee.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "Alex Yeoh /t", Assignee.MESSAGE_SEARCH_TASKS_CONSTRAINTS);
     }
 }
