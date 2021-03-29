@@ -21,7 +21,13 @@ public class FindCommand extends Command {
 
     private final FlashcardContainsKeywordsPredicate predicate;
 
+    /**
+     * Creates a FindCommand with the provided {@code FlashcardContainsKeywordsPredicate}
+     *
+     * @param predicate cannot be null.
+     */
     public FindCommand(FlashcardContainsKeywordsPredicate predicate) {
+        requireNonNull(predicate);
         this.predicate = predicate;
     }
 

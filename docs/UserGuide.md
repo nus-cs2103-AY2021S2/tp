@@ -221,7 +221,13 @@ Examples:
 
 ### Filtering cards: `filter`
 
-Filter flashcards based on field(s) (e.g. question, category, priority, and tag) input.
+Filter flashcards based on specified field input.
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Note:** You can only filter by `question`, `category`, `priority`, and `tag`.
+
+</div>
 
 Format: `filter [q/QUESTION] [c/CATEGORY] [p/PRIORITY] [t/TAG]`
 
