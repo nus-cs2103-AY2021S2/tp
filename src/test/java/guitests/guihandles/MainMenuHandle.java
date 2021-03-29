@@ -7,7 +7,7 @@ import javafx.scene.input.KeyCode;
 
 /**
  * @@author {se-edu}-reused
- * Reused from AB4 https://github.com/se-edu/addressbook-level4/
+ * Reused with modification from AB4 https://github.com/se-edu/addressbook-level4/
  *
  * Provides a handle to the main menu of the app.
  */
@@ -19,14 +19,14 @@ public class MainMenuHandle extends NodeHandle<Node> {
     }
 
     /**
-     * Opens the {@code HelpWindow} using the menu bar in {@code MainWindow}.
+     * Opens the {@code HelpPanel} using the menu bar in {@code MainWindow}.
      */
     public void openHelpWindowUsingMenu() {
         clickOnMenuItemsSequentially("Help", "F1");
     }
 
     /**
-     * Opens the {@code HelpWindow} by pressing the shortcut key associated
+     * Opens the {@code HelpPanel} by pressing the shortcut key associated
      * with the menu bar in {@code MainWindow}.
      */
     public void openHelpWindowUsingAccelerator() {
