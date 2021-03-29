@@ -30,6 +30,8 @@ public class RecordCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label bookName;
+    @FXML
     private Label barcode;
     @FXML
     private Label readerName;
@@ -48,7 +50,8 @@ public class RecordCard extends UiPart<Region> {
         super(FXML);
         this.record = record;
         id.setText(displayedIndex + ". ");
-        barcode.setText(record.getBookBarcode().toString());
+        bookName.setText(record.getBookName().toString());
+        barcode.setText("Barcode: " + record.getBookBarcode().toString());
         readerName.setText("Borrower: " + record.getReaderName().toString());
         dateBorrowed.setText("Borrowed on: " + record.getDateBorrowed().toString());
         dateReturned.setText(record.isReturned() ? "Returned on " + record.getDateReturned() : "Not returned yet");
