@@ -55,10 +55,12 @@ Please note the following symbols used in the User Guide which may serve as poin
 1. Copy the file to the folder you want to use as the _home folder_ for your StoreMando.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
-   contains some sample data.<br>
+   contains some sample data for you to see how the app looks.<br>
    ![Ui](images/Ui.png)
+   
+1. Before adding your own items, you may want to [clear](#39-clearing-storemando--clear) the sample data to start afresh.
 
-1. Type the command in the command box and press Enter to execute it.<br>
+1. Type the command in the [command box](#command-box-) and press Enter on your keyboard to execute it.<br>
 
 1. Refer to the [“Features"](#3-features) below for details of each command.
 
@@ -83,23 +85,26 @@ The result display box is where StoreMando’s server replies to every command t
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/ITEM_NAME`, `ITEM_NAME` is a parameter which can be used as `add n/Chocolate Milk`.
 
-* Items in square brackets are optional.<br>
+* Every item is made up of item name, location and quantity. Expiry date and tags are optional.<br>
+
+* Words in `UPPER_CASE` are the inputs to be supplied by the user.<br>
+  e.g. in `add n/ITEM_NAME`, `ITEM_NAME` is an input which can be used as `add n/Chocolate Milk`.
+  
+* Inputs in square brackets are optional.<br>
   e.g. `n/ITEM_NAME [e/EXPIRY_DATE]` can be used as `n/Olive Oil e/2020-10-10` or as `n/Olive Oil`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
+* Inputs with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/favourite`, `t/favourite t/drink` etc.
 
-* Parameters can be specified in any order.<br>
-  e.g. if the command specifies `n/ITEM_NAME l/LOCATION`, `l/LOCATION n/ITEM_NAME` is also acceptable.
+* Inputs can be specified in any order.<br>
+  e.g. `n/ITEM_NAME l/LOCATION` and `l/LOCATION n/ITEM_NAME` are both acceptable.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of
-  the parameter will be taken.<br>
+* With the exception of tags, if you specified an input field multiple times, only the last occurrence of
+  the input will be taken.<br>
   e.g. if you specify `e/2020-10-10 e/2020-08-08`, only `e/2020-08-08` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be
+* Additional inputs specified for commands that do not take in any input (such as `help` and `exit`) will be
   ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
@@ -117,7 +122,7 @@ Format: `help`
 
 ### 3.2. Adding an item : `add`
 
-Have an item to add to the inventory? Then this command is the right one for you!
+Do you have an item to add to the inventory? This command is the right one for you.
 
 Format: `add n/ITEM_NAME l/LOCATION q/QUANTITY [e/EXPIRY_DATE] [t/TAG]…​`
 
@@ -137,8 +142,7 @@ Examples:
 
 ### 3.3. Editing an item : `edit`
 
-If you want to edit any details of an existing item in the inventory, you can do so by using this command. You don't 
-have to worry about adding any wrong information as you can edit them any time!
+If you want to edit any details of an existing item in the inventory, you can do so by using this command. 
 
 Format: `edit INDEX [n/ITEM_NAME] [l/LOCATION] [q/QUANTITY] [e/EXPIRY_DATE] [t/TAG]…​`
 
@@ -163,8 +167,8 @@ Examples:
 
 ### 3.4. Listing items : `list`
 
-Want to view all your items? What about items at a specific location or with a specific tag? This command helps you to 
-do just that!
+Do you want to view all your items? What about items at a specific location or with a specific tag? This command helps 
+you to do just that.
 
 You can use this command in 3 different ways.
 
@@ -224,7 +228,9 @@ You can use this command in 2 different ways.
 * The order of the keywords does not matter. e.g. `Bread Chocolate` will match `Chocolate Bread`
 * Only the item name is searched.
 * Items matching at least one keyword will be returned. For example, `find Chocolate Milk` will
-  return `Cadbury Chocolate` and `Almond Milk`
+  return `Cadbury Chocolate` and `Almond Milk`.
+* Items displayed are not in order of relevance.
+
 
 </div>
 
