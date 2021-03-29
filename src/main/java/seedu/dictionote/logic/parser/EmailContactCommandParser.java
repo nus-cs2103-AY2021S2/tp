@@ -1,13 +1,11 @@
 package seedu.dictionote.logic.parser;
 
 import static seedu.dictionote.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.dictionote.logic.parser.CliSyntax.*;
+import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_NOTE_INDEX;
 
 import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.logic.commands.EmailContactCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
-
-import java.util.Optional;
 
 /**
  * Parses input arguments and creates a new EmailContactCommand object

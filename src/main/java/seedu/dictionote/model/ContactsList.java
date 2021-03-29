@@ -6,14 +6,12 @@ import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.contact.MailtoLink;
 import seedu.dictionote.model.contact.UniqueContactList;
 import seedu.dictionote.model.contact.exceptions.InvalidContactMailtoLinkException;
-import seedu.dictionote.model.note.Note;
 
 /**
  * Wraps all data at the dictionote-book level
