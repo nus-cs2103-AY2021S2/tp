@@ -9,7 +9,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_PRICE_MORE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAGS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
+import static seedu.address.logic.parser.ParserUtil.parsePropertyAddress;
 import static seedu.address.logic.parser.ParserUtil.parsePropertyDeadline;
+import static seedu.address.logic.parser.ParserUtil.parsePropertyPostal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,9 +64,19 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
                 } else if (s.startsWith(String.valueOf(PREFIX_TYPE))) {
                     predicates.add(new PropertyTypePredicate(key));
                 } else if (s.startsWith(String.valueOf(PREFIX_POSTAL))) {
-                    predicates.add(new PropertyPostalCodePredicate(key));
+                    try {
+                        predicates.add(new PropertyPostalCodePredicate(parsePropertyPostal(key)));
+                    } catch (ParseException e) {
+                        throw new ParseException("Wrong postal code format! \n"
+                            + FindPropertyCommand.MESSAGE_USAGE);
+                    }
                 } else if (s.startsWith(String.valueOf(PREFIX_ADDRESS))) {
-                    predicates.add(new PropertyAddressPredicate(String.valueOf(PREFIX_ADDRESS)));
+                    try {
+                        predicates.add(new PropertyAddressPredicate(parsePropertyAddress(key));
+                    } catch (ParseException e) {
+                        throw new ParseException("Wrong address format! \n"
+                                + FindPropertyCommand.MESSAGE_USAGE);
+                    }
                 } else if (s.startsWith(String.valueOf(PREFIX_REMARK))) {
                     StringBuilder remarks = new StringBuilder(key);
                     int j = i + 1;
@@ -79,7 +91,7 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
                         predicates.add(new PropertyDeadlinePredicate(parsePropertyDeadline(key)));
                     } catch (ParseException e) {
                         throw new ParseException("Wrong deadline format! \n"
-                            + String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPropertyCommand.MESSAGE_USAGE));
+                            + FindPropertyCommand.MESSAGE_USAGE);
                     }
                 } else if (s.startsWith(String.valueOf(PREFIX_TAGS))) {
                     StringBuilder tags = new StringBuilder(key);
@@ -92,7 +104,7 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
                     predicates.add(new PropertyTagsPredicate(tags.toString()));
                 } else {
                     throw new ParseException("You have used an unknown parameter! \n"
-                        + String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPropertyCommand.MESSAGE_USAGE));
+                        + FindPropertyCommand.MESSAGE_USAGE);
                 }
             } else {
                 keywords.add(s);
