@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Set;
 
+import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Patient;
 import seedu.address.model.tag.Tag;
 
@@ -19,7 +20,7 @@ public class AppointmentDisplay extends Appointment {
     /**
      * Every field must be present and not null.
      */
-    public AppointmentDisplay(Patient patient, String doctor, Timeslot timeslot, Set<Tag> tags) {
+    public AppointmentDisplay(Patient patient, Doctor doctor, Timeslot timeslot, Set<Tag> tags) {
         super(patient.getUuid(), doctor, timeslot, tags);
         requireAllNonNull(patient, doctor, timeslot, tags);
         this.patient = patient;
