@@ -10,6 +10,7 @@ import seedu.address.model.fee.Month;
 import seedu.address.model.fee.Year;
 import seedu.address.model.session.Duration;
 import seedu.address.model.session.Fee;
+import seedu.address.model.session.Interval;
 import seedu.address.model.session.SessionDate;
 import seedu.address.model.session.Subject;
 import seedu.address.model.student.Address;
@@ -250,4 +251,18 @@ public class ParserUtil {
         return new Fee(trimmedFee);
     }
 
+    /**
+     * Parses a {@code String interval} into a {@code Interval}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code interval} is invalid.
+     */
+    public static Interval parseInterval(String interval) throws ParseException {
+        requireNonNull(interval);
+        String trimmedInterval = interval.trim();
+        if (!Interval.isValidInterval(trimmedInterval)) {
+            throw new ParseException(Interval.MESSAGE_CONSTRAINTS);
+        }
+        return new Interval(trimmedInterval);
+    }
 }
