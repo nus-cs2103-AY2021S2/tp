@@ -8,6 +8,7 @@ import seedu.address.model.Name;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.DateTime;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -24,6 +25,7 @@ public class AppointmentBuilder {
     private Address address;
     private DateTime dateTime;
     private Set<Person> contacts;
+    private Set<Tag> tags;
 
     /**
      * Creates an {@code AppointmentBuilder} with the default details.
@@ -33,6 +35,7 @@ public class AppointmentBuilder {
         address = new Address(DEFAULT_ADDRESS);
         dateTime = new DateTime(DEFAULT_DATE);
         contacts = new HashSet<>();
+        tags = new HashSet<>();
     }
 
     /**
@@ -43,6 +46,7 @@ public class AppointmentBuilder {
         address = appointmentToCopy.getAddress();
         dateTime = appointmentToCopy.getDateTime();
         contacts = new HashSet<>(appointmentToCopy.getContacts());
+        tags = new HashSet<>(appointmentToCopy.getTags());
     }
 
     /**
@@ -79,7 +83,7 @@ public class AppointmentBuilder {
     }
 
     public Appointment build() {
-        return new Appointment(name, address, dateTime, contacts);
+        return new Appointment(name, address, dateTime, contacts, tags);
     }
 
 }

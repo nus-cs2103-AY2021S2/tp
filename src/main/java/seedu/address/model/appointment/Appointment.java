@@ -10,8 +10,7 @@ import java.util.Set;
 import seedu.address.model.Address;
 import seedu.address.model.Name;
 import seedu.address.model.person.Person;
-
-//import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents an Appointment in the appointment book.
@@ -26,18 +25,19 @@ public class Appointment implements Comparable<Appointment> {
     private final Address address;
     private final DateTime dateTime;
     private final Set<Person> contacts = new HashSet<>();
-
+    private final Set<Tag> tags = new HashSet<>();
     //private final TimeAdded timeAdded;
 
     /**
      * Every field must be present and not null.
      */
-    public Appointment(Name name, Address address, DateTime dateTime, Set<Person> contacts) {
-        requireAllNonNull(name, address, dateTime, contacts);
+    public Appointment(Name name, Address address, DateTime dateTime, Set<Person> contacts, Set<Tag> tags) {
+        requireAllNonNull(name, address, dateTime, contacts, tags);
         this.name = name;
         this.address = address;
         this.dateTime = dateTime;
         this.contacts.addAll(contacts);
+        this.tags.addAll(tags);
     }
 
     public Name getName() {
@@ -58,6 +58,14 @@ public class Appointment implements Comparable<Appointment> {
      */
     public Set<Person> getContacts() {
         return Collections.unmodifiableSet(contacts);
+    }
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
     }
 
     /**
@@ -91,13 +99,14 @@ public class Appointment implements Comparable<Appointment> {
         return otherAppointment.getName().equals(getName())
                 && otherAppointment.getAddress().equals(getAddress())
                 && otherAppointment.getDateTime().equals(getDateTime())
-                && otherAppointment.getContacts().equals(getContacts());
+                && otherAppointment.getContacts().equals(getContacts())
+                && otherAppointment.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, address, dateTime, contacts);
+        return Objects.hash(name, address, dateTime, contacts, tags);
     }
 
     @Override
@@ -110,6 +119,10 @@ public class Appointment implements Comparable<Appointment> {
                 .append(getDateTime());
 
         Set<Person> contacts = getContacts();
+        if (!tags.isEmpty()) {
+            builder.append("; Tags: ");
+            contacts.forEach(builder::append);
+        }
         if (!contacts.isEmpty()) {
             builder.append("; Contacts: ");
             contacts.forEach(builder::append);
