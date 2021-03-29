@@ -40,20 +40,20 @@ public class ThemeFactoryTest {
 
     @Test
     public void themeFactory_loadValidTheme_success() {
-        Theme t = assertDoesNotThrow(() -> ThemeFactory.load(VALID_PATH));
+        Theme t = assertDoesNotThrow(() -> ThemeFactory.loadFromFile(VALID_PATH));
         assertEquals(ThemeFactory.getDefaultTheme(), t);
     }
 
     @Test void themeFactory_loadInvalidTheme_failure() {
-        assertThrows(FileNotFoundException.class, () -> ThemeFactory.load(NOT_EXIST_PATH),
+        assertThrows(FileNotFoundException.class, () -> ThemeFactory.loadFromFile(NOT_EXIST_PATH),
                 new FileNotFoundException().toString());
 
-        assertThrows(InvalidThemeException.class, () -> ThemeFactory.load(INVALID_THEME_PATH),
+        assertThrows(InvalidThemeException.class, () -> ThemeFactory.loadFromFile(INVALID_THEME_PATH),
                 new InvalidThemeException("Invalid theme supplied").toString());
 
-        assertThrows(DataConversionException.class, () -> ThemeFactory.load(INVALID_JSON_PATH));
+        assertThrows(DataConversionException.class, () -> ThemeFactory.loadFromFile(INVALID_JSON_PATH));
 
-        assertThrows(DataConversionException.class, () -> ThemeFactory.load(INVALID_CONTENT_PATH));
+        assertThrows(DataConversionException.class, () -> ThemeFactory.loadFromFile(INVALID_CONTENT_PATH));
     }
 
 }

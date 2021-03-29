@@ -343,12 +343,13 @@
 }
 
 #filterField, #personListPanel, #personWebpage {
-    -fx-effect: innershadow(gaussian, $c0, 10, 0, 0, 0);
+    -fx-effect: innershadow(gaussian, $background, 20, 0, 0, 0);
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, $c8, transparent, $c8;
+    -fx-background-color: derive($background, 10%);
     -fx-background-radius: 0;
+    -fx-text-fill: $foreground;
 }
 
 #tags {

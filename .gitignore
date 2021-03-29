@@ -26,4 +26,4 @@ docs/_site/
 !/theme/mocha.dark.json
 !/theme/solarized.dark.json
 !/theme/tomorrow.dark.json
-!/theme/sweetlove.json
+!/src/main/resources/themes/sweetlove.json
