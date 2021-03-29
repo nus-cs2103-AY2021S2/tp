@@ -106,7 +106,7 @@ Helps you better understand what each component that you observe on-screen repre
 # Commands 
 
 ### Add Command
-Adds a dog/owner/program to Pawbook.
+Adds a **dog/owner/program** to Pawbook.
 
 Format:
 
