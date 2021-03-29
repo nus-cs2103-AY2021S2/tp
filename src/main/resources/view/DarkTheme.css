@@ -389,3 +389,16 @@
 #driverCardPane .cell_small_label {
     -fx-padding: 3 0 3 10;
 }
+
+.panel_tab_bar {
+    -fx-background-color: derive(#1d1d1d, 25%);
+    -fx-alignment: bottom-center;
+    -fx-border-color: derive(#1d1d1d, 20%);
+}
+
+.panel_tab_label {
+    -fx-font-family: "Avenir";
+    -fx-font-size: 20px;
+    -fx-padding: 5 0 5 0;
+    -fx-text-fill: #fff !important;
+}
