@@ -19,7 +19,6 @@ import seedu.partyplanet.logic.commands.EditCommand;
 import seedu.partyplanet.logic.commands.EditFieldCommand;
 import seedu.partyplanet.logic.commands.EditFieldCommand.EditPersonDescriptor;
 import seedu.partyplanet.logic.commands.ExitCommand;
-import seedu.partyplanet.logic.commands.FindCommand;
 import seedu.partyplanet.logic.commands.HelpCommand;
 import seedu.partyplanet.logic.commands.ListCommand;
 import seedu.partyplanet.logic.parser.exceptions.ParseException;
@@ -60,14 +59,6 @@ public class AddressBookParserTest {
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
-    }
-
-    @Test
-    public void parseCommand_find() throws Exception {
-        String keywords = "foo";
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + PREFIX_NAME + " " + keywords);
-        assertEquals(new FindCommand(List.of(new NameContainsKeywordsPredicate(keywords))), command);
     }
 
     @Test

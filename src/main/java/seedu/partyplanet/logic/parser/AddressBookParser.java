@@ -16,7 +16,6 @@ import seedu.partyplanet.logic.commands.EEditCommand;
 import seedu.partyplanet.logic.commands.EListCommand;
 import seedu.partyplanet.logic.commands.EditCommand;
 import seedu.partyplanet.logic.commands.ExitCommand;
-import seedu.partyplanet.logic.commands.FindCommand;
 import seedu.partyplanet.logic.commands.HelpCommand;
 import seedu.partyplanet.logic.commands.ListCommand;
 import seedu.partyplanet.logic.commands.RedoCommand;
@@ -61,9 +60,6 @@ public class AddressBookParser {
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
-
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommandParser().parse(arguments);
