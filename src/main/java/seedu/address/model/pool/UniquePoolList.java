@@ -112,6 +112,10 @@ public class UniquePoolList implements Iterable<Pool> {
         internalList.setAll(newList);
     }
 
+    public boolean containsPassenger(Passenger key) {
+        return internalList.stream().anyMatch(x -> x.hasPassenger(key));
+    }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */

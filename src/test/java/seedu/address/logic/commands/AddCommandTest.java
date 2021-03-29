@@ -142,7 +142,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void deletePassenger(Passenger passenger) {
+        public boolean deletePassenger(Passenger passenger) {
             throw new AssertionError("This method should not be called.");
         }
 
