@@ -54,13 +54,13 @@ public class CustomerCard extends UiPart<Region> {
         super(FXML);
         this.customer = customer;
         id.setText(displayedIndex + ". ");
-        name.setText(customer.getName().fullName);
-        phone.setText(customer.getPhone().value);
-        address.setText(customer.getAddress().value);
-        email.setText(customer.getEmail().value);
-        date.setText(customer.getDate().toString());
-        remark.setText(customer.getRemark().value);
-        done.setText(customer.getDone().value);
+        name.setText("Name: " + customer.getName().fullName);
+        phone.setText("Phone: " + customer.getPhone().value);
+        address.setText("Address: " + customer.getAddress().value);
+        email.setText("Email: " + customer.getEmail().value);
+        date.setText("Date: " + customer.getDate().toString());
+        remark.setText("Remark: " + customer.getRemark().value);
+        done.setText("Completed: " + customer.getDone().value);
         customer.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
