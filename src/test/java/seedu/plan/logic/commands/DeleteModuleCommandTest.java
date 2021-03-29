@@ -4,10 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.plan.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.plan.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.plan.testutil.TypicalModules.COMPUTER_ORGANIZATION_MODULE;
-import static seedu.plan.testutil.TypicalPlans.getTypicalModulePlanner;
 import static seedu.plan.testutil.TypicalIndexes.INDEX_FIRST_PLAN;
+import static seedu.plan.testutil.TypicalModules.COMPUTER_ORGANIZATION_MODULE;
 import static seedu.plan.testutil.TypicalModules.SOFTWARE_ENGINEERING_MODULE;
+
+import static seedu.plan.testutil.TypicalPlans.getTypicalModulePlanner;
 
 import org.junit.jupiter.api.Test;
 

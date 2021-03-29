@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.plan.testutil.Assert.assertThrows;
-import static seedu.plan.testutil.TypicalModules.SOFTWARE_ENGINEERING_MODULE;
 import static seedu.plan.testutil.TypicalModules.COMPUTER_ORGANIZATION_MODULE;
+import static seedu.plan.testutil.TypicalModules.SOFTWARE_ENGINEERING_MODULE;
 
 import org.junit.jupiter.api.Test;
 

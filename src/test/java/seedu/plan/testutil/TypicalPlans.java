@@ -7,8 +7,6 @@ import java.util.List;
 import seedu.plan.model.ModulePlanner;
 import seedu.plan.model.plan.Plan;
 import seedu.plan.model.plan.Semester;
-import seedu.plan.model.ModulePlanner;
-import seedu.plan.model.plan.Plan;
 
 /**
  * A utility class containing a list of {@code Plan} objects to be used in tests.
@@ -40,7 +38,7 @@ public class TypicalPlans {
         return new ArrayList<>(Arrays.asList(SOFTWARE_ENGINEERING, COMPUTER_NETWORKING));
     }
 
-    public static ModulePlanner getTypicalAddressBookWithPlanSemester(){
+    public static ModulePlanner getTypicalAddressBookWithPlanSemester() {
         ModulePlanner ab = new ModulePlanner();
         Semester semester = new Semester(1);
         for (Plan plan : getTypicalPlans()) {
