@@ -1,9 +1,10 @@
 package seedu.address.model;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonStreak;
 
@@ -13,10 +14,12 @@ import seedu.address.model.person.PersonStreak;
  */
 public class PersonStreakList {
 
-    private final List<PersonStreak> lst;
+    private final ObservableList<PersonStreak> lst;
+    private final ObservableList<PersonStreak> unmodifiableLst;
 
     public PersonStreakList() {
-        lst = new ArrayList<>();
+        lst = FXCollections.observableArrayList();
+        unmodifiableLst = FXCollections.unmodifiableObservableList(lst);
     }
 
     public void setPersons(List<Person> persons) {
@@ -53,5 +56,9 @@ public class PersonStreakList {
     public void remove(Person key) {
         PersonStreak toRemove = PersonStreak.fromPerson(key);
         lst.remove(toRemove);
+    }
+
+    public ObservableList<PersonStreak> asUnmodifiableList() {
+        return unmodifiableLst;
     }
 }

@@ -201,7 +201,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         return FXCollections.observableArrayList(personEvents);
     }
 
-//    @Override
+    @Override
     public ObservableList<PersonStreak> getPersonStreaks() {
         return personStreaks.asUnmodifiableList();
     }

@@ -16,7 +16,8 @@ public class PersonStreak implements Comparable<PersonStreak> {
     }
 
     @Override
-    public int compareTo(PersonStreak o) {
+    public int compareTo(PersonStreak other) {
+//        this.streak.compareTo(other)
     }
 
     @Override
