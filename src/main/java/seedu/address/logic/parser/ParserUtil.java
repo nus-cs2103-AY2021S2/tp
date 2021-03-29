@@ -127,7 +127,7 @@ public class ParserUtil {
      * Parses carInfo, carBrand, carType, carCoeExpiry.
      *
      * @param info
-     * @return
+     * @return Map Object
      * @throws ParseException
      */
     private static Map.Entry<Car, CoeExpiry> parseCarInfo(String info) throws ParseException {
