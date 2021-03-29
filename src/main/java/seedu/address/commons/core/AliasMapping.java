@@ -36,10 +36,19 @@ import seedu.address.logic.commands.room.ListRoomCommand;
 public class AliasMapping implements Serializable {
     private Map<String, Alias> mapping;
 
+    /**
+     * Creates an empty AliasMapping.
+     */
     public AliasMapping() {
         this.mapping = new HashMap<>();
     }
 
+    /**
+     * Creates an AliasMapping with a specified mapping.
+     * The mapping must not be null.
+     *
+     * @param aliasMapping the specified mapping.
+     */
     private AliasMapping(AliasMapping aliasMapping) {
         requireNonNull(aliasMapping);
         this.mapping = new HashMap<>(aliasMapping.mapping);
@@ -47,6 +56,9 @@ public class AliasMapping implements Serializable {
 
     /**
      * Returns an Alias object from alias name.
+     *
+     * @param aliasName name of the alias.
+     * @return the alias with the specified name.
      */
     public Alias getAlias(String aliasName) {
         return mapping.get(aliasName);
@@ -54,6 +66,8 @@ public class AliasMapping implements Serializable {
 
     /**
      * Adds a new Alias object to the current mapping.
+     *
+     * @param alias the alias object to be added.
      */
     public void addAlias(Alias alias) {
         mapping.put(alias.getAliasName(), alias);
@@ -61,6 +75,7 @@ public class AliasMapping implements Serializable {
 
     /**
      * Deletes an user-defined alias from the current mapping.
+     *
      * @param aliasName The name of the alias to be deleted.
      */
     public void deleteAlias(String aliasName) {
@@ -69,13 +84,19 @@ public class AliasMapping implements Serializable {
 
     /**
      * Checks if the current mapping contains an Alias based on alias name.
+     *
+     * @param aliasName name of the alias.
+     * @return whether the mapping contains the alias.
      */
     public boolean containsAlias(String aliasName) {
         return mapping.containsKey(aliasName);
     }
 
     /**
-     * Check if alias name is a reserved keyword.
+     * Checks if alias name is a reserved keyword.
+     *
+     * @param aliasName name of the alias.
+     * @return whether the alias name is reserved.
      */
     public boolean isReservedKeyword(String aliasName) {
         switch (aliasName) {
@@ -116,7 +137,10 @@ public class AliasMapping implements Serializable {
     }
 
     /**
-     * Check if the command used is an existing alias.
+     * Checks if the command used is an existing alias.
+     *
+     * @param commandWord the command word.
+     * @return whether the command word is recursive.
      */
     public boolean isRecursiveKeyword(String commandWord) {
         return mapping.containsKey(commandWord);

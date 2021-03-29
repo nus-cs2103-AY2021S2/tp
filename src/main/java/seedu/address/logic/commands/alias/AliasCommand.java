@@ -28,6 +28,7 @@ public class AliasCommand extends Command {
 
     /**
      * Creates an AliasCommand object.
+     * All field must not be null.
      */
     public AliasCommand(Alias alias) {
         requireAllNonNull(alias);
@@ -35,10 +36,11 @@ public class AliasCommand extends Command {
     }
 
     /**
-     * Excecutes an AliasCommand to create a new Alias
+     * Executes an AliasCommand to create a new Alias.
+     *
      * @param model {@code Model} which the command should operate on.
-     * @return result of command execution
-     * @throws CommandException if input is invalid
+     * @return result of command execution.
+     * @throws CommandException if input is invalid.
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
