@@ -1,9 +1,7 @@
 package seedu.address.model.person;
 
-import java.util.function.Predicate;
 
-
-public class PersonTypePredicate implements Predicate<Person> {
+public class PersonTypePredicate extends PersonPredicate {
     private final PersonType personType;
 
     public PersonTypePredicate(PersonType personType) {
@@ -20,5 +18,8 @@ public class PersonTypePredicate implements Predicate<Person> {
         return other == this // short circuit if same object
                 || (other instanceof PersonTypePredicate // instanceof handles nulls
                 && personType.equals(((PersonTypePredicate) other).personType)); // state check
+    }
+    public PersonType getPersonType() {
+        return this.personType;
     }
 }

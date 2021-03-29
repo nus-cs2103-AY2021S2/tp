@@ -115,7 +115,7 @@ A session can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add_session d/Saturday t/1300 to 1500 s/A Math`
+* `add_session d/Saturday ts/13:00 to 15:00 s/A Math`
 
 ### Listing all persons : `list`
 
