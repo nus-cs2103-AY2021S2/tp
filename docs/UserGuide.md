@@ -12,7 +12,7 @@ title: User Guide
 * [Introduction](#introduction)
 * [About](#about)
 * [Quick start](#quick-start)
-* [Features](#features)
+* [Commands](#commands)
   * [Open help panel: `help`](#viewing-help--help)
   * [Listing all students: `list_student`](#listing-all-students-list_student)
   * [Locating student profile by name: `find_student`](#locating-student-profile-by-name-find_student)
@@ -51,13 +51,13 @@ This guide uses the following features to make it easier for you to navigate aro
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: Boxes with the :information_source: icon contain additional useful information.
+Boxes with the :information_source: icon contain additional useful information.
 
 </div>
 
 <div markdown="block" class="alert alert-primary">
 
-:bulb: Boxes with the :bulb: icon contain additional tips and tricks to help you get the most out of TutorBuddy.
+Boxes with the :bulb: icon contain additional tips and tricks to help you get the most out of TutorBuddy.
 
 </div>
 
@@ -89,8 +89,9 @@ There are three main areas in TutorBuddy:
 
 1. the main viewing area,
 
-1. the command box and result display box.
+1. the result display box and command box
 
+<a name="application-overview"></a>
 ![ApplicationOverview](images/ApplicationOverview.png)
 
 1. The utility area consists of 2 tabs: **File**, and **Help**.
@@ -127,11 +128,20 @@ There are three main areas in TutorBuddy:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Commands
+
+Commands are the main way you interact with TutorBuddy.
+
+This section provides information about all commands that is available in TutorBuddy.
+
+### Command Format
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
+
+This section details the format of the commands available in Tutor's Pet. We will adhere to the following:
+
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add_student n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -145,12 +155,26 @@ There are three main areas in TutorBuddy:
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `emails`, `help`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `emails`, `help`, `exit`, `clear` and `list_student`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* Indexes **must be positive whole numbers** 1, 2, 3, …
+
+* The `STUDENT_INDEX` refers to the index number shown in the [displayed student list](#application-overview).
+
+* The `SESSION_INDEX` refers to the index number shown in the [displayed session list](#application-overview).
+
+* Time must be input in the format, `hh:mm`.
+  e.g. `13:00` is allowed, but not `1300`.
+  
+* Date must be input in the format, `yyyy-mm-dd`.
+  e.g. `2021-01-01` is allowed, but not `01-01-2021`.
+  
 </div>
 
-### Viewing help : `help`
+### General
+
+#### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -158,9 +182,9 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Listing all students: `list_student`
+#### Listing all students: `list_student`
 
-Shows a list of all students in the TutorBuddy
+Displays list of all students in TutorBuddy.
 
 Format: `list_student` <br>
 
