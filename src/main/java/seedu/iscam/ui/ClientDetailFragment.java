@@ -73,7 +73,8 @@ public class ClientDetailFragment extends UiPart<Region> {
         client.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        clientMeetingListView.setItems(meetingList.filtered(meeting -> meeting.getClientName().equals(client.getName())));
+        clientMeetingListView.setItems(
+                meetingList.filtered(meeting -> meeting.getClientName().equals(client.getName())));
         clientMeetingListView.setCellFactory(listview -> new MeetingListPanel.MeetingListViewCell());
 
         insurancePlanBox.setVisible(true);
