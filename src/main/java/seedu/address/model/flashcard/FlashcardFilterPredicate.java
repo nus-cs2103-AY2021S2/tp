@@ -21,10 +21,10 @@ public class FlashcardFilterPredicate implements Predicate<Flashcard> {
      * Constructs a FlashcardFilterPredicate object with the given keyword list for questions, categories
      * priorities, and tags.
      *
-     * @param questions keyword list for questions.
-     * @param categories keyword list for categories.
-     * @param priorities keyword list for priorities.
-     * @param tags keyword list for tags.
+     * @param questions keyword list for questions, cannot be null.
+     * @param categories keyword list for categories, cannot be null.
+     * @param priorities keyword list for priorities, cannot be null.
+     * @param tags keyword list for tags, cannot be null.
      */
     public FlashcardFilterPredicate(List<String> questions, List<String> categories,
             List<String> priorities, List<String> tags) {
@@ -40,11 +40,6 @@ public class FlashcardFilterPredicate implements Predicate<Flashcard> {
 
     @Override
     public boolean test(Flashcard flashcard) {
-        assert (questions != null);
-        assert (categories != null);
-        assert (priorities != null);
-        assert (tags != null);
-
         return testQuestions(flashcard) && testCategories(flashcard)
                 && testPriorities(flashcard) && testTags(flashcard);
     }
