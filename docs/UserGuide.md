@@ -3,14 +3,9 @@ layout: page
 title: User Guide
 ---
 
-<div>
+<div align="center">
+  <img alt="logo" src="images/tutorbuddy_logo.png">
 </div>
-
-# TutorBuddy - User Guide
-TutorBuddy is a desktop application made for freelance tutors to efficiently manage their students' contacts,
-provide a quick overview of scheduled tuition sessions at a glance, and handle monthly tuition fees calculation.
-TutorBuddy is also optimized for fast typing users to handle their day-to-day administrative responsibilities
-effectively.
 
 **Table of Contents**
 * [Introduction](#introduction)
@@ -383,7 +378,7 @@ Action | Format
 **Help** | `help`
 **List all students and sessions** | `list_student`
 **Clear all students and sessions** | `clear`
-**Exit TutorBuddy** | `Exit`
+**Exit TutorBuddy** | `exit`
 
 
 **Students**
@@ -392,7 +387,7 @@ Action | Format | Examples(if applicable)
 --------|------------------|-------
 **Add** | `add_student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS l/STUDY_LEVEL g/GUARDIAN_PHONE_NUMBER r/RELATIONSHIP_WITH_GUARDIAN` | `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, Block 123, #01-01 l/Sec2 g/95421323 r/Mother`
 **Find** | `find_student KEYWORD [MORE_KEYWORDS]` | `find_student John Alex`
-**Delete** | `delete_student INDEX` | `delete_student 3`
+**Delete** | `delete_student STUDENT_INDEX` | `delete_student 3`
 **Edit** | `edit_student STUDENT_INDEX [n/NAME] [p/STUDENT_PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [l/STUDY_LEVEL] [g/GUARDIAN_PHONE_NUMBER] [r/RELATIONSHIP_WITH_GUARDIAN]` | `edit_student 1 p/98825432 e/alexy@example.com a/Alex street, Block 123, #01-01`
 **List students' emails based on current list** | `emails`
 
