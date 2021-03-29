@@ -693,8 +693,12 @@ in step 1 and 2 of MSS
 2. Should be able to respond to user commands within 3 seconds for up to 1000 cards.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
    able to accomplish most of the tasks faster using commands than using the mouse.
+4. A user should be able to use this application even without internet access.
+5. A user should not be required to install this application in order to use it.
+6. A user should be able to manually transfer data files to another user, and the recipient would be able to use
+   existing data created by the sender.
+7. A user that is not used to the command line interface should still be able to use this application.  
 
-*{More to be added}*
 
 ### Glossary
 
