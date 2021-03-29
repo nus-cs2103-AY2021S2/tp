@@ -26,7 +26,6 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListContactsCommand;
 import seedu.address.logic.commands.MarkDeadlineCommand;
-import seedu.address.logic.commands.MarkEventCommand;
 import seedu.address.logic.commands.MarkTodoCommand;
 import seedu.address.logic.commands.ShowOverviewTabCommand;
 import seedu.address.logic.commands.ShowTodayCommand;
@@ -115,9 +114,6 @@ public class AddressBookParser {
 
         case MarkDeadlineCommand.COMMAND_WORD:
             return new MarkDeadlineCommandParser().parse(arguments);
-
-        case MarkEventCommand.COMMAND_WORD:
-            return new MarkEventCommandParser().parse(arguments);
 
         case MarkTodoCommand.COMMAND_WORD:
             return new MarkTodoCommandParser().parse(arguments);
