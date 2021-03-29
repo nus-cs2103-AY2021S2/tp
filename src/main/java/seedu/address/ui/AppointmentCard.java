@@ -1,5 +1,8 @@
 package seedu.address.ui;
 
+import static seedu.address.ui.UiUtil.generateTagLabel;
+import static seedu.address.ui.UiUtil.streamTags;
+
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -8,6 +11,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.appointment.Appointment;
+
 
 /**
  * An UI component that displays information of a {@code Appointment}.
@@ -38,6 +42,8 @@ public class AppointmentCard extends UiPart<Region> {
     private Label dateTime;
     @FXML
     private FlowPane contacts;
+    @FXML
+    private FlowPane tags;
 
     /**
      * Creates a {@code AppointmentCard} with the given {@code Appointment} and index to display.
@@ -52,6 +58,7 @@ public class AppointmentCard extends UiPart<Region> {
         appointment.getContacts().stream()
                 .sorted(Comparator.comparing(contact -> contact.getName().toString()))
                 .forEach(contact -> contacts.getChildren().add(new Label(contact.getName().toString())));
+        streamTags(appointment.getTags()).forEach(tag -> tags.getChildren().add(generateTagLabel(tag)));
     }
 
 

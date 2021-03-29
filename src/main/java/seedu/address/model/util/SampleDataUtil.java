@@ -18,6 +18,7 @@ import seedu.address.model.person.Favourite;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.TimeAdded;
+import seedu.address.model.tag.ChildTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -62,6 +63,15 @@ public class SampleDataUtil {
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
                 .map(Tag::new)
+                .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a ChildTag set containing the list of strings given.
+     */
+    public static Set<Tag> getChildTagSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(ChildTag::new)
                 .collect(Collectors.toSet());
     }
 
