@@ -39,7 +39,7 @@ public class UpdateGroupmateCommand extends Command {
             + "Example:\n" + COMMAND_WORD + " 1 "
             + PREFIX_UPDATE_INDEX + "1 "
             + PREFIX_NAME + "Alice "
-            + PREFIX_ROLE + "UI designer";
+            + PREFIX_ROLE + "UI-designer";
 
     public static final String MESSAGE_UPDATE_GROUPMATE_SUCCESS = "Edited groupmate: %1$s";
     public static final String MESSAGE_DUPLICATE_GROUPMATE = "This groupmate already exists in this project.";
