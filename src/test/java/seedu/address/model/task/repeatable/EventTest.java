@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,36 +18,33 @@ import seedu.address.testutil.EventBuilder;
 public class EventTest {
 
     private static final Event TUTORIAL = new EventBuilder().withDescription("CS2106 Tutorial")
-            .withAtDate(LocalDate.of(2020, 01, 01)).withInterval(Interval.WEEKLY).build();
+            .withDate(LocalDate.of(2020, 01, 01)).withTime(LocalTime.of(13, 00)).withIsWeekly(true).build();
     private static final Event LAB = new EventBuilder().withDescription("CS2030S Lab")
-            .withAtDate(LocalDate.of(2021, 01, 03)).withInterval(Interval.DAILY).build();
+            .withDate(LocalDate.of(2021, 01, 03)).withTime(LocalTime.of(15, 00)).withIsWeekly(false).build();
 
     @Test
     public void constructor_null_throwsNullPointerException() {
         LocalDate validDate = LocalDate.of(2020, 1, 1);
-        Interval interval = Interval.DAILY;
-        assertThrows(NullPointerException.class, () -> new Event(null, interval, validDate));
-        assertThrows(NullPointerException.class, () -> new Event("test", null, validDate));
-        assertThrows(NullPointerException.class, () -> new Event("test", interval, null));
-        assertThrows(NullPointerException.class, () -> new Event(null, interval, validDate, false));
-        assertThrows(NullPointerException.class, () -> new Event("test", null,
-                validDate, false));
-        assertThrows(NullPointerException.class, () -> new Event("test", interval, validDate, null));
-        assertThrows(NullPointerException.class, () -> new Event("test", interval, null, false));
+        LocalTime validTime = LocalTime.of(17, 30);
+        Boolean validIsWeekly = false;
+
+        assertThrows(NullPointerException.class, () -> new Event(null, validDate, validTime, validIsWeekly));
+        assertThrows(NullPointerException.class, () -> new Event("test", null, validTime, validIsWeekly));
+        assertThrows(NullPointerException.class, () -> new Event("test", validDate, null, validIsWeekly));
+        assertThrows(NullPointerException.class, () -> new Event("test", validDate, validTime, null));
     }
 
     @Test
     public void constructor_invalidDescription_throwsIllegalArgumentException() {
         LocalDate validDate = LocalDate.of(2020, 1, 1);
-        Interval validInterval = Interval.DAILY;
+        LocalTime validTime = LocalTime.of(17, 30);
+        Boolean validIsWeekly = false;
+
         String invalidDescription = "";
-        assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription, validInterval, validDate));
-        assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription, validInterval,
-                validDate, false));
+        assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription, validDate, validTime, validIsWeekly));
+
         String invalidDescription2 = " ";
-        assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription2, validInterval, validDate));
-        assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription2, validInterval,
-                validDate, false));
+        assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription2, validDate, validTime, validIsWeekly));
     }
 
     @Test
@@ -65,19 +63,9 @@ public class EventTest {
     }
 
     @Test
-    public void getRecurrence_success() {
-        assertEquals(Interval.WEEKLY, TUTORIAL.getRecurrence());
-        assertEquals(Interval.DAILY, LAB.getRecurrence());
-    }
-
-    @Test
-    public void setRecurrence_success() {
-        TUTORIAL.setRecurrence(Interval.NONE);
-        assertEquals(Interval.NONE, TUTORIAL.getRecurrence());
-        TUTORIAL.setRecurrence(Interval.DAILY);
-        assertEquals(Interval.DAILY, TUTORIAL.getRecurrence());
-        TUTORIAL.setRecurrence(Interval.FORTNIGHTLY);
-        assertEquals(Interval.FORTNIGHTLY, TUTORIAL.getRecurrence());
+    public void getIsWeekly_success() {
+        assertEquals(true, TUTORIAL.getIsWeekly());
+        assertEquals(false, LAB.getIsWeekly());
     }
 
     @Test
@@ -102,15 +90,17 @@ public class EventTest {
         Event editedTutorial = new EventBuilder(TUTORIAL).withDescription("NOT TUTORIAL").build();
         assertNotEquals(editedTutorial, TUTORIAL);
 
-        // different interval -> returns false
-        editedTutorial = new EventBuilder(TUTORIAL).withInterval(Interval.NONE).build();
+        // different date -> returns false
+        editedTutorial = new EventBuilder(TUTORIAL).withDate(LocalDate.of(2019, 01, 01)).build();
         assertNotEquals(editedTutorial, TUTORIAL);
 
-        // different by date -> returns false
-        editedTutorial = new EventBuilder(TUTORIAL)
-                .withAtDate(LocalDate.of(2019, 01, 01)).build();
+        // different time -> returns false
+        editedTutorial = new EventBuilder(TUTORIAL).withTime(LocalTime.of(19, 00)).build();
         assertNotEquals(editedTutorial, TUTORIAL);
 
+        // different isWeekly -> returns false
+        editedTutorial = new EventBuilder(TUTORIAL).withIsWeekly(false).build();
+        assertNotEquals(editedTutorial, TUTORIAL);
     }
 
     @Test
