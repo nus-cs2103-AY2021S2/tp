@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.awt.image.BufferedImage;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -7,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.garment.Colour;
 import seedu.address.model.garment.Garment;
 
 /**
@@ -51,6 +53,8 @@ public class GarmentCard extends UiPart<Region> {
     public GarmentCard(Garment garment, int displayedIndex) {
         super(FXML);
         this.garment = garment;
+        BufferedImage sample = Colour.SAMPLES.get(garment.getColour());
+
         id.setText(displayedIndex + ". ");
         name.setText(garment.getName().fullName);
         size.setText("Size: " + garment.getSize().value);

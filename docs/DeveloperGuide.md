@@ -9,7 +9,42 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Edit
 
-### List
+### [Proposed] List feature
+
+#### Proposed Implementation
+
+The proposed `list` mechanism extends the `list` mechanism of `Addressbook`, which lists out the garments based on 
+the order in which they have been input into the system. The extended `list` mechanism sorts the list of garments
+based on the date and time that they were last used, and outputs the entries in that order.
+
+This is achieved through the creation of the `LastUse` attribute that is tied to the `Garment` object, that gives the 
+it a date and time as to when it was last used.
+
+`ListCommand` is updated to allow the garments to be sorted by the `LastUse` attribute.
+
+The following sequence diagram shows how the list operation works:
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+#### Design Consideration:
+
+##### Aspect: Listing the garments
+* **Alternative 1 (Preferred implementation)**: <br>
+  Lists out the garments based on chronological ordering of the `LastUse` attribute.
+  * Pros: Garments that have not been used for a longer period of time come up earlier in the list, which would 
+    encourage and remind users to wear all their clothes.
+  * Cons: Garments may not have been used for a reason, which may result in user taking a longer time to sieve 
+    through the list.
+* **Alternative 2**: <br>
+  Lists out the garments based on reverse chronological ordering of the `LastUse` attribute.
+  * Pros: Garments that have been used often could be better suited for the users' needs, and making them come 
+    earlier in the list results in the users sieving through the list quicker.
+  * Cons: Users may forget about the garments that they have not worn in some time.
+* **Alternative 3**: <br>
+    Lists out the garments based on chronological or reverse chronological ordering of the `LastUse` attribute.
+  * Pros: Allows users to choose which ordering they want, and they can get the respective benefits as above.
+  * Cons: Requires more time to implement.
+
 
 ### [Proposed] Find feature
 
