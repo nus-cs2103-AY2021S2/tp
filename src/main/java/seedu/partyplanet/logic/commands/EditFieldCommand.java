@@ -59,7 +59,7 @@ public class EditFieldCommand extends EditCommand {
         }
 
         model.setPerson(personToEdit, editedPerson);
-        model.addState();
+        model.addState(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }

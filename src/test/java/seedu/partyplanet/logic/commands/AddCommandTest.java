@@ -17,9 +17,11 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.partyplanet.commons.core.GuiSettings;
+import seedu.partyplanet.commons.util.State;
 import seedu.partyplanet.commons.util.StateHistory;
 import seedu.partyplanet.logic.commands.exceptions.CommandException;
 import seedu.partyplanet.model.AddressBook;
+import seedu.partyplanet.model.EventBook;
 import seedu.partyplanet.model.Model;
 import seedu.partyplanet.model.ReadOnlyAddressBook;
 import seedu.partyplanet.model.ReadOnlyEventBook;
@@ -149,7 +151,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addState() {
+        public void addState(String command) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -258,7 +260,9 @@ public class AddCommandTest {
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
-        final StateHistory stateHistory = new StateHistory(getAddressBook());
+
+        private State savedState = new State("Loading from saved data", getAddressBook(), getEventBook());
+        final StateHistory stateHistory = new StateHistory(savedState);
 
         @Override
         public boolean hasPerson(Person person) {
@@ -273,13 +277,18 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addState() {
-            stateHistory.addState(getAddressBook());
+        public void addState(String command) {
+            stateHistory.addState(new State(command, getAddressBook(), getEventBook()));
         }
 
         @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
+        }
+
+        @Override
+        public ReadOnlyEventBook getEventBook() {
+            return new EventBook();
         }
     }
 

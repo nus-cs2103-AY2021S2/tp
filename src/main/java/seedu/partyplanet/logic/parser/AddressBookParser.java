@@ -20,6 +20,7 @@ import seedu.partyplanet.logic.commands.ExitCommand;
 import seedu.partyplanet.logic.commands.FindCommand;
 import seedu.partyplanet.logic.commands.HelpCommand;
 import seedu.partyplanet.logic.commands.ListCommand;
+import seedu.partyplanet.logic.commands.RedoCommand;
 import seedu.partyplanet.logic.commands.TagsCommand;
 import seedu.partyplanet.logic.commands.ToggleThemeCommand;
 import seedu.partyplanet.logic.commands.UndoCommand;
@@ -52,6 +53,8 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
+        // AddressBook Commands
+
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
@@ -70,17 +73,11 @@ public class AddressBookParser {
         case ListCommand.COMMAND_WORD:
             return new ListCommandParser().parse(arguments);
 
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommandParser().parse(arguments);
 
         case TagsCommand.COMMAND_WORD:
             return new TagsCommandParser().parse(arguments);
 
-        case UndoCommand.COMMAND_WORD:
-            return new UndoCommand();
+        // EventBook Commands
 
         case EAddCommand.COMMAND_WORD:
             return new EAddCommandParser().parse(arguments);
@@ -96,6 +93,20 @@ public class AddressBookParser {
 
         case EListCommand.COMMAND_WORD:
             return new EListCommandParser().parse(arguments);
+
+        // General Commands
+
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
+
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommandParser().parse(arguments);
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
+
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
 
         case ToggleThemeCommand.COMMAND_WORD:
             return new ToggleThemeCommand();
