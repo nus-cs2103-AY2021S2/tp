@@ -39,12 +39,12 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' hey matez file path.
+     * Returns the user prefs' Hey Matez file path.
      */
     Path getHeyMatezFilePath();
 
     /**
-     * Sets the user prefs' hey matez file path.
+     * Sets the user prefs' Hey Matez file path.
      */
     void setHeyMatezFilePath(Path heyMatezFilePath);
 

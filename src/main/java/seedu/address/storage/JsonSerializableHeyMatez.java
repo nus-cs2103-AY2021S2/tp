@@ -48,7 +48,7 @@ class JsonSerializableHeyMatez {
     }
 
     /**
-     * Converts hey matez into the model's {@code HeyMatez} object.
+     * Converts HeyMatez into the model's {@code HeyMatez} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
