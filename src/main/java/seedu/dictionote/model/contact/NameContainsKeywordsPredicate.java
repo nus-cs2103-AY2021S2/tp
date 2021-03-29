@@ -21,7 +21,6 @@ public class NameContainsKeywordsPredicate implements Predicate<Contact> {
         if (keywords.isEmpty()) {
             return true;
         }
-
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsIgnoreCase(contact.getName().fullName, keyword));
     }
