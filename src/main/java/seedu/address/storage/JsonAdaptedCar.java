@@ -28,7 +28,7 @@ public class JsonAdaptedCar {
         this.carType = source.carType;
     }
 
-    
+
     public String getCarBrand() {
         return carBrand;
     }
