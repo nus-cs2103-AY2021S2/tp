@@ -9,7 +9,7 @@ import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 
 import java.util.stream.Stream;
 
-import seedu.booking.logic.commands.CreateBookingCommand;
+import seedu.booking.logic.commands.AddBookingCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.Description;
@@ -21,14 +21,14 @@ import seedu.booking.model.venue.VenueName;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class CreateBookingCommandParser implements Parser<CreateBookingCommand> {
+public class CreateBookingCommandParser implements Parser<AddBookingCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddBookingCommand
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public CreateBookingCommand parse(String args) throws ParseException {
+    public AddBookingCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_BOOKER, PREFIX_VENUE,
                         PREFIX_DESCRIPTION, PREFIX_BOOKING_START, PREFIX_BOOKING_END);
@@ -37,7 +37,7 @@ public class CreateBookingCommandParser implements Parser<CreateBookingCommand> 
                 PREFIX_DESCRIPTION, PREFIX_BOOKING_START, PREFIX_BOOKING_END)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    CreateBookingCommand.MESSAGE_USAGE));
+                    AddBookingCommand.MESSAGE_USAGE));
         }
 
         Email bookerEmail = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_BOOKER).get());
@@ -49,7 +49,7 @@ public class CreateBookingCommandParser implements Parser<CreateBookingCommand> 
         Booking booking = new Booking(bookerEmail, venueName, description,
                 bookingStart, bookingEnd);
 
-        return new CreateBookingCommand(booking);
+        return new AddBookingCommand(booking);
     }
 
     /**

@@ -3,16 +3,21 @@ package seedu.booking.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_CAPACITY;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.booking.model.Model.PREDICATE_SHOW_ALL_VENUES;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.booking.commons.core.Messages;
 import seedu.booking.commons.util.CollectionUtil;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.model.Model;
+import seedu.booking.model.Tag;
 import seedu.booking.model.venue.Capacity;
 import seedu.booking.model.venue.Venue;
 import seedu.booking.model.venue.VenueName;
@@ -31,9 +36,12 @@ public class EditVenueCommand extends Command {
             + "[" + PREFIX_VENUE + "VENUE NAME] "
             + "[" + PREFIX_CAPACITY + "CAPACITY] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_TAG + "TAG] \n"
             + "Example: " + COMMAND_WORD + " vo/Victoria Hall "
             + PREFIX_VENUE + "Victorias Hall "
-            + PREFIX_DESCRIPTION + "Cool concert place";
+            + PREFIX_CAPACITY + "10"
+            + PREFIX_DESCRIPTION + "Cool concert place"
+            + PREFIX_TAG + "Central";
 
     public static final String MESSAGE_EDIT_VENUE_SUCCESS = "Edited Venue: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -59,7 +67,7 @@ public class EditVenueCommand extends Command {
         requireNonNull(model);
         List<Venue> lastShownList = model.getFilteredVenueList();
 
-        if (lastShownList.stream().noneMatch(venue -> venue.getVenueName().equals(venueName))) {
+        if (!lastShownList.stream().anyMatch(venueName::isSameVenueName)) {
             throw new CommandException(Messages.MESSAGE_INVALID_VENUE_NAME);
         }
 
@@ -76,8 +84,7 @@ public class EditVenueCommand extends Command {
     }
 
     private static Venue getVenueByVenueName(VenueName venueName, List<Venue> venueList) {
-        return venueList.stream()
-                .filter(venue -> venue.getVenueName().equals(venueName)).findFirst().orElse(null);
+        return venueList.stream().filter(venueName::isSameVenueName).findFirst().orElse(null);
     }
 
     /**
@@ -90,8 +97,9 @@ public class EditVenueCommand extends Command {
         VenueName updatedVenueName = editVenueDescriptor.getVenueName().orElse(venueToEdit.getVenueName());
         Capacity updatedCapacity = editVenueDescriptor.getCapacity().orElse(venueToEdit.getCapacity());
         String updatedDescription = editVenueDescriptor.getDescription().orElse(venueToEdit.getDescription());
+        Set<Tag> tags = editVenueDescriptor.getTags().orElse(venueToEdit.getTags());
 
-        return new Venue(updatedVenueName, updatedCapacity, updatedDescription);
+        return new Venue(updatedVenueName, updatedCapacity, updatedDescription, tags);
     }
 
     @Override
@@ -120,6 +128,7 @@ public class EditVenueCommand extends Command {
         private VenueName name;
         private Capacity capacity;
         private String description;
+        private Set<Tag> tags;
 
         public EditVenueDescriptor() {}
 
@@ -131,13 +140,14 @@ public class EditVenueCommand extends Command {
             setVenueName(toCopy.name);
             setCapacity(toCopy.capacity);
             setDescription(toCopy.description);
+            setTags(toCopy.tags);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, capacity);
+            return CollectionUtil.isAnyNonNull(name, capacity, description, tags);
         }
 
         public void setVenueName(VenueName name) {
@@ -164,6 +174,24 @@ public class EditVenueCommand extends Command {
             return Optional.ofNullable(description);
         }
 
+        /**
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public Optional<Set<Tag>> getTags() {
+            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -181,7 +209,8 @@ public class EditVenueCommand extends Command {
 
             return getVenueName().equals(e.getVenueName())
                     && getCapacity().equals(e.getCapacity())
-                    && getDescription().equals(e.getDescription());
+                    && getDescription().equals(e.getDescription())
+                    && getTags().equals(e.getTags());
         }
     }
 }

@@ -1,6 +1,10 @@
 package seedu.booking.testutil;
 
+import java.util.HashSet;
+import java.util.Set;
 
+import seedu.booking.model.Tag;
+import seedu.booking.model.util.SampleDataUtil;
 import seedu.booking.model.venue.Capacity;
 import seedu.booking.model.venue.Venue;
 import seedu.booking.model.venue.VenueName;
@@ -16,6 +20,7 @@ public class VenueBuilder {
     private VenueName name;
     private Capacity capacity;
     private String description;
+    private Set<Tag> tags;
 
     /**
      * Creates a {@code VenueBuilder} with the default details.
@@ -24,6 +29,7 @@ public class VenueBuilder {
         name = new VenueName(DEFAULT_NAME);
         capacity = new Capacity(DEFAULT_CAPACITY);
         description = DEFAULT_DESCRIPTION;
+        tags = new HashSet<>();
     }
 
     /**
@@ -33,6 +39,7 @@ public class VenueBuilder {
         name = venueToCopy.getVenueName();
         capacity = venueToCopy.getCapacity();
         description = venueToCopy.getDescription();
+        tags = new HashSet<>(venueToCopy.getTags());
     }
 
     /**
@@ -59,8 +66,16 @@ public class VenueBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Venue} that we are building.
+     */
+    public VenueBuilder withTags(String ... tags) {
+        this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
     public Venue build() {
-        return new Venue(name, capacity, description);
+        return new Venue(name, capacity, description, tags);
     }
 
 }
