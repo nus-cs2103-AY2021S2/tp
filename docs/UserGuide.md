@@ -42,6 +42,7 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
     * [Review mode command](#review-mode-command)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Quick start
 
@@ -61,6 +62,7 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
 1. Refer to the Features below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Application layout
 
@@ -81,6 +83,7 @@ Main mode | This is the first window when you open the app. Most of the command 
 Review mode | This is where you can review all your flashcards. You can enter this mode by typing `review` in the Command Box of the Main mode.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -113,6 +116,8 @@ Review mode | This is where you can review all your flashcards. You can enter th
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ## Main mode
 
 ### Viewing help: `help`
@@ -135,6 +140,8 @@ Examples:
 * `add q/Einstein’s Equation a/e=mc^2 c/Physics p/High` <br><br>
   ![UIAdd](./images/UiAddResult.png) <br><br>
 * `add q/Independence day of Singapore a/August 9th 1965 c/History p/Mid t/Singapore`
+
+<div style="page-break-after: always;"></div>
 
 ### Editing a flashcard: `edit`
 
@@ -159,6 +166,8 @@ Shows all flashcards in the flashcard list.
 
 Format: `list`
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a flashcard : `delete`
 
 Deletes the specified flashcard from the flashcard list.
@@ -172,9 +181,9 @@ Format: `delete INDEX`
 Examples:
 
 * `list` followed by `delete 2` deletes the 2nd flashcard in the flashcard list. <br>
-  Before executing command `delete 2`: <br><br>
-  ![UIBeforeDelete](./images/UiBeforeDelete.png) <br><br>
-  After executing command `delete 2`: <br><br>
+  Before executing command `delete 2`: <br>
+  ![UIBeforeDelete](./images/UiBeforeDelete.png) <br>
+  After executing command `delete 2`: <br>
   ![UIAfterDelete](./images/UiAfterDelete.png)
 
 ### Viewing a flashcard : `view`
@@ -189,7 +198,7 @@ Format: `view INDEX`
 
 Examples:
 
-* `view 2` shows the 2nd flashcard (in the displayed flashcard list). <br><br>
+* `view 2` shows the 2nd flashcard (in the displayed flashcard list). <br>
   ![UIView](./images/UiViewResult.png)
 
 ### Finding flashcards : `find`
