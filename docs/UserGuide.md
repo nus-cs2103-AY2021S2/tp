@@ -16,6 +16,7 @@ It allows for faster and more effective student management.
 * [About](#about)
 * [Quick start](#quick-start)
 * [Features](#features)
+  * [Open help panel: `help`](#viewing-help--help)
   * [Listing all students: `list_student`](#listing-all-students-list_student)
   * [Locating student profile by name: `find_student`](#locating-student-profile-by-name-find_student)
   * [Adding a student: `add_student`](#adding-a-student-add_student)
@@ -26,6 +27,7 @@ It allows for faster and more effective student management.
   * [Adding a tuition session: `add_session`](#adding-a-tuition-session-add_session)
   * [Deleting a tuition session: `delete_session`](#deleting-a-tuition-session-delete_session)
   * [Getting monthly fee for a particular student: `fee`](#getting-monthly-fee-for-a-particular-student-fee)
+  * [Clears all entries in the program: `clear`](#clearing-all-entries--clear)
   * [Exit the program: `exit`](#exit-the-program-exit)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
@@ -90,7 +92,7 @@ There are three main areas in TutorBuddy:
 * The **File** tab consists of an exit button. To exit TutorBuddy, click on the exit button. Alternatively, use the `exit` command to exit the application.
 * The **Help** tab consists of a help button. If you require any assistance, click on the help button, copy the link
   displayed and paste it into any web browser. Alternatively, press <kbd>F1</kbd> to bring up the help window.
-  
+
 2. The main viewing area consists of 3 tabs: **Home**, **Tuition** and **Calendar**.
 * The **Home** tab gives tutors a quick overview of important matters. This includes their upcoming tuition lessons, as well as tuition fees receivable for the past 3 months.
 * The **Tuition** tab allow tutors to view and manage their students and lessons.
@@ -141,6 +143,14 @@ There are three main areas in TutorBuddy:
 
 </div>
 
+### Viewing help : `help`
+
+Shows a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
 ### Listing all students: `list_student`
 
 Shows a list of all students in the TutorBuddy
@@ -189,8 +199,15 @@ Deletes the specified student from TutorBuddy
 
 Format: `delete_student INDEX` <br>
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You could use `find_student` first to filter the list of students you want.<br>
+The INDEX would then be based on the current list instead.<br>
+(E.g. If John Doe is the 500th student, instead of delete_student 500, you can use find_student John Doe and
+delete_student 1 if the John Doe you would like to delete is the 1st in the list)
+</div>
+
 Examples:
-* `delete_student 2` deletes the 2nd student in the address book
+* `delete_student 2` deletes the 2nd student based on the current list of students
 
 ### Listing students' emails based on current list: `emails`
 Displays concatenated string of students' emails based on current list, separated by `;`. Useful for sending mass emails to students.
@@ -254,6 +271,10 @@ Format: `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`
 * `DURATION` should be in minutes
 * `FEE` should be the total tuition fee for the total duration
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+TutorBuddy takes care of overlapping session for you by giving a gentle prompt, so you don't have to worry about it.
+</div>
+
 Examples:
 * `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80`
 
@@ -283,6 +304,16 @@ Format: `fee n/STUDENT_NAME m/MONTH y/YEAR`
 Examples:
 * `fee n/John Lee m/1 y/2021` get John Lee monthly fee for January 2021
 
+### Clearing all entries : `clear`
+
+Clears all entries from the TutorBuddy application.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+TutorBuddy gives you some sample data to work with at the start. <br>
+After trying out the application, you can run the `clear` command to start working with a fresh piece of TutorBuddy in a split second.
+</div>
+
+Format: `clear`
 
 ### Exit the program: `exit`
 
@@ -324,4 +355,12 @@ Action | Format, Examples
 
 Action | Format, Examples
 --------|------------------
-**Student fee for a particular month and year** | `fee n/STUDENT_NAME m/MONTH y/YEAR`<br><br>e.g. `fee n/John Lee m/1 y/2021`
+**Fee** | `fee n/STUDENT_NAME m/MONTH y/YEAR`<br><br>e.g. `fee n/John Lee m/1 y/2021`
+
+**Others**
+
+Action | Format, Examples
+--------|------------------
+**Help** | `help`
+**Clear** | `clear`
+**Exit** | `exit`
