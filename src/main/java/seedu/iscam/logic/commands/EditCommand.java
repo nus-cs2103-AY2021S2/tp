@@ -106,7 +106,7 @@ public class EditCommand extends Command {
 
         // Causes the ClientDetailFragment to update if was displaying the edited client
         Client displayedClient = model.getDetailedClient().getValue();
-        if (displayedClient.equals(clientToEdit)) {
+        if (clientToEdit.equals(displayedClient)) {
             model.setDetailedClient(editedClient);
         }
 
