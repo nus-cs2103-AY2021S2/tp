@@ -221,6 +221,11 @@ class AddMeetingCommandTest {
         }
 
         @Override
+        public ObservableList<Meeting> getUnmodifiableMeetingList() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
         public void setPersonMeetingConnection(PersonMeetingConnection connection) {
             throw new AssertionError("This method should not be called.");
         }

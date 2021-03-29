@@ -261,8 +261,9 @@ public class AddMeetingCommandWithConnectionTest {
 
         @Override
         public void updateMeeting(Meeting target, Meeting editedMeeting) {
-
         }
+
+
         //TODO: Set MeetingBook file path in userPrefs? low priority feature(nice to have)
 
         //========= Clashing Meetings ================================================================
@@ -421,6 +422,11 @@ public class AddMeetingCommandWithConnectionTest {
         @Override
         public void sortFilteredMeetingList(Comparator<Meeting> comparator) {
 
+        }
+
+        @Override
+        public ObservableList<Meeting> getUnmodifiableMeetingList() {
+            return meetingBook.getMeetingList();
         }
 
     }
