@@ -172,7 +172,7 @@ with the attached message.
 
 Below is the sequence diagram:
 
-[#Interactions Inside the Logic Component for the `done 1` Command](images/DoneTaskSequenceDiagram.png)
+![#Interactions Inside the Logic Component for the `done 1` Command](images/DoneTaskSequenceDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
