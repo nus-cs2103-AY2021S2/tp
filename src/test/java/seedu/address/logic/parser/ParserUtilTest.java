@@ -7,6 +7,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -29,8 +30,9 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_DESCRIPTION = " ";
-    private static final String INVALID_INTERVAL = "Sometimes";
     private static final String INVALID_DATE = "01/01-2021";
+    private static final String INVALID_TIME = "17-30";
+    private static final String INVALID_IS_WEEKLY = "Maybe";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -39,8 +41,10 @@ public class ParserUtilTest {
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
     private static final String VALID_DESCRIPTION = " Tutorial ";
-    private static final String VALID_INTERVAL = "WEEKLY";
     private static final String VALID_DATE = "01-01-2021";
+    private static final String VALID_TIME = "1730";
+    private static final String VALID_IS_WEEKLY_1 = "y";
+    private static final String VALID_IS_WEEKLY_2 = "n";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -218,21 +222,6 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseInterval_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseInterval(null));
-    }
-
-    @Test
-    public void parseInterval_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseInterval(INVALID_INTERVAL));
-    }
-
-    @Test
-    public void parseInterval_validValue_returnsTrimmedInterval() throws Exception {
-        assertEquals(Interval.WEEKLY, ParserUtil.parseInterval(VALID_INTERVAL));
-    }
-
-    @Test
     public void parseDate_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseDate(null));
     }
@@ -245,6 +234,41 @@ public class ParserUtilTest {
     @Test
     public void parseDate_validValue_returnsTrimmedDate() throws Exception {
         assertEquals(LocalDate.of(2021, 1, 1), ParserUtil.parseDate(VALID_DATE));
+    }
+
+    @Test
+    public void parseTime_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTime(null));
+    }
+
+    @Test
+    public void parseTime_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTime(INVALID_TIME));
+    }
+
+    @Test
+    public void parseTime_validValue_returnsTrimmedTime() throws Exception {
+        assertEquals(LocalTime.of(17, 30), ParserUtil.parseTime(VALID_TIME));
+    }
+
+    @Test
+    public void parseIsWeekly_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseIsWeekly(null));
+    }
+
+    @Test
+    public void parseIsWeekly_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseIsWeekly(INVALID_IS_WEEKLY));
+    }
+
+    @Test
+    public void parseIsWeekly_validValue_returnsTrue() throws Exception {
+        assertEquals(true, ParserUtil.parseIsWeekly(VALID_IS_WEEKLY_1));
+    }
+
+    @Test
+    public void parseIsWeekly_validValue_returnsFalse() throws Exception {
+        assertEquals(false, ParserUtil.parseIsWeekly(VALID_IS_WEEKLY_2));
     }
 
 }
