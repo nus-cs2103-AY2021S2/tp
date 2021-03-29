@@ -97,6 +97,9 @@ public class DoneTaskCommand extends Command {
         Set<Tag> tags = taskToCopy.getTags();
 
         Task completedTask = new Task(taskName, deadline, priority, categories, tags);
+        if (taskToCopy.isPinned()) {
+            completedTask.pin();
+        }
         return completedTask;
     }
 

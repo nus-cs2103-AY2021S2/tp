@@ -4,6 +4,7 @@
     "deadline" : "20211231234-01-07",
     "priority" : "8",
     "completionStatus" : "INCOMPLETE",
+    "pinnedStatus" : "UNPINNED",
     "category" : [ "Homework" ],
     "tagged" : [ "MA3110" ]
   }, {
@@ -11,6 +12,7 @@
     "deadline" : "2021-01-07",
     "priority" : "9",
     "completionStatus" : "COMPLETE",
+    "pinnedStatus" : "UNPINNED",
     "category" : [],
     "tagged" : []
   } ],

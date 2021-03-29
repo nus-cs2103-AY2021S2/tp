@@ -6,7 +6,6 @@ import static seedu.address.testutil.TypicalEvents.getTypicalSochedule;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
@@ -33,7 +32,6 @@ public class ListEventCommandTest {
     }
 
     @Test
-    @Disabled
     public void execute_listIsFiltered_showsEverything() {
         showEventAtIndex(model, INDEX_FIRST_EVENT);
         assertCommandSuccess(new ListEventCommand(), model, ListEventCommand.MESSAGE_SUCCESS, expectedModel);

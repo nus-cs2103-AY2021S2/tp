@@ -1,4 +1,5 @@
 package seedu.address.model;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -11,13 +12,22 @@ import static seedu.address.testutil.TypicalTasks.ASSIGNMENT;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.EventComparator;
 import seedu.address.model.event.EventNameContainsKeywordsPredicate;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskComparator;
 import seedu.address.model.task.TaskNameContainsKeywordsPredicate;
 import seedu.address.testutil.SocheduleBuilder;
+import seedu.address.testutil.TaskBuilder;
+import seedu.address.testutil.TypicalEvents;
+import seedu.address.testutil.TypicalTasks;
 
 public class ModelManagerTest {
 
@@ -117,6 +127,98 @@ public class ModelManagerTest {
     @Test
     public void getFilteredEventList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredEventList().remove(0));
+    }
+
+    @Test
+    public void pinTask_returnsTrue() {
+        Task t = new TaskBuilder(ASSIGNMENT).build();
+        modelManager.addTask(t);
+        modelManager.pinTask(t);
+        assertTrue(t.isPinned());
+    }
+
+    @Test
+    public void unpinTask_returnsTrue() {
+        Task t = new TaskBuilder(ASSIGNMENT).build();
+        modelManager.addTask(t);
+        modelManager.pinTask(t);
+        assertTrue(t.isPinned());
+
+        modelManager.unpinTask(t);
+        assertFalse(t.isPinned());
+    }
+
+    @Test
+    public void pinTask_alreadyPinned_nothingHappen() {
+        Task t = new TaskBuilder(ASSIGNMENT).build();
+        modelManager.addTask(t);
+        modelManager.pinTask(t);
+        assertDoesNotThrow(() -> modelManager.pinTask(t));
+    }
+
+    @Test
+    public void unpinTask_alreadyUnpinned_nothingHappen() {
+        Task t = new TaskBuilder(ASSIGNMENT).build();
+        modelManager.addTask(t);
+        assertDoesNotThrow(() -> modelManager.unpinTask(t));
+    }
+
+    @Test
+    public void sortTasks_nullList_nothingThrown() {
+        assertDoesNotThrow(() ->
+                modelManager.sortTasks(TaskComparator.getAcceptedVar().get(0)));
+    }
+
+    @Test
+    public void sortEvents_nullList_nothingThrown() {
+        assertDoesNotThrow(() ->
+                modelManager.sortEvents(EventComparator.getAcceptedVar().get(0)));
+    }
+
+    @Test
+    public void sortTasks_populatedList() {
+        for (String comparingVar : TaskComparator.getAcceptedVar()) {
+            TaskComparator tc = new TaskComparator();
+            tc.setComparingVar(comparingVar);
+
+            //build expected ModelManager
+            List<Task> originalTasks = TypicalTasks.getTypicalTasks();
+            Collections.sort(originalTasks, tc);
+            Sochedule sochedule = new Sochedule();
+            sochedule.setTasks(originalTasks);
+            ModelManager expected = new ModelManager();
+            expected.setSochedule(sochedule);
+
+            //build actual ModelManager
+            ModelManager actual = new ModelManager();
+            actual.setSochedule(TypicalTasks.getTypicalSochedule());
+            actual.sortTasks(comparingVar);
+
+            assertEquals(actual, expected);
+        }
+    }
+
+    @Test
+    public void sortEvents_populatedList() {
+        for (String comparingVar : EventComparator.getAcceptedVar()) {
+            EventComparator ec = new EventComparator();
+            ec.setComparingVar(comparingVar);
+
+            //build expected Sochedule
+            List<Event> originalEvents = TypicalEvents.getTypicalEvents();
+            Collections.sort(originalEvents, ec);
+            Sochedule sochedule = new Sochedule();
+            sochedule.setEvents(originalEvents);
+            ModelManager expected = new ModelManager();
+            expected.setSochedule(sochedule);
+
+            //build actual Sochedule
+            ModelManager actual = new ModelManager();
+            actual.setSochedule(TypicalEvents.getTypicalSochedule());
+            actual.sortEvents(comparingVar);
+
+            assertEquals(actual, expected);
+        }
     }
 
     @Test

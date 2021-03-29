@@ -44,6 +44,10 @@ public class TaskComparator implements Comparator<Task> {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public static ArrayList<String> getAcceptedVar() {
+        return acceptedVar;
+    }
+
     /**
      * Compares between two {@code Task} objects.
      *
@@ -51,6 +55,14 @@ public class TaskComparator implements Comparator<Task> {
      * @param t2 Second {@code Task} to compare.
      */
     public int compare(Task t1, Task t2) {
+        if (t1.isPinned() && !t2.isPinned()) {
+            return -1;
+        }
+
+        if (t2.isPinned() && !t1.isPinned()) {
+            return 1;
+        }
+
         switch (comparingVar) {
         case "name":
             return t1.getName().compareTo(t2.getName());

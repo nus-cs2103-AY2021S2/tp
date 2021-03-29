@@ -144,9 +144,26 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void pinTask(Task task) {
+        requireAllNonNull(task);
+        sochedule.pinTask(task);
+    }
+
+    @Override
+    public void unpinTask(Task task) {
+        requireAllNonNull(task);
+        sochedule.unpinTask(task);
+    }
+
+    @Override
     public void sortTasks(String comparingVar) {
         requireNonNull(comparingVar);
         sochedule.sortTasks(comparingVar);
+    }
+
+    @Override
+    public void sortTasksDefault() {
+        sochedule.sortTasksDefault();
     }
 
     @Override
@@ -157,6 +174,28 @@ public class ModelManager implements Model {
     @Override
     public void clearCompletedTasks() {
         sochedule.clearCompletedTasks();
+    }
+
+    /**
+     * Returns the number of completed tasks.
+     */
+    @Override
+    public int getNumCompletedTask() {
+        return sochedule.getNumCompletedTask();
+    }
+
+    /**
+     * Returns the number of overdue tasks.
+     */
+    public int getNumOverdueTask() {
+        return sochedule.getNumOverdueTask();
+    }
+
+    /**
+     * Returns the number of incompleted tasks before deadline.
+     */
+    public int getNumIncompleteTask() {
+        return sochedule.getNumIncompleteTask();
     }
 
     /**
@@ -205,6 +244,10 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public int getNumIncomingEvents() {
+        return sochedule.getNumIncomingEvents();
+    }
+
     public void clearExpiredEvents() {
         sochedule.clearExpiredEvents();
     }

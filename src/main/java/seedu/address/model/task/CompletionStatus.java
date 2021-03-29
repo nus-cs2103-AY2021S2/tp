@@ -91,9 +91,9 @@ public class CompletionStatus implements Comparable<CompletionStatus> {
      */
     public String toString() {
         if (completionStatus == Status.COMPLETE) {
-            return "Complete";
+            return "COMPLETE";
         } else {
-            return "Incomplete";
+            return "INCOMPLETE";
         }
     }
 

@@ -11,12 +11,16 @@ SOChedule is a one-stop solution for managing tasks and events, optimized for us
 * Deleting a task: `delete_task`
 * Listing all tasks: `list_task`
 * Marking a task as done : `done_task`
+* Finding tasks: `find_task`
 * Sorting all tasks: `sort_task`
+* Pinning a task: `pin_task`
+* Unpinning a task: `unpin_task`
 * Clearing completed tasks: `clear_completed_task`
 * Clearing expired tasks: `clear_expired_task`
 * Adding an event: `add_event`
 * Deleting an event: `delete_event`
 * Listing all events: `list_event`
+* Finding events: `find_event`
 * Clearing completed tasks: `clear_expired_event`
 
 
@@ -91,6 +95,14 @@ Format: `done_task INDEX`
 Examples:
 * `done_task 1` marks the first task in the task list as completed.
 
+### Finding all matching tasks: `find_task`
+Finds matching tasks from Task List.
+
+Format: `find_task KEYWORD`
+* Finds the tasks whose names contain a given keyword.
+* The keyword is case-insensitive.
+* A list of matching tasks will be displayed with their indexes.
+
 ### Sorting all tasks: `sort_task`
 Sorts SOChedule Task List.
 
@@ -105,6 +117,30 @@ Format: `sort_task ARGUMENT`
 Examples:
 * `sort_task completion` sorts the task list by completion status.
 * `sort_task name` sorts the task list by name.
+
+### Pinning a task: `pin_task`
+Pins a task from SOChedule Task List.
+
+Format: `pin_task INDEX`
+* Pins the task at the specified INDEX.
+* Already pinned tasks will be unable to be pinned a second time.
+* The index refers to the index number shown in the displayed task list.
+* The index must be a positive and valid integer 1, 2, 3, ...
+* After pinning, the Task List will be sorted either according to previously entered `sort_task` command, or name (by default).
+* Pinned tasks are persistent over instances of SOChedule.
+
+Examples:
+* `pin_task 1` pins the first task in Task List
+
+### Unpinning a task: `unpin_task`
+Unpins a task from SOChedule Task List.
+
+Format: `unpin_task INDEX`
+* Unpins the task at the specified INDEX.
+* Follows similar restrictions to `pin_task`
+
+Examples:
+* `unpin_task 1` unpins the first task in Task List
 
 ### Clearing completed tasks: `clear_completed_task`
 Clear tasks marked as completed.
@@ -145,6 +181,15 @@ Examples:
 Lists all events from SOChedule Event Scheduler.
 Format: `list_event`
 
+### Finding all matching events: `find_event`
+Finds matching events from Event Scheduler.
+
+Format: `find_event KEYWORD`
+* Finds the events whose names contain a given keyword.
+* The keyword is case-insensitive.
+* A list of matching events will be displayed with their indexes.
+
+
 ### Clearing expired events: `clear_expired_event`
 Clear tasks with past end date time.
 
@@ -179,6 +224,8 @@ Action | Format, Examples
 **Done** | `done_task INDEX`<br>e.g., `done_task 1`
 **List** | `list_task`
 **Sort** | `sort_task ARGUMENT`<br>e.g., `sort_task name`
+**Pin** | `pin_task INDEX`<br>e.g., `pin_task 1`
+**Unpin** | `unpin_task INDEX`<br>e.g., `unpin_task 1`
 **Clear completed** | `clear_completed_task`
 **Clear expired** | `clear_expired_task`
 

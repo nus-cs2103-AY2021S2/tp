@@ -7,57 +7,51 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.StackPane?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+        <HBox alignment="CENTER">
+            <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+                <padding>
+                    <Insets top="5" right="5" bottom="5" left="15" />
+                </padding>
+                <HBox spacing="5" alignment="CENTER_LEFT">
+                    <Label fx:id="id" styleClass="cell_big_label">
+                        <minWidth>
+                            <!-- Ensures that the label text is never truncated -->
+                            <Region fx:constant="USE_PREF_SIZE" />
+                        </minWidth>
+                    </Label>
+                    <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+                    <ImageView fx:id="pinImageView" fitHeight="15.0" fitWidth="15.0">
+                        <Image url="@/images/pin.png" />
+                    </ImageView>
+                </HBox>
+                <FlowPane fx:id="tags" />
+                <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline" />
+                <Label fx:id="priority" styleClass="cell_small_label" text="\$priority" />
+                <Label fx:id="category" styleClass="cell_small_label" text="\$category" />
+            </VBox>
             <padding>
-                <Insets bottom="5" left="15" right="5" top="5" />
+                <Insets right="25" />
             </padding>
-            <HBox alignment="CENTER_LEFT" spacing="5">
-                <Label fx:id="id" styleClass="cell_big_label">
-                    <minWidth>
-                        <!-- Ensures that the label text is never truncated -->
-                        <Region fx:constant="USE_PREF_SIZE" />
-                    </minWidth>
-               <font>
-                  <Font name="Courier" size="13.0" />
-               </font>
-                </Label>
-                <Label fx:id="name" styleClass="cell_big_label" text="\$first">
-               <font>
-                  <Font name="Courier" size="13.0" />
-               </font></Label>
-            </HBox>
-            <FlowPane fx:id="tags" hgap="7.0" style="-fx-border-radius: 3; -fx-background-radius: 3; -fx-border-color: #eee2dc;" vgap="3.0">
-            <padding>
-               <Insets bottom="1.0" left="5.0" right="5.0" top="1.0" />
-            </padding></FlowPane>
-            <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline">
-            <font>
-               <Font name="Courier" size="13.0" />
-            </font></Label>
-            <Label fx:id="priority" styleClass="cell_small_label" text="\$priority">
-            <font>
-               <Font name="Courier" size="13.0" />
-            </font></Label>
-            <Label fx:id="completionStatus" styleClass="cell_small_label" text="\$completionStatus">
-            <font>
-               <Font name="Courier" size="13.0" />
-            </font></Label>
-            <Label fx:id="category" styleClass="cell_small_label" text="\$category">
-            <font>
-               <Font name="Courier" size="13.0" />
-            </font></Label>
-        </VBox>
-      <rowConstraints>
-         <RowConstraints />
-      </rowConstraints>
+            <StackPane>
+                <ImageView fx:id="tickImageView" fitHeight="20.0" fitWidth="20.0">
+                    <Image url="@/images/tick.png" />
+                </ImageView>
+                <ImageView fitHeight="20.0" fitWidth="20.0">
+                    <Image url="@/images/emptyBox.png" />
+                </ImageView>
+            </StackPane>
+
+        </HBox>
+
     </GridPane>
 </HBox>

@@ -15,6 +15,7 @@ import seedu.address.model.common.Date;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Tag;
 import seedu.address.model.task.CompletionStatus;
+import seedu.address.model.task.PinnedStatus;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
 
@@ -29,6 +30,7 @@ class JsonAdaptedTask {
     private final String deadline;
     private final String priority;
     private final String completionStatus;
+    private final String pinnedStatus;
     private final List<JsonAdaptedCategory> category = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -39,12 +41,14 @@ class JsonAdaptedTask {
     public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("deadline") String deadline,
                              @JsonProperty("priority") String priority,
                              @JsonProperty("completionStatus") String completionStatus,
+                             @JsonProperty("pinnedStatus") String pinnedStatus,
                              @JsonProperty("category") List<JsonAdaptedCategory> category,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.deadline = deadline;
         this.priority = priority;
         this.completionStatus = completionStatus;
+        this.pinnedStatus = pinnedStatus;
         if (category != null) {
             this.category.addAll(category);
         }
@@ -61,6 +65,7 @@ class JsonAdaptedTask {
         deadline = source.getDeadline().toString();
         priority = source.getPriority().toString();
         completionStatus = source.isComplete() ? "COMPLETE" : "INCOMPLETE";
+        pinnedStatus = source.isPinned() ? "PINNED" : "UNPINNED";
         category.addAll(source.getCategories().stream()
                 .map(JsonAdaptedCategory::new)
                 .collect(Collectors.toList()));
@@ -116,12 +121,25 @@ class JsonAdaptedTask {
         }
         final CompletionStatus modelCompletionStatus = new CompletionStatus(completionStatus);
 
+        if (pinnedStatus == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    PinnedStatus.class.getSimpleName()));
+        }
+        if (!PinnedStatus.isValidStatus(pinnedStatus)) {
+            throw new IllegalValueException(PinnedStatus.MESSAGE_CONSTRAINTS);
+        }
+        final PinnedStatus modelPinnedStatus = new PinnedStatus(pinnedStatus);
+
         final Set<Tag> modelTags = new HashSet<>(taskTags);
         final Set<Category> modelCategories = new HashSet<>(taskCategories);
 
         Task task = new Task(modelName, modelDeadline, modelPriority, modelCategories, modelTags);
         if (modelCompletionStatus.isComplete()) {
             task.markTaskAsDone();
+        }
+
+        if (modelPinnedStatus.isPinned()) {
+            task.pin();
         }
         return task;
     }
