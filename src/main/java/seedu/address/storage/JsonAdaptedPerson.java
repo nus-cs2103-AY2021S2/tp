@@ -12,9 +12,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Height;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Weight;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -28,7 +30,11 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String height;
+    private final String weight;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedRecord> records = new ArrayList<>();
+    private final List<JsonAdaptedAppointment> appointments = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -36,13 +42,24 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("height") String height, @JsonProperty("weight") String weight,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments,
+                             @JsonProperty("records") List<JsonAdaptedRecord> records) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.height = height;
+        this.weight = weight;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (records != null) {
+            this.records.addAll(records);
+        }
+        if (appointments != null) {
+            this.appointments.addAll(appointments);
         }
     }
 
@@ -54,8 +71,16 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        height = source.getHeight().value;
+        weight = source.getWeight().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+        records.addAll(source.getRecords().stream()
+                .map(JsonAdaptedRecord::new)
+                .collect(Collectors.toList()));
+        appointments.addAll(source.getAppointments().stream()
+                .map(JsonAdaptedAppointment::new)
                 .collect(Collectors.toList()));
     }
 
@@ -102,8 +127,36 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (height == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Height.class.getSimpleName()));
+        }
+        if (!Height.isValidHeight(height)) {
+            throw new IllegalValueException(Height.MESSAGE_CONSTRAINTS);
+        }
+        final Height modelHeight = new Height(height);
+
+        if (weight == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Weight.class.getSimpleName()));
+        }
+        if (!Weight.isValidWeight(weight)) {
+            throw new IllegalValueException(Weight.MESSAGE_CONSTRAINTS);
+        }
+        final Weight modelWeight = new Weight(weight);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        Person person = new Person(modelName, modelPhone, modelEmail, modelAddress,
+                modelHeight, modelWeight, modelTags);
+
+        // add the appointments
+        for (JsonAdaptedAppointment appt : appointments) {
+            person.addAppointment(appt.toModelType());
+        }
+        // add the medical records
+        for (JsonAdaptedRecord rec : records) {
+            person.addMedicalRecord(rec.toModelType());
+        }
+        return person;
     }
 
 }

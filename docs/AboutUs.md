@@ -8,52 +8,41 @@ We are a team based in the [School of Computing, National University of Singapor
 You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
+### Glendon Chua
 
-### John Doe
+<img src="images/bigdoot.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
-
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/BigDoot)]
+[[portfolio](team/BigDoot.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Testing, Code quality
 
-### Johnny Doe
+### Nicholas Nge
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nicholasnge.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/nicholasnge)]
+[[portfolio](team/nicholasnge.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: UI, Deliverables and deadlines
 
-### James Doe
+### Prerthan Munireternam
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/prerthan99.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/prerthan99)] [[portfolio](team/prerthan99.md)]
+
+* Role: Documentation
+* Responsibilities: Data, Integration
+
+### Vivegan
+
+<img src="images/vivegank.png" width="200px">
+
+[[github](http://github.com/vivegank)]
+[[portfolio](team/vivegank.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Dev Ops + Threading, Scheduling and tracking

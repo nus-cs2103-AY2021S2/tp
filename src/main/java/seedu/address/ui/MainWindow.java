@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -16,6 +18,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,6 +37,8 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private List<EditorWindow> editorWindows;
+    private ViewPatientBox viewPatientBox;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -49,6 +54,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane viewPatientBoxPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -66,6 +74,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        editorWindows = new ArrayList<>();
     }
 
     public Stage getPrimaryStage() {
@@ -121,6 +130,9 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        ViewPatientBox viewPatientBox = new ViewPatientBox();
+        viewPatientBoxPlaceholder.getChildren().add(viewPatientBox.getRoot());
     }
 
     /**
@@ -147,8 +159,32 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Displays the patientViewBox which contains information about patient
+     */
+    @FXML
+    public void handlePatientViewBox(Person p) {
+        ViewPatientBox viewPatientBox = new ViewPatientBox(p);
+        viewPatientBoxPlaceholder.getChildren().clear();
+        viewPatientBoxPlaceholder.getChildren().add(viewPatientBox.getRoot());
+    }
+
     void show() {
         primaryStage.show();
+    }
+
+    /**
+     * Opens the help window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleEdit(String context) {
+        EditorWindow editorWindow = new EditorWindow(context);
+        editorWindows.add(editorWindow);
+        if (!editorWindow.isShowing()) {
+            editorWindow.show();
+        } else {
+            editorWindow.focus();
+        }
     }
 
     /**
@@ -180,6 +216,14 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowEdit()) {
+                handleEdit(commandResult.getFeedbackToUser());
+            }
+
+            if (commandResult.isShowViewBox()) {
+                handlePatientViewBox(commandResult.getPatient());
             }
 
             if (commandResult.isExit()) {
