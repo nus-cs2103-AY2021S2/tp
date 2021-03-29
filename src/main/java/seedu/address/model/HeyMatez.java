@@ -11,7 +11,7 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
 
 /**
- * Wraps all data at the address-book level.
+ * Wraps all data at Hey Matez level.
  * Duplicates are not allowed (by .isSamePerson comparison).
  */
 public class HeyMatez implements ReadOnlyHeyMatez {
@@ -91,7 +91,7 @@ public class HeyMatez implements ReadOnlyHeyMatez {
     }
 
     /**
-     * Removes {@code key} from this {@code UniquePersonList}.
+     * Removes {@code key} from HEY MATEz.
      * {@code key} must exist in HEY MATEz.
      */
     public void removePerson(Person key) {

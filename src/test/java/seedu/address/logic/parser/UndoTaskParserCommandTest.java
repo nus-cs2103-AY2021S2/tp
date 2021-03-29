@@ -10,7 +10,7 @@ import seedu.address.logic.commands.UndoTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Contains unit tests for {@code UndoTaskCommand}.
+ * Contains unit tests for {@code UndoTaskCommandParser}.
  */
 public class UndoTaskParserCommandTest {
 
