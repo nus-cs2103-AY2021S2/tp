@@ -3,6 +3,9 @@ layout: page
 title: User Guide
 ---
 
+<div>
+</div>
+
 # TutorBuddy - User Guide
 TutorBuddy is a desktop application made for freelance tutors to efficiently manage their students' contacts,
 provide a quick overview of scheduled tuition sessions at a glance, and handle monthly tuition fees calculation.
