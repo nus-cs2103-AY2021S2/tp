@@ -3,13 +3,12 @@ layout: page
 title: User Guide
 ---
 
-# Table of Contents
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Introduction**
+## Introduction
 
 Welcome to the User Guide (UG) of **SmartLib**!
 
