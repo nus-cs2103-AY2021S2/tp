@@ -114,21 +114,31 @@ Examples:
 
 ### Locating orders by name: `find`
 
-Finds orders whose names contain any of the given keywords.
+Find orders whose specified field contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find [n/KEYWORD_NAME]... [p/KEYWORD_PHONE]... [e/KEYWORD_EMAIL]... [a/KEYWORD_ADDRESS]... [o/KEYWORD_ORDER_DESCRIPTION]... [t/KEYWORD_TAG]... [d/KEYWORD_DELIVERY_DATE]... [s/KEYWORD_DELIVERY_STATUS]... [r/KEYWORD_REQUEST]... `
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Orders matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* The search is case-insensitive. e.g `hans` will match `Hans`.
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
+* Fields are searched according to specified prefixes. e.g. `n/Hans` will only find orders with name that match `Hans`.
+* Sub-strings will be matched e.g. `Han` will match `Hans`.
+* If no prefixes are specified 
+* If no prefixes are specified, orders matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
+* If multiple keywords are specified for a certain prefix, orders matching at least one keyword for the speficied field will be returned. (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
+* If multiple prefixes are specified, each keyword specified for each field must match orders with corresponding fields. (i.e. `AND` search) e.g. `n/Hans o/Cake` will only match orders with name that matches `Hans` and order description that matches `Cake`.
+* `AND` searches will take priority.
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find n/John` will return all orders with name `john`, `John Doe` or `Johnathan`.
+* `find n/Alex Bob` will return all orders with name `Alex`, `alexander`, `Bob` or `bobby`.
+* `find n/Alex o/Chocolate` will return all orders with name `Alex` and order description `Chocolate`. <br>
+  ![result for 'find n/Alex o/Chocolate'](images/findAlexChocolate.PNG) <br>
+* `find alex vanilla` will return all orders that matches `alex` or `chocolate`, <br>
+  ![result for 'find alex vanilla'](images/findAlexVanilla.PNG) <br>
+* `find n/Alex Bernice o/Chocolate` will return all orders that matches (`Alex` or `Bernice`) and `Chocolate`. <br>
+  ![result for 'find n/Alex Bernice o/Chocolate'](images/findAlexBerniceChocolate.PNG) <br>
+  
 
 ### Deleting an order : `delete`
 
@@ -147,17 +157,31 @@ Examples:
 
 ### Receiving reminders for orders : `remind`
 
-Obtains a list of reminder for orders that are X days within the current date.
+Displays a list of reminder for orders that are X days within the current date.
 
 Format: `remind DAYS...`
 
-* Lists all orders within the specified day, starting from the current date.
+* Lists all orders within the current date to the numbers of days from the specified date.
 * The `DAYS` refers to the number of days from the current date.
 * The `DAYS` **must be a positive integer starting from 0**.
 
 Examples:
 * `remind 0` lists all orders that have a delivery date for today.
 * `remind 3` lists all orders that have a delivery date within 3 days from today.
+
+### Adding a special request to an order: `request`
+
+Adds a special request to an existing order in the CakeCollate database.
+
+Format: `request INDEX r/REQUEST`
+
+* Adds a special request to the order at the specified `INDEX`. The index refers to the index number shown in the displayed order list. The index **must be a positive integer** 1, 2, 3, …​
+* You can remove an order’s special request by typing `t/` without specifying any requests after it.
+
+Examples:
+* `request 1 r/More sugar, spice and everything nice.` Sets the special request of the 1st order to be `More sugar, spice and everything nice.`
+* `request 2 r/` Removes the 2nd order's current special request.
+
 
 ### Setting the delivery status of an order as undelivered : `undelivered`
 
@@ -255,10 +279,11 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEXES`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Find** | `find [n/KEYWORD_NAME]... [p/KEYWORD_PHONE]... [e/KEYWORD_EMAIL]... [a/KEYWORD_ADDRESS]... [o/KEYWORD_ORDER_DESCRIPTION]... [t/KEYWORD_TAG]... [d/KEYWORD_DELIVERY_DATE]... [s/KEYWORD_DELIVERY_STATUS]... [r/KEYWORD_REQUEST]... `<br> e.g., `find James Jake`, `find n/Alex o/Chocolate`, `find n/Bernice d/march s/undelivered` 
 **List** | `list`
 **Help** | `help`
 **Remind** | `remind DAYS`<br> e.g., `remind 3`
+**Request** | `remind INDEX [r/REQUEST]` <br> e.g., `request 1 r/More sugar, spice and everything nice.`
 **Undelivered** | `undelivered INDEXES`<br> e.g., `undelivered 3 4`
 **Delivered** | `delivered INDEXES`<br> e.g., `delivered 3 4`
 **Cancelled** | `cancelled INDEXES`<br> e.g., `cancelled 3 4`

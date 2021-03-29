@@ -4,12 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.cakecollate.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.cakecollate.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_ALL;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_REQUEST;
 import static seedu.cakecollate.testutil.Assert.assertThrows;
 import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,7 +31,7 @@ import seedu.cakecollate.logic.commands.ListCommand;
 import seedu.cakecollate.logic.commands.RemindCommand;
 import seedu.cakecollate.logic.commands.RequestCommand;
 import seedu.cakecollate.logic.parser.exceptions.ParseException;
-import seedu.cakecollate.model.order.NameContainsKeywordsPredicate;
+import seedu.cakecollate.model.order.ContainsKeywordsPredicate;
 import seedu.cakecollate.model.order.Order;
 import seedu.cakecollate.model.order.ReminderDatePredicate;
 import seedu.cakecollate.model.order.Request;
@@ -84,7 +86,9 @@ public class CakeCollateParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        HashMap<Prefix, List<String>> map = new HashMap<>();
+        map.put(PREFIX_ALL, keywords);
+        assertEquals(new FindCommand(new ContainsKeywordsPredicate(map)), command);
     }
 
     @Test
