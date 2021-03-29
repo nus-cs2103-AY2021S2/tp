@@ -3,6 +3,8 @@ package seedu.booking.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.booking.commons.util.AppUtil.checkArgument;
 
+import seedu.booking.commons.util.StringUtil;
+
 /**
  * Represents a Person's phone number in the booking system.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}

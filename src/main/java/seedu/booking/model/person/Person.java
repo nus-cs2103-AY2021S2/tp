@@ -49,7 +49,8 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && (getEmail().isSameEmail(otherPerson)
+                || getPhone().equals(otherPerson.getPhone()));
     }
 
 

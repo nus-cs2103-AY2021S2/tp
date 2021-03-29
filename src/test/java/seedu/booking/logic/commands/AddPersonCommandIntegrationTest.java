@@ -27,7 +27,7 @@ public class AddPersonCommandIntegrationTest {
 
     @Test
     public void execute_newPerson_success() {
-        Person validPerson = new PersonBuilder().build();
+        Person validPerson = new PersonBuilder().withEmail("jane@gmail.com").build();
 
         Model expectedModel = new ModelManager(model.getBookingSystem(), new UserPrefs());
         expectedModel.addPerson(validPerson);
