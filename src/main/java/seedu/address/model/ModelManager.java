@@ -13,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.FeeUtil;
 import seedu.address.model.session.Session;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
@@ -192,20 +193,7 @@ public class ModelManager implements Model {
     public double getFee(LocalDateTime startPeriod, LocalDateTime endPeriod) {
         double fee = 0;
         for (Student student : addressBook.getStudentList()) {
-            fee += getFeePerStudent(student, startPeriod, endPeriod);
-        }
-        return fee;
-    }
-
-    @Override
-    public double getFeePerStudent(Student student, LocalDateTime startPeriod, LocalDateTime endPeriod) {
-        double fee = 0;
-        for (Session session : student.getListOfSessions()) {
-            LocalDateTime dateTime = session.getSessionDate().getDateTime();
-            if (dateTime.compareTo(startPeriod) >= 0 && dateTime.compareTo(endPeriod) < 0) {
-                // This session date is within the period
-                fee += session.getFee().getFee();
-            }
+            fee += FeeUtil.getFeePerStudent(student, startPeriod, endPeriod);
         }
         return fee;
     }

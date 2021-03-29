@@ -13,10 +13,10 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.util.FeeUtil;
 import seedu.address.model.fee.Month;
 import seedu.address.model.fee.MonthlyFee;
 import seedu.address.model.fee.Year;
-import seedu.address.model.session.Session;
 import seedu.address.model.student.Student;
 
 /**
@@ -69,7 +69,7 @@ public class MonthlyFeeListPanel extends UiPart<Region> {
     }
 
     /**
-     * Populates the tuitionList with {@code Tuition} for all sessions in the studentList.
+     * Populates the monthlyFeeList with {@code MonthlyFee} for the current month + previous 2 months.
      */
     private void populateMonthlyFeeList(ObservableList<Student> studentList,
         ObservableList<MonthlyFee> monthlyFeeList) {
@@ -97,19 +97,7 @@ public class MonthlyFeeListPanel extends UiPart<Region> {
         LocalDateTime endPeriod) {
         double fee = 0;
         for (Student student : studentList) {
-            fee += getFeePerStudent(student, startPeriod, endPeriod);
-        }
-        return fee;
-    }
-
-    public double getFeePerStudent(Student student, LocalDateTime startPeriod, LocalDateTime endPeriod) {
-        double fee = 0;
-        for (Session session : student.getListOfSessions()) {
-            LocalDateTime dateTime = session.getSessionDate().getDateTime();
-            if (dateTime.compareTo(startPeriod) >= 0 && dateTime.compareTo(endPeriod) < 0) {
-                // This session date is within the period
-                fee += session.getFee().getFee();
-            }
+            fee += FeeUtil.getFeePerStudent(student, startPeriod, endPeriod);
         }
         return fee;
     }
