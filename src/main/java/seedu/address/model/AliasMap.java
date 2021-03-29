@@ -1,12 +1,34 @@
 package seedu.address.model;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
+
+import seedu.address.logic.commands.*;
 
 /**
  * Contains all mapping for command and alias.
  */
 public class AliasMap {
     private HashMap<String, String> aliasMap;
+    private String[] commandsWord = {
+        AddCommand.COMMAND_WORD,
+        AliasCommand.COMMAND_WORD,
+        ClearCommand.COMMAND_WORD,
+        DeleteCommand.COMMAND_WORD,
+        EditCommand.COMMAND_WORD,
+        ExitCommand.COMMAND_WORD,
+        FilterCommand.COMMAND_WORD,
+        FindCommand.COMMAND_WORD,
+        HelpCommand.COMMAND_WORD,
+        ListCommand.COMMAND_WORD,
+        RedoCommand.COMMAND_WORD,
+        ReviewCommand.COMMAND_WORD,
+        SortCommand.COMMAND_WORD,
+        StatsCommand.COMMAND_WORD,
+        UndoCommand.COMMAND_WORD,
+        ViewCommand.COMMAND_WORD
+    };
 
     public AliasMap() {
         aliasMap = new HashMap<>();
@@ -26,6 +48,9 @@ public class AliasMap {
         if (aliasMap.containsValue(alias)) {
             return false;
         }
+        if (Arrays.stream(commandsWord).anyMatch(c -> c.equals(alias))) {
+            return false;
+        }
         return true;
     }
 
@@ -43,9 +68,31 @@ public class AliasMap {
         }
     }
 
+    /**
+     * Parses alias to the command text
+     */
+    public String parseAlias(String input) {
+        if (!isAlias(input)) {
+            return input;
+        }
+        for (Map.Entry<String, String> entry: aliasMap.entrySet()) {
+            if (entry.getValue().equals(input)) {
+                return entry.getKey();
+            }
+        }
+        return input;
+    }
+
+    /**
+     * Returns true if input is an alias
+     */
+    public boolean isAlias(String input) {
+        return aliasMap.containsValue(input);
+    }
+
     public static class UnableToAddAliasException extends RuntimeException {
         private UnableToAddAliasException() {
-            super("Alias cannot be added, please make sure that the alias is unique and not an original command.");
+            super("Alias cannot be added. Please check if a valid command is entered, and alias name is unique.");
         }
     }
 }

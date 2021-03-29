@@ -75,6 +75,14 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return aliasMap.canAddAlias(command, name);
     }
 
+    public String parseAlias(String input) {
+        return aliasMap.parseAlias(input);
+    }
+
+    public boolean isAlias(String input) {
+        return aliasMap.isAlias(input);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

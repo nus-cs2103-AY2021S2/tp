@@ -193,4 +193,14 @@ public class ModelManager implements Model {
     public boolean canAddAlias(String command, String alias) {
         return userPrefs.canAddAlias(command, alias);
     }
+
+    @Override
+    public String parseAlias(String input) {
+        return userPrefs.parseAlias(input);
+    }
+
+    @Override
+    public boolean isAlias(String input) {
+        return userPrefs.isAlias(input);
+    }
 }

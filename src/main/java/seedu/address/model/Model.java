@@ -126,4 +126,14 @@ public interface Model {
      * Returns true if alias can be added
      */
     boolean canAddAlias(String command, String alias);
+
+    /**
+     * Parses alias into command
+     */
+    String parseAlias(String input);
+
+    /**
+     * Checks if input is alias
+     */
+    boolean isAlias(String input);
 }

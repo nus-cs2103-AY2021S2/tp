@@ -40,8 +40,8 @@ public class LogicManager implements Logic {
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
-
         CommandResult commandResult;
+        flashBackParser.setModel(model);
         Command command = flashBackParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
