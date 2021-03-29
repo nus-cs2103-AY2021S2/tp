@@ -67,6 +67,10 @@ class JsonAdaptedEvent {
             throw new IllegalValueException(e.getMessage());
         }
 
+        if (isWeekly == null) {
+            throw new IllegalValueException("Boolean should not be null.");
+        }
+
         return new Event(description, encodedDate, encodedTime, isWeekly);
     }
 
