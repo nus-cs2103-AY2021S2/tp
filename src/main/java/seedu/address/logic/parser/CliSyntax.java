@@ -15,4 +15,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_CHILD = new Prefix("tc/");
     public static final Prefix PREFIX_DATE = new Prefix("d/");
     public static final Prefix PREFIX_CONTACT = new Prefix("c/");
+
+    /* Options Definition for PREFIX_OPTION */
+    public static final Option OPTION_TAG = new Option("tag");
 }
