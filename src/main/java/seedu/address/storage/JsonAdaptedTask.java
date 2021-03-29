@@ -97,7 +97,7 @@ public class JsonAdaptedTask {
                     Deadline.class.getSimpleName()));
         }
         if (!Deadline.isValidDeadline(deadline)) {
-            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
         }
         final Deadline modelDeadline = new Deadline(deadline);
 
