@@ -284,6 +284,13 @@ public class MainWindow extends UiPart<Stage> {
                 fillInnerParts();
             }
 
+            if (commandResult.getFeedbackToUser().equals(ListCommand.MESSAGE_EMPTY_PERSON_LIST) || commandResult
+                    .getFeedbackToUser().equals(ListCommand.MESSAGE_EMPTY_SESSION_LIST)
+                    || commandResult.getFeedbackToUser().equals(ListCommand.MESSAGE_EMPTY_TUTOR_LIST)
+                    || commandResult.getFeedbackToUser().equals(ListCommand.MESSAGE_EMPTY_STUDENT_LIST)) {
+                clearPanels();
+            }
+
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             return commandResult;
         } catch (CommandException | ParseException e) {
