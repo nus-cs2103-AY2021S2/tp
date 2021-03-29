@@ -25,7 +25,7 @@ public class StatusCommand extends Command {
 
     public static final String COMMAND_WORD = "status";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": updates multiple residences clean status  "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates multiple residences clean status  "
             + "by the index number used in the displayed residence list. \n"
             + "Parameters: status (clean or unclean) "
             + "INDEX1 INDEX2... (must be positive integers) "

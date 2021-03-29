@@ -26,23 +26,23 @@ import seedu.address.testutil.ResidenceBuilder;
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullResidence_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_residenceAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingResidenceAdded modelStub = new ModelStubAcceptingResidenceAdded();
         Residence validResidence = new ResidenceBuilder().build();
 
         CommandResult commandResult = new AddCommand(validResidence).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validResidence), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validResidence), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validResidence), modelStub.residencesAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateResidence_throwsCommandException() {
         Residence validResidence = new ResidenceBuilder().build();
         AddCommand addCommand = new AddCommand(validResidence);
         ModelStub modelStub = new ModelStubWithResidence(validResidence);
@@ -172,18 +172,18 @@ public class AddCommandTest {
      * A Model stub that always accept the residence being added.
      */
     private class ModelStubAcceptingResidenceAdded extends ModelStub {
-        final ArrayList<Residence> personsAdded = new ArrayList<>();
+        final ArrayList<Residence> residencesAdded = new ArrayList<>();
 
         @Override
         public boolean hasResidence(Residence residence) {
             requireNonNull(residence);
-            return personsAdded.stream().anyMatch(residence::isSameResidence);
+            return residencesAdded.stream().anyMatch(residence::isSameResidence);
         }
 
         @Override
         public void addResidence(Residence residence) {
             requireNonNull(residence);
-            personsAdded.add(residence);
+            residencesAdded.add(residence);
         }
 
         @Override
