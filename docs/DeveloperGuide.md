@@ -174,6 +174,35 @@ The following presents a final overview of how the `history command` is used:
 
 Do note that the current implementation always creates a new `History` instance whenever the `history command` is provided by the user, to ensure that users are presented with their most updated information.
 
+### Info feature
+
+#### Implementation
+
+![InfoCommandExecute](images/InfoFeatureClassDiagram.png)
+
+The `InfoCommandParser` reads the user input and creates a `InfoCommand` to execute with the any arguments found.
+The `InfoCommand` makes use of the `JsonModule` class to retrieve module information stored in json format to
+display relevant information to the user.
+
+#### InfoCommandParser
+#### Method:`parse(String args)`
+
+![InfoCommandExecute](images/InfoCommandParserParse.png)
+
+After `ModulePlannerParser` removes the command word from the user input, `InfoCommandParser`
+extracts the module code if found and creates an `InfoCommand` object with the module code otherwise
+an `InfoCommand` object with no module code.
+The created `InfoCommand` object is returned to `Logic` object for execution.
+
+#### InfoCommand
+#### Method: `execute(Model model)`
+
+![InfoCommandExecute](images/InfoCommandExecute.png)
+
+`InfoCommand` object retrieves all module information from `Model` object stored in `JsonModule`
+object. Based on what arguments the `InfoCommand` object is created with, it finds the relevant
+`JsonModule` object and sets it for the `Model` object `foundModule` field. Lastly, the `currentCommand`
+field is updated for the UI to show a single module information or all of them.
 
 ### Non-Functional Requirements
 
@@ -198,3 +227,33 @@ _{More to be added}_
 * **Module**: Classes for students in university. It has both a title and a module code
 * **Module prerequisite**: Students must fulfill by passing the prerequisite modules before taking this module
 ---
+```plantuml
+@startuml
+
+title Simple Object Diagram
+
+object Germany
+object France
+object Spain
+object USA
+object Mexico
+object Russia
+object Canada
+object Japan
+
+Germany <|-- France
+Spain *-- USA
+Mexico o-- Russia
+Canada .. Japan
+
+Germany : Liquor = Jagermeister
+France : Liquor = Wine
+Spain : Liquor = Wine
+USA : Liquor = BudLight
+Mexico : Liquor = Taquilla
+Russia : Liquor = Vodka
+Canada : Liquor = Beer
+Japan : Liquor = Sake
+
+@enduml
+```
