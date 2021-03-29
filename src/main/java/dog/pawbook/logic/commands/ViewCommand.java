@@ -42,7 +42,6 @@ public class ViewCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_ENTITY_ID);
         }
 
-        assert(model.hasEntity(targetEntityId));
         Entity targetEntity = model.getEntity(targetEntityId);
 
         ArrayList<Integer> targetIdList = new ArrayList<>();
