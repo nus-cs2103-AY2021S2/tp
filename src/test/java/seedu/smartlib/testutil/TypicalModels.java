@@ -205,10 +205,12 @@ public class TypicalModels {
     //=========== Records ==================================================================================
 
     public static final Record RECORD_A = new Record(
+            new Name(VALID_NAME_HARRY),
             new Barcode(Barcode.MAX_VALUE), new Name("Alex Yeoh"), new DateBorrowed("2020-11-23T08:30:00")
     );
 
     public static final Record RECORD_B = new Record(
+            new Name(VALID_NAME_MAZE),
             new Barcode(Barcode.MAX_VALUE - 2), new Name("Bernice Yu"), new DateBorrowed("2021-01-22T23:30:00")
     );
 

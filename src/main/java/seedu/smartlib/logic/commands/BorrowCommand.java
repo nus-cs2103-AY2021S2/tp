@@ -64,7 +64,8 @@ public class BorrowCommand extends Command {
 
     private Record createProperRecord(Model model) {
         Barcode bookBarcode = model.getBookBarcode(incompleteRecord.getBookName());
-        return new Record(bookBarcode, incompleteRecord.getReaderName(), incompleteRecord.getDateBorrowed());
+        return new Record(incompleteRecord.getBookName(), bookBarcode, incompleteRecord.getReaderName(),
+                incompleteRecord.getDateBorrowed());
     }
 
     private void verifyRecordIntegrity(Model model, Record properRecord) throws CommandException {

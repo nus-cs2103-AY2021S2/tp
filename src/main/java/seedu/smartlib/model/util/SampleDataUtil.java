@@ -117,10 +117,12 @@ public class SampleDataUtil {
      */
     public static Record[] getSampleRecords() {
         return new Record[] {
-            new Record(CLOUDATLAS.getBarcode(), CLOUDATLAS.getBorrowerName(),
+            new Record(CLOUDATLAS.getName(), CLOUDATLAS.getBarcode(), CLOUDATLAS.getBorrowerName(),
                     new DateBorrowed("2020-11-23T08:30:00")),
-            new Record(HOBBIT.getBarcode(), HOBBIT.getBorrowerName(), new DateBorrowed("2021-01-22T23:30:00")),
-            new Record(OLDMAN.getBarcode(), OLDMAN.getBorrowerName(), new DateBorrowed("2021-03-02T13:45:00"))
+            new Record(HOBBIT.getName(), HOBBIT.getBarcode(), HOBBIT.getBorrowerName(),
+                    new DateBorrowed("2021-01-22T23:30:00")),
+            new Record(OLDMAN.getName(), OLDMAN.getBarcode(), OLDMAN.getBorrowerName(),
+                    new DateBorrowed("2021-03-02T13:45:00"))
         };
     }
 
