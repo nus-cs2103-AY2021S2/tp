@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.partyplanet.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.partyplanet.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.partyplanet.testutil.Assert.assertThrows;
 import static seedu.partyplanet.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -23,7 +22,6 @@ import seedu.partyplanet.logic.commands.HelpCommand;
 import seedu.partyplanet.logic.commands.ListCommand;
 import seedu.partyplanet.logic.parser.exceptions.ParseException;
 import seedu.partyplanet.model.person.Person;
-import seedu.partyplanet.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.partyplanet.testutil.EditPersonDescriptorBuilder;
 import seedu.partyplanet.testutil.PersonBuilder;
 import seedu.partyplanet.testutil.PersonUtil;
