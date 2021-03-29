@@ -28,6 +28,7 @@ public class DoneCommand extends Command {
     public static final String MESSAGE_DONE_CUSTOMER_SUCCESS =
         "The following Delivery Order has been checkmarked : %1$s";
     public static final String CHECKMARK = "[✓]";
+    public static final String CROSS = "[X]";
     private final Index targetIndex;
     private final Done done;
 
@@ -51,7 +52,7 @@ public class DoneCommand extends Command {
 
         Customer editedCustomer;
 
-        if (customerToEdit.getDone().toString().equals("")) {
+        if (!customerToEdit.getDone().toString().equals(CHECKMARK)) {
             editedCustomer = new Customer(customerToEdit.getName(), customerToEdit.getPhone(),
                     customerToEdit.getEmail(), customerToEdit.getAddress(),
                     customerToEdit.getRemark(), customerToEdit.getDate(),
@@ -61,7 +62,7 @@ public class DoneCommand extends Command {
             editedCustomer = new Customer(customerToEdit.getName(), customerToEdit.getPhone(),
                     customerToEdit.getEmail(), customerToEdit.getAddress(),
                     customerToEdit.getRemark(), customerToEdit.getDate(),
-                    customerToEdit.getTags(), new Done(""));
+                    customerToEdit.getTags(), new Done(CROSS));
 
         }
 
