@@ -1,9 +1,7 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.TripCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.pool.PooledPassengerContainsKeywordsPredicate;
-import seedu.address.model.pool.Pool;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +9,10 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import seedu.address.logic.commands.TripCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.pool.Pool;
+import seedu.address.model.pool.PooledPassengerContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

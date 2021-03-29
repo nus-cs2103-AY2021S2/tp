@@ -1,15 +1,17 @@
 package seedu.address.ui;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.layout.*;
-import seedu.address.model.person.passenger.Passenger;
-import seedu.address.model.pool.Pool;
-
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import seedu.address.model.pool.Pool;
 
 /**
  * An UI component that displays information of a {@code Passenger}.
@@ -41,10 +43,6 @@ public class PoolCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private DriverCard driverCard;
-    @FXML
-    private VBox driverCardContainer;
-    @FXML
     private VBox cardFieldContainer;
     @FXML
     private ColumnConstraints columnConstraints;
@@ -63,7 +61,8 @@ public class PoolCard extends UiPart<Region> {
 
         // collect the fields that uses the icon and label format
         List<Region> cardFields = new ArrayList<>();
-        cardFields.add(new LabelWithIcon(ICON_PATH_DRIVER, pool.getPassengers().stream().map(passenger -> passenger.getName().toString()).collect(Collectors.joining( ", " ))).getRoot());
+        cardFields.add(new LabelWithIcon(ICON_PATH_DRIVER, pool.getPassengers().stream().map(passenger
+            -> passenger.getName().toString()).collect(Collectors.joining(", "))).getRoot());
         cardFields.add(new LabelWithIcon(ICON_PATH_PHONE, pool.getDriver().getPhone().toString()).getRoot());
         cardFields.add(new LabelWithIcon(ICON_PATH_TIME,
                 pool.getTripDay() + " " + pool.getTripTime()).getRoot());

@@ -5,11 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
-import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.pool.Pool;
-
-import java.util.ArrayList;
 
 /**
  * Panel containing the list of passengers.

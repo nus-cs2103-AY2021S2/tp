@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_POOLS;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
@@ -98,8 +99,19 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasPool(Pool pool) {
+        requireNonNull(pool);
+        return addressBook.hasPool(pool);
+    }
+
+    @Override
     public void deletePassenger(Passenger passenger) {
         addressBook.removePassenger(passenger);
+    }
+
+    @Override
+    public void deletePool(Pool pool) {
+        addressBook.removePool(pool);
     }
 
     @Override
@@ -140,6 +152,10 @@ public class ModelManager implements Model {
         updateFilteredPoolList(PREDICATE_SHOW_ALL_POOLS);
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Pool} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
     @Override
     public ObservableList<Pool> getFilteredPoolList() {
         return filteredPools;
@@ -167,7 +183,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPassengers.equals(other.filteredPassengers);
+                && filteredPassengers.equals(other.filteredPassengers)
+                && filteredPools.equals(other.filteredPools);
     }
 
 }

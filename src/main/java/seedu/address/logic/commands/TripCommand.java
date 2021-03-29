@@ -1,13 +1,13 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.model.Model;
-import seedu.address.model.pool.Pool;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.function.Predicate;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import seedu.address.commons.core.Messages;
+import seedu.address.model.Model;
+import seedu.address.model.pool.Pool;
 
 /**
  * Finds and lists all passengers in address book whose name contains any of the argument keywords.
