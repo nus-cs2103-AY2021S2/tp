@@ -158,6 +158,8 @@ public class CheckCommandTest {
         }
 
         @Override
+        public void tagFlashcard(Flashcard target, String tag) {}
+
         public ObservableList<Score> getFilteredScoreHistory() {
             throw new AssertionError("This method should not be called.");
         }

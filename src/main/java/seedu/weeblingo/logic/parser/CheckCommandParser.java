@@ -9,7 +9,7 @@ import seedu.weeblingo.model.flashcard.Answer;
 public class CheckCommandParser implements Parser<CheckCommand> {
 
     /**
-     * Parses the given {@code String} of arugments in the context of CheckCommand and return the CheckCommand
+     * Parses the given {@code String} of arguments in the context of CheckCommand and return the CheckCommand
      * object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */

@@ -49,9 +49,16 @@ public class FlashcardCard extends UiPart<Region> {
         setQuestion(flashcard.getQuestion().value);
         showImage();
         setAnswer(showAnswer ? "Answer: " + flashcard.getAnswer().value : "Answer: ");
-        flashcard.getTags().stream()
+        flashcard.getWeeblingoTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        flashcard.getUserTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> {
+                    Label label = new Label(tag.tagName);
+                    label.setStyle("-fx-background-color: #777c85");
+                    tags.getChildren().add(label);
+                });
     }
 
     @Override

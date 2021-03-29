@@ -12,7 +12,7 @@ public class JsonAdaptedFlashcardTest {
 
     private static final String VALID_QUESTION = BENSON.getQuestion().toString();
     private static final String VALID_ANSWER = BENSON.getAnswer().toString();
-    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
+    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getWeeblingoTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
