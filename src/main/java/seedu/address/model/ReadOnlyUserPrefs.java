@@ -16,35 +16,49 @@ public interface ReadOnlyUserPrefs {
     Path getAddressBookFilePath();
 
     //=========== Alias =============================================================
-
     /**
      * Returns the current alias mapping.
+     *
+     * @return the mapping.
      */
     AliasMapping getAliasMapping();
 
     /**
      * Returns an Alias based on name.
+     *
+     * @param aliasName name of the alias.
+     * @return the alias with the specified name.
      */
     Alias getAlias(String aliasName);
 
     /**
      * Deletes an user-defined alias from the current mapping.
+     *
      * @param aliasName The name of the alias to be deleted.
      */
     void deleteAlias(String aliasName);
 
     /**
      * Checks if the current mapping contains an alias based on name.
+     *
+     * @param aliasName name of the alias.
+     * @return whether the mapping contains the alias.
      */
     boolean containsAlias(String aliasName);
 
     /**
      * Checks if the alias name is a reserved keyword.
+     *
+     * @param aliasName name of the alias.
+     * @return whether the name is reserved.
      */
     boolean isReservedKeyword(String aliasName);
 
     /**
      * Checks if the command word is recursive.
+     *
+     * @param commandWord the command word.
+     * @return whether the command word is recursive.
      */
     boolean isRecursiveKeyword(String commandWord);
 }

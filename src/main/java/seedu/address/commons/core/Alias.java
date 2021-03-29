@@ -30,6 +30,9 @@ public class Alias implements Serializable {
 
     /**
      * Creates an Alias object.
+     * All fields should not be null.
+     *
+     * @throws NullPointerException if the input is null.
      */
     public Alias(String aliasName, String command) {
         requireAllNonNull(aliasName, command);
@@ -41,6 +44,9 @@ public class Alias implements Serializable {
 
     /**
      * Validates alias name.
+     *
+     * @param aliasName name of the alias.
+     * @return whether the name matches the regex pattern.
      */
     public static boolean isValidName(String aliasName) {
         return Pattern.matches(NAME_REGEX, aliasName);
