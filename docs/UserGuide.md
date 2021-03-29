@@ -6,13 +6,10 @@ title: User Guide
   <img alt="logo" src="images/tutorbuddy_logo.png">
 </div>
 
-<br>
-<br>
-TutorBuddy is an application made for independent tutors as a management tool to cut down on admin overheads,
-by graphically managing their student’s information with a Graphical User Interface (GUI).
-It allows for faster and more effective student management.
+# TutorBuddy - User Guide
 
 **Table of Contents**
+* [Introduction](#introduction)
 * [About](#about)
 * [Quick start](#quick-start)
 * [Features](#features)
@@ -29,6 +26,10 @@ It allows for faster and more effective student management.
   * [Exit the program: `exit`](#exit-the-program-exit)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
+
+--------------------------------------------------------------------------------------------------------------------
+## Introduction
+
 
 --------------------------------------------------------------------------------------------------------------------
 ## About
