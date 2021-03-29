@@ -122,22 +122,19 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @return the predicate specified.
      */
     private static Predicate<Passenger> parsePredicate(Prefix prefix, List<String> arguments) throws ParseException {
-        if (PREFIX_NAME.equals(prefix)) {
+        switch (prefix.toString()) {
+        case "n/":
             return new NameContainsKeywordsPredicate(arguments);
-
-        } else if (PREFIX_ADDRESS.equals(prefix)) {
+        case "a/":
             return new AddressContainsKeywordsPredicate(arguments);
-
-        } else if (PREFIX_PHONE.equals(prefix)) {
+        case "p/":
             return new PhoneContainsKeywordsPredicate(arguments);
-
-        } else if (PREFIX_TAG.equals(prefix)) {
+        case "tag/":
             return new TagContainsKeywordsPredicate(arguments);
-
-        } else if (PREFIX_PRICE.equals(prefix)) {
+        case "pr/":
             Double price = Double.parseDouble(arguments.get(0));
             return new PriceContainsKeywordsPredicate(price);
-        } else {
+        default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
     }
