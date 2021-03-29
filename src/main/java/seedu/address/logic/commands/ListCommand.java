@@ -6,12 +6,12 @@ import static seedu.address.logic.parser.ListType.SESSION_TYPE_LIST;
 import static seedu.address.logic.parser.ListType.STUDENT_TYPE_LIST;
 import static seedu.address.logic.parser.ListType.TUTOR_TYPE_LIST;
 
+import java.util.function.Predicate;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.session.Session;
-
-import java.util.function.Predicate;
 
 /**
  * Lists all persons in the address book to the user.
@@ -36,6 +36,12 @@ public class ListCommand extends Command {
     private final Predicate<Session> sessionPredicate;
     private final String listCommandType;
 
+    /**
+     * Creates a ListCommand with a specific list type.
+     * @param personPredicate updates the filteredPersonList
+     * @param sessionPredicate updates the filteredSessionList
+     * @param listCommandType type of list to be shown
+     */
     public ListCommand(Predicate<Person> personPredicate, Predicate<Session> sessionPredicate,
                        String listCommandType) {
         this.personPredicate = personPredicate;
@@ -51,20 +57,20 @@ public class ListCommand extends Command {
 
         switch (listCommandType) {
 
-            case PERSON_TYPE_LIST:
-                return new CommandResult(MESSAGE_SUCCESS_PERSONS);
+        case PERSON_TYPE_LIST:
+            return new CommandResult(MESSAGE_SUCCESS_PERSONS);
 
-            case STUDENT_TYPE_LIST:
-                return new CommandResult(MESSAGE_SUCCESS_STUDENTS);
+        case STUDENT_TYPE_LIST:
+            return new CommandResult(MESSAGE_SUCCESS_STUDENTS);
 
-            case TUTOR_TYPE_LIST:
-                return new CommandResult(MESSAGE_SUCCESS_TUTORS);
+        case TUTOR_TYPE_LIST:
+            return new CommandResult(MESSAGE_SUCCESS_TUTORS);
 
-            case SESSION_TYPE_LIST:
-                return new CommandResult(MESSAGE_SUCCESS_SESSIONS);
+        case SESSION_TYPE_LIST:
+            return new CommandResult(MESSAGE_SUCCESS_SESSIONS);
 
-            default:
-                throw new CommandException(MESSAGE_USAGE);
+        default:
+            throw new CommandException(MESSAGE_USAGE);
         }
     }
 }

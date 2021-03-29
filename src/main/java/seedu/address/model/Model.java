@@ -8,9 +8,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonType;
 import seedu.address.model.person.PersonTypePredicate;
-import seedu.address.model.person.exceptions.AlreadyEnrolledException;
-import seedu.address.model.person.exceptions.StudentTutorNotFoundException;
-import seedu.address.model.person.exceptions.TimeClashException;
 import seedu.address.model.session.Session;
 
 /**

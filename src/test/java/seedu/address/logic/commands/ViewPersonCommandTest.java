@@ -11,10 +11,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.PersonId;
 import seedu.address.model.person.PersonIdPredicate;
-import seedu.address.model.person.PersonType;
-import seedu.address.model.person.PersonTypePredicate;
-
-
 
 public class ViewPersonCommandTest {
     private Model model;

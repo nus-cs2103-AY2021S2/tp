@@ -24,7 +24,7 @@ public class ViewCommandParser implements Parser<ViewPersonCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewPersonCommand.MESSAGE_USAGE));
         }
 
-       if (PersonId.isValidPersonId(trimmedArgs)) {
+        if (PersonId.isValidPersonId(trimmedArgs)) {
             return new ViewPersonCommand(new PersonIdPredicate(new PersonId(trimmedArgs)));
         } else {
             throw new ParseException(

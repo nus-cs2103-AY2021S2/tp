@@ -30,12 +30,16 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand(PREDICATE_SHOW_ALL_PERSONS, PREDICATE_SHOW_ALL_SESSIONS, "persons"), model, ListCommand.MESSAGE_SUCCESS_PERSONS, expectedModel);
+        assertCommandSuccess(new ListCommand(PREDICATE_SHOW_ALL_PERSONS,
+                PREDICATE_SHOW_ALL_SESSIONS, "persons"), model,
+                ListCommand.MESSAGE_SUCCESS_PERSONS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        assertCommandSuccess(new ListCommand(PREDICATE_SHOW_ALL_PERSONS, PREDICATE_SHOW_ALL_SESSIONS,  "persons"), model, ListCommand.MESSAGE_SUCCESS_PERSONS, expectedModel);
+        assertCommandSuccess(new ListCommand(PREDICATE_SHOW_ALL_PERSONS,
+                PREDICATE_SHOW_ALL_SESSIONS, "persons"), model,
+                ListCommand.MESSAGE_SUCCESS_PERSONS, expectedModel);
     }
 }

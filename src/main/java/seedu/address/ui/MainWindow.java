@@ -278,9 +278,9 @@ public class MainWindow extends UiPart<Stage> {
                 fillSplitPane(viewSession);
             }
 
-            if (commandResult.getFeedbackToUser().equals(ListCommand.MESSAGE_SUCCESS_PERSONS) ||
-                    commandResult.getFeedbackToUser().equals(ListCommand.MESSAGE_SUCCESS_STUDENTS) ||
-                    commandResult.getFeedbackToUser().equals(ListCommand.MESSAGE_SUCCESS_TUTORS)) {
+            if (commandResult.getFeedbackToUser().equals(ListCommand.MESSAGE_SUCCESS_PERSONS) || commandResult
+                    .getFeedbackToUser().equals(ListCommand.MESSAGE_SUCCESS_STUDENTS)
+                    || commandResult.getFeedbackToUser().equals(ListCommand.MESSAGE_SUCCESS_TUTORS)) {
                 fillInnerParts();
             }
 
