@@ -110,7 +110,7 @@ Example:
 
     find clementi fastfood 5/5
 
-### View specific food reviews
+### View a specific entry
 
 Opens up a window, showing the details of a specified entry in a full expanded view. Allows the user to read through 
 reviews that are too lengthy to be shown in the main UI window.
@@ -123,10 +123,10 @@ Example:
 
     view 1
 
-### Revise specific food reviews
+### Revise a specific entry
 
 Opens up a window, showing the existing details of an entry and allowing for quick corrections and updates without 
-requiring the use of prefixes and command syntaxes, in the UI.
+requiring the use of prefixes and command syntax in the UI.
 
 Format: `revise <INDEX>`
 
