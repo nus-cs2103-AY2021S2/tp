@@ -19,7 +19,7 @@ public class PropertyTagsPredicate implements Predicate<Property> {
         String[] keywords = keyword.split(",");
         this.tags = new ArrayList<>();
         for (String s : keywords) {
-            this.tags.add(new Tag(s));
+            this.tags.add(new Tag(s.strip()));
         }
 
     }

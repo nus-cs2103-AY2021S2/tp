@@ -248,6 +248,16 @@ public class FindPropertyCommandTest {
     }
 
     @Test
+    public void multipleTagsTest() throws ParseException {
+        String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR, 1);
+        PropertyPredicateList predicate = preparePredicate("tags/65 square metres, 2 bedrooms");
+        FindPropertyCommand command = new FindPropertyCommand(predicate);
+        expectedModel.updateFilteredPropertyList(predicate.combine());
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.singletonList(WOODLANDS_CRESCENT), model.getFilteredPropertyList());
+    }
+
+    @Test
     public void postalTest() throws ParseException {
         String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR, 1);
         PropertyPredicateList predicate = preparePredicate("p/731784");

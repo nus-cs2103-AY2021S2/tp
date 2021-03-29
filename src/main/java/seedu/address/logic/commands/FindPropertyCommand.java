@@ -16,14 +16,13 @@ public class FindPropertyCommand extends Command {
     public static final String COMMAND_WORD = "find property";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all properties containing any of "
-            + "the specified keywords (case-insensitive) and/or by giving a price and search for properties "
-            + "with asking prices above or below that amount, then displaying them as a list with index "
-            + "numbers.\n"
-            + "Parameters: [KEYWORD]... [pl/UPPER_PRICE_LIMIT] [pm/LOWER_PRICE_LIMIT] [t/TYPE] \n"
+            + "the specified keywords (case-insensitive) and/or with the given parameters. \n"
+            + "Parameters: [KEYWORD]... [pl/UPPER_PRICE_LIMIT] [pm/LOWER_PRICE_LIMIT] [t/TYPE] "
+            + "[a/ADDRESS] [r/REMARKS] [tags/TAGS_SEPARATED_BY_COMMA] [p/POSTAL_CODE] \n"
             + "Price limits are inclusive. \n"
             + "Housing types accepted are: HDB, Condo, and Landed. \n"
             + "Example: " + COMMAND_WORD + " jurong\n"
-            + COMMAND_WORD + " pl/1000000 t/hdb";
+            + COMMAND_WORD + " pl/1000000 t/hdb a/1 Jurong East Street 32, #08-111, tags/3 bedrooms, need renovation";
 
     private final PropertyPredicateList predicates;
 
