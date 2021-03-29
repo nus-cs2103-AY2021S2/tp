@@ -17,6 +17,7 @@ public class MailtoLink {
     /**
      * Constructs a new {@code MailtoLink} object with the given contact as the recipient
      * of the to-be-composed email.
+     *
      * @param to The contact whose email address represents the 'to' field in the email
      *           message.
      */
@@ -45,6 +46,7 @@ public class MailtoLink {
      * Possible formats:
      *     - {@code mailto:\<contact's email address\>} if no note is provided.
      *     - {@code mailto:\<contact's email address\>?body=\<note's contents\>} if a note is provided.
+     *
      * @return A string formatted as a {@code mailto} link.
      */
     @Override

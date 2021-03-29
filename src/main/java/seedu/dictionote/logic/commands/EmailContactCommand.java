@@ -1,6 +1,7 @@
 package seedu.dictionote.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_NOTE_INDEX;
 
 import java.util.List;
 
@@ -22,7 +23,8 @@ public class EmailContactCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Opens a new window to send an email to the contact identified by the index number used in the "
             + "displayed contacts list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: CONTACT_INDEX (must be a positive integer) "
+            + "[" + PREFIX_NOTE_INDEX + "NOTE_INDEX]\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_EMAIL_CONTACT_SUCCESS = "New email window open: to %1$s";
@@ -37,6 +39,10 @@ public class EmailContactCommand extends Command {
         this(contactIndex, null);
     }
 
+    /**
+     * Double-parameter constructor for commands with both a contact index and a note index
+     * as arguments.
+     */
     public EmailContactCommand(Index contactIndex, Index noteIndex) {
         this.contactIndex = contactIndex;
         this.noteIndex = noteIndex;
