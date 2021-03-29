@@ -189,7 +189,7 @@ public class UniqueMonthList implements Iterable<Month> {
         requireNonNull(editedRecord);
         Month targetMonth = findFinancialRecordMonth(target);
         Month editedMonth = findFinancialRecordMonth(editedRecord);
-        targetMonth.deleteFinancialRecord(editedRecord);
+        targetMonth.deleteFinancialRecord(target);
         editedMonth.addFinancialRecord(editedRecord);
     }
 

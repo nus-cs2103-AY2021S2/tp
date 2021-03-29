@@ -39,7 +39,7 @@ public class EditFrCommandParser implements BudgetBabyCommandParser<EditFrComman
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditFrCommand.MESSAGE_USAGE), pe);
         }
 
         EditFrDescriptor editedFrDescriptor = new EditFrDescriptor();
