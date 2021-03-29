@@ -306,7 +306,7 @@ After sort command is executed. <br><br>
 ### Entering review mode: `review`
 Reviews the current list of flashcards.<br>
 When the user enters `review` in the command box, this new window will appear. <br><br>
-![UiReviewMode](./images/UiReviewModeWindow.png) <br><br>
+![UiReviewMode](./images/UiReviewModeNoAnswer.png) <br><br>
 Format: `review`
 
 ### Viewing statistics of flashcards: `stats`
@@ -364,39 +364,63 @@ file at the next run.
 ### Showing next flashcard : `n`
 
 Moves on to the next flashcard.<br>
-Format: `n`
+Format: `n` <br>
+Example: <br><br>
+![UiReviewModeNext](./images/UiReviewNext.png)
 
 ### Showing previous flashcard : `p`
 
 Moves back to the previous flashcard. <br>
-Format: `p`
+Format: `p` <br>
+Example: <br><br>
+![UiReviewModePrev](./images/UiReviewPrev.png)
 
 ### Showing answer : `a`
 
 Displays the answer of the current flashcard. <br>
-Format: `a`
+Format: `a` <br>
+Example: <br><br>
+![UiReviewModeWithAnswer](./images/UiReviewModeWindow.png)
 
 ### Hiding answer : `h`
 
 Hides the answer of the current flashcard. <br>
-Format: `h`
+Format: `h` <br>
+Example: <br><br>
+![UiReviewModeHide](./images/UiReviewHide.png)
 
 ### Review a flashcard as correct : `t`
 
 Marks that the user got the answer correct for the current flashcard. <br>
-Note: This command can only be executed if the answer of the current flashcard is shown. <br>
-Format: `t`
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Note:** This command can only be executed if the answer of the current flashcard is shown.
+
+</div>
+
+Format: `t` <br>
+Example: <br><br>
+![UiReviewModeCorrectAnswer](./images/UiReviewAnsTrue.png)
 
 ### Review a flashcard as wrong : `f`
 
 Marks that the user got the answer wrong for the current flashcard. <br>
-Note: This command can only be executed if the answer of the current flashcard is shown. <br>
-Format: `f`
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Note:** This command can only be executed if the answer of the current flashcard is shown.
+
+</div>
+
+Format: `f` <br>
+Example: <br><br>
+![UiReviewModeWrongAnswer](./images/UiReviewAnsFalse.png)
 
 ### Quitting review mode : `q`
 
 Quits the review mode and goes back to the main window. <br>
-Format: `q`
+Format: `q` <br>
+Example: <br><br>
+![UiReviewModeExit](./images/UiReviewExit.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -438,7 +462,7 @@ Action          | Format
 **Next flashcard**   | `n`
 **Previous flashcard** | `p`
 **Show answer** | `a`
-**Review flashcard as correct** | `t`
-**Review flashcard as wrong** | `f`
+**Review a flashcard as correct** | `t`
+**Review a flashcard as wrong** | `f`
 **Hide answer** | `h`
 **Quit review** | `q`
