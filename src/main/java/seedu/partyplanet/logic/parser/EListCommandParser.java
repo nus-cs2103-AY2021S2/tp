@@ -50,7 +50,7 @@ public class EListCommandParser implements Parser<EListCommand> {
 
         Predicate<Event> predicate = getPredicate(argMap);
         Comparator<Event> comparator = getComparator(argMap);
-        return new EListCommand(predicate, comparator, stringFind+stringSort);
+        return new EListCommand(predicate, comparator, stringFind + stringSort);
     }
 
     /**
@@ -72,7 +72,7 @@ public class EListCommandParser implements Parser<EListCommand> {
                 stringFind += "\nRequire exact event name: ";
             }
             List<String> allNames = argMap.getAllValues(PREFIX_NAME);
-            for (int i=0; i < allNames.size(); i++) {
+            for (int i = 0; i < allNames.size(); i++) {
                 String name = allNames.get(i);
                 predicates.add(new EventNameContainsExactKeywordsPredicate(name));
                 if (i == allNames.size() - 1) {
@@ -85,9 +85,9 @@ public class EListCommandParser implements Parser<EListCommand> {
                 stringFind += "\nRequire exact event detail: ";
             }
             List<String> allDetails = argMap.getAllValues(PREFIX_REMARK);
-            for (int i=0; i < allDetails.size(); i++) {
+            for (int i = 0; i < allDetails.size(); i++) {
                 String detail = allDetails.get(i);
-                predicates.add(new EventNameContainsExactKeywordsPredicate(detail));
+                predicates.add(new EventDetailContainsExactKeywordsPredicate(detail));
                 if (i == allDetails.size() - 1) {
                     stringFind += detail;
                 } else {
@@ -99,9 +99,9 @@ public class EListCommandParser implements Parser<EListCommand> {
                 stringFind += "\nRequire partial event name: ";
             }
             List<String> allValues = argMap.getAllValues(PREFIX_NAME);
-            for (int i=0; i < allValues.size(); i++) {
+            for (int i = 0; i < allValues.size(); i++) {
                 String name = allValues.get(i);
-                predicates.add(new EventNameContainsKeywordsPredicate(name));
+                predicates.add(new EventDetailContainsKeywordsPredicate(name));
                 if (i == allValues.size() - 1) {
                     stringFind += name;
                 } else {
@@ -112,7 +112,7 @@ public class EListCommandParser implements Parser<EListCommand> {
                 stringFind += "\nRequire partial event detail: ";
             }
             List<String> allDetails = argMap.getAllValues(PREFIX_REMARK);
-            for (int i=0; i < allDetails.size(); i++) {
+            for (int i = 0; i < allDetails.size(); i++) {
                 String detail = allDetails.get(i);
                 predicates.add(new EventNameContainsKeywordsPredicate(detail));
                 if (i == allDetails.size() - 1) {
