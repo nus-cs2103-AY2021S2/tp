@@ -25,6 +25,7 @@ import seedu.address.model.event.Event;
 import seedu.address.model.event.EventNameContainsKeywordsPredicate;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskNameContainsKeywordsPredicate;
+import seedu.address.testutil.EditEventDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -56,8 +57,8 @@ public class CommandTestUtil {
     // Event
     public static final String VALID_EVENT_NAME_EVENTONE = "Coding Interview";
     public static final String VALID_EVENT_NAME_EVENTTWO = "SoC FOP";
-    public static final String VALID_EVENT_STARTDATE_EVENTONE = "2022-03-22";
-    public static final String VALID_EVENT_STARTDATE_EVENTTWO = "2022-07-24";
+    public static final String VALID_EVENT_STARTDATE_EVENTONE = "2021-03-22";
+    public static final String VALID_EVENT_STARTDATE_EVENTTWO = "2021-07-24";
     public static final String VALID_EVENT_STARTTIME_EVENTONE = "13:00";
     public static final String VALID_EVENT_STARTTIME_EVENTTWO = "07:00";
     public static final String VALID_EVENT_ENDDATE_EVENTONE = "2022-03-22";
@@ -68,6 +69,7 @@ public class CommandTestUtil {
     public static final String VALID_EVENT_CATEGORY_SCHOOL = "School";
     public static final String VALID_EVENT_TAG_FINAL = "Final";
     public static final String VALID_EVENT_TAG_FUN = "Fun";
+    public static final String INVALID_EVENT_ENDDATE = "2020-03-03";
     // Event to input to parser
     public static final String NAME_DESC_EVENTONE = " " + PREFIX_NAME + VALID_EVENT_NAME_EVENTONE;
     public static final String NAME_DESC_EVENTTWO = " " + PREFIX_NAME + VALID_EVENT_NAME_EVENTTWO;
@@ -98,6 +100,22 @@ public class CommandTestUtil {
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+
+    public static final EditEventCommand.EditEventDescriptor DESC_EVENTONE;
+    public static final EditEventCommand.EditEventDescriptor DESC_EVENTTWO;
+
+    static {
+        DESC_EVENTONE = new EditEventDescriptorBuilder().withName(VALID_EVENT_NAME_EVENTONE)
+                .withStartDate(VALID_EVENT_STARTDATE_EVENTONE).withStartTime(VALID_EVENT_STARTTIME_EVENTONE)
+                .withEndDate(VALID_EVENT_ENDDATE_EVENTONE).withEndTime(VALID_EVENT_ENDTIME_EVENTONE)
+                .withCategories(VALID_EVENT_CATEGORY_WORK)
+                .withTags(VALID_EVENT_TAG_FINAL).build();
+        DESC_EVENTTWO = new EditEventDescriptorBuilder().withName(VALID_EVENT_NAME_EVENTTWO)
+                .withStartDate(VALID_EVENT_STARTDATE_EVENTTWO).withStartTime(VALID_EVENT_STARTTIME_EVENTTWO)
+                .withEndDate(VALID_EVENT_ENDDATE_EVENTTWO).withEndTime(VALID_EVENT_ENDTIME_EVENTTWO)
+                .withCategories(VALID_EVENT_CATEGORY_SCHOOL)
+                .withTags(VALID_EVENT_TAG_FINAL).build();
+    }
 
 
     /**
