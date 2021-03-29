@@ -16,12 +16,10 @@ public class AddDateCommandParserTest {
 
     private final AddDateCommandParser parser = new AddDateCommandParser();
 
-    private final Event VALID_DATE = DATE_ONE;
-
     @Test
     public void parse_allFieldsPresent_success() {
-      assertParseSuccess(parser, "1 d/10-10-2019 desc/Anniversary",
-              new AddDateCommand(Index.fromOneBased(1), VALID_DATE));
+        assertParseSuccess(parser, "1 d/10-10-2019 desc/Anniversary",
+                new AddDateCommand(Index.fromOneBased(1), DATE_ONE));
     }
 
     @Test

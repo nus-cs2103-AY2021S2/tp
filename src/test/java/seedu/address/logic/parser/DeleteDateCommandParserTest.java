@@ -1,20 +1,17 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.DeleteDateCommand;
-import seedu.address.model.person.Event;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalEvents.DATE_ONE;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.DeleteDateCommand;
 
 public class DeleteDateCommandParserTest {
 
     private final DeleteDateCommandParser parser = new DeleteDateCommandParser();
-
-    private final Event VALID_DATE = DATE_ONE;
 
     @Test
     public void parse_allFieldsPresent_success() {
