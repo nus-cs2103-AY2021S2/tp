@@ -40,6 +40,10 @@ public class SessionId {
         return sessionId;
     }
 
+    public static SessionId fromOneBased(Integer sessionId) {
+        return new SessionId(sessionId);
+    }
+
     /**
      * Creates a new {@code SessionId}.
      */

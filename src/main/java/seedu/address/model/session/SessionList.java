@@ -1,13 +1,13 @@
 package seedu.address.model.session;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.SessionNotFoundException;
-
 
 /**
  * A list of sessions that does not allow nulls.
@@ -29,6 +29,21 @@ public class SessionList {
     }
 
     /**
+     * Replaces the session {@code target} in the list with {@code editedSession}.
+     * {@code target} must exist in the list.
+     */
+    public void setSession(Session target, Session editedSession) {
+        requireAllNonNull(target, editedSession);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new SessionNotFoundException();
+        }
+        internalList.set(index, editedSession);
+    }
+
+    /**
+
      * Removes the equivalent session from the list.
      * The session must exist in the list.
      */

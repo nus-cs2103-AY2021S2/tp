@@ -18,7 +18,6 @@ import seedu.address.model.tag.Tag;
 public class Session {
     public static final String MESSAGE_CONSTRAINTS =
             "Session ID should only be c/[session ID], and it should not be blank";
-    public static final String VALIDATION_REGEX = " [c][\\/]\\d";
     private static int sessionCount = 0;
 
 
@@ -199,9 +198,7 @@ public class Session {
                 .append("; Day: ")
                 .append(this.getDay())
                 .append("; Time: ")
-                .append(this.getTimeslot().toString())
-                .append("; Students: ")
-                .append(this.getStudents().toString());
+                .append(this.getTimeslot().toString());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
