@@ -28,8 +28,8 @@
                 <Label fx:id="subject" styleClass="cell_big_label" text="\$subject" />
             </HBox>
             <Label fx:id="name" styleClass="cell_small_label" text="\$name" />
-            <Label fx:id="datetime" styleClass="cell_small_label" text="\$datetime" />
-            <Label fx:id="timeto" styleClass="cell_small_label" text="\$timeto" />
+            <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
+            <Label fx:id="time" styleClass="cell_small_label" text="\$time" />
             <Label fx:id="address" styleClass="cell_small_label" text="\$location" />
         </VBox>
       <rowConstraints>

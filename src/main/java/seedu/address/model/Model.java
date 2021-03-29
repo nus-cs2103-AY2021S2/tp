@@ -8,9 +8,11 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.budget.Budget;
+import seedu.address.model.event.Event;
 import seedu.address.model.filter.AppointmentFilter;
 import seedu.address.model.filter.PersonFilter;
 import seedu.address.model.grade.Grade;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
@@ -26,6 +28,7 @@ public interface Model {
     Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENT = unused -> true;
     Predicate<Grade> PREDICATE_SHOW_ALL_GRADE = unused -> true;
     Predicate<Schedule> PREDICATE_SHOW_ALL_SCHEDULE = unused -> true;
+    Predicate<Event> PREDICATE_SHOW_ALL_EVENT = unused -> true;
 
     /**
      * Returns the user prefs.
@@ -109,6 +112,12 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * @param name Name of tutor to search for.
+     * @return True is there exists a tutor with that name.
+     */
+    boolean hasTutorByName(Name name);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
@@ -171,6 +180,7 @@ public interface Model {
      */
     boolean hasAppointment(Appointment appointment);
 
+
     /**
      * @param appointment Appointment to add (appointment must not already exist)
      */
@@ -204,6 +214,12 @@ public interface Model {
      * @return true if Appointment DateTime exists in the appointment list
      */
     boolean hasAppointmentDateTime(AppointmentDateTime appointmentDateTime);
+
+    /**
+     * @param name Name of tutor.
+     * @return True if appointment contains tutor.
+     */
+    boolean hasAppointmentContainingTutor(Name name);
 
     /**
      * @return Budget Book
@@ -366,13 +382,6 @@ public interface Model {
     void deleteSchedule(Schedule schedule);
 
     /**
-     * Method that removes schedule based on index
-     *
-     * @param indexToRemove
-     */
-    void deleteSchedule(int indexToRemove);
-
-    /**
      * Replaces the given schedule {@code target} with {@code editedSchedule}.
      * {@code target} must exist in the schedule tracker.
      * The {@code editedSchedule} must not be the same as another existing schedule in the schedule tracker.
@@ -380,10 +389,7 @@ public interface Model {
     void setSchedule(Schedule target, Schedule editedSchedule);
 
     /**
-     * Checks if {@code AppointmentDateTime} exists in the schedule tracker.
-     *
-     * @param appointmentDateTime Schedule DateTime to be checked
-     * @return true if Schedule DateTime exists in the schedule list
+     * Returns an unmodifiable view of the filtered event list
      */
-    boolean hasScheduleDateTime(AppointmentDateTime appointmentDateTime);
+    ObservableList<Event> getFilteredEventList();
 }

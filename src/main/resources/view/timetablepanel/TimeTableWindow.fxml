@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.Scene?>
+<?import javafx.stage.Stage?>
+
+<fx:root xmlns:fx="http://javafx.com/fxml/1" resizable="false" title="Timetable" type="javafx.stage.Stage"
+         xmlns="http://javafx.com/javafx/11" maxWidth="1000">
+    <icons>
+        <Image url="@/images/help_icon.png"/>
+    </icons>
+    <scene>
+        <Scene>
+            <stylesheets>
+                <URL value="@../DarkTheme.css"/>
+                <URL value="@TimeTableStyle.css"/>
+            </stylesheets>
+            <VBox>
+                <StackPane fx:id="timetablePanelPlaceholder" VBox.vgrow="ALWAYS" style="-fx-background-color: #383838;"/>
+            </VBox>
+        </Scene>
+    </scene>
+</fx:root>
