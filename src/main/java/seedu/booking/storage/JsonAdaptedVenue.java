@@ -1,9 +1,16 @@
 package seedu.booking.storage;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.booking.commons.exceptions.IllegalValueException;
+import seedu.booking.model.Tag;
 import seedu.booking.model.venue.Capacity;
 import seedu.booking.model.venue.Venue;
 import seedu.booking.model.venue.VenueName;
@@ -14,6 +21,7 @@ public class JsonAdaptedVenue {
     private final String name;
     private final String capacity;
     private final String description;
+    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedVenue} with the given venue details.
@@ -21,10 +29,14 @@ public class JsonAdaptedVenue {
     @JsonCreator
     public JsonAdaptedVenue(@JsonProperty("name") String name,
                             @JsonProperty("capacity") String capacity,
-                            @JsonProperty("description") String description) {
+                            @JsonProperty("description") String description,
+                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.capacity = capacity;
         this.description = description;
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
     }
 
     /**
@@ -34,6 +46,9 @@ public class JsonAdaptedVenue {
         name = source.getVenueName().venueName;
         capacity = String.valueOf(source.getCapacity());
         description = source.getDescription();
+        tagged.addAll(source.getTags().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
     }
 
 
@@ -43,6 +58,11 @@ public class JsonAdaptedVenue {
      * @throws IllegalValueException if there were any data constraints violated in the adapted venue.
      */
     public Venue toModelType() throws IllegalValueException {
+        final List<Tag> venueTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : tagged) {
+            venueTags.add(tag.toModelType());
+        }
+
         // needs to be changed after implementation of classes for each of the attributes
         if (name == null) {
             throw new IllegalValueException(MISSING_FIELD_MESSAGE_FORMAT);
@@ -62,7 +82,9 @@ public class JsonAdaptedVenue {
 
         final String modelDescription = description;
 
-        return new Venue(modelName, modelCapacity, description);
+        final Set<Tag> modelTags = new HashSet<>(venueTags);
+
+        return new Venue(modelName, modelCapacity, description, modelTags);
     }
 
 }

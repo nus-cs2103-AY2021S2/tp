@@ -3,12 +3,15 @@ package seedu.booking.logic.parser;
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_CAPACITY;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.booking.logic.commands.CreateVenueCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
+import seedu.booking.model.Tag;
 import seedu.booking.model.venue.Capacity;
 import seedu.booking.model.venue.Venue;
 import seedu.booking.model.venue.VenueName;
@@ -28,7 +31,7 @@ public class CreateVenueCommandParser implements Parser<CreateVenueCommand> {
      */
     public CreateVenueCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_VENUE, PREFIX_CAPACITY, PREFIX_DESCRIPTION);
+                ArgumentTokenizer.tokenize(args, PREFIX_VENUE, PREFIX_CAPACITY, PREFIX_DESCRIPTION, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_CAPACITY)) {
             argMultimap.put(PREFIX_CAPACITY, DEFAULT_CAPACITY);
@@ -47,7 +50,9 @@ public class CreateVenueCommandParser implements Parser<CreateVenueCommand> {
 
         VenueName name = ParserUtil.parseVenueName(argMultimap.getValue(PREFIX_VENUE).get());
         Capacity capacity = ParserUtil.parseCapacity(argMultimap.getValue(PREFIX_CAPACITY).get());
-        Venue venue = new Venue(name, capacity, description);
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+
+        Venue venue = new Venue(name, capacity, description, tagList);
 
         return new CreateVenueCommand(venue);
     }
