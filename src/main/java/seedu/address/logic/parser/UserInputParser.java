@@ -15,6 +15,12 @@ import seedu.address.logic.commands.appointment.DeleteAppointmentCommand;
 import seedu.address.logic.commands.appointment.EditAppointmentCommand;
 import seedu.address.logic.commands.appointment.FindAppointmentCommand;
 import seedu.address.logic.commands.appointment.ListAppointmentCommand;
+import seedu.address.logic.commands.doctor.AddDoctorCommand;
+import seedu.address.logic.commands.doctor.ClearDoctorCommand;
+import seedu.address.logic.commands.doctor.DeleteDoctorCommand;
+import seedu.address.logic.commands.doctor.EditDoctorCommand;
+import seedu.address.logic.commands.doctor.FindDoctorCommand;
+import seedu.address.logic.commands.doctor.ListDoctorCommand;
 import seedu.address.logic.commands.patient.AddPatientCommand;
 import seedu.address.logic.commands.patient.ClearPatientCommand;
 import seedu.address.logic.commands.patient.DeletePatientCommand;
@@ -24,6 +30,10 @@ import seedu.address.logic.parser.appointment.AddAppointmentCommandParser;
 import seedu.address.logic.parser.appointment.DeleteAppointmentCommandParser;
 import seedu.address.logic.parser.appointment.EditAppointmentCommandParser;
 import seedu.address.logic.parser.appointment.FindAppointmentCommandParser;
+import seedu.address.logic.parser.doctor.AddDoctorCommandParser;
+import seedu.address.logic.parser.doctor.DeleteDoctorCommandParser;
+import seedu.address.logic.parser.doctor.EditDoctorCommandParser;
+import seedu.address.logic.parser.doctor.FindDoctorCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.patient.AddPatientCommandParser;
 import seedu.address.logic.parser.patient.DeletePatientCommandParser;
@@ -76,6 +86,7 @@ public class UserInputParser {
         case ListAppointmentCommand.COMMAND_WORD:
             return new ListAppointmentCommand();
 
+
         // Patient related commands
         case AddPatientCommand.COMMAND_WORD:
             return new AddPatientCommandParser().parse(arguments);
@@ -95,6 +106,26 @@ public class UserInputParser {
         case ListPatientCommand.COMMAND_WORD:
             return new ListPatientCommand();
 
+
+        // Doctor related commands
+        case AddDoctorCommand.COMMAND_WORD:
+            return new AddDoctorCommandParser().parse(arguments);
+
+        case ClearDoctorCommand.COMMAND_WORD:
+            return new ClearDoctorCommand();
+
+        case DeleteDoctorCommand.COMMAND_WORD:
+            return new DeleteDoctorCommandParser().parse(arguments);
+
+        case EditDoctorCommand.COMMAND_WORD:
+            return new EditDoctorCommandParser().parse(arguments);
+
+        case FindDoctorCommand.COMMAND_WORD:
+            return new FindDoctorCommandParser().parse(arguments);
+
+        case ListDoctorCommand.COMMAND_WORD:
+            return new ListDoctorCommand();
+
         // Common Commands
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -106,5 +137,4 @@ public class UserInputParser {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }

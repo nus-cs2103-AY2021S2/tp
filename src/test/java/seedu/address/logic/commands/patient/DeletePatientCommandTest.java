@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalAppObjects.getTypicalAppointmentSchedule;
+import static seedu.address.logic.commands.CommandTestUtil.showPatientAtIndex;
+import static seedu.address.testutil.TypicalAppObjects.getTypicalDoctorRecords;
 import static seedu.address.testutil.TypicalAppObjects.getTypicalPatientRecords;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_IN_LIST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_IN_LIST;
@@ -14,6 +14,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.AddressBook;
+import seedu.address.model.AppointmentSchedule;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -24,9 +26,9 @@ import seedu.address.model.person.Patient;
  * {@code DeleteCommand}.
  */
 public class DeletePatientCommandTest {
-
-    private Model model = new ModelManager(getTypicalAppointmentSchedule(), getTypicalPatientRecords(),
-            new UserPrefs());
+    // empty appointment schedule to prevent conflict in delete operations
+    private Model model = new ModelManager(getTypicalPatientRecords(), getTypicalDoctorRecords(),
+            new AppointmentSchedule(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -35,8 +37,12 @@ public class DeletePatientCommandTest {
 
         String expectedMessage = String.format(Messages.MESSAGE_DELETE_PATIENT_SUCCESS, patientToDelete);
 
-        ModelManager expectedModel = new ModelManager(getTypicalAppointmentSchedule(), model.getPatientRecords(),
-                new UserPrefs());
+        Model expectedModel = new ModelManager(
+                new AddressBook<>(model.getPatientRecords()),
+                new AddressBook<>(model.getDoctorRecords()),
+                new AppointmentSchedule(model.getAppointmentSchedule()),
+                new UserPrefs(model.getUserPrefs())
+        );
 
         expectedModel.deletePatient(patientToDelete);
 
@@ -53,15 +59,20 @@ public class DeletePatientCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_IN_LIST);
+        showPatientAtIndex(model, INDEX_FIRST_IN_LIST);
 
         Patient personToDelete = model.getFilteredPatientList().get(INDEX_FIRST_IN_LIST.getZeroBased());
         DeletePatientCommand deletePatientCommand = new DeletePatientCommand(INDEX_FIRST_IN_LIST, false);
 
         String expectedMessage = String.format(Messages.MESSAGE_DELETE_PATIENT_SUCCESS, personToDelete);
 
-        Model expectedModel = new ModelManager(getTypicalAppointmentSchedule(), model.getPatientRecords(),
-                new UserPrefs());
+        Model expectedModel = new ModelManager(
+                new AddressBook<>(model.getPatientRecords()),
+                new AddressBook<>(model.getDoctorRecords()),
+                new AppointmentSchedule(model.getAppointmentSchedule()),
+                new UserPrefs(model.getUserPrefs())
+        );
+
         expectedModel.deletePatient(personToDelete);
         showNoPerson(expectedModel);
 
@@ -70,7 +81,7 @@ public class DeletePatientCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showPersonAtIndex(model, INDEX_FIRST_IN_LIST);
+        showPatientAtIndex(model, INDEX_FIRST_IN_LIST);
 
         Index outOfBoundIndex = INDEX_SECOND_IN_LIST;
         // ensures that outOfBoundIndex is still in bounds of address book list

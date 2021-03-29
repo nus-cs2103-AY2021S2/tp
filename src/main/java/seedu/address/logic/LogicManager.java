@@ -16,6 +16,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAppointmentSchedule;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Patient;
 import seedu.address.storage.Storage;
 
@@ -68,7 +69,7 @@ public class LogicManager implements Logic {
         return commandResult;
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== PatientRecords ================================================================================
     @Override
     public ReadOnlyAddressBook<Patient> getPatientRecords() {
         return model.getPatientRecords();
@@ -80,13 +81,24 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<String> getFilteredDoctorList() {
+    public Path getPatientRecordsFilePath() {
+        return model.getPatientRecordsFilePath();
+    }
+
+    //=========== DoctorRecords ================================================================================
+    @Override
+    public ReadOnlyAddressBook<Doctor> getDoctorRecords() {
+        return model.getDoctorRecords();
+    }
+
+    @Override
+    public ObservableList<Doctor> getFilteredDoctorList() {
         return model.getFilteredDoctorList();
     }
 
     @Override
-    public Path getPatientRecordsFilePath() {
-        return model.getPatientRecordsFilePath();
+    public Path getDoctorRecordsFilePath() {
+        return model.getDoctorRecordsFilePath();
     }
 
     //=========== AppointmentSchedule ========================================================================

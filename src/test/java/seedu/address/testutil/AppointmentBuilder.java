@@ -5,6 +5,7 @@ import java.util.Set;
 
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Timeslot;
+import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Patient;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -15,11 +16,11 @@ import seedu.address.model.util.SampleDataUtil;
 public class AppointmentBuilder {
 
     public static final Patient DEFAULT_PATIENT = new PatientBuilder().build();
-    public static final String DEFAULT_DOCTOR = "Dr. Grey";
+    public static final Doctor DEFAULT_DOCTOR = new DoctorBuilder().build();
     public static final Timeslot DEFAULT_TIMESLOT = new TimeslotBuilder().build();
 
     private Patient patient;
-    private String doctor;
+    private Doctor doctor;
     private Timeslot timeslot;
     private Set<Tag> tags;
 
@@ -54,7 +55,7 @@ public class AppointmentBuilder {
     /**
      * Sets the {@code doctor} of the {@code Appointment} that we are building.
      */
-    public AppointmentBuilder withDoctor(String doctor) {
+    public AppointmentBuilder withDoctor(Doctor doctor) {
         this.doctor = doctor;
         return this;
     }
