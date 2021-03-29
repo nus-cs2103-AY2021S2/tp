@@ -7,9 +7,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.booking.commons.util.StringUtil;
 import seedu.booking.model.Tag;
 
-import seedu.booking.commons.util.StringUtil;
 
 /**
  * Represents a venue in the booking list.
