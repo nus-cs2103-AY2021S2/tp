@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<!--
+FXML Adapted from AY2021S1-CS2103T-F12-2/tp (https://github.com/AY2021S1-CS2103T-F12-2/tp)
+-->
+<HBox fx:id="currentTimePointer" prefHeight="10.0" prefWidth="350.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets left="5.0" right="10.0" />
+    </padding>
+    <children>
+        <Label fx:id="currentTime" text="12:20 PM" textFill="RED">
+            <font>
+                <Font name="Arial Bold" size="10.0" />
+            </font>
+            <HBox.margin>
+                <Insets right="5.0" />
+            </HBox.margin>
+        </Label>
+        <Circle fill="RED" radius="5.0" stroke="RED" strokeType="INSIDE" strokeWidth="0.0" />
+        <Line endX="200.0" startX="-100.0" stroke="RED">
+            <HBox.margin>
+                <Insets top="5.0" />
+            </HBox.margin>
+        </Line>
+    </children>
+</HBox>

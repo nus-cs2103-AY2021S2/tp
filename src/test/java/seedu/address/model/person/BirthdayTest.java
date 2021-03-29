@@ -39,12 +39,12 @@ public class BirthdayTest {
         assertFalse(Birthday.isValidBirthday("abcde")); // invalid input. Should be all int
         assertFalse(Birthday.isValidBirthday("@@@@")); //invalid input. Should not have special characters
         assertFalse(Birthday.isValidBirthday("12-12-1998")); // invalid ordering. Should be YYYY-MM-DD
-        assertFalse(Birthday.isValidBirthday("1999/12/12")); // invalid formatting. use - instead of /
+        assertFalse(Birthday.isValidBirthday("1998-10-22")); // invalid formatting. use / instead of -
 
         // valid birthdays
-        assertTrue(Birthday.isValidBirthday("1999-12-12"));
-        assertTrue(Birthday.isValidBirthday("2000-10-10")); // minimal
-        assertTrue(Birthday.isValidBirthday("1985-12-15")); // alphabets only
+        assertTrue(Birthday.isValidBirthday("12/12/1999"));
+        assertTrue(Birthday.isValidBirthday("10/10/2000")); // minimal
+        assertTrue(Birthday.isValidBirthday("12/12/1998")); // alphabets only
     }
 }
 

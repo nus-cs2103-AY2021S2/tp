@@ -33,12 +33,20 @@ public abstract class Event implements Comparable<Event> {
         return dateTime.toLocalDate();
     }
 
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
     public LocalTime getTime() {
         return dateTime.toLocalTime();
     }
 
     public Tag getTag() {
         return tag;
+    }
+
+    public int getDuration() {
+        return 120;
     }
 
     @Override

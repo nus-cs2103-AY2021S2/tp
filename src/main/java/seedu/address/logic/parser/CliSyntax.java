@@ -13,4 +13,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_ASSIGNMENT = new Prefix("a/");
     public static final Prefix PREFIX_DEADLINE = new Prefix("by/");
     public static final Prefix PREFIX_MODULE = new Prefix("m/");
+    public static final Prefix PREFIX_GENERAL_EVENT = new Prefix("g/");
+    public static final Prefix PREFIX_DATE = new Prefix("on/");
+    public static final Prefix PREFIX_DESCRIPTION = new Prefix("d/");
 }

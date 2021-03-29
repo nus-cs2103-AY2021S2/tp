@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.editcommand.EditModuleCommand;
-import seedu.address.logic.commands.editcommand.EditPersonCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -33,7 +32,7 @@ public class EditModuleCommandParser extends EditCommandParser implements Parser
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditPersonCommand.MESSAGE_USAGE), pe);
+                    EditModuleCommand.MESSAGE_USAGE), pe);
         }
 
         int intIndex = index.getOneBased();

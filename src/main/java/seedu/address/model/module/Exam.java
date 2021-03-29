@@ -7,10 +7,8 @@ import seedu.address.model.Event;
 import seedu.address.model.tag.Tag;
 
 public class Exam extends Event {
-    // todo change message constraints
-    public static final String MESSAGE_CONSTRAINTS = "Exam names should be numerical and not "
-            + "empty. It should follow a valid DD/MM/YYYY HHMM";
-    public static final String VALIDATION_REGEX = "^[0-9]{4}-[01-12]{2}-[00-31]{2}T[00-23]{2}:[00-59]{2}$";
+    public static final String MESSAGE_CONSTRAINTS = "Exam date must be formatted "
+        + "to a valid DD/MM/YYYY HHmm";
     public static final DateTimeFormatter EXAM_DATE_FORMATTER =
             DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
     public static final String EXAM_HEADER = "Exam is on: ";
@@ -21,11 +19,23 @@ public class Exam extends Event {
      */
     public Exam(LocalDateTime examDate, Tag tag) {
         super(new Description("exam"), examDate, tag);
+        assert examDate != null;
         this.examDate = examDate;
     }
 
+    /**
+     * Checks whether {@code Exam} is on {@code localDateTime}.
+     */
     public boolean isAt(LocalDateTime localDateTime) {
+        assert examDate != null;
         return examDate == localDateTime;
+    }
+
+    /**
+     * Sets the date of the exam to the given {@code date}.
+     */
+    public Exam setDate(LocalDateTime newDate) {
+        return new Exam(newDate, tag);
     }
 
     /**

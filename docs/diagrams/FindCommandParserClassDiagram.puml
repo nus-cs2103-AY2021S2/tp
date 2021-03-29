@@ -1,0 +1,35 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+package Logic {
+
+Class FindModuleCommand
+Class "{abstract}\nFindCommand" as FindCommand
+
+package Parser {
+Interface Parser <<Interface>>
+Class RemindMeParser
+Class FindCommandParser
+Class FindModuleCommandParser
+}
+
+Interface Logic <<Interface>>
+Class LogicManager
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> LogicManager
+
+LogicManager .left.|> Logic
+LogicManager -->"1" RemindMeParser: creates >
+RemindMeParser .left.>"1" FindModuleCommandParser: creates >
+
+FindModuleCommandParser ..> FindModuleCommand : creates >
+FindModuleCommandParser -up-|> FindCommandParser
+FindCommandParser .up.|> Parser
+
+FindModuleCommand -up-|> FindCommand
+@enduml

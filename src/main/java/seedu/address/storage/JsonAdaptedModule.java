@@ -80,6 +80,8 @@ class JsonAdaptedModule {
         if (!Title.isValidTitle(title)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
+        assert title != null;
+
         final Title modelTitle = new Title(title);
         final AssignmentList modelAssignmentLists = new AssignmentList(modelAssignments);
         final ExamList modelExamList = new ExamList(modelExams);

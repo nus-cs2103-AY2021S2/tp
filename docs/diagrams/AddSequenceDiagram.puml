@@ -1,0 +1,68 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":RemindMeParser" as RemindMeParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant ":AddModuleCommandParser" as AddModuleCommandParser LOGIC_COLOR
+participant ":AddModuleCommand" as AddModuleCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "model:Model" as Model MODEL_COLOR
+participant "module:Module" as Module MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add m/CS2103T")
+activate LogicManager
+
+LogicManager -> RemindMeParser : parseCommand("add m/CS2103T")
+activate RemindMeParser
+
+create AddCommandParser
+RemindMeParser -> AddCommandParser
+activate AddCommandParser
+
+create AddModuleCommandParser
+AddCommandParser -> AddModuleCommandParser
+activate AddModuleCommandParser
+
+create AddModuleCommand
+AddModuleCommandParser -> AddModuleCommand
+activate AddModuleCommand
+
+create Module
+AddModuleCommand -> Module
+activate Module
+
+Module -> AddModuleCommand
+deactivate Module
+
+AddModuleCommand --> AddModuleCommandParser
+deactivate AddModuleCommand
+
+AddModuleCommandParser --> AddCommandParser
+deactivate AddModuleCommandParser
+
+AddCommandParser --> RemindMeParser
+deactivate AddCommandParser
+
+RemindMeParser --> LogicManager
+deactivate RemindMeParser
+
+LogicManager -> AddModuleCommand: execute(model)
+activate AddModuleCommand
+
+AddModuleCommand -> Model: addModule(module)
+activate Model
+
+Model --> AddModuleCommand
+deactivate Model
+
+AddModuleCommand --> LogicManager: commandResult
+deactivate AddModuleCommand
+
+[<-- LogicManager
+deactivate LogicManager
+@enduml

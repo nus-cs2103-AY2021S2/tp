@@ -1,0 +1,114 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":RemindMeParser" as RemindMeParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant ":EditAssignmentCommandParser" as EditAssignmentCommandParser LOGIC_COLOR
+participant "command:EditAssignmentCommand" as EditAssignmentCommand LOGIC_COLOR
+participant "commandResult:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Storage
+participant ":Storage" as Storage
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":RemindMe" as RemindMe MODEL_COLOR
+participant ":Module" as Module MODEL_COLOR
+participant ":AssignmentList" as AssignmentList MODEL_COLOR
+participant ":UniqueModuleList" as UniqueModuleList MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit m/CS2103 a/1 d/Tut2")
+activate LogicManager
+
+LogicManager -> RemindMeParser : parseCommand("edit m/CS2103 a/1 d/Tut2")
+activate RemindMeParser
+
+create EditCommandParser
+RemindMeParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser -> EditAssignmentCommandParser
+activate EditAssignmentCommandParser
+EditAssignmentCommandParser --> EditCommandParser
+deactivate EditAssignmentCommandParser
+EditCommandParser --> RemindMeParser
+deactivate EditCommandParser
+
+RemindMeParser -> EditCommandParser : parse("m/CS2103 a/1 d/Tut2")
+activate EditCommandParser
+
+create EditAssignmentCommand
+EditCommandParser -> EditAssignmentCommand
+activate EditAssignmentCommand
+
+EditAssignmentCommand --> EditCommandParser : command
+deactivate EditAssignmentCommand
+
+EditCommandParser --> RemindMeParser : command
+deactivate EditCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditCommandParser -[hidden]-> RemindMeParser
+destroy EditCommandParser
+
+RemindMeParser --> LogicManager : command
+deactivate RemindMeParser
+
+LogicManager -> EditAssignmentCommand : execute()
+activate EditAssignmentCommand
+
+EditAssignmentCommand -> Model : getModule(CS2103)
+Model -> Module ** : module
+
+activate Module
+Module --> EditAssignmentCommand : module
+deactivate Module
+
+
+EditAssignmentCommand -> Model : editAssignment(m, 1, Tut2)
+Model -> RemindMe : editAssignment(m, 1, Tut2)
+
+RemindMe -> UniqueModuleList **: getModule(m)
+activate UniqueModuleList
+activate Module
+UniqueModuleList --> Module : editedModule
+RemindMe -> Module : editAssignment(0, Tut2)
+
+Module -> AssignmentList ** : editAssignment()
+activate AssignmentList
+AssignmentList --> Module : a
+deactivate AssignmentList
+
+Module --> RemindMe : editedModule
+deactivate Module
+
+
+RemindMe -> UniqueModuleList : setModules(module, editedModule)
+UniqueModuleList --> RemindMe
+deactivate UniqueModuleList
+RemindMe --> Model
+Model --> EditAssignmentCommand
+
+
+
+create CommandResult
+EditAssignmentCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditAssignmentCommand
+deactivate CommandResult
+
+EditAssignmentCommand --> LogicManager : result
+deactivate EditAssignmentCommand
+
+
+LogicManager --> Storage : saveRemindMe()
+Storage --> LogicManager
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

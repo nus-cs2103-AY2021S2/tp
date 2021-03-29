@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -14,11 +13,9 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.Title;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a person identified using it's displayed index from the remindMe.
  */
-public class DeleteModuleCommand extends Command {
-
-    public static final String COMMAND_WORD = "delete";
+public class DeleteModuleCommand extends DeleteCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the module identified by the title used list of modules\n"
@@ -41,14 +38,10 @@ public class DeleteModuleCommand extends Command {
 
         //check for Title
         Module moduleToCheck = new Module(moduleTitle);
-        System.out.println(lastShownList);
-        System.out.println(moduleToCheck.toString());
         if (!listContainsModule(lastShownList, moduleToCheck)) {
-            System.out.println("Nope");
             throw new CommandException(Messages.MESSAGE_INVALID_MODULE_TITLE);
         }
         int indexOfModule = getIndex(lastShownList, moduleToCheck);
-        System.out.println("index: " + indexOfModule);
         Module moduleToDelete = lastShownList.get(indexOfModule);
         model.deleteModule(moduleToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete));

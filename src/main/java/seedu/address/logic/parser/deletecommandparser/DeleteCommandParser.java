@@ -3,6 +3,7 @@ package seedu.address.logic.parser.deletecommandparser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENERAL_EVENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
@@ -29,16 +30,18 @@ public class DeleteCommandParser {
     public Command parseCommand(String args) throws ParseException {
         Command command;
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_NAME, PREFIX_EXAM, PREFIX_ASSIGNMENT);
+                ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_NAME, PREFIX_EXAM, PREFIX_ASSIGNMENT,
+                        PREFIX_GENERAL_EVENT);
         if (deleteModuleCondition(argMultimap)) {
             command = new DeleteModuleCommandParser().parse(args);
         } else if (deleteAssignmentCondition(argMultimap)) {
             command = new DeleteAssignmentCommandParser().parse(args);
         } else if (deleteExamCondition(argMultimap)) {
             command = new DeleteExamCommandParser().parse(args);
+        } else if (deleteGeneralEventCondition(argMultimap)) {
+            command = new DeleteGeneralEventCommandParser().parse(args);
         } else if (deletePersonCondition(argMultimap)) {
             command = new DeletePersonCommandParser().parse(args);
-
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     DeletePersonCommand.MESSAGE_USAGE));
@@ -89,6 +92,16 @@ public class DeleteCommandParser {
      */
     public boolean deletePersonCondition(ArgumentMultimap argMultimap) {
         return !arePrefixesPresent(argMultimap, PREFIX_NAME);
+    }
+
+    /**
+     * returns true when arguments match input for deleteGeneralEvent command
+     * @param argMultimap
+     * @return boolean value if it fits the deleteGeneralEvent conditional statement
+     */
+    public boolean deleteGeneralEventCondition(ArgumentMultimap argMultimap) {
+        return arePrefixesPresent(argMultimap, PREFIX_GENERAL_EVENT)
+                && argMultimap.getPreamble().isEmpty();
     }
 
 

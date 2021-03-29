@@ -6,8 +6,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.ModulePlanner;
-import seedu.address.model.ReadOnlyModulePlanner;
+import seedu.address.commons.util.LocalDateTimeUtil;
+import seedu.address.model.ReadOnlyRemindMe;
+import seedu.address.model.RemindMe;
+import seedu.address.model.event.GeneralEvent;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.AssignmentList;
 import seedu.address.model.module.Description;
@@ -21,24 +23,24 @@ import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code RemindMe} with sample data.
  */
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
-            new Person(new Name("Alice Pauline"), new Birthday("2000-12-12"),
+            new Person(new Name("Alice Pauline"), new Birthday("12/12/2020"),
                 getTagSet("friends")),
-            new Person(new Name("Benson Meier"), new Birthday("2000-12-12"),
+            new Person(new Name("Benson Meier"), new Birthday("12/12/2020"),
                 getTagSet("owesMoney", "friends")),
-            new Person(new Name("Carl Kurz"), new Birthday("2000-12-12"),
+            new Person(new Name("Carl Kurz"), new Birthday("12/12/2020"),
                 getTagSet()),
-            new Person(new Name("Daniel Meier"), new Birthday("2000-12-12"),
+            new Person(new Name("Daniel Meier"), new Birthday("12/12/2020"),
                 getTagSet("friends")),
-            new Person(new Name("Elle Meyer"), new Birthday("2000-12-12"),
+            new Person(new Name("Elle Meyer"), new Birthday("12/12/2020"),
                 getTagSet()),
-            new Person(new Name("Fiona Kunz"), new Birthday("2000-12-12"),
+            new Person(new Name("Fiona Kunz"), new Birthday("12/12/2020"),
                 getTagSet()),
-            new Person(new Name("George Best"), new Birthday("2000-12-12"),
+            new Person(new Name("George Best"), new Birthday("12/12/2020"),
                 getTagSet())
         };
     }
@@ -50,15 +52,26 @@ public class SampleDataUtil {
         };
     }
 
+    public static GeneralEvent[] getSampleEvents() {
+        return new GeneralEvent[] {
+            new GeneralEvent(new Description("Party"), LocalDateTime.parse(("30/03/2021 2359"),
+                LocalDateTimeUtil.DATETIME_FORMATTER))
+        };
+    }
 
-    public static ReadOnlyModulePlanner getSampleRemindMe() {
-        ModulePlanner sampleRm = new ModulePlanner();
+
+    public static ReadOnlyRemindMe getSampleRemindMe() {
+        RemindMe sampleRm = new RemindMe();
         for (Module sampleMod : getSampleModules()) {
             sampleRm.addModule(sampleMod);
         }
 
         for (Person samplePerson : getSamplePersons()) {
             sampleRm.addPerson(samplePerson);
+        }
+
+        for (GeneralEvent sampleGeneralEvent : getSampleEvents()) {
+            sampleRm.addEvent(sampleGeneralEvent);
         }
 
         return sampleRm;

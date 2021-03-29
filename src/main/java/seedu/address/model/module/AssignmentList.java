@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AssignmentList {
-    public static final String NO_ASSIGNMENTS_OUTPUT = "You have no assignments~  \n";
+    public static final String NO_ASSIGNMENTS_OUTPUT = "You have no assignments~";
     private List<Assignment> assignments;
 
     /**
@@ -48,6 +48,11 @@ public class AssignmentList {
         return index;
     }
 
+    public void set(int index, Assignment assignment) {
+        assignments.add(index + 1, assignment);
+        assignments.remove(index);
+    }
+
     /**
      * Adds an assignment to the list.
      *
@@ -75,6 +80,15 @@ public class AssignmentList {
     public Assignment delete(Assignment assignment) {
         int index = getIndex(assignment);
         return delete(index);
+    }
+
+    /**
+     * Toggles the done status of the assignment at the input index
+     * @param index
+     */
+    public void toggleDoneStatus(int index) {
+        Assignment toggledAssignment = assignments.get(index);
+        toggledAssignment.toggleDoneStatus();
     }
 
     /**

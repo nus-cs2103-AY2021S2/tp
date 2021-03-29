@@ -34,12 +34,15 @@ public class AddExamCommandParser extends AddCommandParser implements Parser<Add
         }
 
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_MODULE).get());
+        assert title != null;
 
         Module module = new Module(title);
 
         LocalDateTime examDate = ParserUtil.parseExamDate(argMultimap.getValue(PREFIX_EXAM).get());
+        assert examDate != null;
 
-        Exam exam = new Exam(examDate, new Tag(title.modTitle));
+        Tag tag = new Tag(title.modTitle.replaceAll(" ", ""));
+        Exam exam = new Exam(examDate, tag);
 
         return new AddExamCommand(module, exam);
     }

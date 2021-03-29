@@ -17,9 +17,9 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ModulePlanner;
-import seedu.address.model.ReadOnlyModulePlanner;
+import seedu.address.model.ReadOnlyRemindMe;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.RemindMe;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.JsonRemindMeStorage;
@@ -48,7 +48,8 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing RemindMe "
+                + "]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -69,13 +70,13 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s RemindMe and {@code userPrefs}. <br>
+     * The data from the sample RemindMe will be used instead if {@code storage}'s remindMe is not found,
+     * or an empty remindMe will be used instead if errors occur when reading {@code storage}'s RemindMe.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyModulePlanner> remindMeOptional;
-        ReadOnlyModulePlanner initialData;
+        Optional<ReadOnlyRemindMe> remindMeOptional;
+        ReadOnlyRemindMe initialData;
         try {
             remindMeOptional = storage.readRemindMe();
             if (!remindMeOptional.isPresent()) {
@@ -84,11 +85,13 @@ public class MainApp extends Application {
             initialData = remindMeOptional.orElseGet(SampleDataUtil::getSampleRemindMe);
             storage.saveRemindMe(initialData);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new ModulePlanner();
+            logger.warning("Data file not in the correct format. Will be starting with an empty "
+                    + "RemindMe");
+            initialData = new RemindMe();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new ModulePlanner();
+            logger.warning("Problem while reading from the file. Will be starting with an empty "
+                    + "RemindMe");
+            initialData = new RemindMe();
         }
 
         return new ModelManager(initialData, userPrefs);
@@ -152,7 +155,8 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty "
+                    + "RemindMe");
             initializedPrefs = new UserPrefs();
         }
 
@@ -168,13 +172,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting RemindMe " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping RemindMe ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

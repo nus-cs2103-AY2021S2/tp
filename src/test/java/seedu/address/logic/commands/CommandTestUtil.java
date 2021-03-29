@@ -16,7 +16,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.editcommand.EditPersonCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.ModulePlanner;
+import seedu.address.model.RemindMe;
 import seedu.address.model.module.Exam;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -42,10 +42,11 @@ public class CommandTestUtil {
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
-    public static final String VALID_BIRTHDAY_BOB = "1999-12-12";
-    public static final String VALID_BIRTHDAY_AMY = "1999-12-12";
+    public static final String VALID_BIRTHDAY_BOB = "12/12/1999";
+    public static final String VALID_BIRTHDAY_AMY = "12/12/1999";
 
-
+    public static final String VALID_GENERAL_EVENT_DESCRIPTION = "Party";
+    public static final String VALID_GENERAL_EVENT_DATE = "01/01/2021 2359";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -108,11 +109,11 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        ModulePlanner expectedModulePlanner = new ModulePlanner(actualModel.getRemindMe());
+        RemindMe expectedRemindMe = new RemindMe(actualModel.getRemindMe());
         List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedModulePlanner, actualModel.getRemindMe());
+        assertEquals(expectedRemindMe, actualModel.getRemindMe());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
     /**

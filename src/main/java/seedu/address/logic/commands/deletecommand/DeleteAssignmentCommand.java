@@ -9,7 +9,6 @@ import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -19,11 +18,9 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.Title;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a person identified using it's displayed index from the remind Me.
  */
-public class DeleteAssignmentCommand extends Command {
-
-    public static final String COMMAND_WORD = "delete";
+public class DeleteAssignmentCommand extends DeleteCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the assignment identified by the index in Assignment list of the module\n"
@@ -40,8 +37,6 @@ public class DeleteAssignmentCommand extends Command {
 
     /**
      * creates new DeleteAssignmentCommand object
-     * @param moduleTitle
-     * @param assignmentIndex
      */
     public DeleteAssignmentCommand(Title moduleTitle, Index assignmentIndex) {
         requireAllNonNull(moduleTitle, assignmentIndex);
@@ -71,9 +66,6 @@ public class DeleteAssignmentCommand extends Command {
 
     /**
      * Checks whether the module title matches any in the moduleList
-     * @param moduleList
-     * @param moduleCheck
-     * @return
      */
     public boolean listContainsModule(List<Module> moduleList, Module moduleCheck) {
         boolean hasSameModule = false;
@@ -87,9 +79,6 @@ public class DeleteAssignmentCommand extends Command {
 
     /**
      * Gets Index of module in moduleList with same title as input module
-     * @param moduleList
-     * @param moduleCheck
-     * @return
      */
     public int getIndex(List<Module> moduleList, Module moduleCheck) {
         int index = 0;

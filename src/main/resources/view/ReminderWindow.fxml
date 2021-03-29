@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -9,36 +11,39 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.stage.Stage?>
 
-<Stage title="Reminder" minHeight="570.0" minWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Stage minHeight="570.0" minWidth="750.0" title="Reminder" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/logo.png" />
     </icons>
     <scene>
         <Scene>
+            <stylesheets>
+                <URL value="@customizedStyle/transparentTheme.css" />
+            </stylesheets>
             <AnchorPane minHeight="570.0" minWidth="750.0">
             <children>
-               <AnchorPane minHeight="570.0" minWidth="750.0" style="-fx-background-color: #E0C9BF;">
+               <AnchorPane fx:id="mainWindow" minHeight="570.0" minWidth="750.0">
                   <children>
-                     <ImageView fitHeight="150.0" fitWidth="225.0" pickOnBounds="true" preserveRatio="true">
+                     <ImageView fitHeight="150.0" fitWidth="225.0" pickOnBounds="true" preserveRatio="true" translateX="10.0" translateY="10.0">
                         <image>
                            <Image url="@/images/logoCalligraphy.png" />
                         </image>
                      </ImageView>
-                     <Button fx:id="startButton" layoutX="328.0" layoutY="511.0" mnemonicParsing="false" onAction="#close" text="Start" textFill="#805555" wrapText="true">
+                     <Button fx:id="startButton" layoutX="329.0" layoutY="526.0" mnemonicParsing="false" onAction="#close" text="Start" textFill="#805555" wrapText="true">
                         <font>
                            <Font name="FreeMono" size="17.0" />
                         </font>
                      </Button>
-                     <Text fx:id="header" fill="WHITE" layoutX="23.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="In the next 3 days:">
+                     <Text fx:id="header" fill="WHITE" layoutX="23.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="In the next 3 days:" translateY="10.0">
                         <font>
-                           <Font name="FreeSerif" size="20.0" />
+                           <Font name="FreeSerif Bold Italic" size="20.0" />
                         </font>
                      </Text>
-                     <Text fx:id="content" fill="WHITE" layoutX="53.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="midterm  (2020-12-01)">
+                     <TextArea fx:id="contentArea" editable="false" layoutX="54.0" layoutY="121.0" prefHeight="374.0" prefWidth="670.0" styleClass="result-display" wrapText="true">
                         <font>
-                           <Font name="FreeSerif" size="20.0" />
+                           <Font name="FreeSerif Bold Italic" size="20.0" />
                         </font>
-                     </Text>
+                     </TextArea>
                   </children>
                </AnchorPane>
             </children></AnchorPane>

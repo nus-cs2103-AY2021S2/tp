@@ -4,21 +4,32 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_DESC
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_DESCRIPTION_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EXAM_DATETIME_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EXAM_DATETIME_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GENERAL_EVENT_DATE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GENERAL_EVENT_DESCRIPTION;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_CS2103;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.ModulePlanner;
+import seedu.address.commons.util.LocalDateTimeUtil;
+import seedu.address.model.RemindMe;
+import seedu.address.model.event.GeneralEvent;
+import seedu.address.model.module.Assignment;
+import seedu.address.model.module.Description;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.typicalmodules.ModuleBuilder;
+
+
+
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
@@ -27,7 +38,14 @@ public class TypicalRemindMe {
             Exam.EXAM_DATE_FORMATTER);
     public static final LocalDateTime DATE_2 = LocalDateTime.parse(VALID_EXAM_DATETIME_2,
             Exam.EXAM_DATE_FORMATTER);
-
+    public static final Assignment VALID_ASSIGNMENT =
+            new Assignment(new Description(VALID_ASSIGNMENT_DESCRIPTION_1),
+                DATE_1, new Tag(VALID_TITLE_CS2103));
+    public static final GeneralEvent VALID_GENERAL_EVENT =
+            new GeneralEvent(new Description(VALID_GENERAL_EVENT_DESCRIPTION),
+                LocalDateTime.parse(VALID_GENERAL_EVENT_DATE, LocalDateTimeUtil.DATETIME_FORMATTER));
+    public static final Exam VALID_EXAM =
+        new Exam(DATE_1, new Tag(VALID_TITLE_CS2103));
     public static final Module MOD_1 = new ModuleBuilder().withTitle("MOD 1").build();
     public static final Module MOD_2 = new ModuleBuilder().withTitle("MOD 2").emptyBuild();
     public static final Module MOD_1_WITH_ASSIGNMENTS =
@@ -74,10 +92,10 @@ public class TypicalRemindMe {
     private TypicalRemindMe() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code RemindMe} with all the typical persons.
      */
-    public static ModulePlanner getTypicalRemindMe() {
-        ModulePlanner mp = new ModulePlanner();
+    public static RemindMe getTypicalRemindMe() {
+        RemindMe mp = new RemindMe();
         mp.addModule(MOD_1);
 
         for (Person person : getTypicalPersons()) {

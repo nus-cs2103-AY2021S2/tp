@@ -1,0 +1,65 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+package logic {
+
+package Command {
+Class EditAssignmentCommand
+Class EditCommand
+Class CommandResult
+Class "{abstract}\nCommand" as Command
+}
+
+
+package Parser {
+Interface Parser <<Interface>>
+Class RemindMeParser
+Class EditCommandParser
+Class EditAssignmentCommandParser
+}
+
+
+Interface Logic <<Interface>>
+Class LogicManager
+}
+
+package Model{
+Class Module
+Class AssignmentList
+Class Assignment
+Class "{abstract}\nEvent" as Event
+Class Description
+
+Module -->"1" AssignmentList
+Assignment -up-> Event
+Assignment -->"1" Description
+AssignmentList -->"0..*" Assignment
+Class HiddenModel #FFFFFF
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Logic
+
+LogicManager .left.|> Logic
+LogicManager -->"1" RemindMeParser
+RemindMeParser .left.> EditCommandParser: creates >
+
+EditAssignmentCommandParser ..> EditAssignmentCommand : creates >
+EditAssignmentCommandParser -up-|> EditCommandParser
+EditCommandParser .up.|> Parser
+
+EditAssignmentCommand -up-|> EditCommand
+EditCommand -up-|> Command
+LogicManager .left.> Command : executes >
+
+LogicManager --> Model
+Command .right.> Model
+
+Logic ..> CommandResult
+LogicManager .left.> CommandResult
+Command .up.> CommandResult
+CommandResult -[hidden]-> Parser
+@enduml
