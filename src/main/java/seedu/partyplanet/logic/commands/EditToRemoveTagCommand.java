@@ -47,7 +47,8 @@ public class EditToRemoveTagCommand extends EditCommand {
             removeTagFromPerson(model, personToEdit);
         }
 
-        model.addState();
+        model.addState(String.format(MESSAGE_REMOVE_TAGS_SUCCESS,
+                editedPersons.isEmpty() ? "" : displayPersons(editedPersons)));
 
         return new CommandResult(String.format(MESSAGE_REMOVE_TAGS_SUCCESS,
                 editedPersons.isEmpty() ? "" : displayPersons(editedPersons)));

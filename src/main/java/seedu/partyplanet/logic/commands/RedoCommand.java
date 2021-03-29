@@ -10,25 +10,25 @@ import seedu.partyplanet.model.ReadOnlyAddressBook;
 import seedu.partyplanet.model.ReadOnlyEventBook;
 
 /**
- * Undoes the previous command that changes the AddressBook
+ * Redoes the previous command that changes the AddressBook
  */
-public class UndoCommand extends Command {
+public class RedoCommand extends Command {
 
-    public static final String COMMAND_WORD = "undo";
+    public static final String COMMAND_WORD = "redo";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Undoes the last command that changes the AddressBook.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Redoes the last command that changes the AddressBook.";
 
     public static final String MESSAGE_USAGE_CONCISE = COMMAND_WORD;
 
-    public static final String MESSAGE_SUCCESS = "Completed undo for the change: ";
+    public static final String MESSAGE_SUCCESS = "Completed redo for the change: ";
 
-    public static final String MESSAGE_INVALID_UNDO = "There's nothing left to undo!";
+    public static final String MESSAGE_INVALID_REDO = "There's nothing left to redo!";
 
 
     /**
-     * Creates an UndoCommand to undo the last command that changes the AddressBook
+     * Creates a RedoCommand to redo the last command that changes the AddressBook
      */
-    public UndoCommand() {
+    public RedoCommand() {
     }
 
     @Override
@@ -36,18 +36,19 @@ public class UndoCommand extends Command {
         requireNonNull(model);
 
         StateHistory states = model.getStateHistory();
-        State previousState;
+        State nextState;
         ReadOnlyAddressBook addressBook;
         ReadOnlyEventBook eventBook;
-        String command = states.currentState().getCommand();
+        String command;
         try {
-            previousState = states.previousState();
-            addressBook = previousState.getAddressBook();
-            eventBook = previousState.getEventBook();
+            nextState = states.nextState();
+            addressBook = nextState.getAddressBook();
+            eventBook = nextState.getEventBook();
+            command = nextState.getCommand();
             model.setAddressBook(addressBook);
             model.setEventBook(eventBook);
         } catch (IndexOutOfBoundsException e) {
-            throw new CommandException(MESSAGE_INVALID_UNDO);
+            throw new CommandException(MESSAGE_INVALID_REDO);
         }
         return new CommandResult(MESSAGE_SUCCESS + command);
     }

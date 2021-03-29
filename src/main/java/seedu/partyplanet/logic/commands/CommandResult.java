@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import seedu.partyplanet.ui.Theme;
+
 /**
  * Represents the result of a command execution.
  */
@@ -14,12 +16,25 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** The application should switch to this theme */
+    private final Theme theme;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.exit = exit;
+        theme = null;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} including the theme.
+     */
+    public CommandResult(String feedbackToUser, boolean exit, Theme theme) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.exit = exit;
+        this.theme = theme;
     }
 
     /**
@@ -36,6 +51,14 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isToggleTheme() {
+        return theme != null;
+    }
+
+    public Theme getTheme() {
+        return theme;
     }
 
     @Override

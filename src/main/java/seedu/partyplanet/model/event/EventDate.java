@@ -4,7 +4,8 @@ import static seedu.partyplanet.commons.util.AppUtil.checkArgument;
 
 import seedu.partyplanet.model.date.Date;
 
-/** Represents an Event's date in PartyPlanet.
+/**
+ * Represents an Event's date in PartyPlanet.
  * Guarantees: immutable; is always valid.
  */
 public class EventDate extends Date {
