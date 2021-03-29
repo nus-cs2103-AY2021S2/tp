@@ -7,6 +7,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.ObservableCalendarDate;
 import seedu.address.model.ReadOnlyPlanner;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
@@ -36,6 +37,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the sorted list of tags */
     ObservableList<Tag> getSortedTagList();
+
+    /** Returns an unmodifiable view of the day requested to be viewed on the calendar */
+    ObservableCalendarDate getCalendarDate();
 
     /**
      * Returns the user prefs' planner file path.

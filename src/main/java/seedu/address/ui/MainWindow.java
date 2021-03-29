@@ -124,7 +124,7 @@ public class MainWindow extends UiPart<Stage> {
         tagListPanel = new TagListPanel(logic.getSortedTagList());
         tagListPanelPlaceholder.getChildren().add(tagListPanel.getRoot());
 
-        CalendarPanel calendarPanel = new CalendarPanel();
+        CalendarPanel calendarPanel = new CalendarPanel(logic.getCalendarDate());
         calendarPanelPlaceholder.getChildren().add(calendarPanel.getRoot());
     }
 

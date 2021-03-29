@@ -25,8 +25,8 @@ public class Duration implements Comparable<Duration> {
     public final String duration;
     public final String value;
 
-    public String startTime;
-    public String endTime;
+    private String startTime;
+    private String endTime;
 
     /**
      * Constructs an {@code Duration}.
@@ -101,6 +101,16 @@ public class Duration implements Comparable<Duration> {
      */
     @Override
     public int compareTo(Duration other) {
+        boolean areTimingNull = startTime == null || endTime == null;
+        boolean areOtherTimingNull = other.startTime == null || other.endTime == null;
+        if (areTimingNull && areOtherTimingNull) {
+            return 0;
+        } else if (areTimingNull) {
+            return -1;
+        } else if (areOtherTimingNull) {
+            return 1;
+        }
+
         int startTimeComparison = this.startTime.compareTo(other.startTime);
         int endTimeComparison = this.endTime.compareTo(other.endTime);
         return startTimeComparison == 0 ? endTimeComparison : startTimeComparison;

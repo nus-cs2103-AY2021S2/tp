@@ -27,7 +27,7 @@ public class ViewDayCommandParser implements Parser<ViewDayCommand> {
 
         try {
             Deadline deadline = ParserUtil.parseDeadline(trimmedInput);
-            return new ViewDayCommand(new TaskOnDatePredicate(deadline));
+            return new ViewDayCommand(new TaskOnDatePredicate(deadline), deadline.getDate());
         } catch (ParseException parseException) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewDayCommand.MESSAGE_USAGE));
         }

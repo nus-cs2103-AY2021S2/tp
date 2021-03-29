@@ -25,8 +25,9 @@ class ViewDayCommandTest {
     @Test
     public void execute_viewDayWithTasks_multipleTasksFound() {
         String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 2);
-        TaskOnDatePredicate predicate = new TaskOnDatePredicate(new Deadline("27/05/2021"));
-        ViewDayCommand command = new ViewDayCommand(predicate);
+        Deadline deadline = new Deadline("27/05/2021");
+        TaskOnDatePredicate predicate = new TaskOnDatePredicate(deadline);
+        ViewDayCommand command = new ViewDayCommand(predicate, deadline.getDate());
         expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(DANIEL, GEORGE), expectedModel.getFilteredTaskList());
@@ -35,8 +36,9 @@ class ViewDayCommandTest {
     @Test
     public void execute_viewDayWithoutTasks_noTasksFound() {
         String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 0);
-        TaskOnDatePredicate predicate = new TaskOnDatePredicate(new Deadline("24/04/2021"));
-        ViewDayCommand command = new ViewDayCommand(predicate);
+        Deadline deadline = new Deadline("24/04/2021");
+        TaskOnDatePredicate predicate = new TaskOnDatePredicate(deadline);
+        ViewDayCommand command = new ViewDayCommand(predicate, deadline.getDate());
         expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), expectedModel.getFilteredTaskList());

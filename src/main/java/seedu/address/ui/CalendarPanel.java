@@ -12,16 +12,19 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.ObservableCalendarDate;
+import seedu.address.commons.Observer;
 
 // Solution below adapted from https://github.com/SirGoose3432/javafx-calendar/blob/master/src/FullCalendarView.java
-public class CalendarPanel extends UiPart<Region> {
+public class CalendarPanel extends UiPart<Region> implements Observer {
     private static final String FXML = "CalendarPanel.fxml";
     // Today's date
     private final LocalDate currentDate;
     // The start of the month that the current view is showing.
     private LocalDate startOfMonth;
-
     private ArrayList<AnchorPane> calendarPanes = new ArrayList<>();
+    private final Logger logger = LogsCenter.getLogger(CalendarPanel.class);
+    private final ObservableCalendarDate observableCalendarDate;
 
     @FXML
     private VBox calendarPanel;
@@ -34,13 +37,15 @@ public class CalendarPanel extends UiPart<Region> {
     @FXML
     private GridPane calendar;
 
-    private final Logger logger = LogsCenter.getLogger(CalendarPanel.class);
 
     /**
      * Instantiates the grid and dates of the calendar panel according to the current date.
      */
-    public CalendarPanel() {
+    public CalendarPanel(ObservableCalendarDate observableCalendarDate) {
         super(FXML);
+        this.observableCalendarDate = observableCalendarDate;
+        observableCalendarDate.addObserver(this);
+
         currentDate = LocalDate.now();
         startOfMonth = currentDate.withDayOfMonth(1);
         for (int i = 0; i < 6; i++) {
@@ -55,11 +60,20 @@ public class CalendarPanel extends UiPart<Region> {
     }
 
     /**
+     * Gets updated by the observable viewing date, which changes the calendar view to the month of the viewing date.
+     */
+    @Override
+    public void update() {
+        LocalDate viewingDate = observableCalendarDate.getDate();
+        populateCalendarDates(viewingDate.withDayOfMonth(1));
+    }
+
+    /**
      * Fills in the numbers of the month in the date provided into the calendar.
      *
      * @param dateToView Date with the month that will be shown in the calendar.
      */
-    void populateCalendarDates(LocalDate dateToView) {
+    private void populateCalendarDates(LocalDate dateToView) {
         LocalDate firstSundayOfCalendar = dateToView;
         while (!firstSundayOfCalendar.getDayOfWeek().toString().equals("SUNDAY")) {
             logger.info(firstSundayOfCalendar.getDayOfWeek().toString());
@@ -82,13 +96,13 @@ public class CalendarPanel extends UiPart<Region> {
     }
 
     @FXML
-    void handleNextMonth() {
+    private void handleNextMonth() {
         startOfMonth = startOfMonth.plusMonths(1);
         populateCalendarDates(startOfMonth);
     }
 
     @FXML
-    void handlePrevMonth() {
+    private void handlePrevMonth() {
         startOfMonth = startOfMonth.minusMonths(1);
         populateCalendarDates(startOfMonth);
     }

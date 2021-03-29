@@ -13,6 +13,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.PlannerParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
+import seedu.address.model.ObservableCalendarDate;
 import seedu.address.model.ReadOnlyPlanner;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
@@ -68,6 +69,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Tag> getSortedTagList() {
         return model.getSortedTagList();
+    }
+
+    @Override
+    public ObservableCalendarDate getCalendarDate() {
+        return model.getCalendarDate();
     }
 
     @Override
