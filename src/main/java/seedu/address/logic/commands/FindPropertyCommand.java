@@ -17,12 +17,15 @@ public class FindPropertyCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all properties containing any of "
             + "the specified keywords (case-insensitive) and/or with the given parameters. \n"
-            + "Parameters: [KEYWORD]... [pl/UPPER_PRICE_LIMIT] [pm/LOWER_PRICE_LIMIT] [t/TYPE] "
-            + "[a/ADDRESS] [r/REMARKS] [tags/TAGS_SEPARATED_BY_COMMA] [p/POSTAL_CODE] \n"
+            + "Parameters: [KEYWORD]... [n/NAME] [pl/UPPER_PRICE_LIMIT] [pm/LOWER_PRICE_LIMIT] [t/PROPERTY_TYPE] \n"
+            + "[a/ADDRESS]* [p/POSTAL_CODE]* [d/DEADLINE]* [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT]* \n"
+            + "[ce/CLIENT_EMAIL]* [tags/TAGS_SEPARATED_BY_COMMA] \n"
             + "Price limits are inclusive. \n"
             + "Housing types accepted are: HDB, Condo, and Landed. \n"
+            + "Parameters marked with * are limited to 1 in each query. \n"
             + "Example: " + COMMAND_WORD + " jurong\n"
-            + COMMAND_WORD + " pl/1000000 t/hdb a/1 Jurong East Street 32, #08-111, tags/3 bedrooms, need renovation";
+            + COMMAND_WORD + " pl/1000000 t/hdb a/1 Jurong East Street 32, #08-111, tags/3 bedrooms, need renovation "
+            + "cc/91234567";
 
     private final PropertyPredicateList predicates;
 
