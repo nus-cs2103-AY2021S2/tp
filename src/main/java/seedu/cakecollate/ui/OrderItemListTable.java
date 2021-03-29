@@ -25,7 +25,7 @@ public class OrderItemListTable extends UiPart<Region> {
     private static final String FXML = "OrderItemListPanel.fxml";
 
     @javafx.fxml.FXML
-    private TableView<OrderItem> tableView;
+    private TableView<OrderItem> table;
     @FXML
     private TableColumn<OrderItem, Number> index;
 
@@ -34,8 +34,8 @@ public class OrderItemListTable extends UiPart<Region> {
      */
     public OrderItemListTable(ObservableList<OrderItem> orderItemList) {
         super(FXML);
-        tableView.setItems(orderItemList);
-        index.setCellValueFactory(column -> new ReadOnlyObjectWrapper<Number>(tableView.getItems()
+        table.setItems(orderItemList);
+        index.setCellValueFactory(column -> new ReadOnlyObjectWrapper<Number>(table.getItems()
                 .indexOf(column.getValue()) + 1));
     }
 }
