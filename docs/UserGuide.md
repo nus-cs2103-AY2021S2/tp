@@ -17,7 +17,8 @@ It allows for faster and more effective student management.
   * [Listing students' emails based on current list: `emails`](#listing-students-emails-based-on-current-list-emails)
   * [Listing all tuition sessions: `list_session`](#listing-all-tuition-sessions-list_session)
   <!--* [Locating tuition session by student name / date: `find_session`](#locating-tuition-session-by-student-name--date-find_session)-->
-  * [Adding a tuition session: `add_session`](#adding-a-tuition-session-add_session)
+  * [Adding a tuition session: `add_session`](#adding-a-single-tuition-session-add_session)
+  * [Adding a recurring tuition session: `add_rec_session`](#adding-a-recurring-tuition-session-add_rec_session)
   * [Deleting a tuition session: `delete_session`](#deleting-a-tuition-session-delete_session)
   * [Getting monthly fee for a particular student: `fee`](#getting-monthly-fee-for-a-particular-student-fee)
   * [Exit the program: `exit`](#exit-the-program-exit)
@@ -182,7 +183,7 @@ Examples:
 
 Adds a recurring tuition session to the TutorBuddy
 
-Format: `add_rec_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE b/INTERVAL e/LastDate`
+Format: `add_rec_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE b/INTERVAL e/LASTDATE`
 
 Similar to arguments for adding a single tuition session, except:
 * `DATE` refers to the starting date of the session
@@ -254,7 +255,8 @@ Action | Format, Examples
 --------|------------------
 **List** | `list_session`
 **Find** | `find_session KEYWORD`<br><br>e.g. `find_session John`
-**Add** | `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`<br><br> e.g. `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80`
+**Add Single** | `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`<br><br> e.g. `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80`
+**Add Recurring** | `add_rec_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE b/INTERVAL e/LASTDATE`<br><br> e.g. `add_rec_session n/John Doe d/2021-01-01 t/20:00 k/120 s/Geography f/80 b/7 e/2021-01-15`
 **Delete** | `delete_session n/STUDENT_NAME i/SESSION_INDEX`<br><br>e.g. `delete_session n/John Lee i/1`
 
 **Fees**
