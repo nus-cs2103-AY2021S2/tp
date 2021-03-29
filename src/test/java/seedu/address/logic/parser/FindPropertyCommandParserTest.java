@@ -44,6 +44,8 @@ public class FindPropertyCommandParserTest {
     public void parseEmptyTest() {
         assertParseFailure(parser, "  ",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPropertyCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " this is invalid",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPropertyCommand.MESSAGE_USAGE));
     }
 
     @Test

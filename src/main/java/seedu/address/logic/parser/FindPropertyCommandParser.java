@@ -51,17 +51,18 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
      */
     public FindPropertyCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        if (args.strip().equals("")) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPropertyCommand.MESSAGE_USAGE)
-            );
-        }
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TYPE, PREFIX_ADDRESS, PREFIX_POSTAL,
                         PREFIX_DEADLINE, PREFIX_REMARK, PREFIX_TAGS, PREFIX_PROPERTY_PRICE_MORE,
                         PREFIX_PROPERTY_PRICE_LESS, PREFIX_CLIENT_CONTACT, PREFIX_CLIENT_EMAIL,
                         PREFIX_CLIENT_NAME);
 
+        if (args.strip().equals("") || !checkMultiMap(argMultimap)) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPropertyCommand.MESSAGE_USAGE)
+            );
+        }
 
         List<Predicate<Property>> predicates = new ArrayList<>();
 
@@ -207,4 +208,16 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
         return new FindPropertyCommand(new PropertyPredicateList(predicates));
     }
 
+    private boolean checkMultiMap(ArgumentMultimap args) {
+        List<Prefix> prefixes = Arrays.asList(PREFIX_NAME, PREFIX_TYPE, PREFIX_ADDRESS, PREFIX_POSTAL,
+                PREFIX_DEADLINE, PREFIX_REMARK, PREFIX_TAGS, PREFIX_PROPERTY_PRICE_MORE,
+                PREFIX_PROPERTY_PRICE_LESS, PREFIX_CLIENT_CONTACT, PREFIX_CLIENT_EMAIL,
+                PREFIX_CLIENT_NAME);
+        for (Prefix p : prefixes) {
+            if (args.getValue(p).isPresent()) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
