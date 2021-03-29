@@ -41,6 +41,7 @@ public class MainWindow extends UiPart<Stage> {
     private StudentListPanel studentListPanel;
     private TuitionListPanel tuitionListPanel;
     private UpcomingTuitionListPanel upcomingTuitionListPanel;
+    private MonthlyFeeListPanel monthlyFeeListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -66,7 +67,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane upcomingTuitionListPanelPlaceholder;
 
     @FXML
-    private StackPane feePanelPlaceholder;
+    private StackPane monthlyFeePanelPlaceholder;
 
     @FXML
     private Tab time;
@@ -136,6 +137,9 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         upcomingTuitionListPanel = new UpcomingTuitionListPanel(logic.getFilteredStudentList());
         upcomingTuitionListPanelPlaceholder.getChildren().add(upcomingTuitionListPanel.getRoot());
+
+        monthlyFeeListPanel = new MonthlyFeeListPanel(logic.getFilteredStudentList());
+        monthlyFeePanelPlaceholder.getChildren().add(monthlyFeeListPanel.getRoot());
 
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
         studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());

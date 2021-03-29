@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane id="sessionCardPane" fx:id="monthlyFeeListCardPane" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox AnchorPane.leftAnchor="10">
+        <padding>
+            <Insets bottom="5" left="5" right="5" top="5" />
+        </padding>
+        <Label fx:id="fee" styleClass="cell_big_label" text="\$fee" wrapText="true"/>
+    </VBox>
+    <Label fx:id="month" styleClass="cell_big_label" AnchorPane.rightAnchor="10" AnchorPane.topAnchor="10" text="Mar" />
+    <Label fx:id="year" styleClass="cell_big_label" AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10" text="2021" />
+</AnchorPane>
