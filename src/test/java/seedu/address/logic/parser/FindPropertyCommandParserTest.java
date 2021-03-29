@@ -33,7 +33,7 @@ public class FindPropertyCommandParserTest {
     public void parseValidKeywordsTest() {
         List<Predicate<Property>> predicates = new ArrayList<>();
 
-        predicates.add(new PropertyNamePredicate(Collections.singletonList("Mayfair Jurong")));
+        predicates.add(new PropertyNamePredicate(Arrays.asList("Mayfair", "Jurong")));
 
         FindPropertyCommand expectedFindCommand =
                 new FindPropertyCommand(new PropertyPredicateList(predicates));
@@ -42,7 +42,7 @@ public class FindPropertyCommandParserTest {
         assertParseSuccess(parser, " n/Mayfair Jurong", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " n/ Mayfair     Jurong ", expectedFindCommand);
+        assertParseSuccess(parser, " n/ Mayfair  \t   Jurong ", expectedFindCommand);
     }
 
     @Test

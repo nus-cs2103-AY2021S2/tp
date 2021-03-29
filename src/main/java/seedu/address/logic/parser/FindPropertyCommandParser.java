@@ -20,6 +20,8 @@ import static seedu.address.logic.parser.ParserUtil.parsePropertyDeadline;
 import static seedu.address.logic.parser.ParserUtil.parsePropertyPostal;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -63,7 +65,10 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
         List<Predicate<Property>> predicates = new ArrayList<>();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            predicates.add(new PropertyNamePredicate(argMultimap.getAllValues(PREFIX_NAME)));
+            argMultimap.getAllValues(PREFIX_NAME)
+                       .forEach(s -> {
+                           predicates.add(new PropertyNamePredicate(Arrays.asList(s.split("\\s+"))));
+                       });
         }
 
         if (argMultimap.getValue(PREFIX_PROPERTY_PRICE_MORE).isPresent()) {
