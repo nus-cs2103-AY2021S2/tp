@@ -106,7 +106,7 @@ public class PoolCommand extends Command {
         }
 
         //since passengers in list are unique, passenger fetched from idx should also be unique, so as hashset from list
-        Pool toAdd = new Pool(driver, tripDay, tripTime, new HashSet<Passenger>(passengersToPool), tags);
+        Pool toAdd = new Pool(driver, tripDay, tripTime, passengersToPool, tags);
 
         if (model.hasPool(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_POOL);
