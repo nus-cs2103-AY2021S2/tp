@@ -264,12 +264,16 @@ Can be invoked repeatedly until there is no more history from the current sessio
 
 Format: `undo`
 
+Shortcut: `CTRL + Z`
+
 ### Redoing actions : `redo`
 
 Redoes the previous action that changed PartyPlanet's Contact or Event List.
 Can be invoked repeatedly until there are no more previously executed actions from the current session.
 
-Format: `undo`
+Format: `redo`
+
+Shortcut: `CTRL + SHIFT + Z` or `CTRL + Y`
 
 ### Toggle theme : `theme`
 
@@ -293,6 +297,8 @@ Retrieves previously entered input.
 * Pressing `Down` arrow key undoes the history revert.
 * At the most recent input, pressing `Down` arrow key once more clears the text box.
 * `ESC` key clears the text box.
+* `CTRL + Z` key combination undoes the last change to the address or event books.
+* `CTRL + SHIFT + Z` or `CTRL + Y` key combinations redo the last undone change to the address or event books.
 
 ### Coming Soon (Additional Features)
 * Add/Edit/Delete Modules and Tasks/Deliverables
