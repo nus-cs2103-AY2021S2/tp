@@ -26,9 +26,9 @@ public class ModuleManager {
     private static List<String> supportedModulesInStr;
     private static final String[] arrOfModules = {"CS1101S", "CS1231S", "CS2030", "CS2040S", "CS2101",
         "CS2103T", "CS2105", "CS2106", "CS3230", "CS3243", "CS3244", "IS1103", "ST2131"};
-    private static final LOW_LEVEL = 1;
-    private static final MEDIUM_LEVEL = 2;
-    private static final HIGH_LEVEL = 3;
+    private static final int LOW_LEVEL = 1;
+    private static final int MEDIUM_LEVEL = 2;
+    private static final int HIGH_LEVEL = 3;
 
     /**
      * A ModuleManager which manages the mapping of each module to its
