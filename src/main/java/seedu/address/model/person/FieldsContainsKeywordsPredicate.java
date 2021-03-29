@@ -31,19 +31,19 @@ public class FieldsContainsKeywordsPredicate implements Predicate<Person>, Compa
 
     @Override
     public boolean test(Person person) {
-        return keywords.stream().anyMatch(keyword -> predicates.stream().anyMatch(predicate -> predicate.test(person)));
+        return predicates.stream().anyMatch(predicate -> predicate.test(person));
     }
 
     @Override
     public int compare(Person o1, Person o2) {
         int o1Similarity = keywords
                 .stream()
-                .map(keyword -> (int)predicates.stream().map(predicate -> test(o1)).filter(bool -> bool).count())
+                .map(keyword -> (int)predicates.stream().map(predicate -> predicate.test(o1)).filter(bool -> bool).count())
                 .max(Integer::compare)
                 .orElse(0);
         int o2Similarity = keywords
                 .stream()
-                .map(keyword -> (int)predicates.stream().map(predicate -> test(o2)).filter(bool -> bool).count())
+                .map(keyword -> (int)predicates.stream().map(predicate -> predicate.test(o2)).filter(bool -> bool).count())
                 .max(Integer::compare)
                 .orElse(0);
         return o2Similarity - o1Similarity;

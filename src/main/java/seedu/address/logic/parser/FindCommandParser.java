@@ -39,7 +39,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
 
         if (Arrays.stream(prefixes).anyMatch(prefix -> args.contains(prefix.getPrefix()))) {
-            ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, prefixes);
+            ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(" " + args, prefixes);
 
             Optional<String> nameValue = argMultimap.getValue(PREFIX_NAME);
             if (nameValue.isPresent()) {
@@ -71,7 +71,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
 
         FieldsContainsKeywordsPredicate predicateComparator =
-                new FieldsContainsKeywordsPredicate(Arrays.asList(args.split("\\s+").clone()));
+                new FieldsContainsKeywordsPredicate(Arrays.asList(trimmedArgs.split("\\s+").clone()));
         return new FindCommand(predicateComparator, predicateComparator);
     }
 
