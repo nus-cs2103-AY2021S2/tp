@@ -12,7 +12,6 @@ import static seedu.module.logic.parser.CliSyntax.PREFIX_TASK_NAME;
 import java.util.Optional;
 
 import seedu.module.commons.core.index.Index;
-import seedu.module.commons.exceptions.IllegalValueException;
 import seedu.module.logic.commands.Command;
 import seedu.module.logic.commands.RecurCommand;
 import seedu.module.logic.parser.exceptions.ParseException;
@@ -34,7 +33,7 @@ public class RecurCommandParser implements Parser<Command> {
 
             parseRecurrence(argumentMultimap.getValue(PREFIX_RECURRENCE)).ifPresent(recurCommand::setRecurrence);
 
-        } catch (IllegalValueException e) {
+        } catch (IllegalArgumentException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RecurCommand.MESSAGE_USAGE), e);
         }
 
