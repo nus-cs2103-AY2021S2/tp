@@ -134,6 +134,16 @@ This subsection serves to list out the parameters used in this document. We have
     * `TODO_INDEX` refers to the number shown beside the todo in the Main Panel when a project is displayed.
 * Indexes **must be a positive integer** 1, 2, 3, …​
 
+##### `REPEAT_WEEKLY`
+
+* The weekly repetition status of an event.
+* Weekly repetition can be only be entered in one of these formats:
+    * Y
+    * y
+    * N
+    * n
+* `Y` being Yes & `N` being No w.r.t to the Repeat Weekly status.
+
 ##### `KEYWORD`
 
 * The keyword used to seach for contacts.
@@ -205,6 +215,10 @@ This section contains documentation on CoLAB's features and commands.
 
 It is split into 4 subsections,
 * [Projects](#projects)
+    * Todo
+    * Deadline
+    * Event
+    * Groupmates
 * [Contacts](#contacts)
 * [Navigating the UI](#navigating-the-ui)
 * [Others](#others)
@@ -225,24 +239,26 @@ Examples:
 
 Adds an event to a specified project.
 
-Format: `addEto PROJECT_INDEX d/DESCRIPTION i/INTERVAL at/DATE`
+Format: `addEto PROJECT_INDEX d/DESCRIPTION on/DATE at/TIME w/REPEAT_WEEKLY`
 
 * Adds an event to the project at the specified `PROJECT_INDEX`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
 * The index **must be a positive integer** 1, 2, 3, …​
-* `INTERVAL` must be one of the following values:
-    * `NONE`
-    * `DAILY`
-    * `WEEKLY`
-    * `FORTNIGHTLY`
-    * `MONTHLY`
-    * `YEARLY`
 * `DATE` must be in `dd-MM-yyyy`, `ddMMyyyy`, `dd/MM/yyyy` or `dd.MM.yyyy` format.
 * `DATE` is limited to the `yyyy` range of 0000 to 9999.
+* `TIME` must be in `HHmm` or `HH:mm` format.
+* `TIME` is limited to the `yyyy` range of 0000 to 9999.
+* `REPEAT_WEEKLY` must be one of the following values:
+    * `Y`
+    * `N`
+    * `y`
+    * `n`
+* `Y` being Yes & `N` being No w.r.t to the Repeat Weekly status.
+
 
 Examples:
-* `addEto 1 d/Project Meeting i/WEEKLY at/24-04-2021`
-* `addEto 2 d/CS2101 Presentation i/NONE at/24-04-2021`
+* `addEto 1 d/Project Meeting on/24-04-2021 at/2000 w/Y`
+* `addEto 2 d/CS2101 Presentation on/14-04-2021 at/1015 w/n`
 
 #### Adding a deadline to a project: `addDto`
 
@@ -534,7 +550,7 @@ Action | Format, Examples
 --------|------------------
 **Add Project** | `addP n/PROJECT_NAME`
 **Add Deadline to Project** | `addDto PROJECT_INDEX d/DESCRIPTION by/DATE`
-**Add Event to Project** | `addEto PROJECT_INDEX d/DESCRIPTION i/INTERVAL at/DATE`
+**Add Event to Project** | `addEto PROJECT_INDEX d/DESCRIPTION on/DATE at/TIME w/REPEAT_WEEKLY`
 **Add Participant to Project** | `addCto PROJECT_INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 **Add Todo to Project** | `addTto PROJECT_INDEX d/DESCRIPTION`
 **Delete Project** | `deleteP PROJECT_INDEX`
