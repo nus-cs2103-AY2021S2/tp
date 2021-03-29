@@ -15,7 +15,7 @@ increase work productivity for delivery drivers by simplifying the delivery mana
         * Delete delivery points
         * List all delivery points
         * Mark delivery as Done
-        * Find delivery matching a certain criteria  
+        * Find delivery using keyword matching a certain criteria  
         * Statistics of delivery workflow
         * View completed deliveries
         * Exit application
