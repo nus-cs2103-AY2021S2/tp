@@ -44,7 +44,7 @@ public class CommandBox extends UiPart<Region> {
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
         commandTextField.setOnKeyPressed(e -> handleUserKey(e.getCode()));
-        commandTextField.addEventHandler(KeyEvent.KEY_RELEASED, e -> UndoRedoHandler(e));
+        commandTextField.addEventHandler(KeyEvent.KEY_RELEASED, e -> undoRedoHandler(e));
         history = new InputHistory();
     }
 
@@ -53,7 +53,7 @@ public class CommandBox extends UiPart<Region> {
      * Executes undo command if CTRL + Z shortcut is used
      * Executes redo command if CTRL + SHIFT + Z or CTRL + Y shortcut is used
      */
-    private void UndoRedoHandler(KeyEvent event) {
+    private void undoRedoHandler(KeyEvent event) {
         if (undo.match(event)) {
             try {
                 commandExecutor.execute("undo");
