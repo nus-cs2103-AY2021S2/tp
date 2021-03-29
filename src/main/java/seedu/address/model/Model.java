@@ -13,7 +13,10 @@ import seedu.address.model.pool.Pool;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Passenger> PREDICATE_SHOW_ALL = unused -> true;
+    Predicate<Passenger> PREDICATE_SHOW_ALL_PASSENGERS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Pool> PREDICATE_SHOW_ALL_POOLS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.

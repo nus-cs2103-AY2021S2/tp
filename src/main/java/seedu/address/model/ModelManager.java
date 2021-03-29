@@ -116,13 +116,13 @@ public class ModelManager implements Model {
     @Override
     public void addPassenger(Passenger passenger) {
         addressBook.addPassenger(passenger);
-        updateFilteredPassengerList(PREDICATE_SHOW_ALL);
+        updateFilteredPassengerList(PREDICATE_SHOW_ALL_PASSENGERS);
     }
 
     @Override
     public void addPool(Pool pool) {
         addressBook.addPool(pool);
-        updateFilteredPassengerList(PREDICATE_SHOW_ALL);
+        updateFilteredPassengerList(PREDICATE_SHOW_ALL_PASSENGERS);
     }
 
     @Override

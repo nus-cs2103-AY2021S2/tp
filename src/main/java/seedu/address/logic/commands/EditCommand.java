@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPTIME;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PASSENGERS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -86,7 +86,7 @@ public class EditCommand extends Command {
         }
 
         model.setPassenger(passengerToEdit, editedPassenger);
-        model.updateFilteredPassengerList(PREDICATE_SHOW_ALL);
+        model.updateFilteredPassengerList(PREDICATE_SHOW_ALL_PASSENGERS);
         return new CommandResult(String.format(MESSAGE_EDIT_PASSENGER_SUCCESS, editedPassenger));
     }
 

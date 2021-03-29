@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPTIME;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_POOLS;
 
 import java.util.HashSet;
 import java.util.List;
@@ -112,7 +112,7 @@ public class PoolCommand extends Command {
         }
 
         model.addPool(toAdd);
-        model.updateFilteredPassengerList(PREDICATE_SHOW_ALL);
+        model.updateFilteredPoolList(PREDICATE_SHOW_ALL_POOLS);
 
         return new CommandResult(String.format(MESSAGE_POOL_SUCCESS, toAdd));
     }
