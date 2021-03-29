@@ -155,4 +155,7 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredAppointmentList(Predicate<Appointment> predicate);
+
+    /** Orders appointment list in increasing DateTime order. */
+    void orderAppointments();
 }
