@@ -14,6 +14,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.date.ImportantDate;
 import seedu.address.model.person.Person;
 
 /**
@@ -23,31 +24,39 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final DatesBook datesBook;
     private final UserPrefs userPrefs;
+    private final FilteredList<ImportantDate> filteredImportantDates;
     private final FilteredList<Person> filteredPersons;
+    private final SortedList<ImportantDate> sortedImportantDates;
     private final SortedList<Person> sortedPersons;
+    private final ObservableList<ImportantDate> transformedImportantDates;
     private final ObservableList<Person> transformedPersons;
     private Person selectedPerson;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyDatesBook datesBook) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(addressBook, userPrefs, datesBook);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.datesBook = new DatesBook(datesBook);
+        filteredImportantDates = new FilteredList<>(this.datesBook.getImportantDatesList());
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        sortedImportantDates = new SortedList<>(this.datesBook.getImportantDatesList());
         sortedPersons = new SortedList<>(this.addressBook.getPersonList());
+        transformedImportantDates = FXCollections.observableArrayList(this.datesBook.getImportantDatesList());
         transformedPersons = FXCollections.observableArrayList(this.addressBook.getPersonList());
         selectedPerson = null;
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), new DatesBook());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -83,6 +92,17 @@ public class ModelManager implements Model {
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
+    }
+
+    @Override
+    public Path getDatesBookFilePath() {
+        return userPrefs.getDatesBookFilePath();
+    }
+
+    @Override
+    public void setDatesBookFilePath(Path datesBookFilePath) {
+        requireNonNull(datesBookFilePath);
+        userPrefs.setDatesBookFilePath(datesBookFilePath);
     }
 
     //=========== AddressBook ================================================================================
@@ -135,6 +155,8 @@ public class ModelManager implements Model {
     public void filterPerson(Predicate<Person> predicate) {
         updateFilteredPersonList(predicate);
     }
+
+
 
     //=========== Filtered Person List Accessors =============================================================
 
@@ -190,6 +212,84 @@ public class ModelManager implements Model {
         transformedPersons.setAll(newSortedPersons);
     }
 
+    //=========== DatesBook ================================================================================
+
+    @Override
+    public void setDatesBook(ReadOnlyDatesBook datesBook) {
+        this.datesBook.resetData(datesBook);
+    }
+
+    @Override
+    public ReadOnlyDatesBook getDatesBook() {
+        return datesBook;
+    }
+
+
+    @Override
+    public boolean hasImportantDate(ImportantDate importantDate) {
+        requireNonNull(importantDate);
+        return datesBook.hasImportantDate(importantDate);
+    }
+
+    @Override
+    public void deleteImportantDate(ImportantDate target) {
+        datesBook.removeImportantDate(target);
+    }
+
+    @Override
+    public void addImportantDate(ImportantDate importantDate) {
+        datesBook.addImportantDate(importantDate);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void filterImportantDates(Predicate<ImportantDate> predicate) {
+        updateFilteredImportantDatesList(predicate);
+    }
+
+
+
+    //=========== Filtered Important Dates List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<ImportantDate> getFilteredImportantDatesList() {
+        return filteredImportantDates;
+    }
+
+    @Override
+    public void updateFilteredImportantDatesList(Predicate<ImportantDate> predicate) {
+        requireNonNull(predicate);
+        filteredImportantDates.setPredicate(predicate);
+        transformedImportantDates.setAll(filteredImportantDates);
+    }
+
+    //=========== Sorted Important Dates List Accessors =============================================================
+    /**
+     * Returns an unmodifiable view of the sorted list of {@code ImportantDate}
+     */
+    @Override
+    public ObservableList<ImportantDate> getSortedImportantDatesList() {
+        return sortedImportantDates;
+    }
+
+    @Override
+    public void updateSortedImportantDatesList(Comparator<ImportantDate> comparator) throws NullPointerException {
+        requireNonNull(comparator);
+        sortedImportantDates.setComparator(comparator);
+        transformedImportantDates.setAll(sortedImportantDates);
+    }
+
+    //=========== Transformed Important Dates List Accessors ========================================================
+
+    @Override
+    public ObservableList<ImportantDate> getTransformedImportantDatesList() {
+        return transformedImportantDates;
+    }
+
 
     @Override
     public boolean equals(Object obj) {
@@ -207,7 +307,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && datesBook.equals(other.datesBook);
     }
 
 }

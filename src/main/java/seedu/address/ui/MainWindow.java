@@ -36,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private ScheduleWindow scheduleWindow;
+    private DateListPanel dateListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -54,6 +55,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personDetailsPlaceholder;
+
+    @FXML
+    private StackPane dateListPanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -134,8 +138,12 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-
         scheduleWindow = new ScheduleWindow(logic);
+
+        dateListPanel = new DateListPanel(logic.getTransformedImportantDatesList());
+        dateListPanelPlaceholder.getChildren().add(dateListPanel.getRoot());
+
+
 
     }
 

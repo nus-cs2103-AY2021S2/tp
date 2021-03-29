@@ -8,6 +8,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyDatesBook;
+import seedu.address.model.date.ImportantDate;
 import seedu.address.model.person.Person;
 
 /**
@@ -53,6 +55,17 @@ public interface Logic {
      * Returns the user prefs' address book file path.
      */
     Path getAddressBookFilePath();
+
+    ReadOnlyDatesBook getDatesBook();
+
+    ObservableList<ImportantDate> getFilteredImportantDatesList();
+
+    ObservableList<ImportantDate> getSortedImportantDatesList();
+
+    public ObservableList<ImportantDate> getTransformedImportantDatesList();
+
+    Path getDatesBookFilePath();
+
 
     /**
      * Returns the user prefs' GUI settings.
