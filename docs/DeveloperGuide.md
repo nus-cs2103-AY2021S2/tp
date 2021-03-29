@@ -762,10 +762,10 @@ testers are expected to do more *exploratory* testing.
        Expected: The flashcard identified by index 1 in the list will be modified. Its priority is changed to `Low`. If the flashcard already has 
        `Low` priority, an error message will be displayed, and no modifications will be made to the flashcard.
        
-    1. Test case: `edit 1 c/comp sci p/Mid t/sorting t/algorithms`
+    1. Test case: `edit 1 c/CompSci p/Mid t/sorting t/algorithms`
     
-       Expected: The flash card identified by index 1 will be modified. Its category is changed to `comp sci`, the priority is changed to `Mid`.
-       and it now has tags `sorting` and `algorithms`. If the flashcard already has category `comp sci`, priority
+       Expected: The flash card identified by index 1 will be modified. Its category is changed to `CompSci`, the priority is changed to `Mid`.
+       and it now has tags `sorting` and `algorithms`. If the flashcard already has category `CompSci`, priority
        `Mid`, as well as tags `sorting` and `algorithms`, an error message will be displayed, and no modifications will be made to the flashcard.
 
 
