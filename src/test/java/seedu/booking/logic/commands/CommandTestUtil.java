@@ -45,6 +45,9 @@ import seedu.booking.testutil.VenueBuilder;
  */
 public class CommandTestUtil {
 
+    public static final String NON_EXISTENT_EMAIL = "unknown@example.com";
+
+
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -77,8 +80,6 @@ public class CommandTestUtil {
 
     public static final String VALID_BOOKING_ID_1 = "1";
     public static final String VALID_BOOKING_ID_2 = "2";
-
-
 
 
     public static final String VALID_VENUE_NAME_COURT = "Court";

@@ -2,7 +2,14 @@ package seedu.booking.model.venue;
 
 import static seedu.booking.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
+
+import seedu.booking.commons.util.StringUtil;
+import seedu.booking.model.Tag;
+
 
 /**
  * Represents a venue in the booking list.
@@ -10,22 +17,23 @@ import java.util.Objects;
  */
 public class Venue {
 
-    // Data fields
+    // Identity field
     private final VenueName name;
+
+    // Data fields
     private final Capacity capacity;
     private final String description;
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Venue(VenueName name, Capacity capacity, String description) {
-        requireAllNonNull(name, capacity);
-        if (capacity.venueCapacity <= -1) {
-            throw new IllegalArgumentException("Capacity cannot be 0 or less.");
-        }
+    public Venue(VenueName name, Capacity capacity, String description, Set<Tag> tags) {
+        requireAllNonNull(name, capacity, description, tags);
         this.name = name;
         this.capacity = capacity;
         this.description = description;
+        this.tags.addAll(tags);
     }
 
     public VenueName getVenueName() {
@@ -41,7 +49,15 @@ public class Venue {
     }
 
     /**
-     * Returns true if both venues have the same name
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns true if both venues have the same name (case-insensitive).
      * This defines a weaker notion of equality between two venues.
      */
     public boolean isSameVenue(Venue otherVenue) {
@@ -49,7 +65,9 @@ public class Venue {
             return true;
         }
 
-        return otherVenue != null && this.name.equals(otherVenue.name);
+        return otherVenue != null
+                && StringUtil.containsWordIgnoreCase(this.getVenueName().removeSpacesInVenueName(),
+                        otherVenue.getVenueName().removeSpacesInVenueName());
     }
 
     /**
@@ -66,10 +84,11 @@ public class Venue {
             return false;
         }
 
-        Venue otherBooking = (Venue) other;
-        return otherBooking.getVenueName().equals(getVenueName())
-                && otherBooking.getCapacity().equals(getCapacity())
-                && otherBooking.getDescription().equals(getDescription());
+        Venue otherVenue = (Venue) other;
+        return otherVenue.getVenueName().equals(getVenueName())
+                && otherVenue.getCapacity().equals(getCapacity())
+                && otherVenue.getDescription().equals(getDescription())
+                && otherVenue.getTags().equals(getTags());
     }
 
     @Override
@@ -91,6 +110,12 @@ public class Venue {
         }
         String description = getDescription();
         builder.append("; Description: ").append(getDescription());
+
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("; Tags: ");
+            tags.forEach(builder::append);
+        }
 
         return builder.toString();
     }

@@ -1,3 +1,4 @@
+
 ---
 layout: page
 title: User Guide
@@ -24,9 +25,9 @@ BookCoinToTheMoon is a **desktop app for managing bookings and presents users a 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list_venues`** : Lists all venues.
+   * **`list_venue`** : Lists all venues.
 
-   * **`create_venue`**`n/Chua Thian Poh Hall max/40` : Adds a venue named `Chua Thian Poh Hall` to the BookCoinToTheMoon.
+   * **`add_venue`**`n/Chua Thian Poh Hall max/40` : Adds a venue named `Chua Thian Poh Hall` to the BookCoinToTheMoon.
 
    * **`bye`** : Exits the app.
 
@@ -41,10 +42,10 @@ BookCoinToTheMoon is a **desktop app for managing bookings and presents users a 
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `find_venue v/VENUE_ID`, `VENUE_ID` is a parameter which can be used as `find_venue v/1`.
+  e.g. in `find_venue v/VENUE_NAME`, `VENUE_NAME` is a parameter which can be used as `find_venue v/Victoria Hall`.
 
 * Items in square brackets are optional.<br>
-  e.g. `create_venue n/VENUE_NAME [max/MAXIMUM_OCCUPANCY]` can be used as `n/Chua Thian Poh Hall max/40` or as `n/Chua Thian Poh Hall`.
+  e.g. `add_venue v/VENUE_NAME [max/MAXIMUM_OCCUPANCY]` can be used as `n/Chua Thian Poh Hall max/40` or as `n/Chua Thian Poh Hall`.
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
@@ -57,10 +58,10 @@ BookCoinToTheMoon is a **desktop app for managing bookings and presents users a 
 
 Adds a new venue for the booking app.
 
-Format: `create_venue n/VENUE_NAME [max/MAXIMUM_OCCUPANCY]`
+Format: `create_venue v/VENUE_NAME [max/MAXIMUM_OCCUPANCY]`
 
 Examples:
-* `create_venue n/Chua Thian Poh Hall max/40`
+* `create_venue v/Chua Thian Poh Hall max/40`
 
 ### Adding a booking : `create_booking`
 
@@ -85,12 +86,12 @@ Format: `list_bookings`
 
 ### Finding a venue : `find_venue`
 
-Shows information about the booking corresponding to the given venue ID.
+Shows information about the venue corresponding to the given venue name.
 
-Format: `find_venue v/VENUE_ID`
+Format: `find_venue v/VENUE_NAME`
 
 Examples:
-* `find_venue v/1`
+* `find_venue v/Victoria Hall`
 
 ### Finding a booking : `find_booking`
 
@@ -99,16 +100,16 @@ Shows information about the booking corresponding to the given booking ID.
 Format: `find_booking b/BOOKING_ID`
 
 Examples:
-* `find_booking b/2`
+* `find_booking b/2321356789`
 
 ### Deleting a venue : `delete_venue`
 
-Deletes a venue corresponding to the venue ID specified.
+Deletes a venue corresponding to the venue name specified.
 
-Format: `delete_venue v/VENUE_ID`
+Format: `delete_venue v/VENUE_NAME`
 
 Examples:
-* `delete_venue v/1`
+* `delete_venue v/Court`
 
 ### Deleting a booking : `delete_booking`
 
@@ -118,6 +119,24 @@ Format: `delete_booking b/BOOKING_ID`
 
 Examples:
 * `delete_booking b/2`
+
+### Editing a venue : `edit_venue`
+
+Edits an existing venue in the booking system with the specified venue name.
+
+Format: `edit_venue vo/VENUE_NAME [v/VENUE_NAME] [max/MAXIMUM_OCCUPANCY]`
+
+Examples:
+* `edit_venue vo/Lab max/30`
+
+### Editing a person : `edit_person`
+
+Edits an existing person in the booking system with the specified email.
+
+Format: `edit_person eo/EMAIL [e/EMAIL] [p/PHONE_NUMBER] [n/NAME]`
+
+Examples:
+* `edit_person eo/amy@example.com p/83984029`
 
 ### Exiting the program : `bye`
 

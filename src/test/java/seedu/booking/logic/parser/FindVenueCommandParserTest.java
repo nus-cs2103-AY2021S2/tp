@@ -24,7 +24,7 @@ public class FindVenueCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_validArgs_returnsFindVenueCommand() {
         // no leading and trailing whitespaces
         FindVenueCommand expectedFindCommand =
                 new FindVenueCommand(new VenueNameContainsKeywordsPredicate(Arrays.asList("Venue2")));

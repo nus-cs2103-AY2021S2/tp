@@ -4,14 +4,20 @@ import static java.util.Objects.requireNonNull;
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_CAPACITY;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE_ORIGINAL;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.booking.logic.commands.EditVenueCommand;
 import seedu.booking.logic.commands.EditVenueCommand.EditVenueDescriptor;
 import seedu.booking.logic.parser.exceptions.ParseException;
+import seedu.booking.model.Tag;
 import seedu.booking.model.venue.VenueName;
 
 /**
@@ -28,7 +34,7 @@ public class EditVenueCommandParser implements Parser<EditVenueCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_VENUE_ORIGINAL, PREFIX_VENUE,
-                        PREFIX_CAPACITY, PREFIX_DESCRIPTION);
+                        PREFIX_CAPACITY, PREFIX_DESCRIPTION, PREFIX_TAG);
 
         VenueName venueName;
 
@@ -56,6 +62,8 @@ public class EditVenueCommandParser implements Parser<EditVenueCommand> {
                     .parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         }
 
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editVenueDescriptor::setTags);
+
         if (!editVenueDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditVenueCommand.MESSAGE_NOT_EDITED);
         }
@@ -71,6 +79,19 @@ public class EditVenueCommandParser implements Parser<EditVenueCommand> {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
+     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Tag>} containing zero tags.
+     */
+    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
+        assert tags != null;
 
+        if (tags.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
+        return Optional.of(ParserUtil.parseTags(tagSet));
+    }
 
 }

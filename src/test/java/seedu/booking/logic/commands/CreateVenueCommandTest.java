@@ -32,7 +32,7 @@ public class CreateVenueCommandTest {
 
     @Test
     public void constructor_nullVenue_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new CreateVenueCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddVenueCommand(null));
     }
 
     @Test
@@ -40,16 +40,16 @@ public class CreateVenueCommandTest {
         ModelStubAcceptingVenueAdded modelStub = new ModelStubAcceptingVenueAdded();
         Venue validVenue = new VenueBuilder().build();
 
-        CommandResult commandResult = new CreateVenueCommand(validVenue).execute(modelStub);
+        CommandResult commandResult = new AddVenueCommand(validVenue).execute(modelStub);
 
-        assertEquals(String.format(CreateVenueCommand.MESSAGE_SUCCESS, validVenue), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddVenueCommand.MESSAGE_SUCCESS, validVenue), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validVenue), modelStub.venuesAdded);
     }
 
     @Test
     public void execute_duplicateVenue_throwsCommandException() {
         Venue validVenue = new VenueBuilder().build();
-        CreateVenueCommand createVenueCommand = new CreateVenueCommand(validVenue);
+        AddVenueCommand createVenueCommand = new AddVenueCommand(validVenue);
         ModelStub modelStub = new ModelStubWithVenue(validVenue);
 
         assertThrows(CommandException.class, createVenueCommand.MESSAGE_DUPLICATE_VENUE, ()
@@ -60,14 +60,14 @@ public class CreateVenueCommandTest {
     public void equals() {
         Venue hall = new VenueBuilder().withName("Victoria Hall").build();
         Venue field = new VenueBuilder().withName("Town Green").build();
-        CreateVenueCommand addHallCommand = new CreateVenueCommand(hall);
-        CreateVenueCommand addFieldCommand = new CreateVenueCommand(field);
+        AddVenueCommand addHallCommand = new AddVenueCommand(hall);
+        AddVenueCommand addFieldCommand = new AddVenueCommand(field);
 
         // same object -> returns true
         assertTrue(addHallCommand.equals(addHallCommand));
 
         // same values -> returns true
-        CreateVenueCommand addHallCommandCopy = new CreateVenueCommand(hall);
+        AddVenueCommand addHallCommandCopy = new AddVenueCommand(hall);
         assertTrue(addHallCommand.equals(addHallCommandCopy));
 
         // different types -> returns false
