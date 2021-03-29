@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.pool.exceptions.DuplicatePoolException;
 import seedu.address.model.pool.exceptions.PoolNotFoundException;
 
@@ -95,6 +96,15 @@ public class UniquePoolList implements Iterable<Pool> {
         }
 
         internalList.setAll(pool);
+    }
+
+    /**
+     * Replaces the passenger {@code target} in the pools with {@code editedPassenger}, if any.
+     */
+    public void setPassenger(Passenger target, Passenger editedPassenger) {
+        requireAllNonNull(target, editedPassenger);
+
+        internalList.forEach(pool -> pool.setPassenger(target, editedPassenger));
     }
 
     /**

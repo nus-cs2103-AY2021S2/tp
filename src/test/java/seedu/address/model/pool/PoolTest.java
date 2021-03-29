@@ -14,7 +14,7 @@ import java.time.LocalTime;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.testutil.PassengerSetBuilder;
+import seedu.address.testutil.PassengerListBuilder;
 import seedu.address.testutil.PoolBuilder;
 import seedu.address.testutil.TypicalDrivers;
 import seedu.address.testutil.TypicalPassengers;
@@ -26,7 +26,7 @@ public class PoolTest {
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Pool pool = new PoolBuilder()
                 .withPassengers(
-                        new PassengerSetBuilder()
+                        new PassengerListBuilder()
                         .withDefaultPassengers()
                         .build())
                 .build();
@@ -51,7 +51,7 @@ public class PoolTest {
                 .withDriver(TypicalDrivers.BOB)
                 .withTripDay(DayOfWeek.WEDNESDAY)
                 .withTripTime(LocalTime.of(14, 0))
-                .withPassengers(new PassengerSetBuilder()
+                .withPassengers(new PassengerListBuilder()
                         .withPassenger(TypicalPassengers.ELLE)
                         .withPassenger(TypicalPassengers.DANIEL)
                         .withPassenger(TypicalPassengers.GEORGE)

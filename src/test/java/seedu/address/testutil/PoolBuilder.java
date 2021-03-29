@@ -2,7 +2,9 @@ package seedu.address.testutil;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.person.Name;
@@ -29,7 +31,7 @@ public class PoolBuilder {
     private Driver driver;
     private TripDay tripDay;
     private TripTime tripTime;
-    private Set<Passenger> passengers;
+    private List<Passenger> passengers;
     private Set<Tag> tags;
 
     /**
@@ -39,7 +41,7 @@ public class PoolBuilder {
         driver = new Driver(new Name(DEFAULT_DRIVER_NAME_STR), new Phone(DEFAULT_DRIVER_PHONE_STR));
         tripDay = new TripDay(DEFAULT_TRIPDAY);
         tripTime = new TripTime(DEFAULT_TRIPTIME);
-        passengers = new PassengerSetBuilder().withDefaultPassengers().build();
+        passengers = new PassengerListBuilder().withDefaultPassengers().build();
         tags = new HashSet<>();
     }
 
@@ -50,7 +52,7 @@ public class PoolBuilder {
         driver = poolToCopy.getDriver();
         tripDay = poolToCopy.getTripDay();
         tripTime = poolToCopy.getTripTime();
-        passengers = new HashSet<>(poolToCopy.getPassengers());
+        passengers = new ArrayList<>(poolToCopy.getPassengers());
         tags = new HashSet<>(poolToCopy.getTags());
     }
 
@@ -91,7 +93,7 @@ public class PoolBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Pool} that we are building.
      */
-    public PoolBuilder withPassengers(Set<Passenger> passengers) {
+    public PoolBuilder withPassengers(List<Passenger> passengers) {
         this.passengers = passengers;
         return this;
     }
