@@ -94,7 +94,7 @@ public class Event {
 
         Event otherEvent = (Event) other;
         return otherEvent.getDate().equals(getDate())
-                && otherEvent.getTime().equals(getTime())
+                && (!otherEvent.hasTime() || otherEvent.getTime().equals(getTime()))
                 && otherEvent.getDescription().equals(getDescription());
     }
 
