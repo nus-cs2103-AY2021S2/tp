@@ -80,7 +80,7 @@ Format:
 ```
 add dog n/DOGNAME b/BREED d/DATEOFBIRTH s/SEX o/OWNERID t/TAG
 add owner n/OWNERNAME p/PHONE_NUMBER e/EMAIL a/ADDRESS
-add program n/PROGRAMNAME s/DATEOFPROGRAM t/TAG
+add program n/PROGRAMNAME s/TIMEANDDATEOFSESSION t/TAG
 ```
 
 Examples:
@@ -88,8 +88,8 @@ Examples:
    Command: `add dog n/Bruce b/Chihuahua d/12-02-2019 s/Male o/1 t/playful t/active`
 2. Adds an owner named John with the details provided in Pawbook.<br>
    Command: `add owner n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`
-3. Creates a program titled “Program1” that occurs on 2 March 2021 from 4pm to 5pm and on 9 March 2021 1pm to 2pm.<br>
-   Command: `add program n/1 s/02-02-2020 1800 t/puppies`
+3. Creates a program with Program ID 1<br>
+   Command: `add program n/1 s/02-02-2020 18:00 t/puppies`
 
 ### Delete Command
 
@@ -202,7 +202,7 @@ data of your previous Pawbook home folder.
 
 Action | Format
 --------|------------------
-**Add** | 1. `add dog n/DOGNAME b/BREED d/DATE OF BIRTH s/SEX o/OWNERID t/TAG`<br>2. `add  owner n/OWNERNAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...`<br>3. `add  program n/NAME [s/DATE OF SESSION]... [t/tag]...`
+**Add** | 1. `add dog n/DOGNAME b/BREED d/DATE OF BIRTH s/SEX o/OWNERID t/TAG`<br>2. `add owner n/OWNERNAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...`<br>3. `add  program n/NAME [s/DATE OF SESSION]... [t/tag]...`
 **Delete** | 1. `delete dog d/DOGID`<br>2. `delete owner o/OWNERID`<br>3. `delete program p/PROGRAMID`
 **Enrol** | `enrol d/[DOG ID] p/[PROGRAM ID]`
 **Drop** | `drop d/[DOG ID] p/[PROGRAM ID]`
