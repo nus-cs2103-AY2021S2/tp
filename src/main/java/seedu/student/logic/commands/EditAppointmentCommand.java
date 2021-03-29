@@ -1,6 +1,8 @@
 package seedu.student.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.student.logic.commands.AddAppointmentCommand.MESSAGE_OVERLAPPING_APPOINTMENT;
+import static seedu.student.logic.commands.AddAppointmentCommand.MESSAGE_STUDENT_DOES_NOT_EXIST;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_MATRICULATION_NUMBER;
@@ -36,6 +38,7 @@ public class EditAppointmentCommand extends Command {
     public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Edited Appointment: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "The appointment overlaps with existing records";
+    public static final String MESSAGE_APPOINTMENT_DOES_NOT_EXIST = "The requested appointment does not exist";
 
     private final MatriculationNumber matriculationNumber;
     private final EditAppointmentDescriptor editAppointmentDescriptor;
@@ -56,6 +59,8 @@ public class EditAppointmentCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+
         Appointment appointmentToEdit = null;
         List<SameDateAppointmentList> lastShownList = model.getStudentBook().getAppointmentList();
         for (SameDateAppointmentList sList : lastShownList) {
@@ -65,9 +70,22 @@ public class EditAppointmentCommand extends Command {
                 }
             }
         }
-        assert appointmentToEdit != null : "Appointment does not exist in the system";
+        if (appointmentToEdit == null) {
+            throw new CommandException(MESSAGE_APPOINTMENT_DOES_NOT_EXIST);
+        }
 
         Appointment editedAppointment = createEditedAppointment(appointmentToEdit, editAppointmentDescriptor);
+
+        boolean studentExists = model.isExistingMatricNumber(editedAppointment.getMatriculationNumber());
+
+        if (model.hasAppointment(editedAppointment)) {
+            throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
+        } else if (model.hasOverlappingAppointment(editedAppointment)) {
+            throw new CommandException(MESSAGE_OVERLAPPING_APPOINTMENT);
+        } else if (!studentExists) {
+            throw new CommandException(MESSAGE_STUDENT_DOES_NOT_EXIST);
+        }
+
 
         if (!appointmentToEdit.isSameAppointment(editedAppointment) && model.hasAppointment(editedAppointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
