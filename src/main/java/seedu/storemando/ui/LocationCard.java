@@ -29,8 +29,6 @@ public class LocationCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label quantity;
-    @FXML
     private Label locations;
 
 
@@ -41,8 +39,7 @@ public class LocationCard extends UiPart<Region> {
         super(FXML);
         this.location = location;
         id.setText(displayedIndex + ".");
-        locations.setText("Location: " + location.value);
-        quantity.setText("Quantity: " + "1");
+        locations.setText(location.value);
     }
 
     @Override

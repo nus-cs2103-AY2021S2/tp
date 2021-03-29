@@ -194,8 +194,8 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            locationListPanel = new LocationListPanel(logic.getLocationList());
-            locationPanelPlaceholder.getChildren().add(locationListPanel.getRoot());
+            locationListPanel = new LocationListPanel(logic.getLocationList());      //SLAP
+            locationPanelPlaceholder.getChildren().add(locationListPanel.getRoot()); //SLAP
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
