@@ -13,22 +13,25 @@ title: User Guide
 * [About](#about)
 * [Quick start](#quick-start)
 * [Commands](#commands)
-  * [Open help panel: `help`](#viewing-help--help)
-  * [Listing all students: `list_student`](#listing-all-students-list_student)
-  * [Locating student profile by name: `find_student`](#locating-student-profile-by-name-find_student)
-  * [Adding a student: `add_student`](#adding-a-student-add_student)
-  * [Deleting a student: `delete_student`](#deleting-a-student-delete_student)
-  * [Listing students' emails based on current list: `emails`](#listing-students-emails-based-on-current-list-emails)
-  * [Listing all tuition sessions: `list_session`](#listing-all-tuition-sessions-list_session)
-  <!--* [Locating tuition session by student name / date: `find_session`](#locating-tuition-session-by-student-name--date-find_session)-->
-  * [Adding a tuition session: `add_session`](#adding-a-single-tuition-session-add_session)
-  * [Adding a recurring tuition session: `add_rec_session`](#adding-a-recurring-tuition-session-add_rec_session)
-  * [Deleting a tuition session: `delete_session`](#deleting-a-tuition-session-delete_session)
-  * [Getting monthly fee for a particular student: `fee`](#getting-monthly-fee-for-a-particular-student-fee)
-  * [Clears all entries in the program: `clear`](#clearing-all-entries--clear)
-  * [Exit the program: `exit`](#exit-the-program-exit)
-* [FAQ](#faq)
+  * [General](#general)
+    * [Open help panel: `help`](#viewing-help--help)
+    * [Listing all students and sessions: `list_student`](#listing-all-students-and-sessions-list_student)
+    * [Clearing all data : `clear`](#clearing-all-data--clear)
+    * [Exit the program: `exit`](#exit-the-program-exit)
+  * [Managing Students](#managing-students)
+    * [Adding a student: `add_student`](#adding-a-student-add_student)
+    * [Locating student by name: `find_student`](#locating-student-by-name-find_student)
+    * [Deleting a student: `delete_student`](#deleting-a-student-delete_student)
+    * [Listing students' emails based on current list: `emails`](#listing-students-emails-based-on-current-list-emails)
+  * [Managing Sessions](#managing-sessions)
+    * [Adding a tuition session: `add_session`](#adding-a-single-tuition-session-add_session)
+    * [Adding a recurring tuition session: `add_rec_session`](#adding-a-recurring-tuition-session-add_rec_session)
+    * [Deleting a tuition session: `delete_session`](#deleting-a-tuition-session-delete_session)
+  * [Fees](#fees)
+    * [Getting monthly fee for a particular student: `fee`](#getting-monthly-fee-for-a-particular-student-fee)
 * [Command Summary](#command-summary)
+* [FAQ](#faq)
+* [Glossary](#glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 ## Introduction
@@ -140,7 +143,7 @@ This section provides information about all commands that is available in TutorB
 
 **:information_source: Notes about the command format:**<br>
 
-This section details the format of the commands available in Tutor's Pet. We will adhere to the following:
+This section details the format of the commands available in TutorBuddy. We will adhere to the following:
 
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
@@ -185,7 +188,7 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-#### Listing all students: `list_student`
+#### Listing all students and sessions: `list_student`
 
 Displays list of all students and all sessions in TutorBuddy.
 
@@ -364,7 +367,7 @@ Format: `fee n/STUDENT_NAME m/MONTH y/YEAR`
 * `MONTH` should be a positive integer between 1 and 12
 * `YEAR` should be a positive integer between 1970 and 2037
 
-:
+Example:
 * `fee n/John Lee m/1 y/2021` returns John Lee monthly fee for January 2021
 
 
@@ -374,9 +377,8 @@ Format: `fee n/STUDENT_NAME m/MONTH y/YEAR`
 
 **General**
 
-Action | Format
+Action | Format 
 --------|------------------
-
 **Help** | `help`
 **List all students and sessions** | `list_student`
 **Clear all students and sessions** | `clear`
@@ -398,11 +400,11 @@ Action | Format | Examples
 --------|------------------|-------
 **Add Single Session** | `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE` | `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80`
 **Add Recurring Session** | `add_rec_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE b/INTERVAL e/LASTDATE` | `add_rec_session n/John Doe d/2021-01-01 t/20:00 k/120 s/Geography f/80 b/7 e/2021-01-15`
-**Delete Session ** | `delete_session n/STUDENT_NAME i/SESSION_INDEX` | `delete_session n/John Lee i/1`
+**Delete Session** | `delete_session n/STUDENT_NAME i/SESSION_INDEX` | `delete_session n/John Lee i/1`
 
 **Fees**
 
-Action | Format, Examples
+Action | Format | Examples
 --------|------------------|-------
 **Check fee** | `fee n/STUDENT_NAME m/MONTH y/YEAR` | `fee n/John Lee m/1 y/2021`
 
