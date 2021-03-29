@@ -13,6 +13,7 @@ import seedu.iscam.logic.commands.DeleteCommand;
 import seedu.iscam.logic.commands.EditCommand;
 import seedu.iscam.logic.commands.ExitCommand;
 import seedu.iscam.logic.commands.FindCommand;
+import seedu.iscam.logic.commands.FindPlansCommand;
 import seedu.iscam.logic.commands.HelpCommand;
 import seedu.iscam.logic.commands.ListCommand;
 import seedu.iscam.logic.commands.ShowCommand;
@@ -62,6 +63,9 @@ public class ClientBookParser implements BookParser {
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
+
+        case FindPlansCommand.COMMAND_WORD:
+            return new FindPlansCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
