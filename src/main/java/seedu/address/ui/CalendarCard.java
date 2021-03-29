@@ -1,14 +1,13 @@
 package seedu.address.ui;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import seedu.address.model.session.Session;
-import seedu.address.model.session.SessionDate;
 import seedu.address.model.tuition.Tuition;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class CalendarCard extends UiPart<Region> {
     private static final String FXML = "CalendarCard.fxml";
@@ -18,6 +17,9 @@ public class CalendarCard extends UiPart<Region> {
     @FXML private Label nameFxml;
     @FXML private Label subjectFxml;
 
+    /**
+     * Creates a {@code CalendarCard} with the given {@code Tuition} and index to display.
+     */
     public CalendarCard(Tuition tuition) {
         super(FXML);
         this.tuition = tuition;

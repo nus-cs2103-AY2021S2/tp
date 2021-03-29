@@ -52,6 +52,9 @@ public class CalendarView extends UiPart<Region> {
     @FXML private ListView<Tuition> satListView;
     @FXML private ListView<Tuition> sunListView;
 
+    /**
+     * Creates a {@code CalendarView} with the given {@code Logic}.
+     */
     public CalendarView(Logic logic) {
         super(FXML);
         this.logic = logic;
