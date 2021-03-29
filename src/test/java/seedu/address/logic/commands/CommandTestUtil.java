@@ -23,8 +23,9 @@ import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.EditSessionDescriptorBuilder;
 import seedu.address.testutil.EditPersonPersonDescriptorBuilder;
+import seedu.address.testutil.EditSessionDescriptorBuilder;
+
 
 /**
  * Contains helper methods for testing commands.
@@ -83,14 +84,10 @@ public class CommandTestUtil {
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
-
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
     public static final EditSessionCommand.EditSessionDescriptor DESC_FIRST_SESSION;
     public static final EditSessionCommand.EditSessionDescriptor DESC_SECOND_SESSION;
     public static final EditPersonPersonDescriptor DESC_AMY;
     public static final EditPersonPersonDescriptor DESC_BOB;
-
     public static final EditPersonDescriptor DESC_AMY_EDIT;
     public static final EditPersonDescriptor DESC_BOB_EDIT;
 
@@ -105,9 +102,6 @@ public class CommandTestUtil {
                 .withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-    }
-
-    static {
         DESC_AMY_EDIT = new EditPersonDescriptorBuilder().withPersonType(VALID_PERSON_TYPE_STUDENT)
                 .withPersonId(VALID_PERSON_ID_AMY)
                 .withName(VALID_NAME_AMY)

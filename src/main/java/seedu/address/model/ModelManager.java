@@ -132,6 +132,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedSession);
 
         addressBook.setSession(target, editedSession);
+    }
 
     public void assignStudent(Person student, Session session) {
         assert(student.isStudent());
