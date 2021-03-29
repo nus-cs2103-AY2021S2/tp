@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import guitests.guihandles.EventCardHandle;
 import seedu.address.commons.exceptions.DateConversionException;
 import seedu.address.commons.exceptions.TimeConversionException;
-import seedu.address.model.task.Interval;
 import seedu.address.model.task.repeatable.Event;
 import seedu.address.testutil.EventBuilder;
 

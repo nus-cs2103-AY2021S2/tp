@@ -14,13 +14,11 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-import org.assertj.core.internal.bytebuddy.asm.Advice;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.Person;
 import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.CompletableTodo;
-import seedu.address.model.task.Interval;
 import seedu.address.model.task.deadline.Deadline;
 import seedu.address.model.task.repeatable.Event;
 import seedu.address.model.task.todo.Todo;

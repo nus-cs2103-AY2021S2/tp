@@ -11,16 +11,17 @@ import java.time.LocalTime;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.task.Interval;
 import seedu.address.model.task.deadline.Deadline;
 import seedu.address.testutil.EventBuilder;
 
 public class EventTest {
 
     private static final Event TUTORIAL = new EventBuilder().withDescription("CS2106 Tutorial")
-            .withDate(LocalDate.of(2020, 01, 01)).withTime(LocalTime.of(13, 00)).withIsWeekly(true).build();
+            .withDate(LocalDate.of(2020, 01, 01)).withTime(LocalTime.of(13, 00))
+            .withIsWeekly(true).build();
     private static final Event LAB = new EventBuilder().withDescription("CS2030S Lab")
-            .withDate(LocalDate.of(2021, 01, 03)).withTime(LocalTime.of(15, 00)).withIsWeekly(false).build();
+            .withDate(LocalDate.of(2021, 01, 03)).withTime(LocalTime.of(15, 00))
+            .withIsWeekly(false).build();
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -29,9 +30,12 @@ public class EventTest {
         Boolean validIsWeekly = false;
 
         assertThrows(NullPointerException.class, () -> new Event(null, validDate, validTime, validIsWeekly));
-        assertThrows(NullPointerException.class, () -> new Event("test", null, validTime, validIsWeekly));
-        assertThrows(NullPointerException.class, () -> new Event("test", validDate, null, validIsWeekly));
-        assertThrows(NullPointerException.class, () -> new Event("test", validDate, validTime, null));
+        assertThrows(NullPointerException.class, () -> new Event("test", null,
+                validTime, validIsWeekly));
+        assertThrows(NullPointerException.class, () -> new Event("test", validDate,
+                null, validIsWeekly));
+        assertThrows(NullPointerException.class, () -> new Event("test", validDate,
+                validTime, null));
     }
 
     @Test
@@ -41,10 +45,12 @@ public class EventTest {
         Boolean validIsWeekly = false;
 
         String invalidDescription = "";
-        assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription, validDate, validTime, validIsWeekly));
+        assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription, validDate,
+                validTime, validIsWeekly));
 
         String invalidDescription2 = " ";
-        assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription2, validDate, validTime, validIsWeekly));
+        assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription2, validDate,
+                validTime, validIsWeekly));
     }
 
     @Test

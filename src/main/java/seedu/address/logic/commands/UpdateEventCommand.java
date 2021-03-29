@@ -20,7 +20,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.EventList;
 import seedu.address.model.project.Project;
-import seedu.address.model.task.Interval;
 import seedu.address.model.task.repeatable.Event;
 
 /**
@@ -211,7 +210,7 @@ public class UpdateEventCommand extends Command {
             return getDescription().equals(e.getDescription())
                     && getDate().equals(e.getDate())
                     && getTime().equals(e.getTime())
-                    && getTime().equals(e.getTime());
+                    && getIsWeekly().equals(e.getIsWeekly());
         }
     }
 }

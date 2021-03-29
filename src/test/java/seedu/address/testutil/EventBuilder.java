@@ -3,7 +3,6 @@ package seedu.address.testutil;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import seedu.address.model.task.Interval;
 import seedu.address.model.task.repeatable.Event;
 
 /**
