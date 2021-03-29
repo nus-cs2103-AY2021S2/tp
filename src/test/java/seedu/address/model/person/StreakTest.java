@@ -3,10 +3,10 @@ package seedu.address.model.person;
 import static java.time.DayOfWeek.MONDAY;
 import static java.time.DayOfWeek.SUNDAY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.person.Goal.Frequency.MONTHLY;
 import static seedu.address.model.person.Goal.Frequency.NONE;
 import static seedu.address.model.person.Goal.Frequency.WEEKLY;
+import static seedu.address.model.person.Goal.Frequency.YEARLY;
 
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
@@ -173,7 +173,7 @@ public class StreakTest {
     }
 
     @Test
-    public void from_weeklyStartOnMonday_randomDaysPerMonth() {
+    public void from_monthlyStartOnFirstDay_randomDaysPerMonth() {
         LocalDate latest = LocalDate.now().with(TemporalAdjusters.firstDayOfMonth());
         List<LocalDate> dates = new ArrayList<>();
         dates.add(latest.minusMonths(1));
@@ -181,5 +181,81 @@ public class StreakTest {
         dates.add(dates.get(1).minusMonths(1).plusDays(6));
         dates.add(dates.get(2).minusMonths(1).plusDays(4));
         testFromMonthly(dates);
+    }
+
+    public void testFromYearly(List<LocalDate> dates) {
+        Goal yearlyGoal = new Goal(YEARLY);
+
+        Event oneYearBefore = new EventBuilder().withDate(dates.get(0)).build();
+        Event twoYearsBefore = new EventBuilder().withDate(dates.get(1)).build();
+        Event threeYearsBefore = new EventBuilder().withDate(dates.get(2)).build();
+        Event fourYearsBefore = new EventBuilder().withDate(dates.get(3)).build();
+
+        List<Event> meetings = new ArrayList<>();
+        meetings.add(oneYearBefore);
+        meetings.add(twoYearsBefore);
+        meetings.add(threeYearsBefore);
+        meetings.add(fourYearsBefore);
+
+        // Meet once every year
+        assertEquals(4, Streak.from(yearlyGoal, meetings).getValue());
+
+        // Meet more times on some years
+        Event extra1 = new EventBuilder().withDate(dates.get(0).minusMonths(5).minusDays(5)).build();
+        Event extra2 = new EventBuilder().withDate(dates.get(2).minusMonths(2).minusDays(7)).build();
+        meetings.add(extra1);
+        meetings.add(extra2);
+
+        assertEquals(6, Streak.from(yearlyGoal, meetings).getValue());
+
+        meetings.remove(extra1);
+        assertEquals(5, Streak.from(yearlyGoal, meetings).getValue());
+
+        meetings.remove(extra2);
+
+        // Gaps in years
+        meetings.remove(oneYearBefore);
+        assertEquals(0, Streak.from(yearlyGoal, meetings).getValue());
+
+        meetings.add(oneYearBefore);
+        meetings.remove(twoYearsBefore);
+        assertEquals(1, Streak.from(yearlyGoal, meetings).getValue());
+
+        meetings.add(twoYearsBefore);
+        meetings.remove(fourYearsBefore);
+        assertEquals(3, Streak.from(yearlyGoal, meetings).getValue());
+    }
+
+    public void testFromYearlySameDayPerYear(LocalDate now) {
+        List<LocalDate> dates = new ArrayList<>();
+        dates.add(now.minusYears(1));
+        dates.add(now.minusYears(2));
+        dates.add(now.minusYears(3));
+        dates.add(now.minusYears(4));
+
+        testFromYearly(dates);
+    }
+
+    @Test
+    public void from_yearlyStartOnAnyDay_sameDayPerYear() {
+        LocalDate now = LocalDate.now();
+        testFromYearlySameDayPerYear(now);
+    }
+
+    @Test
+    public void from_yearlyStartOnLastDay_sameDayPerYear() {
+        LocalDate now = LocalDate.now().with(TemporalAdjusters.lastDayOfYear());
+        testFromYearlySameDayPerYear(now);
+    }
+
+    @Test
+    public void from_yearlyStartOnFirstDay_randomDaysPerYear() {
+        LocalDate latest = LocalDate.now().with(TemporalAdjusters.firstDayOfYear());
+        List<LocalDate> dates = new ArrayList<>();
+        dates.add(latest.minusYears(1));
+        dates.add(dates.get(0).minusYears(1).plusMonths(1).plusDays(2));
+        dates.add(dates.get(1).minusYears(1).plusMonths(3).plusDays(3));
+        dates.add(dates.get(2).minusYears(1).plusMonths(4).plusDays(12));
+        testFromYearly(dates);
     }
 }
