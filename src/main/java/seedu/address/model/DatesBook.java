@@ -1,12 +1,12 @@
 package seedu.address.model;
 
-import javafx.collections.ObservableList;
-import seedu.address.model.date.ImportantDate;
-import seedu.address.model.date.UniqueDateList;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
+import javafx.collections.ObservableList;
+import seedu.address.model.date.ImportantDate;
+import seedu.address.model.date.UniqueDateList;
 
 public class DatesBook implements ReadOnlyDatesBook {
 

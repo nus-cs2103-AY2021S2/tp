@@ -140,7 +140,7 @@ public class MainWindow extends UiPart<Stage> {
 
         scheduleWindow = new ScheduleWindow(logic);
 
-       // dateListPanel = new DateListPanel(logic.getTransformedImportantDatesList());
+        // dateListPanel = new DateListPanel(logic.getTransformedImportantDatesList());
         // dateListPanelPlaceholder.getChildren().add(dateListPanel.getRoot());
 
 

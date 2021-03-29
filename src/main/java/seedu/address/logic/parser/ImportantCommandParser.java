@@ -1,13 +1,14 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAILS;
+
 import seedu.address.logic.commands.ImportantCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.date.Description;
 import seedu.address.model.date.Details;
 import seedu.address.model.date.ImportantDate;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
 
 public class ImportantCommandParser {
     /**

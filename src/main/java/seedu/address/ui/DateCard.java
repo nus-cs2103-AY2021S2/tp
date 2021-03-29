@@ -10,7 +10,7 @@ import seedu.address.model.date.ImportantDate;
 /**
  * An UI component that displays information of an {@code Important Date}.
  */
-public class DateCard extends UiPart<Region>{
+public class DateCard extends UiPart<Region> {
 
     private static final String FXML = "DateListCard.fxml";
 

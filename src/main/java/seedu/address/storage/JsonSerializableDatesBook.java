@@ -1,16 +1,17 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.DatesBook;
 import seedu.address.model.ReadOnlyDatesBook;
 import seedu.address.model.date.ImportantDate;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * An Immutable DatesBook that is serializable to JSON format.
@@ -19,8 +20,8 @@ import java.util.stream.Collectors;
 
 public class JsonSerializableDatesBook {
 
-    public static final String MESSAGE_DUPLICATE_IMPORTANT_DATES = "Important dates list contains duplicate important" +
-            " date(s).";
+    public static final String MESSAGE_DUPLICATE_IMPORTANT_DATES = "Important dates list contains duplicate important"
+            + " date(s).";
 
     private final List<JsonAdaptedImportantDate> importantDates = new ArrayList<>();
 
