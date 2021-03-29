@@ -193,12 +193,12 @@ public class ParserUtilTest {
         assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE));
     }
 
-//    @Test
-//    public void parseDeadline_validValueWithWhitespace_returnsTrimmedDeadline() throws Exception {
-//        String deadlineWithWhitespace = WHITESPACE + VALID_DEADLINE + WHITESPACE;
-//        Deadline expectedDeadline = new Deadline(VALID_DEADLINE);
-//        assertEquals(expectedDeadline, ParserUtil.parseDeadline(deadlineWithWhitespace));
-//    }
+    @Test
+    public void parseDeadline_validValueWithWhitespace_returnsTrimmedDeadline() throws Exception {
+        String deadlineWithWhitespace = WHITESPACE + VALID_DEADLINE + WHITESPACE;
+        Deadline expectedDeadline = new Deadline(VALID_DEADLINE);
+        assertEquals(expectedDeadline, ParserUtil.parseDeadline(deadlineWithWhitespace));
+    }
 
     @Test
     public void parseStatus_null_throwsNullPointerException() {
@@ -216,12 +216,12 @@ public class ParserUtilTest {
         assertEquals(expectedStatus, ParserUtil.parseStatus(VALID_STATUS));
     }
 
-//    @Test
-//    public void parseStatus_validValueWithWhitespace_returnsTrimmedStatus() throws Exception {
-//        String statusWithWhiteSpace = WHITESPACE + VALID_STATUS + WHITESPACE;
-//        TaskStatus expectedStatus = TaskStatus.valueOf(VALID_STATUS.toUpperCase());
-//        assertEquals(expectedStatus, ParserUtil.parseStatus(statusWithWhiteSpace));
-//    }
+    @Test
+    public void parseStatus_validValueWithWhitespace_returnsTrimmedStatus() throws Exception {
+        String statusWithWhiteSpace = WHITESPACE + VALID_STATUS + WHITESPACE;
+        TaskStatus expectedStatus = TaskStatus.valueOf(VALID_STATUS.toUpperCase());
+        assertEquals(expectedStatus, ParserUtil.parseStatus(statusWithWhiteSpace));
+    }
 
     @Test
     public void parsePriority_null_throwsNullPointerException() {
@@ -239,12 +239,12 @@ public class ParserUtilTest {
         assertEquals(expectedPriority, ParserUtil.parsePriority(VALID_PRIORITY));
     }
 
-//    @Test
-//    public void parsePriority_validValueWithWhitespace_returnsTrimmedPriority() throws Exception {
-//        String priorityWithWhiteSpace = WHITESPACE + VALID_PRIORITY + WHITESPACE;
-//        Priority expectedPriority = Priority.valueOf(VALID_PRIORITY.toUpperCase());
-//        assertEquals(expectedPriority, ParserUtil.parsePriority(priorityWithWhiteSpace));
-//    }
+    @Test
+    public void parsePriority_validValueWithWhitespace_returnsTrimmedPriority() throws Exception {
+        String priorityWithWhiteSpace = WHITESPACE + VALID_PRIORITY + WHITESPACE;
+        Priority expectedPriority = Priority.valueOf(VALID_PRIORITY.toUpperCase());
+        assertEquals(expectedPriority, ParserUtil.parsePriority(priorityWithWhiteSpace));
+    }
 
     @Test
     public void parseAssignee_null_throwsNullPointerException() {

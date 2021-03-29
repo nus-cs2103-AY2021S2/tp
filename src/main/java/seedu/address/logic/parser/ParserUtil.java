@@ -191,7 +191,7 @@ public class ParserUtil {
         if (!TaskStatus.isValidValue(trimmedStatus)) {
             throw new ParseException(TaskStatus.MESSAGE_CONSTRAINTS);
         }
-        return TaskStatus.valueOf(status.toUpperCase());
+        return TaskStatus.valueOf(trimmedStatus.toUpperCase());
     }
 
     /**
@@ -213,7 +213,7 @@ public class ParserUtil {
         if (!Deadline.isValidDeadline(trimmedDeadline)) {
             throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
         }
-        return new Deadline(deadline);
+        return new Deadline(trimmedDeadline);
     }
 
     /**
@@ -229,6 +229,6 @@ public class ParserUtil {
         if (!Priority.isValidValue(trimmedPriority)) {
             throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
         }
-        return Priority.valueOf(priority.toUpperCase());
+        return Priority.valueOf(trimmedPriority.toUpperCase());
     }
 }
