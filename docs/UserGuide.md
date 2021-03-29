@@ -25,6 +25,8 @@ TutorsPet is a **desktop app designed for private tutors to manage students’ i
    Some example commands you can try:
 
    * **`list`** : Lists all contacts.
+     
+   * **`schedule`** : Opens a window that shows the weekly schedule.
 
    * **`add`**`n/Alice Tan s/Abc Secondary School p/98765432 e/alicet@example.com a/John street, block 123, #01-01 gn/Mary Tan gp/23456789` : Adds a student's contact named `Alice Tan` to TutorsPet.
 
@@ -69,6 +71,14 @@ TutorsPet is a **desktop app designed for private tutors to manage students’ i
 Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
+
+Format: `help`
+
+### Viewing schedule : `schedule`
+
+Shows a weekly schedule that displays lessons for the week.
+
+![schedule popup](images/scheduleWindow.png)
 
 Format: `help`
 
@@ -118,6 +128,7 @@ Searches for a student’s contact whose details contain any of the given keywor
 
 Format: `search [n/KEYWORDS] [s/KEYWORDS] [t/KEYWORDS] [MORE_KEYWORDS]`
 
+* At least one prefix must be used.
 * The search is case-insensitive. E.g. `TAN` will match `Tan` .
 * The order of the keywords does not matter. E.g. `Tan Alice` will match `Alice Tan`.
 * Name, school and tags can be searched according to the prefix.
