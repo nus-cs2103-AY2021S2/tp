@@ -7,27 +7,26 @@ title: User Guide
 --------------------------------------------------------------------------------------------------------------------
 ## 1. Introduction
 ### 1.1. About StoreMando
-Greetings, and welcome to StoreMando!
+Greetings, and welcome to StoreMando.
 
-Looking for an all-in-one solution for your inventory management needs? Look no further!
+Are you looking for an all-in-one solution for your inventory management needs? You are at the right place.
 
-StoreMando is an integrated platform fully customised for residents in households, residential colleges and halls, with 
-the aim of helping you manage your items effectively and efficiently. StoreMando allows you to keep track of your items' 
-whereabouts, quantities and expiry dates with a few simple commands. Furthermore, StoreMando also comes with an inbuilt 
-reminder feature to help you keep track of items that are expiring. It looks like you will never have to worry about consuming 
-expired items or waste time searching for misplaced items anymore!
+StoreMando is an integrated platform fully customised for anyone who needs to manage their items effectively and 
+efficiently. StoreMando allows you to keep track of your items' whereabouts, quantities and expiry dates with a few 
+simple commands. Furthermore, StoreMando also comes with an inbuilt reminder feature to help you keep track of items 
+that are expiring. It looks like you will not have to worry about consuming expired items or waste time searching for 
+misplaced items anymore.
 
-All your items' information is encapsulated clearly on our simple and clean Graphical User Interface (GUI). Our application 
-is optimised for use via the Command Line Interface (CLI) and if you have quick fingers, StoreMando can help you manage 
-your items in the blink of an eye.
+All of your items' information is encapsulated clearly on our simple and clean Graphical User Interface (GUI). Our 
+application is optimised for use via the Command Line Interface (CLI) and if you have quick fingers, our short and 
+simple commands can help you manage your items in the blink of an eye.
 
 Explore this User Guide to find out more!
 
 ### 1.2. Navigating the User Guide
 
 This User Guide aims to provide you with all the information you need to make the most of StoreMando.
-Having understood the pain of using a Command Line Interface (CLI) program, we have tried our best to make
-this a very readable User Guide so that you can use our application without difficulties.
+We have tried our best to make this a very readable User Guide so that you can use our application without difficulties.
 
 If you need help setting up StoreMando, you can refer to the [“Quick Start"](#2-quick-start)  section.
 
@@ -37,11 +36,11 @@ If you need an overview of StoreMando’s commands, check out the [“Command Su
 
 Please note the following symbols used in the User Guide which may serve as points of interests:
 
-`command` | The grey highlight indicates commands that can be executed by StoreMando.
+`command` : The grey highlight indicates commands that can be executed by StoreMando.
 
-:information_source: | This symbol indicates information that you may wish to take note.
+:information_source : This symbol indicates information that you may wish to take note.
 
-:bulb: | This symbol indicates tips provided by us.
+:bulb : This symbol indicates tips provided by us.
 
 --------------------------------------------------------------------------------------------------------------------
 ## 2. Quick start
@@ -435,16 +434,16 @@ you to this user guide to provide you with the help you need!
 
 Action | Format, Examples
 --------|------------------
-**[“Help"](#31-viewing-help-)** |  `help`
-**[“Add"](#32-adding-an-item-)** | `add n/ITEM_NAME l/LOCATION q/QUANTITY [e/EXPIRY_DATE] [t/TAG]…​` <br> e.g. `add n/koko krunch l/fridge q/1 e/2021-05-27 t/favourite`
-**[“Edit"](#33-editing-an-item-)** | `edit INDEX [n/ITEM_NAME] [e/EXPIRY_DATE] [l/LOCATION] [q/QUANTITY] [t/TAG]…​`<br> e.g.`update 1 l/freezer q/2 `
-**[“List"](#34-listing-items-)** | `list` `list [l/LOCATION]` `list [t/TAG]`<br> e.g. `list` `list l/fridge` `list t/favourite`
-**[“Find"](#35-finding-items-by-name-)** | `find [*/]KEYWORD [MORE KEYWORDS]`<br> e.g. `find koko krunch` `find */choco`
-**[“Delete"](#36-deleting-an-item-)** | `delete INDEX`<br> e.g. `delete 2`
-**[“Reminder"](#37-viewing-expiring-items-)** | `reminder NUMBER TIME_UNIT_KEYWORD`<br> e.g. `reminder -7 days` `reminder 2 weeks`
-**[“Sort"](#38-sorting-items-)** | `sort quantity asc` `sort quantity desc` `sort expiryDate`
-**[“Clear"](#39-clearing-storemando-)** | `clear` `clear l/LOCATION` <br> e.g. `clear l/bedroom`
-**[“Exit"](#310-exiting-storemando-)** | `exit`
+**[“Help"](#31-viewing-help--help)** |  `help`
+**[“Add"](#32-adding-an-item--add)** | `add n/ITEM_NAME l/LOCATION q/QUANTITY [e/EXPIRY_DATE] [t/TAG]…​` <br> e.g. `add n/koko krunch l/fridge q/1 e/2021-05-27 t/favourite`
+**[“Edit"](#33-editing-an-item--edit)** | `edit INDEX [n/ITEM_NAME] [e/EXPIRY_DATE] [l/LOCATION] [q/QUANTITY] [t/TAG]…​`<br> e.g.`update 1 l/freezer q/2 `
+**[“List"](#34-listing-items--list)** | `list` `list [l/LOCATION]` `list [t/TAG]`<br> e.g. `list` `list l/fridge` `list t/favourite`
+**[“Find"](#35-finding-items-by-name--find)** | `find [*/]KEYWORD [MORE KEYWORDS]`<br> e.g. `find koko krunch` `find */choco`
+**[“Delete"](#36-deleting-an-item--delete)** | `delete INDEX`<br> e.g. `delete 2`
+**[“Reminder"](#37-viewing-expiring-items--reminder)** | `reminder NUMBER TIME_UNIT_KEYWORD`<br> e.g. `reminder -7 days` `reminder 2 weeks`
+**[“Sort"](#38-sorting-items--sort)** | `sort quantity asc` `sort quantity desc` `sort expiryDate`
+**[“Clear"](#39-clearing-storemando--clear)** | `clear` `clear l/LOCATION` <br> e.g. `clear l/bedroom`
+**[“Exit"](#310-exiting-storemando--exit)** | `exit`
 
 
 --------------------------------------------------------------------------------------------------------------------
