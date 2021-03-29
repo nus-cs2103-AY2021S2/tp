@@ -18,5 +18,5 @@
         <Label fx:id="fee" styleClass="cell_small_label" text="\$fee" wrapText="true"/>
     </VBox>
     <Label fx:id="id" styleClass="cell_big_label" AnchorPane.rightAnchor="10" AnchorPane.topAnchor="10" />
-    <Label fx:id="sessionType" styleClass="cell_big_label" AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10" text="I" />
+    <Label fx:id="sessionType" styleClass="cell_big_label" AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10" />
 </AnchorPane>

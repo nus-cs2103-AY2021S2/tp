@@ -1,5 +1,6 @@
 package seedu.address.model.session;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -57,7 +58,7 @@ public class RecurringSession extends Session {
         return lastSessionDate;
     }
 
-    private boolean endBefore(SessionDate sessionDate) {
+    public boolean endBefore(SessionDate sessionDate) {
         requireAllNonNull(sessionDate);
         return lastSessionDate.getDate().isBefore(sessionDate.getDate());
     }
@@ -78,6 +79,15 @@ public class RecurringSession extends Session {
         return !endBefore(sessionDate) && isConsistentDatesAndInterval(getSessionDate(), sessionDate, getInterval());
     }
 
+    /**
+     * Builds a session with the same time but with the specified time.
+     */
+    public Session buildSessionOnDate(LocalDate date) {
+        requireNonNull(date);
+        SessionDate sessionDate = new SessionDate(date.toString(), getSessionDate().getTime().toString());
+        return new Session(sessionDate, getDuration(), getSubject(), getFee());
+    }
+
     // THIS METHOD IS FOR SCHEDULE REMINDER TO RETRIEVE INFO ABOUT SESSION HAPPENING ON GIVEN DATE.
     /**
      * Returns a single non-recurring session on the sessionDate.
@@ -89,7 +99,6 @@ public class RecurringSession extends Session {
         assert(hasSessionOnDate(sessionDate));
         return new Session(sessionDate, getDuration(), getSubject(), getFee());
     }
-
 
     /**
      * Returns a non-recurring, single session that occurred before a given SessionDate.
