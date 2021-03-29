@@ -203,7 +203,7 @@ public class Record {
             return true;
         }
 
-        if (other.getClass() != getClass()) {
+        if (!(other instanceof Record)) {
             return false;
         }
 
