@@ -2,8 +2,6 @@ package seedu.cakecollate.ui;
 
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -23,9 +21,6 @@ import seedu.cakecollate.logic.commands.CommandResult;
 import seedu.cakecollate.logic.commands.HelpCommand;
 import seedu.cakecollate.logic.commands.exceptions.CommandException;
 import seedu.cakecollate.logic.parser.exceptions.ParseException;
-import seedu.cakecollate.model.orderitem.Cost;
-import seedu.cakecollate.model.orderitem.OrderItem;
-import seedu.cakecollate.model.orderitem.Type;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -47,6 +42,7 @@ public class MainWindow extends UiPart<Stage> {
     private Panel helpPanel;
     private OrderItemListTable orderItemTable;
     private Button helpPanelToMain;
+    private Node models;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -68,8 +64,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private HBox modelBox;
-
-    Node models;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -139,6 +133,13 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        orderPanel = new OrderListPanel(logic.getFilteredOrderList());
+        listPanelPlaceholder.getChildren().add(orderPanel.getRoot());
+
+        // add wherever you're getting the orderItem filteredOrderList here
+        // orderItemTable = new OrderItemListTable(*filtered order list*);
+        orderItemTablePlaceholder.getChildren().add(orderItemTable.getRoot());
     }
 
     void updateDeliveryStatuses() throws ParseException, CommandException {
@@ -146,18 +147,6 @@ public class MainWindow extends UiPart<Stage> {
         if (!deliveryStatus.isEmpty()) {
             executeCommand(logic.updateDeliveryStatus());
         }
-    }
-
-    void fillOrderListPanel() {
-        orderPanel = new OrderListPanel(logic.getFilteredOrderList());
-        listPanelPlaceholder.getChildren().add(orderPanel.getRoot());
-
-        ObservableList<OrderItem> orderItems = FXCollections.observableArrayList();
-        orderItems.add(new OrderItem(new Type("Chocolate cake"), new Cost("29.99")));
-
-        // add wherever you're getting the filteredOrderList from here
-        orderItemTable = new OrderItemListTable(orderItems);
-        orderItemTablePlaceholder.getChildren().add(orderItemTable.getRoot());
     }
 
     void initialiseHelpPanelAndButton() {
@@ -181,12 +170,12 @@ public class MainWindow extends UiPart<Stage> {
         inHelp = false;
     }
 
-    public void replaceHelpPanelWithModels() {
+    void replaceHelpPanelWithModels() {
         modelBox.getChildren().remove(0);
         modelBox.getChildren().add(models);
     }
 
-    public void removeHelpButtonFromDisplay() {
+    void removeHelpButtonFromDisplay() {
         resultDisplayPlaceholder.getChildren().remove(1);
     }
 
