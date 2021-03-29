@@ -29,6 +29,9 @@ public class ListCommand extends Command {
     public static final String MESSAGE_SUCCESS_SESSIONS = "Listed all sessions";
     public static final String MESSAGE_SUCCESS_STUDENTS = "Listed all students";
     public static final String MESSAGE_SUCCESS_TUTORS = "Listed all tutors";
+    public static final String MESSAGE_EMPTY_PERSON_LIST = "The list of persons is empty!";
+    public static final String MESSAGE_EMPTY_SESSION_LIST = "The list of sessions is empty!";
+
     private final Predicate<Person> personPredicate;
     private final Predicate<Session> sessionPredicate;
     private final String listCommandType;

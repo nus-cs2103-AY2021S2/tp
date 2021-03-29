@@ -2,6 +2,8 @@ package seedu.address.model.session;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.model.session.exceptions.InvalidSessionIdException;
+
 public class SessionId {
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -18,6 +20,9 @@ public class SessionId {
      */
     public SessionId(Integer id) {
         requireNonNull(id);
+        if (id <= 0) {
+            throw new InvalidSessionIdException();
+        }
         sessionId = "c/" + id;
     }
 
@@ -36,6 +41,13 @@ public class SessionId {
     }
 
     public static SessionId fromOneBased(Integer sessionId) {
+        return new SessionId(sessionId);
+    }
+
+    /**
+     * Creates a new {@code SessionId}.
+     */
+    public static SessionId fromOneBased(int sessionId) {
         return new SessionId(sessionId);
     }
 

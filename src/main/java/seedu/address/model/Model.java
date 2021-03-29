@@ -5,7 +5,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.assignment.Assignment;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonType;
 import seedu.address.model.person.PersonTypePredicate;
@@ -13,7 +12,6 @@ import seedu.address.model.person.exceptions.AlreadyEnrolledException;
 import seedu.address.model.person.exceptions.StudentTutorNotFoundException;
 import seedu.address.model.person.exceptions.TimeClashException;
 import seedu.address.model.session.Session;
-import seedu.address.model.session.exceptions.SessionNotFoundException;
 
 /**
  * The API of the Model component.
@@ -109,6 +107,12 @@ public interface Model {
     void deleteSession(Session session);
 
     /**
+     * Replaces the given session {@code target} with {@code editedSession}.
+     * {@code target} must exist in the address book.
+     */
+    void setSession(Session target, Session editedSession);
+
+    /**
      * Returns an unmodifiable view of the list of {@code Session} backed by the internal list of
      * {@code versionedAddressBook}
      */
@@ -117,6 +121,6 @@ public interface Model {
 
     public void updateFilteredSessionList(Predicate<Session> predicate);
 
-    public void registerAssignment(Assignment assignment) throws TimeClashException, AlreadyEnrolledException,
-            SessionNotFoundException, StudentTutorNotFoundException;
+    public boolean emptyPersonList();
+    public boolean emptySessionList();
 }

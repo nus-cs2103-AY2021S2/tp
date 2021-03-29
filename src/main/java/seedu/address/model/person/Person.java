@@ -99,12 +99,28 @@ public class Person {
                 && otherPerson.getName().equals(getName());
     }
 
+    public boolean isStudent() {
+        return this.personType.isStudent();
+    }
+
+    public boolean isTutor() {
+        return this.personType.isTutor();
+    }
+
     /**
      * Adds a session to the list of sessions that this person is assigned to
      * @param session
      */
     public void addSession(SessionId session) {
         this.sessions.add(session);
+    }
+
+    /**
+     * Removes a session to the list of sessions that this person is assigned to
+     * @param session
+     */
+    public void removeSession(SessionId session) {
+        this.sessions.remove(session);
     }
 
     /**

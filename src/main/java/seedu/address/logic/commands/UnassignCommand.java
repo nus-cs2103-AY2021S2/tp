@@ -13,16 +13,16 @@ import java.util.Set;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Unassignment;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonId;
 import seedu.address.model.session.Session;
 import seedu.address.model.session.SessionId;
 
-public class AssignCommand extends Command {
-    public static final String COMMAND_WORD = "assign";
+public class UnassignCommand extends Command {
+    public static final String COMMAND_WORD = "unassign";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assigns student(s) and/or tutor to a class \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unassigns student(s) and/or tutor from a class \n"
             + "Parameters: " + "(assign student ONLY, tutor Only or Both) "
             + PREFIX_STUDENT_ID + "StudentId "
             + PREFIX_TUTOR_ID + "TutorId "
@@ -32,19 +32,19 @@ public class AssignCommand extends Command {
             + PREFIX_TUTOR_ID + "2 "
             + PREFIX_CLASS_ID + "1 ";
 
-    public static final String MESSAGE_SUCCESS = "New assignment added: %1$s";
-    public static final String MESSAGE_TIMESLOT_CLASH = "Timeslot clash! Cannot assign: %1$s to %2$s";
-    public static final String MESSAGE_ALREADY_ASSIGNED = "%1$s is already assigned to %2$s";
-    public static final String MESSAGE_SESSION_HAS_TUTOR = "Cannot assign! %1$s already has tutor %2$s";
+    public static final String MESSAGE_SUCCESS = "Unassigned: %1$s";
+    public static final String MESSAGE_NOT_ASSIGNED = "%1$s is not assigned to %2$s. Cannot unassign";
+    public static final String MESSAGE_NO_TUTOR = "Cannot unassign %1$s from %2$s. %2$s currently has no tutor.";
+    public static final String MESSAGE_DIFFERENT_TUTOR = "Cannot unassign %1$s from %2$s. Current tutor is %3$s";
 
-    private final Assignment assignment;
+    private final Unassignment unassignment;
 
     /**
      * Creates an AddSessionCommand to add the specified {@code Person}
      */
-    public AssignCommand(Assignment assignment) {
-        requireNonNull(assignment);
-        this.assignment = assignment;
+    public UnassignCommand(Unassignment unassignment) {
+        requireNonNull(unassignment);
+        this.unassignment = unassignment;
     }
 
     private boolean isAssignedTo(Person person, Session sessionToCheck) {
@@ -56,50 +56,21 @@ public class AssignCommand extends Command {
         return false;
     }
 
-    private boolean hasClashes(Model model, Person person, Session sessionToCheck) {
-        for (SessionId sessionId : person.getSessions()) {
-            List<Session> lastShownSessionsList = model.getFilteredSessionList();
-            Session currentSession = lastShownSessionsList.stream()
-                    .filter(x-> x.getClassId().equals(sessionId)).findAny().get();
-
-            if (currentSession.isClashingWith(sessionToCheck)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private void checkStudentSession(Model model, Person student, Session session) throws CommandException {
-        assert(student.isStudent());
-        if (isAssignedTo(student, session)) {
-            throw new CommandException(String.format(MESSAGE_ALREADY_ASSIGNED,
-                    student.getPersonId(), session.getClassId()));
-        }
-        if (hasClashes(model, student, session)) {
-            throw new CommandException(String.format(MESSAGE_TIMESLOT_CLASH,
-                    student.getPersonId(), session.getClassId()));
-        }
-    }
-
-    private void checkTutorSession(Model model, Person tutor, Session session) throws CommandException {
+    private void checkTutorSession(Person tutor, Session session) throws CommandException {
         assert(tutor.isTutor());
-        if (session.getTutor().equals(tutor.getPersonId())) {
-            throw new CommandException(String.format(MESSAGE_ALREADY_ASSIGNED,
+        if (!session.hasTutor()) {
+            throw new CommandException(String.format(MESSAGE_NO_TUTOR,
                     tutor.getPersonId(), session.getClassId()));
         }
-        if (session.hasTutor()) {
-            throw new CommandException(String.format(MESSAGE_SESSION_HAS_TUTOR,
-                    session.getClassId(), session.getTutor()));
-        }
-        if (hasClashes(model, tutor, session)) {
-            throw new CommandException(String.format(MESSAGE_TIMESLOT_CLASH,
-                    tutor.getPersonId(), session.getClassId()));
+        if (!session.getTutor().equals(tutor.getPersonId())) {
+            throw new CommandException(String.format(MESSAGE_DIFFERENT_TUTOR,
+                    tutor.getPersonId(), session.getClassId(), session.getTutor()));
         }
     }
 
     private Set<Person> getStudents(Model model, Set<PersonId> studentIds, Session session) throws CommandException {
+        Set<Person> studentsToUnassign = new HashSet<>();
         List<Person> lastShownPersonsList = model.getFilteredPersonList();
-        Set<Person> studentsToAssign = new HashSet<>();
         for (PersonId studentId : studentIds) {
             Optional<Person> studentToAssign = lastShownPersonsList.stream()
                     .filter(x-> x.getPersonId().equals(studentId)).findAny();
@@ -107,14 +78,12 @@ public class AssignCommand extends Command {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             }
             Person student = studentToAssign.get();
-            try {
-                checkStudentSession(model, student, session);
-            } catch (CommandException e) {
-                throw new CommandException(e.getMessage());
+            if (!isAssignedTo(student, session)) {
+                throw new CommandException(String.format(MESSAGE_NOT_ASSIGNED, studentId, session.getClassId()));
             }
-            studentsToAssign.add(student);
+            studentsToUnassign.add(student);
         }
-        return studentsToAssign;
+        return studentsToUnassign;
     }
 
     private Person getTutor(Model model, PersonId tutorId, Session session) throws CommandException {
@@ -126,33 +95,33 @@ public class AssignCommand extends Command {
         }
         Person tutor = tutorToAssign.get();
         try {
-            checkTutorSession(model, tutor, session);
+            checkTutorSession(tutor, session);
         } catch (CommandException e) {
             throw new CommandException(e.getMessage());
         }
         return tutor;
     }
 
-    private void assignStudents(Set<Person> students, Session session) {
+    private void unassignStudents(Set<Person> students, Session session) {
         for (Person student : students) {
             assert(student.isStudent());
-            student.addSession(session.getClassId());
-            session.assignStudent(student.getPersonId());
+            student.removeSession(session.getClassId());
+            session.unassignStudent(student.getPersonId());
         }
     }
 
-    private void assignTutor(Person tutor, Session session) {
+    private void unassignTutor(Person tutor, Session session) {
         assert(tutor.isTutor());
-        tutor.addSession(session.getClassId());
-        session.assignTutor(tutor.getPersonId());
+        tutor.removeSession(session.getClassId());
+        session.unassignTutor();
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Set<PersonId> studentIds = this.assignment.getStudentIds();
-        PersonId tutorId = this.assignment.getTutorId();
-        SessionId sessionId = this.assignment.getSessionId();
+        Set<PersonId> studentIds = this.unassignment.getStudentIds();
+        PersonId tutorId = this.unassignment.getTutorId();
+        SessionId sessionId = this.unassignment.getSessionId();
 
         List<Session> lastShownSessionsList = model.getFilteredSessionList();
         Optional<Session> sessionToAssign = lastShownSessionsList.stream()
@@ -161,22 +130,21 @@ public class AssignCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);
         }
         Session session = sessionToAssign.get();
-
         Set<Person> students = getStudents(model, studentIds, session);
 
         if (tutorId != null) {
             Person tutor = getTutor(model, tutorId, session);
-            assignTutor(tutor, session);
+            unassignTutor(tutor, session);
         }
 
-        assignStudents(students, session);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, assignment));
+        unassignStudents(students, session);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, unassignment));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AssignCommand // instanceof handles nulls
-                && assignment.equals(((AssignCommand) other).assignment));
+                || (other instanceof UnassignCommand // instanceof handles nulls
+                && unassignment.equals(((UnassignCommand) other).unassignment));
     }
 }
