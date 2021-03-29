@@ -21,6 +21,9 @@ import seedu.address.model.property.Deadline;
 import seedu.address.model.property.PostalCode;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyAddressPredicate;
+import seedu.address.model.property.PropertyClientContactPredicate;
+import seedu.address.model.property.PropertyClientEmailPredicate;
+import seedu.address.model.property.PropertyClientNamePredicate;
 import seedu.address.model.property.PropertyDeadlinePredicate;
 import seedu.address.model.property.PropertyNamePredicate;
 import seedu.address.model.property.PropertyPostalCodePredicate;
@@ -29,6 +32,8 @@ import seedu.address.model.property.PropertyPricePredicate;
 import seedu.address.model.property.PropertyRemarksPredicate;
 import seedu.address.model.property.PropertyTagsPredicate;
 import seedu.address.model.property.PropertyTypePredicate;
+import seedu.address.model.property.client.Contact;
+import seedu.address.model.property.client.Email;
 import seedu.address.model.remark.Remark;
 import seedu.address.model.tag.Tag;
 
@@ -255,5 +260,73 @@ public class FindPropertyCommandParserTest {
                 + "\n"
                 + FindPropertyCommand.MESSAGE_USAGE;
         assertParseFailure(parser, " tags/ ", expected);
+    }
+
+    @Test
+    public void validClientContactTest() {
+        List<Predicate<Property>> predicates = new ArrayList<>();
+
+        predicates.add(new PropertyClientContactPredicate("91234567"));
+
+        FindPropertyCommand expected =
+                new FindPropertyCommand(new PropertyPredicateList(predicates));
+
+        assertParseSuccess(parser, " cc/91234567", expected);
+    }
+
+    @Test
+    public void invalidClientContactTest() {
+        String expected = "Wrong client contact format! \n"
+                + Contact.MESSAGE_CONSTRAINTS
+                + "\n"
+                + FindPropertyCommand.MESSAGE_USAGE;
+        assertParseFailure(parser, " cc/ ", expected);
+    }
+
+    @Test
+    public void multipleClientContactTest() {
+        String expected = "Too many client contacts! Please only use 1 contact. \n"
+                + FindPropertyCommand.MESSAGE_USAGE;
+        assertParseFailure(parser, " cc/12345678 cc/45678901", expected);
+    }
+
+    @Test
+    public void validClientEmailTest() {
+        List<Predicate<Property>> predicates = new ArrayList<>();
+
+        predicates.add(new PropertyClientEmailPredicate("example@gmail.com"));
+
+        FindPropertyCommand expected =
+                new FindPropertyCommand(new PropertyPredicateList(predicates));
+
+        assertParseSuccess(parser, " ce/example@gmail.com", expected);
+    }
+
+    @Test
+    public void invalidClientEmailTest() {
+        String expected = "Wrong client email format! \n"
+                + Email.MESSAGE_CONSTRAINTS
+                + "\n"
+                + FindPropertyCommand.MESSAGE_USAGE;
+        assertParseFailure(parser, " ce/ ", expected);
+    }
+
+    @Test
+    public void multipleClientEmailTest() {
+        String expected = "Too many client emails! Please only use 1 client email. \n"
+                + FindPropertyCommand.MESSAGE_USAGE;
+        assertParseFailure(parser, " ce/abc.example.com ce/cdf@gmail.com", expected);
+    }
+
+    @Test
+    public void clientNameTest() {
+        List<Predicate<Property>> predicates = new ArrayList<>();
+
+        predicates.add(new PropertyClientNamePredicate(Collections.singletonList("bob")));
+
+        FindPropertyCommand expected =
+                new FindPropertyCommand(new PropertyPredicateList(predicates));
+
+        assertParseSuccess(parser, " cn/bob", expected);
     }
 }

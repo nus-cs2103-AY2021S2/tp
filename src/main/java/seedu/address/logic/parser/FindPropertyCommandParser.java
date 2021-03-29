@@ -29,8 +29,9 @@ import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyAddressPredicate;
 import seedu.address.model.property.PropertyClientContactPredicate;
 import seedu.address.model.property.PropertyClientEmailPredicate;
-import seedu.address.model.property.PropertyNamePredicate;
+import seedu.address.model.property.PropertyClientNamePredicate;
 import seedu.address.model.property.PropertyDeadlinePredicate;
+import seedu.address.model.property.PropertyNamePredicate;
 import seedu.address.model.property.PropertyPostalCodePredicate;
 import seedu.address.model.property.PropertyPredicateList;
 import seedu.address.model.property.PropertyPricePredicate;
@@ -62,7 +63,6 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
                         PREFIX_CLIENT_NAME);
 
 
-        // String genericKeywords = argMultimap.getPreamble();
         List<Predicate<Property>> predicates = new ArrayList<>();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
@@ -167,13 +167,13 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_CLIENT_CONTACT).isPresent()) {
-            List<String> deadlines = argMultimap.getAllValues(PREFIX_CLIENT_CONTACT);
-            if (deadlines.size() > 1) {
-                throw new ParseException("Too many contacts! Please only use 1 contact. \n"
+            List<String> contacts = argMultimap.getAllValues(PREFIX_CLIENT_CONTACT);
+            if (contacts.size() > 1) {
+                throw new ParseException("Too many client contacts! Please only use 1 contact. \n"
                         + FindPropertyCommand.MESSAGE_USAGE);
             }
             try {
-                deadlines.forEach(s -> predicates.add(new PropertyClientContactPredicate(s)));
+                contacts.forEach(s -> predicates.add(new PropertyClientContactPredicate(s)));
             } catch (IllegalArgumentException e) {
                 throw new ParseException("Wrong client contact format! \n"
                         + e.getMessage()
@@ -183,13 +183,13 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_CLIENT_EMAIL).isPresent()) {
-            List<String> deadlines = argMultimap.getAllValues(PREFIX_CLIENT_EMAIL);
-            if (deadlines.size() > 1) {
+            List<String> emails = argMultimap.getAllValues(PREFIX_CLIENT_EMAIL);
+            if (emails.size() > 1) {
                 throw new ParseException("Too many client emails! Please only use 1 client email. \n"
                         + FindPropertyCommand.MESSAGE_USAGE);
             }
             try {
-                deadlines.forEach(s -> predicates.add(new PropertyClientEmailPredicate(s)));
+                emails.forEach(s -> predicates.add(new PropertyClientEmailPredicate(s)));
             } catch (IllegalArgumentException e) {
                 throw new ParseException("Wrong client email format! \n"
                         + e.getMessage()
@@ -199,8 +199,9 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_CLIENT_NAME).isPresent()) {
-            List<String> deadlines = argMultimap.getAllValues(PREFIX_CLIENT_NAME);
-            predicates.add(new PropertyNamePredicate(deadlines));
+            List<String> names = argMultimap.getAllValues(PREFIX_CLIENT_NAME);
+            names.forEach(name ->
+                predicates.add(new PropertyClientNamePredicate(Arrays.asList(name.split("\\s+")))));
         }
 
         return new FindPropertyCommand(new PropertyPredicateList(predicates));
