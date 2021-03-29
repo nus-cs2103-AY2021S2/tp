@@ -149,18 +149,14 @@ Searches for a student’s contact whose contact name contains any of the given 
 
 Format: `search n/KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive.
-
+* The search is case-insensitive. <br/>
   E.g. `TAN` will match `Tan`
-* The order of the keywords does not matter.
-
+* The order of the keywords does not matter. <br/>
   E.g. `Tan Alice` will match `Alice Tan`
 * Only the name is searched.
-* Only full words will be matched.
-
+* Only full words will be matched. <br/>
   E.g. `Ta` will not match `Tan`
-* Contacts matching at least one keyword will be returned.
-
+* Contacts matching at least one keyword will be returned. <br/>
   E.g. `Alice Tan` will return `Alice Ng` and `Bob Tan`
 
 Examples:
@@ -184,6 +180,19 @@ Format: `search s/KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `search s/woodlands` returns students studying in `woodlands primary school` and `woodlands secondary school`
 * `search s/raffles hwa` returns students studying in `Raffles Institution` and `Hwa chong institution`
+
+### Searching for a contact by tag: `search t/...`
+Searches for a student's contact with a specific tag using keywords
+
+Format: `search t/KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. <br/>
+  e.g `MATH` will match students with tag `math`
+* Only the stated keyword is searched.
+* Only full words will be matched e.g. `Math` will not match `Maths`
+
+Examples:
+* `search t/science` returns students with the tag `SCIENCE` and `science`
 
 ### Viewing a contact details: `detail`
 
