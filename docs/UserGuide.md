@@ -151,9 +151,24 @@ Example:
 * `find c/white s/36 23`<br>
   Returns all garments that are white and are either sized 36 or 23.
 <br><br>
-  
-### Matching...: `match`
-<br><br>
+ 
+### Matching multiple garments to create an outfit: `match`<br>
+[matching of multiple input garments implemented in v1.3]<br> 
+Finds all articles of clothing that match the colour and dress code,
+but do not match the type(s) of a specified garment, or two specified
+garments of different types.<br>
+Format: `match INDEX [INDEX]`
+* Number of indices provided must at least 1, and at most 2
+
+Examples:
+* `match 1`  
+Returns all the articles of clothing that match the colour and dress code
+  of the garment at index 1 in the list of garments on display, but do not match
+  its type.
+* `match 1 2`  
+Returns all the articles of clothing that match the colours and dress code of
+  the garments at indices 1 and 2 in the list of garments on display, but
+  do not match their types.
 
 ### Selecting a Garment: `select`
 Select a garment to check out of the wardrobe.
@@ -189,6 +204,7 @@ Example:
 * `view 1 2 3`<br>
 <br><br>
 
+
 ### Exiting the program: `exit`
 Exits the program.<br>
 Format: `exit`
@@ -219,6 +235,7 @@ A: Tell us about your issue [here](https://github.com/AY2021S2-CS2103T-T12-1/tp)
 ---
 ### Command Summary
 
+
 | Action                              | Format, Examples                                                                                                                |
 | ----------------------------------- | -----------------------------------------------------------------------                                                         |
 | **Add a Garment**                   | `add n/NAME s/SIZE c/COLOUR r/DRESSCODE t/TYPE [d/DESCRIPTION]...`<br> Eg. `add n/sleek tux s/32 c/white r/formal t/upper`      |
@@ -232,4 +249,5 @@ A: Tell us about your issue [here](https://github.com/AY2021S2-CS2103T-T12-1/tp)
 | **Clearing all Garments**           | `clear`                                                                                                                         |
 | **Help**                            | `help`                                                                                                                          |
 | **Exit**                            | `exit`                                                                                                                          |
+
 ---

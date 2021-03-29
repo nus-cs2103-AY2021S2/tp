@@ -70,7 +70,8 @@ public class Colour {
         "beige"
     );
 
-    public static final List<String> GREEN_MATCHES = Arrays.asList("green",
+    public static final List<String> GREEN_MATCHES = Arrays.asList(
+        "green",
         "orange",
         "purple",
         "white",
