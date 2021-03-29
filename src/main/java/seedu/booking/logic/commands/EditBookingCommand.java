@@ -80,9 +80,6 @@ public class EditBookingCommand extends Command {
         if (!bookingToEdit.isSameBooking(editedBooking) && model.hasBooking(editedBooking)) {
             throw new CommandException(MESSAGE_DUPLICATE_BOOKING);
         }
-        if (model.hasBooking(editedBooking)) {
-            throw new CommandException(MESSAGE_DUPLICATE_BOOKING);
-        }
 
         if (!editedBooking.isValidTime()) {
             throw new CommandException(MESSAGE_INVALID_TIME);
@@ -118,8 +115,8 @@ public class EditBookingCommand extends Command {
         Description updatedDescription = editBookingDescriptor.getDescription().orElse(bookingToEdit.getDescription());
         StartTime updatedBookingStart = editBookingDescriptor.getBookingStart().orElse(bookingToEdit.getBookingStart());
         EndTime updatedBookingEnd = editBookingDescriptor.getBookingEnd().orElse(bookingToEdit.getBookingEnd());
-        //Id updatedId = editBookingDescriptor.getId().orElse(bookingToEdit.getId());
-        return new Booking(updatedBooker, updatedVenue, updatedDescription, updatedBookingStart, updatedBookingEnd);
+        Id updatedId = bookingToEdit.getId();
+        return new Booking(updatedBooker, updatedVenue, updatedDescription, updatedBookingStart, updatedBookingEnd, updatedId);
     }
 
     @Override
