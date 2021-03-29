@@ -45,8 +45,8 @@ public class EditEndpointDescriptorBuilder {
      * Sets the {@code Name} of the {@code EditEndpointDescriptor} that we are
      * building.
      */
-    public EditEndpointDescriptorBuilder withMethod(String name) {
-        descriptor.setMethod(new Method(name));
+    public EditEndpointDescriptorBuilder withMethod(String method) {
+        descriptor.setMethod(new Method(method));
         return this;
     }
 
