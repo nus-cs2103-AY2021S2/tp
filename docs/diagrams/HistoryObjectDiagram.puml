@@ -1,0 +1,15 @@
+@startuml
+!include style.puml
+
+object ":History" as history
+object "history:Command" as historyCommand
+object "master:Plan" as masterPlan
+object "current:Semester" as currentSemester
+
+hide empty members
+
+historyCommand -> "1" history
+
+history -down-> "1" masterPlan
+history -down-> "1" currentSemester
+@enduml
