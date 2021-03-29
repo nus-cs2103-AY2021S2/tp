@@ -28,6 +28,7 @@ import seedu.address.model.budget.Budget;
 import seedu.address.model.event.Event;
 import seedu.address.model.filter.PersonFilter;
 import seedu.address.model.grade.Grade;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
@@ -119,6 +120,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasTutorByName(Name name) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
@@ -140,6 +146,11 @@ public class AddCommandTest {
 
         @Override
         public void setAppointmentBook(ReadOnlyAppointmentBook readOnlyAppointmentBook) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasAppointmentContainingTutor(Name name) {
             throw new AssertionError("This method should not be called.");
         }
 

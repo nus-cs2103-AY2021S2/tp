@@ -39,6 +39,9 @@ public class AddAppointmentCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the list";
+    public static final String MESSAGE_TUTOR_DOES_NOT_EXIST = "Tutor of this "
+            + "appointment does not exist in the user system. Please ensure tutor "
+            + "exists or use the add_tutor function to add a tutor.";
 
     private final Appointment toAdd;
 
@@ -64,6 +67,8 @@ public class AddAppointmentCommand extends Command {
 
         if (model.hasAppointment(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
+        } else if (!model.hasTutorByName(toAdd.getName())) {
+            throw new CommandException(MESSAGE_TUTOR_DOES_NOT_EXIST);
         } else {
             model.addAppointment(toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
