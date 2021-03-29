@@ -14,6 +14,7 @@ public class Commands {
                 AddPictureCommand.COMMAND_WORD,
                 ClearCommand.COMMAND_WORD,
                 DeleteCommand.COMMAND_WORD,
+                DeleteGroupCommand.COMMAND_WORD,
                 DeleteDateCommand.COMMAND_WORD,
                 DeleteMeetingCommand.COMMAND_WORD,
                 DetailsCommand.COMMAND_WORD,

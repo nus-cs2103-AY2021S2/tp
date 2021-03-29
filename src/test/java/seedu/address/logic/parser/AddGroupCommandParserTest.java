@@ -14,7 +14,7 @@ import seedu.address.logic.commands.AddGroupCommand;
 import seedu.address.model.person.Name;
 
 public class AddGroupCommandParserTest {
-    private AddGroupParser parser = new AddGroupParser();
+    private AddGroupCommandParser parser = new AddGroupCommandParser();
 
     @Test
     public void parse_fieldsMissing_failure() {
@@ -30,8 +30,8 @@ public class AddGroupCommandParserTest {
     }
 
     @Test
-    public void parse_indexFieldEmpty_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddGroupCommand.MESSAGE_USAGE);
+    public void parse_indexesFieldEmpty_failure() {
+        String expectedMessage = String.format(ParserUtil.MESSAGE_INVALID_INDEXES, AddGroupCommand.MESSAGE_USAGE);
 
         String invalidCommand = " n/ Close Friends p/ ";
         assertParseFailure(parser, invalidCommand, expectedMessage);
