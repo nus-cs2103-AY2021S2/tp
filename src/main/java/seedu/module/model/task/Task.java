@@ -86,7 +86,7 @@ public class Task {
     }
 
     /**
-     * Factory method for updating recurrence task.
+     * Method for updating recurrence task.
      *
      * @param task the task need to be updated.
      * @return the updated task.
