@@ -7,7 +7,7 @@ Weeblingo is a desktop app for managing flashcards, **optimized for use via a Co
 
 * [Quick Start](#quick-start)
 * [Features](#features)
-  * [Starting a session: `start`](#starting-a-session-start)
+  * [Starting a quiz session: `start`](#starting-a-quiz-session-start)
   * [Checking flashcard answers: `check`](#checking-flashcard-answers-check)
   * [Going to next flashcard: `next`](#going-to-next-flashcard-next)
   * [Listing out all flashcards: `list`](#listing-out-all-flashcards-list)
@@ -66,11 +66,14 @@ Weeblingo is a desktop app for managing flashcards, **optimized for use via a Co
 
 </div>
 
-### Starting a session: `start`
+### Starting a quiz session: `start`
 
-Shows the first flashcard.
+Starts a quiz session.
 
-Format: `start`
+Format: `start [q/NUMBER] [t/TAG]`
+
+* NUMBER specifies the number of questions for the quiz session.
+* TAG specifies the type of questions for the quiz session.
 
 ### Checking flashcard answers: `check`
 
