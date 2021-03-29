@@ -52,6 +52,13 @@ public class Entry {
     }
 
     /**
+     * Returns true if both entries are the same objects.
+     */
+    public boolean isSameEntry(Entry otherEntry) {
+        return otherEntry == this;
+    }
+
+    /**
      * Returns true if both entries have overlapping time intervals.
      */
     public boolean overlapsWith(Entry otherEntry) {

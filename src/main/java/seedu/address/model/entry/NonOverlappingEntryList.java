@@ -18,6 +18,14 @@ public class NonOverlappingEntryList implements Iterable<Entry> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
+     * Returns true if the list contains the same entry as the given argument.
+     */
+    public boolean contains(Entry toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isSameEntry);
+    }
+
+    /**
      * Returns true if the list contains an overlapping entry as the given argument.
      */
     public boolean overlapsWith(Entry toCheck) {
