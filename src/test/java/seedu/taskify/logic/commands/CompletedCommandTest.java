@@ -14,9 +14,9 @@ import seedu.taskify.model.UserPrefs;
 import seedu.taskify.model.task.Task;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ExpiredCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for CompletedCommand.
  */
-public class ExpiredCommandTest {
+public class CompletedCommandTest {
 
     private Model model;
     private Model expectedModel;
@@ -29,22 +29,22 @@ public class ExpiredCommandTest {
 
     @Test
     public void sameTaskList() {
-        ObservableList<Task> firstTaskList = model.getExpiredFilteredTaskList();
-        ObservableList<Task> secondTaskList = expectedModel.getExpiredFilteredTaskList();
+        ObservableList<Task> firstTaskList = model.getCompletedFilteredTaskList();
+        ObservableList<Task> secondTaskList = expectedModel.getCompletedFilteredTaskList();
         assert firstTaskList.equals(secondTaskList) == true;
     }
 
     @Test
     public void sameTask() {
-        Task firstTaskInModel = model.getExpiredFilteredTaskList().get(0);
-        Task firstTaskInExpectedModel = expectedModel.getExpiredFilteredTaskList().get(0);
+        Task firstTaskInModel = model.getCompletedFilteredTaskList().get(0);
+        Task firstTaskInExpectedModel = expectedModel.getCompletedFilteredTaskList().get(0);
         assert firstTaskInModel.equals(firstTaskInExpectedModel) == true;
     }
 
     @Test
     public void equals() {
         CommandResult.setHomeTab();
-        final ExpiredCommand standardCommand = new ExpiredCommand();
+        final CompletedCommand standardCommand = new CompletedCommand();
 
 
         // same object -> returns true
