@@ -225,7 +225,7 @@ It is split into 4 subsections,
 
 ### **4.1 Projects**
 
-Each Project may have `Todos`, `Deadlines`, `Events` & `Groupmates` that are relevant and specific to it. Hence, commands related to Projects will be discussed first, before command sections on `Todos`, `Deadlines`, `Events` & `Groupmates`.
+Each Project may have `Todos`, `Deadlines`, `Events` & `Groupmates` that are relevant and specific to it. Commands related to Projects will be discussed first followed by sections on `Todos`, `Deadlines`, `Events` & `Groupmates`.
 
 #### Adding a project: `addP`
 
@@ -409,6 +409,8 @@ Examples:
 * `deleteCfrom 2 r/2`
 
 ### **4.2 Contacts**
+
+Each Contact may have a `NAME`, `PHONE_NUMBER`, `EMAIL`, `ADDRESS` & multiple `TAGS`. 
 
 #### Adding a contact: `add`
 
