@@ -167,6 +167,15 @@ public interface Model {
      */
     void addState(String command);
 
-    /** Returns the StateHistory */
-    StateHistory getStateHistory();
+    /**
+     * Undoes the last change made to the address or event book.
+     * @return information about the command being undone.
+     */
+    String undo();
+
+    /**
+     * Redoes the last undid change made to the address or event book.
+     * @return information about the command being redone.
+     */
+    String redo();
 }
