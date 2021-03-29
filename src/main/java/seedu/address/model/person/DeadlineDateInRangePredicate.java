@@ -42,7 +42,7 @@ public class DeadlineDateInRangePredicate implements Predicate<Task> {
     @Override
     public boolean test(Task task) {
         return task.getDeadlineDate().compareTo(endDate) <= 0
-                && task.getDeadlineDate().compareTo(today) >=0;
+                && task.getDeadlineDate().compareTo(today) >= 0;
     }
 
     @Override
