@@ -33,10 +33,6 @@ ThemeFactory --> ThemeCommand : theme
 
 ref over ThemeCommand, ThemeFactory : ThemeManager#setTheme(theme, themePath)
 
-ThemeCommand -> ThemeManager : applyThemeToScene()
-
-ThemeManager --> ThemeCommand
-
 ThemeCommand --> LogicManager
 
 [<-- LogicManager

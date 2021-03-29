@@ -43,13 +43,14 @@ public class ThemeCommand extends Command {
         String feedback = String.format(MESSAGE_SUCCESS, this.themePath.toString());
         try {
             ThemeManager.setTheme(ThemeFactory.load(themePath), this.themePath.toString());
-            ThemeManager.applyThemeToScene();
         } catch (DataConversionException | InvalidThemeException exception) {
             feedback = String.format(MESSAGE_INVALID_THEME, this.themePath.toString());
+            throw new CommandException(feedback);
         } catch (FileNotFoundException fileNotFoundException) {
             feedback = String.format(MESSAGE_FILE_NOT_FOUND, this.themePath.toString());
+            throw new CommandException(feedback);
         }
-        return new CommandResult(feedback);
+        return new CommandResult(feedback, false, false, true);
     }
 
     @Override

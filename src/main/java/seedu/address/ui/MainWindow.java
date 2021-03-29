@@ -79,6 +79,8 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        applyTheme();
     }
 
     public Scene getMainScene() {
@@ -189,6 +191,12 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    @FXML
+    private void applyTheme() {
+        this.getMainScene().getStylesheets().clear();
+        this.getMainScene().getStylesheets().add("file:///" + ThemeManager.getCssCacheUri());
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -206,6 +214,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isTheme()) {
+                applyTheme();
             }
 
             if (commandResult.isExit()) {
