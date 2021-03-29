@@ -12,7 +12,6 @@ import seedu.student.commons.exceptions.IllegalValueException;
 import seedu.student.model.ReadOnlyStudentBook;
 import seedu.student.model.StudentBook;
 import seedu.student.model.appointment.Appointment;
-import seedu.student.model.appointment.exceptions.OverlappingAppointmentException;
 import seedu.student.model.student.Student;
 
 /**
@@ -22,6 +21,7 @@ import seedu.student.model.student.Student;
 class JsonSerializableStudentBook {
 
     public static final String MESSAGE_DUPLICATE_STUDENT = "Student list contains duplicate student(s).";
+    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "Appointment list contains duplicate appointment(s),";
     public static final String MESSAGE_MISSING_STUDENT = "The student does not exist in the records.";
     public static final String MESSAGE_INVALID_START_TIME = "Time should be of the form HH:00 or HH:30";
 
@@ -74,7 +74,7 @@ class JsonSerializableStudentBook {
             }
 
             if (studentBook.hasAppointment(appointment) || studentBook.hasOverlappingAppointment(appointment)) {
-                throw new OverlappingAppointmentException();
+                throw new IllegalValueException(MESSAGE_DUPLICATE_APPOINTMENT);
             }
             studentBook.addAppointment(appointment);
         }

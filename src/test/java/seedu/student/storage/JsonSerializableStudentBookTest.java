@@ -5,14 +5,12 @@ import static seedu.student.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.DateTimeException;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.student.commons.exceptions.IllegalValueException;
 import seedu.student.commons.util.JsonUtil;
 import seedu.student.model.StudentBook;
-import seedu.student.model.appointment.exceptions.OverlappingAppointmentException;
 import seedu.student.testutil.TypicalStudents;
 
 public class JsonSerializableStudentBookTest {
@@ -92,6 +90,7 @@ public class JsonSerializableStudentBookTest {
         JsonSerializableStudentBook dataFromFile = JsonUtil.readJsonFile(INVALID_APPOINTMENT_OVERLAP_FILE,
                 JsonSerializableStudentBook.class).get();
 
-        assertThrows(OverlappingAppointmentException.class, dataFromFile::toModelType);
+        assertThrows(IllegalValueException.class, JsonSerializableStudentBook.MESSAGE_DUPLICATE_APPOINTMENT,
+                dataFromFile::toModelType);
     }
 }

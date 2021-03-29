@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.student.commons.exceptions.IllegalValueException;
-import seedu.student.logic.parser.exceptions.ParseException;
 import seedu.student.model.appointment.Appointment;
 import seedu.student.model.student.MatriculationNumber;
 import seedu.student.model.student.Student;
@@ -20,6 +19,7 @@ import seedu.student.model.student.Student;
 class JsonAdaptedAppointment {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Appointment's %s field is missing!";
+    public static final String INVALID_DATETIME_FORMAT_MESSAGE = "Invalid date or time is given";
 
     private final String matriculationNumber;
     private final String date;
@@ -54,6 +54,9 @@ class JsonAdaptedAppointment {
      */
     public Appointment toModelType() throws IllegalValueException {
 
+        LocalDate modelDate;
+        LocalTime modelStartTime;
+
         if (matriculationNumber == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     MatriculationNumber.class.getSimpleName()));
@@ -72,20 +75,12 @@ class JsonAdaptedAppointment {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "startTime"));
         }
 
-        try{
-            LocalDate.parse(date);
-        } catch(DateTimeParseException e){
-            throw new IllegalValueException(String.format(Appointment.MESSAGE_DATE_CONSTRAINTS, ""));
+        try {
+            modelDate = LocalDate.parse(date);
+            modelStartTime = LocalTime.parse(startTime);
+        } catch (DateTimeParseException e) {
+            throw new IllegalValueException(String.format(INVALID_DATETIME_FORMAT_MESSAGE, ""));
         }
-        final LocalDate modelDate = LocalDate.parse(date);
-
-        try{
-             LocalTime.parse(startTime);
-        } catch(DateTimeParseException e){
-            throw new IllegalValueException(String.format(Appointment.MESSAGE_TIME_CONSTRAINTS, ""));
-        }
-        final LocalTime modelStartTime = LocalTime.parse(startTime);
-
 
         if (!Appointment.isValidTime(modelStartTime)) {
             throw new IllegalValueException(String.format(Appointment.MESSAGE_TIME_CONSTRAINTS, ""));
