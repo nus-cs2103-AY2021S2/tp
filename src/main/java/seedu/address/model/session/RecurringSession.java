@@ -37,12 +37,12 @@ public class RecurringSession extends Session {
     // Checks that lastDate can be on given sessionDate.
     private static boolean isValidEnd(SessionDate firstSessionDate, SessionDate lastSessionDate, Interval interval) {
         boolean occursAtTime = firstSessionDate.isSameTime(lastSessionDate);
-        boolean occursAtDate = occursAtDate(firstSessionDate, lastSessionDate, interval);
+        boolean occursAtDate = isConsistentDatesAndInterval(firstSessionDate, lastSessionDate, interval);
         return occursAtTime && occursAtDate;
     }
 
-    // Checks that s1 occurs on the date of s2, upon recurring 0 or more times.
-    private static boolean occursAtDate(SessionDate sessionDate1, SessionDate sessionDate2, Interval interval) {
+    // Checks that s1 occurs on the date of s2, upon recurring 0 or more times at given interval.
+    private static boolean isConsistentDatesAndInterval(SessionDate sessionDate1, SessionDate sessionDate2, Interval interval) {
         requireAllNonNull(sessionDate1, sessionDate2, interval);
         int daysBetween = sessionDate1.numOfDayTo(sessionDate2);
         return daysBetween >= 0 && daysBetween % interval.getValue() == 0;
@@ -74,7 +74,7 @@ public class RecurringSession extends Session {
      */
     public boolean hasSessionOnDate(SessionDate sessionDate) {
         requireAllNonNull(sessionDate);
-        return !endBefore(sessionDate) && occursAtDate(getSessionDate(), sessionDate, getInterval());
+        return !endBefore(sessionDate) && isConsistentDatesAndInterval(getSessionDate(), sessionDate, getInterval());
     }
 
     // THIS METHOD IS FOR SCHEDULE REMINDER TO RETRIEVE INFO ABOUT SESSION HAPPENING ON GIVEN DATE.
@@ -136,7 +136,7 @@ public class RecurringSession extends Session {
             firstInSpan = new SessionDate(firstInSpanLdt.toString());
         }
 
-        return firstInSpan.numOfDayTo(lastInSpan) / interval.getValue() + 1;
+        return (firstInSpan.numOfDayTo(lastInSpan) / interval.getValue()) + 1;
     }
 
     @Override
