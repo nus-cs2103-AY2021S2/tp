@@ -3,7 +3,10 @@ package seedu.address.logic.commands.doctor;
 import static seedu.address.commons.core.Messages.MESSAGE_CLEAR_APPOINTMENTS_BEFORE_PATIENTS_REQUIRED;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalAppObjects.*;
+import static seedu.address.testutil.TypicalAppObjects.getEmptyAppointmentSchedule;
+import static seedu.address.testutil.TypicalAppObjects.getTypicalAppointmentSchedule;
+import static seedu.address.testutil.TypicalAppObjects.getTypicalDoctorRecords;
+import static seedu.address.testutil.TypicalAppObjects.getTypicalPatientRecords;
 
 import org.junit.jupiter.api.Test;
 
