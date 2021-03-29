@@ -25,6 +25,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.event.Event;
+import seedu.address.model.filter.PersonFilter;
 import seedu.address.model.grade.Grade;
 import seedu.address.model.person.Person;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
@@ -299,6 +300,20 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public boolean hasPersonFilter(PersonFilter personFilter) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addPersonFilter(PersonFilter personFilter) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removePersonFilter(PersonFilter personFilter) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public ReadOnlyScheduleTracker getScheduleTracker() {
@@ -335,7 +350,6 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
         public void setSchedule(Schedule target, Schedule editedSchedule) {
             throw new AssertionError("This method should not be called.");
         }

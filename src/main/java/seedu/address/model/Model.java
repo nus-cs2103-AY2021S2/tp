@@ -9,6 +9,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.event.Event;
+import seedu.address.model.filter.PersonFilter;
 import seedu.address.model.grade.Grade;
 import seedu.address.model.person.Person;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
@@ -23,6 +24,7 @@ public interface Model {
      */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENT = unused -> true;
+    Predicate<Grade> PREDICATE_SHOW_ALL_GRADE = unused -> true;
     Predicate<Schedule> PREDICATE_SHOW_ALL_SCHEDULE = unused -> true;
     Predicate<Event> PREDICATE_SHOW_ALL_EVENT = unused -> true;
 
@@ -269,6 +271,28 @@ public interface Model {
     void removeGradeIndex(int indexToRemove);
 
     /**
+     * Checks if any of the filters are in person filter.
+     *
+     * @param personFilter Filters to check for inside model's person filter.
+     * @return true if model's person filter contains a filter that was passed in.
+     */
+    boolean hasPersonFilter(PersonFilter personFilter);
+
+    /**
+     * Adds filters to person filter.
+     *
+     * @param personFilter Filters to add to model's person filter.
+     */
+    void addPersonFilter(PersonFilter personFilter);
+
+    /**
+     * Removes filters from person filter.
+     *
+     * @param personFilter Filters to remove from model's person filter.
+     */
+    void removePersonFilter(PersonFilter personFilter);
+
+    /**
      * Returns the AddressBook
      */
     ReadOnlyScheduleTracker getScheduleTracker();
@@ -317,5 +341,8 @@ public interface Model {
      */
     void setSchedule(Schedule target, Schedule editedSchedule);
 
+    /**
+     * Returns an unmodifiable view of the filtered event list
+     */
     ObservableList<Event> getFilteredEventList();
 }
