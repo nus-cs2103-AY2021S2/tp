@@ -95,6 +95,12 @@ Focuris is a **desktop application** for **managing events** with a KanBan board
 
 ### 2.1.1 Command Summary
 
+If you are an experienced user who has used Focuris before, then here is a summary of the commands for easier navigability! 
+
+For our new users, don't be too intimidated! You can use this summary to better familiarize yourself with 
+the different commands available. We will delve deeper into the specifics at chapters [2.2](#22-general) 
+and [2.3](#23-event-commands).
+
 | Command                           | Description                                      | Format, Examples                                                                                           |
 | --------------------------------- | ------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
 | [**Clear**](#236-clear-command)   | **Clears** all events in Focuris                 | `clear`                                                                                                    |
