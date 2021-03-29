@@ -123,14 +123,32 @@ public class TypicalAppObjects {
 
     // Manually added - Doctor details
     public static final Doctor DR_GREY = new DoctorBuilder()
-            .withName("Dr Meredith Grey").withTags("GreysAnatomy").build();
+            .withUuid("e238301a-934c-4730-91f5-da2f55af44ff")
+            .withName("Dr Meredith Grey")
+            .withTags("GreysAnatomy")
+            .build();
     public static final Doctor DR_WHO = new DoctorBuilder()
-            .withName("Dr Who").withTags("DoctorWho", "TimeLord").build();
-    public static final Doctor DR_STRANGE = new DoctorBuilder().withName("Dr Strange").build();
+            .withUuid("4e4163f3-82ca-4811-aaf0-31e896229672")
+            .withName("Dr Who")
+            .withTags("DoctorWho", "TimeLord")
+            .build();
+    public static final Doctor DR_STRANGE = new DoctorBuilder()
+            .withUuid("e90635ae-2c07-40fc-96be-4f5019095936")
+            .withName("Dr Strange")
+            .build();
     public static final Doctor DR_JEKYLL = new DoctorBuilder()
-            .withName("Dr Jekyll").withTags("AndMrHyde").build();
-    public static final Doctor DR_MURPHY = new DoctorBuilder().withName("Dr Murphy").build();
-    public static final Doctor DR_DRAKE = new DoctorBuilder().withName("Dr Drake Ramoray").build();
+            .withUuid("0b56a520-f0db-4a3a-b560-3aab72a9e10c")
+            .withName("Dr Jekyll")
+            .withTags("AndMrHyde")
+            .build();
+    public static final Doctor DR_MURPHY = new DoctorBuilder()
+            .withUuid("e6b1f1d6-c85d-4baf-b07f-f5a2876e4d75")
+            .withName("Dr Murphy")
+            .build();
+    public static final Doctor DR_DRAKE = new DoctorBuilder()
+            .withUuid("40c9902a-110a-44c1-a064-a5ef5e8c0117")
+            .withName("Dr Drake Ramoray")
+            .build();
 
     // Manually added - Timeslot details
     public static final Duration APPOINTMENT_DURATION = Duration.ofHours(1);

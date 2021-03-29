@@ -62,7 +62,7 @@ public class ModelStub implements Model {
 
     @Override
     public boolean hasConflictingUuid(UUID uuid) {
-        throw new AssertionError("This method should not beee called.");
+        throw new AssertionError("This method should not be called.");
     }
 
     @Override
