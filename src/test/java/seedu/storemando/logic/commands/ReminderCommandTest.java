@@ -17,6 +17,7 @@ import seedu.storemando.model.Model;
 import seedu.storemando.model.ModelManager;
 import seedu.storemando.model.UserPrefs;
 import seedu.storemando.model.expirydate.ItemExpiringPredicate;
+import seedu.storemando.model.item.ItemComparatorByExpiryDate;
 
 public class ReminderCommandTest {
     private Model model;
@@ -59,8 +60,10 @@ public class ReminderCommandTest {
     public void execute_multipleItemsFound() {
         ItemExpiringPredicate predicate = new ItemExpiringPredicate((long) 30);
         expectedModel.updateFilteredItemList(predicate);
-        assertEquals(Arrays.asList(APPLE, BREAD), expectedModel.getFilteredItemList());
+        ItemComparatorByExpiryDate comparator = new ItemComparatorByExpiryDate();
+        expectedModel.updateSortedItemList(comparator);
+        expectedModel.setItems(expectedModel.getSortedItemList());
+        assertEquals(Arrays.asList(BREAD, APPLE), expectedModel.getFilteredItemList());
         assertCommandSuccess(new ReminderCommand(predicate), model, ReminderCommand.MESSAGE_SUCCESS, expectedModel);
     }
-
 }

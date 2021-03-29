@@ -56,6 +56,51 @@ public class AddCommandTest {
         assertEquals(Arrays.asList(validItem), modelStub.itemsAdded);
     }
 
+    @Test
+    public void execute_itemAcceptedByModel_addSimilarSuccessful() throws CommandException {
+        Item validItem = new ItemBuilder().withName("Apple").withLocation("Kitchen").build();
+
+        ModelStubWithItem modelStub = new ModelStubWithItem(validItem);
+
+        Item similarItem = new ItemBuilder().withName("apple").withLocation("Kitchen").build();
+        CommandResult commandResult = new AddCommand(similarItem).execute(modelStub);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS + AddCommand.MESSAGE_SIMILAR_ITEM_WARNING, similarItem),
+            commandResult.getFeedbackToUser());
+
+        similarItem = new ItemBuilder().withName("Apple").withLocation("kitchen").build();
+        commandResult = new AddCommand(similarItem).execute(modelStub);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS + AddCommand.MESSAGE_SIMILAR_ITEM_WARNING, similarItem),
+            commandResult.getFeedbackToUser());
+
+        similarItem = new ItemBuilder().withName("aPPle").withLocation("kiTChen").build();
+        commandResult = new AddCommand(similarItem).execute(modelStub);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS + AddCommand.MESSAGE_SIMILAR_ITEM_WARNING, similarItem),
+            commandResult.getFeedbackToUser());
+    }
+
+    @Test
+    public void execute_itemAcceptedByModel_addSimilarExpiredSuccessful() throws CommandException {
+        Item validItem = new ItemBuilder().withName("Apple").withLocation("Kitchen").withExpiryDate("2020-10-10")
+            .build();
+
+        ModelStubWithItem modelStub = new ModelStubWithItem(validItem);
+
+        Item similarItem = new ItemBuilder().withName("apple").withLocation("Kitchen").withExpiryDate("2019-10-10")
+            .build();
+        CommandResult commandResult = new AddCommand(similarItem).execute(modelStub);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS + AddCommand.MESSAGE_SIMILAR_ITEM_WARNING
+                + AddCommand.MESSAGE_ITEM_EXPIRED_WARNING, similarItem), commandResult.getFeedbackToUser());
+
+        similarItem = new ItemBuilder().withName("Apple").withLocation("kitchen").withExpiryDate("2020-10-10").build();
+        commandResult = new AddCommand(similarItem).execute(modelStub);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS + AddCommand.MESSAGE_SIMILAR_ITEM_WARNING
+                + AddCommand.MESSAGE_ITEM_EXPIRED_WARNING, similarItem), commandResult.getFeedbackToUser());
+
+        similarItem = new ItemBuilder().withName("aPPle").withLocation("kiTChen").withExpiryDate("2020-11-10").build();
+        commandResult = new AddCommand(similarItem).execute(modelStub);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS + AddCommand.MESSAGE_SIMILAR_ITEM_WARNING
+                + AddCommand.MESSAGE_ITEM_EXPIRED_WARNING, similarItem), commandResult.getFeedbackToUser());
+    }
 
     @Test
     public void execute_duplicateItem_throwsCommandException() {
@@ -157,6 +202,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasSimilarItem(Item item) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteItem(Item target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -218,6 +268,15 @@ public class AddCommandTest {
             requireNonNull(item);
             return this.item.isSameItem(item);
         }
+
+        @Override
+        public boolean hasSimilarItem(Item item) {
+            requireNonNull(item);
+            return this.item.isSimilarItem(item);
+        }
+
+        @Override
+        public void addItem(Item item){}
     }
 
     /**
@@ -230,6 +289,12 @@ public class AddCommandTest {
         public boolean hasItem(Item item) {
             requireNonNull(item);
             return itemsAdded.stream().anyMatch(item::isSameItem);
+        }
+
+        @Override
+        public boolean hasSimilarItem(Item item) {
+            requireNonNull(item);
+            return itemsAdded.stream().anyMatch(item::isSimilarItem);
         }
 
         @Override

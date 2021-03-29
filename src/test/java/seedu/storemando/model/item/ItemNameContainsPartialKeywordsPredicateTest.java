@@ -47,18 +47,23 @@ public class ItemNameContainsPartialKeywordsPredicateTest {
         ItemNameContainsPartialKeywordsPredicate predicate =
             new ItemNameContainsPartialKeywordsPredicate(Collections.singletonList("App"));
         assertTrue(predicate.test(new ItemBuilder().withName("Apple Banana").build()));
+        assertTrue(predicate.test(new ItemBuilder().withName("greenapple").build()));
+        assertTrue(predicate.test(new ItemBuilder().withName("greenapp").build()));
 
         // Multiple Partial keywords matching
         predicate = new ItemNameContainsPartialKeywordsPredicate(Arrays.asList("App", "Bana"));
         assertTrue(predicate.test(new ItemBuilder().withName("Apple Banana").build()));
+        assertTrue(predicate.test(new ItemBuilder().withName("aPPle and banANA cheesecake").build()));
 
         // Only one matching partial keyword
         predicate = new ItemNameContainsPartialKeywordsPredicate(Arrays.asList("Bo", "Cher"));
         assertTrue(predicate.test(new ItemBuilder().withName("Apple Cherry").build()));
+        assertTrue(predicate.test(new ItemBuilder().withName("Booberry").build()));
 
         // Mixed-case partial keywords matching
         predicate = new ItemNameContainsPartialKeywordsPredicate(Arrays.asList("aPP", "bANA"));
         assertTrue(predicate.test(new ItemBuilder().withName("Apple Banana").build()));
+        assertTrue(predicate.test(new ItemBuilder().withName("AppBanana").build()));
     }
 
     @Test
@@ -67,16 +72,16 @@ public class ItemNameContainsPartialKeywordsPredicateTest {
         ItemNameContainsPartialKeywordsPredicate predicate = new ItemNameContainsPartialKeywordsPredicate(Arrays.asList(
             "Ban")
         );
-        assertFalse(predicate.test(new ItemBuilder().withName("Alice").build()));
+        assertFalse(predicate.test(new ItemBuilder().withName("Milk").build()));
 
         // Non-matching keyword
-        predicate = new ItemNameContainsPartialKeywordsPredicate(Arrays.asList("Car"));
-        assertFalse(predicate.test(new ItemBuilder().withName("Alice Bob").build()));
+        predicate = new ItemNameContainsPartialKeywordsPredicate(Arrays.asList("water"));
+        assertFalse(predicate.test(new ItemBuilder().withName("Ice cube").build()));
 
         // Keywords match quantity, expiryDate and location, but does not match name
         predicate = new ItemNameContainsPartialKeywordsPredicate(Arrays.asList("12345", "2020-10-10", "Main", "Street")
         );
-        assertFalse(predicate.test(new ItemBuilder().withName("Alice").withQuantity("12345")
+        assertFalse(predicate.test(new ItemBuilder().withName("Peanuts").withQuantity("12345")
             .withExpiryDate("2020-10-10").withLocation("Main Street").build()));
     }
 }

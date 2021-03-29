@@ -7,6 +7,8 @@ import static seedu.storemando.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 import static seedu.storemando.testutil.Assert.assertThrows;
 import static seedu.storemando.testutil.TypicalItems.APPLE;
 import static seedu.storemando.testutil.TypicalItems.BREAD;
+import static seedu.storemando.testutil.TypicalItems.FAKEAPPLE;
+import static seedu.storemando.testutil.TypicalItems.FAKEBREAD;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -86,6 +88,26 @@ public class ModelManagerTest {
     public void hasItem_itemInStoreMando_returnsTrue() {
         modelManager.addItem(APPLE);
         assertTrue(modelManager.hasItem(APPLE));
+    }
+
+    @Test
+    public void hasSimilarItem_nullItem_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasSimilarItem(null));
+    }
+
+    @Test
+    public void hasSimilarItem_itemNotInStoreMando_returnsFalse() {
+        assertFalse(modelManager.hasSimilarItem(APPLE));
+    }
+
+    @Test
+    public void hasSimilarItem_itemInStoreMando_returnsTrue() {
+        modelManager.addItem(APPLE);
+        modelManager.addItem(BREAD);
+        assertTrue(modelManager.hasSimilarItem(APPLE));
+        assertTrue(modelManager.hasSimilarItem(BREAD));
+        assertTrue(modelManager.hasSimilarItem(FAKEAPPLE));
+        assertTrue(modelManager.hasSimilarItem(FAKEBREAD));
     }
 
     @Test

@@ -44,6 +44,16 @@ public class StoreMandoTest {
     }
 
     @Test
+    public void testStoreMandoEquals() {
+        StoreMando storeMando = getTypicalStoreMando();
+        assertEquals(storeMando, storeMando);
+
+        StoreMando storeMando1 = new StoreMando();
+        StoreMando storeMando2 = new StoreMando();
+        assertEquals(storeMando1, storeMando2);
+    }
+
+    @Test
     public void resetData_withDuplicateItems_throwsDuplicateItemException() {
         // Two items with the same identity fields
         Item editedApple = new ItemBuilder(APPLE).withQuantity(VALID_QUANTITY_BANANA).withTags(VALID_TAG_ESSENTIAL)
@@ -76,6 +86,31 @@ public class StoreMandoTest {
         Item editedApple = new ItemBuilder(APPLE).withQuantity(VALID_QUANTITY_BANANA).withTags(VALID_TAG_ESSENTIAL)
             .build();
         assertTrue(storeMando.hasItem(editedApple));
+    }
+
+    @Test
+    public void hasSimilarItem_nullItem_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> storeMando.hasSimilarItem(null));
+    }
+
+    @Test
+    public void hasSimilarItem_itemNotInStoreMando_returnsFalse() {
+        assertFalse(storeMando.hasSimilarItem(APPLE));
+    }
+
+    @Test
+    public void hasSimilarItem_itemInStoreMando_returnsTrue() {
+        storeMando.addItem(APPLE);
+        assertTrue(storeMando.hasSimilarItem(APPLE));
+        Item editedApple = new ItemBuilder(APPLE).withQuantity(VALID_QUANTITY_BANANA).withTags(VALID_TAG_ESSENTIAL)
+            .build();
+        assertTrue(storeMando.hasSimilarItem(editedApple));
+        editedApple = new ItemBuilder(APPLE).withName("apples").withQuantity(VALID_QUANTITY_BANANA)
+            .withTags(VALID_TAG_ESSENTIAL).build();
+        assertTrue(storeMando.hasSimilarItem(editedApple));
+        editedApple = new ItemBuilder(APPLE).withName("APPLES").withLocation("kitchen BASKET")
+            .withQuantity(VALID_QUANTITY_BANANA).withTags(VALID_TAG_ESSENTIAL).build();
+        assertTrue(storeMando.hasSimilarItem(editedApple));
     }
 
     @Test
