@@ -37,6 +37,6 @@ destroy history
 logic --> ui
 deactivate logic
 
-ui--[UI_COLOR]> user
+ui--> user
 deactivate ui
 @enduml
