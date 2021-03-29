@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.event.EventEndDateByDatePredicate;
+import seedu.address.model.event.EventStartDateByDatePredicate;
 import seedu.address.model.task.TaskDeadlineByDatePredicate;
 
 /**
@@ -21,17 +21,17 @@ public class FindScheduleCommand extends Command {
             + "Parameters: DATE \n"
             + "Example: " + COMMAND_WORD + " 2021-03-29";
 
-    public static final String MESSAGE_FIND_SCHEDULE_SUCCESS = "Found required tasks and events\n";
+    public static final String MESSAGE_FIND_SCHEDULE_SUCCESS = "Displayed the required tasks and events\n";
 
     private final TaskDeadlineByDatePredicate taskPredicate;
-    private final EventEndDateByDatePredicate eventPredicate;
+    private final EventStartDateByDatePredicate eventPredicate;
 
     /**
      * Creates a FindScheduleCommand to find the desired tasks and events.
      * @param taskPredicate a predicate that tests a Task's deadline is before or on the by date given.
      * @param eventPredicate a predicate that tests a Event's start date is before or on the by date given.
      */
-    public FindScheduleCommand(TaskDeadlineByDatePredicate taskPredicate, EventEndDateByDatePredicate eventPredicate) {
+    public FindScheduleCommand(TaskDeadlineByDatePredicate taskPredicate, EventStartDateByDatePredicate eventPredicate) {
         this.taskPredicate = taskPredicate;
         this.eventPredicate = eventPredicate;
     }
@@ -43,6 +43,7 @@ public class FindScheduleCommand extends Command {
         model.updateFilteredEventList(eventPredicate);
         return new CommandResult(MESSAGE_FIND_SCHEDULE_SUCCESS
                 + String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size())
+                + "\n"
                 + String.format(Messages.MESSAGE_EVENTS_LISTED_OVERVIEW, model.getFilteredEventList().size()));
     }
 

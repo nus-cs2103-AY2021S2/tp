@@ -7,10 +7,10 @@ import seedu.address.model.common.Date;
 /**
  * Tests that a {@code Event}'s {@code start date} is before or on the by date given.
  */
-public class EventEndDateByDatePredicate implements Predicate<Event> {
+public class EventStartDateByDatePredicate implements Predicate<Event> {
     private final Date byDate;
 
-    public EventEndDateByDatePredicate(Date byDate) {
+    public EventStartDateByDatePredicate(Date byDate) {
         this.byDate = byDate;
     }
 
@@ -28,11 +28,11 @@ public class EventEndDateByDatePredicate implements Predicate<Event> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EventEndDateByDatePredicate)) {
+        if (!(other instanceof EventStartDateByDatePredicate)) {
             return false;
         }
 
-        EventEndDateByDatePredicate e = (EventEndDateByDatePredicate) other;
+        EventStartDateByDatePredicate e = (EventStartDateByDatePredicate) other;
         return byDate.equals(e.byDate); // state check
     }
 
