@@ -1,12 +1,18 @@
 ---
 layout: page
-title: Workflow Guide
+title: imPoster Workflow Guide
+nav-text: Workflow Guide
 ---
 
 <p align="center">
-  <img src="images/imPoster.png" width="300px" />
-  <h1 align="center">imPoster Workflow Guide</h1>
+  <img width="300px" src="images/imPosterWorkGuide.png" >
 </p>
+
+<h1 class="post-title">{{ page.title | escape }}</h1>
+<h3 class="post-subtitle">v1.3</h3>
+
+<div style="page-break-after: always;"></div>
+<br/>
 
 ## Table of Contents
 
