@@ -9,8 +9,13 @@ import java.util.regex.Matcher;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.inventory.*;
-import seedu.address.logic.parser.commands.inventory.*;
+import seedu.address.logic.commands.inventory.InventoryAddCommand;
+import seedu.address.logic.commands.inventory.InventoryDeleteCommand;
+import seedu.address.logic.commands.inventory.InventoryFindCommand;
+import seedu.address.logic.commands.inventory.InventoryListCommand;
+import seedu.address.logic.parser.commands.inventory.InventoryAddCommandParser;
+import seedu.address.logic.parser.commands.inventory.InventoryDeleteCommandParser;
+import seedu.address.logic.parser.commands.inventory.InventoryFindCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**

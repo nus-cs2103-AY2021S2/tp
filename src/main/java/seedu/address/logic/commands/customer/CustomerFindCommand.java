@@ -32,7 +32,9 @@ public class CustomerFindCommand extends Command {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_ITEMS_LISTED_OVERVIEW, model.getFilteredPersonList().size(), Messages.ITEM_PERSONS),
+                String.format(Messages.MESSAGE_ITEMS_LISTED_OVERVIEW,
+                        model.getFilteredPersonList().size(),
+                        Messages.ITEM_PERSONS),
                 CommandResult.CRtype.PERSON);
     }
 

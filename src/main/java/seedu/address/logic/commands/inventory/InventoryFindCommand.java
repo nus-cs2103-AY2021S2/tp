@@ -1,12 +1,12 @@
 package seedu.address.logic.commands.inventory;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.ingredient.IngredientNameContainsWordsPredicate;
-
-import static java.util.Objects.requireNonNull;
 
 public class InventoryFindCommand extends Command {
 
@@ -29,7 +29,9 @@ public class InventoryFindCommand extends Command {
         requireNonNull(model);
         model.updateFilteredIngredientList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_ITEMS_LISTED_OVERVIEW, model.getFilteredIngredientList().size(), Messages.ITEM_INGREDIENTS),
+                String.format(Messages.MESSAGE_ITEMS_LISTED_OVERVIEW,
+                        model.getFilteredIngredientList().size(),
+                        Messages.ITEM_INGREDIENTS),
                 CommandResult.CRtype.INGREDIENT);
     }
 

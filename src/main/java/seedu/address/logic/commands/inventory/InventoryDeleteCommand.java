@@ -40,7 +40,8 @@ public class InventoryDeleteCommand extends Command {
         List<Ingredient> lastShownList = model.getFilteredIngredientList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(String.format(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX, Messages.ITEM_INGREDIENT));
+            throw new CommandException(
+                    String.format(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX, Messages.ITEM_INGREDIENT));
         }
 
         Ingredient ingredientToDelete = lastShownList.get(targetIndex.getZeroBased());

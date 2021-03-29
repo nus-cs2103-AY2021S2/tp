@@ -1,15 +1,16 @@
 package seedu.address.model.ingredient;
 
-import seedu.address.commons.util.StringUtil;
-import seedu.address.model.person.PersonNameContainsWordsPredicate;
-
 import java.util.List;
 import java.util.function.Predicate;
+
+import seedu.address.commons.util.StringUtil;
 
 public class IngredientNameContainsWordsPredicate implements Predicate<Ingredient> {
     private final List<String> keywords;
 
-    public IngredientNameContainsWordsPredicate(List<String> keywords) { this.keywords = keywords; }
+    public IngredientNameContainsWordsPredicate(List<String> keywords) {
+        this.keywords = keywords;
+    }
 
     @Override
     public boolean test(Ingredient ingredient) {

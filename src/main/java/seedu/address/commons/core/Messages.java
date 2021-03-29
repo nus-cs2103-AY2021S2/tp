@@ -1,7 +1,5 @@
 package seedu.address.commons.core;
 
-import java.util.Locale;
-
 /**
  * Container for user visible messages.
  */

@@ -9,8 +9,8 @@ import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import seedu.address.model.Item;
 
+import seedu.address.model.Item;
 
 /**
  * Represents a Person in the address book.
