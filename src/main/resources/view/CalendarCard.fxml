@@ -7,8 +7,8 @@
    <children>
       <VBox prefHeight="50.0" prefWidth="100.0">
          <children>
-             <Label fx:id="periodFxml" styleClass="cell_small_label" text="\$period" wrapText="true" />
-             <Label fx:id="nameFxml" styleClass="cell_small_label_bold" text="\$name" wrapText="true" />
+             <Label fx:id="periodFxml" styleClass="cell_big_label" text="\$period" wrapText="true" />
+             <Label fx:id="nameFxml" styleClass="cell_small_label" text="\$name" wrapText="true" />
              <Label fx:id="subjectFxml" styleClass="cell_small_label" text="\$subject" wrapText="true"/>
          </children></VBox>
    </children>

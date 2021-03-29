@@ -22,8 +22,6 @@ import seedu.address.model.session.SessionDate;
 import seedu.address.model.student.Student;
 import seedu.address.model.tuition.Tuition;
 
-import static seedu.address.commons.util.DateTimeUtil.isSameDay;
-
 public class CalendarView extends UiPart<Region> {
     private static final Logger logger = LogsCenter.getLogger(CalendarView.class);
     private static final String FXML = "CalendarView.fxml";
@@ -163,7 +161,7 @@ public class CalendarView extends UiPart<Region> {
     private boolean hasSessionOnDate(LocalDateTime date, Tuition tuition) {
         Session tuitionSession = tuition.getSession();
         LocalDateTime tuitionDateTime = tuitionSession.getSessionDate().getDateTime();
-        boolean isSessionOnDate = isSameDay(tuitionDateTime, date);
+        boolean isSessionOnDate = tuitionDateTime.toLocalDate().isEqual(date.toLocalDate());
         boolean isRecurringSessionOnDate = false;
 
         if (tuitionSession instanceof RecurringSession) {

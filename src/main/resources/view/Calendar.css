@@ -4,23 +4,10 @@
     -fx-padding: 0 10;
 }
 
-.cell_big_label {
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-font-size: 16px;
-    -fx-text-fill: #010504;
-}
-
 .cell_small_label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
     -fx-text-fill: #707070;
-}
-
-.cell_small_label_bold {
-    -fx-font-family: "Segoe UI";
-    -fx-font-size: 13px;
-    -fx-text-fill: #707070;
-    -fx-font-weight: bold;
 }
 
 .list-cell {
@@ -37,10 +24,6 @@
 .list-cell:filled {
     -fx-background-color: #ffe482;
     -fx-background-insets: 0;
-
-}
-
-.list-cell:filled:hover {
 }
 
 .label {

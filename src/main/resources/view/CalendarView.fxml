@@ -14,7 +14,7 @@
    <children>
       <HBox prefHeight="50.0" prefWidth="200.0">
          <children>
-            <Label fx:id="dateLabel" text="22 - 28 Mar" styleClass="header">
+            <Label fx:id="dateLabel" text=" - " styleClass="header">
                <HBox.margin>
                   <Insets left="10.0" top="10.0" />
                </HBox.margin>
