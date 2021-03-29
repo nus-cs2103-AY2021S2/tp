@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -104,7 +105,11 @@ public class UniquePoolList implements Iterable<Pool> {
     public void setPassenger(Passenger target, Passenger editedPassenger) {
         requireAllNonNull(target, editedPassenger);
 
-        internalList.forEach(pool -> pool.setPassenger(target, editedPassenger));
+        List<Pool> newList = internalList.stream()
+                .map(pool -> pool.setPassenger(target, editedPassenger))
+                .collect(Collectors.toList());
+
+        internalList.setAll(newList);
     }
 
     /**

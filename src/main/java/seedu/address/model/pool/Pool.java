@@ -81,15 +81,17 @@ public class Pool {
      * Replaces the passenger {@code target} in the internal passenger list with {@code editedPassenger},
      * if {@code target} exists.
      */
-    public void setPassenger(Passenger target, Passenger editedPassenger) {
+    public Pool setPassenger(Passenger target, Passenger editedPassenger) {
         requireAllNonNull(target, editedPassenger);
 
         int index = passengers.indexOf(target);
         if (index == -1) {
-            return;
+            return this;
         }
 
-        passengers.set(index, editedPassenger);
+        List<Passenger> newPassengers = new ArrayList<>(passengers);
+        newPassengers.set(index, editedPassenger);
+        return new Pool(driver, tripDay, tripTime, newPassengers, tags);
     }
 
     /**
