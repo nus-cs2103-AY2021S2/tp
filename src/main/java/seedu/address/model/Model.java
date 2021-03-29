@@ -97,4 +97,14 @@ public interface Model {
      * {@code target} must exist in the address book.
      */
     void toggleBlacklist(Person target);
+
+    /**
+     * Blacklists the given person.
+     */
+    void blacklistPerson(Person target);
+
+    /**
+     * Unblacklists the given person.
+     */
+    void unblacklistPerson(Person target);
 }

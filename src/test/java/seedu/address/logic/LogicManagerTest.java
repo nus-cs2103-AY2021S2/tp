@@ -113,7 +113,7 @@ public class LogicManagerTest {
         logic.execute("edit 1 n/haha");
         assertEquals(model.getAddressBook(), state.getCurrentState());
 
-        logic.execute("sort c/name d/ascending");
+        logic.execute("sort ascending");
         assertEquals(model.getAddressBook(), state.getCurrentState());
     }
 
