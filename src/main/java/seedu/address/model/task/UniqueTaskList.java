@@ -3,6 +3,7 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Iterator;
@@ -111,6 +112,56 @@ public class UniqueTaskList implements Iterable<Task> {
         long daysLeft = LocalDate.now().until(deadlineDate, ChronoUnit.DAYS);
 
         return (int) daysLeft;
+    }
+
+    /**
+     * Returns true if the task list has no tasks.
+     */
+    public boolean isEmpty() {
+        return internalList.isEmpty();
+    }
+
+    /**
+     * Returns the number of tasks in the task list.
+     */
+    public int size() {
+        return internalList.size();
+    }
+
+    /**
+     * Returns a string percentage of tasks done (in percentage form).
+     */
+    public double getPercentage() {
+        double totalTasks = size();
+        double totalDone = 0;
+
+        for (Task t : internalList) {
+            if (t.isDone()) {
+                totalDone++;
+            }
+        }
+
+        double decimalFormat = totalDone/totalTasks;
+
+        return decimalFormat * 100;
+    }
+
+    /**
+     * Returns the number of tasks due in the next 7 days.
+     */
+    public int getNumberDue() {
+        int totalNumDue = 0;
+
+        for (Task t : internalList) {
+
+            if (!t.isDeadlineEmpty()) {
+                boolean isWithinSevenDays = t.isWithinSevenDays(LocalDate.now());
+                if (isWithinSevenDays) {
+                    totalNumDue++;
+                }
+            }
+        }
+        return totalNumDue;
     }
 
     /**

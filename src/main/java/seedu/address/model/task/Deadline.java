@@ -89,6 +89,12 @@ public class Deadline {
         return now.isAfter(value);
     }
 
+    public boolean isWithinSevenDays(LocalDate currentDate) {
+        LocalDate sevenDaysFromNow = currentDate.plusDays(7);
+
+        return value.isBefore(sevenDaysFromNow);
+    }
+
     /**
      * Check if there is a value present.
      *
