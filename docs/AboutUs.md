@@ -24,7 +24,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/linhns)]
 [[portfolio](team/linhns.md)]
 
-* Role: Integration and Git
+* Role: Git + CI + Developer
 * Responsibilities: Manage team repository
 
 ### Vu Minh Hieu
