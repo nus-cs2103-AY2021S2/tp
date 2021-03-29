@@ -78,7 +78,8 @@ public class DueInCommandTest {
 
     @Test
     public void execute_noParamsGiven_noTaskFound() {
-        DeadlineDateInRangePredicateStub predicate = new DeadlineDateInRangePredicateStub(); //stub
+        DeadlineDateInRangePredicate predicate =
+                new DeadlineDateInRangePredicate(numberOfDays);
         String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 0);
         DueInCommand command = new DueInCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
@@ -89,7 +90,7 @@ public class DueInCommandTest {
     @Test
     public void execute_numberOfDaysGiven_multipleTasksFound() {
         DeadlineDateInRangePredicate predicate =
-                new DeadlineDateInRangePredicate(numberOfDays);
+                new DeadlineDateInRangePredicateStub(numberOfDays);
         String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 6);
         DueInCommand command = new DueInCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
@@ -100,7 +101,7 @@ public class DueInCommandTest {
     @Test
     public void execute_numberOfWeeksGiven_multipleTasksFound() {
         DeadlineDateInRangePredicate predicate =
-                new DeadlineDateInRangePredicate(numberOfWeeks * 7);
+                new DeadlineDateInRangePredicateStub(7 * numberOfWeeks);
         String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 6);
         DueInCommand command = new DueInCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
@@ -110,13 +111,13 @@ public class DueInCommandTest {
 
     private class DeadlineDateInRangePredicateStub extends DeadlineDateInRangePredicate {
 
-        public DeadlineDateInRangePredicateStub() {
-            super(1); // Random number yields same result
+        public DeadlineDateInRangePredicateStub(long numberOfDays) {
+            super(numberOfDays);
         };
 
         @Override
         public boolean test(Task task) {
-            return false;
+            return true;
         }
     }
 }

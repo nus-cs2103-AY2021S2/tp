@@ -10,6 +10,7 @@ import java.util.function.Predicate;
 public class DeadlineDateInRangePredicate implements Predicate<Task> {
     private static final DateTimeFormatter dateDateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     private static DeadlineDate maxDate = new DeadlineDate("31-12-2099"); // Latest date allowed
+    private static DeadlineDate today = new DeadlineDate(LocalDate.now().format(dateDateFormatter));
 
     private final DeadlineDate endDate;
 
@@ -40,7 +41,8 @@ public class DeadlineDateInRangePredicate implements Predicate<Task> {
 
     @Override
     public boolean test(Task task) {
-        return task.getDeadlineDate().compareTo(endDate) <= 0;
+        return task.getDeadlineDate().compareTo(endDate) <= 0
+                && task.getDeadlineDate().compareTo(today) >=0;
     }
 
     @Override
