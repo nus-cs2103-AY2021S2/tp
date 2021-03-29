@@ -74,7 +74,7 @@ public class JsonAdaptedEventTest {
     public void toModelType_nullIsWeekly_throwsIllegalValueException() {
         JsonAdaptedEvent event =
                 new JsonAdaptedEvent(VALID_DESCRIPTION, VALID_DATE_STRING, VALID_TIME_STRING, null);
-        assertThrows(NullPointerException.class, event::toModelType);
+        assertThrows(IllegalValueException.class, event::toModelType);
     }
 
 }
