@@ -37,7 +37,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyAddressPredicate;
-import seedu.address.model.property.PropertyContainsKeywordsPredicate;
+import seedu.address.model.property.PropertyNamePredicate;
 import seedu.address.model.property.PropertyDeadlinePredicate;
 import seedu.address.model.property.PropertyPostalCodePredicate;
 import seedu.address.model.property.PropertyPredicateList;
@@ -55,10 +55,10 @@ public class FindPropertyCommandTest {
 
     @Test
     public void equalsKeywords() {
-        PropertyContainsKeywordsPredicate firstPredicate =
-                new PropertyContainsKeywordsPredicate(Collections.singletonList("first"));
-        PropertyContainsKeywordsPredicate secondPredicate =
-                new PropertyContainsKeywordsPredicate(Collections.singletonList("second"));
+        PropertyNamePredicate firstPredicate =
+                new PropertyNamePredicate(Collections.singletonList("first"));
+        PropertyNamePredicate secondPredicate =
+                new PropertyNamePredicate(Collections.singletonList("second"));
 
         FindPropertyCommand findFirstCommand =
                 new FindPropertyCommand(
@@ -379,7 +379,7 @@ public class FindPropertyCommandTest {
         }
 
         if (keywords.size() > 0) {
-            predicates.add(new PropertyContainsKeywordsPredicate(keywords));
+            predicates.add(new PropertyNamePredicate(keywords));
         }
 
         return new PropertyPredicateList(predicates);

@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindPropertyCommand;
 import seedu.address.model.property.Property;
-import seedu.address.model.property.PropertyContainsKeywordsPredicate;
+import seedu.address.model.property.PropertyNamePredicate;
 import seedu.address.model.property.PropertyPredicateList;
 import seedu.address.model.property.PropertyPricePredicate;
 import seedu.address.model.property.PropertyTypePredicate;
@@ -32,7 +32,7 @@ public class FindPropertyCommandParserTest {
     public void parseValidKeywordsTest() {
         List<Predicate<Property>> predicates = new ArrayList<>();
 
-        predicates.add(new PropertyContainsKeywordsPredicate(Arrays.asList("Mayfair", "Jurong")));
+        predicates.add(new PropertyNamePredicate(Arrays.asList("Mayfair", "Jurong")));
 
         FindPropertyCommand expectedFindCommand =
                 new FindPropertyCommand(new PropertyPredicateList(predicates));

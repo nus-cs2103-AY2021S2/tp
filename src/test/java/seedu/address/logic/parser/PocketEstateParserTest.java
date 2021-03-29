@@ -20,7 +20,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListAllCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
-import seedu.address.model.property.PropertyContainsKeywordsPredicate;
+import seedu.address.model.property.PropertyNamePredicate;
 import seedu.address.model.property.PropertyPredicateList;
 
 public class PocketEstateParserTest {
@@ -55,8 +55,8 @@ public class PocketEstateParserTest {
                 FindPropertyCommand.COMMAND_WORD + " "
                         + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindPropertyCommand(new PropertyPredicateList(
-                Arrays.asList(new PropertyContainsKeywordsPredicate[]{
-                    new PropertyContainsKeywordsPredicate(keywords)}))), command);
+                Arrays.asList(new PropertyNamePredicate[]{
+                    new PropertyNamePredicate(keywords)}))), command);
     }
 
     @Test

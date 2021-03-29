@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT_ASKING_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT_CONTACT;
@@ -20,7 +19,6 @@ import static seedu.address.logic.parser.ParserUtil.parsePropertyDeadline;
 import static seedu.address.logic.parser.ParserUtil.parsePropertyPostal;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -28,7 +26,7 @@ import seedu.address.logic.commands.FindPropertyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyAddressPredicate;
-import seedu.address.model.property.PropertyContainsKeywordsPredicate;
+import seedu.address.model.property.PropertyNamePredicate;
 import seedu.address.model.property.PropertyDeadlinePredicate;
 import seedu.address.model.property.PropertyPostalCodePredicate;
 import seedu.address.model.property.PropertyPredicateList;
@@ -58,7 +56,7 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
         List<Predicate<Property>> predicates = new ArrayList<>();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            predicates.add(new PropertyContainsKeywordsPredicate(argMultimap.getAllValues(PREFIX_NAME)));
+            predicates.add(new PropertyNamePredicate(argMultimap.getAllValues(PREFIX_NAME)));
         }
 
         if (argMultimap.getValue(PREFIX_PROPERTY_PRICE_MORE).isPresent()) {
