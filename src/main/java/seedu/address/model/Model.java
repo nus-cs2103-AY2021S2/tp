@@ -5,15 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.assignment.Assignment;
-import seedu.address.model.assignment.Unassignment;
-import seedu.address.model.assignment.exceptions.UnassignTutorException;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.AlreadyEnrolledException;
-import seedu.address.model.person.exceptions.StudentTutorNotFoundException;
-import seedu.address.model.person.exceptions.TimeClashException;
 import seedu.address.model.session.Session;
-import seedu.address.model.session.exceptions.SessionNotFoundException;
 
 /**
  * The API of the Model component.
@@ -111,10 +104,4 @@ public interface Model {
     public ObservableList<Session> getFilteredSessionList();
 
     public void updateFilteredSessionList(Predicate<Session> predicate);
-
-    public void registerAssignment(Assignment assignment) throws TimeClashException, AlreadyEnrolledException,
-            SessionNotFoundException, StudentTutorNotFoundException;
-
-    public void registerUnassignment(Unassignment unassignment) throws SessionNotFoundException,
-            StudentTutorNotFoundException, UnassignTutorException;
 }

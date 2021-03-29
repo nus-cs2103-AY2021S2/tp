@@ -11,17 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.assignment.Assignment;
-import seedu.address.model.assignment.Unassignment;
-import seedu.address.model.assignment.exceptions.UnassignTutorException;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.AlreadyEnrolledException;
-import seedu.address.model.person.exceptions.StudentTutorNotFoundException;
-import seedu.address.model.person.exceptions.TimeClashException;
 import seedu.address.model.session.Session;
-import seedu.address.model.session.SessionId;
-import seedu.address.model.session.Time;
-import seedu.address.model.session.exceptions.SessionNotFoundException;
 
 
 /**
@@ -136,120 +127,8 @@ public class ModelManager implements Model {
         addressBook.removeSession(target);
     }
 
-    /**
-     * Assigns the student/tutor to a session in addressBook
-     * @param assignment
-     */
-    public void registerAssignment(Assignment assignment) throws TimeClashException, AlreadyEnrolledException,
-            SessionNotFoundException, StudentTutorNotFoundException {
-        Session session = addressBook.getSession(assignment.getSessionId());
-        if (session == null) {
-            throw new SessionNotFoundException("Session id :" + assignment.getSessionId() + " does not exist");
-        }
-        if (assignment.getStudentId() != null) {
-            Person currentStudent = addressBook.getPerson(assignment.getStudentId());
-            if (currentStudent == null) {
-                throw new StudentTutorNotFoundException("student id: " + assignment.getStudentId() + " does not exist");
-            }
-            if (!checkEnrollement(currentStudent, session)) {
-                if (checkTimeSlot(currentStudent, session)) {
-                    currentStudent.addSession(assignment.getSessionId());
-                    session.assignStudent(assignment.getStudentId());
-                } else {
-                    throw new TimeClashException("There is timing clash between "
-                            + "the student sessions and session to be added!");
-                }
-            } else {
-                throw new AlreadyEnrolledException("The student of student Id: "
-                        + currentStudent.getPersonId().getPersonId()
-                        + " is already enrolled in this class");
-            }
-        }
-        if (assignment.getTutorId() != null) {
-            Person currentTutor = addressBook.getPerson(assignment.getTutorId());
-            if (currentTutor == null) {
-                throw new StudentTutorNotFoundException("tutor id: " + assignment.getTutorId() + " does not exist");
-            }
-            if (!checkEnrollement(currentTutor, session)) {
-                if (checkTimeSlot(currentTutor, session)) {
-                    currentTutor.addSession(assignment.getSessionId());
-                    session.assignTutor(assignment.getTutorId());
-                } else {
-                    throw new TimeClashException("There is timing clash between "
-                            + "the tutor sessions and session to be added!");
-                }
-            } else {
-                throw new AlreadyEnrolledException("The student of tutor Id: "
-                        + currentTutor.getPersonId().getPersonId()
-                        + " is already assigned to this class");
-            }
-        }
-    }
-
-    private boolean checkEnrollement(Person person, Session session) {
-        for (SessionId sessionid : person.getSessions()) {
-            if (sessionid.equals(session.getClassId())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean checkTimeSlot(Person person, Session session) {
-        for (SessionId sessionid : person.getSessions()) {
-            Session currentSession = addressBook.getSession(sessionid);
-            if (!currentSession.getDay().toString().equals(session.getDay().toString())) {
-                return true;
-            } else {
-                Time sessionStart = session.getTimeslot().getStart();
-                Time sessionEnd = session.getTimeslot().getEnd();
-                Time start = currentSession.getTimeslot().getStart();
-                Time end = currentSession.getTimeslot().getEnd();
-                if (sessionStart.isAfter(start) && sessionStart.isBefore(end)) {
-                    return false;
-                } else if (sessionEnd.isAfter(start) && sessionEnd.isBefore(end)) {
-                    return false;
-                } else if (sessionStart.isBefore(start) && sessionEnd.isAfter(end)) {
-                    return false;
-                } else if (sessionStart.isSame(start) || sessionEnd.isSame(end)) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    /**
-     * Unassigns the student/tutor from a session in addressBook
-     * @param unassignment
-     */
-    public void registerUnassignment(Unassignment unassignment) throws SessionNotFoundException,
-            StudentTutorNotFoundException, UnassignTutorException {
-        Session session = addressBook.getSession(unassignment.getSessionId());
-        if (session == null) {
-            throw new SessionNotFoundException("Session id :" + unassignment.getSessionId() + " does not exist");
-        }
-        if (unassignment.getStudentId() != null) {
-            Person currentStudent = addressBook.getPerson(unassignment.getStudentId());
-            if (currentStudent == null) {
-                throw new StudentTutorNotFoundException("student id: " + unassignment.getStudentId() + " does not exist");
-            }
-            currentStudent.removeSession(unassignment.getSessionId());
-            session.unassignStudent(unassignment.getStudentId());
-        }
-        if (unassignment.getTutorId() != null) {
-            Person currentTutor = addressBook.getPerson(unassignment.getTutorId());
-            if (currentTutor == null) {
-                throw new StudentTutorNotFoundException("tutor id: " + unassignment.getTutorId() + " does not exist");
-            }
-            if (!unassignment.getTutorId().equals(session.getTutor())) {
-                throw new UnassignTutorException("Given tutor id, " + unassignment.getTutorId()
-                        + ", is different from the current tutor id of the session, "
-                        + session.getTutor().getPersonId() + ".");
-            }
-            currentTutor.removeSession(unassignment.getSessionId());
-            session.unassignTutor();
-        }
+    public void assignStudent(Person student, Session session) {
+        assert(student.isStudent());
     }
 
     //=========== Filtered Session List Accessors =============================================================

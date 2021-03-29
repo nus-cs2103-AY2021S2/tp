@@ -94,7 +94,6 @@ public class Session {
         return Collections.unmodifiableSet(tags);
     }
 
-
     /**
      * Adds a student to the session
      * @param student The student to be added
@@ -134,8 +133,36 @@ public class Session {
                 && otherSession.getClassId().equals(getClassId());
     }
 
+    public boolean hasTutor() {
+        return !this.tutor.equals(new PersonId(""));
+    }
+
     public void setTutor(PersonId tutor) {
         this.tutor = tutor;
+    }
+
+    private boolean isTutor(PersonId person) {
+        return this.tutor.equals(person.getPersonId());
+    }
+
+    private boolean checkEnrollement(PersonId person) {
+        for (PersonId personId : this.students) {
+            if (personId.equals(person.getPersonId())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if current session clashes with another given session
+     * @param other The session to compare
+     * @return true if clashing, false otherwise
+     */
+    public boolean isClashingWith(Session other) {
+        boolean sameDay = this.day.equals(other.day);
+        boolean timeslotClashing = this.timeslot.isClashingWith(other.timeslot);
+        return sameDay && timeslotClashing;
     }
 
     /**
