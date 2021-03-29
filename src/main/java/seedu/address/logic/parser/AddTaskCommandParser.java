@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_PAST_EVENT_END_DATE_TIME;
+import static seedu.address.commons.core.Messages.MESSAGE_PAST_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -11,7 +11,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.common.Category;
@@ -50,7 +49,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         Set<Tag> tagList = SocheduleParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         if (!isDeadlineBeforeNow(deadline)) {
-            throw new ParseException(String.format(MESSAGE_PAST_EVENT_END_DATE_TIME, AddEventCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_PAST_DEADLINE, AddTaskCommand.MESSAGE_USAGE));
         }
 
         Task task = new Task(name, deadline, priority, categoryList, tagList);
