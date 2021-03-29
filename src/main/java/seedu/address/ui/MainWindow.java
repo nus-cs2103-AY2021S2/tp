@@ -196,16 +196,18 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Display and refresh date time display on TutorBuddy every 1 second
+     * Displays and refreshes date time display on TutorBuddy every 1 second
      */
     private void displayDateAndTime() {
         final Timeline timeline = new Timeline(
                 new KeyFrame(
                     Duration.millis(1000),
                     event -> {
-                        time.setText(LocalDateTime.now().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm"))
-                            + "     " + LocalDateTime.now().toLocalDate()
-                                .format(DateTimeFormatter.ofPattern("dd-MM-YYYY")));
+                        time.setText(
+                        LocalDateTime.now().toLocalDate()
+                                .format(DateTimeFormatter.ofPattern("dd-MM-YYYY")) + "     " +
+                                LocalDateTime.now().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm")));
+
                     }
                 )
         );
