@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_PRICE_MORE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAGS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
+import static seedu.address.logic.parser.ParserUtil.parsePropertyDeadline;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +20,11 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyAddressPredicate;
 import seedu.address.model.property.PropertyContainsKeywordsPredicate;
+import seedu.address.model.property.PropertyDeadlinePredicate;
 import seedu.address.model.property.PropertyPostalCodePredicate;
 import seedu.address.model.property.PropertyPredicateList;
 import seedu.address.model.property.PropertyPricePredicate;
+import seedu.address.model.property.PropertyRemarksPredicate;
 import seedu.address.model.property.PropertyTagsPredicate;
 import seedu.address.model.property.PropertyTypePredicate;
 
@@ -57,23 +60,27 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
                 } else if (s.startsWith(String.valueOf(PREFIX_PROPERTY_PRICE_LESS))) {
                     predicates.add(new PropertyPricePredicate(key, true));
                 } else if (s.startsWith(String.valueOf(PREFIX_TYPE))) {
-                    predicates.add(new PropertyTypePredicate(key);
+                    predicates.add(new PropertyTypePredicate(key));
                 } else if (s.startsWith(String.valueOf(PREFIX_POSTAL))) {
                     predicates.add(new PropertyPostalCodePredicate(key));
                 } else if (s.startsWith(String.valueOf(PREFIX_ADDRESS))) {
                     predicates.add(new PropertyAddressPredicate(String.valueOf(PREFIX_ADDRESS)));
                 } else if (s.startsWith(String.valueOf(PREFIX_REMARK))) {
-                    List<String> remarks = new ArrayList<>();
-                    remarks.add(key);
+                    StringBuilder remarks = new StringBuilder(key);
                     int j = i + 1;
                     while (j < nameKeywords.length && !nameKeywords[j].contains("/")) {
-                        remarks.add(nameKeywords[j].strip());
+                        remarks.append(nameKeywords[j].strip());
                         j++;
                     }
                     i = j - 1; //reduce by 1 for for loop increment
-                    predicates.add(new PropertyRemarkPredicate(remarks));
+                    predicates.add(new PropertyRemarksPredicate(remarks.toString()));
                 } else if (s.startsWith(String.valueOf(PREFIX_DEADLINE))) {
-                    predicates.add(new PropertyDeadlinePredicate(key));
+                    try {
+                        predicates.add(new PropertyDeadlinePredicate(parsePropertyDeadline(key)));
+                    } catch (ParseException e) {
+                        throw new ParseException("Wrong deadline format! \n"
+                            + String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPropertyCommand.MESSAGE_USAGE));
+                    }
                 } else if (s.startsWith(String.valueOf(PREFIX_TAGS))) {
                     StringBuilder tags = new StringBuilder(key);
                     int j = i + 1;
