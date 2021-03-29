@@ -9,6 +9,9 @@ import javafx.scene.Scene;
 import seedu.address.ui.UiPart;
 
 /**
+ * @@author {se-edu}-reused
+ * Reused from AB4 https://github.com/se-edu/addressbook-level4/
+ *
  * Provides an isolated stage to test an individual {@code UiPart}.
  */
 public class UiPartExtension extends StageExtension {

@@ -29,11 +29,11 @@ With CoLAB, you can efficiently manage all your school projects through our comp
 
 ## **2.About**
 
-This section serves to familarise you with information and terms that would help you make the best use of this user guide.
+This section serves to familiarise you with information and terms that would help you make the best use of this user guide.
 
 ### 2.1 Structure of this Document
 
-We have included a large set of features in CoLAB to give you the greatest flexibility over what you can do with it. As such, this User Guide has been structured in a manner that allows you to easily find what you are looking for. 
+We have included a large set of features in CoLAB to give you the greatest flexibility over what you can do with it. As such, this User Guide has been structured in a manner that allows you to easily find what you are looking for.
 
 In [Section 2.2: Reading this Document](#22-reading-this-document), you will find useful tips on efficiently reading this document.
 
@@ -49,7 +49,7 @@ You can also easily sift through CoLAB's various commands and features by referr
 
 ### 2.2 Reading this Document
 
-This subsection serves to provide explanations on the symbols, syntax and technical terms  used throughout this User Guide. Familiarising yourself with this subsection will make the User Guide easier to read.
+This subsection serves to provide explanations on the symbols, syntax and technical terms used throughout this User Guide. Familiarising yourself with this subsection will make the User Guide easier to read.
 
 #### 2.2.1 Sections of the Application Window
 
@@ -62,6 +62,8 @@ Different sections of the application window will be referred to by the names de
 [TODO]
 
 #### 2.2.3 Command Format
+
+Commands shown in this user guide follow these rules.
 
 <div markdown="block" class="alert alert-info">
 
@@ -82,10 +84,79 @@ Different sections of the application window will be referred to by the names de
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help` and `exit`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
+
+#### 2.2.4 Command Parameters
+
+This subsection serves to list out the parameters used in this document. We have set reasonable constraints on the parameters to ensure that the UI displays your information correctly.
+
+##### `ADDRESS`
+
+* The address of a contact.
+* Addresses can take any values, but it should not be blank.
+
+##### `DATE`
+
+* The date of a deadline or event.
+* Date can be only be entered in one of these formats:
+    * 23-11-2021
+    * 23/11/2021
+    * 23.11.2021
+    * 23112021
+* The year should be a non-negative number between 0000 and 9999.
+
+##### `DESCRIPTION`
+
+* The description of a deadline, event or todo.
+
+##### `EMAIL`
+
+* The email address of a contact.
+* Emails should be of the format local-part@domain.
+* The local-part should only contain alphanumeric characters and these special characters, <code>!#$%&'*+/=?`{|}~^.-</code>.
+* This is followed by a '@' and then a domain name.
+* The domain name must:
+    * be at least 2 characters long
+    * start and end with alphanumeric characters
+    * consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.
+
+##### `INDEX`
+
+* Indexes are used to identify specific items in CoLAB. There are 6 types of indexes:
+    * `CONTACT_INDEX` refers to the number shown beside the contact in the Main Panel when contacts is displayed.
+    * `DEADLINE_INDEX` refers to the number shown beside the deadline in the Main Panel when a project is displayed.
+    * `EVENT INDEX` refers to the number shown beside the event in the Main Panel when a project is displayed.
+    * `GROUPMATE_INDEX` refers to the number shown beside the groupmate in the Main Panel when a project is displayed.
+    * `PROJECT_INDEX` refers to the number shown beside the project name in the side panel.
+    * `TODO_INDEX` refers to the number shown beside the todo in the Main Panel when a project is displayed.
+* Indexes **must be a positive integer** 1, 2, 3, …​
+
+##### `KEYWORD`
+
+* The keyword used to seach for contacts.
+* `MORE KEYWORDS` also follows this definition.
+
+##### `NAME`
+
+* The name of a contact.
+* Names should only contain alphanumeric characters, and it should not be blank.
+
+##### `PHONE_NUMBER`
+
+* The phone number of a contact.
+* Phone numbers should only contain numbers, and it should be at least 3 digits long.
+
+##### `PROJECT_NAME`
+
+* The name of the project.
+
+##### `TAG`
+
+* The tag associated with a contact.
+* Tags should consist of alphanumeric characters.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -121,37 +192,15 @@ Different sections of the application window will be referred to by the names de
 
 ## **4.Features**
 
+This section contains documentation on CoLAB's features and commands.
+
+It is split into 4 subsections,
+* [Projects](#projects)
+* [Contacts](#contacts)
+* [Navigating the UI](#navigating-the-ui)
+* [Others](#others)
+
 ### Projects
-
-#### Viewing a project: `viewP`
-
-Displays a panel with details of a specified project.
-
-Format: `viewP PROJECT_INDEX`
-
-* Displays a panel with details of the project at the specified `PROJECT_INDEX`.
-* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `viewP 1` Displays the first project.
-* `viewP 2` Displays the second project.
-
-#### Viewing the overview tab: `tabO`
-
-Switches to the overview tab of the project that is currently displayed.
-
-Format: `tabO`
-
-* This command can only be used when a project is currently being displayed.
-
-#### Viewing the todos tab: `tabT`
-
-Switches to the todos tab of the project that is currently displayed.
-
-Format: `tabT`
-
-* This command can only be used when a project is currently being displayed.
 
 #### Adding a project: `addP`
 
@@ -297,11 +346,11 @@ Examples:
 
 Deletes a specified contact from a specified project.
 
-Format: `deleteCfrom PROJECT_INDEX r/CONTACT_INDEX`
+Format: `deleteCfrom PROJECT_INDEX r/GROUPMATE_INDEX`
 
-* Deletes the contact at the specified `CONTACT_INDEX` from the project at the specified `PROJECT_INDEX`.
+* Deletes the contact at the specified `GROUPMATE_INDEX` from the project at the specified `PROJECT_INDEX`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
-* The `CONTACT_INDEX` refers to the number shown beside the contact when viewing the project.
+* The `GROUPMATE_INDEX` refers to the number shown beside the contact when viewing the project.
 * Both indexes **must be a positive integer** 1, 2, 3, …​
 
 Examples:
@@ -323,12 +372,6 @@ A contact can have any number of tags (including 0)
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-#### Listing all contacts : `listC`
-
-Shows a list of all contacts in CoLAB.
-
-Format: `listC`
 
 #### Locating contacts by name: `find`
 
@@ -352,9 +395,9 @@ Examples:
 
 Edits an existing contact in CoLAB.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit CONTACT_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the contact at the specified `CONTACT_INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the contact will be removed i.e. adding of tags is not cumulative.
@@ -369,9 +412,9 @@ Examples:
 
 Deletes the specified contact from the address book.
 
-Format: `delete INDEX`
+Format: `delete CONTACT_INDEX`
 
-* Deletes the contact at the specified `INDEX`.
+* Deletes the contact at the specified `CONTACT_INDEX`.
 * The index refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
@@ -385,7 +428,45 @@ Clears all entries from CoLAB.
 
 Format: `clear`
 
-### Other commands
+### Navigating the UI
+
+Although most of the buttons you see on the screen are clickable, the UI has been designed primarily to be navigated using the command line interface.
+
+#### Listing all contacts : `listC`
+
+Shows a list of all contacts in CoLAB.
+
+Format: `listC`
+
+#### Viewing a project: `viewP`
+
+Displays a panel with details of a specified project.
+
+Format: `viewP PROJECT_INDEX`
+
+* Displays a panel with details of the project at the specified `PROJECT_INDEX`.
+* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `viewP 1` Displays the first project.
+* `viewP 2` Displays the second project.
+
+#### Viewing the overview tab: `tabO`
+
+Switches to the overview tab of the project that is currently displayed.
+
+Format: `tabO`
+
+* This command can only be used when a project is currently being displayed.
+
+#### Viewing the todos tab: `tabT`
+
+Switches to the todos tab of the project that is currently displayed.
+
+Format: `tabT`
+
+* This command can only be used when a project is currently being displayed.
 
 #### View Today Panel : `today`
 
@@ -407,6 +488,8 @@ Exits the program.
 
 Format: `exit`
 
+### Others
+
 #### Saving the data
 
 CoLAB's data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -421,23 +504,7 @@ If your changes to the data file makes its format invalid, CoLAB will discard al
 
 ### Coming soon
 
-#### View more details about a contact `[coming soon]`
-
-Format: `view INDEX`
-
-* Shows more details about the contact at the specified `INDEX`.
-* The index refers to the index number shown in the displayed contact list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `view 2` deletes the 2nd contact in the address book.
-* `find Betsy` followed by `view 1` deletes the 1st contact in the results of the `find` command.
-
 #### Undo/Redo `[coming soon]`
-
-_Details coming soon ..._
-
-#### Archiving data files `[coming soon]`
 
 _Details coming soon ..._
 
@@ -452,24 +519,36 @@ _Details coming soon ..._
 
 ## **6.Command summary**
 
+### Projects
+
 Action | Format, Examples
 --------|------------------
-**Add Contact** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Add Project** | `addP n/PROJECT_NAME`
 **Add Deadline to Project** | `addDto PROJECT_INDEX d/DESCRIPTION by/DATE`
 **Add Event to Project** | `addEto PROJECT_INDEX d/DESCRIPTION i/INTERVAL at/DATE`
 **Add Participant to Project** | `addCto PROJECT_INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 **Add Todo to Project** | `addTto PROJECT_INDEX d/DESCRIPTION`
-**Delete Contact** | `delete INDEX`<br> e.g., `delete 3`
 **Delete Project** | `deleteP PROJECT_INDEX`
 **Delete Deadline from Project** | `deleteD PROJECT_INDEX r/DEADLINE_INDEX`
 **Delete Event from Project** | `deleteE PROJECT_INDEX r/EVENT_INDEX`
-**Delete Participant from Project** | `deleteCfrom PROJECT_INDEX r/CONTACT_INDEX`
+**Delete Participant from Project** | `deleteCfrom PROJECT_INDEX r/GROUPMATE_INDEX`
 **Delete Todo from Project** | `deleteT PROJECT_INDEX r/TODO_INDEX`
+
+### Contacts
+
+Action | Format, Examples
+--------|------------------
+**Add Contact** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Delete Contact** | `delete CONTACT_INDEX`<br> e.g., `delete 3`
 **Clear Contacts** | `clear`
-**Edit Contact** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit Contact** | `edit CONTACT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find Contact** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List Contacts** | `listC`
+
+### Navigating the UI
+
+Action | Format, Examples
+--------|------------------
 **View Project** | `viewP PROJECT_INDEX`
 **View Overview Tab** | `tabO`
 **View Todos Tab** | `tabT`
