@@ -26,7 +26,7 @@ public class JsonAdaptedVenueTest {
     }
 
     @Test
-    public void toModelType_invalidCapacity_throwsIllegalValueException() {
+    public void toModelType_invalidCapacity_throwsIllegalArgumentException() {
         // venue with invalid capacity of 0
         JsonAdaptedVenue venue =
                 new JsonAdaptedVenue(VALID_NAME, INVALID_CAPACITY1, VALID_DESCRIPTION, null);
