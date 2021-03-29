@@ -116,6 +116,9 @@ public class TimeslotParser {
                 parsedDate = parsedDate.withHour(hoursMinutesArray[0]);
                 parsedDate = parsedDate.withMinute(hoursMinutesArray[1]);
                 parsedDate = parsedDate.withSecond(0).withNano(0);
+
+            } else {
+                throw new ParseException(MESSAGE_INVALID_DATE_TIME_FORMAT);
             }
 
             return parsedDate;
@@ -123,7 +126,6 @@ public class TimeslotParser {
         } catch (DateTimeParseException e) {
             String messageUsage = isInvalidTime ? MESSAGE_INVALID_TIME_FORMAT
                     : MESSAGE_INVALID_NEXT_DATE_TIME_FORMAT;
-
             throw new ParseException(messageUsage);
         }
     }
@@ -136,27 +138,24 @@ public class TimeslotParser {
      * @throws NullPointerException if the {@code timeInput} does not
      * conform to the expected time format.
      */
-    public static int[] parseTime(String timeInput) throws NullPointerException {
-        try {
-            String revisedTimeInput = (timeInput.contains("PM") || timeInput.contains("AM"))
-                    ? removeMeridian(timeInput)
-                    : timeInput;
-            String[] hoursMinutesRawArray = revisedTimeInput.split(":");
-            int[] hoursMinutesIntegerArray = Arrays.stream(hoursMinutesRawArray).mapToInt(Integer::parseInt).toArray();
+    public static int[] parseTime(String timeInput) {
 
-            if (timeInput.contains("PM")) {
-                hoursMinutesIntegerArray[0] = (hoursMinutesIntegerArray[0]) + 12;
-            }
+        String revisedTimeInput = (timeInput.contains("PM") || timeInput.contains("AM"))
+                ? removeMeridian(timeInput)
+                : timeInput;
 
-            if (timeInput.contains("AM") && hoursMinutesIntegerArray[0] == 12) {
-                hoursMinutesIntegerArray[0] = 0;
-            }
+        String[] hoursMinutesRawArray = revisedTimeInput.split(":");
+        int[] hoursMinutesIntegerArray = Arrays.stream(hoursMinutesRawArray).mapToInt(Integer::parseInt).toArray();
 
-            return hoursMinutesIntegerArray;
-
-        } catch (NullPointerException e) {
-            throw new NullPointerException(MESSAGE_INVALID_TIME_FORMAT);
+        if (timeInput.contains("PM")) {
+            hoursMinutesIntegerArray[0] = (hoursMinutesIntegerArray[0]) + 12;
         }
+
+        if (timeInput.contains("AM") && hoursMinutesIntegerArray[0] == 12) {
+            hoursMinutesIntegerArray[0] = 0;
+        }
+
+        return hoursMinutesIntegerArray;
     }
 
     /**
