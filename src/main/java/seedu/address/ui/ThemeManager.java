@@ -9,7 +9,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.stream.Collectors;
 
-import javafx.scene.Scene;
 import seedu.address.MainApp;
 
 /**
@@ -33,24 +32,11 @@ public class ThemeManager {
      * Path of the css file currently in use
      */
     private static String cssCacheUri = null;
-    /**
-     * The mainScene property from a MainWindow instance.
-     */
-    private static Scene scene = null;
 
     static {
         InputStream templateStream = MainApp.class.getResourceAsStream("/view/Template.css");
         CSS_TEMPLATE = new BufferedReader(new InputStreamReader(templateStream))
                 .lines().collect(Collectors.joining("\n"));
-    }
-
-    /**
-     * Sets the scene for themes to be applied to.
-     *
-     * @param scene The scene for themes to be applied to.
-     */
-    public static void setScene(Scene scene) {
-        ThemeManager.scene = scene;
     }
 
     /**
@@ -96,14 +82,6 @@ public class ThemeManager {
 
     public static String getCssCacheUri() {
         return ThemeManager.cssCacheUri;
-    }
-
-    /**
-     * Applies the current theme to the application.
-     */
-    public static void applyThemeToScene() {
-        ThemeManager.scene.getStylesheets().clear();
-        ThemeManager.scene.getStylesheets().add("file:///" + ThemeManager.cssCacheUri);
     }
 
     /**

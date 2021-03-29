@@ -24,6 +24,8 @@ import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Debt;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Event;
+import seedu.address.model.person.Goal;
+import seedu.address.model.person.Goal.Frequency;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -233,5 +235,13 @@ public class ParserUtil {
             throw new ParseException(Debt.MESSAGE_CONSTRAINTS);
         }
         return new Debt(debt);
+    }
+    /**
+     * Parses a {@code String} into a {@code Frequency}
+     *
+     * @throws ParseException if the given {@code String} is an invalid frequency.
+     */
+    public static Frequency parseFrequency(String frequencyString) throws ParseException {
+        return Goal.parseFrequency(frequencyString);
     }
 }

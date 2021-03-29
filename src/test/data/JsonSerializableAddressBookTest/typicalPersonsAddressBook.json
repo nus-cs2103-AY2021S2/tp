@@ -7,7 +7,8 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "birthday" : "01-01-1998",
     "tagged" : [ "friends" ],
-    "debt" : "0"
+    "debt" : "0",
+    "goal": "NONE"
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
@@ -15,7 +16,8 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "birthday" : "01-02-1998",
     "tagged" : [ "owesMoney", "friends" ],
-    "debt" : "0"
+    "debt" : "0",
+    "goal": "NONE"
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
@@ -23,7 +25,8 @@
     "address" : "wall street",
     "birthday" : "01-01-1998",
     "tagged" : [ ],
-    "debt" : "0"
+    "debt" : "0",
+    "goal": "NONE"
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
@@ -31,7 +34,8 @@
     "address" : "10th street",
     "birthday" : "01-03-1998",
     "tagged" : [ "friends" ],
-    "debt" : "0"
+    "debt" : "0",
+    "goal": "NONE"
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
@@ -39,7 +43,8 @@
     "address" : "michegan ave",
     "birthday" : "01-04-1998",
     "tagged" : [ ],
-    "debt" : "0"
+    "debt" : "0",
+    "goal": "NONE"
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
@@ -47,7 +52,8 @@
     "address" : "little tokyo",
     "birthday" : "01-05-2000",
     "tagged" : [ ],
-    "debt" : "0"
+    "debt" : "0",
+    "goal": "NONE"
   }, {
     "name" : "George Best",
     "phone" : "9482442",
@@ -55,7 +61,8 @@
     "address" : "4th street",
     "birthday" : "15-12-1960",
     "tagged" : [ ],
-    "debt" : "0"
+    "debt" : "0",
+    "goal": "NONE"
   } ],
   "groups" : [ ]
 }

@@ -23,6 +23,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SetGoalCommand;
 import seedu.address.logic.commands.ThemeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -99,6 +100,9 @@ public class InputParser {
 
         case AddPictureCommand.COMMAND_WORD:
             return new AddPictureCommandParser().parse(arguments);
+
+        case SetGoalCommand.COMMAND_WORD:
+            return new SetGoalCommandParser().parse(arguments);
 
         case DetailsCommand.COMMAND_WORD:
             return new DetailsCommandParser().parse(arguments);

@@ -3,6 +3,7 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -16,6 +17,7 @@ import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Debt;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Event;
+import seedu.address.model.person.Goal;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -34,6 +36,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String birthday;
     private final String debt;
+    private final String goal;
     private final String address;
     private final JsonAdaptedPicture picture;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -46,7 +49,8 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("birthday") String birthday,
-            @JsonProperty("address") String address, @JsonProperty("picture") JsonAdaptedPicture picture,
+            @JsonProperty("goal") String goal, @JsonProperty("address") String address,
+            @JsonProperty("picture") JsonAdaptedPicture picture,
             @JsonProperty("debt") String debt, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
             @JsonProperty("dates") List<JsonAdaptedEvent> dates,
             @JsonProperty("meetings") List<JsonAdaptedEvent> meetings) {
@@ -55,6 +59,7 @@ class JsonAdaptedPerson {
         this.phone = phone;
         this.email = email;
         this.birthday = birthday;
+        this.goal = goal;
         this.address = address;
         this.picture = picture;
         this.debt = debt;
@@ -78,6 +83,7 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         birthday = source.getBirthday().toString();
+        goal = source.getGoal().toString();
         Optional<Picture> srcPic = source.getPicture();
         picture = srcPic.isEmpty() ? null : new JsonAdaptedPicture(srcPic.get());
         debt = source.getDebt().value.toString();
@@ -131,6 +137,11 @@ class JsonAdaptedPerson {
         }
         final Birthday modelBirthday = new Birthday(birthday);
 
+        if (!Goal.isValidGoal(goal)) {
+            throw new IllegalValueException(Goal.MESSAGE_CONSTRAINTS);
+        }
+        final Goal modelGoal = new Goal(Goal.parseFrequency(goal.toLowerCase(Locale.ROOT)));
+
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
@@ -168,7 +179,7 @@ class JsonAdaptedPerson {
             modelMeetings.add(meeting.toModelType());
         }
 
-        return new Person(modelName, modelPhone, modelEmail, modelBirthday, modelAddress, modelPicture,
+        return new Person(modelName, modelPhone, modelEmail, modelBirthday, modelGoal, modelAddress, modelPicture,
                 modelDebt, modelTags, modelDates, modelMeetings);
     }
 }

@@ -23,6 +23,8 @@ public class CommandResult {
      */
     private final boolean exit;
 
+    private final boolean theme;
+
     /**
      * The new tab to be displayed on the {@code DetailsPanel}.
      */
@@ -31,25 +33,26 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    private CommandResult(String feedbackToUser, boolean showHelp, boolean exit, DetailsPanelTab tab) {
+    private CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean theme, DetailsPanelTab tab) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.tab = tab;
+        this.theme = theme;
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this(feedbackToUser, showHelp, exit, null);
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean theme) {
+        this(feedbackToUser, showHelp, exit, theme, null);
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, DetailsPanelTab tab) {
-        this(feedbackToUser, false, false, tab);
+        this(feedbackToUser, false, false, false, tab);
     }
 
     /**
@@ -57,7 +60,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, null);
+        this(feedbackToUser, false, false, false, null);
     }
 
     public String getFeedbackToUser() {
@@ -70,6 +73,10 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isTheme() {
+        return theme;
     }
 
     public DetailsPanelTab getNewTab() {
