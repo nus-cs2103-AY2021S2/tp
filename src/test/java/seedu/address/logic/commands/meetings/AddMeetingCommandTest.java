@@ -11,6 +11,7 @@ import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -158,6 +159,11 @@ class AddMeetingCommandTest {
         }
 
         @Override
+        public void sortFilteredPersonList(Comparator<Person> comparator) {
+
+        }
+
+        @Override
         public void setMeetingBook(ReadOnlyMeetingBook meetingBook) {
             throw new AssertionError("This method should not be called.");
         }
@@ -200,6 +206,11 @@ class AddMeetingCommandTest {
         @Override
         public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortFilteredMeetingList(Comparator<Meeting> comparator) {
+
         }
 
         @Override

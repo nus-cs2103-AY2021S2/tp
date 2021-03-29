@@ -14,6 +14,10 @@ public class CliSyntax {
     public static final Prefix PREFIX_EMAIL = new Prefix("e/");
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
 
+    /* Prefix for sorting */
+    public static final Prefix PREFIX_SORT_DIRECTION = new Prefix("d/");
+    public static final Prefix PREFIX_SORT_BY = new Prefix("by/");
+
 
     /* Prefix specific for meeting */
     public static final Prefix PREFIX_START_TIME = new Prefix("st/");

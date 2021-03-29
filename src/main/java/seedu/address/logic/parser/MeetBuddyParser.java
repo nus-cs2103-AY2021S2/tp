@@ -12,6 +12,8 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListAllCommand;
 import seedu.address.logic.commands.meetings.AddMeetingCommand;
 import seedu.address.logic.commands.meetings.DeleteMeetingCommand;
+import seedu.address.logic.commands.meetings.SortMeetingCommand;
+import seedu.address.logic.commands.meetings.UnsortMeetingCommand;
 import seedu.address.logic.commands.meetings.EditMeetingCommand;
 import seedu.address.logic.commands.meetings.ListMeetingCommand;
 import seedu.address.logic.commands.persons.AddPersonCommand;
@@ -21,17 +23,21 @@ import seedu.address.logic.commands.persons.EditPersonCommand;
 import seedu.address.logic.commands.persons.FindGroupCommand;
 import seedu.address.logic.commands.persons.FindPersonCommand;
 import seedu.address.logic.commands.persons.ListPersonCommand;
+import seedu.address.logic.commands.persons.SortPersonCommand;
+import seedu.address.logic.commands.persons.UnsortPersonCommand;
 import seedu.address.logic.commands.reminders.RefreshRemindersCommand;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.meetings.AddMeetingCommandParser;
 import seedu.address.logic.parser.meetings.DeleteMeetingCommandParser;
+import seedu.address.logic.parser.meetings.SortMeetingCommandParser;
 import seedu.address.logic.parser.meetings.EditMeetingCommandParser;
 import seedu.address.logic.parser.persons.AddPersonCommandParser;
 import seedu.address.logic.parser.persons.DeletePersonCommandParser;
 import seedu.address.logic.parser.persons.EditPersonCommandParser;
 import seedu.address.logic.parser.persons.FindGroupCommandParser;
 import seedu.address.logic.parser.persons.FindPersonCommandParser;
+import seedu.address.logic.parser.persons.SortPersonCommandParser;
 
 
 /**
@@ -82,6 +88,13 @@ public class MeetBuddyParser {
         case ListPersonCommand.COMMAND_WORD:
             return new ListPersonCommand();
 
+        case SortPersonCommand.COMMAND_WORD:
+            return new SortPersonCommandParser().parse(arguments);
+
+        case UnsortPersonCommand
+                    .COMMAND_WORD:
+            return new UnsortPersonCommand();
+
         //============================= Meeting ==============================
         case AddMeetingCommand.COMMAND_WORD:
             return new AddMeetingCommandParser().parse(arguments);
@@ -94,6 +107,12 @@ public class MeetBuddyParser {
 
         case ListMeetingCommand.COMMAND_WORD:
             return new ListMeetingCommand();
+
+        case SortMeetingCommand.COMMAND_WORD:
+            return new SortMeetingCommandParser().parse(arguments);
+
+        case UnsortMeetingCommand.COMMAND_WORD:
+            return new UnsortMeetingCommand();
 
         //============================= General ==============================
         case ExitCommand.COMMAND_WORD:

@@ -26,6 +26,7 @@ import seedu.address.testutil.PersonBuilder;
 
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -388,6 +389,11 @@ public class AddMeetingCommandWithConnectionTest {
             filteredPersons.setPredicate(predicate);
         }
 
+        @Override
+        public void sortFilteredPersonList(Comparator<Person> comparator) {
+
+        }
+
         //=========== Filtered Meeting List Accessors =============================================================
 
         /**
@@ -405,7 +411,10 @@ public class AddMeetingCommandWithConnectionTest {
             filteredMeetings.setPredicate(predicate);
         }
 
+        @Override
+        public void sortFilteredMeetingList(Comparator<Meeting> comparator) {
+
+        }
+
     }
 }
-
-

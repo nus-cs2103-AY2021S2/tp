@@ -42,4 +42,3 @@ public class FindGroupCommand extends Command {
                 && predicate.equals(((FindGroupCommand) other).predicate)); // state check
     }
 }
-
