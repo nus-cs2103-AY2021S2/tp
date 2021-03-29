@@ -155,7 +155,7 @@ public class ModelManager implements Model {
 
     @Override
     public Path getDoctorRecordsFilePath() {
-        return userPrefs.getPatientRecordsFilePath();
+        return userPrefs.getDoctorRecordsFilePath();
     }
 
     @Override
