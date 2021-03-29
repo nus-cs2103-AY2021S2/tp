@@ -504,23 +504,7 @@ If your changes to the data file makes its format invalid, CoLAB will discard al
 
 ### Coming soon
 
-#### View more details about a contact `[coming soon]`
-
-Format: `view CONTACT_INDEX`
-
-* Shows more details about the contact at the specified `CONTACT_INDEX`.
-* The index refers to the index number shown in the displayed contact list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `view 2` deletes the 2nd contact in the address book.
-* `find Betsy` followed by `view 1` deletes the 1st contact in the results of the `find` command.
-
 #### Undo/Redo `[coming soon]`
-
-_Details coming soon ..._
-
-#### Archiving data files `[coming soon]`
 
 _Details coming soon ..._
 
