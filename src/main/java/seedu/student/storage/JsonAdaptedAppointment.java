@@ -2,12 +2,14 @@ package seedu.student.storage;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.student.commons.exceptions.IllegalValueException;
+import seedu.student.logic.parser.exceptions.ParseException;
 import seedu.student.model.appointment.Appointment;
 import seedu.student.model.student.MatriculationNumber;
 import seedu.student.model.student.Student;
@@ -20,8 +22,8 @@ class JsonAdaptedAppointment {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Appointment's %s field is missing!";
 
     private final String matriculationNumber;
-    private final LocalDate date;
-    private final LocalTime startTime;
+    private final String date;
+    private final String startTime;
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
@@ -29,8 +31,8 @@ class JsonAdaptedAppointment {
     @JsonCreator
     public JsonAdaptedAppointment(
                               @JsonProperty("matriculationNumber") String matriculationNumber,
-                              @JsonProperty("date") LocalDate date,
-                              @JsonProperty("startTime") LocalTime startTime) {
+                              @JsonProperty("date") String date,
+                              @JsonProperty("startTime") String startTime) {
         this.matriculationNumber = matriculationNumber;
         this.date = date;
         this.startTime = startTime;
@@ -41,8 +43,8 @@ class JsonAdaptedAppointment {
      */
     public JsonAdaptedAppointment(Appointment source) {
         matriculationNumber = source.getMatriculationNumber().value;
-        date = source.getDate();
-        startTime = source.getStartTime();
+        date = source.getDate().toString();
+        startTime = source.getStartTime().toString();
     }
 
     /**
@@ -70,8 +72,24 @@ class JsonAdaptedAppointment {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "startTime"));
         }
 
-        final LocalDate modelDate = date;
-        final LocalTime modelStartTime = startTime;
+        try{
+            LocalDate.parse(date);
+        } catch(DateTimeParseException e){
+            throw new IllegalValueException(String.format(Appointment.MESSAGE_DATE_CONSTRAINTS, ""));
+        }
+        final LocalDate modelDate = LocalDate.parse(date);
+
+        try{
+             LocalTime.parse(startTime);
+        } catch(DateTimeParseException e){
+            throw new IllegalValueException(String.format(Appointment.MESSAGE_TIME_CONSTRAINTS, ""));
+        }
+        final LocalTime modelStartTime = LocalTime.parse(startTime);
+
+
+        if (!Appointment.isValidTime(modelStartTime)) {
+            throw new IllegalValueException(String.format(Appointment.MESSAGE_TIME_CONSTRAINTS, ""));
+        }
 
         return new Appointment(modelMatric, modelDate, modelStartTime);
     }
