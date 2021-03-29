@@ -139,7 +139,7 @@ Priority can only take 1 out of 3 values: `High`, `Mid` or `Low`.
 Examples:
 
 * `add q/Einstein’s Equation a/e=mc^2 c/Physics p/High` <br><br>
-  ![UIAdd](./images/UiAddResult.png) <br><br>
+  ![UIAdd]() <br><br>
 * `add q/Independence day of Singapore a/August 9th 1965 c/History p/Mid t/Singapore`
 
 ### Editing a flashcard: `edit`
