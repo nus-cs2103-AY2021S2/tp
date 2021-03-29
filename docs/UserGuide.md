@@ -114,21 +114,31 @@ Examples:
 
 ### Locating orders by name: `find`
 
-Finds orders whose names contain any of the given keywords.
+Find orders whose specified field contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find [n/KEYWORD_NAME]... [p/KEYWORD_PHONE]... [e/KEYWORD_EMAIL]... [a/KEYWORD_ADDRESS]... [o/KEYWORD_ORDER_DESCRIPTION]... [t/KEYWORD_TAG]... [d/KEYWORD_DELIVERY_DATE]... [s/KEYWORD_DELIVERY_STATUS]... [r/KEYWORD_REQUEST]... `
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Orders matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* The search is case-insensitive. e.g `hans` will match `Hans`.
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
+* Fields are searched according to specified prefixes. e.g. `n/Hans` will only find orders with name that match `Hans`.
+* Sub-strings will be matched e.g. `Han` will match `Hans`.
+* If no prefixes are specified 
+* If no prefixes are specified, orders matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
+* If multiple keywords are specified for a certain prefix, orders matching at least one keyword for the speficied field will be returned. (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
+* If multiple prefixes are specified, each keyword specified for each field must match orders with corresponding fields. (i.e. `AND` search) e.g. `n/Hans o/Cake` will only match orders with name that matches `Hans` and order description that matches `Cake`.
+* `AND` searches will take priority.
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find n/John` will return all orders with name `john`, `John Doe` or `Johnathan`.
+* `find n/Alex Bob` will return all orders with name `Alex`, `alexander`, `Bob` or `bobby`.
+* `find n/Alex o/Chocolate` will return all orders with name `Alex` and order description `Chocolate`. <br>
+  ![result for 'find n/Alex o/Chocolate'](images/findAlexChocolate.PNG) <br>
+* `find alex vanilla` will return all orders that matches `alex` or `chocolate`, <br>
+  ![result for 'find alex vanilla'](images/findAlexVanilla.PNG) <br>
+* `find n/Alex Bernice o/Chocolate` will return all orders that matches (`Alex` or `Bernice`) and `Chocolate`. <br>
+  ![result for 'find n/Alex Bernice o/Chocolate'](images/findAlexBerniceChocolate.PNG) <br>
+  
 
 ### Deleting an order : `delete`
 
@@ -255,7 +265,7 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEXES`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Find** | `find [n/KEYWORD_NAME]... [p/KEYWORD_PHONE]... [e/KEYWORD_EMAIL]... [a/KEYWORD_ADDRESS]... [o/KEYWORD_ORDER_DESCRIPTION]... [t/KEYWORD_TAG]... [d/KEYWORD_DELIVERY_DATE]... [s/KEYWORD_DELIVERY_STATUS]... [r/KEYWORD_REQUEST]... `<br> e.g., `find James Jake`, `find n/Alex o/Chocolate`, `find n/Bernice d/march s/undelivered` 
 **List** | `list`
 **Help** | `help`
 **Remind** | `remind DAYS`<br> e.g., `remind 3`
