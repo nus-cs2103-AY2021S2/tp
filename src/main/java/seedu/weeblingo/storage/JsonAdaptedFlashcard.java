@@ -25,17 +25,22 @@ class JsonAdaptedFlashcard {
     private final String question;
     private final String answer;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedTag> userTagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedFlashcard} with the given flashcard details.
      */
     @JsonCreator
     public JsonAdaptedFlashcard(@JsonProperty("question") String question, @JsonProperty("answer") String answer,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("user-tagged") List<JsonAdaptedTag> userTagged) {
         this.question = question;
         this.answer = answer;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (userTagged != null) {
+            this.userTagged.addAll(userTagged);
         }
     }
 
@@ -46,6 +51,9 @@ class JsonAdaptedFlashcard {
         question = source.getQuestion().value;
         answer = source.getAnswer().value;
         tagged.addAll(source.getWeeblingoTags().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+        userTagged.addAll(source.getUserTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
     }
@@ -59,6 +67,11 @@ class JsonAdaptedFlashcard {
         final List<Tag> flashcardTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             flashcardTags.add(tag.toModelType());
+        }
+
+        final List<Tag> flashcardUserTags = new ArrayList<>();
+        for (JsonAdaptedTag userTag : userTagged) {
+            flashcardUserTags.add(userTag.toModelType());
         }
 
         if (question == null) {
@@ -79,7 +92,10 @@ class JsonAdaptedFlashcard {
         final Answer modelAnswer = new Answer(answer);
 
         final Set<Tag> modelTags = new HashSet<>(flashcardTags);
-        return new Flashcard(modelquestion, modelAnswer, modelTags);
+
+        final Set<Tag> modelUserTags = new HashSet<>(flashcardUserTags);
+
+        return new Flashcard(modelquestion, modelAnswer, modelTags, modelUserTags);
     }
 
 }

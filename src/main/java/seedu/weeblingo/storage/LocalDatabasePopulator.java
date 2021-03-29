@@ -32,7 +32,8 @@ public class LocalDatabasePopulator {
             Question question = new Question((String) tempJsonCard.get("question"));
             Answer answer = new Answer((String) tempJsonCard.get("answer"));
             Set<Tag> tags = getTagSet((JSONArray) tempJsonCard.get("tagged"));
-            Flashcard tempCard = new Flashcard(question, answer, tags);
+            Set<Tag> userTags = getTagSet((JSONArray) tempJsonCard.get("user-tagged"));
+            Flashcard tempCard = new Flashcard(question, answer, tags, userTags);
             flashcards[i] = tempCard;
         }
         return flashcards;

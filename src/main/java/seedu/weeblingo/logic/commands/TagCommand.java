@@ -1,14 +1,20 @@
 package seedu.weeblingo.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.weeblingo.model.Mode.MODE_LEARN;
+import static seedu.weeblingo.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 
+import java.util.List;
 import java.util.Set;
 
+import seedu.weeblingo.commons.core.Messages;
 import seedu.weeblingo.commons.core.index.Index;
 import seedu.weeblingo.logic.commands.exceptions.CommandException;
 import seedu.weeblingo.model.Mode;
 import seedu.weeblingo.model.Model;
+import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.flashcard.Flashcard;
+import seedu.weeblingo.model.flashcard.Question;
 import seedu.weeblingo.model.tag.Tag;
 
 /**
@@ -25,6 +31,8 @@ public class TagCommand extends Command {
             + "Parameters: FLASHCARD_INDEX, TAG...\n"
             + "Example: " + COMMAND_WORD + " 2 t/very difficult t/revise by tomorrow";
 
+    public static final String MESSAGE_DUPLICATE_TAG = "Duplicate tags are not allowed.";
+
     private Index index;
 
     private Set<Tag> tags;
@@ -37,8 +45,49 @@ public class TagCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        System.out.println(index.getZeroBased() + "  " + tags);
+
+        if (model.getCurrentMode() != MODE_LEARN) {
+            throw new CommandException(Messages.MESSAGE_TAG_NOT_IN_LEARN_MODE);
+        }
+
+        List<Flashcard> lastShownList = model.getFilteredFlashcardList();
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
+        }
+
+        Flashcard flashcardToTag = lastShownList.get(index.getZeroBased());
+        Flashcard taggedFlashcard = createTaggedFlashcard(flashcardToTag, tags);
+
+        for (Tag t : flashcardToTag.getUserTags()) {
+            if (checkUserTagsForDuplicates(t)) {
+                throw new CommandException(MESSAGE_DUPLICATE_TAG);
+            }
+        }
+
+        model.setFlashcard(flashcardToTag, taggedFlashcard);
+        model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
+
         return new CommandResult(MESSAGE_SUCCESS, false, false);
+    }
+
+    private boolean checkUserTagsForDuplicates(Tag tag) {
+        for (Tag otherTag : tags) {
+            if (tag.equals(otherTag)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static Flashcard createTaggedFlashcard(Flashcard flashcardToEdit, Set<Tag> userTags) {
+        assert userTags != null;
+
+        Question question = flashcardToEdit.getQuestion();
+        Answer answer = flashcardToEdit.getAnswer();
+        Set<Tag> tags = flashcardToEdit.getWeeblingoTags();
+
+        return new Flashcard(question, answer, tags, userTags);
     }
 
 }

@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import seedu.weeblingo.model.flashcard.Flashcard;
 
 /**
@@ -52,6 +53,13 @@ public class FlashcardCard extends UiPart<Region> {
         flashcard.getWeeblingoTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        flashcard.getUserTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> {
+                    Label label = new Label(tag.tagName);
+                    label.setStyle("-fx-background-color: #777c85");
+                    tags.getChildren().add(label);
+                });
     }
 
     @Override

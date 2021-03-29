@@ -26,11 +26,12 @@ public class Flashcard {
     /**
      * Every field must be present and not null.
      */
-    public Flashcard(Question question, Answer answer, Set<Tag> weeblingoTags) {
+    public Flashcard(Question question, Answer answer, Set<Tag> weeblingoTags, Set<Tag> userTags) {
         requireAllNonNull(question, answer, weeblingoTags);
         this.question = question;
         this.answer = answer;
         this.weeblingoTags.addAll(weeblingoTags);
+        this.userTags.addAll(userTags);
     }
 
     public Question getQuestion() {
@@ -47,6 +48,13 @@ public class Flashcard {
      */
     public Set<Tag> getWeeblingoTags() {
         return Collections.unmodifiableSet(weeblingoTags);
+    }
+
+    /**
+     * Returns a mutable tag set of non-default tags set by the user.
+     */
+    public Set<Tag> getUserTags() {
+        return this.userTags;
     }
 
     /**
