@@ -126,7 +126,7 @@ public class MainWindow extends UiPart<Stage> {
         itemListPanel = new ItemListPanel(logic.getFilteredItemList());
         itemListPanelPlaceholder.getChildren().add(itemListPanel.getRoot());
 
-        locationListPanel = new LocationListPanel(logic.getFilteredItemList());
+        locationListPanel = new LocationListPanel(logic.getLocationList());
         locationPanelPlaceholder.getChildren().add(locationListPanel.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -194,6 +194,8 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            locationListPanel = new LocationListPanel(logic.getLocationList());
+            locationPanelPlaceholder.getChildren().add(locationListPanel.getRoot());
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }

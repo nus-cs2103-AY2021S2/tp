@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.storemando.model.item.Item;
+import seedu.storemando.model.item.Location;
 
 /**
  * An UI component that displays information of a {@code Item}.
@@ -21,7 +22,7 @@ public class LocationCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/storeMando-level4/issues/336">The issue on StoreMando level 4</a>
      */
 
-    public final Item item;
+    public final Location location;
 
     @javafx.fxml.FXML
     private HBox cardPane;
@@ -36,12 +37,12 @@ public class LocationCard extends UiPart<Region> {
     /**
      * Creates a {@code ItemCode} with the given {@code Item} and index to display.
      */
-    public LocationCard(Item item, int displayedIndex) {
+    public LocationCard(Location location, int displayedIndex) {
         super(FXML);
-        this.item = item;
+        this.location = location;
         id.setText(displayedIndex + ".");
-        locations.setText("Location: " + item.getLocation().value);
-        quantity.setText("Quantity: " + item.getQuantity().value);
+        locations.setText("Location: " + location.value);
+        quantity.setText("Quantity: " + "1");
     }
 
     @Override

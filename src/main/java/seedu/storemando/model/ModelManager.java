@@ -4,17 +4,21 @@ import static java.util.Objects.requireNonNull;
 import static seedu.storemando.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.storemando.commons.core.GuiSettings;
 import seedu.storemando.commons.core.LogsCenter;
 import seedu.storemando.model.item.Item;
+import seedu.storemando.model.item.Location;
 
 /**
  * Represents the in-memory model of the storemando data.
@@ -44,6 +48,19 @@ public class ModelManager implements Model {
 
     public ModelManager() {
         this(new StoreMando(), new UserPrefs());
+    }
+
+    @Override
+    public ObservableList<Location> getLocationList(){
+        HashMap<String, Integer> hashmap = new HashMap<>();
+        ArrayList<Location> locationList = new ArrayList<>();
+        for (Item item : filteredItems) {
+            if (hashmap.get(item.getLocation().value) == null) {
+                hashmap.put(item.getLocation().value, 1);
+                locationList.add(item.getLocation());
+            }
+        }
+        return FXCollections.observableList(locationList);
     }
 
     //=========== UserPrefs ==================================================================================

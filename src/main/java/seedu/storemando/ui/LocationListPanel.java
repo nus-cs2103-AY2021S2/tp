@@ -9,6 +9,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.storemando.commons.core.LogsCenter;
 import seedu.storemando.model.item.Item;
+import seedu.storemando.model.item.Location;
 
 /**
  * Panel containing the list of items.
@@ -18,30 +19,30 @@ public class LocationListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(LocationListPanel.class);
 
     @FXML
-    private ListView<Item> locationListView;
+    private ListView<Location> locationListView;
 
     /**
      * Creates a {@code LocationListPanel} with the given {@code ObservableList}.
      */
-    public LocationListPanel(ObservableList<Item> itemList) {
+    public LocationListPanel(ObservableList<Location> locationList) {
         super(FXML);
-        locationListView.setItems(itemList);
+        locationListView.setItems(locationList);
         locationListView.setCellFactory(listView -> new LocationListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Item} using a {@code LocationCard}.
      */
-    class LocationListViewCell extends ListCell<Item> {
+    class LocationListViewCell extends ListCell<Location> {
         @Override
-        protected void updateItem(Item item, boolean empty) {
-            super.updateItem(item, empty);
+        protected void updateItem(Location location, boolean empty) {
+            super.updateItem(location, empty);
 
-            if (empty || item == null) {
+            if (empty || location == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new LocationCard(item, getIndex() + 1).getRoot());
+                setGraphic(new LocationCard(location, getIndex() + 1).getRoot());
             }
         }
     }
