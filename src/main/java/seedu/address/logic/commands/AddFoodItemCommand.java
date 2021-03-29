@@ -28,6 +28,7 @@ public class AddFoodItemCommand extends Command {
      * Creates a Food command to run the Macronutrients Tracker.
      */
     public AddFoodItemCommand(Food food) {
+        requireNonNull(food);
         temporaryFood = food;
     }
 
