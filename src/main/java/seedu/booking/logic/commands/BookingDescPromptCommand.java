@@ -19,8 +19,8 @@ public class BookingDescPromptCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        ModelManager.commandState.processInput(description);
-        ModelManager.commandState.setNextState();
-        return new CommandResult(ModelManager.commandState.getNextPromptMessage());
+        ModelManager.processStateInput(description);
+        ModelManager.setNextState();
+        return new CommandResult(ModelManager.getNextPromptMessage());
     }
 }

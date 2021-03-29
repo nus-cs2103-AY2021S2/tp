@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.booking.testutil.TypicalIndexes.INDEX_FIRST_BOOKING;
-import static seedu.booking.testutil.TypicalPersons.getTypicalBookingSystem;
 import static seedu.booking.testutil.TypicalBookings.BOOKING1;
 import static seedu.booking.testutil.TypicalBookings.BOOKING2;
+import static seedu.booking.testutil.TypicalIndexes.INDEX_FIRST_BOOKING;
+import static seedu.booking.testutil.TypicalPersons.getTypicalBookingSystem;
 
 import org.junit.jupiter.api.Test;
 

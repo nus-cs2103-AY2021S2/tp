@@ -2,7 +2,6 @@ package seedu.booking.logic.parser;
 
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.booking.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.booking.model.ModelManager.commandState;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -38,6 +37,8 @@ import seedu.booking.logic.parser.promptparsers.BookingEndPromptParser;
 import seedu.booking.logic.parser.promptparsers.BookingStartPromptParser;
 import seedu.booking.logic.parser.promptparsers.EmailPromptParser;
 import seedu.booking.logic.parser.promptparsers.VenueNamePromptParser;
+import seedu.booking.model.ModelManager;
+
 /**
  * Parses user input.
  */
@@ -56,12 +57,13 @@ public class BookingSystemParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public Command parseCommand(String userInput) throws ParseException {
-        if (commandState.isActive()) {
+
+        if (ModelManager.isStateActive()) {
 
             if (userInput.equals(ExitPromptCommand.COMMAND_WORD)) {
                 return new ExitPromptCommand();
             } else {
-                String currentState = commandState.getState();
+                String currentState = ModelManager.getState();
                 switch (currentState) {
 
                 case BookingCommandState.STATE_EMAIL:

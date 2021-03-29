@@ -17,9 +17,10 @@ public class PromptProcessCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ModelManager.commandState.setNextState();
-        ModelManager.commandState.processInput(value);
-        return new CommandResult(ModelManager.commandState.getNextPromptMessage());
+
+        ModelManager.setNextState();
+        ModelManager.processStateInput(value);
+        return new CommandResult(ModelManager.getNextPromptMessage());
     }
 
 }

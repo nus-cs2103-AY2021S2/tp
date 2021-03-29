@@ -20,20 +20,20 @@ public class BookingEndPromptCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        ModelManager.commandState.processInput(endTime);
+        ModelManager.processStateInput(endTime);
 
         CommandResult result;
 
         try {
-            Booking booking = (Booking) ModelManager.commandState.create();
+            Booking booking = (Booking) ModelManager.create();
             result = new CreateBookingCommand(booking).execute(model);
         } catch (Exception ex) {
             ex.printStackTrace();
-            ModelManager.commandState.setInactive();
+            ModelManager.setStateInactive();
             throw new CommandException("Failed to create booking, please try again.\n");
         }
 
-        ModelManager.commandState.setInactive();
+        ModelManager.setStateInactive();
 
         return result;
     }

@@ -26,8 +26,9 @@ public class EmailPromptCommand extends Command {
                     + MESSAGE_PROMPT_TRYAGAIN);
         }
 
-        ModelManager.commandState.processInput(email);
-        ModelManager.commandState.setNextState();
-        return new CommandResult(ModelManager.commandState.getNextPromptMessage());
+
+        ModelManager.processStateInput(email);
+        ModelManager.setNextState();
+        return new CommandResult(ModelManager.getNextPromptMessage());
     }
 }

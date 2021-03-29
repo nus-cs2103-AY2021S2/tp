@@ -69,8 +69,10 @@ public class CommandTestUtil {
     public static final String VALID_BOOKING_ID_1 = "0";
     public static final String VALID_BOOKING_ID_2 = "1";
 
-    public static final String BOOKING_ID_INPUT_BOOKING_1 = DeleteBookingCommand.COMMAND_WORD + " " + PREFIX_BOOKING_ID + VALID_BOOKING_ID_1;
-    public static final String BOOKING_ID_INPUT_BOOKING_2 = DeleteBookingCommand.COMMAND_WORD + " " + PREFIX_BOOKING_ID + VALID_BOOKING_ID_2;
+    public static final String BOOKING_ID_INPUT_BOOKING_1 = DeleteBookingCommand.COMMAND_WORD
+            + " " + PREFIX_BOOKING_ID + VALID_BOOKING_ID_1;
+    public static final String BOOKING_ID_INPUT_BOOKING_2 = DeleteBookingCommand.COMMAND_WORD
+            + " " + PREFIX_BOOKING_ID + VALID_BOOKING_ID_2;
 
     public static final String VALID_VENUE_NAME_COURT = "Court";
     public static final String VALID_VENUE_NAME_HALL = "Victoria Hall";

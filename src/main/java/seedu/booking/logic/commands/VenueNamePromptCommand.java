@@ -25,8 +25,8 @@ public class VenueNamePromptCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_VENUE_NAME + MESSAGE_PROMPT_TRYAGAIN);
         }
 
-        ModelManager.commandState.processInput(venueName);
-        ModelManager.commandState.setNextState();
-        return new CommandResult(ModelManager.commandState.getNextPromptMessage());
+        ModelManager.processStateInput(venueName);
+        ModelManager.setNextState();
+        return new CommandResult(ModelManager.getNextPromptMessage());
     }
 }

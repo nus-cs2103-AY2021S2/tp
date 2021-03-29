@@ -15,7 +15,8 @@ public class ExitPromptCommand extends Command {
      * Exits prompting process right away
      */
     public CommandResult execute(Model model) {
-        ModelManager.commandState.setInactive();
+
+        ModelManager.setStateInactive();
         return new CommandResult("Prompting exited;");
     }
 }

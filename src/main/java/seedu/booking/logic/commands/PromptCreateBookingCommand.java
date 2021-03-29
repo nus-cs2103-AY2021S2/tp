@@ -4,6 +4,7 @@ import static seedu.booking.commons.core.Messages.PROMPT_EMAIL_MESSAGE;
 import static seedu.booking.logic.commands.states.BookingCommandState.STATE_EMAIL;
 
 import seedu.booking.logic.commands.states.BookingCommandState;
+import seedu.booking.logic.commands.states.CommandState;
 import seedu.booking.model.Model;
 import seedu.booking.model.ModelManager;
 
@@ -19,9 +20,11 @@ public class PromptCreateBookingCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        ModelManager.commandState = new BookingCommandState();
-        ModelManager.commandState.setActive();
-        ModelManager.commandState.setState(STATE_EMAIL);
+
+        CommandState commandState = new BookingCommandState();
+        ModelManager.setCommandState(commandState);
+        ModelManager.setStateActive();
+        ModelManager.setState(STATE_EMAIL);
         return new CommandResult(PROMPT_EMAIL_MESSAGE);
     }
 
