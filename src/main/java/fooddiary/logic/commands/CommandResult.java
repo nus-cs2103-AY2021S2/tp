@@ -2,8 +2,9 @@ package fooddiary.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.HashMap;
 import java.util.Objects;
+
+import fooddiary.model.entry.Entry;
 
 /**
  * Represents the result of a command execution.
@@ -15,7 +16,7 @@ public class CommandResult {
     /** A view of the specified entry should be shown to the user. */
     private final boolean viewEntry;
 
-    private final HashMap<String, String> entryDetails;
+    private final Entry entry;
 
     /** Help information should be shown to the user. */
     private final boolean showHelp;
@@ -27,9 +28,9 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified fields,
      * used for help command
      */
-    public CommandResult(HashMap<String, String> entryDetails, String feedbackToUser, boolean showHelp,
+    public CommandResult(Entry entry, String feedbackToUser, boolean showHelp,
                          boolean viewEntry, boolean exit) {
-        this.entryDetails = entryDetails;
+        this.entry = entry;
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.viewEntry = viewEntry;
         this.showHelp = showHelp;
@@ -56,8 +57,8 @@ public class CommandResult {
         return viewEntry;
     }
 
-    public HashMap<String, String> getEntryDetails() {
-        return entryDetails;
+    public Entry getEntry() {
+        return entry;
     }
 
     public boolean isExit() {
