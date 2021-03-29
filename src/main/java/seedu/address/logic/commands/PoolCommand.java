@@ -10,7 +10,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPTIME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_POOLS;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.StringJoiner;
@@ -107,7 +106,7 @@ public class PoolCommand extends Command {
         }
 
         //since passengers in list are unique, passenger fetched from idx should also be unique, so as hashset from list
-        Pool toAdd = new Pool(driver, tripDay, tripTime, new HashSet<Passenger>(passengersToPool), tags);
+        Pool toAdd = new Pool(driver, tripDay, tripTime, passengersToPool, tags);
 
         if (model.hasPool(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_POOL);
@@ -116,7 +115,7 @@ public class PoolCommand extends Command {
         model.addPool(toAdd);
         model.updateFilteredPoolList(PREDICATE_SHOW_ALL_POOLS);
 
-        return new CommandResult(String.format(MESSAGE_POOL_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_POOL_SUCCESS, driver, toAdd));
     }
 
     @Override
