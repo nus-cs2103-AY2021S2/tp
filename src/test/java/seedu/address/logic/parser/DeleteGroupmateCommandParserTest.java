@@ -10,9 +10,9 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.DeleteContactFromCommand;
+import seedu.address.logic.commands.DeleteGroupmateCommand;
 
-public class DeleteContactFromCommandParserTest {
+public class DeleteGroupmateCommandParserTest {
     private DeleteContactFromCommandParser parser = new DeleteContactFromCommandParser();
 
     @Test
@@ -23,13 +23,13 @@ public class DeleteContactFromCommandParserTest {
         // all field appear once
         assertParseSuccess(parser, INDEX_FIRST.getOneBased() + " " + PREFIX_REMOVE_TASK_INDEX + " "
                         + INDEX_FIRST.getOneBased(),
-                new DeleteContactFromCommand(expectedProjectIndex, expectedContactIndex)
+                new DeleteGroupmateCommand(expectedProjectIndex, expectedContactIndex)
         );
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteContactFromCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteGroupmateCommand.MESSAGE_USAGE);
 
         // missing project index
         assertParseFailure(parser, PREFIX_REMOVE_TASK_INDEX + " " + INDEX_FIRST.getOneBased(),

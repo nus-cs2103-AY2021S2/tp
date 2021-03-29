@@ -7,10 +7,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.exceptions.DateConversionException;
-import seedu.address.model.contact.Contact;
+import seedu.address.model.groupmate.Groupmate;
 import seedu.address.model.project.DeadlineList;
 import seedu.address.model.project.EventList;
-import seedu.address.model.project.ParticipantList;
+import seedu.address.model.project.GroupmateList;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.TodoList;
@@ -119,23 +119,19 @@ public class TypicalProjects {
         return todoList;
     }
 
-    private static ParticipantList getCS2103TParticipantsList() {
-        Contact danh = new ContactBuilder().withName("Danh").withAddress("1 CoLAB Road")
-                .withEmail("danh@colab.com").withPhone("91234561").build();
-        Contact ruochen = new ContactBuilder().withName("Ruochen").withAddress("1 CoLAB Road")
-                .withEmail("ruochen@colab.com").withPhone("91234562").build();
-        Contact samuel = new ContactBuilder().withName("Samuel").withAddress("1 CoLAB Road")
-                .withEmail("samuel@colab.com").withPhone("91234563").build();
-        Contact vevek = new ContactBuilder().withName("Vevek").withAddress("1 CoLAB Road")
-                .withEmail("vevek@colab.com").withPhone("91234564").build();
+    private static GroupmateList getCS2103TParticipantsList() {
+        Groupmate danh = new GroupmateBuilder().withName("Danh").build();
+        Groupmate ruochen = new GroupmateBuilder().withName("Ruochen").build();
+        Groupmate samuel = new GroupmateBuilder().withName("Samuel").build();
+        Groupmate vevek = new GroupmateBuilder().withName("Vevek").build();
 
-        ParticipantList participantList = new ParticipantList();
-        participantList.addParticipant(danh);
-        participantList.addParticipant(ruochen);
-        participantList.addParticipant(samuel);
-        participantList.addParticipant(vevek);
+        GroupmateList groupmateList = new GroupmateList();
+        groupmateList.addGroupmate(danh);
+        groupmateList.addGroupmate(ruochen);
+        groupmateList.addGroupmate(samuel);
+        groupmateList.addGroupmate(vevek);
 
-        return participantList;
+        return groupmateList;
     }
 
     private static EventList getCS2101EventList() throws DateConversionException {
@@ -186,22 +182,18 @@ public class TypicalProjects {
         return todoList;
     }
 
-    private static ParticipantList getCS2101ParticipantsList() throws DateConversionException {
-        Contact danh = new ContactBuilder().withName("Danh").withAddress("1 CoLAB Road")
-                .withEmail("danh@colab.com").withPhone("91234561").build();
-        Contact ruochen = new ContactBuilder().withName("Ruochen").withAddress("1 CoLAB Road")
-                .withEmail("ruochen@colab.com").withPhone("91234562").build();
-        Contact samuel = new ContactBuilder().withName("Samuel").withAddress("1 CoLAB Road")
-                .withEmail("samuel@colab.com").withPhone("91234563").build();
-        Contact vevek = new ContactBuilder().withName("Vevek").withAddress("1 CoLAB Road")
-                .withEmail("vevek@colab.com").withPhone("91234564").build();
+    private static GroupmateList getCS2101ParticipantsList() throws DateConversionException {
+        Groupmate danh = new GroupmateBuilder().withName("Danh").build();
+        Groupmate ruochen = new GroupmateBuilder().withName("Ruochen").build();
+        Groupmate samuel = new GroupmateBuilder().withName("Samuel").build();
+        Groupmate vevek = new GroupmateBuilder().withName("Vevek").build();
 
-        ParticipantList participantList = new ParticipantList();
-        participantList.addParticipant(danh);
-        participantList.addParticipant(ruochen);
-        participantList.addParticipant(samuel);
-        participantList.addParticipant(vevek);
+        GroupmateList groupmateList = new GroupmateList();
+        groupmateList.addGroupmate(danh);
+        groupmateList.addGroupmate(ruochen);
+        groupmateList.addGroupmate(samuel);
+        groupmateList.addGroupmate(vevek);
 
-        return participantList;
+        return groupmateList;
     }
 }

@@ -7,26 +7,26 @@ import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.contact.Contact;
+import seedu.address.model.groupmate.Groupmate;
 
-public class ParticipantList {
+public class GroupmateList {
 
-    private final ObservableList<Contact> participants = FXCollections.observableArrayList();
+    private final ObservableList<Groupmate> groupmates = FXCollections.observableArrayList();
 
     /**
      * Constructs an empty {@code ParticipantList}.
      */
-    public ParticipantList() {}
+    public GroupmateList() {}
 
     /**
      * Constructs a {@code ParticipantList}.
      *
-     * @param participants A list of {@code Person}.
+     * @param groupmates A list of {@code Person}.
      */
-    public ParticipantList(List<Contact> participants) {
-        requireNonNull(participants);
+    public GroupmateList(List<Groupmate> groupmates) {
+        requireNonNull(groupmates);
 
-        this.participants.addAll(participants);
+        this.groupmates.addAll(groupmates);
     }
 
     /**
@@ -34,8 +34,8 @@ public class ParticipantList {
      *
      * @return the participants as a {@code ObservableList<Person>}.
      */
-    public ObservableList<Contact> getParticipants() {
-        return participants;
+    public ObservableList<Groupmate> getGroupmates() {
+        return groupmates;
     }
 
     /**
@@ -44,7 +44,7 @@ public class ParticipantList {
      * @return the number of participants in the {@code ParticipantList}.
      */
     public int size() {
-        return participants.size();
+        return groupmates.size();
     }
 
     /**
@@ -52,8 +52,8 @@ public class ParticipantList {
      *
      * @return the {@code Person} at the specified position in this {@code ParticipantList}.
      */
-    public Contact get(int index) {
-        return participants.get(index);
+    public Groupmate get(int index) {
+        return groupmates.get(index);
     }
 
     /**
@@ -63,7 +63,7 @@ public class ParticipantList {
      */
     public void delete(Integer i) {
         requireNonNull(i);
-        participants.remove(i.intValue());
+        groupmates.remove(i.intValue());
     }
 
     /**
@@ -71,8 +71,8 @@ public class ParticipantList {
      *
      * @return A copy of this {@code ParticipantList}
      */
-    public ParticipantList getCopy() {
-        return new ParticipantList(getParticipants());
+    public GroupmateList getCopy() {
+        return new GroupmateList(getGroupmates());
     }
 
     /**
@@ -80,39 +80,39 @@ public class ParticipantList {
      *
      * @return a sequential Stream over the persons in this {@code ParticipantList}.
      */
-    public Stream<Contact> stream() {
-        return participants.stream();
+    public Stream<Groupmate> stream() {
+        return groupmates.stream();
     }
 
     /**
      * Adds a person to this {@code ParticipantList}.
      *
-     * @param contact {@code Person} to add.
+     * @param groupmate {@code Person} to add.
      */
-    public void addParticipant(Contact contact) {
-        this.participants.add(contact);
+    public void addGroupmate(Groupmate groupmate) {
+        this.groupmates.add(groupmate);
     }
 
     /**
      * Returns true if this {@code ParticipantList} has the provided {@code Person}.
      *
-     * @param contact the person to test.
+     * @param groupmate the person to test.
      * @return whether the {@code Person} is in this {@code ParticipantList}.
      */
-    public boolean contains(Contact contact) {
-        return stream().anyMatch(contact::isSameContact);
+    public boolean contains(Groupmate groupmate) {
+        return stream().anyMatch(groupmate::isSameGroupmate);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ParticipantList // instanceof handles nulls
-                && participants.equals(((ParticipantList) other).participants)); // state check
+                || (other instanceof GroupmateList // instanceof handles nulls
+                && groupmates.equals(((GroupmateList) other).groupmates)); // state check
     }
 
     @Override
     public int hashCode() {
-        return participants.hashCode();
+        return groupmates.hashCode();
     }
 
 }

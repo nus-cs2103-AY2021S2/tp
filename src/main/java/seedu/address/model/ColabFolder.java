@@ -163,7 +163,7 @@ public class ColabFolder implements ReadOnlyColabFolder {
         return "CoLAB Folder Containing "
                 + contacts.asUnmodifiableObservableList().size()
                 + " contacts and"
-                + contacts.asUnmodifiableObservableList().size()
+                + projects.asUnmodifiableObservableList().size()
                 + " projects";
     }
 

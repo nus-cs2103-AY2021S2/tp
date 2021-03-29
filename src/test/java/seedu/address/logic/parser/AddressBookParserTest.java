@@ -27,9 +27,9 @@ import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.logic.commands.AddTodoCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.DeleteContactFromCommand;
 import seedu.address.logic.commands.DeleteDeadlineCommand;
 import seedu.address.logic.commands.DeleteEventCommand;
+import seedu.address.logic.commands.DeleteGroupmateCommand;
 import seedu.address.logic.commands.DeleteProjectCommand;
 import seedu.address.logic.commands.DeleteTodoCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -44,6 +44,7 @@ import seedu.address.logic.commands.ShowTodosTabCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.NameContainsKeywordsPredicate;
+import seedu.address.model.groupmate.Groupmate;
 import seedu.address.model.task.Interval;
 import seedu.address.model.task.deadline.Deadline;
 import seedu.address.model.task.repeatable.Event;
@@ -53,6 +54,8 @@ import seedu.address.testutil.ContactUtil;
 import seedu.address.testutil.DeadlineBuilder;
 import seedu.address.testutil.EditContactDescriptorBuilder;
 import seedu.address.testutil.EventBuilder;
+import seedu.address.testutil.GroupmateBuilder;
+import seedu.address.testutil.GroupmateUtil;
 import seedu.address.testutil.TodoBuilder;
 
 public class AddressBookParserTest {
@@ -68,10 +71,10 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_addCto() throws Exception {
-        Contact contact = new ContactBuilder().build();
+        Groupmate contact = new GroupmateBuilder().build();
         Index projectIndex = Index.fromOneBased(1);
         AddContactToCommand command = (AddContactToCommand) parser.parseCommand(
-                ContactUtil.getAddCtoCommand(projectIndex, contact)
+                GroupmateUtil.getAddGroupmateCommand(projectIndex, contact)
         );
         assertEquals(new AddContactToCommand(projectIndex, contact), command);
     }
@@ -127,11 +130,11 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_deleteCfrom() throws Exception {
         Index projectIndex = Index.fromOneBased(1);
-        DeleteContactFromCommand command = (DeleteContactFromCommand) parser.parseCommand(
-                DeleteContactFromCommand.COMMAND_WORD + " " + projectIndex.getOneBased() + " "
+        DeleteGroupmateCommand command = (DeleteGroupmateCommand) parser.parseCommand(
+                DeleteGroupmateCommand.COMMAND_WORD + " " + projectIndex.getOneBased() + " "
                 + PREFIX_REMOVE_TASK_INDEX + " " + projectIndex.getOneBased()
         );
-        assertEquals(new DeleteContactFromCommand(INDEX_FIRST, INDEX_FIRST), command);
+        assertEquals(new DeleteGroupmateCommand(INDEX_FIRST, INDEX_FIRST), command);
     }
 
     @Test
