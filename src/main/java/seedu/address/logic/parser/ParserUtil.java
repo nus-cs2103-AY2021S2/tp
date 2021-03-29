@@ -189,7 +189,7 @@ public class ParserUtil {
         requireNonNull(isWeekly);
         String trimmedIsWeekly = isWeekly.trim();
         if (!trimmedIsWeekly.matches("/./")) {
-            throw new ParseException(Messages.MESSAGE_PARSER_IS_WEEKLY_CONSTRAINTS);
+            throw new ParseException(Messages.MESSAGE_PARSER_WEEKLY_CONSTRAINTS);
         }
 
         if (trimmedIsWeekly.toUpperCase() == "Y") {
@@ -197,7 +197,7 @@ public class ParserUtil {
         } else if (trimmedIsWeekly.toUpperCase() == "N") {
             return false;
         } else {
-            throw new ParseException(Messages.MESSAGE_PARSER_IS_WEEKLY_CONSTRAINTS);
+            throw new ParseException(Messages.MESSAGE_PARSER_WEEKLY_CONSTRAINTS);
         }
     }
 

@@ -4,7 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_INTERVAL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_WEEKLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_UPDATE_INDEX;
 
 import java.time.LocalDate;
@@ -33,12 +34,15 @@ public class UpdateEventCommand extends Command {
             + "Parameters: PROJECT_INDEX (must be a positive integer) "
             + PREFIX_UPDATE_INDEX + "EVENT_INDEX "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
-            + "[" + PREFIX_EVENT_INTERVAL + "INTERVAL] "
-            + "[" + PREFIX_EVENT_DATE + "REPEATABLE_DATE]\n"
+            + "[" + PREFIX_EVENT_DATE + "DATE] "
+            + "[" + PREFIX_EVENT_TIME + "TIME]"
+            + "[" + PREFIX_EVENT_WEEKLY + "REPEATS WEEKLY]\n"
             + "Example:\n" + COMMAND_WORD + " 1 "
             + PREFIX_UPDATE_INDEX + "1 "
             + PREFIX_DESCRIPTION + "Project meeting "
-            + PREFIX_EVENT_DATE + "24-04-2021";
+            + PREFIX_EVENT_DATE + "24-04-2021 "
+            + PREFIX_EVENT_TIME + "1830 "
+            + PREFIX_EVENT_WEEKLY + "N";
 
     public static final String MESSAGE_UPDATE_EVENT_SUCCESS = "Edited event: %1$s";
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in this project.";
@@ -71,6 +75,7 @@ public class UpdateEventCommand extends Command {
         if (projectIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
+        
         Project projectToUpdate = lastShownList.get(projectIndex.getZeroBased());
         EventList events = projectToUpdate.getEvents();
 

@@ -14,7 +14,6 @@ import java.util.stream.Stream;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.task.Interval;
 import seedu.address.model.task.repeatable.Event;
 
 /**
@@ -45,7 +44,6 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
         LocalDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_EVENT_DATE).get());
         LocalTime time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_EVENT_TIME).get());
         Boolean isWeekly = ParserUtil.parseIsWeekly(argMultimap.getValue(PREFIX_EVENT_WEEKLY).get());
-
 
         Event event = new Event(description, date, time, isWeekly);
 
