@@ -10,6 +10,9 @@ import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_ESSENTIA
 import static seedu.storemando.testutil.Assert.assertThrows;
 import static seedu.storemando.testutil.TypicalItems.APPLE;
 import static seedu.storemando.testutil.TypicalItems.BANANA;
+import static seedu.storemando.testutil.TypicalItems.CHEESE;
+
+import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
@@ -112,6 +115,10 @@ public class ItemTest {
 
         //Item with non expired expiry date
         Item editedBanana = new ItemBuilder(BANANA).withExpiryDate("2021-10-10").build();
+        assertFalse(editedBanana.isExpired());
+
+        //Item with current date as expired date
+        Item editedCheese = new ItemBuilder(CHEESE).withExpiryDate(LocalDate.now().toString()).build();
         assertFalse(editedBanana.isExpired());
 
         //Item with no expiry date
