@@ -62,14 +62,13 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
 1. Refer to the Features below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## Application layout
 
 The figures below explain the different components in FlashBack. <br>
-Main window<br><br>
-![MainWindowComponents](./images/UiMainWindowComponents.png) <br><br>
-Review mode <br><br>
+Main window<br>
+![MainWindowComponents](./images/UiMainWindowComponents.png) <br>
+Review mode <br>
 ![ReviewModeComponents](./images/UiReviewModeComponents.png) <br><br>
 Brief explanation of each components:
 
@@ -135,13 +134,13 @@ The `TAG` is optional when adding a new flashcard.<br>
 Priority can only take 1 out of 3 values: `High`, `Mid` or `Low`.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 
 * `add q/Einstein’s Equation a/e=mc^2 c/Physics p/High` <br><br>
   ![UIAdd](./images/UiAddResult.png) <br><br>
 * `add q/Independence day of Singapore a/August 9th 1965 c/History p/Mid t/Singapore`
-
-<div style="page-break-after: always;"></div>
 
 ### Editing a flashcard: `edit`
 
@@ -153,6 +152,8 @@ Format: `edit INDEX [q/NEW QUESTION] [a/NEW ANSWER] [c/NEW CATEGORY] [p/NEW PRIO
 * The index refers to the index number shown in the displayed flashcard list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least 1 updated flashcard field must be provided for modification.
+
+<div style="page-break-after: always;"></div>
 
 Examples:
 
@@ -196,9 +197,11 @@ Format: `view INDEX`
 * The index refers to the index number shown in the displayed flashcard list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 
-* `view 2` shows the 2nd flashcard (in the displayed flashcard list). <br>
+* `view 2` shows the 2nd flashcard (in the displayed flashcard list). <br><br>
   ![UIView](./images/UiViewResult.png)
 
 ### Finding flashcards : `find`
@@ -216,6 +219,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 :bulb: **Tip:** You can list all flashcards again by using `list` command
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 Examples:
 * `find computer` will return flashcards with `computer` in any of its fields.<br><br>
@@ -447,6 +452,8 @@ the data of your previous FlashBack home folder.
 
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
