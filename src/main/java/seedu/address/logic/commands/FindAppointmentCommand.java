@@ -3,8 +3,6 @@ package seedu.address.logic.commands;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.appointment.ApptNameContainsKeywordsPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.appointment.Appointment;
 
 import java.util.function.Predicate;
