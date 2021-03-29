@@ -15,6 +15,11 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Room {
+    // Rooms have a default occupancy status of "No". Occupancy
+    // can only be edited through the allocation/deallocation commands
+    // or through the reading of the model from a JSON file (which isn't
+    // really editing, its just model creation)
+    public static final String DEFAULT_OCCUPANCY_STATUS = "N";
     // Identity fields
     // Room number, type, occupancy status, tags
     private final RoomNumber roomNumber;
@@ -23,13 +28,26 @@ public class Room {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null. This constructor should only be used when creating
+     * a room model from the JSON file. The Add/Edit room commands and their respective parsers should
+     * NOT use this constructor. Use the one that does not take in isOccupied.
      */
     public Room(RoomNumber roomNumber, RoomType roomType, IsOccupied isOccupied, Set<Tag> tags) {
         requireAllNonNull(roomNumber, roomType, isOccupied, tags);
         this.roomNumber = roomNumber;
         this.roomType = roomType;
         this.isOccupied = isOccupied;
+        this.tags.addAll(tags);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Room(RoomNumber roomNumber, RoomType roomType, Set<Tag> tags) {
+        requireAllNonNull(roomNumber, roomType, tags);
+        this.roomNumber = roomNumber;
+        this.roomType = roomType;
+        this.isOccupied = new IsOccupied(DEFAULT_OCCUPANCY_STATUS);
         this.tags.addAll(tags);
     }
 

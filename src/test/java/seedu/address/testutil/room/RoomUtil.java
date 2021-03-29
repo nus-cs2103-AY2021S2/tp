@@ -1,9 +1,7 @@
 package seedu.address.testutil.room;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_NUMBER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_OCCUPANCY_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_TYPE;
 
@@ -32,7 +30,6 @@ public class RoomUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_ROOM_NUMBER + room.getRoomNumber().roomNumber + " ");
         sb.append(PREFIX_ROOM_TYPE + room.getRoomType().value.toString() + " ");
-        sb.append(PREFIX_ROOM_OCCUPANCY_STATUS + room.isOccupied().toString() + " ");
         room.getTags().stream().forEach(
             s -> sb.append(PREFIX_ROOM_TAG + s.tagName + " ")
         );
@@ -48,8 +45,6 @@ public class RoomUtil {
                 .ifPresent(roomNumber -> sb.append(PREFIX_ROOM_NUMBER + roomNumber.roomNumber + " "));
         descriptor.getRoomType()
                 .ifPresent(roomType -> sb.append(PREFIX_PHONE).append(roomType.value.toString()).append(" "));
-        descriptor.getIsOccupied()
-                .ifPresent(isOccupied -> sb.append(PREFIX_EMAIL).append(isOccupied.toString()).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

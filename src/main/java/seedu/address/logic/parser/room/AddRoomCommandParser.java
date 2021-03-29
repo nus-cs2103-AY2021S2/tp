@@ -2,7 +2,6 @@ package seedu.address.logic.parser.room;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_NUMBER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_OCCUPANCY_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_TYPE;
 
@@ -16,7 +15,6 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.room.IsOccupied;
 import seedu.address.model.room.Room;
 import seedu.address.model.room.RoomNumber;
 import seedu.address.model.room.RoomType;
@@ -36,21 +34,20 @@ public class AddRoomCommandParser implements Parser<AddRoomCommand> {
     @Override
     public AddRoomCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ROOM_NUMBER, PREFIX_ROOM_TYPE, PREFIX_ROOM_OCCUPANCY_STATUS,
+                ArgumentTokenizer.tokenize(args, PREFIX_ROOM_NUMBER, PREFIX_ROOM_TYPE,
                         PREFIX_ROOM_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_ROOM_NUMBER, PREFIX_ROOM_TYPE, PREFIX_ROOM_OCCUPANCY_STATUS)
+        if (!arePrefixesPresent(argMultimap, PREFIX_ROOM_NUMBER, PREFIX_ROOM_TYPE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddRoomCommand.MESSAGE_USAGE));
         }
 
         RoomNumber roomNumber = ParserUtil.parseRoomNumber(argMultimap.getValue(PREFIX_ROOM_NUMBER).get());
         RoomType roomType = ParserUtil.parseRoomType(argMultimap.getValue(PREFIX_ROOM_TYPE).get());
-        IsOccupied roomOccupancyStatus =
-                ParserUtil.parseRoomOccupancyStatus(argMultimap.getValue(PREFIX_ROOM_OCCUPANCY_STATUS).get());
+
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_ROOM_TAG));
 
-        Room room = new Room(roomNumber, roomType, roomOccupancyStatus, tagList);
+        Room room = new Room(roomNumber, roomType, tagList);
 
         return new AddRoomCommand(room);
     }
