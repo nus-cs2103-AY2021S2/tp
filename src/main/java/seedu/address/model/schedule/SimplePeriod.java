@@ -40,5 +40,11 @@ public class SimplePeriod implements Schedulable {
     public LocalDateTime getTerminateLocalDateTime() {
         return end;
     }
+    @Override
+    public boolean isConflict(Schedulable schedulable) {
+        return !(this.end.compareTo(schedulable.getStartLocalDateTime()) <= 0
+                || this.start.compareTo(schedulable.getTerminateLocalDateTime()) >= 0);
+    }
+
 
 }

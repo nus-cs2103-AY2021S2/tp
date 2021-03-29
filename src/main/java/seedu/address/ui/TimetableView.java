@@ -81,6 +81,7 @@ public class TimetableView extends UiPart<Region> {
     public TimetableView(ObservableList<? extends Schedulable> timetableSlots, LocalDate firstDayOfTimetable) {
         super(FXML);
         this.timetableSlots = timetableSlots;
+        this.firstDayOfTimetable = firstDayOfTimetable;
         this.timetablePlacementPolicy = new TimetablePlacementPolicy(firstDayOfTimetable);
         reset();
         populateWithData(timetableSlots);

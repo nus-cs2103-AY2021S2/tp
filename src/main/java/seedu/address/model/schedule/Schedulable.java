@@ -30,6 +30,11 @@ public interface Schedulable {
      */
     public LocalDateTime getTerminateLocalDateTime();
 
+    /**
+     * Util method to check if two schedulables overlap or not.
+     */
+    public boolean isConflict(Schedulable schedulable);
+
 
 
 }
