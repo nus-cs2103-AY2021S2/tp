@@ -19,7 +19,8 @@ public interface Model {
     Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
 
     /** {@code Predicate} that always evaluate to true */
-    Predicate<SameDateAppointmentList> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
+    Predicate<SameDateAppointmentList> PREDICATE_SHOW_ALL_APPOINTMENT_LISTS = unused -> true;
+    Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
     /**
      *
      *
@@ -112,7 +113,8 @@ public interface Model {
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
 
-    void updateFilteredAppointmentList(Predicate<SameDateAppointmentList> predicate);
+    void updateFilteredAppointmentList(Predicate<SameDateAppointmentList> predicate1,
+                                       Predicate<Appointment> predicate2);
 
     boolean hasAppointment(Appointment appointment);
 

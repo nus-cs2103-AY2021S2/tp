@@ -188,6 +188,7 @@ public class ModelManager implements Model {
     /**
      * Returns an unmodifiable view of the list of {@code Appointment} backed by the internal list of
      * {@code versionedstudentBook}
+     * @return
      */
     @Override
     public ObservableList<SameDateAppointmentList> getFilteredAppointmentList() {
@@ -195,9 +196,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredAppointmentList(Predicate<SameDateAppointmentList> predicate) {
-        requireNonNull(predicate);
-        filteredAppointments.setPredicate(predicate);
+    public void updateFilteredAppointmentList(Predicate<SameDateAppointmentList> listPredicate,
+                                              Predicate<Appointment> predicate) {
+        requireAllNonNull(listPredicate, predicate);
+        filteredAppointments.setPredicate(listPredicate);
+        filteredAppointments.stream().forEach(apptFilteredList ->
+                apptFilteredList.updateFilteredAppointmentList(predicate));
     }
 
     @Override

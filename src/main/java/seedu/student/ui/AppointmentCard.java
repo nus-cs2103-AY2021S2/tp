@@ -50,7 +50,6 @@ public class AppointmentCard extends UiPart<Region> {
 
         this.student = studentList.stream().filter(student -> student.getMatriculationNumber()
                 .equals(appointment.getMatriculationNumber())).findFirst().get();
-        System.out.println("student here is " + this.student.getMatriculationNumber());
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().toString());
         matriculationNumber.setText(appointment.getMatriculationNumber().value);
