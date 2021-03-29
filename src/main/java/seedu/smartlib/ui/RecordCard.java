@@ -51,6 +51,7 @@ public class RecordCard extends UiPart<Region> {
         barcode.setText(record.getBookBarcode().toString());
         readerName.setText("Borrower: " + record.getReaderName().toString());
         dateBorrowed.setText("Borrowed on: " + record.getDateBorrowed().toString());
+        dateReturned.setText(record.isReturned() ? "Returned on " + record.getDateReturned() : "Not returned yet");
     }
 
     /**
