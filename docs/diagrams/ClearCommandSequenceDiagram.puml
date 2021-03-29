@@ -1,0 +1,64 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SocheduleParser" as SocheduleParser LOGIC_COLOR
+participant ":ClearCommandParser" as ClearCommandParser LOGIC_COLOR
+participant "s:ClearCommand" as ClearCommand LOGIC_COLOR
+participant "CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : parse(clear)
+activate LogicManager
+
+LogicManager -> SocheduleParser : parseCommand(undo)
+activate SocheduleParser
+
+SocheduleParser -> ClearCommandParser: parse(args)
+activate ClearCommandParser
+
+create ClearCommand
+ClearCommandParser -> ClearCommand
+activate ClearCommand
+ClearCommandParser <--ClearCommand : s
+deactivate ClearCommand
+
+SocheduleParser <--ClearCommandParser : s
+deactivate ClearCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ClearCommandParser -[hidden]->[
+destroy ClearCommandParser
+
+LogicManager <-- SocheduleParser : s
+deactivate SocheduleParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SocheduleParser -[hidden]->[
+destroy SocheduleParser
+
+LogicManager -> ClearCommand : execute()
+activate ClearCommand
+
+ClearCommand -> Model : setSochedule(new Sochedule)
+activate Model
+ClearCommand <-- Model
+deactivate Model
+
+create CommandResult
+ClearCommand -> CommandResult
+activate CommandResult
+ClearCommand <-- CommandResult
+deactivate CommandResult
+
+LogicManager <-- ClearCommand
+deactivate ClearCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ClearCommand -[hidden]->[
+destroy ClearCommand
+
+[<-- LogicManager : CommandResult
+@enduml

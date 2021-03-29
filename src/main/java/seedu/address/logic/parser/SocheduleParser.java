@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.logic.commands.AddTaskCommand;
+import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ClearCompletedTaskCommand;
 import seedu.address.logic.commands.ClearExpiredEventCommand;
 import seedu.address.logic.commands.ClearExpiredTaskCommand;
@@ -17,12 +18,16 @@ import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.DoneTaskCommand;
 import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindEventCommand;
+import seedu.address.logic.commands.FindTaskCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListEventCommand;
 import seedu.address.logic.commands.ListTaskCommand;
+import seedu.address.logic.commands.PinTaskCommand;
 import seedu.address.logic.commands.SortEventCommand;
 import seedu.address.logic.commands.SortTaskCommand;
 import seedu.address.logic.commands.SummaryCommand;
+import seedu.address.logic.commands.UnpinTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -43,6 +48,7 @@ public class SocheduleParser {
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
+    @SuppressWarnings("checkstyle:Regexp")
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
@@ -68,17 +74,32 @@ public class SocheduleParser {
         case DoneTaskCommand.COMMAND_WORD:
             return new DoneTaskCommandParser().parse(arguments);
 
+        case FindTaskCommand.COMMAND_WORD:
+            return new FindTaskCommandParser().parse(arguments);
+
+        case FindEventCommand.COMMAND_WORD:
+            return new FindEventCommandParser().parse(arguments);
+
         case EditTaskCommand.COMMAND_WORD:
             return new EditTaskCommandParser().parse(arguments);
 
         case SortTaskCommand.COMMAND_WORD:
             return new SortTaskCommandParser().parse(arguments);
 
+        case PinTaskCommand.COMMAND_WORD:
+            return new PinTaskCommandParser().parse(arguments);
+
+        case UnpinTaskCommand.COMMAND_WORD:
+            return new UnpinTaskCommandParser().parse(arguments);
+
         case SortEventCommand.COMMAND_WORD:
             return new SortEventCommandParser().parse(arguments);
 
         case SummaryCommand.COMMAND_WORD:
             return new SummaryCommandParser().parse(arguments);
+
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommandParser().parse(arguments);
 
         case ClearExpiredTaskCommand.COMMAND_WORD:
             return new ClearExpiredTaskCommand();

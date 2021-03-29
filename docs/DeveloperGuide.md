@@ -169,6 +169,24 @@ This section describes some noteworthy details on how [Sochedule](#41-sochedule)
 
 #### 4.1.2 Implementation
 
+**Implementation of ClearCommand**  
+The following is a detailed explanation on how ClearCommand is implemented.
+
+**Step 1**: User executes `clear` command to clear task and event lists.
+An `ClearCommandParser` object is created, and the `ClearCommandParser#parse(String args)` method is called.
+A `ClearCommand` object is returned.
+
+**Step 2**: On `ClearCommand#execute()`, `Model#setSochedule(new Sochedule())` is called.
+This will replace Sochedule data with a new empty Sochedule.
+For brevity, lower level implementation is omitted.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message will be appended with `CommandResult#MESSAGE_SUCCESS`.
+
+The sequence diagram for `ClearCommand` can be found below.
+
+![Sequence Diagram of Clear Command](images/ClearCommandSequenceDiagram.png)
+
 **Implementation of SummaryCommand**  
 The following is a detailed explanation on how SummaryCommand is implemented.
 
@@ -197,8 +215,28 @@ The sequence diagram for `SummaryCommand` can be found below.
 
 #### 4.2.2 Implementation
 
+**Implementation of DeleteTaskCommand**  
+The following is a detailed explanation on how DeleteTaskCommand is implemented.
+
+**Step 1**: User executes `delete_task Index` command to delete the task at the given index.
+An `DeleteTaskParser` object is created, and the `DeleteTaskParser#parse(String args)` method is called.
+The method conducts parses the `args` and conducts validation checks to ensure that it complies with the specification.
+A `DeleteTaskCommand` object is returned.
+
+**Step 2**: On `DeleteTaskCommand#execute()`, `Model#deleteTasks(Task taskToDelete)` is called.
+This will delete the task at the specified index.
+For brevity, lower level implementation of `Model#deleteTasks(Task taskToDelete)` is omitted.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message will be appended with `CommandResult#MESSAGE_DELETE_TASK_SUCCESS`.
+The UI will also update as the underlying task list has been modified.
+
+The sequence diagram for `DeleteTaskCommand` can be found below.
+
+![Sequence Diagram of DeleteTask Command](images/DeleteTaskCommandSequenceDiagram.png)
+
 **Implementation of SortTaskCommand**  
-The following is a detailed explanation on how SortTaskCommand is implemented.
+The following is a detailed explanation on how SortTaskCommand is implemented in the Logic component.
 
 **Step 1**: User executes `sort SORT_VAR` command to sort the tasks based on the `SORT_VAR` provided.
 An `SortTaskParser` object is created, and the `SortTaskParser#parse(String args)` method is called. 
@@ -214,9 +252,39 @@ A success message will be appended with `CommandResult#MESSAGE_SORT_TASK_SUCCESS
 The UI will also update as the underlying task list has been modified.
 
 The sequence diagram for `sortTaskCommand` can be found below.
-  <p align="center">
-      <img src="images/SortTaskSequenceDiagram.png">
-  </p>
+
+![Sequence Diagram of SortTask Command](images/SortTaskSequenceDiagram.png)
+
+***Lower Level implementation***  
+The following is a brief explanation , as shown in a sequence diagram, of how sorting is implemented inside the Model component.
+![Sequence Diagram of SortTaskCommand in Model Component](images/SortTaskModelSequenceDiagram.png)
+
+**Implementation of PinTaskCommand/UnpinTaskCommand**  
+The following is a detailed explanation on how PinTaskCommand is implemented.
+UnpinTaskCommand is largely similar in implementation to PinTaskCommand and will be omitted for brevity.
+
+**Step 1**: User executes `pin_task INDEX` command to delete the task at the given index.
+An `PinTaskParser` object is created, and the `PinTaskParser#parse(String args)` method is called.
+The method conducts parses the `args` and conducts validation checks to ensure that it complies with the specification.
+A `PinTaskCommand` object is returned.
+
+**Step 2**: On `PinTaskCommand#execute()`, `Model#pinTask(Task task)` is called.
+This will pin the task at the specified index.
+Subsequently, the underlying task list will be sorted by calling `Model#sortTasksDefault()`, with pinned tasks being first in priority, followed by the last sorted variable 
+(if `sort_task` was not called before, task list will be sorted by name).
+For brevity, lower level implementation of `Model#pinTask(Task task)` is omitted.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message will be appended with `CommandResult#MESSAGE_PIN_TASK_SUCCESS`.
+The UI will also update as the underlying task list has been modified.
+
+The sequence diagram for `PinTaskCommand` can be found below.
+It is largely similar to `SortTaskCommand`, with a some minor differences:
+* Instead of `SortTask`-related parsers and commands, `PinTask`-related parsers and commands are created and activated.
+* Additional call to `Model#sortTaskDefault()` after `Model#pinTask(Task)`
+
+![Sequence Diagram of PinTaskCommand](images/PinTaskSequenceDiagram.png)
+
 
 ### 4.3 Event
 

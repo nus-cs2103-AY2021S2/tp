@@ -16,7 +16,7 @@ end box
 [-> LogicManager : parse(sort)
 activate LogicManager
 
-LogicManager -> SocheduleParser : parseCommand(undo)
+LogicManager -> SocheduleParser : parseCommand(sort)
 activate SocheduleParser
 
 SocheduleParser -> SortTaskCommandParser: parse(args)

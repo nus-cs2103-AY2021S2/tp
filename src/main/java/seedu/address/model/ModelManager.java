@@ -144,9 +144,26 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void pinTask(Task task) {
+        requireAllNonNull(task);
+        sochedule.pinTask(task);
+    }
+
+    @Override
+    public void unpinTask(Task task) {
+        requireAllNonNull(task);
+        sochedule.unpinTask(task);
+    }
+
+    @Override
     public void sortTasks(String comparingVar) {
         requireNonNull(comparingVar);
         sochedule.sortTasks(comparingVar);
+    }
+
+    @Override
+    public void sortTasksDefault() {
+        sochedule.sortTasksDefault();
     }
 
     @Override
