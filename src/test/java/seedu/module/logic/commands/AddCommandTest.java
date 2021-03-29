@@ -21,6 +21,7 @@ import seedu.module.model.Model;
 import seedu.module.model.ModuleBook;
 import seedu.module.model.ReadOnlyModuleBook;
 import seedu.module.model.ReadOnlyUserPrefs;
+import seedu.module.model.task.Module;
 import seedu.module.model.task.Task;
 import seedu.module.testutil.TaskBuilder;
 
@@ -146,6 +147,11 @@ public class AddCommandTest {
 
         @Override
         public ObservableList<Task> getFilteredTaskList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Module> getModuleList() {
             throw new AssertionError("This method should not be called.");
         }
 

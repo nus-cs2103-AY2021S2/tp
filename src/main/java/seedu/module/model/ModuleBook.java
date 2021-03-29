@@ -141,7 +141,7 @@ public class ModuleBook implements ReadOnlyModuleBook {
      * @return True if Module is supported
      */
     public boolean checkForSupportedModuleCode(Task task) {
-        return ModuleManager.getListOfExistingModules().contains(task.getModule().toString());
+        return ModuleManager.getListOfSupportingModules().contains(task.getModule().toString());
     }
 
     //// util methods
