@@ -15,6 +15,7 @@ public class ListCommandCommand extends Command {
         + FindDefinitionCommand.COMMAND_WORD + ", "
         + ListContentCommand.COMMAND_WORD + ", "
         + ListDefinitionCommand.COMMAND_WORD + ", "
+        + CopyContentToNoteCommand.COMMAND_WORD + ", "
         + ShowDictionaryContentCommand.COMMAND_WORD + "\n\n"
         + "Note Command List (enter `listcommandn` for more details)\n"
         + AddNoteCommand.COMMAND_WORD + ", "
