@@ -87,6 +87,8 @@ public class Streak implements Comparable<Streak> {
         // Check that it is possible to continue the streak
         LocalDate latestDate = currentDate;
         LocalDate latestGoalDeadline = goal.getGoalDeadline(latestDate);
+//        System.out.println(latestDate);
+//        System.out.println(latestGoalDeadline);
 
         if (LocalDate.now().compareTo(latestGoalDeadline) > 0) {
             return new Streak(0);

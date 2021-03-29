@@ -75,12 +75,29 @@ public class Goal {
      * Calculates the next goal deadline from the given {@code date}. Deadlines are guaranteed to fall on Sundays.
      */
     public LocalDate getGoalDeadline(LocalDate date) {
+        Frequency freq = getFrequency();
+
         if (date == null || getFrequency().equals(Frequency.NONE)) {
             return null;
         }
 
         LocalDate deadline = FREQUENCY_MAP.get(getFrequency()).apply(date);
-        return deadline.with(TemporalAdjusters.nextOrSame(SUNDAY));
+
+        switch (freq) {
+        case WEEKLY:
+            deadline = deadline.with(TemporalAdjusters.nextOrSame(SUNDAY));
+            break;
+        case MONTHLY:
+            deadline = deadline.with(TemporalAdjusters.firstDayOfNextMonth()).minusDays(1);
+            break;
+        case YEARLY:
+            deadline = deadline.with(TemporalAdjusters.firstDayOfNextYear()).minusDays(1);
+            break;
+        default:
+            assert false : "Default clause should not be used";
+        }
+
+        return deadline;
     }
 
     public static boolean isValidGoal(String goal) {
