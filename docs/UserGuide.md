@@ -51,7 +51,8 @@ It allows for faster and more effective student management.
 **Tuition Session**
   * `list_session`: List all tuition sessions
   * `find_session James`: Finds and lists all tuition sessions that James have
-  * `add_session n/John Doe d/2021-01-01 t/13:00 k/120 s/Biology f/80`: Adds a tuition session for John Doe happening on 14-02-2021
+  * `add_session n/John Doe d/2021-01-01 t/13:00 k/120 s/Biology f/80`: Adds a tuition session for John Doe happening on 2021-01-01
+  * `add_recurring_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80 b/7 e/2021-01-15`: Adds a 7-day recurring session for John Doe happening from 2021-01-01 to 2021-01-15 
   * `delete_session n/John Lee i/1`: Deletes the 1st tuition session in John's tuition session list
 
 **General**
