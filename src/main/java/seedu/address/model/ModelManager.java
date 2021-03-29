@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -15,12 +16,14 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.appointment.DateViewPredicate;
 import seedu.address.model.budget.Budget;
+import seedu.address.model.event.Event;
 import seedu.address.model.filter.PersonFilter;
 import seedu.address.model.grade.Grade;
 import seedu.address.model.person.Person;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.model.schedule.ScheduleTracker;
+import seedu.address.model.util.SampleDataUtil;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -56,9 +59,9 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.appointmentBook = new AppointmentBook(appointmentBook);
+        this.scheduleTracker = new ScheduleTracker(SampleDataUtil.getSampleScheduleTracker());
         this.gradeBook = new GradeBook(gradeBook);
         this.budgetBook = new BudgetBook(budgetBook);
-        this.scheduleTracker = new ScheduleTracker();
         this.userPrefs = new UserPrefs(userPrefs);
 
         this.personFilter = new PersonFilter();
@@ -191,6 +194,7 @@ public class ModelManager implements Model {
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     @Override
@@ -250,6 +254,7 @@ public class ModelManager implements Model {
 
     /**
      * Method that removes appointment based on index
+     *
      * @param indexToRemove Index of appointment to remove
      */
     @Override
@@ -259,6 +264,7 @@ public class ModelManager implements Model {
 
     /**
      * Checks if {@code AppointmentDateTime} exists in the appointment list.
+     *
      * @param appointmentDateTime Appointment DateTime to be checked
      * @return true if Appointment DateTime exists in the appointment list
      */
@@ -271,6 +277,7 @@ public class ModelManager implements Model {
 
     /**
      * Getter method to retrieve budget book.
+     *
      * @return Budget book.
      */
     public BudgetBook getBudgetBook() {
@@ -295,6 +302,7 @@ public class ModelManager implements Model {
 
     /**
      * Adds budget to budget book. Budget must not be present.
+     *
      * @param budget Budget to add.
      */
     @Override
@@ -304,6 +312,7 @@ public class ModelManager implements Model {
 
     /**
      * Edits an already present {@code budget}.
+     *
      * @param budget Budget to update to.
      */
     @Override
@@ -320,6 +329,7 @@ public class ModelManager implements Model {
     }
 
     //=========== GradeList ============================================================================
+
     /**
      * Updates the filter of the filtered appointment list to filter by the given {@code predicate}.
      *
@@ -349,6 +359,7 @@ public class ModelManager implements Model {
 
     /**
      * Sets grade book file path.
+     *
      * @param gradeBookFilePath To be supplied by user
      */
     public void setGradeBookFilePath(Path gradeBookFilePath) {
@@ -392,6 +403,7 @@ public class ModelManager implements Model {
 
     /**
      * Method that removes grade based on index
+     *
      * @param indexToRemove index of grade to remove
      */
     @Override
@@ -492,17 +504,15 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteSchedule(int indexToRemove) {
-        scheduleTracker.removeSchedule(indexToRemove);
-    }
-
-    @Override
     public void setSchedule(Schedule target, Schedule editedSchedule) {
         scheduleTracker.setSchedule(target, editedSchedule);
     }
 
     @Override
-    public boolean hasScheduleDateTime(AppointmentDateTime appointmentDateTime) {
-        return false;
+    public ObservableList<Event> getFilteredEventList() {
+        ObservableList<Event> filteredEvents = FXCollections.observableArrayList();
+        filteredEvents.addAll(filteredAppointment);
+        filteredEvents.addAll(filteredSchedule);
+        return filteredEvents;
     }
 }
