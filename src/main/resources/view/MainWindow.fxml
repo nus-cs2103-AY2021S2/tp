@@ -57,8 +57,8 @@
               <ColumnConstraints percentWidth="50" />
             </columnConstraints>
             <rowConstraints>
-              <RowConstraints percentHeight="5" />
-              <RowConstraints percentHeight="95" />
+              <RowConstraints percentHeight="8" />
+              <RowConstraints percentHeight="92" />
             </rowConstraints>
             <HBox GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="panel_tab_bar">
               <Label fx:id="leftPanelLabel" text="Driver List" styleClass="panel_tab_label" />
