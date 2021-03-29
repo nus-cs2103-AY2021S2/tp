@@ -103,6 +103,13 @@ public class EditCommand extends Command {
 
         model.setClient(clientToEdit, editedClient);
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+
+        // Causes the ClientDetailFragment to update if was displaying the edited client
+        Client displayedClient = model.getDetailedClient().getValue();
+        if (displayedClient.equals(clientToEdit)) {
+            model.setDetailedClient(editedClient);
+        }
+
         return new CommandResult(String.format(MESSAGE_EDIT_CLIENT_SUCCESS, editedClient));
     }
 
