@@ -140,7 +140,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 ## **Implementation**
-This section describes some noteworthy details on how certain features are implemented.  
+This section describes some noteworthy details on how certain features are implemented.
 
 ### History feature
 
@@ -149,8 +149,6 @@ This section describes some noteworthy details on how certain features are imple
 ![HistoryObjectDiagram](images/HistoryObjectDiagram.png)
 
 The `history command` makes use of the `History` class to format information about semesters prior to the users `current semester` in their `master plan`. As such, a precondition for the `history command` is that the user must have identified both a `master plan` and `current semester`, otherwise they will be prompted to do so.
-
- 
 
 ![HistoryHashmapClassDiagram](images/HistoryHashmapClassDiagram.png)
 
@@ -227,33 +225,3 @@ _{More to be added}_
 * **Module**: Classes for students in university. It has both a title and a module code
 * **Module prerequisite**: Students must fulfill by passing the prerequisite modules before taking this module
 ---
-```plantuml
-@startuml
-
-title Simple Object Diagram
-
-object Germany
-object France
-object Spain
-object USA
-object Mexico
-object Russia
-object Canada
-object Japan
-
-Germany <|-- France
-Spain *-- USA
-Mexico o-- Russia
-Canada .. Japan
-
-Germany : Liquor = Jagermeister
-France : Liquor = Wine
-Spain : Liquor = Wine
-USA : Liquor = BudLight
-Mexico : Liquor = Taquilla
-Russia : Liquor = Vodka
-Canada : Liquor = Beer
-Japan : Liquor = Sake
-
-@enduml
-```
