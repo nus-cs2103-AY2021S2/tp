@@ -3,12 +3,9 @@ package seedu.timeforwheels.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import seedu.timeforwheels.commons.core.Messages;
 import seedu.timeforwheels.model.Model;
-import seedu.timeforwheels.model.customer.Customer;
 import seedu.timeforwheels.model.customer.NameContainsKeywordsPredicate;
 
 /**
@@ -23,6 +20,7 @@ public class UncompletedCommand extends Command {
 
     @Override
     public CommandResult execute (Model model) {
+        requireNonNull(model);
         String trimmedArgs = "[X]";
         String[] nameKeywords = trimmedArgs.split("\\s+");
         NameContainsKeywordsPredicate uncomplete = new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords));
