@@ -1,5 +1,6 @@
 package seedu.partyplanet.model.date;
 
+import static java.util.Map.entry;
 import static java.util.Objects.requireNonNull;
 import static seedu.partyplanet.commons.util.AppUtil.checkArgument;
 
@@ -8,6 +9,7 @@ import java.time.LocalDate;
 import java.time.MonthDay;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.Map;
 
 
 /** Represents a Date in PartyPlanet.
@@ -27,7 +29,33 @@ public class Date implements Comparable<Date> {
     public static final String MESSAGE_CONSTRAINTS = "Dates should be in one of the following formats:\n"
             + MESSAGE_YEAR_FORMATS + "\n" + MESSAGE_NOYEAR_FORMATS;
     public static final String EMPTY_DATE_STRING = "";
+    public static final Map<String, Integer> MONTH_NAME_MAPPING = Map.ofEntries(
+            entry("jan", 1),
+            entry("january", 1),
+            entry("feb", 2),
+            entry("february", 2),
+            entry("mar", 3),
+            entry("march", 3),
+            entry("apr", 4),
+            entry("april", 4),
+            entry("may", 5),
+            entry("jun", 6),
+            entry("june", 6),
+            entry("jul", 7),
+            entry("july", 7),
+            entry("aug", 8),
+            entry("august", 8),
+            entry("sep", 9),
+            entry("september", 9),
+            entry("oct", 10),
+            entry("october", 10),
+            entry("nov", 11),
+            entry("november", 11),
+            entry("dec", 12),
+            entry("december", 12)
+    );
 
+    public static final int EMPTY_MONTH = 0;
     protected static final int MIN_YEAR = 0;
     protected static final int NON_YEAR = -1;
 
@@ -126,7 +154,7 @@ public class Date implements Comparable<Date> {
      * Returns title case for strings.
      * Required for user inputs in arbitrary case, which DateTimeFormatter does not support parsing for.
      */
-    private static String toTitleCase(String date) {
+    public static String toTitleCase(String date) {
         StringBuilder titleCase = new StringBuilder(date.length());
         boolean nextCapitalize = true;
         for (char c: date.toCharArray()) {
@@ -203,7 +231,7 @@ public class Date implements Comparable<Date> {
      */
     public int getMonth() {
         if (isEmpty) {
-            return 0;
+            return EMPTY_MONTH;
         }
         return dateValue.getMonthValue();
     }
