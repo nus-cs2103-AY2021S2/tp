@@ -12,6 +12,25 @@ better organise their clothes**. The app is **optimised for users who prefer typ
 benefit of a **smooth and easy to use Graphical User Interface(GUI)**. 
 Use nufash to reduce clutter and start making wiser clothing decisions today!
 
+* [Quickstart](#quickstart)
+* [Features](#features)
+    + [Viewing Help: `help`](#viewing-help---help-)
+    + [Adding a Garment to the Wardrobe: `add`](#adding-a-garment-to-the-wardrobe---add-)
+    + [Listing all Garments in the Wardrobe: `list`](#listing-all-garments-in-the-wardrobe---list-)
+    + [Deleting a singular Garment in the Wardrobe: `delete`](#deleting-a-singular-garment-in-the-wardrobe---delete-)
+    + [Clearing all Garments in Wardrobe : `clear`](#clearing-all-garments-in-wardrobe----clear-)
+    + [Editing a singular Garment in Wardrobe: `edit`](#editing-a-singular-garment-in-wardrobe---edit-)
+    + [Find Garments in Wardrobe by keywords: `find`](#find-garments-in-wardrobe-by-keywords---find-)
+    + [Matching Garments to create an outfit: `match`<br>](#matching-garments-to-create-an-outfit---match--br-)
+    + [Checking out a Garment from the Wardrobe: `select`](#checking-out-a-garment-from-the-wardrobe---select-)
+    + [Viewing a valid outfit: `view`](#viewing-a-valid-outfit---view-)
+    + [Exiting the program: `exit`](#exiting-the-program---exit-)
+    + [Saving the data](#saving-the-data)
+    + [Editing the data file](#editing-the-data-file)
+* [FAQ](#faq)
+* [Command Summary](#command-summary)
+* [Credits](#credits)
+
 
 ---
 ## Quickstart
@@ -59,92 +78,102 @@ Use nufash to reduce clutter and start making wiser clothing decisions today!
 ### Viewing Help: `help`
 Shows an in-app user guide to various commands.<br>
 
-insert helpMessage.png
+![helpMessage.png](https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/helpMessage.png)
 
 Format: `help`
 <br><br>
 
-### Adding a Garment: `add` 
+### Adding a Garment to the Wardrobe: `add` 
 Adds a garment with a name, size, colour, dress code and type into the wardrobe, along with optional descriptions.<br>
 
-insert AddGarment.png
+![AddGarment.png](https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/AddGarment.png)
 
 Format: `add n/NAME s/SIZE c/COLOUR r/DRESSCODE t/TYPE [d/DESCRIPTION]...`<br>
 
-Tips:
+<div markdown="block" class="alert alert-primary">
+
+**:bulb: Tips:** <br>
 * `SIZE` is a positive number.
 * `DRESSCODE` is either 'formal', 'casual' or 'active'.
 * `TYPE` is either 'lower', 'upper' or 'footwear'.
+</div>
 
 Example:<br>
 * `add n/favourite t shirt s/30 c/blue r/casual t/upper`
   <br><br>
   
-### Listing all Garments: `list`  
+### Listing all Garments in the Wardrobe: `list`  
 Shows a list of all garments in the wardrobe<br>
 
-insert ListGarment.png
+![ListGarment.png](https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/ListGarment.png)
 
 Format: `list`
 <br><br>
 
-### Deleting a Garment: `delete`  
+### Deleting a singular Garment in the Wardrobe: `delete`  
 Removes a Garment, associated with the given index, from the wardrobe.<br>
 
-insert DeleteGarment.png
+![DeleteGarment.png](https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/DeleteGarment.png)
 
 Format: `delete INDEX`
 
-Tips:
+<div markdown="block" class="alert alert-primary">
+
+**:bulb: Tips:** <br>
 * Deletes the article of clothing at the specified `INDEX`
 * The `INDEX` refers to the index number shown in the list command
 * The `INDEX` must be a positive integer 1, 2, 3, …<br>
+</div>
 
 Example:<br>
 * `list` followed by `delete 7`<br>
 Removes the 7th Garment in the wardrobe.
 <br><br>
   
-### Clearing all Garments: `clear`
+### Clearing all Garments in Wardrobe : `clear`
 Clears all existing garments in the wardrobe.
 
-insert ClearGarment.png
+![ClearGarment.png](https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/ClearGarment.png)
 
 Format: `clear`
 <br><br>
 
-### Editing a Garment: `edit`
+### Editing a singular Garment in Wardrobe: `edit`
 Edits an existing garment in the wardrobe.<br>
 
-insert EditGarment.png
+![EditGarment.png](https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/EditGarment.png)
 
 Format: `edit INDEX [n/NAME] [s/SIZE] [c/COLOUR] [r/DRESSCODE] [t/TYPE] [d/DESCRIPTION]...`
 
-Tips:
+<div markdown="block" class="alert alert-primary">
+
+**:bulb: Tips:** <br>
 * Edits the garment at the specified `INDEX`.<br>
 * The `INDEX` refers to the index number shown in the list command. The index must be a positive integer 1, 2, 3, …
 * At least one of the optional bracketed fields must be provided.
 * Existing values will be updated to the input values.<br>
+</div>
 
 Example:
 * `list` followed by `edit 1 c/red s/30`<br>
   Edits the colour and size of the 1st garment in the wardrobe to be red and 30 respectively.
   <br><br>
   
-### Find Garments: `find`
+### Find Garments in Wardrobe by keywords: `find`
 Finds all garments that matched specified keywords during search.<br>
 
-insert FindGarmentA.png
+![FindGarmentA.png](https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/FindGarmentA.png)
 
-insert FindGarmentB.png
+![FindGarmentB.png](https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/FindGarmentB.png)
 
 Format: `find [n/NAMES] [s/SIZES] [c/COLOURS] [r/DRESSCODES] [t/TYPES] [d/DESCRIPTIONS]...`
 
-Tips:
+<div markdown="block" class="alert alert-primary">
 
+**:bulb: Tips:** <br>
 * At least one of the optional bracketed fields must be provided.
 * The list of all garments with matching attributes will be shown.<br><br>
-
+</div>
 Example:
 * `find n/worn out jeans`<br>
   Returns all garments whose name has at least one of the words in the search phrase, "worn out jeans".
@@ -152,7 +181,7 @@ Example:
   Returns all garments that are white and are either sized 36 or 23.
 <br><br>
  
-### Matching multiple garments to create an outfit: `match`<br>
+### Matching Garments to create an outfit: `match`<br>
 [matching of multiple input garments implemented in v1.3]<br> 
 Finds all articles of clothing that match the colour and dress code,
 but do not match the type(s) of a specified garment, or two specified
@@ -170,40 +199,45 @@ Returns all the articles of clothing that match the colours and dress code of
   the garments at indices 1 and 2 in the list of garments on display, but
   do not match their types.
 
-### Selecting a Garment: `select`
-Select a garment to check out of the wardrobe.
+### Checking out a Garment from the Wardrobe: `select`
+Select a garment to check out of the wardrobe, indicating that it shall be worn today.
 
-insert SelectGarment.png
+![SelectGarment.png](https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/SelectGarment.png)
 
 Format: `select INDEX`
 
-Tips:
+<div markdown="block" class="alert alert-primary">
+
+**:bulb: Tips:** <br>
 * Selects the garment at the specified `INDEX`.<br>
 * The `INDEX` must be a positive integer 1, 2, 3, …
-* selecting a garment indicates that you intend to wear it today.
-
+</div>
 Example:
 
 * `select 1`
 <br><br>
 
-### Viewing a Garment set: `view`
-View a set of 3 garments associated with the given indexes.<br>
+### Viewing a valid outfit: `view`
+View a set of 3 garments associated with the given indexes that create an outfit.<br>
 
-insert ViewGarment.png
+![ViewGarment.png](https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/ViewGarment.png)
 
 Format: `view INDEX INDEX INDEX`
 
-Tips:
+<div markdown="block" class="alert alert-primary">
+
+**:bulb: Tips:** <br>
 * Displays the garments at the selected set of `INDEX`.<br>
 * The `INDEX` must be a positive integer 1, 2, 3, …
 * Garments must be of different Types (i.e. `upper`, `lower` and `footwear`).<br>
 * The command must have exactly 3 indexes as input, any more inputs will not be registered.
 
+</div>
+
 Example:
 * `view 1 2 3`<br>
 <br><br>
-
+  
 
 ### Exiting the program: `exit`
 Exits the program.<br>
@@ -224,7 +258,7 @@ Advanced users are welcome to update data directly by editing that data file.
 <br><br>
 
 ---
-### FAQ
+## FAQ
 Q: How do I transfer my data to another Computer?<br>
 A: Install the app in the other computer and overwrite the empty data file it creates with the file that contains 
 the data of your previous nufash folder.
@@ -233,7 +267,7 @@ Q: Who do I contact if I face any issues?<br>
 A: Tell us about your issue [here](https://github.com/AY2021S2-CS2103T-T12-1/tp), or better yet, submit a pull request with a way to solve it!
 
 ---
-### Command Summary
+## Command Summary
 
 
 | Action                              | Format, Examples                                                                                                                |
@@ -251,3 +285,7 @@ A: Tell us about your issue [here](https://github.com/AY2021S2-CS2103T-T12-1/tp)
 | **Exit**                            | `exit`                                                                                                                          |
 
 ---
+## Credits
+
+This user guide format has been adapted
+from [AddressBook Level 3 User Guide](https://github.com/nus-cs2103-AY1920S2/addressbook-level3/blob/master/docs/UserGuide.adoc)
