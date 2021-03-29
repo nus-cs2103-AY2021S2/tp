@@ -367,3 +367,27 @@
     -fx-font-size: 13px;
     -fx-text-fill: black;
 }
+
+#deadline {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 14px;
+    -fx-text-fill: tomato;
+}
+
+#askingPrice {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 15px;
+    -fx-text-fill: black;
+}
+
+#date {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 14px;
+    -fx-text-fill: tomato;
+}
+
+#time {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 14px;
+    -fx-text-fill: tomato;
+}
