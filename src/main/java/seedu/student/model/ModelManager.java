@@ -147,6 +147,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Appointment getAppointment(MatriculationNumber matriculationNumber) {
+        return studentBook.getAppointment(matriculationNumber);
+    }
+
+    @Override
     public boolean hasAppointment(Appointment appointment) {
         requireNonNull(appointment);
         return studentBook.hasAppointment(appointment);
@@ -161,6 +166,11 @@ public class ModelManager implements Model {
     @Override
     public void addAppointment(Appointment appointment) {
         studentBook.addAppointment(appointment);
+    }
+
+    @Override
+    public void deleteAppointment(Appointment appointment) {
+        studentBook.removeAppointment(appointment);
     }
 
     //=========== Filtered Student List Accessors =============================================================
@@ -185,6 +195,7 @@ public class ModelManager implements Model {
     /**
      * Returns an unmodifiable view of the list of {@code Appointment} backed by the internal list of
      * {@code versionedstudentBook}
+     * @return
      */
     @Override
     public ObservableList<SameDateAppointmentList> getFilteredAppointmentList() {
@@ -192,9 +203,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredAppointmentList(Predicate<SameDateAppointmentList> predicate) {
-        requireNonNull(predicate);
-        filteredAppointments.setPredicate(predicate);
+    public void updateFilteredAppointmentList(Predicate<SameDateAppointmentList> listPredicate,
+                                              Predicate<Appointment> predicate) {
+        requireAllNonNull(listPredicate, predicate);
+        filteredAppointments.setPredicate(listPredicate);
+        filteredAppointments.stream().forEach(apptFilteredList ->
+                apptFilteredList.updateFilteredAppointmentList(predicate));
     }
 
     @Override

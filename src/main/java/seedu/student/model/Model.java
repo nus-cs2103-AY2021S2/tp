@@ -18,8 +18,10 @@ import seedu.student.model.student.Student;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
-    Predicate<SameDateAppointmentList> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
 
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<SameDateAppointmentList> PREDICATE_SHOW_ALL_APPOINTMENT_LISTS = unused -> true;
+    Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
     /**
      *
      *
@@ -101,12 +103,19 @@ public interface Model {
     Student getStudent(MatriculationNumber matriculationNumber);
 
     /**
+     * @param matriculationNumber Matriculation number of the student who's appointment you wish to get.
+     * @return The appointment you want, null if the appointment does not exist in the system.
+     */
+    Appointment getAppointment(MatriculationNumber matriculationNumber);
+
+    /**
      * Updates the filter of the filtered student list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
 
-    void updateFilteredAppointmentList(Predicate<SameDateAppointmentList> predicate);
+    void updateFilteredAppointmentList(Predicate<SameDateAppointmentList> predicate1,
+                                       Predicate<Appointment> predicate2);
 
     boolean hasAppointment(Appointment appointment);
 
