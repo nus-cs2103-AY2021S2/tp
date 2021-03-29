@@ -29,9 +29,10 @@ public class Client {
 
     /**
      * Every field must be present and not null.
+     * If insurance plan is not present, it will be a String of "No plans yet"
      */
     public Client(Name name, Phone phone, Email email, Location location, InsurancePlan plan, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, location, tags);
+        requireAllNonNull(name, phone, email, location, plan, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -119,9 +120,14 @@ public class Client {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Location: ")
-                .append(getLocation())
-                .append("; Insurance Plan: ")
-                .append(getPlan());
+                .append(getLocation());
+
+        // If insurance plan is present, display it
+        InsurancePlan plan = getPlan();
+        if (!plan.toString().equals("No plans yet")) {
+            builder.append("; Insurance Plan: ")
+                    .append(getPlan());
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
