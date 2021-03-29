@@ -9,11 +9,13 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListAllCommand;
 import seedu.address.logic.commands.meetings.AddMeetingCommand;
 import seedu.address.logic.commands.meetings.DeleteMeetingCommand;
 import seedu.address.logic.commands.meetings.SortMeetingCommand;
 import seedu.address.logic.commands.meetings.UnsortMeetingCommand;
 import seedu.address.logic.commands.meetings.EditMeetingCommand;
+import seedu.address.logic.commands.meetings.ListMeetingCommand;
 import seedu.address.logic.commands.persons.AddPersonCommand;
 import seedu.address.logic.commands.persons.ClearPersonCommand;
 import seedu.address.logic.commands.persons.DeletePersonCommand;
@@ -103,6 +105,9 @@ public class MeetBuddyParser {
         case DeleteMeetingCommand.COMMAND_WORD:
             return new DeleteMeetingCommandParser().parse(arguments);
 
+        case ListMeetingCommand.COMMAND_WORD:
+            return new ListMeetingCommand();
+
         case SortMeetingCommand.COMMAND_WORD:
             return new SortMeetingCommandParser().parse(arguments);
 
@@ -115,6 +120,9 @@ public class MeetBuddyParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case ListAllCommand.COMMAND_WORD:
+            return new ListAllCommand();
 
         case RefreshRemindersCommand.COMMAND_WORD:
             return new RefreshRemindersCommand();
