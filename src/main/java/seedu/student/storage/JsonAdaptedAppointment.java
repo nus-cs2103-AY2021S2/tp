@@ -19,8 +19,8 @@ class JsonAdaptedAppointment {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Appointment's %s field is missing!";
 
     private final String matriculationNumber;
-    private final String date;
-    private final String startTime;
+    private final LocalDate date;
+    private final LocalTime startTime;
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
@@ -28,8 +28,8 @@ class JsonAdaptedAppointment {
     @JsonCreator
     public JsonAdaptedAppointment(
                               @JsonProperty("matriculationNumber") String matriculationNumber,
-                              @JsonProperty("date") String date,
-                              @JsonProperty("startTime") String startTime) {
+                              @JsonProperty("date") LocalDate date,
+                              @JsonProperty("startTime") LocalTime startTime) {
         this.matriculationNumber = matriculationNumber;
         this.date = date;
         this.startTime = startTime;
@@ -40,8 +40,8 @@ class JsonAdaptedAppointment {
      */
     public JsonAdaptedAppointment(Appointment source) {
         matriculationNumber = source.getMatriculationNumber().value;
-        date = source.getDate().toString();
-        startTime = source.getStartTime().toString();
+        date = source.getDate();
+        startTime = source.getStartTime();
     }
 
     /**
@@ -50,6 +50,7 @@ class JsonAdaptedAppointment {
      * @throws IllegalValueException if there were any data constraints violated in the adapted student.
      */
     public Appointment toModelType() throws IllegalValueException {
+
         if (matriculationNumber == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     MatriculationNumber.class.getSimpleName()));
@@ -58,9 +59,14 @@ class JsonAdaptedAppointment {
             throw new IllegalValueException(MatriculationNumber.MESSAGE_CONSTRAINTS);
         }
         final MatriculationNumber modelMatric = new MatriculationNumber(matriculationNumber);
+        //check for overlap of timing
+        if(date == null){
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    MatriculationNumber.class.getSimpleName()));
+        }
 
-        final LocalDate modelDate = LocalDate.parse(date);
-        final LocalTime modelStartTime = LocalTime.parse(startTime);
+        final  LocalDate modelDate = date;
+        final LocalTime modelStartTime = startTime;
 
         return new Appointment(modelMatric, modelDate, modelStartTime);
     }

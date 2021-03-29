@@ -22,6 +22,8 @@ class JsonSerializableStudentBook {
 
     public static final String MESSAGE_DUPLICATE_STUDENT = "Student list contains duplicate student(s).";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "Appointment list contains duplicate appointment(s),";
+    public static final String MESSAGE_MISSING_STUDENT = "The student does not exist in the records.";
+    public static final String MESSAGE_INVALID_START_TIME = "The student does not exist in the records.";
 
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
     private final List<JsonAdaptedAppointment> appointments = new ArrayList<>();
@@ -56,6 +58,7 @@ class JsonSerializableStudentBook {
         StudentBook studentBook = new StudentBook();
         for (JsonAdaptedStudent jsonAdaptedStudent : students) {
             Student student = jsonAdaptedStudent.toModelType();
+
             if (studentBook.hasStudent(student)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_STUDENT);
             }
@@ -63,7 +66,19 @@ class JsonSerializableStudentBook {
         }
         for (JsonAdaptedAppointment jsonAdaptedAppointment : appointments) {
             Appointment appointment = jsonAdaptedAppointment.toModelType();
-            if (studentBook.hasAppointment(appointment)) {
+
+            Boolean does_student_exist =
+                    studentBook.getStudentList().stream().anyMatch(student -> student.getMatriculationNumber().equals(appointment.getMatriculationNumber()));
+
+            if(does_student_exist == false){
+                throw new IllegalValueException(MESSAGE_MISSING_STUDENT);
+            }
+
+            if(!appointment.isValidTime(appointment.getStartTime())){
+                throw new IllegalValueException(MESSAGE_INVALID_START_TIME);
+            }
+
+            if (studentBook.hasAppointment(appointment) ||studentBook.hasOverlappingAppointment(appointment) ) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_APPOINTMENT);
             }
             studentBook.addAppointment(appointment);

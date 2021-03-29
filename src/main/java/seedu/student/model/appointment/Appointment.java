@@ -10,7 +10,7 @@ import seedu.student.model.student.MatriculationNumber;
 
 
 /**
- * Represents a Person in the address book.
+ * Represents a Student in the student book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Appointment implements Comparable<Appointment> {
