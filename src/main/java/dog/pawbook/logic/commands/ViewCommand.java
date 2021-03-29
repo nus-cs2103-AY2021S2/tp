@@ -4,12 +4,15 @@ import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_ENTITY_ID;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import dog.pawbook.commons.core.Messages;
 import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.RelatedEntityPredicate;
+import dog.pawbook.model.managedentity.program.Program;
 
 /**
  * Shows all owners in database whose name contains any of the argument keywords.
@@ -46,6 +49,13 @@ public class ViewCommand extends Command {
         targetIdList.add(targetEntityId);
         targetIdList.addAll(targetEntity.getRelatedEntityIds());
 
+        List<Integer> enrolledPrograms = model.getUnfilteredEntityList()
+                .stream()
+                .filter(x -> x.getValue() instanceof Program)
+                .filter(x -> x.getValue().getRelatedEntityIds().contains(targetEntityId))
+                .map(x -> x.getKey())
+                .collect(Collectors.toList());
+        targetIdList.addAll(enrolledPrograms);
         model.updateFilteredEntityList(new RelatedEntityPredicate(targetIdList));
 
         return new CommandResult(
