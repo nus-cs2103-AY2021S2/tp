@@ -152,6 +152,16 @@ The following activity diagram summarizes what happens when a user adds a new co
 The tags function ties together with the Start function of the application, as users can choose to start a quiz
 containing flashcards that have the same tag only (to be implemented...)
 
+### Quiz Command
+
+The quiz command is used to enter Quiz mode, allowing the user to start various quizzes from there.
+The following activity diagram summarizes what happens when a user enters the Quiz command:
+
+![QuizActivityDiagram](images/QuizActivityDiagram.png)
+
+The following sequence diagram shows how the Quiz command works:
+
+![QuizSequenceDiagram](images/QuizSequenceDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -186,13 +196,18 @@ containing flashcards that have the same tag only (to be implemented...)
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                 | I want to …​                        | So that I can…​                              |
-| -------- | ------------------------------------------ | -------------------------------------- | ----------------------------------------------- |
-| `* * *`  | new user                                   | view valid commands                    | remember how to use the App                     |
-| `* * *`  | user                                       | view a flashcard                       |                                                 |
-| `* * *`  | user                                       | see the answer to a flashcard          | check if I answered correctly                   |
-| `* * *`  | user                                       | start a practice run of all flashcards | practice all flashcards in a single session     |
-| `* *`    | user                                       | view all flashcards                    | study the flashcards before a session           |
+| Priority | As a …​         | I want to …​                            | So that I can…​                              |
+| -------- | ------------------ | ------------------------------------------ | ----------------------------------------------- |
+| `* * *`  | new user           | view valid commands                        | remember how to use the Weeblingo               |
+| `* * *`  | user               | view a flashcard                           |                                                 |
+| `* * *`  | user               | see the answer to a flashcard              | check if I answered correctly                   |
+| `* * *`  | user               | start a practice run of all flashcards     | practice all flashcards in a single session     |
+| `* * *`  | user               | view all flashcards                        | study the flashcards before a session           |
+| `* *`    | user               | quiz myself on a specific set of flashcards| practice a specific group of words that I may be bad at |
+| `* *`    | user               | quiz myself on a specific number of random flashcards| spot test myself with a group of random words |
+| `* *`    | user               | add tags to certain flashcards             | group flashcards to test myself (e.g. specific coverage for an exam) |
+| `* *`    | user               | know how well I scored on a Quiz           | see how many mistakes I made in this Quiz       |
+| `* *`    | user               | see how I did on past Quizzes              | see how my scores have changed over time        |
 
 *{More to be added}*
 
