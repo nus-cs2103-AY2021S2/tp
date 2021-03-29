@@ -23,8 +23,8 @@ public class DeleteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_PASSENGER_SUCCESS = "Deleted Passenger: %1$s";
-    public static final String MESSAGE_DELETE_PASSENGER_FAIL_HAS_POOL = "Failed to delete. One or more Pools contain " +
-            "Passenger: %1$s.";
+    public static final String MESSAGE_DELETE_PASSENGER_FAIL_HAS_POOL = "Failed to delete. One or more Pools contain"
+            + " Passenger: %1$s.";
 
     private final Index targetIndex;
 
