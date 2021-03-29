@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import guitests.guihandles.ProjectDisplayPanelHandle;
 import seedu.address.commons.exceptions.DateConversionException;
+import seedu.address.commons.exceptions.TimeConversionException;
 import seedu.address.model.project.Project;
 import seedu.address.testutil.TypicalProjects;
 
@@ -19,7 +20,7 @@ public class ProjectDisplayPanelTest extends GuiUnitTest {
     private ProjectDisplayPanelHandle projectDisplayPanelHandle;
 
     @Test
-    void changeTab_success() throws DateConversionException {
+    void changeTab_success() throws DateConversionException, TimeConversionException {
         // Init UI
         ProjectDisplayPanel projectDisplayPanel = new ProjectDisplayPanel();
         Project project = TypicalProjects.getCS2103TProject();
