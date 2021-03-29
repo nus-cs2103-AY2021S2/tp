@@ -81,8 +81,8 @@ public class SampleDataUtil {
 
     public static ImportantDate[] getSampleImportantDates() {
         return new ImportantDate[] {
-                new ImportantDate(new Description("A-Levels Mathematics Paper 1"), new Details("2021-11-03 0800")),
-                new ImportantDate(new Description("A-Levels Mathematics Paper 2"), new Details("2021-11-06 0800"))
+            new ImportantDate(new Description("A-Levels Mathematics Paper 1"), new Details("2021-11-03 0800")),
+            new ImportantDate(new Description("A-Levels Mathematics Paper 2"), new Details("2021-11-06 0800"))
         };
     }
 

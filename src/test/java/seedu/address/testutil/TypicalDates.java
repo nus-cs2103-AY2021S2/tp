@@ -1,11 +1,11 @@
 package seedu.address.testutil;
 
-import seedu.address.model.DatesBook;
-import seedu.address.model.date.ImportantDate;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import seedu.address.model.DatesBook;
+import seedu.address.model.date.ImportantDate;
 
 /**
  * A utility class containing a list of {@code ImportantDate} objects to be used in tests.
