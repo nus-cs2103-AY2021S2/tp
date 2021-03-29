@@ -166,47 +166,62 @@ public class AddCommandTest {
         @Override
         public Path getAppointmentBookFilePath() {
             throw new AssertionError("This method should not be called.");
-        };
+        }
 
+        @Override
         public void setAppointmentBookFilePath(Path appointmentBookFilePath) {
             throw new AssertionError("This method should not be called.");
-        };
+        }
 
+        @Override
         public void setAppointmentBook(ReadOnlyAppointmentBook appointmentBook) {
             throw new AssertionError("This method should not be called.");
-        };
+        }
 
+        @Override
         public ReadOnlyAppointmentBook getAppointmentBook() {
             throw new AssertionError("This method should not be called.");
-        };
+        }
 
+        @Override
         public boolean hasAppointment(Appointment appointment) {
             throw new AssertionError("This method should not be called.");
-        };
+        }
 
+        @Override
         public void deleteAppointment(Appointment target) {
             throw new AssertionError("This method should not be called.");
-        };
+        }
 
+        @Override
         public void addAppointment(Appointment appointment) {
             throw new AssertionError("This method should not be called.");
-        };
+        }
 
+        @Override
         public void setAppointment(Appointment target, Appointment editedAppointment) {
             throw new AssertionError("This method should not be called.");
-        };
+        }
 
+        @Override
         public void setAppointments(List<Appointment> appointments) {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
         public ObservableList<Appointment> getFilteredAppointmentList() {
             throw new AssertionError("This method should not be called.");
-        };
+        }
 
+        @Override
         public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
             throw new AssertionError("This method should not be called.");
-        };
+        }
+
+        @Override
+        public void orderAppointments() {
+            throw new AssertionError("This method should not be called.");
+        }
 
     }
 
