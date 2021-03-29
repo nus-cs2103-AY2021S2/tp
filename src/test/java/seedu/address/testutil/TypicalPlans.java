@@ -6,6 +6,7 @@ import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.plan.Plan;
+import seedu.address.model.plan.Semester;
 
 /**
  * A utility class containing a list of {@code Plan} objects to be used in tests.
@@ -35,5 +36,15 @@ public class TypicalPlans {
 
     public static List<Plan> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(SOFTWARE_ENGINEERING, COMPUTER_NETWORKING));
+    }
+
+    public static AddressBook getTypicalAddressBookWithPlanSemester(){
+        AddressBook ab = new AddressBook();
+        Semester semester = new Semester(1);
+        for (Plan plan : getTypicalPersons()) {
+            plan.addSemester(semester);
+            ab.addPlan(plan);
+        }
+        return ab;
     }
 }

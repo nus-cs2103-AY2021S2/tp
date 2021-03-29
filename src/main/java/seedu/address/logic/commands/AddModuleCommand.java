@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLAN_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SEM_NUMBER;
@@ -49,6 +50,7 @@ public class AddModuleCommand extends Command {
      * Create a addmodulecommand object with plan index, sem index and module code and grade
      */
     public AddModuleCommand(Index planIndex, Index semIndex, String moduleCode, String grade) {
+        requireAllNonNull(planIndex, semIndex);
         this.planIndex = planIndex;
         this.semIndex = semIndex;
         this.moduleCode = moduleCode;

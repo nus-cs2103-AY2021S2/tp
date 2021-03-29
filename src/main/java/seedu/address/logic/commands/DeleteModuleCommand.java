@@ -79,7 +79,7 @@ public class DeleteModuleCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteSemesterCommand // instanceof handles nulls
+                || (other instanceof DeleteModuleCommand // instanceof handles nulls
                 && targetPlanIndex == (((DeleteModuleCommand) other).targetPlanIndex)
                 && targetSemesterIndex == (((DeleteModuleCommand) other).targetSemesterIndex)
                 && targetModuleCode.equals(((DeleteModuleCommand) other).targetModuleCode));

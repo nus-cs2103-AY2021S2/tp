@@ -1,5 +1,7 @@
 package seedu.address.model.plan;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +26,7 @@ public class Module {
      * @param moduleCredits Number of module credits module offers.
      */
     public Module (String moduleTitle, String moduleCode, int moduleCredits) {
+        requireAllNonNull(moduleTitle, moduleCode);
         this.moduleCode = moduleCode;
         this.moduleTitle = moduleTitle;
         this.moduleCredits = moduleCredits;
