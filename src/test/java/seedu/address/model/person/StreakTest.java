@@ -47,47 +47,52 @@ public class StreakTest {
         assertEquals(0, Streak.from(noneGoal, Collections.emptyList()).getValue());
     }
 
-    public void testFromWeekly(List<LocalDate> dates) {
-        Goal weeklyGoal = new Goal(WEEKLY);
-
-        Event oneWeekBefore = new EventBuilder().withDate(dates.get(0)).build();
-        Event twoWeeksBefore = new EventBuilder().withDate(dates.get(1)).build();
-        Event threeWeeksBefore = new EventBuilder().withDate(dates.get(2)).build();
-        Event fourWeeksBefore = new EventBuilder().withDate(dates.get(3)).build();
+    public void testFrom(List<LocalDate> dates, Goal goal, List<LocalDate> extra) {
+        Event onePeriodBefore = new EventBuilder().withDate(dates.get(0)).build();
+        Event twoPeriodsBefore = new EventBuilder().withDate(dates.get(1)).build();
+        Event threePeriodsBefore = new EventBuilder().withDate(dates.get(2)).build();
+        Event fourPeriodsBefore = new EventBuilder().withDate(dates.get(3)).build();
 
         List<Event> meetings = new ArrayList<>();
-        meetings.add(oneWeekBefore);
-        meetings.add(twoWeeksBefore);
-        meetings.add(threeWeeksBefore);
-        meetings.add(fourWeeksBefore);
+        meetings.add(onePeriodBefore);
+        meetings.add(twoPeriodsBefore);
+        meetings.add(threePeriodsBefore);
+        meetings.add(fourPeriodsBefore);
 
-        // Meet once every week
-        assertEquals(4, Streak.from(weeklyGoal, meetings).getValue());
+        // Meet once every time period
+        assertEquals(4, Streak.from(goal, meetings).getValue());
 
-        // Meet more times on some weeks
-        Event extra1 = new EventBuilder().withDate(dates.get(0).minusDays(1)).build();
-        Event extra2 = new EventBuilder().withDate(dates.get(2).minusDays(2)).build();
+        // Meet more on some time periods
+        Event extra1 = new EventBuilder().withDate(extra.get(0)).build();
+        Event extra2 = new EventBuilder().withDate(extra.get(1)).build();
         meetings.add(extra1);
         meetings.add(extra2);
 
-        assertEquals(6, Streak.from(weeklyGoal, meetings).getValue());
+        assertEquals(6, Streak.from(goal, meetings).getValue());
 
         meetings.remove(extra1);
-        assertEquals(5, Streak.from(weeklyGoal, meetings).getValue());
+        assertEquals(5, Streak.from(goal, meetings).getValue());
 
         meetings.remove(extra2);
 
-        // Gaps in dates
-        meetings.remove(oneWeekBefore);
-        assertEquals(0, Streak.from(weeklyGoal, meetings).getValue());
+        // Gaps in time periods
+        meetings.remove(onePeriodBefore);
+        assertEquals(0, Streak.from(goal, meetings).getValue());
 
-        meetings.add(oneWeekBefore);
-        meetings.remove(twoWeeksBefore);
-        assertEquals(1, Streak.from(weeklyGoal, meetings).getValue());
+        meetings.add(onePeriodBefore);
+        meetings.remove(twoPeriodsBefore);
+        assertEquals(1, Streak.from(goal, meetings).getValue());
 
-        meetings.add(twoWeeksBefore);
-        meetings.remove(fourWeeksBefore);
-        assertEquals(3, Streak.from(weeklyGoal, meetings).getValue());
+        meetings.add(twoPeriodsBefore);
+        meetings.remove(fourPeriodsBefore);
+        assertEquals(3, Streak.from(goal, meetings).getValue());
+    }
+
+    public void testFromWeekly(List<LocalDate> dates) {
+        List<LocalDate> extraDates = new ArrayList<>();
+        extraDates.add(dates.get(0).minusDays(2));
+        extraDates.add(dates.get(2).minusDays(3));
+        testFrom(dates, new Goal(WEEKLY), extraDates);
     }
 
     public void testFromWeeklySameDayPerWeek(LocalDate now) {
@@ -123,46 +128,10 @@ public class StreakTest {
     }
 
     public void testFromMonthly(List<LocalDate> dates) {
-        Goal monthlyGoal = new Goal(MONTHLY);
-
-        Event oneMonthBefore = new EventBuilder().withDate(dates.get(0)).build();
-        Event twoMonthsBefore = new EventBuilder().withDate(dates.get(1)).build();
-        Event threeMonthsBefore = new EventBuilder().withDate(dates.get(2)).build();
-        Event fourMonthsBefore = new EventBuilder().withDate(dates.get(3)).build();
-
-        List<Event> meetings = new ArrayList<>();
-        meetings.add(oneMonthBefore);
-        meetings.add(twoMonthsBefore);
-        meetings.add(threeMonthsBefore);
-        meetings.add(fourMonthsBefore);
-
-        // Meet once every month
-        assertEquals(4, Streak.from(monthlyGoal, meetings).getValue());
-
-        // Meet more times on some months
-        Event extra1 = new EventBuilder().withDate(dates.get(0).minusDays(5)).build();
-        Event extra2 = new EventBuilder().withDate(dates.get(2).minusDays(7)).build();
-        meetings.add(extra1);
-        meetings.add(extra2);
-
-        assertEquals(6, Streak.from(monthlyGoal, meetings).getValue());
-
-        meetings.remove(extra1);
-        assertEquals(5, Streak.from(monthlyGoal, meetings).getValue());
-
-        meetings.remove(extra2);
-
-        // Gaps in months
-        meetings.remove(oneMonthBefore);
-        assertEquals(0, Streak.from(monthlyGoal, meetings).getValue());
-
-        meetings.add(oneMonthBefore);
-        meetings.remove(twoMonthsBefore);
-        assertEquals(1, Streak.from(monthlyGoal, meetings).getValue());
-
-        meetings.add(twoMonthsBefore);
-        meetings.remove(fourMonthsBefore);
-        assertEquals(3, Streak.from(monthlyGoal, meetings).getValue());
+        List<LocalDate> extraDates = new ArrayList<>();
+        extraDates.add(dates.get(0).minusDays(10));
+        extraDates.add(dates.get(2).minusDays(15));
+        testFrom(dates, new Goal(MONTHLY), extraDates);
     }
 
     public void testFromMonthlySameDayPerMonth(LocalDate now) {
@@ -171,7 +140,6 @@ public class StreakTest {
         dates.add(now.minusMonths(2));
         dates.add(now.minusMonths(3));
         dates.add(now.minusMonths(4));
-
         testFromMonthly(dates);
     }
 
@@ -199,46 +167,10 @@ public class StreakTest {
     }
 
     public void testFromYearly(List<LocalDate> dates) {
-        Goal yearlyGoal = new Goal(YEARLY);
-
-        Event oneYearBefore = new EventBuilder().withDate(dates.get(0)).build();
-        Event twoYearsBefore = new EventBuilder().withDate(dates.get(1)).build();
-        Event threeYearsBefore = new EventBuilder().withDate(dates.get(2)).build();
-        Event fourYearsBefore = new EventBuilder().withDate(dates.get(3)).build();
-
-        List<Event> meetings = new ArrayList<>();
-        meetings.add(oneYearBefore);
-        meetings.add(twoYearsBefore);
-        meetings.add(threeYearsBefore);
-        meetings.add(fourYearsBefore);
-
-        // Meet once every year
-        assertEquals(4, Streak.from(yearlyGoal, meetings).getValue());
-
-        // Meet more times on some years
-        Event extra1 = new EventBuilder().withDate(dates.get(0).minusMonths(5).minusDays(5)).build();
-        Event extra2 = new EventBuilder().withDate(dates.get(2).minusMonths(2).minusDays(7)).build();
-        meetings.add(extra1);
-        meetings.add(extra2);
-
-        assertEquals(6, Streak.from(yearlyGoal, meetings).getValue());
-
-        meetings.remove(extra1);
-        assertEquals(5, Streak.from(yearlyGoal, meetings).getValue());
-
-        meetings.remove(extra2);
-
-        // Gaps in years
-        meetings.remove(oneYearBefore);
-        assertEquals(0, Streak.from(yearlyGoal, meetings).getValue());
-
-        meetings.add(oneYearBefore);
-        meetings.remove(twoYearsBefore);
-        assertEquals(1, Streak.from(yearlyGoal, meetings).getValue());
-
-        meetings.add(twoYearsBefore);
-        meetings.remove(fourYearsBefore);
-        assertEquals(3, Streak.from(yearlyGoal, meetings).getValue());
+        List<LocalDate> extraDates = new ArrayList<>();
+        extraDates.add(dates.get(0).minusMonths(5).minusDays(5));
+        extraDates.add(dates.get(2).minusMonths(2).minusDays(7));
+        testFrom(dates, new Goal(YEARLY), extraDates);
     }
 
     public void testFromYearlySameDayPerYear(LocalDate now) {
@@ -247,7 +179,6 @@ public class StreakTest {
         dates.add(now.minusYears(2));
         dates.add(now.minusYears(3));
         dates.add(now.minusYears(4));
-
         testFromYearly(dates);
     }
 
