@@ -36,7 +36,7 @@ public class RecurringSchedule implements RecurringDates {
             + "or the input end is less than a week without matching days found !!!";
 
     private static boolean isEmptyRecurringSchedule;
-    private static List<String> weekDates;
+    private List<String> weekDates;
     public final String value;
     public final String output;
 

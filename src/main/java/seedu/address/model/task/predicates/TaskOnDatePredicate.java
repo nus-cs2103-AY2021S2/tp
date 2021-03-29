@@ -1,6 +1,7 @@
 package seedu.address.model.task.predicates;
 
 import java.util.function.Predicate;
+import java.util.logging.Logger;
 
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Task;
@@ -14,6 +15,7 @@ public class TaskOnDatePredicate implements Predicate<Task> {
     private final String dateString;
     private final TaskDeadlineOnDatePredicate taskDeadlineOnDatePredicate;
     private final TaskScheduledOnDatePredicate taskScheduledOnDatePredicate;
+
     /**
      * Constructs this predicate that tests if a given task has its deadline or schedule on the provided deadline date.
      * Uses deadline as the parameter to construct this predicate so as to ensure that the date has been parsed

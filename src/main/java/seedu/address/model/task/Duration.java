@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
  * Represents a Task's Duration in the List.
  * Guarantees: immutable; is valid as declared in {@link #isValidDuration(String)}
  */
-public class Duration {
+public class Duration implements Comparable<Duration> {
     public static final String FIELD_NAME = "Duration";
 
     public static final String MESSAGE_CONSTRAINTS = "Duration should be numeric, consisting of start time and end time"
@@ -25,6 +25,9 @@ public class Duration {
     public final String duration;
     public final String value;
 
+    public String startTime;
+    public String endTime;
+
     /**
      * Constructs an {@code Duration}.
      *
@@ -33,8 +36,9 @@ public class Duration {
     public Duration(String duration) {
         requireNonNull(duration);
         checkArgument(isValidDuration(duration), MESSAGE_CONSTRAINTS);
-        this.duration = parseDuration(duration);
-        value = parseDuration(duration);
+        this.duration = duration;
+        value = duration;
+        parseDuration(duration);
     }
 
     /**
@@ -47,12 +51,19 @@ public class Duration {
     }
 
     /**
-     * Returns a deadline in the form of a LocalDate.
-     * @param duration the specified deadline.
-     * @return
+     * Parses the given duration into its start and end time.
+     *
+     * @param duration The specified duration.
      */
-    public static String parseDuration(String duration) {
-        return duration;
+    private void parseDuration(String duration) {
+        assert isValidDuration(duration) : "Cannot parse duration that is in an invalid format.";
+        if (duration.isEmpty()) {
+            return;
+        }
+
+        String[] times = duration.split("-");
+        this.startTime = times[0];
+        this.endTime = times[1];
     }
 
     /**
@@ -81,4 +92,17 @@ public class Duration {
         return this.duration.hashCode();
     }
 
+    /**
+     * Compares the start and end time of durations. A duration with an earlier start time will be smaller, and if the
+     * start time is equal, the duration with the earlier end time will be smaller.
+     *
+     * @param other Duration to compare to this duration.
+     * @return 1 if this duration is greater than the given duration, 0 if equal, and -1 if this duration is smaller.
+     */
+    @Override
+    public int compareTo(Duration other) {
+        int startTimeComparison = this.startTime.compareTo(other.startTime);
+        int endTimeComparison = this.endTime.compareTo(other.endTime);
+        return startTimeComparison == 0 ? endTimeComparison : startTimeComparison;
+    }
 }
