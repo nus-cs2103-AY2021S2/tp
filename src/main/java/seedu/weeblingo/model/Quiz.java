@@ -54,7 +54,7 @@ public class Quiz {
      * with the specified tags in randomized order.
      */
     public Quiz(Set<Tag> tags) {
-        Flashcard[] flashcardsReadFromDB = getDatabaseOfFlashcards();
+        Flashcard[] flashcardsReadFromDB = getDatabaseOfFlashcards(JsonDatabaseReader.readDatabaseAsJsonArray());
         quizSessionQueue = getRandomizedSubsetQueue(flashcardsReadFromDB, tags);
         startTime = Instant.now();
     }
