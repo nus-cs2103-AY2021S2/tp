@@ -178,6 +178,26 @@ public class ModelManager implements Model {
         planner.setTags(target, editedTags);
     }
 
+    @Override
+    public boolean isEmpty() {
+        return planner.isEmpty();
+    }
+
+    @Override
+    public int size() {
+        return planner.size();
+    }
+
+    @Override
+    public double getPercentage() {
+        return planner.getPercentage();
+    }
+
+    @Override
+    public int getNumberDue() {
+        return planner.getNumberDue();
+    }
+
     //=========== Filtered Task List Accessors =============================================================
 
     /**

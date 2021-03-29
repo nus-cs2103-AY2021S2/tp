@@ -18,10 +18,10 @@ import seedu.address.model.task.Task;
 
 public class CountdownCommand extends Command {
 
-    public static final String COMMAND_WORD = "countdown";
+    public static final String COMMAND_WORD = "count";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows the number of days and hours left until "
-            + "a deadline is due.\n"
+            + "a deadline is due or an event is happening.\n"
             + "Parameters: INDEX \n"
             + "Example: " + COMMAND_WORD + " 2";
 
@@ -31,6 +31,8 @@ public class CountdownCommand extends Command {
             + "the deadline of this task:\n%2$s";
 
     public static final String MESSAGE_DEADLINE_OVER = "Deadline is already over for this task.";
+
+    public static final String MESSAGE_EMPTY_DEADLINE = "There is no deadline in this task.";
 
     private final Index index;
 
@@ -60,10 +62,15 @@ public class CountdownCommand extends Command {
 
         Task taskToCountdown = lastShownList.get(targetIndexValue);
 
+        if (taskToCountdown.isDeadlineEmpty()) {
+            throw new CommandException(MESSAGE_EMPTY_DEADLINE);
+        }
+
         if (taskToCountdown.dateOver()) {
-            logger.info("User entered date that's already over");
+            logger.info("User entered date that's already over.");
             throw new CommandException(MESSAGE_DEADLINE_OVER);
         }
+
         String daysLeft = model.countdownTask(taskToCountdown);
 
         return new CommandResult(String.format(MESSAGE_COUNTDOWN_TASK_SUCCESS, daysLeft, taskToCountdown));

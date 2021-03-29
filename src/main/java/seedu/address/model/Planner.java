@@ -163,6 +163,34 @@ public class Planner implements ReadOnlyPlanner {
         return Long.toString(numberOfDaysLeft);
     }
 
+    /**
+     * Returns true if the planner has no tasks.
+     */
+    public boolean isEmpty() {
+        return tasks.isEmpty();
+    }
+
+    /**
+     * Returns the number of tasks in the planner.
+     */
+    public int size() {
+        return tasks.size();
+    }
+
+    /**
+     * Returns the percentage of tasks done.
+     */
+    public double getPercentage() {
+        return tasks.getPercentage();
+    }
+
+    /**
+     * Returns the number of tasks due in the next 7 days.
+     */
+    public int getNumberDue() {
+        return tasks.getNumberDue();
+    }
+
     //// tag-level operations
 
     /**
