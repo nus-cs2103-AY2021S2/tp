@@ -38,8 +38,8 @@ public class Car {
     /**
      * Returns true if a given string is a valid car.
      */
-    public static boolean isValidCar(String test1, String test2) {
-        return isValidCarBrand(test1) && isValidCarType(test2);
+    public static boolean isValidCar(String carBrand, String carType) {
+        return isValidCarBrand(carBrand) && isValidCarType(carType);
     }
 
     /**
@@ -72,8 +72,7 @@ public class Car {
 
     @Override
     public int hashCode() {
-        // NEED TO VERIFY carbrand or carType hashcode
-        return carBrand.hashCode();
+        return this.hashCode();
     }
 
 }
