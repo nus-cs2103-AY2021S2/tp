@@ -19,7 +19,7 @@ public class StatsCommand extends Command {
     public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + "\n";
 
     public static final String MESSAGE_SUCCESS = "Total number of tasks: %1$s\n"
-            + "Percentage of tasks completed: %2$s%%\n"
+            + "Percentage of tasks completed: %2$.2f%%\n"
             + "Number of tasks due in the next 7 days: %3$s\n";
 
     public static final String MESSAGE_NO_TASKS = "There are no tasks in the planner to obtain statistics from.";

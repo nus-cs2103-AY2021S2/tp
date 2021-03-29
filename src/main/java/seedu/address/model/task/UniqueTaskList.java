@@ -3,7 +3,6 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Iterator;
@@ -141,7 +140,7 @@ public class UniqueTaskList implements Iterable<Task> {
             }
         }
 
-        double decimalFormat = totalDone/totalTasks;
+        double decimalFormat = totalDone / totalTasks;
 
         return decimalFormat * 100;
     }

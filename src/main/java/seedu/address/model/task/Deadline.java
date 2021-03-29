@@ -89,6 +89,11 @@ public class Deadline {
         return now.isAfter(value);
     }
 
+    /**
+     * Returns true if the task has a deadline that is within seven days from the current system date.
+     * @param currentDate current date of the system
+     * @return true if task's deadline is within seven days from current system date.
+     */
     public boolean isWithinSevenDays(LocalDate currentDate) {
         LocalDate sevenDaysFromNow = currentDate.plusDays(7);
 
