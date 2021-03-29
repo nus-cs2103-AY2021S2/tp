@@ -110,6 +110,8 @@ Shows a list of all tasks you have added.
 
 Format: `list`
 
+![add message](images/listCommand.png)
+
 
 ### Add a task: `add`
 
@@ -124,7 +126,7 @@ Format: `add n/TASK NAME m/MODULE d/DESCRIPTION [a/START TIME] b/DEADLINE w/WORK
 * Enter the time you wish to complete your task in the format: yyyy-MM-dd HH:mm or yyyy-MM-dd (HH:mm set to 00:00)
 
 
-![add message](images/addTaskUiV1.3.png)
+![add message](images/addCommand.png)
 
 Examples:
 * `add n/v1.2 TP m/CS2103T d/implement basic features b/2021-03-13 23:59 w/3 t/urgent`
@@ -156,6 +158,8 @@ Format: `done INDEX`
 * The index refers to the index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
+![add message](images/doneCommand.png)
+
 Examples:
 * `list` followed by `done 2` marks the 2nd task as done in the ModuleBook3.5.
 * `find CS2103T` followed by `done 1` marks the 1st task in the results of the `find` command as done.
@@ -183,6 +187,8 @@ Adds a tag to a task.
 Format: `tag INDEX t/TAG [t/MORETAGS]` 
 
 * Attaches one or more tags to the task associated with INDEX. Tags can be used to identify related tasks.
+
+![add message](images/tagCommand.png)
 
 Examples:
 
@@ -223,6 +229,8 @@ Format: `mod MODULE`
 
 * Searches through ModuleBook3.5 for tasks which belong to `MODULE`.
 
+![add message](images/findModuleCommand.png)
+
 Examples:
 
 * `mod CS3243`
@@ -256,6 +264,8 @@ Format: `edit INDEX [n/NAME] [m/MODULE] [d/DESCRIPTION] [a/START TIME] [b/DEADLI
 * If you wish to include a start time for your task, the start time should not be later than deadline.
 * Editing tags through the `edit` command overrides all existing tags. If you wish to add or delete only certain tags, use `tag` and `deleteTag` commands instead.
 
+![add message](images/editCommand.png)
+
 Examples:
 *  `edit 1 d/Eat Biscuits` Edits the description of the 1st task to `Eat Biscuits`.
 *  `edit 2 d/Eat Biscuits b/2021-03-21 10:10` Edits the description of the 2nd task to be `Eat Biscuits` and its deadline to date `2021-03-21 10:10`.
@@ -288,6 +298,8 @@ Format: `recur INDEX r/RECURRENCE`
    It must be a positive integer.
 * `RECURRENCE` refers to the regularity of the task that recurs periodically.
 * `RECURRENCE` can only be `daily`, `weekly` or `monthly`. It is case-insensitive.
+
+![add message](images/recurCommand.png)
 
 Examples:
 * `recur 1 r/monthly` Recurs the 1st task in ModuleBook3.5 every month.
