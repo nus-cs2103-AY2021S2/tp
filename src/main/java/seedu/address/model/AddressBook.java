@@ -13,6 +13,7 @@ import seedu.address.model.food.UniqueFoodList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.user.User;
+import seedu.address.model.util.TemplateInitializer;
 
 /**
  * Wraps all data at the address-book level
@@ -251,5 +252,22 @@ public class AddressBook implements ReadOnlyAddressBook {
         return foodIntakeList;
     }
 
+    /**
+     * Resets the current application data by setting to default values from TemplateInitializer.
+     */
+    public void resetToTemplate(UniqueFoodList foodlist, FoodIntakeList foodIntakeList) {
+        TemplateInitializer templateInitializer = new TemplateInitializer();
+        this.foodList = foodList;
+        this.foodIntakeList = foodIntakeList;
+        this.user = templateInitializer.createUser(foodlist, foodIntakeList);
+    }
 
+    /**
+     * Resets the current application data to blank state.
+     */
+    public void resetToBlank(UniqueFoodList foodlist, FoodIntakeList foodIntakeList) {
+        this.foodList = foodlist;
+        this.foodIntakeList = foodIntakeList;
+        user = null;
+    }
 }

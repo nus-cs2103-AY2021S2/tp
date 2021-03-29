@@ -14,6 +14,7 @@ import javafx.collections.ObservableList;
 import seedu.address.logic.FoodIntakeComparator;
 import seedu.address.logic.FoodIntakeQueryProcessor;
 import seedu.address.model.food.exceptions.FoodIntakeNotFoundException;
+import seedu.address.model.util.TemplateInitializer;
 
 /**
  * Represents a list of FoodIntakes starting from the specified date.
@@ -268,6 +269,21 @@ public class FoodIntakeList {
         }
 
         return stringBuilder.toString();
+    }
+
+    /**
+     * Resets the current foodIntakeList to a new empty list.
+     */
+    public void resetToTemplate() {
+        TemplateInitializer templateInitializer = new TemplateInitializer();
+        this.foodIntakeList = templateInitializer.getFoodListIntakeTemplate().getFoodIntakeList();
+    }
+
+    /**
+     * Resets the current foodIntakeList to the default sample template content.
+     */
+    public void resetToBlank() {
+        this.foodIntakeList = FXCollections.observableArrayList();
     }
 
     @Override

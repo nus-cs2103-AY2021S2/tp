@@ -20,6 +20,7 @@ import seedu.address.logic.commands.ListFoodItemCommand;
 import seedu.address.logic.commands.ListUserCommand;
 import seedu.address.logic.commands.QueryFoodIntakeCommand;
 import seedu.address.logic.commands.RecommendPlanCommand;
+import seedu.address.logic.commands.ResetCommand;
 import seedu.address.logic.commands.RunProgressCalculatorCommand;
 import seedu.address.logic.commands.SetActiveDietCommand;
 import seedu.address.logic.commands.UpdateFoodIntakeCommand;
@@ -110,6 +111,9 @@ public class AddressBookParser {
 
         case RunProgressCalculatorCommand.COMMAND_WORD:
             return new RunProgressCalculatorCommand();
+
+        case ResetCommand.COMMAND_WORD:
+            return new ResetCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

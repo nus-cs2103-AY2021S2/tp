@@ -126,14 +126,14 @@ public class MainApp extends Application {
                 logger.info("Diet plans file not found. Will be starting fresh");
             }
             if (!userOptional.isPresent()) {
-                logger.info("User file not found. Will be starting fresh");
+                logger.info("User file not found. Will be starting with default template data");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
             TemplateInitializer initializer = new TemplateInitializer();
             uniqueFoodList = uniqueFoodListOptional.orElse(initializer.getUniqueFoodListTemplate());
             foodIntakeList = foodIntakeListOptional.orElse(initializer.getFoodListIntakeTemplate());
-            dietPlanList = dietPlanListOptional.orElse(initializer.getDietPlanListTemplate());
-            user = userOptional.orElse(null); // update with sample data util
+            dietPlanList = dietPlanListOptional.orElseGet(SampleDataUtil::getSampleDietPlanList);
+            user = userOptional.orElse(initializer.createUser(uniqueFoodList, foodIntakeList));
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             TemplateInitializer initializer = new TemplateInitializer();

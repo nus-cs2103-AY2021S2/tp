@@ -205,4 +205,8 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    void resetToTemplate();
+
+    void resetToBlank();
+
 }
