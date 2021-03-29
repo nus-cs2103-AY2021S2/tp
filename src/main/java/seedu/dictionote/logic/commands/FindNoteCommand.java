@@ -36,8 +36,8 @@ public class FindNoteCommand extends Command {
     /**
      * Creates a new {@code FindContactCommand} with two predicates (i.e., conditions):
      * one applies to the contacts' names, and the other applies to their tags.
-     * @param notePredicate The predicate to be evaluated against the contacts' names.
-     * @param tagsPredicate The predicate to be evaluated against the contacts' tags.
+     * @param notePredicate The predicate to be evaluated against the note's content.
+     * @param tagsPredicate The predicate to be evaluated against the note's tags.
      */
     public FindNoteCommand(NoteContainsKeywordsPredicate notePredicate,
                               TagNoteContainKeywordsPredicate tagsPredicate) {
