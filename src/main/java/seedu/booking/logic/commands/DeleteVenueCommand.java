@@ -38,7 +38,7 @@ public class DeleteVenueCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_VENUE_NAME);
         }
 
-        model.deleteVenue(targetVenue);
+        model.deleteVenue(lastShownList.stream().filter(targetVenue::isSameVenue).findFirst().orElse(null));
         return new CommandResult(String.format(MESSAGE_DELETE_VENUE_SUCCESS, targetVenue.getVenueName()));
     }
 

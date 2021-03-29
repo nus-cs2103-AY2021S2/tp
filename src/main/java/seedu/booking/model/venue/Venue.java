@@ -4,6 +4,8 @@ import static seedu.booking.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import seedu.booking.commons.util.StringUtil;
+
 /**
  * Represents a venue in the booking list.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -41,7 +43,7 @@ public class Venue {
     }
 
     /**
-     * Returns true if both venues have the same name
+     * Returns true if both venues have the same name (case-insensitive).
      * This defines a weaker notion of equality between two venues.
      */
     public boolean isSameVenue(Venue otherVenue) {
@@ -49,7 +51,9 @@ public class Venue {
             return true;
         }
 
-        return otherVenue != null && this.name.equals(otherVenue.name);
+        return otherVenue != null
+                && StringUtil.containsWordIgnoreCase(this.getVenueName().removeSpacesInVenueName(),
+                        otherVenue.getVenueName().removeSpacesInVenueName());
     }
 
     /**

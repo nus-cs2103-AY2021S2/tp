@@ -11,7 +11,6 @@ import java.util.Optional;
 
 import seedu.booking.commons.core.Messages;
 import seedu.booking.commons.util.CollectionUtil;
-import seedu.booking.commons.util.StringUtil;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.model.Model;
 import seedu.booking.model.venue.Capacity;
@@ -60,7 +59,7 @@ public class EditVenueCommand extends Command {
         requireNonNull(model);
         List<Venue> lastShownList = model.getFilteredVenueList();
 
-        if (lastShownList.stream().noneMatch(venue -> venue.getVenueName().equals(venueName))) {
+        if (!lastShownList.stream().anyMatch(venueName::isSameVenueName)) {
             throw new CommandException(Messages.MESSAGE_INVALID_VENUE_NAME);
         }
 
@@ -78,7 +77,7 @@ public class EditVenueCommand extends Command {
 
     private static Venue getVenueByVenueName(VenueName venueName, List<Venue> venueList) {
         return venueList.stream()
-                .filter(venue -> (venue.getVenueName()).equals(venueName)).findFirst().orElse(null);
+                .filter(venueName::isSameVenueName).findFirst().orElse(null);
     }
 
     /**
