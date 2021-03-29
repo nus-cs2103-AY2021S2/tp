@@ -14,11 +14,21 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 --------------------------------------------------------------------------------------------------------------------
 ## **Target User Profile**
 
-The target user profile are dog school managers that own and manage the daily operations of the dog schools. They handle a wide range of operations such as keeping track of the dogs under their care, arranging classes and taking care of the dogs on a daily basis. They need a systematic way of maintaining their handle on the operations of their school at all times.
+The target user profile are dog school managers that own and manage the daily operations of the dog schools. They 
+handle a wide range of operations such as keeping track of the dogs under their care, arranging classes and taking care 
+of the dogs on a daily basis. They need a systematic way of maintaining their handle on the operations of their school 
+at all times.
 
 ## **Value Proposition**
 
-In Singapore, dog schools are popular among dog owners. Besides day care, they also provide training, grooming and workshops. With many moving parts daily, managing operations  can get overwhelming. Pawbook is an all-in-one management system to help dog school managers keep track of attendance, scheduling and services and maintain organisation.
+In Singapore, dog schools are popular among dog owners. Besides day care, they also provide training,
+grooming and workshops. With many moving parts daily, managing operations  can get overwhelming.
+PawBook is an all-in-one management system to help dog school managers keep track of attendance, scheduling and services
+and maintain organisation. At present, there is no such application to help dog school owners to organise and
+manage their dog school currently. This application serves to increase the effectiveness and efficacy of dog schools
+which in turn allows dog schools and its owners to take in more dogs. This application is necessary to help organise the
+school's system. By increasing the intake of dogs in dog schools, this increases the number of trained dogs in Singapore
+in general which solves the general problem of untrained dogs in Singapore being a nuisance to the public.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -176,6 +186,22 @@ In order to generate the respective commands, the raw input needs to be parsed f
 Below is an example activitiy diagram for a valid view command from the user.
 
 ![EditActivityDiagram](images/EditActivityDiagram.png)
+
+### Find feature 
+Pawbook allows the users to `find` an entity based on keyword searches. The `find` function entertains multiple keyword 
+searches and reveals the entire list of commands that match one or more of the results. 
+
+When the user enters a valid command with the keyword searches, the arguments are parsed by the `FindCommmandParser` that 
+converts the string of arguments into a list, that is subsequently passed on to a `NameContainsKeywordsPredicate` instance 
+that uses the list of keywords to find the search results based on the supplied keywords. 
+
+This predicate is passed into the `ModelManager`'s `updateFilteredEntityList()` method and subsequently generates the 
+CommandResult instance that is then passed on in the LogicManager. 
+
+
+
+
+
 
 ### View feature 
 Pawbook allows the user to `view` an entity and all its related entities. For instance, the user may want to `view` all the dogs of one particular owner or all the dogs enrolled in a program. By entering the correct view command with the correct identification number, the entire list will be generated. 
