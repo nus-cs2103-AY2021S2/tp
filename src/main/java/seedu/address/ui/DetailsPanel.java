@@ -7,6 +7,7 @@ import javafx.scene.layout.VBox;
 import seedu.address.commons.core.DetailsPanelTab;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonEvent;
+import seedu.address.model.person.PersonStreak;
 
 public class DetailsPanel extends UiPart<Region> {
 
@@ -24,15 +25,15 @@ public class DetailsPanel extends UiPart<Region> {
      * @param upcomingEventsList A list of upcoming events.
      * @param detailedPerson A list containing a single {@code Person}.
      */
-    public DetailsPanel(ObservableList<PersonEvent> upcomingEventsList, ObservableList<Person> detailedPerson, ObservableList<Person> persons) {
+    public DetailsPanel(ObservableList<PersonEvent> upcomingEventsList,
+            ObservableList<Person> detailedPerson, ObservableList<PersonStreak> personStreaks) {
         super(FXML);
         upcomingEventsTab = new UpcomingEventsTab(upcomingEventsList);
         personDetailsTab = new PersonDetailsTab(detailedPerson);
-        streaksTab = new StreaksTab(persons);
+        streaksTab = new StreaksTab(personStreaks);
 //        toggleTab(DetailsPanelTab.UPCOMING_EVENTS);
+
         toggleTab(DetailsPanelTab.STREAKS);
-        System.out.println("Width of tabplaceholder");
-        System.out.println(tabPlaceholder.widthProperty());
     }
 
     /**

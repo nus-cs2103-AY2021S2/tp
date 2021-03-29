@@ -15,6 +15,14 @@ public class PersonStreak implements Comparable<PersonStreak> {
         return new PersonStreak(p, Streak.from(p.getGoal(), p.getMeetings()));
     }
 
+    public Person getPerson() {
+        return person;
+    }
+
+    public Streak getStreak() {
+        return streak;
+    }
+
     @Override
     public int compareTo(PersonStreak other) {
         int cmpStreak = streak.compareTo(other.streak);

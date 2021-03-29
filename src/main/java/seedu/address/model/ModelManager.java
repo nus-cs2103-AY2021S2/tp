@@ -48,7 +48,8 @@ public class ModelManager implements Model {
         groupMap = this.addressBook.getGroupMap();
         upcomingDates = this.addressBook.getUpcomingDates();
         detailedPerson = FXCollections.observableArrayList();
-        personStreaks = this.addressBook.getPersonStreaks();
+        personStreaks = FXCollections.observableArrayList();
+        personStreaks.addAll(this.addressBook.getPersonStreaks());
     }
 
     public ModelManager() {
@@ -209,6 +210,11 @@ public class ModelManager implements Model {
         // Whenever we add/edit/delete a person, we refresh the personStreaks list so UI will be up to date.
         // Therefore, there is no need to run this in the Commands.
         personStreaks.setAll(addressBook.getPersonStreaks());
+    }
+
+    @Override
+    public ObservableList<PersonStreak> getPersonStreaks() {
+        return personStreaks;
     }
 
     @Override

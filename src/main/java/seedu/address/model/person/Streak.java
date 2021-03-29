@@ -63,9 +63,9 @@ public class Streak implements Comparable<Streak> {
     }
 
     private static Streak calculateToday(Goal goal, List<LocalDate> dates) {
-        if (dates.size() == 1) {
-            return new Streak(1);
-        }
+//        if (dates.size() == 1) {
+//            return new Streak(1);
+//        }
 
         int currentStreak = 1;
         int idx = 1;
@@ -89,10 +89,18 @@ public class Streak implements Comparable<Streak> {
         LocalDate latestGoalDeadline = goal.getGoalDeadline(latestDate);
 
         if (LocalDate.now().compareTo(latestGoalDeadline) > 0) {
-            return new Streak(1);
+            return new Streak(0);
         }
 
         return new Streak(currentStreak);
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public String toUi() {
+        return String.format("%d", value);
     }
 
     @Override
@@ -118,5 +126,12 @@ public class Streak implements Comparable<Streak> {
     @Override
     public int hashCode() {
         return Objects.hash(value);
+    }
+
+    @Override
+    public String toString() {
+        return "Streak{" +
+                "value=" + value +
+                '}';
     }
 }

@@ -8,6 +8,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonStreak;
 
 public class StreaksTab extends UiPart<Region> {
 
@@ -20,26 +21,25 @@ public class StreaksTab extends UiPart<Region> {
     private Label streaksTitle;
 
     @FXML
-    private ListView<Person> streaksListView;
+    private ListView<PersonStreak> streaksListView;
 
-    public StreaksTab(ObservableList<Person> personList) {
+    public StreaksTab(ObservableList<PersonStreak> personStreaks) {
         super(FXML);
         streaksTitle.setText("Streaks");
-        streaksListView.setItems(personList);
+        streaksListView.setItems(personStreaks);
         streaksListView.setCellFactory(listView -> new StreaksListViewCell());
     }
 
-    class StreaksListViewCell extends ListCell<Person> {
+    class StreaksListViewCell extends ListCell<PersonStreak> {
         @Override
-        protected void updateItem(Person person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(PersonStreak personStreak, boolean empty) {
+            super.updateItem(personStreak, empty);
 
-            if (empty || person == null) {
+            if (empty || personStreak == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                prefWidthProperty().bind(streaksListView.widthProperty());
-                setGraphic(new StreakCard(person).getRoot());
+                setGraphic(new StreakCard(personStreak).getRoot());
             }
         }
     }

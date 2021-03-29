@@ -6,12 +6,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonStreak;
+import seedu.address.model.person.Streak;
 
 public class StreakCard extends UiPart<Region> {
 
     private static final String FXML = "StreakCard.fxml";
 
-    public final Person person;
+    public final PersonStreak personStreak;
 
     @FXML
     public Label name;
@@ -19,11 +21,15 @@ public class StreakCard extends UiPart<Region> {
     @FXML
     public Label streak;
 
-    public StreakCard(Person person) {
+    public StreakCard(PersonStreak personStreak) {
         super(FXML);
-        this.person = person;
-        name.setText(person.getName().fullName);
-        streak.setText("100");
+        this.personStreak = personStreak;
+
+        Person p = personStreak.getPerson();
+        Streak s = personStreak.getStreak();
+
+        name.setText(p.getName().fullName);
+        streak.setText(s.toUi());
     }
 
     @Override
@@ -37,12 +43,13 @@ public class StreakCard extends UiPart<Region> {
         }
 
         StreakCard that = (StreakCard) o;
-        return Objects.equals(person, that.person) && Objects.equals(name, that.name) && Objects.equals(streak,
-                that.streak);
+        return Objects.equals(personStreak, that.personStreak)
+                && Objects.equals(name, that.name)
+                && Objects.equals(streak, that.streak);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(person, name, streak);
+        return Objects.hash(personStreak, name, streak);
     }
 }
