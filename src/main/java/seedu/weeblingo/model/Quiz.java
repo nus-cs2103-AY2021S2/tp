@@ -30,8 +30,8 @@ public class Quiz {
     /**
      * Initializes the quiz session with a queue of all flashcards with randomized order.
      */
-    public Quiz() {
-        Flashcard[] flashcardsReadFromDB = getDatabaseOfFlashcards();
+    public Quiz(List<Flashcard> flashcards) {
+        Flashcard[] flashcardsReadFromDB = flashcards.stream().toArray(Flashcard[]::new);
         quizSessionQueue = getRandomizedQueue(flashcardsReadFromDB);
         startTime = Instant.now();
     }
@@ -40,8 +40,8 @@ public class Quiz {
      * Initializes the quiz session with a queue of all flashcards with
      * randomized order and the specified number of questions.
      */
-    public Quiz(int numberOfQuestions) {
-        Flashcard[] flashcardsReadFromDB = getDatabaseOfFlashcards();
+    public Quiz(List<Flashcard> flashcards, int numberOfQuestions) {
+        Flashcard[] flashcardsReadFromDB = flashcards.stream().toArray(Flashcard[]::new);
         quizSessionQueue = getRandomizedSubsetQueue(flashcardsReadFromDB, numberOfQuestions);
         startTime = Instant.now();
     }

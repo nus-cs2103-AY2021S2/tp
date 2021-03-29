@@ -163,11 +163,11 @@ public class ModelManager implements Model {
     @Override
     public void startQuiz() {
         if (numOfQnsForQuizSession == 0) {
-            this.quizInstance = new Quiz();
+            this.quizInstance = new Quiz(filteredFlashcards);
             Flashcard next = quizInstance.getNextQuestion();
             updateFilteredFlashcardList(curr -> curr.equals(next));
         } else {
-            this.quizInstance = new Quiz(numOfQnsForQuizSession);
+            this.quizInstance = new Quiz(filteredFlashcards, numOfQnsForQuizSession);
             Flashcard next = quizInstance.getNextQuestion();
             updateFilteredFlashcardList(curr -> curr.equals(next));
         }
