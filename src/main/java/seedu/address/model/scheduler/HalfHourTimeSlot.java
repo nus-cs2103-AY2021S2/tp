@@ -23,7 +23,7 @@ public class HalfHourTimeSlot {
      * @param startTime
      */
     public HalfHourTimeSlot(LocalTime startTime) {
-        assert startTime.compareTo(LocalTime.of(11, 30)) <= 0;
+        //assert startTime.compareTo(LocalTime.of(11, 30)) <= 0;
         LocalTime endTime;
         // The case when local time is 11:30, then it is max.
         if (startTime.getMinute() == 30 && startTime.getHour() ==23) {
