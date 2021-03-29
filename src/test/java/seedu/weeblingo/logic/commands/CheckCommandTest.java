@@ -3,6 +3,7 @@ package seedu.weeblingo.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.nio.file.Path;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -16,6 +17,7 @@ import seedu.weeblingo.model.ReadOnlyFlashcardBook;
 import seedu.weeblingo.model.ReadOnlyUserPrefs;
 import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.flashcard.Flashcard;
+import seedu.weeblingo.model.tag.Tag;
 import seedu.weeblingo.testutil.FlashcardBuilder;
 
 public class CheckCommandTest {
@@ -153,6 +155,11 @@ public class CheckCommandTest {
 
         @Override
         public void setNumOfQnsForQuizSession(int numberOfQuestions) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTagsForQuizSession(Set<Tag> tags) {
             throw new AssertionError("This method should not be called.");
         }
 

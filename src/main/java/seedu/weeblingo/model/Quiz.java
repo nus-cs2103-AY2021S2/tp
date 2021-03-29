@@ -132,7 +132,6 @@ public class Quiz {
      */
     private Queue<Flashcard> getRandomizedSubsetQueue(Flashcard[] flashcardsReadFromDB, Set<Tag> tags) {
         List<Flashcard> flashcardsToProcess = Arrays.asList(flashcardsReadFromDB);
-//        flashcardsToProcess.removeIf(f -> !f.getTags().containsAll(Arrays.asList(tags)));
         Collections.shuffle(flashcardsToProcess);
         Queue<Flashcard> randomizedQueue = new LinkedList<>();
         for (Flashcard f : flashcardsToProcess) {

@@ -40,11 +40,16 @@ public class StartCommand extends Command {
 
     /**
      * Command to start a quiz session with a specified number of questions.
+     * @param n The specified number of questions.
      */
     public StartCommand(int n) {
         numOfQnsForQuizSession = n;
     }
 
+    /**
+     * Command to start a quiz session filtered by a specified set of Tags.
+     * @param tags The specified tags by which to filter the questions.
+     */
     public StartCommand(Set<Tag> tags) {
         this.tags = tags;
     }
@@ -63,5 +68,18 @@ public class StartCommand extends Command {
             throw new CommandException(Messages.MESSAGE_NOT_IN_QUIZ_MODE);
         }
     }
-}
 
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof StartCommand) {
+            StartCommand otherCommand = (StartCommand) other;
+            if (this.tags != null) {
+                return this.tags.equals(otherCommand.tags);
+            } else {
+                return this.numOfQnsForQuizSession == otherCommand.numOfQnsForQuizSession;
+            }
+        } else {
+            return false;
+        }
+    }
+}

@@ -29,6 +29,16 @@ public class CommandTestUtil {
     public static final String VALID_ANSWER_B = "i";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_START_INTEGER_MIN = "1";
+    public static final String VALID_START_INTEGER_MIDDLE = "10";
+    public static final String VALID_START_INTEGER_MAX = String.valueOf(Integer.MAX_VALUE);
+    public static final String INVALID_START_INTEGER_MAX = "0";
+    public static final String INVALID_START_INTEGER_MIDDLE = "-10";
+    public static final String INVALID_START_INTEGER_MIN = String.valueOf(Integer.MIN_VALUE);
+    public static final String VALID_START_TAG_HIRAGANA = "hiragana";
+    public static final String VALID_START_TAG_GOJUON = "gojuon";
+    public static final String VALID_START_TAG_COMBINATION = VALID_START_TAG_GOJUON + " " + VALID_START_TAG_HIRAGANA;
+    public static final String INVALID_START_TAG = "!@#$%";
 
     public static final String QUESTION_DESC_A = " " + PREFIX_QUESTION + VALID_QUESTION_A;
     public static final String QUESTION_DESC_B = " " + PREFIX_QUESTION + VALID_QUESTION_B;
