@@ -50,6 +50,10 @@ public class StatsCommand extends Command {
         double deliveriesDue = 0;
         double deliveriesDuePercentage;
 
+        if (size == 0) {
+            return new CommandResult(String.format("No Data"));
+        }
+
         for (Customer customer : lastShownList) {
             if (customer.getDone().toString().equals(CHECKMARK)) {
                 doneCounter += 1;
@@ -68,10 +72,11 @@ public class StatsCommand extends Command {
                 }
             }
         }
-        liquidPercentage = (tagMap.get("[liquid]") / size) * 100;
-        heavyPercentage = (tagMap.get("[heavy]") / size) * 100;
-        fragilePercentage = (tagMap.get("[fragile]") / size) * 100;
-        hotPercentage = (tagMap.get("[hot]") / size) * 100;
+
+        liquidPercentage = (tagMap.getOrDefault("[liquid]", 0) / size) * 100;
+        heavyPercentage = (tagMap.getOrDefault("[heavy]", 0) / size) * 100;
+        fragilePercentage = (tagMap.getOrDefault("[fragile]", 0) / size) * 100;
+        hotPercentage = (tagMap.getOrDefault("[hot]", 0) / size) * 100;
         taglessPercentage = (tagless / size) * 100;
         donePercentage = (doneCounter / size) * 100;
         deliveriesDone = (int) doneCounter;
@@ -93,10 +98,10 @@ public class StatsCommand extends Command {
 
         deliveriesDuePercentage = (deliveriesDue / size) * 100;
 
-        int liquid = tagMap.get("[liquid]");
-        int fragile = tagMap.get("[fragile]");
-        int hot = tagMap.get("[hot]");
-        int heavy = tagMap.get("[heavy]");
+        int liquid = tagMap.getOrDefault("[liquid]", 0);
+        int fragile = tagMap.getOrDefault("[fragile]", 0);
+        int hot = tagMap.getOrDefault("[hot]", 0);
+        int heavy = tagMap.getOrDefault("[heavy]", 0);
         int deliveryDue = (int) deliveriesDue;
         int deliveryNotDue = (int) size - deliveryDue;
         int notag = (int) tagless;
