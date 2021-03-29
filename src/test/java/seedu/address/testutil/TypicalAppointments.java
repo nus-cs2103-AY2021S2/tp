@@ -34,6 +34,6 @@ public class TypicalAppointments {
     }
 
     public static List<Appointment> getTypicalAppointments() {
-        return new ArrayList<>(Arrays.asList(PTM, PLAY_DATE, PSG_MEETING, BALLET_RECITAL));
+        return new ArrayList<>(Arrays.asList(PLAY_DATE, BALLET_RECITAL));
     }
 }
