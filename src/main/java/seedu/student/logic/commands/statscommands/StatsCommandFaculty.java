@@ -10,9 +10,18 @@ import seedu.student.model.Model;
 import seedu.student.model.student.Faculty;
 import seedu.student.model.student.Student;
 
+/**
+ * Calculates percentages of students vaccinated from each faculty.
+ */
 public class StatsCommandFaculty extends StatsCommand {
     private Faculty faculty;
 
+    /**
+     * Creates a StatsCommandFaculty object responsible for calculating the percentage of the specified faculty
+     * that is vaccinated.
+     *
+     * @param faculty Faculty you want to view percentage vaccinated.
+     */
     public StatsCommandFaculty(Faculty faculty) {
         this.faculty = faculty;
     }

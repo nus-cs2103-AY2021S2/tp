@@ -5,11 +5,14 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.student.model.appointment.exceptions.DuplicateAppointmentException;
 import seedu.student.model.appointment.exceptions.OverlappingAppointmentException;
+import seedu.student.model.student.MatriculationNumber;
 
 /**
  * A list of appointments that enforces uniqueness between its elements and does not allow nulls.
@@ -27,15 +30,16 @@ public class SameDateAppointmentList implements Iterable<Appointment>, Comparabl
     private final LocalDate date;
     private final ObservableList<Appointment> internalList;
     private final ObservableList<Appointment> internalUnmodifiableList;
+    private final FilteredList<Appointment> filteredAppointments;
 
     /**
      * Creates a list of appointments on the same date.
      */
     public SameDateAppointmentList(LocalDate date) {
-
         this.date = date;
         internalList = FXCollections.observableArrayList();
         internalUnmodifiableList = FXCollections.unmodifiableObservableList(internalList);
+        filteredAppointments = new FilteredList<>(internalUnmodifiableList);
     }
 
     public LocalDate getDate() {
@@ -48,6 +52,14 @@ public class SameDateAppointmentList implements Iterable<Appointment>, Comparabl
     public boolean contains(Appointment toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameAppointment);
+    }
+
+    /**
+     * Checks if the instance contains an appointment for the provided matriculation number.
+     */
+    public boolean containsMatricNumber(MatriculationNumber matriculationNumber) {
+        requireNonNull(matriculationNumber);
+        return internalList.stream().anyMatch(appt -> appt.getMatriculationNumber().equals(matriculationNumber));
     }
 
     /**
@@ -90,7 +102,7 @@ public class SameDateAppointmentList implements Iterable<Appointment>, Comparabl
      * The student must exist in the list.
      */
     public void remove(Appointment toRemove) {
-        // TODO
+        internalList.remove(toRemove);
     }
 
     /**
@@ -98,6 +110,18 @@ public class SameDateAppointmentList implements Iterable<Appointment>, Comparabl
      */
     public ObservableList<Appointment> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return filteredAppointments;
+    }
+
+    /**
+     * Filters for appointments that satisfy the predicate.
+     */
+    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        requireNonNull(predicate);
+        filteredAppointments.setPredicate(predicate);
     }
 
     @Override
@@ -114,6 +138,10 @@ public class SameDateAppointmentList implements Iterable<Appointment>, Comparabl
 
     public List<Appointment> getAppointmentList() {
         return internalList;
+    }
+
+    public boolean isEmpty() {
+        return internalList.isEmpty();
     }
 
     @Override

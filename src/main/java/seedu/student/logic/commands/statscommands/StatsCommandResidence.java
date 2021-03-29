@@ -10,9 +10,18 @@ import seedu.student.model.Model;
 import seedu.student.model.student.SchoolResidence;
 import seedu.student.model.student.Student;
 
+/**
+ * Calculates percentages of students vaccinated from each residence.
+ */
 public class StatsCommandResidence extends StatsCommand {
     private SchoolResidence residence;
 
+    /**
+     * Creates a StatsCommandResidence object responsible for calculating the percentage of the specified residence
+     * that is vaccinated.
+     *
+     * @param residence Residence you want to view percentage vaccinated.
+     */
     public StatsCommandResidence(SchoolResidence residence) {
         this.residence = residence;
     }
