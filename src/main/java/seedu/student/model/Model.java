@@ -117,7 +117,10 @@ public interface Model {
     void updateFilteredAppointmentList(Predicate<SameDateAppointmentList> predicate1,
                                        Predicate<Appointment> predicate2);
 
+
     boolean hasAppointment(Appointment appointment);
+
+    void deleteAppointment(Appointment appointment);
 
     boolean hasOverlappingAppointment(Appointment appointment);
 
