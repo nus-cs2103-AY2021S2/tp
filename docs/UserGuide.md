@@ -430,6 +430,8 @@ Format: `clear`
 
 ### Navigating the UI
 
+Although most of the buttons you see on the screen are clickable, the UI has been designed primarily to be navigated using the command line interface.
+
 #### Listing all contacts : `listC`
 
 Shows a list of all contacts in CoLAB.
