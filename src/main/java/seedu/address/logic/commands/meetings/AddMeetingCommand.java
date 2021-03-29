@@ -77,7 +77,7 @@ public class AddMeetingCommand extends Command {
             // Check whether the index is out of bounds
             for (Index index : toAdd.getConnectionToPerson()) {
                 if (index.getZeroBased() >= lastShownList.size()) {
-                    throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+                    throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
                 }
             }
             // If we can pass the check, then add connection.
