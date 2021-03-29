@@ -7,7 +7,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.booking.commons.util.StringUtil;
 import seedu.booking.model.Tag;
+
 
 /**
  * Represents a venue in the booking list.
@@ -55,7 +57,7 @@ public class Venue {
     }
 
     /**
-     * Returns true if both venues have the same name
+     * Returns true if both venues have the same name (case-insensitive).
      * This defines a weaker notion of equality between two venues.
      */
     public boolean isSameVenue(Venue otherVenue) {
@@ -63,7 +65,9 @@ public class Venue {
             return true;
         }
 
-        return otherVenue != null && this.name.equals(otherVenue.name);
+        return otherVenue != null
+                && StringUtil.containsWordIgnoreCase(this.getVenueName().removeSpacesInVenueName(),
+                        otherVenue.getVenueName().removeSpacesInVenueName());
     }
 
     /**

@@ -59,7 +59,7 @@ public class EditPersonCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (lastShownList.stream().noneMatch(person -> person.getEmail().equals(email))) {
+        if (!lastShownList.stream().anyMatch(email::isSameEmail)) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_EMAIL);
         }
 
@@ -77,7 +77,7 @@ public class EditPersonCommand extends Command {
 
     private static Person getPersonByEmail(Email email, List<Person> personList) {
         return personList.stream()
-                .filter(person -> person.getEmail().equals(email)).findFirst().orElse(null);
+                .filter(email::isSameEmail).findFirst().orElse(null);
     }
 
     /**

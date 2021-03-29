@@ -67,7 +67,7 @@ public class EditVenueCommand extends Command {
         requireNonNull(model);
         List<Venue> lastShownList = model.getFilteredVenueList();
 
-        if (lastShownList.stream().noneMatch(venue -> venue.getVenueName().equals(venueName))) {
+        if (!lastShownList.stream().anyMatch(venueName::isSameVenueName)) {
             throw new CommandException(Messages.MESSAGE_INVALID_VENUE_NAME);
         }
 
@@ -85,7 +85,7 @@ public class EditVenueCommand extends Command {
 
     private static Venue getVenueByVenueName(VenueName venueName, List<Venue> venueList) {
         return venueList.stream()
-                .filter(venue -> venue.getVenueName().equals(venueName)).findFirst().orElse(null);
+                .filter(venueName::isSameVenueName).findFirst().orElse(null);
     }
 
     /**
