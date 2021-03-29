@@ -45,7 +45,6 @@ public class DeleteResidentCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX);
         }
 
-
         Resident residentToDelete = lastShownList.get(targetIndex.getZeroBased());
         if (model.hasEitherResidentRoom(new ResidentRoom(residentToDelete.getName(), null))) {
             throw new CommandException(MESSAGE_RESIDENT_ALLOCATED_FAILURE);

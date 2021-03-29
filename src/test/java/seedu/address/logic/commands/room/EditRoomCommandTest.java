@@ -40,7 +40,7 @@ public class EditRoomCommandTest {
         // Room we are changing to needs to maintain the occupancy status
         // of the room we start with. So we pre-set it here.
         Room editedRoom = new RoomBuilder()
-                .withOccupancyStatus(roomToEdit.isOccupied().toString())
+                // .withOccupancyStatus(roomToEdit.isOccupied().toString())
                 .build();
 
         EditRoomDescriptor descriptor = new EditRoomDescriptorBuilder(editedRoom).build();

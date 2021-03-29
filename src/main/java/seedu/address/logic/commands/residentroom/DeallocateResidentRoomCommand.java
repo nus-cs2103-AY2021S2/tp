@@ -67,8 +67,6 @@ public class DeallocateResidentRoomCommand extends Command {
         model.updateFilteredRoomList(Model.PREDICATE_SHOW_ALL_ROOMS);
 
         model.deleteResidentRoom(toDeallocate);
-        // Set Room occupancy to N.
-        // Set Resident room to 'Room unallocated'.
         return new CommandResult(String.format(MESSAGE_SUCCESS, toDeallocate)).setResidentRoomCommand();
     }
 
