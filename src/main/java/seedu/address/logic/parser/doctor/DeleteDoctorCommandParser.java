@@ -17,7 +17,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class DeleteDoctorCommandParser implements Parser<DeleteDoctorCommand> {
 
     /**
-     * Used for the separation of force delete format and patient index from the format '--force INDEX'.
+     * Used for the separation of force delete format and doctor index from the format '--force INDEX'.
      */
     private static final Pattern FORCE_DELETE_FORMAT = Pattern.compile("(?<forceDelete>\\D+)(?<doctorIndex>.*)");
 
