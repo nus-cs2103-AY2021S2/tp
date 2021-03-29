@@ -6,6 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddPropertyCommand;
 import seedu.address.logic.commands.ClearAllCommand;
@@ -159,6 +160,16 @@ public class PocketEstateParser {
 
         case ListAppointmentCommand.COMMAND_WORD:
             return new ListAppointmentCommand();
+
+        case "add":
+        case "edit":
+        case "find":
+        case "sort":
+            throw new ParseException(Messages.missingPropertyAppointmentError(commandWord));
+
+        case "clear":
+        case "list":
+            throw new ParseException(Messages.missingAllPropertyAppointmentError(commandWord));
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
