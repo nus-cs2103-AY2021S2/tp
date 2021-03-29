@@ -80,8 +80,6 @@ Example:<br>
 * `add n/favourite t shirt s/30 c/blue r/casual t/upper`
   <br><br>
   
-
-
 ### Listing all Garments: `list`  
 Shows a list of all garments in the wardrobe<br>
 
@@ -89,7 +87,6 @@ insert ListGarment.png
 
 Format: `list`
 <br><br>
-
 
 ### Deleting a Garment: `delete`  
 Removes a Garment, associated with the given index, from the wardrobe.<br>
@@ -105,7 +102,8 @@ Tips:
 
 Example:<br>
 * `list` followed by `delete 7`<br>
-Removes the 7th Garment in the wardrobe.<br><br>
+Removes the 7th Garment in the wardrobe.
+<br><br>
   
 ### Clearing all Garments: `clear`
 Clears all existing garments in the wardrobe.
@@ -113,6 +111,7 @@ Clears all existing garments in the wardrobe.
 insert ClearGarment.png
 
 Format: `clear`
+<br><br>
 
 ### Editing a Garment: `edit`
 Edits an existing garment in the wardrobe.<br>
@@ -131,7 +130,7 @@ Example:
 * `list` followed by `edit 1 c/red s/30`<br>
   Edits the colour and size of the 1st garment in the wardrobe to be red and 30 respectively.
   <br><br>
-
+  
 ### Find Garments: `find`
 Finds all garments that matched specified keywords during search.<br>
 
@@ -144,14 +143,14 @@ Format: `find [n/NAMES] [s/SIZES] [c/COLOURS] [r/DRESSCODES] [t/TYPES] [d/DESCRI
 Tips:
 
 * At least one of the optional bracketed fields must be provided.
-* The list of all garments with matching attributes will be shown.
+* The list of all garments with matching attributes will be shown.<br><br>
 
 Example:
 * `find n/worn out jeans`<br>
   Returns all garments whose name has at least one of the words in the search phrase, "worn out jeans".
 * `find c/white s/36 23`<br>
   Returns all garments that are white and are either sized 36 or 23.
-  <br><br>
+<br><br>
   
 ### Matching...: `match`
 <br><br>
@@ -167,11 +166,11 @@ Tips:
 * Selects the garment at the specified `INDEX`.<br>
 * The `INDEX` must be a positive integer 1, 2, 3, …
 * selecting a garment indicates that you intend to wear it today.
-<br><br>
-  
+
 Example:
 
 * `select 1`
+<br><br>
 
 ### Viewing a Garment set: `view`
 View a set of 3 garments associated with the given indexes.<br>
@@ -188,16 +187,17 @@ Tips:
 
 Example:
 * `view 1 2 3`<br>
-  
 <br><br>
-  
+
 ### Exiting the program: `exit`
 Exits the program.<br>
 Format: `exit`
+<br><br>
 
 ### Saving the data
 nufash data is saved in the hard disk automatically after any command that changes the data. 
 There is no need to save manually.
+<br><br>
 
 ### Editing the data file
 nufash data is saved as a JSON file [JAR file location]/data/nufash.json. 
@@ -205,6 +205,7 @@ Advanced users are welcome to update data directly by editing that data file.
 
 **:exclamation: Caution:**<br>
   If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+<br><br>
 
 ---
 ### FAQ
