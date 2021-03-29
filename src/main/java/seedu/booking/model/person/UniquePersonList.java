@@ -140,7 +140,7 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public boolean containsEmail(ObservableList<Person> list, Email emailToCheck) {
         requireNonNull(emailToCheck);
-        return list.stream().anyMatch(x -> x.getEmail().equals(emailToCheck));
+        return list.stream().anyMatch(emailToCheck::isSameEmail);
 
     }
 }

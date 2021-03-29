@@ -226,7 +226,6 @@ public class BookingSystem implements ReadOnlyBookingSystem {
     }
 
 
-
     /**
      * Returns true if a person with the same email as {@code email} exists in the system.
      */
