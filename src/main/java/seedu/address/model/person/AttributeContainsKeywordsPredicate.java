@@ -3,7 +3,6 @@ package seedu.address.model.person;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
@@ -76,6 +75,7 @@ public class AttributeContainsKeywordsPredicate implements Predicate<Passenger> 
                 }
 
             } catch (ParseException ignored) {
+                // keyword is dropped as it isn't a valid term determined by parser
             }
         }
 
