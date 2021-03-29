@@ -131,9 +131,14 @@ public class SameDateAppointmentList implements Iterable<Appointment>, Comparabl
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof UniqueAppointmentList // instanceof handles nulls
-                && internalList.equals(((SameDateAppointmentList) other).internalList));
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof SameDateAppointmentList)) {
+            return false;
+        }
+        SameDateAppointmentList otherList = (SameDateAppointmentList) other;
+        return date.equals(otherList.date) && internalList.stream().anyMatch(appt -> otherList.contains(appt));
     }
 
     public List<Appointment> getAppointmentList() {

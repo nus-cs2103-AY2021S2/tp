@@ -121,9 +121,15 @@ public class UniqueAppointmentList implements Iterable<SameDateAppointmentList> 
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof UniqueAppointmentList // instanceof handles nulls
-                && internalList.equals(((UniqueAppointmentList) other).internalList));
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof UniqueAppointmentList)) {
+            return false;
+        }
+        UniqueAppointmentList otherList = (UniqueAppointmentList) other;
+        return internalList.stream().allMatch(apptList -> apptList
+                .asUnmodifiableObservableList().stream().anyMatch(appt -> otherList.contains(appt)));
     }
 
     @Override
