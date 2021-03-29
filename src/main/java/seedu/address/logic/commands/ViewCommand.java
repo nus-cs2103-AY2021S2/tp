@@ -62,8 +62,8 @@ public class ViewCommand extends Command {
             viewList.add(garmentToView);
         }
 
-        Predicate<Garment> PREDICATE_VIEW_GARMENTS = garment -> viewList.contains(garment);
-        model.updateFilteredGarmentList(PREDICATE_VIEW_GARMENTS);
+        Predicate<Garment> predicateViewGarments = garment -> viewList.contains(garment);
+        model.updateFilteredGarmentList(predicateViewGarments);
         return new CommandResult(MESSAGE_VIEW_GARMENT_SUCCESS);
     }
 
