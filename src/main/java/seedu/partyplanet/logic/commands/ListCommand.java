@@ -85,7 +85,9 @@ public class ListCommand extends Command {
         }
         if (model.getFilteredPersonList().size() == 0) {
             return new CommandResult(String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
-                model.getFilteredPersonList().size()) + " None of the persons meet the requirements.");
+                model.getFilteredPersonList().size())
+                + String.format(Messages.MESSAGE_PERSONS_LISTED_TAGS, tagsRepresentation)
+                + "\nNone of the persons meet the requirements.");
         }
         return new CommandResult(
             String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size())
