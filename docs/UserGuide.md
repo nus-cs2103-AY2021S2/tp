@@ -12,6 +12,25 @@ This is a mockup of our UI.
 
 ---
 
+- [Quick Start](#quick-start)
+- [Features](#features)
+    - [Viewing help](#viewing-help)
+    - [Contact](#adding-a-contact)
+    - [Schedule](#adding-a-schedule)
+    - [Task](#adding-a-task)
+- [Command Summary](#command-summary)
+
+---
+
+## Quick Start
+1. Ensure you have Java 11 installed in your computer.
+1. Download the latest `teachingAssistant.jar` [here](https://github.com/AY2021S2-CS2103T-W13-4/tp/releases).
+1. Copy the file to the folder you want to use as the *home folder* for your AddressBook.
+1. Double-click the file to start the app. The GUI similar to the image above should appear.
+1. Try out some of the commands below.
+
+---
+
 ## Features
 
 **:information_source: Notes about the command format:**<br>
@@ -60,6 +79,7 @@ Example(s):
 * `delete Danny`
 
 ---
+
 ### Adding a schedule
 Adds a new schedule into the schedule list.
 
