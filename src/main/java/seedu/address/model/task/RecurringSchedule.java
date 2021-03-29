@@ -101,7 +101,7 @@ public class RecurringSchedule implements RecurringDates {
     /**
      * Used to generate the output of the dates of the recurring schedule
      * When the recurring schedule is present (not an empty string input)
-     * Using methods formatRecurringSchedule, calculateNumOfWeeksBetweenDates, findWeekDates in RecurringDatesUtil
+     * Using methods formatRecurringSchedule, calculateNumWeeksBetweenDates, findWeekDates in RecurringDatesUtil
      *
      * @param recurringSchedule Input string of recurring schedule requirements given by the user
      * @return Output string of recurring dates in the PlanIt application
@@ -109,7 +109,7 @@ public class RecurringSchedule implements RecurringDates {
     @Override
     public String generateRecurringDates(String recurringSchedule) {
         String recurringScheduleDetail = RecurringDatesUtil.formatRecurringSchedule(recurringSchedule);
-        int numWeeks = RecurringDatesUtil.calculateNumOfWeeksBetweenDates();
+        int numWeeks = RecurringDatesUtil.calculateNumWeeksBetweenDates();
         weekDates = RecurringDatesUtil.findWeekDates(numWeeks);
 
         String recurringScheduleOutput = recurringScheduleDetail + "\n\nHere are the Recurring Sessions:\n"
@@ -131,7 +131,7 @@ public class RecurringSchedule implements RecurringDates {
     /**
      * Checks if the Recurring Schedule input is empty string.
      *
-     * @return true if the String of Recurring Schedule is empty, false otherwise.
+     * @return Boolean if the String of Recurring Schedule is empty.
      */
     public boolean isEmptyValue() {
         return isEmptyRecurringSchedule;

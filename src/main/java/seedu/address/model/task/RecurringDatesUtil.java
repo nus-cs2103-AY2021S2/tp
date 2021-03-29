@@ -85,10 +85,12 @@ public class RecurringDatesUtil {
 
     /**
      * Used to count the number of weeks between current system date and given end date provided by the user
+     * A week is being counted from Sunday of the previous week up till the Saturday of the coming week
+     * In the event, the dates range is shorter than a week, the number of weeks will be considered 0
      *
      * @return Number of weeks in integer format
      */
-    public static int calculateNumOfWeeksBetweenDates() {
+    public static int calculateNumWeeksBetweenDates() {
         LocalDate startingDate = currentDate.with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY));
         LocalDate endingDate = endDate.with(TemporalAdjusters.previousOrSame(DayOfWeek.SATURDAY));
 
