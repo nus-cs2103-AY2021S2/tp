@@ -149,6 +149,29 @@ Examples:
 3. Deletes the program with ID 3 in Pawbook.<br>
    Command: `delete program 3`
 
+### Edit Command
+
+Edits a dog/owner/program from Pawbook.
+
+Format:
+```
+edit dog d/[DOG ID] n/[NAME] b/[BREED] d/[DATEOFBIRTH] s/[SEX] o/[OWNERID] [t/TAGS]...
+edit owner o/[OWNER ID] n/[NAME] p/[PHONE] e/[EMAIL] a/[ADDRESS] [t/TAGS]...
+edit program o/[PROGRAM ID] n/[NAME] [s/SESSION]... [t/TAGS]...
+```
+
+- Edits the dog/owner/program with the given ID.
+- The ID must be a positive integer 1, 2, 3, ...
+- Only include the variables that need to be edited after the integer
+
+Examples:
+1. Edits the dog with ID 1 in Pawbook.<br>
+   Command: `edit dog 1 n/Bruce t/playful`
+2. Edits the owner with ID 2 in Pawbook.<br>
+   Command: `edit owner 2 p/12345678`
+3. Edits the program with ID 3 in Pawbook.<br>
+   Command: `edit program 3 t/learn`
+   
 ### Enrol Command
 
 Adds a specified dog to a specified program that the dog was previously not enrolled in.
