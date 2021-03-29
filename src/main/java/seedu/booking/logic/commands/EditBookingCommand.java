@@ -45,7 +45,11 @@ public class EditBookingCommand extends Command {
     public static final String MESSAGE_EDIT_BOOKING_SUCCESS = "Edited Booking: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_BOOKING = "This booking already exists in the booking system.";
-
+    public static final String MESSAGE_SUCCESS = "New booking added: %1$s";
+    public static final String MESSAGE_INVALID_TIME =
+            "This booking's starting time is not earlier than the ending time.";
+    public static final String MESSAGE_INVALID_VENUE = "This venue does not exist in the system.";
+    public static final String MESSAGE_INVALID_PERSON = "This booker does not exist in the system.";
     private final Id id;
     private final EditBookingDescriptor editBookingDescriptor;
 
@@ -75,6 +79,21 @@ public class EditBookingCommand extends Command {
 
         if (!bookingToEdit.isSameBooking(editedBooking) && model.hasBooking(editedBooking)) {
             throw new CommandException(MESSAGE_DUPLICATE_BOOKING);
+        }
+        if (model.hasBooking(editedBooking)) {
+            throw new CommandException(MESSAGE_DUPLICATE_BOOKING);
+        }
+
+        if (!editedBooking.isValidTime()) {
+            throw new CommandException(MESSAGE_INVALID_TIME);
+        }
+
+        if (!model.hasPersonWithEmail(editedBooking.getBookerEmail())) {
+            throw new CommandException(MESSAGE_INVALID_PERSON);
+        }
+
+        if (!model.hasVenueWithVenueName(editedBooking.getVenueName())) {
+            throw new CommandException(MESSAGE_INVALID_VENUE);
         }
 
         model.setBooking(bookingToEdit, editedBooking);

@@ -34,7 +34,7 @@ public class Booking {
                    StartTime bookingStart, EndTime bookingEnd, Id id) {
         requireAllNonNull(bookerEmail, venueName, description, bookingStart, bookingEnd);
         this.bookerEmail = bookerEmail;
-        this.booker = getTempBooker(bookerEmail);
+        this.booker = new Person(bookerEmail);
         this.venueName = venueName;
         this.description = description;
         this.bookingStart = bookingStart;
