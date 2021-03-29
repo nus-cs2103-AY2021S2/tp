@@ -2,11 +2,12 @@
 layout: page
 title: User Guide
 ---
-<div align="center">
-  <img alt="logo" src="images/tutorbuddy_logo.png">
-</div>
 
 # TutorBuddy - User Guide
+TutorBuddy is a desktop application made for freelance tutors to efficiently manage their students' contacts,
+provide a quick overview of scheduled tuition sessions at a glance, and handle monthly tuition fees calculation.
+TutorBuddy is also optimized for fast typing users to handle their day-to-day administrative responsibilities
+effectively.
 
 **Table of Contents**
 * [Introduction](#introduction)
@@ -22,6 +23,7 @@ title: User Guide
     * [Adding a student: `add_student`](#adding-a-student-add_student)
     * [Locating student by name: `find_student`](#locating-student-by-name-find_student)
     * [Deleting a student: `delete_student`](#deleting-a-student-delete_student)
+    * [Editing a student: `edit_student`](#editing-a-student-edit_student)
     * [Listing students' emails based on current list: `emails`](#listing-students-emails-based-on-current-list-emails)
   * [Managing Sessions](#managing-sessions)
     * [Adding a tuition session: `add_session`](#adding-a-single-tuition-session-add_session)
@@ -73,11 +75,11 @@ Here are a few steps to get you started on TutorBuddy:
 
 1. Ensure you have **Java 11** or above installed in your computer.
 
-1. Download the latest version of TutorBuddy [here](https://github.com/AY2021S2-CS2103T-T11-1/tp/releases).
+2. Download the latest version of TutorBuddy [here](https://github.com/AY2021S2-CS2103T-T11-1/tp/releases).
 
-1. Move the downloaded TutorBuddy to a folder of your choice. This will be known as the home folder of TutorBuddy.
+3. Move the downloaded TutorBuddy to a folder of your choice. This will be known as the home folder of TutorBuddy.
 
-1. Double-click the file to start the application. An application similar to the one below should appear in a few
+4. Double-click the file to start the application. An application similar to the one below should appear in a few
    seconds.<br>
 
 ![Ui](images/Ui.png)
@@ -90,43 +92,35 @@ There are three main areas in TutorBuddy:
 
 1. the utility area,
 
-1. the main viewing area,
+2. the main viewing area,
 
-1. the result display box and command box
+3. the result display box and command box
 
 <a name="application-overview"><img alt="application-overview" src="images/ApplicationOverview.png"></a>
 
 1. The utility area consists of 2 tabs: **File**, and **Help**.
-* The **File** tab consists of an exit button. To exit TutorBuddy, click on the exit button. Alternatively, use the `exit` command to exit the application.
-* The **Help** tab consists of a help button. If you require any assistance, click on the help button, copy the link
-  displayed and paste it into any web browser. Alternatively, press <kbd>F1</kbd> to bring up the help window.
+    * The **File** tab consists of an exit button. To exit TutorBuddy, click on the exit button. Alternatively, use the `exit` command to exit the application.
+    * The **Help** tab consists of a help button. If you require any assistance, click on the help button, copy the link displayed and paste it into any web browser. 
+    Alternatively, press <kbd>F1</kbd> to bring up the help window.
 
 2. The main viewing area consists of 3 tabs: **Home**, **Tuition** and **Calendar**.
-* The **Home** tab gives tutors a quick overview of important matters. This includes their upcoming tuition lessons, as well as tuition fees receivable for the past 3 months.
-* The **Tuition** tab allow tutors to view and manage their students and lessons.
-* The **Calendar** tab allow tutors to have a weekly view of all sessions.
+    * The **Home** tab gives tutors a quick overview of important matters. This includes their upcoming tuition lessons, as well as tuition fees receivable for the past 3 months.
+    * The **Tuition** tab allow tutors to view and manage their students and lessons.
+    * The **Calendar** tab allow tutors to have a weekly view of all sessions.
 
 3. The command box is the area for you to enter your commands. The result of each command will be shown in the result
    display box, which is located directly above the command box.
-
-* Type a command in the command box and press <kbd>Enter</kbd> to execute it.<br>
+    * Type a command in the command box and press <kbd>Enter</kbd> to execute it.<br>
 
   Here are some example commands you can try:
-
   * **`list_student`** : Lists all students and sessions.
-
-  * **`add_student`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Sec2 g/95421323 r/Mother` : Adds a student named `John Doe`
+  * **`add_student`**`n/John Doe p/98765432 e/johnd@example.com a/John street, Block 123, #01-01 l/Sec2 g/95421323 r/Mother` : Adds a student named `John Doe`
     to TutorBuddy.
-
   * **`delete_student`**`3` : Deletes the 3rd student shown in the Student section.
-
   * **`add_session`**`n/John Doe d/2021-01-01 t/13:00 k/120 s/Biology f/80`: Adds a single tuition session for John Doe happening on 2021-01-01
-
   * **`add_recurring_session`**`n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80 b/7 e/2021-01-15`: Adds a 7-day recurring session for John Doe happening from 2021-01-01 to 2021-01-15
-
-  * **`exit`** : Exits the application.
-
-* Refer to the [Commands](#commands) below for details of each command.
+  * **`exit`** : Exits the application.<br>
+    Refer to the [Commands](#commands) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -149,7 +143,7 @@ This section details the format of the commands available in TutorBuddy. We will
   e.g. in `add_student n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `find_student KEYWORD [MORE_KEYWORDS]` can be used as `find_student John Samuel` or as `find_student John`.
+  e.g. `find_student KEYWORD [MORE_KEYWORDS]` can be used as `find_student John Samuel` or as `find_student John`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -226,7 +220,7 @@ Format: `add_student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS l/STUDY_LEV
 </div>
 
 Example:
-* `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Sec2 g/95421323 r/Mother`
+* `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, Block 123, #01-01 l/Sec2 g/95421323 r/Mother`
 
 #### Locating student by name: `find_student`
 
@@ -273,6 +267,16 @@ The STUDENT_INDEX will be based on the current list.<br>
 
 Examples:
 * `delete_student 2` deletes the 2nd student based on the current list of students.
+
+#### Editing a student: `edit_student`
+
+Edits an existing student's detail(s) in TutorBuddy.
+
+Format: `edit_student STUDENT_INDEX [n/NAME] [p/STUDENT_PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [l/STUDY_LEVEL] [g/GUARDIAN_PHONE_NUMBER] [r/RELATIONSHIP_WITH_GUARDIAN]` <br>
+* `STUDENT_PHONE_NUMBER` and `GUARDIAN_PHONE_NUMBER` should be in Singapore's phone formatting (i.e. starting with either 6, 8 or 9 with 8 digits)
+
+Examples:
+* `edit_student 1 p/98825432 e/alexy@example.com a/Alex street, Block 123, #01-01` edits the student at index 1's `STUDENT_PHONE_NUMBER`, `EMAIL`, and `ADDRESS`
 
 #### Listing students' emails based on current list: `emails`
 Displays concatenated string of students' emails based on current list, separated by `;`. Useful for sending mass emails to students.
@@ -365,7 +369,6 @@ Format: `fee n/STUDENT_NAME m/MONTH y/YEAR`
 Example:
 * `fee n/John Lee m/1 y/2021` returns John Lee monthly fee for January 2021
 
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
@@ -379,13 +382,15 @@ Action | Format
 **Clear all students and sessions** | `clear`
 **Exit TutorBuddy** | `Exit`
 
+
 **Students**
 
 Action | Format | Examples(if applicable)
 --------|------------------|-------
-**Add** | `add_student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS l/STUDY_LEVEL g/GUARDIAN_PHONE_NUMBER r/RELATIONSHIP_WITH_GUARDIAN` | `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Sec2 g/95421323 r/Mother`
+**Add** | `add_student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS l/STUDY_LEVEL g/GUARDIAN_PHONE_NUMBER r/RELATIONSHIP_WITH_GUARDIAN` | `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, Block 123, #01-01 l/Sec2 g/95421323 r/Mother`
 **Find** | `find_student KEYWORD [MORE_KEYWORDS]` | `find_student John Alex`
 **Delete** | `delete_student INDEX` | `delete_student 3`
+**Edit** | `edit_student STUDENT_INDEX [n/NAME] [p/STUDENT_PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [l/STUDY_LEVEL] [g/GUARDIAN_PHONE_NUMBER] [r/RELATIONSHIP_WITH_GUARDIAN]` | `edit_student 1 p/98825432 e/alexy@example.com a/Alex street, Block 123, #01-01`
 **List students' emails based on current list** | `emails`
 
 

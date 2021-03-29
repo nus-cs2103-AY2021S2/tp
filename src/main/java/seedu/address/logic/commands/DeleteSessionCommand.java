@@ -8,6 +8,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.session.RecurringSession;
 import seedu.address.model.session.Session;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
@@ -25,6 +26,7 @@ public class DeleteSessionCommand extends Command {
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "John Doe " + PREFIX_INDEX + "1";
 
     public static final String MESSAGE_DELETE_SESSION_SUCCESS = "Deleted Session: %1$s";
+    public static final String MESSAGE_DELETE_RECURRING_SESSION_SUCCESS = "Deleted Recurring Session: %1$s";
 
     private final Name studentName;
 
@@ -55,6 +57,10 @@ public class DeleteSessionCommand extends Command {
         Session sessionToDelete = student.getListOfSessions().get(targetIndex.getZeroBased());
 
         model.deleteSession(studentName, targetIndex);
+        if (sessionToDelete instanceof RecurringSession) {
+            return new CommandResult(String.format(MESSAGE_DELETE_RECURRING_SESSION_SUCCESS,
+                    sessionToDelete.toString()));
+        }
         return new CommandResult(String.format(MESSAGE_DELETE_SESSION_SUCCESS, sessionToDelete.toString()));
     }
 
