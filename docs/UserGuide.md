@@ -29,11 +29,11 @@ This User Guide aims to provide you with all the information you need to make th
 Having understood the pain of using a Command Line Interface (CLI) program, we have tried our best to make
 this a very readable User Guide so that you can use our application without difficulties.
 
-If you need help setting up StoreMando, you can refer to the [“Quick Start"](#quickstart)  section.
+If you need help setting up StoreMando, you can refer to the [“Quick Start"](#2-quick-start)  section.
 
-To learn more about StoreMando's features and commands, head over to the [“Features"](#features) section.
+To learn more about StoreMando's features and commands, head over to the [“Features"](#3-features) section.
 
-If you need an overview of StoreMando’s commands, check out the [“Command Summary"](#commandsummary) section.
+If you need an overview of StoreMando’s commands, check out the [“Command Summary"](#5-command-summary) section.
 
 Please note the following symbols used in the User Guide which may serve as points of interests:
 
@@ -61,7 +61,7 @@ Please note the following symbols used in the User Guide which may serve as poin
 
 1. Type the command in the command box and press Enter to execute it.<br>
 
-1. Refer to the [“Features"](#features) below for details of each command.
+1. Refer to the [“Features"](#3-features) below for details of each command.
 
 ### 2.2. StoreMando's layout
 
@@ -388,7 +388,7 @@ You can use this command in 2 different ways.
   Example:
 
   * `clear l/kitchen` clears all the items with location `kitchen`.
-
+  
 ### 3.10. Exiting StoreMando : `exit`
 
 Done with managing your inventory? Simply key in this command to exit and close the application.
@@ -435,16 +435,17 @@ you to this user guide to provide you with the help you need!
 
 Action | Format, Examples
 --------|------------------
-**[“Help"](#help)** |  `help`
-**[“Add"](#add)** | `add n/ITEM_NAME l/LOCATION q/QUANTITY [e/EXPIRY_DATE] [t/TAG]…​` <br> e.g. `add n/koko krunch l/fridge q/1 e/2021-05-27 t/favourite`
-**[“Edit"](#edit)** | `edit INDEX [n/ITEM_NAME] [e/EXPIRY_DATE] [l/LOCATION] [q/QUANTITY] [t/TAG]…​`<br> e.g.`update 1 l/freezer q/2 `
-**[“List"](#list)** | `list` `list [l/LOCATION]` `list [t/TAG]`<br> e.g. `list` `list l/fridge` `list t/favourite`
-**[“Find"](#find)** | `find [*/]KEYWORD [MORE KEYWORDS]`<br> e.g. `find koko krunch` `find */choco`
-**[“Delete"](#delete)** | `delete INDEX`<br> e.g. `delete 2`
-**[“Reminder"](#reminder)** | `reminder NUMBER TIME_UNIT_KEYWORD`<br> e.g. `reminder -7 days` `reminder 2 weeks`
-**[“Sort"](#sort)** | `sort quantity asc` `sort quantity desc` `sort expiryDate`
-**[“Clear"](#clear)** | `clear` `clear l/LOCATION` <br> e.g. `clear l/bedroom`
-**[“Exit"](#exit)** | `exit`
+**[“Help"](#31-viewing-help-)** |  `help`
+**[“Add"](#32-adding-an-item-)** | `add n/ITEM_NAME l/LOCATION q/QUANTITY [e/EXPIRY_DATE] [t/TAG]…​` <br> e.g. `add n/koko krunch l/fridge q/1 e/2021-05-27 t/favourite`
+**[“Edit"](#33-editing-an-item-)** | `edit INDEX [n/ITEM_NAME] [e/EXPIRY_DATE] [l/LOCATION] [q/QUANTITY] [t/TAG]…​`<br> e.g.`update 1 l/freezer q/2 `
+**[“List"](#34-listing-items-)** | `list` `list [l/LOCATION]` `list [t/TAG]`<br> e.g. `list` `list l/fridge` `list t/favourite`
+**[“Find"](#35-finding-items-by-name-)** | `find [*/]KEYWORD [MORE KEYWORDS]`<br> e.g. `find koko krunch` `find */choco`
+**[“Delete"](#36-deleting-an-item-)** | `delete INDEX`<br> e.g. `delete 2`
+**[“Reminder"](#37-viewing-expiring-items-)** | `reminder NUMBER TIME_UNIT_KEYWORD`<br> e.g. `reminder -7 days` `reminder 2 weeks`
+**[“Sort"](#38-sorting-items-)** | `sort quantity asc` `sort quantity desc` `sort expiryDate`
+**[“Clear"](#39-clearing-storemando-)** | `clear` `clear l/LOCATION` <br> e.g. `clear l/bedroom`
+**[“Exit"](#310-exiting-storemando-)** | `exit`
+
 
 --------------------------------------------------------------------------------------------------------------------
 
