@@ -70,6 +70,7 @@ public class MainWindow extends UiPart<Stage> {
 
         setAccelerators();
 
+        scheduleWindow = new ScheduleWindow(logic);
         helpWindow = new HelpWindow();
     }
 
@@ -134,9 +135,6 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-
-        scheduleWindow = new ScheduleWindow(logic);
-
     }
 
     /**
@@ -188,6 +186,7 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        scheduleWindow.hide();
         primaryStage.hide();
     }
 
@@ -215,6 +214,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowSchedule()) {
+                handleSchedule();
             }
 
             return commandResult;
