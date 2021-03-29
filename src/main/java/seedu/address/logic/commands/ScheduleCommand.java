@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import seedu.address.model.Model;
 
 /**
- * Format full help instructions for every command for display.
+ * Opens up a schedule window displaying weekly lessons for the user.
  */
 public class ScheduleCommand extends Command {
 
