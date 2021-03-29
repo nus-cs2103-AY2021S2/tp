@@ -213,7 +213,7 @@ public class MainWindow extends UiPart<Stage> {
                     event -> {
                         time.setText(
                             LocalDateTime.now().toLocalDate()
-                            .format(DateTimeFormatter.ofPattern("dd-MMM-YYYY")) + "     "
+                            .format(DateTimeFormatter.ofPattern("dd MMM YYYY")) + "     "
                             + LocalDateTime.now().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm")));
 
                     }
