@@ -7,12 +7,14 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_INTERVAL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_WEEKLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_TASK_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -90,11 +92,13 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_addEto_success() throws Exception {
         Event event = new EventBuilder().withDescription("CS2106 Tutorial")
-                .withAtDate(LocalDate.of(2020, 01, 01)).withInterval(Interval.WEEKLY).build();
+                .withDate(LocalDate.of(2020, 01, 01)).withTime(LocalTime.of(17, 30)).withIsWeekly(false).build();
         Index projectIndex = Index.fromOneBased(1);
         String addEToCommand = AddEventCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased() + " "
-                + PREFIX_DESCRIPTION + "CS2106 Tutorial" + " " + PREFIX_EVENT_INTERVAL + "WEEKLY" + " "
-                + PREFIX_EVENT_DATE + "01-01-2020";
+                + PREFIX_DESCRIPTION + "CS2106 Tutorial" + " "
+                + PREFIX_EVENT_DATE + "01-01-2020" + " "
+                + PREFIX_EVENT_TIME + "17:30"
+                + PREFIX_EVENT_WEEKLY + "n";
         AddEventCommand command = (AddEventCommand) parser.parseCommand(addEToCommand);
         assertEquals(new AddEventCommand(projectIndex, event), command);
     }
