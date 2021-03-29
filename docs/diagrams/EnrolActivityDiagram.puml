@@ -2,10 +2,12 @@
 'https://plantuml.com/activity-diagram-beta
 
 start
-:User executes enrol command;
-if () then ([dogId valid])
-else ([programId valid])
-endif
+
+repeat
+  :User executes enrol command;
+  backward:throws CommandException;
+repeat while () is ([else])
+->[dogId valid && programId valid];
 :EnrolCommandParser processes;
 :returns EnrolCommand;
 stop
