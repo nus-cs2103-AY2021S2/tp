@@ -100,7 +100,11 @@ public class SampleDataUtil {
             new Endpoint(new Method("OPTIONS"),
                     new Address("http://imposter-dev.tk:6000/api/v1/options"),
                     getHeaderSet(),
-                    getTagSet("imposter"), new Response())
+                    getTagSet("imposter"), new Response()),
+            new Endpoint(new Method("OPTIONS"),
+                    new Address("https://gorest.co.in/public-api/users"),
+                    getHeaderSet(),
+                    getTagSet("gorest"), new Response())
         };
     }
 
