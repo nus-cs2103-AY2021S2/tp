@@ -216,15 +216,15 @@ Updates the status of a property from Option to Purchase, to Sales and Purchase 
 
 Formats:
 * `update INDEX u/new AMOUNT`
-* `update INDEX u/[proceed][cancel]`
+* `update INDEX u/proceed`
+* `update INDEX u/cancel`
 
 Description:
-* Edits the property at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …​
+* Updates the status of the property at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …​
 * The `new` keyword can only be used on a property without an existing status
 * `proceed` or `cancel` can only be used on a property with an existing status
 * `proceed` would move the status on to the next one. e.g. Option to Sales Agreement or Sales Agreement to Completion
 * `cancel` would remove the status of the property
-* At least one of the optional fields must be provided.
 
 Examples:
 *  `update 1 u/new 600000` Creates a new status with amount 600000 for the 1st property.
