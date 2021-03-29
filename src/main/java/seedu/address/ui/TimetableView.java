@@ -1,6 +1,10 @@
 package seedu.address.ui;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -20,6 +24,8 @@ import seedu.address.model.scheduler.Schedulable;
 public class TimetableView extends UiPart<Region> {
     private static final String FXML = "TimetableWindow.fxml";
     private final Logger logger = LogsCenter.getLogger(TimetableView.class);
+
+    public static final int NUMBER_OF_COLUMNS = 7;
 
     @FXML
     private GridPane timetableGrid;
@@ -45,6 +51,7 @@ public class TimetableView extends UiPart<Region> {
     @FXML
     private AnchorPane dayScheduleSeven;
 
+
     /**
      * Using strategy pattern. Logic for implementing timetable.
      * Used to determine node placement of a Schedulable object in the timetable UI.
@@ -52,7 +59,10 @@ public class TimetableView extends UiPart<Region> {
      */
     private TimetablePlacementPolicy timetablePlacementPolicy;
 
-    public static int NUMBER_OF_COLUMNS  = 7;
+    private ObservableList<? extends Schedulable> timetableSlots;
+
+    private LocalDate firstDayOfTimetable;
+
 
     /**
      * Renders an empty timetable.
@@ -69,8 +79,31 @@ public class TimetableView extends UiPart<Region> {
      * @param timetableSlots
      */
 
-    public TimetableView(ObservableList<Schedulable> timetableSlots) {
+    public TimetableView(ObservableList<? extends Schedulable> timetableSlots, LocalDate firstDayOfTimetable) {
         super(FXML);
+        this.timetableSlots = timetableSlots;
+        this.timetablePlacementPolicy = new TimetablePlacementPolicy(firstDayOfTimetable);
+        reset();
+        populateWithData(timetableSlots);
+    }
+
+    public void setTimetablePlacementPolicy(TimetablePlacementPolicy policy) {
+        this.timetablePlacementPolicy = policy;
+    }
+
+    public void populateWithData(ObservableList<? extends Schedulable> obsList) {
+        List<? extends Schedulable> processedList = obsList.stream()
+                .filter(timetablePlacementPolicy :: test)
+                .flatMap(timetablePlacementPolicy :: breakIntoUnits)
+                .collect(Collectors.toList());
+        for (Schedulable schedulable : processedList) {
+            double slotLength = timetablePlacementPolicy.getLengthOfSlot(schedulable);
+            String name = schedulable.getNameString();
+            Column col = timetablePlacementPolicy.getColumnPlacement(schedulable);
+            double position = timetablePlacementPolicy.getVerticalPosition(schedulable);
+            TimetableSlot slotToAdd = new TimetableSlot(slotLength, name);
+            putIntoSlot(slotToAdd, col, position);
+        }
     }
 
     /**
@@ -80,6 +113,8 @@ public class TimetableView extends UiPart<Region> {
     public static enum Column {
         ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN
     }
+
+
 
     /**
      * Puts a timetableSlot into the timetable to render, given the column to place it in
@@ -119,6 +154,8 @@ public class TimetableView extends UiPart<Region> {
         scheduleToPut.setTopAnchor(timetableSlot.getRoot(), position);
         scheduleToPut.setLeftAnchor(timetableSlot.getRoot(), 0.0);
         scheduleToPut.setRightAnchor(timetableSlot.getRoot(), 0.0);
+
+        scheduleToPut.getChildren().addAll(timetableSlot.getRoot());
     }
 
     /**

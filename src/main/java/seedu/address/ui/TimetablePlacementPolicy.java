@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * In charge of putting meetings into the @code{TimetableView} given a certain meeting,
@@ -64,8 +65,8 @@ public class TimetablePlacementPolicy {
     public boolean test(Schedulable schedulable) {
         LocalDateTime startTimeOfSchedulable = schedulable.getStartLocalDateTime();
         LocalDateTime endTimeOfSchedulable = schedulable.getTerminateLocalDateTime();
-        return endTimeOfSchedulable.compareTo(startDateTime) <= 0
-                || startTimeOfSchedulable.compareTo(endDateTime) >= 0;
+        return !(endTimeOfSchedulable.compareTo(startDateTime) <= 0
+                || startTimeOfSchedulable.compareTo(endDateTime) >= 0);
     }
 
     /**
@@ -118,7 +119,7 @@ public class TimetablePlacementPolicy {
     public double getVerticalPosition(Schedulable schedulable) {
         LocalDateTime startingDateTime = schedulable.getStartLocalDateTime();
         int minutesSoFar = getMinutesInDay(applyOffset(startingDateTime));
-        double ratio = minutesSoFar / MINUTES_IN_DAY;
+        double ratio = (double) minutesSoFar / MINUTES_IN_DAY;
         return ratio * TIMETABLE_DISPLAY_SIZE;
     }
 
@@ -132,7 +133,7 @@ public class TimetablePlacementPolicy {
         int startMinutesSoFar = getMinutesInDay(schedulable.getStartLocalDateTime());
         int endMinutesSoFar = getMinutesInDay(schedulable.getTerminateLocalDateTime());
         assert endMinutesSoFar >= startMinutesSoFar;
-        double ratio = (startMinutesSoFar - endMinutesSoFar) / MINUTES_IN_DAY;
+        double ratio = (double)(endMinutesSoFar - startMinutesSoFar) / MINUTES_IN_DAY;
         return TIMETABLE_DISPLAY_SIZE * ratio;
 
     }
@@ -146,7 +147,7 @@ public class TimetablePlacementPolicy {
      * @return
      */
 
-    public List<Schedulable> breakIntoUnits(Schedulable schedulable) {
+    public Stream<Schedulable> breakIntoUnits(Schedulable schedulable) {
 
         assert test(schedulable);
         LocalDateTime startDateTime = schedulable.getStartLocalDateTime();
@@ -158,7 +159,7 @@ public class TimetablePlacementPolicy {
 
         //same day interval.
         if (offSetStartTime.toLocalDate().isEqual( offSetEndTime.toLocalDate())) {
-            return List.of(schedulable);
+            return List.of(schedulable).stream();
         }
         //case when returns more than one element.
         ArrayList<Schedulable> listOfSchedulableUnits = new ArrayList<>();
@@ -190,8 +191,7 @@ public class TimetablePlacementPolicy {
 
         return listOfSchedulableUnits
                 .stream()
-                .filter(this :: test)
-                .collect(Collectors.toList());
+                .filter(this :: test);
 
     }
 
