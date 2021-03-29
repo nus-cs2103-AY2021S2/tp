@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
  * Class that handles RecurringSession that extend Session.
  */
 public class RecurringSession extends Session {
-    public static final String MESSAGE_CONSTRAINTS = "Last date/time does not match starting date and interval.";
+    public static final String MESSAGE_CONSTRAINTS = "Last date does not match starting date and interval.";
     private Interval interval;
     private SessionDate lastSessionDate;
 
@@ -41,8 +41,9 @@ public class RecurringSession extends Session {
         return occursAtTime && occursAtDate;
     }
 
-    // Checks that s1 occurs on the date of s2, upon recurring 0 or more times at given interval.
-    private static boolean isConsistentDatesAndInterval(SessionDate sessionDate1, SessionDate sessionDate2, Interval interval) {
+    // Checks that sessionDate1 occurs on the date of sessionDate2, upon recurring 0 or more times at given interval.
+    private static boolean isConsistentDatesAndInterval(
+            SessionDate sessionDate1, SessionDate sessionDate2, Interval interval) {
         requireAllNonNull(sessionDate1, sessionDate2, interval);
         int daysBetween = sessionDate1.numOfDayTo(sessionDate2);
         return daysBetween >= 0 && daysBetween % interval.getValue() == 0;
