@@ -156,13 +156,15 @@ public class Person {
                 && otherPerson.getWeight().equals(getWeight())
                 && otherPerson.getTags().equals(getTags())
                 && otherPerson.getAppointments().equals(getAppointments())
+                && otherPerson.getRecords().equals(getRecords())
                 && (otherPerson.isArchived() == isArchived());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, height, weight, tags, isArchived);
+        return Objects.hash(name, phone, email, address, height, weight, tags, appointments,
+                records, isArchived);
     }
 
     @Override
