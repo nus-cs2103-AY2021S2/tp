@@ -199,7 +199,8 @@ public class StudentBook implements ReadOnlyStudentBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof StudentBook // instanceof handles nulls
-                && students.equals(((StudentBook) other).students));
+                && students.equals(((StudentBook) other).students))
+                && appointments.equals(((StudentBook) other).appointments);
     }
 
     @Override
