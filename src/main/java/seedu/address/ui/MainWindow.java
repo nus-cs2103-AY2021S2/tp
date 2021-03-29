@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.io.IOException;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -182,9 +183,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleExit() {
-        GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY(), ThemeManager.getThemePath());
-        logic.setGuiSettings(guiSettings);
+        updateGuiSettings();
         helpWindow.hide();
         primaryStage.hide();
     }
@@ -193,6 +192,12 @@ public class MainWindow extends UiPart<Stage> {
     private void applyTheme() {
         this.getMainScene().getStylesheets().clear();
         this.getMainScene().getStylesheets().add("file:///" + ThemeManager.getCssCacheUri());
+    }
+
+    private void updateGuiSettings() {
+        GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
+            (int) primaryStage.getX(), (int) primaryStage.getY(), ThemeManager.getThemePath());
+        logic.setGuiSettings(guiSettings);
     }
 
     public PersonListPanel getPersonListPanel() {
@@ -216,6 +221,12 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isTheme()) {
                 applyTheme();
+                updateGuiSettings();
+                try {
+                    logic.saveFiles();
+                } catch (IOException ioException) {
+                    logger.warning("Unable to save theme");
+                }
             }
 
             if (commandResult.isExit()) {
@@ -223,6 +234,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             DetailsPanelTab tab = commandResult.getNewTab();
+
             if (tab != null) {
                 detailsPanel.toggleTab(tab);
             }
