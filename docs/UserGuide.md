@@ -30,6 +30,7 @@ Pawbook.
 
 ## **Contributors**
 
+This document is created by **CS2103T-T10-Group1**.
 * Charles Lee Lin Ta
 * John Alec Mendoza Branzuela
 * Kou Yong Kang
@@ -37,7 +38,6 @@ Pawbook.
 * Wei Yutong
 * Zhang Anli
 
-=======
 ## **Navigating the User Guide**
 The aim of this User Guide is to provide you with all the information you need to utilise Pawbook. We understand the 
 pains of using a Command Line Interface (CLI) program and have bested our efforts into ensuring a very readable guide
@@ -57,7 +57,6 @@ Here are some important syntax to take note of to facilitate your reading before
 | `Markdown` | Important examples |
 | **Bold** | Important words to note |
 | [Repeated Parameters] | Indicates the parameters/prefixes that may be repeated multiple times |
-
 
 # **About the User Guide**
 In this section, you will learn what the different notations and symbols used in Pawbook. 
@@ -84,6 +83,7 @@ Here is how the main page should look like:
 <img src="images/UIExample.png" width="790"/>
 
 ###Help Page View
+Helps you better understand what each component that you observe on-screen represents.
 
 * Table of Contents
 {:toc}
@@ -105,7 +105,7 @@ Here is how the main page should look like:
 
 ----
 
-## Features of Pawbook
+# Commands 
 
 ### Add Command
 Adds a dog/owner/program to Pawbook.
@@ -155,11 +155,12 @@ Adds a specified dog to a specified program that the dog was previously not enro
 
 Format:
 ```
-enrol d/<DOG ID> p/<PROGRAM ID>
+enrol d/[DOG ID] p/[PROGRAM ID]
 ```
 
 Examples:
-1. Enrol dog with Dog ID 1 into program with Program ID 2, assuming that Dog ID 1 was previously not enrolled in Program ID 2. <br> 
+1. Enrol dog with Dog ID 1 into program with Program ID 2, assuming that Dog ID 1 was previously not enrolled in 
+   Program ID 2. <br> 
    Command: `enrol d/1 p/2`
    
 ### Drop Command
@@ -168,11 +169,12 @@ Removes a specified dog from a specified program that the dog was previously enr
 
 Format:
 ```
-drop d/<DOG ID> p/<PROGRAM ID>
+drop d/[DOG ID] p/[PROGRAM ID]
 ```
 
 Examples:
-1. Remove dog with Dog ID 1 from program with Program ID 2, assuming that Dog ID 1 was previously enrolled in Program ID 2. <br> 
+1. Remove dog with Dog ID 1 from program with Program ID 2, assuming that Dog ID 1 was previously enrolled in 
+   Program ID 2. <br> 
    Command: `drop d/1 p/2`
    
 ### Find Command 
@@ -191,11 +193,13 @@ Examples:
 2. Find all entities with the name 'Alice' or 'Bob' or 'Charlie'.<br>
    Command: `find alice bob charlie`
    
-**Note**: Find is able to take in multiple keywords and returns all results as long as the name contains any one of the keywords. 
+**Note**: Find is able to take in multiple keywords and returns all results as long as the name contains any one of the 
+keywords. 
 
 ### View Command 
 
-Views the list of all entities related to the searched entity. Used in cases when trying to find all the dogs enrolled in a program or all the dogs belonging to one owner. 
+Views the list of all entities related to the searched entity. Used in cases when trying to find all the dogs enrolled 
+in a program or all the dogs belonging to one owner. 
 
 ```
 view [ENTITY ID] 
@@ -224,7 +228,8 @@ Format: `exit`
 
 ## FAQ
 Q: How do I transfer my data to another Computer?<br>
-A: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Pawbook home folder.
+A: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the 
+data of your previous Pawbook home folder.
 
 -----
 
@@ -234,8 +239,17 @@ Action | Format
 --------|------------------
 **Add** | 1. `add dog n/DOGNAME b/BREED d/DATE OF BIRTH s/SEX o/OWNERID t/TAG`<br>2. `add owner n/OWNERNAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...`<br>3. `add  program n/NAME [s/DATE OF SESSION]... [t/tag]...`
 **Delete** | 1. `delete dog d/DOGID`<br>2. `delete owner o/OWNERID`<br>3. `delete program p/PROGRAMID`
+**Enrol** | `enrol d/[DOG ID] p/[PROGRAM ID]`
+**Drop** | `drop d/[DOG ID] p/[PROGRAM ID]`
 **List** |`list n/NAME c/CLASS b/BREED t/TAG`
 **Find** | `find [keyword1] [keyword2] [keyword3] ...`
 **View** | `view [ID number]`
 **Help** | `help`
 **Exit** | `exit`
+
+### Glossary 
+
+Term  | Explanation
+-----|------------------
+CLI | Short for Command Line Interface. CLI-based applications are primarily used through processing text commands. 
+GUI | Short for Graphical User Interface. GUIs work as the tangible user interface between program and user. Users interact with Pawbook through the GUI on their devices.
