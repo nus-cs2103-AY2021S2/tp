@@ -21,6 +21,13 @@ public class CliSyntax {
     public static final Prefix PREFIX_SUBJECT = new Prefix("s/");
     public static final Prefix PREFIX_FEE = new Prefix("f/");
 
+    /* Prefix definitions for recurring sessions*/
+    public static final Prefix PREFIX_INTERVAL = new Prefix("b/");
+    public static final Prefix PREFIX_END_DATE = new Prefix("e/");
+
     public static final Prefix PREFIX_INDEX = new Prefix("i/");
 
+    /* Prefix definitions for monthly fees */
+    public static final Prefix PREFIX_MONTH = new Prefix("m/");
+    public static final Prefix PREFIX_YEAR = new Prefix("y/");
 }
