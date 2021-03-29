@@ -12,7 +12,8 @@ public class Quantity {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-        "Quantity should only contain numbers, and it should be a positive integer greater than 0";
+        "Quantity should only contain numbers, and it should be a positive integer greater than 0"
+            + " and less than 1000000";
     public static final String VALIDATION_REGEX = "\\d+";
 
     public final String value;
@@ -33,7 +34,11 @@ public class Quantity {
      * Returns true if a given string is a valid quantity number.
      */
     public static boolean isValidQuantity(String test) {
-        return test.matches(VALIDATION_REGEX) && Long.valueOf(test) > 0;
+        try {
+            return test.matches(VALIDATION_REGEX) && Long.valueOf(test) > 0;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     @Override
