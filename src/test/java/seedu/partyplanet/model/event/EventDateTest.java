@@ -5,14 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.partyplanet.testutil.Assert.assertThrows;
 
-import java.time.DateTimeException;
 import java.time.LocalDate;
-import java.time.MonthDay;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
-
-import seedu.partyplanet.model.date.Date;
 
 public class EventDateTest {
 
@@ -23,9 +19,9 @@ public class EventDateTest {
     }
 
     @Test
-    public void constructor_invalidEventDate_throwsDateTimeException() {
+    public void constructor_invalidEventDate_throwsIllegalArgumentException() {
         String invalidEventDate = "";
-        assertThrows(DateTimeException.class, () -> new EventDate(invalidEventDate));
+        assertThrows(IllegalArgumentException.class, () -> new EventDate(invalidEventDate));
     }
 
     @Test
@@ -56,28 +52,7 @@ public class EventDateTest {
             assertTrue(EventDate.isValidEventDate(validInput));
         }
         assertEquals(1, Arrays.stream(validInputs)
-                .map(Date::parseDate)
-                .map(x -> (LocalDate) x)
-                .distinct()
-                .count());
-    }
-
-    @Test
-    public void isValidEventDate_validWithoutYears() {
-        String[] validInputs = new String[]{
-            "--02-03",
-            "3/2",
-            "3 Feb",
-            "3 February",
-            "Feb 3",
-            "February 3",
-        };
-        for (String validInput: validInputs) {
-            assertTrue(EventDate.isValidEventDate(validInput));
-        }
-        assertEquals(1, Arrays.stream(validInputs)
-                .map(Date::parseDate)
-                .map(x -> (MonthDay) x)
+                .map(EventDate::new)
                 .distinct()
                 .count());
     }
@@ -95,24 +70,6 @@ public class EventDateTest {
         assertTrue(EventDate.isValidEventDate("2020-06-05"));
         assertTrue(EventDate.isValidEventDate("2025-06-06"));
         assertTrue(EventDate.isValidEventDate("9999-06-07"));
-    }
-
-    @Test
-    public void compareTo() {
-        // Same year
-        EventDate localDate0606 = new EventDate("2020-06-06");
-        EventDate localDate0608 = new EventDate("2020-06-08");
-
-        // Different year
-        EventDate localDatePrevYear = new EventDate("2019-08-13");
-
-        // Same date
-        assertEquals(0, localDate0606.compareTo(localDate0606));
-
-        // Different date
-        assertTrue(localDate0606.compareTo(localDate0608) < 0);
-        assertTrue(localDate0608.compareTo(localDatePrevYear) > 0);
-        assertTrue(localDatePrevYear.compareTo(localDate0606) < 0);
     }
 }
 
