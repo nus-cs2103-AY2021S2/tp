@@ -19,7 +19,7 @@ import seedu.booking.model.venue.VenueName;
 /**
  * Parses input arguments and creates a new AddVenue object
  */
-public class CreateVenueCommandParser implements Parser<AddVenueCommand> {
+public class AddVenueCommandParser implements Parser<AddVenueCommand> {
 
     private static final String DEFAULT_CAPACITY = "10";
     private static final String DEFAULT_DESCRIPTION = "No description provided.";

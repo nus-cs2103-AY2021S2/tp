@@ -21,7 +21,7 @@ import seedu.booking.model.venue.VenueName;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class CreateBookingCommandParser implements Parser<AddBookingCommand> {
+public class AddBookingCommandParser implements Parser<AddBookingCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddBookingCommand
