@@ -8,7 +8,7 @@ import seedu.address.model.session.SessionDate;
 import seedu.address.model.student.Student;
 
 /**
- * Util to calculate the fees
+ * A class for fees calculation.
  */
 public class FeeUtil {
 
@@ -41,7 +41,6 @@ public class FeeUtil {
             return recurringSession.getFee().getFee() * numOfSession;
         }
         return 0;
-
     }
 
     private static double getSingleSessionFee(Session session, LocalDateTime startPeriod, LocalDateTime endPeriod) {

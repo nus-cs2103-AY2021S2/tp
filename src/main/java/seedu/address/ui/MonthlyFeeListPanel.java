@@ -50,8 +50,8 @@ public class MonthlyFeeListPanel extends UiPart<Region> {
     }
 
     /**
-     * Populates the MonthlyFeeListViewCell with the given {@code ObservableList}
-     * @param monthlyFeeList Represents an observable monthly fee list
+     * Populates the MonthlyFeeListViewCell with the given {@code ObservableList}.
+     * @param monthlyFeeList Represents an observable monthly fee list.
      */
     private void populateMonthlyFeeListView(ObservableList<MonthlyFee> monthlyFeeList) {
         monthlyFeeListView.setItems(monthlyFeeList);
@@ -83,6 +83,14 @@ public class MonthlyFeeListPanel extends UiPart<Region> {
         }
     }
 
+    /**
+     * Gets the current month fee based on the start period and end period.
+     *
+     * @param studentList List of students.
+     * @param startPeriod Start Period of the month.
+     * @param endPeriod End Period of the month.
+     * @return Monthly fee for the current month.
+     */
     private double getCurrMonthFee(ObservableList<Student> studentList, LocalDateTime startPeriod,
         LocalDateTime endPeriod) {
         double fee = 0;
@@ -93,7 +101,7 @@ public class MonthlyFeeListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Tuition} using a {@code UpcomingTuitionCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code MonthlyFee} using a {@code MonthlyFeeCard}.
      */
     static class MonthlyFeeListViewCell extends ListCell<MonthlyFee> {
         @Override

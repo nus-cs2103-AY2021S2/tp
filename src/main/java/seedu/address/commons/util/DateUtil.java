@@ -7,6 +7,9 @@ import java.time.LocalDateTime;
 import seedu.address.model.fee.Month;
 import seedu.address.model.fee.Year;
 
+/**
+ * A class for date time manipulation.
+ */
 public class DateUtil {
     /**
      * Converts to the local date time format of the month and year combined.
