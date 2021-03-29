@@ -1,14 +1,14 @@
 package seedu.address.ui;
 
+import static seedu.address.ui.UiUtil.generateTagLabel;
+import static seedu.address.ui.UiUtil.streamTags;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
-
-import static seedu.address.ui.UiUtil.generateTagLabel;
-import static seedu.address.ui.UiUtil.streamTags;
 
 /**
  * An UI component that displays information of a {@code Person}.
