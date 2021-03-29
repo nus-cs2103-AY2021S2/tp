@@ -2,15 +2,28 @@
 layout: page
 title: User Guide
 ---
+# TutorBuddy
+Welcome to the user guide for TutorBuddy!<br/>
+Are you a tuition teacher looking for a reliable way to keep track of
+your 1-to-1 lessons? Needing a system to remind you about upcoming lessons?
+Or an efficient way to calculate your lesson incomes? <br/>
+Then, you have come to the right place -- TutorBuddy shall help you!
+
 <div align="center">
   <img alt="logo" src="images/tutorbuddy_logo.png">
 </div>
-
 
 TutorBuddy is a desktop application made for freelance tutors to efficiently manage their students' contacts,
 provide a quick overview of scheduled tuition sessions at a glance, and handle monthly tuition fees calculation.
 TutorBuddy is also optimized for fast typing users to handle their day-to-day administrative responsibilities
 effectively.
+
+### About this guide
+This guide provides a basic introduction for using TutorBuddy, and a detailed description for each feature.<br/>
+Go to [Quick start](#quick-start), for a summary of step to get started with using the application.<br/>
+Go to [Features](#features), for a detailed explanation of each feature. <br/>
+Go to [FAQ](#faq), for answers to Frequently Asked Questions. <br/>
+Go to [Command Summary](#command-summary), for a basic summary to commands.
 
 **Table of Contents**
 * [About](#about)
