@@ -220,6 +220,10 @@
     -fx-text-fill: #FFFFFF;
 }
 
+.insurance-pane {
+    -fx-background-color: #515658;
+}
+
 /*
  * Metro style Push Button
  * Author: Pedro Duque Vieira

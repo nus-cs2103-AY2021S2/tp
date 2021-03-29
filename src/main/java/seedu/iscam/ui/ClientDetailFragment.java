@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.meeting.Meeting;
@@ -41,6 +42,10 @@ public class ClientDetailFragment extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private ListView<Meeting> clientMeetingListView;
+    @FXML
+    private VBox insurancePlanBox;
+    @FXML
+    private Label insurancePlanName;
 
     /**
      * Creates a ClientDetailFragment that observes the given ObservableClient
@@ -51,7 +56,7 @@ public class ClientDetailFragment extends UiPart<Region> {
         observableClient.addListener(new ClientListener());
         this.meetingList = meetingList;
         profileImage.setPreserveRatio(true);
-
+        insurancePlanBox.setVisible(false);
     }
 
     public void setClientDetails(Client client) {
@@ -70,6 +75,9 @@ public class ClientDetailFragment extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         clientMeetingListView.setItems(meetingList.filtered(meeting -> meeting.getClientName().equals(client.getName())));
         clientMeetingListView.setCellFactory(listview -> new MeetingListPanel.MeetingListViewCell());
+
+        insurancePlanBox.setVisible(true);
+        insurancePlanName.setText(client.getPlan().planName);
     }
 
     @Override
