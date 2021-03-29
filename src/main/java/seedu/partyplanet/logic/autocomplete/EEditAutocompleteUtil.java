@@ -2,6 +2,7 @@ package seedu.partyplanet.logic.autocomplete;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_REMARK;
 
 import java.util.List;
@@ -21,7 +22,7 @@ import seedu.partyplanet.model.event.Event;
 
 public class EEditAutocompleteUtil {
 
-    private static final String INDEX_NOT_SPECIFIED_MESSAGE = "Index not specified!";
+    private static final String INDEX_NOT_SPECIFIED_OR_INVALID_MESSAGE = "Index not specified!";
 
     /**
      * Parses an edit command to autocomplete remark.
@@ -38,9 +39,9 @@ public class EEditAutocompleteUtil {
 
         Index index;
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            index = ParserUtil.parseIndex(argMultimap.getPreamble().split(" ")[0]);
         } catch (ParseException pe) {
-            throw new ParseException(INDEX_NOT_SPECIFIED_MESSAGE);
+            throw new ParseException(INDEX_NOT_SPECIFIED_OR_INVALID_MESSAGE);
         }
 
         ObservableList<Event> filteredEventsList = model.getFilteredEventList();
@@ -53,10 +54,11 @@ public class EEditAutocompleteUtil {
         // Create a Map of Prefix to the relevant getter method
         Map<Prefix, String> prefixMethodMap = Map.of(
             PREFIX_DATE, event.getEventDate().value,
+            PREFIX_NAME, event.getName().fullName,
             PREFIX_REMARK, event.getDetails().value
         );
 
-        String output = "eedit " + index.getOneBased();
+        String output = "eedit " + argMultimap.getPreamble();
 
         // Here we can assume Prefixes are sorted in the order they are entered.
         for (Prefix prefix: argMultimap.getPrefixPositionOrders()) {

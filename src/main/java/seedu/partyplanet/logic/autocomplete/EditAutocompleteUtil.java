@@ -30,7 +30,7 @@ import seedu.partyplanet.model.tag.Tag;
 
 public class EditAutocompleteUtil {
 
-    private static final String INDEX_NOT_SPECIFIED_MESSAGE = "Index not specified!";
+    private static final String INDEX_NOT_SPECIFIED_OR_INVALID_MESSAGE = "Index not specified or invalid!";
 
     /**
      * Used to convert Set of {@code Tag}s into a String with Tag Prefixes.
@@ -58,9 +58,9 @@ public class EditAutocompleteUtil {
 
         Index index;
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            index = ParserUtil.parseIndex(argMultimap.getPreamble().split(" ")[0]);
         } catch (ParseException pe) {
-            throw new ParseException(INDEX_NOT_SPECIFIED_MESSAGE);
+            throw new ParseException(INDEX_NOT_SPECIFIED_OR_INVALID_MESSAGE);
         }
 
         ObservableList<Person> filteredPersonList = model.getFilteredPersonList();
@@ -81,7 +81,7 @@ public class EditAutocompleteUtil {
             PREFIX_TAG, ""
         );
 
-        String output = "edit " + index.getOneBased();
+        String output = "edit " + argMultimap.getPreamble();
 
         // Here we can assume Prefixes are sorted in the order they are entered.
         for (Prefix prefix: argMultimap.getPrefixPositionOrders()) {
@@ -102,8 +102,11 @@ public class EditAutocompleteUtil {
                 Set<Tag> tags = new HashSet<>(person.getTags());
                 Set<Tag> inputTags = new HashSet<>();
 
+                boolean hasExtraPrefix = false;
+
                 for (String value: values) {
                     if (value.equals("")) {
+                        hasExtraPrefix = true;
                         continue;
                     }
 
@@ -127,7 +130,7 @@ public class EditAutocompleteUtil {
                 String tagsString = getTagsAsAutocompletedString(tags);
                 if (!tagsString.equals("")) {
                     output += " " + getTagsAsAutocompletedString(tags);
-                } else {
+                } else if (hasExtraPrefix) {
                     output += " -t";
                 }
                 continue;
