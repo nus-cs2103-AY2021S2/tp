@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -10,7 +10,6 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Address;
 import seedu.address.model.Model;
@@ -182,40 +181,40 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code person} is invalid.
      */
-    public static Person parseContact(String contact) throws ParseException {
-        requireNonNull(contact);
+    public static Person parseContact(String contactIndex) throws ParseException {
+        requireNonNull(contactIndex);
 
-        String trimmedArgs = contact.trim();
+        String trimmedArgs = contactIndex.trim();
+
         if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            throw new ParseException(MESSAGE_INVALID_INDEX);
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
+        List<Person> contactList = model.getFilteredPersonList();
+        Index targetIndex = parseIndex(contactIndex);
+        int targetIndexInt = targetIndex.getZeroBased();
 
-        // model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        if (targetIndexInt >= contactList.size()) {
+            throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
 
-        List<Person> lastShownList = model.getFilteredPersonList();
-        Index targetIndex = parseIndex(contact);
-        Person contactToAdd = lastShownList.get(targetIndex.getZeroBased());
+        Person contactToAdd = contactList.get(targetIndexInt);
 
-        //        String trimmedTag = contact.trim();
-        //        if (!Tag.isValidTagName(trimmedTag)) {
-        //            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-        //        }
-        //        return new Tag(trimmedTag);
         return contactToAdd;
     }
 
     /**
      * Parses {@code Collection<String> contacts} into a {@code Set<Person>}.
      */
-    public static Set<Person> parseContacts(Collection<String> contacts) throws ParseException {
-        requireNonNull(contacts);
+    public static Set<Person> parseContacts(Collection<String> contactsIndices) throws ParseException {
+        requireNonNull(contactsIndices);
+
         final Set<Person> contactSet = new HashSet<>();
-        for (String contact : contacts) {
-            contactSet.add(parseContact(contact));
+
+        for (String contactIndex : contactsIndices) {
+            contactSet.add(parseContact(contactIndex));
         }
+
         return contactSet;
     }
 }
