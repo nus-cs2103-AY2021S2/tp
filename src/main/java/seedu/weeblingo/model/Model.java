@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.weeblingo.commons.core.GuiSettings;
+import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.flashcard.Flashcard;
 import seedu.weeblingo.model.score.Score;
 
@@ -113,6 +114,8 @@ public interface Model {
     /** Clears the Quiz instance when the "end" command is called */
     void clearQuizInstance();
 
+    boolean isCorrectAttempt(Answer attempt);
+
     /** Returns the Mode object */
     Mode getMode();
 
@@ -124,4 +127,14 @@ public interface Model {
 
     /** Gets the quiz instance, which is this quiz session */
     Quiz getQuizInstance();
+
+    public void switchModeQuiz();
+
+    public void switchModeLearn();
+
+    public void switchModeMenu();
+
+    public void switchModeQuizSession();
+
+    public void switchModeCheckSuccess();
 }

@@ -192,7 +192,8 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            int currentMode = logic.getModel().getCurrentMode();
+
+            int currentMode = logic.getCurrentMode();
             logger.info(String.format("Current mode is %s", currentMode));
 
             if (commandText.equals("history")) {
@@ -201,9 +202,8 @@ public class MainWindow extends UiPart<Stage> {
                 changePanelInPlaceHolder(flashcardListPanelPlaceholder, scoreHistoryListPanel, flashcardListPanel);
             }
 
-            flashcardListPanelPlaceholder.setVisible(commandResult.isShowCards());
-            int index = (commandText.equals("next") || commandText.equals("check")) ? logic.getCurrentIndex() : -1;
-            flashcardListPanel.updateCard(index, commandResult.isShowAnswer());
+            flashcardListPanelPlaceholder.setVisible(logic.showCards());
+            flashcardListPanel.updateCard(logic.getCurrentIndex(), logic.showAnswer());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -221,6 +221,13 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Replace the old list panel in stackPane with new one.
+     *
+     * @param stackPane The stack pane considered to be the container of panels.
+     * @param oldPanel The old list panel to be replaced.
+     * @param newPanel The new list panel to replace the old panel.
+     */
     private void changePanelInPlaceHolder(StackPane stackPane, ListPanel oldPanel, ListPanel newPanel) {
         int index = stackPane.getChildren().indexOf(oldPanel.getRoot());
         if (index != -1) {
@@ -234,4 +241,5 @@ public class MainWindow extends UiPart<Stage> {
     public void displayGreetings() {
         resultDisplay.greetUser();
     }
+
 }

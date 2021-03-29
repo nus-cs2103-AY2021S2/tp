@@ -15,7 +15,7 @@ public class QuizCommandTest {
     @Test
     public void execute_quiz_success() {
         CommandResult expectedCommandResult = new CommandResult(
-                MESSAGE_SUCCESS, false, false, true, false);
+                MESSAGE_SUCCESS, false, false);
         assertCommandSuccess(new QuizCommand(), model, expectedCommandResult, expectedModel);
     }
 }

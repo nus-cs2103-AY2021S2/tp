@@ -71,7 +71,7 @@ public class WeeblingoParser {
             return new HelpCommand();
 
         case CheckCommand.COMMAND_WORD:
-            return new CheckCommand();
+            return new CheckCommandParser().parse(arguments);
 
         case ViewHistoryCommand.COMMAND_WORD:
             return new ViewHistoryCommand();

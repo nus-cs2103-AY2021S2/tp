@@ -1,7 +1,6 @@
 package seedu.weeblingo.model;
 
 import static seedu.weeblingo.storage.LocalDatabasePopulator.getDatabaseOfFlashcards;
-import static seedu.weeblingo.storage.LocalDatabasePopulator.getSubsetOfFlashcards;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -11,6 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.flashcard.Flashcard;
 import seedu.weeblingo.storage.JsonDatabaseReader;
 
@@ -42,8 +42,8 @@ public class Quiz {
      * randomized order and the specified number of questions.
      */
     public Quiz(int numberOfQuestions) {
-        Flashcard[] flashcardsReadFromDB = getSubsetOfFlashcards(numberOfQuestions);
-        quizSessionQueue = getRandomizedQueue(flashcardsReadFromDB);
+        Flashcard[] flashcardsReadFromDB = getDatabaseOfFlashcards(JsonDatabaseReader.readDatabaseAsJsonArray());
+        quizSessionQueue = getRandomizedSubsetQueue(flashcardsReadFromDB, numberOfQuestions);
         startTime = Instant.now();
     }
 
@@ -89,6 +89,10 @@ public class Quiz {
         return currentQuiz;
     }
 
+    public boolean isCorrectAttempt(Answer attempt) {
+        return currentQuiz.getAnswer().equals(attempt);
+    }
+
     public Queue<Flashcard> getQuizSessionQueue() {
         return quizSessionQueue;
     }
@@ -109,6 +113,27 @@ public class Quiz {
         return randomizedQueue;
     }
 
+    /**
+     * Generates randomized queue that is a subset from the given array of flashcards.
+     *
+     * @param flashcardsReadFromDB An array of flashcards, previously read from database.
+     * @return A queue of flashcards with randomized order.
+     */
+    private Queue<Flashcard> getRandomizedSubsetQueue(Flashcard[] flashcardsReadFromDB, int numberOfQuestions) {
+        List<Flashcard> flashcardsToShuffle = Arrays.asList(flashcardsReadFromDB);
+        Collections.shuffle(flashcardsToShuffle);
+        Queue<Flashcard> randomizedQueue = new LinkedList<>();
+        for (int i = 1; i <= numberOfQuestions; i++) {
+            randomizedQueue.offer(flashcardsToShuffle.get(i));
+        }
+        return randomizedQueue;
+    }
+
+    /**
+     * Gets the duration of the quiz session.
+     *
+     * @return the duration in (hh:mm:ss) hours, minutes, seconds format
+     */
     public String getQuizSessionDuration() {
         Instant endTime = Instant.now();
         Duration duration = Duration.between(startTime, endTime);
