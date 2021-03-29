@@ -6,6 +6,7 @@ import static seedu.budgetbaby.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.budgetbaby.logic.commands.ExitCommand;
 import seedu.budgetbaby.ablogic.commands.HelpCommand;
 import seedu.budgetbaby.logic.commands.AddFrCommand;
 import seedu.budgetbaby.logic.commands.BudgetBabyCommand;
@@ -60,6 +61,9 @@ public class BudgetBabyParser {
 
         case ViewMonthCommand.COMMAND_WORD:
             return new ViewMonthCommandParser().parse(arguments);
+
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
