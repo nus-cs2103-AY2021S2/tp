@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.cakecollate.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 import static seedu.cakecollate.testutil.Assert.assertThrows;
+import static seedu.cakecollate.testutil.TypicalOrderItems.BUTTERSCOTCH;
+import static seedu.cakecollate.testutil.TypicalOrderItems.CHOCOLATE;
+import static seedu.cakecollate.testutil.TypicalOrderItems.CHOCOLATE_MUD;
 import static seedu.cakecollate.testutil.TypicalOrders.ALICE;
 import static seedu.cakecollate.testutil.TypicalOrders.BENSON;
 import static seedu.cakecollate.testutil.TypicalOrders.ELLE;
@@ -19,6 +22,7 @@ import org.junit.jupiter.api.Test;
 import seedu.cakecollate.commons.core.GuiSettings;
 import seedu.cakecollate.model.order.NameContainsKeywordsPredicate;
 import seedu.cakecollate.testutil.CakeCollateBuilder;
+import seedu.cakecollate.testutil.OrderItemsBuilder;
 
 public class ModelManagerTest {
 
@@ -100,10 +104,12 @@ public class ModelManagerTest {
         CakeCollate cakeCollate = new CakeCollateBuilder().withOrder(ALICE).withOrder(BENSON).build();
         CakeCollate differentCakeCollate = new CakeCollate();
         UserPrefs userPrefs = new UserPrefs();
-
+        OrderItems orderItems = new OrderItemsBuilder().withOrderItem(BUTTERSCOTCH).withOrderItem(CHOCOLATE).build();
+        OrderItems differentOrderItems = new OrderItemsBuilder().withOrderItem(BUTTERSCOTCH)
+                .withOrderItem(CHOCOLATE_MUD).build();
         // same values -> returns true
-        modelManager = new ModelManager(cakeCollate, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(cakeCollate, userPrefs);
+        modelManager = new ModelManager(cakeCollate, userPrefs, orderItems);
+        ModelManager modelManagerCopy = new ModelManager(cakeCollate, userPrefs, orderItems);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -116,12 +122,15 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different cakeCollate -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentCakeCollate, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentCakeCollate, userPrefs, orderItems)));
+
+        // different orderItems -> return false
+        assertFalse(modelManager.equals(new ModelManager(cakeCollate, userPrefs, differentOrderItems)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredOrderList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(cakeCollate, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(cakeCollate, userPrefs, orderItems)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
@@ -129,7 +138,7 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setCakeCollateFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(cakeCollate, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(cakeCollate, differentUserPrefs, orderItems)));
     }
 
     /**
@@ -143,8 +152,9 @@ public class ModelManagerTest {
 
         CakeCollate cakeCollate = new CakeCollateBuilder().withOrder(ELLE).withOrder(GEORGE).build();
         UserPrefs userPrefs = new UserPrefs();
+        OrderItems orderItems = new OrderItems();
 
-        modelManager = new ModelManager(cakeCollate, userPrefs);
+        modelManager = new ModelManager(cakeCollate, userPrefs, orderItems);
         assertEquals(modelManager.getFilteredOrderList(),
                 Arrays.asList(GEORGE, ELLE));
     }

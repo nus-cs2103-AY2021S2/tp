@@ -26,13 +26,15 @@ import seedu.cakecollate.model.UserPrefs;
 import seedu.cakecollate.model.order.Order;
 import seedu.cakecollate.testutil.EditOrderDescriptorBuilder;
 import seedu.cakecollate.testutil.OrderBuilder;
+import seedu.cakecollate.testutil.TypicalOrderItems;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalCakeCollate(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalCakeCollate(), new UserPrefs(),
+            TypicalOrderItems.getTypicalOrderItemsModel());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -42,7 +44,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
 
-        Model expectedModel = new ModelManager(new CakeCollate(model.getCakeCollate()), new UserPrefs());
+        Model expectedModel = new ModelManager(new CakeCollate(model.getCakeCollate()), new UserPrefs(),
+                TypicalOrderItems.getTypicalOrderItemsModel());
         expectedModel.setOrder(model.getFilteredOrderList().get(0), editedOrder);
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -62,7 +65,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
 
-        Model expectedModel = new ModelManager(new CakeCollate(model.getCakeCollate()), new UserPrefs());
+        Model expectedModel = new ModelManager(new CakeCollate(model.getCakeCollate()), new UserPrefs(),
+                TypicalOrderItems.getTypicalOrderItemsModel());
         expectedModel.setOrder(lastOrder, editedOrder);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -75,7 +79,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
 
-        Model expectedModel = new ModelManager(new CakeCollate(model.getCakeCollate()), new UserPrefs());
+        Model expectedModel = new ModelManager(new CakeCollate(model.getCakeCollate()), new UserPrefs(),
+                TypicalOrderItems.getTypicalOrderItemsModel());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -91,7 +96,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
 
-        Model expectedModel = new ModelManager(new CakeCollate(model.getCakeCollate()), new UserPrefs());
+        Model expectedModel = new ModelManager(new CakeCollate(model.getCakeCollate()), new UserPrefs(),
+                TypicalOrderItems.getTypicalOrderItemsModel());
         expectedModel.setOrder(model.getFilteredOrderList().get(0), editedOrder);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
