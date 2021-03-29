@@ -34,12 +34,13 @@ create DeadlineBeforeDatePredicate
 FindTaskBeforeCommandParser -> DeadlineBeforeDatePredicate : DeadlineBeforeDatePredicate("2021-04-04")
 activate DeadlineBeforeDatePredicate
 
-create FindTaskBeforeCommand
-FindTaskBeforeCommandParser -> FindTaskBeforeCommand
-deactivate DeadlineBeforeDatePredicate
-activate FindTaskBeforeCommand
 
 DeadlineBeforeDatePredicate --> FindTaskBeforeCommandParser : p
+deactivate DeadlineBeforeDatePredicate
+create FindTaskBeforeCommand
+FindTaskBeforeCommandParser -> FindTaskBeforeCommand
+activate FindTaskBeforeCommand
+
 FindTaskBeforeCommand --> FindTaskBeforeCommandParser : f
 
 deactivate FindTaskBeforeCommand
