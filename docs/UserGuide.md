@@ -149,6 +149,8 @@ Format: `edit INDEX [q/NEW QUESTION] [a/NEW ANSWER] [c/NEW CATEGORY] [p/NEW PRIO
 * The index refers to the index number shown in the displayed card list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least 1 updated card field must be provided for modification.
+* If the tag field is specified in the command, all existing tags will be removed and replaced by the new tags.
+* New priority can only be "Low", "Mid" or "High", case-sensitive.
 
 Examples:
 
