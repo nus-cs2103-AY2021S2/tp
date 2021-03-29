@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.pool.Pool;
 
 import java.util.function.Predicate;
@@ -18,11 +17,10 @@ public class TripCommand extends Command {
 
     public static final String COMMAND_WORD = "trip";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows a list of trips"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows a list of trips where passenger's name contains "
+            + "the keyword\n"
             + "Parameters: PREFIX + KEYWORD\n"
-            + "Example: \n1. " + COMMAND_WORD + " " + PREFIX_NAME + "alice"
-            + "\n2. " + COMMAND_WORD + " " + PREFIX_TAG + "female"
-            + "\n3. " + COMMAND_WORD + " " + PREFIX_PHONE + "91031282";
+            + "Example: \n1. " + COMMAND_WORD + " " + PREFIX_NAME + "alice";
 
     private final Predicate<Pool> predicate;
 
@@ -37,7 +35,7 @@ public class TripCommand extends Command {
 
         model.updateFilteredPoolList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PASSENGER_LISTED_OVERVIEW,
+                String.format(Messages.MESSAGE_TRIPS_LISTED_OVERVIEW,
                         model.getFilteredPoolList().size()));
     }
 

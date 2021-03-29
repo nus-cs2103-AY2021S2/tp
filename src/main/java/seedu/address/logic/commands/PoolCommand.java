@@ -75,17 +75,16 @@ public class PoolCommand extends Command {
             }
         }
 
+        List<Passenger> passengerSetAsList = new ArrayList<>();
         for (Index idx : passengers) {
             Passenger passengerToEdit = lastShownList.get(idx.getZeroBased());
             Passenger editedPassenger = assignDriverToPassenger(passengerToEdit, driver);
             joiner.add(editedPassenger.getName().toString());
             model.setPassenger(passengerToEdit, editedPassenger);
+            passengerSetAsList.add(passengerToEdit);
         }
-        List<Passenger> tempPassengerSet = new ArrayList<>();
-        passengers.stream()
-                .forEachOrdered(idx -> tempPassengerSet.add(lastShownList.get(idx.getZeroBased())));
-        model.addPool(createPool(tempPassengerSet, driver));
 
+        model.addPool(createPool(passengerSetAsList, driver));
         model.updateFilteredPassengerList(PREDICATE_SHOW_ALL_PASSENGERS);
         model.updateFilteredPoolList(PREDICATE_SHOW_ALL_POOLS);
 

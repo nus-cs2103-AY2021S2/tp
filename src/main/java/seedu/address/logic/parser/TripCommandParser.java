@@ -2,9 +2,8 @@ package seedu.address.logic.parser;
 
 import seedu.address.logic.commands.TripCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.pool.PassengerContainsKeywordsPredicate;
+import seedu.address.model.pool.PooledPassengerContainsKeywordsPredicate;
 import seedu.address.model.pool.Pool;
-import seedu.address.model.tag.TagContainsKeywordsPredicate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +25,7 @@ public class TripCommandParser implements Parser<TripCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public TripCommand parse(String args) throws ParseException {
+        // todo allow more parameters to be taken in
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME);
 
@@ -55,14 +55,6 @@ public class TripCommandParser implements Parser<TripCommand> {
      * Returns the prefixes that have values
      * {@code ArgumentMultimap}.
      */
-    private static boolean doesPrefixHaveOneValue(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getAllValues(prefix).size() <= 1);
-    }
-
-    /**
-     * Returns the prefixes that have values
-     * {@code ArgumentMultimap}.
-     */
     private static List<Prefix> presentPrefixes(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).filter(prefix ->
                 argumentMultimap.getValue(prefix).isPresent()).collect(Collectors.toList());
@@ -81,7 +73,6 @@ public class TripCommandParser implements Parser<TripCommand> {
                 outputList.add(parsedNameAsString.trim());
             }
         }
-
         return outputList;
     }
 
@@ -92,7 +83,7 @@ public class TripCommandParser implements Parser<TripCommand> {
      */
     private static Predicate<Pool> parsePredicate(Prefix prefix, List<String> arguments) throws ParseException {
         if (PREFIX_NAME.equals(prefix)) {
-            return new PassengerContainsKeywordsPredicate(arguments);
+            return new PooledPassengerContainsKeywordsPredicate(arguments);
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TripCommand.MESSAGE_USAGE));
         }

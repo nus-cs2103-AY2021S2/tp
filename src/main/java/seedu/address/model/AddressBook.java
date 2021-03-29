@@ -31,8 +31,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         pools = new UniquePoolList();
     }
 
-    public AddressBook() {
-    }
+    public AddressBook() {}
 
     /**
      * Creates an AddressBook using the Passengers in the {@code toBeCopied}
