@@ -20,10 +20,25 @@ import seedu.address.testutil.EventBuilder;
 
 public class StreakTest {
 
+    Streak weeklyStreak;
+    Streak emptyStreak;
+
+    {
+        List<Event> meetings = new ArrayList<>();
+        LocalDate now = LocalDate.now();
+        Event event1 = new EventBuilder().withDate(now).build();
+        Event event2 = new EventBuilder().withDate(now.minusWeeks(1)).build();
+        meetings.add(event1);
+        meetings.add(event2);
+
+        Goal weeklyGoal = new Goal(WEEKLY);
+        weeklyStreak = Streak.from(weeklyGoal, meetings);
+        emptyStreak = Streak.empty();
+    }
+
     @Test
     public void empty() {
-        Streak streak = Streak.empty();
-        assertEquals(0, streak.getValue());
+        assertEquals(0, emptyStreak.getValue());
     }
 
     @Test
@@ -257,5 +272,17 @@ public class StreakTest {
         dates.add(dates.get(1).minusYears(1).plusMonths(3).plusDays(3));
         dates.add(dates.get(2).minusYears(1).plusMonths(4).plusDays(12));
         testFromYearly(dates);
+    }
+
+    @Test
+    public void toUi() {
+        assertEquals("0", emptyStreak.toUi());
+        assertEquals("2", weeklyStreak.toUi());
+    }
+
+    @Test
+    public void compareTo() {
+        assertEquals(1, emptyStreak.compareTo(weeklyStreak));
+        assertEquals(-1, weeklyStreak.compareTo(emptyStreak));
     }
 }
