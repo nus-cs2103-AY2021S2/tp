@@ -4,7 +4,7 @@ import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_PHONE;
 
-import seedu.booking.logic.commands.AddCommand;
+import seedu.booking.logic.commands.AddPersonCommand;
 import seedu.booking.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.booking.model.person.Person;
 
@@ -17,7 +17,7 @@ public class PersonUtil {
      * Returns an add command string for adding the {@code person}.
      */
     public static String getAddCommand(Person person) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+        return AddPersonCommand.COMMAND_WORD + " " + getPersonDetails(person);
     }
 
     /**
