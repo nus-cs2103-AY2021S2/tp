@@ -83,7 +83,6 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE [o/ORDER_DE
 
 * An order item index refers to the list number of order items on the right of the GUI
 * At least one of either an order item index or an order description must be specified
-
 * Zero or more tags can be specified for an order
 
 Examples:
