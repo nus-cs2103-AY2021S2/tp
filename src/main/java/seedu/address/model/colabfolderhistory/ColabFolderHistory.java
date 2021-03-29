@@ -91,8 +91,7 @@ public class ColabFolderHistory {
         ColabFolderHistory otherColabFolderHistory = (ColabFolderHistory) other;
 
         // state check
-        return super.equals(otherColabFolderHistory)
-                && savedStateList.equals(otherColabFolderHistory.savedStateList)
+        return savedStateList.equals(otherColabFolderHistory.savedStateList)
                 && currentStatePointer == otherColabFolderHistory.currentStatePointer;
     }
 

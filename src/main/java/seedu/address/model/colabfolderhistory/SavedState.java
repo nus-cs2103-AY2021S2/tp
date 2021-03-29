@@ -2,6 +2,8 @@ package seedu.address.model.colabfolderhistory;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Objects;
+
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.ReadOnlyColabFolder;
 
@@ -15,7 +17,7 @@ public class SavedState {
     /**
      * Constructs a {@code SavedState} object with a {@code colabFolder} and {@code commandResult}.
      *
-     * @param colabFolder The {@code ReadOnlyColabFolder} to store, should not be null.
+     * @param colabFolder   The {@code ReadOnlyColabFolder} to store, should not be null.
      * @param commandResult The {@code CommandResult} to store.
      */
     public SavedState(ReadOnlyColabFolder colabFolder, CommandResult commandResult) {
@@ -32,12 +34,27 @@ public class SavedState {
         return commandResult;
     }
 
-    /**
-     * Checks if {@code commandResult} is null.
-     *
-     * @return true if {@code commandResult} is null, false otherwise.
-     */
-    public boolean hasNoCommandResult() {
-        return commandResult == null;
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof SavedState)) {
+            return false;
+        }
+
+        SavedState otherSavedState = (SavedState) other;
+
+        // state check
+        return colabFolder.equals(otherSavedState.colabFolder)
+                && commandResult == otherSavedState.commandResult;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(colabFolder, commandResult);
     }
 }
