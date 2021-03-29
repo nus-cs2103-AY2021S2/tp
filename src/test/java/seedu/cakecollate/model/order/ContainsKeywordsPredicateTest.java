@@ -3,6 +3,7 @@ package seedu.cakecollate.model.order;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_ALL;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_DELIVERY_STATUS;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -386,31 +387,31 @@ public class ContainsKeywordsPredicateTest {
         HashMap<Prefix, List<String>> map = new HashMap<>();
 
         // One keyword
-        map.put(new Prefix("all/"), Collections.singletonList("alice"));
+        map.put(PREFIX_ALL, Collections.singletonList("alice"));
         ContainsKeywordsPredicate predicate = new ContainsKeywordsPredicate(map);
         assertTrue(predicate.test(ALICE));
 
         // Multiple keywords
         map.clear();
-        map.put(new Prefix("all/"), Arrays.asList("Jurong", "example"));
+        map.put(PREFIX_ALL, Arrays.asList("Jurong", "example"));
         predicate = new ContainsKeywordsPredicate(map);
         assertTrue(predicate.test(ALICE));
 
         // Only one matching keyword
         map.clear();
-        map.put(new Prefix("all/"), Arrays.asList("1253", "6969"));
+        map.put(PREFIX_ALL, Arrays.asList("1253", "6969"));
         predicate = new ContainsKeywordsPredicate(map);
         assertTrue(predicate.test(ALICE));
 
         // Mixed-case keywords
         map.clear();
-        map.put(new Prefix("all/"), Arrays.asList("StraWberRy", "friEndS"));
+        map.put(PREFIX_ALL, Arrays.asList("StraWberRy", "friEndS"));
         predicate = new ContainsKeywordsPredicate(map);
         assertTrue(predicate.test(ALICE));
 
         // Sub keywords
         map.clear();
-        map.put(new Prefix("all/"), Arrays.asList("Janua", "paul"));
+        map.put(PREFIX_ALL, Arrays.asList("Janua", "paul"));
         predicate = new ContainsKeywordsPredicate(map);
         assertTrue(predicate.test(ALICE));
     }

@@ -2,6 +2,7 @@ package seedu.cakecollate.logic.parser;
 
 import static seedu.cakecollate.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_ALL;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_DELIVERY_STATUS;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -14,6 +15,7 @@ import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -40,7 +42,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         List<Prefix> prefixes = Arrays.asList(allPrefixes);
         HashMap<Prefix, List<String>> prefixesToFind = new HashMap<>();
 
-        // User input at least 1 prefix
+        // User input at least 1 valid prefix
         if (!arePrefixesEmpty(argMultimap, allPrefixes)) {
             String preamble = argMultimap.getPreamble();
             if (!preamble.trim().isEmpty()) {
@@ -55,7 +57,9 @@ public class FindCommandParser implements Parser<FindCommand> {
                     prefixesToFind.put(prefix, processed);
                 }
             });
-        // User did not input any prefix
+
+            checkInputs(prefixesToFind);
+        // User did not input any known prefix
         } else {
             String trimmedArgs = args.trim();
             if (trimmedArgs.isEmpty()) {
@@ -63,7 +67,9 @@ public class FindCommandParser implements Parser<FindCommand> {
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
             }
             List<String> processed = Arrays.asList(trimmedArgs.split("\\s+"));
-            prefixesToFind.put(new Prefix("all/"), processed);
+            // PREFIX_ALL to indicate searching in all fields of an order
+            // (User will not be able to use "all/" as a valid and known prefix)
+            prefixesToFind.put(PREFIX_ALL, processed);
         }
 
         return new FindCommand(new ContainsKeywordsPredicate(prefixesToFind));
@@ -85,5 +91,19 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     private static boolean arePrefixesEmpty(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isEmpty());
+    }
+
+    /**
+     * Checks if keywords input by user is non-blank. Throws a {@code ParseException} otherwise.
+     */
+    public void checkInputs(HashMap<Prefix, List<String>> toTest) throws ParseException {
+        for (Map.Entry<Prefix, List<String>> entry : toTest.entrySet()) {
+            List<String> value = entry.getValue();
+            for (String v : value) {
+                if (v.isBlank()) {
+                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                }
+            }
+        }
     }
 }

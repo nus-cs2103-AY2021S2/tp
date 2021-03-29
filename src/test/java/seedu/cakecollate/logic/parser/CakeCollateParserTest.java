@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.cakecollate.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.cakecollate.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_ALL;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_REQUEST;
 import static seedu.cakecollate.testutil.Assert.assertThrows;
 import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
@@ -86,7 +87,7 @@ public class CakeCollateParserTest {
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         HashMap<Prefix, List<String>> map = new HashMap<>();
-        map.put(new Prefix("all/"), keywords);
+        map.put(PREFIX_ALL, keywords);
         assertEquals(new FindCommand(new ContainsKeywordsPredicate(map)), command);
     }
 

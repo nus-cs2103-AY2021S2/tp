@@ -1,6 +1,7 @@
 package seedu.cakecollate.logic.parser;
 
 import static seedu.cakecollate.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_ALL;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_ORDER_DESCRIPTION;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -22,7 +23,14 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, " n/",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, " a/       \n",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -45,7 +53,7 @@ public class FindCommandParserTest {
 
         // no prefixes
         map.clear();
-        map.put(new Prefix("all/"), Arrays.asList("Alice", "Bob", "12345678", "Chocolate", "Cake"));
+        map.put(PREFIX_ALL, Arrays.asList("Alice", "Bob", "12345678", "Chocolate", "Cake"));
         expectedFindCommand = new FindCommand(new ContainsKeywordsPredicate(map));
         assertParseSuccess(parser, "Alice Bob 12345678 Chocolate Cake", expectedFindCommand);
     }

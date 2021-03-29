@@ -1,6 +1,7 @@
 package seedu.cakecollate.model.order;
 
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_ALL;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_DELIVERY_STATUS;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -10,8 +11,6 @@ import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_REQUEST;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -82,24 +81,12 @@ public class ContainsKeywordsPredicate implements Predicate<Order> {
                     .collect(Collectors.toSet());
             return String.join(" ", tagsString);
         } else if (prefix.equals(PREFIX_DATE)) {
-            LocalDate deliveryDate = order.getDeliveryDate().value;
-            DateTimeFormatter format1 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            DateTimeFormatter format2 = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-            DateTimeFormatter format3 = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-            DateTimeFormatter format4 = DateTimeFormatter.ofPattern("dd MMM yyyy");
-            return deliveryDate.getDayOfMonth() + " "
-                    + deliveryDate.getMonthValue() + " "
-                    + deliveryDate.getMonth().toString() + " "
-                    + deliveryDate.getYear() + " "
-                    + format1.format(deliveryDate) + " "
-                    + format2.format(deliveryDate) + " "
-                    + format3.format(deliveryDate) + " "
-                    + format4.format(deliveryDate) + " ";
+            return order.getDeliveryDate().getTestString();
         } else if (prefix.equals(PREFIX_REQUEST)) {
             return order.getRequest().value;
         } else if (prefix.equals(PREFIX_DELIVERY_STATUS)) {
             return order.getDeliveryStatus().toString();
-        } else if (prefix.equals(new Prefix("all/"))) {
+        } else if (prefix.equals(PREFIX_ALL)) {
             List<Prefix> prefixes = Arrays.asList(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                     PREFIX_ORDER_DESCRIPTION, PREFIX_TAG, PREFIX_DATE, PREFIX_REQUEST, PREFIX_DELIVERY_STATUS);
             StringBuilder returnResult = new StringBuilder();
