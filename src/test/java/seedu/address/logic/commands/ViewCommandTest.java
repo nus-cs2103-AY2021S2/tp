@@ -1,24 +1,25 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.garment.Garment;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Predicate;
-
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalGarments.getTypicalWardrobe;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_GARMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_GARMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_GARMENT;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.garment.Garment;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for

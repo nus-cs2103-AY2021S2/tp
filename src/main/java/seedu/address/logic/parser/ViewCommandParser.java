@@ -1,14 +1,13 @@
 package seedu.address.logic.parser;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.ViewCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.ViewCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parse input arguments and creates a new ViewCommand Object
