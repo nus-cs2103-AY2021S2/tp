@@ -7,7 +7,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.partyplanet.commons.core.GuiSettings;
-import seedu.partyplanet.commons.util.StateHistory;
 import seedu.partyplanet.model.event.Event;
 import seedu.partyplanet.model.person.Person;
 
