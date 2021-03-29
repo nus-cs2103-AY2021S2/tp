@@ -69,8 +69,7 @@ public class AddBookingCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_VENUE);
         }
 
-
-
+        toAdd.setFinalBooker(model.personWithEmail(toAdd.getBookerEmail()));
         model.addBooking(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

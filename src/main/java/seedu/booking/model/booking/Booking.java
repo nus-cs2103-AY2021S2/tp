@@ -6,6 +6,7 @@ import java.util.Objects;
 import java.util.Random;
 
 import seedu.booking.model.person.Email;
+import seedu.booking.model.person.Person;
 import seedu.booking.model.venue.VenueName;
 
 /**
@@ -18,6 +19,7 @@ public class Booking {
 
     // Data fields
     private final Email bookerEmail;
+    private Person booker;
     private final VenueName venueName;
     private final Description description;
     private final StartTime bookingStart;
@@ -32,6 +34,7 @@ public class Booking {
                    StartTime bookingStart, EndTime bookingEnd, Id id) {
         requireAllNonNull(bookerEmail, venueName, description, bookingStart, bookingEnd);
         this.bookerEmail = bookerEmail;
+        this.booker = getTempBooker(bookerEmail);
         this.venueName = venueName;
         this.description = description;
         this.bookingStart = bookingStart;
@@ -47,6 +50,7 @@ public class Booking {
                    StartTime bookingStart, EndTime bookingEnd) {
         requireAllNonNull(bookerEmail, venueName, description, bookingStart, bookingEnd);
         this.bookerEmail = bookerEmail;
+        this.booker = getTempBooker(bookerEmail);
         this.venueName = venueName;
         this.description = description;
         this.bookingStart = bookingStart;
@@ -56,6 +60,14 @@ public class Booking {
 
     public Email getBookerEmail() {
         return bookerEmail;
+    }
+
+    public Person getTempBooker(Email bookerEmail) {
+        return new Person(bookerEmail);
+    }
+
+    public void setFinalBooker(Person booker) {
+        this.booker = booker;
     }
 
     public VenueName getVenueName() {
@@ -142,7 +154,8 @@ public class Booking {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(bookerEmail, venueName, description, bookingStart, bookingEnd, id);
+        //return Objects.hash(bookerEmail, venueName, description, bookingStart, bookingEnd, id);
+        return Objects.hash(getTempBooker(bookerEmail), venueName, description, bookingStart, bookingEnd, id);
     }
 
 
@@ -176,5 +189,9 @@ public class Booking {
 
         return otherBooking != null
                 && otherBooking.getId().equals(getId());
+    }
+
+    public Person getBooker() {
+        return booker;
     }
 }

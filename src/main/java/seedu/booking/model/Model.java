@@ -81,6 +81,8 @@ public interface Model {
      */
     boolean hasPersonWithEmail(Email email);
 
+    Person personWithEmail(Email email);
+
 
     /**
      * Deletes the given person.

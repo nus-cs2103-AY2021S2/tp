@@ -254,4 +254,8 @@ public class BookingSystem implements ReadOnlyBookingSystem {
         bookings.setBooking(target, editedBooking);
     }
 
+    public Person personWithEmail(Email email) {
+        requireNonNull(email);
+        return persons.getPersonWithEmail(getPersonList(), email);
+    }
 }

@@ -5,6 +5,7 @@ import static seedu.booking.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -142,5 +143,12 @@ public class UniquePersonList implements Iterable<Person> {
         requireNonNull(emailToCheck);
         return list.stream().anyMatch(x -> x.getEmail().equals(emailToCheck));
 
+    }
+
+    public Person getPersonWithEmail(ObservableList<Person> list, Email emailToCheck) {
+        requireNonNull(emailToCheck);
+        Person booker = list.stream().filter(x -> x.getEmail().equals(emailToCheck)).collect(Collectors.toList()).get(0);
+        System.out.println("UniquePersonList" + booker.getName().fullName);
+        return booker;
     }
 }

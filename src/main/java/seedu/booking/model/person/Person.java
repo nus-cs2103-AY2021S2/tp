@@ -25,6 +25,12 @@ public class Person {
         this.email = email;
     }
 
+    public Person(Email bookerEmail) {
+        this.name = null;
+        this.phone = null;
+        this.email = bookerEmail;
+    }
+
 
     public Name getName() {
         return name;

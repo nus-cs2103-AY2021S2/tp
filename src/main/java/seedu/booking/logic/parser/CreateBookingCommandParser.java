@@ -46,6 +46,7 @@ public class CreateBookingCommandParser implements Parser<AddBookingCommand> {
         StartTime bookingStart = ParserUtil.parseBookingStart(argMultimap.getValue(PREFIX_BOOKING_START).get());
         EndTime bookingEnd = ParserUtil.parseBookingEnd(argMultimap.getValue(PREFIX_BOOKING_END).get());
 
+
         Booking booking = new Booking(bookerEmail, venueName, description,
                 bookingStart, bookingEnd);
 

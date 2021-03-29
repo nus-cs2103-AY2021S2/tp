@@ -111,6 +111,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Person personWithEmail(Email email) {
+        requireNonNull(email);
+        return bookingSystem.personWithEmail(email);
+    }
+
+    @Override
     public boolean hasBooking(Booking booking) {
         requireNonNull(booking);
         return bookingSystem.hasBooking(booking);
