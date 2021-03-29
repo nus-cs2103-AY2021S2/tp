@@ -52,7 +52,7 @@ public class EEditAutocompleteUtil {
 
         // Create a Map of Prefix to the relevant getter method
         Map<Prefix, String> prefixMethodMap = Map.of(
-            PREFIX_DATE, event.getEventDate().displayValue,
+            PREFIX_DATE, event.getEventDate().value,
             PREFIX_REMARK, event.getDetails().value
         );
 
