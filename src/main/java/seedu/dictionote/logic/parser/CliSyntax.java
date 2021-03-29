@@ -17,6 +17,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_MAINCONTENT = new Prefix("mc/");
     public static final Prefix PREFIX_TERM = new Prefix("tm/");
     public static final Prefix PREFIX_DEFINITION = new Prefix("d/");
+    public static final Prefix PREFIX_NOTE_INDEX = new Prefix("ni/");
 
 
     /* Option Syntax for UI Command*/

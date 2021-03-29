@@ -16,6 +16,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.dictionote.commons.core.GuiSettings;
 import seedu.dictionote.commons.core.LogsCenter;
 import seedu.dictionote.model.contact.Contact;
+import seedu.dictionote.model.contact.MailtoLink;
 import seedu.dictionote.model.dictionary.Content;
 import seedu.dictionote.model.dictionary.Definition;
 import seedu.dictionote.model.dictionary.DisplayableContent;
@@ -342,9 +343,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void emailContact(Contact contact) {
-        requireNonNull(contact);
-        contactsList.emailContact(contact);
+    public void emailContactUsingLink(MailtoLink link) {
+        requireNonNull(link);
+        contactsList.emailContactUsingLink(link);
     }
 
     @Override
