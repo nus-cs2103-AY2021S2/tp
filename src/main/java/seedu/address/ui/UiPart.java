@@ -15,7 +15,7 @@ import seedu.address.MainApp;
 public abstract class UiPart<T> {
 
     /** Resource folder where FXML files are stored. */
-    public static final String FXML_FILE_FOLDER = "/view/";
+    public static String FXML_FILE_FOLDER = "/view/";
 
     private final FXMLLoader fxmlLoader = new FXMLLoader();
 
@@ -63,7 +63,7 @@ public abstract class UiPart<T> {
      * @param location Location of the FXML document.
      * @param root Specifies the root of the object hierarchy.
      */
-    private void loadFxmlFile(URL location, T root) {
+    protected void loadFxmlFile(URL location, T root) {
         requireNonNull(location);
         fxmlLoader.setLocation(location);
         fxmlLoader.setController(this);
@@ -78,7 +78,7 @@ public abstract class UiPart<T> {
     /**
      * Returns the FXML file URL for the specified FXML file name within {@link #FXML_FILE_FOLDER}.
      */
-    private static URL getFxmlFileUrl(String fxmlFileName) {
+    protected static URL getFxmlFileUrl(String fxmlFileName) {
         requireNonNull(fxmlFileName);
         String fxmlFileNameWithFolder = FXML_FILE_FOLDER + fxmlFileName;
         URL fxmlFileUrl = MainApp.class.getResource(fxmlFileNameWithFolder);

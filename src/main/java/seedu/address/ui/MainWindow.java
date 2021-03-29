@@ -23,7 +23,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class MainWindow extends UiPart<Stage> {
 
-    private static final String FXML = "MainWindow.fxml";
+    private static String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -147,6 +147,12 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    @FXML
+    public void handleLightChange(){
+        loadFxmlFile(getFxmlFileUrl("MainWindowLight.fxml"), primaryStage);
+        fillInnerParts();
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -161,6 +167,13 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
+    }
+
+    @FXML
+    private void handleDarkChange(){
+        loadFxmlFile(getFxmlFileUrl("MainWindow.fxml"), primaryStage);
+        fillInnerParts();
+
     }
 
     public PersonListPanel getPersonListPanel() {
@@ -184,6 +197,17 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isLight()) {
+                handleLightChange();
+                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            }
+
+            if (commandResult.isDark()) {
+                handleDarkChange();
+                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
             }
 
             return commandResult;

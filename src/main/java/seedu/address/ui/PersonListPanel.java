@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.awt.*;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -42,7 +43,7 @@ public class PersonListPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 if (person.getBlacklist().isBlacklisted) {
-                    setStyle("-fx-background-color: #000000");
+                    setStyle("-fx-background-color: #000000;");
                 } else {
                     setStyle("");
                 }
