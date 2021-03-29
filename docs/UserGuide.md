@@ -1,10 +1,13 @@
+---
 layout: page
 title: User Guide
 ---
 
-Car@leads is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) <br>
+Car@leads is a **desktop app for managing customer contacts, optimized for use via a Command Line Interface** (CLI) <br>
 while still having the benefits of a Graphical User Interface (GUI). 
 <br> If you can type fast, Car@leads can get your contact management tasks done faster than traditional GUI apps.
+<br> Allows car salesperson user to create customer contacts which includes customer's car brand and type preferences.
+<br> Car salesperson user can filter through the customer data having specific preferences and follow up with them.
 
 * Table of Contents
 {:toc}
@@ -19,10 +22,10 @@ while still having the benefits of a Graphical User Interface (GUI).
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named 
-     `John Doe`
-
-   * **`delete`**`John Doe` : Deletes the 'John Doe' contact shown in the current list.
+   * **`add`**`n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 c/BMW Coupe|2030 01 01 c/Porsche|2030 01 01` 
+     : Adds a contact named `Bob Ang`
+     
+   * **`delete`**`John Doe` : Deletes 'John Doe' contact from contact list .
 
    * **`list`** : Lists all contacts.
 
@@ -67,9 +70,10 @@ while still having the benefits of a Graphical User Interface (GUI).
 
 Adds a customer to the contact list.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/PREFERRED_CAR [x/COE_EXPIRY_DATE] [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/OWNED_CAR|COE_EXPIRY_DATE [t/TAG]…​`
+`n/add n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 c/BMW Coupe|2030 01 01 c/Porsche|2030 01 01`
 
-Note that the `COE_EXPIRY_DATE` is in Year Month Day order with spaces and two digits for the month and day.
+Note that the `COE_EXPIRY_DATE` input order: YYYY{space}MM{space}DD 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A customer can have any number of tags (including 0)
@@ -86,7 +90,7 @@ Deletes the specified customer from the contact list.
 Format: `delete name`
 
 * Deletes the customer with the specified `name`.
-* The name refers to the customer name shown in the displayed customer list.
+* The name refers to the customer name shown in the displayed customer contact list.
 * The name **must be valid** does not contain special characters  …​
 
 ### Listing all customers : `list`
@@ -110,7 +114,7 @@ Format: `list`
 
 Action | Format, Examples
 --------|------------------
-**add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/PREFERRED_CAR [x/COE_EXPIRY_DATE] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 c/Honda Civic /x 2007 03 21 t/friend t/colleague`
+**add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/OWNED_CAR+COE_EXPIRY_DATE [t/TAG]…​`<br> e.g., `n/add n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 c/BMW Coupe|2030 01 01 c/Porsche|2030 01 01`
 **delete** | `delete NAME`<br> e.g., `delete John doe`
 **list** | `list`
 **clear** | `clear`
