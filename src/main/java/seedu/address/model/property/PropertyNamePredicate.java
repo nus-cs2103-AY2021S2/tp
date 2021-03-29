@@ -12,10 +12,10 @@ import seedu.address.commons.util.StringUtil;
 public class PropertyNamePredicate implements Predicate<Property> {
     private final List<String> keywords;
 
-    public PropertyNamePredicate(List<String> keywords) {
+    public PropertyNamePredicate(List<String> names) {
         this.keywords = new ArrayList<>();
-        for (String s : keywords) {
-            keywords.add(s.toLowerCase());
+        for (String s : names) {
+            this.keywords.add(s.toLowerCase());
         }
     }
 

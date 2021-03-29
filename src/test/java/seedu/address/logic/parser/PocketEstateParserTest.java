@@ -53,6 +53,7 @@ public class PocketEstateParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindPropertyCommand command = (FindPropertyCommand) parser.parseCommand(
                 FindPropertyCommand.COMMAND_WORD + " "
+                        + "n/"
                         + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindPropertyCommand(new PropertyPredicateList(
                 Arrays.asList(new PropertyNamePredicate[]{
