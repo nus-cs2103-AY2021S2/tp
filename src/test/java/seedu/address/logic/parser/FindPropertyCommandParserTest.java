@@ -30,6 +30,7 @@ import seedu.address.model.property.PropertyRemarksPredicate;
 import seedu.address.model.property.PropertyTagsPredicate;
 import seedu.address.model.property.PropertyTypePredicate;
 import seedu.address.model.remark.Remark;
+import seedu.address.model.tag.Tag;
 
 public class FindPropertyCommandParserTest {
 
@@ -249,12 +250,10 @@ public class FindPropertyCommandParserTest {
 
     @Test
     public void invalidTagsTest() {
-        String expected = "Wrong deadline format! \n"
-                + Deadline.MESSAGE_CONSTRAINTS
+        String expected = "Wrong tag format! \n"
+                + Tag.MESSAGE_CONSTRAINTS
                 + "\n"
                 + FindPropertyCommand.MESSAGE_USAGE;
-        assertParseFailure(parser, " d/not deadline ", expected);
+        assertParseFailure(parser, " tags/ ", expected);
     }
-
-
 }

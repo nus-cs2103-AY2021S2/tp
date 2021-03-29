@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT_ASKING_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT_NAME;
@@ -21,7 +20,6 @@ import static seedu.address.logic.parser.ParserUtil.parsePropertyPostal;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -61,7 +59,7 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
                         PREFIX_PROPERTY_PRICE_LESS);
 
 
-        String genericKeywords = argMultimap.getPreamble();
+        // String genericKeywords = argMultimap.getPreamble();
         List<Predicate<Property>> predicates = new ArrayList<>();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
@@ -155,17 +153,15 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
 
         if (argMultimap.getValue(PREFIX_TAGS).isPresent()) {
             List<String> tags = argMultimap.getAllValues(PREFIX_TAGS);
-            if (tags.size() == 0) {
-                throw new ParseException("t/ used but no tags found. \n"
+            try {
+                tags.forEach(s -> predicates.add(new PropertyTagsPredicate(s)));
+            } catch (IllegalArgumentException e) {
+                throw new ParseException("Wrong tag format! \n"
+                        + e.getMessage()
+                        + "\n"
                         + FindPropertyCommand.MESSAGE_USAGE);
             }
-            tags.forEach(s -> predicates.add(new PropertyTagsPredicate(s)));
         }
-
-    //        keywords = Arrays.asList(genericKeywords.split(" "));
-    //        if (keywords.size() > 0) {
-    //            predicates.add(new PropertyContainsKeywordsPredicate(keywords));
-    //        }
 
         return new FindPropertyCommand(new PropertyPredicateList(predicates));
     }
