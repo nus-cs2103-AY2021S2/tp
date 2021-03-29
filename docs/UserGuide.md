@@ -66,7 +66,7 @@ A-Bash Book is an enhanced version of Address Book 3 app for managing your conta
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Displays the entire User Guide for ease of reference.
 
 ![help message](images/helpMessage.png)
 
