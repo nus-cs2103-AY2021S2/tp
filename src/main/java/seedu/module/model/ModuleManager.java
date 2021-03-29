@@ -26,6 +26,9 @@ public class ModuleManager {
     private static List<String> supportedModulesInStr;
     private static final String[] arrOfModules = {"CS1101S", "CS1231S", "CS2030", "CS2040S", "CS2101",
         "CS2103T", "CS2105", "CS2106", "CS3230", "CS3243", "CS3244", "IS1103", "ST2131"};
+    private static final LOW_LEVEL = 1;
+    private static final MEDIUM_LEVEL = 2;
+    private static final HIGH_LEVEL = 3;
 
     /**
      * A ModuleManager which manages the mapping of each module to its
@@ -92,15 +95,15 @@ public class ModuleManager {
         moduleWorkLoadDistribution.put(module,
             moduleWorkLoadDistribution.get(module) + workloadLevel);
         switch(workloadLevel) {
-        case 1:
+        case LOW_LEVEL:
             moduleLowWorkLoadDistribution.put(module,
                 moduleLowWorkLoadDistribution.getOrDefault(module, 0) + 1);
             break;
-        case 2:
+        case MEDIUM_LEVEL:
             moduleMediumWorkLoadDistribution.put(module,
                 moduleMediumWorkLoadDistribution.getOrDefault(module, 0) + 1);
             break;
-        case 3:
+        case HIGH_LEVEL:
             moduleHighWorkLoadDistribution.put(module,
                 moduleHighWorkLoadDistribution.getOrDefault(module, 0) + 1);
             break;
