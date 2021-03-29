@@ -1,6 +1,7 @@
 package seedu.partyplanet.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.partyplanet.commons.core.Messages.MESSAGE_PERSONS_LISTED_TAGS;
 import static seedu.partyplanet.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.partyplanet.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.partyplanet.logic.commands.CommandTestUtil.BIRTHDAY_DESC_AMY;
@@ -63,7 +64,8 @@ public class LogicManagerTest {
     @Test
     public void execute_validCommand_success() throws Exception {
         String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS
+                + String.format(MESSAGE_PERSONS_LISTED_TAGS, ""), model);
     }
 
     @Test
