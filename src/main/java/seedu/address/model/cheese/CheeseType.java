@@ -23,7 +23,7 @@ public class CheeseType {
      *
      * @param type A valid cheese type.
      */
-    private CheeseType(String type) {
+    public CheeseType(String type) {
         requireNonNull(type);
         checkArgument(isValidType(type), MESSAGE_CONSTRAINTS);
         value = type;
