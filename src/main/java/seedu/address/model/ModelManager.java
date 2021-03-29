@@ -17,6 +17,7 @@ import seedu.address.model.group.Group;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonEvent;
+import seedu.address.model.person.PersonStreak;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -30,6 +31,7 @@ public class ModelManager implements Model {
     private final ObservableMap<Name, Group> groupMap;
     private final ObservableList<PersonEvent> upcomingDates;
     private final ObservableList<Person> detailedPerson;
+    private final ObservableList<PersonStreak> personStreaks;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -46,6 +48,7 @@ public class ModelManager implements Model {
         groupMap = this.addressBook.getGroupMap();
         upcomingDates = this.addressBook.getUpcomingDates();
         detailedPerson = FXCollections.observableArrayList();
+        personStreaks = this.addressBook.getPersonStreaks();
     }
 
     public ModelManager() {
@@ -97,6 +100,7 @@ public class ModelManager implements Model {
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
+        updatePersonStreaks();
     }
 
     @Override
@@ -108,11 +112,13 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
+        updatePersonStreaks();
     }
 
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
+        updatePersonStreaks();
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -124,6 +130,8 @@ public class ModelManager implements Model {
         if (detailedPerson.size() == 1 && target.isSamePerson(detailedPerson.get(0))) {
             updateDetailedPerson(editedPerson);
         }
+
+        updatePersonStreaks();
     }
 
     @Override
@@ -175,6 +183,8 @@ public class ModelManager implements Model {
         return groupMap;
     }
 
+    //=========== Details Panel =============================================================
+
     @Override
     public ObservableList<PersonEvent> getUpcomingDates() {
         return upcomingDates;
@@ -193,6 +203,12 @@ public class ModelManager implements Model {
     @Override
     public void updateDetailedPerson(Person personToDisplay) {
         detailedPerson.setAll(personToDisplay);
+    }
+
+    private void updatePersonStreaks() {
+        // Whenever we add/edit/delete a person, we refresh the personStreaks list so UI will be up to date
+        // No need to explicitly run this in the commands
+        personStreaks.setAll(addressBook.getPersonStreaks());
     }
 
     @Override
