@@ -18,8 +18,8 @@ public class Messages {
     public static final String MESSAGE_MISSING_PROPERTY_APPOINTMENT =
             "To %s an appointment, use %s appointment. To %s a property, use %s property";
     public static final String MESSAGE_MISSING_ALL_PROPERTY_APPOINTMENT =
-            "To %s all appointments and properties, use %s all. " +
-            "To %s all appointments, use %s appointment. To %s all properties, use %s property";
+            "To %s all appointments and properties, use %s all. "
+                    + "To %s all appointments, use %s appointment. To %s all properties, use %s property";
 
     /**
      * Returns the output message for a successful find client command.
