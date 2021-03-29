@@ -148,7 +148,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredResidenceList().size());
 
         Residence residence = model.getFilteredResidenceList().get(targetIndex.getZeroBased());
-        final String[] splitName = residence.getResidenceName().fullName.split("\\s+");
+        final String[] splitName = residence.getResidenceName().toString().split("\\s+");
         model.updateFilteredResidenceList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredResidenceList().size());
