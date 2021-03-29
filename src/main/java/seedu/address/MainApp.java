@@ -1,9 +1,7 @@
 package seedu.address;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -87,12 +85,12 @@ public class MainApp extends Application {
         } else {
             logger.info("Loading theme " + model.getGuiSettings().getThemePath() + " ...");
             try {
-                Theme theme = ThemeFactory.load(Paths.get(model.getGuiSettings().getThemePath()));
+                Theme theme = ThemeFactory.load(model.getGuiSettings().getThemePath());
                 ThemeManager.setTheme(theme, model.getGuiSettings().getThemePath());
                 return;
             } catch (DataConversionException | InvalidThemeException exception) {
                 logger.warning("Invalid " + model.getGuiSettings().getThemePath() + " theme supplied");
-            } catch (FileNotFoundException fileNotFoundException) {
+            } catch (IOException fileNotFoundException) {
                 logger.warning("Theme " + model.getGuiSettings().getThemePath() + " not found");
             }
             ThemeManager.setTheme(ThemeFactory.getDefaultTheme(), model.getGuiSettings().getThemePath());

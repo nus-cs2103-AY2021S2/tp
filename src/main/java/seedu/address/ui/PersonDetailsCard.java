@@ -26,6 +26,8 @@ public class PersonDetailsCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label debt;
+    @FXML
     private Label birthday;
     @FXML
     private FlowPane tags;
@@ -46,6 +48,7 @@ public class PersonDetailsCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        debt.setText("Debt: " + person.getDebt().value.toString());
         birthday.setText(person.getBirthday().toUi());
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

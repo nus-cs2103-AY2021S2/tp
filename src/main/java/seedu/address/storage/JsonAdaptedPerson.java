@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
+import seedu.address.model.person.Debt;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Event;
 import seedu.address.model.person.Goal;
@@ -34,8 +35,8 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String birthday;
+    private final String debt;
     private final String goal;
-
     private final String address;
     private final JsonAdaptedPicture picture;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -49,7 +50,8 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("birthday") String birthday,
             @JsonProperty("goal") String goal, @JsonProperty("address") String address,
-            @JsonProperty("picture") JsonAdaptedPicture picture, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("picture") JsonAdaptedPicture picture,
+            @JsonProperty("debt") String debt, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
             @JsonProperty("dates") List<JsonAdaptedEvent> dates,
             @JsonProperty("meetings") List<JsonAdaptedEvent> meetings) {
 
@@ -60,6 +62,7 @@ class JsonAdaptedPerson {
         this.goal = goal;
         this.address = address;
         this.picture = picture;
+        this.debt = debt;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -81,10 +84,9 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         birthday = source.getBirthday().toString();
         goal = source.getGoal().toString();
-
         Optional<Picture> srcPic = source.getPicture();
         picture = srcPic.isEmpty() ? null : new JsonAdaptedPicture(srcPic.get());
-
+        debt = source.getDebt().value.toString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -153,6 +155,14 @@ class JsonAdaptedPerson {
             modelPicture = picture.toModelType();
         }
 
+        if (debt == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Debt.class.getSimpleName()));
+        }
+        if (!Debt.isValidDebt(debt)) {
+            throw new IllegalValueException(Debt.MESSAGE_CONSTRAINTS);
+        }
+        final Debt modelDebt = new Debt(debt);
+
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
@@ -170,6 +180,6 @@ class JsonAdaptedPerson {
         }
 
         return new Person(modelName, modelPhone, modelEmail, modelBirthday, modelGoal, modelAddress, modelPicture,
-                modelTags, modelDates, modelMeetings);
+                modelDebt, modelTags, modelDates, modelMeetings);
     }
 }

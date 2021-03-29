@@ -1,15 +1,11 @@
 package seedu.address.ui;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.stream.Collectors;
 
-import seedu.address.MainApp;
+import seedu.address.commons.util.FileUtil;
 
 /**
  * Class for managing the theme of the application. Stores data on what theme is currently being applied.
@@ -19,7 +15,8 @@ public class ThemeManager {
     /**
      * Template of the css used by the application.
      */
-    private static final String CSS_TEMPLATE;
+    private static final String CSS_TEMPLATE = FileUtil.getResourceAsString("/view/Template.css");
+
     /**
      * Current theme used by the application
      */
@@ -32,12 +29,6 @@ public class ThemeManager {
      * Path of the css file currently in use
      */
     private static String cssCacheUri = null;
-
-    static {
-        InputStream templateStream = MainApp.class.getResourceAsStream("/view/Template.css");
-        CSS_TEMPLATE = new BufferedReader(new InputStreamReader(templateStream))
-                .lines().collect(Collectors.joining("\n"));
-    }
 
     /**
      * Gets the theme currently in use by the application.
