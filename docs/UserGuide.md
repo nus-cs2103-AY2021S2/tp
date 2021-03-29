@@ -56,7 +56,7 @@ Example:<br>
 Clears all existing Garments in the wardrobe.
 Format: `clear`
 
-**5. Editing a Garment: `edit`**<br>
+**6. Editing a Garment: `edit`**<br>
 Edits an existing Garment, associated with the given index, in the wardrobe.<br>
 Format: `edit INDEX [n/NAME] [s/SIZE] [c/COLOUR] [r/DRESSCODE] [t/TYPE] [d/DESCRIPTION]...`
 * Edits the Garment at the specified INDEX.<br>
@@ -70,7 +70,7 @@ Example:
   Edits the colour and size of the 1st Garment in the wardrobe to be red and 30 respectively.
   <br><br>
 
-**6. Finding clothing that matches a certain type: `find`**<br>
+**7. Finding clothing that matches a certain type: `find`**<br>
 Finds all articles of clothing that matches all keywords used in each search attribute.<br>
 Format: `find [n/NAMES] [s/SIZES] [c/COLOURS] [r/DRESSCODES] [t/TYPES] [d/DESCRIPTIONS]...`
 * At least one of the optional fields must be provided.
@@ -83,20 +83,35 @@ Examples:
   Returns all articles of clothing that are white in colour and have either sizes 36 or 23.
   <br><br>
   
-**7. Matching...: `match`**
+**8. Matching multiple garments to create an outfit: `match`**<br>
+[matching of multiple input garments implemented in v1.3]  
+Finds all articles of clothing that match the colour and dress code,
+but do not match the type(s) of a specified garment, or two specified
+garments of different types.<br>
+Format: `match INDEX [INDEX]`
+* Number of indices provided must at least 1, and at most 2
+
+Examples:
+* `match 1`  
+Returns all the articles of clothing that match the colour and dress code
+  of the garment at index 1 in the list of garments on display, but do not match
+  its type.
+* `match 1 2`  
+Returns all the articles of clothing that match the colours and dress code of
+  the garments at indices 1 and 2 in the list of garments on display, but
+  do not match their types.
+
+**9. Selecting...: `select`**
 <br><br>
 
-**8. Selecting...: `select`**
-<br><br>
-
-**9. Viewing a set of Garments: `view`**<br>
+**10. Viewing a set of Garments: `view`**<br>
 Views a set of 3 garments associated with the given indexes.<br>
 Garments must be of different Types (i.e. `upper`, `lower` and `footwear`).<br>
 Format: `view INDEX INDEX INDEX`
 * The command must have exactly 3 indexes as input, any more inputs after that will be not be taken into account.
 <br><br>
   
-**10. Exiting the program: `exit`**<br>
+**11. Exiting the program: `exit`**<br>
 Exits the program.<br>
 Format: `exit`
 
@@ -117,12 +132,14 @@ Eg. `add n/sleek tux s/32 c/white r/formal t/upper`
 3. List: `list`
 4. Delete: `delete INDEX`<br>
    Eg. `delete 4`
-5. Edit: `edit INDEX [n/NAME] [s/SIZE] [c/COLOUR] [r/DRESSCODE] [t/TYPE] [d/DESCRIPTION]...`<br>
+5. Clear: `clear`
+6. Edit: `edit INDEX [n/NAME] [s/SIZE] [c/COLOUR] [r/DRESSCODE] [t/TYPE] [d/DESCRIPTION]...`<br>
 Eg. `edit 1 n/polka dotted shirt s/28 c/red r/casual`
-6. Find: `find t/TYPE`<br>
-Eg. find `t/Office`
-7. Match: `match INDEX`
-8. Select: `select INDEX`
-9. View: `view INDEX INDEX INDEX`
-10. Exit: `exit`
+7. Find: `find t/TYPE`<br>
+Eg. `find t/Office`
+8. Match: `match INDEX [INDEX]`<br>
+Eg. `match 1`
+9. Select: `select INDEX`
+10. View: `view INDEX INDEX INDEX`
+11. Exit: `exit`
 ---
