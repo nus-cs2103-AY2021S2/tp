@@ -742,6 +742,33 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `exit`<br>
        Expected: The application exits and window closes.
 
+### Editing flashcards
+
+1. Editing flashcards in FlashBack
+    1. Prerequisites: There must be at least one flashcard in the list.
+       
+    1. Test case: `edit`
+       
+       Expected: No flashcard will be edited, and an invalid command format error message will be 
+       shown on the result display.
+       
+    1. Test case: `edit 1`
+       
+       Expected: Flashcard identified by index 1 in the list will not be edited, and an error message will be displayed to prompt
+       the user to enter at least one field to edit.
+       
+    1. Test case: `edit 1 p/Low`
+    
+       Expected: The flashcard identified by index 1 in the list will be modified. Its priority is changed to `Low`. If the flashcard already has 
+       `Low` priority, an error message will be displayed, and no modifications will be made to the flashcard.
+       
+    1. Test case: `edit 1 c/comp sci p/Mid t/sorting t/algorithms`
+    
+       Expected: The flash card identified by index 1 will be modified. Its category is changed to `comp sci`, the priority is changed to `Mid`.
+       and it now has tags `sorting` and `algorithms`. If the flashcard already has category `comp sci`, priority
+       `Mid`, as well as tags `sorting` and `algorithms`, an error message will be displayed, and no modifications will be made to the flashcard.
+
+
 ### Finding flashcards
 
 1. Finding flashcards in FlashBack
@@ -774,7 +801,28 @@ testers are expected to do more *exploratory* testing.
        
     1. Test case: `filter c/math physics p/mid`<br>
        Expected: The list will be updated, listing the flashcards that have either `math` or `physics` contained in its question, and `mid` contained in its priority. The result display will state the number of flashcards listed.
+
+### Display statistics
+
+1. Displaying statistics of flash card(s) in FlashBack
+
+    1. Prerequisites: There must be at least one reviewed flashcard in the list.
+    
+    1. Test case: `stats`
+    
+       Expected: The UI will be updated to display a pie chart representing the overall correct rate of all flashcards in the list.
+       The total review count, total correct count and overall correct rate is also displayed below the pie chart.
        
+    1. Test case: `stats 1`
+    
+       Expected: The UI  will be updated to display a pie chart representing the correct rate of the flash card represented
+       by index 1 in the list. The review count, correct count and correct rate is also displayed below the pie chart. 
+       
+    1. Test case: `stats abc`
+    
+       Expected: No statistics will be displayed. An invalid command format error message will be shown on the result display. 
+    
+
 ------------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Effort**
