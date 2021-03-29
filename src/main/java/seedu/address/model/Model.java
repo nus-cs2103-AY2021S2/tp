@@ -185,15 +185,20 @@ public interface Model {
 
 
     /**
-     * Deletes the given appointment.
+     * Deletes the given appointment {@code target}.
      * The appointment must exist in the appointment schedule.
      */
     void deleteAppointment(Appointment target);
 
     /**
-     * Deletes all appointments associated with the input patient from the appointment schedule.
+     * Deletes all appointments associated with the input {@code patient} from the appointment schedule.
      */
     void deletePatientAppointments(Patient patient);
+
+    /**
+     * Deletes all appointments associated with the input {@code doctor} from the appointment schedule.
+     */
+    void deleteDoctorAppointments(Doctor doctor);
 
     /**
      * Adds the given appointment.

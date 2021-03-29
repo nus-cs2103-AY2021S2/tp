@@ -110,10 +110,17 @@ public class AppointmentSchedule implements ReadOnlyAppointmentSchedule {
     }
 
     /**
-     * Deletes all appointments associated with the input patient from the appointment schedule.
+     * Deletes all appointments associated with the input {@code patient} from the appointment schedule.
      */
     public void deletePatientAppointments(Patient patient) {
         appointments.deletePatientAppointments(patient);
+    }
+
+    /**
+     * Deletes all appointments associated with the input {@code doctor} from the appointment schedule.
+     */
+    public void deleteDoctorAppointments(Doctor doctor) {
+        appointments.deleteDoctorAppointments(doctor);
     }
 
     /**
