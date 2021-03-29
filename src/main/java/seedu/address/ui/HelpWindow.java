@@ -34,9 +34,7 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         webEngine = webView.getEngine();
-        System.out.println(webEngine);
         webEngine.load(USERGUIDE_URL);
-        System.out.println(webEngine.getDocument());
 
     }
 
