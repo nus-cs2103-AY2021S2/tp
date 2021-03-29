@@ -31,6 +31,8 @@ public class ListCommand extends Command {
     public static final String MESSAGE_SUCCESS_TUTORS = "Listed all tutors";
     public static final String MESSAGE_EMPTY_PERSON_LIST = "The list of persons is empty!";
     public static final String MESSAGE_EMPTY_SESSION_LIST = "The list of sessions is empty!";
+    public static final String MESSAGE_EMPTY_STUDENT_LIST = "The list of students is empty!";
+    public static final String MESSAGE_EMPTY_TUTOR_LIST = "The list of tutors is empty!";
 
     private final Predicate<Person> personPredicate;
     private final Predicate<Session> sessionPredicate;
@@ -58,16 +60,33 @@ public class ListCommand extends Command {
         switch (listCommandType) {
 
         case PERSON_TYPE_LIST:
-            return new CommandResult(MESSAGE_SUCCESS_PERSONS);
+            if (model.emptyPersonList()) {
+                return new CommandResult(MESSAGE_EMPTY_PERSON_LIST);
+            } else {
+                return new CommandResult(MESSAGE_SUCCESS_PERSONS);
+            }
 
         case STUDENT_TYPE_LIST:
-            return new CommandResult(MESSAGE_SUCCESS_STUDENTS);
+            if (model.emptyPersonList()) {
+                return new CommandResult(MESSAGE_EMPTY_STUDENT_LIST);
+            } else {
+                return new CommandResult(MESSAGE_SUCCESS_STUDENTS);
+            }
 
         case TUTOR_TYPE_LIST:
-            return new CommandResult(MESSAGE_SUCCESS_TUTORS);
+            if (model.emptyPersonList()) {
+                return new CommandResult(MESSAGE_EMPTY_TUTOR_LIST);
+            } else {
+                return new CommandResult(MESSAGE_SUCCESS_TUTORS);
+
+            }
 
         case SESSION_TYPE_LIST:
-            return new CommandResult(MESSAGE_SUCCESS_SESSIONS);
+            if (model.emptySessionList()) {
+                return new CommandResult(MESSAGE_EMPTY_SESSION_LIST);
+            } else {
+                return new CommandResult(MESSAGE_SUCCESS_SESSIONS);
+            }
 
         default:
             throw new CommandException(MESSAGE_USAGE);

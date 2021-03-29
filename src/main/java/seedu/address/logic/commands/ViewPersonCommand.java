@@ -35,7 +35,7 @@ public class ViewPersonCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
-        if (model.getFilteredPersonList().size() == 0) {
+        if (model.emptyPersonList()) {
             return new CommandResult(MESSAGE_NO_PERSON_FOUND);
         }
 
