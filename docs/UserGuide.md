@@ -263,7 +263,7 @@ You can use this command in 2 different ways.
   
 ### 3.6. Deleting an item : `delete`
 
-Looking to get rid of an existing item from the inventory? Use this command.
+Are you looking to get rid of an existing item from the inventory? Use this command.
 
 Format: `delete INDEX`
 
@@ -291,11 +291,10 @@ Format: `reminder NUMBER TIME_UNIT`
 
 **:information_source: Notes about the reminder command:**<br>
 
-* `NUMBER` **can be any integer** …​, -7, -3, 0, 3, 7, …​
-* `TIME_UNIT` must be either `days` or `weeks`.
-  * `day` or `week` accepted only when `NUMBER` is in the range of **[-1, 0, 1]**
+* `NUMBER` refers to the number of days/weeks and **can be any integer** …​, -7, -3, 0, 3, 7, …​
+* `TIME_UNIT` is either `days` or `weeks`.
+* `day` or `week` will only be accepted when `NUMBER` is either **-1, 0 or 1**
 *  Items without expiry date will not be shown.
-
 
 </div>
 
@@ -307,8 +306,8 @@ Examples:
   * `reminder 5 days` returns the chocolate only.
   * `reminder 2 weeks` returns both the chocolate and the banana.
   <br>
-* `reminder -7 days` returns a list containing all items that has been expired for 7 days.
-* `reminder -2 weeks` returns a list containing all items that has been expired for 2 weeks.
+* `reminder -7 days` returns a list of items that have been expired for at least 7 days.
+* `reminder -2 weeks` returns a list of items that have been expired for at least 2 weeks.
 * Given today is 30 March 2021, and the inventory has 2 items: apple with expiry date of 27 March 2021 and
   banana with an expiry date of 20 March 2021.
   * `reminder -5 days` returns both the apple and the banana.
@@ -367,7 +366,7 @@ You can use this command in 3 different ways.
 
 ### 3.9. Clearing StoreMando : `clear`
 
-Want to clear your entire inventory? Key in this command to clear all items stored in your inventory.
+Do you want to clear your entire inventory? Key in this command to clear all items stored in your inventory.
 
 You can use this command in 2 different ways.
 
@@ -426,14 +425,14 @@ the data of your previous StoreMando home folder.
 
 **Q**: Can I have two or more inventories in one computer?<br>
 **A**: Download and install StoreMando in two different folders on your computer so that you will have two different 
-data files in separate locations. You can have as many inventories as you want using this method!
+data files in separate locations. You can have as many inventories as you want using this method.
 
 **Q**: What if I want to have more features implemented in the product?<br>
-**A**: Feel free to contact us at e0406389@u.nus.edu!
+**A**: Feel free to contact us at e0406389@u.nus.edu.
 
 **Q**: Sometimes I forget the various commands to use, where can I find the list of commands?<br>
 **A**: You could view enter help tab by clicking F1, or by keying in `help` in the command box, which will then lead 
-you to this user guide to provide you with the help you need!
+you to this user guide to provide you with the help you need.
 
 --------------------------------------------------------------------------------------------------------------------
 ## 5. Command summary
@@ -455,6 +454,9 @@ Action | Format, Examples
 --------------------------------------------------------------------------------------------------------------------
 
 ## 6. Glossary
-
+* **StoreMando**: Name of the application
+* **CLI**: Command Line Interface
+* **GUI**: Graphical User Interface
+* **Inventory**: List of all items stored in StoreMando
 
 --------------------------------------------------------------------------------------------------------------------
