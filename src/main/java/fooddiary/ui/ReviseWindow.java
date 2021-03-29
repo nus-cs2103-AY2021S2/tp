@@ -1,6 +1,5 @@
 package fooddiary.ui;
 
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -155,7 +154,14 @@ public class ReviseWindow extends UiPart<Stage> {
         tagSchoolText.setText(tagSchools);
     }
 
-    public void completeRevise() throws CommandException, ParseException {
+    /**
+     * Submits revision to edit command for update.
+     *
+     * @throws CommandException Invalid command given
+     * @throws ParseException Parsing formatting error occurs
+     */
+    @FXML
+    private void revise() throws CommandException, ParseException {
         String name = String.format("%s%s", CliSyntax.PREFIX_NAME.toString(), nameText.getText());
         String rating = String.format("%s%s", CliSyntax.PREFIX_RATING.toString(), ratingText.getText());
         String price = String.format("%s%s", CliSyntax.PREFIX_PRICE.toString(), priceText.getText());
