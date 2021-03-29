@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Scene?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.stage.Stage?>
+
+<fx:root resizable="true" title="Shortcuts" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/">
+    <icons>
+        <Image url="@/images/help_icon.png" />
+    </icons>
+    <scene>
+        <Scene>
+            <VBox fx:id="outerBox" alignment="CENTER">
+                <children />
+            </VBox>
+        </Scene>
+    </scene>
+</fx:root>
