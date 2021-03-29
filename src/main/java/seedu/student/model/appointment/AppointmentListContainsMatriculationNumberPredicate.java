@@ -5,7 +5,8 @@ import java.util.function.Predicate;
 import seedu.student.model.student.MatriculationNumber;
 
 /**
- * Tests that a {@code Appointment}'s {@code Matriculation Number} matches any of the keywords given.
+ * Tests that a {@code SameDateAppointmentList} contains an {@code Appointment} whose {@code MatriculationNumber}
+ * matches any of the keywords given.
  */
 public class AppointmentListContainsMatriculationNumberPredicate implements Predicate<SameDateAppointmentList> {
     private final MatriculationNumber keyword;
