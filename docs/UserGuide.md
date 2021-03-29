@@ -51,6 +51,10 @@ Example:<br>
   `remove 2`<br>
   Removes the 2nd Garment in the wardrobe.
   <br><br>
+  
+**5. Clearing all Garments: `clear`**<br>
+Clears all existing Garments in the wardrobe.
+Format: `clear`
 
 **5. Editing a Garment: `edit`**<br>
 Edits an existing Garment, associated with the given index, in the wardrobe.<br>
@@ -67,15 +71,16 @@ Example:
   <br><br>
 
 **6. Finding clothing that matches a certain type: `find`**<br>
-Finds clothing that matches a certain type.<br>
-Format: `find t/type`
-* The search is case-insensitive<br>
+Finds all articles of clothing that matches all keywords used in each search attribute.<br>
+Format: `find [n/NAMES] [s/SIZES] [c/COLOURS] [r/DRESSCODES] [t/TYPES] [d/DESCRIPTIONS]...`
+* At least one of the optional fields must be provided.
+* The list of all Garments with matching attributes will be shown.
 
 Examples:
 * `find n/worn out jeans`<br>
-  Returns the article of clothing that is named "worn out jeans".
-* `find c/white s/S`<br>
-  Returns all articles of S-sized clothing that are white in colour.
+  Returns all the articles of clothing whose name has at least one of the words in the search phrase, "worn out jeans".
+* `find c/white s/36 23`<br>
+  Returns all articles of clothing that are white in colour and have either sizes 36 or 23.
   <br><br>
   
 **7. Matching...: `match`**
