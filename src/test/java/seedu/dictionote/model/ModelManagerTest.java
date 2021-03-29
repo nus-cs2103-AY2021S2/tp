@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.dictionote.commons.core.GuiSettings;
 import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
-import seedu.dictionote.testutil.AddressBookBuilder;
+import seedu.dictionote.testutil.ContactsListBuilder;
 
 public class ModelManagerTest {
 
@@ -26,7 +26,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new ContactsList(), new ContactsList(modelManager.getContactsList()));
     }
 
     @Test
@@ -37,16 +37,16 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("dictionote/book/file/path"));
+        userPrefs.setContactsListFilePath(Paths.get("dictionote/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4, 5,
             6, 7, 8, true, false,
-            true, false, true));
+            true, false, true, true, true));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/dictionote/book/file/path"));
+        userPrefs.setContactsListFilePath(Paths.get("new/dictionote/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -59,21 +59,21 @@ public class ModelManagerTest {
     public void setGuiSettings_validGuiSettings_setsGuiSettings() {
         GuiSettings guiSettings = new GuiSettings(1, 2, 3, 4, 5,
             6, 7, 8, true, false,
-            true, false, true);
+            true, false, true, true, true);
         modelManager.setGuiSettings(guiSettings);
         assertEquals(guiSettings, modelManager.getGuiSettings());
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
+    public void setContactsListFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setContactsFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setContactsListFilePath_validPath_setsContactsListFilePath() {
         Path path = Paths.get("dictionote/book/file/path");
-        modelManager.setAddressBookFilePath(path);
-        assertEquals(path, modelManager.getAddressBookFilePath());
+        modelManager.setContactsFilePath(path);
+        assertEquals(path, modelManager.getContactsListFilePath());
     }
 
     @Test
@@ -82,12 +82,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasContact_contactNotInAddressBook_returnsFalse() {
+    public void hasContact_contactNotInContactsList_returnsFalse() {
         assertFalse(modelManager.hasContact(ALICE));
     }
 
     @Test
-    public void hasContact_contactInAddressBook_returnsTrue() {
+    public void hasContact_contactInContactsList_returnsTrue() {
         modelManager.addContact(ALICE);
         assertTrue(modelManager.hasContact(ALICE));
     }
@@ -99,15 +99,16 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withContact(ALICE).withContact(BENSON).build();
-        AddressBook differentAddressBook = new AddressBook();
+        ContactsList contactsList = new ContactsListBuilder().withContact(ALICE).withContact(BENSON).build();
+        ContactsList differentContactsList = new ContactsList();
         UserPrefs userPrefs = new UserPrefs();
         NoteBook noteBook = new NoteBook();
         Dictionary dictionary = new Dictionary();
+        DefinitionBook definitionBook = new DefinitionBook();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs, noteBook, dictionary);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs, noteBook, dictionary);
+        modelManager = new ModelManager(contactsList, userPrefs, noteBook, dictionary, definitionBook);
+        ModelManager modelManagerCopy = new ModelManager(contactsList, userPrefs, noteBook, dictionary, definitionBook);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -120,19 +121,22 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs, noteBook, dictionary)));
+        assertFalse(modelManager.equals(new ModelManager(differentContactsList, userPrefs, noteBook,
+                dictionary, definitionBook)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredContactList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs, noteBook, dictionary)));
+        assertFalse(modelManager.equals(new ModelManager(contactsList, userPrefs, noteBook,
+                dictionary, definitionBook)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs, noteBook, dictionary)));
+        differentUserPrefs.setContactsListFilePath(Paths.get("differentFilePath"));
+        assertFalse(modelManager.equals(new ModelManager(contactsList, differentUserPrefs, noteBook,
+                dictionary, definitionBook)));
     }
 }

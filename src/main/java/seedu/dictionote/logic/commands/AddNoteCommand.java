@@ -1,6 +1,7 @@
 package seedu.dictionote.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.dictionote.commons.core.Messages.MESSAGE_COMMAND_DISABLE_ON_EDIT_MODE;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_CONTENT;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -25,7 +26,7 @@ public class AddNoteCommand extends Command {
             + PREFIX_TAG + "CS2103 Test Tag";
 
     public static final String MESSAGE_SUCCESS = "New note added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This note already exists in the dictionote book";
+    public static final String MESSAGE_DUPLICATE_NOTE = "This note already exists in the dictionote book";
 
     private final Note toAdd;
 
@@ -42,8 +43,12 @@ public class AddNoteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        if (model.onEditModeNote()) {
+            throw new CommandException(MESSAGE_COMMAND_DISABLE_ON_EDIT_MODE);
+        }
+
         if (model.hasNote(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_NOTE);
         }
 
         model.addNote(toAdd);

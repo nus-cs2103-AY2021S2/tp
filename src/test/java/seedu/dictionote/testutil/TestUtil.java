@@ -13,7 +13,6 @@ import seedu.dictionote.model.contact.Contact;
  * A utility class for test cases.
  */
 public class TestUtil {
-
     /**
      * Folder used for temp files created during testing. Ignored by Git.
      */
@@ -33,23 +32,23 @@ public class TestUtil {
     }
 
     /**
-     * Returns the middle index of the person in the {@code model}'s person list.
+     * Returns the middle index of the contact in the {@code model}'s contacts list.
      */
     public static Index getMidIndex(Model model) {
         return Index.fromOneBased(model.getFilteredContactList().size() / 2);
     }
 
     /**
-     * Returns the last index of the person in the {@code model}'s person list.
+     * Returns the last index of the contact in the {@code model}'s contacts list.
      */
     public static Index getLastIndex(Model model) {
         return Index.fromOneBased(model.getFilteredContactList().size());
     }
 
     /**
-     * Returns the person in the {@code model}'s person list at {@code index}.
+     * Returns the contact in the {@code model}'s contacts list at {@code index}.
      */
-    public static Contact getPerson(Model model, Index index) {
+    public static Contact getContact(Model model, Index index) {
         return model.getFilteredContactList().get(index.getZeroBased());
     }
 }

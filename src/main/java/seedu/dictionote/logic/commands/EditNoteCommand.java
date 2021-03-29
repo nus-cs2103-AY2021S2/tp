@@ -2,10 +2,12 @@ package seedu.dictionote.logic.commands;
 
 import static java.time.LocalDateTime.now;
 import static java.util.Objects.requireNonNull;
+import static seedu.dictionote.commons.core.Messages.MESSAGE_COMMAND_DISABLE_ON_EDIT_MODE;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_CONTENT;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.dictionote.model.Model.PREDICATE_SHOW_ALL_CONTACTS;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -39,7 +41,9 @@ public class EditNoteCommand extends Command {
             + PREFIX_CONTENT + "Study for CS2106 Midterms";
 
     public static final String MESSAGE_EDIT_NOTE_SUCCESS = "Edited note: %1$s";
-    public static final String MESSAGE_DUPLICATE_NOTE = "This note is not changed.";
+    public static final String MESSAGE_DUPLICATE_NOTE = "This note already exists in the note list.";
+    public static final String MESSAGE_NOTHING_CHANGE_NOTE = "This note have not been change.";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final Index index;
     private final EditNoteDescriptor editNoteDescriptor;
@@ -59,6 +63,11 @@ public class EditNoteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.onEditModeNote()) {
+            throw new CommandException(MESSAGE_COMMAND_DISABLE_ON_EDIT_MODE);
+        }
+
         List<Note> lastShownList = model.getFilteredNoteList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -67,9 +76,12 @@ public class EditNoteCommand extends Command {
 
         Note noteToEdit = lastShownList.get(index.getZeroBased());
         Note editedNote = createEditedNote(noteToEdit, editNoteDescriptor);
-        editedNote.setLastEditTime(now());
 
-        if (!noteToEdit.isSameNote(editedNote) && model.hasNote(editedNote)) {
+        if (noteToEdit.isSameNote(editedNote)) {
+            throw new CommandException(MESSAGE_NOTHING_CHANGE_NOTE);
+        }
+
+        if (model.hasNote(editedNote)) {
             throw new CommandException(MESSAGE_DUPLICATE_NOTE);
         }
 
@@ -89,7 +101,7 @@ public class EditNoteCommand extends Command {
         Note updatedNote = editNoteDescriptor.getNote().orElse(noteToEdit);
         Set<Tag> updatedTags = editNoteDescriptor.getTags().orElse(noteToEdit.getTags());
         return updatedNote.createEditedNote(updatedNote.getNote(), updatedTags,
-                updatedNote.getCreateTime(), updatedNote.isDone());
+                noteToEdit.getCreateTime(), now(), updatedNote.isDone());
     }
 
     @Override
@@ -100,7 +112,7 @@ public class EditNoteCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditContactCommand)) {
+        if (!(other instanceof EditNoteCommand)) {
             return false;
         }
 
@@ -117,7 +129,9 @@ public class EditNoteCommand extends Command {
     public static class EditNoteDescriptor {
         private Note note;
         private Set<Tag> tags;
-
+        private LocalDateTime createTime;
+        private LocalDateTime editTime;
+        private Boolean isDone;
         public EditNoteDescriptor() {}
 
         /**
@@ -126,6 +140,9 @@ public class EditNoteCommand extends Command {
         public EditNoteDescriptor(EditNoteDescriptor toCopy) {
             setNote(toCopy.note);
             setTags(toCopy.tags);
+            setCreateTime(toCopy.createTime);
+            setEditTime(now());
+            setIsDone(toCopy.isDone);
         }
 
         /**
@@ -158,6 +175,54 @@ public class EditNoteCommand extends Command {
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
+
+        /**
+         * Sets {@code createTime} to this object's {@code createTime}.
+         * A defensive copy of {@code createTime} is used internally.
+         */
+        public void setCreateTime(LocalDateTime createTime) {
+            this.createTime = createTime;
+        }
+
+        /**
+         * Returns an unmodifiable createTime, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code createTime} is null.
+         */
+        public Optional<LocalDateTime> getCreateTime() {
+            return Optional.ofNullable(createTime);
+        }
+
+        /**
+         * Sets {@code editTime} to this object's {@code editTime}.
+         * A defensive copy of {@code editTime} is used internally.
+         */
+        public void setEditTime(LocalDateTime editTime) {
+            this.editTime = editTime;
+        }
+
+        /**
+         * Returns an unmodifiable editTime, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code editTime} is null.
+         */
+        public Optional<LocalDateTime> getEditTime() {
+            return Optional.ofNullable(editTime);
+        }
+
+
+        /**
+         * Sets {@code isDone} to this object's {@code isDone}.
+         * A defensive copy of {@code isDone} is used internally.
+         */
+        public void setIsDone(Boolean isDone) {
+            this.isDone = isDone;
+        }
+
+        public Optional<Boolean> getIsDone() {
+            return Optional.ofNullable(this.isDone);
+        }
+
 
         @Override
         public boolean equals(Object other) {

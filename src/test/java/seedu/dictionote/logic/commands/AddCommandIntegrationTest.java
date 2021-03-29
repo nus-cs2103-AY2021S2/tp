@@ -2,8 +2,9 @@ package seedu.dictionote.logic.commands;
 
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
+import static seedu.dictionote.testutil.TypicalContacts.getTypicalContactsList;
 import static seedu.dictionote.testutil.TypicalContent.getTypicalDictionary;
+import static seedu.dictionote.testutil.TypicalDefinition.getTypicalDefinitionBook;
 import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -24,16 +25,16 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
-                getTypicalNoteBook(), getTypicalDictionary());
+        model = new ModelManager(getTypicalContactsList(), new UserPrefs(),
+                getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
     }
 
     @Test
     public void execute_newPerson_success() {
         Contact validContact = new ContactBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
-                getTypicalNoteBook(), getTypicalDictionary());
+        Model expectedModel = new ModelManager(model.getContactsList(), new UserPrefs(),
+                getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
         expectedModel.addContact(validContact);
 
         assertCommandSuccess(new AddContactCommand(validContact), model,
@@ -42,7 +43,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Contact contactInList = model.getAddressBook().getContactList().get(0);
+        Contact contactInList = model.getContactsList().getContactList().get(0);
         assertCommandFailure(new AddContactCommand(contactInList), model, AddContactCommand.MESSAGE_DUPLICATE_CONTACT);
     }
 

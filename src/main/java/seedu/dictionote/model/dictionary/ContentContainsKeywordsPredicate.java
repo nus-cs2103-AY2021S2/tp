@@ -15,7 +15,7 @@ public class ContentContainsKeywordsPredicate implements Predicate<Content> {
     @Override
     public boolean test(Content content) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(content.getContent(), keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(content.getMainContent(), keyword));
     }
 
     @Override

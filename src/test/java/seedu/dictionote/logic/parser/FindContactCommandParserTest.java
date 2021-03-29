@@ -9,6 +9,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.dictionote.logic.commands.FindContactCommand;
+import seedu.dictionote.model.contact.EmailContainsKeywordsPredicate;
 import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
 import seedu.dictionote.model.contact.TagsContainKeywordsPredicate;
 
@@ -28,11 +29,17 @@ public class FindContactCommandParserTest {
         FindContactCommand expectedFindContactCommand =
                 new FindContactCommand(
                         new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")),
-                        new TagsContainKeywordsPredicate(Arrays.asList("A", "B")));
-        assertParseSuccess(parser, " n/Alice n/Bob t/A t/B", expectedFindContactCommand);
+                        new EmailContainsKeywordsPredicate(Arrays.asList("@a.com", "@b.net")),
+                        new TagsContainKeywordsPredicate(Arrays.asList("A", "B"))
+                        );
+        assertParseSuccess(parser, " n/Alice n/Bob e/@a.com e/@b.net t/A t/B", expectedFindContactCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n n/Alice \n \t n/Bob t/A  \t t/B", expectedFindContactCommand);
+        assertParseSuccess(
+                parser,
+                " \n n/Alice \n \t n/Bob e/@a.com  \t e/@b.net \n t/A \t t/B",
+                expectedFindContactCommand
+        );
     }
 
 }

@@ -4,9 +4,11 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Orientation;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -42,6 +44,9 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private ContactListPanel contactListPanel;
     private NoteListPanel noteListPanel;
+    private NoteContentPanel noteContentPanel;
+    private DictionaryListPanel dictionaryListPanel;
+    private DictionaryContentPanel dictionaryContentPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private CommandBox commandBox;
@@ -177,6 +182,7 @@ public class MainWindow extends UiPart<Stage> {
                 menuItem.getOnAction().handle(new ActionEvent());
                 event.consume();
             }
+            handleKey(event);
         });
     }
 
@@ -190,10 +196,23 @@ public class MainWindow extends UiPart<Stage> {
         noteListPanel = new NoteListPanel(logic.getFilteredNoteList());
         noteListPlaceholder.getChildren().add(noteListPanel.getRoot());
 
+        noteContentPanel = new NoteContentPanel();
+        noteContentPlaceholder.getChildren().add(noteContentPanel.getRoot());
+        logic.setNoteContentConfig(noteContentPanel);
+
+
+        dictionaryListPanel = new DictionaryListPanel(logic.getFilteredContentList(),
+            logic.getFilteredDefinitionList());
+        dictionaryListPlaceholder.getChildren().add(dictionaryListPanel.getRoot());
+
+        dictionaryContentPanel = new DictionaryContentPanel(dictionaryListPanel);
+        dictionaryContentPlaceholder.getChildren().add(dictionaryContentPanel.getRoot());
+        logic.setDictionaryContentConfig(dictionaryContentPanel);
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getContactsListFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         commandBox = new CommandBox(this::executeCommand);
@@ -220,10 +239,23 @@ public class MainWindow extends UiPart<Stage> {
      * Dynamically detect and change the split ratio depending on the content
      */
     void configSplit() {
+        configOrientation();
         configContactSplit();
         configNoteSplit();
         configDictionarySplit();
         configMainSplit();
+    }
+    /**
+     * Detect the change in orientation setting
+     */
+    private void configOrientation() {
+        if (noteSplitPanel.getOrientation() != logic.getGuiSettings().getNotePanelOrientation()) {
+            noteSplitPanel.setOrientation(logic.getGuiSettings().getNotePanelOrientation());
+        }
+
+        if (dictionarySplitPanel.getOrientation() != logic.getGuiSettings().getDictionaryPanelOrientation()) {
+            dictionarySplitPanel.setOrientation(logic.getGuiSettings().getDictionaryPanelOrientation());
+        }
     }
 
     /**
@@ -241,9 +273,9 @@ public class MainWindow extends UiPart<Stage> {
      * Dynamically detect and change the split ratio depending on the dictionary list and content visibility
      */
     private void configDictionarySplit() {
-        if (!dictionaryListDisplay.isVisible() && dictionaryContentDisplay.isVisible()) {
+        if (!dictionaryListDisplay.isVisible()) {
             setDividerPosition(dictionarySplitPanel, 0);
-        } else if (dictionaryListDisplay.isVisible() && !dictionaryContentDisplay.isVisible()) {
+        } else if (!dictionaryContentDisplay.isVisible()) {
             setDividerPosition(dictionarySplitPanel, 1);
         } else {
             setDividerPosition(dictionarySplitPanel, logic.getGuiSettings().getDictionarySplitRatio());
@@ -254,9 +286,9 @@ public class MainWindow extends UiPart<Stage> {
      * Dynamically detect and change the split ratio depending on the note list and note visibility
      */
     private void configNoteSplit() {
-        if (!noteListDisplay.isVisible() && noteContentDisplay.isVisible()) {
+        if (!noteListDisplay.isVisible()) {
             setDividerPosition(noteSplitPanel, 0);
-        } else if (noteListDisplay.isVisible() && !noteContentDisplay.isVisible()) {
+        } else if (!noteContentDisplay.isVisible()) {
             setDividerPosition(noteSplitPanel, 1);
         } else {
             setDividerPosition(noteSplitPanel, logic.getGuiSettings().getNoteSplitRatio());
@@ -297,10 +329,6 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    void show() {
-        primaryStage.show();
-    }
-
     /**
      * Closes the application.
      */
@@ -310,12 +338,24 @@ public class MainWindow extends UiPart<Stage> {
             (int) primaryStage.getX(), (int) primaryStage.getY(), logic.getGuiSettings().getContactSplitRatio(),
             logic.getGuiSettings().getDictionarySplitRatio(), logic.getGuiSettings().getNoteSplitRatio(),
             logic.getGuiSettings().getMainSplitRatio(), contactDisplay.isVisible(),
-            dictionaryContentDisplay.isVisible(), dictionaryListDisplay.isVisible(),
-            noteContentDisplay.isVisible(), noteListDisplay.isVisible());
+            dictionaryContentDisplay.isVisible(), dictionaryListDisplay.isVisible(), noteContentDisplay.isVisible(),
+            noteListDisplay.isVisible(), dictionarySplitPanel.getOrientation() == Orientation.VERTICAL,
+            noteSplitPanel.getOrientation() == Orientation.VERTICAL);
 
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
+    }
+
+
+    void handleKey(KeyEvent event) {
+        if (event.getCode() == KeyCode.ESCAPE) {
+            commandBox.requestFocus();
+        }
+    }
+
+    void show() {
+        primaryStage.show();
     }
 
     /**
@@ -347,6 +387,7 @@ public class MainWindow extends UiPart<Stage> {
         commandBox.requestFocus();
 
         addSplitPaneListener();
+        dictionaryListPanel.openContentDisplay();
     }
 
     /**
@@ -395,8 +436,6 @@ public class MainWindow extends UiPart<Stage> {
         default:
             assert false : uiActionOption.toString() + " UiAction is not handle";
         }
-
-        configSplit();
     }
 
     /**
@@ -416,6 +455,24 @@ public class MainWindow extends UiPart<Stage> {
     private void handleClose(UiActionOption uiActionOption) {
         handlePanelVisibility(uiActionOption, false);
     }
+
+    /**
+     * Enter Edit Mode.
+     */
+    private void handleEditModeEnter() {
+        setPanelVisibility(noteContentDisplay, true);
+        noteContentPanel.enterEditMode();
+    }
+
+
+    /**
+     * Exit Edit Mode.
+     */
+    private void handleEditModeExit() {
+        noteContentPanel.exitEditMode();
+    }
+
+
 
     /**
      * Executes the command and returns the result.
@@ -460,6 +517,12 @@ public class MainWindow extends UiPart<Stage> {
             break;
         case CLOSE:
             handleClose(uiActionOption);
+            break;
+        case EDITMODEENTER:
+            handleEditModeEnter();
+            break;
+        case EDITMODEEXIT:
+            handleEditModeExit();
             break;
         case NONE:
             break;

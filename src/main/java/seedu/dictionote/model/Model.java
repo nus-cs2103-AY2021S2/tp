@@ -7,7 +7,11 @@ import javafx.collections.ObservableList;
 import seedu.dictionote.commons.core.GuiSettings;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.dictionary.Content;
+import seedu.dictionote.model.dictionary.Definition;
+import seedu.dictionote.model.dictionary.DisplayableContent;
 import seedu.dictionote.model.note.Note;
+import seedu.dictionote.ui.DictionaryContentConfig;
+import seedu.dictionote.ui.NoteContentConfig;
 
 /**
  * The API of the Model component.
@@ -15,9 +19,16 @@ import seedu.dictionote.model.note.Note;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Contact> PREDICATE_SHOW_ALL_CONTACTS = unused -> true;
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Content> PREDICATE_SHOW_ALL_CONTENTS = unused -> true;
+    /**{@code Predicate} that always evaluate to true */
+    Predicate<Definition> PREDICATE_SHOW_ALL_DEFINITION = unused -> true;
+    /**{@code Predicate} that always evaluate to true */
     Predicate<Note> PREDICATE_SHOW_ALL_NOTES = unused -> true;
 
-    //#region
+
+
+    //=========== UserPrefs ==================================================================================
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -38,17 +49,27 @@ public interface Model {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
-    /** Returns the NoteBook */
-    ReadOnlyNoteBook getNoteBook();
+    /**
+     * Sets the user prefs' contacts list book file path.
+     */
+    void setContactsFilePath(Path addressBookFilePath);
+    void setNoteBookFilePath(Path noteBookFilePath);
+    void setDictionaryFilePath(Path getDictionaryFilePath);
+    void setDefinitionBookFilePath(Path getDefinitionBookFilePath);
 
-    /** Returns the Dictionary */
-    ReadOnlyDictionary getDictionary();
+    /**
+     * Returns the user prefs' dictionote book file path.
+     */
+    Path getContactsListFilePath();
+    Path getNoteBookFilePath();
+    Path getDictionaryFilePath();
+    Path getDefinitionBookFilePath();
 
+    //=========== NoteBook ===================================================================================
     /**
      * Returns true if a note with the same content as {@code note} exists in the dictionote book.
      */
     boolean hasNote(Note note);
-
 
     /**
      * Adds the given note.
@@ -56,49 +77,133 @@ public interface Model {
      */
     void addNote(Note note);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Note> getFilteredNoteList();
+    /**
+     * Deletes the given note.
+     * The note must exist in the dictionote book.
+     */
+    void deleteNote(Note target);
 
     /**
-     * Returns the user prefs' dictionote book file path.
+     * Show the given note.
      */
-    Path getAddressBookFilePath();
-    Path getNoteBookFilePath();
-    Path getDictionaryFilePath();
+    void showNote(Note note);
 
     /**
-     * Sets the user prefs' dictionote book file path.
+     * Check if there is note shown on note content panel.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
-    void setNoteBookFilePath(Path noteBookFilePath);
-    void setDictionaryFilePath(Path getDictionaryFilePath);
+    boolean hasNoteShown();
 
+    /**
+     * Reset the note shown to it original content.
+     */
+    void resetNoteShown();
+
+    /**
+     * Get the note shown.
+     */
+    Note getNoteShown();
+
+    /**
+     * Get the edited note shown content.
+     */
+    String getEditedNoteShownContent();
+
+    /**
+     * Check if the UI is on edit note mode.
+     */
+    boolean onEditModeNote();
+
+
+    /** Returns the NoteBook */
+    ReadOnlyNoteBook getNoteBook();
+    /**
+     * Replaces the given note {@code target} with {@code editedNote}.
+     * {@code target} must exist in the dictionote book.
+     */
+    void setNote(Note target, Note editedNote);
+
+    /**
+     * Sorts the note in the note book.
+     */
+    void sortNote();
+
+    /**
+     * Sorts the note in the note book chronologically.
+     */
+    void sortNoteByTime();
+
+    /**
+     * Merges the given note.
+     * The note must exist in the dictionote book.
+     */
+    void mergeNote(Note firstNote, Note secondNote);
+
+    /**
+     * Set Note UI Configuration Interface
+     */
+    void setNoteContentConfig(NoteContentConfig noteContentConfig);
+
+    //=========== Dictionary ===================================================================================
+    /**
+     * Returns true if a text with the same content as {@code content} exists in the dictionote book.
+     */
+    boolean hasContent(Content content);
+
+    /**
+     * Adds the given content.
+     * {@code content} must not already exist in the dictionote book.
+     */
+    void addContent(Content content);
+
+    /** Returns the Dictionary */
+    ReadOnlyDictionary getDictionary();
+
+    /**
+     * Returns true if a definition with the same content as {@code definition} exists in the dictionote book.
+     */
+    boolean hasDefinition(Definition definition);
+
+    /**
+     * Adds the given definition.
+     * {@code definition} must not already exist in the dictionote book.
+     */
+    void addDefinition(Definition definition);
+
+
+    /**
+     * Show the given content.
+     */
+    void showDictionaryContent(DisplayableContent content);
+
+    /**
+     * Set Dictionary UI Configuration Interface
+     */
+    void setDictionaryContentConfig(DictionaryContentConfig dictionaryContentConfig);
+
+    /** Returns the DefinitionBook */
+    ReadOnlyDefinitionBook getDefinitionBook();
+
+
+
+    //=========== AddressBook ================================================================================
     /**
      * Replaces dictionote book data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setContactsList(ReadOnlyContactsList contactsList);
 
     /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyContactsList getContactsList();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the dictionote book.
+     * Returns true if a person with the same identity as {@code contact} exists in the dictionote book.
      */
     boolean hasContact(Contact contact);
-
-    boolean hasContent(Content content);
 
     /**
      * Deletes the given person.
      * The person must exist in the dictionote book.
      */
     void deleteContact(Contact target);
-
-    /**
-     * Deletes the given note.
-     * The note must exist in the dictionote book.
-     */
-    void deleteNote(Note target);
 
     /**
      * Adds the given person.
@@ -113,6 +218,11 @@ public interface Model {
     void emailContact(Contact contact);
 
     /**
+     * Sorts the contacts in the contacts list by their frequency counters.
+     */
+    void sortContactsByFrequencyCounter();
+
+    /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the dictionote book.
      * The person identity of {@code editedPerson} must not be the same as
@@ -121,17 +231,21 @@ public interface Model {
     void setContact(Contact target, Contact editedContact);
 
 
-    /**
-     * Replaces the given note {@code target} with {@code editedNote}.
-     * {@code target} must exist in the dictionote book.
-     */
-    void setNote(Note target, Note editedNote);
-
+    //=========== Filtered List Accessors =============================================================
+    /** Returns an unmodifiable view of the filtered person list */
+    ObservableList<Note> getFilteredNoteList();
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Contact> getFilteredContactList();
+
+    /** Returns an unmodifiable view of the filtered list of content */
     ObservableList<Content> getFilteredContentList();
 
+    /** Returns an unmodifiable view of the filtered list of definitions */
+    ObservableList<Definition> getFilteredDefinitionList();
+
+    /** Returns an unmodifiable view of the filtered list of current viewable list */
+    ObservableList<? extends DisplayableContent> getFilteredCurrentDictionaryList();
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
@@ -144,6 +258,16 @@ public interface Model {
      */
     void updateFilteredNoteList(Predicate<Note> predicate);
 
+    /**
+     * Updates the filter of the filtered content list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
     void updateFilteredContentList(Predicate<Content> predicate);
+
+    /**
+     * Updates the filter of the filtered definition list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredDefinitionList(Predicate<Definition> predicate);
 
 }

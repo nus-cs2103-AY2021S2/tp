@@ -1,9 +1,13 @@
 package seedu.dictionote.model;
 
+import static java.time.LocalDateTime.now;
 import static java.util.Objects.requireNonNull;
 import static seedu.dictionote.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -13,7 +17,12 @@ import seedu.dictionote.commons.core.GuiSettings;
 import seedu.dictionote.commons.core.LogsCenter;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.dictionary.Content;
+import seedu.dictionote.model.dictionary.Definition;
+import seedu.dictionote.model.dictionary.DisplayableContent;
 import seedu.dictionote.model.note.Note;
+import seedu.dictionote.model.tag.Tag;
+import seedu.dictionote.ui.DictionaryContentConfig;
+import seedu.dictionote.ui.NoteContentConfig;
 
 /**
  * Represents the in-memory model of the dictionote book data.
@@ -21,38 +30,46 @@ import seedu.dictionote.model.note.Note;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final ContactsList contactsList;
     private final UserPrefs userPrefs;
     private final FilteredList<Note> filteredNote;
     private final NoteBook noteBook;
     private final FilteredList<Contact> filteredContacts;
     private final Dictionary dictionary;
     private final FilteredList<Content> filteredContent;
+    private final DefinitionBook definitionBook;
+    private final FilteredList<Definition> filteredDefinition;
+    private DictionaryContentConfig dictionaryContentConfig;
+    private NoteContentConfig noteContentConfig;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
-                        ReadOnlyNoteBook noteBook, ReadOnlyDictionary dictionary) {
+    public ModelManager(ReadOnlyContactsList addressBook, ReadOnlyUserPrefs userPrefs,
+                        ReadOnlyNoteBook noteBook, ReadOnlyDictionary dictionary,
+                        ReadOnlyDefinitionBook definitionBook) {
         super();
-        requireAllNonNull(addressBook, userPrefs, noteBook);
+        requireAllNonNull(addressBook, userPrefs, noteBook, dictionary, definitionBook);
 
         logger.fine("Initializing with dictionote book: " + addressBook
                 + " and user prefs " + userPrefs
                 + " and note book " + noteBook
-                + " and dictionary content " + dictionary);
+                + " and dictionary content " + dictionary
+                + " and definition book " + definitionBook);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.contactsList = new ContactsList(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.noteBook = new NoteBook(noteBook);
         this.dictionary = new Dictionary(dictionary);
+        this.definitionBook = new DefinitionBook(definitionBook);
         filteredNote = new FilteredList<>(this.noteBook.getNoteList());
-        filteredContacts = new FilteredList<>(this.addressBook.getContactList());
+        filteredContacts = new FilteredList<>(this.contactsList.getContactList());
         filteredContent = new FilteredList<>(this.dictionary.getContentList());
+        filteredDefinition = new FilteredList<>(this.definitionBook.getDefinitionList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new NoteBook(), new Dictionary());
+        this(new ContactsList(), new UserPrefs(), new NoteBook(), new Dictionary(), new DefinitionBook());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -80,14 +97,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getContactsListFilePath() {
+        return userPrefs.getContactsListFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
+    public void setContactsFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+        userPrefs.setContactsListFilePath(addressBookFilePath);
     }
     @Override
     public Path getNoteBookFilePath() {
@@ -97,7 +114,7 @@ public class ModelManager implements Model {
     @Override
     public void setNoteBookFilePath(Path noteBookFilePath) {
         requireNonNull(noteBookFilePath);
-        userPrefs.setAddressBookFilePath(noteBookFilePath);
+        userPrefs.setContactsListFilePath(noteBookFilePath);
     }
 
     @Override
@@ -108,7 +125,18 @@ public class ModelManager implements Model {
     @Override
     public void setDictionaryFilePath(Path dictionaryFilePath) {
         requireNonNull(dictionaryFilePath);
-        userPrefs.setAddressBookFilePath(dictionaryFilePath);
+        userPrefs.setDictionaryFilePath(dictionaryFilePath);
+    }
+
+    @Override
+    public Path getDefinitionBookFilePath() {
+        return userPrefs.getDefinitionBookFilePath();
+    }
+
+    @Override
+    public void setDefinitionBookFilePath(Path definitionBookFilePath) {
+        requireNonNull(definitionBookFilePath);
+        userPrefs.setDefinitionBookFilePath(definitionBookFilePath);
     }
 
     //=========== NoteBook ===================================================================================
@@ -121,13 +149,49 @@ public class ModelManager implements Model {
     @Override
     public void addNote(Note note) {
         noteBook.addNote(note);
-        updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
+        updateFilteredNoteList(PREDICATE_SHOW_ALL_NOTES);
     }
 
     @Override
     public void deleteNote(Note note) {
         noteBook.deleteNote(note);
-        updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
+        updateFilteredNoteList(PREDICATE_SHOW_ALL_NOTES);
+    }
+
+    @Override
+    public void showNote(Note note) {
+        requireAllNonNull(note);
+        requireAllNonNull(noteContentConfig);
+        noteContentConfig.setNote(note);
+    }
+
+    @Override
+    public boolean hasNoteShown() {
+        requireAllNonNull(noteContentConfig);
+        return noteContentConfig.haveNote();
+    }
+
+    @Override
+    public void resetNoteShown() {
+        requireAllNonNull(noteContentConfig);
+        noteContentConfig.resetNote();
+    }
+
+    @Override
+    public Note getNoteShown() {
+        return noteContentConfig.getNote();
+    }
+
+    @Override
+    public String getEditedNoteShownContent() {
+        requireAllNonNull(noteContentConfig);
+        return noteContentConfig.getEditedContent();
+    }
+
+    @Override
+    public boolean onEditModeNote() {
+        requireAllNonNull(noteContentConfig);
+        return noteContentConfig.onEditMode();
     }
 
     @Override
@@ -141,6 +205,65 @@ public class ModelManager implements Model {
         noteBook.setNote(target, editedContact);
     }
 
+    @Override
+    public void setNoteContentConfig(NoteContentConfig noteContentConfig) {
+        requireAllNonNull(noteContentConfig);
+        this.noteContentConfig = noteContentConfig;
+    }
+
+    public void sortNote() {
+        noteBook.sortNote();
+    }
+
+    public void sortNoteByTime() {
+        noteBook.sortNoteByTime();
+    }
+
+    @Override
+    public void mergeNote(Note firstNote, Note secondNote) {
+        noteBook.deleteNote(firstNote);
+        noteBook.deleteNote(secondNote);
+        Note updatedNote = combineNote(firstNote, secondNote);
+        noteBook.addNote(updatedNote);
+        updateFilteredNoteList(PREDICATE_SHOW_ALL_NOTES);
+    }
+
+    private Note combineNote(Note firstNote, Note secondNote) {
+        String firstNoteContent = firstNote.getNote();
+        String secondNoteContent = secondNote.getNote();
+        String combinedNote = firstNoteContent + " " + secondNoteContent;
+
+        Set<Tag> firstNoteTag = firstNote.getTags();
+        Set<Tag> secondNoteTag = secondNote.getTags();
+        Set<Tag> combinedTag = combineTag(firstNoteTag, secondNoteTag);
+
+        LocalDateTime createTime = now();
+
+        LocalDateTime lastEditTime = now();
+
+        Boolean firstNoteIsDone = firstNote.isDone();
+        Boolean secondNoteIsDone = secondNote.isDone();
+        Boolean combinedIsDone = firstNoteIsDone && secondNoteIsDone;
+
+        return new Note(combinedNote, combinedTag, createTime, lastEditTime, combinedIsDone);
+    }
+
+    private Set<Tag> combineTag(Set<Tag> firstNoteTag, Set<Tag> secondNoteTag) {
+        Set<Tag> combinedTag = new HashSet<>();
+
+        for (Tag tag : firstNoteTag) {
+            combinedTag.add(tag);
+        }
+
+        for (Tag tag : secondNoteTag) {
+            if (!firstNoteTag.contains(tag)) {
+                combinedTag.add(tag);
+            }
+        }
+
+        return combinedTag;
+    }
+
     //=========== Dictionary ===================================================================================
     @Override
     public boolean hasContent(Content content) {
@@ -149,50 +272,91 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addContent(Content content) {
+        requireNonNull(content);
+        updateFilteredContentList(PREDICATE_SHOW_ALL_CONTENTS);
+    }
+
+    @Override
     public ReadOnlyDictionary getDictionary() {
         return dictionary;
+    }
+
+    @Override
+    public boolean hasDefinition(Definition definition) {
+        requireNonNull(definition);
+        return definitionBook.hasDefinition(definition);
+    }
+
+    @Override
+    public void addDefinition(Definition definition) {
+        requireNonNull(definition);
+        updateFilteredDefinitionList(PREDICATE_SHOW_ALL_DEFINITION);
+    }
+
+    @Override
+    public ReadOnlyDefinitionBook getDefinitionBook() {
+        return definitionBook;
+    }
+
+    @Override
+    public void showDictionaryContent(DisplayableContent content) {
+        requireAllNonNull(content);
+        requireAllNonNull(dictionaryContentConfig);
+        dictionaryContentConfig.setDisplayContent(content);
+    }
+
+    @Override
+    public void setDictionaryContentConfig(DictionaryContentConfig dictionaryContentConfig) {
+        requireAllNonNull(dictionaryContentConfig);
+        this.dictionaryContentConfig = dictionaryContentConfig;
     }
 
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setContactsList(ReadOnlyContactsList contactsList) {
+        this.contactsList.resetData(contactsList);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyContactsList getContactsList() {
+        return contactsList;
     }
 
     @Override
     public boolean hasContact(Contact contact) {
         requireNonNull(contact);
-        return addressBook.hasContact(contact);
+        return contactsList.hasContact(contact);
     }
 
     @Override
     public void deleteContact(Contact target) {
-        addressBook.removeContact(target);
+        contactsList.removeContact(target);
     }
 
     @Override
     public void addContact(Contact contact) {
-        addressBook.addContact(contact);
+        contactsList.addContact(contact);
         updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
     }
 
     @Override
     public void emailContact(Contact contact) {
         requireNonNull(contact);
-        addressBook.emailContact(contact);
+        contactsList.emailContact(contact);
+    }
+
+    @Override
+    public void sortContactsByFrequencyCounter() {
+        contactsList.sortByFrequencyCounter();
     }
 
     @Override
     public void setContact(Contact target, Contact editedContact) {
         requireAllNonNull(target, editedContact);
 
-        addressBook.setContact(target, editedContact);
+        contactsList.setContact(target, editedContact);
     }
 
     //=========== Filtered List Accessors =============================================================
@@ -217,6 +381,17 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Definition> getFilteredDefinitionList() {
+        return filteredDefinition;
+    }
+
+    @Override
+    public ObservableList<? extends DisplayableContent> getFilteredCurrentDictionaryList() {
+
+        return dictionaryContentConfig.isContentVisible() ? filteredContent : filteredDefinition;
+    }
+
+    @Override
     public void updateFilteredContactList(Predicate<Contact> predicate) {
         requireNonNull(predicate);
         filteredContacts.setPredicate(predicate);
@@ -235,6 +410,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateFilteredDefinitionList(Predicate<Definition> predicate) {
+        requireNonNull(predicate);
+        filteredDefinition.setPredicate(predicate);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -248,7 +429,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return contactsList.equals(other.contactsList)
                 && userPrefs.equals(other.userPrefs)
                 && filteredContacts.equals(other.filteredContacts);
     }

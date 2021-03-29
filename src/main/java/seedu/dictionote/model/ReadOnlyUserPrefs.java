@@ -11,10 +11,12 @@ public interface ReadOnlyUserPrefs {
 
     GuiSettings getGuiSettings();
 
-    Path getAddressBookFilePath();
+    Path getContactsListFilePath();
 
     Path getNoteBookFilePath();
 
     Path getDictionaryFilePath();
+
+    Path getDefinitionBookFilePath();
 
 }

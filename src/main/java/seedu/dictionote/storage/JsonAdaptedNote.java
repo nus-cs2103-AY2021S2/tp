@@ -1,5 +1,6 @@
 package seedu.dictionote.storage;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -25,35 +26,47 @@ class JsonAdaptedNote {
 
     private final String note;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-
+    private final LocalDateTime createTime;
+    private final LocalDateTime editTime;
+    private final Boolean isDone;
     /**
      * Constructs a {@code JsonAdaptedNote} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedNote(@JsonProperty("note") String note,
-                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                           @JsonProperty("createTime") LocalDateTime createTime,
+                           @JsonProperty("editTime") LocalDateTime editTime,
+                           @JsonProperty("isDone") Boolean isDone) {
         this.note = note;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.createTime = createTime;
+        this.editTime = editTime;
+        this.isDone = isDone;
     }
 
     /**
      * Converts a given {@code Note} into this class for Jackson use.
      */
     public JsonAdaptedNote(Note source) {
-        note = source.getNote();
-        tagged.addAll(source.getTags().stream()
+        this.note = source.getNote();
+        this.tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        this.createTime = source.getCreateTime();
+        this.editTime = source.getLastEditTime();
+        this.isDone = source.isDone();
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Note} object.
+     * Converts this Jackson-friendly adapted note object into the model's {@code Note} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted note.
      */
     public Note toModelType() throws IllegalValueException {
+
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
@@ -63,7 +76,7 @@ class JsonAdaptedNote {
         }
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Note(note, modelTags);
+        return new Note(note, modelTags, createTime, editTime, isDone);
     }
 
 }

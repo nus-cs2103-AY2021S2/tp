@@ -15,10 +15,10 @@ import seedu.dictionote.model.tag.Tag;
  * Represents a Note in the dictionote book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Note {
+public class Note implements Comparable<Note> {
     private final String note;
     // Data fields
-    private final Set<Tag> tags = new HashSet<>();
+    private Set<Tag> tags = new HashSet<>();
     private LocalDateTime createTime;
     private LocalDateTime lastEditTime;
     private Boolean isDone;
@@ -26,6 +26,20 @@ public class Note {
     /**
      * Every field must be present and not null.
      */
+
+    public Note(String note) {
+        requireAllNonNull(note, tags);
+        this.note = note;
+        this.tags = new HashSet<>();
+        this.createTime = now();
+        this.lastEditTime = now();
+        this.isDone = false;
+    }
+
+    /**
+     * Constructor with the note and tag
+     */
+
     public Note(String note, Set<Tag> tags) {
         requireAllNonNull(note, tags);
         this.note = note;
@@ -44,15 +58,19 @@ public class Note {
         this.isDone = isDone;
     }
 
-    private Note(String note, Set<Tag> tags, LocalDateTime createdTime) {
+    /**
+     * Constructor with the note and tag
+     */
+
+    public Note(String note, Set<Tag> tags, LocalDateTime createdTime,
+                 LocalDateTime lastEditTime, Boolean isDone) {
         requireAllNonNull(note, tags);
         this.note = note;
         this.tags.addAll(tags);
         this.createTime = createdTime;
-        this.lastEditTime = now();
-        this.isDone = true;
+        this.lastEditTime = lastEditTime;
+        this.isDone = isDone;
     }
-
     /**
      * Method to call the above private constructor for note.
      */
@@ -62,12 +80,25 @@ public class Note {
         return new Note(note, tags, createdTime, isDone);
     }
 
+    public Note createEditedNote(String note, Set<Tag> tags, LocalDateTime createdTime,
+                                 LocalDateTime lastEditTime, Boolean isDone) {
+        return new Note(note, tags, createdTime, lastEditTime, isDone);
+    }
+
     /**
      * Method to call the above private constructor for note.
      */
 
     public Note markAsDoneNote(String note, Set<Tag> tags, LocalDateTime createdTime) {
-        return new Note(note, tags, createdTime);
+        return new Note(note, tags, createdTime, true);
+    }
+
+    /**
+     * Method to call the above private constructor for note.
+     */
+
+    public Note markAsUndoneNote(String note, Set<Tag> tags, LocalDateTime createdTime) {
+        return new Note(note, tags, createdTime, false);
     }
 
     public String getNote() {
@@ -126,7 +157,8 @@ public class Note {
 
         Note otherNote = (Note) other;
         return otherNote.getNote().equals(getNote())
-                && otherNote.getTags().equals(getTags());
+                && otherNote.getTags().equals(getTags())
+                && otherNote.isDone().equals(isDone());
     }
 
     @Override
@@ -135,20 +167,32 @@ public class Note {
         return Objects.hash(note, tags);
     }
 
+    //Sorting by alphabet
+    public int compareTo(Note otherNote) {
+        return this.getNote().compareTo(otherNote.getNote());
+    }
+
+    public String createFileName() {
+        return this.getNote() + ".txt";
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getNote());
+        builder.append(getNote() + "\n");
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
+            builder.append("Tags: ");
             tags.forEach(builder::append);
         }
-        builder.append("; Time Created: ");
-        builder.append(this.createTime.toString());
-        builder.append("; Last Edited: ");
-        builder.append(this.lastEditTime.toString());
+        builder.append("\n");
+        builder.append("Time Created: ");
+        builder.append(this.createTime.toString() + "\n");
+        builder.append("Last Edited: ");
+        builder.append(this.lastEditTime.toString() + "\n");
+        builder.append("Done Status: ");
+        builder.append(this.isDone.toString() + "\n");
 
         return builder.toString();
     }

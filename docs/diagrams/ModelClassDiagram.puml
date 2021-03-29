@@ -1,56 +1,93 @@
 @startuml
 !include style.puml
-skinparam arrowThickness 1.1
+skinparam arrowThickness 1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
+Class ReadOnlyContactsList
+Class ReadOnlyDefinitionBook
+Class ReadOnlyNoteBook
+Class DefinitionBook
+Class Dictionary
+Class NoteBook
+Class UserPrefs
+Class DictionaryBook
+Class ContactsList
 
-Package Person {
-Class Person
+Package Contact {
+Class Contact
 Class Address
 Class Email
 Class Name
 Class Phone
-Class UniquePersonList
+Class UniqueContactList
 }
 
 Package Tag {
 Class Tag
 }
+
+
+Package Note {
+Class Note
+Class UniqueNoteList
 }
 
+Package Dictionary {
+Class Content
+Class Definition
+Class UniqueDefinitionList
+}
+}
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+ContactsList .up.|> ReadOnlyContactsList
+NoteBook .up.|> ReadOnlyNoteBook
+DefinitionBook .up.|> ReadOnlyDefinitionBook
+
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
+ModelManager o--> "1" ContactsList
+ModelManager o--> "1" NoteBook
+ModelManager o--> "1" DictionaryBook
+ModelManager o--> "1" DefinitionBook
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+ContactsList *--> "1" UniqueContactList
+UniqueContactList o--> "*" Contact
+Contact *--> Name
+Contact *--> Phone
+Contact *--> Email
+Contact *--> Address
+Contact *--> "*" Tag
+
+NoteBook *--> "1" UniqueNoteList
+UniqueNoteList o--> "*" Note
+Note *--> "*" Tag
+
+
+DictionaryBook *--> "1" UniqueDefinitionList
+UniqueDefinitionList o--> "*" Definition
+UniqueDefinitionList o--> "*" Content
+
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
-ModelManager ----->" ~* filtered list" Person
+ModelManager ----->" ~* filtered list" Contact
+ModelManager ----->" ~* filtered list" Note
+ModelManager ----->" ~* filtered list" Content
+ModelManager ----->" ~* filtered list" Definition
+
 @enduml

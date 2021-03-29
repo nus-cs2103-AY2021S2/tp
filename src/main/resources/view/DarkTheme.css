@@ -3,10 +3,11 @@
     background-color: #383838; /* Used in the default.html file */
 }
 
+
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: #555555;
+    -fx-text-fill: #f4f5f0;
     -fx-opacity: 0.9;
 }
 .label-normal {
@@ -17,15 +18,15 @@
 }
 
 .label-bright {
-    -fx-font-size: 11pt;
+    -fx-font-size: 14pt;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
 
 .label-header {
-    -fx-font-size: 32pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 20pt;
+    -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
@@ -33,6 +34,16 @@
 .text-field {
     -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Semibold";
+}
+
+.text-area {
+    -fx-font-size: 14pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: #f4f5f0;
+}
+
+.text-area .content{
+   -fx-background-color: derive(#1d1d1d, 20%);;
 }
 
 .tab-pane {
@@ -285,6 +296,14 @@
     -fx-font-style: italic;
     -fx-fill: white;
     -fx-text-fill: white;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: derive(#1d1d1d, 20%);
+}
+.scroll-pane {
+    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#1d1d1d, 20%);
 }
 
 .scroll-bar {

@@ -3,6 +3,7 @@ package seedu.dictionote.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_CONTENT;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -12,13 +13,16 @@ import static seedu.dictionote.testutil.Assert.assertThrows;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
-import seedu.dictionote.model.AddressBook;
+import seedu.dictionote.model.ContactsList;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
+import seedu.dictionote.model.dictionary.Content;
+import seedu.dictionote.model.note.Note;
 import seedu.dictionote.testutil.EditContactDescriptorBuilder;
 import seedu.dictionote.testutil.EditNoteDescriptorBuilder;
 
@@ -51,6 +55,8 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String NOTE_DESC = " " + PREFIX_CONTENT + VALID_NOTE_CONTENT;
+    public static final String NOTE_REPLACE_DESC = " " + PREFIX_CONTENT + VALID_REPLACED_NOTE_CONTENT;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -75,7 +81,7 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         DESC_NOTE = new EditNoteDescriptorBuilder().withNote(VALID_NOTE_CONTENT).build();
-        DESC_REPLACED_NOTE = new EditNoteDescriptorBuilder().withNote(VALID_NOTE_CONTENT).build();
+        DESC_REPLACED_NOTE = new EditNoteDescriptorBuilder().withNote(VALID_REPLACED_NOTE_CONTENT).build();
     }
 
     /**
@@ -113,11 +119,11 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        ContactsList expectedContactsList = new ContactsList(actualModel.getContactsList());
         List<Contact> expectedFilteredList = new ArrayList<>(actualModel.getFilteredContactList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedContactsList, actualModel.getContactsList());
         assertEquals(expectedFilteredList, actualModel.getFilteredContactList());
     }
 
@@ -133,6 +139,52 @@ public class CommandTestUtil {
         model.updateFilteredContactList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredContactList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the note at the given {@code targetIndex} in the
+     * {@code model}'s dictionote book.
+     */
+    public static void showNoteAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredNoteList().size());
+
+        Note note = model.getFilteredNoteList().get(targetIndex.getZeroBased());
+        Predicate<Note> showSelectedNotesPredicate = x -> x.equals(note);
+        model.updateFilteredNoteList(showSelectedNotesPredicate);
+
+        assertEquals(1, model.getFilteredNoteList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the note at the given {@code targetIndex} in the
+     * {@code model}'s dictionote book.
+     */
+    public static void showNoteAtTwoIndexes(Model model, Index firstTargetIndex, Index secondTargetIndex) {
+        assertTrue(firstTargetIndex.getZeroBased() < model.getFilteredNoteList().size());
+        assertTrue(secondTargetIndex.getZeroBased() < model.getFilteredNoteList().size());
+
+        Note firstNote = model.getFilteredNoteList().get(firstTargetIndex.getZeroBased());
+        Note secondNote = model.getFilteredNoteList().get(secondTargetIndex.getZeroBased());
+
+        Predicate<Note> showSelectedNotesPredicate = x -> (x.equals(firstNote) || x.equals(secondNote));
+        model.updateFilteredNoteList(showSelectedNotesPredicate);
+
+        assertEquals(2, model.getFilteredNoteList().size());
+    }
+
+
+    /**
+     * Updates {@code model}'s filtered list to show only the content at the given {@code targetIndex} in the
+     * {@code model}'s dictionote book.
+     */
+    public static void showContentAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredContentList().size());
+
+        Content content = model.getFilteredContentList().get(targetIndex.getZeroBased());
+        Predicate<Note> showSelectedContentsPredicate = x -> x.equals(content);
+        model.updateFilteredNoteList(showSelectedContentsPredicate);
+
+        assertEquals(1, model.getFilteredContentList().size());
     }
 
 }

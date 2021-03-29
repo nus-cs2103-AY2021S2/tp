@@ -17,6 +17,8 @@ import seedu.dictionote.logic.commands.enums.UiActionOption;
  */
 public class TypicalUiActions {
 
+    public static final int[] VALID_UI_POSITION = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+
     private static final String VALID_OPTION_1 = OPTION_ALL_PANEL;
     private static final UiActionOption EXCEPTION_OPTION_1 = UiActionOption.ALL;
 
@@ -56,4 +58,5 @@ public class TypicalUiActions {
         EXCEPTION_OPTION_4, EXCEPTION_OPTION_5, EXCEPTION_OPTION_6,
         EXCEPTION_OPTION_7, EXCEPTION_OPTION_8, EXCEPTION_OPTION_9
     };
+
 }

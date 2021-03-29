@@ -14,6 +14,7 @@ import seedu.dictionote.model.contact.Address;
 import seedu.dictionote.model.contact.Email;
 import seedu.dictionote.model.contact.Name;
 import seedu.dictionote.model.contact.Phone;
+import seedu.dictionote.model.note.Note;
 import seedu.dictionote.model.tag.Tag;
 
 /**
@@ -22,6 +23,7 @@ import seedu.dictionote.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_POSITION = "Position is not a between 1 to 9 (inclusively).";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -130,22 +132,70 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code note} is invalid.
      */
-    public static String parseNote(String noteContent) throws ParseException {
+    public static Note parseNote(String noteContent) throws ParseException {
         requireNonNull(noteContent);
-        String trimmedName = noteContent.trim();
-        return trimmedName;
+        Note note = new Note(noteContent);
+        return note;
     }
 
     /**
-     * Parses a {@code String dictionaryContent} into a {@code String}.
+     * Parses a {@code String week} into a {@code String}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code note} is invalid.
+     * @throws ParseException if the given {@code week} is invalid.
      */
-    public static String parseContent(String dictionaryContent) throws ParseException {
-        requireNonNull(dictionaryContent);
-        String trimmedName = dictionaryContent.trim();
-        return trimmedName;
+    public static String parseWeek(String week) throws ParseException {
+        requireNonNull(week);
+        String trimmedWeek = week.trim();
+        return trimmedWeek;
+    }
+
+    /**
+     * Parses a {@code String header} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code header} is invalid.
+     */
+    public static String parseHeader(String header) throws ParseException {
+        requireNonNull(header);
+        String trimmedHeader = header.trim();
+        return trimmedHeader;
+    }
+
+    /**
+     * Parses a {@code String maincontent} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code maincontent} is invalid.
+     */
+    public static String parseMainContent(String maincontent) throws ParseException {
+        requireNonNull(maincontent);
+        String trimmedMainContent = maincontent.trim();
+        return trimmedMainContent;
+    }
+
+    /**
+     * Parses a {@code String term} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code term} is invalid.
+     */
+    public static String parseTerm(String term) throws ParseException {
+        requireNonNull(term);
+        String trimmedTerm = term.trim();
+        return trimmedTerm;
+    }
+
+    /**
+     * Parses a {@code String defs} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code defs} is invalid.
+     */
+    public static String parseDefs(String defs) throws ParseException {
+        requireNonNull(defs);
+        String trimmedDefs = defs.trim();
+        return trimmedDefs;
     }
 
     /** Parses a {@code String option} into a {@code UiOptionAction}.
@@ -160,5 +210,24 @@ public class ParserUtil {
             throw new ParseException(UiActionOption.MESSAGE_CONSTRAINTS);
         }
         return UiActionOption.getUiActionOption(trimmedOption);
+    }
+
+    /**
+     * Parses {@code position} into an {@code int} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified position is invalid (not between 1 to 9).
+     */
+    public static int parsePosition(String oneBasedIndex) throws ParseException {
+        String trimmedIndex = oneBasedIndex.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(MESSAGE_INVALID_POSITION);
+        }
+
+        int position = Integer.parseInt(trimmedIndex);
+
+        if (position > 9 || position < 1) {
+            throw new ParseException(MESSAGE_INVALID_POSITION);
+        }
+        return position;
     }
 }

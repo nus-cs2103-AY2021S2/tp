@@ -24,10 +24,11 @@ import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
-import seedu.dictionote.model.ReadOnlyAddressBook;
+import seedu.dictionote.model.ReadOnlyContactsList;
 import seedu.dictionote.model.UserPrefs;
 import seedu.dictionote.model.contact.Contact;
-import seedu.dictionote.storage.JsonAddressBookStorage;
+import seedu.dictionote.storage.JsonContactsListStorage;
+import seedu.dictionote.storage.JsonDefinitionBookStorage;
 import seedu.dictionote.storage.JsonDictionaryStorage;
 import seedu.dictionote.storage.JsonNoteBookStorage;
 import seedu.dictionote.storage.JsonUserPrefsStorage;
@@ -45,15 +46,17 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonContactsListStorage addressBookStorage =
+                new JsonContactsListStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         JsonNoteBookStorage noteBookStorage =
                 new JsonNoteBookStorage(temporaryFolder.resolve("notebook.json"));
         JsonDictionaryStorage dictionaryStorage =
                 new JsonDictionaryStorage(temporaryFolder.resolve("dictionary.json"));
+        JsonDefinitionBookStorage definitionBookStorage =
+                new JsonDefinitionBookStorage(temporaryFolder.resolve("definition.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage,
-                noteBookStorage, dictionaryStorage);
+                noteBookStorage, dictionaryStorage, definitionBookStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -78,16 +81,18 @@ public class LogicManagerTest {
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        JsonContactsListStorage addressBookStorage =
+                new JsonContactsListIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         JsonNoteBookStorage noteBookStorage =
                 new JsonNoteBookStorage(temporaryFolder.resolve("notebook.json"));
         JsonDictionaryStorage dictionaryStorage =
                 new JsonDictionaryStorage(temporaryFolder.resolve("dictionary.json"));
+        JsonDefinitionBookStorage definitionBookStorage =
+                new JsonDefinitionBookStorage(temporaryFolder.resolve("definition.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage,
-                noteBookStorage, dictionaryStorage);
+                noteBookStorage, dictionaryStorage, definitionBookStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -141,8 +146,8 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
-                model.getNoteBook(), model.getDictionary());
+        Model expectedModel = new ModelManager(model.getContactsList(), new UserPrefs(),
+                model.getNoteBook(), model.getDictionary(), model.getDefinitionBook());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -162,13 +167,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonContactsListIoExceptionThrowingStub extends JsonContactsListStorage {
+        private JsonContactsListIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void saveContactsList(ReadOnlyContactsList addressBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

@@ -46,7 +46,6 @@ public class NoteBook implements ReadOnlyNoteBook {
      */
     public void resetData(ReadOnlyNoteBook newData) {
         requireNonNull(newData);
-
         setNotes(newData.getNoteList());
     }
 
@@ -88,6 +87,14 @@ public class NoteBook implements ReadOnlyNoteBook {
     @Override
     public ObservableList<Note> getNoteList() {
         return notes.asUnmodifiableObservableList();
+    }
+
+    public void sortNote() {
+        notes.sort();
+    }
+
+    public void sortNoteByTime() {
+        notes.sortByTime();
     }
 
     @Override

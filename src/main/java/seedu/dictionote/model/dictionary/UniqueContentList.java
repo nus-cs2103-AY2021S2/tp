@@ -8,7 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.dictionote.model.contact.exceptions.DuplicateContactException;
+import seedu.dictionote.model.dictionary.exceptions.DuplicateContentException;
 
 /**
  * A list of notes that enforces uniqueness between its elements and does not allow nulls.
@@ -36,13 +36,13 @@ public class UniqueContentList implements Iterable<Content> {
     }
 
     /**
-     * Adds a note to the list.
-     * The note must not already exist in the list.
+     * Adds content to the list.
+     * The content must not already exist in the list.
      */
     public void add(Content toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicateContactException();
+            throw new DuplicateContentException();
         }
         internalList.add(toAdd);
     }
@@ -62,7 +62,7 @@ public class UniqueContentList implements Iterable<Content> {
     public void setContent(List<Content> content) {
         requireAllNonNull(content);
         if (!contentAreUnique(content)) {
-            throw new DuplicateContactException();
+            throw new DuplicateContentException();
         }
 
         internalList.setAll(content);
