@@ -40,7 +40,7 @@ public class GenderFilter implements Predicate<Gender> {
 
     @Override
     public String toString() {
-        return genderFilter;
+        return "Gender: " + genderFilter;
     }
 
     @Override

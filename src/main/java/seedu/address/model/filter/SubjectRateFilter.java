@@ -41,7 +41,7 @@ public class SubjectRateFilter implements Predicate<SubjectRate> {
 
     @Override
     public String toString() {
-        return subjectRateFilter;
+        return "Subject Rate: " + subjectRateFilterInequality + " " + subjectRateFilterNumber.toString();
     }
 
     @Override
