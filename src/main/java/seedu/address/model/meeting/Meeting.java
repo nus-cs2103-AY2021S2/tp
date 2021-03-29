@@ -20,8 +20,7 @@ import seedu.address.model.scheduler.Schedulable;
 public class Meeting implements Schedulable {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "The start date time of a meeting should be strictly earlier than the terminate date time."
-                    + "The meeting must start and end on the same date";
+            "The start date time of a meeting should be strictly earlier than the terminate date time.";
 
 
     // Identity fields
@@ -96,8 +95,7 @@ public class Meeting implements Schedulable {
      * Returns true if a given date time for the meeting is valid.
      */
     public static boolean isValidStartTerminate(DateTime start, DateTime terminate) {
-        boolean isSameDate = start.toLocalDate().equals(terminate.toLocalDate());
-        return start.compareTo(terminate) < 0 && isSameDate;
+        return start.compareTo(terminate) < 0;
     }
     /**
      * Set the connection indices to meetings.

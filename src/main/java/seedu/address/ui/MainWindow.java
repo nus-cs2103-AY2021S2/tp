@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.sql.Time;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +24,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.model.scheduler.Timetable;
 
 import static seedu.address.ui.Test.*;
 
