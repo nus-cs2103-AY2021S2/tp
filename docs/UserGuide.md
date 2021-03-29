@@ -30,6 +30,8 @@ title: User Guide
   * [3.8. Query food intake](#38-query-food-intake)
      * [3.8.1. Query food intake on a day](#381-query-food-intake-on-a-day)
      * [3.8.2. Query food intake over a period of days](#382-query-food-intake-over-a-period-of-days)
+  * [4. Progress report](#4-progress-report)
+     * [4.1 Generate progress report](#41-generate-progress-report)
 * [Command summary](#command-summary)
 <!--te-->
 
@@ -89,7 +91,9 @@ Other commands will be unavailable until this command is first input.
 
 **Expected output:**
 
-Success in updating user information
+<p align="center">
+  <img src="images/user-guide/bmi-result.png">
+</p>
 
 ### 1.2 Query weight, height and BMI
 
@@ -99,11 +103,9 @@ The user can query their weight and height everyday to see their progress.
 
 **Expected output:**
 
-Below is your current height and weight:\
-Last Updated: 2021-02-28\
-Weight: 100 kg\
-Height: 170 cm\
-BMI: 34.6 (High Risk of Obesity-related diseases)
+<p align="center">
+  <img src="images/user-guide/bmi-query-result.png">
+</p>
 
 ### 1.3 Update weight, height and ideal weight
 
@@ -116,7 +118,9 @@ This is recommended, so the user will have a more accurate view of their BMI sta
 
 **Expected output:**
 
-Success in updating user information
+<p align="center">
+  <img src="images/user-guide/bmi-result.png">
+</p>
 
 ## 2. Diet Plan Selector
 
@@ -128,8 +132,9 @@ The user can get a recommended diet plan based on the their current BMI stored i
 
 **Expected output:**
 
-Here are the recommended weight loss diet plans based on your BMI of 24.22:
-1. Weight Loss Diet (Less-carbs)
+<p align="center">
+  <img src="images/user-guide/plan-recommend-result.png">
+</p>
 
 ### 2.2 View active diet plan
 
@@ -139,12 +144,9 @@ Shows the current active diet plan previously selected by the user.
 
 **Expected output:**
 
-You are on the Weight Loss Diet (Less-carbs)!\
-Here's the information tailored to your BMI:\
-Daily calories intake: 1,648 kcal\
-Daily Protein intake: 145 g\
-Daily Carbohydrates intake: 143 g\
-Daily Fat intake: 55 g
+<p align="center">
+  <img src="images/user-guide/plan-current-result.png">
+</p>
 
 ### 2.3 Select active diet plan
 
@@ -156,12 +158,9 @@ Changes the current active diet plan to the newly specified plan.
 
 **Expected output:**
 
-You are now on the Weight Loss Diet (Less-carbs)!\
-Here's the information tailored to your BMI:\
-Daily calories intake: 1,648 kcal\
-Daily Protein intake: 145 g\
-Daily Carbohydrates intake: 143 g\
-Daily Fat intake: 55 g
+<p align="center">
+  <img src="images/user-guide/plan-set-result.png">
+</p>
 
 ### 2.4 List all available diet plans
 
@@ -171,11 +170,9 @@ Displays a list of available diet plans.
 
 **Expected output:**
 
-Here are the available diet plans:
-
-1. Weight Loss Diet
-2. Weight Gain Diet
-3. Muscle Gain Diet
+<p align="center">
+  <img src="images/user-guide/plan-list-result.png">
+</p>
 
 ### 2.5 View information about a particular diet plan
 
@@ -187,11 +184,9 @@ Displays information about a particular diet plan.
 
 **Expected output:**
 
-Here's more information about the Weight Loss plan:\
-Daily calories intake: 1,648 kcal\
-Daily Protein intake: 145 g\
-Daily Carbohydrates intake: 143 g\
-Daily Fat intake: 55 g
+<p align="center">
+  <img src="images/user-guide/plan-info-result.png">
+</p>
 
 ## 3. Macronutrients Tracker
 ### 3.1 Add food item
@@ -374,6 +369,21 @@ Queries all the existing food intake(s) over a period of days (both inclusive).
   <img src="images/user-guide/query-food-intake-period.png">
 </p>
 
+## 4. Progress report
+### 4.1 Generate progress report
+
+Generates a progress report based on the active diet plan. This command will calculate the user's food intakes against the daily requirements and report how much the user has adhered to the plan's requirements.
+
+**Format:** `progress`
+
+**Note:** An active diet plan must be selected before running this command.
+
+**Expected output:**
+
+<p align="center">
+  <img src="images/user-guide/progress-report.png">
+</p> 
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
@@ -399,3 +409,4 @@ Action | Format, Examples
 **Delete food intake** | `food_intake_delete d/DATE(in d MMM yyyy format) n/FOOD_NAME` <br> e.g., `food_intake_delete d/31 Mar 2021 n/tomato`
 **Query food intake on a day** | `food_intake_query d/DATE(in d MMM yyyy format)` <br> e.g., `food_intake_query d/31 Mar 2021`
 **Query food intake over a period of days** | `food_intake_query df/DATE(in d MMM yyyy format) dt/DATE(in d MMM yyyy format)` <br> e.g., `food_intake_query df/1 Mar 2021 dt/31 Mar 2021`
+**Generate progress report** | `progress`
