@@ -5,14 +5,16 @@ import static java.util.Objects.requireNonNull;
 import fooddiary.commons.util.AppUtil;
 
 /**
- * Represents a Entry's price in the food diary.
+ * Represents a Entry's price range in the food diary.
  * Guarantees: immutable; is valid as declared in {@link #isValidPrice(String)}
  */
 public class Price {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Price should only contain a integer (e.g. 7) between 0-999";
-    public static final String VALIDATION_REGEX = "^[0-9]{1,3}$";
+    public static final String PRICE_RANGE_DASH = "-";
+    public static final String PRICE_DOLLAR_SIGN = "$";
+    public static final String VALIDATION_REGEX = "^[0-9]{1,3}([" + PRICE_RANGE_DASH + "][0-9]{1,3})?$";
     public final String value;
 
     /**
@@ -30,7 +32,15 @@ public class Price {
      * Returns true if a given string is a valid price.
      */
     public static boolean isValidPrice(String test) {
-        return test.matches(VALIDATION_REGEX);
+        if (!test.matches(VALIDATION_REGEX)) {
+            return false;
+        }
+        if (!test.contains(PRICE_RANGE_DASH)) {
+            return true;
+        }
+        int lowerBoundPrice = Integer.parseInt(test.split(PRICE_RANGE_DASH)[0]);
+        int upperBoundPrice = Integer.parseInt(test.split(PRICE_RANGE_DASH)[1]);
+        return (lowerBoundPrice < upperBoundPrice);
     }
 
     @Override
