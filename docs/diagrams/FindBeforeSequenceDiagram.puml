@@ -36,11 +36,12 @@ activate DeadlineBeforeDatePredicate
 
 create FindTaskBeforeCommand
 FindTaskBeforeCommandParser -> FindTaskBeforeCommand
+deactivate DeadlineBeforeDatePredicate
 activate FindTaskBeforeCommand
 
 DeadlineBeforeDatePredicate --> FindTaskBeforeCommandParser : p
 FindTaskBeforeCommand --> FindTaskBeforeCommandParser : f
-deactivate DeadlineBeforeDatePredicate
+
 deactivate FindTaskBeforeCommand
 
 FindTaskBeforeCommandParser --> HeyMatezParser : f
