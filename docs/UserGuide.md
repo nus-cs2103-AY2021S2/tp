@@ -2,9 +2,14 @@
 layout: page
 title: User Guide
 ---
+Have you ever been overwhelmed by the number of assignments given by your module instructors? How amazing would it be 
+if you just have a helper, to note down those things for you, and remind you as the deadline gets closer. If 
+this is you, then ModuleBook3.5 is the right fit for you.
 
 ModuleBook3.5 is the go-to tool for busy students/professionals who are confident that typing can save them time. 
-Using ModuleBook3.5, one can organise and keep track of tasks and their deadlines without the need for consistent internet connection.
+Using ModuleBook3.5, one can organise and keep track of tasks and their deadlines without the need for consistent 
+internet connection.
+
 
 * Table of Contents
 {:toc}
@@ -99,34 +104,34 @@ Current module codes supported: CS1101S, CS1231S, CS2030, CS2040S, CS2101,
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Listing out tasks : `list`
+### List out tasks : `list`
 
 Shows a list of all tasks you have added.
 
 Format: `list`
 
 
-### Adding a task: `add`
+### Add a task: `add`
 
 Adds a task to ModuleBook3.5. All newly added tasks are not done by default.
 
-Format: `add n/TASK NAME m/MODULE d/DESCRIPTION [a/START TIME] b/DEADLINE w/WORKLOAD [t/TAG]…​`
+Format: `add n/TASK NAME m/MODULE d/DESCRIPTION [a/START TIME] b/DEADLINE w/WORKLOAD [r/RECURRENCE] [t/TAG]…​`
 
 * If you wish to include a start time for your task, the start time should not be later than deadline.
 
-<div markdown="span" class="alert alert-primary">:bulb: **ALERT:**
-Enter the time you wish to complete your task in the format: yyyy-MM-dd HH:mm or yyyy-MM-dd (HH:mm taken as current time)
-</div>
+* Recurrence should be either "daily", "weekly" or "monthly".
+
+* Enter the time you wish to complete your task in the format: yyyy-MM-dd HH:mm or yyyy-MM-dd (HH:mm set to 00:00)
 
 
 ![add message](images/addTaskUiV1.3.png)
 
 Examples:
 * `add n/v1.2 TP m/CS2103T d/implement basic features b/2021-03-13 23:59 w/3 t/urgent`
-* `add n/practice set 1 m/CS3230 d/practice master's theorem b/2021-03-15 00:00 w/1 t/optional`
+* `add n/practice sets m/CS3230 d/practice master's theorem a/2021-03-14 00:00 b/2021-03-15 00:00 w/1 r/weekly`
 
 
-### Deleting a task : `delete`
+### Delete a task : `delete`
 
 Deletes the specified task from the module book.
 
@@ -141,7 +146,7 @@ Examples:
 * `find CS2103T` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
 
-### Marking a task as done : `done`
+### Mark a task as done : `done`
 
 Mark an existing task as done. Done tasks are coloured green.
 
@@ -156,7 +161,7 @@ Examples:
 * `find CS2103T` followed by `done 1` marks the 1st task in the results of the `find` command as done.
 
 
-### Marking a task as not done : `notdone`
+### Mark a task as not done : `notdone`
 
 Mark an existing task as not done. Not done tasks are coloured pink.
 
@@ -171,7 +176,7 @@ Examples:
 * `find CS2103T` followed by `notdone 1` marks the 1st task in the results of the `find` command as not done.
 
 
-### Adding a tag: `tag`
+### Add a tag: `tag`
 
 Adds a tag to a task.
 
@@ -184,7 +189,7 @@ Examples:
 * `tag 1 t/SoftwareEng`
 
 
-### Searching tasks with name of task: `find`
+### Search tasks with name of task: `find`
 
 Searches for tasks with a name of task  provided.
 
@@ -197,7 +202,7 @@ Examples:
 * `find revise`
 
 
-### Searching tasks with tag: `findTag`
+### Search tasks with tag: `findTag`
 
 Searches for tasks with an associated tag.
 
@@ -210,7 +215,7 @@ Examples:
 * `findTag homework`
 
 
-### Searching tasks associated to a Module: `mod`
+### Search tasks associated to a Module: `mod`
 
 Searches for tasks of a specific Module.
 
@@ -223,7 +228,7 @@ Examples:
 * `mod CS3243`
 
 
-### Deleting tag of Task: `deleteTag`
+### Delete tag of Task: `deleteTag`
 
 Deletes a tag from its associated task.
 
@@ -238,14 +243,15 @@ Examples:
 * `deleteTag 1 t/homework`
 
 
-### Editing a task: `edit`
+### Edit a task: `edit`
 
 Edits an existing task in the module book.
 
-Format: `edit INDEX [n/NAME] [m/MODULE] [d/DESCRIPTION] [a/START TIME] [b/DEADLINE] [w/WORKLOAD] [t/TAG] …​`
+Format: `edit INDEX [n/NAME] [m/MODULE] [d/DESCRIPTION] [a/START TIME] [b/DEADLINE] [w/WORKLOAD] [r/RECURRENCE] [t/TAG] …​`
 
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
+* Recurrence should be either "daily", "weekly" or "monthly".
 * Existing values will be updated to the input values.
 * If you wish to include a start time for your task, the start time should not be later than deadline.
 * Editing tags through the `edit` command overrides all existing tags. If you wish to add or delete only certain tags, use `tag` and `deleteTag` commands instead.
@@ -256,7 +262,7 @@ Examples:
 *  `edit 2 b/2021-03-21` Edits the deadline of the 3rd task to `2021-03-25`
 
 
-### Sorting tasks : `sort`
+### Sort tasks : `sort`
 
 Sorts the list of all tasks by workload/deadline/module.
 
@@ -271,7 +277,7 @@ Examples:
 *  `sort t/` Sorts the tasks by number of tags in descending order.
 
 
-### Recurring tasks: `recur`
+### Recur tasks: `recur`
 
 Recurs a task either daily, monthly or weekly in the module book.
 
@@ -281,7 +287,7 @@ Format: `recur INDEX r/RECURRENCE`
 * `INDEX` refers to the index number displayed in ModuleBook3.5.
    It must be a positive integer.
 * `RECURRENCE` refers to the regularity of the task that recurs periodically.
-* `RECURRENCE` can only be `daily`, `weekly` or `monthly`. It is case-sensitive.
+* `RECURRENCE` can only be `daily`, `weekly` or `monthly`. It is case-insensitive.
 
 Examples:
 * `recur 1 r/monthly` Recurs the 1st task in ModuleBook3.5 every month.
@@ -292,25 +298,19 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Saving the data
+### Save data
 
 ModuleBook3.5 data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Editing the data file
+### Edit the data file
 
 ModuleBook3.5 data is saved as a JSON file `[JAR file location]/data/modulebook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, ModuleBook3.5 will discard all data and start with an empty data file at the next run.
 </div>
-
---------------------------------------------------------------------------------------------------------------------
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -329,15 +329,15 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **list** | `list`
-**add** | `add n/TASK NAME m/MODULE d/DESCRIPTION [a/START TIME] b/DEADLINE w/WORKLOAD [t/TAG]…​` <br> e.g., `add n/TP m/CS2103T d/Team tasks b/2021-01-20 20:00 w/3 t/tagname`
-**delete** | `delete INDEX`<br> e.g., `delete 3`
-**deleteTag** | `deleteTag INDEX [t/TAG NAME]`<br> e.g., `delete 3 [t/SoftwareEng]`
-**done** | `done INDEX`<br> e.g., `done 1`
-**notdone** | `notdone INDEX`<br> e.g., `notdone 1`
-**tag** | `tag INDEX [t/TAG NAME]`<br> e.g., `tag 1 [t/SoftwareEng]`
-**find** | `find KEYWORD`<br> e.g., `find Assignment`
-**findTag** | `findTag KEYWORD`<br> e.g., `find Assignment`
-**mod** | `mod MODULE`<br> e.g., `mod CS2103T`
-**edit** | `edit INDEX [d/DESCRIPTION] [b/DEADLINE]…​`<br> e.g., `edit 2 d/Eat Biscuits b/2021-03-21 10:10`
-**recur** | `recur INDEX r/RECURRENCE`<br> e.g., `recur 1 r/monthly`
-**sort** | `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/` or `sort t/` <br> e.g., `sort b/`
+**add** | `add n/TASK NAME m/MODULE d/DESCRIPTION [a/START TIME] b/DEADLINE w/WORKLOAD [r/RECURRENCE] [t/TAG]…​` <br> e.g. `add n/TP m/CS2103T d/Team tasks b/2021-01-20 20:00 w/3 t/tagname`
+**delete** | `delete INDEX`<br> e.g. `delete 3`
+**deleteTag** | `deleteTag INDEX [t/TAG NAME]`<br> e.g. `delete 3 [t/SoftwareEng]`
+**done** | `done INDEX`<br> e.g. `done 1`
+**notdone** | `notdone INDEX`<br> e.g. `notdone 1`
+**tag** | `tag INDEX [t/TAG NAME]`<br> e.g. `tag 1 [t/SoftwareEng]`
+**find** | `find KEYWORD`<br> e.g. `find Assignment`
+**findTag** | `findTag KEYWORD`<br> e.g. `find Assignment`
+**mod** | `mod MODULE`<br> e.g. `mod CS2103T`
+**edit** | `edit INDEX [d/DESCRIPTION] [b/DEADLINE]…​`<br> e.g. `edit 2 d/Eat Biscuits b/2021-03-21 10:10`
+**recur** | `recur INDEX r/RECURRENCE`<br> e.g. `recur 1 r/monthly`
+**sort** | `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/` or `sort t/` <br> e.g. `sort b/`
