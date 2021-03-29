@@ -1,29 +1,31 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.favouritecommands;
 
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
-public class UnfavouriteCommand extends Command {
+public class FavouriteCommand extends Command {
 
-    public static final String COMMAND_WORD = "unfavourite";
+    public static final String COMMAND_WORD = "favourite";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " ID";
 
-    public static final String MESSAGE_SUCCESS = "Unfavourite tutor: %s";
+    public static final String MESSAGE_SUCCESS = "Favourite tutor: %s";
 
     public static final String MESSAGE_INVALID_INDEX = "Invalid index %d";
 
-    private static final String MESSAGE_AlREADY_UNFAVOURITE = "Tutor is already not a favourite";
+    private static final String MESSAGE_AlREADY_FAVOURITE = "Tutor is already a favourite";
 
     private final Index targetIndex;
 
-    public UnfavouriteCommand(Index targetIndex) {
+    public FavouriteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -37,10 +39,10 @@ public class UnfavouriteCommand extends Command {
         }
 
         Person person = tutorList.get(targetIndex.getZeroBased());
-        if (!person.isFavourite()) {
-            throw new CommandException(MESSAGE_AlREADY_UNFAVOURITE);
+        if (person.isFavourite()) {
+            throw new CommandException(MESSAGE_AlREADY_FAVOURITE);
         } else {
-            person.setFavourite(false);
+            person.setFavourite(true);
         }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, person.getName()));
