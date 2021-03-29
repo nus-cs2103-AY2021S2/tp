@@ -35,7 +35,7 @@ public class Index {
 
     public static ArrayList<Index> getInterval(Index startIndex, Index endIndex) {
         ArrayList<Index> intervalList = new ArrayList<>();
-        for (int i = startIndex.getZeroBased();  i <= endIndex.getZeroBased(); i++) {
+        for (int i = startIndex.getZeroBased(); i <= endIndex.getZeroBased(); i++) {
             intervalList.add(new Index(i));
         }
         return intervalList;
