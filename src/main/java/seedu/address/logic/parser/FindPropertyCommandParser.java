@@ -73,8 +73,16 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
                             + FindPropertyCommand.MESSAGE_USAGE);
                     }
                 } else if (s.startsWith(String.valueOf(PREFIX_ADDRESS))) {
+                    StringBuilder address = new StringBuilder(key);
+                    int j = i + 1;
+                    while (j < nameKeywords.length && !nameKeywords[j].contains("/")) {
+                        address.append(" ");
+                        address.append(nameKeywords[j].strip());
+                        j++;
+                    }
+                    i = j - 1; //reduce by 1 for for loop increment
                     try {
-                        predicates.add(new PropertyAddressPredicate(parsePropertyAddress(key)));
+                        predicates.add(new PropertyAddressPredicate(parsePropertyAddress(address.toString())));
                     } catch (ParseException e) {
                         throw new ParseException("Wrong address format! \n"
                                 + e.getMessage()
@@ -85,6 +93,7 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
                     StringBuilder remarks = new StringBuilder(key);
                     int j = i + 1;
                     while (j < nameKeywords.length && !nameKeywords[j].contains("/")) {
+                        remarks.append(" ");
                         remarks.append(nameKeywords[j].strip());
                         j++;
                     }
@@ -103,6 +112,7 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
                     StringBuilder tags = new StringBuilder(key);
                     int j = i + 1;
                     while (j < nameKeywords.length && !nameKeywords[j].contains("/")) {
+                        tags.append(" ");
                         tags.append(nameKeywords[j]);
                         j++;
                     }
