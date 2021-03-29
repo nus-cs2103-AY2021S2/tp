@@ -5,12 +5,17 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import seedu.address.model.fee.MonthlyFee;
 
+import java.text.DecimalFormat;
+
 /**
  * An UI component that displays information of a {@code MonthlyFee}.
  */
 public class MonthlyFeeCard extends UiPart<Region> {
 
     private static final String FXML = "MonthlyFeeListCard.fxml";
+
+    // Used to round the fee to 2 decimal place
+    private static DecimalFormat twoDecimalFormat = new DecimalFormat("0.00");
 
     @FXML
     private Label fee;
@@ -24,7 +29,7 @@ public class MonthlyFeeCard extends UiPart<Region> {
      */
     public MonthlyFeeCard(MonthlyFee monthlyFee) {
         super(FXML);
-        fee.setText("$" + monthlyFee.getMonthlyFee());
+        fee.setText("$" + twoDecimalFormat.format(monthlyFee.getMonthlyFee()));
         month.setText(monthlyFee.getMonth().getMonthName());
         year.setText(monthlyFee.getYear().toString());
     }
