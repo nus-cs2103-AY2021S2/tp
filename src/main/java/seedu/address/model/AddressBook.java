@@ -98,6 +98,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedPassenger);
 
         passengers.setPassenger(target, editedPassenger);
+        pools.setPassenger(target, editedPassenger);
     }
 
     /**
