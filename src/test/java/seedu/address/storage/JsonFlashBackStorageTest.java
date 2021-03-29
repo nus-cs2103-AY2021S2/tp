@@ -26,11 +26,11 @@ public class JsonFlashBackStorageTest {
     public Path testFolder;
 
     @Test
-    public void readAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> readAddressBook(null));
+    public void readFlashBack_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> readFlashBack(null));
     }
 
-    private java.util.Optional<ReadOnlyFlashBack> readAddressBook(String filePath) throws Exception {
+    private java.util.Optional<ReadOnlyFlashBack> readFlashBack(String filePath) throws Exception {
         return new JsonFlashBackStorage(Paths.get(filePath)).readFlashBack(addToTestDataPathIfNotNull(filePath));
     }
 
@@ -42,26 +42,26 @@ public class JsonFlashBackStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readAddressBook("NonExistentFile.json").isPresent());
+        assertFalse(readFlashBack("NonExistentFile.json").isPresent());
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatFlashBack.json"));
+        assertThrows(DataConversionException.class, () -> readFlashBack("notJsonFormatFlashBack.json"));
     }
 
     @Test
-    public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidFlashcardFlashBack.json"));
+    public void readFlashBack_invalidFlashBack_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readFlashBack("invalidFlashcardFlashBack.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidFlashcardFlashBack.json"));
+    public void readFlashBack_invalidAndValidFlashBack_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readFlashBack("invalidAndValidFlashcardFlashBack.json"));
     }
 
     @Test
-    public void readAndSaveAddressBook_allInOrder_success() throws Exception {
+    public void readAndSaveFlashBack_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
         FlashBack original = getTypicalFlashBack();
         JsonFlashBackStorage jsonFlashBackStorage = new JsonFlashBackStorage(filePath);
@@ -87,24 +87,24 @@ public class JsonFlashBackStorageTest {
     }
 
     @Test
-    public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(null, "SomeFile.json"));
+    public void saveFlashBack_nullFlashBack_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveFlashBack(null, "SomeFile.json"));
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code flashBack} at the specified {@code filePath}.
      */
-    private void saveAddressBook(ReadOnlyFlashBack addressBook, String filePath) {
+    private void saveFlashBack(ReadOnlyFlashBack flashBack, String filePath) {
         try {
             new JsonFlashBackStorage(Paths.get(filePath))
-                    .saveFlashBack(addressBook, addToTestDataPathIfNotNull(filePath));
+                    .saveFlashBack(flashBack, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
     }
 
     @Test
-    public void saveAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(new FlashBack(), null));
+    public void saveFlashBack_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveFlashBack(new FlashBack(), null));
     }
 }
