@@ -223,17 +223,26 @@ Description:
 Options:
 * `u/new AMOUNT`
   
-    The `new` keyword can only be used on a property without an existing status
+    The `new` keyword can only be used on a property without an existing status. AMOUNT is the amount of money that is offered in the Option to Purchase
   
 
 * `u/proceed`
   
-    Can only be used on a property with an existing status. `proceed` would move the status on to the next one. e.g. Option to Sales Agreement or Sales Agreement to Completion where Option represents the state when the Option to Purchase has been exercised for the property, Sales Agreement represents the state when the Sales and Purchase Agreement has been issued and Completion represents the state when the sales of the property has completed.
+    Can only be used on a property with an existing status. `proceed` would move the status on to the next one. e.g. Option to Sales Agreement or Sales Agreement to Completion
   
 
 * `u/cancel`
 
   Can only be used on a property with an existing status. `cancel` would remove the status of the property
+
+Status Types:
+
+
+Status  | Meaning
+---------|--------------
+**Option** | Represents the state when the Option to Purchase has been exercised for the property
+**Sales Agreement** | Represents the state when the Sales and Purchase Agreement has been issued
+**Completion** | Represents the state when the sales of the property has completed
 
 Examples:
 *  `update 1 u/new 600000` Creates a new status with amount 600000 for the 1st property.
@@ -386,7 +395,7 @@ Action | Format, Examples
 **List all** | `list all`
 **List property** | `list property`
 **List appointment** | `list appointment`
-**Update status** | `update INDEX OPTION`<br><br> Options: <br><ul> <li>`u/new AMOUNT`</li> <li>`u/proceed`</li> <li>`u/cancel`</li> </ul> e.g.,`update 1 u/new 600000`
+**Update status** | `update INDEX OPTION`<br><br>  Options: <br>{::nomarkdown}<ul> <li>{:/}`u/new AMOUNT`{::nomarkdown}</li> <li>{:/}`u/proceed`{::nomarkdown}</li> <li>{:/}`u/cancel`{::nomarkdown}</li> </ul>{:/} e.g.,`update 1 u/new 600000`
 **Sort** | `sort appointment o/SORTING_ORDER k/SORTING_KEY `<br> e.g., `sort appointment o/asc k/datetime`<br><br>`sort property o/SORTING_ORDER k/SORTING_KEY `<br> e.g., `sort property o/asc k/price`
 **Find property** | `find property [KEYWORD]... [OPTION]...` <br><br> Options: <br>{::nomarkdown}<ul> <li>{:/}`[t/PROPERTY_TYPE]`{::nomarkdown}</li> <li>{:/}`[pl/PRICE_UPPER_LIMIT]`{::nomarkdown}</li> <li>{:/}`[pm/PRICE_LOWER_LIMIT]`{::nomarkdown}</li> </ul>{:/} e.g. `find property bishan north t/hdb pl/$1,000,000`
 **Find appointment** | `find property [KEYWORD]` <br> e.g., `find appointment bob`
