@@ -146,6 +146,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateVenueInBookings(VenueName oldVenueName, VenueName newVenueName){
+        requireAllNonNull(oldVenueName, newVenueName);
+        bookingSystem.updateVenueInBookings(oldVenueName, newVenueName);
+    }
+
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
         bookingSystem.setPerson(target, editedPerson);

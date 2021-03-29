@@ -258,4 +258,8 @@ public class BookingSystem implements ReadOnlyBookingSystem {
         requireNonNull(email);
         return persons.getPersonWithEmail(getPersonList(), email);
     }
+
+    public void updateVenueInBookings(VenueName oldVenueName, VenueName newVenueName) {
+        bookings.updateVenueInBookings(oldVenueName, newVenueName);
+    }
 }

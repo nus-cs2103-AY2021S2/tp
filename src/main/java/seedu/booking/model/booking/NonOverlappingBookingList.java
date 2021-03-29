@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import seedu.booking.model.booking.exceptions.BookingNotFoundException;
 import seedu.booking.model.booking.exceptions.DuplicateBookingException;
 import seedu.booking.model.booking.exceptions.OverlappingBookingException;
+import seedu.booking.model.venue.VenueName;
 
 /**
  * A list of bookings that enforces that is it non overlapping between its elements and does not allow nulls.
@@ -27,7 +28,7 @@ import seedu.booking.model.booking.exceptions.OverlappingBookingException;
 public class NonOverlappingBookingList implements Iterable<Booking> {
 
     private final ObservableList<Booking> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Booking> internalUnmodifiableList =
+    private ObservableList<Booking> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
@@ -166,5 +167,10 @@ public class NonOverlappingBookingList implements Iterable<Booking> {
             }
         }
         return true;
+    }
+
+    public void updateVenueInBookings(VenueName oldVenueName, VenueName newVenueName) {
+        internalList.stream().filter(x -> x.getVenueName().equals(oldVenueName))
+                .forEach(x -> x.setVenueName(newVenueName));
     }
 }

@@ -209,4 +209,6 @@ public interface Model {
      * as another existing booking in the booking system.
      */
     void setBooking(Booking target, Booking editedBooking);
+
+    void updateVenueInBookings(VenueName oldVenueName, VenueName newVenueName);
 }

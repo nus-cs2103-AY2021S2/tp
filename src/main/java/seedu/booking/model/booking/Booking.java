@@ -20,7 +20,7 @@ public class Booking {
     // Data fields
     private final Email bookerEmail;
     private Person booker;
-    private final VenueName venueName;
+    private VenueName venueName;
     private final Description description;
     private final StartTime bookingStart;
     private final EndTime bookingEnd;
@@ -193,5 +193,9 @@ public class Booking {
 
     public Person getBooker() {
         return booker;
+    }
+
+    public void setVenueName(VenueName venueName) {
+        this.venueName = venueName;
     }
 }
