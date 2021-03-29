@@ -282,7 +282,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 ### Glossary
 
 - **Driver**: An employee that is in-charge of driving passengers within the pool to their location.
-- **Mainstream OS**: Windows, Linux, Unix, MacOS
+- **GME**: GreenMileageEfforts, this software that is used to arrange carpooling.
+- **Mainstream OS**: Windows, Linux, Unix, MacOS.
 - **Pool**: A group of employees carpooling together. Consists of one driver and at least one passenger.
 - **Passenger**: An employee carpooling with at least one driver.
 - **Tag**: A miscellaneous piece of information about the pool, passenger, or driver that isn't captured by the other fields but is good to have.
