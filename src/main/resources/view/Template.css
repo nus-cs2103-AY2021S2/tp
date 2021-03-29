@@ -343,7 +343,7 @@
     -fx-font-size: 11px;
     -fx-text-fill: $cf;
 }
-s
+
 #commandTextField {
     -fx-background-color: transparent $background transparent $background;
     -fx-background-insets: 0;
