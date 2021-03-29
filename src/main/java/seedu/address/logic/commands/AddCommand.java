@@ -27,7 +27,7 @@ public class AddCommand extends Command {
             + PREFIX_TYPE + "TYPE "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "T-Shirt "
+            + PREFIX_NAME + "T Shirt "
             + PREFIX_SIZE + "45 "
             + PREFIX_COLOUR + "blue "
             + PREFIX_DRESSCODE + "casual "
