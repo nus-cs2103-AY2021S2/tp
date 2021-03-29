@@ -11,5 +11,6 @@ public class Messages {
     public static final String MESSAGE_READERS_LISTED_OVERVIEW = "%1$d readers listed!";
     public static final String MESSAGE_INVALID_BOOK_DISPLAYED_INDEX = "The book index provided is invalid.";
     public static final String MESSAGE_BOOKS_LISTED_OVERVIEW = "%1$d books listed!";
+    public static final String MESSAGE_RECORD_LISTED_OVERVIEW = "%1$d records listed!";
 
 }

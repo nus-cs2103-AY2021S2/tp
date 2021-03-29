@@ -11,6 +11,7 @@ import seedu.smartlib.model.book.Barcode;
  */
 public class Record {
 
+    protected final Name bookName;
     protected final Barcode barcode;
     protected final Name readerName;
     // null when creating an returning record to mark existing record as returned
@@ -21,11 +22,13 @@ public class Record {
     /**
      * Creates a borrowing record.
      *
+     * @param bookName bookname of the book that is borrowed.
      * @param barcode barcode of the book that is borrowed.
      * @param readerName reader who borrowed the book.
      * @param dateBorrowed borrow date of the book.
      */
-    public Record(Barcode barcode, Name readerName, DateBorrowed dateBorrowed) {
+    public Record(Name bookName, Barcode barcode, Name readerName, DateBorrowed dateBorrowed) {
+        this.bookName = bookName;
         this.barcode = barcode;
         this.readerName = readerName;
         this.dateBorrowed = dateBorrowed;
@@ -35,11 +38,13 @@ public class Record {
     /**
      * Creates a returning record.
      *
+     * @param bookName bookname of the book that is borrowed.
      * @param barcode barcode of the book that is borrowed.
      * @param readerName reader who borrowed the book.
      * @param dateReturned return date of the book.
      */
-    public Record(Barcode barcode, Name readerName, DateReturned dateReturned) {
+    public Record(Name bookName, Barcode barcode, Name readerName, DateReturned dateReturned) {
+        this.bookName = bookName;
         this.barcode = barcode;
         this.readerName = readerName;
         this.dateBorrowed = null;
@@ -49,12 +54,15 @@ public class Record {
     /**
      * Creates a borrowing record.
      *
+     * @param bookName bookname of the book that is borrowed.
      * @param barcode barcode of the book that is borrowed.
      * @param readerName reader who borrowed the book.
      * @param dateBorrowed borrow date of the book.
      * @param dateReturned return date of the book.
      */
-    public Record(Barcode barcode, Name readerName, DateBorrowed dateBorrowed, DateReturned dateReturned) {
+    public Record(Name bookName, Barcode barcode, Name readerName,
+                  DateBorrowed dateBorrowed, DateReturned dateReturned) {
+        this.bookName = bookName;
         this.barcode = barcode;
         this.readerName = readerName;
         this.dateBorrowed = dateBorrowed;
@@ -76,6 +84,15 @@ public class Record {
      */
     public void returnRecord(DateReturned dateReturned) {
         this.dateReturned = dateReturned;
+    }
+
+    /**
+     * Retrieves the bookName of the book associated with this record.
+     *
+     * @return the bookName of the book associated with this record.
+     */
+    public Name getBookName() {
+        return bookName;
     }
 
     /**

@@ -17,6 +17,7 @@ class JsonAdaptedRecord {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Record's %s field is missing!";
 
+    private final String bookName;
     private final String barcode;
     private final String readerName;
     private final String dateBorrowed;
@@ -25,16 +26,19 @@ class JsonAdaptedRecord {
     /**
      * Constructs a {@code JsonAdaptedRecord} with the given record details.
      *
+     * @param bookName associated with the record.
      * @param barcode barcode associated with the record.
      * @param readerName name of the reader associated with the record.
      * @param dateBorrowed borrow date associated with the record.
      * @param dateReturned return date associated with the record.
      */
     @JsonCreator
-    public JsonAdaptedRecord(@JsonProperty("barcode") String barcode,
+    public JsonAdaptedRecord(@JsonProperty("bookName") String bookName,
+                             @JsonProperty("barcode") String barcode,
                              @JsonProperty("readerName") String readerName,
                              @JsonProperty("dateBorrowed") String dateBorrowed,
                              @JsonProperty("dateReturned") String dateReturned) {
+        this.bookName = bookName;
         this.barcode = barcode;
         this.readerName = readerName;
         this.dateBorrowed = dateBorrowed;
@@ -47,6 +51,7 @@ class JsonAdaptedRecord {
      * @param source record to be converted.
      */
     public JsonAdaptedRecord(Record source) {
+        bookName = source.getBookName().toString();
         barcode = source.getBookBarcode().toString();
         readerName = source.getReaderName().toString();
         dateBorrowed = source.getDateBorrowed().toString();
@@ -65,6 +70,14 @@ class JsonAdaptedRecord {
      * @throws IllegalValueException if there were any data constraints violated in the adapted record.
      */
     public Record toModelType() throws IllegalValueException {
+
+        if (bookName == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        }
+        if (!Name.isValidName(bookName)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        }
+        final Name modelBookName = new Name(bookName);
 
         if (barcode == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Barcode.class.getSimpleName()));
@@ -97,7 +110,7 @@ class JsonAdaptedRecord {
         } else {
             modelDateReturned = new DateReturned(dateReturned);
         }
-        return new Record(modelBookBarcode, modelReaderName, modelDateBorrowed, modelDateReturned);
+        return new Record(modelBookName, modelBookBarcode, modelReaderName, modelDateBorrowed, modelDateReturned);
     }
 
 }

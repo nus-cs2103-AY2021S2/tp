@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_NAME_MAZE;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.smartlib.testutil.Assert.assertThrows;
 import static seedu.smartlib.testutil.TypicalModels.ALICE;
@@ -58,6 +59,7 @@ public class SmartLibTest {
         List<Reader> newReaders = Arrays.asList(ALICE, editedAlice);
 
         Record record = new Record(
+                new Name(VALID_NAME_MAZE),
                 new Barcode(Barcode.MAX_VALUE), new Name("Alex Yeoh"), new DateBorrowed("2021-01-22T23:30:00")
         );
         List<Record> newRecords = Arrays.asList(record, record);

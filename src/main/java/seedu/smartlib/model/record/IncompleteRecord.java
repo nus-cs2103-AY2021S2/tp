@@ -8,8 +8,6 @@ import seedu.smartlib.model.book.Barcode;
  */
 public class IncompleteRecord extends Record {
 
-    private final Name bookName;
-
     /**
      * Creates a borrowing record.
      *
@@ -18,8 +16,7 @@ public class IncompleteRecord extends Record {
      * @param dateBorrowed borrow date of the book.
      */
     public IncompleteRecord(Name bookName, Name readerName, DateBorrowed dateBorrowed) {
-        super(new Barcode(Barcode.TEMP_BARCODE_VALUE), readerName, dateBorrowed);
-        this.bookName = bookName;
+        super(bookName, new Barcode(Barcode.TEMP_BARCODE_VALUE), readerName, dateBorrowed);
     }
 
     /**
@@ -30,8 +27,7 @@ public class IncompleteRecord extends Record {
      * @param dateReturned return date of the book.
      */
     public IncompleteRecord(Name bookName, Name readerName, DateReturned dateReturned) {
-        super(new Barcode(Barcode.TEMP_BARCODE_VALUE), readerName, dateReturned);
-        this.bookName = bookName;
+        super(bookName, new Barcode(Barcode.TEMP_BARCODE_VALUE), readerName, dateReturned);
     }
 
     /**
@@ -40,7 +36,7 @@ public class IncompleteRecord extends Record {
      * @return the book name associated with this incomplete borrow record.
      */
     public Name getBookName() {
-        return bookName;
+        return this.bookName;
     }
 
 }

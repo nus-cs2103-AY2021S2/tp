@@ -67,7 +67,8 @@ public class ReturnCommand extends Command {
     private Record createProperRecord(Model model) {
         Barcode bookBarcode = model.getBookBarcodeForReturn(incompleteRecord.getBookName(),
                 incompleteRecord.getReaderName());
-        return new Record(bookBarcode, incompleteRecord.getReaderName(), incompleteRecord.getDateReturned());
+        return new Record(incompleteRecord.getBookName(), bookBarcode,
+                incompleteRecord.getReaderName(), incompleteRecord.getDateReturned());
     }
 
     private boolean isOverdue(Record r) {
