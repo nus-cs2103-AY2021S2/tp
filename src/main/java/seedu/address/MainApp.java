@@ -170,6 +170,11 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         logger.info("Starting nufash " + MainApp.VERSION);
         Colour.initialiseMatches(); //INITIALISE MATCHING HASHMAP
+        try {
+            Colour.initialiseSamples(); //INITIALISE SAMPLE HASHMAP
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         ui.start(primaryStage);
     }
 
