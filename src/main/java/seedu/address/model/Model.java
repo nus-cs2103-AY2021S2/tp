@@ -197,4 +197,8 @@ public interface Model {
      */
     void sortAppointmentList(Comparator<Appointment> comparator);
 
+    void undoAppointmentBook();
+
+    void undoPropertyBook();
+
 }

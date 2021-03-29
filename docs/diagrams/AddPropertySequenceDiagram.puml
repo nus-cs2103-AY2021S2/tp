@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":PocketEstateParser" as PocketEstateParser LOGIC_COLOR
+participant ":AddPropertyCommandParser" as AddPropertyCommandParser LOGIC_COLOR
+participant "cmd:AddPropertyCommand" as AddPropertyCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add property n/Mayfair t/Condo \na/1 Jurong East Street 32, #08-111 \np/609477 d/31-12-2021")
+activate LogicManager
+
+LogicManager -> PocketEstateParser : parseCommand("add property n/Mayfair t/Condo \na/1 Jurong East Street 32, #08-111 \np/609477 d/31-12-2021")
+activate PocketEstateParser
+
+create AddPropertyCommandParser
+PocketEstateParser -> AddPropertyCommandParser
+activate AddPropertyCommandParser
+
+AddPropertyCommandParser --> PocketEstateParser
+deactivate AddPropertyCommandParser
+
+PocketEstateParser -> AddPropertyCommandParser : parse("n/Mayfair t/Condo \na/1 Jurong East Street 32, #08-111 \np/609477 d/31-12-2021")
+activate AddPropertyCommandParser
+
+create AddPropertyCommand
+AddPropertyCommandParser -> AddPropertyCommand
+activate AddPropertyCommand
+
+AddPropertyCommand --> AddPropertyCommandParser : cmd
+deactivate AddPropertyCommand
+
+AddPropertyCommandParser --> PocketEstateParser : cmd
+deactivate AddPropertyCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddPropertyCommandParser -[hidden]-> PocketEstateParser
+destroy AddPropertyCommandParser
+
+PocketEstateParser --> LogicManager : cmd
+deactivate PocketEstateParser
+
+LogicManager -> AddPropertyCommand : execute()
+activate AddPropertyCommand
+
+AddPropertyCommand -> Model : addProperty(property)
+activate Model
+
+Model --> AddPropertyCommand
+deactivate Model
+
+create CommandResult
+AddPropertyCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddPropertyCommand
+deactivate CommandResult
+
+AddPropertyCommand --> LogicManager : result
+deactivate AddPropertyCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

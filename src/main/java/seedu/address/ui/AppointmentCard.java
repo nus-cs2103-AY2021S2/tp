@@ -5,8 +5,11 @@ import java.time.LocalTime;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.commons.util.AppUtil;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Date;
 import seedu.address.model.appointment.Time;
@@ -17,6 +20,8 @@ import seedu.address.model.appointment.Time;
 public class AppointmentCard extends UiPart<Region> {
 
     private static final String FXML = "AppointmentListCard.fxml";
+
+    private static final Image APPOINTMENT_ICON = AppUtil.getImage("/images/appointment_64.png");
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -40,6 +45,8 @@ public class AppointmentCard extends UiPart<Region> {
     private Label date;
     @FXML
     private Label time;
+    @FXML
+    private ImageView appointmentTypeIcon;
 
     /**
      * Creates a {@code AppointmentCode} with the given {@code Appointment} and index to display.
@@ -52,15 +59,17 @@ public class AppointmentCard extends UiPart<Region> {
         remarks.setText(appointment.getRemarks().remark);
         date.setText(appointment.getDate().toString());
         time.setText(appointment.getTime().toString());
+
         Date currentDate = new Date(LocalDate.now());
         Time currentTime = new Time(LocalTime.now());
-
-        if (currentDate.compareTo(appointment.getDate()) > 0) {
+        if (currentDate.compareTo(appointment.getDate()) > 0 || (currentDate.compareTo(appointment.getDate()) == 0
+                && currentTime.compareTo(appointment.getTime()) > 0)) {
             cardPane.setStyle("-fx-background-color: #696969");
-        } else if (currentDate.compareTo(appointment.getDate()) == 0
-                && currentTime.compareTo(appointment.getTime()) > 0) {
-            cardPane.setStyle("-fx-background-color: #696969");
+            date.setStyle("-fx-text-fill: darkred");
+            time.setStyle("-fx-text-fill: darkred");
         }
+
+        appointmentTypeIcon.setImage(APPOINTMENT_ICON);
     }
 
     @Override

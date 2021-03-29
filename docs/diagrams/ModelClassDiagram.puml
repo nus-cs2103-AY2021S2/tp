@@ -5,52 +5,58 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyPropertyBook <<Interface>>
+Interface ReadOnlyAppointmentBook <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class PropertyBook
+Class AppointmentBook
+Class ReadOnlyPropertyBook
+Class ReadOnlyAppointmentBook
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Package Person {
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class UniquePersonList
+Package Property as PropertyPackage{
+Class Property
+Class UniquePropertyList
+Class HiddenModel1 #FFFFFF
 }
 
-Package Tag {
-Class Tag
+Package Appointment as AppointmentPackage{
+Class Appointment
+Class UniqueAppointmentList
+Class HiddenModel2 #FFFFFF
+Class HiddenModel3 #FFFFFF
 }
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+HiddenModel2 .left[hidden].> UniqueAppointmentList
 
-ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
-ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+ModelManager .up.|> Model
+ModelManager o-left-> "1" UserPrefs
+ModelManager o--> "1" PropertyBook
+ModelManager o--> "1" AppointmentBook
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+PropertyBook .left.|> ReadOnlyPropertyBook
+AppointmentBook .right.|> ReadOnlyAppointmentBook
 
-ModelManager ----->" ~* filtered list" Person
+PropertyBook *--> "1 " UniquePropertyList
+AppointmentBook *--> "1  " UniqueAppointmentList
+
+UniquePropertyList o-left-> "*" Property
+UniqueAppointmentList o-left-> "*" Appointment
+
+ModelManager ----> "filtered list *" Property
+ModelManager ----> "filtered list *" Appointment
+
+AppointmentPackage -left[hidden]- PropertyPackage
+
 @enduml

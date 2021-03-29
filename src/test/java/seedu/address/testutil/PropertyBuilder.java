@@ -56,7 +56,11 @@ public class PropertyBuilder {
         postal = propertyToCopy.getPostalCode();
         deadline = propertyToCopy.getDeadline();
         tags = new HashSet<>(propertyToCopy.getTags());
-        client = null;
+        if (propertyToCopy.getClient() != null) {
+            client = propertyToCopy.getClient();
+        } else {
+            client = null;
+        }
     }
 
     /**

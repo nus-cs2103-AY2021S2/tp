@@ -17,7 +17,7 @@ import static seedu.address.logic.commands.CommandTestUtil.POSTAL_DESC_MAYFAIR;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_99_YEAR_LEASEHOLD;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FREEHOLD_AND_99_YEAR_LEASEHOLD;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_BALCONY_AND_99_YEAR_LEASEHOLD;
 import static seedu.address.logic.commands.CommandTestUtil.TYPE_DESC_BURGHLEY_DRIVE;
 import static seedu.address.logic.commands.CommandTestUtil.TYPE_DESC_MAYFAIR;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_MAYFAIR;
@@ -25,7 +25,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_MAYFAI
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_MAYFAIR;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_POSTAL_MAYFAIR;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROPERTY_TAG_99_YEAR_LEASEHOLD;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROPERTY_TAG_FREEHOLD;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROPERTY_TAG_BALCONY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_MAYFAIR;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -84,10 +84,10 @@ public class AddPropertyCommandParserTest {
 
         // multiple tags - all accepted
         Property expectedPropertyMultipleTags = new PropertyBuilder(BURGHLEY_DRIVE)
-                .withTags(VALID_PROPERTY_TAG_99_YEAR_LEASEHOLD, VALID_PROPERTY_TAG_FREEHOLD)
+                .withTags(VALID_PROPERTY_TAG_BALCONY, VALID_PROPERTY_TAG_99_YEAR_LEASEHOLD)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BURGHLEY_DRIVE + TYPE_DESC_BURGHLEY_DRIVE + ADDRESS_DESC_BURGHLEY_DRIVE
-                + POSTAL_DESC_BURGHLEY_DRIVE + DEADLINE_DESC_BURGHLEY_DRIVE + TAG_DESC_FREEHOLD_AND_99_YEAR_LEASEHOLD,
+                + POSTAL_DESC_BURGHLEY_DRIVE + DEADLINE_DESC_BURGHLEY_DRIVE + TAG_DESC_BALCONY_AND_99_YEAR_LEASEHOLD,
                 new AddPropertyCommand(expectedPropertyMultipleTags));
     }
 

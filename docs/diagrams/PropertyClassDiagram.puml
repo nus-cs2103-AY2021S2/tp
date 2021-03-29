@@ -1,0 +1,77 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Property <<Rectangle>> {
+Class Property
+Class Type
+Class Address
+Class PostalCode
+Class Deadline
+Class UniquePropertyList
+
+Package Client as ClientPackage {
+Class Client
+Class Contact
+Class Email
+Class AskingPrice
+}
+
+Package Status as StatusPackage {
+Interface Status <<Interface>>
+Class Status
+Class Option
+Class SalesAgreement
+CLass Completion
+Class Offer
+}
+}
+
+Package Name as NamePackage {
+Class Name
+}
+
+Package Remark as RemarkPackage {
+Class Remark
+}
+
+Package Tag as TagPackage {
+Class Tag
+}
+
+Class PropertyBook
+PropertyBook *--> "1 " UniquePropertyList
+
+UniquePropertyList o--> "*" Property
+
+Property *--> Type
+Property *--> Address
+Property *--> PostalCode
+Property *--> Deadline
+
+Property *--> Status
+Option ..|> Status
+SalesAgreement ..|> Status
+Completion ..|> Status
+Status .right.> Offer
+
+Property *-up-> "*" Tag
+Property *-left-> Remark
+Property *--> " propertyName" Name : ""
+Property *---> Client
+
+Client *-right-> " clientName" Name
+Client *-down-> Contact
+Client *-down-> Email
+Client *-right-> AskingPrice
+
+Type -[hidden]right-> Address
+Address -[hidden]right-> PostalCode
+PostalCode -[hidden]right-> Deadline
+Deadline -[hidden]right-> Status
+
+TagPackage -[hidden]down-> RemarkPackage
+RemarkPackage -[hidden]down-> NamePackage
+@enduml

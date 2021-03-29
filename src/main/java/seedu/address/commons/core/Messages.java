@@ -15,4 +15,48 @@ public class Messages {
     public static final String MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX = "The property index provided is invalid";
     public static final String MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX =
             "The appointment index provided is invalid";
+    public static final String MESSAGE_MISSING_PROPERTY_APPOINTMENT =
+            "To %s an appointment, use %s appointment. To %s a property, use %s property";
+    public static final String MESSAGE_MISSING_ALL_PROPERTY_APPOINTMENT =
+            "To %s all appointments and properties, use %s all. "
+                    + "To %s all appointments, use %s appointment. To %s all properties, use %s property";
+
+    /**
+     * Returns the output message for a successful find client command.
+     * @param propertyListSize Number of items in the property list
+     * @param appointmentListSize Number of items in the appointment list
+     */
+    public static String getClientFindSuccessMessage(int propertyListSize, int appointmentListSize) {
+        String propertyMsg = propertyListSize > 1
+                ? MESSAGE_PROPERTIES_LISTED_OVERVIEW
+                : MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR;
+
+        String appointmentMsg = appointmentListSize > 1
+                ? MESSAGE_APPOINTMENT_LISTED_OVERVIEW
+                : MESSAGE_APPOINTMENT_LISTED_OVERVIEW_SINGULAR;
+
+        propertyMsg = String.format(propertyMsg, propertyListSize);
+        appointmentMsg = String.format(appointmentMsg, appointmentListSize);
+
+        return appointmentMsg + "\n" + propertyMsg;
+    }
+
+    /**
+     * Generates the error message when property or appointment is missing in the command.
+     * @param command the command without property or appointment
+     * @return error message
+     */
+    public static String missingPropertyAppointmentError(String command) {
+        return String.format(MESSAGE_MISSING_PROPERTY_APPOINTMENT, command, command, command, command);
+    }
+
+    /**
+     * Generates the error message when all, property or appointment is missing in the command.
+     * @param command the command without all, property or appointment
+     * @return error message
+     */
+    public static String missingAllPropertyAppointmentError(String command) {
+        return String.format(MESSAGE_MISSING_ALL_PROPERTY_APPOINTMENT, command, command, command,
+                command, command, command);
+    }
 }

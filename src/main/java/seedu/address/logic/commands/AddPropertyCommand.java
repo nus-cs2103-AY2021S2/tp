@@ -38,17 +38,17 @@ public class AddPropertyCommand extends Command {
             + "[" + PREFIX_CLIENT_ASKING_PRICE + "CLIENT_ASKING_PRICE] "
             + "[" + PREFIX_TAGS + "TAGS...]\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "Mayfair "
-            + PREFIX_TYPE + "Condo "
-            + PREFIX_ADDRESS + "1 Jurong East Street 32 "
-            + PREFIX_POSTAL + "609477 "
-            + PREFIX_DEADLINE + "31-12-2021 "
+            + PREFIX_NAME + "Bishan "
+            + PREFIX_TYPE + "Hdb "
+            + PREFIX_ADDRESS + "Blk 150 Bishan Street 11 #02-101 "
+            + PREFIX_POSTAL + "570150 "
+            + PREFIX_DEADLINE + "30-6-2021 "
             + PREFIX_REMARK + "Urgent to sell "
-            + PREFIX_CLIENT_NAME + "Alice "
-            + PREFIX_CLIENT_CONTACT + "91234567 "
-            + PREFIX_CLIENT_EMAIL + "alice@gmail.com "
-            + PREFIX_CLIENT_ASKING_PRICE + "$800,000 "
-            + PREFIX_TAGS + "4 bedrooms, No need for renovation";
+            + PREFIX_CLIENT_NAME + "George "
+            + PREFIX_CLIENT_CONTACT + "91124788 "
+            + PREFIX_CLIENT_EMAIL + "george_4788@gmail.com "
+            + PREFIX_CLIENT_ASKING_PRICE + "$750,000 "
+            + PREFIX_TAGS + "Urgent, 4 bedrooms";
 
     public static final String MESSAGE_SUCCESS = "New property added: %1$s";
     public static final String MESSAGE_DUPLICATE_PROPERTY = "This property already exists in the app";
@@ -66,6 +66,7 @@ public class AddPropertyCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        assert toAdd != null;
 
         if (model.hasProperty(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROPERTY);

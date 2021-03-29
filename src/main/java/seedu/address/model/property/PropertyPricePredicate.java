@@ -1,25 +1,31 @@
 package seedu.address.model.property;
 
-import java.text.NumberFormat;
-import java.text.ParseException;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.util.function.Predicate;
 
+import seedu.address.model.property.client.AskingPrice;
+
 /**
- * Tests that a {@code Property}'s {@code Client} {@code AskingPrice} is within the range given.
+ * Tests that a {@code Property}'s {@code Client}'s {@code AskingPrice} is within the range given.
  */
 public class PropertyPricePredicate implements Predicate<Property> {
     private final int price;
     private final boolean isLess;
 
     /**
-     * Constructs a {@code PropertyPricePredicate}
-     * @param price Value to be compared against
+     * Constructs a {@code PropertyPricePredicate}.
+     *
+     * @param price Value to be compared against.
      * @param isLess Whether this predicate is a less than comparison,
      *               note that regardless of this value, any askingPrice
-     *               that is equals to the given price will return true
+     *               that is equals to the given price will return true.
      */
     public PropertyPricePredicate(String price, boolean isLess) {
-        this.price = Integer.parseInt(price);
+        requireNonNull(price);
+        checkArgument(AskingPrice.isValidAskingPrice(price));
+        this.price = AskingPrice.parse(price);
         this.isLess = isLess;
     }
 
@@ -28,18 +34,11 @@ public class PropertyPricePredicate implements Predicate<Property> {
         if (property.getAskingPrice() == null) {
             return false;
         }
-        NumberFormat format = NumberFormat.getCurrencyInstance();
-        int otherPrice;
-        try {
-            otherPrice = format.parse(property.getAskingPrice().askingPrice).intValue();
-        } catch (ParseException e) {
-            return false;
-        }
 
         if (isLess) {
-            return otherPrice <= this.price;
+            return property.getAskingPrice().askingPrice <= price;
         } else {
-            return otherPrice >= this.price;
+            return property.getAskingPrice().askingPrice >= price;
         }
     }
 
