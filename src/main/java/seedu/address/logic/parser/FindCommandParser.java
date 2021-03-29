@@ -7,6 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPDAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPTIME;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +24,8 @@ import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.passenger.AddressContainsKeywordsPredicate;
 import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.person.passenger.PriceContainsKeywordsPredicate;
+import seedu.address.model.pool.TripDayContainsKeywordsPredicate;
+import seedu.address.model.pool.TripTimeContainsKeywordsPredicate;
 import seedu.address.model.tag.TagContainsKeywordsPredicate;
 
 /**
@@ -37,16 +41,16 @@ public class FindCommandParser implements Parser<FindCommand> {
     public FindCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_PRICE,
-                        PREFIX_ALL);
+                        PREFIX_ALL, PREFIX_TRIPDAY, PREFIX_TRIPTIME);
 
         if (!arePrefixesValid(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_TAG, PREFIX_PRICE,
-                PREFIX_ALL)) {
+                PREFIX_ALL, PREFIX_TRIPDAY, PREFIX_TRIPTIME)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
         List<Prefix> presentPrefixes =
                 presentPrefixes(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_TAG, PREFIX_PRICE,
-                        PREFIX_ALL);
+                        PREFIX_ALL, PREFIX_TRIPDAY, PREFIX_TRIPTIME);
         assert(presentPrefixes.size() == 1);
 
         Prefix specifiedPrefix = presentPrefixes.get(0);
@@ -107,6 +111,10 @@ public class FindCommandParser implements Parser<FindCommand> {
             return outputList;
         } else if (PREFIX_ALL.equals(prefix)) {
             return parseValueHelper(argumentMultimap, PREFIX_ALL);
+        } else if (PREFIX_TRIPDAY.equals(prefix)) {
+            return parseValueHelper(argumentMultimap, PREFIX_TRIPDAY);
+        } else if (PREFIX_TRIPTIME.equals(prefix)) {
+            return parseValueHelper(argumentMultimap, PREFIX_TRIPTIME);
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
@@ -141,10 +149,19 @@ public class FindCommandParser implements Parser<FindCommand> {
             case "all/":
                 argument = s;
                 break;
+            case "d/":
+                argument = ParserUtil.parseTripDay(s).toString();
+                break;
+            case "t/":
+                argument = ParserUtil.parseTripTime(s).toString();
+                break;
             default:
                 break;
             }
-            outputList.add(argument.trim());
+
+            if (argument.length() > 0) {
+                outputList.add(argument.trim());
+            }
         }
 
         return outputList;
@@ -170,6 +187,10 @@ public class FindCommandParser implements Parser<FindCommand> {
             return new PriceContainsKeywordsPredicate(price);
         case "all/":
             return new AttributeContainsKeywordsPredicate(arguments);
+        case "d/":
+            return new TripDayContainsKeywordsPredicate(arguments);
+        case "t/":
+            return new TripTimeContainsKeywordsPredicate(arguments);
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
