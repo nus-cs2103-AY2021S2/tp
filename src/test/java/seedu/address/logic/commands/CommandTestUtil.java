@@ -10,7 +10,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NEW_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -54,7 +53,6 @@ public class CommandTestUtil {
     public static final String VALID_TITLE_MEETING = "MEETING";
     public static final String VALID_DESCRIPTION_MEETING = "Board meeting";
     public static final String VALID_DEADLINE_MEETING = "2021-07-02";
-    public static final String VALID_STATUS_MEETING = "uncompleted";
     public static final String VALID_PRIORITY_MEETING = "high";
     public static final String VALID_ASSIGNEE_MEETING = "Benson Meier";
 
