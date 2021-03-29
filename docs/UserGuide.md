@@ -97,8 +97,8 @@ Here is how the main page should look like:
 4. Double-click the file to start the app. The Graphical User Interface (GUI) should appear in a matter of seconds.
    <img src="images/UIExample.png" width="790"/>
 5. For new users, type `help` in the command box to view the instruction list
-6. Type the command in the command box and press <kbd>Enter<kbd> to execute it. e.g.
-   typing `add` and pressing <kbd>Enter<kbd>  will allow you to start adding information to
+6. Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g.
+   typing `add` and pressing <kbd>Enter</kbd>  will allow you to start adding information to
    the database.
 
 **NOTE:** Please refer to the features below for details of each command.
