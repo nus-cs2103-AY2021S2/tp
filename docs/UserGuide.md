@@ -535,24 +535,36 @@ _Details coming soon ..._
 
 ## **6.Command summary**
 
+### Projects
+
 Action | Format, Examples
 --------|------------------
-**Add Contact** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Add Project** | `addP n/PROJECT_NAME`
 **Add Deadline to Project** | `addDto PROJECT_INDEX d/DESCRIPTION by/DATE`
 **Add Event to Project** | `addEto PROJECT_INDEX d/DESCRIPTION i/INTERVAL at/DATE`
 **Add Participant to Project** | `addCto PROJECT_INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 **Add Todo to Project** | `addTto PROJECT_INDEX d/DESCRIPTION`
-**Delete Contact** | `delete CONTACT_INDEX`<br> e.g., `delete 3`
 **Delete Project** | `deleteP PROJECT_INDEX`
 **Delete Deadline from Project** | `deleteD PROJECT_INDEX r/DEADLINE_INDEX`
 **Delete Event from Project** | `deleteE PROJECT_INDEX r/EVENT_INDEX`
 **Delete Participant from Project** | `deleteCfrom PROJECT_INDEX r/GROUPMATE_INDEX`
 **Delete Todo from Project** | `deleteT PROJECT_INDEX r/TODO_INDEX`
+
+### Contacts
+
+Action | Format, Examples
+--------|------------------
+**Add Contact** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Delete Contact** | `delete CONTACT_INDEX`<br> e.g., `delete 3`
 **Clear Contacts** | `clear`
 **Edit Contact** | `edit CONTACT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find Contact** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List Contacts** | `listC`
+
+### Navigating the UI
+
+Action | Format, Examples
+--------|------------------
 **View Project** | `viewP PROJECT_INDEX`
 **View Overview Tab** | `tabO`
 **View Todos Tab** | `tabT`
