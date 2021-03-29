@@ -13,6 +13,16 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Implementation**
+
+### Find filter Date of birth
+Step 1. User will execute find command
+Step 2. findcommand will be parsed
+Step 3. Access the specific DOB filter to filter the results and list them out on the GUI
+
+
+
+--------------------------------------------------------------------------------------------------------------------
 
 
 ### Product scope
