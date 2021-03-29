@@ -13,7 +13,7 @@ import seedu.weeblingo.model.flashcard.Flashcard;
 /**
  * Panel containing the list of flashcards.
  */
-public class FlashcardListPanel extends UiPart<Region> implements ListPanel {
+public class FlashcardListPanel extends UiPart<Region> {
     private static final int LIST_INDEX = -1;
     // supposed to indicate not during a quiz session but i cannot think of names alr haha lol woof bark
     private static final String FXML = "FlashcardListPanel.fxml";
