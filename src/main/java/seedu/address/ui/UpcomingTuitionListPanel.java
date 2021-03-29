@@ -54,7 +54,7 @@ public class UpcomingTuitionListPanel extends UiPart<Region> {
     }
 
     /**
-     * Populate the upcomingTuitionListView with the given {@code ObservableList}
+     * Populates the upcomingTuitionListView with the given {@code ObservableList}
      * @param finalTuitionList
      */
     private void populateUpcomingTuitionListView(ObservableList<Tuition> finalTuitionList) {
