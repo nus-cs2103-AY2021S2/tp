@@ -4,12 +4,15 @@ import seedu.address.model.scheduler.Schedulable;
 import seedu.address.model.scheduler.SimplePeriod;
 import seedu.address.model.scheduler.Timetable;
 
+import java.sql.Time;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * In charge of putting meetings into the @code{TimetableView} given a certain meeting,
@@ -30,6 +33,12 @@ import java.util.function.Predicate;
  */
 public class TimetablePlacementPolicy {
 
+    private final static int MINUTES_IN_AN_HOUR = 60;
+    private final static int MINUTES_IN_DAY = 2400;
+
+    public final static double TIMETABLE_DISPLAY_SIZE = 800;
+
+
     private LocalDateTime startDateTime;
     private LocalDateTime endDateTime;
 
@@ -43,7 +52,7 @@ public class TimetablePlacementPolicy {
      */
 
     public TimetablePlacementPolicy(LocalDate startDate) {
-        this.startDateTime = startDate.atTime(startHour, startMinute)
+        this.startDateTime = startDate.atTime(startHour, startMinute);
         this.endDateTime = startDateTime.plusDays(TimetableView.NUMBER_OF_COLUMNS);
     }
 
@@ -60,16 +69,72 @@ public class TimetablePlacementPolicy {
     }
 
     /**
-     * Gets the column to put a schedulable in if it lies within a day from 7am - 7pm.
+     * Gets the column to put a schedulable in.
+     * The schedulable must lie within
+     * Note the schedulable must lie within a day from 7am - 7pm, else it will just slot into the
+     * first available day of the schedulable. You can call the method breakIntoUnits first to get
+     * the single day slots before calling this method on each schedule.
+     *
      * @param schedulable
      * @return
      */
 
-
     public TimetableView.Column getColumnPlacement(Schedulable schedulable) {
+        LocalDateTime dateTimeToSchedule = schedulable.getStartLocalDateTime();
+        int daysBetween = (int)Duration.between(startDateTime, dateTimeToSchedule).toDays();
+        switch(daysBetween){
+        case 0:
+            return TimetableView.Column.ONE;
+        case 1:
+            return TimetableView.Column.TWO;
+        case 2:
+            return TimetableView.Column.THREE;
+        case 4:
+            return TimetableView.Column.FOUR;
+        case 5:
+            return TimetableView.Column.FIVE;
+        case 6:
+            return TimetableView.Column.SIX;
+        case 7:
+            return TimetableView.Column.SEVEN;
+        default:
+            assert false; // Cannot end up here.
+
+        }
+        return null;
+
+    }
+
+    /**
+     * Gets the number of minutes so far in a day, starting from 00:00
+     * @param localDateTime
+     * @return
+     */
+
+    public static int getMinutesInDay(LocalDateTime localDateTime) {
+        return localDateTime.getHour() * MINUTES_IN_AN_HOUR + localDateTime.getMinute();
     }
 
     public double getVerticalPosition(Schedulable schedulable) {
+        LocalDateTime startingDateTime = schedulable.getStartLocalDateTime();
+        int minutesSoFar = getMinutesInDay(applyOffset(startingDateTime));
+        double ratio = minutesSoFar / MINUTES_IN_DAY;
+        return ratio * TIMETABLE_DISPLAY_SIZE;
+    }
+
+    /**
+     * Returns the size in pixels of the timetable cell to represent the Schedulable.
+     * We assume the schedulable must start and end on the same day.
+     * @param schedulable
+     * @return
+     */
+    public double getLengthOfSlot(Schedulable schedulable) {
+        int startMinutesSoFar = getMinutesInDay(schedulable.getStartLocalDateTime());
+        int endMinutesSoFar = getMinutesInDay(schedulable.getTerminateLocalDateTime());
+        assert endMinutesSoFar >= startMinutesSoFar;
+        double ratio = (startMinutesSoFar - endMinutesSoFar) / MINUTES_IN_DAY;
+        return TIMETABLE_DISPLAY_SIZE * ratio;
+
     }
 
     /**
@@ -82,6 +147,8 @@ public class TimetablePlacementPolicy {
      */
 
     public List<Schedulable> breakIntoUnits(Schedulable schedulable) {
+
+        assert test(schedulable);
         LocalDateTime startDateTime = schedulable.getStartLocalDateTime();
         LocalDateTime endDateTime = schedulable.getTerminateLocalDateTime();
 
@@ -89,8 +156,8 @@ public class TimetablePlacementPolicy {
         LocalDateTime offSetStartTime = applyOffset(startDateTime);
         LocalDateTime offSetEndTime = applyOffset(endDateTime);
 
-        //same day
-        if (offSetStartTime.toLocalDate().isEqual( startDateTime.toLocalDate()) {
+        //same day interval.
+        if (offSetStartTime.toLocalDate().isEqual( offSetEndTime.toLocalDate())) {
             return List.of(schedulable);
         }
         //case when returns more than one element.
@@ -118,7 +185,13 @@ public class TimetablePlacementPolicy {
                     removeOffset(offSetStartTime),
                     removeOffset(getStartOfNextDay(offSetStartTime)));
             listOfSchedulableUnits.add(toAdd);
+            offSetStartTime = getStartOfNextDay(offSetStartTime);
         }
+
+        return listOfSchedulableUnits
+                .stream()
+                .filter(this :: test)
+                .collect(Collectors.toList());
 
     }
 
@@ -140,7 +213,7 @@ public class TimetablePlacementPolicy {
      * @return
      */
     public LocalDateTime getStartOfNextDay(LocalDateTime localDateTime) {
-        localDateTime.toLocalDate().plusDays(1).atTime(0,0);
+        return localDateTime.toLocalDate().plusDays(1).atTime(0,0);
     }
 
     /**
@@ -149,7 +222,7 @@ public class TimetablePlacementPolicy {
      * @return
      */
     public LocalDateTime getStartOfTheDay(LocalDateTime localDateTime) {
-        localDateTime.toLocalDate().atTime(0,0);
+        return localDateTime.toLocalDate().atTime(0,0);
     }
 
 

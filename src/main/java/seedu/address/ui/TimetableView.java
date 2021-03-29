@@ -19,7 +19,7 @@ import seedu.address.model.scheduler.Schedulable;
 
 public class TimetableView extends UiPart<Region> {
     private static final String FXML = "TimetableWindow.fxml";
-    private final Logger logger = LogsCenter.getLogger(TimetableView.class);''
+    private final Logger logger = LogsCenter.getLogger(TimetableView.class);
 
     @FXML
     private GridPane timetableGrid;
@@ -46,7 +46,7 @@ public class TimetableView extends UiPart<Region> {
     private AnchorPane dayScheduleSeven;
 
     /**
-     * A strategy pattern implementation of the rendering logic.
+     * Using strategy pattern. Logic for implementing timetable.
      * Used to determine node placement of a Schedulable object in the timetable UI.
      * it should also provide method to check if it can be scheduled or not.
      */
