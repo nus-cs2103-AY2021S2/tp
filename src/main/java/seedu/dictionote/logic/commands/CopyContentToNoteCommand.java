@@ -1,5 +1,9 @@
 package seedu.dictionote.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import seedu.dictionote.commons.core.Messages;
 import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.logic.commands.enums.UiAction;
@@ -8,10 +12,6 @@ import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.dictionary.DisplayableContent;
 import seedu.dictionote.model.note.Note;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
 
 public class CopyContentToNoteCommand extends Command {
     public static final String COMMAND_WORD = "copytonote";
