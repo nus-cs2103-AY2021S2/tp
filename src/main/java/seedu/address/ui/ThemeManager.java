@@ -82,7 +82,6 @@ public class ThemeManager {
      */
     private static String getNewCssCacheUri(Theme theme) {
         String cssString = generateCssFromTheme(theme);
-        System.out.println(cssString);
         try {
             return createCssCacheFile(cssString);
         } catch (IOException ioException) {
