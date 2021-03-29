@@ -1,0 +1,25 @@
+#calendarPanel .label {
+    -fx-text-fill: white;
+}
+
+#prevButton, #nextButton {
+    -fx-padding: 5 10 5 10;
+    -fx-font-size: 13pt;
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
+    -fx-border-radius: 5;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+}
+
+#calendarPanel .button:hover {
+    -fx-background-color: #636363;
+}
+
+#calendarPanel .button:pressed {
+    -fx-background-color: #949494;
+}
+
+#monthYearLabel {
+    -fx-padding: 5 10 5 10;
+    -fx-font-size: 13pt;
+}

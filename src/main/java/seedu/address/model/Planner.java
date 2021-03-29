@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
@@ -22,6 +23,7 @@ public class Planner implements ReadOnlyPlanner {
 
     private final UniqueTaskList tasks;
     private final UniqueTagList tags;
+    private final ObservableCalendarDate calendarDate;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -33,6 +35,7 @@ public class Planner implements ReadOnlyPlanner {
     {
         tasks = new UniqueTaskList();
         tags = new UniqueTagList();
+        calendarDate = new ObservableCalendarDate(LocalDate.now());
     }
 
     public Planner() {
@@ -132,7 +135,7 @@ public class Planner implements ReadOnlyPlanner {
 
     /**
      * Replaces the contents of the task list with {@code tasks}.
-     * {@code meetings} must not contain duplicate tasks.
+     * {@code tasks} must not contain duplicate tasks.
      */
     public void setTask(List<Task> tasks) {
         this.tasks.setTasks(tasks);
@@ -247,6 +250,25 @@ public class Planner implements ReadOnlyPlanner {
      */
     public Comparator<Tag> getTagComparator() {
         return tags.getTagComparator();
+    }
+
+    //// viewing date operations
+
+    /**
+     * Returns the ObservableCalendarDate tagged to this planner.
+     *
+     * @return The ObservableCalendarDate object that cannot be modified
+     */
+    public ObservableCalendarDate getCalendarDate() {
+        return calendarDate;
+    }
+
+    public void setCalendarDate(LocalDate date) {
+        calendarDate.set(date);
+    }
+
+    public void resetCalendarDate() {
+        calendarDate.reset();
     }
 
     //// util methods
