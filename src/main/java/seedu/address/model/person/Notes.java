@@ -2,6 +2,10 @@ package seedu.address.model.person;
 
 import seedu.address.model.tag.Filterable;
 
+/**
+ * Represents the notes of the tutor in Tutor Tracker
+ */
+
 public class Notes implements Filterable {
 
     public static final String MESSAGE_CONSTRAINTS = "Notes can take any values";

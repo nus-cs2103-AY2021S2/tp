@@ -90,14 +90,14 @@ public class SampleDataUtil {
 
     public static Grade[] getSampleGrade() {
         return new Grade[]{
-                new Grade(new SubjectName("Science"),
-                        new GradedItem("Lab 1"),
+            new Grade(new SubjectName("Science"),
+                    new GradedItem("Lab 1"),
                         GradeEnum.valueOf("A")),
-                new Grade(new SubjectName("Mathematics"),
-                        new GradedItem("Final"),
+            new Grade(new SubjectName("Mathematics"),
+                    new GradedItem("Final"),
                         GradeEnum.valueOf("B")),
-                new Grade(new SubjectName("English"),
-                        new GradedItem("Midterm"),
+            new Grade(new SubjectName("English"),
+                    new GradedItem("Midterm"),
                         GradeEnum.valueOf("C"))
         };
     }

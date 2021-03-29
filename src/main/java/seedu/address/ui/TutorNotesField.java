@@ -5,6 +5,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Notes;
 
+/**
+ * An UI component that displays the notes for tutors
+ */
 public class TutorNotesField extends UiPart<Region> {
 
     private static final String FXML = "TutorNotesField.fxml";
