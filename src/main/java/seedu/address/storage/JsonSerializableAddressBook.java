@@ -13,6 +13,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.resident.Resident;
+import seedu.address.model.residentroom.ResidentRoom;
 import seedu.address.model.room.Room;
 import seedu.address.storage.room.JsonAdaptedRoom;
 
@@ -24,10 +25,13 @@ class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_RESIDENT = "Residents list contains duplicate resident(s).";
     public static final String MESSAGE_DUPLICATE_ROOM = "Rooms list contains duplicate room(s).";
+    public static final String MESSAGE_DUPLICATE_RESIDENT_ROOM =
+            "ResidentRoom list contains duplicate residentRoom(s).";
 
     private final List<JsonAdaptedResident> residents = new ArrayList<>();
     private final List<JsonAdaptedRoom> rooms = new ArrayList<>();
     private final List<JsonAdaptedIssue> issues = new ArrayList<>();
+    private final List<JsonAdaptedResidentRoom> residentRooms = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given residents.
@@ -35,10 +39,12 @@ class JsonSerializableAddressBook {
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("residents") List<JsonAdaptedResident> residents,
             @JsonProperty("rooms") List<JsonAdaptedRoom> rooms,
-            @JsonProperty("issues") List<JsonAdaptedIssue> issues) {
+            @JsonProperty("issues") List<JsonAdaptedIssue> issues,
+            @JsonProperty("residentRooms") List<JsonAdaptedResidentRoom> residentRooms) {
         this.residents.addAll(residents);
         this.rooms.addAll(rooms);
         this.issues.addAll(issues);
+        this.residentRooms.addAll(residentRooms);
     }
 
     /**
@@ -50,6 +56,8 @@ class JsonSerializableAddressBook {
         residents.addAll(source.getResidentList().stream().map(JsonAdaptedResident::new).collect(Collectors.toList()));
         rooms.addAll(source.getRoomList().stream().map(JsonAdaptedRoom::new).collect(Collectors.toList()));
         issues.addAll(source.getIssueList().stream().map(JsonAdaptedIssue::new).collect(Collectors.toList()));
+        residentRooms.addAll(source.getResidentRoomList().stream()
+                .map(JsonAdaptedResidentRoom::new).collect(Collectors.toList()));
     }
 
     /**
@@ -79,6 +87,14 @@ class JsonSerializableAddressBook {
         for (JsonAdaptedIssue jsonAdaptedIssue : issues) {
             Issue issue = jsonAdaptedIssue.toModelType();
             addressBook.addIssue(issue);
+        }
+
+        for (JsonAdaptedResidentRoom jsonAdaptedResidentRoom : residentRooms) {
+            ResidentRoom residentRoom = jsonAdaptedResidentRoom.toModelType();
+            if (addressBook.hasBothResidentRoom(residentRoom)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_ROOM);
+            }
+            addressBook.addResidentRoom(residentRoom);
         }
 
         return addressBook;

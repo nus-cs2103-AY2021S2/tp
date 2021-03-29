@@ -37,6 +37,14 @@ public class UniqueRoomList implements Iterable<Room> {
     }
 
     /**
+     * Returns true if the list contains an equivalent room as the given argument.
+     */
+    public boolean contains(RoomNumber toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isSameRoom);
+    }
+
+    /**
      * Adds a room to the list.
      * The room must not already exist in the list.
      */

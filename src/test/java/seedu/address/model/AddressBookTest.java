@@ -20,6 +20,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.resident.Resident;
 import seedu.address.model.resident.exceptions.DuplicateResidentException;
+import seedu.address.model.residentroom.ResidentRoom;
 import seedu.address.model.room.Room;
 import seedu.address.testutil.ResidentBuilder;
 
@@ -59,7 +60,7 @@ public class AddressBookTest {
 
     @Test
     public void hasResident_nullResident_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasResident(null));
+        assertThrows(NullPointerException.class, () -> addressBook.hasResident((Resident) null));
     }
 
     @Test
@@ -93,6 +94,8 @@ public class AddressBookTest {
         private final ObservableList<Resident> residents = FXCollections.observableArrayList();
         private final ObservableList<Room> rooms = FXCollections.observableArrayList();
         private final ObservableList<Issue> issues = FXCollections.observableArrayList();
+        private final ObservableList<ResidentRoom> residentRooms = FXCollections.observableArrayList();
+
 
         AddressBookStub(Collection<Resident> residents, Collection<Room> rooms, Collection<Issue> issues) {
             this.residents.setAll(residents);
@@ -113,6 +116,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Issue> getIssueList() {
             return issues;
+        }
+
+        @Override
+        public ObservableList<ResidentRoom> getResidentRoomList() {
+            return residentRooms;
         }
     }
 

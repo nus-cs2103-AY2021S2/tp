@@ -21,6 +21,6 @@ public class ListResidentCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredResidentList(PREDICATE_SHOW_ALL_RESIDENTS);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS).setResidentCommand();
     }
 }

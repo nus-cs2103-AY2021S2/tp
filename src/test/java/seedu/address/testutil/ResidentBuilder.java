@@ -16,7 +16,7 @@ public class ResidentBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_YEAR = "1";
-    public static final String DEFAULT_ROOM = "01-234";
+    public static final String DEFAULT_ROOM = Room.UNALLOCATED_REGEX;
 
     private Name name;
     private Phone phone;

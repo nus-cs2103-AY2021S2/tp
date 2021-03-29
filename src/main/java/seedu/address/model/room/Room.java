@@ -62,6 +62,7 @@ public class Room {
                 && otherRoom.getRoomNumber().equals(getRoomNumber());
     }
 
+
     /**
      * Returns true if both rooms have the same identity and data fields.
      * This defines a stronger notion of equality between two rooms.

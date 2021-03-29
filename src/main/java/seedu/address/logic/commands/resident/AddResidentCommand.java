@@ -31,8 +31,7 @@ public class AddResidentCommand extends Command {
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_YEAR + "1 "
-            + PREFIX_ROOM + "01-234";
+            + PREFIX_YEAR + "1";
 
     public static final String MESSAGE_SUCCESS = "New resident added: %1$s";
     public static final String MESSAGE_DUPLICATE_RESIDENT = "This resident already exists in the address book";
@@ -56,7 +55,7 @@ public class AddResidentCommand extends Command {
         }
 
         model.addResident(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd)).setResidentCommand();
     }
 
     @Override

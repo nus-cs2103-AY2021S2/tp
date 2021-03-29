@@ -89,7 +89,7 @@ public class EditRoomCommand extends Command {
      * Creates and returns a {@code Room} with the details of {@code roomToEdit}
      * edited with {@code editRoomDescriptor}.
      */
-    private static Room createEditedRoom(Room roomToEdit, EditRoomDescriptor editRoomDescriptor) {
+    public static Room createEditedRoom(Room roomToEdit, EditRoomDescriptor editRoomDescriptor) {
         assert roomToEdit != null;
 
         RoomNumber updatedRoomNumber = editRoomDescriptor.getRoomNumber().orElse(roomToEdit.getRoomNumber());
