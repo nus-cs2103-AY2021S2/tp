@@ -64,8 +64,16 @@ public class EditCommandParser implements Parser<EditCommand> {
             editClientDescriptor.setLocation(ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get()));
         }
         if (argMultimap.getValue(PREFIX_PLAN).isPresent()) {
-            editClientDescriptor.setPlan(ParserUtil.parsePlan(argMultimap.getValue(PREFIX_PLAN).get()));
+            String planName = argMultimap.getValue(PREFIX_PLAN).get();
+
+            // If user input "ip/", Insurance Plan changes to "No plans yet"
+            if (planName.equals("")) {
+                planName = "No plans yet";
+            }
+
+            editClientDescriptor.setPlan(ParserUtil.parsePlan(planName));
         }
+
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editClientDescriptor::setTags);
 
         if (!editClientDescriptor.isAnyFieldEdited()) {
