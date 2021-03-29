@@ -9,7 +9,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.DoneTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-
+/**
+ * Contains unit tests for {@code DoneTaskCommand}.
+ */
 public class DoneTaskParserCommandTest {
 
     private DoneTaskCommandParser parser = new DoneTaskCommandParser();

@@ -26,7 +26,7 @@ public class Task {
     private final Set<Assignee> assignees = new HashSet<>();
 
     /**
-     * Overloaded constructor which sets taskStatus to uncompleted and PRIORITY to unassigned by default
+     * Overloaded constructor which sets taskStatus to uncompleted and PRIORITY to unassigned by default.
      */
     public Task(Title title, Description description, Deadline deadline) {
         requireAllNonNull(title, description, deadline);
@@ -38,7 +38,7 @@ public class Task {
     }
 
     /**
-     * Overloaded constructor where every field must be present and not null. Priority here is default to unassigned
+     * Overloaded constructor where every field must be present and not null. Priority here is default to unassigned.
      */
     public Task(Title title, Description description, Deadline deadline, TaskStatus taskStatus) {
         requireAllNonNull(title, description, deadline, taskStatus);
@@ -48,7 +48,6 @@ public class Task {
         this.deadline = deadline;
         this.priority = Priority.UNASSIGNED;
     }
-
 
     /**
      * Overloaded constructor where every field must be present and not null.

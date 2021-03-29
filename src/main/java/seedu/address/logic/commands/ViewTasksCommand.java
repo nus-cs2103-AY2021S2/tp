@@ -6,6 +6,9 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
+/**
+ * Lists all tasks in HeyMatez to the user.
+ */
 public class ViewTasksCommand extends Command {
 
     public static final String COMMAND_WORD = "viewTasks";

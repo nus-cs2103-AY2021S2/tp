@@ -16,7 +16,7 @@ public class AddMemberCommand extends Command {
 
     public static final String COMMAND_WORD = "addMember";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to HeyMatez. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a member to HeyMatez. "
             + "Parameters: "
             + "NAME "
             + PREFIX_PHONE + " PHONE "
@@ -28,8 +28,8 @@ public class AddMemberCommand extends Command {
             + PREFIX_EMAIL + " johnd@example.com "
             + PREFIX_ROLE + " Vice president";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in HeyMatez";
+    public static final String MESSAGE_SUCCESS = "New Member Added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This member already exists in HeyMatez";
 
     private final Person toAdd;
 

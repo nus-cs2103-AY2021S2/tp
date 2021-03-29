@@ -17,6 +17,9 @@ import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.testutil.PersonBuilder;
 
+/**
+ * Contains unit tests for {@code UniquePersonList}.
+ */
 public class UniquePersonListTest {
 
     private final UniquePersonList uniquePersonList = new UniquePersonList();

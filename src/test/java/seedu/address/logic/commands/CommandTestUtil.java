@@ -59,8 +59,6 @@ public class CommandTestUtil {
     public static final String VALID_ASSIGNEE_MEETING = "Benson Meier";
 
     public static final String NEW_NAME_DESC_AMY = " " + PREFIX_NEW_NAME + VALID_NAME_AMY;
-    public static final String NEW_NAME_DESC_BOB = " " + PREFIX_NEW_NAME + VALID_NAME_BOB;
-    public static final String NEW_TITLE_MARATHON = "CYCLING MARATHON";
     public static final String TITLE_DESC_TASK1 = " " + PREFIX_TITLE + VALID_TITLE_MARATHON;
     public static final String TITLE_DESC_TASK2 = " " + PREFIX_TITLE + VALID_TITLE_MEETING;
     public static final String DESCRIPTION_TASK1 = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_MARATHON;
@@ -69,10 +67,8 @@ public class CommandTestUtil {
     public static final String DEADLINE_TASK2 = " " + PREFIX_DEADLINE + VALID_DEADLINE_MEETING;
     public static final String PRIORITY_TASK1 = " " + PREFIX_PRIORITY + VALID_PRIORITY_MARATHON;
     public static final String PRIORITY_TASK2 = " " + PREFIX_PRIORITY + VALID_PRIORITY_MEETING;
-    public static final String STATUS_TASK1 = " " + PREFIX_STATUS + VALID_STATUS_MARATHON;
-    public static final String STATUS_TASK2 = " " + PREFIX_STATUS + VALID_STATUS_MEETING;
     public static final String ASSIGNEE_TASK2 = " " + PREFIX_ASSIGNEE + VALID_ASSIGNEE_MEETING;
-    public static final String NAME_DESC_AMY = VALID_NAME_AMY;
+    public static final String NAME_DESC_AMY = " " + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = VALID_NAME_BOB;
 
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;

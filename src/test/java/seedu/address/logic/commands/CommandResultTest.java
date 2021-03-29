@@ -7,6 +7,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Contains unit tests for {@code CommandResult}.
+ */
 public class CommandResultTest {
     @Test
     public void equals() {

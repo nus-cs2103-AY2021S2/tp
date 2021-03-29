@@ -6,6 +6,9 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_UNCOMPLETED_TASKS;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
+/**
+ * Lists all uncompleted tasks in HeyMatez to the user.
+ */
 public class ViewUncompletedTasksCommand extends Command {
 
     public static final String COMMAND_WORD = "viewUncompletedTasks";

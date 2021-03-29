@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 
+/**
+ * Contains integration tests (interaction with Model) and unit tests for ExitCommand.
+ */
 public class ExitCommandTest {
     private Model model = new ModelManager();
     private Model expectedModel = new ModelManager();

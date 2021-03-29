@@ -14,6 +14,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.EditTaskDescriptorBuilder;
 
+/**
+ * Contains unit tests for EditTaskDescriptorCommand.
+ */
 public class EditTaskDescriptorTest {
     @Test
     public void equals() {

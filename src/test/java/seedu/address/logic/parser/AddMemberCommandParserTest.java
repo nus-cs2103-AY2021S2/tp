@@ -27,6 +27,9 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.testutil.PersonBuilder;
 
+/**
+ * Contains unit tests for {@code AddMemberCommandParser}.
+ */
 public class AddMemberCommandParserTest {
     private AddMemberCommandParser parser = new AddMemberCommandParser();
 

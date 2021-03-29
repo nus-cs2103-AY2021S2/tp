@@ -8,7 +8,9 @@ import java.time.format.DateTimeParseException;
 
 import org.junit.jupiter.api.Test;
 
-
+/**
+ * Contains unit tests for {@code Deadline}.
+ */
 public class DeadlineTest {
     @Test
     public void constructor_null_throwsNullPointerException() {

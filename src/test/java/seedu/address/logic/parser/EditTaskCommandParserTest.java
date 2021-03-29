@@ -34,6 +34,9 @@ import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Priority;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
 
+/**
+ * Contains unit tests for {@code EditTaskCommandParser}.
+ */
 public class EditTaskCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditTaskCommand.MESSAGE_USAGE);

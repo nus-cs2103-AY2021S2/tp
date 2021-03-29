@@ -6,6 +6,9 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_UNASSIGNED_TASKS;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
+/**
+ * Lists all unassigned tasks in HeyMatez to the user.
+ */
 public class ViewUnassignedTasksCommand extends Command {
 
     public static final String COMMAND_WORD = "viewUnassignedTasks";

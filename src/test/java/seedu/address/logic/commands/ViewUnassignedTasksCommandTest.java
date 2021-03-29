@@ -14,7 +14,7 @@ import seedu.address.testutil.TypicalTasks;
 
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ViewUnassignedTasksCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for {@code ViewUnassignedTasksCommand}.
  */
 public class ViewUnassignedTasksCommandTest {
     private Model model;

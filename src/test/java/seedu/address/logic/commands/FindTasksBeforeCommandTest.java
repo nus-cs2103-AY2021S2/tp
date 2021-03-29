@@ -20,7 +20,9 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.task.DeadlineBeforeDatePredicate;
 
-
+/**
+ * Contains integration tests (interaction with the Model) for {@code FindTasksBeforeCommand}.
+ */
 public class FindTasksBeforeCommandTest {
     private Model model = new ModelManager(getTypicalHeyMatez(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalHeyMatez(), new UserPrefs());

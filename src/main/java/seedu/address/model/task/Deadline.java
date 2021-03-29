@@ -29,7 +29,7 @@ public class Deadline {
     }
 
     /**
-     * Returns a String value of unformatted deadline
+     * Returns a String value of unformatted deadline.
      *
      * @return a String value of unformatted deadline
      */
@@ -38,7 +38,7 @@ public class Deadline {
     }
 
     /**
-     * Returns a parsed deadline
+     * Returns a parsed deadline.
      *
      * @return a LocalDate object of the parsed deadline
      */
@@ -71,5 +71,4 @@ public class Deadline {
                 || (other instanceof Deadline // instanceof handles nulls
                 && dateString.equals(((Deadline) other).dateString)); // state check
     }
-
 }
