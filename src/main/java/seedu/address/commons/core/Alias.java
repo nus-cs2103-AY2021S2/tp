@@ -31,6 +31,8 @@ public class Alias implements Serializable {
     /**
      * Creates an Alias object.
      * All fields should not be null.
+     *
+     * @throws NullPointerException if the input is null.
      */
     public Alias(String aliasName, String command) {
         requireAllNonNull(aliasName, command);
