@@ -1,4 +1,4 @@
-package seedu.address.model.scheduler;
+package seedu.address.model.schedule;
 
 
 import java.time.LocalDateTime;

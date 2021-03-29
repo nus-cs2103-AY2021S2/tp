@@ -1,7 +1,7 @@
 package seedu.address.ui;
 
-import seedu.address.model.scheduler.Schedulable;
-import seedu.address.model.scheduler.SimplePeriod;
+import seedu.address.model.schedule.Schedulable;
+import seedu.address.model.schedule.SimplePeriod;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -77,8 +77,8 @@ public class TimetablePlacementPolicy {
 
     public TimetableView.Column getColumnPlacement(Schedulable schedulable) {
         LocalDateTime dateTimeToSchedule = schedulable.getStartLocalDateTime();
-        int daysBetween = (int)Duration.between(startDateTime, dateTimeToSchedule).toDays();
-        switch(daysBetween){
+        int daysBetween = (int) Duration.between(startDateTime, dateTimeToSchedule).toDays();
+        switch(daysBetween) {
         case 0:
             return TimetableView.Column.ONE;
         case 1:

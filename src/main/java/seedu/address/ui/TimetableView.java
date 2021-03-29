@@ -1,7 +1,6 @@
 package seedu.address.ui;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -14,7 +13,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.scheduler.Schedulable;
+import seedu.address.model.schedule.Schedulable;
 
 /**
  * Renders a timetable onto the UI. note that a timetable consists of columns which represent a day in the

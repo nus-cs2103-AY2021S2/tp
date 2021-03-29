@@ -86,7 +86,7 @@ public class UniqueMeetingList implements Iterable<Meeting> {
     }
 
     /**
-     * Gets the meeting happening at a particular point in time. Note that at the instance of tiem queried must lie
+     * Gets the meeting happening at a particular point in time. Note that at the instance of time queried must lie
      * between start (inclusive) and end ( exclusive) times.
      */
     public Optional<Meeting> getMeetingAtInstant(LocalDateTime localDateTime) {

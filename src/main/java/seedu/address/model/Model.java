@@ -151,6 +151,11 @@ public interface Model {
 
     void sortFilteredMeetingList(Comparator<Meeting> comparator);
 
+    /**
+     * Returns the internal meeting list of meeting book as an unmodifiable meeting list.
+     */
+    ObservableList<Meeting> getUnmodifiableMeetingList();
+
         // ============= Clashing Meetings  ========================================================
 
     /**

@@ -11,7 +11,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.group.Group;
-import seedu.address.model.scheduler.Schedulable;
+import seedu.address.model.schedule.Schedulable;
 
 /**
  * Represents a meeting in MeetBuddy.

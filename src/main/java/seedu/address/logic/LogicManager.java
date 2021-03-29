@@ -91,4 +91,10 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+    //======================================Ui methods ============================================
+
+    @Override
+    public ObservableList<Meeting> getAllMeetingList() {
+        return model.getUnmodifiableMeetingList();
+    }
 }

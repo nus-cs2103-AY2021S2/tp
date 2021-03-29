@@ -60,4 +60,9 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Gets the internal unmodifiable Observable list of all meetings inside meeting book
+     */
+    ObservableList<Meeting> getAllMeetingList();
 }
