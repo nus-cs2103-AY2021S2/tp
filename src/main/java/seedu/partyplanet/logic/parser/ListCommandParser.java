@@ -2,6 +2,7 @@ package seedu.partyplanet.logic.parser;
 
 import static seedu.partyplanet.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.partyplanet.logic.commands.ListCommand.SORT_BIRTHDAY;
+import static seedu.partyplanet.logic.commands.ListCommand.SORT_BIRTHDAY_UPCOMING;
 import static seedu.partyplanet.logic.commands.ListCommand.SORT_NAME;
 import static seedu.partyplanet.logic.parser.CliSyntax.FLAG_ANY;
 import static seedu.partyplanet.logic.parser.CliSyntax.FLAG_EXACT;
@@ -127,6 +128,9 @@ public class ListCommandParser implements Parser<ListCommand> {
             case "b": // fallthrough
             case "birthday":
                 return SORT_BIRTHDAY;
+            case "u": // fallthrough
+            case "upcoming":
+                return SORT_BIRTHDAY_UPCOMING;
             default:
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
@@ -140,7 +144,7 @@ public class ListCommandParser implements Parser<ListCommand> {
     private Comparator<Person> applySortDirection(
             Comparator<Person> comparator, ArgumentMultimap argMap) throws ParseException {
         Optional<String> orderType = argMap.getValue(PREFIX_ORDER);
-        if (orderType.isEmpty()) {
+        if (orderType.isEmpty() || comparator == SORT_BIRTHDAY_UPCOMING) {
             return comparator; // default
         } else {
             switch (orderType.get().toLowerCase()) {

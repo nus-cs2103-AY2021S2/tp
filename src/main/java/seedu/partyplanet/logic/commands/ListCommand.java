@@ -8,6 +8,7 @@ import java.util.function.Predicate;
 
 import seedu.partyplanet.commons.core.Messages;
 import seedu.partyplanet.model.Model;
+import seedu.partyplanet.model.date.Date;
 import seedu.partyplanet.model.person.Person;
 
 /**
@@ -30,7 +31,10 @@ public class ListCommand extends Command {
             COMMAND_WORD + " [--exact] [--any] [-n NAME]... [-t TAG]... [-s SORT_FIELD] [-o SORT_ORDER]";
 
     public static final Comparator<Person> SORT_NAME = Comparator.comparing(x -> x.getName().fullName);
-    public static final Comparator<Person> SORT_BIRTHDAY = Comparator.comparing(Person::getBirthday);
+    public static final Comparator<Person> SORT_BIRTHDAY =
+            Comparator.comparing(x -> Date.getDateWithoutYear(x.getBirthday()));
+    public static final Comparator<Person> SORT_BIRTHDAY_UPCOMING =
+            Comparator.comparing(x -> x.getBirthday().getDaysLeft(true));
 
     private final Comparator<Person> comparator;
     private final Predicate<Person> predicate;
