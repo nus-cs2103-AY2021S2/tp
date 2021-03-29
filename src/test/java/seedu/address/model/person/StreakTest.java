@@ -20,8 +20,8 @@ import seedu.address.testutil.EventBuilder;
 
 public class StreakTest {
 
-    Streak weeklyStreak;
-    Streak emptyStreak;
+    private final Streak weeklyStreak;
+    private final Streak emptyStreak;
 
     {
         List<Event> meetings = new ArrayList<>();
