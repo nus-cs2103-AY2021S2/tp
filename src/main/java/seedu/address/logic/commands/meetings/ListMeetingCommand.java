@@ -7,7 +7,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
-public class ListGroupCommand extends Command {
+public class ListMeetingCommand extends Command {
     public static final String COMMAND_WORD = "listm";
 
     public static final String MESSAGE_SUCCESS = "Listed all meetings";
