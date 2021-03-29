@@ -66,7 +66,7 @@ public class Statistics {
         ObservableList<FinancialRecord> list = currMonth.getFinancialRecordList();
         HashMap<Category, CategoryStatistics> map = new HashMap<>();
         for (FinancialRecord fr : list) {
-            for (Category c : fr.getTags()) {
+            for (Category c : fr.getCategories()) {
                 if (map.containsKey(c)) {
                     map.put(c, new CategoryStatistics(c, map.get(c).getAmount() + fr.getAmount().getValue()));
                 } else {

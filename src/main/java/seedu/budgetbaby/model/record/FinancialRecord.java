@@ -71,7 +71,7 @@ public class FinancialRecord {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Category> getTags() {
+    public Set<Category> getCategories() {
         return Collections.unmodifiableSet(categories);
     }
 
@@ -90,7 +90,7 @@ public class FinancialRecord {
             .append(FINANCIAL_RECORD_DETAILS_DELIMITER)
             .append(getAmount());
 
-        Set<Category> categories = getTags();
+        Set<Category> categories = getCategories();
         if (!categories.isEmpty()) {
             builder.append("; Categories: ");
             categories.forEach(builder::append);

@@ -150,20 +150,20 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
 
         Predicate<FinancialRecord> findA = fr -> fr.getAmount().getValue().equals(amount.getValue());
 
-        Predicate<FinancialRecord> findC = fr -> fr.getTags().containsAll(categories);
+        Predicate<FinancialRecord> findC = fr -> fr.getCategories().containsAll(categories);
 
         Predicate<FinancialRecord> findDA = fr -> fr.getDescription().description.equals(description.description)
                 && fr.getAmount().getValue().equals(amount.getValue());
 
         Predicate<FinancialRecord> findDC = fr -> fr.getDescription().description.equals(description.description)
-                && fr.getTags().containsAll(categories);
+                && fr.getCategories().containsAll(categories);
 
         Predicate<FinancialRecord> findAC = fr -> fr.getAmount().getValue().equals(amount.getValue())
-                && fr.getTags().containsAll(categories);
+                && fr.getCategories().containsAll(categories);
 
         Predicate<FinancialRecord> findAll = fr -> fr.getDescription().description.equals(description.description)
                 && fr.getAmount().getValue().equals(amount.getValue())
-                && fr.getTags().containsAll(categories);
+                && fr.getCategories().containsAll(categories);
 
         if (description == null) {
             if (amount == null && categories != null) {

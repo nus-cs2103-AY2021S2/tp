@@ -49,7 +49,7 @@ public class FinancialRecordCard extends UiPart<Region> {
         description.setText(financialRecord.getDescription().toString());
         amount.setText("$" + financialRecord.getAmount().toString());
         timestamp.setText(financialRecord.getTimestamp().toString());
-        financialRecord.getTags().stream()
+        financialRecord.getCategories().stream()
                 .sorted(Comparator.comparing(tag -> tag.getCategory()))
                 .forEach(tag -> categories.getChildren().add(new Label(tag.getCategory())));
     }

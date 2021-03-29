@@ -75,7 +75,7 @@ public class FinancialRecordList implements Iterable<FinancialRecord> {
      */
     public void filterByCategory(Category category) {
         requireAllNonNull(category);
-        internalList.removeIf(fr -> !fr.getTags().isEmpty());
+        internalList.removeIf(fr -> !fr.getCategories().isEmpty());
     }
 
     /**
