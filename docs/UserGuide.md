@@ -304,10 +304,11 @@ A shorthand for <span class="compulsory-param">GET</span> requests can be done w
 #### 4.3.1 Retrieve the last valid command
 
 **Description:** Given that the last valid command from a user is most likely to be repeated during the API development
-& verification process, a special key combination <kbd>ctrl</kbd> + <kbd>up-arrow</kbd> is available to set the 
+& verification process, a special key combination <kbd>ctrl</kbd> + <kbd>up-arrow</kbd> (Windows) / <kbd>cmd</kbd> + 
+<kbd>up-arrow</kbd> (Mac) is available to set the 
 command box with the last command.
 
-**Format:** <kbd>ctrl</kbd> + <kbd>up-arrow</kbd>
+**Format:** <kbd>ctrl</kbd> + <kbd>up-arrow</kbd> (Windows) / <kbd>cmd</kbd> + <kbd>up-arrow</kbd> (Mac)
 
 #### 4.3.2 Switch focused component
 
