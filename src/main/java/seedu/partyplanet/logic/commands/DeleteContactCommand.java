@@ -47,18 +47,18 @@ public class DeleteContactCommand extends DeleteCommand {
             model.deletePerson(personToDelete);
         }
 
-        // If changes have been made
-        if (!deletedPersons.isEmpty()) {
-            model.addState();
-        }
-
 
         if (invalidIndexes.isEmpty()) {
+
+            model.addState(String.format(MESSAGE_DELETE_PERSON_SUCCESS, displayPersons(deletedPersons)));
             return new CommandResult(
                 String.format(MESSAGE_DELETE_PERSON_SUCCESS, displayPersons(deletedPersons)));
         } else if (deletedPersons.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_NONE_INDEX_VALID);
         } else {
+            model.addState(String.format(MESSAGE_DELETE_PERSON_SUCCESS + "\n" + MESSAGE_INVALID_PERSON_INDEX,
+                    displayPersons(deletedPersons),
+                    String.join(", ", invalidIndexes)));
             return new CommandResult(
                 String.format(MESSAGE_DELETE_PERSON_SUCCESS + "\n" + MESSAGE_INVALID_PERSON_INDEX,
                         displayPersons(deletedPersons),

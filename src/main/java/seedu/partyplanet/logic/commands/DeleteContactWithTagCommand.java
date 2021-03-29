@@ -64,8 +64,7 @@ public class DeleteContactWithTagCommand extends DeleteCommand {
 
         // Only save state if there are changes (person deleted)
         if (!deletedPersons.isEmpty()) {
-            model.addState();
-
+            model.addState(String.format(MESSAGE_DELETE_PERSON_SUCCESS, displayPersons()));
             return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, displayPersons()));
         } else {
             return new CommandResult(isAny ? MESSAGE_PERSON_NOT_REMOVED_ANY : MESSAGE_PERSON_NOT_REMOVED_ALL);
