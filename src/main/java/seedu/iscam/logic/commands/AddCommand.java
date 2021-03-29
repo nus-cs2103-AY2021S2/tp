@@ -25,7 +25,7 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_LOCATION + "LOCATION "
-            + PREFIX_PLAN + "INSURANCE PLAN "
+            + "(optional) " + PREFIX_PLAN + "INSURANCE PLAN "
             + "(optional) " + PREFIX_TAG + "TAG(s) \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
