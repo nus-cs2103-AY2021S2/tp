@@ -22,8 +22,7 @@ public class Booking implements Comparable<Booking> {
 
     private final Name name;
     private final Phone phone;
-    private final LocalDate start;
-    private final LocalDate end;
+    private final BookingTime bookingTime;
     private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     /**
@@ -33,8 +32,7 @@ public class Booking implements Comparable<Booking> {
         requireAllNonNull(name, phone, start, end);
         this.name = name;
         this.phone = phone;
-        this.start = start;
-        this.end = end;
+        this.bookingTime = new BookingTime(start, end);
     }
 
     public Name getName() {
@@ -45,19 +43,23 @@ public class Booking implements Comparable<Booking> {
         return phone;
     }
 
+    public BookingTime getBookingTime() {
+        return bookingTime;
+    }
+
     public LocalDate getStart() {
-        return start;
+        return bookingTime.getStart();
     }
 
     public LocalDate getEnd() {
-        return end;
+        return bookingTime.getEnd();
     }
 
     /**
      * Returns if a given booking is a valid booking.
      */
     public static boolean isValidBookingTime(LocalDate start, LocalDate end) {
-        return !end.isBefore(start);
+        return BookingTime.isValidBookingTime(start, end);
     }
 
     /**
@@ -90,14 +92,13 @@ public class Booking implements Comparable<Booking> {
         Booking otherBooking = (Booking) other;
         return otherBooking.getName().equals(getName())
                 && otherBooking.getPhone().equals(getPhone())
-                && otherBooking.getStart().equals(getStart())
-                && otherBooking.getEnd().equals(getEnd());
+                && otherBooking.getBookingTime().equals(getBookingTime());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, start, end);
+        return Objects.hash(name, phone, bookingTime);
     }
 
     /**
@@ -106,12 +107,7 @@ public class Booking implements Comparable<Booking> {
      */
     @Override
     public int compareTo(Booking otherBooking) {
-        if (this.getStart().isBefore(otherBooking.getStart())) {
-            return -1;
-        } else if (this.getStart().isAfter(otherBooking.getStart())) {
-            return 1;
-        }
-        return 0;
+        return this.bookingTime.compareTo(otherBooking.getBookingTime());
     }
 
     @Override
@@ -134,10 +130,7 @@ public class Booking implements Comparable<Booking> {
      * or after the end date of the other booking.
      */
     public boolean doesOverlap(Booking otherBooking) {
-        boolean isBeforeOtherBooking = this.getEnd().isBefore(otherBooking.getStart());
-        boolean isAfterOtherBooking = this.getStart().isAfter(otherBooking.getEnd());
-
-        return !(isBeforeOtherBooking || isAfterOtherBooking);
+        return this.getBookingTime().doesOverlap(otherBooking.getBookingTime());
     }
 
 }
