@@ -61,6 +61,10 @@ public class Person {
         return Collections.unmodifiableSet(groups);
     }
 
+    public boolean inGroup(Group group) {
+        return groups.contains(group);
+    }
+
     /**
      * Returns true if both persons have the same personName.
      * This defines a weaker notion of equality between two persons.

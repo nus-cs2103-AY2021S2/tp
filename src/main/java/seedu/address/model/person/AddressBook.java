@@ -2,9 +2,12 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.group.Group;
 
 /**
  * Wraps all data at the address-book level
@@ -81,6 +84,16 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedPerson);
 
         persons.setPerson(target, editedPerson);
+    }
+
+    public Set<Person> findPersonsInGroup(Group group) {
+        Set<Person> personInGroup = new HashSet<>();
+        for (Person person: persons) {
+            if (person.inGroup(group)) {
+                personInGroup.add(person);
+            }
+        }
+        return personInGroup;
     }
 
     /**
