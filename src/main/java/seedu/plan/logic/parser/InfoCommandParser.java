@@ -25,7 +25,7 @@ public class InfoCommandParser implements Parser<InfoCommand> {
         } else {
             assert args.charAt(0) == ' ' : "Prefix parsing error";
             ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULE_CODE);
-
+            boolean test = !arePrefixesPresent(argMultimap, PREFIX_MODULE_CODE);
             if (!arePrefixesPresent(argMultimap, PREFIX_MODULE_CODE)
                     || !argMultimap.getPreamble().isEmpty()) {
                 throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
@@ -48,6 +48,7 @@ public class InfoCommandParser implements Parser<InfoCommand> {
     public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         assert argumentMultimap != null : "Missing argumentMultimap";
         assert prefixes.length != 0 : "No prefixes entered for matching";
-        return Stream.of(prefixes).noneMatch(prefix -> argumentMultimap.getValue(prefix).get().equals(""));
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent()
+                && !argumentMultimap.getValue(prefix).get().equals(""));
     }
 }

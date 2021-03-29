@@ -37,6 +37,9 @@ public class InfoCommandParserTest {
         argMultimap = ArgumentTokenizer.tokenize(" m/       ;askldghl;kdshgkl;dsj;flksd;ghk;sdf asdfsadfsda",
                 PREFIX_MODULE_CODE);
         assertTrue(InfoCommandParser.arePrefixesPresent(argMultimap, PREFIX_MODULE_CODE));
+
+        argMultimap = ArgumentTokenizer.tokenize(" p/", PREFIX_MODULE_CODE);
+        assertFalse(InfoCommandParser.arePrefixesPresent(argMultimap, PREFIX_MODULE_CODE));
     }
 
     @Test
