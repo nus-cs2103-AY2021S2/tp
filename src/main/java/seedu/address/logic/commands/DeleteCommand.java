@@ -23,8 +23,7 @@ public class DeleteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
-    public static final String MESSAGE_DELETE_PERSONS_SUCCESS = "Deleted People:\n - %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person(s): %1$s";
 
     private final List<Index> targetIndexList;
 
@@ -54,14 +53,13 @@ public class DeleteCommand extends Command {
 
         for (Person personToDelete : personToDeleteList) {
             model.deletePerson(personToDelete);
+            if (targetIndexList.size() > 1) {
+                outputString.append("\n");
+            }
             outputString.append(personToDelete);
-            outputString.append("\n");
         }
 
-        return new CommandResult(String.format(
-                targetIndexList.size() == 1
-                ? MESSAGE_DELETE_PERSON_SUCCESS
-                : MESSAGE_DELETE_PERSONS_SUCCESS, outputString));
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, outputString));
     }
 
     @Override
