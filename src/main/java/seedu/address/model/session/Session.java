@@ -8,7 +8,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonId;
 import seedu.address.model.tag.Tag;
 
@@ -28,7 +27,7 @@ public class Session {
     private final Timeslot timeslot;
     private final Subject subject;
     private final Set<Tag> tags = new HashSet<>();
-    private final PersonId tutor = null;
+    private PersonId tutor = new PersonId("");
     private final List<PersonId> students = new ArrayList<>();
 
     /**
@@ -105,6 +104,10 @@ public class Session {
         this.students.add(student);
     }
 
+    public void assignTutor(PersonId tutor) {
+        this.tutor = tutor;
+    }
+
     /**
      * Returns true if both sessions have the same ID.
      * This defines a weaker notion of equality between two sessions.
@@ -116,6 +119,10 @@ public class Session {
 
         return otherSession != null
                 && otherSession.getClassId().equals(getClassId());
+    }
+
+    public void setTutor(PersonId tutor) {
+        this.tutor = tutor;
     }
 
     /**

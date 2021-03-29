@@ -7,6 +7,8 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonType;
+import seedu.address.model.person.PersonTypePredicate;
 import seedu.address.model.person.exceptions.AlreadyEnrolledException;
 import seedu.address.model.person.exceptions.StudentTutorNotFoundException;
 import seedu.address.model.person.exceptions.TimeClashException;
@@ -21,6 +23,10 @@ public interface Model {
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     /** {@code Predicate} that always evaluate to true */
     Predicate<Session> PREDICATE_SHOW_ALL_SESSIONS = unused -> true;
+    /** {@code Predicate} that evaluate to true when person type is student */
+    Predicate<Person> PREDICATE_SHOW_ALL_STUDENTS = new PersonTypePredicate(new PersonType("student"));
+    /** {@code Predicate} that evaluate to true when person type is tutor*/
+    Predicate<Person> PREDICATE_SHOW_ALL_TUTORS = new PersonTypePredicate(new PersonType("tutor"));
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.

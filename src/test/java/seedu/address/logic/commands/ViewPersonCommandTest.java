@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.PersonId;
+import seedu.address.model.person.PersonIdPredicate;
 import seedu.address.model.person.PersonType;
 import seedu.address.model.person.PersonTypePredicate;
 
@@ -26,8 +28,8 @@ public class ViewPersonCommandTest {
 
     @Test
     public void execute_viewStudent() {
-        PersonType personType = new PersonType("student");
-        assertCommandSuccess(new ViewPersonCommand(new PersonTypePredicate(personType)),
+        PersonId personId = new PersonId("s/1");
+        assertCommandSuccess(new ViewPersonCommand(new PersonIdPredicate(personId)),
                 model, ViewPersonCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

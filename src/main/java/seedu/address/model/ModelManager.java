@@ -250,8 +250,6 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
-
-
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object

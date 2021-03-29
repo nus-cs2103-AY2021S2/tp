@@ -1,6 +1,10 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.ListType.PERSON_TYPE_LIST;
+import static seedu.address.logic.parser.ListType.SESSION_TYPE_LIST;
+import static seedu.address.logic.parser.ListType.STUDENT_TYPE_LIST;
+import static seedu.address.logic.parser.ListType.TUTOR_TYPE_LIST;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -8,6 +12,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -222,5 +227,22 @@ public class ParserUtil {
             throw new ParseException(Session.MESSAGE_CONSTRAINTS);
         }
         return new SessionId(trimmedSessionId);
+    }
+
+    /**
+     * Parses a {@code String list type}
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static String parseListType(String listType) throws ParseException {
+        requireNonNull(listType);
+        String trimmedListType = listType.trim();
+        if (trimmedListType.equals(PERSON_TYPE_LIST) || trimmedListType.equals(SESSION_TYPE_LIST) ||
+                trimmedListType.equals(STUDENT_TYPE_LIST) || trimmedListType.equals(TUTOR_TYPE_LIST)) {
+            return trimmedListType;
+        } else {
+            throw new ParseException(ListCommand.MESSAGE_USAGE);
+        }
     }
 }

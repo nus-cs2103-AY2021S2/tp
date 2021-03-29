@@ -1,15 +1,11 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.model.person.PersonType.isValidPersonType;
 
 import seedu.address.logic.commands.ViewPersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.PersonId;
 import seedu.address.model.person.PersonIdPredicate;
-import seedu.address.model.person.PersonType;
-import seedu.address.model.person.PersonTypePredicate;
-
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -28,9 +24,7 @@ public class ViewCommandParser implements Parser<ViewPersonCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewPersonCommand.MESSAGE_USAGE));
         }
 
-        if (isValidPersonType(trimmedArgs)) {
-            return new ViewPersonCommand(new PersonTypePredicate(new PersonType(trimmedArgs)));
-        } else if (PersonId.isValidPersonId(trimmedArgs)) {
+       if (PersonId.isValidPersonId(trimmedArgs)) {
             return new ViewPersonCommand(new PersonIdPredicate(new PersonId(trimmedArgs)));
         } else {
             throw new ParseException(

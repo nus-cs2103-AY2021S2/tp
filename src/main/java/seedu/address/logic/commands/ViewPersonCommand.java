@@ -2,43 +2,57 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonIdPredicate;
-import seedu.address.model.person.PersonPredicate;
-import seedu.address.model.person.PersonTypePredicate;
+import seedu.address.model.session.SessionId;
+import seedu.address.model.session.SessionStudentPredicate;
 
+import java.util.List;
+import java.util.Optional;
 
 
 public class ViewPersonCommand extends Command {
     public static final String COMMAND_WORD = "view_person";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": View all students or tutors, or view a specific person by personID.\n"
-            + "Parameters: STUDENT or TUTOR or PERSON_ID\n"
-            + "Example: " + COMMAND_WORD + " STUDENT\n"
+            + ": View a specific person by personID.\n"
+            + "Parameters: PERSON_ID\n"
             + "Example: " + COMMAND_WORD + " s/1";
 
-    public static final String MESSAGE_SUCCESS = "Displayed all relevant persons.";
+    public static final String MESSAGE_SUCCESS = "Displayed the relevant session.\n"
+                                                + "Left Panel shows the student/tutor information.\n"
+                                                + "Right Panel shows all the sessions the student/tutor currently has.";
     public static final String MESSAGE_NO_PERSON_FOUND = "There is no person found under the specified parameter!";
-    private final PersonPredicate predicate;
-
-    public ViewPersonCommand(PersonTypePredicate predicate) {
-        this.predicate = predicate;
-    }
+    private final PersonIdPredicate predicate;
 
     public ViewPersonCommand(PersonIdPredicate predicate) {
         this.predicate = predicate;
     }
 
-
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
         if (model.getFilteredPersonList().size() == 0) {
             return new CommandResult(MESSAGE_NO_PERSON_FOUND);
         }
-        return new CommandResult(MESSAGE_SUCCESS);
+
+        List<Person> lastShownList = model.getFilteredPersonList();
+
+        Optional<Person> personToView = lastShownList.stream()
+                .filter(x-> x.getPersonId().equals(predicate.getPersonId())).findAny();
+
+        if (personToView.isPresent()) {
+            List<SessionId> sessionList = personToView.get().getSessions();
+            SessionStudentPredicate sessionStudentPredicate = new SessionStudentPredicate(sessionList);
+            model.updateFilteredSessionList(sessionStudentPredicate);
+            return new CommandResult(MESSAGE_SUCCESS);
+        } else {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
     }
 
     @Override

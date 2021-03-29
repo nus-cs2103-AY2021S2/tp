@@ -16,6 +16,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ViewPersonCommand;
 import seedu.address.logic.commands.ViewSessionCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -158,7 +159,7 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
-    void fillSplitPane() {
+    void fillSplitPane(boolean viewSession) {
         viewIndividualPlaceholder.getItems().clear();
         sessionListPanelPlaceholder.setVisible(true);
         personListPanelPlaceholder.setVisible(true);
@@ -168,7 +169,11 @@ public class MainWindow extends UiPart<Stage> {
         sessionListPanel = new SessionListPanel(logic.getFilteredSessionList());
         sessionListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-        viewIndividualPlaceholder.getItems().addAll(sessionListPanelPlaceholder , personListPanelPlaceholder);
+        if (viewSession) {
+            viewIndividualPlaceholder.getItems().addAll(sessionListPanelPlaceholder, personListPanelPlaceholder);
+        } else {
+            viewIndividualPlaceholder.getItems().addAll(personListPanelPlaceholder, sessionListPanelPlaceholder);
+        }
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -264,10 +269,18 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.getFeedbackToUser().equals(ViewSessionCommand.MESSAGE_SUCCESS)) {
-                fillSplitPane();
+                boolean viewSession = true;
+                fillSplitPane(viewSession);
             }
 
-            if (commandResult.getFeedbackToUser().equals(ListCommand.MESSAGE_SUCCESS_PERSONS)) {
+            if (commandResult.getFeedbackToUser().equals(ViewPersonCommand.MESSAGE_SUCCESS)) {
+                boolean viewSession = false;
+                fillSplitPane(viewSession);
+            }
+
+            if (commandResult.getFeedbackToUser().equals(ListCommand.MESSAGE_SUCCESS_PERSONS) ||
+                    commandResult.getFeedbackToUser().equals(ListCommand.MESSAGE_SUCCESS_STUDENTS) ||
+                    commandResult.getFeedbackToUser().equals(ListCommand.MESSAGE_SUCCESS_TUTORS)) {
                 fillInnerParts();
             }
 
