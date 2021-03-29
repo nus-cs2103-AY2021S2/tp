@@ -29,6 +29,10 @@ import seedu.dictionote.logic.commands.FindDefinitionCommand;
 import seedu.dictionote.logic.commands.FindNoteCommand;
 import seedu.dictionote.logic.commands.HelpCommand;
 import seedu.dictionote.logic.commands.ListCommandCommand;
+import seedu.dictionote.logic.commands.ListCommandContactCommand;
+import seedu.dictionote.logic.commands.ListCommandDictionaryCommand;
+import seedu.dictionote.logic.commands.ListCommandNoteCommand;
+import seedu.dictionote.logic.commands.ListCommandUiCommand;
 import seedu.dictionote.logic.commands.ListContactCommand;
 import seedu.dictionote.logic.commands.ListContentCommand;
 import seedu.dictionote.logic.commands.ListDefinitionCommand;
@@ -194,6 +198,18 @@ public class DictionoteParser {
 
         case ListCommandCommand.COMMAND_WORD:
             return new ListCommandCommand();
+
+        case ListCommandDictionaryCommand.COMMAND_WORD:
+            return new ListCommandDictionaryCommand();
+
+        case ListCommandNoteCommand.COMMAND_WORD:
+            return new ListCommandNoteCommand();
+
+        case ListCommandContactCommand.COMMAND_WORD:
+            return new ListCommandContactCommand();
+
+        case ListCommandUiCommand.COMMAND_WORD:
+            return new ListCommandUiCommand();
 
         case SortNoteCommand.COMMAND_WORD:
             return new SortNoteCommand();
