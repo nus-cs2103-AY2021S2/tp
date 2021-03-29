@@ -19,20 +19,20 @@ public abstract class Repeatable {
 
     protected String description;
     protected Boolean isWeekly;
-    protected LocalDate at;
+    protected LocalDate date;
     protected LocalTime time;
 
     /**
      * Constructor for Repeatable.
      * @param description Description of the Repeatable.
-     * @param at Date of the Repeatable.
+     * @param date Date of the Repeatable.
      * @param time Time of the Repeatable.
      */
-    public Repeatable(String description, LocalDate at, LocalTime time) {
-        requireAllNonNull(description, at, time);
+    public Repeatable(String description, LocalDate date, LocalTime time) {
+        requireAllNonNull(description, date, time);
         checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS_DESCRIPTION);
         this.description = description;
-        this.at = at;
+        this.date = date;
         this.time = time;
         this.isWeekly = false;
     }
@@ -40,15 +40,15 @@ public abstract class Repeatable {
     /**
      * Constructor for Repeatable.
      * @param description Description of the Repeatable.
-     * @param at Date of the Repeatable.
+     * @param date Date of the Repeatable.
      * @param time Time of the Repeatable.
      * @param isWeekly isWeekly Status of the Repeatable
      */
-    public Repeatable(String description, LocalDate at, LocalTime time, Boolean isWeekly) {
-        requireAllNonNull(description, at, time, isWeekly);
+    public Repeatable(String description, LocalDate date, LocalTime time, Boolean isWeekly) {
+        requireAllNonNull(description, date, time, isWeekly);
         checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS_DESCRIPTION);
         this.description = description;
-        this.at = at;
+        this.date = date;
         this.time = time;
         this.isWeekly = isWeekly;
     }
@@ -66,9 +66,9 @@ public abstract class Repeatable {
      * Returns the date of the Repeatable.
      * @return A LocalDate representing the Repeatable's date.
      */
-    public LocalDate getAt() {
-        assert this.at != null : "at should not be null!";
-        return this.at;
+    public LocalDate getDate() {
+        assert this.date != null : "date should not be null!";
+        return this.date;
     }
 
     /**

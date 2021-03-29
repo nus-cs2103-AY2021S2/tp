@@ -16,22 +16,22 @@ public class Event extends Repeatable {
     /**
      * Constructor for Event.
      * @param description Description of the Event.
-     * @param at Date of the Event.
+     * @param date Date of the Event.
      * @param time Time of the Event.
      */
-    public Event(String description, LocalDate at, LocalTime time) {
-        super(description, at, time);
+    public Event(String description, LocalDate date, LocalTime time) {
+        super(description, date, time);
     }
 
     /**
      * Constructor for Repeatable.
      * @param description Description of the Repeatable.
-     * @param at Date of the Repeatable.
+     * @param date Date of the Repeatable.
      * @param time Time of the Repeatable.
      * @param isWeekly isWeekly Status of the Repeatable
      */
-    public Event(String description, LocalDate at, LocalTime time, Boolean isWeekly) {
-        super(description, at, time, isWeekly);
+    public Event(String description, LocalDate date, LocalTime time, Boolean isWeekly) {
+        super(description, date, time, isWeekly);
     }
 
     /**
@@ -62,13 +62,13 @@ public class Event extends Repeatable {
         return otherEvent.getDescription().equals(getDescription())
                 && otherEvent.getIsWeekly().equals(getIsWeekly())
                 && otherEvent.getTime().equals(getTime())
-                && otherEvent.getAt().equals(getAt());
+                && otherEvent.getDate().equals(getDate());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(description, isWeekly, at, time);
+        return Objects.hash(description, isWeekly, date, time);
     }
 
     /**
@@ -78,9 +78,9 @@ public class Event extends Repeatable {
     @Override
     public String toString() {
         if (getIsWeekly() == false) {
-            return this.description + " (at: " + DateUtil.decodeDate(at) + " " + TimeUtil.decodeTime(time) + ")";
+            return this.description + " (at: " + DateUtil.decodeDate(date) + " " + TimeUtil.decodeTime(time) + ")";
         }
 
-        return this.description + " (at: " + DateUtil.decodeDate(at) + " " + TimeUtil.decodeTime(time) + " [WEEKLY])";
+        return this.description + " (at: " + DateUtil.decodeDate(date) + " " + TimeUtil.decodeTime(time) + " [WEEKLY])";
     }
 }

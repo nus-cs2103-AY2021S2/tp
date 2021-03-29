@@ -163,22 +163,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String Interval} into a {@code Interval}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code Interval} is invalid.
-     */
-    public static Interval parseInterval(String interval) throws ParseException {
-        requireNonNull(interval);
-        String trimmedInterval = interval.trim();
-        try {
-            return Interval.valueOf(trimmedInterval);
-        } catch (IllegalArgumentException iae) {
-            throw new ParseException(Messages.MESSAGE_PARSER_INTERVAL_CONSTRAINTS);
-        }
-    }
-
-    /**
      * Parses a {@code String date} into a {@code LocalDate}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -191,6 +175,29 @@ public class ParserUtil {
             return DateUtil.encodeDate(trimmedDate);
         } catch (DateConversionException e) {
             throw new ParseException(e.getMessage());
+        }
+    }
+
+    /**
+     * Parses a {@code String isWeekly} into a {@code Boolean}.
+     * {@code String isWeekly} should be one of: 'Y', 'N', 'y' or 'n'.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code isWeekly} is invalid.
+     */
+    public static Boolean parseIsWeekly(String isWeekly) throws ParseException {
+        requireNonNull(isWeekly);
+        String trimmedIsWeekly = isWeekly.trim();
+        if (!trimmedIsWeekly.matches("/./")) {
+            throw new ParseException(Messages.MESSAGE_PARSER_IS_WEEKLY_CONSTRAINTS);
+        }
+
+        if (trimmedIsWeekly.toUpperCase() == "Y") {
+            return true;
+        } else if (trimmedIsWeekly.toUpperCase() == "N") {
+            return false;
+        } else {
+            throw new ParseException(Messages.MESSAGE_PARSER_IS_WEEKLY_CONSTRAINTS);
         }
     }
 

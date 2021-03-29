@@ -39,8 +39,10 @@ public class Messages {
 
     public static final String MESSAGE_PARSER_DESCRIPTION_CONSTRAINTS =
             "Description should only contain alphanumeric characters and spaces, and it should not be blank";
-    public static final String MESSAGE_PARSER_INTERVAL_CONSTRAINTS =
-            "Interval should be one of: NONE, DAILY, WEEKLY, FORTNIGHTLY, MONTHLY, YEARLY";
+
+    public static final String MESSAGE_PARSER_IS_WEEKLY_CONSTRAINTS =
+            "Is Weekly should be one of: 'Y', 'N', 'y' or 'n'";
+
     public static final String MESSAGE_PARSER_DATE_CONSTRAINTS =
                     "Date should be a valid date in one of the following formats:\n"
                     + "\t- dd-MM-yyyy\t(e.g. 01-01-2021)\n"

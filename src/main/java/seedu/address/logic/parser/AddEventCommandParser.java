@@ -4,10 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_INTERVAL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_WEEKLY;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
@@ -30,20 +31,23 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
     public AddEventCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_EVENT_WEEKLY,
-                        PREFIX_EVENT_DATE);
+                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_EVENT_DATE,
+                        PREFIX_EVENT_TIME, PREFIX_EVENT_WEEKLY);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_EVENT_WEEKLY, PREFIX_EVENT_DATE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_EVENT_DATE, PREFIX_EVENT_TIME,
+                PREFIX_EVENT_WEEKLY)
                 || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventCommand.MESSAGE_USAGE));
         }
 
         Index projectIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
         String description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        Interval interval = ParserUtil.parseInterval(argMultimap.getValue(PREFIX_EVENT_INTERVAL).get());
-        LocalDate at = ParserUtil.parseDate(argMultimap.getValue(PREFIX_EVENT_DATE).get());
+        LocalDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_EVENT_DATE).get());
+        LocalTime time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_EVENT_TIME).get());
+        Boolean isWeekly = ParserUtil.parseIsWeekly(argMultimap.getValue(PREFIX_EVENT_WEEKLY).get());
 
-        Event event = new Event(description, interval, at);
+
+        Event event = new Event(description, date, time, isWeekly);
 
         return new AddEventCommand(projectIndex, event);
     }
