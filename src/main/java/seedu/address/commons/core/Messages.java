@@ -14,6 +14,9 @@ public class Messages {
     public static final String MESSAGE_FORCE_DELETE_REQUIRED =
             "The patient has existing appointments in appointment schedule."
             + " Force delete command format required! \n%1$s";
+    public static final String MESSAGE_CLEAR_APPOINTMENTS_REQUIRED =
+            "Patient records cannot be cleared until appointment schedule is cleared.\n"
+            + "Use the command \"clear-appt\" to clear the appointment schedule.";
     public static final String MESSAGE_DELETE_PATIENT_SUCCESS = "Deleted Person: %1$s";
 
     //=================================Appointment related messages===========================================

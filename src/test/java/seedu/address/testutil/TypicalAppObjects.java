@@ -120,6 +120,11 @@ public class TypicalAppObjects {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 
+    public static AppointmentSchedule getEmptyAppointmentSchedule() {
+        AppointmentSchedule as = new AppointmentSchedule();
+        return as;
+    }
+
     /**
      * Returns an {@code AppointmentSchedule} with all the typical appointments.
      */
