@@ -97,7 +97,7 @@ public class AddressBookParserTest {
         String addEToCommand = AddEventCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased() + " "
                 + PREFIX_DESCRIPTION + "CS2106 Tutorial" + " "
                 + PREFIX_EVENT_DATE + "01-01-2020" + " "
-                + PREFIX_EVENT_TIME + "17:30"
+                + PREFIX_EVENT_TIME + "17:30" + " "
                 + PREFIX_EVENT_WEEKLY + "n";
         AddEventCommand command = (AddEventCommand) parser.parseCommand(addEToCommand);
         assertEquals(new AddEventCommand(projectIndex, event), command);
