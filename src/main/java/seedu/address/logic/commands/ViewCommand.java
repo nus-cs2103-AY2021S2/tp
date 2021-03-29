@@ -67,4 +67,10 @@ public class ViewCommand extends Command {
         return new CommandResult(MESSAGE_VIEW_GARMENT_SUCCESS);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ViewCommand // instanceof handles nulls
+                && this.indexes.containsAll(((ViewCommand) other).indexes));
+    }
 }
