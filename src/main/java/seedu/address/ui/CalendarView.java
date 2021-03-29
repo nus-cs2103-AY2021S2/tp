@@ -307,7 +307,7 @@ public class CalendarView extends UiPart<Region> {
                     }
 
                     try {
-                        commandExecutor.execute("view_appointment " + pivotDate);
+                        commandExecutor.execute("view_event " + pivotDate);
                     } catch (CommandException | ParseException e) {
                         logger.info("Invalid command");
                     }
