@@ -48,8 +48,7 @@ public class ModelManager implements Model {
         groupMap = this.addressBook.getGroupMap();
         upcomingDates = this.addressBook.getUpcomingDates();
         detailedPerson = FXCollections.observableArrayList();
-        personStreaks = FXCollections.observableArrayList();
-        personStreaks.addAll(this.addressBook.getPersonStreaks());
+        personStreaks = this.addressBook.getPersonStreaks();
     }
 
     public ModelManager() {
@@ -101,7 +100,6 @@ public class ModelManager implements Model {
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
-        updatePersonStreaks();
     }
 
     @Override
@@ -113,13 +111,11 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
-        updatePersonStreaks();
     }
 
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
-        updatePersonStreaks();
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -131,8 +127,6 @@ public class ModelManager implements Model {
         if (detailedPerson.size() == 1 && target.isSamePerson(detailedPerson.get(0))) {
             updateDetailedPerson(editedPerson);
         }
-
-        updatePersonStreaks();
     }
 
     @Override
@@ -204,12 +198,6 @@ public class ModelManager implements Model {
     @Override
     public void updateDetailedPerson(Person personToDisplay) {
         detailedPerson.setAll(personToDisplay);
-    }
-
-    private void updatePersonStreaks() {
-        // Whenever we add/edit/delete a person, we refresh the personStreaks list so UI will be up to date.
-        // Therefore, there is no need to run this in the Commands.
-        personStreaks.setAll(addressBook.getPersonStreaks());
     }
 
     @Override

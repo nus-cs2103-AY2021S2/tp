@@ -135,6 +135,4 @@ public class Goal {
     public int hashCode() {
         return frequency != null ? frequency.hashCode() : 0;
     }
-
-
 }
