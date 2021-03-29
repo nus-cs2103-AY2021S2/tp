@@ -25,6 +25,7 @@ import seedu.dictionote.model.ReadOnlyNoteBook;
 import seedu.dictionote.model.ReadOnlyUserPrefs;
 import seedu.dictionote.model.UserPrefs;
 import seedu.dictionote.model.contact.Contact;
+import seedu.dictionote.model.contact.MailtoLink;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -55,7 +56,7 @@ public class EmailContactCommandTest {
                 getTypicalDefinitionBook()
         );
 
-        expectedModel.emailContact(contactToEmail);
+        expectedModel.emailContactUsingLink(new MailtoLink(contactToEmail));
 
         assertCommandSuccess(emailContactCommand, model, expectedMessage, expectedModel);
     }
@@ -85,7 +86,7 @@ public class EmailContactCommandTest {
                 getTypicalDefinitionBook()
         );
 
-        expectedModel.emailContact(contactToEmail);
+        expectedModel.emailContactUsingLink(new MailtoLink(contactToEmail));
 
         showContactAtIndex(expectedModel, INDEX_FIRST_CONTACT);
 
@@ -138,7 +139,7 @@ public class EmailContactCommandTest {
         }
 
         @Override
-        public void emailContact(Contact contact) {
+        public void emailContactUsingLink(MailtoLink link) {
             // for the sake of unit testing, do not invoke the OS's mail client.
             return;
         }
