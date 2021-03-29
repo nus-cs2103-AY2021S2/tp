@@ -45,11 +45,11 @@ public class EventCard extends UiPart<Region> {
         this.event = event;
         id.setText(displayedIndex + ". ");
         name.setText(event.getName().fullName);
-        startDate.setText(event.getStartDate().toString());
-        startTime.setText(event.getStartTime().toString());
-        endDate.setText(event.getEndDate().toString());
-        endTime.setText(event.getEndTime().toString());
-        category.setText(event.getCategories().toString());
+        startDate.setText("Start Date: " + event.getStartDate().toString());
+        startTime.setText("Start Time: " + event.getStartTime().toString());
+        endDate.setText("End Date: " + event.getEndDate().toString());
+        endTime.setText("End Time: " + event.getEndTime().toString());
+        category.setText("Category: " + event.getCategories().toString());
         event.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

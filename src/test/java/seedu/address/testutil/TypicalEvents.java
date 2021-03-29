@@ -29,44 +29,44 @@ public class TypicalEvents {
 
     public static final Event MEETING = new EventBuilder().withName("CS2103 Meeting")
             .withStartDate("2021-03-17").withStartTime("21:00")
-            .withEndDate("2021-03-17").withEndTime("23:00")
+            .withEndDate("2022-03-17").withEndTime("23:00")
             .withTags("SocheduleBest").withCategories("SchoolWork")
             .build();
     public static final Event DATE = new EventBuilder().withName("1 Year Anniversary")
             .withStartDate("2021-03-14").withStartTime("08:00")
-            .withEndDate("2021-03-17").withEndTime("21:00")
+            .withEndDate("2022-03-17").withEndTime("21:00")
             .withTags("LoveYou").withCategories("Love")
             .build();
     public static final Event CAMP = new EventBuilder().withName("RVRC Camping")
             .withStartDate("2021-05-11").withStartTime("08:00")
-            .withEndDate("2021-05-15").withEndTime("22:00")
+            .withEndDate("2022-05-15").withEndTime("22:00")
             .withTags("Boring").withCategories("Leisure")
             .build();
     public static final Event HACKATHON = new EventBuilder().withName("Google Hash Code") // No tags
             .withStartDate("2021-03-17").withStartTime("21:00")
-            .withEndDate("2021-03-17").withEndTime("23:00")
+            .withEndDate("2022-03-17").withEndTime("23:00")
             .withCategories("Competition")
             .build();
     public static final Event WORKSHOP = new EventBuilder().withName("Shopee Code League Workshop") // No category
             .withStartDate("2021-03-17").withStartTime("21:00")
-            .withEndDate("2021-03-17").withEndTime("23:00")
+            .withEndDate("2022-03-17").withEndTime("23:00")
             .withTags("Learning")
             .build();
     public static final Event COMPETITION = new EventBuilder().withName("Inter College Game Basketball")
-            .withStartDate("2021-03-17").withStartTime("21:00")
-            .withEndDate("2021-03-17").withEndTime("23:00")
+            .withStartDate("2022-03-23").withStartTime("21:00")
+            .withEndDate("2022-03-23").withEndTime("23:00")
             .withTags("Semifinal").withCategories("Exercise")
             .build();
 
     // Manually added
     public static final Event CONCERT = new EventBuilder().withName("JJ Lin Concert")
             .withStartDate("2021-03-17").withStartTime("21:00")
-            .withEndDate("2021-03-17").withEndTime("23:00")
+            .withEndDate("2022-03-17").withEndTime("23:00")
             .withTags("FirstConcert").withCategories("Leisure")
             .build();
     public static final Event PICNIC = new EventBuilder().withName("Sentosa Picnic")
             .withStartDate("2021-03-17").withStartTime("21:00")
-            .withEndDate("2021-03-17").withEndTime("23:00")
+            .withEndDate("2022-03-17").withEndTime("23:00")
             .withTags("Chill").withCategories("Leisure")
             .build();
 
