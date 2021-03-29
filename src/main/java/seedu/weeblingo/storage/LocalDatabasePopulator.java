@@ -1,6 +1,7 @@
 package seedu.weeblingo.storage;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -35,7 +36,9 @@ public class LocalDatabasePopulator {
             Question question = new Question((String) tempJsonCard.get("question"));
             Answer answer = new Answer((String) tempJsonCard.get("answer"));
             Set<Tag> tags = getTagSet((JSONArray) tempJsonCard.get("tagged"));
-            Flashcard tempCard = new Flashcard(question, answer, tags);
+            Set<Tag> userTags = tempJsonCard.get("userTagged") == null ? Collections.emptySet()
+                    : getTagSet((JSONArray) tempJsonCard.get("userTagged"));
+            Flashcard tempCard = new Flashcard(question, answer, tags, userTags);
             flashcards[i] = tempCard;
         }
         return flashcards;

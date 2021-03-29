@@ -124,6 +124,11 @@ public class ModelManager implements Model {
         flashcardBook.setFlashcard(target, editedFlashcard);
     }
 
+    @Override
+    public void tagFlashcard(Flashcard target, String tag) {
+
+    }
+
     //=========== Filtered Flashcard List Accessors =============================================================
 
     /**
@@ -177,15 +182,15 @@ public class ModelManager implements Model {
     @Override
     public void startQuiz() {
         if (numOfQnsForQuizSession == 0 && tagsForQuizSession == null) {
-            this.quizInstance = new Quiz();
+            this.quizInstance = new Quiz(filteredFlashcards);
             Flashcard next = quizInstance.getNextQuestion();
             updateFilteredFlashcardList(curr -> curr.equals(next));
         } else if (tagsForQuizSession == null) {
-            this.quizInstance = new Quiz(numOfQnsForQuizSession);
+            this.quizInstance = new Quiz(filteredFlashcards, numOfQnsForQuizSession);
             Flashcard next = quizInstance.getNextQuestion();
             updateFilteredFlashcardList(curr -> curr.equals(next));
         } else {
-            this.quizInstance = new Quiz(tagsForQuizSession);
+            this.quizInstance = new Quiz(filteredFlashcards, tagsForQuizSession);
             Flashcard next = quizInstance.getNextQuestion();
             updateFilteredFlashcardList(curr -> curr.equals(next));
         }

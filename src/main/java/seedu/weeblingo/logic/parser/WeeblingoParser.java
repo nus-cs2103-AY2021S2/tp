@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.weeblingo.logic.commands.CheckCommand;
 import seedu.weeblingo.logic.commands.Command;
+import seedu.weeblingo.logic.commands.DeleteCommand;
 import seedu.weeblingo.logic.commands.EndCommand;
 import seedu.weeblingo.logic.commands.ExitCommand;
 import seedu.weeblingo.logic.commands.HelpCommand;
@@ -15,6 +16,7 @@ import seedu.weeblingo.logic.commands.LearnCommand;
 import seedu.weeblingo.logic.commands.NextCommand;
 import seedu.weeblingo.logic.commands.QuizCommand;
 import seedu.weeblingo.logic.commands.StartCommand;
+import seedu.weeblingo.logic.commands.TagCommand;
 import seedu.weeblingo.logic.commands.ViewHistoryCommand;
 import seedu.weeblingo.logic.parser.exceptions.ParseException;
 
@@ -68,6 +70,12 @@ public class WeeblingoParser {
 
         case CheckCommand.COMMAND_WORD:
             return new CheckCommandParser().parse(arguments);
+
+        case TagCommand.COMMAND_WORD:
+            return new TagCommandParser().parse(arguments);
+
+        case DeleteCommand.COMMAND_WORD:
+            return new DeleteCommandParser().parse(arguments);
 
         case ViewHistoryCommand.COMMAND_WORD:
             return new ViewHistoryCommand();

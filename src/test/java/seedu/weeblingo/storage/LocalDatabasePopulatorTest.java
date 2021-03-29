@@ -34,12 +34,12 @@ public class LocalDatabasePopulatorTest {
         Flashcard[] flashcards = LocalDatabasePopulator.getDatabaseOfFlashcards(jsonArrayReadFromDatabase);
         assertEquals(flashcards[0].getQuestion().toString(), "ふ");
         assertEquals(flashcards[0].getAnswer().toString(), "fu");
-        assertTrue(flashcards[0].getTags().contains(new TagStub("hiragana")));
-        assertTrue(flashcards[0].getTags().contains(new TagStub("gojuon")));
+        assertTrue(flashcards[0].getWeeblingoTags().contains(new TagStub("hiragana")));
+        assertTrue(flashcards[0].getWeeblingoTags().contains(new TagStub("gojuon")));
 
         assertEquals(flashcards[1].getQuestion().toString(), "ひ");
         assertEquals(flashcards[1].getAnswer().toString(), "hi");
-        assertTrue(flashcards[1].getTags().isEmpty());
+        assertTrue(flashcards[1].getWeeblingoTags().isEmpty());
     }
 
     @Test

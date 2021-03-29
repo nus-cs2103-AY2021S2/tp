@@ -18,7 +18,7 @@ public class FlashcardUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_QUESTION + flashcard.getQuestion().value + " ");
         sb.append(PREFIX_ANSWER + flashcard.getAnswer().value + " ");
-        flashcard.getTags().stream().forEach(
+        flashcard.getWeeblingoTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();
