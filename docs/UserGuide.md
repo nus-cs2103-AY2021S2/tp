@@ -215,10 +215,10 @@ This section contains documentation on CoLAB's features and commands.
 
 It is split into 4 subsections,
 * [Projects](#projects)
-    * Todo
-    * Deadline
-    * Event
-    * Groupmates
+    * [Todos](#todos)
+    * [Deadlines](#deadlines)
+    * [Events](#events)
+    * [Groupmates](#groupmates)
 * [Contacts](#contacts)
 * [Navigating the UI](#navigating-the-ui)
 * [Others](#others)
