@@ -25,7 +25,8 @@ imPoster is a desktop application for beginners of API development to easily gra
     commands and how we verify the validity of URLs.
 
 - **New Feature**: Added a keyboard shortcut that allows the user to retrieve 
-  the previous valid command using ctrl + up-arrow (Windows) / cmd + up-arrow (Mac).
+  the previous valid command using <kbd>ctrl</kbd> + <kbd>up-arrow</kbd> (Windows) / <kbd>cmd</kbd> + 
+  <kbd>up-arrow</kbd> (Mac).
 
 - **New Feature**: Added a help command that allows the user to open a pop up window displaying
    relevant links such as the product's user guide and also a table of command summary. 
@@ -34,11 +35,11 @@ imPoster is a desktop application for beginners of API development to easily gra
 
 - **Project management**:
 
-  - Managed releases `v1.4` on GitHub
+  - Contributed to gathering of discussion topics and updating of meeting minutes in weekly team meetings.
 
 - **Enhancements to existing features**:
 
-  - Updated various custom feedback messages in the result display for commands
+  - Updated various custom feedback messages in the result display for commands.
   - Wrote additional tests for existing features to increase coverage.
 
 - **Documentation**:
@@ -48,7 +49,7 @@ imPoster is a desktop application for beginners of API development to easily gra
 
   - Developer Guide:
     - Added the high level overview of product design 
-      (Architecture, UI component and Logic component)
+      (Architecture, UI component and Logic component).
     - Added implementation details of the `send` & `run` feature.
 
 - **Community**:
@@ -57,17 +58,17 @@ imPoster is a desktop application for beginners of API development to easily gra
     [\#79](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/79), 
     [\#146](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/146),
     [\#189](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/189), 
-    [\#345](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/345)
+    [\#345](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/345).
   - Contributed to forum discussions (
     [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/220#issuecomment-797323149), 
     [2](https://github.com/nus-cs2103-AY2021S2/forum/issues/241#issuecomment-802904375), 
     [3](https://github.com/nus-cs2103-AY2021S2/forum/issues/236#issuecomment-799401973), 
-    [4](https://github.com/nus-cs2103-AY2021S2/forum/issues/235#issuecomment-799058631))
+    [4](https://github.com/nus-cs2103-AY2021S2/forum/issues/235#issuecomment-799058631)).
   - Provided helpful tips and suggestions for other teams in the class (
     [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/179#issuecomment-785740902),
     [2](https://github.com/nus-cs2103-AY2021S2/forum/issues/175#issuecomment-784177269), 
-    [3](https://github.com/nus-cs2103-AY2021S2/forum/issues/243#issuecomment-803282899))
+    [3](https://github.com/nus-cs2103-AY2021S2/forum/issues/243#issuecomment-803282899)).
   - Raised pertinent issues on the topic of design principles and code refactoring 
     ([1](https://github.com/nus-cs2103-AY2021S2/forum/issues/240), 
-    [2](https://github.com/nus-cs2103-AY2021S2/forum/issues/230))
+    [2](https://github.com/nus-cs2103-AY2021S2/forum/issues/230)).
     
