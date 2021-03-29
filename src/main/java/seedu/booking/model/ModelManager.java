@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.booking.commons.core.GuiSettings;
 import seedu.booking.commons.core.LogsCenter;
+import seedu.booking.logic.commands.states.CommandState;
 import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.Id;
 import seedu.booking.model.person.Email;
@@ -23,6 +24,8 @@ import seedu.booking.model.venue.VenueName;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+
+    public static CommandState commandState = new CommandState();
 
     private final BookingSystem bookingSystem;
     private final UserPrefs userPrefs;
