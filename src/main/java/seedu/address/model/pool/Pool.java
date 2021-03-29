@@ -94,6 +94,10 @@ public class Pool {
         return new Pool(driver, tripDay, tripTime, newPassengers, tags);
     }
 
+    public boolean hasPassenger(Passenger key) {
+        return passengers.stream().anyMatch(key::equals);
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.

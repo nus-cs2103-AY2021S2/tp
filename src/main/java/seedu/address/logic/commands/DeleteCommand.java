@@ -23,6 +23,8 @@ public class DeleteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_PASSENGER_SUCCESS = "Deleted Passenger: %1$s";
+    public static final String MESSAGE_DELETE_PASSENGER_FAIL_HAS_POOL = "Failed to delete. One or more Pools contain " +
+            "Passenger: %1$s.";
 
     private final Index targetIndex;
 
@@ -40,7 +42,9 @@ public class DeleteCommand extends Command {
         }
 
         Passenger passengerToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePassenger(passengerToDelete);
+        if (!model.deletePassenger(passengerToDelete)) {
+            throw new CommandException(String.format(MESSAGE_DELETE_PASSENGER_FAIL_HAS_POOL, passengerToDelete));
+        }
         return new CommandResult(String.format(MESSAGE_DELETE_PASSENGER_SUCCESS, passengerToDelete));
     }
 
