@@ -91,6 +91,7 @@ public class PropertyCard extends UiPart<Region> {
         Deadline currentDate = new Deadline(LocalDate.now());
         if (currentDate.compareTo(property.getDeadline()) > 0) {
             cardPane.setStyle("-fx-background-color: #696969");
+            deadline.setStyle("-fx-text-fill: darkred");
         }
 
         if (property.getRemarks() == null) {
