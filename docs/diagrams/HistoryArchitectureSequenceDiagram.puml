@@ -1,0 +1,42 @@
+@startuml
+!include style.puml
+
+Actor User as user USER_COLOR
+Participant ":UI" as ui UI_COLOR
+Participant ":Logic" as logic LOGIC_COLOR
+Participant ":Model" as model MODEL_COLOR
+Participant ":History" as history STORAGE_COLOR
+
+user -> ui : "history"
+activate ui
+
+ui -> logic : execute("history")
+activate logic
+
+logic -> model : getHistory()
+activate model
+
+create history
+model -[MODEL_COLOR]> history
+activate history
+
+history -[STORAGE_COLOR]-> model
+deactivate history
+
+model -> history : toString()
+activate history
+
+history --> model
+deactivate history
+
+model --> logic
+deactivate model
+
+destroy history
+
+logic --> ui
+deactivate logic
+
+ui--[UI_COLOR]> user
+deactivate ui
+@enduml
