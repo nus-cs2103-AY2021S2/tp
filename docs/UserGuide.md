@@ -155,7 +155,7 @@ Examples:
 * `search n/Patrick Lim` returns `patrick lim` and `Lim Zi Ying`
 
 ### Searching for a contact by school: `search s/...`
-Searches for contacts from a specific school using keywords
+Searches for a student's contact from a specific school using keywords
 
 Format: `search s/KEYWORD [MORE_KEYWORDS]`
 
