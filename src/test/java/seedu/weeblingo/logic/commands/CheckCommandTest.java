@@ -16,6 +16,7 @@ import seedu.weeblingo.model.ReadOnlyFlashcardBook;
 import seedu.weeblingo.model.ReadOnlyUserPrefs;
 import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.flashcard.Flashcard;
+import seedu.weeblingo.model.score.Score;
 import seedu.weeblingo.testutil.FlashcardBuilder;
 
 public class CheckCommandTest {
@@ -157,6 +158,16 @@ public class CheckCommandTest {
         }
 
         @Override
+        public ObservableList<Score> getFilteredScoreHistory() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredScoreHistory(Predicate<Score> s) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Quiz getQuizInstance() {
             throw new AssertionError("This method should not be called.");
         }
@@ -183,6 +194,11 @@ public class CheckCommandTest {
 
         @Override
         public void switchModeCheckSuccess() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void switchModeHistory() {
             throw new AssertionError("This method should not be called.");
         }
     }

@@ -2,6 +2,7 @@ package seedu.weeblingo.model;
 
 import javafx.collections.ObservableList;
 import seedu.weeblingo.model.flashcard.Flashcard;
+import seedu.weeblingo.model.score.Score;
 
 /**
  * Unmodifiable view of an flashcard book
@@ -14,4 +15,5 @@ public interface ReadOnlyFlashcardBook {
      */
     ObservableList<Flashcard> getFlashcardList();
 
+    ObservableList<Score> getScoreHistoryList();
 }

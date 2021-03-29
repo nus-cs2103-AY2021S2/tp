@@ -8,6 +8,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import seedu.weeblingo.MainApp;
+import seedu.weeblingo.storage.exceptions.DataInitializationException;
 
 /**
  * Flashcards database (Json file) reader.
@@ -32,8 +33,7 @@ public class JsonDatabaseReader {
             JSONArray flashcardsJsonArr = (JSONArray) jsonObject.get("flashcards");
             return flashcardsJsonArr;
         } catch (ParseException e) {
-            e.printStackTrace();
-            throw new RuntimeException();
+            throw new DataInitializationException();
         }
     }
 }

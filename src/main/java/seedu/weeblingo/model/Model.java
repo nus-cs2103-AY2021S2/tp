@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.weeblingo.commons.core.GuiSettings;
 import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.flashcard.Flashcard;
+import seedu.weeblingo.model.score.Score;
 
 /**
  * The API of the Model component.
@@ -14,6 +15,8 @@ import seedu.weeblingo.model.flashcard.Flashcard;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Flashcard> PREDICATE_SHOW_ALL_FLASHCARDS = unused -> true;
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Score> PREDICATE_SHOW_ALL_SCORES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -81,11 +84,20 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered flashcard list */
     ObservableList<Flashcard> getFilteredFlashcardList();
 
+    /** Returns an unmodifiable view of the filtered score history list */
+    ObservableList<Score> getFilteredScoreHistory();
+
     /**
      * Updates the filter of the filtered flashcard list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredFlashcardList(Predicate<Flashcard> predicate);
+
+    /**
+     * Updates the filter of the filtered score history list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredScoreHistory(Predicate<Score> predicate);
 
     /** Generates a Quiz object and shows the first question */
     void startQuiz();
@@ -116,13 +128,15 @@ public interface Model {
     /** Gets the quiz instance, which is this quiz session */
     Quiz getQuizInstance();
 
-    public void switchModeQuiz();
+    void switchModeQuiz();
 
-    public void switchModeLearn();
+    void switchModeLearn();
 
-    public void switchModeMenu();
+    void switchModeMenu();
 
-    public void switchModeQuizSession();
+    void switchModeQuizSession();
 
-    public void switchModeCheckSuccess();
+    void switchModeCheckSuccess();
+
+    void switchModeHistory();
 }
