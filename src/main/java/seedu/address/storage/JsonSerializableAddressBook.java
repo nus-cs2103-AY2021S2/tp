@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.passenger.Passenger;
+import seedu.address.model.pool.Pool;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -20,6 +21,7 @@ import seedu.address.model.person.passenger.Passenger;
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PASSENGER = "Passengers list contains duplicate passenger(s).";
+    public static final String MESSAGE_DUPLICATE_POOL = "Pool list contains duplicate pool(s).";
 
     private final List<JsonAdaptedPassenger> passengers = new ArrayList<>();
     private final List<JsonAdaptedPool> pools = new ArrayList<>();
@@ -52,14 +54,23 @@ class JsonSerializableAddressBook {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+        AddressBook passengerList = new AddressBook();
         for (JsonAdaptedPassenger jsonAdaptedPassenger : passengers) {
             Passenger passenger = jsonAdaptedPassenger.toModelType();
-            if (addressBook.hasPassenger(passenger)) {
+            if (passengerList.hasPassenger(passenger)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PASSENGER);
             }
-            addressBook.addPassenger(passenger);
+            passengerList.addPassenger(passenger);
         }
+
+        for (JsonAdaptedPool jsonAdaptedPool : pools) {
+            Pool pool = jsonAdaptedPool.toModelType();
+            if (passengerList.hasPool(pool)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_POOL);
+            }
+            passengerList.addPool(pool);
+        }
+
         return addressBook;
     }
 
