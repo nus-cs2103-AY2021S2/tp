@@ -6,7 +6,7 @@ title: User Guide
 A-Bash Book is an enhanced version of Address Book 3 app for managing your contacts, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you type fast, A-Bash Book will allow you to quickly complete your contact management tasks.
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -233,6 +233,23 @@ Examples:
 | --------------- | -------- |
 |`list -a `| show the contact's name and address only.|
 |`list -a -p`| show the contact's name, address and phone number only.|
+
+### Email Command
+
+Email command provides the user with the choice to mass email person(s) of their choice.
+Executing the `email` command will open up the operating system's email client.
+
+Format: `email [INDEX...] [shown]`
+
+`shown` is a special index that refers to all the person that are in the visible person list.
+
+Examples:
+
+| Example | Description |
+| --------------- | -------- |
+|`email 1`| Email person with index 1 |
+|`email 1 2`| Email person with index 1 and 2 |
+|`email shown`| Email all the person in the visible person list |
 
 ### Saving the data
 

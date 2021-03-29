@@ -347,6 +347,9 @@ Commands:
 
 `shown` will be a special index where it refers to all the items in the person list.
 
+### Email Person(s)
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
