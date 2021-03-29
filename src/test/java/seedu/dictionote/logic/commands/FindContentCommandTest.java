@@ -80,7 +80,7 @@ public class FindContentCommandTest {
         expectedModel.updateFilteredContentList(contentPredicate);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(WEEK_1,  WEEK_14), model.getFilteredContentList());
+        assertEquals(Arrays.asList(WEEK_1, WEEK_14), model.getFilteredContentList());
     }
 
     /**
