@@ -4,9 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PASSENGER;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_MONDAY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPTIME_MORNING;
 
@@ -61,8 +60,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PASSENGER.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PASSENGER), command);
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new DeleteCommand(INDEX_FIRST), command);
     }
 
     @Test
@@ -70,9 +69,9 @@ public class AddressBookParserTest {
         Passenger passenger = new PassengerBuilder().build();
         EditCommand.EditPassengerDescriptor descriptor = new EditPassengerDescriptorBuilder(passenger).build();
         EditCommand command = (EditCommand) parser.parseCommand(
-                EditCommand.COMMAND_WORD + " " + INDEX_FIRST_PASSENGER.getOneBased() + " "
+                EditCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased() + " "
                         + PassengerUtil.getEditPassengerDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PASSENGER, descriptor), command);
+        assertEquals(new EditCommand(INDEX_FIRST, descriptor), command);
     }
 
     @Test

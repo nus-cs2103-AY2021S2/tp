@@ -60,8 +60,9 @@ public class CommandTestUtil {
     public static final String VALID_PRICE_STR_AMY = "1.69";
     public static final String VALID_PRICE_STR_BOB = "6.9";
 
-    public static final String VALID_TAG_HUSBAND = "husband";
+    public static final String VALID_TAG_GOLF = "golf";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TAG_FEMALE = "female";
 
     public static final String VALID_COMMUTER_1 = "1";
     public static final String VALID_COMMUTER_2 = "2";
@@ -77,7 +78,8 @@ public class CommandTestUtil {
     public static final String TRIPTIME_DESC_EVENING = " " + PREFIX_TRIPTIME + VALID_TRIPTIME_STR_EVENING;
     public static final String TRIPTIME_DESC_MORNING = " " + PREFIX_TRIPTIME + VALID_TRIPTIME_STR_MORNING;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_GOLF = " " + PREFIX_TAG + VALID_TAG_GOLF;
+    public static final String TAG_DESC_FEMALE = " " + PREFIX_TAG + VALID_TAG_FEMALE;
     public static final String TRIPDAY_DESC_BOB = " " + PREFIX_TRIPDAY + VALID_TRIPDAY_STR_BOB;
     public static final String TRIPTIME_DESC_BOB = " " + PREFIX_TRIPTIME + VALID_TRIPTIME_STR_BOB;
     public static final String PRICE_DESC_AMY = " " + PREFIX_PRICE + VALID_PRICE_STR_AMY;
@@ -106,7 +108,7 @@ public class CommandTestUtil {
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPassengerDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_GOLF, VALID_TAG_FRIEND).build();
     }
 
     /**
