@@ -264,12 +264,12 @@ Format: `exit`
 
 Some features, such as data saving and storage, and handled automatically by SmartLib.
 
-### Saving the data
+#### Saving the data
 
 SmartLib data are saved in the hard disk automatically after any command that changes the data. There is no need to save
 manually.
 
-### Editing the data file
+#### Editing the data file
 
 SmartLib data are saved as a JSON file `[JAR file location]/data/smartlib.json`. Advanced users are welcome to update
 data directly by editing that data file.
