@@ -6,11 +6,11 @@ title: User Guide
   <img alt="logo" src="images/tutorbuddy_logo.png">
 </div>
 
-<br>
-<br>
-TutorBuddy is an application made for independent tutors as a management tool to cut down on admin overheads,
-by graphically managing their student’s information with a Graphical User Interface (GUI).
-It allows for faster and more effective student management.
+
+TutorBuddy is a desktop application made for freelance tutors to efficiently manage their students' contacts,
+provide a quick overview of scheduled tuition sessions at a glance, and handle monthly tuition fees calculation.
+TutorBuddy is also optimized for fast typing users to handle their day-to-day administrative responsibilities
+effectively.
 
 **Table of Contents**
 * [About](#about)
@@ -181,6 +181,10 @@ Examples:
 3 | Jon Koh
 4 | Samuel Lee
 
+*Figure 1: Current State of Student List*
+
+Example command usages from the current student list shown in Figure 1:
+
 * `find_student John` returns John Lee
 * `find_student Sam` returns nothing
 * `find_student Lee` returns "John Lee" and "Samuel Lee"
@@ -226,8 +230,18 @@ Examples:
 3 | Jon Koh | jonkoh@gmail.com
 4 | Samuel Lee | sam@gmail.com
 
-* To get emails of all students: `list_student` followed by `emails` returns `johnlee@gmail.com;johnztan@gmail.com;jonkoh@gmail.com;sam@gmail.com;`
-* To get emails of specific students: `find_student john jon` followed by  `emails` returns `johnlee@gmail.com;jonkoh@gmail.com;`
+*Figure 2.1 State of Student List After `list_student` command*
+
+\# | Student Name | Email
+---- |---------|------|
+1 | John Lee | johnlee@gmail.com
+2 | Jon Koh | jonkoh@gmail.com
+
+*Figure 2.2 State of Student List After `find_student john jon` command*
+
+* To get emails of all students (see Figure 2.1): `list_student` followed by `emails` returns `johnlee@gmail.com;johnztan@gmail.com;jonkoh@gmail.com;sam@gmail.com;`
+
+* To get emails of specific students (see Figure 2.2): `find_student john jon` followed by  `emails` returns `johnlee@gmail.com;jonkoh@gmail.com;`
 
 
 ### Listing all tuition sessions: `list_session`
