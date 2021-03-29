@@ -51,11 +51,15 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Creates an AddressBook using the Persons in the {@code toBeCopied}. Adds
      * the associated {@code FoodList} {@code FoodIntakeList}.
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied, UniqueFoodList uniqueFoodList, FoodIntakeList foodIntakeList) {
+    public AddressBook(ReadOnlyAddressBook toBeCopied,
+                       UniqueFoodList uniqueFoodList,
+                       FoodIntakeList foodIntakeList,
+                       User user) {
         this();
         resetData(toBeCopied);
         this.foodList = uniqueFoodList;
         this.foodIntakeList = foodIntakeList;
+        this.user = user;
     }
 
     //// list overwrite operations
