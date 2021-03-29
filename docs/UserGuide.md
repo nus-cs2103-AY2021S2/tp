@@ -16,6 +16,7 @@ increase work productivity for delivery drivers by simplifying the delivery mana
         * List all delivery points
         * Mark delivery as Done
         * Statistics of delivery workflow
+        * View completed deliveries
         * Exit application
 
 --------------------------------------------------------------------------------------------------------------------
@@ -201,7 +202,7 @@ the data of your previous AddressBook home folder.
 Action | Format,<br> Example(s)
 --------|------------------
 **Help** | `help`<br> e.g., `help`
-**Add** | `add a/ADDRESS d/DATETIME` <br> e.g., `add `a/123, Clementi Rd, 1234665 d/01-02-2021`
+**Add** | `add a/ADDRESS d/DATETIME` <br> e.g., `add a/123, Clementi Rd, 1234665 d/01-02-2021`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **List** | `list`<br> e.g., `list`
 **Done** | `done INDEX`<br> e.g., `done 2`
