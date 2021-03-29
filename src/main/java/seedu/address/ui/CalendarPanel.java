@@ -2,28 +2,26 @@ package seedu.address.ui;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.ObservableCalendarDate;
 import seedu.address.commons.Observer;
+import seedu.address.model.ObservableCalendarDate;
 
-// Solution below adapted from https://github.com/SirGoose3432/javafx-calendar/blob/master/src/FullCalendarView.java
 public class CalendarPanel extends UiPart<Region> implements Observer {
     private static final String FXML = "CalendarPanel.fxml";
     // Today's date
     private final LocalDate currentDate;
     // The start of the month that the current view is showing.
     private LocalDate startOfMonth;
-    private ArrayList<AnchorPane> calendarPanes = new ArrayList<>();
-    private final Logger logger = LogsCenter.getLogger(CalendarPanel.class);
+    private ArrayList<StackPane> calendarPanes = new ArrayList<>();
     private final ObservableCalendarDate observableCalendarDate;
 
     @FXML
@@ -50,10 +48,10 @@ public class CalendarPanel extends UiPart<Region> implements Observer {
         startOfMonth = currentDate.withDayOfMonth(1);
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 7; j++) {
-                AnchorPane anchorPane = new AnchorPane();
-                anchorPane.setPrefSize(200, 200);
-                calendar.add(anchorPane, j, i);
-                calendarPanes.add(anchorPane);
+                StackPane stackPane = new StackPane();
+                stackPane.setPrefSize(100, 100);
+                calendar.add(stackPane, j, i);
+                calendarPanes.add(stackPane);
             }
         }
         populateCalendarDates(startOfMonth);
@@ -65,7 +63,8 @@ public class CalendarPanel extends UiPart<Region> implements Observer {
     @Override
     public void update() {
         LocalDate viewingDate = observableCalendarDate.getDate();
-        populateCalendarDates(viewingDate.withDayOfMonth(1));
+        startOfMonth = viewingDate.withDayOfMonth(1);
+        populateCalendarDates(startOfMonth);
     }
 
     /**
@@ -73,26 +72,28 @@ public class CalendarPanel extends UiPart<Region> implements Observer {
      *
      * @param dateToView Date with the month that will be shown in the calendar.
      */
+    // Solution below adapted from https://github.com/SirGoose3432/javafx-calendar/blob/master/src/FullCalendarView.java
     private void populateCalendarDates(LocalDate dateToView) {
         LocalDate firstSundayOfCalendar = dateToView;
         while (!firstSundayOfCalendar.getDayOfWeek().toString().equals("SUNDAY")) {
-            logger.info(firstSundayOfCalendar.getDayOfWeek().toString());
             firstSundayOfCalendar = firstSundayOfCalendar.minusDays(1);
         }
 
         // Populate the calendar with day numbers
-        for (AnchorPane pane : calendarPanes) {
+        for (StackPane pane : calendarPanes) {
             if (pane.getChildren().size() != 0) {
                 pane.getChildren().remove(0);
             }
             Label day = new Label("" + firstSundayOfCalendar.getDayOfMonth());
-            pane.setTopAnchor(day, 5.0);
-            pane.setLeftAnchor(day, 5.0);
+            day.setAlignment(Pos.CENTER);
             pane.getChildren().add(day);
+            pane.setAlignment(Pos.CENTER);
             firstSundayOfCalendar = firstSundayOfCalendar.plusDays(1);
         }
         // Change the title of the calendar
-        monthYearLabel.setText(dateToView.getMonth().toString() + " " + dateToView.getYear());
+        String monthText = dateToView.getMonth().toString();
+        String properCaseMonthText = monthText.charAt(0) + monthText.substring(1).toLowerCase();
+        monthYearLabel.setText(properCaseMonthText + " " + dateToView.getYear());
     }
 
     @FXML

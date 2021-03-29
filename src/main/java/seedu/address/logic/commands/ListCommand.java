@@ -48,7 +48,7 @@ public class ListCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.resetCalendarDate();
-        
+
         if (this.isListEverything) {
             model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
             return new CommandResult(MESSAGE_ALL_TASKS_SUCCESS);

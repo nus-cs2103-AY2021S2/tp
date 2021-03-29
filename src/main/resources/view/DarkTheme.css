@@ -377,7 +377,3 @@
     -fx-background-color: #212121;
     -fx-alignment: center;
 }
-
-#calendarPanel .label {
-    -fx-text-fill: white;
-}
