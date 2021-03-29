@@ -15,8 +15,10 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.appointment.DateViewPredicate;
+import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.EventTracker;
 import seedu.address.model.filter.PersonFilter;
 import seedu.address.model.grade.Grade;
 import seedu.address.model.person.Person;
@@ -34,14 +36,15 @@ public class ModelManager implements Model {
     private final AppointmentBook appointmentBook;
     private final GradeBook gradeBook;
     private final ScheduleTracker scheduleTracker;
-
+    private final EventTracker eventTracker;
     private final UserPrefs userPrefs;
 
     private final PersonFilter personFilter;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Appointment> filteredAppointment;
     private final FilteredList<Grade> filteredGrades;
-    private final FilteredList<Schedule> filteredSchedule;
+    private final FilteredList<Schedule> filteredSchedules;
+    private final FilteredList<Event> filteredEvents;
 
     private final BudgetBook budgetBook;
 
@@ -63,12 +66,13 @@ public class ModelManager implements Model {
         this.gradeBook = new GradeBook(gradeBook);
         this.budgetBook = new BudgetBook(budgetBook);
         this.userPrefs = new UserPrefs(userPrefs);
-
+        this.eventTracker = new EventTracker(appointmentBook, scheduleTracker);
         this.personFilter = new PersonFilter();
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.filteredAppointment = new FilteredList<>(this.appointmentBook.getAppointmentList());
         this.filteredGrades = new FilteredList<>(this.gradeBook.getGradeList());
-        this.filteredSchedule = new FilteredList<>(this.scheduleTracker.getScheduleList());
+        this.filteredSchedules = new FilteredList<>(this.scheduleTracker.getScheduleList());
+        this.filteredEvents = new FilteredList<>(this.eventTracker.getEventList());
     }
 
     /**
@@ -232,7 +236,10 @@ public class ModelManager implements Model {
      */
     @Override
     public void addAppointment(Appointment appointment) {
-        appointmentBook.addAppointment(appointment);
+        if (!eventTracker.hasExistingDate(appointment)) {
+            appointmentBook.addAppointment(appointment);
+        }
+        reset();
     }
 
     /**
@@ -464,7 +471,8 @@ public class ModelManager implements Model {
                 && personFilter.equals(other.personFilter)
                 && appointmentBook.equals(other.appointmentBook)
                 && budgetBook.equals(other.budgetBook)
-                && filteredSchedule.equals(other.filteredSchedule);
+                && filteredSchedules.equals(other.filteredSchedules)
+                && scheduleTracker.equals(other.scheduleTracker);
     }
 
     @Override
@@ -479,13 +487,13 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Schedule> getFilteredScheduleList() {
-        return filteredSchedule;
+        return filteredSchedules;
     }
 
     @Override
     public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
         requireNonNull(predicate);
-        filteredSchedule.setPredicate(predicate);
+        filteredSchedules.setPredicate(predicate);
     }
 
     @Override
@@ -510,9 +518,14 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Event> getFilteredEventList() {
-        ObservableList<Event> filteredEvents = FXCollections.observableArrayList();
-        filteredEvents.addAll(filteredAppointment);
-        filteredEvents.addAll(filteredSchedule);
         return filteredEvents;
+    }
+
+    /**
+     * Resets the EventTracker to retrieve updated values
+     */
+    private void reset() {
+        eventTracker.resetData(appointmentBook, scheduleTracker);
+        filteredEvents.setAll(this.eventTracker.getEventList());
     }
 }
