@@ -3,8 +3,6 @@ layout: page
 title: User Guide
 ---
 
-Pawbook is a desktop application for dog school managers to facilitate their bookkeeping of puppies and dogs in the school, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). Besides maintaining dog profiles for each unique dog, managers can view daily class schedules on Pawbook to better plan the day’s activities.
-
 # **Overview**
 
 Welcome to the Pawbook User Guide! In this user guide, we will teach you as a user how to use Pawbook. 
