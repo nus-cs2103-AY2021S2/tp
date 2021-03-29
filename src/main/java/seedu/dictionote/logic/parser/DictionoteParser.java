@@ -13,6 +13,7 @@ import seedu.dictionote.logic.commands.AddNoteCommand;
 import seedu.dictionote.logic.commands.ClearContactCommand;
 import seedu.dictionote.logic.commands.CloseCommand;
 import seedu.dictionote.logic.commands.Command;
+import seedu.dictionote.logic.commands.ConvertTxtNoteCommand;
 import seedu.dictionote.logic.commands.DeleteContactCommand;
 import seedu.dictionote.logic.commands.DeleteNoteCommand;
 import seedu.dictionote.logic.commands.EditContactCommand;
@@ -35,6 +36,7 @@ import seedu.dictionote.logic.commands.ListNoteCommand;
 import seedu.dictionote.logic.commands.MarkAllAsUndoneNoteCommand;
 import seedu.dictionote.logic.commands.MarkAsDoneNoteCommand;
 import seedu.dictionote.logic.commands.MarkAsUndoneNoteCommand;
+import seedu.dictionote.logic.commands.MergeNoteCommand;
 import seedu.dictionote.logic.commands.MostFreqContactCommand;
 import seedu.dictionote.logic.commands.OpenCommand;
 import seedu.dictionote.logic.commands.SetContactDividerPositionCommand;
@@ -43,6 +45,7 @@ import seedu.dictionote.logic.commands.SetMainDividerPositionCommand;
 import seedu.dictionote.logic.commands.SetNoteDividerPositionCommand;
 import seedu.dictionote.logic.commands.ShowDictionaryContentCommand;
 import seedu.dictionote.logic.commands.ShowNoteCommand;
+import seedu.dictionote.logic.commands.SortNoteByTimeCommand;
 import seedu.dictionote.logic.commands.SortNoteCommand;
 import seedu.dictionote.logic.commands.ToggleDictionaryOrientationCommand;
 import seedu.dictionote.logic.commands.ToggleNoteOrientationCommand;
@@ -150,6 +153,9 @@ public class DictionoteParser {
         case MarkAllAsUndoneNoteCommand.COMMAND_WORD:
             return new MarkAllAsUndoneNoteCommand();
 
+        case MergeNoteCommand.COMMAND_WORD:
+            return new MergeNoteCommandParser().parse(arguments);
+
         case ShowNoteCommand.COMMAND_WORD:
             return new ShowNoteCommandParser().parse(arguments);
 
@@ -191,6 +197,12 @@ public class DictionoteParser {
 
         case SortNoteCommand.COMMAND_WORD:
             return new SortNoteCommand();
+
+        case ConvertTxtNoteCommand.COMMAND_WORD:
+            return new ConvertTxtNoteCommandParser().parse(arguments);
+
+        case SortNoteByTimeCommand.COMMAND_WORD:
+            return new SortNoteByTimeCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
