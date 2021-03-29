@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.cakecollate.commons.core.Messages.MESSAGE_ORDERS_LISTED_OVERVIEW;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.cakecollate.testutil.TypicalOrderItems.getTypicalOrderItemsModel;
+import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.cakecollate.testutil.TypicalOrders.CARL;
 import static seedu.cakecollate.testutil.TypicalOrders.ELLE;
 import static seedu.cakecollate.testutil.TypicalOrders.FIONA;
@@ -13,13 +14,16 @@ import static seedu.cakecollate.testutil.TypicalOrders.getTypicalCakeCollate;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.cakecollate.logic.parser.Prefix;
 import seedu.cakecollate.model.Model;
 import seedu.cakecollate.model.ModelManager;
 import seedu.cakecollate.model.UserPrefs;
-import seedu.cakecollate.model.order.NameContainsKeywordsPredicate;
+import seedu.cakecollate.model.order.ContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -30,10 +34,12 @@ public class FindCommandTest {
 
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+        HashMap<Prefix, List<String>> map1 = new HashMap<>();
+        map1.put(PREFIX_NAME, Collections.singletonList("first"));
+        HashMap<Prefix, List<String>> map2 = new HashMap<>();
+        map1.put(PREFIX_NAME, Collections.singletonList("second"));
+        ContainsKeywordsPredicate firstPredicate = new ContainsKeywordsPredicate(map1);
+        ContainsKeywordsPredicate secondPredicate = new ContainsKeywordsPredicate(map2);
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
@@ -58,7 +64,7 @@ public class FindCommandTest {
     @Test
     public void execute_zeroKeywords_noOrderFound() {
         String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
+        ContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredOrderList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -68,7 +74,7 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleOrdersFound() {
         String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        ContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredOrderList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -80,9 +86,11 @@ public class FindCommandTest {
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code ContainsKeywordsPredicate}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private ContainsKeywordsPredicate preparePredicate(String userInput) {
+        HashMap<Prefix, List<String>> map = new HashMap<>();
+        map.put(PREFIX_NAME, Arrays.asList(userInput.split("\\s+")));
+        return new ContainsKeywordsPredicate(map);
     }
 }
