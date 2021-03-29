@@ -42,6 +42,7 @@ public class ListCommand extends Command {
 
     private final Comparator<Person> comparator;
     private final Predicate<Person> predicate;
+    private String parseArguments;
 
     /**
      * Default empty ListCommand.
@@ -56,7 +57,7 @@ public class ListCommand extends Command {
      * Default in ascending order, and the ANY flag is not applicable.
      */
     public ListCommand(Predicate<Person> predicate) {
-        this(predicate, SORT_NAME);
+        this(predicate, SORT_NAME, "");
     }
 
     /**
@@ -65,9 +66,10 @@ public class ListCommand extends Command {
      * @param predicate Predicate to filter people by
      * @param comparator Sorting comparator
      */
-    public ListCommand(Predicate<Person> predicate, Comparator<Person> comparator) {
+    public ListCommand(Predicate<Person> predicate, Comparator<Person> comparator, String parseArguments) {
         this.predicate = predicate;
         this.comparator = comparator;
+        this.parseArguments = parseArguments;
     }
 
     @Override
@@ -79,11 +81,16 @@ public class ListCommand extends Command {
                 .replace("[", "").replace("]", "");
         if (model.getPersonListCopy().size() == model.getFilteredPersonList().size()) {
             return new CommandResult(ListCommand.MESSAGE_SUCCESS // No person filtered out
-                    + String.format(Messages.MESSAGE_PERSONS_LISTED_TAGS, tagsRepresentation));
+                    + String.format(Messages.MESSAGE_PERSONS_LISTED_TAGS, tagsRepresentation) + "\n" + parseArguments);
+        }
+        if (model.getFilteredPersonList().size() == 0) {
+            return new CommandResult(String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
+                model.getFilteredPersonList().size()) + " None of the persons meet the requirements.");
         }
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size())
-                        + String.format(Messages.MESSAGE_PERSONS_LISTED_TAGS, tagsRepresentation));
+            String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size())
+                + String.format(Messages.MESSAGE_PERSONS_LISTED_TAGS, tagsRepresentation)
+                + "\n" + parseArguments);
     }
 
     private String displayTags(List<Person> personsToDisplay) {

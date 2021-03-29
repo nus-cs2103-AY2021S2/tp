@@ -71,8 +71,7 @@ public class EListCommandParser implements Parser<EListCommand> {
 
             List<String> allNames = argMap.getAllValues(PREFIX_NAME);
             if (!allNames.isEmpty()) {
-                stringFind += "\nRequire exact event name: "
-                        + String.join(", ", allNames);
+                stringFind += "\nRequire exact event name: " + String.join(", ", allNames);
             }
             for (String name : allNames) {
                 predicates.add(new EventNameContainsExactKeywordsPredicate(name));
@@ -80,8 +79,7 @@ public class EListCommandParser implements Parser<EListCommand> {
 
             List<String> allDetails = argMap.getAllValues(PREFIX_REMARK);
             if (!allDetails.isEmpty()) {
-                stringFind += "\nRequire exact event detail: "
-                        + String.join(", ", allDetails);
+                stringFind += "\nRequire exact event detail: " + String.join(", ", allDetails);
             }
             for (String detail : allDetails) {
                 predicates.add(new EventDetailContainsExactKeywordsPredicate(detail));
@@ -91,8 +89,7 @@ public class EListCommandParser implements Parser<EListCommand> {
 
             List<String> allNames = argMap.getAllValues(PREFIX_NAME);
             if (!allNames.isEmpty()) {
-                stringFind += "\nRequire partial event name: "
-                        + String.join(", ", allNames);
+                stringFind += "\nRequire partial event name: " + String.join(", ", allNames);
             }
             for (String name : allNames) {
                 predicates.add(new EventNameContainsKeywordsPredicate(name));
@@ -100,8 +97,7 @@ public class EListCommandParser implements Parser<EListCommand> {
 
             List<String> allDetails = argMap.getAllValues(PREFIX_REMARK);
             if (!allDetails.isEmpty()) {
-                stringFind += "\nRequire partial event detail: "
-                        + String.join(", ", allDetails);
+                stringFind += "\nRequire partial event detail: " + String.join(", ", allDetails);
             }
             for (String detail : allDetails) {
                 predicates.add(new EventDetailContainsKeywordsPredicate(detail));

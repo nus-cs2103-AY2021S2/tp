@@ -33,6 +33,8 @@ import seedu.partyplanet.model.person.predicates.TagsContainsTagPredicate;
  */
 public class ListCommandParser implements Parser<ListCommand> {
 
+    private String stringFind = "";
+    private String stringSort = "";
 
     /**
      * Parses the given {@code String} of arguments in the context of the ListCommand
@@ -50,7 +52,7 @@ public class ListCommandParser implements Parser<ListCommand> {
 
         Predicate<Person> predicate = getPredicate(argMap);
         Comparator<Person> comparator = getComparator(argMap);
-        return new ListCommand(predicate, comparator);
+        return new ListCommand(predicate, comparator, stringFind + stringSort);
     }
 
     /**
@@ -68,21 +70,41 @@ public class ListCommandParser implements Parser<ListCommand> {
         boolean isExactSearch = argMap.contains(FLAG_EXACT);
         List<Predicate<Person>> predicates = new ArrayList<>();
         if (isExactSearch) {
-            for (String name : argMap.getAllValues(PREFIX_NAME)) {
+            List<String> allNames = argMap.getAllValues(PREFIX_NAME);
+            if (!allNames.isEmpty()) {
+                stringFind += "\nRequire exact name: " + String.join(", ", allNames);
+            }
+            for (String name : allNames) {
                 predicates.add(new NameContainsExactKeywordsPredicate(name));
             }
-            for (String tag : argMap.getAllValues(PREFIX_TAG)) {
+            List<String> allTags = argMap.getAllValues(PREFIX_TAG);
+            if (!allTags.isEmpty()) {
+                stringFind += "\nRequire exact tag: " + String.join(", ", allTags);
+            }
+            for (String tag : allTags) {
                 predicates.add(new TagsContainsExactTagPredicate(tag));
             }
         } else {
-            for (String name : argMap.getAllValues(PREFIX_NAME)) {
+            List<String> allNames = argMap.getAllValues(PREFIX_NAME);
+            if (!allNames.isEmpty()) {
+                stringFind += "\nRequire partial name: " + String.join(", ", allNames);
+            }
+            for (String name : allNames) {
                 predicates.add(new NameContainsKeywordsPredicate(name));
             }
-            for (String tag : argMap.getAllValues(PREFIX_TAG)) {
+            List<String> allTags = argMap.getAllValues(PREFIX_TAG);
+            if (!allTags.isEmpty()) {
+                stringFind += "\nRequire partial tag: " + String.join(", ", allTags);
+            }
+            for (String tag : allTags) {
                 predicates.add(new TagsContainsTagPredicate(tag));
             }
         }
-        for (String month : argMap.getAllValues(PREFIX_BIRTHDAY)) {
+        List<String> allMonths = argMap.getAllValues(PREFIX_BIRTHDAY);
+        if (!allMonths.isEmpty()) {
+            stringFind += "\nRequire birthday month: " + String.join(", ", allMonths);
+        }
+        for (String month : allMonths) {
             predicates.add(new BirthdayContainsMonthPredicate(month));
         }
         return predicates;
@@ -97,11 +119,13 @@ public class ListCommandParser implements Parser<ListCommand> {
         if (predicates.isEmpty()) {
             overallPredicate = PREDICATE_SHOW_ALL_PERSONS;
         } else if (isAnySearch) {
+            stringFind += "\nListed persons met at least 1 requirement stated above. ";
             overallPredicate = x -> false;
             for (Predicate<Person> predicate : predicates) {
                 overallPredicate = overallPredicate.or(predicate);
             }
         } else {
+            stringFind += "\nListed persons met all requirements stated above. ";
             overallPredicate = x -> true;
             for (Predicate<Person> predicate : predicates) {
                 overallPredicate = overallPredicate.and(predicate);
@@ -124,17 +148,21 @@ public class ListCommandParser implements Parser<ListCommand> {
     private Comparator<Person> getSortOrder(ArgumentMultimap argMap) throws ParseException {
         Optional<String> sortType = argMap.getValue(PREFIX_SORT);
         if (sortType.isEmpty()) {
+            stringSort += "Sorted name ";
             return SORT_NAME; // default
         } else {
             switch (sortType.get().toLowerCase()) {
             case "n": // fallthrough
             case "name":
+                stringSort += "Sorted name ";
                 return SORT_NAME;
             case "b": // fallthrough
             case "birthday":
+                stringSort += "Sorted birthday ";
                 return SORT_BIRTHDAY;
             case "u": // fallthrough
             case "upcoming":
+                stringSort += "Sorted on upcoming birthdays. ";
                 return SORT_BIRTHDAY_UPCOMING;
             default:
                 throw new ParseException(
@@ -149,18 +177,23 @@ public class ListCommandParser implements Parser<ListCommand> {
     private Comparator<Person> applySortDirection(
             Comparator<Person> comparator, ArgumentMultimap argMap) throws ParseException {
         Optional<String> orderType = argMap.getValue(PREFIX_ORDER);
-        if (orderType.isEmpty() || comparator == SORT_BIRTHDAY_UPCOMING) {
+        if (comparator == SORT_BIRTHDAY_UPCOMING) {
+            return comparator; // default
+        } else if (orderType.isEmpty()) {
+            stringSort += "in ascending order. ";
             return comparator; // default
         } else {
             switch (orderType.get().toLowerCase()) {
             case "a": // fallthrough
             case "asc":
             case "ascending":
+                stringSort += "in ascending order. ";
                 return comparator;
             case "d": // fallthrough
             case "des":
             case "desc":
             case "descending":
+                stringSort += "in descending order. ";
                 return comparator.reversed();
             default:
                 throw new ParseException(
