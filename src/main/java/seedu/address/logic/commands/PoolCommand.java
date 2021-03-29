@@ -50,7 +50,7 @@ public class PoolCommand extends Command {
             + PREFIX_TAG + "female";
 
     public static final String MESSAGE_NO_COMMUTERS = "No commuters were selected.";
-    public static final String MESSAGE_POOL_SUCCESS = "%s successfully created pool: %s";
+    public static final String MESSAGE_POOL_SUCCESS = "Successfully created pool: %s";
     public static final String MESSAGE_DUPLICATE_POOL = "This pool already exists in the GME Terminal";
 
     private final Driver driver;
@@ -105,7 +105,8 @@ public class PoolCommand extends Command {
             passengersToPool.add(passenger);
         }
 
-        Pool toAdd = new Pool(driver, tripDay, tripTime, passengersToPool, tags);
+        //since passengers in list are unique, passenger fetched from idx should also be unique, so as hashset from list
+        Pool toAdd = new Pool(driver, tripDay, tripTime, new HashSet<Passenger>(passengersToPool), tags);
 
         if (model.hasPool(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_POOL);

@@ -86,7 +86,7 @@ public class Pool {
 
         int index = passengers.indexOf(target);
         if (index == -1) {
-            return ;
+            return;
         }
 
         passengers.set(index, editedPassenger);
