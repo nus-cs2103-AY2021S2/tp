@@ -3,6 +3,8 @@ package seedu.booking.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.booking.commons.util.AppUtil.checkArgument;
 
+import seedu.booking.commons.util.StringUtil;
+
 /**
  * Represents a Person's email in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
@@ -64,7 +66,16 @@ public class Email {
         return value.hashCode();
     }
 
+    /**
+     * Returns true if both persons have the same email (case-insensitive).
+     * This notion of equality between two emails.
+     */
     public boolean isSameEmail(Person person) {
-        return this.equals(person.getEmail());
+        return person.getEmail() != null
+                && StringUtil.containsWordIgnoreCase(this.removeSpacesInEmail(),
+                person.getEmail().removeSpacesInEmail());
+    }
+    public String removeSpacesInEmail() {
+        return this.value.replace(" ", "");
     }
 }
