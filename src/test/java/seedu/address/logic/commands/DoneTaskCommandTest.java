@@ -9,7 +9,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_TASK;
-import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTasks.getTypicalHeyMatez;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +28,7 @@ import seedu.address.testutil.TaskBuilder;
  * {@code DoneTaskCommand}.
  */
 public class DoneTaskCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalHeyMatez(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -40,7 +40,7 @@ public class DoneTaskCommandTest {
 
         String expectedMessage = DoneTaskCommand.MESSAGE_DONE_TASK_SUCCESS;
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getHeyMatez(), new UserPrefs());
         expectedModel.setTask(taskToMarkDone, doneTask);
 
         assertCommandSuccess(doneCommand, model, expectedMessage, expectedModel);
@@ -65,7 +65,7 @@ public class DoneTaskCommandTest {
 
         String expectedMessage = DoneTaskCommand.MESSAGE_DONE_TASK_SUCCESS;
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getHeyMatez(), new UserPrefs());
 
         expectedModel.setTask(taskToMarkDone, doneTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
@@ -86,8 +86,8 @@ public class DoneTaskCommandTest {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
         Index outOfBoundIndex = INDEX_SECOND_TASK;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getTaskList().size());
+        // ensures that outOfBoundIndex is still in bounds of task list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getHeyMatez().getTaskList().size());
 
         DoneTaskCommand doneCommand = new DoneTaskCommand(outOfBoundIndex);
 

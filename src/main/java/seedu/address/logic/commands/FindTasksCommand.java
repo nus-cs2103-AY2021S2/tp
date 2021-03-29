@@ -7,7 +7,7 @@ import seedu.address.model.Model;
 import seedu.address.model.task.TaskContainsKeywordPredicate;
 
 /**
- * Finds and lists all tasks in HEY MATEz with its title or description containing any of the argument keywords.
+ * Finds and lists all tasks in HeyMatez with its title or description containing any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindTasksCommand extends Command {

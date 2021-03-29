@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTasks.getTypicalHeyMatez;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,13 +21,13 @@ public class DeleteTaskCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalHeyMatez(), new UserPrefs());
     }
 
     @Test
     public void execute_deleteTask_success() {
-        Task validTask = model.getAddressBook().getTaskList().get(0);
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Task validTask = model.getHeyMatez().getTaskList().get(0);
+        Model expectedModel = new ModelManager(model.getHeyMatez(), new UserPrefs());
         expectedModel.deleteTask(validTask);
 
         Index index = Index.fromOneBased(1);
@@ -37,7 +37,7 @@ public class DeleteTaskCommandIntegrationTest {
 
     @Test
     public void execute_deleteTask_throwsIndexNotValid() {
-        Index index = Index.fromOneBased(model.getAddressBook().getTaskList().size() + 1);
+        Index index = Index.fromOneBased(model.getHeyMatez().getTaskList().size() + 1);
         assertCommandFailure(new DeleteTaskCommand(index), model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 

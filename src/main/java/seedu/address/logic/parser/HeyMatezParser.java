@@ -33,7 +33,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class HeyMatezParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -91,7 +91,6 @@ public class AddressBookParser {
 
         case FindMemberTasksCommand.COMMAND_WORD:
             return new FindMemberTasksCommandParser().parse(arguments);
-
 
         case FindByPriorityCommand.COMMAND_WORD:
             return new FindByPriorityCommandParser().parse(arguments);

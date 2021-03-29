@@ -13,13 +13,13 @@ import seedu.address.model.assignee.Assignee;
 import seedu.address.model.task.Task;
 
 /**
- * Adds a task to the address book.
+ * Adds a task to HeyMatez.
  */
 public class AddTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "addTask";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new task to dashboard.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new task to HeyMatez dashboard.\n"
             + "Parameters: "
             + "TITLE "
             + PREFIX_DESCRIPTION + " DESCRIPTION "
@@ -36,8 +36,8 @@ public class AddTaskCommand extends Command {
             + PREFIX_ASSIGNEE + " Rachel";
 
     public static final String MESSAGE_SUCCESS = "New Task added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TASK = "A task with the same name already exists in the task board! "
-            + "Pick another name!";
+    public static final String MESSAGE_DUPLICATE_TASK = "A task with the same name already exists in the HeyMatez "
+            + "task board! Pick another name!";
 
     private final Task toAddTask;
 

@@ -4,18 +4,24 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-AddressBook *-right-> "1" UniquePersonList
-AddressBook *-right-> "1" UniqueTagList
-UniqueTagList -[hidden]down- UniquePersonList
-UniqueTagList -[hidden]down- UniquePersonList
+HeyMatez *-right-> "1" UniquePersonList
+HeyMatez *-right-> "1" TaskList
+TaskList -[hidden]down- UniquePersonList
+TaskList -[hidden]down- UniquePersonList
 
-UniqueTagList *-right-> "*" Tag
-UniquePersonList o-right-> Person
+TaskList *-right-> "*" Task
+UniquePersonList o-down-> Person
 
-Person -up-> "*" Tag
 
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
+
+Person *--> "1"Name
+Person *--> "1"Phone
+Person *--> "1"Email
+Person *--> "1"Role
+
+Task *--> "1" Title
+Task *--> "1" Description
+Task *--> "1" Deadline
+Task *--> Priority
+Task *--> "1" TaskStatus
 @enduml

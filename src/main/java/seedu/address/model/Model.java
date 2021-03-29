@@ -39,44 +39,44 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' Hey Matez file path.
      */
-    Path getAddressBookFilePath();
+    Path getHeyMatezFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' Hey Matez file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setHeyMatezFilePath(Path heyMatezFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces hay matez data with the data in {@code HeyMatez}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setHeyMatez(ReadOnlyHeyMatez heyMatez);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns hey matez */
+    ReadOnlyHeyMatez getHeyMatez();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in Hey Matez .
      */
     boolean hasPerson(Person person);
 
     /**
      * Deletes the given person.
-     * The person must exist in the address book.
+     * The person must exist in Hey Matez.
      */
     void deletePerson(Person target);
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * {@code person} must not already exist in Hey Matez .
      */
     void addPerson(Person person);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in Hey Matez.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in Hey Matez.
      */
     void setPerson(Person target, Person editedPerson);
 
@@ -96,18 +96,18 @@ public interface Model {
 
     /**
      * Replaces the given task {@code target} with {@code editedTask}.
-     * {@code target} must exist in HEY MATEz.
+     * {@code target} must exist in Hey Matez.
      */
     void setTask(Task target, Task editedTask);
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in Hey Matez.
      */
     boolean hasTask(Task task);
 
     /**
      * Deletes the given task.
-     * The task must exist in the address book.
+     * The task must exist in Hey Matez.
      */
     void deleteTask(Task target);
 

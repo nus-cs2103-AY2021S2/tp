@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalHeyMatez;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -25,25 +25,25 @@ import seedu.address.model.task.Title;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TaskBuilder;
 
-public class AddressBookTest {
+public class HeyMatezTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final HeyMatez heyMatez = new HeyMatez();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), heyMatez.getPersonList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> heyMatez.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlyHeyMatez_replacesData() {
+        HeyMatez newData = getTypicalHeyMatez();
+        heyMatez.resetData(newData);
+        assertEquals(newData, heyMatez);
     }
 
     @Test
@@ -54,47 +54,47 @@ public class AddressBookTest {
                 new Deadline("2021-04-04"))).build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         List<Task> tasks = Arrays.asList(dummyTask);
-        AddressBookStub newData = new AddressBookStub(newPersons, tasks);
+        HeyMatezStub newData = new HeyMatezStub(newPersons, tasks);
 
-        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicatePersonException.class, () -> heyMatez.resetData(newData));
     }
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> heyMatez.hasPerson(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+    public void hasPerson_personNotInHeyMatez_returnsFalse() {
+        assertFalse(heyMatez.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+    public void hasPerson_personInHeyMatez_returnsTrue() {
+        heyMatez.addPerson(ALICE);
+        assertTrue(heyMatez.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
+    public void hasPerson_personWithSameIdentityFieldsInHeyMatez_returnsTrue() {
+        heyMatez.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(heyMatez.hasPerson(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> heyMatez.getPersonList().remove(0));
     }
 
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class HeyMatezStub implements ReadOnlyHeyMatez {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Task> tasks = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons, Collection<Task> tasks) {
+        HeyMatezStub(Collection<Person> persons, Collection<Task> tasks) {
             this.tasks.setAll(tasks);
             this.persons.setAll(persons);
         }
