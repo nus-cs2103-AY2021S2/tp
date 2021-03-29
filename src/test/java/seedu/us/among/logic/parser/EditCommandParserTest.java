@@ -1,7 +1,30 @@
 package seedu.us.among.logic.parser;
 
 import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.us.among.logic.commands.CommandTestUtil.*;
+import static seedu.us.among.logic.commands.CommandTestUtil.ADDRESS_DESC_FACT;
+import static seedu.us.among.logic.commands.CommandTestUtil.ADDRESS_DESC_RANDOM;
+import static seedu.us.among.logic.commands.CommandTestUtil.DATA_DESC_DEFAULT;
+import static seedu.us.among.logic.commands.CommandTestUtil.DATA_DESC_NEW;
+import static seedu.us.among.logic.commands.CommandTestUtil.HEADER_DESC_DEFAULT;
+import static seedu.us.among.logic.commands.CommandTestUtil.HEADER_DESC_NEW;
+import static seedu.us.among.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.us.among.logic.commands.CommandTestUtil.INVALID_DATA_DESC;
+import static seedu.us.among.logic.commands.CommandTestUtil.INVALID_HEADER_DESC;
+import static seedu.us.among.logic.commands.CommandTestUtil.INVALID_METHOD_DESC;
+import static seedu.us.among.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.us.among.logic.commands.CommandTestUtil.METHOD_DESC_GET;
+import static seedu.us.among.logic.commands.CommandTestUtil.METHOD_DESC_POST;
+import static seedu.us.among.logic.commands.CommandTestUtil.TAG_DESC_CAT;
+import static seedu.us.among.logic.commands.CommandTestUtil.TAG_DESC_COOL;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_FACT;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_RANDOM;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_DATA_PAIR;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_HEADER_PAIR;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_HEADER_PAIR_NEW;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_METHOD_GET;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_METHOD_POST;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_CAT;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_COOL;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_HEADER;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.us.among.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -80,9 +103,12 @@ public class EditCommandParserTest {
         // invalid header followed by valid header
         assertParseFailure(parser, "1" + INVALID_HEADER_DESC + HEADER_DESC_DEFAULT, Header.MESSAGE_CONSTRAINTS);
 
-        assertParseFailure(parser, "1" + HEADER_EMPTY + HEADER_DESC_NEW + HEADER_DESC_DEFAULT, Header.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + HEADER_DESC_NEW + HEADER_EMPTY + HEADER_DESC_DEFAULT, Header.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + HEADER_DESC_NEW + HEADER_DESC_DEFAULT + HEADER_EMPTY, Header.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + HEADER_EMPTY + HEADER_DESC_NEW +
+                HEADER_DESC_DEFAULT, Header.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + HEADER_DESC_NEW + HEADER_EMPTY +
+                HEADER_DESC_DEFAULT, Header.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + HEADER_DESC_NEW + HEADER_DESC_DEFAULT +
+                HEADER_EMPTY, Header.MESSAGE_CONSTRAINTS);
 
         // valid tag followed by invalid tag.
         assertParseFailure(parser, "1" + TAG_DESC_COOL + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);

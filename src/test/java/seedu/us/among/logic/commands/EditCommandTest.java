@@ -2,7 +2,17 @@ package seedu.us.among.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.us.among.logic.commands.CommandTestUtil.*;
+import static seedu.us.among.logic.commands.CommandTestUtil.DESC_GET;
+import static seedu.us.among.logic.commands.CommandTestUtil.DESC_POST;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_RANDOM;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_DATA_PAIR;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_HEADER_PAIR;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_METHOD_POST;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_CAT;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_COOL;
+import static seedu.us.among.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.us.among.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.us.among.logic.commands.CommandTestUtil.showEndpointAtIndex;
 import static seedu.us.among.testutil.TypicalEndpoints.getTypicalEndpointList;
 import static seedu.us.among.testutil.TypicalIndexes.INDEX_FIRST_ENDPOINT;
 import static seedu.us.among.testutil.TypicalIndexes.INDEX_SECOND_ENDPOINT;
