@@ -30,8 +30,6 @@ public class EventCard extends UiPart<Region> {
     private Label date;
     @FXML
     private Label time;
-    @FXML
-    private Label isWeekly;
 
     /**
      * Creates an {@code EventCard} with the given {@code Event} without an index to display.
@@ -45,7 +43,6 @@ public class EventCard extends UiPart<Region> {
         eventDescription.setText(event.getDescription());
         date.setText(DateUtil.decodeDateWithDay(event.getDate()));
         time.setText(TimeUtil.decodeTime(event.getTime()));
-        isWeekly.setText(event.getIsWeekly().toString());
     }
 
     /**
@@ -60,7 +57,6 @@ public class EventCard extends UiPart<Region> {
         eventDescription.setText(event.getDescription());
         date.setText(DateUtil.decodeDateWithDay(event.getDate()));
         time.setText(TimeUtil.decodeTime(event.getTime()));
-        isWeekly.setText(event.getIsWeekly().toString());
     }
 
     @Override
