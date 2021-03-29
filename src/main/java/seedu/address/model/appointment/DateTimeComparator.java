@@ -1,15 +1,14 @@
 package seedu.address.model.appointment;
 
+import static seedu.address.model.appointment.DateTime.DATE_TIME_FORMATTER;
+
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 
 public class DateTimeComparator implements Comparator<Appointment> {
-    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-
     private static final Logger logger = LogsCenter.getLogger(DateTimeComparator.class);
 
     @Override
