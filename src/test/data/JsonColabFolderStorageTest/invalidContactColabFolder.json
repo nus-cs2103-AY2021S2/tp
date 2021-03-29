@@ -77,7 +77,7 @@
       "description" : "Test Event",
       "date" : "31-01-2021",
       "time" : "17:30",
-      "isWeekly" : falsev
+      "isWeekly" : false
     } ],
     "todoList" : [ {
       "description" : "Split Workload",
