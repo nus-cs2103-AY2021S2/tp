@@ -35,7 +35,8 @@ public class SampleDataUtil {
             new Isbn("1234567890123"),
             new Barcode(Barcode.MIN_VALUE),
             new Genre(new Name("Novel")),
-            new Name("Bernice Yu")
+            new Name("Bernice Yu"),
+            new DateBorrowed("2021-03-02T13:45:00")
     );
 
     private static final Book HOBBIT = new Book(
@@ -44,7 +45,8 @@ public class SampleDataUtil {
             new Publisher(new Name("Pearson")),
             new Isbn("1234567890124"), new Barcode(Barcode.MIN_VALUE + 1),
             new Genre(new Name("Fantasy")),
-            new Name("Bernice Yu")
+            new Name("Bernice Yu"),
+            new DateBorrowed("2021-01-22T23:30:00")
     );
 
     private static final Book CLOUDATLAS = new Book(
@@ -54,7 +56,8 @@ public class SampleDataUtil {
             new Isbn("1234567890125"),
             new Barcode(Barcode.MAX_VALUE),
             new Genre(new Name("SciFi")),
-            new Name("Alex Yeoh")
+            new Name("Alex Yeoh"),
+            new DateBorrowed("2020-11-23T08:30:00")
     );
 
     private static final Book CLOUDNINE = new Book(

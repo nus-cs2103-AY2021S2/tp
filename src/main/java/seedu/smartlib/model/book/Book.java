@@ -5,6 +5,7 @@ import static seedu.smartlib.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 import seedu.smartlib.commons.core.name.Name;
+import seedu.smartlib.model.record.DateBorrowed;
 
 /**
  * Represents a book in SmartLib.
@@ -22,6 +23,7 @@ public class Book {
     private final Genre genre;
     private final Name borrowerName;
     private final Barcode barcode;
+    private final DateBorrowed dateBorrowed;
 
     /**
      * Constructor for the Book class.
@@ -43,6 +45,7 @@ public class Book {
         this.barcode = barcode;
         this.genre = genre;
         this.borrowerName = null;
+        this.dateBorrowed = null;
     }
 
     /**
@@ -58,7 +61,7 @@ public class Book {
      * @param borrowerName Reader who borrowed the book.
      */
     public Book(Name name, Author author, Publisher publisher, Isbn isbn, Barcode barcode, Genre genre,
-                Name borrowerName) {
+                Name borrowerName, DateBorrowed dateBorrowed) {
         requireAllNonNull(name, author, publisher, isbn);
         this.name = name;
         this.author = author;
@@ -67,6 +70,7 @@ public class Book {
         this.barcode = barcode;
         this.genre = genre;
         this.borrowerName = borrowerName;
+        this.dateBorrowed = dateBorrowed;
     }
 
     /**
@@ -141,6 +145,10 @@ public class Book {
         return barcode;
     }
 
+
+    public DateBorrowed getDateBorrowed() {
+        return dateBorrowed;
+    }
     /**
      * Returns true if both books have the same name and barcode.
      * This defines a weaker notion of equality between two books.

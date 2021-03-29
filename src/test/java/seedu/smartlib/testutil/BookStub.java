@@ -7,6 +7,7 @@ import seedu.smartlib.model.book.Book;
 import seedu.smartlib.model.book.Genre;
 import seedu.smartlib.model.book.Isbn;
 import seedu.smartlib.model.book.Publisher;
+import seedu.smartlib.model.record.DateBorrowed;
 
 public class BookStub extends Book {
 
@@ -36,8 +37,8 @@ public class BookStub extends Book {
      * @param borrowerName Reader who borrowed the book
      */
     public BookStub(Name name, Author author, Publisher publisher, Isbn isbn, Barcode barcode, Genre genre,
-                    Name borrowerName) {
-        super(name, author, publisher, isbn, barcode, genre, borrowerName);
+                    Name borrowerName, DateBorrowed dateBorrowed) {
+        super(name, author, publisher, isbn, barcode, genre, borrowerName, dateBorrowed);
     }
 
     @Override

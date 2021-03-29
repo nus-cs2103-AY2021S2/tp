@@ -457,7 +457,8 @@ public class SmartLib implements ReadOnlySmartLib {
             Reader editedReader = new Reader(reader.getName(), reader.getPhone(), reader.getEmail(),
                     reader.getAddress(), reader.getTags(), reader.getBorrows());
             Book editedBook = new Book(book.getName(), book.getAuthor(), book.getPublisher(),
-                    book.getIsbn(), book.getBarcode(), book.getGenre(), readerName);
+                    book.getIsbn(), book.getBarcode(), book.getGenre(),
+                    readerName, new DateBorrowed(LocalDateTime.now()));
             setReader(reader, editedReader);
             setBook(book, editedBook);
             return true;
