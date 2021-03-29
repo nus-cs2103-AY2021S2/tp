@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTOR_ID;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -28,9 +30,6 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_TIME = "Time given must be in HH:MM format.";
-    public static final String MESSAGE_INVALID_TIMESLOT = "Timeslot given must be in "
-            + "HH:MM:SS (start time) to HH:MM:SS (end time).";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -191,7 +190,7 @@ public class ParserUtil {
         requireNonNull(id);
         String trimmedId = id.trim();
         if (!PersonId.isValidPersonId(trimmedId)) {
-            throw new ParseException(PersonType.MESSAGE_CONSTRAINTS);
+            throw new ParseException(PersonId.MESSAGE_CONSTRAINTS);
         } else {
             return new PersonId(trimmedId);
         }
@@ -213,7 +212,7 @@ public class ParserUtil {
      * Parses a {@code String session ID} into a {@code session ID }.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code name} is invalid.
+     * @throws ParseException if the given {@code session ID} is invalid.
      */
     public static SessionId parseSessionId(String sessionId) throws ParseException {
         requireNonNull(sessionId);
@@ -222,5 +221,32 @@ public class ParserUtil {
             throw new ParseException(Session.MESSAGE_CONSTRAINTS);
         }
         return new SessionId(trimmedSessionId);
+    }
+
+    /**
+     * Parses a {@code Collection<String> person IDs} into a {@code List<PersonId> }.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code person IDs} is invalid.
+     */
+    public static Set<PersonId> parseStudentIds(Collection<String> studentIds) throws ParseException {
+        requireNonNull(studentIds);
+        final Set<PersonId> studentIdsSet = new HashSet<>();
+        for (String studentId : studentIds) {
+            studentIdsSet.add(parsePersonId(PREFIX_STUDENT_ID + studentId));
+        }
+        return studentIdsSet;
+    }
+
+    /**
+     * Parses a {@code String tutor ID} into a {@code person ID }.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tutor ID} is invalid.
+     */
+    public static PersonId parseTutorId(String tutorId) throws ParseException {
+        requireNonNull(tutorId);
+        String trimmedTutorId = tutorId.trim();
+        return parsePersonId(PREFIX_TUTOR_ID + tutorId);
     }
 }

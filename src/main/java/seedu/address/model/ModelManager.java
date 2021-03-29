@@ -14,6 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.session.Session;
 
+
 /**
  * Represents the in-memory model of the address book data.
  */
@@ -124,6 +125,10 @@ public class ModelManager implements Model {
     @Override
     public void deleteSession(Session target) {
         addressBook.removeSession(target);
+    }
+
+    public void assignStudent(Person student, Session session) {
+        assert(student.isStudent());
     }
 
     //=========== Filtered Session List Accessors =============================================================
