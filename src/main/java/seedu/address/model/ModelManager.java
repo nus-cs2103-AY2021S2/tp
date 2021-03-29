@@ -20,6 +20,7 @@ import seedu.address.model.event.Event;
 import seedu.address.model.filter.AppointmentFilter;
 import seedu.address.model.filter.PersonFilter;
 import seedu.address.model.grade.Grade;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
@@ -147,6 +148,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasTutorByName(Name name) {
+        return addressBook.containsTutorByName(name);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -173,6 +179,11 @@ public class ModelManager implements Model {
 
     public void setAppointmentBook(ReadOnlyAppointmentBook appointmentBook) {
         this.appointmentBook.resetData(appointmentBook);
+    }
+
+    @Override
+    public boolean hasAppointmentContainingTutor(Name name) {
+        return this.appointmentBook.hasAppointmentContainingTutor(name);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -218,6 +229,8 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredAppointment.setPredicate(predicate);
     }
+
+
 
     /**
      * Checks if Appointment exists in appointment list.

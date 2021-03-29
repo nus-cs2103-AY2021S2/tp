@@ -12,6 +12,7 @@ import seedu.address.model.event.Event;
 import seedu.address.model.filter.AppointmentFilter;
 import seedu.address.model.filter.PersonFilter;
 import seedu.address.model.grade.Grade;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
@@ -27,6 +28,7 @@ public interface Model {
     Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENT = unused -> true;
     Predicate<Grade> PREDICATE_SHOW_ALL_GRADE = unused -> true;
     Predicate<Schedule> PREDICATE_SHOW_ALL_SCHEDULE = unused -> true;
+    Predicate<Event> PREDICATE_SHOW_ALL_EVENT = unused -> true;
 
     /**
      * Returns the user prefs.
@@ -110,6 +112,12 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * @param name Name of tutor to search for.
+     * @return True is there exists a tutor with that name.
+     */
+    boolean hasTutorByName(Name name);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
@@ -172,6 +180,7 @@ public interface Model {
      */
     boolean hasAppointment(Appointment appointment);
 
+
     /**
      * @param appointment Appointment to add (appointment must not already exist)
      */
@@ -205,6 +214,12 @@ public interface Model {
      * @return true if Appointment DateTime exists in the appointment list
      */
     boolean hasAppointmentDateTime(AppointmentDateTime appointmentDateTime);
+
+    /**
+     * @param name Name of tutor.
+     * @return True if appointment contains tutor.
+     */
+    boolean hasAppointmentContainingTutor(Name name);
 
     /**
      * @return Budget Book

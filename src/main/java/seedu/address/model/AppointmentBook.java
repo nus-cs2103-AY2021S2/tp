@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentList;
+import seedu.address.model.person.Name;
 
 /**
  * Wraps all data at the appointment-book level
@@ -66,6 +67,20 @@ public class AppointmentBook implements ReadOnlyAppointmentBook {
         requireNonNull(appointment);
         return appointments.contains(appointment);
     }
+
+    /**
+     * @param name Name of tutor to check
+     * @return True appointment list contains tutor in question.
+     */
+    public boolean hasAppointmentContainingTutor(Name name) {
+        for (Appointment appointment : this.appointments) {
+            if (appointment.getName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     /**
      * Adds a person to the appointment book.

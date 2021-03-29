@@ -23,6 +23,10 @@ public class DeleteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_APPOINTMENT_LIST_HAS_TUTOR = "Failed to delete tutor"
+            + " because at least one existing appointment has been booked with the"
+            + " tutor in question. Please ensure that tutor to be deleted does not"
+            + " have any existing appointments.";
 
     private final Index targetIndex;
 
@@ -40,6 +44,9 @@ public class DeleteCommand extends Command {
         }
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+        if (model.hasAppointmentContainingTutor(personToDelete.getName())) {
+            throw new CommandException(MESSAGE_APPOINTMENT_LIST_HAS_TUTOR);
+        }
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
