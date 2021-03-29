@@ -27,6 +27,19 @@ public class User {
     private DietPlan activeDietPlan;
 
     /**
+     * Dummy
+     */
+    public User() {
+        this.bmi = null;
+        this.foodList = null;
+        this.age = null;
+        this.gender = null;
+        this.idealWeight = null;
+        this.lastUpdated = null;
+        this.foodIntakeList = null;
+    }
+
+    /**
      * Creates a representation of the user with the given parameters.
      * All fields must not be empty.
      * @param bmi Bmi object of the user
