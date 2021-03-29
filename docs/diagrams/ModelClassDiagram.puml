@@ -13,6 +13,7 @@ Class UserPrefs
 Class ReadOnlyUserPrefs
 Class ReadOnlyContactsList
 Class ReadOnlyDefinitionBook
+Class ReadOnlyDictionary
 Class ReadOnlyNoteBook
 Class DefinitionBook
 Class Dictionary
@@ -44,6 +45,7 @@ Package Dictionary {
 Class Content
 Class Definition
 Class UniqueDefinitionList
+Class UniqueContentList
 }
 }
 Class HiddenOutside #FFFFFF
@@ -52,6 +54,7 @@ HiddenOutside ..> Model
 ContactsList .up.|> ReadOnlyContactsList
 NoteBook .up.|> ReadOnlyNoteBook
 DefinitionBook .up.|> ReadOnlyDefinitionBook
+DictionaryBook .up.|> ReadOnlyDictionary
 
 
 ModelManager .up.|> Model
@@ -76,9 +79,10 @@ UniqueNoteList o--> "*" Note
 Note *--> "*" Tag
 
 
-DictionaryBook *--> "1" UniqueDefinitionList
+DictionaryBook *--> "1" UniqueContentList
 UniqueDefinitionList o--> "*" Definition
-UniqueDefinitionList o--> "*" Content
+DefinitionBook *--> "1" UniqueDefinitionList
+UniqueContentList o--> "*" Content
 
 
 Name -[hidden]right-> Phone
