@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-TutorsPet is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TutorsPet can get your contact management tasks done faster than traditional GUI apps.
+TutorsPet is a **desktop app designed for private tutors to manage students’ information, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TutorsPet helps improve the efficiency and effectiveness of student management by categorizing relevant contact information and keeping track of lesson schedules.
 
 * Table of Contents
 {:toc}
@@ -155,7 +155,7 @@ Examples:
 * `search n/Patrick Lim` returns `patrick lim` and `Lim Zi Ying`
 
 ### Searching for a contact by school: `search s/...`
-Searches for contacts from a specific school using keywords
+Searches for a student's contact from a specific school using keywords
 
 Format: `search s/KEYWORD [MORE_KEYWORDS]`
 
