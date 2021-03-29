@@ -40,10 +40,23 @@ public class LocationTest {
     }
 
     @Test
+    public void isSimilar() {
+        assertTrue(new Location(VALID_LOCATION_CHEESE).isSimilar(new Location("Refrigerator")));
+        assertTrue(new Location(VALID_LOCATION_CHEESE).isSimilar(new Location("refrigerator")));
+        assertTrue(new Location(VALID_LOCATION_CHEESE).isSimilar(new Location("REFRIGERATOR")));
+        assertTrue(new Location(VALID_LOCATION_CHEESE).isSimilar(new Location("ReFRiGERaToR")));
+
+        assertFalse(new Location(VALID_LOCATION_CHEESE).isSimilar(new Location("frigerator")));
+        assertFalse(new Location(VALID_LOCATION_CHEESE).isSimilar(new Location("Refrigeratorr")));
+        assertFalse(new Location(VALID_LOCATION_CHEESE).isSimilar(new Location("REFRIGERATORR")));
+        assertFalse(new Location(VALID_LOCATION_CHEESE).isSimilar(new Location("ReFRiGERaTo")));
+    }
+
+    @Test
     public void compare_locations_success() {
-        assertTrue(new ItemName(VALID_LOCATION_BANANA).compare(new ItemName(VALID_LOCATION_CHEESE)) < 0);
-        assertTrue(new ItemName(VALID_LOCATION_CHEESE).compare(new ItemName(VALID_LOCATION_BANANA)) > 0);
-        assertTrue(new ItemName(VALID_LOCATION_BANANA).compare(new ItemName(VALID_LOCATION_BANANA)) == 0);
+        assertTrue(new Location(VALID_LOCATION_BANANA).compare(new Location(VALID_LOCATION_CHEESE)) < 0);
+        assertTrue(new Location(VALID_LOCATION_CHEESE).compare(new Location(VALID_LOCATION_BANANA)) > 0);
+        assertTrue(new Location(VALID_LOCATION_BANANA).compare(new Location(VALID_LOCATION_BANANA)) == 0);
     }
 
     @Test

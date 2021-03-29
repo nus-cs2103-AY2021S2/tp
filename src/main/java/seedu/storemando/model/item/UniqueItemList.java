@@ -37,6 +37,14 @@ public class UniqueItemList implements Iterable<Item> {
     }
 
     /**
+     * Returns true if the list contains a similar item as the given argument.
+     */
+    public boolean containsSimilar(Item toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isSimilarItem);
+    }
+
+    /**
      * Adds a item to the list.
      * The item must not already exist in the list.
      */

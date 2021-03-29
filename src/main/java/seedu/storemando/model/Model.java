@@ -64,6 +64,11 @@ public interface Model {
     boolean hasItem(Item item);
 
     /**
+     * Returns true if an item with similar identity as {@code item} exists in the storemando.
+     */
+    boolean hasSimilarItem(Item item);
+
+    /**
      * Deletes the given item.
      * The item must exist in the storemando.
      */

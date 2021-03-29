@@ -27,8 +27,16 @@ public class TypicalItems {
         .withLocation("Kitchen Basket").withExpiryDate("2021-04-08")
         .withQuantity("9")
         .withTags("Expiring").build();
+    public static final Item FAKEAPPLE = new ItemBuilder().withName("apples")
+        .withLocation("Kitchen Basket").withExpiryDate("2021-04-08")
+        .withQuantity("9")
+        .withTags("Expiring").build();
     public static final Item BREAD = new ItemBuilder().withName("Bread")
         .withLocation("Dining Table")
+        .withExpiryDate("2021-04-08").withQuantity("1")
+        .withTags("Expiring", "Favourite").build();
+    public static final Item FAKEBREAD = new ItemBuilder().withName("Bread")
+        .withLocation("dining Table")
         .withExpiryDate("2021-04-08").withQuantity("1")
         .withTags("Expiring", "Favourite").build();
     public static final Item CREAM = new ItemBuilder().withName("Cream Cheese").withQuantity("1")

@@ -69,7 +69,7 @@ public class Item {
     }
 
     /**
-     * Returns true if both items have the same name.
+     * Returns true if both items have the exactly the same name, location and expiryDate.
      * This defines a weaker notion of equality between two items.
      */
     public boolean isSameItem(Item otherItem) {
@@ -79,8 +79,23 @@ public class Item {
 
         return otherItem != null
             && otherItem.getItemName().equals(this.getItemName())
-            && otherItem.getLocation().equals(this.getLocation());
+            && otherItem.getLocation().equals(this.getLocation())
+            && otherItem.getExpiryDate().equals(this.getExpiryDate());
     }
+
+    /**
+     * Returns true if both items have the same name and location but differ in case.
+     * This defines a weaker notion of equality between two items.
+     */
+    public boolean isSimilarItem(Item otherItem) {
+        if (otherItem == this) {
+            return true;
+        }
+        return otherItem != null
+            && otherItem.getItemName().isSimilar(this.getItemName())
+            && otherItem.getLocation().isSimilar(this.getLocation());
+    }
+
 
     /**
      * Returns true if both items have the same identity and data fields.
