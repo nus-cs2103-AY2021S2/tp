@@ -63,17 +63,12 @@ class JsonSerializableAddressBook {
             addressBook.addPassenger(passenger);
         }
 
-        List<Passenger> modelPassengers = addressBook.getPassengerList();
-
         for (JsonAdaptedPool jsonAdaptedPool : pools) {
             Pool pool = jsonAdaptedPool.toModelType();
             if (addressBook.hasPool(pool)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_POOL);
             }
-            List<Passenger> poolPassengers = modelPassengers.stream()
-                    .filter(x -> pool.getPassengers().contains(x))
-                    .collect(Collectors.toList());
-            addressBook.addPool(pool.newPoolWithGivenPassengers(poolPassengers));
+            addressBook.addPool(pool);
         }
 
         return addressBook;
