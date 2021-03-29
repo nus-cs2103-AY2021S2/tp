@@ -21,7 +21,7 @@ public class AppointmentBuilder {
     public static final Timeslot DEFAULT_TIMESLOT = new TimeslotBuilder().build();
 
     private UUID patientUuid;
-    private Doctor doctor;
+    private UUID doctorUuid;
     private Timeslot timeslot;
     private Set<Tag> tags;
 
@@ -30,7 +30,7 @@ public class AppointmentBuilder {
      */
     public AppointmentBuilder() {
         patientUuid = new PatientBuilder(DEFAULT_PATIENT).build().getUuid();
-        doctor = DEFAULT_DOCTOR;
+        doctorUuid = new DoctorBuilder(DEFAULT_DOCTOR).build().getUuid();
         timeslot = new TimeslotBuilder(DEFAULT_TIMESLOT).build();
         tags = new HashSet<>();
     }
@@ -40,7 +40,7 @@ public class AppointmentBuilder {
      */
     public AppointmentBuilder(Appointment appointmentToCopy) {
         patientUuid = appointmentToCopy.getPatientUuid();
-        doctor = appointmentToCopy.getDoctor();
+        doctorUuid = appointmentToCopy.getDoctorUuid();
         timeslot = new TimeslotBuilder(appointmentToCopy.getTimeslot()).build();
         tags = new HashSet<>(appointmentToCopy.getTags());
     }
@@ -57,7 +57,7 @@ public class AppointmentBuilder {
      * Sets the {@code doctor} of the {@code Appointment} that we are building.
      */
     public AppointmentBuilder withDoctor(Doctor doctor) {
-        this.doctor = doctor;
+        this.doctorUuid = new DoctorBuilder(doctor).build().getUuid();
         return this;
     }
 
@@ -79,7 +79,7 @@ public class AppointmentBuilder {
 
 
     public Appointment build() {
-        return new Appointment(patientUuid, doctor, timeslot, tags);
+        return new Appointment(patientUuid, doctorUuid, timeslot, tags);
     }
 
 }

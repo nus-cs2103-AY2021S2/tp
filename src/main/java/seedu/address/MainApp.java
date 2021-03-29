@@ -158,7 +158,7 @@ public class MainApp extends Application {
                     + " AppointmentSchedule");
             appointmentSchedule = new AppointmentSchedule();
         } catch (IOException e) {
-            LOGGER.warning("Problem while reading from the patient data file. Will be starting with an empty"
+            LOGGER.warning("Problem while reading from the appointment data file. Will be starting with an empty"
                     + " AppointmentSchedule");
             appointmentSchedule = new AppointmentSchedule();
         }
@@ -224,7 +224,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            LOGGER.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            LOGGER.warning("Problem while reading from the file. Will be starting with an empty UserPrefs file.");
             initializedPrefs = new UserPrefs();
         }
 

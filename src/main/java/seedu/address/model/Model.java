@@ -200,7 +200,7 @@ public interface Model {
     /**
      * Deletes all appointments associated with the input patient from the appointment schedule.
      */
-    void deletePatientAppointments(Patient patient);
+    void deletePatientAppointments(UUID patientUuid);
 
     /**
      * Adds the given appointment.

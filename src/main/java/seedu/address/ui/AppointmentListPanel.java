@@ -16,6 +16,7 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDisplay;
+import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Patient;
 
 /**
@@ -24,6 +25,7 @@ import seedu.address.model.person.Patient;
 public class AppointmentListPanel extends UiPart<Region> {
     private static final String FXML = "AppointmentListPanel.fxml";
     private static final Map<UUID, Patient> PATIENT_HASH_MAP = new HashMap<>();
+    private static final Map<UUID, Doctor> DOCTOR_HASH_MAP = new HashMap<>();
 
     private final Logger logger = LogsCenter.getLogger(AppointmentListPanel.class);
 
@@ -33,15 +35,18 @@ public class AppointmentListPanel extends UiPart<Region> {
     /**
      * Creates a {@code AppointmentListPanel} with the given {@code patientList}, {@code appointmentList}.
      */
-    public AppointmentListPanel(ObservableList<Patient> patientList, ObservableList<Appointment> appointmentList) {
+    public AppointmentListPanel(ObservableList<Patient> patientList,
+            ObservableList<Doctor> doctorList, ObservableList<Appointment> appointmentList) {
         super(FXML);
 
         // maintain a hashmap to improve speed of searching
         ObservableList<AppointmentDisplay> displayAppointmentList = FXCollections.observableArrayList();
 
         updatePatientHashMap(patientList);
+        updateDoctorHashMap(doctorList);
         for (int i = 0; i < appointmentList.size(); i++) {
-            displayAppointmentList.add(mapToDisplayAppointment(PATIENT_HASH_MAP, patientList, appointmentList.get(i)));
+            displayAppointmentList.add(mapToDisplayAppointment(
+                    PATIENT_HASH_MAP, DOCTOR_HASH_MAP, appointmentList.get(i)));
         }
 
         appointmentList.addListener(new ListChangeListener<Appointment>() {
@@ -53,7 +58,7 @@ public class AppointmentListPanel extends UiPart<Region> {
                 displayAppointmentList.clear();
                 for (Appointment appt: change.getList()) {
                     displayAppointmentList.add(mapToDisplayAppointment(
-                        PATIENT_HASH_MAP, patientList, appt));
+                        PATIENT_HASH_MAP, DOCTOR_HASH_MAP, appt));
                 }
             }
         });
@@ -67,10 +72,25 @@ public class AppointmentListPanel extends UiPart<Region> {
                 displayAppointmentList.clear();
                 for (Appointment appt: appointmentList) {
                     displayAppointmentList.add(mapToDisplayAppointment(
-                        PATIENT_HASH_MAP, patientList, appt));
+                        PATIENT_HASH_MAP, DOCTOR_HASH_MAP, appt));
                 }
             }
         });
+
+        // doctorList also needs listener to update the appointment display list
+        doctorList.addListener(new ListChangeListener<Doctor>() {
+            @Override
+            public void onChanged(Change<? extends Doctor> change) {
+                updateDoctorHashMap(doctorList);
+                while (change.next());
+                displayAppointmentList.clear();
+                for (Appointment appt: appointmentList) {
+                    displayAppointmentList.add(mapToDisplayAppointment(
+                        PATIENT_HASH_MAP, DOCTOR_HASH_MAP, appt));
+                }
+            }
+        });
+
         appointmentListView.setItems(FXCollections.unmodifiableObservableList(displayAppointmentList));
         appointmentListView.setCellFactory(listView -> new AppointmentListViewCell());
     }
@@ -83,12 +103,14 @@ public class AppointmentListPanel extends UiPart<Region> {
      * to the {@code Map}.
      */
     public AppointmentDisplay mapToDisplayAppointment(Map<UUID, Patient> patientHashMap,
-            ObservableList<Patient> patientList, Appointment appt) {
+            Map<UUID, Doctor> doctorHashMap, Appointment appt) {
         // mutates hashmap
         assert patientHashMap.containsKey(appt.getPatientUuid())
                 : "patientHashMap should always contain the appointment's patient UUID";
+        assert doctorHashMap.containsKey(appt.getDoctorUuid())
+                : "doctorHashMap should always contain the appointment's doctor UUID";
         return new AppointmentDisplay(patientHashMap.get(appt.getPatientUuid()),
-                appt.getDoctor(), appt.getTimeslot(), appt.getTags());
+                doctorHashMap.get(appt.getDoctorUuid()), appt.getTimeslot(), appt.getTags());
         // TODO: remove if verified to be unnecessary
         // Don't think this part is needed, since if there is a mutation to patientList,
         // updatePatientHashMap will be called, which means the entry will definitely be in the hashMap
@@ -108,7 +130,7 @@ public class AppointmentListPanel extends UiPart<Region> {
     }
 
     /**
-     * With the given {@code patientList}, updates the values of {@code PATIENTHASHMAP}
+     * With the given {@code patientList}, updates the values of {@code PATIENT_HASH_MAP}
      * using the {@code Patient}'s UUID as the key.
      */
     public static void updatePatientHashMap(List<Patient> patientList) {
@@ -119,6 +141,20 @@ public class AppointmentListPanel extends UiPart<Region> {
 
     public static Map<UUID, Patient> getPatientHashMap() {
         return PATIENT_HASH_MAP;
+    }
+
+    /**
+     * With the given {@code doctorList}, updates the values of {@code DOCTOR_HASH_MAP}
+     * using the {@code Doctor}'s UUID as the key.
+     */
+    public static void updateDoctorHashMap(List<Doctor> doctorList) {
+        for (Doctor dr: doctorList) {
+            DOCTOR_HASH_MAP.put(dr.getUuid(), dr);
+        }
+    }
+
+    public static Map<UUID, Doctor> getDoctorHashMap() {
+        return DOCTOR_HASH_MAP;
     }
 
     /**

@@ -13,7 +13,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Timeslot;
-import seedu.address.model.person.Doctor;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,7 +22,7 @@ public class JsonAdaptedAppointment {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Appointment's %s field is missing!";
 
     private final String patientUuid;
-    private final JsonAdaptedDoctor doctor;
+    private final String doctorUuid;
     private final JsonAdaptedTimeslot timeslot;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -32,11 +31,11 @@ public class JsonAdaptedAppointment {
      */
     @JsonCreator
     public JsonAdaptedAppointment(@JsonProperty("patient") String patientUuid,
-                                  @JsonProperty("doctor") JsonAdaptedDoctor doctor,
+                                  @JsonProperty("doctor") String doctorUuid,
                                   @JsonProperty("timeslot") JsonAdaptedTimeslot timeslot,
                                   @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.patientUuid = patientUuid;
-        this.doctor = doctor;
+        this.doctorUuid = doctorUuid;
         this.timeslot = timeslot;
 
         if (tagged != null) {
@@ -49,7 +48,7 @@ public class JsonAdaptedAppointment {
      */
     public JsonAdaptedAppointment(Appointment source) {
         patientUuid = source.getPatientUuid().toString();
-        doctor = new JsonAdaptedDoctor(source.getDoctor());
+        doctorUuid = source.getDoctorUuid().toString();
         timeslot = new JsonAdaptedTimeslot(source.getTimeslot());
 
         tagged.addAll(source.getTags().stream()
@@ -74,13 +73,11 @@ public class JsonAdaptedAppointment {
 
         final UUID modelPatientUuid = UUID.fromString(patientUuid);
 
-        // final Patient modelPatient = patient.toModelType();
-
-        if (doctor == null) {
+        if (doctorUuid == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "doctor"));
         }
 
-        final Doctor modelDoctor = doctor.toModelType();
+        final UUID modelDoctorUuid = UUID.fromString(doctorUuid);
 
         if (timeslot == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -89,7 +86,7 @@ public class JsonAdaptedAppointment {
 
         final Timeslot modelTimeslot = timeslot.toModelType();
         final Set<Tag> modelTags = new HashSet<>(appointmentTags);
-        return new Appointment(modelPatientUuid, modelDoctor, modelTimeslot, modelTags);
+        return new Appointment(modelPatientUuid, modelDoctorUuid, modelTimeslot, modelTags);
     }
 
 }

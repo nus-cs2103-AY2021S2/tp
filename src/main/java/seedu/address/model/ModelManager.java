@@ -38,8 +38,10 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(appointmentSchedule, patientRecords, userPrefs);
 
-        LOGGER.fine("Initializing with appointment schedule: " + appointmentSchedule
-                + ", address book: " + patientRecords + " and user prefs " + userPrefs);
+        LOGGER.fine("Initializing with patientRecords: " + patientRecords
+                + " and doctorRecords: " + doctorRecords
+                + " and appointment schedule: " + appointmentSchedule
+                + " and user prefs " + userPrefs);
 
         this.userPrefs = new UserPrefs(userPrefs);
         this.patientRecords = new AddressBook<>(patientRecords);
@@ -106,8 +108,8 @@ public class ModelManager implements Model {
     @Override
     public boolean hasConflictingUuid(UUID uuid) {
         requireNonNull(uuid);
-        return patientRecords.hasConflictingUuid(uuid);
-        // || doctorRecords.hasConflictingUUID(uuid)
+        return patientRecords.hasConflictingUuid(uuid)
+                || doctorRecords.hasConflictingUuid(uuid);
     }
 
     @Override
@@ -262,9 +264,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deletePatientAppointments(Patient patient) {
-        requireNonNull(patient);
-        appointmentSchedule.deletePatientAppointments(patient);
+    public void deletePatientAppointments(UUID patientUuid) {
+        requireNonNull(patientUuid);
+        appointmentSchedule.deletePatientAppointments(patientUuid);
     }
 
     @Override

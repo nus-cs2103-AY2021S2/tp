@@ -9,6 +9,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Patient;
 import seedu.address.ui.AppointmentListPanel;
 
@@ -38,13 +39,15 @@ public class AppointmentContainsKeywordsPredicate implements Predicate<Appointme
     @Override
     public boolean test(Appointment appointment) {
         Map<UUID, Patient> patientHashMap = AppointmentListPanel.getPatientHashMap();
+        Map<UUID, Doctor> doctorHashMap = AppointmentListPanel.getDoctorHashMap();
 
         Predicate<String> isMatchPatient = keyword -> StringUtil.containsWordIgnoreCase(
                 patientHashMap.get(appointment.getPatientUuid())
                 .getName().fullName, keyword);
 
-        Predicate<String> isMatchDoctor = keyword -> StringUtil.containsWordIgnoreCase(appointment
-                .getDoctor().getName().fullName, keyword);
+        Predicate<String> isMatchDoctor = keyword -> StringUtil.containsWordIgnoreCase(
+                doctorHashMap.get(appointment.getDoctorUuid())
+                .getName().fullName, keyword);
 
         Predicate<String> isMatchTimeStart = keyword
             -> StringUtil.containsWordIgnoreCase(appointment.getAppointmentStart().toString()

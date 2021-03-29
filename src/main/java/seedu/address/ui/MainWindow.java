@@ -119,7 +119,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         appointmentListPanel = new AppointmentListPanel(logic.getFilteredPatientList(),
-                logic.getFilteredAppointmentList());
+                logic.getFilteredDoctorList(), logic.getFilteredAppointmentList());
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
         // TODO add logic to getDoctorList
         doctorListPanel = new DoctorListPanel(logic.getFilteredDoctorList());

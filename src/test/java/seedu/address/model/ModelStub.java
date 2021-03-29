@@ -187,7 +187,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void deletePatientAppointments(Patient patient) {
+    public void deletePatientAppointments(UUID patient) {
         throw new AssertionError("This method should not be called.");
     }
 

@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
@@ -54,7 +55,7 @@ public class NonConflictingAppointmentList implements Iterable<Appointment> {
      * Returns true if the list contains appointments that corresponds to the input doctor.
      */
     public boolean hasDoctorInSchedule(Doctor doctor) {
-        return internalList.stream().map(appointment -> appointment.getDoctor()).anyMatch(doctor::equals);
+        return internalList.stream().anyMatch(appt -> appt.getDoctorUuid().equals(doctor.getUuid()));
     }
 
     /**
@@ -150,9 +151,9 @@ public class NonConflictingAppointmentList implements Iterable<Appointment> {
     /**
      * Deletes all appointments associated with the input patient from the appointment schedule.
      */
-    public void deletePatientAppointments(Patient patient) {
+    public void deletePatientAppointments(UUID patientUuid) {
         List<Appointment> patientAppointmentList = internalList.stream().filter(appointment ->
-                appointment.getPatient().equals(patient)).collect(Collectors.toList());
+                appointment.getPatientUuid().equals(patientUuid)).collect(Collectors.toList());
         patientAppointmentList.forEach(appointment -> internalList.remove(appointment));
     }
 

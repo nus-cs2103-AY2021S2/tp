@@ -16,14 +16,16 @@ import seedu.address.model.tag.Tag;
 public class AppointmentDisplay extends Appointment {
     // Data fields
     private final Patient patient;
+    private final Doctor doctor;
 
     /**
      * Every field must be present and not null.
      */
     public AppointmentDisplay(Patient patient, Doctor doctor, Timeslot timeslot, Set<Tag> tags) {
-        super(patient.getUuid(), doctor, timeslot, tags);
+        super(patient.getUuid(), doctor.getUuid(), timeslot, tags);
         requireAllNonNull(patient, doctor, timeslot, tags);
         this.patient = patient;
+        this.doctor = doctor;
     }
 
     @Override
@@ -47,5 +49,9 @@ public class AppointmentDisplay extends Appointment {
     //// Accessors
     public Patient getPatient() {
         return patient;
+    }
+
+    public Doctor getDoctor() {
+        return doctor;
     }
 }

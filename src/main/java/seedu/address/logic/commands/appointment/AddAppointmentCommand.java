@@ -82,8 +82,9 @@ public class AddAppointmentCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
         Patient patient = displayedPatientRecords.get(patientIndex.getZeroBased());
-
         UUID patientUuid = patient.getUuid();
+
+
         List<Doctor> displayedDoctorRecords = model.getFilteredDoctorList();
         assert displayedDoctorRecords != null : "getFilteredDoctorList method should not return null";
 
@@ -91,9 +92,10 @@ public class AddAppointmentCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_DOCTOR_DISPLAYED_INDEX);
         }
         Doctor doctor = displayedDoctorRecords.get(doctorIndex.getZeroBased());
+        UUID doctorUuid = doctor.getUuid();
 
 
-        Appointment toAdd = new Appointment(patientUuid, doctor, timeslot, tagList);
+        Appointment toAdd = new Appointment(patientUuid, doctorUuid, timeslot, tagList);
 
         if (model.hasConflictingAppointment(toAdd)) {
             throw new CommandException(MESSAGE_APPOINTMENT_CONFLICT);

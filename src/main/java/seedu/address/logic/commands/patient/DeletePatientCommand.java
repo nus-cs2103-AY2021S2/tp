@@ -55,7 +55,7 @@ public class DeletePatientCommand extends Command {
         Patient patientToDelete = lastShownList.get(targetIndex.getZeroBased());
 
         if (isForceDelete) {
-            model.deletePatientAppointments(patientToDelete);
+            model.deletePatientAppointments(patientToDelete.getUuid());
         }
 
         // checks if patient has any existing appointments

@@ -54,7 +54,7 @@ public class PatientBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Patient} that we are building.
+     * Sets the {@code UUid} of the {@code Patient} that we are building.
      */
     public PatientBuilder withUuid(String uuid) {
         this.uuid = UUID.fromString(uuid);
