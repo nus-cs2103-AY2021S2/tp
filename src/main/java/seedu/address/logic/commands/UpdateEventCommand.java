@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_WEEKLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_UPDATE_INDEX;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -75,7 +76,7 @@ public class UpdateEventCommand extends Command {
         if (projectIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
-        
+
         Project projectToUpdate = lastShownList.get(projectIndex.getZeroBased());
         EventList events = projectToUpdate.getEvents();
 
@@ -103,10 +104,12 @@ public class UpdateEventCommand extends Command {
         assert eventToEdit != null;
 
         String updatedDescription = updateEventDescriptor.getDescription().orElse(eventToEdit.getDescription());
-        Interval updatedInterval = updateEventDescriptor.getInterval().orElse(eventToEdit.getRecurrence());
-        LocalDate updatedDate = updateEventDescriptor.getDate().orElse(eventToEdit.getAt());
+        LocalDate updatedDate = updateEventDescriptor.getDate().orElse(eventToEdit.getDate());
+        LocalTime updatedTime = updateEventDescriptor.getTime().orElse(eventToEdit.getTime());
+        Boolean updatedIsWeekly = updateEventDescriptor.getIsWeekly().orElse(eventToEdit.getIsWeekly());
 
-        return new Event(updatedDescription, updatedInterval, updatedDate);
+
+        return new Event(updatedDescription, updatedDate, updatedTime, updatedIsWeekly);
     }
 
     @Override
@@ -134,8 +137,9 @@ public class UpdateEventCommand extends Command {
      */
     public static class UpdateEventDescriptor {
         private String description;
-        private Interval interval;
         private LocalDate date;
+        private LocalTime time;
+        private Boolean isWeekly;
 
         public UpdateEventDescriptor() {}
 
@@ -145,15 +149,16 @@ public class UpdateEventCommand extends Command {
          */
         public UpdateEventDescriptor(UpdateEventDescriptor toCopy) {
             setDescription(toCopy.description);
-            setInterval(toCopy.interval);
             setDate(toCopy.date);
+            setTime(toCopy.time);
+            setIsWeekly(toCopy.isWeekly);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(description, interval, date);
+            return CollectionUtil.isAnyNonNull(description, date, time, isWeekly);
         }
 
         public void setDescription(String description) {
@@ -164,20 +169,28 @@ public class UpdateEventCommand extends Command {
             return Optional.ofNullable(description);
         }
 
-        public void setInterval(Interval interval) {
-            this.interval = interval;
-        }
-
-        public Optional<Interval> getInterval() {
-            return Optional.ofNullable(interval);
-        }
-
         public void setDate(LocalDate date) {
             this.date = date;
         }
 
         public Optional<LocalDate> getDate() {
             return Optional.ofNullable(date);
+        }
+
+        public void setTime(LocalTime time) {
+            this.time = time;
+        }
+
+        public Optional<LocalTime> getTime() {
+            return Optional.ofNullable(time);
+        }
+
+        public void setIsWeekly(Boolean isWeekly) {
+            this.isWeekly = isWeekly;
+        }
+
+        public Optional<Boolean> getIsWeekly() {
+            return Optional.ofNullable(isWeekly);
         }
 
         @Override
@@ -196,8 +209,9 @@ public class UpdateEventCommand extends Command {
             UpdateEventDescriptor e = (UpdateEventDescriptor) other;
 
             return getDescription().equals(e.getDescription())
-                    && getInterval().equals(e.getInterval())
-                    && getDate().equals(e.getDate());
+                    && getDate().equals(e.getDate())
+                    && getTime().equals(e.getTime())
+                    && getTime().equals(e.getTime());
         }
     }
 }
