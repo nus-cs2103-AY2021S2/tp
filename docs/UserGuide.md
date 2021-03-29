@@ -19,6 +19,7 @@ Donavan Lim, Marcus Lee Eugene, Chong Sidney, Dinesh S/O Magesvaran, Prabhakaran
         * find
         * findall
         * view
+        * revise
     * Command Summary
     * UI mock-up
 
@@ -111,15 +112,29 @@ Example:
 
 ### View specific food reviews
 
-Opens up a window, showing the details of a specified food review in a full expanded view.
+Opens up a window, showing the details of a specified entry in a full expanded view. Allows the user to read through 
+reviews that are too lengthy to be shown in the main UI window.
 
 Format: `view <INDEX>`
 
-Parameter: `Index of food review`
+Parameter: `Index of entry`
 
 Example:
 
     view 1
+
+### Revise specific food reviews
+
+Opens up a window, showing the existing details of an entry and allowing for quick corrections and updates without 
+requiring the use of prefixes and command syntaxes, in the UI.
+
+Format: `revise <INDEX>`
+
+Parameter: `Index of entry`
+
+Example:
+
+    revise 1
 
 -------------------------------------------------------------------------------------
 
@@ -133,6 +148,7 @@ Action | Format, Examples
 **Find** | `find kfc`
 **FindAll** |`findall clementi fastfood 5/5`
 **View** |`view 1`
+**Revise** |`revise 1`
 
 ## <center> Appendix </center>
 
