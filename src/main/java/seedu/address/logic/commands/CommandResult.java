@@ -17,12 +17,15 @@ public class CommandResult {
     /** Information on which UI command to execute **/
     private final UiCommand uiCommand;
 
+    /** Setting this boolean flag to false will ignore history **/
+    private boolean ignoreHistory;
+
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser} and {@code uiCommand}.
      * All other fields are set to their default value.
      */
     public CommandResult (String feedbackToUser, UiCommand uiCommand) {
-        requireAllNonNull(feedbackToUser, uiCommand);
+        requireNonNull(feedbackToUser);
         this.feedbackToUser = feedbackToUser;
         this.uiCommand = uiCommand;
     }
@@ -51,6 +54,20 @@ public class CommandResult {
      */
     public boolean hasUiCommand() {
         return getUiCommand() != null;
+    }
+
+    public boolean isIgnoreHistory() {
+        return ignoreHistory;
+    }
+
+    /**
+     * Sets ignore history flag.
+     * @param ignoreHistory new state of ignore history flag.
+     * @return this, for method chaining.
+     */
+    public CommandResult setIgnoreHistory(boolean ignoreHistory) {
+        this.ignoreHistory = ignoreHistory;
+        return this;
     }
 
     @Override
