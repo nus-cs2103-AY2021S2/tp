@@ -24,7 +24,7 @@ public class TypicalPlans {
     private TypicalPlans() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code ModulePlanner} with all the typical persons.
      */
     public static ModulePlanner getTypicalModulePlanner() {
         ModulePlanner ab = new ModulePlanner();
