@@ -24,7 +24,8 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
         * [Redoing a command](#redoing-a-command--redo): `redo`
         * [Sorting all flashcards](#sorting-all-flashcards-sort): `sort`
         * [Entering review mode](#entering-review-mode-review): `review`
-        * [Viewing statistics of flashcards](#viewing-statistics-of-flashcards-stats): `stats`
+        * [Sorting all cards](#sorting-all-cards-sort): `sort`
+        * [Viewing statistics of cards](#viewing-statistics-of-cards-stats): `stats`
         * [Exiting the program](#exiting-the-program--exit): `exit`
         * [Saving data](#saving-the-data)
         * [Editing the data file](#editing-the-data-file)
@@ -461,18 +462,18 @@ the data of your previous FlashBack home folder.
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAGS]...` <br> e.g., `add q/ What is the Einstein’s Equation? a/e=mc^2 c/Physics p/High t/ModernPhysics`
-**Delete** | `delete INDEX` <br> e.g., `delete 1`
-**Edit** | `edit INDEX` <br> e.g., `edit 3 a/NEW ANSWER p/NEW PRIORITY`
-**View** | `view INDEX` <br> e.g., `view 2`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find equation`
+**Add** | `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAGS]...` <br> e.g. `add q/ What is the Einstein’s Equation? a/e=mc^2 c/Physics p/High t/ModernPhysics`
+**Delete** | `delete INDEX` <br> e.g. `delete 1`
+**Edit** | `edit INDEX` <br> e.g. `edit 3 a/NEW ANSWER p/NEW PRIORITY`
+**View** | `view INDEX` <br> e.g. `view 2`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find equation`
 **Filter** | `filter [q/QUESTION] [c/CATEGORY] [p/PRIORITY] [t/TAG]`<br> e.g. `filter q/einstein c/phy p/high t/modern` <br> or `filter p/low t/formula`
 **Clear** | `clear`
 **Undo** | `undo`
 **Redo** | `redo`
-**Sort** | `sort OPTION ORDER` <br> e.g., `sort priority -a`
+**Sort** | `sort OPTION ORDER` <br> e.g. `sort priority -a`
 **Review** | `review`
-**Statistics** | `stats [INDEX]` <br> e.g., `stats 4`, `stats`
+**Statistics** | `stats [INDEX]` <br> e.g. `stats 4`, `stats`
 **List** | `list`
 **Help** | `help`
 **Exit** | `exit`
