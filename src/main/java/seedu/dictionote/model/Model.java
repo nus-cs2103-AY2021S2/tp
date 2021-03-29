@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.dictionote.commons.core.GuiSettings;
 import seedu.dictionote.model.contact.Contact;
+import seedu.dictionote.model.contact.MailtoLink;
 import seedu.dictionote.model.dictionary.Content;
 import seedu.dictionote.model.dictionary.Definition;
 import seedu.dictionote.model.dictionary.DisplayableContent;
@@ -205,7 +206,7 @@ public interface Model {
      * Invokes the user's OS email client to send a new email to the given contact.
      * {@code contact} must exist in the contacts list.
      */
-    void emailContact(Contact contact);
+    void emailContactUsingLink(MailtoLink link);
 
     /**
      * Sorts the contacts in the contacts list by their frequency counters.

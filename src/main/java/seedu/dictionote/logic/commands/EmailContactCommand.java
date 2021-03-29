@@ -9,6 +9,8 @@ import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.contact.Contact;
+import seedu.dictionote.model.contact.MailtoLink;
+import seedu.dictionote.model.note.Note;
 
 /**
  * Opens a new window to send an email to a contact identified using it's displayed index from the contacts list.
@@ -25,23 +27,42 @@ public class EmailContactCommand extends Command {
 
     public static final String MESSAGE_EMAIL_CONTACT_SUCCESS = "New email window open: to %1$s";
 
-    private final Index targetIndex;
+    private final Index contactIndex;
+    private final Index noteIndex;
 
-    public EmailContactCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    /**
+     * Single-parameter constructor is kept for legacy support.
+     */
+    public EmailContactCommand(Index contactIndex) {
+        this(contactIndex, null);
+    }
+
+    public EmailContactCommand(Index contactIndex, Index noteIndex) {
+        this.contactIndex = contactIndex;
+        this.noteIndex = noteIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Contact> lastShownList = model.getFilteredContactList();
+        List<Contact> lastShownContactList = model.getFilteredContactList();
+        List<Note> lastShownNoteList = model.getFilteredNoteList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        if (contactIndex.getZeroBased() >= lastShownContactList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX);
         }
 
-        Contact contactToEmail = lastShownList.get(targetIndex.getZeroBased());
-        model.emailContact(contactToEmail);
+        Contact contactToEmail = lastShownContactList.get(contactIndex.getZeroBased());
+        MailtoLink link = new MailtoLink(contactToEmail);
+
+        if (noteIndex != null && noteIndex.getZeroBased() >= lastShownNoteList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_NOTE_DISPLAYED_INDEX);
+        } else if (noteIndex != null) {
+            Note noteToEmail = lastShownNoteList.get(noteIndex.getZeroBased());
+            link.setBody(noteToEmail);
+        }
+
+        model.emailContactUsingLink(link);
 
         return new CommandResult(String.format(MESSAGE_EMAIL_CONTACT_SUCCESS, contactToEmail));
     }
@@ -50,6 +71,6 @@ public class EmailContactCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof EmailContactCommand // instanceof handles nulls
-                && targetIndex.equals(((EmailContactCommand) other).targetIndex)); // state check
+                && contactIndex.equals(((EmailContactCommand) other).contactIndex)); // state check
     }
 }

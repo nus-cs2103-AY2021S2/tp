@@ -6,11 +6,14 @@ import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import seedu.dictionote.model.contact.Contact;
+import seedu.dictionote.model.contact.MailtoLink;
 import seedu.dictionote.model.contact.UniqueContactList;
 import seedu.dictionote.model.contact.exceptions.InvalidContactMailtoLinkException;
+import seedu.dictionote.model.note.Note;
 
 /**
  * Wraps all data at the dictionote-book level
@@ -89,9 +92,11 @@ public class ContactsList implements ReadOnlyContactsList {
      * Invokes the user's OS email client to send a new email to the given contact.
      * {@code contact} must exist in the contacts list.
      */
-    public void emailContact(Contact contact) throws InvalidContactMailtoLinkException {
-        URI contactMailtoLink = URI.create("mailto:" + contact.getEmail());
+    public void emailContactUsingLink(MailtoLink link) throws InvalidContactMailtoLinkException {
+        URI contactMailtoLink = URI.create(link.toString());
         Desktop userDesktop = Desktop.getDesktop();
+
+        Contact receivingContact = link.getTo();
 
         // credit to TorstenH. and alexey_s from CodeProject for the URL invocation code.
         // link to the posts: https://www.codeproject.com/questions/398241/how-to-open-url-in-java
@@ -100,7 +105,7 @@ public class ContactsList implements ReadOnlyContactsList {
             userDesktop.mail(contactMailtoLink);
 
             // Update the contact's frequency counter.
-            setContact(contact, incrementContactFrequency(contact));
+            setContact(receivingContact, incrementContactFrequency(receivingContact));
         } catch (IOException e) {
             throw new InvalidContactMailtoLinkException();
         }
