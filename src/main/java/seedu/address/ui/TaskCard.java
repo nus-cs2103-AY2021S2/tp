@@ -47,9 +47,9 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         name.setText(task.getName().fullName);
-        deadline.setText(task.getDeadline().toString());
-        priority.setText(task.getPriority().toString());
-        category.setText(task.getCategories().toString());
+        deadline.setText("Deadline: " + task.getDeadline().toString());
+        priority.setText("Priority: " + task.getPriority().toString());
+        category.setText("Category: " + task.getCategories().toString());
         task.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
