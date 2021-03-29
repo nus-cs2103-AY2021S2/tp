@@ -60,6 +60,14 @@ public class Record {
         this.dateBorrowed = dateBorrowed;
         this.dateReturned = dateReturned;
     }
+    /**
+     * Indicates whether this book is returned to SmartLib.
+     *
+     * @return true if this book is returned to SmartLib, and false otherwise.
+     */
+    public boolean isReturned() {
+        return this.dateReturned != null;
+    }
 
     /**
      * Marks the record as returned.
