@@ -38,7 +38,7 @@ public class TripCommand extends Command {
         model.updateFilteredPoolList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_PASSENGER_LISTED_OVERVIEW,
-                        model.getFilteredPassengerList().size()));
+                        model.getFilteredPoolList().size()));
     }
 
     @Override

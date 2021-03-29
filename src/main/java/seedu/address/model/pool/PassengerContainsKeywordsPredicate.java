@@ -18,7 +18,9 @@ public class PassengerContainsKeywordsPredicate implements Predicate<Pool> {
 
     @Override
     public boolean test(Pool pool) {
-        return false;
+//        return true;
+        return keywords.stream()
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(pool.getPassengers().toString(), keyword));
     }
 
     @Override
