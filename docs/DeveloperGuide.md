@@ -333,6 +333,8 @@ related to their children. For example, a parent teacher meeting or a birthday p
 
 ##### UI Component
 
+![AppointmentWithUIClassDiagram](images/AppointmentWithUIClassDiagram.png)
+
 The appointment will be added as a column beside the current address column.
 
 ##### Model Component
@@ -373,7 +375,7 @@ to similar methods for AddressBook.
 
 ##### Storage Component
 
-As illustrated in the Logic UML Class Diagram, the `LogicManager` class will save the appointments.
+![AppointmentWithStorageClassDiagram](images/AppointmentWithStorageClassDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
