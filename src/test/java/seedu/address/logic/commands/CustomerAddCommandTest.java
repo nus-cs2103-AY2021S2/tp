@@ -198,6 +198,11 @@ public class CustomerAddCommandTest {
         }
 
         @Override
+        public void updateFilteredDishList(Predicate<Dish> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public List<Dish> getDishesByIngredients(Ingredient ingredient) {
             throw new AssertionError("This method should not be called.");
         }
@@ -238,6 +243,11 @@ public class CustomerAddCommandTest {
         }
 
         @Override
+        public void updateFilteredIngredientList(Predicate<Ingredient> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setOrderBook(ReadOnlyOrderBook orderBook) {
             throw new AssertionError("This method should not be called.");
         }
@@ -274,6 +284,11 @@ public class CustomerAddCommandTest {
 
         @Override
         public ObservableList<Order> getFilteredOrderList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredOrderList(Predicate<Order> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

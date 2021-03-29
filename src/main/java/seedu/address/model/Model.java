@@ -137,6 +137,12 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Dish> getFilteredDishList();
 
+    /**
+     * Updates the filter of the filtered dish list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredDishList(Predicate<Dish> predicate);
+
     /** Returns a list of dishes that use a particular ingredient */
     List<Dish> getDishesByIngredients(Ingredient ingredient);
 
@@ -173,8 +179,14 @@ public interface Model {
      */
     void setIngredient(Ingredient target, Ingredient editedIngredient);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /** Returns an unmodifiable view of the filtered ingredient list */
     ObservableList<Ingredient> getFilteredIngredientList();
+
+    /**
+     * Updates the filter of the filtered ingredient list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredIngredientList(Predicate<Ingredient> predicate);
 
     //=========== OrderBook ================================================================================
     /**
@@ -217,6 +229,12 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered order list */
     ObservableList<Order> getFilteredOrderList();
+
+    /**
+     * Updates the filter of the filtered ingredient list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredOrderList(Predicate<Order> predicate);
 
     /** Returns an list of the orders belonging to a particular customer */
     List<Order> getOrdersFromPerson(Person target);

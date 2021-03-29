@@ -24,7 +24,7 @@ import seedu.address.logic.commands.customer.CustomerFindCommand;
 import seedu.address.logic.commands.customer.CustomerListCommand;
 import seedu.address.logic.parser.components.CustomerParser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.PersonNameContainsWordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -82,7 +82,7 @@ public class JJIMYParserTest {
         CustomerFindCommand command = (CustomerFindCommand) parser.parseCompo(
                 CustomerParser.COMPONENT_WORD + " " + CustomerFindCommand.COMMAND_WORD + " "
                         + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new CustomerFindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new CustomerFindCommand(new PersonNameContainsWordsPredicate(keywords)), command);
     }
 
     @Test

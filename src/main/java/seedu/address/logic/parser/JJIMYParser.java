@@ -8,7 +8,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.LogicManager;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -23,12 +22,12 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses user input.
  */
 public class JJIMYParser {
-    private final Logger logger = LogsCenter.getLogger(JJIMYParser.class);
-
     /**
      * Used for initial separation of component word and args.
      */
     private static final Pattern BASIC_COMPO_FORMAT = Pattern.compile("(?<compoWord>\\S+)(?<arguments>.*)");
+
+    private final Logger logger = LogsCenter.getLogger(JJIMYParser.class);
 
     /**
      * Parses user input into command for execution.

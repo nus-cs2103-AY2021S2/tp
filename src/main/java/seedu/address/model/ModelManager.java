@@ -245,6 +245,12 @@ public class ModelManager implements Model {
         return filteredDishes;
     }
 
+    @Override
+    public void updateFilteredDishList(Predicate<Dish> predicate) {
+        requireNonNull(predicate);
+        filteredDishes.setPredicate(predicate);
+    }
+
     //=========== Ingredients ================================================================================
     /**
      * Replaces address book data with the data in {@code addressBook}.
@@ -300,6 +306,13 @@ public class ModelManager implements Model {
     public ObservableList<Ingredient> getFilteredIngredientList() {
         return filteredIngredients;
     }
+
+    @Override
+    public void updateFilteredIngredientList(Predicate<Ingredient> predicate) {
+        requireNonNull(predicate);
+        filteredIngredients.setPredicate(predicate);
+    }
+
 
     //@@author kangtinglee
     /** Returns a list of dishes that use a particular ingredient */
@@ -378,6 +391,12 @@ public class ModelManager implements Model {
     /** Returns an unmodifiable view of the filtered person list */
     public ObservableList<Order> getFilteredOrderList() {
         return filteredOrders;
+    }
+
+    @Override
+    public void updateFilteredOrderList(Predicate<Order> predicate) {
+        requireNonNull(predicate);
+        filteredOrders.setPredicate(predicate);
     }
 
     //@@author kangtinglee

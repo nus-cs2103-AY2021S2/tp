@@ -23,8 +23,8 @@ repositories {
 }
 
 checkstyle {
-    toolVersion = '8.29'
     ignoreFailures = true
+    toolVersion = '8.29'
 }
 
 test {
