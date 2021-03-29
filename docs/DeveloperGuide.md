@@ -162,6 +162,7 @@ Creates a `History` object (a subclass of `HashMap`) using information about sem
 
 ##### Method:`History#toString()`
 ![HistoryToStringSequenceDiagram](images/HistoryToStringSequenceDiagram.png)
+
 Builds a formatted string by iterating over each of the semesters stored as keys in the HashMap according to their semester number and in ascending order.
 
 Each semester's `toString()` method is called which internally calls each modules `toString()` method.
@@ -171,7 +172,7 @@ The following presents a final overview of how the `history command` is used:
 
 ![HistoryArchitectureSequenceDiagram](images/HistoryArchitectureSequenceDiagram.png)
 
-Do note that the current implementation always creates a new `History` instance whenever the `history command` is provided, to ensure that users are presented with their most updated information.
+Do note that the current implementation always creates a new `History` instance whenever the `history command` is provided by the user, to ensure that users are presented with their most updated information.
 
 
 ### Non-Functional Requirements
