@@ -49,6 +49,10 @@ public class EventBuilder {
     }
 
     public Event build() {
+        if (time == null) {
+            return new Event(date, description);
+        }
+
         return new Event(date, time, description);
     }
 }
