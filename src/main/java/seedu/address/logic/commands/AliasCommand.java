@@ -11,7 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.*;
  */
 public class AliasCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "alias";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a alias to FlashBack. "
             + "Parameters: "
