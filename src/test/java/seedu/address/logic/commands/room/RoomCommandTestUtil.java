@@ -41,21 +41,17 @@ public class RoomCommandTestUtil {
         // 15-312, corridor non ac, not occupied
         VALID_ROOM_DESCRIPTOR_ONE = new EditRoomDescriptorBuilder().withRoomNumber(VALID_ROOM_NUMBER_ONE)
                 .withRoomType(VALID_ROOM_TYPES.get(0))
-                .withOccupancyStatus(VALID_ROOM_OCCUPANCIES.get(0))
                 .build();
 
         // 12-322, corridor ac, occupied
         VALID_ROOM_DESCRIPTOR_TWO = new EditRoomDescriptorBuilder().withRoomNumber(VALID_ROOM_NUMBER_TWO)
                 .withRoomType(VALID_ROOM_TYPES.get(1))
-                .withOccupancyStatus(VALID_ROOM_OCCUPANCIES.get(1))
                 .build();
 
         // Random build based on valid parameters
         VALID_ROOM_DESCRIPTOR_RANDOM = new EditRoomDescriptorBuilder().withRoomNumber(VALID_ROOM_NUMBER_THREE)
                 // Pick a random valid room type, there are only 4
                 .withRoomType(VALID_ROOM_TYPES.get(random.nextInt(VALID_ROOM_TYPES.size())))
-                // Pick a random valid occupancy of yes or no
-                .withOccupancyStatus(VALID_ROOM_OCCUPANCIES.get(random.nextInt(VALID_ROOM_OCCUPANCIES.size())))
                 .build();
     }
 
