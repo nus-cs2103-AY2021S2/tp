@@ -168,9 +168,9 @@ public class ParserUtil {
         if (!Price.isValidPrice(price)) {
             throw new ParseException(Price.MESSAGE_CONSTRAINTS);
         }
+
         return new Price(Double.parseDouble(trimmedPrice));
     }
-
 
     /**
      * Parses {@code Collection<String> indices} into a {@code Set<Index>}.
