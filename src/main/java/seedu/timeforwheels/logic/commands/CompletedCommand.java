@@ -9,17 +9,14 @@ import seedu.timeforwheels.model.Model;
 import seedu.timeforwheels.model.customer.NameContainsKeywordsPredicate;
 
 /**
- * Finds and lists all customers in delivery list whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Finds and lists all completed deliveries in delivery list
  */
 public class CompletedCommand extends Command {
 
     public static final String COMMAND_WORD = "completed";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all customers whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filter all completed deliveries"
+            + "Example: " + COMMAND_WORD;
 
     @Override
     public CommandResult execute (Model model) {
@@ -29,6 +26,6 @@ public class CompletedCommand extends Command {
         NameContainsKeywordsPredicate complete = new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords));
         model.updateFilteredCustomerList(complete);
         return new CommandResult(
-                String.format(Messages.MESSAGE_CUSTOMERS_LISTED_OVERVIEW, model.getFilteredCustomerList().size()));
+                String.format(Messages.MESSAGE_CUSTOMERS_COMPLETED, model.getFilteredCustomerList().size()));
     }
 }
