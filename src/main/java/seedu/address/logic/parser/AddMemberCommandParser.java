@@ -16,7 +16,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Role;
 
 /**
- * Parses input arguments and creates a new AddCMemberommand object
+ * Parses input arguments and creates a new AddMemberCommand object
  */
 public class AddMemberCommandParser implements Parser<AddMemberCommand> {
 

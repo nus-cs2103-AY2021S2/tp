@@ -11,7 +11,7 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the hey-matez level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class HeyMatez implements ReadOnlyHeyMatez {

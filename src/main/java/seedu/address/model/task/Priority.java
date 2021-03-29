@@ -2,9 +2,8 @@ package seedu.address.model.task;
 
 /**
  * Enum for the priority values
- * Priority can take on the values, low, medium, high and unassigned and is used to signify the priority of a task
- * When the user specifies the value of priority, user can only choose from low, medium or high
- * unassigned is the value that is set if there is no user input for priority
+ * Priority can take on the values, LOW, MEDIUM, HIGH, UNASSIGNED and is used to signify the priority of a task
+ * UNASSIGNED is the value that is set if there is no user input for priority
  * */
 public enum Priority {
     HIGH("high"),
@@ -60,6 +59,11 @@ public enum Priority {
         return false;
     }
 
+    /**
+     * Returns a string value of the priority casted to lower cast
+     *
+     * @return a string value representing the priority
+     */
     public String getPriority() {
         return this.priority.toLowerCase();
     }

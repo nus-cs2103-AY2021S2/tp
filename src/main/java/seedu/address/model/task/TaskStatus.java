@@ -45,6 +45,11 @@ public enum TaskStatus {
         return false;
     }
 
+    /**
+     * Returns a string value of the TaskStatus casted to lower cast
+     *
+     * @return a string value representing the TaskStatus
+     */
     public String getStatus() {
         return this.status.toLowerCase();
     }
