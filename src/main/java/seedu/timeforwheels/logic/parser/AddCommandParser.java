@@ -52,7 +52,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Remark remark = new Remark(""); // add command does not allow adding remarks straight away
-        Done done = new Done(""); // add command does not allow adding done straight away
+        Done done = new Done("[X]"); // add command does not allow adding done straight away
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
         Customer customer = new Customer(name, phone, email, address, remark, date, tagList, done);
         return new AddCommand(customer);
