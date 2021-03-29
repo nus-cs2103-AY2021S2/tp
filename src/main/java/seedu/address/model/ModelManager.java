@@ -181,7 +181,6 @@ public class ModelManager implements Model {
         return filteredPersons.size() == 0;
     }
 
-
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object

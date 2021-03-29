@@ -35,6 +35,8 @@ public class SessionCard extends UiPart<Region> {
     @FXML
     private Label subject;
     @FXML
+    private Label tutor;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -48,6 +50,7 @@ public class SessionCard extends UiPart<Region> {
         day.setText(session.getDay().toString());
         timeslot.setText(session.getTimeslot().toString());
         subject.setText(session.getSubject().toString());
+        tutor.setText(session.getTutor().toString());
         session.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

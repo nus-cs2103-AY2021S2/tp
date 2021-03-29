@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersonIds.FIRST_PERSON_ID;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalSessionIds.SESSION_ID_FIRST_CLASS;
+import static seedu.address.testutil.TypicalSessions.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,9 +10,13 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.PersonIdPredicate;
+import seedu.address.model.session.SessionIdPredicate;
 
-public class ViewPersonCommandTest {
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for ViewSessionCommand.
+ */
+public class ViewSessionCommandTest {
+
     private Model model;
     private Model expectedModel;
 
@@ -23,9 +27,10 @@ public class ViewPersonCommandTest {
     }
 
     @Test
-    public void execute_viewStudent() {
-        expectedModel.updateFilteredPersonList(new PersonIdPredicate(FIRST_PERSON_ID));
-        assertCommandSuccess(new ViewPersonCommand(new PersonIdPredicate(FIRST_PERSON_ID)),
-                model, ViewPersonCommand.MESSAGE_SUCCESS, expectedModel);
+    public void execute_listIsNotFiltered_showsSameList() {
+        assertCommandSuccess(new ViewSessionCommand(new SessionIdPredicate(SESSION_ID_FIRST_CLASS)),
+                model, ViewSessionCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
+
+

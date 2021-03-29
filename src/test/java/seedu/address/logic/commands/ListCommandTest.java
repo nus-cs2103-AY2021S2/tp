@@ -1,6 +1,10 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_SESSIONS;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -26,6 +30,16 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand("persons"), model, ListCommand.MESSAGE_SUCCESS_PERSONS, expectedModel);
+        assertCommandSuccess(new ListCommand(PREDICATE_SHOW_ALL_PERSONS,
+                PREDICATE_SHOW_ALL_SESSIONS, "persons"), model,
+                ListCommand.MESSAGE_SUCCESS_PERSONS, expectedModel);
+    }
+
+    @Test
+    public void execute_listIsFiltered_showsEverything() {
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        assertCommandSuccess(new ListCommand(PREDICATE_SHOW_ALL_PERSONS,
+                PREDICATE_SHOW_ALL_SESSIONS, "persons"), model,
+                ListCommand.MESSAGE_SUCCESS_PERSONS, expectedModel);
     }
 }
