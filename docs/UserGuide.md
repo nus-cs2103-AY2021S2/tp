@@ -201,7 +201,7 @@ Clears all student and session data.
 
 <div markdown="span" class="alert alert-primary">:bulb: Tip:
 TutorBuddy provides sample data to allow you to try out the application easily. <br>
-Run the `clear` command to start working with TutorBuddy in a clean slate.
+Run the <code>clear</code> command to start working with TutorBuddy in a clean slate.
 </div>
 
 Format: `clear`
@@ -222,7 +222,7 @@ Adds a student to TutorBuddy.
 Format: `add_student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS l/STUDY_LEVEL g/GUARDIAN_PHONE_NUMBER r/RELATIONSHIP_WITH_GUARDIAN` <br>
 
 <div markdown="block" class="alert alert-info">
-:information_source: `STUDENT_PHONE_NUMBER`, `GUARDIAN_PHONE_NUMBER` should be in Singapore's phone formatting (i.e. starting with either 6, 8 or 9 and with 8 digits)
+:information_source: <code>STUDENT_PHONE_NUMBER</code>, <code>GUARDIAN_PHONE_NUMBER</code> should be in Singapore's phone formatting (i.e. starting with either 6, 8 or 9 and with 8 digits)
 </div>
 
 Example:
@@ -275,10 +275,10 @@ Deletes the specified student from TutorBuddy.
 Format: `delete_student STUDENT_INDEX` <br>
 
 <div markdown="span" class="alert alert-primary">:bulb: Tip:
-Use `find_student` command to filter the list of students you want.<br>
-The STUDENT_INDEX will be based on the current list.<br>
-(E.g. If John Doe is the 500th student, instead of `delete_student 500`, you can use `find_student John Doe` and
-`delete_student 1` if the John Doe you would like to delete is the 1st in the list)
+Use <code>find_student</code> command to filter the list of students you want.<br>
+The <code>STUDENT_INDEX</code> will be based on the current list.<br>
+(E.g. If John Doe is the 500th student, instead of <code>delete_student 500</code>, you can use <code>find_student John Doe</code> and
+<code>delete_student 1</code> if the John Doe you would like to delete is the 1st in the list)
 </div>
 
 Examples:
