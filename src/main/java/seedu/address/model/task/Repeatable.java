@@ -25,32 +25,32 @@ public abstract class Repeatable {
     /**
      * Constructor for Repeatable.
      * @param description Description of the Repeatable.
-     * @param isWeekly isWeekly Status of the Repeatable.
      * @param at Date of the Repeatable.
+     * @param time Time of the Repeatable.
      */
-    public Repeatable(String description, Boolean isWeekly, LocalDate at) {
-        requireAllNonNull(description, isWeekly, at);
+    public Repeatable(String description, LocalDate at, LocalTime time) {
+        requireAllNonNull(description, at, time);
         checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS_DESCRIPTION);
         this.description = description;
-        this.isWeekly = isWeekly;
         this.at = at;
-        this.time = null;
+        this.time = time;
+        this.isWeekly = false;
     }
 
     /**
      * Constructor for Repeatable.
      * @param description Description of the Repeatable.
-     * @param isWeekly isWeekly Status of the Repeatable
      * @param at Date of the Repeatable.
      * @param time Time of the Repeatable.
+     * @param isWeekly isWeekly Status of the Repeatable
      */
-    public Repeatable(String description, Boolean isWeekly, LocalDate at, LocalTime time) {
-        requireAllNonNull(description, isWeekly, at, time);
+    public Repeatable(String description, LocalDate at, LocalTime time, Boolean isWeekly) {
+        requireAllNonNull(description, at, time, isWeekly);
         checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS_DESCRIPTION);
         this.description = description;
-        this.isWeekly = isWeekly;
         this.at = at;
         this.time = time;
+        this.isWeekly = isWeekly;
     }
 
     /**
@@ -63,12 +63,6 @@ public abstract class Repeatable {
     }
 
     /**
-     * Returns the isWeekly status of the Repeatable.
-     * @return A Boolean representing the Repeatable's isWeekly status.
-     */
-    public abstract Boolean getIsWeekly();
-
-    /**
      * Returns the date of the Repeatable.
      * @return A LocalDate representing the Repeatable's date.
      */
@@ -79,11 +73,18 @@ public abstract class Repeatable {
 
     /**
      * Returns the time of the Repeatable.
-     * @return A LocalTime representing the Repeatable's time. LocalTime may be null.
+     * @return A LocalTime representing the Repeatable's time.
      */
     public LocalTime getTime() {
+        assert this.time != null : "time should not be null!";
         return this.time;
     }
+
+    /**
+     * Returns the isWeekly status of the Repeatable.
+     * @return A Boolean representing the Repeatable's isWeekly status.
+     */
+    public abstract Boolean getIsWeekly();
 
     /**
      * Returns true if a given string is a valid description.

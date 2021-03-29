@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_INTERVAL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_WEEKLY;
 
 import java.time.LocalDate;
 import java.util.stream.Stream;
@@ -29,10 +30,10 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
     public AddEventCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_EVENT_INTERVAL,
+                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_EVENT_WEEKLY,
                         PREFIX_EVENT_DATE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_EVENT_INTERVAL, PREFIX_EVENT_DATE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_EVENT_WEEKLY, PREFIX_EVENT_DATE)
                 || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventCommand.MESSAGE_USAGE));
         }
