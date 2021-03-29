@@ -37,7 +37,7 @@ public class TimetablePlacementPolicy {
     private final static int MINUTES_IN_AN_HOUR = 60;
     private final static int MINUTES_IN_DAY = 2400;
 
-    public final static double TIMETABLE_DISPLAY_SIZE = 800;
+    public final static double TIMETABLE_DISPLAY_SIZE = 1600;
 
 
     private LocalDateTime startDateTime;
@@ -90,13 +90,13 @@ public class TimetablePlacementPolicy {
             return TimetableView.Column.TWO;
         case 2:
             return TimetableView.Column.THREE;
-        case 4:
+        case 3:
             return TimetableView.Column.FOUR;
-        case 5:
+        case 4:
             return TimetableView.Column.FIVE;
-        case 6:
+        case 5:
             return TimetableView.Column.SIX;
-        case 7:
+        case 6:
             return TimetableView.Column.SEVEN;
         default:
             assert false; // Cannot end up here.

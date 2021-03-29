@@ -21,4 +21,12 @@ public class Test {
             new Description("nah"),
             new HashSet<>()
     );
+
+    public static final Meeting MEETING3 = new Meeting(new MeetingName("CS3244"),
+            new DateTime("2021-04-02 20:00"),
+            new DateTime("2021-04-02 23:00"),
+            new Priority("2"),
+            new Description("nah"),
+            new HashSet<>()
+    );
 }

@@ -27,8 +27,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.scheduler.Timetable;
 
-import static seedu.address.ui.Test.MEETING1;
-import static seedu.address.ui.Test.MEETING2;
+import static seedu.address.ui.Test.*;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -156,6 +155,7 @@ public class MainWindow extends UiPart<Stage> {
         ObservableList<Meeting> meetingObservableList = FXCollections.observableList(listm);
         listm.add(MEETING1);
         listm.add(MEETING2);
+        listm.add(MEETING3);
 
         TimetableView timetableView = new TimetableView(meetingObservableList, LocalDate.now());
         timetableHolder.getChildren().add(timetableView.getRoot());
