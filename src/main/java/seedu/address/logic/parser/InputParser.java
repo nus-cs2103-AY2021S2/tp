@@ -102,7 +102,7 @@ public class InputParser {
 
         case DetailsCommand.COMMAND_WORD:
             return new DetailsCommandParser().parse(arguments);
-
+        //ChangeDebtParser takes in a boolean to indicate if the command is adding or subtracting.
         case ChangeDebtCommand.COMMAND_WORD_ADD:
             return new ChangeDebtParser(true).parse(arguments);
 

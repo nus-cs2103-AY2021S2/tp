@@ -3,6 +3,11 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Debt stores a float that should be up to only 2 decimal places.
+ * The user can only input in positive floats but the program is allowed to store negative floats.
+ * A negative debt would indicate that the Person owes money to the user.
+ */
 public class Debt {
 
     public static final String MESSAGE_CONSTRAINTS = "Debt given should be a positive float and "
