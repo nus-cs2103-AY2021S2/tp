@@ -4,40 +4,41 @@
 Actor User as user USER_COLOR
 Participant ":UI" as ui UI_COLOR
 Participant ":Logic" as logic LOGIC_COLOR
+Participant ":Command" as command LOGIC_COLOR_T2
 Participant ":Model" as model MODEL_COLOR
-Participant ":History" as history STORAGE_COLOR
+Participant ":ModulePlanner" as modulePlanner MODEL_COLOR_T2
 
-create ui
-user -> ui : "addp d/<description>"
+user -> ui : "addp d/<desc>"
 activate ui
 
-ui -> logic : execute("addp d/<description>")
+ui -> logic : execute("addp d/<desc>")
 activate logic
 
-logic -> model : addPlan()
+logic -> command : execute(model)
+activate command
+
+command -> model : addPlan(plan)
 activate model
 
-create history
-model -> history
-activate history
+model -> modulePlanner : addPlan(plan)
+activate modulePlanner
 
-history --> model
-deactivate history
+model <-- modulePlanner
+deactivate modulePlanner
 
-model -> history : toString()
-activate history
-
-history --> model
-deactivate history
-
-model --> logic
+model -> model : updateFilteredPlanList(predicate)
+activate model
 deactivate model
 
-destroy history
+command <-- model
+deactivate model
 
-logic --> ui
+logic <-- command
+deactivate command
+
+ui <-- logic
 deactivate logic
 
-ui--> user
+user <-- ui
 deactivate ui
 @enduml

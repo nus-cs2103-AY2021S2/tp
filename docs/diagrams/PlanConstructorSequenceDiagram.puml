@@ -1,0 +1,26 @@
+@startuml
+!include style.puml
+
+
+participant "plan:Plan" as Plan UI_COLOR
+participant "tags:Set<Tag>" as Tags LOGIC_COLOR
+
+
+[-> Plan : new Plan(description, tags, semesters)
+activate Plan
+
+Plan -> Tags : addAll(tags)
+activate Tags
+
+Plan <-- Tags
+deactivate Tags
+
+Plan -> Plan : countModules()
+activate Plan
+
+Plan --> Plan
+deactivate Plan
+
+[<-- Plan
+deactivate Plan
+@enduml
