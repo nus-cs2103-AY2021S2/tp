@@ -14,7 +14,7 @@ ClientBook can help _you_ accomplish your client management tasks faster than tr
 
 * [**1**. Why ClientBook?](#why-clientbook)
 * [**2.** Quick Start](#quick-start)
-* [**3.** Overview](#Overview)
+* [**3.** Overview](#overview)
   * [**3.1** Feature Summary](#feature-summary)
   * [**3.2** What information can we store for each client contact?](#what-information-can-we-store-for-each-client-contact)
 * [**4.** Feature Description](#feature-description)
@@ -26,7 +26,7 @@ ClientBook can help _you_ accomplish your client management tasks faster than tr
   * [**4.6** `policy`: Display policies associated with a client](#policy-display-policies-associated-with-a-client)
   * [**4.7** `delete`Delete client contact](#delete-delete-client-contact)
   * [**4.8** `sort`: Sort list of clients](#sort-sort-list-of-clients)
-  * [**4.9** ` lock`: Lock ClientBook with a user-selected password](#lock-lock-clientbook-with-a-user-selected-password)
+  * [**4.9** `lock`: Lock ClientBook with a user-selected password](#lock-lock-clientbook-with-a-user-selected-password)
   * [**4.10** `unlock`: Unlock ClientBook](#unlock-unlock-clientbook)
   * [**4.11** `exit`: Exiting the program](#exit-exiting-the-program)
   * [**4.12** Saving data](#saving-data)
@@ -57,7 +57,7 @@ If you are an experienced user, we have provided a convenient [Summary of Comman
 ## Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-   * To check if you have this installed or for instructions on how to install, refer to our FAQ [here](#FAQ).
+   * To check if you have this installed or for instructions on how to install, refer to our FAQ [here](#frequently-asked-questions).
 
 1. Download the latest `clientbook.jar` [here](https://github.com/AY2021S2-CS2103T-W15-2/tp/releases/tag/v1.2).
 1. Copy the file to the folder (we will be referring to this folder as the _home folder_) where you want to store the ClientBook application and your client information.
@@ -243,11 +243,11 @@ A person can have any number of tags and insurance policies (including 0).
 
 **Purpose**: Edits an existing client contact in the ClientBook.
 
-**Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER] [t/TAG]…​`
+**Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER]…​ [t/TAG]…​`
 
 * Edits the client at the specified `INDEX`.
     * `INDEX` refers to the index number shown in the displayed client list.
-    * `INDEX` must be more than 1, and less than or equal to the index of the last item in the displayed list.
+    * `INDEX` must be at least 1, and less than or equal to the index of the last item in the displayed list.
 * At least one of the optional fields must be provided.
 
 <div markdown="block" class="alert alert-info">
@@ -269,22 +269,17 @@ A person can have any number of tags and insurance policies (including 0).
 
 ### `list`: List all clients 
 
-**Purpose**: Shows a list of all clients in ClientBook. Optional flags can be added to show a list with only the specified attributes.
+**Purpose**: Shows a list of all clients in ClientBook. Optional identifiers can be specified to show a list with only the desired attributes.
 
 **Format**: `list [-n] [-p] [-e] [-a] [-i] [-t]`
 
 **Examples**: 
-* Shows a list of all clients and all their information.
+*  `list` without any specified identifiers shows a list of all clients and all their information.
   * `list`
     
     ![list](images/list.png)
     
-*  Shows a list of all clients and their insurance policy number.
-   * `list -i`
-
-     ![list policy](images/list-policy.png)
-
-*  Shows a list of all clients and their phone number and insurance policy number.
+*  One or more identifiers can be used to make `list` only show the specified information. The following command shows a list of all clients and their phone number and insurance policy number.
    * `list -p -i`
     
      ![list phone](images/list-phone-policy-annotate.png)
@@ -335,22 +330,18 @@ Optional identifiers can be added to show the list of matched clients with only 
 
 **Purpose**: Launches a popup window to show all the policies associated with the selected contact, if the selected contact has any policies.
 
-![without policy URL](images/without_policy_URL.png)
-
 **Format**: `policy INDEX`
 
 * Selects the client at the specified `INDEX`.
-* The index refers to the index number shown in the displayed client list.
-* The index must be more than 1, and less than or equal to the index of the last item in the displayed list.
+* `INDEX` refers to the index number shown in the displayed client list.
+* `INDEX` must be more than 1, and less than or equal to the index of the last item in the displayed list.
 
 **Examples**:
-* `list` followed by `policy 2` displays the policies associated with the 2nd person in the address book.
+* `policy 2` displays the policies associated with the 2nd person in the currently displayed list.
   
   ![with policy URL](images/with-policy-URL-annotate.png)
   
 * `find n/Bernice` followed by `policy 1` displays the policies associated with the 1st person in the results of the `find` command.
-  
-  ![with policy URL](images/find-then-policy.png)
 
 [Return to Table of Contents](#table-of-contents)
 <br><br>
@@ -363,17 +354,13 @@ Optional identifiers can be added to show the list of matched clients with only 
 **Format**: `delete INDEX`
 
 * Deletes the client at the specified `INDEX`.
-* The index refers to the index number shown in the displayed client list.
-* The index must be more than 1, and less than or equal to the index of the last item in the displayed list.
+* `INDEX` refers to the index number shown in the displayed client list.
+* `INDEX` must be more than 1, and less than or equal to the index of the last item in the displayed list.
 
 **Examples**:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-
-  ![delete 2](images/delete-2.png)
+* `delete 2` deletes the 2nd person in the currently displayed list.
 
 * `find n/Charlotte` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
-  ![delete charlotte](images/delete-charlotte.png)
 
 [Return to Table of Contents](#table-of-contents)
 <br><br>
@@ -383,17 +370,15 @@ Optional identifiers can be added to show the list of matched clients with only 
 
 **Purpose**: Sorts the current list of clients in ClientBook.
 
-**Format**: `sort -ATTRIBUTE -DIRECTION`
+**Format**: `sort -IDENTIFIER -DIRECTION`
 
-* Sorts the list of clients according to the specified `ATTRIBUTE` and `DIRECTION`.
-* The specified `ATTRIBUTE` can be `-n` to sort by name alphabetically or `-i` to sort by number of insurance policies, but not both.
+* Sorts the list of clients according to the specified `IDENTIFIER` and `DIRECTION`.
+* The specified `IDENTIFIER` can be `-n` to sort by name alphabetically or `-i` to sort by number of insurance policies, but not both.
 * The specified `DIRECTION` can be `-asc` for ascending order or `-des` for descending order, but not both.
 
 **Examples**:
 * Sort the current list of clients by name in **descending** number of insurance policies.
     * `sort -i -des`
-
-      ![sort](images/sort-policy-des.png)
 
 * Sort the current list of clients by name in **descending** alphabetical order.
     * `sort -n -des`
@@ -526,11 +511,11 @@ If you get an error message (`Java command not found`), it means that Java is no
 [**Help**](#viewing-help--help) | `help` | `help` |
 [**Add**](#add-client-contact-add) | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [i/POLICY_ID] [t/TAG]…​` | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 i/Policy_1023 t/premium t/lifeinsurance` |
 [**Edit**](#edit-client-contact-edit) | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER]…​ [t/TAG]…​` | `edit 2 n/James Lee e/jameslee@example.com` |
-[**List**](#list-all-clients--list) | `list [-ATTRIBUTE]` | `list -i` |
-[**Find**](#search-for-client-contact-based-on-keywords-find) | `find FLAG/KEYWORD [& MORE_KEYWORDS] [-ATTRIBUTES]…​` | `find a/Bedok & Clementi -p` |
+[**List**](#list-all-clients--list) | `list [-IDENTIFIER]` | `list -i` |
+[**Find**](#search-for-client-contact-based-on-keywords-find) | `find IDENTIFIER/KEYWORD [& KEYWORDS]…​ [-IDENTIFIER]…​` | `find a/Bedok & Clementi -p` |
 [**Policy**](#display-policies-associated-with-selected-client-policy) | `policy INDEX` | `policy 4` |
 [**Delete**](#delete-client-delete) | `delete INDEX` | `delete 3` |
-[**Sort**](#sort-list-of-clients-sort) | `sort -ATTRIBUTE -DIRECTION` | `sort -n -d` |
+[**Sort**](#sort-list-of-clients-sort) | `sort -IDENTIFIER -DIRECTION` | `sort -n -d` |
 [**Lock**](#lock-clientbook-with-a-user-selected-password-lock) | `lock [CURRENT_PASSWORD] NEW_PASSWORD` | `lock 123 456` |
 [**Unlock**](#unlock-clientbook--unlock) | `unlock [CURRENT_PASSWORD]` | `unlock 456` |
 [**Exit**](#exiting-the-program--exit) | `exit` | `exit` |
