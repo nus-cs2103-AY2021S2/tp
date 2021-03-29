@@ -123,11 +123,19 @@ public class AppointmentDateTime {
         return value.format(formatter);
     }
 
+    public boolean isAfter(AppointmentDateTime other) {
+        return this.value.isAfter(other.value);
+    }
+
+    public boolean isBefore(AppointmentDateTime other) {
+        return this.value.isBefore(other.value);
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.appointment.AppointmentDateTime // instanceof handles nulls
-                && value.isEqual(((seedu.address.model.appointment.AppointmentDateTime) other).value)); // state check
+                || (other instanceof AppointmentDateTime // instanceof handles nulls
+                && value.isEqual(((AppointmentDateTime) other).value)); // state check
     }
 
     @Override

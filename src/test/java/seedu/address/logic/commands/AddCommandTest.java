@@ -27,6 +27,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.event.Event;
+import seedu.address.model.filter.AppointmentFilter;
 import seedu.address.model.filter.PersonFilter;
 import seedu.address.model.grade.Grade;
 import seedu.address.model.person.Name;
@@ -325,6 +326,21 @@ public class AddCommandTest {
 
         @Override
         public void removePersonFilter(PersonFilter personFilter) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasAppointmentFilter(AppointmentFilter appointmentFilter) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addAppointmentFilter(AppointmentFilter appointmentFilter) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeAppointmentFilter(AppointmentFilter appointmentFilter) {
             throw new AssertionError("This method should not be called.");
         }
 
