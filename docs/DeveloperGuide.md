@@ -142,6 +142,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ## **Implementation**
 This section describes some noteworthy details on how certain features are implemented.  
 
+### Add Plan feature
+
+#### Implementation
+
+![PlanObjectDiagram](images/AddPlanObjectDiagram.png)
+
+The `addp` command makes use of the `Plan` class to add a plan to the user's list of plans.
+
 ### History feature
 
 #### Implementation
