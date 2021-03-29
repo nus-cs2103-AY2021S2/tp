@@ -7,27 +7,26 @@ title: User Guide
 --------------------------------------------------------------------------------------------------------------------
 ## 1. Introduction
 ### 1.1. About StoreMando
-Greetings, and welcome to StoreMando!
+Greetings, and welcome to StoreMando.
 
-Looking for an all-in-one solution for your inventory management needs? Look no further!
+Are you looking for an all-in-one solution for your inventory management needs? You are at the right place.
 
-StoreMando is an integrated platform fully customised for residents in households, residential colleges and halls, with 
-the aim of helping you manage your items effectively and efficiently. StoreMando allows you to keep track of your items' 
-whereabouts, quantities and expiry dates with a few simple commands. Furthermore, StoreMando also comes with an inbuilt 
-reminder feature to help you keep track of items that are expiring. It looks like you will never have to worry about consuming 
-expired items or waste time searching for misplaced items anymore!
+StoreMando is an integrated platform fully customised for anyone who needs to manage their items effectively and 
+efficiently. StoreMando allows you to keep track of your items' whereabouts, quantities and expiry dates with a few 
+simple commands. Furthermore, StoreMando also comes with an inbuilt reminder feature to help you keep track of items 
+that are expiring. It looks like you will not have to worry about consuming expired items or waste time searching for 
+misplaced items anymore.
 
-All your items' information is encapsulated clearly on our simple and clean Graphical User Interface (GUI). Our application 
-is optimised for use via the Command Line Interface (CLI) and if you have quick fingers, StoreMando can help you manage 
-your items in the blink of an eye.
+All of your items' information is encapsulated clearly on our simple and clean Graphical User Interface (GUI). Our 
+application is optimised for use via the Command Line Interface (CLI) and if you have quick fingers, our short and 
+simple commands can help you manage your items in the blink of an eye.
 
 Explore this User Guide to find out more!
 
 ### 1.2. Navigating the User Guide
 
 This User Guide aims to provide you with all the information you need to make the most of StoreMando.
-Having understood the pain of using a Command Line Interface (CLI) program, we have tried our best to make
-this a very readable User Guide so that you can use our application without difficulties.
+We have tried our best to make this a very readable User Guide so that you can use our application without difficulties.
 
 If you need help setting up StoreMando, you can refer to the [“Quick Start"](#2-quick-start)  section.
 
@@ -37,11 +36,11 @@ If you need an overview of StoreMando’s commands, check out the [“Command Su
 
 Please note the following symbols used in the User Guide which may serve as points of interests:
 
-`command` | The grey highlight indicates commands that can be executed by StoreMando.
+`command` : The grey highlight indicates commands that can be executed by StoreMando.
 
-:information_source: | This symbol indicates information that you may wish to take note.
+:information_source : This symbol indicates information that you may wish to take note.
 
-:bulb: | This symbol indicates tips provided by us.
+:bulb : This symbol indicates tips provided by us.
 
 --------------------------------------------------------------------------------------------------------------------
 ## 2. Quick start
@@ -56,10 +55,12 @@ Please note the following symbols used in the User Guide which may serve as poin
 1. Copy the file to the folder you want to use as the _home folder_ for your StoreMando.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
-   contains some sample data.<br>
+   contains some sample data for you to see how the app looks.<br>
    ![Ui](images/Ui.png)
+   
+1. Before adding your own items, you may want to [clear](#39-clearing-storemando--clear) the sample data to start afresh.
 
-1. Type the command in the command box and press Enter to execute it.<br>
+1. Type the command in the [command box](#command-box-) and press Enter on your keyboard to execute it.<br>
 
 1. Refer to the [“Features"](#3-features) below for details of each command.
 
@@ -84,23 +85,26 @@ The result display box is where StoreMando’s server replies to every command t
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/ITEM_NAME`, `ITEM_NAME` is a parameter which can be used as `add n/Chocolate Milk`.
 
-* Items in square brackets are optional.<br>
+* Every item is made up of item name, location and quantity. Expiry date and tags are optional.<br>
+
+* Words in `UPPER_CASE` are the inputs to be supplied by the user.<br>
+  e.g. in `add n/ITEM_NAME`, `ITEM_NAME` is an input which can be used as `add n/Chocolate Milk`.
+  
+* Inputs in square brackets are optional.<br>
   e.g. `n/ITEM_NAME [e/EXPIRY_DATE]` can be used as `n/Olive Oil e/2020-10-10` or as `n/Olive Oil`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
+* Inputs with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/favourite`, `t/favourite t/drink` etc.
 
-* Parameters can be specified in any order.<br>
-  e.g. if the command specifies `n/ITEM_NAME l/LOCATION`, `l/LOCATION n/ITEM_NAME` is also acceptable.
+* Inputs can be specified in any order.<br>
+  e.g. `n/ITEM_NAME l/LOCATION` and `l/LOCATION n/ITEM_NAME` are both acceptable.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of
-  the parameter will be taken.<br>
+* With the exception of tags, if you specified an input field multiple times, only the last occurrence of
+  the input will be taken.<br>
   e.g. if you specify `e/2020-10-10 e/2020-08-08`, only `e/2020-08-08` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be
+* Additional inputs specified for commands that do not take in any input (such as `help` and `exit`) will be
   ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
@@ -118,7 +122,7 @@ Format: `help`
 
 ### 3.2. Adding an item : `add`
 
-Have an item to add to the inventory? Then this command is the right one for you!
+Do you have an item to add to the inventory? This command is the right one for you.
 
 Format: `add n/ITEM_NAME l/LOCATION q/QUANTITY [e/EXPIRY_DATE] [t/TAG]…​`
 
@@ -138,8 +142,7 @@ Examples:
 
 ### 3.3. Editing an item : `edit`
 
-If you want to edit any details of an existing item in the inventory, you can do so by using this command. You don't 
-have to worry about adding any wrong information as you can edit them any time!
+If you want to edit any details of an existing item in the inventory, you can do so by using this command. 
 
 Format: `edit INDEX [n/ITEM_NAME] [l/LOCATION] [q/QUANTITY] [e/EXPIRY_DATE] [t/TAG]…​`
 
@@ -164,8 +167,8 @@ Examples:
 
 ### 3.4. Listing items : `list`
 
-Want to view all your items? What about items at a specific location or with a specific tag? This command helps you to 
-do just that!
+Do you want to view all your items? What about items at a specific location or with a specific tag? This command helps 
+you to do just that.
 
 You can use this command in 3 different ways.
 
@@ -225,7 +228,9 @@ You can use this command in 2 different ways.
 * The order of the keywords does not matter. e.g. `Bread Chocolate` will match `Chocolate Bread`
 * Only the item name is searched.
 * Items matching at least one keyword will be returned. For example, `find Chocolate Milk` will
-  return `Cadbury Chocolate` and `Almond Milk`
+  return `Cadbury Chocolate` and `Almond Milk`.
+* Items displayed are not in order of relevance.
+
 
 </div>
 
@@ -258,7 +263,7 @@ You can use this command in 2 different ways.
   
 ### 3.6. Deleting an item : `delete`
 
-Looking to get rid of an existing item from the inventory? Use this command.
+Are you looking to get rid of an existing item from the inventory? Use this command.
 
 Format: `delete INDEX`
 
@@ -286,11 +291,10 @@ Format: `reminder NUMBER TIME_UNIT`
 
 **:information_source: Notes about the reminder command:**<br>
 
-* `NUMBER` **can be any integer** …​, -7, -3, 0, 3, 7, …​
-* `TIME_UNIT` must be either `days` or `weeks`.
-  * `day` or `week` accepted only when `NUMBER` is in the range of **[-1, 0, 1]**
+* `NUMBER` refers to the number of days/weeks and **can be any integer** …​, -7, -3, 0, 3, 7, …​
+* `TIME_UNIT` is either `days` or `weeks`.
+* `day` or `week` will only be accepted when `NUMBER` is either **-1, 0 or 1**
 *  Items without expiry date will not be shown.
-
 
 </div>
 
@@ -302,8 +306,8 @@ Examples:
   * `reminder 5 days` returns the chocolate only.
   * `reminder 2 weeks` returns both the chocolate and the banana.
   <br>
-* `reminder -7 days` returns a list containing all items that has been expired for 7 days.
-* `reminder -2 weeks` returns a list containing all items that has been expired for 2 weeks.
+* `reminder -7 days` returns a list of items that have been expired for at least 7 days.
+* `reminder -2 weeks` returns a list of items that have been expired for at least 2 weeks.
 * Given today is 30 March 2021, and the inventory has 2 items: apple with expiry date of 27 March 2021 and
   banana with an expiry date of 20 March 2021.
   * `reminder -5 days` returns both the apple and the banana.
@@ -318,10 +322,10 @@ Want to see which items you are running out of or which items you have to consum
 You can use this command in 3 different ways.
 
 * #### 3.8.1. Sorting items by ascending quantity
-  Format 1: `sort quantity asc`
+  Format: `sort quantity asc`
   <div markdown="block" class="alert alert-info">
 
-  **:information_source: Note about the sort by expiry date command:**<br>
+  **:information_source: Note about the sort by ascending quantity command:**<br>
 
   * `quantity` is case-insensitive. Keying in `sort QUANTITY asc` is also a valid command.
     <br>
@@ -329,13 +333,13 @@ You can use this command in 3 different ways.
   </div>
   
   Example:
-  * `sort quantity acs` sorts the items in the displayed list in ascending order of quantity.
+  * `sort quantity asc` sorts the items in the displayed list in ascending order of quantity.
 
 * #### 3.8.2. Sorting items by descending quantity
-  Format 2: `sort quantity desc`
+  Format: `sort quantity desc`
   <div markdown="block" class="alert alert-info">
 
-  **:information_source: Note about the sort by expiry date command:**<br>
+  **:information_source: Note about the sort by descending quantity command:**<br>
 
   * `quantity` is case-insensitive. Keying in `sort QUANTITY desc` is also a valid command.
     <br>
@@ -346,7 +350,7 @@ You can use this command in 3 different ways.
   * `sort quantity desc` sorts the items in the displayed list in descending order of quantity.
   
 * #### 3.8.3. Sorting items by expiry date
-  Format 3: `sort expirydate`
+  Format: `sort expirydate`
   <div markdown="block" class="alert alert-info">
 
   **:information_source: Note about the sort by expiry date command:**<br>
@@ -362,18 +366,22 @@ You can use this command in 3 different ways.
 
 ### 3.9. Clearing StoreMando : `clear`
 
-Want to clear your entire inventory? Key in this command to clear all items stored in your inventory.
+Do you want to clear your entire inventory? Key in this command to clear all items stored in your inventory.
 
 You can use this command in 2 different ways.
 
 * #### 3.9.1. Clear all items in entire inventory
   Format 1: `clear`
 
+  Example:
+
+  * `clear` clears all the items in the inventory.
+  
 * #### 3.9.2. Clear all items in a specific location
   Format 2: `clear l/LOCATION`
   <div markdown="block" class="alert alert-info">
 
-  **:information_source: Notes about the command:**<br>
+  **:information_source: Notes about the clear command:**<br>
   
   * The search is case-insensitive. e.g 'room' will match 'Room'.
 
@@ -417,35 +425,38 @@ the data of your previous StoreMando home folder.
 
 **Q**: Can I have two or more inventories in one computer?<br>
 **A**: Download and install StoreMando in two different folders on your computer so that you will have two different 
-data files in separate locations. You can have as many inventories as you want using this method!
+data files in separate locations. You can have as many inventories as you want using this method.
 
 **Q**: What if I want to have more features implemented in the product?<br>
-**A**: Feel free to contact us at e0406389@u.nus.edu!
+**A**: Feel free to contact us at e0406389@u.nus.edu.
 
 **Q**: Sometimes I forget the various commands to use, where can I find the list of commands?<br>
 **A**: You could view enter help tab by clicking F1, or by keying in `help` in the command box, which will then lead 
-you to this user guide to provide you with the help you need!
+you to this user guide to provide you with the help you need.
 
 --------------------------------------------------------------------------------------------------------------------
 ## 5. Command summary
 
 Action | Format, Examples
 --------|------------------
-**[“Help"](#31-viewing-help-)** |  `help`
-**[“Add"](#32-adding-an-item-)** | `add n/ITEM_NAME l/LOCATION q/QUANTITY [e/EXPIRY_DATE] [t/TAG]…​` <br> e.g. `add n/koko krunch l/fridge q/1 e/2021-05-27 t/favourite`
-**[“Edit"](#33-editing-an-item-)** | `edit INDEX [n/ITEM_NAME] [e/EXPIRY_DATE] [l/LOCATION] [q/QUANTITY] [t/TAG]…​`<br> e.g.`update 1 l/freezer q/2 `
-**[“List"](#34-listing-items-)** | `list` `list [l/LOCATION]` `list [t/TAG]`<br> e.g. `list` `list l/fridge` `list t/favourite`
-**[“Find"](#35-finding-items-by-name-)** | `find [*/]KEYWORD [MORE KEYWORDS]`<br> e.g. `find koko krunch` `find */choco`
-**[“Delete"](#36-deleting-an-item-)** | `delete INDEX`<br> e.g. `delete 2`
-**[“Reminder"](#37-viewing-expiring-items-)** | `reminder NUMBER TIME_UNIT_KEYWORD`<br> e.g. `reminder -7 days` `reminder 2 weeks`
-**[“Sort"](#38-sorting-items-)** | `sort quantity asc` `sort quantity desc` `sort expiryDate`
-**[“Clear"](#39-clearing-storemando-)** | `clear` `clear l/LOCATION` <br> e.g. `clear l/bedroom`
-**[“Exit"](#310-exiting-storemando-)** | `exit`
+**[“Help"](#31-viewing-help--help)** |  `help`
+**[“Add"](#32-adding-an-item--add)** | `add n/ITEM_NAME l/LOCATION q/QUANTITY [e/EXPIRY_DATE] [t/TAG]…​` <br> e.g. `add n/koko krunch l/fridge q/1 e/2021-05-27 t/favourite`
+**[“Edit"](#33-editing-an-item--edit)** | `edit INDEX [n/ITEM_NAME] [e/EXPIRY_DATE] [l/LOCATION] [q/QUANTITY] [t/TAG]…​`<br> e.g.`update 1 l/freezer q/2 `
+**[“List"](#34-listing-items--list)** | `list` `list [l/LOCATION]` `list [t/TAG]`<br> e.g. `list` `list l/fridge` `list t/favourite`
+**[“Find"](#35-finding-items-by-name--find)** | `find [*/]KEYWORD [MORE KEYWORDS]`<br> e.g. `find koko krunch` `find */choco`
+**[“Delete"](#36-deleting-an-item--delete)** | `delete INDEX`<br> e.g. `delete 2`
+**[“Reminder"](#37-viewing-expiring-items--reminder)** | `reminder NUMBER TIME_UNIT_KEYWORD`<br> e.g. `reminder -7 days` `reminder 2 weeks`
+**[“Sort"](#38-sorting-items--sort)** | `sort quantity asc` `sort quantity desc` `sort expiryDate`
+**[“Clear"](#39-clearing-storemando--clear)** | `clear` `clear l/LOCATION` <br> e.g. `clear l/bedroom`
+**[“Exit"](#310-exiting-storemando--exit)** | `exit`
 
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 6. Glossary
-
+* **StoreMando**: Name of the application
+* **CLI**: Command Line Interface
+* **GUI**: Graphical User Interface
+* **Inventory**: List of all items stored in StoreMando
 
 --------------------------------------------------------------------------------------------------------------------
