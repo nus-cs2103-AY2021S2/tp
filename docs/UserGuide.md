@@ -116,7 +116,7 @@ This subsection serves to list out the parameters used in this document. We have
 
 * The email address of a contact.
 * Emails should be of the format local-part@domain.
-* The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (!#$%&'*+/=?`{|}~^.-).
+* The local-part should only contain alphanumeric characters and these special characters, <code>!#$%&'*+/=?`{|}~^.-</code>.
 * This is followed by a '@' and then a domain name.
 * The domain name must:
     * be at least 2 characters long
