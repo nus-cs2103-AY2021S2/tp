@@ -136,7 +136,7 @@ public class SameDateAppointmentList implements Iterable<Appointment>, Comparabl
      */
     public SameDateAppointmentList deepClone() {
         SameDateAppointmentList apptList = new SameDateAppointmentList(date);
-        internalList.stream().forEach(appt -> apptList.add(appt));
+        internalList.stream().forEach(appt -> apptList.add(appt.clone()));
         return apptList;
     }
 
