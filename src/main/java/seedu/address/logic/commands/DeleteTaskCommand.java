@@ -15,10 +15,9 @@ import seedu.address.model.task.Task;
  */
 public class DeleteTaskCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete-task";
+    public static final String COMMAND_WORD = "rmt";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the task identified by the index number used in the displayed task list.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a task from the planner.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 

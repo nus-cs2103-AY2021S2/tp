@@ -30,6 +30,8 @@ public class HelpCommand extends Command {
 
     public static final String HELP_MESSAGE_DELETE_FIELD = DeleteFieldCommand.SHORT_MESSAGE_USAGE;
 
+    public static final String HELP_MESSAGE_STATS = StatsCommand.SHORT_MESSAGE_USAGE;
+
 
     public static final String SHOWING_HELP_MESSAGE = "Here is a list of possible instructions:\n\n"
             + HELP_MESSAGE_ADD + "\n"
@@ -40,6 +42,7 @@ public class HelpCommand extends Command {
             + HELP_MESSAGE_DELETE_FIELD + "\n"
             + HELP_MESSAGE_CLEAR + "\n"
             + HELP_MESSAGE_COUNTDOWN + "\n"
+            + HELP_MESSAGE_STATS + "\n"
             + "For more instructions and a detailed description of the above features, read our user guide.";
 
     @Override

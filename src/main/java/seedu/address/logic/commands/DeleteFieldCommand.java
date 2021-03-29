@@ -34,23 +34,26 @@ import seedu.address.model.task.Title;
  * Deletes a specific field in a task identified using it's displayed index from the planner.
  */
 public class DeleteFieldCommand extends Command {
-    public static final String COMMAND_WORD = "delete-field";
+    public static final String COMMAND_WORD = "rmf";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the specified field in the task identified by the index number "
-            + "used in the displayed task list.\n"
+            + ": Deletes a field from a task.\n "
             + "Parameters: INDEX (must be a positive integer) FIELD\n"
             + "Field can be: "
-            + PREFIX_DESCRIPTION + " or "
+            + PREFIX_DEADLINE + " , "
+            + PREFIX_DURATION + " , "
+            + PREFIX_DESCRIPTION + " , "
             + PREFIX_RECURRINGSCHEDULE + " or "
             + PREFIX_TAG + " \n"
             + "Exactly one field is to be specified.\n"
-            + "Example: " + COMMAND_WORD + " 1" + " tags/";
+            + "Example: " + COMMAND_WORD + " 1" + PREFIX_TAG;
 
-    public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + " "
-            + "INDEX FIELD\n";
+    public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + " INDEX FIELD\n";
 
-    public static final String MESSAGE_DELETE_FIELD_SUCCESS = "Deleted Field in Task: %1$s";
+    public static final String MESSAGE_DELETE_FIELD_SUCCESS = "Deleted field in Task: %1$s";
+
+    public static final String MESSAGE_INVALID_FIELD_STATUS = "Cannot delete status field.";
+    public static final String MESSAGE_INVALID_FIELD_TITLE = "Cannot delete title field.";
 
     private final Index targetIndex;
 
@@ -119,7 +122,7 @@ public class DeleteFieldCommand extends Command {
 
         if (isTitleField) {
             logger.info("User tried to delete title");
-            throw new CommandException("Cannot delete title field.");
+            throw new CommandException(MESSAGE_INVALID_FIELD_TITLE);
         } else if (isDeadlineField) {
             logger.info("User tried to delete deadline");
             throw new CommandException("Cannot delete deadline field.");
@@ -134,7 +137,7 @@ public class DeleteFieldCommand extends Command {
                     updatedDescription, oldStatus, oldTags);
         } else if (isStatusField) {
             logger.info("User tried to delete status");
-            throw new CommandException("Cannot delete status field.");
+            throw new CommandException(MESSAGE_INVALID_FIELD_STATUS);
         } else if (isTagField) {
             Set<Tag> updatedTags = new HashSet<>();
             return new Task(title, oldDeadline, oldDuration, oldRecurringSchedule,
