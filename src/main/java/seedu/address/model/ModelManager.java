@@ -212,7 +212,8 @@ public class ModelManager implements Model {
         return fee;
     }
 
-    private double getRecurringSessionFee(RecurringSession recurringSession, LocalDateTime startPeriod, LocalDateTime endPeriod) {
+    private double getRecurringSessionFee(RecurringSession recurringSession, LocalDateTime startPeriod,
+        LocalDateTime endPeriod) {
         SessionDate startDate = new SessionDate(startPeriod);
         SessionDate endDate = new SessionDate(endPeriod);
         int numOfSession = recurringSession.numOfSessionBetween(startDate, endDate);
