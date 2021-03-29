@@ -188,13 +188,10 @@ public class ParserUtil {
     public static Boolean parseIsWeekly(String isWeekly) throws ParseException {
         requireNonNull(isWeekly);
         String trimmedIsWeekly = isWeekly.trim();
-        if (!trimmedIsWeekly.matches("/./")) {
-            throw new ParseException(Messages.MESSAGE_PARSER_WEEKLY_CONSTRAINTS);
-        }
 
-        if (trimmedIsWeekly.toUpperCase() == "Y") {
+        if (trimmedIsWeekly.equalsIgnoreCase("Y")) {
             return true;
-        } else if (trimmedIsWeekly.toUpperCase() == "N") {
+        } else if (trimmedIsWeekly.equalsIgnoreCase("N")) {
             return false;
         } else {
             throw new ParseException(Messages.MESSAGE_PARSER_WEEKLY_CONSTRAINTS);
