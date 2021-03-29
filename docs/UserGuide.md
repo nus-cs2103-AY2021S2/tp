@@ -88,27 +88,29 @@ Examples:
 
 ### Listing all contacts : `list`
 
-Shows a list of all persons in TutorsPet.
+Shows a list of all student contacts in TutorsPet. Each student's name, phone number, tags and lessons are displayed. 
 
 Format: `list`
 
 ### Editing a contact : `edit`
 
-Edits an existing person in TutorsPet.
+Edits an existing student in TutorsPet.
 
 Format: `edit INDEX [n/NAME] [s/SCHOOL] [p/PHONE] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/TAG] [l/LESSON]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the student at the specified `INDEX`.
+* The index refers to the index number shown in the displayed student list.
+* The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags or lessons, the existing tags or lessons of the person will be removed i.e adding of tags or lessons are not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags or lessons, the existing tags or lessons of the student will be removed i.e adding of tags or lessons are not cumulative.
+* You can remove all the student’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-*  `edit 1 l/monday 1300 l/tuesday 1400` Edits the 1st person's contact to add 2 lesson details, `monday 1300` and `tuesday 1400`
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 l/monday 1300 l/tuesday 1400` Edits the 1st student's contact to add 2 lesson details, `monday 1300` and `tuesday 1400`
 
 ### Searching for a contact: `search`
 
@@ -170,7 +172,9 @@ Examples:
 
 ### Viewing a contact details: `detail`
 
-View the specified student's contact from TutorsPet.
+View the full details of the specified student's contact from TutorsPet.
+The specified student's name, school, phone number, email, address, guardian name and guardian's phone number will
+be displayed. 
 
 Format: `detail INDEX`
 
@@ -179,8 +183,8 @@ Format: `detail INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `detail 2` views the 2nd student in TutorsPet.
-* `find Betsy` followed by `detail 1` views the 1st student in the results of the `find` command.
+* `list` followed by `detail 2` views the details of the 2nd student in TutorsPet.
+* `search n/Betsy` followed by `detail 1` views the details of the 1st student in the results of the `search` command.
 
 ### Deleting a contact : `delete`
 
@@ -194,7 +198,7 @@ Format: `delete INDEX`
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd student in TutorsPet.
-* `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
+* `search n/Betsy` followed by `delete 1` deletes the 1st student in the results of the `search` command.
 
 ### Clearing all entries : `clear`
 
