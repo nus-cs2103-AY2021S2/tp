@@ -4,7 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_INTERVAL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_WEEKLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_UPDATE_INDEX;
 
 import java.util.stream.Stream;
@@ -28,7 +29,7 @@ public class UpdateEventCommandParser implements Parser<UpdateEventCommand> {
     public UpdateEventCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_UPDATE_INDEX, PREFIX_DESCRIPTION,
-                PREFIX_EVENT_INTERVAL, PREFIX_EVENT_DATE);
+                PREFIX_EVENT_DATE, PREFIX_EVENT_TIME, PREFIX_EVENT_WEEKLY);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_UPDATE_INDEX) || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateEventCommand.MESSAGE_USAGE));
@@ -43,12 +44,15 @@ public class UpdateEventCommandParser implements Parser<UpdateEventCommand> {
             updateEventDescriptor.setDescription(
                     ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         }
-        if (argMultimap.getValue(PREFIX_EVENT_INTERVAL).isPresent()) {
-            updateEventDescriptor.setInterval(
-                    ParserUtil.parseInterval(argMultimap.getValue(PREFIX_EVENT_INTERVAL).get()));
-        }
         if (argMultimap.getValue(PREFIX_EVENT_DATE).isPresent()) {
             updateEventDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_EVENT_DATE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_EVENT_TIME).isPresent()) {
+            updateEventDescriptor.setTime(ParserUtil.parseTime(argMultimap.getValue(PREFIX_EVENT_TIME).get()));
+        }
+        if (argMultimap.getValue(PREFIX_EVENT_WEEKLY).isPresent()) {
+            updateEventDescriptor.setIsWeekly(
+                    ParserUtil.parseIsWeekly(argMultimap.getValue(PREFIX_EVENT_WEEKLY).get()));
         }
 
         if (!updateEventDescriptor.isAnyFieldEdited()) {
