@@ -22,7 +22,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Interval;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
