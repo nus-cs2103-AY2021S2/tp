@@ -19,7 +19,7 @@ public class AddAppointmentCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_DATE + "DATE "
-            + "[" + PREFIX_CONTACT + "CONTACT INDEX]"
+            + "[" + PREFIX_CONTACT + "CONTACT INDEX]... "
             + "[" + PREFIX_CHILD + "CHILDTAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
