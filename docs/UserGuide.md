@@ -24,7 +24,6 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
         * [Redoing a command](#redoing-a-command--redo): `redo`
         * [Sorting all flashcards](#sorting-all-flashcards-sort): `sort`
         * [Entering review mode](#entering-review-mode-review): `review`
-        * [Sorting all cards](#sorting-all-cards-sort): `sort`
         * [Viewing statistics of cards](#viewing-statistics-of-cards-stats): `stats`
         * [Exiting the program](#exiting-the-program--exit): `exit`
         * [Saving data](#saving-the-data)
