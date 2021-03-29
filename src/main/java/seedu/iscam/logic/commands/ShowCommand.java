@@ -41,6 +41,9 @@ public class ShowCommand extends Command {
 
         Client clientToShow = lastShownList.get(targetIndex.getZeroBased());
         model.setDetailedClient(clientToShow);
+
+        model.updateFilteredMeetingList(meeting -> meeting.getClientName().equals(clientToShow.getName()));
+
         return new CommandResult(String.format(MESSAGE_SHOW_CLIENT_SUCCESS, clientToShow));
     }
 
