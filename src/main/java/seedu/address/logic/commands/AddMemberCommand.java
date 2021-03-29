@@ -16,12 +16,12 @@ public class AddMemberCommand extends Command {
 
     public static final String COMMAND_WORD = "addMember";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to HeyMatez. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to HeyMatez.\n"
             + "Parameters: "
             + "NAME "
             + PREFIX_PHONE + " PHONE "
             + PREFIX_EMAIL + " EMAIL "
-            + "[ " + PREFIX_ROLE + "ROLE ]"
+            + "[ " + PREFIX_ROLE + "ROLE ] \n"
             + "Example: " + COMMAND_WORD
             + " John Doe "
             + PREFIX_PHONE + " 98765432 "

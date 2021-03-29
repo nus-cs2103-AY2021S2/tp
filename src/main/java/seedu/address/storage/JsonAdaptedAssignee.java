@@ -28,11 +28,6 @@ class JsonAdaptedAssignee {
         assigneeName = source.assigneeName;
     }
 
-    @JsonValue
-    public String getAssigneeName() {
-        return assigneeName;
-    }
-
     /**
      * Converts this Jackson-friendly adapted assignee object into the model's {@code Assignee} object.
      *

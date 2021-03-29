@@ -26,7 +26,7 @@ public class DoneTaskCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Change the status of a task with the task index "
             + "you specify from uncompleted to completed. \n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 ";
 
     public static final String MESSAGE_DONE_TASK_SUCCESS = "Task is marked as completed!";

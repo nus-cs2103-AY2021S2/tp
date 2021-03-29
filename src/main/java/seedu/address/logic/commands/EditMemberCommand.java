@@ -28,7 +28,7 @@ public class EditMemberCommand extends Command {
     public static final String COMMAND_WORD = "editMember";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the name used in the displayed person list. "
+            + "by the exact name (case-sensitive) used in the displayed person list. "
             + "Existing details will be overwritten by the input details.\n"
             + "Parameters: NAME_IN_LIST "
             + "[" + PREFIX_NEW_NAME + " NEW_NAME] "
@@ -38,7 +38,7 @@ public class EditMemberCommand extends Command {
             + "Example: " + COMMAND_WORD + " John "
             + PREFIX_NEW_NAME + " John Lim "
             + PREFIX_PHONE + " 91234567 "
-            + PREFIX_EMAIL + " johndoe@example.com"
+            + PREFIX_EMAIL + " john@example.com"
             + PREFIX_ROLE + " Assistant treasurer";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";

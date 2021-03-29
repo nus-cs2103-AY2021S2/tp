@@ -117,11 +117,11 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-W14-3/tp/blob/afb758e2bafec58b242fa16b4c31401fa5b51dd0/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save HEY MATEz data in json format and read it back.
 
 ### Common classes
 
@@ -210,6 +210,52 @@ new Command Result with the attached message.
 Below is the sequence diagram: 
 
 <img src="images/DeleteTaskSequenceDiagram.png" width="450" />
+
+[comment]: <> (### Delete a Member feature)
+
+[comment]: <> (The implementation of the deleting a Member feature is facilitated by the DeleteTaskCommand, which extends from the Command abstract class.)
+
+[comment]: <> (It is also enabled by the following Parser class:)
+
+[comment]: <> (* `DeleteTaskCommandParser`)
+
+[comment]: <> (The above mentioned Parser class inherits from the `#parse method` from the Parser interface.)
+
+[comment]: <> (* `DeleteTaskCommandParser#parser` - checks if the arguments passed to the current DeleteTaskCommand is valid.)
+
+[comment]: <> (  If the arguments are valid, it creates a DeleteTaskCommand instance.)
+
+[comment]: <> (Subsequently, the created `DeleteTaskCommand` object contains an `#execute` method which)
+
+[comment]: <> (is responsible for deleting the given Task with respect to the index.)
+
+[comment]: <> (Below is the usage scenario of how delete task mechanism behaves.)
+
+[comment]: <> (Assumptions:)
+
+[comment]: <> (1. User has already launched the app)
+
+[comment]: <> (2. HEY MATEz application has an existing task)
+
+[comment]: <> (Step 1. User executes the `deleteTask 1` command to delete the task at the 1st index in the task list of HEY MATEz.)
+
+[comment]: <> (A `DeleteTaskCommandParser` is created and calls the `DeleteTaskCommandParser#parse` on the arguments.)
+
+[comment]: <> (Step 2. `DeleteTaskCommandParser#parse` method checks on the validity of the arguments for a `DeleteTaskCommand`.)
+
+[comment]: <> (If it is valid, it will create a new `DeleteTaskCommand` by calling the constructor.)
+
+[comment]: <> (Step 3. The `DeleteTaskCommand#execute` is then called by `Logic Manager`. The task with the same `Index` is retrieved)
+
+[comment]: <> (and deleted from the task list using the `deleteTask` method in the `Model` class.)
+
+[comment]: <> (Step 4. Once the execution is completed, the message `MESSAGE_DELETE_TASK_SUCCESS` is used to return a)
+
+[comment]: <> (new Command Result with the attached message.)
+
+[comment]: <> (Below is the sequence diagram:)
+
+[comment]: <> (<img src="images/DeleteTaskSequenceDiagram.png" width="450" />)
 
 --------------------------------------------------------------------------------------------------------------------
 
