@@ -317,6 +317,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<String> getPersonFilterStringList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasAppointmentFilter(AppointmentFilter appointmentFilter) {
             throw new AssertionError("This method should not be called.");
         }
@@ -328,6 +333,11 @@ public class AddCommandTest {
 
         @Override
         public void removeAppointmentFilter(AppointmentFilter appointmentFilter) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<String> getAppointmentFilterStringList() {
             throw new AssertionError("This method should not be called.");
         }
 
