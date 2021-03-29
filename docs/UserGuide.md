@@ -12,6 +12,7 @@ Weeblingo is a desktop app for managing flashcards, **optimized for use via a Co
   * [Going to next flashcard: `next`](#going-to-next-flashcard-next)
   * [Listing out all flashcards: `list`](#listing-out-all-flashcards-list)
   * [Ending the session: `end`](#ending-the-session-end)
+  * [Viewing past scores: `history`](#viewing-past-scores-history)
   * [Exiting the application: `exit`](#exiting-the-application-exit)
   * [Asking for help: `help`](#asking-for-help-help)
 * [FAQ](#faq)
@@ -95,6 +96,12 @@ Ends the current session, saving progress.
 
 Format: `end`
 
+### Viewing Past Scores: `history`
+
+View scores of all past quiz attempts.
+
+Format: `history`
+
 ### Exiting the application: `exit`
 
 Exits the application.
@@ -117,19 +124,25 @@ _Details coming soon ..._
 
 ## FAQ
 
-**Q**: How do I transfer my flashcards/scores to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous WeebLingo home folder.
+**Q**: How do I transfer my quiz attempt scores to other computers?</br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file
+that contains the data of your previous WeebLingo home folder.
+
+**Q**: Can I add my customized flashcards?</br>
+**A**: Sorry, the current version of the application does not allow self-defined flashcards to be added. However, if you
+are advanced and you know how to manipulate the storage files, you can do so if you want.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
+Action | Format, Examples |
+-------|------------------|
 **Start** | `start`
 **Check** | `check`
 **Next** | `next`
 **List** | `list`
 **End** | `end`
+**History**|`history`
 **Exit** | `exit`
 **Help** | `help`
