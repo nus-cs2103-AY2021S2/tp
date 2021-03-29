@@ -22,29 +22,29 @@ import seedu.address.model.contact.Contact;
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteCommand}.
  */
-public class DeleteCommandTest {
+public class DeleteContactCommandTest {
 
     private Model model = new ModelManager(getTypicalColabFolder(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Contact contactToDelete = model.getFilteredContactList().get(INDEX_FIRST.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST);
+        DeleteContactCommand deleteContactCommand = new DeleteContactCommand(INDEX_FIRST);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_CONTACT_SUCCESS, contactToDelete);
+        String expectedMessage = String.format(DeleteContactCommand.MESSAGE_DELETE_CONTACT_SUCCESS, contactToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getColabFolder(), new UserPrefs());
         expectedModel.deleteContact(contactToDelete);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteContactCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredContactList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        DeleteContactCommand deleteContactCommand = new DeleteContactCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX);
+        assertCommandFailure(deleteContactCommand, model, Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX);
     }
 
     @Test
@@ -52,15 +52,15 @@ public class DeleteCommandTest {
         showContactAtIndex(model, INDEX_FIRST);
 
         Contact contactToDelete = model.getFilteredContactList().get(INDEX_FIRST.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST);
+        DeleteContactCommand deleteContactCommand = new DeleteContactCommand(INDEX_FIRST);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_CONTACT_SUCCESS, contactToDelete);
+        String expectedMessage = String.format(DeleteContactCommand.MESSAGE_DELETE_CONTACT_SUCCESS, contactToDelete);
 
         Model expectedModel = new ModelManager(model.getColabFolder(), new UserPrefs());
         expectedModel.deleteContact(contactToDelete);
         showNoContact(expectedModel);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteContactCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -71,21 +71,21 @@ public class DeleteCommandTest {
         // ensures that outOfBoundIndex is still in bounds of contact list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getColabFolder().getContactList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        DeleteContactCommand deleteContactCommand = new DeleteContactCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX);
+        assertCommandFailure(deleteContactCommand, model, Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND);
+        DeleteContactCommand deleteFirstCommand = new DeleteContactCommand(INDEX_FIRST);
+        DeleteContactCommand deleteSecondCommand = new DeleteContactCommand(INDEX_SECOND);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST);
+        DeleteContactCommand deleteFirstCommandCopy = new DeleteContactCommand(INDEX_FIRST);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

@@ -8,9 +8,9 @@ import seedu.address.model.Model;
 /**
  * Clears the contact list.
  */
-public class ClearCommand extends Command {
+public class ClearContactCommand extends Command {
 
-    public static final String COMMAND_WORD = "clear";
+    public static final String COMMAND_WORD = "clearC";
     public static final String MESSAGE_SUCCESS = "Contacts have been cleared!";
 
 

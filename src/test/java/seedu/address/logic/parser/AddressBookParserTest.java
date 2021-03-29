@@ -20,27 +20,27 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddContactCommand;
 import seedu.address.logic.commands.AddDeadlineCommand;
 import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.logic.commands.AddGroupmateCommand;
 import seedu.address.logic.commands.AddTodoCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.ClearContactCommand;
+import seedu.address.logic.commands.DeleteContactCommand;
 import seedu.address.logic.commands.DeleteDeadlineCommand;
 import seedu.address.logic.commands.DeleteEventCommand;
 import seedu.address.logic.commands.DeleteGroupmateCommand;
 import seedu.address.logic.commands.DeleteProjectCommand;
 import seedu.address.logic.commands.DeleteTodoCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditContactDescriptor;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindContactCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListContactsCommand;
 import seedu.address.logic.commands.ShowOverviewTabCommand;
 import seedu.address.logic.commands.ShowTodayCommand;
 import seedu.address.logic.commands.ShowTodosTabCommand;
+import seedu.address.logic.commands.UpdateContactCommand;
+import seedu.address.logic.commands.UpdateContactCommand.EditContactDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.NameContainsKeywordsPredicate;
@@ -65,8 +65,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Contact contact = new ContactBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(ContactUtil.getAddCommand(contact));
-        assertEquals(new AddCommand(contact), command);
+        AddContactCommand command = (AddContactCommand) parser.parseCommand(ContactUtil.getAddCommand(contact));
+        assertEquals(new AddContactCommand(contact), command);
     }
 
     @Test
@@ -114,9 +114,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST), command);
+        DeleteContactCommand command = (DeleteContactCommand) parser.parseCommand(
+                DeleteContactCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new DeleteContactCommand(INDEX_FIRST), command);
     }
 
     @Test
@@ -178,17 +178,18 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+        assertTrue(parser.parseCommand(ClearContactCommand.COMMAND_WORD) instanceof ClearContactCommand);
+        assertTrue(parser.parseCommand(ClearContactCommand.COMMAND_WORD + " 3") instanceof ClearContactCommand);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
         Contact contact = new ContactBuilder().build();
         EditContactDescriptor descriptor = new EditContactDescriptorBuilder(contact).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+        UpdateContactCommand command = (UpdateContactCommand) parser.parseCommand(
+                UpdateContactCommand.COMMAND_WORD + " "
                 + INDEX_FIRST.getOneBased() + " " + ContactUtil.getEditContactDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST, descriptor), command);
+        assertEquals(new UpdateContactCommand(INDEX_FIRST, descriptor), command);
     }
 
     @Test
@@ -200,9 +201,9 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        FindContactCommand command = (FindContactCommand) parser.parseCommand(
+                FindContactCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindContactCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

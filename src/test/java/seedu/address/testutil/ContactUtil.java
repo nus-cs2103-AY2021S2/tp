@@ -8,8 +8,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.EditCommand.EditContactDescriptor;
+import seedu.address.logic.commands.AddContactCommand;
+import seedu.address.logic.commands.UpdateContactCommand.EditContactDescriptor;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.tag.Tag;
 
@@ -22,7 +22,7 @@ public class ContactUtil {
      * Returns an add command string for adding the {@code Contact}.
      */
     public static String getAddCommand(Contact contact) {
-        return AddCommand.COMMAND_WORD + " " + getContactDetails(contact);
+        return AddContactCommand.COMMAND_WORD + " " + getContactDetails(contact);
     }
 
     /**

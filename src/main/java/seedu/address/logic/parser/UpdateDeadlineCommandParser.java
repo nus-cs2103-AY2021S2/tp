@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_UPDATE_INDEX;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.UpdateContactCommand;
 import seedu.address.logic.commands.UpdateDeadlineCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -47,7 +47,7 @@ public class UpdateDeadlineCommandParser implements Parser<UpdateDeadlineCommand
             updateDeadlineDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_DEADLINE_DATE).get()));
         }
         if (!updateDeadlineDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(UpdateContactCommand.MESSAGE_NOT_EDITED);
         }
 
         return new UpdateDeadlineCommand(projectIndex, targetDeadlineIndex, updateDeadlineDescriptor);
