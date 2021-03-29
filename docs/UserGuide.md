@@ -60,6 +60,7 @@ Here are some important syntax to take note of to facilitate your reading before
 In this section, you will learn what the different notations and symbols used in Pawbook. 
 
 ## **Syntax Format**
+
 Syntax | Meaning  | Example
 --------|------------------|----------
 **`lower_case/`** |  Prefix | `n/`, `p/`, `t/`
