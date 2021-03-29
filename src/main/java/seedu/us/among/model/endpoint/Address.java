@@ -16,7 +16,8 @@ import java.util.regex.Pattern;
 public class Address {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Addresses should be in the form of a url. E.g. https://localhost:3000";
+            "Addresses should be in the form of a url. E.g. https://localhost:3000\n"
+            + "It cannot contain alphanumeric characters and common punctuation.";
 
     /*
      * The first character of the address must not be a whitespace,

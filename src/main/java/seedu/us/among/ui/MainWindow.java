@@ -260,7 +260,7 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         } finally {
-            System.out.println(Thread.activeCount());
+            logger.info("Current Number of Threads: " + Thread.activeCount());
         }
     }
 

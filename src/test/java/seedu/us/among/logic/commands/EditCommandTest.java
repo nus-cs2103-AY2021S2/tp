@@ -2,15 +2,7 @@ package seedu.us.among.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.us.among.logic.commands.CommandTestUtil.DESC_GET;
-import static seedu.us.among.logic.commands.CommandTestUtil.DESC_POST;
-import static seedu.us.among.logic.commands.CommandTestUtil.VALID_DATA_PAIR;
-import static seedu.us.among.logic.commands.CommandTestUtil.VALID_HEADER_PAIR;
-import static seedu.us.among.logic.commands.CommandTestUtil.VALID_METHOD_POST;
-import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_CAT;
-import static seedu.us.among.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.us.among.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.us.among.logic.commands.CommandTestUtil.showEndpointAtIndex;
+import static seedu.us.among.logic.commands.CommandTestUtil.*;
 import static seedu.us.among.testutil.TypicalEndpoints.getTypicalEndpointList;
 import static seedu.us.among.testutil.TypicalIndexes.INDEX_FIRST_ENDPOINT;
 import static seedu.us.among.testutil.TypicalIndexes.INDEX_SECOND_ENDPOINT;
@@ -39,8 +31,11 @@ public class EditCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Endpoint editedEndpoint = new EndpointBuilder()
+                .withMethod(VALID_METHOD_POST)
+                .withAddress(VALID_ADDRESS_RANDOM)
                 .withData(VALID_DATA_PAIR)
                 .withHeaders(VALID_HEADER_PAIR)
+                .withTags(VALID_TAG_COOL)
                 .build();
         EditEndpointDescriptor descriptor = new EditEndpointDescriptorBuilder(editedEndpoint).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ENDPOINT, descriptor);
@@ -61,7 +56,7 @@ public class EditCommandTest {
         EndpointBuilder endpointInList = new EndpointBuilder(lastEndpoint);
         Endpoint editedEndpoint = endpointInList.withMethod(VALID_METHOD_POST).withTags(VALID_TAG_CAT).build();
 
-        EditEndpointDescriptor descriptor = new EditEndpointDescriptorBuilder().withName(VALID_METHOD_POST)
+        EditEndpointDescriptor descriptor = new EditEndpointDescriptorBuilder().withMethod(VALID_METHOD_POST)
                 .withTags(VALID_TAG_CAT).build();
         EditCommand editCommand = new EditCommand(indexLastEndpoint, descriptor);
 
@@ -92,7 +87,7 @@ public class EditCommandTest {
         Endpoint endpointInFilteredList = model.getFilteredEndpointList().get(INDEX_FIRST_ENDPOINT.getZeroBased());
         Endpoint editedEndpoint = new EndpointBuilder(endpointInFilteredList).withMethod(VALID_METHOD_POST).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ENDPOINT,
-             new EditEndpointDescriptorBuilder().withName(VALID_METHOD_POST).build());
+             new EditEndpointDescriptorBuilder().withMethod(VALID_METHOD_POST).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ENDPOINT_SUCCESS, editedEndpoint);
 
@@ -125,7 +120,7 @@ public class EditCommandTest {
     @Test
     public void execute_invalidEndpointIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEndpointList().size() + 1);
-        EditEndpointDescriptor descriptor = new EditEndpointDescriptorBuilder().withName(VALID_METHOD_POST).build();
+        EditEndpointDescriptor descriptor = new EditEndpointDescriptorBuilder().withMethod(VALID_METHOD_POST).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
@@ -143,7 +138,7 @@ public class EditCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getEndpointList().getEndpointList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditEndpointDescriptorBuilder().withName(VALID_METHOD_POST).build());
+                new EditEndpointDescriptorBuilder().withMethod(VALID_METHOD_POST).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
     }
