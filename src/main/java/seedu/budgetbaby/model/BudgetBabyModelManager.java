@@ -5,6 +5,7 @@ import static seedu.budgetbaby.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.time.YearMonth;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -14,7 +15,9 @@ import seedu.budgetbaby.commons.core.GuiSettings;
 import seedu.budgetbaby.commons.core.LogsCenter;
 import seedu.budgetbaby.model.budget.Budget;
 import seedu.budgetbaby.model.month.Month;
+import seedu.budgetbaby.model.record.Amount;
 import seedu.budgetbaby.model.record.Category;
+import seedu.budgetbaby.model.record.Description;
 import seedu.budgetbaby.model.record.FinancialRecord;
 
 /**
@@ -110,7 +113,6 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
     @Override
     public void setMonth(Month target, Month editedMonth) {
         requireAllNonNull(target, editedMonth);
-
         budgetTracker.setMonth(target, editedMonth);
     }
 
@@ -139,10 +141,51 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
     }
 
     @Override
-    public void filterByCategory(Category category) {
-        requireAllNonNull(category);
+    public boolean findFinancialRecord(Description description, Amount amount, Set<Category> categories) {
         assert true;
-        updateFilteredFinancialRecordList(fr -> fr.getTags().contains(category));
+
+        boolean result;
+
+        Predicate<FinancialRecord> findD = fr -> fr.getDescription().description.equals(description.description);
+
+        Predicate<FinancialRecord> findA = fr -> fr.getAmount().getValue().equals(amount.getValue());
+
+        Predicate<FinancialRecord> findC = fr -> fr.getTags().containsAll(categories);
+
+        Predicate<FinancialRecord> findDA = fr -> fr.getDescription().description.equals(description.description)
+                && fr.getAmount().getValue().equals(amount.getValue());
+
+        Predicate<FinancialRecord> findDC = fr -> fr.getDescription().description.equals(description.description)
+                && fr.getTags().containsAll(categories);
+
+        Predicate<FinancialRecord> findAC = fr -> fr.getAmount().getValue().equals(amount.getValue())
+                && fr.getTags().containsAll(categories);
+
+        Predicate<FinancialRecord> findAll = fr -> fr.getDescription().description.equals(description.description)
+                && fr.getAmount().getValue().equals(amount.getValue())
+                && fr.getTags().containsAll(categories);
+
+        if (description == null) {
+            if (amount == null && categories != null) {
+                result = updateFilteredFinancialRecordList(findC);
+            } else if (amount != null && categories == null) {
+                result = updateFilteredFinancialRecordList(findA);
+            } else {
+                result = updateFilteredFinancialRecordList(findAC);
+            }
+        } else if (amount == null) {
+            if (categories == null) {
+                result = updateFilteredFinancialRecordList(findD);
+            } else {
+                result = updateFilteredFinancialRecordList(findDC);
+            }
+        } else if (categories == null) {
+            result = updateFilteredFinancialRecordList(findDA);
+        } else {
+            result = updateFilteredFinancialRecordList(findAll);
+        }
+
+        return result;
     }
 
     @Override
@@ -175,9 +218,16 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
     }
 
     @Override
-    public void updateFilteredFinancialRecordList(Predicate<FinancialRecord> predicate) {
+    public boolean updateFilteredFinancialRecordList(Predicate<FinancialRecord> predicate) {
         requireNonNull(predicate);
-        filteredFinancialRecords.setPredicate(predicate);
+        FilteredList<FinancialRecord> tempFilteredList = new FilteredList<>(filteredFinancialRecords);
+        tempFilteredList.setPredicate(predicate);
+        if (!tempFilteredList.isEmpty()) {
+            filteredFinancialRecords.setPredicate(predicate);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override

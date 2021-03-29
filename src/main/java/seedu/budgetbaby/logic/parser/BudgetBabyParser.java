@@ -9,8 +9,9 @@ import java.util.regex.Pattern;
 import seedu.budgetbaby.ablogic.commands.HelpCommand;
 import seedu.budgetbaby.logic.commands.AddFrCommand;
 import seedu.budgetbaby.logic.commands.BudgetBabyCommand;
-import seedu.budgetbaby.logic.commands.CategoryFilterCommand;
 import seedu.budgetbaby.logic.commands.DeleteFrCommand;
+import seedu.budgetbaby.logic.commands.ExitCommand;
+import seedu.budgetbaby.logic.commands.FindFrCommand;
 import seedu.budgetbaby.logic.commands.ResetFilterCommand;
 import seedu.budgetbaby.logic.commands.SetBudgetCommand;
 import seedu.budgetbaby.logic.commands.ViewMonthCommand;
@@ -52,14 +53,17 @@ public class BudgetBabyParser {
         case SetBudgetCommand.COMMAND_WORD:
             return new SetBudgetCommandParser().parse(arguments);
 
-        case CategoryFilterCommand.COMMAND_WORD:
-            return new CategoryFilterCommandParser().parse(arguments);
+        case FindFrCommand.COMMAND_WORD:
+            return new FindFrCommandParser().parse(arguments);
 
         case ResetFilterCommand.COMMAND_WORD:
             return new ResetFilterCommandParser().parse(arguments);
 
         case ViewMonthCommand.COMMAND_WORD:
             return new ViewMonthCommandParser().parse(arguments);
+
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

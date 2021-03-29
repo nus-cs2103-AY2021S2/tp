@@ -145,17 +145,103 @@ To be updated by Xinyue
 
 To be updated by Yu Heem
 
-### Filter Feature
+### [Completed] Find Financial Record Feature : `find-fr`
 
-#### `filter` command (accepts d/ a/ c/)
+#### Proposed Implementation
 
-#### `reset-filter` command
+The proposed `find` mechanism is facilitated by `BudgetBabyModelManager` which contains
+a filtered list `filteredFinancialRecords` that is to be altered and displayed to the
+user according to the `find-fr` command.
 
-To be updated by Jaryl
+The command is parsed from `BudgetBabyCommandParser` to the `FindFrCommandParser` class,
+where the input fields will be processed before instantiating a new valid `FindFrCommand`.
+The `FindFrCommand` calls the `findFinancialRecord` method of the `BudgetBabyModel` that
+is implemented by `BudgetBabyModelManager`. `BudgetBabyModelManager` then handles the
+filtering of `filteredFinancialRecords` through the `updateFilteredFinancialRecordList`
+method. The updated financial records are then displayed to the user on the front end of
+the application.
+
+The `findFinancialRecord` method expects a minimum of 1 and up to 3 of the following arguments:
+`Description`, `Amount`, `Category`.
+
+Given below is an example usage scenario and how the `find` mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `filteredFinancialRecords` list
+presented to the user would be a list of all financial records retrieved from local storage
+`budgetbaby.json` (if applicable).
+
+Step 2. The user executes `find-fr d/Lunch a/10 c/Food` command to find financial records with
+description `Lunch`, amount `10` and category `Food`. The `find-fr` command indirectly calls the
+`updateFilteredFinancialRecordList` method, causing `filteredFinancialRecords` to display the matching
+records without modifying the contents of the original financial records list.
+
+- Note: If no matching financial record(s) is/are found,
+then the list will not be updated and a log message
+indicating no records found will be shown.
+
+The following sequence diagram shows how the find operation works:
+![](images/FindSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes `find-fr`:
+![](images/FindActivityDiagram.png)
+
+#### Extensions Implemented
+- `c/FR_CATEGORY` field accepts multiple categories
+- Display an appropriate message if no matching financial records found
+
+#### Design Consideration
+
+- Alternative 1 (selected choice): A single `find-fr` command that handles all fields
+    - Pros: Eliminates the need to implement separate search features. Allows
+      filtering multiple fields in a single command
+    - Cons: May cause confusion in usage. Some users may find it cumbersome to deal with
+      `d/` `a/` `c/` tags
+
+- Alternative 2: Separate `find-description`, `find-amount`, `find-category` commands
+    - Pros: May be less confusing to users and eliminates the use of `d/` `a/` `c/` tags
+    - Cons: Additional implementation and commands. More steps required for user
+    when filtering multiple fields
+
+### [Completed] Reset Filter Feature : `reset-filter`
+
+#### Actual Implementation
+
+This feature was developed in conjunction with `find-fr`. As the financial records list can
+be filtered to the flags set by the user, there must be a way for the user to revert this list
+back to its original state (i.e. displaying all financial records).
+
+Similar to the mechanism of the find operation, the `ResetFilterCommand` calls 
+
+The `ResetFilterCommand` calls the `resetFilter` method of the `BudgetBabyModel` that
+is implemented by `BudgetBabyModelManager`. `BudgetBabyModelManager` then handles the
+resetting of filter on `filteredFinancialRecords` through the `updateFilteredFinancialRecordList`
+method. The updated original financial records are then displayed to the user on the
+front end of the application.
+
+Given below is an example usage scenario and how the `reset` mechanism behaves at each step
+with the `find-fr` command initially applied
+
+Step 1. The user executes `find-fr d/Lunch a/10 c/Food` command which filters and displays
+the updated financial records list
+
+Step 2. The user is satisfied with his query result and wishes to revert the financial records
+list back to its original state. The `reset-filter` command is executed which indirectly calls the
+`updateFilteredFinancialRecordList` method, causing `filteredFinancialRecords` to display all
+available financial records.
+
+The following sequence diagram shows how the find operation works:
+![](images/ResetSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes `reset-filter`: </br>
+![](images/ResetActivityDiagram.png)
 
 ### Statistics Feature
 
-To be updated
+To be updated by Nat
+
+### Undo Feature
+
+To be updated by De Yi
 
 ---
 
