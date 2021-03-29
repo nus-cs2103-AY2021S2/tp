@@ -17,6 +17,9 @@ public class TutorNotesField extends UiPart<Region> {
     @FXML
     private TextArea notesArea;
 
+    /**
+     * Sets field for the notes
+     */
     public TutorNotesField(Notes notes) {
         super(FXML);
         this.notes = notes;

@@ -45,6 +45,7 @@ public class Notes implements Filterable {
         return value;
     }
 
+    @Override
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof Notes

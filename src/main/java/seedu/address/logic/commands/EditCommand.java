@@ -290,8 +290,7 @@ public class EditCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getNotes().equals(e.getNotes())
                     && getTags().equals(e.getTags())
-                    && subjectList.equals(otherSubjectList)
-                    ;
+                    && subjectList.equals(otherSubjectList);
         }
     }
 }

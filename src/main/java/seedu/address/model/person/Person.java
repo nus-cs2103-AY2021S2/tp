@@ -86,9 +86,13 @@ public class Person {
         return address;
     }
 
-    public boolean hasNotes() {return !notes.isEmpty();}
+    public boolean hasNotes() {
+        return !notes.isEmpty();
+    }
 
-    public Notes getNotes() {return notes;}
+    public Notes getNotes() {
+        return notes;
+    }
 
     public SubjectList getSubjectList() {
         return subjectList;
