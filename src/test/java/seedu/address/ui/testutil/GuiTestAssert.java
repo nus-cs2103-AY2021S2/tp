@@ -2,6 +2,7 @@ package seedu.address.ui.testutil;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.util.DateUtil.decodeDateWithDay;
+import static seedu.address.commons.util.TimeUtil.decodeTime;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -77,8 +78,9 @@ public class GuiTestAssert {
      */
     public static void assertCardDisplaysEvent(Event expectedEvent, EventCardHandle actualCard) {
         assertEquals(expectedEvent.getDescription(), actualCard.getDescription());
-        assertEquals(expectedEvent.getRecurrence().toString(), actualCard.getInteval());
-        assertEquals(decodeDateWithDay(expectedEvent.getAt()), actualCard.getDate());
+        assertEquals(decodeDateWithDay(expectedEvent.getDate()), actualCard.getDate());
+        assertEquals(decodeTime(expectedEvent.getTime()), actualCard.getTime());
+        assertEquals(expectedEvent.getIsWeekly().toString(), actualCard.getIsWeekly());
     }
 
     /**
