@@ -20,9 +20,9 @@ import seedu.address.model.pool.PooledPassengerContainsKeywordsPredicate;
 public class TripCommandParser implements Parser<TripCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FindCommand
+     * Parses the given {@code String} of arguments in the context of the FindCommand.
      * and returns a FindCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public TripCommand parse(String args) throws ParseException {
         // todo allow more parameters to be taken in, use DriverNameContainsKeywordsPredicate
@@ -44,7 +44,7 @@ public class TripCommandParser implements Parser<TripCommand> {
     }
 
     /**
-     * Returns true if only one of the prefixes are provided
+     * Returns true if only one of the prefixes are provided.
      * {@code ArgumentMultimap}.
      */
     private static boolean arePrefixesValid(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
