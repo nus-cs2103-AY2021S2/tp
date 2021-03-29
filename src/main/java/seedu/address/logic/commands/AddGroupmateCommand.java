@@ -2,11 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 
 import java.util.List;
 
@@ -18,37 +15,31 @@ import seedu.address.model.groupmate.Groupmate;
 import seedu.address.model.project.Project;
 
 /**
- * Adds a contact to a project.
+ * Adds a groupmate to a project.
  */
-public class AddContactToCommand extends Command {
+public class AddGroupmateCommand extends Command {
 
-    public static final String COMMAND_WORD = "addCto";
+    public static final String COMMAND_WORD = "addG";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an existing contact to an existing project. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an existing groupmate to an existing project. "
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_ROLE + "ROLE]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_ROLE + "leader "
+            + PREFIX_ROLE + "frontend developer";
 
-    public static final String MESSAGE_SUCCESS = "New contact %1$s added to project %2$s";
-    public static final String MESSAGE_DUPLICATE_CONTACT = "This participant already exists under project %1$s";
+    public static final String MESSAGE_SUCCESS = "New groupmate %1$s added to project %2$s";
+    public static final String MESSAGE_DUPLICATE_GROUPMATE = "This groupmate already exists under project %1$s";
 
     private final Index projectToAddToIndex;
     private final Groupmate groupmateToAdd;
 
     /**
-     * Creates an AddContactToCommand to add the specified {@code Contact} to the specified {@code Project}
+     * Creates an AddGroupmateCommand to add the specified {@code Groupmate} to the specified {@code Project}
      */
-    public AddContactToCommand(Index projectIndex, Groupmate groupmate) {
+    public AddGroupmateCommand(Index projectIndex, Groupmate groupmate) {
         requireAllNonNull(projectIndex, groupmate);
         projectToAddToIndex = projectIndex;
         groupmateToAdd = groupmate;
@@ -67,7 +58,7 @@ public class AddContactToCommand extends Command {
         Project projectToAddTo = requireNonNull(lastShownProjectList.get(projectToAddToIndex.getZeroBased()));
 
         if (projectToAddTo.hasGroupmate(groupmateToAdd)) {
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_CONTACT, projectToAddTo.getProjectName()));
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_GROUPMATE, projectToAddTo.getProjectName()));
         }
 
         // logic goes here
@@ -82,9 +73,9 @@ public class AddContactToCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddContactToCommand // instanceof handles nulls
-                && projectToAddToIndex.equals(((AddContactToCommand) other).projectToAddToIndex)
-                && groupmateToAdd.equals(((AddContactToCommand) other).groupmateToAdd)
+                || (other instanceof AddGroupmateCommand // instanceof handles nulls
+                && projectToAddToIndex.equals(((AddGroupmateCommand) other).projectToAddToIndex)
+                && groupmateToAdd.equals(((AddGroupmateCommand) other).groupmateToAdd)
             );
     }
 }

@@ -21,7 +21,7 @@ import seedu.address.model.groupmate.Groupmate;
 import seedu.address.model.project.Project;
 import seedu.address.testutil.GroupmateBuilder;
 
-public class AddContactToCommandTest {
+public class AddGroupmateCommandTest {
 
     private Model model;
 
@@ -35,20 +35,20 @@ public class AddContactToCommandTest {
         Project validProject = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         Groupmate validGroupmate = new GroupmateBuilder().withName("Tom").build();
 
-        CommandResult commandResult = new AddContactToCommand(INDEX_FIRST, validGroupmate).execute(model);
+        CommandResult commandResult = new AddGroupmateCommand(INDEX_FIRST, validGroupmate).execute(model);
 
-        assertEquals(String.format(AddContactToCommand.MESSAGE_SUCCESS, validGroupmate.getName(),
+        assertEquals(String.format(AddGroupmateCommand.MESSAGE_SUCCESS, validGroupmate.getName(),
                 validProject.getProjectName()), commandResult.getFeedbackToUser());
     }
 
     @Test
     public void execute_invalidProjectIndex_throwsCommandException() {
         Groupmate groupmateToAdd = new GroupmateBuilder().build();
-        AddContactToCommand addContactToCommand = new AddContactToCommand(INDEX_THIRD, groupmateToAdd);
+        AddGroupmateCommand addGroupmateCommand = new AddGroupmateCommand(INDEX_THIRD, groupmateToAdd);
 
         assertThrows(
                 CommandException.class,
-                Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX, () -> addContactToCommand.execute(model)
+                Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX, () -> addGroupmateCommand.execute(model)
         );
     }
 
@@ -56,30 +56,30 @@ public class AddContactToCommandTest {
     public void execute_duplicateContact_throwsCommandException() {
         Groupmate groupmateToAdd = new GroupmateBuilder().build();
         Project projectToAddTo = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
-        AddContactToCommand addContactToCommand = new AddContactToCommand(INDEX_FIRST, groupmateToAdd);
+        AddGroupmateCommand addGroupmateCommand = new AddGroupmateCommand(INDEX_FIRST, groupmateToAdd);
 
         projectToAddTo.addGroupmate(groupmateToAdd);
 
         assertThrows(
                 CommandException.class,
                 String.format(
-                        AddContactToCommand.MESSAGE_DUPLICATE_CONTACT,
+                        AddGroupmateCommand.MESSAGE_DUPLICATE_GROUPMATE,
                         projectToAddTo.getProjectName()
-                ), () -> addContactToCommand.execute(model)
+                ), () -> addGroupmateCommand.execute(model)
         );
     }
 
     @Test
     public void equals() {
         Groupmate groupmateToAdd = new GroupmateBuilder().build();
-        AddContactToCommand addOneToOneCommand = new AddContactToCommand(INDEX_FIRST, groupmateToAdd);
-        AddContactToCommand addOneToTwoCommand = new AddContactToCommand(INDEX_SECOND, groupmateToAdd);
+        AddGroupmateCommand addOneToOneCommand = new AddGroupmateCommand(INDEX_FIRST, groupmateToAdd);
+        AddGroupmateCommand addOneToTwoCommand = new AddGroupmateCommand(INDEX_SECOND, groupmateToAdd);
 
         // same object -> returns true
         assertEquals(addOneToOneCommand, addOneToOneCommand);
 
         // same values -> returns true
-        AddContactToCommand addOneToOneCommandCopy = new AddContactToCommand(INDEX_FIRST, groupmateToAdd);
+        AddGroupmateCommand addOneToOneCommandCopy = new AddGroupmateCommand(INDEX_FIRST, groupmateToAdd);
         assertEquals(addOneToOneCommandCopy, addOneToOneCommand);
 
         // different types -> returns false

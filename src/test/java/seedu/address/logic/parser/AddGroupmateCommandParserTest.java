@@ -19,13 +19,13 @@ import static seedu.address.testutil.TypicalGroupmates.SYLPH;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddContactToCommand;
+import seedu.address.logic.commands.AddGroupmateCommand;
 import seedu.address.model.groupmate.Groupmate;
 import seedu.address.model.groupmate.Name;
 import seedu.address.model.groupmate.Role;
 import seedu.address.testutil.GroupmateBuilder;
 
-public class AddContactToCommandParserTest {
+public class AddGroupmateCommandParserTest {
     private AddContactToCommandParser parser = new AddContactToCommandParser();
 
     @Test
@@ -35,12 +35,12 @@ public class AddContactToCommandParserTest {
 
         // all field appear once
         assertParseSuccess(parser, INDEX_STANDALONE_ONE + NAME_DESC_SYLPH + ROLE_DESC_LEADER,
-                new AddContactToCommand(expectedProjectIndex, expectedContact)
+                new AddGroupmateCommand(expectedProjectIndex, expectedContact)
         );
 
         // multiple names - last name accepted
         assertParseSuccess(parser, INDEX_STANDALONE_ONE + NAME_DESC_ROXY + NAME_DESC_SYLPH + ROLE_DESC_LEADER,
-                new AddContactToCommand(expectedProjectIndex, expectedContact));
+                new AddGroupmateCommand(expectedProjectIndex, expectedContact));
 
         // multiple roles - all accepted
         Groupmate expectedGroupmateMultipleTags = new GroupmateBuilder(SYLPH)
@@ -48,12 +48,12 @@ public class AddContactToCommandParserTest {
                 .build();
         assertParseSuccess(parser, INDEX_STANDALONE_ONE + NAME_DESC_SYLPH + ROLE_DESC_LEADER
                         + ROLE_DESC_MAGICIAN,
-                new AddContactToCommand(expectedProjectIndex, expectedGroupmateMultipleTags));
+                new AddGroupmateCommand(expectedProjectIndex, expectedGroupmateMultipleTags));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddContactToCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddGroupmateCommand.MESSAGE_USAGE);
 
         // missing project index
         assertParseFailure(parser, NAME_DESC_SYLPH + ROLE_DESC_LEADER,

@@ -4,7 +4,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddContactToCommand;
+import seedu.address.logic.commands.AddGroupmateCommand;
 import seedu.address.model.groupmate.Groupmate;
 
 /**
@@ -16,7 +16,7 @@ public class GroupmateUtil {
      * Returns an addGroupmate command string for adding the {@code Groupmate}.
      */
     public static String getAddGroupmateCommand(Index projectIndex, Groupmate groupmate) {
-        return AddContactToCommand.COMMAND_WORD + " " + projectIndex.getOneBased() + " "
+        return AddGroupmateCommand.COMMAND_WORD + " " + projectIndex.getOneBased() + " "
                 + getGroupmateDetails(groupmate);
     }
 

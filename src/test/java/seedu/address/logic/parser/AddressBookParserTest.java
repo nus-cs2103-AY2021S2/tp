@@ -21,9 +21,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddContactToCommand;
 import seedu.address.logic.commands.AddDeadlineCommand;
 import seedu.address.logic.commands.AddEventCommand;
+import seedu.address.logic.commands.AddGroupmateCommand;
 import seedu.address.logic.commands.AddTodoCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
@@ -73,10 +73,10 @@ public class AddressBookParserTest {
     public void parseCommand_addCto() throws Exception {
         Groupmate contact = new GroupmateBuilder().build();
         Index projectIndex = Index.fromOneBased(1);
-        AddContactToCommand command = (AddContactToCommand) parser.parseCommand(
+        AddGroupmateCommand command = (AddGroupmateCommand) parser.parseCommand(
                 GroupmateUtil.getAddGroupmateCommand(projectIndex, contact)
         );
-        assertEquals(new AddContactToCommand(projectIndex, contact), command);
+        assertEquals(new AddGroupmateCommand(projectIndex, contact), command);
     }
 
     @Test
