@@ -19,6 +19,7 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
+    private final AutoCompleter autoCompleter;
 
     @FXML
     private TextField commandTextField;
@@ -28,9 +29,10 @@ public class CommandBox extends UiPart<Region> {
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
      */
-    public CommandBox(CommandExecutor commandExecutor) {
+    public CommandBox(CommandExecutor commandExecutor, AutoCompleter autoCompleter) {
         super(FXML);
         this.commandExecutor = commandExecutor;
+        this.autoCompleter = autoCompleter;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
         commandTextField.setOnKeyPressed(e -> handleUserKey(e.getCode()));
@@ -70,6 +72,17 @@ public class CommandBox extends UiPart<Region> {
         case ESCAPE:
             commandTextField.clear();
             break;
+        case TAB:
+            String command = commandTextField.getText();
+            try {
+                String output = autoCompleter.autoComplete(command);
+                commandTextField.setText(output);
+            } catch (CommandException | ParseException e) {
+                setStyleToIndicateCommandFailure();
+            }
+            commandTextField.requestFocus();
+            commandTextField.end();
+            break;
         default:
             break;
         }
@@ -106,6 +119,19 @@ public class CommandBox extends UiPart<Region> {
          * @see seedu.partyplanet.logic.Logic#execute(String)
          */
         CommandResult execute(String commandText) throws CommandException, ParseException;
+    }
+
+    /**
+     * Represents a function that can parse input and return autocompletes.
+     */
+    @FunctionalInterface
+    public interface AutoCompleter {
+        /**
+         * Parses the command and returns the autocompleted result.
+         *
+         * @see seedu.partyplanet.logic.Logic#execute(String)
+         */
+        String autoComplete(String commandText) throws CommandException, ParseException;
     }
 
 }

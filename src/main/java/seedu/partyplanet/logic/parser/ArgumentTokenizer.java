@@ -127,6 +127,14 @@ public class ArgumentTokenizer {
             argMultimap.put(argPrefix, argValue);
         }
 
+        // Pass prefix order to argMultimap
+        List<Prefix> prefixPositionOrder = prefixPositions
+                .stream()
+                .map(p -> p.prefix)
+                .distinct()
+                .collect(Collectors.toList());
+        argMultimap.putOrder(prefixPositionOrder);
+
         return argMultimap;
     }
 
