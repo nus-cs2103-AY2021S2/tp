@@ -17,16 +17,21 @@ public class CommandResult {
     /** Policy information should be shown to the user. */
     private final boolean showPolicies;
 
+    /** Shortcut Library should be shown to the user. */
+    private final boolean showShortcuts;
+
     /** The application should exit. */
     private final boolean exit;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean showPolicies, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean showPolicies, boolean showShortcuts,
+                         boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.showPolicies = showPolicies;
+        this.showShortcuts = showShortcuts;
         this.exit = exit;
     }
 
@@ -35,7 +40,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false);
+        this(feedbackToUser, false, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -48,6 +53,10 @@ public class CommandResult {
 
     public boolean isShowPolicies() {
         return showPolicies;
+    }
+
+    public boolean isShowShortcuts() {
+        return showShortcuts;
     }
 
     public boolean isExit() {
@@ -68,12 +77,14 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
+                && showPolicies == otherCommandResult.showPolicies
+                && showShortcuts == otherCommandResult.showShortcuts
                 && exit == otherCommandResult.exit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, showPolicies, showShortcuts, exit);
     }
 
 }
