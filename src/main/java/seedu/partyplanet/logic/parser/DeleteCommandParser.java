@@ -1,6 +1,7 @@
 package seedu.partyplanet.logic.parser;
 
 import static seedu.partyplanet.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.partyplanet.logic.parser.CliSyntax.FLAG_ANY;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
@@ -26,13 +27,15 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TAG);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TAG, FLAG_ANY);
 
         boolean tagIsPresent = argMultimap.getValue(PREFIX_TAG).isPresent();
         boolean idxIsPresent = !argMultimap.getPreamble().isEmpty();
+        boolean isAny = argMultimap.contains(FLAG_ANY);
 
-        // Do not allow both tag and index to exist
-        if (tagIsPresent && idxIsPresent) {
+        // 1. Do not allow both tag and index to exist
+        // 2. "any" flag can only appear with tags
+        if (tagIsPresent && idxIsPresent || isAny && !tagIsPresent) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
@@ -43,7 +46,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         try {
 
             if (tagIsPresent) {
-                return createDeleteContactWithTagCommand(argMultimap.getAllValues(PREFIX_TAG));
+                return createDeleteContactWithTagCommand(argMultimap.getAllValues(PREFIX_TAG), isAny);
             }
 
             return createDeleteContactCommand(argMultimap.getPreamble());
@@ -54,22 +57,35 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         }
     }
 
-    private DeleteContactWithTagCommand createDeleteContactWithTagCommand(List<String> tags) throws ParseException {
+    private DeleteContactWithTagCommand createDeleteContactWithTagCommand(List<String> tags, boolean isAny)
+            throws ParseException {
         Set<Tag> tagList = ParserUtil.parseTags(tags);
-        return new DeleteContactWithTagCommand(tagList);
+        return new DeleteContactWithTagCommand(tagList, isAny);
     }
 
     private DeleteContactCommand createDeleteContactCommand(String args) throws ParseException {
         String[] strIndexes = args.split("\\s+");
-        List<Index> indexes = new ArrayList<>();
+        List<Index> validIndexes = new ArrayList<>();
+        List<String> invalidIndexes = new ArrayList<>();
 
         for (String s : strIndexes) {
-            Index index = ParserUtil.parseIndex(s);
-            if (!indexes.contains(index)) {
-                indexes.add(index);
+            try {
+                Index index = ParserUtil.parseIndex(s);
+                if (!validIndexes.contains(index)) {
+                    validIndexes.add(index);
+                }
+            } catch (ParseException pe) {
+                if (!invalidIndexes.contains(s)) {
+                    invalidIndexes.add(s);
+                }
             }
         }
 
-        return new DeleteContactCommand(indexes);
+        if (validIndexes.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        }
+
+        return new DeleteContactCommand(validIndexes, invalidIndexes);
     }
 }

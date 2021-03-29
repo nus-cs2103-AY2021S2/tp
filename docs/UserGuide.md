@@ -49,6 +49,8 @@ PartyPlanet can get the planning of your birthday celebrations done faster than 
 
 </div>
 
+## Contact List Commands
+
 ### Adding contacts : `add`
 
 Adds a person to PartyPlanet's Contacts List.
@@ -72,23 +74,22 @@ Format: `clear`
 
 Deletes person(s) from PartyPlanet's Contact List.
 
-Format: `delete [{INDEX [INDEX]... | -t TAG [-t TAG]...}]`
+Format: `delete [{INDEX [INDEX]... | [--any] -t TAG [-t TAG]...}]`
 * If no parameters:
-  * Deletes all persons in the current filtered list
+  * Deletes all persons in the displayed person list
 * If provided with index(es)
   * Deletes the person at the specified `INDEX`.
   * All indexes refers to the index number shown in the displayed person list (without sorting).
   * All indexes must be a positive integer valid in the list.
 * If provided with tags
-  * Delete every person who is tagged with the specified tag.
-  * If the person is tagged with another tag, only the specified tag will be removed. The contact will not be deleted.
+  * Delete every person who is tagged with all/any (`--any` specified) of the specified tags, in the displayed person list.
 
 Examples:
 * `delete` deletes all contacts in current filtered list
 * `delete 3` deletes contact at 3rd index.
 * `delete 3 4 5` deletes contacts at 3rd, 4th and 5th index.
-* `delete -t colleague` deletes contact with tag "colleague".
-* `delete -t colleague -t cs2103` deletes contacts with tag "colleague" and contacts with tag "cs2103"
+* `delete -t colleague -t cs2103` deletes contact with both tag "colleague" and "cs2103".
+* `delete --any -t colleague -t cs2103` deletes contacts with either tag "colleague" or tag "cs2103"
 
 ### Editing contacts : `edit`
 
@@ -161,12 +162,7 @@ Examples:
 * `tags` lists out all tags available.
 * `tags -f cs2103` lists out all tags that contain `cs2103`.
 
-### Undoing actions : `undo`
-
-Undoes the most recent action that changed PartyPlanet's Contact List.
-Can be invoked repeatedly until there is no more history from the current session.
-
-Format: `undo`
+## Event List Commands
 
 ### Adding events : `eadd`
 
@@ -204,13 +200,13 @@ Format: `elist [--exact] [--any] [-n NAME] [-r DETAIL] ... [-s SORT] [-o ORDER]`
   * Partial matches to names and details are performed by default, e.g. `key` will match `turkey`.
   * If exact match is desired, specify an additional `--exact` flag.
   * If multiple names/tags are specified, specifying `--any` filters contacts that fulfill any prefix match.
-* -s list out all events sorted according to SORT_FIELD. Possible values of SORT_FIELD:    
+* -s list out all events sorted according to SORT_FIELD. Possible values of SORT_FIELD:
   * n: names in ascending lexicographical order
-  * d: event dates from past to present 
-* -o list out all events sorted according to SORT_ORDER. Possible values of SORT_ORDER:    
-  * asc: ascending lexicographical order  
+  * d: event dates from past to present
+* -o list out all events sorted according to SORT_ORDER. Possible values of SORT_ORDER:
+  * asc: ascending lexicographical order
   * desc: descending lexicographical order
-  
+
 Examples:
 * `elist --exact -n Graduation party -r Get job` Lists out all events whose name is exactly "Graduation party" and remark is exactly "Get job"
 * `elist --any -n Christmas -r tarts` Lists out all events whose name contains "Christmas" or whose remarks contain "tarts"
@@ -231,18 +227,20 @@ Examples:
 
 Deletes event(s) from PartyPlanet's Events List. Similar to `delete`.
 
-Format: `edelete [INDEX (must be a positive integer) [INDEX]...]`
+Format: `edelete [INDEX [INDEX]...]`
 
 * If no parameters:
   * Deletes all events in the current events list.
 * If provided with index(es)
   * Deletes the event(s) at the specified `INDEX`.
   * All indexes must be a positive integer valid in the list.
-  
+
 Examples:
 
 * `edelete` deletes all events in the current Events List.
 * `edelete 1 2 3` deletes events at 1st, 2nd and 3rd indexes.
+
+## General Commmands
 
 ### Showing help : `help`
 
@@ -258,9 +256,24 @@ Examples:
 * `help` lists all available commands.
 * `help list` shows the syntax and description for the `list` command.
 
+
+### Undoing actions : `undo`
+
+Undoes the most recent action that changed PartyPlanet's Contact or Event List.
+Can be invoked repeatedly until there is no more history from the current session.
+
+Format: `undo`
+
+### Redoing actions : `redo`
+
+Redoes the previous action that changed PartyPlanet's Contact or Event List.
+Can be invoked repeatedly until there are no more previously executed actions from the current session.
+
+Format: `undo`
+
 ### Toggle theme : `theme`
 
-Toggles between Dark and Pink theme
+Toggles between Dark and Pastel theme
 
 Format: `theme`
 
@@ -308,8 +321,8 @@ Action | Format, Examples
 **Add** | `add -n NAME [-p PHONE_NUM] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK]` <br> e.g., `add -n James Ho -p 96280000 -t friend -t colleague -r allergic to nuts`
 **EAdd** | `eadd -n NAME [-d DATE] [-r REMARK]` <br> e.g. `eadd -n April Fools -d 2021-04-01 -r Prank the april babies!`
 **Clear** | `clear`
-**Delete** | `delete [{INDEX [INDEX]…​ | -t TAG [-t TAG]...}]`<br> e.g. `delete` <br> e.g. `delete 3 4 5` <br> e.g., `delete -t colleague`
-**EDelete** | `edelete [INDEX (must be a positive integer) [INDEX]...]` <br> e.g. `edelete 1 2 3`
+**Delete** | `delete [{INDEX [INDEX]…​ | [--any] -t TAG [-t TAG]...}]`<br> e.g. `delete` <br> e.g. `delete 3 4 5` <br> e.g., `delete -t colleague`
+**EDelete** | `edelete [INDEX [INDEX]...]` <br> e.g. `edelete 1 2 3`
 **EDone** | `edone INDEX [INDEX]…​` <br> e.g. `edone 2 3 5`
 **Edit** | `edit {INDEX [-n NAME] [-p PHONE_NUMBER] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] | --remove -t TAG [-t TAG}…​}`<br> e.g.,`edit 2 -n James Lee -e jameslee@example.com`<br> e.g., `edit --remove -t colleague`
 **EEdit** | `eedit INDEX [-n NAME] [-d DATE] [-r REMARK]` <br> e.g. `eedit 3 -r Celebrate during first combined practice`
@@ -318,6 +331,7 @@ Action | Format, Examples
 **EList** | `elist [--exact] [--any] [-n NAME] [-r DETAIL] ... [-s SORT] [-o ORDER]` <br> e.g. `elist --any -n Christmas -r tarts`
 **Find tags** | `tags [-f KEYWORD]`<br> e.g.,`tags`<br> e.g., `tags -f cs2103`
 **Undo** | `undo`
+**Redo** | `redo`
 **Help** | `help [COMMAND]`<br> e.g., `help`<br> e.g.,`help list`
 **Toggle theme** | `theme`
 **Exit** | `exit`

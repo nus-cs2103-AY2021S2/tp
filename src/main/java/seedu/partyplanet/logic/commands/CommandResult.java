@@ -2,8 +2,9 @@ package seedu.partyplanet.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
 import java.util.Objects;
+
+import seedu.partyplanet.ui.Theme;
 
 /**
  * Represents the result of a command execution.
@@ -16,7 +17,7 @@ public class CommandResult {
     private final boolean exit;
 
     /** The application should switch to this theme */
-    private final List<String> theme;
+    private final Theme theme;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -30,7 +31,7 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} including the theme.
      */
-    public CommandResult(String feedbackToUser, boolean exit, List<String> theme) {
+    public CommandResult(String feedbackToUser, boolean exit, Theme theme) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.exit = exit;
         this.theme = theme;
@@ -56,7 +57,7 @@ public class CommandResult {
         return theme != null;
     }
 
-    public List<String> getTheme() {
+    public Theme getTheme() {
         return theme;
     }
 

@@ -28,9 +28,12 @@ public class HelpCommand extends Command {
             + "*****EVENTBOOK*****\n"
             + "Adding events: " + EAddCommand.MESSAGE_USAGE_CONCISE + "\n"
             + "Deleting events: " + EDeleteCommand.MESSAGE_USAGE_CONCISE + "\n"
+            + "Editing events: " + EEditCommand.MESSAGE_USAGE_CONCISE + "\n"
             + "Marking events as done: " + EDoneCommand.MESSAGE_USAGE_CONCISE + "\n"
+            + "Listing events: " + EListCommand.MESSAGE_USAGE_CONCISE + "\n"
             + "*****GENERAL*****\n"
             + "Undoing mistakes: " + UndoCommand.MESSAGE_USAGE_CONCISE + "\n"
+            + "Redoing commands: " + RedoCommand.MESSAGE_USAGE_CONCISE + "\n"
             + "Toggle theme: " + ToggleThemeCommand.MESSAGE_USAGE_CONCISE + "\n"
             + "Leaving app: " + ExitCommand.MESSAGE_USAGE_CONCISE;
 
@@ -89,6 +92,9 @@ public class HelpCommand extends Command {
         case EDeleteCommand.COMMAND_WORD:
             return new CommandResult(EDeleteCommand.MESSAGE_USAGE, false);
 
+        case EEditCommand.COMMAND_WORD:
+            return new CommandResult(EEditCommand.MESSAGE_USAGE, false);
+
         case EDoneCommand.COMMAND_WORD:
             return new CommandResult(EDoneCommand.MESSAGE_USAGE, false);
 
@@ -99,6 +105,9 @@ public class HelpCommand extends Command {
 
         case UndoCommand.COMMAND_WORD:
             return new CommandResult(UndoCommand.MESSAGE_USAGE, false);
+
+        case RedoCommand.COMMAND_WORD:
+            return new CommandResult(RedoCommand.MESSAGE_USAGE, false);
 
         case ToggleThemeCommand.COMMAND_WORD:
             return new CommandResult(ToggleThemeCommand.MESSAGE_USAGE, false);
