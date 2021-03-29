@@ -4,18 +4,21 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-AddressBook *-right-> "1" UniquePersonList
+AddressBook *-right-> "1" UniquePassengerList
 AddressBook *-right-> "1" UniqueTagList
-UniqueTagList -[hidden]down- UniquePersonList
-UniqueTagList -[hidden]down- UniquePersonList
+UniqueTagList -[hidden]down- UniquePassengerList
+UniqueTagList -[hidden]down- UniquePassengerList
 
 UniqueTagList *-right-> "*" Tag
-UniquePersonList o-right-> Person
+UniquePassengerList o-right-> Passenger
 
-Person -up-> "*" Tag
+Passenger -up-> "*" Tag
 
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
+Passenger *--> Name
+Passenger *--> Phone
+Passenger *--> Address
+Passenger *--> TripDay
+Passenger *--> TripTime
+Passenger *--> "0..1" Price
+Passenger *--> "0..1" Driver
 @enduml

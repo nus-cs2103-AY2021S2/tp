@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+
+<HBox id="labelWithIcon" fx:id="labelWithIcon" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <ImageView styleClass="iconHolder" id="iconHolder" fx:id="iconHolder" fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+    <image>
+      <Image url="/images/fail.png" />
+    </image>
+    <HBox.margin>
+      <Insets top="5" right="10" bottom="5" left="0" />
+    </HBox.margin>
+  </ImageView>
+  <Label minWidth="30" id="text" fx:id="text" styleClass="cell_small_label" text="\$text" wrapText="true" />
+</HBox>

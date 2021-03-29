@@ -1,0 +1,68 @@
+{
+  "_comment": "AddressBook save file which contains the same Passenger values as in TypicalPassenger#getTypicalAddressBook()",
+  "passengers" : [ {
+    "name" : "Alice Pauline",
+    "phone" : "94351253",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "tripDay" : "FRIDAY",
+    "tripTime" : "1800",
+    "price" : "1.69",
+    "driver" : "No driver assigned to this passenger.",
+    "tagged" : [ "friends" ]
+  }, {
+    "name" : "Benson Meier",
+    "phone" : "98765432",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "tripDay" : "FRIDAY",
+    "tripTime" : "1800",
+    "price" : "1.69",
+    "driver" : "No driver assigned to this passenger.",
+    "tagged" : [ "owesMoney", "friends" ]
+  }, {
+    "name" : "Carl Kurz",
+    "phone" : "95352563",
+    "address" : "wall street",
+    "tripDay" : "FRIDAY",
+    "tripTime" : "1800",
+    "price" : "1.69",
+    "driver" : "No driver assigned to this passenger.",
+    "tagged" : [ ]
+  }, {
+    "name" : "Daniel Meier",
+    "phone" : "87652533",
+    "address" : "10th street",
+    "tripDay" : "FRIDAY",
+    "tripTime" : "1800",
+    "price" : "1.69",
+    "driver" : "No driver assigned to this passenger.",
+    "tagged" : [ "friends" ]
+  }, {
+    "name" : "Elle Meyer",
+    "phone" : "9482224",
+    "address" : "michegan ave",
+    "tripDay" : "FRIDAY",
+    "tripTime" : "2100",
+    "price" : "1.69",
+    "driver" : "No driver assigned to this passenger.",
+    "tagged" : [ ]
+  }, {
+    "name" : "Fiona Kunz",
+    "phone" : "9482427",
+    "address" : "little tokyo",
+    "tripDay" : "MONDAY",
+    "tripTime" : "0830",
+    "price" : "1.69",
+    "driver" : "No driver assigned to this passenger.",
+    "tagged" : [ ]
+  }, {
+    "name" : "George Best",
+    "phone" : "9482442",
+    "address" : "4th street",
+    "tripDay" : "THURSDAY",
+    "tripTime" : "0715",
+    "price" : "1.69",
+    "driver" : "No driver assigned to this passenger.",
+    "tagged" : [ ]
+  } ],
+  "pools" : [ ]
+}

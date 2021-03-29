@@ -5,10 +5,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 
-import seedu.address.model.human.driver.Driver;
+import seedu.address.model.person.driver.Driver;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Passenger} objects to be used in tests.
  */
 public class TypicalDrivers {
 
@@ -24,7 +24,7 @@ public class TypicalDrivers {
     public static final Driver HOON = new DriverBuilder().withName("Hoon Meier").withPhone("8482424").build();
     public static final Driver IDA = new DriverBuilder().withName("Ida Mueller").withPhone("8482131").build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
+    // Manually added - Passenger's details found in {@code CommandTestUtil}
     public static final Driver AMY = new DriverBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY).build();
     public static final Driver BOB = new DriverBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB).build();
 
