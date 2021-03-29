@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 
 /**
  * Represents the date and time of the session
@@ -76,6 +77,19 @@ public class SessionDate {
 
     public LocalTime getTime() {
         return dateTime.toLocalTime();
+    }
+
+    public boolean isSameTime(SessionDate sessionDate) {
+        return getTime().equals(sessionDate.getTime());
+    }
+
+    /**
+     * Returns the number of calendar days between this inclusive, sessionDate exclusive.
+     * @param sessionDate the other sessionDate
+     * @return number of calendar days
+     */
+    public int numOfDayTo(SessionDate sessionDate) {
+        return (int) ChronoUnit.DAYS.between(getDate(), sessionDate.getDate());
     }
 
     /**
