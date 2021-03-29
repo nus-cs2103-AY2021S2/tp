@@ -35,14 +35,21 @@ public class EditRoomCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredRoomList_success() {
-        Room editedRoom = new RoomBuilder().build();
+        Room roomToEdit = model.getFilteredRoomList().get(0);
+
+        // Room we are changing to needs to maintain the occupancy status
+        // of the room we start with. So we pre-set it here.
+        Room editedRoom = new RoomBuilder()
+                .withOccupancyStatus(roomToEdit.isOccupied().toString())
+                .build();
+
         EditRoomDescriptor descriptor = new EditRoomDescriptorBuilder(editedRoom).build();
         EditRoomCommand editRoomCommand = new EditRoomCommand(INDEX_FIRST, descriptor);
 
         String expectedMessage = String.format(EditRoomCommand.MESSAGE_EDIT_ROOM_SUCCESS, editedRoom);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setRoom(model.getFilteredRoomList().get(0), editedRoom);
+        expectedModel.setRoom(roomToEdit, editedRoom);
 
         assertCommandSuccess(editRoomCommand, model, expectedMessage, expectedModel);
     }
