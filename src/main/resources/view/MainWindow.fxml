@@ -40,9 +40,6 @@
           <Menu mnemonicParsing="false" text="Help">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
-          <Menu mnemonicParsing="false" text="Temporary">
-            <MenuItem fx:id="calendarMenuItem" mnemonicParsing="false"  onAction="#handleCalendar" text="Calendar" />
-          </Menu>
         </MenuBar>
 
         <TabPane fx:id="mainTabPane" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
@@ -93,7 +90,12 @@
 
           <Tab fx:id="calendar" text="Calendar">
             <content>
-
+              <HBox>
+                <StackPane fx:id="calendarViewPlaceholder" prefWidth="${screen.visualBounds.width}" minWidth="250" style="-fx-wrap-text: true" />
+                <padding>
+                  <Insets top="10" right="10" bottom="10" left="10" />
+                </padding>
+              </HBox>
             </content>
           </Tab>
 

@@ -16,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -25,10 +26,7 @@ import seedu.address.model.tuition.Tuition;
 
 import static seedu.address.commons.util.DateTimeUtil.isSameDay;
 
-/**
- * NOTE: As of 'beta' stage, this CalendarView launches as a new window.
- */
-public class CalendarView extends UiPart<Stage> {
+public class CalendarView extends UiPart<Region> {
     private static final Logger logger = LogsCenter.getLogger(CalendarView.class);
     private static final String FXML = "CalendarView.fxml";
 
@@ -58,8 +56,8 @@ public class CalendarView extends UiPart<Stage> {
     @FXML private ListView<Tuition> satListView;
     @FXML private ListView<Tuition> sunListView;
 
-    public CalendarView(Stage root, Logic logic) {
-        super(FXML, root);
+    public CalendarView(Logic logic) {
+        super(FXML);
         this.logic = logic;
 
         tuitionList = FXCollections.observableArrayList();
@@ -85,17 +83,22 @@ public class CalendarView extends UiPart<Stage> {
         }
     }
 
-    public CalendarView(Logic logic) {
-        this(new Stage(), logic);
-    }
-
     public void setStartDate(LocalDateTime startDate) {
         if (startDate.getDayOfWeek() == DayOfWeek.MONDAY) {
             this.calendarStartDate = startDate.withHour(0).withMinute(0).withSecond(0);
             this.populateCalendar();
+            this.populateTuitions();
         } else {
             throw new IllegalArgumentException("Start date of calendar must be a Monday!");
         }
+    }
+
+    public void advanceCalendar() {
+        setStartDate(this.calendarStartDate.plusDays(7));
+    }
+
+    public void backwardCalendar() {
+        setStartDate(this.calendarStartDate.minusDays(7));
     }
 
     private void populateCalendar() {
@@ -117,6 +120,7 @@ public class CalendarView extends UiPart<Stage> {
     }
 
     private void populateTuitions() {
+        tuitionList.clear();
         ObservableList<Student> studentObservableList = logic.getFilteredStudentList();
         for (int i = 0; i < studentObservableList.size(); i++) {
             for (int j = 0; j < studentObservableList.get(i).getListOfSessions().size(); j++) {
@@ -186,50 +190,5 @@ public class CalendarView extends UiPart<Stage> {
                 .sorted(Comparator.comparing(a -> a.getSession().getSessionDate().getDateTime()))
         );
         sunListView.setCellFactory(listView -> new CalendarViewCell());
-    }
-
-    /**
-     * Shows the help window.
-     * @throws IllegalStateException
-     * <ul>
-     *     <li>
-     *         if this method is called on a thread other than the JavaFX Application Thread.
-     *     </li>
-     *     <li>
-     *         if this method is called during animation or layout processing.
-     *     </li>
-     *     <li>
-     *         if this method is called on the primary stage.
-     *     </li>
-     *     <li>
-     *         if {@code dialogStage} is already showing.
-     *     </li>
-     * </ul>
-     */
-    public void show() {
-        logger.fine("Showing help page about the application.");
-        getRoot().show();
-        getRoot().centerOnScreen();
-    }
-
-    /**
-     * Returns true if the help window is currently being shown.
-     */
-    public boolean isShowing() {
-        return getRoot().isShowing();
-    }
-
-    /**
-     * Hides the help window.
-     */
-    public void hide() {
-        getRoot().hide();
-    }
-
-    /**
-     * Focuses on the help window.
-     */
-    public void focus() {
-        getRoot().requestFocus();
     }
 }

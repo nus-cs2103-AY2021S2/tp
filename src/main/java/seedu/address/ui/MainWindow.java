@@ -70,6 +70,9 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane feePanelPlaceholder;
 
     @FXML
+    private StackPane calendarViewPlaceholder;
+
+    @FXML
     private Tab time;
 
     /**
@@ -154,6 +157,9 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
+        calendarView = new CalendarView(logic);
+        calendarViewPlaceholder.getChildren().add(calendarView.getRoot());
+
         displayDateAndTime();
     }
 
@@ -178,18 +184,6 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.show();
         } else {
             helpWindow.focus();
-        }
-    }
-
-    /**
-     * Opens the calendar window or focuses on it if it's already opened.
-     */
-    @FXML
-    public void handleCalendar() {
-        if (!calendarView.isShowing()) {
-            calendarView.show();
-        } else {
-            calendarView.focus();
         }
     }
 
