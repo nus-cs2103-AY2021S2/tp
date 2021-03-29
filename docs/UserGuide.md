@@ -94,8 +94,7 @@ There are three main areas in TutorBuddy:
 
 1. the result display box and command box
 
-<a name="application-overview"></a>
-![ApplicationOverview](images/ApplicationOverview.png)
+<a name="application-overview"><img alt="application-overview" src="images/ApplicationOverview.png"></a>
 
 1. The utility area consists of 2 tabs: **File**, and **Help**.
 * The **File** tab consists of an exit button. To exit TutorBuddy, click on the exit button. Alternatively, use the `exit` command to exit the application.
@@ -114,7 +113,7 @@ There are three main areas in TutorBuddy:
 
   Here are some example commands you can try:
 
-  * **`list`** : Lists all students and sessions.
+  * **`list_student`** : Lists all students and sessions.
 
   * **`add_student`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Sec2 g/95421323 r/Mother` : Adds a student named `John Doe`
     to TutorBuddy.
@@ -156,7 +155,7 @@ This section details the format of the commands available in TutorBuddy. We will
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `p/98765432 p/99999999`, only `p/98765432` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `emails`, `help`, `exit`, `clear` and `list_student`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -265,7 +264,7 @@ Deletes the specified student from TutorBuddy.
 
 Format: `delete_student STUDENT_INDEX` <br>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: Tip:
 Use `find_student` command to filter the list of students you want.<br>
 The STUDENT_INDEX will be based on the current list.<br>
 (E.g. If John Doe is the 500th student, instead of `delete_student 500`, you can use `find_student John Doe` and
@@ -310,15 +309,11 @@ Adds a single tuition session to TutorBuddy.
 
 Format: `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`
 
-
-<div markdown="span" class="alert alert-primary">:information_source:
 * `STUDENT_NAME` should match the exact student’s name in TutorBuddy
 * `DURATION` should be in minutes
 * `FEE` should be the total tuition fee for the total duration
-</div>
 
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: Tip:
 TutorBuddy takes care of overlapping session for you by giving a gentle prompt, so you don't have to worry about it.
 </div>
 
@@ -399,7 +394,7 @@ Action | Format | Examples(if applicable)
 Action | Format | Examples
 --------|------------------|-------
 **Add Single Session** | `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE` | `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80`
-**Add Recurring Session** | `add_rec_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE b/INTERVAL e/LASTDATE` | `add_rec_session n/John Doe d/2021-01-01 t/20:00 k/120 s/Geography f/80 b/7 e/2021-01-15`
+**Add Recurring Session** | `add_rec_session n/STUDENT_NAME d/DATE e/LASTDATE b/INTERVAL t/TIME k/DURATION s/SUBJECT f/FEE` | `add_rec_session n/John Doe d/2021-01-01 e/2021-01-15 b/7 t/20:00 k/120 s/Geography f/80`
 **Delete Session** | `delete_session n/STUDENT_NAME i/SESSION_INDEX` | `delete_session n/John Lee i/1`
 
 **Fees**
@@ -420,5 +415,9 @@ Action | Format | Examples
 ## Glossary
 
 This glossary provides definitions for the special terms used in this user guide.
+
+**Single Session:** One time session on a particular date.
+
+**Recurring Session:** Repeating session that occurs every number of days.
 
 --------------------------------------------------------------------------------------------------------------------
