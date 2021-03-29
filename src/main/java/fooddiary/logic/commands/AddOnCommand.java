@@ -115,8 +115,8 @@ public class AddOnCommand extends Command {
 
     private static Price updatePrice(Price currentPrice, Price priceToAddOn) {
         String[] priceValues = currentPrice.value.split(PRICE_RANGE_DASH);
-        assert priceValues.length == 2 || priceValues.length == 1:
-                "Expected Price values to contain minimum 1 value or maximum two values";
+        assert priceValues.length == 2 || priceValues.length == 1
+                : "Expected Price values to contain minimum 1 value or maximum two values";
         String updatedPriceValue;
 
         if (priceValues.length == 1) {
@@ -133,7 +133,7 @@ public class AddOnCommand extends Command {
         String priceRange;
         assert priceValues.length == 1;
         if (Integer.parseInt(priceValues[0]) == Integer.parseInt(priceValueToAddOn)) {
-            priceRange =  priceValueToAddOn;
+            priceRange = priceValueToAddOn;
         } else if (Integer.parseInt(priceValues[0]) < Integer.parseInt(priceValueToAddOn)) {
             priceRange = priceValues[0] + PRICE_RANGE_DASH + priceValueToAddOn;
         } else {
