@@ -17,7 +17,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
     private Path shortcutLibraryFilePath = Paths.get("data" , "shortcutlibrary.json");
 
-
     /**
      * Creates a {@code UserPrefs} with default values.
      */
