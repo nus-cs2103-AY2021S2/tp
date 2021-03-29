@@ -18,7 +18,7 @@ public class EventBuilder {
     public static final String DEFAULT_NAME = "CS2103 Lecture";
     public static final String DEFAULT_START_DATE = "2021-01-01";
     public static final String DEFAULT_START_TIME = "00:00";
-    public static final String DEFAULT_END_DATE = "2021-01-10";
+    public static final String DEFAULT_END_DATE = "2022-01-10";
     public static final String DEFAULT_END_TIME = "23:59";
 
     private Name name;
