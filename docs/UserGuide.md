@@ -33,8 +33,8 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
         * [Showing previous flashcard](#showing-previous-flashcard--p): `p`
         * [Showing answer](#showing-answer--a): `a`
         * [Hiding answer](#hiding-answer--h): `h`
-        * [Review a flashcard as correct](#review-a-flashcard-as-correct--t): `t`
-        * [Review a flashcard as wrong](#review-a-flashcard-as-wrong--f): `f` 
+        * [Reviewing a flashcard as correct](#reviewing-a-flashcard-as-correct--t): `t`
+        * [Reviewing a flashcard as wrong](#reviewing-a-flashcard-as-wrong--f): `f` 
         * [Quitting review mode](#quitting-review-mode--q): `q`
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
@@ -409,7 +409,7 @@ Format: `h` <br>
 Example: <br><br>
 ![UiReviewModeHide](./images/UiReviewHide.png)
 
-### Review a flashcard as correct : `t`
+### Reviewing a flashcard as correct: `t`
 
 Marks that the user got the answer correct for the current flashcard. <br>
 <div markdown="span" class="alert alert-primary">
@@ -422,7 +422,7 @@ Format: `t` <br>
 Example: <br><br>
 ![UiReviewModeCorrectAnswer](./images/UiReviewAnsTrue.png)
 
-### Review a flashcard as wrong : `f`
+### Reviewing a flashcard as wrong : `f`
 
 Marks that the user got the answer wrong for the current flashcard. <br>
 <div markdown="span" class="alert alert-primary">
