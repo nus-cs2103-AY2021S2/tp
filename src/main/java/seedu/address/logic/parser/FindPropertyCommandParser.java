@@ -146,10 +146,10 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
                 try {
                     predicates.add(new PropertyDeadlinePredicate(parsePropertyDeadline(s)));
                 } catch (ParseException e) {
-                        throw new ParseException("Wrong deadline format! \n"
-                                + e.getMessage()
-                                + "\n"
-                                + FindPropertyCommand.MESSAGE_USAGE);
+                    throw new ParseException("Wrong deadline format! \n"
+                            + e.getMessage()
+                            + "\n"
+                            + FindPropertyCommand.MESSAGE_USAGE);
                 }
             }
         }

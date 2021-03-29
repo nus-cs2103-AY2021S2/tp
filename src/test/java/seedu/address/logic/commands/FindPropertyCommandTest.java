@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_PROPERTIES_LISTED_OVERVIEW;
 import static seedu.address.commons.core.Messages.MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.parser.ParserUtil.parsePropertyDeadline;
 import static seedu.address.testutil.TypicalModelManager.getTypicalModelManager;
 import static seedu.address.testutil.TypicalProperties.BURGHLEY_DRIVE;
 import static seedu.address.testutil.TypicalProperties.JURONG;
@@ -17,6 +18,7 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.property.Address;
 import seedu.address.model.property.Deadline;
@@ -25,8 +27,8 @@ import seedu.address.model.property.PropertyAddressPredicate;
 import seedu.address.model.property.PropertyClientContactPredicate;
 import seedu.address.model.property.PropertyClientEmailPredicate;
 import seedu.address.model.property.PropertyClientNamePredicate;
-import seedu.address.model.property.PropertyNamePredicate;
 import seedu.address.model.property.PropertyDeadlinePredicate;
+import seedu.address.model.property.PropertyNamePredicate;
 import seedu.address.model.property.PropertyPostalCodePredicate;
 import seedu.address.model.property.PropertyPredicateList;
 import seedu.address.model.property.PropertyPricePredicate;
@@ -329,7 +331,7 @@ public class FindPropertyCommandTest {
     }
 
     @Test
-    public void multiOptionTest() {
+    public void multiOptionTest() throws ParseException {
         String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR, 1);
         PropertyPredicateList predicate =
                 new PropertyPredicateList(
@@ -339,7 +341,7 @@ public class FindPropertyCommandTest {
                                 new PropertyPricePredicate("50000000", true),
                                 new PropertyAddressPredicate(new Address("Jurong Ave 1, #01-01")),
                                 new PropertyTypePredicate("hdb"),
-                                new PropertyDeadlinePredicate(new Deadline(LocalDate.parse("01-04-2021", DateTimeFormat.INPUT_DATE_FORMAT)))
+                                new PropertyDeadlinePredicate(parsePropertyDeadline("01-04-2021"))
                                 ));
         FindPropertyCommand command = new FindPropertyCommand(predicate);
         expectedModel.updateFilteredPropertyList(predicate.combine());

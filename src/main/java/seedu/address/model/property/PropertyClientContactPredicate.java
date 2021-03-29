@@ -1,8 +1,8 @@
 package seedu.address.model.property;
 
-import seedu.address.model.property.client.Contact;
-
 import java.util.function.Predicate;
+
+import seedu.address.model.property.client.Contact;
 
 /**
  * Tests that a {@code Client}'s {@code Name} matches any of the keywords given.

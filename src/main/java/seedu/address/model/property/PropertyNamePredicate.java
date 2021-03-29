@@ -12,6 +12,9 @@ import seedu.address.commons.util.StringUtil;
 public class PropertyNamePredicate implements Predicate<Property> {
     private final List<String> keywords;
 
+    /**
+     * Constructs a {@code PropertyNamePredicate}
+     */
     public PropertyNamePredicate(List<String> names) {
         this.keywords = new ArrayList<>();
         for (String s : names) {

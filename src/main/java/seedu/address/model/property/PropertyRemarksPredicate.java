@@ -10,7 +10,7 @@ import seedu.address.model.remark.Remark;
 public class PropertyRemarksPredicate implements Predicate<Property> {
     private final Remark keywords;
 
-    public PropertyRemarksPredicate(String keywords) throws IllegalArgumentException{
+    public PropertyRemarksPredicate(String keywords) throws IllegalArgumentException {
         this.keywords = new Remark(keywords);
     }
 

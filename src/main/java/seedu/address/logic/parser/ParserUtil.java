@@ -7,7 +7,6 @@ import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.function.Consumer;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
