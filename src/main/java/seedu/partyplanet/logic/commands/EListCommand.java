@@ -54,6 +54,7 @@ public class EListCommand extends Command {
 
     private final Comparator<Event> comparator;
     private final Predicate<Event> predicate;
+    private String parseArguments;
 
     /**
      * Default empty EListCommand.
@@ -68,7 +69,7 @@ public class EListCommand extends Command {
      * Default in ascending order, and the ANY flag is not applicable.
      */
     public EListCommand(Predicate<Event> predicate) {
-        this(predicate, SORT_NAME);
+        this(predicate, SORT_NAME, "");
     }
 
     /**
@@ -77,9 +78,10 @@ public class EListCommand extends Command {
      * @param predicate Predicate to filter people by
      * @param comparator Sorting comparator
      */
-    public EListCommand(Predicate<Event> predicate, Comparator<Event> comparator) {
+    public EListCommand(Predicate<Event> predicate, Comparator<Event> comparator, String parseArguments) {
         this.predicate = predicate;
         this.comparator = comparator;
+        this.parseArguments = parseArguments;
     }
 
     @Override
@@ -90,8 +92,13 @@ public class EListCommand extends Command {
         if (model.getEventListCopy().size() == model.getFilteredEventList().size()) {
             return new CommandResult(EListCommand.MESSAGE_SUCCESS); // No event filtered out
         }
+        if (model.getFilteredEventList().size() == 0) {
+            return new CommandResult(String.format(Messages.MESSAGE_EVENTS_LISTED_OVERVIEW,
+                model.getFilteredEventList().size()) + " None of the events meet the requirements.");
+        }
         return new CommandResult(
-                String.format(Messages.MESSAGE_EVENTS_LISTED_OVERVIEW, model.getFilteredEventList().size()));
+                String.format(Messages.MESSAGE_EVENTS_LISTED_OVERVIEW, model.getFilteredEventList().size()) +
+                    "\n\n" + parseArguments);
     }
 
     @Override
