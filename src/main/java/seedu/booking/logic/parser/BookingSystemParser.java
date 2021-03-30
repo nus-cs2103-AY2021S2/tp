@@ -30,7 +30,7 @@ import seedu.booking.logic.commands.FindPersonCommand;
 import seedu.booking.logic.commands.FindVenueCommand;
 import seedu.booking.logic.commands.HelpCommand;
 import seedu.booking.logic.commands.ListBookingCommand;
-import seedu.booking.logic.commands.ListCommand;
+import seedu.booking.logic.commands.ListPersonCommand;
 import seedu.booking.logic.commands.ListVenueCommand;
 import seedu.booking.logic.commands.PromptCreateBookingCommand;
 import seedu.booking.logic.commands.states.BookingCommandState;
@@ -140,8 +140,8 @@ public class BookingSystemParser {
         case FindPersonCommand.COMMAND_WORD:
             return new FindPersonCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case ListPersonCommand.COMMAND_WORD:
+            return new ListPersonCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

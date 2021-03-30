@@ -91,7 +91,7 @@ public class EditPersonCommandTest {
     public void execute_duplicatePersonFilteredList_failure() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        // edit person in filtered list into a duplicate in address book
+        // edit person in filtered list into a duplicate in booking system
         Person personInList = model.getBookingSystem().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
         EditPersonCommand editPersonCommand = new EditPersonCommand(new Email(VALID_EMAIL_AMY_GMAIL),
                 new EditPersonCommandDescriptorBuilder(personInList).build());

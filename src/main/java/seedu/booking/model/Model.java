@@ -52,17 +52,17 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' booking system file path.
      */
     Path getBookingSystemFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' booking system file path.
      */
     void setBookingSystemFilePath(Path bookingSystemFilePath);
 
     /**
-     * Replaces address book data with the data in {@code bookingSystem}.
+     * Replaces booking system data with the data in {@code bookingSystem}.
      */
     void setBookingSystem(ReadOnlyBookingSystem bookingSystem);
 
@@ -72,12 +72,12 @@ public interface Model {
     ReadOnlyBookingSystem getBookingSystem();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in the booking system.
      */
     boolean hasPerson(Person person);
 
     /**
-     * Returns true if a person with the same email as {@code person} exists in the address book.
+     * Returns true if a person with the same email as {@code person} exists in the booking system.
      */
     boolean hasPersonWithEmail(Email email);
 
@@ -85,7 +85,7 @@ public interface Model {
 
     /**
      * Deletes the given person.
-     * The person must exist in the address book.
+     * The person must exist in the booking system.
      */
     void deletePerson(Person target);
 
@@ -93,7 +93,7 @@ public interface Model {
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * {@code person} must not already exist in the booking system.
      */
     void addPerson(Person person);
 
@@ -101,8 +101,9 @@ public interface Model {
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in the booking system.
+     * The person identity of {@code editedPerson} must not be the same as
+     * another existing person in the booking system.
      */
     void setPerson(Person target, Person editedPerson);
 
@@ -190,13 +191,13 @@ public interface Model {
 
 
     /**
-     * Returns true if a booking with the same identity as {@code booking} exists in the address book.
+     * Returns true if a booking with the same identity as {@code booking} exists in the booking system.
      */
     boolean hasBooking(Booking booking);
 
     /**
      * Adds the given booking.
-     * {@code booking} must not already exist in the address book.
+     * {@code booking} must not already exist in the booking system.
      */
     void addBooking(Booking booking);
 
