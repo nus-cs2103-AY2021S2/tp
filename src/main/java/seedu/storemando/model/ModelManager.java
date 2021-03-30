@@ -9,6 +9,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.logging.Filter;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
@@ -30,6 +31,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Item> filteredItems;
     private final SortedList<Item> sortedItems;
+    private final FilteredList<Location> locationList;
 
     /**
      * Initializes a ModelManager with the given storeMando and userPrefs.
@@ -44,6 +46,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredItems = new FilteredList<>(this.storeMando.getItemList());
         sortedItems = new SortedList<>(this.storeMando.getItemList());
+        locationList = new FilteredList<>(this.storeMando.getLocationList());
     }
 
     public ModelManager() {
@@ -52,15 +55,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Location> getLocationList(){
-        HashMap<String, Integer> hashmap = new HashMap<>();
-        ArrayList<Location> locationList = new ArrayList<>();
-        for (Item item : filteredItems) {
-            if (hashmap.get(item.getLocation().value) == null) {
-                hashmap.put(item.getLocation().value, 1);
-                locationList.add(item.getLocation());
-            }
-        }
-        return FXCollections.observableList(locationList);
+        return storeMando.getLocationList();
     }
 
     //=========== UserPrefs ==================================================================================
