@@ -35,7 +35,7 @@ public class InputCommandStorage {
      */
     public void addInput(String userInput) {
         inputCommandList.add(userInput);
-        currentPointer = inputCommandList.size() - 1;
+        currentPointer = inputCommandList.size();
     }
 
     /**
