@@ -19,7 +19,7 @@ public class SetGoalCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Set goals for meeting the person identified by the index.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "FREQUENCY (w[eek[ly]] | m[onth[ly]] | y[ear[ly]] | n[one])\n"
+            + "f/(w[eek[ly]] | m[onth[ly]] | y[ear[ly]] | n[one])\n"
             + "Example: " + COMMAND_WORD + " 1 f/w";
 
     public static final String MESSAGE_ADD_GOAL_SUCCESS = "Set %1$s goal for %2$s";
