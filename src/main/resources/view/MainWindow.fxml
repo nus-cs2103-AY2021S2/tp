@@ -52,7 +52,7 @@
                                                 <Image url="@../images/favorite_icon.png" />
                                             </image>
                                         </ImageView>
-                                        <Label alignment="CENTER" prefHeight="25.0" style="-fx-text-fill: white;" styleClass="cell_big_label" text="Favorites">
+                                        <Label alignment="CENTER" prefHeight="25.0" style="-fx-text-fill: white;" styleClass="cell_big_label" text="Tutors">
                                             <HBox.margin>
                                                 <Insets left="4.0" />
                                             </HBox.margin>
