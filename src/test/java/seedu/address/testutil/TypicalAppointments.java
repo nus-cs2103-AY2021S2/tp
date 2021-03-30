@@ -41,6 +41,18 @@ public class TypicalAppointments {
             .withTime(LocalTime.parse("1100", DateTimeFormat.INPUT_TIME_FORMAT))
             .build();
 
+    // Manually added
+    public static final Appointment MEET_FIN = new AppointmentBuilder().withName("Meet Fin")
+            .withRemark("At Ritz Carlton")
+            .withDate(LocalDate.parse("16-09-2021", DateTimeFormat.INPUT_DATE_FORMAT))
+            .withTime(LocalTime.parse("1300", DateTimeFormat.INPUT_TIME_FORMAT))
+            .build();
+    public static final Appointment MEET_JOEL = new AppointmentBuilder().withName("Meet Joel")
+            .withRemark("At Sentosa Cove")
+            .withDate(LocalDate.parse("19-10-2021", DateTimeFormat.INPUT_DATE_FORMAT))
+            .withTime(LocalTime.parse("1000", DateTimeFormat.INPUT_TIME_FORMAT))
+            .build();
+
     private TypicalAppointments() {} // prevents instantiation
 
     /**

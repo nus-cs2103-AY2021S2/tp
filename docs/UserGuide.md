@@ -48,7 +48,7 @@ This user guide uses various formatting styles to facilitate reading and to comm
 1. Copy the file to the folder you want to use as the **home folder** for PocketEstate.
 
 1. **Double-click** the file to start the app. A Graphical User Interface (GUI) similar to the below should appear in a few seconds. Note how the app contains some sample data.<br><br>
-   
+
    ![Ui](images/Ui.png)
 
 ### 2.2 Trying out
@@ -219,17 +219,17 @@ Formats:
 
 Description:
 * Updates the status of the property at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …​
-  
+
 Options:
 * `u/new AMOUNT`
-  
+
     The `new` keyword can only be used on a property without an existing status. AMOUNT is the amount of money that is offered in the Option to Purchase
-  
+
 
 * `u/proceed`
-  
+
     Can only be used on a property with an existing status. `proceed` would move the status on to the next one. e.g. `Option` to `SalesAgreement` or `SalesAgreement` to `Completion`.
-  
+
 
 * `u/cancel`
 
@@ -273,25 +273,25 @@ Formats:
 * `find property [KEYWORD]... [OPTION]...`
 
 Description:
-* There can be 0 or more keywords and 0 or more options, but keywords and options cannot be both empty. All text are case insensitive. 
+* There can be 0 or more keywords and 0 or more options, but keywords and options cannot be both empty. All text are case insensitive.
 
 Options:
 * `[t/PROPERTY_TYPE]`
 
-    Search for properties whose property type field contain patterns specified in `[t/PROPERTY_TYPE]`. 
-    
-    The following property types are supported: 
+    Search for properties whose property type field contain patterns specified in `[t/PROPERTY_TYPE]`.
+
+    The following property types are supported:
     * hdb
     * condo
     * landed
 
 * `[pm/PRICE_UPPER_LIMIT]`
 
-    Search for properties with prices more than `[PRICE_UPPER_LIMIT]`. 
+    Search for properties with prices more than `[PRICE_UPPER_LIMIT]`.
 
 * `[pl/PRICE_LOWER_LIMIT]`
 
-    Search for properties with prices less than `[PRICE_LOWER_LIMIT]`. 
+    Search for properties with prices less than `[PRICE_LOWER_LIMIT]`.
 
 Examples:
 * `find property jurong west`
@@ -306,7 +306,7 @@ Formats:
 * `find appointment [KEYWORD]...`
 
 Description:
-* There can be 0 or more keywords. Keywords are case insensitive. 
+* There can be 0 or more keywords. Keywords are case insensitive.
 
 Examples:
 * `find appointment bob`
@@ -314,13 +314,13 @@ Examples:
 
 #### 3.8.3 Searching clients: `find client`
 
-Finds appointments that matches the keywords and properties whose clients matches the same keywords. Both are done at the same time. 
+Finds appointments that matches the keywords and properties whose clients matches the same keywords. Both are done at the same time.
 
 Formats:
 * `find client [KEYWORD]...`
 
 Description:
-* There can be 0 or more keywords. Keywords are case insensitive. 
+* There can be 0 or more keywords. Keywords are case insensitive.
 
 ### 3.9 Clearing
 
@@ -344,7 +344,7 @@ PocketEstate data are saved in the hard disk automatically after any command tha
 
 The default storage data file paths used are:
 
-* Property storage data file: `[JAR file location]/data/propertybook.json`. 
+* Property storage data file: `[JAR file location]/data/propertybook.json`.
 * Appointment storage data file: `[JAR file location]/data/appointmentbook.json`.
 
 #### 4.2 Editing the data files
@@ -413,7 +413,7 @@ The default file paths used are:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** However, if the specified configuration file or the preferences file is in an incorrect format, the default file paths will be used.
 </div>
 
-To launch PocketEstate via the command line, 
+To launch PocketEstate via the command line,
 
 1. First, open up your command prompt or terminal.
 1. Then, `cd` into the base directory containing the `pocketestate.jar` file.
