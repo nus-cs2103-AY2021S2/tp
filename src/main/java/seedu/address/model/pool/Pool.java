@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.StringJoiner;
 
 import seedu.address.model.person.driver.Driver;
 import seedu.address.model.person.passenger.Passenger;
@@ -119,6 +120,20 @@ public class Pool {
                 && otherPool.getDriver().equals(getDriver())
                 && otherPool.getTripDay().equals(getTripDay())
                 && otherPool.getTripTime().equals(getTripTime());
+    }
+
+    /**
+     * Presents Passenger names in a single string
+     * @return String of Passenger names
+     */
+    public String getPassengerNames() {
+        StringJoiner passengerNames = new StringJoiner(", ");
+
+        for (Passenger p : passengers) {
+            passengerNames.add(p.getName().toString());
+        }
+
+        return passengerNames.toString();
     }
 
     /**
