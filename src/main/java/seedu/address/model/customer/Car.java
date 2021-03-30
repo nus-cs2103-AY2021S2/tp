@@ -3,6 +3,8 @@ package seedu.address.model.customer;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Objects;
+
 /**
  * Represents a car in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidCar(String, String)}
@@ -70,9 +72,13 @@ public class Car {
                 && carType.equals(((Car) other).carType)); // state check
     }
 
+    /**
+     * Helps with comparing car Objects.
+     * carBrand and carType attributes are essential to determine same attributes.
+     */
     @Override
     public int hashCode() {
-        return this.hashCode();
+        return Objects.hash(carBrand, carType);
     }
 
 }
