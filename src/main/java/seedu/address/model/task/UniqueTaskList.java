@@ -57,12 +57,7 @@ public class UniqueTaskList implements Iterable<Task> {
         internalList.set(index, editedTask);
     }
 
-<<<<<<< HEAD:src/main/java/seedu/address/model/task/UniqueTaskList.java
-
     public void setTasks(UniqueTaskList replacement) {
-=======
-    public void setTasks(TaskList replacement) {
->>>>>>> e08c226eaee665158993702a28ea274ed87637d3:src/main/java/seedu/address/model/task/TaskList.java
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }

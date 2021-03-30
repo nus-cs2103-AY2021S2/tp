@@ -11,13 +11,8 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 
 /**
-<<<<<<< HEAD
- * Wraps all data at the hey-matez level
- * Duplicates are not allowed (by .isSamePerson comparison)
-=======
  * Wraps all data at Hey Matez level.
  * Duplicates are not allowed (by .isSamePerson comparison).
->>>>>>> e08c226eaee665158993702a28ea274ed87637d3
  */
 public class HeyMatez implements ReadOnlyHeyMatez {
 

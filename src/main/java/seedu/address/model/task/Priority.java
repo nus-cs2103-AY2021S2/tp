@@ -1,16 +1,9 @@
 package seedu.address.model.task;
 
 /**
-<<<<<<< HEAD
  * Enum for the priority values
  * Priority can take on the values, LOW, MEDIUM, HIGH, UNASSIGNED and is used to signify the priority of a task
  * UNASSIGNED is the value that is set if there is no user input for priority
-=======
- * Enum for the priority values.
- * Priority can take on the values, low, medium, high and unassigned and is used to signify the priority of a task.
- * When the user specifies the value of priority, user can only choose from low, medium or high
- * unassigned is the value that is set if there is no user input for priority.
->>>>>>> e08c226eaee665158993702a28ea274ed87637d3
  * */
 public enum Priority {
     HIGH("high"),
