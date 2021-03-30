@@ -98,6 +98,11 @@ public class NameContainsKeywordsPredicate implements Predicate<Entry> {
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(sb.toString(), keyword));
     }
 
+    /**
+     * Provides suggestion messages based on the keywords given
+     *
+     * @return suggestion message
+     */
     public String getSuggestionMessage() {
         String ratingResemblingRegex = "^[0-9]?[/][0-9]?$";
         String priceResemblingRegex = "^[$][0-9]{0,3}?[-]?[0-9]{0,3}?";
