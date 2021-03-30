@@ -4,8 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +35,8 @@ public class EditFrCommand extends BudgetBabyCommand {
         + "Existing values will be overwritten by the input values.\n"
         + "Parameters: INDEX (must be a positive integer) "
         + "[" + PREFIX_DESCRIPTION + "FR_DESCRIPTION] "
-        + "[" + PREFIX_AMOUNT + "FR_DESCRIPTION] "
+        + "[" + PREFIX_AMOUNT + "FR_AMOUNT] "
+        + "[" + PREFIX_TIME + "DATE] "
         + "[" + PREFIX_CATEGORY + "CATEGORY]...\n"
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_DESCRIPTION + "Lunch "
@@ -70,8 +73,7 @@ public class EditFrCommand extends BudgetBabyCommand {
         FinancialRecord editedFr = createEditedFr(frToEdit, editFrDescriptor);
 
         model.setFinancialRecord(frToEdit, editedFr);
-        model.updateFilteredMonthList(BudgetBabyModel.PREDICATE_SHOW_ALL_RECORDS);
-        return new CommandResult(String.format(MESSAGE_EDIT_FR_SUCCESS, editedFr));
+        return new CommandResult(String.format(MESSAGE_EDIT_FR_SUCCESS, editedFr), true, false, false);
     }
 
     /**
@@ -83,9 +85,10 @@ public class EditFrCommand extends BudgetBabyCommand {
 
         Description updatedDescription = editFrDescriptor.getDescription().orElse(frToEdit.getDescription());
         Amount updatedAmount = editFrDescriptor.getAmount().orElse(frToEdit.getAmount());
+        Date updatedTimestamp = editFrDescriptor.getDate().orElse(frToEdit.getTimestamp());
         Set<Category> updatedCategories = editFrDescriptor.getCategories().orElse(frToEdit.getCategories());
 
-        return new FinancialRecord(updatedDescription, updatedAmount, updatedCategories);
+        return new FinancialRecord(updatedDescription, updatedAmount, updatedTimestamp, updatedCategories);
     }
 
     @Override
@@ -113,6 +116,7 @@ public class EditFrCommand extends BudgetBabyCommand {
     public static class EditFrDescriptor {
         private Description description;
         private Amount amount;
+        private Date timestamp;
         private Set<Category> categories;
 
         public EditFrDescriptor() {
@@ -125,6 +129,7 @@ public class EditFrCommand extends BudgetBabyCommand {
         public EditFrDescriptor(EditFrDescriptor toCopy) {
             setDescription(toCopy.description);
             setAmount(toCopy.amount);
+            setDate(toCopy.timestamp);
             setCategories(toCopy.categories);
         }
 
@@ -132,7 +137,7 @@ public class EditFrCommand extends BudgetBabyCommand {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(description, amount, categories);
+            return CollectionUtil.isAnyNonNull(description, amount, timestamp, categories);
         }
 
         public void setDescription(Description description) {
@@ -149,6 +154,14 @@ public class EditFrCommand extends BudgetBabyCommand {
 
         public Optional<Amount> getAmount() {
             return Optional.ofNullable(amount);
+        }
+
+        public void setDate(Date timestamp) {
+            this.timestamp = timestamp;
+        }
+
+        public Optional<Date> getDate() {
+            return Optional.ofNullable(timestamp);
         }
 
         /**

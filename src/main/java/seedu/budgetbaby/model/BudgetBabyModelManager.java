@@ -142,6 +142,9 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
     public void setFinancialRecord(FinancialRecord target, FinancialRecord editedRecord) {
         requireAllNonNull(target, editedRecord);
         versionedBudgetTracker.setFinancialRecord(target, editedRecord);
+        if (!editedRecord.getMonth().equals(filteredMonths.get(0))) {
+            setCurrentDisplayMonth(editedRecord.getMonth());
+        }
     }
 
     @Override
