@@ -156,8 +156,6 @@ Format: `edit INDEX [q/NEW QUESTION] [a/NEW ANSWER] [c/NEW CATEGORY] [p/NEW PRIO
 * New tag(s) should be alphanumeric, and there should not be any spacing between characters.
 * New priority can only be "Low", "Mid" or "High", case-sensitive.
 
-<div style="page-break-after: always;"></div>
-
 Examples:
 
 * `edit 1 p/Low` <br><br>
@@ -174,8 +172,7 @@ Format: `list`
 
 ### Deleting a flashcard : `delete`
 
-Deletes the specified flashcard from the flashcard list.
-
+Deletes the specified flashcard from the flashcard list. <br>
 Format: `delete INDEX`
 
 * Deletes the flashcard at the specified `INDEX`.
@@ -185,9 +182,9 @@ Format: `delete INDEX`
 Examples:
 
 * `list` followed by `delete 2` deletes the 2nd flashcard in the flashcard list. <br>
-  Before executing command `delete 2`: <br>
+  Before executing command `delete 2`: <br><br>
   ![UIBeforeDelete](./images/UiBeforeDelete.png) <br>
-  After executing command `delete 2`: <br>
+  After executing command `delete 2`: <br><br>
   ![UIAfterDelete](./images/UiAfterDelete.png)
 
 ### Viewing a flashcard : `view`
@@ -229,7 +226,9 @@ Examples:
 * `find computer` will return cards with `computer` in any of its fields.<br><br>
 ![result for `find computer`](images/findComputerResult.png) <br><br>
 * `find computer formula` will return cards with `computer` or `formula` in any of its fields.<br><br>
-![result for `find computer formula`](images/findComputerFormulaResult.png) <br><br>
+![result for `find computer formula`](images/findComputerFormulaResult.png) <br>
+<div style="page-break-after: always;"></div>
+
 * `find phy` will return cards with `phy` contained in any of the words in any of its fields.<br><br>
 ![result for `find phy`](images/findPhyResult.png) <br><br>
 
@@ -258,13 +257,15 @@ Format: `filter [q/QUESTION] [c/CATEGORY] [p/PRIORITY] [t/TAG]`
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 * `filter q/charles recursion` will return cards with `charles` or `recursion` contained in its question.<br><br>
-  ![result for `filter q/charles recursion`](images/filterCharlesRecursionResult.png) <br><br>
-* `filter p/mid q/formula` will return cards with `formula` contained in its question and `mid` priority.<br><br>
-  ![result for `filter p/mid q/formula`](images/filterMidFormulaResult.png) <br><br>
-* `filter c/com t/ran` will return cards with `com` contained in its category and `ran`contained in any of its tags.<br><br>
-  ![result for `filter c/com t/ran`](images/filterComRanResult.png) <br><br>
+  ![result for `filter q/charles recursion`](images/filterCharlesRecursionResult.png) <br>
+* `filter p/mid q/formula` will return cards with `formula` contained in its question and `mid` priority.<br>
+  ![result for `filter p/mid q/formula`](images/filterMidFormulaResult.png) <br>
+* `filter c/com t/ran` will return cards with `com` contained in its category and `ran`contained in any of its tags.<br>
+  ![result for `filter c/com t/ran`](images/filterComRanResult.png) <br>
 
 ### Clearing all entries : `clear`
 
@@ -326,11 +327,15 @@ Before sort command is executed. <br><br>
 After sort command is executed. <br><br>
 ![UiAfterSort](./images/UiAfterSort.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Entering review mode: `review`
 Reviews the current list of flashcards.<br>
 When the user enters `review` in the command box, this new window will appear. <br><br>
 ![UiReviewMode](./images/UiReviewModeNoAnswer.png) <br><br>
 Format: `review`
+
+<div style="page-break-after: always;"></div>
 
 ### Viewing statistics of flashcards: `stats`
 Shows the statistics of an individual flashcard, or the statistics of all flashcards.
@@ -358,6 +363,8 @@ Examples:
 
 ![UiStats](./images/UiStatsNoIndex.png) <br><br>
 
+<div style="page-break-after: always;"></div>
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -381,6 +388,8 @@ If your changes to the data file makes its format invalid, FlashBack will discar
 file at the next run.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ## Review mode
 
@@ -446,6 +455,8 @@ Example: <br><br>
 ![UiReviewModeExit](./images/UiReviewExit.png)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
