@@ -3,7 +3,6 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.contact.Address;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Name;
@@ -24,7 +23,6 @@ public class ContactBuilder {
     private Name name;
     private Phone phone;
     private Email email;
-    private Address address;
     private Set<Tag> tags;
 
     /**
@@ -34,7 +32,6 @@ public class ContactBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
 
@@ -68,7 +65,6 @@ public class ContactBuilder {
      * Sets the {@code Address} of the {@code contact} that we are building.
      */
     public ContactBuilder withAddress(String address) {
-        this.address = new Address(address);
         return this;
     }
 
@@ -89,7 +85,7 @@ public class ContactBuilder {
     }
 
     public Contact build() {
-        return new Contact(name, phone, email, address, tags);
+        return new Contact(name, phone, email, tags);
     }
 
 }
