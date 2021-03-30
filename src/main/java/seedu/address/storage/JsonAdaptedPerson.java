@@ -12,9 +12,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Notes;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.subject.SubjectList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,25 +28,41 @@ class JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
+    private final String gender;
     private final String phone;
     private final String email;
     private final String address;
+    private final String notes;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedTutorSubject> tutorSubjects = new ArrayList<>();
+    private final String isFavourite;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+    public JsonAdaptedPerson(@JsonProperty("name") String name,
+                             @JsonProperty("gender") String gender,
+                             @JsonProperty("phone") String phone,
+                             @JsonProperty("email") String email,
+                             @JsonProperty("address") String address,
+                             @JsonProperty("notes") String notes,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("tutorSubjects") List<JsonAdaptedTutorSubject> tutorSubjects,
+                             @JsonProperty("isFavourite") String isFavourite) {
         this.name = name;
+        this.gender = gender;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.notes = notes;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        if (tutorSubjects != null) {
+            this.tutorSubjects.addAll(tutorSubjects);
+        }
+        this.isFavourite = isFavourite;
     }
 
     /**
@@ -51,12 +70,20 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
+        gender = source.getGender().personGender;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        notes = source.getNotes().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        tutorSubjects.addAll(source.getSubjectList()
+                .asUnmodifiableObservableList()
+                .stream()
+                .map(JsonAdaptedTutorSubject::new)
+                .collect(Collectors.toList()));
+        isFavourite = Boolean.toString(source.isFavourite());
     }
 
     /**
@@ -102,8 +129,40 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (notes == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Notes.class.getSimpleName()));
+        }
+        final Notes modelNotes;
+        if (notes.equals("")) {
+            modelNotes = new Notes(null);
+        } else {
+            modelNotes = new Notes(notes);
+        }
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        if (gender == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName()));
+        }
+        if (!Gender.isValidGender(gender)) {
+            throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
+        }
+        final Gender modelGender = new Gender(gender);
+
+        final SubjectList modelSubjectList = new SubjectList();
+        for (JsonAdaptedTutorSubject tutorSubject : tutorSubjects) {
+            modelSubjectList.add(tutorSubject.toModelType());
+        }
+
+        final boolean modelIsFavourite;
+        try {
+            modelIsFavourite = Boolean.parseBoolean(isFavourite);
+        } catch (Exception e) {
+            throw new IllegalValueException("Invalid boolean value");
+        }
+
+        return new Person(modelName, modelGender, modelPhone, modelEmail,
+                modelAddress, modelNotes, modelSubjectList, modelTags, modelIsFavourite);
     }
 
 }

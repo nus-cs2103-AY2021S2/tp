@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Tag in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
-public class Tag {
+public class Tag implements Filterable {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
@@ -51,4 +51,20 @@ public class Tag {
         return '[' + tagName + ']';
     }
 
+    @Override
+    public boolean filter(String s) {
+        return tagName.contains(s);
+    }
+
+    public String getTagName() {
+        return this.tagName;
+    }
+
+    boolean isSameTag(Tag otherTag) {
+        if (otherTag == this) {
+            return true;
+        }
+        return otherTag != null
+                && otherTag.getTagName().equals(getTagName());
+    }
 }

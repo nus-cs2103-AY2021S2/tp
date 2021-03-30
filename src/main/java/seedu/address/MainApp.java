@@ -16,15 +16,28 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.AddressBook;
+import seedu.address.model.AppointmentBook;
+import seedu.address.model.BudgetBook;
+import seedu.address.model.GradeBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyAppointmentBook;
+import seedu.address.model.ReadOnlyGradeBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.schedule.ReadOnlyScheduleTracker;
+import seedu.address.model.schedule.ScheduleTracker;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.AppointmentBookStorage;
+import seedu.address.storage.GradeBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonAppointmentBookStorage;
+import seedu.address.storage.JsonGradeBookStorage;
+import seedu.address.storage.JsonScheduleTrackerStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.ScheduleTrackerStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
@@ -39,6 +52,15 @@ public class MainApp extends Application {
     public static final Version VERSION = new Version(0, 6, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
+
+    private static final String APPOINTMENT_BOOK_NOT_FOUND = "Data file not found. "
+            + "Will be starting with a sample Appointment Book";
+    private static final String ADDRESS_BOOK_NOT_FOUND = "Data file not found. Will "
+            + "be starting with a sample AddressBook";
+    private static final String GRADE_BOOK_NOT_FOUND = "Data file not found. Will "
+            + "be starting with a sample GradeBook";
+    private static final String SCHEDULE_TRACKER_NOT_FOUND = "Data file not found. Will "
+            + "be starting with a sample Schedule Tracker";
 
     protected Ui ui;
     protected Logic logic;
@@ -57,7 +79,13 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        AppointmentBookStorage appointmentBookStorage =
+                new JsonAppointmentBookStorage(userPrefs.getAppointmentBookFilePath());
+        GradeBookStorage gradeBookStorage = new JsonGradeBookStorage(userPrefs.getGradeBookFilePath());
+        ScheduleTrackerStorage scheduleTrackerStorage =
+                new JsonScheduleTrackerStorage(userPrefs.getScheduleTrackerFilePath());
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, appointmentBookStorage,
+                gradeBookStorage, scheduleTrackerStorage);
 
         initLogging(config);
 
@@ -66,6 +94,7 @@ public class MainApp extends Application {
         logic = new LogicManager(model, storage);
 
         ui = new UiManager(logic);
+
     }
 
     /**
@@ -75,11 +104,19 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
+        Optional<ReadOnlyAppointmentBook> appointmentBookOptional;
+        Optional<ReadOnlyGradeBook> gradeBookOptional;
+        Optional<ReadOnlyScheduleTracker> scheduleTrackerOptional;
+
         ReadOnlyAddressBook initialData;
+        ReadOnlyAppointmentBook initialAppointments;
+        ReadOnlyGradeBook initialGrades;
+        ReadOnlyScheduleTracker initialSchedules;
+
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+                logger.info(ADDRESS_BOOK_NOT_FOUND);
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
@@ -90,7 +127,46 @@ public class MainApp extends Application {
             initialData = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        try {
+            appointmentBookOptional = storage.readAppointmentBook();
+            if (!appointmentBookOptional.isPresent()) {
+                logger.info(APPOINTMENT_BOOK_NOT_FOUND);
+            }
+            initialAppointments =
+                    appointmentBookOptional.orElseGet(SampleDataUtil::getSampleAppointmentBook);
+        } catch (DataConversionException e) {
+            initialAppointments = new AppointmentBook();
+        } catch (IOException e) {
+            initialAppointments = new AppointmentBook();
+        }
+
+        BudgetBook budgetBook = storage.readBudgetBook();
+
+        try {
+            gradeBookOptional = storage.readGradeBook();
+            if (!gradeBookOptional.isPresent()) {
+                logger.info(GRADE_BOOK_NOT_FOUND);
+            }
+            initialGrades =
+                    gradeBookOptional.orElseGet(SampleDataUtil::getSampleGradeBook);
+        } catch (DataConversionException e) {
+            initialGrades = new GradeBook();
+        } catch (IOException e) {
+            initialGrades = new GradeBook();
+        }
+
+        try {
+            scheduleTrackerOptional = storage.readScheduleTracker();
+            if (!scheduleTrackerOptional.isPresent()) {
+                logger.info(SCHEDULE_TRACKER_NOT_FOUND);
+            }
+            initialSchedules = scheduleTrackerOptional.orElseGet(SampleDataUtil::getSampleScheduleTracker);
+        } catch (DataConversionException | IOException e) {
+            initialSchedules = new ScheduleTracker();
+        }
+
+        return new ModelManager(initialData, userPrefs, initialAppointments,
+                budgetBook, initialGrades, initialSchedules);
     }
 
     private void initLogging(Config config) {

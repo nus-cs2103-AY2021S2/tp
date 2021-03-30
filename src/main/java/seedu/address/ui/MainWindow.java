@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -16,6 +17,8 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.ui.schedulepanel.ScheduleListPanel;
+import seedu.address.ui.timetablepanel.TimeTableWindow;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -31,9 +34,15 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
-    private ResultDisplay resultDisplay;
+    private ResultBarFooter resultDisplay;
     private HelpWindow helpWindow;
+    private TimeTableWindow timetableWindow;
+    private TutorListPanel tutorListPanel;
+    private CalendarView calendarView;
+    private AppointmentListPanel appointmentListPanel;
+    private GradeListPanel gradeListPanel;
+    private FiltersPanel filtersPanel;
+    private ScheduleListPanel scheduleListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -42,13 +51,28 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
+    private StackPane filtersPanelPlaceholder;
+
+    @FXML
     private StackPane personListPanelPlaceholder;
 
     @FXML
-    private StackPane resultDisplayPlaceholder;
+    private StackPane statusbarPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private StackPane calendarViewPane;
+
+    @FXML
+    private StackPane appointmentListPanelPlaceholder;
+
+    @FXML
+    private StackPane gradeListPanelPlaceholder;
+
+    @FXML
+    private StackPane scheduleListPanelPlaceholder;
+
+    @FXML
+    private TabPane tabPanePlaceHolder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -66,6 +90,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        timetableWindow = new TimeTableWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -78,6 +103,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -110,17 +136,32 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        tutorListPanel = new TutorListPanel(logic.getFilteredPersonList());
+        personListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
 
-        resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+        appointmentListPanel = new AppointmentListPanel(logic.getFilteredAppointmentList());
+        appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        /* Grade List */
+        gradeListPanel = new GradeListPanel(logic.getFilteredGradeList());
+        gradeListPanelPlaceholder.getChildren().add(gradeListPanel.getRoot());
+
+        scheduleListPanel = new ScheduleListPanel(logic.getFilteredScheduleList());
+        scheduleListPanelPlaceholder.getChildren().add(scheduleListPanel.getRoot());
+
+        resultDisplay = new ResultBarFooter();
+        statusbarPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        calendarView = new CalendarView(this::executeCommand);
+        calendarViewPane.getChildren().add(calendarView.getRoot());
+
+        filtersPanel = new FiltersPanel();
+        filtersPanelPlaceholder.getChildren().add(filtersPanel.getRoot());
+        filtersPanel.fillInnerParts(logic.getPersonFilterStringList(),
+                logic.getAppointmentFilterStringList());
     }
 
     /**
@@ -147,6 +188,18 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the help window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleTimetable() {
+        if (!timetableWindow.isShowing()) {
+            timetableWindow.show(logic.getFilteredEventList());
+        } else {
+            timetableWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -163,10 +216,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
-    }
-
     /**
      * Executes the command and returns the result.
      *
@@ -180,6 +229,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowTimetable()) {
+                handleTimetable();
             }
 
             if (commandResult.isExit()) {

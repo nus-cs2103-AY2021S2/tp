@@ -5,55 +5,58 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the emails:
+```
+kingsley.kuan[at]u.nus.edu
+vinleon[at]u.nus.edu
+jared_lyj[at]u.nus.edu
+e0425411[at]u.nus.edu
+zou.yuting[at]u.nus.edu
+```
 
 ## Project team
 
-### John Doe
+### Kingsley Kuan Jun Hao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kingsleykuan.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/kingsleykuan)]
+[[portfolio](team/kingsleykuan.md)]
 
-* Role: Project Advisor
+* Role: Documentation, Testing
 
-### Jane Doe
+### Koh Vinleon
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/glatiuden.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/glatiuden)]
+[[portfolio](team/glatiuden.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Integration
 
-### Johnny Doe
+### Lim Yong Jian Jared
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jared98lyj.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/jared98lyj)]
+[[portfolio](team/jared98lyj.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Scheduling and tracking
 
-### Jean Doe
+### Winnie Ho Yi Xuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/winniehyx.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Winniehyx)]
+[[portfolio](team/Winniehyx.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Deliverables and deadlines
 
-### James Doe
+### Zou Yuting
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yutingzou.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/yutingzou)]
+[[portfolio](team/yutingzou.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Code quality

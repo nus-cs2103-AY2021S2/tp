@@ -1,13 +1,14 @@
 package seedu.address.model.person;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import seedu.address.model.tag.Filterable;
 
 /**
  * Represents a Person's phone number in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
-public class Phone {
+public class Phone implements Filterable {
 
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -50,4 +51,8 @@ public class Phone {
         return value.hashCode();
     }
 
+    @Override
+    public boolean filter(String s) {
+        return value.contains(s);
+    }
 }

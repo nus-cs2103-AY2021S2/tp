@@ -7,9 +7,13 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.BudgetBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyAppointmentBook;
+import seedu.address.model.ReadOnlyGradeBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -19,14 +23,27 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
+    private AppointmentBookStorage appointmentBookStorage;
+    private BudgetBookStorage budgetBookStorage;
+    private GradeBookStorage gradeBookStorage;
+    private ScheduleTrackerStorage scheduleTrackerStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(AddressBookStorage addressBookStorage,
+                          UserPrefsStorage userPrefsStorage,
+                          AppointmentBookStorage appointmentBookStorage,
+                          GradeBookStorage gradeBookStorage,
+                          ScheduleTrackerStorage scheduleTrackerStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.appointmentBookStorage = appointmentBookStorage;
+        //TODO improve handling of budget book
+        this.budgetBookStorage = new BudgetBookStorage();
+        this.gradeBookStorage = gradeBookStorage;
+        this.scheduleTrackerStorage = scheduleTrackerStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -76,4 +93,113 @@ public class StorageManager implements Storage {
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
+    // ================ AppointmentBook methods ==========================
+
+    @Override
+    public Path getAppointmentBookFilePath() {
+        return appointmentBookStorage.getAppointmentBookFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyAppointmentBook> readAppointmentBook()
+            throws DataConversionException, IOException {
+        return readAppointmentBook(appointmentBookStorage.getAppointmentBookFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyAppointmentBook> readAppointmentBook(Path filePath)
+            throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return appointmentBookStorage.readAppointmentBook(filePath);
+    }
+
+    @Override
+    public void saveAppointmentBook(ReadOnlyAppointmentBook addressBook) throws IOException {
+        saveAppointmentBook(addressBook, appointmentBookStorage.getAppointmentBookFilePath());
+    }
+
+    @Override
+    public void saveAppointmentBook(ReadOnlyAppointmentBook appointmentBook, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        appointmentBookStorage.saveAppointmentBook(appointmentBook, filePath);
+    }
+
+
+    // ================ BudgetBook methods ==========================
+    @Override
+    public BudgetBook readBudgetBook() {
+        return this.budgetBookStorage.loadBudgetBook();
+    }
+
+    @Override
+    public void saveBudgetBook(BudgetBook budgetBook) throws IOException {
+        if (budgetBook.hasBudget()) {
+            budgetBookStorage.saveBudget(budgetBook.getBudget().getValue(),
+                    budgetBook.getBudget().getTotalCost());
+        } else {
+            budgetBookStorage.saveBudget();
+        }
+
+    }
+
+    // ================ GradeBook methods ==========================
+
+    @Override
+    public Path getGradeBookFilePath() {
+        return gradeBookStorage.getGradeBookFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyGradeBook> readGradeBook()
+            throws DataConversionException, IOException {
+        return readGradeBook(gradeBookStorage.getGradeBookFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyGradeBook> readGradeBook(Path filePath)
+            throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return gradeBookStorage.readGradeBook(filePath);
+    }
+
+    @Override
+    public void saveGradeBook(ReadOnlyGradeBook gradeBook) throws IOException {
+        saveGradeBook(gradeBook, gradeBookStorage.getGradeBookFilePath());
+    }
+
+    @Override
+    public void saveGradeBook(ReadOnlyGradeBook gradeBook, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        gradeBookStorage.saveGradeBook(gradeBook, filePath);
+    }
+
+    // ================ ScheduleTracker methods ==========================
+
+    @Override
+    public Path getScheduleTrackerFilePath() {
+        return scheduleTrackerStorage.getScheduleTrackerFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyScheduleTracker> readScheduleTracker() throws DataConversionException, IOException {
+        return readScheduleTracker(scheduleTrackerStorage.getScheduleTrackerFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyScheduleTracker> readScheduleTracker(Path filePath)
+            throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return scheduleTrackerStorage.readScheduleTracker(filePath);
+    }
+
+    @Override
+    public void saveScheduleTracker(ReadOnlyScheduleTracker scheduleTracker) throws IOException {
+        saveScheduleTracker(scheduleTracker, scheduleTrackerStorage.getScheduleTrackerFilePath());
+    }
+
+    @Override
+    public void saveScheduleTracker(ReadOnlyScheduleTracker scheduleTracker, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        scheduleTrackerStorage.saveScheduleTracker(scheduleTracker, filePath);
+    }
 }

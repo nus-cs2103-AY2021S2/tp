@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="125.0" prefWidth="150.0" style="-fx-border-color: #dddddd;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <VBox alignment="CENTER">
+            <children>
+            <Label disable="true" text="Notes:" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font size="10.0" />
+               </font></Label>
+                <TextArea fx:id="notesArea" editable="false" opacity="0.75" prefHeight="200.0" prefWidth="200.0" scrollLeft="1.0" style="-fx-background-color: transparent; -fx-border-color: #dddddd;" wrapText="true" />
+            </children>
+        </VBox>
+    </children>
+</StackPane>
