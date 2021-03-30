@@ -27,6 +27,6 @@ public interface Storage extends DatabaseStorage, UserPrefsStorage {
     Optional<ReadOnlyDatabase> readDatabase() throws DataConversionException, IOException;
 
     @Override
-    void saveDatabase(ReadOnlyDatabase addressBook) throws IOException;
+    void saveDatabase(ReadOnlyDatabase database) throws IOException;
 
 }

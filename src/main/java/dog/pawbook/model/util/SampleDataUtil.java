@@ -14,7 +14,7 @@ import dog.pawbook.model.managedentity.owner.Phone;
 import dog.pawbook.model.managedentity.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code Database} with sample data.
  */
 public class SampleDataUtil {
     public static Owner[] getSampleOwners() {

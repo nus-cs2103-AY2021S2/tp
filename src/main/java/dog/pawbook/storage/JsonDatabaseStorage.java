@@ -15,7 +15,7 @@ import dog.pawbook.commons.util.JsonUtil;
 import dog.pawbook.model.ReadOnlyDatabase;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access Database data stored as a json file on the hard disk.
  */
 public class JsonDatabaseStorage implements DatabaseStorage {
 
@@ -60,8 +60,8 @@ public class JsonDatabaseStorage implements DatabaseStorage {
     }
 
     @Override
-    public void saveDatabase(ReadOnlyDatabase addressBook) throws IOException {
-        saveDatabase(addressBook, filePath);
+    public void saveDatabase(ReadOnlyDatabase database) throws IOException {
+        saveDatabase(database, filePath);
     }
 
     /**

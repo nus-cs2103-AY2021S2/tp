@@ -66,7 +66,7 @@ public class JsonDatabaseStorageTest {
 
     @Test
     public void readAndSaveDatabase_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
+        Path filePath = testFolder.resolve("TempDatabase.json");
         Database original = getTypicalDatabase();
         JsonDatabaseStorage jsonDatabaseStorage = new JsonDatabaseStorage(filePath);
 

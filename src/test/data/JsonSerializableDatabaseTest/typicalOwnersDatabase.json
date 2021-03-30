@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Owner values as in TypicalOwners#getTypicalAddressBook()",
+  "_comment": "Database save file which contains the same Owner values as in TypicalOwners#getTypicalDatabase()",
   "entities" : [ {
     "type": "owner",
     "id": 1,

@@ -30,7 +30,7 @@ public class Database implements ReadOnlyDatabase {
     public Database() {}
 
     /**
-     * Creates an AddressBook using the Entities in the {@code toBeCopied}
+     * Creates a Database using the Entities in the {@code toBeCopied}
      */
     public Database(ReadOnlyDatabase toBeCopied) {
         this();
@@ -48,7 +48,7 @@ public class Database implements ReadOnlyDatabase {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code Database} with {@code newData}.
      */
     public void resetData(ReadOnlyDatabase newData) {
         requireNonNull(newData);
@@ -59,7 +59,7 @@ public class Database implements ReadOnlyDatabase {
     // entity-level operations
 
     /**
-     * Returns true if a entity {@code entity} exists in the address book.
+     * Returns true if a entity {@code entity} exists in the database.
      */
     public boolean hasEntity(Entity entity) {
         requireNonNull(entity);
@@ -67,23 +67,23 @@ public class Database implements ReadOnlyDatabase {
     }
 
     /**
-     * Returns true if an entity with the same identity as {@code entity} exists in the address book.
+     * Returns true if an entity with the same identity as {@code entity} exists in the database.
      */
     public boolean hasEntity(int id) {
         return entities.contains(id);
     }
 
     /**
-     * Adds a entity to the address book.
-     * The entity must not already exist in the address book.
+     * Adds a entity to the database.
+     * The entity must not already exist in the database.
      */
     public int addEntity(Entity p) {
         return entities.add(p);
     }
 
     /**
-     * Adds a entity with its ID to the address book.
-     * The entity must not already exist in the address book.
+     * Adds a entity with its ID to the database.
+     * The entity must not already exist in the database.
      */
     public void addEntityWithId(Entity entity, int id) {
         entities.add(entity, id);
@@ -91,8 +91,8 @@ public class Database implements ReadOnlyDatabase {
 
     /**
      * Replaces the given entity {@code targetId} in the list with {@code editedEntity}.
-     * {@code targetId} must exist in the address book.
-     * The entity identity of {@code editedEntity} must not be the same as another existing entity in the address book.
+     * {@code targetId} must exist in the database.
+     * The entity identity of {@code editedEntity} must not be the same as another existing entity in the database.
      */
     public void setEntity(int targetId, Entity editedEntity) {
         requireNonNull(editedEntity);
@@ -101,8 +101,8 @@ public class Database implements ReadOnlyDatabase {
     }
 
     /**
-     * Removes {@code id} from this {@code AddressBook}.
-     * {@code id} must exist in the address book.
+     * Removes {@code id} from this {@code Database}.
+     * {@code id} must exist in the database.
      */
     public void removeEntity(int id) {
         entities.remove(id);
@@ -110,7 +110,7 @@ public class Database implements ReadOnlyDatabase {
 
     /**
      * Return the entity with the matching ID.
-     * {@code id} must exist in the address book.
+     * {@code id} must exist in the database.
      */
     public Entity getEntity(int targetID) {
         return entities.get(targetID);

@@ -43,7 +43,7 @@ public interface Model {
     /**
      * Sets the user prefs' database file path.
      */
-    void setDatabaseFilePath(Path addressBookFilePath);
+    void setDatabaseFilePath(Path databaseFilePath);
 
     /**
      * Replaces database data with the data in {@code database}.

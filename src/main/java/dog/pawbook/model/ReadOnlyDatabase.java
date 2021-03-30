@@ -5,7 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.util.Pair;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of a database
  */
 public interface ReadOnlyDatabase {
 

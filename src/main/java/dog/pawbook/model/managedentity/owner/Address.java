@@ -4,7 +4,7 @@ import static dog.pawbook.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a Owner's address in the address book.
+ * Represents a Owner's address in the database.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
 public class Address {

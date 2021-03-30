@@ -4,9 +4,9 @@ import dog.pawbook.model.Database;
 import dog.pawbook.model.managedentity.owner.Owner;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building Database objects.
  * Example usage: <br>
- *     {@code AddressBook ab = new AddressBookBuilder().withOwner("John", "Doe").build();}
+ *     {@code Database db = new DatabaseBuilder().withOwner("John", "Doe").build();}
  */
 public class DatabaseBuilder {
 
@@ -21,7 +21,7 @@ public class DatabaseBuilder {
     }
 
     /**
-     * Adds a new {@code Owner} to the {@code AddressBook} that we are building.
+     * Adds a new {@code Owner} to the {@code Database} that we are building.
      */
     public DatabaseBuilder withOwner(Owner owner) {
         database.addEntity(owner);
