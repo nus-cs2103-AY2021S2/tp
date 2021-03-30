@@ -38,9 +38,9 @@ Please note the following symbols used in the User Guide which may serve as poin
 
 `command` : The grey highlight indicates commands that can be executed by StoreMando.
 
-:information_source : This symbol indicates information that you may wish to take note.
+:information_source: : This symbol indicates information that you may wish to take note.
 
-:bulb : This symbol indicates tips provided by us.
+:bulb: : This symbol indicates tips provided by us.
 
 --------------------------------------------------------------------------------------------------------------------
 ## 2. Quick start
@@ -383,9 +383,10 @@ You can use this command in 2 different ways.
 
   **:information_source: Notes about the clear command:**<br>
   
-  * The search is case-insensitive. e.g 'room' will match 'Room'.
+  * The search is case-sensitive. e.g 'room' will not match 'Room'.
 
-  * The location input will be matched exactly e.g. 'Room' will not match 'Bedroom'. 'Bed' will not match 'Bed room'. 'Living room' will not match 'Room living'.<br>
+  * The location input will be matched exactly e.g. 'Room' will not match 'Bedroom'. 'Bed' will not match 'Bed room'. 
+    'Living room' will not match 'Room living'.<br>
 
   </div>
 
