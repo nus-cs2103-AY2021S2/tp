@@ -460,6 +460,11 @@ public class ModelManager implements Model {
         this.updateFilteredPersonList(this.personFilter);
     }
 
+    @Override
+    public ObservableList<String> getPersonFilterStringList() {
+        return this.personFilter.asUnmodifiableObservableList();
+    }
+
     //=========== AppointmentFilter =====================================================================
     @Override
     public boolean hasAppointmentFilter(AppointmentFilter appointmentFilter) {
@@ -484,6 +489,11 @@ public class ModelManager implements Model {
         this.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENT);
 
         this.updateFilteredAppointmentList(this.appointmentFilter);
+    }
+
+    @Override
+    public ObservableList<String> getAppointmentFilterStringList() {
+        return this.appointmentFilter.asUnmodifiableObservableList();
     }
 
     @Override

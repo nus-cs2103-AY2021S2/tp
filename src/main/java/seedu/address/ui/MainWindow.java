@@ -39,12 +39,16 @@ public class MainWindow extends UiPart<Stage> {
     private CalendarView calendarView;
     private AppointmentListPanel appointmentListPanel;
     private GradeListPanel gradeListPanel;
+    private FiltersPanel filtersPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private StackPane filtersPanelPlaceholder;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -142,8 +146,10 @@ public class MainWindow extends UiPart<Stage> {
         calendarView = new CalendarView(this::executeCommand);
         calendarViewPane.getChildren().add(calendarView.getRoot());
 
-        resultDisplay = new ResultBarFooter();
-        statusbarPlaceholder.getChildren().add(resultDisplay.getRoot());
+        filtersPanel = new FiltersPanel();
+        filtersPanelPlaceholder.getChildren().add(filtersPanel.getRoot());
+        filtersPanel.fillInnerParts(logic.getPersonFilterStringList(),
+                logic.getAppointmentFilterStringList());
     }
 
     /**

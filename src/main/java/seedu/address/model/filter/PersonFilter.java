@@ -7,7 +7,10 @@ import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
@@ -46,6 +49,10 @@ public class PersonFilter implements Predicate<Person> {
     private Predicate<SubjectExperience> composedSubjectExperienceFilter;
     private Predicate<SubjectQualification> composedSubjectQualificationFilter;
 
+    private final ObservableList<String> stringList = FXCollections.observableArrayList();
+    private final ObservableList<String> unmodifiableStringList =
+            FXCollections.unmodifiableObservableList(stringList);
+
     /**
      * Constructs an empty {@code PersonFilter} that shows all people by default.
      */
@@ -63,6 +70,7 @@ public class PersonFilter implements Predicate<Person> {
         this.subjectQualificationFilters = new LinkedHashSet<>();
 
         composeFilters();
+        buildStringList();
     }
 
     /**
@@ -103,6 +111,7 @@ public class PersonFilter implements Predicate<Person> {
         this.subjectQualificationFilters = subjectQualificationFilters;
 
         composeFilters();
+        buildStringList();
     }
 
     /**
@@ -138,6 +147,7 @@ public class PersonFilter implements Predicate<Person> {
         subjectQualificationFilters.addAll(personFilter.subjectQualificationFilters);
 
         composeFilters();
+        buildStringList();
         return this;
     }
 
@@ -158,7 +168,15 @@ public class PersonFilter implements Predicate<Person> {
         subjectQualificationFilters.removeAll(personFilter.subjectQualificationFilters);
 
         composeFilters();
+        buildStringList();
         return this;
+    }
+
+    /**
+     * Returns the string list as an unmodifiable {@code ObservableList}.
+     */
+    public ObservableList<String> asUnmodifiableObservableList() {
+        return unmodifiableStringList;
     }
 
     @Override
@@ -190,6 +208,11 @@ public class PersonFilter implements Predicate<Person> {
         return Objects.hash(nameFilters, genderFilters, phoneFilters, emailFilters, addressFilters,
                 subjectNameFilters, subjectLevelFilters, subjectRateFilters,
                 subjectExperienceFilters, subjectQualificationFilters);
+    }
+
+    @Override
+    public String toString() {
+        return String.join(", ", stringList);
     }
 
     @Override
@@ -265,5 +288,20 @@ public class PersonFilter implements Predicate<Person> {
         this.composedSubjectQualificationFilter = subjectQualificationFilters.stream()
                 .reduce((x, y) -> x.or(y))
                 .orElse(x -> true);
+    }
+
+    private void buildStringList() {
+        stringList.clear();
+
+        stringList.addAll(nameFilters.stream().map(x -> x.toString()).collect(Collectors.toList()));
+        stringList.addAll(genderFilters.stream().map(x -> x.toString()).collect(Collectors.toList()));
+        stringList.addAll(phoneFilters.stream().map(x -> x.toString()).collect(Collectors.toList()));
+        stringList.addAll(emailFilters.stream().map(x -> x.toString()).collect(Collectors.toList()));
+        stringList.addAll(addressFilters.stream().map(x -> x.toString()).collect(Collectors.toList()));
+        stringList.addAll(subjectNameFilters.stream().map(x -> x.toString()).collect(Collectors.toList()));
+        stringList.addAll(subjectLevelFilters.stream().map(x -> x.toString()).collect(Collectors.toList()));
+        stringList.addAll(subjectRateFilters.stream().map(x -> x.toString()).collect(Collectors.toList()));
+        stringList.addAll(subjectExperienceFilters.stream().map(x -> x.toString()).collect(Collectors.toList()));
+        stringList.addAll(subjectQualificationFilters.stream().map(x -> x.toString()).collect(Collectors.toList()));
     }
 }

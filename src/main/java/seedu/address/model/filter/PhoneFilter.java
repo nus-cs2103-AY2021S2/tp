@@ -35,7 +35,7 @@ public class PhoneFilter implements Predicate<Phone> {
 
     @Override
     public String toString() {
-        return phoneFilter;
+        return "Phone: " + phoneFilter;
     }
 
     @Override

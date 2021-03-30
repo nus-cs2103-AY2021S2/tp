@@ -35,7 +35,7 @@ public class AddressFilter implements Predicate<Address> {
 
     @Override
     public String toString() {
-        return addressFilter;
+        return "Address: " + addressFilter;
     }
 
     @Override
