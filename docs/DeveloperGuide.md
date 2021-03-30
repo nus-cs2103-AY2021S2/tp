@@ -296,7 +296,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User <u>enters the `add-patient` command and corresponding subcommands (UC01)</u>
 2. App-Ointment adds a new patient to the patient records.
 
-**Extensions** 
+**Extensions**
 * **1a.** App-Ointment detects an invalid subcommand format.
     * **1a1.** App-Ointment prompts user that syntax is incorrect and displays the expected format.<br>
     Steps 1a1 is repeated until the subcommand entered is correct/free from errors.
@@ -312,12 +312,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User <u>enters the `add-appt` command and corresponding subcommands (UC01)</u>
 2. App-Ointment adds a new appointment to the appointment schedule.
 
-**Extensions** 
+**Extensions**
 * **1a.** App-Ointment detects an invalid subcommand format.
     * **1a1.** App-Ointment prompts user that syntax is incorrect and displays the expected format.<br>
     Steps 1a1 is repeated until the subcommand entered is correct/free from errors.
     Use case resumes from step 2.
-      
+
 * **2a.** The patient index out of the bounds of the displayed list of patients.
     * **2a1.** App-Ointment warns user that the index is out of bounds and displays the bounds of the displayed list of patients.<br>
     Steps 2a1 is repeated until the index entered is correct/free from errors.
@@ -428,7 +428,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * **2a1.** App-Ointment warns user that the index is out of bounds and displays the bounds of the displayed list of patients.<br>
       Steps 2a1 is repeated until the index entered is correct/free from errors.
       Use case resumes from step 2.
-      
+ 
 * **2b.** App-Ointment detects at least 1 appointment associated with the patient identified by the index number used in the displayed list of patients.<br>
     * **2b1.** App-Ointment warns user about the associated appointments, prompts user to use force delete and displays the expected subcommand format.<br>
     Use case ends.

@@ -235,7 +235,7 @@ Format: `add-appt pt/PATIENT_INDEX dr/DOCTOR_INDEX at/TIMESLOT_START [to/TIMESLO
 
 * Either and only one, `TIMESLOT_END` or `TIMESLOT_DURATION`, must be provided.<br>
 
-* Raises an exception if there are conflicts in schedule for the patient or the doctor.<br> 
+* Raises an exception if there are conflicts in schedule for the patient or the doctor.<br>
 
 <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
 
@@ -357,7 +357,7 @@ App-Ointment data are saved in the hard disk automatically after any command tha
 
 ### Editing the data file
 
-App-Ointment data are saved as 3 JSON files: 
+App-Ointment data are saved as 3 JSON files:
 `[JAR file location]/data/PatientRecords.json`
 `[JAR file location]/data/DoctorRecords.json`
 `[JAR file location]/data/AppointmentSchedule.json`
