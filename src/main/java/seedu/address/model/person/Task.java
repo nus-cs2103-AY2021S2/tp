@@ -33,7 +33,6 @@ public class Task {
     /**
      * Task takes in priorityTag as an additional attribute
      */
-
     public Task(TaskName taskName, ModuleCode moduleCode, DeadlineDate deadlineDate,
                 DeadlineTime deadlineTime, Status status, Weightage weightage,
                 Remark remark, Set<Tag> tags, PriorityTag priorityTag) {
@@ -55,7 +54,6 @@ public class Task {
     /**
      * Every field must be present and not null.
      */
-    
     public Task(TaskName taskName, ModuleCode moduleCode, DeadlineDate deadlineDate,
                 DeadlineTime deadlineTime, Status status, Weightage weightage,
                 Remark remark, Set<Tag> tags) {
@@ -211,7 +209,6 @@ public class Task {
      * @param tags data containing all the tags in String
      * @return boolean whether the pt is found
      */
-
     private boolean findPriorityTag(Set<Tag> tags) {
 
         Iterator<Tag> it = tags.iterator();
@@ -237,7 +234,6 @@ public class Task {
      * @param tags data containing all the tags in String
      * @return the priority tag to be stored
      */
-
     private PriorityTag obtainPriorityTag(Set<Tag> tags) {
 
         Iterator<Tag> it = tags.iterator();
@@ -260,7 +256,6 @@ public class Task {
      * @param tags data struct that stores the tags
      * @return a tag set free of old ptag
      */
-
     private Set<Tag> removeOldPriorityTags(Set<Tag> tags) {
         Iterator<Tag> it = tags.iterator();
         Set<Tag> hold = new HashSet<>();
