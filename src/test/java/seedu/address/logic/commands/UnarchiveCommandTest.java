@@ -85,7 +85,8 @@ class UnarchiveCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        model.archivePerson(ALICE);
+        Person newAlice = new PersonBuilder(ALICE).build();
+        model.archivePerson(newAlice);
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         UnarchiveCommand archiveCommand = new UnarchiveCommand(outOfBoundIndex);
 

@@ -134,9 +134,10 @@ public class UniquePersonListTest {
 
     @Test
     public void archive_existingPerson_archivesPerson() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.archive(ALICE);
-        assertTrue(ALICE.isArchived());
+        Person newAlice = new PersonBuilder(ALICE).build();
+        uniquePersonList.add(newAlice);
+        uniquePersonList.archive(newAlice);
+        assertTrue(newAlice.isArchived());
     }
 
     @Test
@@ -146,10 +147,11 @@ public class UniquePersonListTest {
 
     @Test
     public void unarchive_existingArchivedPerson_unarchivesPerson() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.archive(ALICE);
-        uniquePersonList.unarchive(ALICE);
-        assertFalse(ALICE.isArchived());
+        Person newAlice = new PersonBuilder(ALICE).build();
+        uniquePersonList.add(newAlice);
+        uniquePersonList.archive(newAlice);
+        uniquePersonList.unarchive(newAlice);
+        assertFalse(newAlice.isArchived());
     }
 
     @Test
