@@ -56,13 +56,13 @@ public class TaskListPanel extends UiPart<Region> {
                 String colorToAssign = classifyTimeLeftByColor(task);
 
                 if (colorToAssign.equals("Expired")) {
-                    addedTaskCard.getRoot().setStyle("-fx-background-color: purple; ");
+                    addedTaskCard.getRoot().setStyle("-fx-background-color: #9370DB; ");
                 } else if (colorToAssign.equals("Green")) {
-                    addedTaskCard.getRoot().setStyle("-fx-background-color: green; ");
+                    addedTaskCard.getRoot().setStyle("-fx-background-color: #3CB371; ");
                 } else if (colorToAssign.equals("Yellow")) {
-                    addedTaskCard.getRoot().setStyle("-fx-background-color: yellow; ");
+                    addedTaskCard.getRoot().setStyle("-fx-background-color: #F0E68C; ");
                 } else {
-                    addedTaskCard.getRoot().setStyle("-fx-background-color: red; -fx-text-fill: black");
+                    addedTaskCard.getRoot().setStyle("-fx-background-color: #DC143C; ");
                 }
             }
         }
