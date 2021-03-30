@@ -52,4 +52,12 @@ public class AliasCommand extends Command {
         model.addAlias(command, alias);
         return new CommandResult(String.format(MESSAGE_SUCCESS, command, alias));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AliasCommand // instanceof handles nulls
+                && command.equals(((AliasCommand) other).command)
+                && alias.equals(((AliasCommand) other).alias));
+    }
 }
