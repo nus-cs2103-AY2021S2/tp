@@ -41,6 +41,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setHeight(person.getHeight());
         descriptor.setWeight(person.getWeight());
         descriptor.setTags(person.getTags());
+        descriptor.setArchived(person.isArchived());
     }
 
     /**

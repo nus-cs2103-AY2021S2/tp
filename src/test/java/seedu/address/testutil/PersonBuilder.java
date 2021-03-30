@@ -32,6 +32,7 @@ public class PersonBuilder {
     private Height height;
     private Weight weight;
     private Set<Tag> tags;
+    private boolean isArchived;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -44,6 +45,7 @@ public class PersonBuilder {
         height = new Height(DEFAULT_HEIGHT);
         weight = new Weight(DEFAULT_WEIGHT);
         tags = new HashSet<>();
+        isArchived = false;
     }
 
     /**
@@ -57,6 +59,7 @@ public class PersonBuilder {
         height = personToCopy.getHeight();
         weight = personToCopy.getWeight();
         tags = new HashSet<>(personToCopy.getTags());
+        isArchived = personToCopy.isArchived();
     }
 
     /**
@@ -116,7 +119,9 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, height, weight, tags);
+        Person builtPerson = new Person(name, phone, email, address, height, weight, tags);
+        builtPerson.setArchived(isArchived);
+        return builtPerson;
     }
 
 }

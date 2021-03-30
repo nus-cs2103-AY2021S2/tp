@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.time.LocalDateTime;
@@ -17,12 +18,14 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.EditCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.medical.Appointment;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddAppointmentCommandTest {
@@ -43,6 +46,7 @@ public class AddAppointmentCommandTest {
         assertCommandFailure(addAppointmentCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
+    /*
     @Test
     public void execute_filteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
@@ -60,6 +64,20 @@ public class AddAppointmentCommandTest {
         expectedModel.setPerson(model.getFilteredPersonList().get(0), personWithAppointment);
 
         assertCommandSuccess(addAppointmentCommand, model, expectedMessage, expectedModel);
+    }
+
+     */
+
+    @Test
+    public void execute_addAppointmentToArchivedPerson_failure() {
+        Model newModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Person newAlice = new PersonBuilder(ALICE).build();
+        newModel.addPerson(newAlice);
+        newModel.archivePerson(newAlice);
+        LocalDateTime dateTime = LocalDateTime.of(2021, 12, 12, 18, 00);
+        AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(INDEX_FIRST_PERSON, dateTime);
+        
+        assertCommandFailure(addAppointmentCommand, newModel, AddAppointmentCommand.MESSAGE_ARCHIVED_PERSON);
     }
 
     @Test

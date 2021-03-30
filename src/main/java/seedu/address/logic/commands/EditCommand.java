@@ -114,8 +114,10 @@ public class EditCommand extends Command {
         Weight updatedWeight = editPersonDescriptor.getWeight().orElse(personToEdit.getWeight());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+        Person updatedPerson = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
                 updatedHeight, updatedWeight, updatedTags);
+        updatedPerson.setArchived(editPersonDescriptor.isArchived());
+        return updatedPerson;
     }
 
     @Override
@@ -148,6 +150,7 @@ public class EditCommand extends Command {
         private Height height;
         private Weight weight;
         private Set<Tag> tags;
+        private boolean isArchived;
 
         public EditPersonDescriptor() {}
 
@@ -163,6 +166,7 @@ public class EditCommand extends Command {
             setHeight(toCopy.height);
             setWeight(toCopy.weight);
             setTags(toCopy.tags);
+            setArchived(toCopy.isArchived());
         }
 
         /**
@@ -220,6 +224,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(weight);
         }
 
+        public void setArchived(boolean isArchived) {
+            this.isArchived = isArchived;
+        }
+
+        public boolean isArchived() {
+            return isArchived;
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -258,6 +270,7 @@ public class EditCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getHeight().equals(e.getHeight())
                     && getWeight().equals(e.getWeight())
+                    && (isArchived() == e.isArchived())
                     && getTags().equals(e.getTags());
         }
     }

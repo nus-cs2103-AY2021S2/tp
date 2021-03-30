@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.model.Model.PREDICATE_SHOW_ARCHIVED_PERSONS;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.FIONA;
@@ -15,10 +18,13 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
+import seedu.address.testutil.PersonBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -72,6 +78,50 @@ public class FindCommandTest {
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_keywordsForArchivedPersons_onlyArchivedPersonsFound() {
+        Model newModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Person newAlice = new PersonBuilder(ALICE).build();
+        Person newBenson = new PersonBuilder(BENSON).build();
+        Person newCarl = new PersonBuilder(CARL).build();
+        Person newElle = new PersonBuilder(ELLE).build();
+        Person newFiona = new PersonBuilder(FIONA).build();
+        newModel.addPerson(newAlice);
+        newModel.addPerson(newBenson);
+        newModel.addPerson(newCarl);
+        newModel.addPerson(newElle);
+        newModel.addPerson(newFiona);
+        newModel.archivePerson(newCarl);
+        newModel.archivePerson(newElle);
+
+        Model newExpectedModel = new ModelManager(new AddressBook(), new UserPrefs());
+        newExpectedModel.addPerson(newAlice);
+        newExpectedModel.addPerson(newBenson);
+        newExpectedModel.addPerson(newCarl);
+        newExpectedModel.addPerson(newElle);
+        newExpectedModel.addPerson(newFiona);
+        newExpectedModel.archivePerson(newCarl);
+        newExpectedModel.archivePerson(newElle);
+
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        FindCommand command = new FindCommand(predicate);
+        newExpectedModel.updateFilteredPersonList(predicate.and(PREDICATE_SHOW_ARCHIVED_PERSONS));
+        assertCommandSuccess(command, newModel, expectedMessage, newExpectedModel);
+        assertEquals(Arrays.asList(newCarl, newElle), newModel.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_keywordInEmptyList_showsEmptyList() {
+        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        FindCommand command = new FindCommand(predicate);
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        model = new ModelManager(new AddressBook(), new UserPrefs());
+        expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(), model.getFilteredPersonList());
     }
 
     /**
