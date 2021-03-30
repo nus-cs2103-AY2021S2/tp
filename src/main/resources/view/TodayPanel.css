@@ -3,3 +3,31 @@
     -fx-padding: 10 10;
     -fx-background-insets: 5 0;
 }
+
+.list-view {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-background-color: -DP_1_ELEVATION;
+}
+
+.list-view .list-cell {
+    -fx-label-padding: 0 0 0 0;
+    -fx-graphic-text-gap: 0;
+    -fx-padding: 3 0;
+}
+
+.list-view .list-cell:filled:even,
+.list-view .list-cell:filled:odd,
+.list-view .list-cell:filled #cardPane {
+    -fx-background-color: transparent;
+}
+
+.list-view .list-cell:filled:selected #cardPane {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+}
+
+.list-view .list-cell .label {
+    -fx-text-fill: white;
+}

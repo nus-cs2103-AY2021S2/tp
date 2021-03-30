@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.transformation.FilteredList;
-import seedu.address.model.contact.Contact;
+import seedu.address.model.groupmate.Groupmate;
 import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.CompletableTodo;
 import seedu.address.model.task.deadline.Deadline;
@@ -28,7 +28,7 @@ public class Project {
     private final EventList events;
     private final TodoList todos;
     private final DeadlineList deadlines;
-    private final ParticipantList participants;
+    private final GroupmateList groupmates;
 
     /**
      * Constructs an empty {@code Project}.
@@ -41,7 +41,7 @@ public class Project {
         this.events = new EventList();
         this.todos = new TodoList();
         this.deadlines = new DeadlineList();
-        this.participants = new ParticipantList();
+        this.groupmates = new GroupmateList();
     }
 
     /**
@@ -49,14 +49,14 @@ public class Project {
      * Every field must be present and not null.
      */
     public Project(ProjectName projectName, EventList events, TodoList todos, DeadlineList deadlines,
-                   ParticipantList participants) {
-        requireAllNonNull(projectName, events, todos, deadlines, participants);
+                   GroupmateList groupmates) {
+        requireAllNonNull(projectName, events, todos, deadlines, groupmates);
 
         this.projectName = projectName;
         this.events = events;
         this.todos = todos;
         this.deadlines = deadlines;
-        this.participants = participants;
+        this.groupmates = groupmates;
     }
 
     public ProjectName getProjectName() {
@@ -79,9 +79,9 @@ public class Project {
         return deadlines;
     }
 
-    public ParticipantList getParticipants() {
-        assert participants != null;
-        return participants;
+    public GroupmateList getGroupmates() {
+        assert groupmates != null;
+        return groupmates;
     }
 
     /**
@@ -107,25 +107,25 @@ public class Project {
     }
 
     /**
-     * Adds a participant to the {@code ParticipantList}.
+     * Adds a groupmate to the {@code GroupmateList}.
      *
-     * @param contact {@code Person} to add.
+     * @param groupmate {@code Groupmate} to add.
      */
-    public void addParticipant(Contact contact) {
-        requireNonNull(contact);
-        this.participants.addParticipant(contact);
+    public void addGroupmate(Groupmate groupmate) {
+        requireNonNull(groupmate);
+        this.groupmates.addGroupmate(groupmate);
     }
 
     /**
-     * Returns true if a participant with the same identity as {@code person} exists
-     * in this {@code Project}'s {@code participants}.
+     * Returns true if a {@code Groupmate} with the same identity as {@code groupmate} exists
+     * in this {@code Project}'s {@code Groupmate}s.
      *
-     * @param contact the {@code Person} to compare.
-     * @return true if a participant with the same identity as {@code person} exists under this {@code Project}.
+     * @param groupmate the {@code Groupmate} to compare.
+     * @return true if a groupmate with the same identity as {@code groupmate} exists under this {@code Project}.
      */
-    public boolean hasParticipant(Contact contact) {
-        requireNonNull(contact);
-        return participants.contains(contact);
+    public boolean hasGroupmate(Groupmate groupmate) {
+        requireNonNull(groupmate);
+        return groupmates.contains(groupmate);
     }
 
     /**
@@ -159,13 +159,13 @@ public class Project {
     }
 
     /**
-     *  Returns the {@code Person}. at the specified position in this {@code Project}'s {@code ParticipantList}.
+     *  Returns the {@code Person}. at the specified position in this {@code Project}'s {@code GroupmateList}.
      *
-     * @return the {@code Person}. at the specified position in this {@code Project}'s {@code ParticipantList}.
+     * @return the {@code Person}. at the specified position in this {@code Project}'s {@code GroupmateList}.
      */
-    public Contact getParticipant(Integer i) {
+    public Groupmate getGroupmate(Integer i) {
         requireNonNull(i);
-        return participants.get(i);
+        return groupmates.get(i);
     }
 
     /**
@@ -181,13 +181,25 @@ public class Project {
     }
 
     /**
-     *  Deletes a participant from {@code ParticipantList} field of this {@code Project}.
+     * Set the {@code Groupmate} specified by index with a new {@code Groupmate}.
+     *
+     * @param i index number specifies the target {@code Groupmate}.
+     * @param groupmate new {@code Groupmate} for this index.
+     */
+    public void setGroupmate(Integer i, Groupmate groupmate) {
+        requireAllNonNull(groupmate, i);
+
+        this.groupmates.setGroupmate(i, groupmate);
+    }
+
+    /**
+     *  Deletes a groupmate from {@code groupmates} field of this {@code Project}.
      *
      * @param i Index of {@code Person} to be deleted.
      */
-    public void deleteParticipant(Integer i) {
+    public void deleteGroupmate(Integer i) {
         requireNonNull(i);
-        this.participants.delete(i);
+        this.groupmates.delete(i);
     }
 
     /**
@@ -231,16 +243,6 @@ public class Project {
     }
 
     /**
-     * Marks an event from {@code EventList} field of this {@code Project} as done.
-     *
-     * @param i Index of {@code Event} to be marked as done.
-     */
-    public void markEvent(Integer i) {
-        requireNonNull(i);
-        this.events.markAsDone(i);
-    }
-
-    /**
      * Marks a todo from {@code TodoList} field of this {@code Project} as done.
      *
      * @param i Index of {@code Todo} to be marked as done.
@@ -264,6 +266,20 @@ public class Project {
     }
 
     /**
+     * Returns a new copy of this project.
+     *
+     * @return a copy of this project.
+     */
+    public Project getCopy() {
+        EventList eventList = this.events.getCopy();
+        DeadlineList deadlineList = this.deadlines.getCopy();
+        TodoList todoList = this.todos.getCopy();
+        GroupmateList groupmateList = this.groupmates.getCopy();
+
+        return new Project(this.getProjectName(), eventList, todoList, deadlineList, groupmateList);
+    }
+
+    /**
      * Returns true if both projects have the same identity and data fields.
      * This defines a stronger notion of equality between two projects.
      */
@@ -282,12 +298,12 @@ public class Project {
                 && otherProject.getEvents().equals(getEvents())
                 && otherProject.getTodos().equals(getTodos())
                 && otherProject.getDeadlines().equals(getDeadlines())
-                && otherProject.getParticipants().equals(getParticipants());
+                && otherProject.getGroupmates().equals(getGroupmates());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(projectName, events, todos, deadlines, participants);
+        return Objects.hash(projectName, events, todos, deadlines, groupmates);
     }
 
     @Override
@@ -313,10 +329,10 @@ public class Project {
             deadlines.forEach(builder::append);
         }
 
-        List<Contact> participants = getParticipants().getParticipants();
-        if (!participants.isEmpty()) {
-            builder.append("; Participants: ");
-            participants.forEach(builder::append);
+        List<Groupmate> groupmates = getGroupmates().getGroupmates();
+        if (!groupmates.isEmpty()) {
+            builder.append("; Groupmates: ");
+            groupmates.forEach(builder::append);
         }
 
         return builder.toString();

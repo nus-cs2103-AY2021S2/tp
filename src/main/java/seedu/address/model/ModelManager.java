@@ -11,6 +11,11 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.model.colabfolderhistory.ColabFolderHistory;
+import seedu.address.model.colabfolderhistory.SavedState;
+import seedu.address.model.colabfolderhistory.exceptions.NoRedoableStateException;
+import seedu.address.model.colabfolderhistory.exceptions.NoUndoableStateException;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.project.Project;
 
@@ -20,6 +25,7 @@ import seedu.address.model.project.Project;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
+    private final ColabFolderHistory colabFolderHistory;
     private final ColabFolder colabFolder;
     private final UserPrefs userPrefs;
     private final FilteredList<Contact> filteredContacts;
@@ -34,6 +40,7 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with CoLAB folder: " + colabFolder + " and user prefs " + userPrefs);
 
+        this.colabFolderHistory = new ColabFolderHistory(colabFolder);
         this.colabFolder = new ColabFolder(colabFolder);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredContacts = new FilteredList<>(this.colabFolder.getContactList());
@@ -204,5 +211,43 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
 
         filteredProjects.setPredicate(predicate);
+    }
+
+    //=========== Colab Folder History ======================================================================
+
+    @Override
+    public SavedState getUndoState() throws NoUndoableStateException {
+        return colabFolderHistory.undo();
+    }
+
+    @Override
+    public SavedState getRedoState() throws NoRedoableStateException {
+        return colabFolderHistory.redo();
+    }
+
+    @Override
+    public CommandResult undo() throws NoUndoableStateException {
+        SavedState savedState = getUndoState();
+        CommandResult commandResult = savedState.getCommandResult();
+        ReadOnlyColabFolder readOnlyColabFolder = savedState.getColabFolder();
+        colabFolder.resetData(readOnlyColabFolder);
+        return commandResult;
+    }
+
+    @Override
+    public CommandResult redo() throws NoRedoableStateException {
+        SavedState savedState = getRedoState();
+        CommandResult commandResult = savedState.getCommandResult();
+        ReadOnlyColabFolder readOnlyColabFolder = savedState.getColabFolder();
+        colabFolder.resetData(readOnlyColabFolder);
+        return commandResult;
+    }
+
+    @Override
+    public void commitState(CommandResult commandResult) {
+        ReadOnlyColabFolder colabFolder = getColabFolder();
+        ColabFolder colabFolderCopy = new ColabFolder();
+        colabFolderCopy.resetData(colabFolder);
+        colabFolderHistory.commit(colabFolderCopy, commandResult);
     }
 }

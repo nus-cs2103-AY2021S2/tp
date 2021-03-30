@@ -4,7 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_INTERVAL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_WEEKLY;
 
 import java.util.List;
 
@@ -27,12 +28,14 @@ public class AddEventCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds event to a specified project.\n"
             + "Parameters:\nPROJECT_INDEX\n"
             + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + PREFIX_EVENT_INTERVAL + "INTERVAL "
-            + PREFIX_EVENT_DATE + "REPEATABLE_DATE\n"
+            + PREFIX_EVENT_DATE + "DATE "
+            + PREFIX_EVENT_TIME + "TIME "
+            + PREFIX_EVENT_WEEKLY + "REPEATS WEEKLY\n"
             + "Example:\n" + COMMAND_WORD + " 1 "
             + PREFIX_DESCRIPTION + "Project meeting "
-            + PREFIX_EVENT_INTERVAL + "DAILY "
-            + PREFIX_EVENT_DATE + "24-04-2021";
+            + PREFIX_EVENT_DATE + "24-04-2021"
+            + PREFIX_EVENT_TIME + "1730"
+            + PREFIX_EVENT_WEEKLY + "Y";
 
     private final Index index;
     private final Event toAdd;

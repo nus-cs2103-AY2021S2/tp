@@ -2,7 +2,7 @@ package seedu.address.testutil;
 
 import seedu.address.model.project.DeadlineList;
 import seedu.address.model.project.EventList;
-import seedu.address.model.project.ParticipantList;
+import seedu.address.model.project.GroupmateList;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.TodoList;
@@ -18,7 +18,7 @@ public class ProjectBuilder {
     private EventList eventList = new EventList();
     private TodoList todoList = new TodoList();
     private DeadlineList deadlineList = new DeadlineList();
-    private ParticipantList participantList = new ParticipantList();
+    private GroupmateList groupmateList = new GroupmateList();
 
     /**
      * Creates a {@code ProjectBuilder} with the default details.
@@ -35,7 +35,7 @@ public class ProjectBuilder {
         eventList = projectToCopy.getEvents().getCopy();
         todoList = projectToCopy.getTodos().getCopy();
         deadlineList = projectToCopy.getDeadlines().getCopy();
-        participantList = projectToCopy.getParticipants().getCopy();
+        groupmateList = projectToCopy.getGroupmates().getCopy();
     }
 
     /**
@@ -71,10 +71,10 @@ public class ProjectBuilder {
     }
 
     /**
-     * Sets the {@code ParticipantList} of the {@code Project} that we are building.
+     * Sets the {@code GroupmateList} of the {@code Project} that we are building.
      */
-    public ProjectBuilder withParticipantList(ParticipantList participantList) {
-        this.participantList = participantList.getCopy();
+    public ProjectBuilder withGroupmateList(GroupmateList groupmateList) {
+        this.groupmateList = groupmateList.getCopy();
         return this;
     }
 
@@ -84,7 +84,7 @@ public class ProjectBuilder {
      * @return {@code Project}.
      */
     public Project build() {
-        return new Project(projectName, eventList, todoList, deadlineList, participantList);
+        return new Project(projectName, eventList, todoList, deadlineList, groupmateList);
     }
 
 }

@@ -87,16 +87,6 @@ public class EventList {
     }
 
     /**
-     * Marks an event from this {@code EventList} as done.
-     *
-     * @param i Index of {@code Event} to be marked as done.
-     */
-    public void markAsDone(Integer i) {
-        requireNonNull(i);
-        this.events.get(i).markAsDone();
-    }
-
-    /**
      * Returns a copy of this {@code EventList}
      *
      * @return A copy of this {@code EventList}
@@ -131,7 +121,7 @@ public class EventList {
      */
     public FilteredList<Event> getEventsOnDate(LocalDate dateOfEvent) {
         requireNonNull(dateOfEvent);
-        Predicate<Event> predicate = event -> event.getAt().isEqual(dateOfEvent);
+        Predicate<Event> predicate = event -> event.getDate().isEqual(dateOfEvent);
         return events.filtered(predicate);
     }
 

@@ -84,4 +84,11 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+
+    @Override
+    public void commitState(CommandResult commandResult) {
+        if (!commandResult.isIgnoreHistory()) {
+            model.commitState(commandResult);
+        }
+    }
 }

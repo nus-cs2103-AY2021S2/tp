@@ -13,7 +13,7 @@ import seedu.address.logic.uicommands.ViewProjectAndOverviewUiCommand;
 import seedu.address.model.Model;
 import seedu.address.model.project.DeadlineList;
 import seedu.address.model.project.EventList;
-import seedu.address.model.project.ParticipantList;
+import seedu.address.model.project.GroupmateList;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.TodoList;
@@ -87,9 +87,9 @@ public class UpdateProjectCommand extends Command {
         EventList currEventList = projectToEdit.getEvents();
         TodoList currTodoList = projectToEdit.getTodos();
         DeadlineList currDeadlineList = projectToEdit.getDeadlines();
-        ParticipantList currParticipantList = projectToEdit.getParticipants();
+        GroupmateList currGroupmateList = projectToEdit.getGroupmates();
 
-        return new Project(name, currEventList, currTodoList, currDeadlineList, currParticipantList);
+        return new Project(name, currEventList, currTodoList, currDeadlineList, currGroupmateList);
     }
 
     @Override
