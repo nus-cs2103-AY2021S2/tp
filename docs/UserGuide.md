@@ -88,6 +88,12 @@ Shows a list of all residents in the system sorted by alphabetical order.
 
 Format: `rlist`
 
+### List all unallocated residents : `rulist`
+
+Shows a list of all unallocated residents in the system sorted by alphabetical order.
+
+Format: `rulist`
+
 
 ### Find residents : `rfind`
 
@@ -189,23 +195,28 @@ Format: `odel INDEX`
 Example:
 * `odel 1` Deletes the 1st room in the room list.
 
-### Allocate resident to room 
+### Allocate resident to room: `alloc`
 Allocates an existing resident to an existing room. 
 
 Format: `alloc n/NAME r/ROOM_NO`
-* `NAME` and `ROOM_NO` must already exist. 
-*  Both fields must be provided. 
+* `NAME` and `ROOM_NO` must already exist.
+* Exact match for `NAME` is required.
+* `NAME` is case-sensitive.
+* Both fields must be provided. 
 
 Example:
 * `alloc r/John Tan n/03-100` Allocates resident named John Tan to room 03-100. 
 
-### Deallocate resident from room
+### Deallocate resident from room: `dealloc`
 Deallocates an existing resident from an existing room.
 
 Format: `dealloc n/NAME r/ROOM_NO`
 * `NAME` and `ROOM_NO` must already exist.
+* Exact match for `NAME` is required.
+* `NAME` is case-sensitive.
 * The allocation must already exist. 
-*  Both fields must be provided.
+* Both fields must be provided.
+* Ensure that the resident to be deallocated is visible. Use `rlist` to view all.
 
 Example:
 * `dealloc r/John Tan n/03-100` Deallocates resident named John Tan from room 03-100.
@@ -350,6 +361,7 @@ Action | Format, Examples
 **Show help** | `help`
 **Add a resident** | `radd n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR` <br> e.g. `radd n/Joseph Tan p/84666774 e/e0103994@u.nus.edu y/2 r/01-234`
 **List all residents** | `rlist`
+**List all unallocated residents** | `rulist`
 **Find residents** | `rfind KEYWORD [MORE_KEYWORDS]` <br> e.g. `rfind bob bobby`
 **Edit a resident record** | `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROOM]` <br> e.g. `redit 1 p/91234567 e/e0123456@u.nus.edu`
 **Delete a resident** |  `rdel INDEX` <br> e.g. `rdel 1`
