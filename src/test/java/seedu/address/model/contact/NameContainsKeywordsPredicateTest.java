@@ -40,32 +40,32 @@ public class NameContainsKeywordsPredicateTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        seedu.address.model.contact.NameContainsKeywordsPredicate predicate =
-                 new seedu.address.model.contact.NameContainsKeywordsPredicate(Collections.singletonList("Alice"));
+        NameContainsKeywordsPredicate predicate =
+                 new NameContainsKeywordsPredicate(Collections.singletonList("Alice"));
         assertTrue(predicate.test(new ContactBuilder().withName("Alice Bob").build()));
 
         // Multiple keywords
-        predicate = new seedu.address.model.contact.NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
         assertTrue(predicate.test(new ContactBuilder().withName("Alice Bob").build()));
 
         // Only one matching keyword
-        predicate = new seedu.address.model.contact.NameContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
         assertTrue(predicate.test(new ContactBuilder().withName("Alice Carol").build()));
 
         // Mixed-case keywords
-        predicate = new seedu.address.model.contact.NameContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
         assertTrue(predicate.test(new ContactBuilder().withName("Alice Bob").build()));
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        seedu.address.model.contact.NameContainsKeywordsPredicate predicate =
-                 new seedu.address.model.contact.NameContainsKeywordsPredicate(Collections.emptyList());
+        NameContainsKeywordsPredicate predicate =
+                 new NameContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new ContactBuilder().withName("Alice").build()));
 
         // Non-matching keyword
-        predicate = new seedu.address.model.contact.NameContainsKeywordsPredicate(Arrays.asList("Carol"));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new ContactBuilder().withName("Alice Bob").build()));
 
         // Keywords match phone, email and address, but does not match name
