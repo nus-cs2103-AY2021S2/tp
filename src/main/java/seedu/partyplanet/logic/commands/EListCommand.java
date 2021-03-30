@@ -94,7 +94,7 @@ public class EListCommand extends Command {
         }
         if (model.getFilteredEventList().size() == 0) {
             return new CommandResult(String.format(Messages.MESSAGE_EVENTS_LISTED_OVERVIEW,
-                model.getFilteredEventList().size()) + " None of the events meet the requirements.");
+                model.getFilteredEventList().size()) + " No events met the requirements.");
         }
         return new CommandResult(
                 String.format(Messages.MESSAGE_EVENTS_LISTED_OVERVIEW, model.getFilteredEventList().size())
