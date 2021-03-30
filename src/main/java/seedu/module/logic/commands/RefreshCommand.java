@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import javafx.collections.ObservableList;
 import seedu.module.model.Model;
-import seedu.module.model.ModuleManager;
 import seedu.module.model.task.Task;
 
 /**
