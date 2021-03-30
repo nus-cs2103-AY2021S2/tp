@@ -1,4 +1,4 @@
-@startuml
+@startuml BudgetBabyLogicClassDiagram
 !include style.puml
 skinparam arrowThickness 1.1
 skinparam arrowColor LOGIC_COLOR_T4
@@ -7,24 +7,25 @@ skinparam classBackgroundColor LOGIC_COLOR
 package Logic {
 
 package Parser {
-Interface Parser <<Interface>>
-Class AddressBookParser
+Interface BudgetBabyCommandParser <<Interface>>
+Class BudgetBabyParser
 Class XYZCommandParser
 Class CliSyntax
 Class ParserUtil
 Class ArgumentMultimap
 Class ArgumentTokenizer
 Class Prefix
+Class YearMonthParser
 }
 
 package Command {
 Class XYZCommand
 Class CommandResult
-Class "{abstract}\nCommand" as Command
+Class "{abstract}\nBudgetBabyCommand" as BudgetBabyCommand
 }
 
-Interface Logic <<Interface>>
-Class LogicManager
+Interface BudgetBabyLogic <<Interface>>
+Class BudgetBabyLogicManager
 }
 
 package Model{
@@ -32,14 +33,14 @@ Class HiddenModel #FFFFFF
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Logic
+HiddenOutside ..> BudgetBabyLogic
 
-LogicManager .up.|> Logic
-LogicManager -->"1" AddressBookParser
-AddressBookParser .left.> XYZCommandParser: creates >
+BudgetBabyLogicManager .up.|> BudgetBabyLogic
+BudgetBabyLogicManager -->"1" BudgetBabyParser
+BudgetBabyParser .left.> XYZCommandParser: creates >
 
 XYZCommandParser ..> XYZCommand : creates >
-XYZCommandParser ..|> Parser
+XYZCommandParser ..|> BudgetBabyCommandParser
 XYZCommandParser ..> ArgumentMultimap
 XYZCommandParser ..> ArgumentTokenizer
 ArgumentTokenizer .left.> ArgumentMultimap
@@ -47,16 +48,17 @@ XYZCommandParser ..> CliSyntax
 CliSyntax ..> Prefix
 XYZCommandParser ..> ParserUtil
 ParserUtil .down.> Prefix
+ParserUtil ..> YearMonthParser
 ArgumentTokenizer .down.> Prefix
-XYZCommand -up-|> Command
-LogicManager .left.> Command : executes >
+XYZCommand -up-|> BudgetBabyCommand
+BudgetBabyLogicManager .left.> BudgetBabyCommand : executes >
 
-LogicManager --> Model
-Command .right.> Model
-note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
+BudgetBabyLogicManager --> Model
+BudgetBabyCommand .right.> Model
+note right of XYZCommand: XYZCommand = AddFrCommand, \nDeleteFrCommand, etc
 
-Logic ..> CommandResult
-LogicManager .down.> CommandResult
-Command .up.> CommandResult
-CommandResult -[hidden]-> Parser
+BudgetBabyLogic ..> CommandResult
+BudgetBabyLogicManager .down.> CommandResult
+BudgetBabyCommand .up.> CommandResult
+CommandResult -[hidden]-> BudgetBabyCommandParser
 @enduml
