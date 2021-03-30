@@ -138,7 +138,7 @@ public class MainWindow extends UiPart<Stage> {
         upcomingTuitionListPanel = new UpcomingTuitionListPanel(logic.getFullStudentList());
         upcomingTuitionListPanelPlaceholder.getChildren().add(upcomingTuitionListPanel.getRoot());
 
-        monthlyFeeListPanel = new MonthlyFeeListPanel(logic.getFilteredStudentList());
+        monthlyFeeListPanel = new MonthlyFeeListPanel(logic.getFullStudentList());
         monthlyFeePanelPlaceholder.getChildren().add(monthlyFeeListPanel.getRoot());
 
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
