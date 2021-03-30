@@ -41,7 +41,7 @@ public class DateCard extends UiPart<Region> {
         this.importantDate = importantDate;
         id.setText(displayedIndex + ". ");
         description.setText(importantDate.getDescription().description);
-        details.setText(importantDate.getDetails().details.toString());
+        details.setText(importantDate.getDetails().toString());
     }
 
     @Override

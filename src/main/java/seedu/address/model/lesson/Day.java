@@ -7,7 +7,7 @@ import java.util.Locale;
 
 public class Day implements Comparable<Day> {
 
-    public static final String VALIDATION_REGEX = "^(monday|tuesday|wednesday|thursday|friday|saturday|sunday)";
+    public static final String VALIDATION_REGEX = "(monday|tuesday|wednesday|thursday|friday|saturday|sunday)";
     public static final String MESSAGE_CONSTRAINTS = "Days should take on one of the following: Monday, "
             + "Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday";
     public final String dayOfTuition;

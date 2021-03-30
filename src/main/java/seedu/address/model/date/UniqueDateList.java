@@ -48,11 +48,6 @@ public class UniqueDateList implements Iterable<ImportantDate> {
         }
     }
 
-    public void setImportantDates(UniqueDateList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-    }
-
     /**
      * Replaces the contents of this list with {@code importantDates}.
      * {@code importantDates} must not contain duplicate important dates.
