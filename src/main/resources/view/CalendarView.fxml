@@ -14,7 +14,7 @@
    <children>
       <HBox prefHeight="50.0" prefWidth="200.0">
          <children>
-            <Label fx:id="dateLabel" text=" - " styleClass="header">
+            <Label fx:id="dateLabel" text=" - " styleClass="header" minWidth="200" maxWidth="200">
                <HBox.margin>
                   <Insets left="10.0" top="10.0" />
                </HBox.margin>
@@ -27,6 +27,11 @@
             <Button text="→" onMouseClicked="#advanceCalendar">
                <HBox.margin>
                   <Insets left="5.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button text="TODAY" onMouseClicked="#advanceToday">
+               <HBox.margin>
+                  <Insets left="15.0" top="10.0" />
                </HBox.margin>
             </Button>
          </children>

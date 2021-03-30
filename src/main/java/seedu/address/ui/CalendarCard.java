@@ -9,6 +9,9 @@ import javafx.scene.layout.Region;
 import seedu.address.model.session.Session;
 import seedu.address.model.tuition.Tuition;
 
+/**
+ * An UI component that displays information of a {@code Tuition}, meant for Calendar.
+ */
 public class CalendarCard extends UiPart<Region> {
     private static final String FXML = "CalendarCard.fxml";
     private Tuition tuition;

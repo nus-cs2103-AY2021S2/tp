@@ -22,6 +22,9 @@ import seedu.address.model.session.SessionDate;
 import seedu.address.model.student.Student;
 import seedu.address.model.tuition.Tuition;
 
+/**
+ * UI View which displays weekly calendar and its associated {@code Tuition}
+ */
 public class CalendarView extends UiPart<Region> {
     private static final Logger logger = LogsCenter.getLogger(CalendarView.class);
     private static final String FXML = "CalendarView.fxml";
@@ -29,10 +32,10 @@ public class CalendarView extends UiPart<Region> {
     private Logic logic;
     private ObservableList<Tuition> tuitionList;
 
-    // must be a monday, change through setStartDate()
+    // Must be a monday, change through setStartDate() method.
     private LocalDateTime calendarStartDate;
 
-    // FXML date headers (mon - sun)
+    // FXML date headers (mon - sun).
     @FXML private Label dateHeaderMon;
     @FXML private Label dateHeaderTue;
     @FXML private Label dateHeaderWed;
@@ -42,7 +45,7 @@ public class CalendarView extends UiPart<Region> {
     @FXML private Label dateHeaderSun;
 
 
-    // FXML list views (mon - sun)
+    // FXML list views (mon - sun).
     @FXML private Label dateLabel;
     @FXML private ListView<Tuition> monListView;
     @FXML private ListView<Tuition> tueListView;
@@ -83,7 +86,7 @@ public class CalendarView extends UiPart<Region> {
     }
 
     /**
-     * Changes the start date of the week displayed on calendar and sessions associated with the week
+     * Changes the start date of the week displayed on calendar and sessions associated with the week.
      * @param startDate Date of monday of the intended week to be displayed on calendar
      */
     public void setStartDate(LocalDateTime startDate) {
@@ -97,21 +100,26 @@ public class CalendarView extends UiPart<Region> {
     }
 
     /**
-     * Advances the calendar by a week (7 days)
+     * Advances the calendar by a week (7 days).
      */
     public void advanceCalendar() {
         setStartDate(this.calendarStartDate.plusDays(7));
     }
 
     /**
-     * Moves the calendar backwards by a week (7 days)
+     * Moves the calendar backwards by a week (7 days).
      */
     public void backwardCalendar() {
         setStartDate(this.calendarStartDate.minusDays(7));
     }
 
     /**
-     * Changes the labels of Calendar based on the current calendar start date
+     * Advances the calendar till current date (today).
+     */
+    public void advanceToday() { setStartDate(LocalDateTime.now().with(DayOfWeek.MONDAY)); }
+
+    /**
+     * Changes the labels of Calendar based on the current calendar start date.
      */
     private void populateCalendar() {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd MMM");
@@ -132,11 +140,11 @@ public class CalendarView extends UiPart<Region> {
     }
 
     /**
-     * Helper method to populate list of {@code Tuition} onto the Calendar's tuition list
+     * Helper method to populate list of {@code Tuition} onto the Calendar's tuition list.
      */
     private void populateTuitions() {
         tuitionList.clear();
-        ObservableList<Student> studentObservableList = logic.getFilteredStudentList();
+        ObservableList<Student> studentObservableList = logic.getAddressBook().getStudentList();
         for (int i = 0; i < studentObservableList.size(); i++) {
             for (int j = 0; j < studentObservableList.get(i).getListOfSessions().size(); j++) {
                 Student currStudent = studentObservableList.get(i);
@@ -147,10 +155,10 @@ public class CalendarView extends UiPart<Region> {
     }
 
     /**
-     * Invokes listener method to update calendar's tuition list upon new updates
+     * Invokes listener method to update calendar's tuition list upon new updates.
      */
     private void setStudentListListener() {
-        ObservableList<Student> studentObservableList = logic.getFilteredStudentList();
+        ObservableList<Student> studentObservableList = logic.getAddressBook().getStudentList();
         studentObservableList.addListener((ListChangeListener<Student>) change -> {
             while (change.next()) {
                 populateTuitions();
@@ -159,7 +167,7 @@ public class CalendarView extends UiPart<Region> {
     }
 
     /**
-     * Helper method for checking if session (individual and recurring) takes place on a particular date
+     * Helper method for checking if session (individual and recurring) takes place on a particular date.
      */
     private boolean hasSessionOnDate(LocalDateTime date, Tuition tuition) {
         Session tuitionSession = tuition.getSession();
@@ -176,51 +184,52 @@ public class CalendarView extends UiPart<Region> {
     }
 
     /**
-     * Binds Monday - Sunday {@code ListView} to respective filtered and sorted tuition list
+     * Binds Monday - Sunday {@code ListView} to respective filtered and sorted tuition list.
      */
     private void setListViews(ObservableList<Tuition> tuitionList) {
 
-        Comparator<Tuition> cmpSessionDate = Comparator.comparing(a -> a.getSession().getSessionDate().getTime());
+        Comparator<Tuition> sessionDateComparator = Comparator.comparing
+                (tuition -> tuition.getSession().getSessionDate().getTime());
 
         monListView.setItems(tuitionList
                 .filtered(tuitionItem -> hasSessionOnDate(calendarStartDate, tuitionItem))
-                .sorted(cmpSessionDate)
+                .sorted(sessionDateComparator)
         );
         monListView.setCellFactory(listView -> new CalendarViewCell());
 
         tueListView.setItems(tuitionList
                 .filtered(tuitionItem -> hasSessionOnDate(calendarStartDate.plusDays(1), tuitionItem))
-                .sorted(cmpSessionDate)
+                .sorted(sessionDateComparator)
         );
         tueListView.setCellFactory(listView -> new CalendarViewCell());
 
         wedListView.setItems(tuitionList
                 .filtered(tuitionItem -> hasSessionOnDate(calendarStartDate.plusDays(2), tuitionItem))
-                .sorted(cmpSessionDate)
+                .sorted(sessionDateComparator)
         );
         wedListView.setCellFactory(listView -> new CalendarViewCell());
 
         thurListView.setItems(tuitionList
                 .filtered(tuitionItem -> hasSessionOnDate(calendarStartDate.plusDays(3), tuitionItem))
-                .sorted(cmpSessionDate)
+                .sorted(sessionDateComparator)
         );
         thurListView.setCellFactory(listView -> new CalendarViewCell());
 
         friListView.setItems(tuitionList
                 .filtered(tuitionItem -> hasSessionOnDate(calendarStartDate.plusDays(4), tuitionItem))
-                .sorted(cmpSessionDate)
+                .sorted(sessionDateComparator)
         );
         friListView.setCellFactory(listView -> new CalendarViewCell());
 
         satListView.setItems(tuitionList
                 .filtered(tuitionItem -> hasSessionOnDate(calendarStartDate.plusDays(5), tuitionItem))
-                .sorted(cmpSessionDate)
+                .sorted(sessionDateComparator)
         );
         satListView.setCellFactory(listView -> new CalendarViewCell());
 
         sunListView.setItems(tuitionList
                 .filtered(tuitionItem -> hasSessionOnDate(calendarStartDate.plusDays(6), tuitionItem))
-                .sorted(cmpSessionDate)
+                .sorted(sessionDateComparator)
         );
         sunListView.setCellFactory(listView -> new CalendarViewCell());
     }
