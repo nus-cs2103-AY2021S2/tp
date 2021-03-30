@@ -70,10 +70,16 @@ Weeblingo is a desktop app for managing flashcards, **optimized for use via a Co
 
 Starts a quiz session.
 
-Format: `start [q/NUMBER] [t/TAG]`
+Format: `start [n/NUMBER] [t/TAG]`
 
 * NUMBER specifies the number of questions for the quiz session.
 * TAG specifies the type of questions for the quiz session.
+* You should not include both NUMBER and TAG in the start command, 
+  TAG is for practicing while NUMBER is for testing.
+
+Examples:
+* start n/10
+* start t/hiragana
 
 ### Checking flashcard answers: `check`
 
