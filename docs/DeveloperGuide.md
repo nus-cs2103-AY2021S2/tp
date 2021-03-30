@@ -163,7 +163,7 @@ Step 1. User executes the `done 1` command to mark the 1st task in the task list
 Step 2. `DoneTaskCommandParser#parse` method will check on the validity of the arguments for a `DoneTaskCommand`. If it
 is valid,  it will call the create a new `DoneTaskCommand` by calling the constructor.
 
-Step 3. The `DoneTaskCommand#execute` is then called by the `LogicManger`. The task with the same `Index` is retrieved and
+Step 3. The `DoneTaskCommand#execute` is then called by the `LogicManager`. The task with the same `Index` is retrieved and
 a copy of the task is created with the same attribute values. However. the `TaskStatus` value is updated to be 'completed'
 in the `Model`.
 
@@ -203,7 +203,7 @@ Step 1. User executes the `findBefore 2021-04-04` command to show the tasks in t
 Step 2. `FindTasksBeforeCommandParser#parse` method will check on the validity of the deadline argument for a `FindTasksBeforeCommand`. If is is
 valid,  it will create a new `FindTasksBeforeCommand` by calling the constructor with the DeadlineBeforeDatePredicate.
 
-Step 3. The `FindTasksBeforeCommand#execute` is then called by the `LogicManger`. The tasks with deadline before 2021-04-04 are selected by the 
+Step 3. The `FindTasksBeforeCommand#execute` is then called by the `LogicManager`. The tasks with deadline before 2021-04-04 are selected by the 
 DeadlineBeforeDatePredicate.
 
 Step 4. Once the execution is completed, the message `MESSAGE_TASKS_LISTED_OVERVIEW,` is used to return a new Command Result
