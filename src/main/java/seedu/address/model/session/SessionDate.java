@@ -83,6 +83,10 @@ public class SessionDate {
         return getTime().equals(sessionDate.getTime());
     }
 
+    public SessionDate setDate(LocalDate localDate) {
+        return new SessionDate(LocalDateTime.of(localDate, getTime()));
+    }
+
     /**
      * Returns the number of calendar days between this inclusive, sessionDate exclusive.
      * @param sessionDate the other sessionDate

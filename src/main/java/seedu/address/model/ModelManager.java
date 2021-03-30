@@ -13,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.session.RecurringSession;
 import seedu.address.model.session.Session;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
@@ -148,6 +149,12 @@ public class ModelManager implements Model {
     public boolean hasOverlappingSession(Session session) {
         requireNonNull(session);
         return addressBook.hasOverlappingSession(session);
+    }
+
+    @Override
+    public boolean hasOverlappingRecurringSession(RecurringSession recurringSession) {
+        requireNonNull(recurringSession);
+        return addressBook.hasOverlappingRecurringSession(recurringSession);
     }
 
     //=========== Filtered Student List Accessors =============================================================

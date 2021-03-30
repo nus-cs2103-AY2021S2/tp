@@ -43,16 +43,18 @@ public class Session {
         return fee;
     }
 
-
-    // TODO : Overlap check for recurring session.
     /**
      * Checks if the {@code Session} slot overlaps with another session.
      * @param otherSession the other session that is compared to.
      */
-    public boolean isOverlapping(Session otherSession) {
+    public boolean isOverlappingWithSession(Session otherSession) {
         SessionDate otherSessionStartDate = otherSession.getSessionDate();
         SessionDate otherSessionEndDate = otherSessionStartDate.getEndSessionDate(otherSession.duration);
         SessionDate sessionStartDate = sessionDate;
+        if (this instanceof RecurringSession) {
+            RecurringSession recurringSession = (RecurringSession) this;
+            sessionStartDate = sessionStartDate.setDate(otherSessionStartDate.getDate());
+        }
         SessionDate sessionEndDate = sessionStartDate.getEndSessionDate(duration);
         boolean otherSessionOverlapsAfterSessionStarts = (
                 otherSessionStartDate.getDateTime().isEqual(sessionStartDate.getDateTime())

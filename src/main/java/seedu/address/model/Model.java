@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.session.RecurringSession;
 import seedu.address.model.session.Session;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
@@ -111,6 +112,12 @@ public interface Model {
      * Returns true if {@code session} overlaps with any session in any of the students in the unique student list
      */
     boolean hasOverlappingSession(Session session);
+
+    /**
+     * Returns true if {@code recurringSession} overlaps with any session in any of the students in the unique
+     * student list
+     */
+    boolean hasOverlappingRecurringSession(RecurringSession recurringSession);
 
     /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();

@@ -22,6 +22,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.session.RecurringSession;
 import seedu.address.model.session.Session;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
@@ -170,6 +171,11 @@ public class AddStudentCommandTest {
 
         @Override
         public boolean hasOverlappingSession(Session session) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasOverlappingRecurringSession(RecurringSession recurringSession) {
             throw new AssertionError("This method should not be called.");
         }
 

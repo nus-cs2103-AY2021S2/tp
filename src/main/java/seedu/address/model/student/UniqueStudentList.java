@@ -9,6 +9,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.session.RecurringSession;
 import seedu.address.model.session.Session;
 import seedu.address.model.session.SessionDate;
 import seedu.address.model.student.exceptions.DuplicateStudentException;
@@ -157,7 +158,13 @@ public class UniqueStudentList implements Iterable<Student> {
         for (Student student : internalList) {
             List<Session> sessionList = student.getListOfSessions();
             for (Session session : sessionList) {
-                if (session.isOverlapping(target)) {
+                if (session instanceof RecurringSession) {
+                    RecurringSession recurringSession = (RecurringSession) session;
+                    if (!recurringSession.hasSessionOnDate(target.getSessionDate())) {
+                        continue;
+                    }
+                }
+                if (session.isOverlappingWithSession(target)) {
                     return true;
                 }
             }
