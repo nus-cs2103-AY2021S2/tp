@@ -16,7 +16,8 @@ public class RoomNumberOrTagsContainsKeywordsPredicate implements Predicate<Room
     public boolean test(Room room) {
         return keywords.stream()
                 .anyMatch(keyword -> room.getRoomNumber().roomNumber.contains(keyword)
-                        || room.getTags().stream().anyMatch(t -> t.tagName.contains(keyword)));
+                        || room.getTags().stream()
+                        .anyMatch(t -> t.tagName.toLowerCase().contains(keyword.toLowerCase())));
     }
 
     @Override
