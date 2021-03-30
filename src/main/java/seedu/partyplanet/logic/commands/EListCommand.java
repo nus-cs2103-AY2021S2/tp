@@ -90,8 +90,10 @@ public class EListCommand extends Command {
         if (model.getEventListCopy().size() == model.getFilteredEventList().size()) {
             return new CommandResult(EListCommand.MESSAGE_SUCCESS); // No event filtered out
         }
+
+        int numEvents = model.getFilteredEventList().size();
         return new CommandResult(
-                String.format(Messages.MESSAGE_EVENTS_LISTED_OVERVIEW, model.getFilteredEventList().size()));
+                String.format(Messages.MESSAGE_EVENTS_LISTED_OVERVIEW, numEvents, numEvents == 1 ? "" : "s"));
     }
 
     @Override

@@ -81,8 +81,10 @@ public class ListCommand extends Command {
             return new CommandResult(ListCommand.MESSAGE_SUCCESS // No person filtered out
                     + String.format(Messages.MESSAGE_PERSONS_LISTED_TAGS, tagsRepresentation));
         }
+
+        int numPerson = model.getFilteredPersonList().size();
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size())
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, numPerson, numPerson == 1 ? "" : "s")
                         + String.format(Messages.MESSAGE_PERSONS_LISTED_TAGS, tagsRepresentation));
     }
 
