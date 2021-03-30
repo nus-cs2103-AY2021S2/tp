@@ -13,13 +13,13 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : parse(free_time)
+[-> LogicManager : parse(free_time date)
 activate LogicManager
 
-LogicManager -> SocheduleParser : parseCommand(free_time)
+LogicManager -> SocheduleParser : parseCommand(free_time date)
 activate SocheduleParser
 
-SocheduleParser -> FindFreeTimeCommandParser: parse(args)
+SocheduleParser -> FindFreeTimeCommandParser: parse(date)
 activate FindFreeTimeCommandParser
 
 create FindFreeTimeCommand
@@ -38,7 +38,6 @@ LogicManager <-- SocheduleParser : s
 deactivate SocheduleParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 SocheduleParser -[hidden]->[
-destroy SocheduleParser
 
 LogicManager -> FindFreeTimeCommand : execute()
 activate FindFreeTimeCommand
@@ -58,7 +57,6 @@ LogicManager <-- FindFreeTimeCommand
 deactivate FindFreeTimeCommand
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 FindFreeTimeCommand -[hidden]->[
-destroy FindFreeTimeCommand
 
 [<-- LogicManager : CommandResult
 @enduml
