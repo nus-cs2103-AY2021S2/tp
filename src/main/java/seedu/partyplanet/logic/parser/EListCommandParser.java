@@ -144,7 +144,6 @@ public class EListCommandParser implements Parser<EListCommand> {
     private Comparator<Event> getSortOrder(ArgumentMultimap argMap) throws ParseException {
         Optional<String> sortType = argMap.getValue(PREFIX_SORT);
         if (sortType.isEmpty()) {
-            stringSort += "Sorted event names ";
             return SORT_NAME; // default
         } else {
             switch (sortType.get().toLowerCase()) {
@@ -173,7 +172,7 @@ public class EListCommandParser implements Parser<EListCommand> {
     private Comparator<Event> applySortDirection(
             Comparator<Event> comparator, ArgumentMultimap argMap) throws ParseException {
         Optional<String> orderType = argMap.getValue(PREFIX_ORDER);
-        if (comparator == SORT_EVENTDATE_UPCOMING) {
+        if (stringSort.equals("") || comparator == SORT_EVENTDATE_UPCOMING) {
             return comparator; // default
         } else if (orderType.isEmpty()) {
             stringSort += "in ascending order. ";

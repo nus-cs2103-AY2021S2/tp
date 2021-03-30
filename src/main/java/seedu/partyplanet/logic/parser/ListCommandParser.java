@@ -148,7 +148,6 @@ public class ListCommandParser implements Parser<ListCommand> {
     private Comparator<Person> getSortOrder(ArgumentMultimap argMap) throws ParseException {
         Optional<String> sortType = argMap.getValue(PREFIX_SORT);
         if (sortType.isEmpty()) {
-            stringSort += "Sorted names ";
             return SORT_NAME; // default
         } else {
             switch (sortType.get().toLowerCase()) {
@@ -177,7 +176,7 @@ public class ListCommandParser implements Parser<ListCommand> {
     private Comparator<Person> applySortDirection(
             Comparator<Person> comparator, ArgumentMultimap argMap) throws ParseException {
         Optional<String> orderType = argMap.getValue(PREFIX_ORDER);
-        if (comparator == SORT_BIRTHDAY_UPCOMING) {
+        if (stringSort.equals("") || comparator == SORT_BIRTHDAY_UPCOMING) {
             return comparator; // default
         } else if (orderType.isEmpty()) {
             stringSort += "in ascending order. ";
