@@ -41,26 +41,42 @@ public class DeliveryDateTest {
     @Test
     public void isValidDeliveryDate() {
         // null delivery date
-        assertThrows(NullPointerException.class, () -> DeliveryDate.isValidDeliveryDate(null));
+        assertThrows(NullPointerException.class, () -> DeliveryDate.isValidFormat(null));
 
-        // invalid addresses
-        assertFalse(DeliveryDate.isValidDeliveryDate("01/13/2022")); // invalid month
-        assertFalse(DeliveryDate.isValidDeliveryDate("32/01/2022")); // invalid day
-        assertFalse(DeliveryDate.isValidDeliveryDate("01/01/202020")); // invalid year
-        assertFalse(DeliveryDate.isValidDeliveryDate("01,01,2022")); // invalid delimiter
-        assertFalse(DeliveryDate.isValidDeliveryDate("01:01:2022")); // invalid delimiter
-        assertFalse(DeliveryDate.isValidDeliveryDate("01/01-2022")); // inconsistent delimiter
-        assertFalse(DeliveryDate.isValidDeliveryDate("2022/12/31")); // invalid format
-        // less than 3 working days
-        assertFalse(DeliveryDate.isValidDeliveryDate(LocalDate.now().plusDays(2L).toString()));
+        // invalid delivery dates
+        assertFalse(DeliveryDate.isValidFormat("01/13/2022")); // invalid month
+        assertFalse(DeliveryDate.isValidFormat("32/01/2022")); // invalid day
+        assertFalse(DeliveryDate.isValidFormat("01/01/202020")); // invalid year
+        assertFalse(DeliveryDate.isValidFormat("01,01,2022")); // invalid delimiter
+        assertFalse(DeliveryDate.isValidFormat("01:01:2022")); // invalid delimiter
+        assertFalse(DeliveryDate.isValidFormat("01/01-2022")); // inconsistent delimiter
+        assertFalse(DeliveryDate.isValidFormat("2022/12/31")); // invalid format
+        assertFalse(DeliveryDate.isValidFormat(LocalDate.now().toString())); // Invalid in-build LocalDate format
 
-        // valid addresses
-        assertTrue(DeliveryDate.isValidDeliveryDate("02/02/2022"));
-        assertTrue(DeliveryDate.isValidDeliveryDate("02-02-2022"));
-        assertTrue(DeliveryDate.isValidDeliveryDate("02.02.2022"));
-        assertTrue(DeliveryDate.isValidDeliveryDate("02 Feb 2022"));
+        // valid delivery dates
+        assertTrue(DeliveryDate.isValidFormat("02/02/2022"));
+        assertTrue(DeliveryDate.isValidFormat("02-02-2022"));
+        assertTrue(DeliveryDate.isValidFormat("02.02.2022"));
+        assertTrue(DeliveryDate.isValidFormat("02 Feb 2022"));
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("[dd/MM/yyyy]");
         // 3 working days from current date
-        assertTrue(DeliveryDate.isValidDeliveryDate(dateFormat.format(LocalDate.now().plusDays(3L))));
+        assertTrue(DeliveryDate.isValidFormat(dateFormat.format(LocalDate.now().plusDays(3L))));
+    }
+
+    @Test
+    public void isXDaysLater() {
+        String yesterday = DateTimeFormatter.ofPattern("[dd/MM/yyyy]").format(LocalDate.now().plusDays(-1L));
+        String today = DateTimeFormatter.ofPattern("[dd/MM/yyyy]").format(LocalDate.now());
+        String tomorrow = DateTimeFormatter.ofPattern("[dd/MM/yyyy]").format(LocalDate.now().plusDays(1L));
+        // isValidFormat should be called before isXDaysLater
+        assertFalse(DeliveryDate.isValidFormat("2020/13/40") && DeliveryDate.isXDaysLater(today, 0L));
+
+        // date is in the past
+        assertFalse(DeliveryDate.isValidFormat(yesterday) && DeliveryDate.isXDaysLater(yesterday, 0L));
+
+        // date is today or in the future
+        assertTrue(DeliveryDate.isValidFormat(today) && DeliveryDate.isXDaysLater(today, 0L));
+        assertTrue(DeliveryDate.isValidFormat(tomorrow) && DeliveryDate.isXDaysLater(tomorrow, 0L));
+        assertTrue(DeliveryDate.isValidFormat(tomorrow) && DeliveryDate.isXDaysLater(tomorrow, 1L));
     }
 }
