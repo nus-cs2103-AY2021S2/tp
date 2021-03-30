@@ -25,7 +25,6 @@ import seedu.iscam.model.util.meetingbook.ReadOnlyMeetingBook;
  */
 public class SampleDataUtil {
     public static Client[] getSampleClients() {
-        // TODO: Modify SampleDataUtil to support imageRes
         return new Client[]{
             new Client(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                     new Location("Blk 30 Geylang Street 29, #06-40"), new InsurancePlan("Plan A"),
