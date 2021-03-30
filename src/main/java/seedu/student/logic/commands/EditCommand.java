@@ -43,7 +43,7 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_MATRICULATION_NUMBER + "MATRICULATION NUMBER]"
+            + "[" + PREFIX_MATRICULATION_NUMBER + "MATRICULATION NUMBER] "
             + "[" + PREFIX_FACULTY + "FACULTY] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
@@ -56,8 +56,8 @@ public class EditCommand extends Command {
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the records.";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the records";
 
     private final Index index;
     private final EditStudentDescriptor editStudentDescriptor;
@@ -157,7 +157,6 @@ public class EditCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
          */
         public EditStudentDescriptor(EditStudentDescriptor toCopy) {
             setName(toCopy.name);
