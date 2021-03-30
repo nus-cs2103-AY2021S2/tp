@@ -43,8 +43,8 @@ public class JsonAdaptedEntry {
      */
     public JsonAdaptedEntry(Entry source) {
         entryName = source.getEntryName().toString();
-        startDate = source.getStartDate().toString();
-        endDate = source.getEndDate().toString();
+        startDate = source.startTimestamp();
+        endDate = source.endTimestamp();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
