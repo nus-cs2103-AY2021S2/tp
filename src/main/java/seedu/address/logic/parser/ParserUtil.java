@@ -27,7 +27,14 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_WEIGHTAGE = "Weightage is not a positive percentage value.";
 
+
     public static final String MESSAGE_INVALID_ARGS_LENGTH = "Invalid number of arguments provided.";
+  
+    public static final String MESSAGE_INVALID_NUMBER_OF_DAYS = "Number of days is not a positive integer.";
+
+    public static final String MESSAGE_INVALID_NUMBER_OF_WEEKS = "Number of weeks is not a positive integer.";
+
+
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -169,6 +176,34 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String numberOfDays} into a long.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static long parseNumberOfDays(String numberOfDays) throws ParseException {
+        requireNonNull(numberOfDays);
+        String trimmedNumberOfDays = numberOfDays.trim();
+        if (!StringUtil.isNonZeroUnsignedLong(trimmedNumberOfDays)) {
+            throw new ParseException(MESSAGE_INVALID_NUMBER_OF_DAYS);
+        }
+        long longNumberOfDays = Long.parseLong(trimmedNumberOfDays);
+        return longNumberOfDays;
+    }
+
+    /**
+     * Parses a {@code String numberOfWeeks} into a long.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static long parseNumberOfWeeks(String numberOfWeeks) throws ParseException {
+        requireNonNull(numberOfWeeks);
+        String trimmedNumberOfWeeks = numberOfWeeks.trim();
+        if (!StringUtil.isNonZeroUnsignedLong(trimmedNumberOfWeeks)) {
+            throw new ParseException(MESSAGE_INVALID_NUMBER_OF_WEEKS);
+        }
+        long longNumberOfWeeks = Long.parseLong(trimmedNumberOfWeeks);
+        return longNumberOfWeeks;
     }
 
 }

@@ -97,7 +97,7 @@ public class Task {
      */
     public Task finishTask() {
         return new Task(this.taskName, this.moduleCode, this.deadlineDate,
-                this.deadlineTime, new Status("Finished"), this.weightage, this.remark, this.tags);
+                this.deadlineTime, this.status.toggle(), this.weightage, this.remark, this.tags);
     }
 
     /**
