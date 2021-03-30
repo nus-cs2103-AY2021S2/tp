@@ -17,9 +17,9 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class BatchCommandParser implements Parser<BatchCommand> {
-    private static final String INVALID_BATCH_COMMAND = "Invalid batch operation! Only edit and delete operations "
+    private static final String INVALID_BATCH_COMMAND = "Invalid batch operation!\nOnly edit and delete operations "
             + "are supported.";
-    private static final String INVALID_EDIT_ARGUMENTS = "Invalid arguments for edit command! Only tags and "
+    private static final String INVALID_EDIT_ARGUMENTS = "Invalid arguments for edit command!\nOnly tags and "
             + "insurance policies can be edited in batch.";
 
     /**
@@ -54,6 +54,8 @@ public class BatchCommandParser implements Parser<BatchCommand> {
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BatchCommand.MESSAGE_USAGE));
+        } catch (ParseException e) {
+            throw new ParseException(String.format(BatchCommand.ERROR_MESSAGE, e.getLocalizedMessage()));
         }
     }
 
