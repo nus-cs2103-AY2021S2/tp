@@ -16,17 +16,15 @@ public class AliasCommandParserTest {
     @Test
     public void parse_invalidFields_success() {
         assertParseFailure(parser, " ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, AliasCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, "c/add name/a",
+        assertParseFailure(parser, " c/add name/a",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AliasCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, "command/add name/a",
+        assertParseFailure(parser, " command/add name/a",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AliasCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, "c/ n/a",
+        assertParseFailure(parser, " command/add n/a",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AliasCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, "c/add n/",
+        assertParseFailure(parser, " c/add",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AliasCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, "c/add",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AliasCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, "n/a",
+        assertParseFailure(parser, " n/a",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AliasCommand.MESSAGE_USAGE));
     }
 
