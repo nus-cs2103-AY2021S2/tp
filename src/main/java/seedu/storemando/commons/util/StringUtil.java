@@ -91,4 +91,30 @@ public class StringUtil {
             return false;
         }
     }
+
+    /**
+     * Returns true if the {@code sentence} contains the {@code word}.
+     * Full word match is required.
+     * <br>examples:<pre>
+     *       containsWord("ABc def", "ABc") == true
+     *       containsWord("ABc def", "def") == true
+     *       containsWord("ABc def", "DEF") == false //casing not the same
+     *       containsWord("ABc def", "AB") == false //not a full word match
+     *       </pre>
+     *
+     * @param sentence cannot be null
+     * @param word     cannot be null, cannot be empty, must be a single word
+     */
+    public static boolean containsWord(String sentence, String word) {
+        requireNonNull(sentence);
+        requireNonNull(word);
+
+        String preppedWord = word.trim();
+        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
+        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
+
+        String[] wordsInPreppedSentence = sentence.split("\\s+");
+
+        return Arrays.stream(wordsInPreppedSentence).anyMatch(preppedWord::equals);
+    }
 }
