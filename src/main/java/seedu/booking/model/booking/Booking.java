@@ -65,8 +65,6 @@ public class Booking {
         return bookerEmail;
     }
 
-
-
     public VenueName getVenueName() {
         return venueName;
     }
