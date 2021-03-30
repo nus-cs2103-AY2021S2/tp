@@ -39,6 +39,12 @@ public class UpcomingTuitionListPanel extends UiPart<Region> {
         populateTuitionList(studentList, tuitionList);
         sortByDate(tuitionList);
 
+        addListener(studentList, tuitionList);
+
+        populateUpcomingTuitionListView(tuitionList);
+    }
+
+    private void addListener(ObservableList<Student> studentList, ObservableList<Tuition> tuitionList) {
         studentList.addListener((ListChangeListener<Student>) change -> {
             while (change.next()) {
                 tuitionList.clear();
@@ -47,8 +53,6 @@ public class UpcomingTuitionListPanel extends UiPart<Region> {
                 populateUpcomingTuitionListView(tuitionList);
             }
         });
-
-        populateUpcomingTuitionListView(tuitionList);
     }
 
     /**
