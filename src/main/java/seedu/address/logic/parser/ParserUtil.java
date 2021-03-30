@@ -24,7 +24,6 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
-
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
@@ -41,15 +40,15 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code oneBasedIndices} into a {@code List<Index>}. Leading and trailing whitespaces will be trimmed.
+     * Parses {@code oneBasedIndices} and adds to a {@code List<Index>}. Leading and trailing whitespaces
+     * will be trimmed.
      *
-     * @param oneBasedIndices comma separated indices input by the user.
+     * @param oneBasedIndices comma separated indices input by the user
      * @return {@code List<Index>}.
      * @throws ParseException if any of the specified index is invalid (not non-zero unsigned integer).
      */
     public static List<Index> parseIndices(String oneBasedIndices) throws ParseException {
-        String removeWhitespace = oneBasedIndices.trim();
-        String[] splitByComma = removeWhitespace.split(",");
+        String[] splitByComma = oneBasedIndices.split(",");
         for (int i = 0; i < splitByComma.length; i++) {
             splitByComma[i] = splitByComma[i].trim();
         }

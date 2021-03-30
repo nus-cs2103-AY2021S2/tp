@@ -11,7 +11,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.EditCommandParser;
 import seedu.address.logic.parser.Parser;
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -23,27 +22,40 @@ public class BatchCommand<T extends Command> extends Command {
             + ": Batch operation for all the listed clients.\n"
             + "Parameters: -COMMAND (only edit or delete command are supported) "
             + "-ARGUMENTS (for the chosen command)\n"
-            + "Example: " + COMMAND_WORD + " -edit -1, 2 -t/colleagues";
+            + "Example: " + COMMAND_WORD + " edit 1, 2 t/colleagues";
     public static final String SUCCESS_MESSAGE = "Batch operation successful!";
     public static final String ERROR_MESSAGE = "Batch operation halted. Error message from batch command: \n%s";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
     private final Parser<T> commandParser;
-    private final String inputIndices;
+    private final List<Index> listOfIndices;
     private final String inputCommandArgs;
 
     /**
-     * Creates a {@code BatchCommand} which has access to the relevant {@Parser} for the {@Command} to be executed
-     * in batch.
+     * Creates a {@code BatchCommand} which has access to the relevant {@code Parser} for the {@code Command} to be
+     * executed in batch.
      *
      * @param commandParser {@Parser} for the {@Command}
-     * @param inputIndices user input indices for the chosen command
+     * @param listOfIndices user input indices for the chosen command
      * @param inputCommandArgs user input arguments for the chosen command
      */
-    public BatchCommand(Parser<T> commandParser, String inputIndices, String inputCommandArgs) {
+    public BatchCommand(Parser<T> commandParser, List<Index> listOfIndices, String inputCommandArgs) {
         this.commandParser = commandParser;
-        this.inputIndices = inputIndices;
+        this.listOfIndices = listOfIndices;
         this.inputCommandArgs = inputCommandArgs;
+    }
+
+    /**
+     * Creates a {@code BatchCommand} which has access to the relevant {@code Parser} for the {@code Command} to be
+     * executed in batch. This constructor is used when there are no arguments for the {@code Command}
+     *
+     * @param commandParser {@Parser} for the {@Command}
+     * @param listOfIndices user input indices for the chosen command
+     */
+    public BatchCommand(Parser<T> commandParser, List<Index> listOfIndices) {
+        this.commandParser = commandParser;
+        this.listOfIndices = listOfIndices;
+        this.inputCommandArgs = null;
     }
 
     @Override
@@ -54,16 +66,15 @@ public class BatchCommand<T extends Command> extends Command {
             // Execute on the copy first to check for errors
             Model copy = new ModelManager(model.getAddressBook(), model.getUserPrefs());
 
-            List<Index> listOfParsedIndices = ParserUtil.parseIndices(inputIndices);
-            Collections.sort(listOfParsedIndices);
-            Collections.reverse(listOfParsedIndices);
+            Collections.sort(listOfIndices);
+            Collections.reverse(listOfIndices);
 
             boolean isReal = false;
 
             if (commandParser instanceof EditCommandParser) {
-                executeBatchEdit(commandParser, copy, listOfParsedIndices, isReal);
+                executeBatchEdit(commandParser, copy, listOfIndices, isReal);
             } else {
-                executeBatchDelete(commandParser, copy, listOfParsedIndices, isReal);
+                executeBatchDelete(commandParser, copy, listOfIndices, isReal);
             }
 
             // If successfully executed on copy, we can now execute on model without worrying about exceptions.
@@ -72,9 +83,9 @@ public class BatchCommand<T extends Command> extends Command {
             isReal = true;
 
             if (commandParser instanceof EditCommandParser) {
-                executeBatchEdit(commandParser, model, listOfParsedIndices, isReal);
+                executeBatchEdit(commandParser, model, listOfIndices, isReal);
             } else {
-                executeBatchDelete(commandParser, model, listOfParsedIndices, isReal);
+                executeBatchDelete(commandParser, model, listOfIndices, isReal);
             }
 
             return new CommandResult(SUCCESS_MESSAGE, false, false, false);
@@ -88,7 +99,7 @@ public class BatchCommand<T extends Command> extends Command {
         for (Index i : listOfParsedIndices) {
             String newCommandInput = i.getOneBased() + " " + inputCommandArgs;
             CommandResult commandResult = ((EditCommandParser) commandParser)
-                    .batchParse(newCommandInput)
+                    .parse(newCommandInput)
                     .execute(model);
             logResultIfReal(isReal, commandResult);
         }
@@ -113,7 +124,7 @@ public class BatchCommand<T extends Command> extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof BatchCommand // instanceof handles nulls
-                && inputIndices.equals(((BatchCommand) other).inputIndices)); // state check
+                && listOfIndices.equals(((BatchCommand) other).listOfIndices)); // state check
     }
 
 }
