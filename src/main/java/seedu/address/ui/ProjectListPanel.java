@@ -7,9 +7,13 @@ import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
@@ -32,10 +36,16 @@ public class ProjectListPanel extends UiPart<Region> {
         super(FXML);
         projectListView.setItems(projectList);
         projectListView.setCellFactory(listview -> new ProjectListViewCell());
+        projectListView.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.UP || event.getCode() == KeyCode.DOWN) {
+                event.consume();
+            }
+        });
         projectListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Project>() {
             @Override
             public void changed(ObservableValue<? extends Project> observable, Project oldValue, Project newValue) {
                 if (newValue != null) {
+                    mainWindow.clearButtonStyles();
                     mainWindow.displayProject(newValue);
                 }
             }
