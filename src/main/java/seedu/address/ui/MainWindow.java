@@ -17,8 +17,8 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.ui.reminderpanel.ReminderListPanel;
 import seedu.address.ui.schedulepanel.ScheduleListPanel;
-import seedu.address.ui.reminderpanel.ReminderWindow;
 import seedu.address.ui.timetablepanel.TimeTableWindow;
 
 /**
@@ -42,9 +42,9 @@ public class MainWindow extends UiPart<Stage> {
     private CalendarView calendarView;
     private AppointmentListPanel appointmentListPanel;
     private GradeListPanel gradeListPanel;
+    private ReminderListPanel reminderListPanel;
     private FiltersPanel filtersPanel;
     private ScheduleListPanel scheduleListPanel;
-    private ReminderWindow reminderWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -74,7 +74,13 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane scheduleListPanelPlaceholder;
 
     @FXML
+    private StackPane reminderListPanelPlaceholder;
+
+    @FXML
     private TabPane tabPanePlaceHolder;
+
+    @FXML
+    private TabPane tabSidePanePlaceHolder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -93,7 +99,6 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
         timetableWindow = new TimeTableWindow();
-        reminderWindow = new ReminderWindow(logic);
     }
 
     public Stage getPrimaryStage() {
@@ -145,12 +150,15 @@ public class MainWindow extends UiPart<Stage> {
         appointmentListPanel = new AppointmentListPanel(logic.getFilteredAppointmentList());
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
 
+        scheduleListPanel = new ScheduleListPanel(logic.getFilteredScheduleList());
+        scheduleListPanelPlaceholder.getChildren().add(scheduleListPanel.getRoot());
+
         /* Grade List */
         gradeListPanel = new GradeListPanel(logic.getFilteredGradeList());
         gradeListPanelPlaceholder.getChildren().add(gradeListPanel.getRoot());
 
-        scheduleListPanel = new ScheduleListPanel(logic.getFilteredScheduleList());
-        scheduleListPanelPlaceholder.getChildren().add(scheduleListPanel.getRoot());
+        reminderListPanel = new ReminderListPanel(logic.getFilteredReminderList());
+        reminderListPanelPlaceholder.getChildren().add(reminderListPanel.getRoot());
 
         resultDisplay = new ResultBarFooter();
         statusbarPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -188,18 +196,6 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.show();
         } else {
             helpWindow.focus();
-        }
-    }
-
-    /**
-     * Opens the reminder window or focuses on it if it's already opened.
-     */
-    @FXML
-    public void handleReminder() {
-        if (!reminderWindow.isShowing()) {
-            reminderWindow.show();
-        } else {
-            reminderWindow.focus();
         }
     }
 
@@ -244,7 +240,6 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
-                handleReminder();
             }
 
             if (commandResult.isShowTimetable()) {

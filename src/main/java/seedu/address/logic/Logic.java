@@ -14,6 +14,7 @@ import seedu.address.model.grade.Grade;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.model.tutor.Tutor;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.schedule.Schedule;
 
 /**
  * API of the Logic component
