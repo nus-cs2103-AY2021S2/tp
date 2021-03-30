@@ -6,6 +6,7 @@ import seedu.address.model.schedule.SimplePeriod;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -29,10 +30,10 @@ import java.util.stream.Stream;
  */
 public class TimetablePlacementPolicy {
 
-    private final static int MINUTES_IN_AN_HOUR = 60;
-    private final static int MINUTES_IN_DAY = 2400;
+    private static final int MINUTES_IN_AN_HOUR = 60;
+    private static final int MINUTES_IN_DAY = 2400;
 
-    public final static double TIMETABLE_DISPLAY_SIZE = 1600;
+    public static final double TIMETABLE_DISPLAY_SIZE = 1600;
 
 
     private LocalDateTime startDateTime;
@@ -125,8 +126,10 @@ public class TimetablePlacementPolicy {
      * @return
      */
     public double getLengthOfSlot(Schedulable schedulable) {
-        int startMinutesSoFar = getMinutesInDay(schedulable.getStartLocalDateTime());
-        int endMinutesSoFar = getMinutesInDay(schedulable.getTerminateLocalDateTime());
+        LocalDateTime offSetStartDate = applyOffset(schedulable.getStartLocalDateTime());
+        LocalDateTime offSetEndDate = applyOffset(schedulable.getTerminateLocalDateTime());
+        int startMinutesSoFar = getMinutesInDay(offSetStartDate);
+        int endMinutesSoFar = getMinutesInDay(offSetEndDate);
         assert endMinutesSoFar >= startMinutesSoFar;
         double ratio = (double)(endMinutesSoFar - startMinutesSoFar) / MINUTES_IN_DAY;
         return TIMETABLE_DISPLAY_SIZE * ratio;
@@ -162,9 +165,10 @@ public class TimetablePlacementPolicy {
 
         Schedulable firstPeriod = new SimplePeriod(name,
                 removeOffset(offSetStartTime),
-                removeOffset(getStartOfNextDay(offSetStartTime)));
+                removeOffset(getEndOfTheDay(offSetStartTime)));
         listOfSchedulableUnits.add(firstPeriod);
 
+        //Check if case !endTime == 00:00
         if (!offSetEndTime.isEqual(getStartOfTheDay(offSetEndTime))) {
             Schedulable lastPeriod = new SimplePeriod(name,
                     removeOffset(getStartOfTheDay(offSetEndTime)),
@@ -172,16 +176,16 @@ public class TimetablePlacementPolicy {
             listOfSchedulableUnits.add(lastPeriod);
         }
 
-        offSetStartTime = getStartOfNextDay(offSetStartTime);
+        offSetStartTime = getStartOfTheDay(offSetStartTime).plusDays(1);
         offSetEndTime = getStartOfTheDay(offSetEndTime);
 
         //iterate through each day slot in between
         while(offSetEndTime.isAfter(offSetStartTime)) {
             Schedulable toAdd = new SimplePeriod(name,
                     removeOffset(offSetStartTime),
-                    removeOffset(getStartOfNextDay(offSetStartTime)));
+                    removeOffset(getEndOfTheDay(offSetStartTime)));
             listOfSchedulableUnits.add(toAdd);
-            offSetStartTime = getStartOfNextDay(offSetStartTime);
+            offSetStartTime = getStartOfTheDay(offSetStartTime).plusDays(1);
         }
 
         return listOfSchedulableUnits
@@ -191,7 +195,7 @@ public class TimetablePlacementPolicy {
     }
 
     /**
-     * apply offset so each day period starts from 00:00 and ends at 00:00 the next day.
+     * apply offset so each day period starts from 00:00 and ends at LocalTime.max the next day.
      * @param localDateTime
      * @return
      */
@@ -203,12 +207,12 @@ public class TimetablePlacementPolicy {
     }
 
     /**
-     * Gets the local date time of the (official) start of the next day, with time at 00:00
+     * Gets the local date time of the (official) start of the next day, with time at LocalTime.max
      * given the date today.
      * @return
      */
-    public LocalDateTime getStartOfNextDay(LocalDateTime localDateTime) {
-        return localDateTime.toLocalDate().plusDays(1).atTime(0,0);
+    public LocalDateTime getEndOfTheDay(LocalDateTime localDateTime) {
+        return localDateTime.toLocalDate().atTime(LocalTime.MAX);
     }
 
     /**

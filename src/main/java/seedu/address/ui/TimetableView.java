@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 
@@ -21,10 +22,20 @@ import seedu.address.model.schedule.Schedulable;
  */
 
 public class TimetableView extends UiPart<Region> {
-    private static final String FXML = "TimetableWindow.fxml";
-    private final Logger logger = LogsCenter.getLogger(TimetableView.class);
 
     public static final int NUMBER_OF_COLUMNS = 7;
+
+    private static final String FXML = "TimetableWindow.fxml";
+
+    private final Logger logger = LogsCenter.getLogger(TimetableView.class);
+    private final ListChangeListener<Schedulable> listener = change -> {
+        while (change.next()) {
+            if (change.wasAdded() || change.wasRemoved()) {
+                this.populateWithData(change.getList());
+            }
+        }
+    };
+
 
     @FXML
     private GridPane timetableGrid;
@@ -83,15 +94,22 @@ public class TimetableView extends UiPart<Region> {
         this.timetableSlots = timetableSlots;
         this.firstDayOfTimetable = firstDayOfTimetable;
         this.timetablePlacementPolicy = new TimetablePlacementPolicy(firstDayOfTimetable);
-        reset();
         populateWithData(timetableSlots);
+        //add Listener
+        timetableSlots.addListener(this.listener);
     }
 
     public void setTimetablePlacementPolicy(TimetablePlacementPolicy policy) {
         this.timetablePlacementPolicy = policy;
     }
 
+    /**
+     * Clears old data and populates the view with new da
+     * @param obsList
+     */
+
     public void populateWithData(ObservableList<? extends Schedulable> obsList) {
+        reset();
         List<? extends Schedulable> processedList = obsList.stream()
                 .filter(timetablePlacementPolicy :: test)
                 .flatMap(timetablePlacementPolicy :: breakIntoUnits)
@@ -107,7 +125,7 @@ public class TimetableView extends UiPart<Region> {
     }
 
     /**
-     * Enum representing a constant assigned to each column in the timetable
+     * Enum representing an assigned column in the timetable.
      */
 
     public static enum Column {
