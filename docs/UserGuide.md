@@ -28,7 +28,7 @@ title: User Guide
 6. [Command Summary](#command-summary)
 7.  [Glossary](#glossary)
 
-# **Overview**
+# Overview
 
 Welcome to the Pawbook User Guide! 
 In this section, you will be given a brief overview of what Pawbook is all about and what you can takeaway from this document. 
@@ -37,7 +37,7 @@ We will guide you from a user's perspective as to how to use Pawbook.
 This user guide contains (but not limited to) a [quick start guide](#quick-start), a [features walkthrough](#commands) and a [command summary table](#command-summary) for easy reference. 
 In each feature or functionality, we further provide command formats and command examples to ensure that users can become proficient in using Pawbook.
 
-## **Introduction**
+## Introduction
 
 Managing a business is definitely not easy, so imagine if your business includes taking care of countless energetic 
 furpals. That's right! We are talking about the job of dog school managers. <br> 
@@ -56,13 +56,13 @@ You can navigate the application with ease and execute instructions by typing te
 
 Pawbook also has the benefits of a **Graphical User Interface (GUI)** to provide you with a visually appealing view, thus bringing you the best user experience.
 
-## **Purpose**
+## Purpose
 
 The aim of this user guide is to guide novel users on how to get started with Pawbook. 
 It also aids more experienced users by providing a detailed explanation on the different features and components of Pawbook. 
 This allows old and new users alike to easily use the various features and functionalities provided by Pawbook. 
 
-## **Contributors**
+## Contributors
 
 This user guide is created by **CS2103T-T10-Group1**.
 * Charles Lee Lin Ta
@@ -72,7 +72,7 @@ This user guide is created by **CS2103T-T10-Group1**.
 * Wei Yutong
 * Zhang Anli
 
-## **Navigating the User Guide**
+## Navigating the User Guide
 
 This user guide provides you with all the information you need to utilise Pawbook. We understand the 
 pains of using a Command Line Interface (CLI) program and have bested our efforts into ensuring a very readable guide
@@ -95,18 +95,18 @@ Here are some important syntax to take note of to facilitate your reading before
 | :bulb: | Indicates there is something important to take note of
 
 
-# **About the User Guide**
+# About the User Guide
 
 In this section, you will learn what the different notations and symbols used in Pawbook. 
 
-## **Syntax Format**
+## Syntax Format
 
 Syntax | Meaning  | Example
 --------|------------------|----------
 **`lower_case/`** |  Prefix | `n/`, `p/`, `t/`
 **`[UPPER_CASE]/`** |  Parameter | [keyword] [entity ID]
 
-## **GUI Layout**
+## GUI Layout
 
 In this section, you will be given an introduction to the layout of Pawbook's Graphical User Interface (GUI). This will 
 help you better understand what each component that you observe on-screen represents. <br>
@@ -132,7 +132,7 @@ This page helps you to better understand what each component seen on screen repr
 
 ---
 
-## **Quick Start**
+## Quick Start
 
 If this is your first time using Pawbook, follow these simple steps to jump straight into the action:
 
@@ -145,7 +145,7 @@ If this is your first time using Pawbook, follow these simple steps to jump stra
    typing `add` and pressing <kbd>Enter</kbd>  will allow you to start adding information to
    the database.
 
-**NOTE:** Please refer to the features below for details of each command.
+:bulb: Please refer to the features below for details of each command.
 
 ----
 
@@ -178,6 +178,8 @@ Examples:
    Command: `add dog n/Bruce b/Chihuahua d/12-02-2019 s/Male o/1 t/playful t/active`
 3. Creates a program with Program ID 3. <br>
    Command: `add program n/3 s/02-02-2020 18:00 t/puppies`
+   
+:bulb: The order of the prefixes do not matter, feel free to add your information in any order that is convenient for you!
 
 ![Add Command](images/AddCommandScreenshot1.png) | ![Add Command Result](images/AddCommandScreenshot2.png)
 
@@ -292,7 +294,7 @@ Display entities filtered by type.
 
 Format:
 ```
-list [dog|owner|program]
+list [dog/owner/program]
 ```
 
 You can use this command to see the all the entries of the specified entity.
@@ -375,6 +377,7 @@ Format: `exit`
 -----
 
 ## FAQ
+
 Q: How do I transfer my data to another computer? <br>
 A: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the 
 data of your previous Pawbook home folder.
@@ -420,3 +423,4 @@ Term  | Explanation
 -----|------------------
 CLI | Short for Command Line Interface. CLI-based applications are primarily used through processing text commands. 
 GUI | Short for Graphical User Interface. GUIs work as the tangible user interface between program and user. Users interact with Pawbook through the GUI on their devices.
+Entity | Refers to either an owner, a dog or a program
