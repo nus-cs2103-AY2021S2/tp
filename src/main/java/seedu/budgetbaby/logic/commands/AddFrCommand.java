@@ -46,6 +46,7 @@ public class AddFrCommand extends BudgetBabyCommand {
         requireNonNull(model);
 
         model.addFinancialRecord(toAdd);
+        model.commitBudgetTracker();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), false, false);
     }
 

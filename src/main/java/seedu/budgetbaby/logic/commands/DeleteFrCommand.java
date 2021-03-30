@@ -41,6 +41,7 @@ public class DeleteFrCommand extends BudgetBabyCommand {
 
         FinancialRecord toDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteFinancialRecord(toDelete);
+        model.commitBudgetTracker();
         return new CommandResult(String.format(MESSAGE_DELETE_FINANCIAL_RECORD_SUCCESS, toDelete));
     }
 

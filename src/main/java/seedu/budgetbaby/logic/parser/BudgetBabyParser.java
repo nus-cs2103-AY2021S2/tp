@@ -15,6 +15,7 @@ import seedu.budgetbaby.logic.commands.ExitCommand;
 import seedu.budgetbaby.logic.commands.FindFrCommand;
 import seedu.budgetbaby.logic.commands.ResetFilterCommand;
 import seedu.budgetbaby.logic.commands.SetBudgetCommand;
+import seedu.budgetbaby.logic.commands.UndoCommand;
 import seedu.budgetbaby.logic.commands.ViewMonthCommand;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 
@@ -66,6 +67,9 @@ public class BudgetBabyParser {
 
         case ViewMonthCommand.COMMAND_WORD:
             return new ViewMonthCommandParser().parse(arguments);
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
