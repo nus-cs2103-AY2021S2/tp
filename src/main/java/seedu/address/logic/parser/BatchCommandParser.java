@@ -8,6 +8,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -17,9 +19,9 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class BatchCommandParser implements Parser<BatchCommand> {
-    private static final String INVALID_BATCH_COMMAND = "Invalid batch operation!\nOnly edit and delete operations "
+    public static final String INVALID_BATCH_COMMAND = "Invalid batch operation!\nOnly edit and delete operations "
             + "are supported.";
-    private static final String INVALID_EDIT_ARGUMENTS = "Invalid arguments for edit command!\nOnly tags and "
+    public static final String INVALID_EDIT_ARGUMENTS = "Invalid arguments for edit command!\nOnly tags and "
             + "insurance policies can be edited in batch.";
 
     /**
@@ -34,28 +36,39 @@ public class BatchCommandParser implements Parser<BatchCommand> {
         try {
             String[] splitCommandAndIndicesAndArgs = args.trim().split(" ", 2);
             String inputCommand = splitCommandAndIndicesAndArgs[0].trim();
+
+            switch (inputCommand) {
+
+            case EditCommand.COMMAND_WORD:
+            case DeleteCommand.COMMAND_WORD:
+                break;
+
+            default:
+                throw new ParseException(INVALID_BATCH_COMMAND);
+            }
+
             String inputIndicesAndArgs = splitCommandAndIndicesAndArgs[1].trim();
 
             ArgumentMultimap argMultimap =
                     ArgumentTokenizer.tokenize(inputIndicesAndArgs, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                             PREFIX_ADDRESS, PREFIX_TAG, PREFIX_INSURANCE_POLICY);
+
             List<Index> listOfIndices = parseIndices(argMultimap);
+            Collections.sort(listOfIndices);
+            Collections.reverse(listOfIndices);
 
-            switch (inputCommand) {
+            assert inputCommand.equals(EditCommand.COMMAND_WORD) || inputCommand.equals(DeleteCommand.COMMAND_WORD);
 
-            case EditCommand.COMMAND_WORD:
+            if (inputCommand.equals(EditCommand.COMMAND_WORD)) {
                 return batchEdit(argMultimap, listOfIndices);
-
-            case DeleteCommand.COMMAND_WORD:
+            } else {
                 return batchDelete(listOfIndices);
-
-            default:
-                throw new ParseException(INVALID_BATCH_COMMAND);
             }
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BatchCommand.MESSAGE_USAGE));
+
         } catch (ParseException e) {
             throw new ParseException(String.format(BatchCommand.ERROR_MESSAGE, e.getLocalizedMessage()));
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BatchCommand.MESSAGE_USAGE));
         }
     }
 
@@ -73,14 +86,38 @@ public class BatchCommandParser implements Parser<BatchCommand> {
         List<String> listOfTags = argMultimap.getAllValues(PREFIX_TAG);
         List<String> listOfInsurancePolicies = argMultimap.getAllValues(PREFIX_INSURANCE_POLICY);
         String inputCommandArgs = concatAllArguments(listOfTags, listOfInsurancePolicies);
-        EditCommandParser editCommandParser = new EditCommandParser();
 
-        return new BatchCommand<>(editCommandParser, listOfIndices, inputCommandArgs);
+        List<EditCommand> listOfEditCommands = createEditCommands(listOfIndices, inputCommandArgs);
+
+        return new BatchCommand<>(listOfEditCommands);
     }
 
-    private BatchCommand<DeleteCommand> batchDelete(List<Index> listOfIndices) {
+    private List<EditCommand> createEditCommands(List<Index> listOfIndices, String inputCommandArgs)
+            throws ParseException {
+        EditCommandParser editCommandParser = new EditCommandParser();
+        List<EditCommand> listOfEditCommands = new ArrayList<>();
+        for (Index index : listOfIndices) {
+            String newCommandInput = index.getOneBased() + " " + inputCommandArgs;
+            EditCommand editCommand = editCommandParser.parse(newCommandInput);
+            listOfEditCommands.add(editCommand);
+        }
+        return listOfEditCommands;
+    }
+
+    private BatchCommand<DeleteCommand> batchDelete(List<Index> listOfIndices) throws ParseException {
+        List<DeleteCommand> listOfDeleteCommands = createDeleteCommands(listOfIndices);
+        return new BatchCommand<>(listOfDeleteCommands);
+    }
+
+    private List<DeleteCommand> createDeleteCommands(List<Index> listOfIndices) throws ParseException {
         DeleteCommandParser deleteCommandParser = new DeleteCommandParser();
-        return new BatchCommand<>(deleteCommandParser, listOfIndices);
+        List<DeleteCommand> listOfDeleteCommands = new ArrayList<>();
+        for (Index index : listOfIndices) {
+            String indexString = String.valueOf(index.getOneBased());
+            DeleteCommand deleteCommand = deleteCommandParser.parse(indexString);
+            listOfDeleteCommands.add(deleteCommand);
+        }
+        return listOfDeleteCommands;
     }
 
     private String concatAllArguments(List<String> listOfTags, List<String> listOfInsurancePolicies) {
@@ -99,7 +136,7 @@ public class BatchCommandParser implements Parser<BatchCommand> {
                     .append(" ");
         }
 
-        return stringBuilder.toString();
+        return stringBuilder.toString().trim();
     }
 
     private boolean areOtherPrefixesEntered(ArgumentMultimap argMultimap) {
