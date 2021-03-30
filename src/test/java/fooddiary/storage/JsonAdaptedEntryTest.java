@@ -13,6 +13,8 @@ import fooddiary.model.entry.Name;
 import fooddiary.model.entry.Price;
 import fooddiary.model.entry.Rating;
 import fooddiary.model.entry.Review;
+import fooddiary.model.tag.TagCategory;
+import fooddiary.model.tag.TagSchool;
 import fooddiary.testutil.Assert;
 import fooddiary.testutil.TypicalEntries;
 
@@ -36,7 +38,8 @@ public class JsonAdaptedEntryTest {
             .stream()
             .map(JsonAdaptedTagCategory::new)
             .collect(Collectors.toList());
-    private static final List<JsonAdaptedTagSchool> VALID_TAG_SCHOOL = TypicalEntries.ENTRY_B.getTagSchools().stream()
+    private static final List<JsonAdaptedTagSchool> VALID_TAG_SCHOOL = TypicalEntries.ENTRY_B.getTagSchools()
+            .stream()
             .map(JsonAdaptedTagSchool::new)
             .collect(Collectors.toList());
 
@@ -127,6 +130,26 @@ public class JsonAdaptedEntryTest {
                 null, VALID_TAG_CATEGORY, VALID_TAG_SCHOOL);
         String expectedMessage = String.format(JsonAdaptedEntry
                 .MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
+        Assert.assertThrows(IllegalValueException.class, expectedMessage, entry::toModelType);
+    }
+
+    @Test
+    public void toModelTyp_invalidTagCategory_throwsIllegalValueException() {
+        List<JsonAdaptedTagCategory> invalidTagCategoryList = new ArrayList<>(VALID_TAG_CATEGORY);
+        invalidTagCategoryList.add(new JsonAdaptedTagCategory(INVALID_TAG_CATEGORY));
+        JsonAdaptedEntry entry = new JsonAdaptedEntry(VALID_NAME, VALID_RATING, VALID_PRICE, VALID_REVIEWS,
+                VALID_ADDRESS, invalidTagCategoryList, VALID_TAG_SCHOOL);
+        String expectedMessage = TagCategory.MESSAGE_CONSTRAINTS;
+        Assert.assertThrows(IllegalValueException.class, expectedMessage, entry::toModelType);
+    }
+
+    @Test
+    public void toModelTyp_invalidTagSchool_throwsIllegalValueException() {
+        List<JsonAdaptedTagSchool> invalidTagSchoolList = new ArrayList<>(VALID_TAG_SCHOOL);
+        invalidTagSchoolList.add(new JsonAdaptedTagSchool(INVALID_TAG_SCHOOL));
+        JsonAdaptedEntry entry = new JsonAdaptedEntry(VALID_NAME, VALID_RATING, VALID_PRICE, VALID_REVIEWS,
+                VALID_ADDRESS, VALID_TAG_CATEGORY, invalidTagSchoolList);
+        String expectedMessage = TagSchool.MESSAGE_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, entry::toModelType);
     }
 

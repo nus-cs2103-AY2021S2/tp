@@ -16,7 +16,7 @@ import fooddiary.model.entry.Name;
 import fooddiary.model.entry.Price;
 import fooddiary.model.entry.Rating;
 import fooddiary.model.entry.Review;
-import fooddiary.model.tag.Tag;
+import fooddiary.model.tag.TagCategory;
 import fooddiary.testutil.EntryBuilder;
 
 public class AddCommandParserTest {
@@ -25,7 +25,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() {
         Entry expectedEntry = new EntryBuilder(VALID_ENTRY_B)
-                .withTagCategories(CommandTestUtil.VALID_TAG_FASTFOOD).build();
+                .withTagCategories(CommandTestUtil.VALID_TAG_CATEGORY_FASTFOOD).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, CommandTestUtil.PREAMBLE_WHITESPACE + CommandTestUtil.NAME_DESC_B
@@ -59,8 +59,8 @@ public class AddCommandParserTest {
 
         // multiple tags - all accepted
         Entry expectedEntryMultipleTags =
-                new EntryBuilder(VALID_ENTRY_B).withTagCategories(CommandTestUtil.VALID_TAG_FASTFOOD,
-                CommandTestUtil.VALID_TAG_WESTERN).build();
+                new EntryBuilder(VALID_ENTRY_B).withTagCategories(CommandTestUtil.VALID_TAG_CATEGORY_FASTFOOD,
+                CommandTestUtil.VALID_TAG_CATEGORY_WESTERN).build();
         assertParseSuccess(parser, CommandTestUtil.NAME_DESC_B + CommandTestUtil.RATING_DESC_B
                 + CommandTestUtil.PRICE_DESC_B + CommandTestUtil.REVIEW_DESC_B + CommandTestUtil.ADDRESS_DESC_B
                 + CommandTestUtil.TAG_DESC_WESTERN + CommandTestUtil.TAG_DESC_FASTFOOD,
@@ -144,11 +144,12 @@ public class AddCommandParserTest {
                 + CommandTestUtil.REVIEW_DESC_B + CommandTestUtil.INVALID_ADDRESS_DESC
                 + CommandTestUtil.TAG_DESC_WESTERN + CommandTestUtil.TAG_DESC_FASTFOOD, Address.MESSAGE_CONSTRAINTS);
 
-        // invalid tag
+        // invalid tagCategory
         assertParseFailure(parser, CommandTestUtil.NAME_DESC_B + CommandTestUtil.RATING_DESC_B
                 + CommandTestUtil.PRICE_DESC_B
                 + CommandTestUtil.REVIEW_DESC_B + CommandTestUtil.ADDRESS_DESC_B
-                + CommandTestUtil.INVALID_TAG_DESC + CommandTestUtil.TAG_DESC_FASTFOOD, Tag.MESSAGE_CONSTRAINTS);
+                + CommandTestUtil.INVALID_TAG_CATEGORY_DESC + CommandTestUtil.TAG_DESC_FASTFOOD,
+                        TagCategory.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, CommandTestUtil.INVALID_NAME_DESC + CommandTestUtil.RATING_DESC_B
