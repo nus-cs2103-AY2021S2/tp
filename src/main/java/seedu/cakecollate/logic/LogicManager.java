@@ -50,6 +50,7 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveCakeCollate(model.getCakeCollate());
+            storage.saveOrderItems(model.getOrderItems());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -107,4 +108,5 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+
 }

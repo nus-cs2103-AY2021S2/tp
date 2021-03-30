@@ -18,13 +18,17 @@ import seedu.cakecollate.logic.LogicManager;
 import seedu.cakecollate.model.CakeCollate;
 import seedu.cakecollate.model.Model;
 import seedu.cakecollate.model.ModelManager;
+import seedu.cakecollate.model.OrderItems;
 import seedu.cakecollate.model.ReadOnlyCakeCollate;
+import seedu.cakecollate.model.ReadOnlyOrderItems;
 import seedu.cakecollate.model.ReadOnlyUserPrefs;
 import seedu.cakecollate.model.UserPrefs;
 import seedu.cakecollate.model.util.SampleDataUtil;
 import seedu.cakecollate.storage.CakeCollateStorage;
 import seedu.cakecollate.storage.JsonCakeCollateStorage;
+import seedu.cakecollate.storage.JsonOrderItemsStorage;
 import seedu.cakecollate.storage.JsonUserPrefsStorage;
+import seedu.cakecollate.storage.OrderItemsStorage;
 import seedu.cakecollate.storage.Storage;
 import seedu.cakecollate.storage.StorageManager;
 import seedu.cakecollate.storage.UserPrefsStorage;
@@ -57,7 +61,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         CakeCollateStorage cakeCollateStorage = new JsonCakeCollateStorage(userPrefs.getCakeCollateFilePath());
-        storage = new StorageManager(cakeCollateStorage, userPrefsStorage);
+        OrderItemsStorage orderItemsStorage = new JsonOrderItemsStorage(userPrefs.getOrderItemsFilePath());
+        storage = new StorageManager(cakeCollateStorage, userPrefsStorage, orderItemsStorage);
 
         initLogging(config);
 
@@ -74,23 +79,29 @@ public class MainApp extends Application {
      * or an empty cakecollate will be used instead if errors occur when reading {@code storage}'s cakecollate.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+        Optional<ReadOnlyOrderItems> orderItemsOptional;
         Optional<ReadOnlyCakeCollate> cakeCollateOptional;
         ReadOnlyCakeCollate initialData;
+        ReadOnlyOrderItems initialDataForOrderItems;
         try {
             cakeCollateOptional = storage.readCakeCollate();
+            orderItemsOptional = storage.readOrderItems();
             if (!cakeCollateOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample CakeCollate");
             }
             initialData = cakeCollateOptional.orElseGet(SampleDataUtil::getSampleCakeCollate);
+            initialDataForOrderItems = orderItemsOptional.orElseGet(SampleDataUtil::getSampleOrderItems);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty CakeCollate");
             initialData = new CakeCollate();
+            initialDataForOrderItems = new OrderItems();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty CakeCollate");
             initialData = new CakeCollate();
+            initialDataForOrderItems = new OrderItems();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new ModelManager(initialData, userPrefs, initialDataForOrderItems);
     }
 
     private void initLogging(Config config) {
