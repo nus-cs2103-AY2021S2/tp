@@ -201,6 +201,7 @@ Allocates an existing resident to an existing room.
 Format: `alloc n/NAME r/ROOM_NO`
 * `NAME` and `ROOM_NO` must already exist.
 * Exact match for `NAME` is required.
+* `NAME` is case-sensitive.
 * Both fields must be provided. 
 
 Example:
@@ -212,6 +213,7 @@ Deallocates an existing resident from an existing room.
 Format: `dealloc n/NAME r/ROOM_NO`
 * `NAME` and `ROOM_NO` must already exist.
 * Exact match for `NAME` is required.
+* `NAME` is case-sensitive.
 * The allocation must already exist. 
 * Both fields must be provided.
 
