@@ -1,5 +1,7 @@
 package seedu.budgetbaby.logic.parser;
 
+import seedu.budgetbaby.model.record.FinancialRecord;
+
 import java.time.YearMonth;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -25,5 +27,4 @@ public class YearMonthParser {
         DateTimeFormatter f = DateTimeFormatter.ofPattern("M-yyyy");
         return YearMonth.parse(yearMonthStr, f);
     }
-
 }

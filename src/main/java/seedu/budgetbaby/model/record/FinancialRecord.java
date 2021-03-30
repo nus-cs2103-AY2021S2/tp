@@ -1,5 +1,7 @@
 package seedu.budgetbaby.model.record;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.YearMonth;
 import java.util.Collections;
 import java.util.Date;
@@ -16,6 +18,9 @@ import seedu.budgetbaby.logic.parser.YearMonthParser;
 public class FinancialRecord {
 
     private static final String FINANCIAL_RECORD_DETAILS_DELIMITER = " | ";
+    private static final SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+    public static final String TIMESTAMP_CONSTRAINTS =
+        "Timestamp should follow the format of dd-mm-yyyy. Example: 31-12-2020.";
 
     // Data fields
     private final Description description;
@@ -63,6 +68,10 @@ public class FinancialRecord {
         return timestamp;
     }
 
+    public String getTimestampStr() {
+        return formatter.format(timestamp);
+    }
+
     public YearMonth getMonth() {
         return YearMonthParser.getYearMonth(this.timestamp);
     }
@@ -75,6 +84,33 @@ public class FinancialRecord {
         return Collections.unmodifiableSet(categories);
     }
 
+    /**
+     * Check if {@code test} is of the valid format.
+     * Valid format example: 01-01-2021
+     */
+    public static boolean isValidTimestamp(String test) {
+        System.out.println(test);
+        boolean isValid;
+        try {
+            formatter.parse(test);
+            isValid = true;
+        } catch (ParseException e) {
+            isValid = false;
+        }
+        return isValid;
+    }
+
+    /**
+     * Converts a valid dateStr string to Date.
+     */
+    public static Date getValidTimeStamp(String dateStr) {
+        try {
+            return formatter.parse(dateStr);
+        } catch (ParseException e) {
+            return null;
+        }
+    }
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
@@ -84,7 +120,7 @@ public class FinancialRecord {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getTimestamp())
+        builder.append(getTimestampStr())
             .append(FINANCIAL_RECORD_DETAILS_DELIMITER)
             .append(getDescription())
             .append(FINANCIAL_RECORD_DETAILS_DELIMITER)

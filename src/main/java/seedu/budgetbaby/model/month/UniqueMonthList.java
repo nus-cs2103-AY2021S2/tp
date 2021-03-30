@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.budgetbaby.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.YearMonth;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -173,7 +174,6 @@ public class UniqueMonthList implements Iterable<Month> {
 
     /**
      * Adds a financial record to the budget tracker.
-     * Adds a month to the budget tracker.
      */
     public void addFinancialRecord(FinancialRecord r) {
         requireNonNull(r);
