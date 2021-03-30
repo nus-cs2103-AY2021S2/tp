@@ -12,6 +12,7 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
@@ -58,6 +59,27 @@ public class TimetableView extends UiPart<Region> {
     @FXML
     private AnchorPane dayScheduleSeven;
 
+    @FXML
+    private Label firstDayLabel;
+
+    @FXML
+    private Label secondDayLabel;
+
+    @FXML
+    private Label thirdDayLabel;
+
+    @FXML
+    private Label fourthDayLabel;
+
+    @FXML
+    private Label fifthDayLabel;
+
+    @FXML
+    private Label sixthDayLabel;
+
+    @FXML
+    private Label seventhDayLabel;
+
 
     /**
      * Using strategy pattern. Logic for implementing timetable.
@@ -79,9 +101,10 @@ public class TimetableView extends UiPart<Region> {
     };
 
     private final ChangeListener<LocalDate> dateListener = (observable, oldValue, newValue) -> {
-        reset();
+        resetColumns();
         timetablePlacementPolicy = new TimetablePlacementPolicy(newValue);
         populateWithData(timetableSlots);
+        refreshDayLabels(newValue);
     };
 
 
@@ -107,6 +130,7 @@ public class TimetableView extends UiPart<Region> {
         this.firstDayOfTimetable = firstDayOfTimetable;
         this.timetablePlacementPolicy = new TimetablePlacementPolicy(firstDayOfTimetable.getValue());
         populateWithData(timetableSlots);
+        refreshDayLabels(firstDayOfTimetable.getValue());
         //add Listener
         timetableSlots.addListener(this.meetingsListener);
         firstDayOfTimetable.addListener(this.dateListener);
@@ -122,7 +146,7 @@ public class TimetableView extends UiPart<Region> {
      */
 
     public void populateWithData(ObservableList<? extends Schedulable> obsList) {
-        reset();
+        resetColumns();
         List<? extends Schedulable> processedList = obsList.stream()
                 .filter(timetablePlacementPolicy :: test)
                 .flatMap(timetablePlacementPolicy :: breakIntoDayUnits)
@@ -210,7 +234,7 @@ public class TimetableView extends UiPart<Region> {
     /**
      * resets to an empty timetable.
      */
-    public void reset() {
+    public void resetColumns() {
         dayScheduleOne.getChildren().clear();
         dayScheduleTwo.getChildren().clear();
         dayScheduleThree.getChildren().clear();
@@ -219,6 +243,22 @@ public class TimetableView extends UiPart<Region> {
         dayScheduleSix.getChildren().clear();
         dayScheduleSeven.getChildren().clear();
     }
+
+    /**
+     * refreshes all day header labels display day of the week starting
+     * on the currentDate.
+     */
+    public void refreshDayLabels(LocalDate currentDate) {
+        firstDayLabel.setText(currentDate.getDayOfWeek().name());
+        secondDayLabel.setText(currentDate.plusDays(1).getDayOfWeek().name());
+        thirdDayLabel.setText(currentDate.plusDays(2).getDayOfWeek().name());
+        fourthDayLabel.setText(currentDate.plusDays(3).getDayOfWeek().name());
+        fifthDayLabel.setText(currentDate.plusDays(4).getDayOfWeek().name());
+        sixthDayLabel.setText(currentDate.plusDays(5).getDayOfWeek().name());
+        seventhDayLabel.setText(currentDate.plusDays(6).getDayOfWeek().name());
+    }
+
+
 
 
 
