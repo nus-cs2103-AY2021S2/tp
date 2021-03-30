@@ -4,7 +4,6 @@ import static seedu.student.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.student.logic.commands.CommandTestUtil.DATE_DESC_AMY_APPOINTMENT;
 import static seedu.student.logic.commands.CommandTestUtil.DATE_DESC_BOB_APPOINTMENT;
 import static seedu.student.logic.commands.CommandTestUtil.INVALID_MATRIC_DESC;
-import static seedu.student.logic.commands.CommandTestUtil.MATRIC_DESC_BOB;
 import static seedu.student.logic.commands.CommandTestUtil.START_TIME_DESC_AMY_APPOINTMENT;
 import static seedu.student.logic.commands.CommandTestUtil.START_TIME_DESC_BOB_APPOINTMENT;
 import static seedu.student.logic.commands.CommandTestUtil.VALID_DATE_BOB_APPOINTMENT;
@@ -46,16 +45,12 @@ class EditAppointmentCommandParserTest {
     @Test
     public void parse_compulsoryFieldMissing_failure() {
 
-        // missing matriculation number prefix
-        assertParseFailure(parser, VALID_MATRIC_BOB + DATE_DESC_BOB_APPOINTMENT
-                + START_TIME_DESC_BOB_APPOINTMENT, MESSAGE_INVALID_FORMAT);
-
         // missing date prefix
-        assertParseFailure(parser, MATRIC_DESC_BOB + VALID_DATE_BOB_APPOINTMENT
+        assertParseFailure(parser, VALID_MATRIC_BOB + VALID_DATE_BOB_APPOINTMENT
                 + START_TIME_DESC_BOB_APPOINTMENT, MESSAGE_INVALID_FORMAT);
 
         // missing start time prefix
-        assertParseFailure(parser, MATRIC_DESC_BOB + DATE_DESC_BOB_APPOINTMENT
+        assertParseFailure(parser, VALID_MATRIC_BOB + DATE_DESC_BOB_APPOINTMENT
                 + VALID_START_TIME_BOB_APPOINTMENT, MESSAGE_INVALID_FORMAT);
 
         // all prefixes missing
