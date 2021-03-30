@@ -30,13 +30,15 @@ public class MainWindow extends UiPart<Stage> {
 
     private Stage primaryStage;
     private Logic logic;
+    private boolean isKanbanView = true;
 
     // Independent Ui parts residing in this Ui container
+    private KanbanPanel kanbanPanel;
+    private ListPanel listPanel;
+
     private EventListPaneKanbanView eventListPaneKanbanView;
-    private EventListPaneKanbanView kanbanTodoListView;
-    private EventListPaneKanbanView kanbanBacklogListView;
-    private EventListPaneKanbanView kanbanInProgressListView;
-    private EventListPaneKanbanView kanbanDoneListView;
+    private EventListPaneListView eventListPaneListView;
+
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -55,6 +57,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
+    @FXML
+    private StackPane listPanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -72,6 +76,8 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        toKanBanView();
     }
 
     public Stage getPrimaryStage() {
@@ -116,8 +122,11 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        KanbanPanel kanbanPanel = new KanbanPanel(logic);
+        kanbanPanel = new KanbanPanel(logic);
         kanbanPanelPlaceholder.getChildren().add(kanbanPanel.getRoot());
+
+        listPanel = new ListPanel(logic);
+        listPanelPlaceholder.getChildren().add(listPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -169,9 +178,36 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    private void handleSwitch() {
+        if (isKanbanView) {
+            toListView();
+        } else {
+            toKanBanView();
+        }
+
+    }
+
+    private void toListView() {
+        isKanbanView = false;
+
+        kanbanPanelPlaceholder.setVisible(false);
+        kanbanPanelPlaceholder.setManaged(false);
+        listPanelPlaceholder.setVisible(true);
+        listPanelPlaceholder.setManaged(true);
+    }
+
+    private void toKanBanView() {
+        isKanbanView = true;
+        kanbanPanelPlaceholder.setVisible(true);
+        kanbanPanelPlaceholder.setManaged(true);
+        listPanelPlaceholder.setVisible(false);
+        listPanelPlaceholder.setManaged(false);
+    }
+
     public EventListPaneKanbanView getEventListPaneKanbanView() {
         return eventListPaneKanbanView;
     }
+
 
     /**
      * Executes the command and returns the result.
@@ -190,6 +226,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isSwitch()) {
+                handleSwitch();
             }
 
             return commandResult;
