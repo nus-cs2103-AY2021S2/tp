@@ -199,8 +199,9 @@ Example:
 Allocates an existing resident to an existing room. 
 
 Format: `alloc n/NAME r/ROOM_NO`
-* `NAME` and `ROOM_NO` must already exist. 
-*  Both fields must be provided. 
+* `NAME` and `ROOM_NO` must already exist.
+* Exact match for `NAME` is required.
+* Both fields must be provided. 
 
 Example:
 * `alloc r/John Tan n/03-100` Allocates resident named John Tan to room 03-100. 
@@ -210,8 +211,9 @@ Deallocates an existing resident from an existing room.
 
 Format: `dealloc n/NAME r/ROOM_NO`
 * `NAME` and `ROOM_NO` must already exist.
+* Exact match for `NAME` is required.
 * The allocation must already exist. 
-*  Both fields must be provided.
+* Both fields must be provided.
 
 Example:
 * `dealloc r/John Tan n/03-100` Deallocates resident named John Tan from room 03-100.
