@@ -218,6 +218,7 @@ public class ModelManager implements Model {
     public void addModule(Module module) {
         requireNonNull(module);
         remindMe.addModule(module);
+        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 
     @Override
@@ -331,6 +332,7 @@ public class ModelManager implements Model {
     public void addEvent(GeneralEvent event) {
         requireNonNull(event);
         remindMe.addEvent(event);
+        updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
     }
 
     @Override

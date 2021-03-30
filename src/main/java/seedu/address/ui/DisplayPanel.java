@@ -71,7 +71,7 @@ public class DisplayPanel extends UiPart<Region> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        eventListPanel = new EventListPanel(logic.getRemindMe().getEventList());
+        eventListPanel = new EventListPanel(logic.getFilteredEventList());
         eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
 
     }
