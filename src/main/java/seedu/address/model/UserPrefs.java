@@ -107,6 +107,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
      *
      * @param aliasName name of the alias.
      * @return the alias with the specified name.
+     * @throws NullPointerException if the input is null.
      */
     public Alias getAlias(String aliasName) {
         requireNonNull(aliasName);
