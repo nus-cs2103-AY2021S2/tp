@@ -291,14 +291,14 @@ Views an already existing budget.
 
 Format : `view_budget`
 
-### Adding a grade : `add_grade`
+### Adding a Grade : `add_grade`
 
 Adds a grade with a subject, a graded item and a grade alphabet specified by user. Stores in user system.
 
-Format: `add_grade s/SUBJECT gi/GRADED_ITEM gr/GRADE_ALPHABET`
+Format: `add_grade s/SUBJECT_NAME gi/GRADED_ITEM gr/GRADE_ALPHABET`
 
 * Valid `GRADE_ALPHABET` recognized by the system only include A to F, S and U.
-* `SUBJECT` is case-insensitive and `GRADE_ALPHABET` must be uppercase.
+* `SUBJECT_NAME` is case-insensitive and `GRADE_ALPHABET` must be uppercase.
 
 Example: `add_grade s/Mathematics gi/Final gr/A`
 
@@ -306,6 +306,22 @@ Example Output:
 ```
 New grade added: Mathematics (Final): A
 ```
+
+### Editing a Grade : `edit_grade`
+
+Edits an already existing grade with a specific index. Only the attributes present are changed in the grade.
+
+Format: `edit_grade INDEX [s/SUBJECT_NAME] [gi/GRADED_ITEM] [gr/GRADE_ALPHABET]`
+
+Example: `edit_grade 1 gr/B`
+
+Example Output:
+```
+Edited Grade: Science (Lab 1): B
+```
+
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 **Q**: How do I transfer my data to another Computer?<br>
@@ -332,4 +348,6 @@ Action | Format, Examples
 **Edit a budget** | `edit_budget` <br> e.g. `edit_budget b/600`
 **Deleting a budget** | `delete_budget` <br> e.g. `delete_budget`
 **Viewing a budget** | `view_budget` <br> e.g. `view_budget`
+**Adding a grade** | `add_grade s/SUBJECT_NAME gi/GRADED_ITEM gr/GRADE_ALPHABET` <br> e.g. `add_grade s/Mathematics gi/Final gr/A` 
+**Editing a grade** | `edit_grade INDEX [s/SUBJECT_NAME] [gi/GRADED_ITEM] [gr/GRADE_ALPHABET]` <br> e.g. `edit_grade 1 gr/B`
 
