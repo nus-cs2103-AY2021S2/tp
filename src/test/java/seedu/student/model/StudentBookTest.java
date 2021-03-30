@@ -118,6 +118,11 @@ public class StudentBookTest {
         }
 
         @Override
+        public Appointment getAppointment(MatriculationNumber matricNum) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public List<Appointment> getFlatAppointmentList() {
             return new ArrayList<>();
         }
