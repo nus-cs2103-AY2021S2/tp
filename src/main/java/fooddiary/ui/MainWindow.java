@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import fooddiary.commons.core.GuiSettings;
 import fooddiary.commons.core.LogsCenter;
+import fooddiary.commons.core.index.Index;
 import fooddiary.logic.Logic;
 import fooddiary.logic.commands.CommandResult;
 import fooddiary.logic.commands.exceptions.CommandException;
@@ -36,6 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private ViewWindow viewWindow;
+    private ReviseWindow reviseWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -69,6 +71,7 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
         viewWindow = new ViewWindow();
+        reviseWindow = new ReviseWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -108,6 +111,7 @@ public class MainWindow extends UiPart<Stage> {
                 event.consume();
             }
         });
+
     }
 
     /**
@@ -165,6 +169,21 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the revise window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleRevise(Entry entry, Index index) {
+        assert entry != null : "Entry is missing";
+        assert index != null : "Index is missing";
+        reviseWindow.setEntryContent(entry, index, this);
+        if (!reviseWindow.isShowing()) {
+            reviseWindow.show();
+        } else {
+            reviseWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -191,7 +210,8 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    @FXML
+    protected CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -201,10 +221,16 @@ public class MainWindow extends UiPart<Stage> {
                 handleHelp();
             }
 
-            if (commandResult.isViewEntry()) {
+            if (commandResult.isEnableView()) {
                 handleView(commandResult.getEntry());
             } else {
                 viewWindow.hide();
+            }
+
+            if (commandResult.isReviseEntry()) {
+                handleRevise(commandResult.getEntry(), commandResult.getIndex());
+            } else {
+                reviseWindow.hide();
             }
 
             if (commandResult.isExit()) {

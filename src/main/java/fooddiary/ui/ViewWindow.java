@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import fooddiary.commons.core.LogsCenter;
 import fooddiary.model.entry.Entry;
+import fooddiary.model.entry.Price;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -34,9 +35,9 @@ public class ViewWindow extends UiPart<Stage> {
     @FXML
     private Label reviews;
     @FXML
-    private Label tagCategoryLabel;
+    private Label categoriesLabel;
     @FXML
-    private Label tagCategorySchool;
+    private Label schoolsLabel;
     @FXML
     private TextField nameText;
     @FXML
@@ -48,9 +49,9 @@ public class ViewWindow extends UiPart<Stage> {
     @FXML
     private TextArea reviewsText;
     @FXML
-    private FlowPane tagCategory;
+    private FlowPane tagCategories;
     @FXML
-    private FlowPane tagSchool;
+    private FlowPane tagSchools;
 
     /**
      * Creates a new ViewWindow.
@@ -123,21 +124,23 @@ public class ViewWindow extends UiPart<Stage> {
      * @param entry Entry details
      */
     public void setEntryContent(Entry entry) {
-        tagCategory.getChildren().clear();
-        tagSchool.getChildren().clear();
+        tagCategories.getChildren().clear();
+        tagSchools.getChildren().clear();
         nameText.setText(entry.getName().fullName);
-        priceText.setText(String.format("$%s", entry.getPrice().value));
+        priceText.setText(String.format("%s%s", Price.PRICE_DOLLAR_SIGN, entry.getPrice().value));
         ratingText.setText(String.format("%s / 5", entry.getRating().value));
         addressText.setText(entry.getAddress().value);
+
         String reviewsStr = entry.getReviews().stream()
                 .map(review -> review.value + "\n\n")
                 .collect(Collectors.joining());
         reviewsText.setText(reviewsStr);
+
         entry.getTagCategories().stream()
                 .sorted(Comparator.comparing(tag -> tag.getTag()))
-                .forEach(tag -> tagCategory.getChildren().add(new Label(tag.getTag())));
+                .forEach(tag -> tagCategories.getChildren().add(new Label(tag.getTag())));
         entry.getTagSchools().stream()
                 .sorted(Comparator.comparing(tag -> tag.getTag()))
-                .forEach(tag -> tagSchool.getChildren().add(new Label(tag.getTag())));
+                .forEach(tag -> tagSchools.getChildren().add(new Label(tag.getTag())));
     }
 }
