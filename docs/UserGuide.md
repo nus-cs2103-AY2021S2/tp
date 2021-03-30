@@ -288,6 +288,26 @@ Examples:
    
 ![Drop Command](images/DropCommandScreenshot1.png) | ![Drop Command Result](images/DropCommandScreenshot2.png)
 
+### Schedule: View schedule for any day
+
+Display all programs happenings on the current day or any specified date.
+
+Format:
+```
+schedule [date]
+```
+
+- Date has to be specified in the `d-M-yyyy` format.
+- If no date is provided, the schedule command will display all programs that occur on the current day.
+
+Examples:
+
+1. Display the schedule for today:
+   Command: `schedule`
+2. Display the schedule for 1st April 2021:
+   Command: `schedule 1-4-2021`
+
+
 ### List Command
 
 Display entities filtered by type.
@@ -412,6 +432,7 @@ Action | Format
 **List** | `list [dog/owner/program]`
 **Find** | `find [keyword1] [keyword2] [keyword3] ...`
 **View** | `view [ID number]`
+**Schedule** | `schedule [DATE]`
 **Help** | `help`
 **Exit** | `exit`
 
