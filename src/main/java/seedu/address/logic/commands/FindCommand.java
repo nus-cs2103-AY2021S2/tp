@@ -30,8 +30,8 @@ public class FindCommand extends Command {
             + "Use '&' to find for multiple search terms.\n"
             + "Specify attributes by typing '-[ATTRIBUTE] after keywords\n"
             + "Keywords cannot be empty.\n"
-            + "Parameters: FLAG/KEYWORD [& MORE_KEYWORDS]... [-ATTRIBUTE]... "
-            + "(attributes must be i for policy, p for phone, e for email, a for address or m for meeting)\n"
+            + "Parameters: FLAG/KEYWORD [& MORE_KEYWORDS]... [-ATTRIBUTE]... (attributes must be i for policy, "
+            + "p for phone, e for email, a for address or m for meeting)\n"
             + "Example: " + COMMAND_WORD + " e/alice@mail.com & bob@mail.com -a -i";
 
     private final Predicate<Person> predicate;
@@ -103,7 +103,7 @@ public class FindCommand extends Command {
         } else {
             model.updatePersonListByAttribute(this.attributes);
             String attributeName = getAttributesString();
-            String attributeSuccessMessage = "";
+            String attributeSuccessMessage;
             if (this.attributes.size() == 1) {
                 attributeSuccessMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW_ATTRIBUTE,
                         model.getFilteredPersonList().size(), attributeName, "");
