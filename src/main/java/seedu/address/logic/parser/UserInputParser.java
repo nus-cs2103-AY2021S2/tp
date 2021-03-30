@@ -43,6 +43,7 @@ import seedu.address.logic.parser.patient.DeletePatientCommandParser;
 import seedu.address.logic.parser.patient.EditPatientCommandParser;
 import seedu.address.logic.parser.patient.FindPatientCommand;
 import seedu.address.logic.parser.patient.FindPatientCommandParser;
+import seedu.address.storage.InputCommandStorage;
 
 /**
  * Parses user input.
@@ -56,6 +57,11 @@ public class UserInputParser {
     private static final String CLOSEST_COMMAND_MESSAGE = "Invalid command! Perhaps you meant: \n\"%s\"?";
 
     /**
+     * Used for storing user input in its raw form.
+     */
+    private final InputCommandStorage inputCommandStorage = new InputCommandStorage();
+
+    /**
      * Parses user input into command for execution.
      *
      * @param userInput full user input string
@@ -63,6 +69,9 @@ public class UserInputParser {
      * @throws ParseException if the user input does not conform to the expected format
      */
     public Command parseCommand(String userInput) throws ParseException {
+        //store userInput in inputCommandStorage
+        inputCommandStorage.newInput(userInput);
+
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
