@@ -35,7 +35,7 @@ public class StatusTest {
         assertTrue(toTestDone.toString().equals(toTestDone.toString()));
         assertTrue(toTestUndone.toString().equals(toTestUndone.toString()));
 
-        //Equals to other DeadlineDate with same date
+        //Equals to other string value
         assertTrue(toTest.toString().equals(new Status().toString()));
         assertTrue(toTestDone.toString().equals(new Status("Finished").toString()));
         assertTrue(toTestUndone.toString().equals(new Status("Unfinished").toString()));
@@ -54,11 +54,13 @@ public class StatusTest {
 
         //Different value
         assertFalse(toTest.equals(new Status("Finished"))); // Different hour
+        assertFalse(toTest.equals(toTest.toggle())); // Toggle odd times
 
         //Equals to itself
         assertTrue(toTest.equals(toTest));
 
-        //Equals to other DeadlineDate with same value
+        //Equals to other Status with same value
         assertTrue(toTest.equals(new Status()));
+        assertTrue(toTest.equals(toTest.toggle().toggle())); // Toggle even times
     }
 }

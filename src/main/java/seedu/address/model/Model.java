@@ -97,10 +97,6 @@ public interface Model {
      */
     ObservableList<Task> getFilteredTaskList();
 
-    /**
-     * Returns an unmodifiable view of the finished task list
-     */
-    ObservableList<Task> getFinishedTaskList();
 
     /**
      * Updates the filter of the filtered task list to filter by the given {@code predicate}.
@@ -141,7 +137,6 @@ public interface Model {
      * @return True if there is a valid TaskTracker state for redo
      */
     boolean canRedoTaskTracker();
-
 
 
 }

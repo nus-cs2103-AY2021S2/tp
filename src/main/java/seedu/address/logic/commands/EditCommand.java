@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITYTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
@@ -26,6 +27,7 @@ import seedu.address.model.person.Status;
 import seedu.address.model.person.Task;
 import seedu.address.model.person.TaskName;
 import seedu.address.model.person.Weightage;
+import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -42,6 +44,7 @@ public class EditCommand extends Command {
         + "[" + PREFIX_NAME + "NAME] "
         + "[" + PREFIX_CODE + "CODE] "
         + "[" + PREFIX_REMARK + "REMARK] "
+            + "[" + PREFIX_PRIORITYTAG + "REMARK]"
         + "[" + PREFIX_TAG + "TAG]...\n"
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_NAME + "CS2103 Assignment";
@@ -103,11 +106,12 @@ public class EditCommand extends Command {
         Weightage updatedWeightage = editTaskDescriptor.getWeightage()
                 .orElse(taskToEdit.getWeightage());
         Remark updatedRemark = editTaskDescriptor.getRemark().orElse(taskToEdit.getRemark());
+        PriorityTag priorityTag = editTaskDescriptor.getPriorityTag().orElse(taskToEdit.getPriorityTag());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
         return new Task(updatedTaskName, updatedModuleCode, updatedDeadlineDate,
             updatedDeadlineTime, updatedStatus, updatedWeightage,
-            updatedRemark, updatedTags);
+            updatedRemark, updatedTags, priorityTag);
     }
 
     @Override
@@ -142,6 +146,7 @@ public class EditCommand extends Command {
         private Remark remark;
         private Set<Tag> tags;
         private Status status;
+        private PriorityTag priorityTag;
 
         public EditTaskDescriptor() {
         }
@@ -158,6 +163,7 @@ public class EditCommand extends Command {
             setWeightage(toCopy.weightage);
             setRemark(toCopy.remark);
             setTags(toCopy.tags);
+            setPriorityTag(toCopy.priorityTag);
         }
 
         /**
@@ -165,7 +171,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(taskName, moduleCode,
-                deadlineDate, deadlineTime, weightage, remark, tags);
+                deadlineDate, deadlineTime, weightage, remark, tags, priorityTag);
         }
 
         public void setTaskName(TaskName taskName) {
@@ -224,6 +230,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(remark);
         }
 
+        public void setPriorityTag(PriorityTag priorityTag) {
+            this.priorityTag = priorityTag;
+        }
+
+        public Optional<PriorityTag> getPriorityTag() {
+            return Optional.ofNullable(priorityTag);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -263,7 +277,8 @@ public class EditCommand extends Command {
                 && getDeadlineDate().equals(e.getDeadlineDate())
                 && getDeadlineTime().equals(e.getDeadlineTime())
                 && getStatus().equals(e.getStatus())
-                && getTags().equals(e.getTags());
+                && getTags().equals(e.getTags())
+                    && getPriorityTag().equals(e.getPriorityTag());
         }
 
     }

@@ -31,6 +31,27 @@ public class Task {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
+     * Task takes in priorityTag as an additional attribute
+     */
+    public Task(TaskName taskName, ModuleCode moduleCode, DeadlineDate deadlineDate,
+                DeadlineTime deadlineTime, Status status, Weightage weightage,
+                Remark remark, Set<Tag> tags, PriorityTag priorityTag) {
+        requireAllNonNull(taskName, moduleCode, status, tags);
+        this.taskName = taskName;
+        this.moduleCode = moduleCode;
+        this.deadlineDate = deadlineDate;
+        this.deadlineTime = deadlineTime;
+        this.status = status;
+        this.weightage = weightage;
+        this.remark = remark;
+        tags = removeOldPriorityTags(tags);
+        this.tags.addAll(tags);
+        this.priorityTag = priorityTag;
+        this.tags.add(new Tag(this.priorityTag.getTagName()));
+
+    }
+
+    /**
      * Every field must be present and not null.
      */
     public Task(TaskName taskName, ModuleCode moduleCode, DeadlineDate deadlineDate,
@@ -55,6 +76,7 @@ public class Task {
 
 
     }
+
 
     public TaskName getTaskName() {
         return taskName;
@@ -97,7 +119,7 @@ public class Task {
      */
     public Task finishTask() {
         return new Task(this.taskName, this.moduleCode, this.deadlineDate,
-                this.deadlineTime, new Status("Finished"), this.weightage, this.remark, this.tags);
+                this.deadlineTime, this.status.toggle(), this.weightage, this.remark, this.tags);
     }
 
     /**
@@ -167,7 +189,9 @@ public class Task {
             .append("; Weightage: ")
             .append(getWeightage())
             .append("; Remark: ")
-            .append(getRemark());
+            .append(getRemark())
+                .append("; PriorityTag: ")
+                .append(getPriorityTag().getTagName());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
@@ -177,7 +201,6 @@ public class Task {
         return builder.toString();
     }
 
-
     /**
      *
      * Method that finds if there is a priority tag associated
@@ -186,8 +209,7 @@ public class Task {
      * @param tags data containing all the tags in String
      * @return boolean whether the pt is found
      */
-
-    public boolean findPriorityTag(Set<Tag> tags) {
+    private boolean findPriorityTag(Set<Tag> tags) {
 
         Iterator<Tag> it = tags.iterator();
 
@@ -204,7 +226,6 @@ public class Task {
 
     }
 
-
     /**
      *
      * Method that returns a priority tag associated
@@ -213,8 +234,7 @@ public class Task {
      * @param tags data containing all the tags in String
      * @return the priority tag to be stored
      */
-
-    public PriorityTag obtainPriorityTag(Set<Tag> tags) {
+    private PriorityTag obtainPriorityTag(Set<Tag> tags) {
 
         Iterator<Tag> it = tags.iterator();
 
@@ -229,6 +249,26 @@ public class Task {
 
         return new PriorityTag("LOW");
 
+    }
+
+    /**
+     * method to remove outdated instances of priority tags in set
+     * @param tags data struct that stores the tags
+     * @return a tag set free of old ptag
+     */
+    private Set<Tag> removeOldPriorityTags(Set<Tag> tags) {
+        Iterator<Tag> it = tags.iterator();
+        Set<Tag> hold = new HashSet<>();
+        while (it.hasNext()) {
+            Tag check = it.next();
+            if (check.tagName.equals("LOW")
+                    || check.tagName.equals("MEDIUM")
+                    || check.tagName.equals("HIGH")) {
+            } else {
+                hold.add(check);
+            }
+        }
+        return hold;
     }
 
 }

@@ -15,6 +15,7 @@ import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.TaskName;
 import seedu.address.model.person.Weightage;
+import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,6 +26,10 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     public static final String MESSAGE_INVALID_WEIGHTAGE = "Weightage is not a positive percentage value.";
+
+    public static final String MESSAGE_INVALID_NUMBER_OF_DAYS = "Number of days is not a positive integer.";
+
+    public static final String MESSAGE_INVALID_NUMBER_OF_WEEKS = "Number of weeks is not a positive integer.";
 
 
     /**
@@ -144,6 +149,17 @@ public class ParserUtil {
     }
 
     /**
+     * method to parse and return priorityTag
+     * @param priorityTag String value of ptag
+     * @return correct string value of ptag
+     */
+    public static PriorityTag parsePriorityTag(String priorityTag) {
+        requireNonNull(priorityTag);
+
+        return new PriorityTag(priorityTag);
+    }
+
+    /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
@@ -153,6 +169,34 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String numberOfDays} into a long.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static long parseNumberOfDays(String numberOfDays) throws ParseException {
+        requireNonNull(numberOfDays);
+        String trimmedNumberOfDays = numberOfDays.trim();
+        if (!StringUtil.isNonZeroUnsignedLong(trimmedNumberOfDays)) {
+            throw new ParseException(MESSAGE_INVALID_NUMBER_OF_DAYS);
+        }
+        long longNumberOfDays = Long.parseLong(trimmedNumberOfDays);
+        return longNumberOfDays;
+    }
+
+    /**
+     * Parses a {@code String numberOfWeeks} into a long.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static long parseNumberOfWeeks(String numberOfWeeks) throws ParseException {
+        requireNonNull(numberOfWeeks);
+        String trimmedNumberOfWeeks = numberOfWeeks.trim();
+        if (!StringUtil.isNonZeroUnsignedLong(trimmedNumberOfWeeks)) {
+            throw new ParseException(MESSAGE_INVALID_NUMBER_OF_WEEKS);
+        }
+        long longNumberOfWeeks = Long.parseLong(trimmedNumberOfWeeks);
+        return longNumberOfWeeks;
     }
 
 }
