@@ -34,7 +34,7 @@ public class Booking {
      * Booking id is provided.
      */
     public Booking(Email bookerEmail, VenueName venueName, Description description,
-                   StartTime bookingStart, EndTime bookingEnd, Id id, Set<Tag> tags) {
+                   StartTime bookingStart, EndTime bookingEnd, Set<Tag> tags, Id id) {
         requireAllNonNull(bookerEmail, venueName, description, bookingStart, bookingEnd, tags);
         this.bookerEmail = bookerEmail;
         this.venueName = venueName;

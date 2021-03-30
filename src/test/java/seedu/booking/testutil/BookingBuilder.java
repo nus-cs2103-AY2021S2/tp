@@ -3,13 +3,17 @@ package seedu.booking.testutil;
 import static seedu.booking.testutil.TypicalVenues.VENUE1;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
+import seedu.booking.model.Tag;
 import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.Description;
 import seedu.booking.model.booking.EndTime;
 import seedu.booking.model.booking.Id;
 import seedu.booking.model.booking.StartTime;
 import seedu.booking.model.person.Email;
+import seedu.booking.model.util.SampleDataUtil;
 import seedu.booking.model.venue.VenueName;
 
 /**
@@ -29,6 +33,7 @@ public class BookingBuilder {
     private VenueName venueName;
     private StartTime bookingStart;
     private EndTime bookingEnd;
+    private Set<Tag> tags;
     private Id id;
 
     /**
@@ -40,6 +45,7 @@ public class BookingBuilder {
         description = DEFAULT_DESCRIPTION;
         bookingStart = DEFAULT_BOOKING_START;
         bookingEnd = DEFAULT_BOOKING_END;
+        tags = new HashSet<>();
         id = DEFAULT_ID;
     }
 
@@ -52,6 +58,7 @@ public class BookingBuilder {
         description = bookingToCopy.getDescription();
         bookingStart = bookingToCopy.getBookingStart();
         bookingEnd = bookingToCopy.getBookingEnd();
+        tags = new HashSet<>(bookingToCopy.getTags());
         id = bookingToCopy.getId();
     }
 
@@ -96,6 +103,14 @@ public class BookingBuilder {
     }
 
     /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Venue} that we are building.
+     */
+    public BookingBuilder withTags(String ... tags) {
+        this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
      * Sets the {@code id} of the {@code Booking} that we are building.
      */
     public BookingBuilder withId(Id id) {
@@ -103,9 +118,8 @@ public class BookingBuilder {
         return this;
     }
 
-
     public Booking build() {
-        return new Booking(bookerEmail, venueName, description, bookingStart, bookingEnd, id);
+        return new Booking(bookerEmail, venueName, description, bookingStart, bookingEnd, tags, id);
     }
 
 }

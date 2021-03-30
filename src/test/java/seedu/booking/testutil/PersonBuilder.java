@@ -1,9 +1,14 @@
 package seedu.booking.testutil;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import seedu.booking.model.Tag;
 import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Name;
 import seedu.booking.model.person.Person;
 import seedu.booking.model.person.Phone;
+import seedu.booking.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Person objects.
@@ -17,6 +22,7 @@ public class PersonBuilder {
     private Name name;
     private Phone phone;
     private Email email;
+    private Set<Tag> tags;
 
 
     /**
@@ -26,6 +32,7 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
+        tags = new HashSet<>();
     }
 
     /**
@@ -35,6 +42,7 @@ public class PersonBuilder {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
+        tags = new HashSet<>(personToCopy.getTags());
     }
 
     /**
@@ -44,9 +52,6 @@ public class PersonBuilder {
         this.name = new Name(name);
         return this;
     }
-
-
-
 
     /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
@@ -64,8 +69,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Venue} that we are building.
+     */
+    public PersonBuilder withTags(String ... tags) {
+        this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email);
+        return new Person(name, phone, email, tags);
     }
 
 }

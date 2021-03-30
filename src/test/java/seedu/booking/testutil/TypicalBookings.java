@@ -4,6 +4,7 @@ import static seedu.booking.testutil.TypicalVenues.VENUE1;
 import static seedu.booking.testutil.TypicalVenues.VENUE2;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 
 import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.Description;
@@ -22,6 +23,7 @@ public class TypicalBookings {
             new Description("description"),
             new StartTime(LocalDateTime.of(2021, 03, 01, 12, 30, 00)),
             new EndTime(LocalDateTime.of(2021, 03, 01, 13, 30, 00)),
+            new HashSet<>(),
             new Id(0)
     );
 
@@ -29,6 +31,7 @@ public class TypicalBookings {
             new Description("description"),
             new StartTime(LocalDateTime.of(2021, 03, 01, 13, 00, 00)),
             new EndTime(LocalDateTime.of(2021, 03, 01, 14, 00, 00)),
+            new HashSet<>(),
             new Id(1)
     );
 
@@ -36,6 +39,7 @@ public class TypicalBookings {
             new Description("description"),
             new StartTime(LocalDateTime.of(2021, 03, 01, 12, 30, 00)),
             new EndTime(LocalDateTime.of(2021, 03, 01, 13, 30, 00)),
+            new HashSet<>(),
             new Id(2)
     );
 
@@ -44,6 +48,7 @@ public class TypicalBookings {
             new Description("description"),
             new StartTime(LocalDateTime.of(2021, 03, 01, 14, 30, 00)),
             new EndTime(LocalDateTime.of(2021, 03, 01, 15, 30, 00)),
+            new HashSet<>(),
             new Id(3)
     );
 

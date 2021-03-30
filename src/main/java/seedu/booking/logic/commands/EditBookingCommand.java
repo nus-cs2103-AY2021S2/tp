@@ -132,7 +132,7 @@ public class EditBookingCommand extends Command {
         Set<Tag> updatedTags = editBookingDescriptor.getTags().orElse(bookingToEdit.getTags());
         Id updatedId = bookingToEdit.getId();
         return new Booking(updatedBooker, updatedVenue, updatedDescription,
-                updatedBookingStart, updatedBookingEnd, updatedId, updatedTags);
+                updatedBookingStart, updatedBookingEnd, updatedTags, updatedId);
     }
 
     @Override

@@ -5,6 +5,10 @@ import static seedu.booking.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORM
 import static seedu.booking.testutil.Assert.assertThrows;
 import static seedu.booking.testutil.TypicalPersons.BENSON;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.booking.commons.exceptions.IllegalValueException;
@@ -12,9 +16,6 @@ import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Name;
 import seedu.booking.model.person.Phone;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
