@@ -114,7 +114,6 @@ Review mode | This is where you can review all your flashcards. You can enter th
   e.g. If you specify `c/Geography c/History`, only `c/History` will be taken.
 
 </div>
-
 <div style="page-break-after: always;"></div>
 
 ## Main mode
@@ -133,7 +132,6 @@ Format: `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAG]...` <br />
 The `TAG` is optional when adding a new flashcard.<br>
 Priority can only take 1 out of 3 values: `High`, `Mid` or `Low`.
 </div>
-
 <div style="page-break-after: always;"></div>
 
 Examples:
@@ -167,7 +165,6 @@ Examples:
 Shows all flashcards in the flashcard list.
 
 Format: `list`
-
 <div style="page-break-after: always;"></div>
 
 ### Deleting a flashcard : `delete`
@@ -184,7 +181,6 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd flashcard in the flashcard list. <br>
   Before executing command `delete 2`: <br><br>
   ![UIBeforeDelete](./images/UiBeforeDelete.png) <br>
-  
   <div style="page-break-after: always;"></div>
   
   After executing command `delete 2`: <br><br>
@@ -199,7 +195,6 @@ Format: `view INDEX`
 * Views the flashcard at the specified `INDEX`.
 * The index refers to the index number shown in the displayed flashcard list.
 * The index **must be a positive integer** 1, 2, 3, …​
-
 <div style="page-break-after: always;"></div>
 
 Examples:
@@ -288,14 +283,13 @@ Format: `undo`
 Examples:
 `delete 3` <br><br>
 ![UiDeleteBeforeUndo](./images/UiDeleteBeforeUndo.png) <br>
-
 <div style="page-break-after: always;"></div>
 
-`clear`  <br><br>
+`clear`  <br>
 ![UiClearBeforeUndo](./images/UiClearBeforeUndo.png) <br><br>
-`undo` will reverse the `clear` command. <br><br>
+`undo` will reverse the `clear` command. <br>
 ![UiClearAfterUndo](./images/UiClearAfterUndo.png) <br><br>
-`undo` will reverse the `delete 3` command. <br><br>
+`undo` will reverse the `delete 3` command. <br>
 ![UiDeleteAfterUndo](./images/UiDeleteAfterUndo.png) <br><br>
 
 ### Redoing a command : `redo`
@@ -309,7 +303,6 @@ Examples:
 ![UiClearBeforeUndoBeforeRedo](./images/UiClearBeforeUndoBeforeRedo.png) <br><br>
 `undo` will reverse the `clear` command. <br><br>
 ![UiClearAfterUndoBeforeRedo](./images/UiClearAfterUndoBeforeRedo.png) <br><br>
-
 <div style="page-break-after: always;"></div>
 
 `redo` will reverse the `undo` command. <br><br>
@@ -330,7 +323,6 @@ Examples:
 `sort priority -d` will sort the flashcards by descending priority. <br>
 `sort question -a` will sort the flashcards by ascending question. <br>
 `sort question -d` will sort the flashcards by descending question. <br>
-
 <div style="page-break-after: always;"></div>
 
 Before sort command is executed. <br><br>
@@ -338,7 +330,6 @@ Before sort command is executed. <br><br>
 `sort priority -a`<br><br>
 After sort command is executed. <br><br>
 ![UiAfterSort](./images/UiAfterSort.png)
-
 <div style="page-break-after: always;"></div>
 
 ### Entering review mode: `review`
@@ -346,7 +337,6 @@ Reviews the current list of flashcards.<br>
 When the user enters `review` in the command box, this new window will appear. <br><br>
 ![UiReviewMode](./images/UiReviewModeNoAnswer.png) <br><br>
 Format: `review`
-
 <div style="page-break-after: always;"></div>
 
 ### Viewing statistics of flashcards: `stats`
@@ -398,7 +388,6 @@ If your changes to the data file makes its format invalid, FlashBack will discar
 file at the next run.
 
 </div>
-
 <div style="page-break-after: always;"></div>
 
 ## Review mode
