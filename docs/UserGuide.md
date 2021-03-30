@@ -298,7 +298,7 @@ Records a food intake for the given date and updates the existing food item with
 
 **Example:** `food_intake_add d/31 Mar 2021 n/tomato c/20 f/35 p/50`
 
-**Note:** Any nutrient value(s) specified for an existing food item will be overwritten and updated in the food list for future use. Older records associated with the food item will retain their original values and is not affected.
+**Note:** Any nutrient value(s) specified for an existing food item will be overwritten and updated in the food list for future use. Older food intake record(s) associated with the same food item will retain their original values.
 
 **Expected output:**
 
@@ -314,7 +314,7 @@ Updates the nutrient value(s) of an existing food intake matching the given date
 
 **Example:** `food_intake_update d/31 Mar 2021 n/tomato c/20 f/40 p/50`
 
-**Note**: The given food intake item must exist in order for update to work. Not all nutrient fields are required and only the specified nutrient fields will be updated with the new value while the other vales remain unchanged.
+**Note**: The given food intake item must exist in order for update to work. Not all nutrient fields are required and only the specified nutrient fields will be updated with the new value while the other values remain unchanged. For instance, the original fat value of tomato is 35g and you want to change to 40g, you can run `food_intake_update d/31 Mar 2021 n/tomato f/40`.
 
 **Expected output:**
 
@@ -330,7 +330,7 @@ Deletes a food intake item for the specified day.
 
 **Example:** `food_intake_delete d/31 Mar 2021 n/tomato`
 
-**Note:** The food item has to exist before it can be deleted.
+**Note:** The food intake item has to exist before it can be deleted.
 
 **Expected output:**
 
@@ -424,6 +424,7 @@ Technical Terms | Meaning
 **Graphic User Interface (GUI)** | An interface that displays interactive visual components for a computer program. 
 
 Health Terms | Meaning
---------|------------------
+-------------|------------------
 **Body Mass Index (BMI)** | A value derived from the mass and height of a person, by taking the body mass divided by the square of the body height. 
 **Macronutrients** | Nutrients, such as fats, proteins and carbohydrates that provide us with energy.
+--------------------------------------------------------------------------------------------------------------------
