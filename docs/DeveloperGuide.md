@@ -29,6 +29,19 @@ title: Developer Guide
 * [Glossary](#glossary) 
 <!--te-->
 
+## **Introduction**
+DietLAH! is a desktop app with a Command-Line Interface (CLI) that allows users to easily track and maintain their meals so that they are able to maintain their ideal body weight. The application also stores all the application data in a JSON (JavaScript Object Notation) storage file so that the user's progress and records will remain when they re-open the application.
+
+This developer guide serves as a documentation and manual of how the existing system was designed, and provides information on how certain important features were implemented.
+
+## Understanding the Developer Guide
+To make the Developer Guide more comprehensible, certain labelling and highlights are used in the guide. Familiarising yourself with these syntaxes may help you get the most out of the Developer Guide.
+Legend | Description
+--------|------------------
+`Inline code` | Highlights Objects, Classes and Code segments
+[Tips] | Useful tips
+[Important] | Important information to take note of
+
 ## **Design**
 
 ### Architecture
@@ -277,16 +290,14 @@ The `Food` object associated with each `FoodIntake` object is independent of the
 
 There are two constructors for the creation of a FoodIntake object.
 
-1. `public FoodIntake(LocalDate date, Food temporaryFood)` : Creates a FoodIntake object given the `LocalDate` and `Food` object - used during normal FoodIntake creation
-2. `public FoodIntake(LocalDate date, String name, double carbos, double fats, double proteins)` : Creates a FoodIntake object given the `LocalDate` and individual food name and nutrient values - used when loading to file and saving duplicate FoodIntake Food names.
+1. `public FoodIntake(LocalDate date, Food temporaryFood)` : Creates a `FoodIntake` object given the `LocalDate` and `Food` object - used in the general FoodIntakeCommand when there is no need to alter the `Food` name e.g. appending the numerical duplicate count. 
+2. `public FoodIntake(LocalDate date, String name, double carbos, double fats, double proteins)` : Creates a FoodIntake object given the `LocalDate` and individual food name and nutrient values - used when loading to file and saving duplicate `FoodIntake` Food names.
 
-#### Design consideration:
+#### Design consideration
 
-The FoodIntake class makes use of a Food object as it can be directly retrieved from the UniqueFoodList which stores a list of Food objects.
+The `FoodIntake` class makes use of a `Food` object as it can be directly retrieved from the `UniqueFoodList` which stores a list of `Food` objects.
 
-An alternative would be to store them as separate String and Double values, however, this makes the design less intuitive and harder to related to the `Food` class.
-
-Two constructors were used to get-around the restrictions by the Food name field. By default, the Food name can only contain alphabets and spaces, however, when adding a new FoodIntake item to the FoodIntakeList, duplicate Food names are appended with a numerical duplicate count (e.g. Chicken rice 2). As such, the second constructor allows for Food names with numerical values and is used when loading the FoodIntake list from file, and when adding a duplicate FoodIntake with a duplicate Food name.
+Two constructors were used to get-around the restrictions by the `Food` name field. By default, the `Food` name can only contain **alphabets and spaces**, however, when adding a new `FoodIntake` item to the `FoodIntakeList`, duplicate `Food` names are appended with a **numerical duplicate count** (e.g. Chicken rice 2 symbolises that it is the second 'Chicken rice' added on the specific date). As such, the second constructor allows for `Food` names with numerical values and is used when loading the `FoodIntakeList` from file, and when adding a `FoodIntake` with a duplicate `Food` name.
 
 ### FoodIntakeList Class
 
