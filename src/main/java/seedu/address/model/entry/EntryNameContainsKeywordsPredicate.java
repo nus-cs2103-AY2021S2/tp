@@ -5,10 +5,8 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
 
-/**
- * Tests that an {@code Entry}'s {@code Name} matches any of the keywords given.
- */
 public class EntryNameContainsKeywordsPredicate implements Predicate<Entry> {
+
     private final List<String> keywords;
 
     public EntryNameContainsKeywordsPredicate(List<String> keywords) {
