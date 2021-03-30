@@ -1,22 +1,19 @@
 package seedu.address.logic.filters.combinator;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OR;
+
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.Stack;
+import java.util.function.Predicate;
+
 import seedu.address.logic.filters.AbstractFilter;
 import seedu.address.logic.filters.Filters;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.customer.Customer;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Stack;
-import java.util.function.Predicate;
-
-import static seedu.address.logic.parser.CliSyntax.PREFIX_OR;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_AND;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NOT;
 
 
 public class FilterCombinator implements Predicate<Customer> {
@@ -48,8 +45,8 @@ public class FilterCombinator implements Predicate<Customer> {
 
         Stack<Node> nodeStack = new Stack<>();
         LinkedList<ArgumentTokenizer.PrefixPosition> allPositions =
-                new LinkedList<>(ArgumentTokenizer.findAllPrefixPositions(description, PREFIX_AND,
-                        PREFIX_NOT, PREFIX_OR));
+            new LinkedList<>(ArgumentTokenizer.findAllPrefixPositions(description, PREFIX_AND,
+                PREFIX_NOT, PREFIX_OR));
 
         allPositions.sort(Comparator.comparingInt(ArgumentTokenizer.PrefixPosition::getStartPosition));
 
@@ -156,8 +153,8 @@ public class FilterCombinator implements Predicate<Customer> {
 
     @Override
     public String toString() {
-        return "FilterCombinator{" +
-                "rootNode=" + rootNode +
-                '}';
+        return "FilterCombinator{"
+            + "rootNode=" + rootNode
+            + '}';
     }
 }

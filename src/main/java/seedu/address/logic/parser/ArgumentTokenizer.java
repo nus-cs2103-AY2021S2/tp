@@ -147,10 +147,10 @@ public class ArgumentTokenizer {
 
         @Override
         public String toString() {
-            return "PrefixPosition{" +
-                    "startPosition=" + startPosition +
-                    ", prefix=" + prefix +
-                    '}';
+            return "PrefixPosition{"
+                    + "startPosition=" + startPosition
+                    + ", prefix=" + prefix
+                    + '}';
         }
     }
 

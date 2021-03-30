@@ -23,6 +23,11 @@ public enum LogicalOperator {
         return !isBinaryOperator;
     }
 
+    /**
+     * @param b1
+     * @param b2
+     * @return
+     */
     public boolean apply(boolean b1, boolean b2) {
         if (isBinaryOperator) {
             return binaryOperator.apply(b1, b2);
@@ -31,6 +36,10 @@ public enum LogicalOperator {
         }
     }
 
+    /**
+     * @param b1
+     * @return
+     */
     public boolean apply(boolean b1) {
         if (!isBinaryOperator) {
             return binaryOperator.apply(b1, b1);

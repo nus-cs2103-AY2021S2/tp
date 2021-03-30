@@ -10,16 +10,24 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.List;
+
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.model.customer.Customer;
 
 public class Filters {
     public static AbstractFilter getCorrespondingFilter(String info) {
-        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(info, PREFIX_NAME, PREFIX_EMAIL, PREFIX_PHONE,
+        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(" " + info + " ", PREFIX_NAME,
+            PREFIX_EMAIL,
+            PREFIX_PHONE,
             PREFIX_ADDRESS, PREFIX_DOB, PREFIX_TAG, PREFIX_CARS_OWNED, PREFIX_CARS_PREFERRED);
 
-        if (argumentMultimap.getTotalSize() != 1) {
-            throw new NullPointerException("Number of filters between two logical operators should be exactly 1");
+        System.out.println(argumentMultimap);
+
+        if (argumentMultimap.getTotalSize() != 2) { // since there is also a dummy position :(
+            throw new NullPointerException(
+                "Number of filters between two logical operators should be exactly 1 " + argumentMultimap);
         }
 
         if (argumentMultimap.getValue(PREFIX_EMAIL).isPresent()) {
@@ -37,6 +45,22 @@ public class Filters {
         if (argumentMultimap.getValue(PREFIX_DOB).isPresent()) {
             return new DobFilter(argumentMultimap.getValue(PREFIX_DOB).get());
         }
-        throw new IllegalArgumentException("No appropriate filter for : " + info);
+
+        /*
+         * throw new IllegalArgumentException("No appropriate filter for : " + info);
+         */
+
+        return new AbstractFilter(info) {
+
+            @Override
+            public boolean test(Customer customer) {
+                return false;
+            }
+
+            @Override
+            public List<Customer> filterAllCustomers(List<Customer> customer) {
+                return null;
+            }
+        };
     }
 }
