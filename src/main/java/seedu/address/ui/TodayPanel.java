@@ -20,7 +20,6 @@ import seedu.address.model.ReadOnlyColabFolder;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.deadline.DeadlineWithProject;
 import seedu.address.model.task.repeatable.EventWithProject;
-import seedu.address.model.task.repeatable.RepeatableComparator;
 
 /**
  * Panel displaying today screen.
@@ -96,7 +95,7 @@ public class TodayPanel extends UiPart<Region> {
         }
 
         SortedList<EventWithProject> sortedEventList = new SortedList<>(observableList,
-                new RepeatableComparator());
+                Comparator.comparing(EventWithProject::getDescription));
 
         eventsListView.setItems(sortedEventList);
 

@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import javafx.fxml.FXML;

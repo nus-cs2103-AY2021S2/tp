@@ -121,7 +121,15 @@ public class EventList {
      */
     public FilteredList<Event> getEventsOnDate(LocalDate dateOfEvent) {
         requireNonNull(dateOfEvent);
-        Predicate<Event> predicate = event -> event.getDate().isEqual(dateOfEvent);
+
+        Predicate<Event> predicate = event -> {
+            if (event.getIsWeekly()) {
+                return event.getDate().getDayOfWeek().equals(dateOfEvent.getDayOfWeek());
+            } else {
+                return event.getDate().isEqual(dateOfEvent);
+            }
+        };
+
         return events.filtered(predicate);
     }
 
