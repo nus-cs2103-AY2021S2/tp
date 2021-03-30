@@ -43,7 +43,7 @@ public class ListPanel extends UiPart<Region> {
         Label label = new Label();
         label.textProperty().bind(
                 Bindings.size(logic.getFilteredEventList())
-                        .asString());
+                        .asString("Number of events: %1$s"));
         label.getStyleClass().add("status");
 
         column.getChildren().addAll(label, eventListPanel.getRoot());
