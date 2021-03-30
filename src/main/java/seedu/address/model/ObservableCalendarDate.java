@@ -34,6 +34,9 @@ public class ObservableCalendarDate implements Observable<LocalDate> {
         notifyAllObservers();
     }
 
+    /**
+     * Resets the observable date to today's date, and notifies all its observers.
+     */
     public void reset() {
         this.date = LocalDate.now();
         notifyAllObservers();

@@ -20,10 +20,10 @@
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@Calendar.css" />
         <URL value="@TaskDetails.css" />
         <URL value="@DarkTheme.css" />
         <URL value="@Extensions.css" />
+        <URL value="@Calendar.css" />
       </stylesheets>
 
       <VBox>
