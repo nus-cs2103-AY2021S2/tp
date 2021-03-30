@@ -16,6 +16,7 @@ import seedu.address.logic.commands.DetailCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ImportantDatesCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListDateCommand;
 import seedu.address.logic.commands.ScheduleCommand;
@@ -76,6 +77,9 @@ public class AddressBookParser {
 
         case ScheduleCommand.COMMAND_WORD:
             return new ScheduleCommand();
+
+        case ImportantDatesCommand.COMMAND_WORD:
+            return new ImportantDatesCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
