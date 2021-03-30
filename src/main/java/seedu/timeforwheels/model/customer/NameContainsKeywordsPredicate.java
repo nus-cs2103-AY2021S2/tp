@@ -1,9 +1,11 @@
 package seedu.timeforwheels.model.customer;
 
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.timeforwheels.commons.util.StringUtil;
+import seedu.timeforwheels.model.tag.Tag;
 
 /**
  * Tests that a {@code Customer}'s {@code Name} matches any of the keywords given.
@@ -24,7 +26,18 @@ public class NameContainsKeywordsPredicate implements Predicate<Customer> {
                 || StringUtil.containsWordIgnoreCase(customer.getDate().value, keyword)
                 || StringUtil.containsWordIgnoreCase(customer.getDone().value, keyword)
                 || StringUtil.containsWordIgnoreCase(customer.getEmail().value, keyword)
-                || StringUtil.containsWordIgnoreCase(customer.getRemark().value, keyword));
+                || StringUtil.containsWordIgnoreCase(customer.getRemark().value, keyword)
+                || helper(keyword, customer.getTag()));
+    }
+
+    public boolean helper(String keyword, Set<Tag> tags){
+        boolean result = false;
+        for(Tag tag : tags){
+            if(StringUtil.containsWordIgnoreCase(tag.tagName, keyword)){
+                result = true;
+            }
+        }
+        return result;
     }
 
     @Override
