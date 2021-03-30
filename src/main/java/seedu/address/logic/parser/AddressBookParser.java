@@ -7,11 +7,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddEntryCommand;
 import seedu.address.logic.commands.AddScheduleCommand;
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteEntryCommand;
 import seedu.address.logic.commands.DeleteScheduleCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -22,6 +24,7 @@ import seedu.address.logic.commands.FindScheduleCommand;
 import seedu.address.logic.commands.FindTaskCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListEntryCommand;
 import seedu.address.logic.commands.ListScheduleCommand;
 import seedu.address.logic.commands.ListTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -61,11 +64,17 @@ public class AddressBookParser {
         case AddTaskCommand.COMMAND_WORD:
             return new AddTaskCommandParser().parse(arguments);
 
+        case AddEntryCommand.COMMAND_WORD:
+            return new AddEntryCommandParser().parse(arguments);
+
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
         case EditEntryCommand.COMMAND_WORD:
             return new EditEntryCommandParser().parse(arguments);
+
+        case DeleteEntryCommand.COMMAND_WORD:
+            return new DeleteEntryCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
@@ -90,6 +99,9 @@ public class AddressBookParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case ListEntryCommand.COMMAND_WORD:
+            return new ListEntryCommandParser().parse(arguments);
 
         case ListScheduleCommand.COMMAND_WORD:
             return new ListScheduleCommandParser().parse(arguments);
