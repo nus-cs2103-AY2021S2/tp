@@ -66,7 +66,7 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
             return new FindAppointmentCommand(new ApptDateContainsKeywordsPredicate(keywords));
         } else if (option.equals(OPTION_CONTACT)) { // find by contacts
             return new FindAppointmentCommand(new ApptContactsContainKeywordsPredicate(keywords));
-        }else {
+        } else {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
