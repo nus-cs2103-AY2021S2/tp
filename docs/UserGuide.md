@@ -14,6 +14,7 @@ Donavan Lim, Marcus Lee Eugene, Chong Sidney, Dinesh S/O Magesvaran, Prabhakaran
     * Description
     * Features
         * add
+        * addon
         * delete
         * list
         * find
@@ -32,10 +33,9 @@ The Food Diary caters to food-passionate NUS students who would ideally benefit 
 
 The Food Diary will allow students to save time and effort when finding places to
 eat around the NUS vicinity. The Food Diary especially caters to students chiefly on 3 aspects:
-1. The ability for users to log personal food reviews tagged under different categories for future reference.
-2. The ability to effortlessly reference food options based on relevant filters in a user-friendly GUI
-3. The ability to import and export their personal food diary to share with friends.
-
+1. The ability for users to save food diary entries for future reference.
+2. The ability for users to find entries where food are within a certain price range.
+3. The ability to effortlessly reference food options based on relevant filters in a user-friendly GUI 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -174,14 +174,14 @@ Example:
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/<RESTAURANT NAME> ra/5 re/REVIEW a/ADDRESS c/CATEGORIES` <br> e.g., `add  n/Al Amaan Restaurant ra/4 re/best for Butter Chicken a/12 Clementi Rd, Singapore 129742 c/Indian Muslim`
-**AddOn** |`addon INDEX [re/REVIEW] [p/PRICE]` or `addon INDEX [p/PRICE] [re/REVIEW]` <br>e.g,`addon 1 re/I like this food a lot p/5`
-**Delete** | `delete n/NAME or delete i/INDEX` <br> e.g., `delete n/Al Amaan Restaurant or delete i/1`
+**Add** | `add n/<RESTAURANT NAME> ra/<RATING FROM 0-5> p/<PRICE> re/<REVIEW> a/<ADDRESS> c/<CATEGORIES>` <br> e.g., `add  n/Al Amaan Restaurant ra/4 p/6 re/best for Butter Chicken a/12 Clementi Rd, Singapore 129742 c/Indian Muslim`
+**AddOn** |`addon <INDEX> [re/REVIEW] [p/PRICE]` or `addon <INDEX> [p/PRICE] [re/REVIEW]` <br>e.g,`addon 1 re/I like this food a lot p/5`
+**Delete** | `delete <INDEX>` <br> e.g., `delete 1`
 **List** | `list`
-**Find** | `find KEYWORDS` <br> e.g., `find kfc`
-**FindAll** |`findall KEYWORDS` <br> e.g., `findall clementi fastfood 5/5 $5-10`
-**View** |`view 1`
-**Revise** |`revise 1`
+**Find** | `find <KEYWORDS>` <br> e.g., `find kfc`
+**FindAll** |`findall <KEYWORDS>` <br> e.g., `findall clementi fastfood 5/5 $5-10`
+**View** |`view <INDEX>` <br> e.g `view 1`
+**Revise** |`revise <INDEX>` <br> e.g `revise 1`
 
 ## <center> Appendix </center>
 

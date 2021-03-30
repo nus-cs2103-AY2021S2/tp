@@ -3,6 +3,7 @@ package fooddiary.ui;
 import java.util.Comparator;
 
 import fooddiary.model.entry.Entry;
+import fooddiary.model.entry.Price;
 import fooddiary.model.tag.TagCategory;
 import fooddiary.model.tag.TagSchool;
 import javafx.fxml.FXML;
@@ -56,7 +57,7 @@ public class EntryCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(entry.getName().fullName);
         rating.setText(String.format("Rating: %s / 5", entry.getRating().value));
-        price.setText(String.format("Price: " + "%s", entry.getPrice().value));
+        price.setText(String.format("Price: %s" + "%s", Price.PRICE_DOLLAR_SIGN, entry.getPrice().value));
         address.setText(String.format("Address: %s", entry.getAddress().value));
         String reviewStr = "";
         for (int i = 0; i < entry.getReviews().size(); i++) {
