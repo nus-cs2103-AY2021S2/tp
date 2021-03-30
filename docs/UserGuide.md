@@ -89,13 +89,15 @@ Examples:
 
 ### Listing all clients : `list`
 
-Shows a list of all clients in iScam.
+Changes the mode of iScam to Client Mode.
+Client Mode displays lists of clients and client details.
 
 Format: `list`
 
 ### Listing all meetings : `listmeet`
 
-Shows a list of all meetings in iScam.
+Changes the mode of iScam to Meeting Mode.
+Meeting mode displays the list of all meetings.
 
 Format: `listmeet`
 
