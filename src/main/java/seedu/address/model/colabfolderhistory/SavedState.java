@@ -1,6 +1,7 @@
 package seedu.address.model.colabfolderhistory;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
@@ -17,13 +18,24 @@ public class SavedState {
     /**
      * Constructs a {@code SavedState} object with a {@code colabFolder} and {@code commandResult}.
      *
-     * @param colabFolder   The {@code ReadOnlyColabFolder} to store, should not be null.
+     * @param colabFolder The {@code ReadOnlyColabFolder} to store, should not be null.
      * @param commandResult The {@code CommandResult} to store.
      */
     public SavedState(ReadOnlyColabFolder colabFolder, CommandResult commandResult) {
-        requireNonNull(colabFolder);
+        requireAllNonNull(colabFolder, commandResult);
         this.colabFolder = colabFolder;
         this.commandResult = commandResult;
+    }
+
+    /**
+     * Constructs a {@code SavedState} object with a {@code colabFolder}. Sets {@code commandResult to null}.
+     *
+     * @param colabFolder The {@code ReadOnlyColabFolder} to store, should not be null.
+     */
+    public SavedState(ReadOnlyColabFolder colabFolder) {
+        requireNonNull(colabFolder);
+        this.colabFolder = colabFolder;
+        this.commandResult = null;
     }
 
     public ReadOnlyColabFolder getColabFolder() {

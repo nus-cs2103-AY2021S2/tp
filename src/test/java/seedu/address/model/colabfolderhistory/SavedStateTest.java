@@ -1,6 +1,7 @@
 package seedu.address.model.colabfolderhistory;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,10 +15,18 @@ class SavedStateTest {
     @Test
     public void constructor_success() {
         ColabFolder colabFolder = TypicalColabFolder.getTypicalColabFolder();
-        CommandResult commandResult = new CommandResult("Feedback", new ShowTodayUiCommand());
-        SavedState savedState = new SavedState(colabFolder, commandResult);
 
-        assertEquals(savedState.getColabFolder(), colabFolder);
-        assertEquals(savedState.getCommandResult(), commandResult);
+        // Constructor with colab folder and command result
+        CommandResult commandResult = new CommandResult("Feedback", new ShowTodayUiCommand());
+        SavedState savedStateWithCommandResult = new SavedState(colabFolder, commandResult);
+
+        assertEquals(savedStateWithCommandResult.getColabFolder(), colabFolder);
+        assertEquals(savedStateWithCommandResult.getCommandResult(), commandResult);
+
+        // Constructor with only colab folder
+        SavedState savedStateWithoutCommandResult = new SavedState(colabFolder);
+
+        assertEquals(savedStateWithoutCommandResult.getColabFolder(), colabFolder);
+        assertNull(savedStateWithoutCommandResult.getCommandResult());
     }
 }

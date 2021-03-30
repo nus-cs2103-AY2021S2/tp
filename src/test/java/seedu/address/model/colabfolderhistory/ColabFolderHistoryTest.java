@@ -7,8 +7,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ShowTodayCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.uicommands.ShowTodayUiCommand;
 import seedu.address.model.ColabFolder;
+import seedu.address.model.ModelManager;
 import seedu.address.model.colabfolderhistory.exceptions.NoRedoableStateException;
 import seedu.address.model.colabfolderhistory.exceptions.NoUndoableStateException;
 import seedu.address.testutil.TypicalColabFolder;
@@ -42,7 +45,7 @@ class ColabFolderHistoryTest {
     }
 
     @Test
-    public void equals() {
+    public void equals() throws CommandException {
         ColabFolder colabFolder = TypicalColabFolder.getTypicalColabFolder();
         ColabFolderHistory history = new ColabFolderHistory(colabFolder);
 
@@ -66,7 +69,7 @@ class ColabFolderHistoryTest {
 
         // different pointer -> returns false
         ColabFolderHistory differentPointer = new ColabFolderHistory(colabFolder);
-        differentPointer.commit(colabFolder, null);
+        differentPointer.commit(colabFolder, new ShowTodayCommand().execute(new ModelManager()));
         assertNotEquals(history, differentPointer);
 
     }

@@ -22,7 +22,7 @@ public class ColabFolderHistory {
      */
     public ColabFolderHistory(ReadOnlyColabFolder initialColabFolder) {
         savedStateList = new ArrayList<>();
-        savedStateList.add(new SavedState(initialColabFolder, null));
+        savedStateList.add(new SavedState(initialColabFolder));
         currentStatePointer = 0;
     }
 
