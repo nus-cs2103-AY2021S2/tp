@@ -8,24 +8,17 @@ import seedu.address.commons.util.StringUtil;
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
-public class ApptDateContainsKeywordsPredicate implements Predicate<Appointment> {
-    private final List<String> names;
+public class ApptDateContainsKeywordsPredicate extends ApptFieldContainsKeywordsPredicate {
 
-    public ApptDateContainsKeywordsPredicate(List<String> names) {
-        this.names = names;
+    public ApptDateContainsKeywordsPredicate(List<String> keywords) {
+        super(keywords);
     }
 
     @Override
     public boolean test(Appointment appointment) {
-        return names.stream()
+        return super.getKeywords().stream()
                 .anyMatch(keyword ->
                         StringUtil.containsWordIgnoreCase(appointment.getDateTime().toString(), keyword));
     }
 
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof ApptDateContainsKeywordsPredicate // instanceof handles nulls
-                && names.equals(((ApptDateContainsKeywordsPredicate) other).names)); // state check
-    }
 }
