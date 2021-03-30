@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.PersonId;
 import seedu.address.model.person.PersonIdPredicate;
 
 public class ViewPersonCommandTest {
@@ -27,5 +28,18 @@ public class ViewPersonCommandTest {
         expectedModel.updateFilteredPersonList(new PersonIdPredicate(FIRST_PERSON_ID));
         assertCommandSuccess(new ViewPersonCommand(new PersonIdPredicate(FIRST_PERSON_ID)),
                 model, ViewPersonCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
+    public void execute_viewTutor_NotFound_showMessage() {
+        expectedModel.updateFilteredPersonList(new PersonIdPredicate(new PersonId("t/1000")));
+        assertCommandSuccess(new ViewPersonCommand(new PersonIdPredicate(new PersonId("t/1000"))),
+                model, ViewPersonCommand.MESSAGE_NO_PERSON_FOUND, expectedModel);
+
+    }
+
+    @Test
+    public void execute_invalidCommand_throwError() {
+        
     }
 }
