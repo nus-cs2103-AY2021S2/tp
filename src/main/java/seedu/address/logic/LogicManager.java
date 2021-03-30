@@ -87,13 +87,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Order> getFilteredOrderList() {
-        return model.getFilteredOrderList();
+    public ObservableList<Order> getFilteredOrderList(Order.State state) {
+        return model.getFilteredOrderList(state);
     }
 
     @Override
-    public ObservableList<Order> getFilteredOrderList(Comparator<Order> comparator) {
-        return model.getFilteredOrderList(comparator);
+    public ObservableList<Order> getFilteredOrderList(Comparator<Order> comparator, Order.State state) {
+        return model.getFilteredOrderList(comparator, state);
     }
 
     @Override

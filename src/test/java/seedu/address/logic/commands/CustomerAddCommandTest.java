@@ -284,12 +284,12 @@ public class CustomerAddCommandTest {
         }
 
         @Override
-        public ObservableList<Order> getFilteredOrderList() {
+        public ObservableList<Order> getFilteredOrderList(Order.State state) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Order> getFilteredOrderList(Comparator<Order> comparator) {
+        public ObservableList<Order> getFilteredOrderList(Comparator<Order> comparator, Order.State state) {
             throw new AssertionError("This method should not be called.");
         }
 

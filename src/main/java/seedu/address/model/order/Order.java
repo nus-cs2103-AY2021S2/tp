@@ -14,7 +14,7 @@ import seedu.address.model.person.Person;
 
 
 public class Order implements Item {
-    public enum State{
+    public enum State {
         UNCOMPLETED, COMPLETED, CANCELLED
     }
 
@@ -76,11 +76,11 @@ public class Order implements Item {
         return builder.toString();
     }
 
-    public State getState(){
+    public State getState() {
         return state;
     }
 
-    public void setState(State newState){
+    public void setState(State newState) {
         state = newState;
     }
 

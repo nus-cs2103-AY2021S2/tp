@@ -54,7 +54,7 @@ public interface Logic {
 
     ObservableList<Dish> getFilteredDishList();
     ObservableList<Ingredient> getFilteredInventoryList();
-    ObservableList<Order> getFilteredOrderList();
-    ObservableList<Order> getFilteredOrderList(Comparator<Order> comparator);
+    ObservableList<Order> getFilteredOrderList(Order.State state);
 
+    ObservableList<Order> getFilteredOrderList(Comparator<Order> comparator, Order.State state);
 }

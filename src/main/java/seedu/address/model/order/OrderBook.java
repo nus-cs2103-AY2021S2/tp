@@ -84,7 +84,7 @@ public class OrderBook implements ReadOnlyOrderBook {
      * Turns the state of an order to complete
      * @param key
      */
-    public void completeOrder(Order key){
+    public void completeOrder(Order key) {
         key.setState(Order.State.COMPLETED);
     }
 
@@ -113,5 +113,4 @@ public class OrderBook implements ReadOnlyOrderBook {
                 || (other instanceof OrderBook // instanceof handles nulls
                 && orders.equals(((OrderBook) other).orders));
     }
-
 }

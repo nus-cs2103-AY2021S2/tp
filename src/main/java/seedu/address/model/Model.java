@@ -229,9 +229,11 @@ public interface Model {
     void setOrder(Order target, Order editedOrder);
 
     /** Returns an unmodifiable view of the filtered order list */
-    ObservableList<Order> getFilteredOrderList();
+    ObservableList<Order> getFilteredOrderList(Order.State state);
 
-    ObservableList<Order> getFilteredOrderList(Comparator<Order> comparator);
+    /** Sorts and filters and then returns an unmodifiable view of the filtered order list */
+    ObservableList<Order> getFilteredOrderList(Comparator<Order> comparator, Order.State state);
+
 
     /**
      * Updates the filter of the filtered ingredient list to filter by the given {@code predicate}.

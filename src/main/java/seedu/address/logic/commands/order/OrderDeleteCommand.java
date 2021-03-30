@@ -37,7 +37,7 @@ public class OrderDeleteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Order> lastShownList = model.getFilteredOrderList();
+        List<Order> lastShownList = model.getFilteredOrderList(Order.State.UNCOMPLETED);
         System.out.println(targetIndex.getZeroBased());
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(
