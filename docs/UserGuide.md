@@ -42,7 +42,7 @@ Use nufash to reduce clutter and start making wiser clothing decisions today!
 
 4. Double-click the file to start the app. A GUI similar to one depicted below should launch in a few seconds.<br>
 
- insert Ui.png
+ <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/Ui.png" alt="alt text" width="790">
 
 5. You can type a command in the command box and press the enter key on your keyboard to execute it. For example, typing
    the **`help`** command and pressing the enter key will open the help window.<br>
@@ -78,7 +78,7 @@ Use nufash to reduce clutter and start making wiser clothing decisions today!
 ### Viewing Help: `help`
 Shows an in-app user guide to various commands.<br>
 
-![helpMessage.png](https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/helpMessage.png)
+<img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/helpMessage.png" alt="alt text" width="790">
 
 Format: `help`
 <br><br>
@@ -86,7 +86,8 @@ Format: `help`
 ### Adding a Garment to the Wardrobe: `add` 
 Adds a garment with a name, size, colour, dress code and type into the wardrobe, along with optional descriptions.<br>
 
-![AddGarment.png](https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/AddGarment.png)
+<img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/AddGarment.png" alt="alt text" width="790">
+
 
 Format: `add n/NAME s/SIZE c/COLOUR r/DRESSCODE t/TYPE [d/DESCRIPTION]...`<br>
 
@@ -105,7 +106,7 @@ Example:<br>
 ### Listing all Garments in the Wardrobe: `list`  
 Shows a list of all garments in the wardrobe<br>
 
-![ListGarment.png](https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/ListGarment.png)
+<img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/ListGarment.png" alt="alt text" width="790">
 
 Format: `list`
 <br><br>
@@ -113,7 +114,7 @@ Format: `list`
 ### Deleting a singular Garment in the Wardrobe: `delete`  
 Removes a Garment, associated with the given index, from the wardrobe.<br>
 
-![DeleteGarment.png](https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/DeleteGarment.png)
+<img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/DeleteGarment.png" alt="alt text" width="790">
 
 Format: `delete INDEX`
 
@@ -133,7 +134,7 @@ Removes the 7th Garment in the wardrobe.
 ### Clearing all Garments in Wardrobe : `clear`
 Clears all existing garments in the wardrobe.
 
-![ClearGarment.png](https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/ClearGarment.png)
+<img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/ClearGarment.png" alt="alt text" width="790">
 
 Format: `clear`
 <br><br>
@@ -141,7 +142,7 @@ Format: `clear`
 ### Editing a singular Garment in Wardrobe: `edit`
 Edits an existing garment in the wardrobe.<br>
 
-![EditGarment.png](https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/EditGarment.png)
+<img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/EditGarment.png" alt="alt text" width="790">
 
 Format: `edit INDEX [n/NAME] [s/SIZE] [c/COLOUR] [r/DRESSCODE] [t/TYPE] [d/DESCRIPTION]...`
 
@@ -162,9 +163,9 @@ Example:
 ### Find Garments in Wardrobe by keywords: `find`
 Finds all garments that matched specified keywords during search.<br>
 
-![FindGarmentA.png](https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/FindGarmentA.png)
+<img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/FindGarmentA.png" alt="alt text" width="790">
 
-![FindGarmentB.png](https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/FindGarmentB.png)
+<img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/FindGarmentB.png" alt="alt text" width="790">
 
 Format: `find [n/NAMES] [s/SIZES] [c/COLOURS] [r/DRESSCODES] [t/TYPES] [d/DESCRIPTIONS]...`
 
@@ -175,6 +176,7 @@ Format: `find [n/NAMES] [s/SIZES] [c/COLOURS] [r/DRESSCODES] [t/TYPES] [d/DESCRI
 * The list of all garments with matching attributes will be shown.<br><br>
 </div>
 Example:
+
 * `find n/worn out jeans`<br>
   Returns all garments whose name has at least one of the words in the search phrase, "worn out jeans".
 * `find c/white s/36 23`<br>
@@ -198,11 +200,12 @@ Returns all the articles of clothing that match the colour and dress code
 Returns all the articles of clothing that match the colours and dress code of
   the garments at indices 1 and 2 in the list of garments on display, but
   do not match their types.
+<br><br>
 
 ### Checking out a Garment from the Wardrobe: `select`
 Select a garment to check out of the wardrobe, indicating that it shall be worn today.
 
-![SelectGarment.png](https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/SelectGarment.png)
+<img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/SelectGarment.png" alt="alt text" width="790">
 
 Format: `select INDEX`
 
@@ -220,7 +223,7 @@ Example:
 ### Viewing a valid outfit: `view`
 View a set of 3 garments associated with the given indexes that create an outfit.<br>
 
-![ViewGarment.png](https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/ViewGarment.png)
+<img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/ViewGarment.png" alt="alt text" width="790">
 
 Format: `view INDEX INDEX INDEX`
 
@@ -254,7 +257,7 @@ nufash data is saved as a JSON file [JAR file location]/data/nufash.json.
 Advanced users are welcome to update data directly by editing that data file.
 
 **:exclamation: Caution:**<br>
-  If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+  If your changes to the data file makes its format invalid, nufash will discard all data and start with an empty data file at the next run.
 <br><br>
 
 ---
