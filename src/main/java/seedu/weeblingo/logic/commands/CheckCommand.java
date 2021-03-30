@@ -16,7 +16,7 @@ public class CheckCommand extends Command {
     public static final String CORRECT_ATTEMPT = "You answered correctly!\n";
     public static final String WRONG_ATTEMPT = " is incorrect.\n";
     public static final String MESSAGE_HELPER = "Enter \"end\" to end the quiz "
-            + "and \"next\" to move to the next question.\n";
+            + "and \"next\" to move to the next question.";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": checks user answer for displayed flashcard.\n"
             + "Parameters: ATTEMPT\n"
             + "Example: " + COMMAND_WORD + " apple";
@@ -40,9 +40,10 @@ public class CheckCommand extends Command {
         } catch (NullPointerException e) {
             throw new CommandException(Messages.NO_QUIZ_ERROR_MESSAGE);
         }
+        // Model::isCorrectAttempt() modifies the quiz statistic, FYI
         if (model.isCorrectAttempt(attempt)) {
             model.switchModeCheckSuccess();
-            String quizStatistics = model.getQuizStatisticString();
+            String quizStatistics = model.getQuizStatisticString() + "\n";
             return new CommandResult(CORRECT_ATTEMPT + quizStatistics + MESSAGE_HELPER,
                     false, false);
         } else {

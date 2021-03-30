@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Queue;
 import java.util.Set;
 
@@ -31,6 +32,8 @@ public class Quiz {
     // Support for storing the quiz attempt history
     private int numberOfQuestionsAttempted;
     private int numberOfQuestionsCorrect;
+
+    private Optional<String> optionalDurationString;
 
     /**
      * Initializes the quiz session with a queue of all flashcards with randomized order.
@@ -181,10 +184,12 @@ public class Quiz {
     public String getQuizSessionDuration() {
         Instant endTime = Instant.now();
         Duration duration = Duration.between(startTime, endTime);
-        return String.format("%d:%02d:%02d\n",
+        String result = String.format("%d:%02d:%02d",
                 duration.toHours(),
                 duration.toMinutesPart(),
                 duration.toSecondsPart());
+        optionalDurationString = Optional.of(result);
+        return result;
     }
 
     /**
@@ -194,6 +199,7 @@ public class Quiz {
         numberOfQuestionsCorrect = 0;
         numberOfQuestionsAttempted = 0;
         startTime = Instant.now();
+        optionalDurationString = Optional.empty();
     }
 
     /**
@@ -213,6 +219,7 @@ public class Quiz {
      * @return The score containing the statistic data of the quiz attempt.
      */
     public Score giveScore() {
-        return Score.of(numberOfQuestionsAttempted, numberOfQuestionsCorrect);
+        return Score.of(numberOfQuestionsAttempted, numberOfQuestionsCorrect,
+                optionalDurationString.orElse(getQuizSessionDuration()));
     }
 }

@@ -32,6 +32,8 @@ public class ScoreCard extends UiPart<Region> {
     private Label numOfQuestionsCorrect;
     @FXML
     private Label correctRatio;
+    @FXML
+    private Label timeSpent;
 
     /**
      * Creates a {@code ScoreCard} with the given {@code Score} and index to display.
@@ -45,6 +47,7 @@ public class ScoreCard extends UiPart<Region> {
         numOfQuestionsCorrect.setText("Number of correct attempts: "
                 + score.getNumberOfQuestionsCorrect());
         correctRatio.setText("Correct ratio: " + score.getCorrectRatioString());
+        timeSpent.setText("Time spent: " + score.getTimeSpent());
     }
 
     @Override
