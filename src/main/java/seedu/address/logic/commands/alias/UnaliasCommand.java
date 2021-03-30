@@ -25,7 +25,7 @@ public class UnaliasCommand extends Command {
 
     /**
      * Creates an UnaliasCommand with the specified {@code aliasName}.
-     * All fields must not be null.
+     * The field must not be null.
      *
      * @param aliasName Name of the alias.
      * @throws NullPointerException If the input is null.

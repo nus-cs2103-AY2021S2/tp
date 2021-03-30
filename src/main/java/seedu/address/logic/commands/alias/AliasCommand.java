@@ -28,7 +28,7 @@ public class AliasCommand extends Command {
 
     /**
      * Creates an AliasCommand object.
-     * All field must not be null.
+     * The field must not be null.
      *
      * @param alias Alias object.
      * @throws NullPointerException If the input is null.
