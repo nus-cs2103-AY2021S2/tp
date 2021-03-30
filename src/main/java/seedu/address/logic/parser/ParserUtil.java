@@ -10,6 +10,8 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditCommand.EditPolicyMode;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.attribute.Attribute;
 import seedu.address.model.insurancepolicy.InsurancePolicy;
@@ -40,6 +42,20 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    public static EditPolicyMode parseEditPolicyMode(String editPolicyMode) throws ParseException {
+        String trimmedEditPolicyMode = editPolicyMode.trim();
+        switch (trimmedEditPolicyMode) {
+        case "-insert":
+            return EditPolicyMode.APPEND;
+        case "-remove":
+            return EditPolicyMode.REMOVE;
+        case "-modify":
+            return EditPolicyMode.MODIFY;
+        default:
+            throw new ParseException(EditPolicyMode.MESSAGE_EDIT_POLICY_MODE_CONSTRAINTS);
+        }
+    }
+
     /**
      * Parses {@code attributes list in string form} into a {@code list of Attributes} and returns it.
      * Leading and trailing whitespaces will be trimmed.
@@ -62,7 +78,7 @@ public class ParserUtil {
                 parsedAttributesList.add(Attribute.ADDRESS);
                 break;
             default:
-                throw new ParseException(Attribute.MESSAGE_CONSTRAINTS);
+                throw new ParseException(Attribute.MESSAGE_ATTRIBUTE_CONSTRAINTS);
             }
         }
         return parsedAttributesList;
