@@ -37,6 +37,7 @@ import seedu.address.logic.commands.remindercommands.AddReminderCommand;
 import seedu.address.logic.commands.remindercommands.DeleteReminderCommand;
 import seedu.address.logic.commands.remindercommands.EditReminderCommand;
 import seedu.address.logic.commands.remindercommands.ListReminderCommand;
+import seedu.address.logic.commands.remindercommands.ViewReminderWindowCommand;
 import seedu.address.logic.commands.schedulecommands.AddScheduleCommand;
 import seedu.address.logic.commands.schedulecommands.DeleteScheduleCommand;
 import seedu.address.logic.commands.schedulecommands.EditScheduleCommand;
@@ -248,6 +249,9 @@ public class TutorTrackerParser {
 
         case ListReminderCommand.COMMAND_WORD:
             return new ListReminderCommand();
+
+        case ViewReminderWindowCommand.COMMAND_WORD:
+            return new ViewReminderWindowCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

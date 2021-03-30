@@ -18,6 +18,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.ui.schedulepanel.ScheduleListPanel;
+import seedu.address.ui.reminderpanel.ReminderWindow;
 import seedu.address.ui.timetablepanel.TimeTableWindow;
 
 /**
@@ -43,6 +44,7 @@ public class MainWindow extends UiPart<Stage> {
     private GradeListPanel gradeListPanel;
     private FiltersPanel filtersPanel;
     private ScheduleListPanel scheduleListPanel;
+    private ReminderWindow reminderWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -91,6 +93,7 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
         timetableWindow = new TimeTableWindow();
+        reminderWindow = new ReminderWindow(logic);
     }
 
     public Stage getPrimaryStage() {
@@ -189,6 +192,18 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Opens the reminder window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleReminder() {
+        if (!reminderWindow.isShowing()) {
+            reminderWindow.show();
+        } else {
+            reminderWindow.focus();
+        }
+    }
+
+    /**
      * Opens the help window or focuses on it if it's already opened.
      */
     @FXML
@@ -229,6 +244,7 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+                handleReminder();
             }
 
             if (commandResult.isShowTimetable()) {
