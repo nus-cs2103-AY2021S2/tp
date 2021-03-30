@@ -91,6 +91,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         setPersons(newData.getPersonList());
         setTasks(newData.getTaskList());
         setSchedules(newData.getScheduleList());
+        setEntries(newData.getEntryList());
     }
 
     //// person-level operations
@@ -153,6 +154,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the list.
      */
     public void removeEntry(Entry key) {
+        requireNonNull(key);
         entries.remove(key);
     }
 
