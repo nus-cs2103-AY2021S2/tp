@@ -189,7 +189,7 @@ Lists all events from SOChedule Event Scheduler.
 Format: `list_event`
 
 ### Listing all events today: `today_event`
-Lists all events that happen on today or is happening today from the Event Scheduler. 
+Lists all events whose duration have overlap with today from the Event Scheduler.
 
 Format: `today_event`
 
