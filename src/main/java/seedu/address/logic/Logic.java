@@ -76,7 +76,9 @@ public interface Logic {
     ObservableList<String> getAutocompleteCommands(String value);
 
     /**
-     * TODO:
+     * Gets a List of flags of a provided command.
+     *
+     * @param command command to retrieve flags from
      * @return
      */
     List<String> getAutocompleteFlags(String command);

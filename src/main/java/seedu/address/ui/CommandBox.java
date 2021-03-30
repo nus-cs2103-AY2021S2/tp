@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.util.List;
 import java.util.function.Consumer;
 
 import javafx.collections.ObservableList;
@@ -101,23 +100,8 @@ public class CommandBox extends UiPart<Region> {
         });
     }
 
-    /*
-     * TODO: the code below can be more comprehensive
-     *
-     * Intended Idea:
-     * E.g "edit blah blah blah <index>": on UP/Down KeyEvents, ONLY trigger <index> to change,
-     * Same concept can be applied for other commands.
-     * "Last value change only"
-     *
-     * For now,
-     * - Current implementation does not factor in if the command is correct
-     * - Current implementation only checks the first keyword after splitting by space character
-     * - Currently only works on "Delete"
-     *
-     * Can consider having an implementation where only the index changes
-     */
     /**
-     * Sets the text after appending an index.
+     * Sets the textfield after appending an index.
      *
      * @param index to accept user entered index.
      */
@@ -131,21 +115,19 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
-     * TODO:
-     * @param availFlags
+     * Sets the textfield after appending a flag
+     *
+     * @param flag to accept user entered flag
      */
-    public void setAndAppendFlag(List<String> availFlags) {
-        if (availFlags.size() == 0) {
-            return;
-        }
-        String toAdd = availFlags.get(0);
+    public void setAndAppendFlag(String flag) {
         String existingText = commandTextField.getText();
-        this.setTextValue(existingText + " " + toAdd + " ");
+        this.setTextValue(existingText + " " + flag + " ");
     }
 
     /**
-     * TODO:
-     * @return
+     * Returns the text in JavaFX textField.
+     *
+     * @return text in JavaFX textField
      */
     public String getTextFieldText() {
         return commandTextField.getText();
