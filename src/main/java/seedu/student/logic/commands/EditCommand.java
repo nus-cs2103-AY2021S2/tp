@@ -43,7 +43,7 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_MATRICULATION_NUMBER + "MATRICULATION NUMBER]"
+            + "[" + PREFIX_MATRICULATION_NUMBER + "MATRICULATION NUMBER] "
             + "[" + PREFIX_FACULTY + "FACULTY] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
@@ -157,7 +157,6 @@ public class EditCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
          */
         public EditStudentDescriptor(EditStudentDescriptor toCopy) {
             setName(toCopy.name);
