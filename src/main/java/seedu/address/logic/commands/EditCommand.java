@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON;
+import static seedu.address.commons.core.Messages.MESSAGE_EDIT_PERSON_SUCCESS;
+import static seedu.address.commons.core.Messages.MESSAGE_NAME_DOES_NOT_EXIST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -14,8 +17,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -46,10 +47,6 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
-
     private final Name name;
     private final EditPersonDescriptor editPersonDescriptor;
 
@@ -76,6 +73,10 @@ public class EditCommand extends Command {
                 personToEdit = person;
                 break;
             }
+        }
+
+        if (personToEdit == null) {
+            throw new CommandException(MESSAGE_NAME_DOES_NOT_EXIST);
         }
 
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
