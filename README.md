@@ -100,6 +100,7 @@
     1. If no parameters given, tasks shown will be deadlines that will be due by next week.
     2. `NUMBER_OF_DAYS` & `NUMBER_OF_WEEKS` must be a positive integer
     3. If both `day/` & `week/` given, the `NUMBER_OF_DAYS` will be used.
+    4. Tasks shown are tasks with deadline starting from today's date.
   * Example: `dueIn day/2` will show tasks that have deadlines within the next 2 days.
   
 11. ### Toggle the status of a Task: *done*

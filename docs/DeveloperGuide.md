@@ -157,6 +157,32 @@ Step 2. The `sort` command then calls the `Model#sortTasks(Comparator)`  method,
 
 Step 3. The `Model#sortTasks(Comparator)` method then sorts the `UniqueTaskList`, and the sorted list is then reflected in the UI.
 
+### Time-based alerts
+
+The proposed time-based alert allows a user to filter the tasks in `TaskTracker` to have
+deadlines within the specified days or weeks. This feature makes use of `DeadlineDateInRangePredicate`
+which filter based on the `DeadlineDate` of the task.
+
+The filtering operation is exposed in the `Model` interface as `Model#updateFilteredTaskList(Predicate)`.
+It is noteworthy to mention that the filtering is performed only on the
+`UniqueTaskList`  that is displayed on the UI; no actual filtering of JSON data is performed.
+
+Given below is an example usage scenario and how the filtering mechanism behaves at each step.
+
+Step 1. The user launches the application, and it is assumed that there is existing data in
+the `TaskTracker`. The user executes the command <br>`dueIn day/NUMBER_OF_DAYS` in order to filter the
+tasks that have `DeadlineDate` within `NUMBER_OF_DAYS` from today. The `dueInCommandParser` creates
+a new `DeadlineDateInRangePredicate` with parameter `NUMBER_OF_DAYS` to be used for filtering. The
+predicate will be passed on to the `dueIn` command.
+
+Step 2. The `dueIn` command then calls the `Model#updateFilteredTaskList(Predicate)`
+method, and passes the `DeadlineDateInRangePredicate` as a parameter to be used for the filtering.
+
+Step 3. The `Model#updateFilteredTaskList(Preducate)` method then filters the `UniqueTaskList`,
+and the filtered list is then reflected in the UI.
+
+![DueInSequenceDiagram](images/DueInSequenceDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
