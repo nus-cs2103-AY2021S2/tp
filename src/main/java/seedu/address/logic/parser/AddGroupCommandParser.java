@@ -13,7 +13,7 @@ import seedu.address.logic.commands.AddGroupCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Name;
 
-public class AddGroupParser implements Parser<AddGroupCommand> {
+public class AddGroupCommandParser implements Parser<AddGroupCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddGroupCommand
      * and returns an AddGroupCommand object for execution.
@@ -31,13 +31,10 @@ public class AddGroupParser implements Parser<AddGroupCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddGroupCommand.MESSAGE_USAGE));
         }
 
-        try {
-            name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-            indexes = ParserUtil.parseIndexes(argMultimap.getValue(PREFIX_PERSONS).get());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddGroupCommand.MESSAGE_USAGE), pe);
-        }
+
+        name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        indexes = ParserUtil.parseIndexes(argMultimap.getValue(PREFIX_PERSONS).get());
+
         return new AddGroupCommand(indexes, name);
     }
 }
