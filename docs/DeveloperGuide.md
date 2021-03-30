@@ -140,7 +140,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 ## **Implementation**
-This section describes some noteworthy details on how certain features are implemented.  
+This section describes some noteworthy details on how certain features are implemented.
+
+### Add Plan feature
+
+#### Implementation
+
+![PlanObjectDiagram](images/AddPlanObjectDiagram.png)
+
+The `addp` command makes use of the `Plan` class to add a plan to the user's list of plans. The user must provide a valid `Description` for the plan, otherwise they will be prompted to do so.
+
+##### Constructor:`Plan#new(Description description, Set<tag> tags, List<Semester> semesters)`
+Creates a `Plan` object using the plan's `description`, its relevant `tags` as well as a list of `semesters` to include.
+![PlanConstructorSequenceDiagram](images/PlanConstructorSequenceDiagram.png)
+
+##### Method:`Plan#toString()`
+Builds a formatted string by appending the plan's descriptions as well as all of its tags.
+The `getDescription` method is used to obtain the Description in `String` format.
+Each Tag's `toString()` method is called.
+![PlanToStringSequenceDiagram](images/PlanToStringSequenceDiagram.png)
+
+##### Overview: Add Plan command
+The following presents a final overview of how the `addp command` is used:
+
+![AddPlanArchitectureSequenceDiagram](images/AddPlanArchitectureSequenceDiagram.png)
+
+Do note that the current implementation always creates a new `Plan` instance whenever the `addp command` is provided by the user, to ensure that users create a new plan.
 
 ### History feature
 
@@ -149,8 +174,6 @@ This section describes some noteworthy details on how certain features are imple
 ![HistoryObjectDiagram](images/HistoryObjectDiagram.png)
 
 The `history command` makes use of the `History` class to format information about semesters prior to the users `current semester` in their `master plan`. As such, a precondition for the `history command` is that the user must have identified both a `master plan` and `current semester`, otherwise they will be prompted to do so.
-
- 
 
 ![HistoryHashmapClassDiagram](images/HistoryHashmapClassDiagram.png)
 
@@ -199,6 +222,36 @@ In the `ModelManager`, the `validate(masterPlan, currentSemester)` method refere
 ##### [Proposed] Validating using History object
 
 Currently validate checks each plan up to their semesters for the taken modules. This is rather slow since it has to loop through the modules. This can be done much faster using the `HashTable` which is provided by the `History` object. Although not currently a necessary feature since only a single user uses the application, this is a rather simple optimization that should be implemented.
+=======
+### Info feature
+
+#### Implementation
+
+![InfoCommandExecute](images/InfoFeatureClassDiagram.png)
+
+The `InfoCommandParser` reads the user input and creates a `InfoCommand` to execute with the any arguments found.
+The `InfoCommand` makes use of the `JsonModule` class to retrieve module information stored in json format to
+display relevant information to the user.
+
+#### InfoCommandParser
+#### Method:`parse(String args)`
+
+![InfoCommandExecute](images/InfoCommandParserParse.png)
+
+After `ModulePlannerParser` removes the command word from the user input, `InfoCommandParser`
+extracts the module code if found and creates an `InfoCommand` object with the module code otherwise
+an `InfoCommand` object with no module code.
+The created `InfoCommand` object is returned to `Logic` object for execution.
+
+#### InfoCommand
+#### Method: `execute(Model model)`
+
+![InfoCommandExecute](images/InfoCommandExecute.png)
+
+`InfoCommand` object retrieves all module information from `Model` object stored in `JsonModule`
+object. Based on what arguments the `InfoCommand` object is created with, it finds the relevant
+`JsonModule` object and sets it for the `Model` object `foundModule` field. Lastly, the `currentCommand`
+field is updated for the UI to show a single module information or all of them.
 
 ### Non-Functional Requirements
 

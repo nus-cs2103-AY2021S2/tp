@@ -1,0 +1,17 @@
+@startuml
+
+object InfoCommandParser
+object InfoCommand
+object Model
+object JsonModule
+object "<<interface>> \n Parser" as ip
+object Command
+
+InfoCommandParser "1" --> "1" InfoCommand : creates
+InfoCommand "1" ..> "1" Model
+InfoCommand "1" ----> "*" JsonModule : retrieves info from
+Model "1" --> "*" JsonModule
+ip <|.down. InfoCommandParser
+Command <|-down- InfoCommand
+
+@enduml

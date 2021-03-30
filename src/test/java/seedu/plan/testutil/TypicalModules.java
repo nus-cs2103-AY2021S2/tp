@@ -15,6 +15,8 @@ public class TypicalModules {
             "CS2103", 4);
     public static final Module COMPUTER_NETWORKING_MODULE = new Module("Computer Networking",
             "CS2105", 4);
+    public static final Module COMPUTER_ORGANIZATION_MODULE = new Module("Computer Organization",
+            "CS2100", 4);
 
     private TypicalModules() {} // prevents instantiation
 
