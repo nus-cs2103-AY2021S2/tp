@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_PAST_EVENT_END_DATE_TIME;
 import static seedu.address.logic.commands.CommandTestUtil.CATEGORY_DESC_SCHOOL;
 import static seedu.address.logic.commands.CommandTestUtil.CATEGORY_DESC_WORK;
 import static seedu.address.logic.commands.CommandTestUtil.ENDDATE_DESC_EVENTONE;
@@ -39,7 +40,6 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import static seedu.address.testutil.TypicalEvents.EVENTONE;
 import static seedu.address.testutil.TypicalEvents.EVENTTWO;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddEventCommand;
@@ -117,18 +117,14 @@ public class AddEventCommandParserTest {
     }
 
     @Test
-    @Disabled
     public void parse_pastDateTime_failure() {
         // zero tags
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventCommand.MESSAGE_USAGE);
-
         assertParseFailure(parser, NAME_DESC_EVENTONE + STARTDATE_DESC_EVENTONE
                 + STARTTIME_DESC_EVENTONE + INVALID_ENDDATEPAST_DESC + ENDTIME_DESC_EVENTONE
-                + CATEGORY_DESC_WORK, expectedMessage);
+                + CATEGORY_DESC_WORK, MESSAGE_PAST_EVENT_END_DATE_TIME);
     }
 
     @Test
-    @Disabled
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventCommand.MESSAGE_USAGE);
 
@@ -169,7 +165,6 @@ public class AddEventCommandParserTest {
     }
 
     @Test
-    @Disabled
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + STARTDATE_DESC_EVENTONE
