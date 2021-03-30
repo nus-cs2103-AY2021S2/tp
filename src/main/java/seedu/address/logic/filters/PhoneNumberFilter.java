@@ -1,11 +1,8 @@
 package seedu.address.logic.filters;
 
 import seedu.address.model.customer.Customer;
-import seedu.address.model.customer.Phone;
 
-import java.util.List;
-
-public class PhoneNumberFilter extends AbstractFilter{
+public class PhoneNumberFilter extends AbstractFilter {
     public PhoneNumberFilter(String filterString) {
         super(filterString.trim());
     }
