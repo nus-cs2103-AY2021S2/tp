@@ -101,15 +101,6 @@
                <RowConstraints />
                <RowConstraints />
             </rowConstraints>
-<!--            <columnConstraints>-->
-<!--               <ColumnConstraints />-->
-<!--            </columnConstraints>-->
-<!--            <rowConstraints>-->
-<!--               <RowConstraints />-->
-<!--               <RowConstraints />-->
-<!--               <RowConstraints />-->
-<!--               <RowConstraints />-->
-<!--            </rowConstraints>-->
     </GridPane>
 
     </Scene>
