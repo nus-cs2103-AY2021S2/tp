@@ -11,6 +11,7 @@ import seedu.taskify.model.task.Date;
 import seedu.taskify.model.task.Description;
 import seedu.taskify.model.task.Name;
 import seedu.taskify.model.task.Status;
+import seedu.taskify.model.task.StatusType;
 import seedu.taskify.model.task.Task;
 
 /**
@@ -19,22 +20,24 @@ import seedu.taskify.model.task.Task;
 public class SampleDataUtil {
     public static Task[] getSampleTasks() {
         return new Task[]{
-            new Task(new Name("CS2106 lab"), new Description("on synchronization"), new Status(),
-                    new Date("2020-04-13 09:30"),
-                    getTagSet("friends")),
-            new Task(new Name("Bernice Yu"), new Description("2106 lab on threads"), new Status(),
-                    new Date("2020-04-13 09:30"),
-                    getTagSet("colleagues", "friends")),
-            new Task(new Name("Charlotte Oliveiro"), new Description("2106 lab on threads"),
-                    new Status(), new Date("2020-04-13 09:30"), getTagSet("neighbours")),
-            new Task(new Name("David Li"), new Description("2106 lab on threads"), new Status(),
-                    new Date("2020-04-13 09:30"),
-                    getTagSet("family")),
-            new Task(new Name("Irfan Ibrahim"), new Description("2106 lab on threads"), new Status(),
-                    new Date("2020-04-13 09:30"),
-                    getTagSet("classmates")),
-            new Task(new Name("Roy Balakrishnan"), new Description("2106 lab on threads"),
-                    new Status(), new Date("2020-04-13 09:30"), getTagSet("colleagues"))
+            new Task(new Name("Buy groceries"), new Description("Refer to grocery list!"),
+                    new Status(StatusType.NOT_DONE), new Date("2021-04-13 09:30"),
+                    getTagSet("Grocery")),
+            new Task(new Name("Group project meeting"), new Description("Prepare material before meeting"),
+                    new Status(StatusType.NOT_DONE), new Date("2021-04-14 20:30"),
+                    getTagSet("University")),
+            new Task(new Name("CS2103T Tutorial"), new Description("Submit on Luminus"),
+                    new Status(StatusType.NOT_DONE), new Date("2021-04-13 23:59"),
+                    getTagSet("University", "CS2103T")),
+            new Task(new Name("Internship interview"), new Description("For Shopee"),
+                    new Status(StatusType.NOT_DONE), new Date("2021-04-20 15:30"),
+                    getTagSet("Internship")),
+            new Task(new Name("CS2101 presentation"), new Description("Prepare script"),
+                    new Status(StatusType.NOT_DONE), new Date("2021-04-16 08:00"),
+                    getTagSet("University", "CS2101")),
+            new Task(new Name("Prepare for CS2106 quiz"), new Description("Topic includes threads"),
+                    new Status(StatusType.NOT_DONE), new Date("2021-04-15 20:00"),
+                    getTagSet("University", "CS2106"))
         };
     }
 
