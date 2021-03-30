@@ -14,7 +14,7 @@ public class ToggleCommand extends Command {
     public static final String COMMAND_WORD = "toggle";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Toggles the theme of the application.\n"
-            + "Parameters: THEME (currently supported themes are light/dark)\n"
+            + "Parameters: THEME (currently supported themes are light, dark, imposter and material)\n"
             + "Example: " + COMMAND_WORD + " light";
 
     private final String theme;
