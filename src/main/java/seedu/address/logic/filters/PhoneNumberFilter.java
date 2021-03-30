@@ -12,8 +12,7 @@ public class PhoneNumberFilter extends AbstractFilter{
 
     @Override
     public boolean test(Customer customer) {
-        Phone phone = customer.getPhone();
-        return phone.equals(new Phone(filterString));
+        return customer.getPhone().getPhoneNumber().trim().startsWith(filterString);
     }
 
 }
