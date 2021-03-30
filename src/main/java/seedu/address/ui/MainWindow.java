@@ -17,6 +17,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.ui.timetablepanel.TimeTableWindow;
 import seedu.address.ui.schedulepanel.ScheduleListPanel;
 
 /**
@@ -40,6 +41,7 @@ public class MainWindow extends UiPart<Stage> {
     private CalendarView calendarView;
     private AppointmentListPanel appointmentListPanel;
     private GradeListPanel gradeListPanel;
+    private FiltersPanel filtersPanel;
     private ScheduleListPanel scheduleListPanel;
 
     @FXML
@@ -47,6 +49,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private StackPane filtersPanelPlaceholder;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -85,7 +90,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        timetableWindow = new TimeTableWindow(logic.getFilteredEventList());
+        timetableWindow = new TimeTableWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -153,8 +158,10 @@ public class MainWindow extends UiPart<Stage> {
         calendarView = new CalendarView(this::executeCommand);
         calendarViewPane.getChildren().add(calendarView.getRoot());
 
-        resultDisplay = new ResultBarFooter();
-        statusbarPlaceholder.getChildren().add(resultDisplay.getRoot());
+        filtersPanel = new FiltersPanel();
+        filtersPanelPlaceholder.getChildren().add(filtersPanel.getRoot());
+        filtersPanel.fillInnerParts(logic.getPersonFilterStringList(),
+                logic.getAppointmentFilterStringList());
     }
 
     /**

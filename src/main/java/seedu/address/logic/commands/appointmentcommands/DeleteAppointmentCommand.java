@@ -63,17 +63,19 @@ public class DeleteAppointmentCommand extends Command {
         if (targetIndex == null) {
             if (model.hasAppointment(toDelete)) {
                 model.removeAppointment(toDelete);
-                return new CommandResult(MESSAGE_DELETE_APPOINTMENT_SUCCESS);
+                return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS,
+                        toDelete));
             } else {
-                return new CommandResult(MESSAGE_DELETE_APPOINTMENT_FAILURE);
+                throw new CommandException(MESSAGE_DELETE_APPOINTMENT_FAILURE);
             }
         } else {
             // Delete by index
             try {
                 model.removeAppointmentIndex(targetIndex.getZeroBased());
-                return new CommandResult(MESSAGE_DELETE_APPOINTMENT_SUCCESS);
+                return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS,
+                        toDelete));
             } catch (IndexOutOfBoundsException e) {
-                return new CommandResult(MESSAGE_DELETE_APPOINTMENT_FAILURE);
+                throw new CommandException(MESSAGE_DELETE_APPOINTMENT_FAILURE);
             }
         }
 

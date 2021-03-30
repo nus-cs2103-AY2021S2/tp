@@ -6,25 +6,24 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox minHeight="482.0" style="-fx-background-color: #383838;" styleClass="timetable-container" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
-    <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="25.0" style="-fx-text-fill: white;" styleClass="cell_big_label" text="Showing Timetable Events" VBox.vgrow="ALWAYS">
+<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11">
+    <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308"
+           minWidth="-Infinity" prefHeight="25.0" style="-fx-text-fill: white;" styleClass="cell_big_label"
+           text="Showing Timetable" VBox.vgrow="ALWAYS">
         <VBox.margin>
-            <Insets />
+            <Insets/>
         </VBox.margin>
     </Label>
 
-    <ScrollPane fx:id="scrollPane" style="-fx-background-color: #383838;" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
-        <content>
-            <VBox>
-                <children>
-                    <GridPane fx:id="timeGridPane" style="-fx-background-color: #383838;" styleClass="schedule-grid" />
-                    <GridPane fx:id="gridPane" style="-fx-background-color: #383838;" styleClass="schedule-grid">
-                        <padding>
-                            <Insets bottom="4.0" left="2.0" right="2.0" top="4.0" />
-                        </padding>
-                    </GridPane>
-                </children>
-            </VBox>
-        </content>
+    <ScrollPane fx:id="scrollPane" vbarPolicy="NEVER" VBox.vgrow="ALWAYS"
+                fitToHeight="true" style="-fx-background-color: #383838;">
+        <VBox>
+            <GridPane fx:id="timeGridPane" styleClass="timetable-container"/>
+            <GridPane fx:id="gridPane" styleClass="timetable-container">
+                <padding>
+                    <Insets bottom="4.0" left="2.0" right="2.0" top="4.0"/>
+                </padding>
+            </GridPane>
+        </VBox>
     </ScrollPane>
 </VBox>

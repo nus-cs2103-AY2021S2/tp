@@ -6,6 +6,9 @@ import seedu.address.model.schedule.Schedule;
 
 /**
  * A region of a calendar view that represents a single slot.
+ * Adapted from
+ * https://github.com/AY2021S1-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/homerce/ui/schedulepanel/
+ * AppointmentSlotBlue.java
  */
 public class ScheduleSlot extends SlotContainer {
 
@@ -25,6 +28,11 @@ public class ScheduleSlot extends SlotContainer {
     @FXML
     private Label description;
 
+    // @@author {RuiFengg}-reused
+    // Reused from
+    // https://github.com/AY2021S1-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/homerce/ui/schedulepanel/
+    // SlotContainer.java
+    // with minor modifications (renaming of variables).
     /**
      * Constructor that creates a slot to be added to the schedule with relevant appointment information.
      */

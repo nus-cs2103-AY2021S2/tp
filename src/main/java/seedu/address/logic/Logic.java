@@ -56,6 +56,16 @@ public interface Logic {
     ObservableList<Grade> getFilteredGradeList();
 
     /**
+     * Returns an unmodifiable view of the person filter string list.
+     */
+    ObservableList<String> getPersonFilterStringList();
+
+    /**
+     * Returns an unmodifiable view of the appointment filter string list.
+     */
+    ObservableList<String> getAppointmentFilterStringList();
+
+    /**
      * Returns an unmodifiable view of the filtered list of schedules
      */
     ObservableList<Schedule> getFilteredScheduleList();

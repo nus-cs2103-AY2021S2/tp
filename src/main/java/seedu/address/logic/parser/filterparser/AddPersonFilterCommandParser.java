@@ -22,9 +22,27 @@ import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.filter.AddressFilter;
+import seedu.address.model.filter.EmailFilter;
+import seedu.address.model.filter.GenderFilter;
 import seedu.address.model.filter.NameFilter;
 import seedu.address.model.filter.PersonFilter;
+import seedu.address.model.filter.PhoneFilter;
+import seedu.address.model.filter.SubjectExperienceFilter;
+import seedu.address.model.filter.SubjectLevelFilter;
+import seedu.address.model.filter.SubjectNameFilter;
+import seedu.address.model.filter.SubjectQualificationFilter;
+import seedu.address.model.filter.SubjectRateFilter;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
+import seedu.address.model.subject.SubjectExperience;
+import seedu.address.model.subject.SubjectLevel;
+import seedu.address.model.subject.SubjectName;
+import seedu.address.model.subject.SubjectQualification;
+import seedu.address.model.subject.SubjectRate;
 
 /**
  * Parses input arguments and creates a new AddPersonFilterCommand object
@@ -47,12 +65,67 @@ public class AddPersonFilterCommandParser implements Parser<AddPersonFilterComma
                         .map(NameFilter::new)
                         .collect(Collectors.toList()));
 
-        // TODO: Filter other attributes
+        Set<Predicate<Gender>> genderFilters = new LinkedHashSet<Predicate<Gender>>(
+                argMultimap.getAllValues(PREFIX_GENDER).stream()
+                        .map(GenderFilter::new)
+                        .collect(Collectors.toList()));
+
+        Set<Predicate<Phone>> phoneFilters = new LinkedHashSet<Predicate<Phone>>(
+                argMultimap.getAllValues(PREFIX_PHONE).stream()
+                        .map(PhoneFilter::new)
+                        .collect(Collectors.toList()));
+
+        Set<Predicate<Email>> emailFilters = new LinkedHashSet<Predicate<Email>>(
+                argMultimap.getAllValues(PREFIX_EMAIL).stream()
+                        .map(EmailFilter::new)
+                        .collect(Collectors.toList()));
+
+        Set<Predicate<Address>> addressFilters = new LinkedHashSet<Predicate<Address>>(
+                argMultimap.getAllValues(PREFIX_ADDRESS).stream()
+                        .map(AddressFilter::new)
+                        .collect(Collectors.toList()));
+
+        Set<Predicate<SubjectName>> subjectNameFilters = new LinkedHashSet<Predicate<SubjectName>>(
+                argMultimap.getAllValues(PREFIX_SUBJECT_NAME).stream()
+                        .map(SubjectNameFilter::new)
+                        .collect(Collectors.toList()));
+
+        Set<Predicate<SubjectLevel>> subjectLevelFilters = new LinkedHashSet<Predicate<SubjectLevel>>(
+                argMultimap.getAllValues(PREFIX_EDUCATION_LEVEL).stream()
+                        .map(SubjectLevelFilter::new)
+                        .collect(Collectors.toList()));
+
+        Set<Predicate<SubjectRate>> subjectRateFilters = new LinkedHashSet<Predicate<SubjectRate>>(
+                argMultimap.getAllValues(PREFIX_RATE).stream()
+                        .map(SubjectRateFilter::new)
+                        .collect(Collectors.toList()));
+
+        Set<Predicate<SubjectExperience>> subjectExperienceFilters =
+                new LinkedHashSet<Predicate<SubjectExperience>>(
+                        argMultimap.getAllValues(PREFIX_YEAR).stream()
+                                .map(SubjectExperienceFilter::new)
+                                .collect(Collectors.toList()));
+
+        Set<Predicate<SubjectQualification>> subjectQualificationFilters =
+                new LinkedHashSet<Predicate<SubjectQualification>>(
+                        argMultimap.getAllValues(PREFIX_QUALIFICATION).stream()
+                                .map(SubjectQualificationFilter::new)
+                                .collect(Collectors.toList()));
+
         // TODO: Check if no arguments
         // TODO: Throw ParseException
         // TODO: Maybe switch to using ParserUtil
 
-        PersonFilter personFilter = new PersonFilter(nameFilters);
+        PersonFilter personFilter = new PersonFilter(nameFilters,
+                genderFilters,
+                phoneFilters,
+                emailFilters,
+                addressFilters,
+                subjectNameFilters,
+                subjectLevelFilters,
+                subjectRateFilters,
+                subjectExperienceFilters,
+                subjectQualificationFilters);
 
         return new AddPersonFilterCommand(personFilter);
     }

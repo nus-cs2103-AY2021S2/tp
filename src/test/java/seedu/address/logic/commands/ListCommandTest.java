@@ -12,6 +12,7 @@ import static seedu.address.testutil.TypicalSchedules.getTypicalScheduleTracker;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.tutorcommands.ListCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -31,8 +32,8 @@ public class ListCommandTest {
                 getTypicalScheduleTracker());
 
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
-                model.getAppointmentBook(), model.getBudgetBook(), model.getGradeBook(),
-                model.getScheduleTracker());
+                getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook(),
+                getTypicalScheduleTracker());
     }
 
     @Test

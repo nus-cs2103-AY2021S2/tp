@@ -25,6 +25,11 @@ import seedu.address.model.subject.SubjectName;
  */
 public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand> {
 
+    public static final String MESSAGE_TIME_FROM_GREATER_THAN = "Time from has to be "
+            + "smaller than time to. Please check your input for time from and time to "
+            + "again.";
+
+
     /**
      * Parses the given {@code String} of arguments in the context of the AddAppointmentCommand
      * and returns an AddAppointmentCommand object for execution.
@@ -37,13 +42,13 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
                         PREFIX_TIME_TO, PREFIX_LOCATION);
 
         if (!ArgumentTokenizer.arePrefixesPresent(argMultimap, PREFIX_NAME,
-                PREFIX_SUBJECT_NAME,
-                PREFIX_DATE,
-                PREFIX_TIME_FROM, PREFIX_TIME_TO, PREFIX_LOCATION)
+                PREFIX_SUBJECT_NAME, PREFIX_DATE, PREFIX_TIME_FROM,
+                PREFIX_TIME_TO, PREFIX_LOCATION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(
                     MESSAGE_INVALID_COMMAND_FORMAT, AddAppointmentCommand.MESSAGE_USAGE));
         }
+
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         SubjectName subjectName =
@@ -55,6 +60,10 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
                 ParserUtil.parseDateTime(dateString + " " + timeFromString);
         AppointmentDateTime timeTo =
                 ParserUtil.parseDateTime(dateString + " " + timeToString);
+
+        if (!timeFrom.isTimeFromValid(timeTo)) {
+            throw new ParseException(MESSAGE_TIME_FROM_GREATER_THAN);
+        }
 
         Address location = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_LOCATION).get());
 

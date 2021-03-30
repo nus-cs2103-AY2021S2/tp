@@ -28,6 +28,7 @@ public class Person {
     private final Address address;
     private final SubjectList subjectList;
     private final Set<Tag> tags = new HashSet<>();
+    private final Notes notes;
 
     private boolean isFavourite;
 
@@ -35,13 +36,14 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Gender gender, Phone phone, Email email, Address address,
-                  SubjectList subjectList, Set<Tag> tags) {
+                  Notes notes, SubjectList subjectList, Set<Tag> tags) {
         requireAllNonNull(name, gender, phone, email, address, subjectList, tags);
         this.name = name;
         this.gender = gender;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.notes = notes;
         this.subjectList = subjectList;
         this.tags.addAll(tags);
         this.isFavourite = false;
@@ -51,13 +53,14 @@ public class Person {
      * Additional constructor to take in whether the Tutor is a favourite
      */
     public Person(Name name, Gender gender, Phone phone, Email email, Address address,
-                  SubjectList subjectList, Set<Tag> tags, boolean isFavourite) {
+                  Notes notes, SubjectList subjectList, Set<Tag> tags, boolean isFavourite) {
         requireAllNonNull(name, gender, phone, email, address, subjectList, tags);
         this.name = name;
         this.gender = gender;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.notes = notes;
         this.subjectList = subjectList;
         this.tags.addAll(tags);
         this.isFavourite = isFavourite;
@@ -81,6 +84,14 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public boolean hasNotes() {
+        return !notes.isEmpty();
+    }
+
+    public Notes getNotes() {
+        return notes;
     }
 
     public SubjectList getSubjectList() {
@@ -136,6 +147,7 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getNotes().equals(getNotes())
                 && otherPerson.getSubjectList().equals(getSubjectList())
                 && otherPerson.getTags().equals(getTags());
     }
@@ -143,7 +155,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, gender, phone, email, address, subjectList, tags);
+        return Objects.hash(name, gender, phone, email, address, notes, subjectList, tags);
     }
 
     @Override

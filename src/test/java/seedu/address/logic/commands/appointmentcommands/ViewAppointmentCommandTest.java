@@ -4,9 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showAppointmentAtDate;
+import static seedu.address.testutil.ModelManagerBuilder.ModelType.APPOINTMENTBOOK;
 import static seedu.address.testutil.TypicalDates.APPOINTMENT_FIRST_DATE;
 import static seedu.address.testutil.TypicalDates.APPOINTMENT_SECOND_DATE;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
@@ -16,8 +18,14 @@ import seedu.address.testutil.ModelManagerBuilder;
 
 public class ViewAppointmentCommandTest {
 
-    private Model model = ModelManagerBuilder.getModelManager();
-    private Model expectedModel = ModelManagerBuilder.getModelManager();
+    private Model model;
+    private Model expectedModel;
+
+    @BeforeEach
+    public void setUp() {
+        model = ModelManagerBuilder.getModelManager();
+        expectedModel = ModelManagerBuilder.getModelManager(model, APPOINTMENTBOOK);
+    }
 
     @Test
     public void execute_validDateUnfilteredList_success() {

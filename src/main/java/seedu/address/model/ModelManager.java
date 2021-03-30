@@ -17,8 +17,10 @@ import seedu.address.model.appointment.DateViewPredicate;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventTracker;
+import seedu.address.model.filter.AppointmentFilter;
 import seedu.address.model.filter.PersonFilter;
 import seedu.address.model.grade.Grade;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
@@ -38,6 +40,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
 
     private final PersonFilter personFilter;
+    private final AppointmentFilter appointmentFilter;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Appointment> filteredAppointment;
     private final FilteredList<Grade> filteredGrades;
@@ -71,6 +74,7 @@ public class ModelManager implements Model {
         this.filteredGrades = new FilteredList<>(this.gradeBook.getGradeList());
         this.filteredSchedules = new FilteredList<>(this.scheduleTracker.getScheduleList());
         this.filteredEvents = new FilteredList<>(this.eventTracker.getEventList());
+        this.appointmentFilter = new AppointmentFilter();
     }
 
     /**
@@ -146,6 +150,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasTutorByName(Name name) {
+        return addressBook.containsTutorByName(name);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -172,6 +181,11 @@ public class ModelManager implements Model {
 
     public void setAppointmentBook(ReadOnlyAppointmentBook appointmentBook) {
         this.appointmentBook.resetData(appointmentBook);
+    }
+
+    @Override
+    public boolean hasAppointmentContainingTutor(Name name) {
+        return this.appointmentBook.hasAppointmentContainingTutor(name);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -217,6 +231,8 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredAppointment.setPredicate(predicate);
     }
+
+
 
     /**
      * Checks if Appointment exists in appointment list.
@@ -448,6 +464,42 @@ public class ModelManager implements Model {
         this.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         this.updateFilteredPersonList(this.personFilter);
+    }
+
+    @Override
+    public ObservableList<String> getPersonFilterStringList() {
+        return this.personFilter.asUnmodifiableObservableList();
+    }
+
+    //=========== AppointmentFilter =====================================================================
+    @Override
+    public boolean hasAppointmentFilter(AppointmentFilter appointmentFilter) {
+        return this.appointmentFilter.has(appointmentFilter);
+    }
+
+    @Override
+    public void addAppointmentFilter(AppointmentFilter appointmentFilter) {
+        this.appointmentFilter.add(appointmentFilter);
+
+        // Required workaround for bug where filtered list would not trigger update
+        this.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENT);
+
+        this.updateFilteredAppointmentList(this.appointmentFilter);
+    }
+
+    @Override
+    public void removeAppointmentFilter(AppointmentFilter appointmentFilter) {
+        this.appointmentFilter.remove(appointmentFilter);
+
+        // Required workaround for bug where filtered list would not trigger update
+        this.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENT);
+
+        this.updateFilteredAppointmentList(this.appointmentFilter);
+    }
+
+    @Override
+    public ObservableList<String> getAppointmentFilterStringList() {
+        return this.appointmentFilter.asUnmodifiableObservableList();
     }
 
     @Override

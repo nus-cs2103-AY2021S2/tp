@@ -1,9 +1,9 @@
 package seedu.address.testutil;
 
 import seedu.address.model.appointment.AppointmentDateTime;
-import seedu.address.model.schedule.Description;
+import seedu.address.model.common.Description;
+import seedu.address.model.common.Title;
 import seedu.address.model.schedule.Schedule;
-import seedu.address.model.schedule.Title;
 
 /**
  * A utility class to help with building Schedule objects.

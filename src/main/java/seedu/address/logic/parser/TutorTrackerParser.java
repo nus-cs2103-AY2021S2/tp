@@ -6,18 +6,9 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FavouriteCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.ListFavouriteCommand;
-import seedu.address.logic.commands.UnfavouriteCommand;
-import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.commands.appointmentcommands.AddAppointmentCommand;
 import seedu.address.logic.commands.appointmentcommands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.appointmentcommands.EditAppointmentCommand;
@@ -30,7 +21,12 @@ import seedu.address.logic.commands.budgetcommands.EditBudgetCommand;
 import seedu.address.logic.commands.budgetcommands.ViewBudgetCommand;
 import seedu.address.logic.commands.eventcommands.ViewEventCommand;
 import seedu.address.logic.commands.eventcommands.ViewTimeTableCommand;
+import seedu.address.logic.commands.favouritecommands.FavouriteCommand;
+import seedu.address.logic.commands.favouritecommands.ListFavouriteCommand;
+import seedu.address.logic.commands.favouritecommands.UnfavouriteCommand;
+import seedu.address.logic.commands.filtercommands.AddAppointmentFilterCommand;
 import seedu.address.logic.commands.filtercommands.AddPersonFilterCommand;
+import seedu.address.logic.commands.filtercommands.DeleteAppointmentFilterCommand;
 import seedu.address.logic.commands.filtercommands.DeletePersonFilterCommand;
 import seedu.address.logic.commands.gradecommands.AddGradeCommand;
 import seedu.address.logic.commands.gradecommands.DeleteGradeCommand;
@@ -40,6 +36,12 @@ import seedu.address.logic.commands.schedulecommands.AddScheduleCommand;
 import seedu.address.logic.commands.schedulecommands.DeleteScheduleCommand;
 import seedu.address.logic.commands.schedulecommands.EditScheduleCommand;
 import seedu.address.logic.commands.schedulecommands.ListScheduleCommand;
+import seedu.address.logic.commands.tutorcommands.AddCommand;
+import seedu.address.logic.commands.tutorcommands.DeleteCommand;
+import seedu.address.logic.commands.tutorcommands.EditCommand;
+import seedu.address.logic.commands.tutorcommands.FindCommand;
+import seedu.address.logic.commands.tutorcommands.ListCommand;
+import seedu.address.logic.commands.tutorcommands.ViewCommand;
 import seedu.address.logic.parser.appointmentparser.AddAppointmentCommandParser;
 import seedu.address.logic.parser.appointmentparser.DeleteAppointmentCommandParser;
 import seedu.address.logic.parser.appointmentparser.EditAppointmentCommandParser;
@@ -51,7 +53,11 @@ import seedu.address.logic.parser.budgetparser.EditBudgetCommandParser;
 import seedu.address.logic.parser.budgetparser.ViewBudgetCommandParser;
 import seedu.address.logic.parser.eventparser.ViewEventCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.favouriteparser.FavouriteCommandParser;
+import seedu.address.logic.parser.favouriteparser.UnfavouriteCommandParser;
+import seedu.address.logic.parser.filterparser.AddAppointmentFilterCommandParser;
 import seedu.address.logic.parser.filterparser.AddPersonFilterCommandParser;
+import seedu.address.logic.parser.filterparser.DeleteAppointmentFilterCommandParser;
 import seedu.address.logic.parser.filterparser.DeletePersonFilterCommandParser;
 import seedu.address.logic.parser.gradeparser.AddGradeCommandParser;
 import seedu.address.logic.parser.gradeparser.DeleteGradeCommandParser;
@@ -59,6 +65,11 @@ import seedu.address.logic.parser.gradeparser.EditGradeCommandParser;
 import seedu.address.logic.parser.scheduleparser.AddScheduleCommandParser;
 import seedu.address.logic.parser.scheduleparser.DeleteScheduleCommandParser;
 import seedu.address.logic.parser.scheduleparser.EditScheduleCommandParser;
+import seedu.address.logic.parser.tutorparser.AddCommandParser;
+import seedu.address.logic.parser.tutorparser.DeleteCommandParser;
+import seedu.address.logic.parser.tutorparser.EditCommandParser;
+import seedu.address.logic.parser.tutorparser.FindCommandParser;
+import seedu.address.logic.parser.tutorparser.ViewCommandParser;
 
 /**
  * Parses user input.
@@ -157,6 +168,12 @@ public class TutorTrackerParser {
 
         case DeletePersonFilterCommand.COMMAND_WORD:
             return new DeletePersonFilterCommandParser().parse(arguments);
+
+        case AddAppointmentFilterCommand.COMMAND_WORD:
+            return new AddAppointmentFilterCommandParser().parse(arguments);
+
+        case DeleteAppointmentFilterCommand.COMMAND_WORD:
+            return new DeleteAppointmentFilterCommandParser().parse(arguments);
 
         case AddBudgetCommand.COMMAND_WORD:
             return new AddBudgetCommandParser().parse(arguments);

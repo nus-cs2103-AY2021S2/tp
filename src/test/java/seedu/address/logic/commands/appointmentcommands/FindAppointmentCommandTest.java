@@ -18,7 +18,7 @@ import seedu.address.model.appointment.NamePredicate;
 import seedu.address.testutil.ModelManagerBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) for {@code FindAppointmentCommandTest}.
  */
 public class FindAppointmentCommandTest {
     private final Model model = ModelManagerBuilder.getModelManager();

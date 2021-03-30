@@ -21,6 +21,7 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.tutorcommands.EditCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
@@ -53,6 +54,15 @@ public class CommandTestUtil {
     public static final String VALID_SUBJECT_RATE = "60";
     public static final String VALID_SUBJECT_EXPERIENCE = "5";
     public static final String VALID_SUBJECT_QUALIFICATION = "A-Level";
+
+    public static final String VALID_SCHEDULE_TITLE_ONE = "Maths Homework";
+    public static final String VALID_SCHEDULE_TIMEFROM_ONE = "2021-03-24 10:00AM";
+    public static final String VALID_SCHEDULE_TIMETO_ONE = "2021-03-24 12:00PM";
+    public static final String VALID_SCHEDULE_DESCRIPTION_ONE = "Chapter 5 Page 841";
+    public static final String VALID_SCHEDULE_TITLE_TWO = "Science Homework";
+    public static final String VALID_SCHEDULE_TIMEFROM_TWO = "2021-03-27 12:00PM";
+    public static final String VALID_SCHEDULE_TIMETO_TWO = "2021-03-27 2:00PM";
+    public static final String VALID_SCHEDULE_DESCRIPTION_TWO = "Chapter 3 Page 21";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;

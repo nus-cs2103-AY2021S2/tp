@@ -12,15 +12,16 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.budget.Budget;
+import seedu.address.model.common.Description;
+import seedu.address.model.common.Title;
 import seedu.address.model.grade.GradeEnum;
 import seedu.address.model.grade.GradedItem;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Notes;
 import seedu.address.model.person.Phone;
-import seedu.address.model.schedule.Description;
-import seedu.address.model.schedule.Title;
 import seedu.address.model.subject.SubjectExperience;
 import seedu.address.model.subject.SubjectLevel;
 import seedu.address.model.subject.SubjectList;
@@ -113,6 +114,25 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String notes} into an {@code Notes}.
+     * A null notes would be parsed into an empty Notes object
+     * All leading and trailing whitespaces will be trimmed
+     *
+     * @throws ParseException if the given {@code notes} is invalid
+     */
+    public static Notes parseNotes(String notes) throws ParseException {
+        if (notes == null || notes.equals("")) {
+            return new Notes(null);
+        } else {
+            String trimmedNotes = notes.trim();
+            if (!Notes.isValidNote(trimmedNotes)) {
+                throw new ParseException(Notes.MESSAGE_CONSTRAINTS);
+            }
+            return new Notes(trimmedNotes);
+        }
+    }
+
+    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -156,6 +176,7 @@ public class ParserUtil {
 
     /**
      * Parses {@code String budgetValue} into {@code Budget}
+     *
      * @param budgetValue Value to set as budget.
      * @throws ParseException
      */
