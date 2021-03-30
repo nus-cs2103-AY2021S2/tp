@@ -23,7 +23,9 @@ public class ModelManager implements Model {
     private final CakeCollate cakeCollate;
     private final UserPrefs userPrefs;
     private final FilteredList<Order> filteredOrders;
+
     private final OrderItems orderItems;
+    private final FilteredList<OrderItem> filteredOrderItems;
 
     /**
      * Initializes a ModelManager with the given cakeCollate and userPrefs.
@@ -39,6 +41,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredOrders = new FilteredList<>(this.cakeCollate.getOrderList());
         this.orderItems = new OrderItems(orderItems);
+        filteredOrderItems = new FilteredList<>(this.orderItems.getOrderItemList());
         sortFilteredOrderList();
     }
 
@@ -122,7 +125,7 @@ public class ModelManager implements Model {
     //=========== Filtered Order List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Order} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Orders} backed by the internal list of
      * {@code versionedCakeCollate}
      */
     @Override
@@ -178,5 +181,16 @@ public class ModelManager implements Model {
     public void addOrderItem(OrderItem orderItem) {
         orderItems.addOrderItem(orderItem);
     }
+
+    //=========== Filtered Order Items List Accessors =============================================================
+    /**
+     * Returns an unmodifiable view of the list of {@code OrderItems} backed by the internal list of
+     * {@code versionedOrderItems}
+     */
+    @Override
+    public ObservableList<OrderItem> getFilteredOrderItemsList() {
+        return filteredOrderItems;
+    }
+
 }
 

@@ -103,4 +103,7 @@ public interface Model {
      * The order must exist in the orderItems.
      */
     void deleteOrderItem(OrderItem orderitem);
+
+    /** Returns an unmodifiable view of the filtered order items list */
+    ObservableList<OrderItem> getFilteredOrderItemsList();
 }
