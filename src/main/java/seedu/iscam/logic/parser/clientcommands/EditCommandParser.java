@@ -3,6 +3,7 @@ package seedu.iscam.logic.parser.clientcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.iscam.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.iscam.logic.parser.CliSyntax.PREFIX_IMAGE;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -39,7 +40,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
-                args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_LOCATION, PREFIX_PLAN, PREFIX_TAG);
+                args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_LOCATION, PREFIX_PLAN, PREFIX_TAG, PREFIX_IMAGE);
 
         Index index;
 
@@ -72,6 +73,9 @@ public class EditCommandParser implements Parser<EditCommand> {
             }
 
             editClientDescriptor.setPlan(ParserUtil.parsePlan(planName));
+        }
+        if (argMultimap.getValue(PREFIX_IMAGE).isPresent()) {
+            editClientDescriptor.setImageRes(ParserUtil.parseImageRes(argMultimap.getValue(PREFIX_IMAGE).get()));
         }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editClientDescriptor::setTags);

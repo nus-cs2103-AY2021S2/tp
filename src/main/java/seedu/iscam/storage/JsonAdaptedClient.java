@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.iscam.commons.exceptions.IllegalValueException;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.client.Email;
+import seedu.iscam.model.client.Image;
 import seedu.iscam.model.client.InsurancePlan;
 import seedu.iscam.model.client.Phone;
 import seedu.iscam.model.commons.Location;
@@ -120,7 +121,9 @@ class JsonAdaptedClient {
 
         final Set<Tag> modelTags = new HashSet<>(clientTags);
 
-        return new Client(modelName, modelPhone, modelEmail, modelLocation, modelPlan, modelTags);
+        // TODO: Modify storage to handle generating Clients with imageRes
+        final Image imageRes = new Image("default.png");
+        return new Client(modelName, modelPhone, modelEmail, modelLocation, modelPlan, modelTags, imageRes);
     }
 
 }
