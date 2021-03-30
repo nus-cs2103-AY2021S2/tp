@@ -144,7 +144,7 @@ Example:
 Adds a room to the housing management system.
 
 Format: `oadd r/ROOM_NO t/TYPE [g/TAG]`
-* Room is initialised with default occupancy status of "No"
+* Room is initialised with default occupancy status of "No".
 * Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or deallocated. The occupancy status cannot be defaulted to "Yes" during room addition.
 
 Example:
