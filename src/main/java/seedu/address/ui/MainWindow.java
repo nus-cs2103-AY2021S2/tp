@@ -17,8 +17,8 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.ui.timetablepanel.TimeTableWindow;
 import seedu.address.ui.schedulepanel.ScheduleListPanel;
+import seedu.address.ui.timetablepanel.TimeTableWindow;
 
 /**
  * The Main Window. Provides the basic application layout containing
