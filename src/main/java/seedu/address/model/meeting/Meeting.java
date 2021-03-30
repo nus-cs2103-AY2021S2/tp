@@ -101,6 +101,12 @@ public class Meeting implements Schedulable {
         return start.compareTo(terminate) < 0;
     }
     /**
+     * Adds new groups from a set. Merge if new group appears.
+     */
+    public void addGroups(Set<Group> newGroup) {
+        this.groups.addAll(newGroup);
+    }
+    /**
      * Sets the person meeting connection so that the meeting can have access to the Person Meeting Connection object.
      * This method will only be invoked in @code{AddMeetingCommand}.
      * Note that Meeting Object has no permission to modify connection, this method is used for later read connection.

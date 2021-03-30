@@ -25,7 +25,8 @@ public class EditMeetingCommand extends Command {
     public static final String COMMAND_WORD = "editm";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the meeting identified "
-            + "by the index number used in the displayed meeting list. "
+            + "by the index number used in the displayed meeting list(and contact list"
+            + " if you want to modify the contacts related). "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_NAME + "NAME "
@@ -41,7 +42,9 @@ public class EditMeetingCommand extends Command {
             + PREFIX_DESCRIPTION + "Week 7 "
             + PREFIX_PRIORITY + "3 "
             + PREFIX_GROUP + "lectures "
-            + PREFIX_GROUP + "SoC";
+            + PREFIX_GROUP + "SoC "
+            + PREFIX_PERSON_CONNECTION + "1 "
+            + PREFIX_PERSON_CONNECTION + "2";
 
     public static final String MESSAGE_EDIT_MEETING_SUCCESS = "Edited Meeting: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
