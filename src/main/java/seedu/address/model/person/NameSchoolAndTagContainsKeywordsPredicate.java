@@ -50,9 +50,12 @@ public class NameSchoolAndTagContainsKeywordsPredicate implements Predicate<Pers
         if (person == null) {
             return false;
         }
+        if (!person.getSchool().isPresent()) {
+            return false;
+        }
         return schoolKeywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
-                        person.getSchool().fullSchoolName, keyword));
+                        person.getSchool().get().fullSchoolName, keyword));
     }
 
     /**
