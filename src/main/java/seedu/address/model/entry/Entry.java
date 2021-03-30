@@ -35,6 +35,14 @@ public class Entry {
         return entryName;
     }
 
+    public EntryDate getOriginalStartDate() {
+        return startDate;
+    }
+
+    public EntryDate getOriginalEndDate() {
+        return endDate;
+    }
+
     public LocalDateTime getStartDate() {
         return startDate.getDate();
     }
