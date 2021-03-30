@@ -149,12 +149,12 @@ public class Person {
      * Compute the next goal deadline using meetings before the {@code beforeDate}
      */
     public LocalDate getGoalDeadline(LocalDate beforeDate) {
-        System.out.println(meetings);
         if (meetings.isEmpty()) {
             // user has never met up with this person before
             return DateUtil.ZERO_DAY;
         }
 
+        // If a meeting falls on the current day then the goal for the current duration will be satisfied
         LocalDate latestMeetingDate = meetings.stream()
                 .map(Event::getDate)
                 .filter(x -> x.isBefore(beforeDate.plusDays(1)))
