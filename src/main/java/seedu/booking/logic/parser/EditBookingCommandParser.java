@@ -8,7 +8,9 @@ import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_ID;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_ORIGINAL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_START;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
+import static seedu.booking.logic.parser.ParserUtil.parseTagsForEdit;
 
 import java.util.stream.Stream;
 
@@ -28,7 +30,7 @@ public class EditBookingCommandParser implements Parser<EditBookingCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_BOOKING_ORIGINAL, PREFIX_BOOKER, PREFIX_VENUE,
-                        PREFIX_DESCRIPTION, PREFIX_BOOKING_START, PREFIX_BOOKING_END);
+                        PREFIX_DESCRIPTION, PREFIX_BOOKING_START, PREFIX_BOOKING_END, PREFIX_TAG);
 
         Id id;
 
@@ -71,14 +73,14 @@ public class EditBookingCommandParser implements Parser<EditBookingCommand> {
                     argMultimap.getValue(PREFIX_BOOKING_END).get()));
         }
 
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editBookingDescriptor::setTags);
+
         if (!editBookingDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditBookingCommand.MESSAGE_NOT_EDITED);
         }
 
         return new EditBookingCommand(id, editBookingDescriptor);
     }
-
-
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given

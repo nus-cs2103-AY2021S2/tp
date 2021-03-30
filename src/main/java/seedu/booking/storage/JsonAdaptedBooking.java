@@ -2,11 +2,17 @@ package seedu.booking.storage;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.booking.commons.exceptions.IllegalValueException;
+import seedu.booking.model.Tag;
 import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.Description;
 import seedu.booking.model.booking.EndTime;
@@ -25,6 +31,7 @@ public class JsonAdaptedBooking {
     private final String description;
     private final String bookingStart;
     private final String bookingEnd;
+    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String id;
 
 
@@ -35,12 +42,15 @@ public class JsonAdaptedBooking {
     public JsonAdaptedBooking(@JsonProperty("bookerEmail") String bookerEmail,
           @JsonProperty("venueName") String venueName, @JsonProperty("description") String description,
           @JsonProperty("bookingStart") String bookingStart, @JsonProperty("bookingEnd") String bookingEnd,
-          @JsonProperty("id") String id) {
+          @JsonProperty("id") String id, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.bookerEmail = bookerEmail;
         this.venueName = venueName;
         this.description = description;
         this.bookingStart = bookingStart;
         this.bookingEnd = bookingEnd;
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
         this.id = id;
     }
 
@@ -53,6 +63,9 @@ public class JsonAdaptedBooking {
         description = source.getDescription().value;
         bookingStart = source.getBookingStart().value.toString();
         bookingEnd = source.getBookingEnd().value.toString();
+        tagged.addAll(source.getTags().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
         id = String.valueOf(source.getId().value);
     }
 
@@ -107,7 +120,13 @@ public class JsonAdaptedBooking {
 
         final Id modelId = new Id(Integer.parseInt(id));
 
-        return new Booking(modelBooker, modelVenue, modelDescription, modelBookingStart, modelBookingEnd, modelId);
+        final List<Tag> bookingTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : tagged) {
+            bookingTags.add(tag.toModelType());
+        }
+        final Set<Tag> modelTags = new HashSet<>(bookingTags);
+
+        return new Booking(modelBooker, modelVenue, modelDescription, modelBookingStart, modelBookingEnd, modelId, modelTags);
     }
 
 }

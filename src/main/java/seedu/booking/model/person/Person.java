@@ -1,8 +1,13 @@
 package seedu.booking.model.person;
 
+import seedu.booking.model.Tag;
+
 import static seedu.booking.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * Represents a Person in the address book.
@@ -14,15 +19,17 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email) {
-        requireAllNonNull(name, phone, email);
+    public Person(Name name, Phone phone, Email email, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.tags.addAll(tags);
     }
 
 
@@ -39,6 +46,13 @@ public class Person {
         return email;
     }
 
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
+    }
 
     /**
      * Returns true if both persons have the same email.
@@ -89,6 +103,12 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail());
+
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("; Tags: ");
+            tags.forEach(builder::append);
+        }
         return builder.toString();
     }
 

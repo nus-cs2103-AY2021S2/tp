@@ -34,13 +34,7 @@
         </MenuBar>
 
         <VBox>
-          <padding>
-            <Insets top="30" right="20" bottom="15" left="20" />
-          </padding>
-
-          <Label fx:id="title" styleClass="cell_title_label" text="Good Day! Here are the upcoming bookings:" />
-
-          <VBox fx:id="upcomingBookingList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+          <VBox fx:id="upcomingBookingList" style="display: none;" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>

@@ -2,9 +2,13 @@ package seedu.booking.model.booking;
 
 import static seedu.booking.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Random;
+import java.util.Set;
 
+import seedu.booking.model.Tag;
 import seedu.booking.model.person.Email;
 import seedu.booking.model.venue.VenueName;
 
@@ -23,19 +27,21 @@ public class Booking {
     private final StartTime bookingStart;
     private final EndTime bookingEnd;
     private final Id id;
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      * Booking id is provided.
      */
     public Booking(Email bookerEmail, VenueName venueName, Description description,
-                   StartTime bookingStart, EndTime bookingEnd, Id id) {
-        requireAllNonNull(bookerEmail, venueName, description, bookingStart, bookingEnd);
+                   StartTime bookingStart, EndTime bookingEnd, Id id, Set<Tag> tags) {
+        requireAllNonNull(bookerEmail, venueName, description, bookingStart, bookingEnd, tags);
         this.bookerEmail = bookerEmail;
         this.venueName = venueName;
         this.description = description;
         this.bookingStart = bookingStart;
         this.bookingEnd = bookingEnd;
+        this.tags.addAll(tags);
         this.id = id;
     }
 
@@ -44,13 +50,14 @@ public class Booking {
      * Booking id is not provided.
      */
     public Booking(Email bookerEmail, VenueName venueName, Description description,
-                   StartTime bookingStart, EndTime bookingEnd) {
-        requireAllNonNull(bookerEmail, venueName, description, bookingStart, bookingEnd);
+                   StartTime bookingStart, EndTime bookingEnd, Set<Tag> tags) {
+        requireAllNonNull(bookerEmail, venueName, description, bookingStart, bookingEnd, tags);
         this.bookerEmail = bookerEmail;
         this.venueName = venueName;
         this.description = description;
         this.bookingStart = bookingStart;
         this.bookingEnd = bookingEnd;
+        this.tags.addAll(tags);
         this.id = getNewBookingId();
     }
 
@@ -74,6 +81,14 @@ public class Booking {
 
     public EndTime getBookingEnd() {
         return bookingEnd;
+    }
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
     }
 
     public Id getId() {
@@ -170,6 +185,11 @@ public class Booking {
                 .append("; ID: ")
                 .append(getId());
 
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("; Tags: ");
+            tags.forEach(builder::append);
+        }
         return builder.toString();
     }
 
