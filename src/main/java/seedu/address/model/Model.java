@@ -2,13 +2,16 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.connection.PersonMeetingConnection;
+import seedu.address.model.group.Group;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.ReadOnlyMeetingBook;
 import seedu.address.model.person.Person;
@@ -87,6 +90,8 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    Set<Person> findPersonsInGroup(Group group);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
@@ -96,6 +101,7 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    void sortFilteredPersonList(Comparator<Person> comparator);
 
     // ======================= Meeting part of the meeting Model interface ============================ //
     /**
@@ -143,7 +149,14 @@ public interface Model {
      */
     void updateFilteredMeetingList(Predicate<Meeting> predicate);
 
-    // ============= Clashing Meetings  ========================================================
+    void sortFilteredMeetingList(Comparator<Meeting> comparator);
+
+    /**
+     * Returns the internal meeting list of meeting book as an unmodifiable meeting list.
+     */
+    ObservableList<Meeting> getUnmodifiableMeetingList();
+
+        // ============= Clashing Meetings  ========================================================
 
     /**
      * Checks if there is a clash in meeting times within the model.

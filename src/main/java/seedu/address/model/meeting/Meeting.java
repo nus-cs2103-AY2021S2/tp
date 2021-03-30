@@ -1,8 +1,7 @@
 package seedu.address.model.meeting;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.group.Group;
-import seedu.address.model.scheduler.Schedulable;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
@@ -10,8 +9,10 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import static seedu.address.commons.util.AppUtil.checkArgument;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.group.Group;
+import seedu.address.model.schedule.Schedulable;
+
 
 /**
  * Represents a meeting in MeetBuddy.
@@ -20,8 +21,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 public class Meeting implements Schedulable {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "The start date time of a meeting should be strictly earlier than the terminate date time."
-                    + "The meeting must start and end on the same date";
+            "The start date time of a meeting should be strictly earlier than the terminate date time.";
 
 
     // Identity fields
@@ -96,8 +96,7 @@ public class Meeting implements Schedulable {
      * Returns true if a given date time for the meeting is valid.
      */
     public static boolean isValidStartTerminate(DateTime start, DateTime terminate) {
-        boolean isSameDate = start.toLocalDate().equals(terminate.toLocalDate());
-        return start.compareTo(terminate) < 0 && isSameDate;
+        return start.compareTo(terminate) < 0;
     }
     /**
      * Set the connection indices to meetings.
@@ -185,6 +184,17 @@ public class Meeting implements Schedulable {
                 && endLocalDateTime.compareTo(localDateTime) > 0;
     }
 
+    /**
+     * Checks if a meeting is a schedulable object is in conflict with this meeting.
+     * @param schedulable
+     * @return
+     */
+
+    public boolean isConflict(Schedulable schedulable) {
+        return !(this.getTerminateLocalDateTime().compareTo(schedulable.getStartLocalDateTime()) <= 0
+                || this.getStartLocalDateTime().compareTo(schedulable.getTerminateLocalDateTime()) >= 0);
+    }
+
     //==================interface methods =================================================
 
     public LocalDateTime getStartLocalDateTime() {
@@ -195,11 +205,6 @@ public class Meeting implements Schedulable {
         return terminate.toLocalDateTime();
     }
 
-    @Override
-    public boolean isConflict(Schedulable schedulable) {
-        return !(this.getTerminateLocalDateTime().compareTo(schedulable.getStartLocalDateTime()) <= 0
-                || this.getStartLocalDateTime().compareTo(schedulable.getTerminateLocalDateTime()) >= 0);
-    }
 
     @Override
     public String getNameString() {

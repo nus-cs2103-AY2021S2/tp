@@ -18,10 +18,13 @@ public class DateTimeUtil {
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     public static final DateTimeFormatter PRETTY_DATE_FORMATTER =
-            DateTimeFormatter.ofPattern("dd MMM yyyy, eeee , hh:mm a");
+            DateTimeFormatter.ofPattern("dd MMM yyyy, eeee, h:mm a");
 
     public static final DateTimeFormatter ISO_TIME_FORMATTER_NO_SECONDS =
             DateTimeFormatter.ofPattern("HH:mm");
+
+    public static final DateTimeFormatter PRETTY_TIME_FORMATTER =
+            DateTimeFormatter.ofPattern("h:mm a");
 
     /**
      * Formats a LocalDateTime object into the appropriate ISO string, with the seconds
@@ -59,6 +62,10 @@ public class DateTimeUtil {
 
     public static String isoFormatTime(LocalTime localTime) {
         return localTime.format(ISO_TIME_FORMATTER_NO_SECONDS);
+    }
+
+    public static String prettyPrintFormatLocalTime(LocalTime localTime) {
+        return localTime.format(PRETTY_TIME_FORMATTER);
     }
 
 
