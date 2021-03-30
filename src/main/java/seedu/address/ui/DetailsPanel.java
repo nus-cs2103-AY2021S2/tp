@@ -34,7 +34,6 @@ public class DetailsPanel extends UiPart<Region> {
         streaksTab = new StreaksTab(personStreaks);
 
         toggleTab(DetailsPanelTab.UPCOMING_EVENTS);
-        // toggleTab(DetailsPanelTab.STREAKS);
     }
 
     /**
