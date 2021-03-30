@@ -245,3 +245,9 @@ By default, this command takes in one optional argument, `MODULE_CODE` and outpu
 
 Constraints:
 * Module has to exist
+
+#### Example output listing all module information:
+![InfoCommandDemo](images/InfoCommandDemo.png)
+
+#### Example output for finding a specific module information
+![InfoCommandDemo](images/InfoCommandSingleModuleDemo.png)
