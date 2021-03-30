@@ -10,6 +10,7 @@ import seedu.budgetbaby.ablogic.commands.HelpCommand;
 import seedu.budgetbaby.logic.commands.AddFrCommand;
 import seedu.budgetbaby.logic.commands.BudgetBabyCommand;
 import seedu.budgetbaby.logic.commands.DeleteFrCommand;
+import seedu.budgetbaby.logic.commands.EditFrCommand;
 import seedu.budgetbaby.logic.commands.ExitCommand;
 import seedu.budgetbaby.logic.commands.FindFrCommand;
 import seedu.budgetbaby.logic.commands.ResetFilterCommand;
@@ -42,6 +43,7 @@ public class BudgetBabyParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+
         switch (commandWord) {
 
         case AddFrCommand.COMMAND_WORD:
@@ -49,6 +51,9 @@ public class BudgetBabyParser {
 
         case DeleteFrCommand.COMMAND_WORD:
             return new DeleteFrCommandParser().parse(arguments);
+
+        case EditFrCommand.COMMAND_WORD:
+            return new EditFrCommandParser().parse(arguments);
 
         case SetBudgetCommand.COMMAND_WORD:
             return new SetBudgetCommandParser().parse(arguments);

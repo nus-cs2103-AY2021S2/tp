@@ -21,7 +21,7 @@ import seedu.budgetbaby.model.record.Description;
 import seedu.budgetbaby.model.record.FinancialRecord;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the budget tracker data.
  */
 public class BudgetBabyModelManager implements BudgetBabyModel {
     private static final Logger logger = LogsCenter.getLogger(BudgetBabyModelManager.class);
@@ -32,7 +32,7 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
     private FilteredList<FinancialRecord> filteredFinancialRecords;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given budgetTracker and userPrefs.
      */
     public BudgetBabyModelManager(ReadOnlyBudgetTracker budgetTracker, ReadOnlyUserPrefs userPrefs) {
         super();
@@ -131,13 +131,20 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
 
     @Override
     public void addFinancialRecord(FinancialRecord record) {
+        FinancialRecord toAdd = record;
         budgetTracker.addFinancialRecord(record);
+        if (!record.getMonth().equals(filteredMonths.get(0))) {
+            setCurrentDisplayMonth(record.getMonth());
+        }
     }
 
     @Override
     public void setFinancialRecord(FinancialRecord target, FinancialRecord editedRecord) {
         requireAllNonNull(target, editedRecord);
         budgetTracker.setFinancialRecord(target, editedRecord);
+        if (!editedRecord.getMonth().equals(filteredMonths.get(0))) {
+            setCurrentDisplayMonth(editedRecord.getMonth());
+        }
     }
 
     @Override
@@ -150,20 +157,20 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
 
         Predicate<FinancialRecord> findA = fr -> fr.getAmount().getValue().equals(amount.getValue());
 
-        Predicate<FinancialRecord> findC = fr -> fr.getTags().containsAll(categories);
+        Predicate<FinancialRecord> findC = fr -> fr.getCategories().containsAll(categories);
 
         Predicate<FinancialRecord> findDA = fr -> fr.getDescription().description.equals(description.description)
-                && fr.getAmount().getValue().equals(amount.getValue());
+            && fr.getAmount().getValue().equals(amount.getValue());
 
         Predicate<FinancialRecord> findDC = fr -> fr.getDescription().description.equals(description.description)
-                && fr.getTags().containsAll(categories);
+            && fr.getCategories().containsAll(categories);
 
         Predicate<FinancialRecord> findAC = fr -> fr.getAmount().getValue().equals(amount.getValue())
-                && fr.getTags().containsAll(categories);
+            && fr.getCategories().containsAll(categories);
 
         Predicate<FinancialRecord> findAll = fr -> fr.getDescription().description.equals(description.description)
-                && fr.getAmount().getValue().equals(amount.getValue())
-                && fr.getTags().containsAll(categories);
+            && fr.getAmount().getValue().equals(amount.getValue())
+            && fr.getCategories().containsAll(categories);
 
         if (description == null) {
             if (amount == null && categories != null) {

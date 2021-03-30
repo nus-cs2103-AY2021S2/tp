@@ -115,7 +115,7 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
 
     /**
      * Adds a financial record to the budget tracker.
-     * Adds a month to the budgt tracker.
+     * Adds a month to the budget tracker.
      */
     public void addFinancialRecord(FinancialRecord r) {
         monthList.addFinancialRecord(r);

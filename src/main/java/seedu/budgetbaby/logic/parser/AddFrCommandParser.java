@@ -4,7 +4,9 @@ import static seedu.budgetbaby.commons.core.Messages.MESSAGE_INVALID_COMMAND_FOR
 import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_TIME;
 
+import java.util.Date;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -28,7 +30,7 @@ public class AddFrCommandParser implements BudgetBabyCommandParser<AddFrCommand>
      */
     public AddFrCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_AMOUNT, PREFIX_CATEGORY);
+            ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_AMOUNT, PREFIX_CATEGORY, PREFIX_TIME);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_AMOUNT)
             || !argMultimap.getPreamble().isEmpty()) {
@@ -38,9 +40,14 @@ public class AddFrCommandParser implements BudgetBabyCommandParser<AddFrCommand>
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Amount amount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get());
 
+        Date timestamp = new Date();
+        if (argMultimap.getValue(PREFIX_TIME).isPresent()) {
+            timestamp = ParserUtil.parseDate(argMultimap.getValue(PREFIX_TIME).get());
+        }
+
         Set<Category> categoryList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_CATEGORY));
 
-        FinancialRecord record = new FinancialRecord(description, amount, categoryList);
+        FinancialRecord record = new FinancialRecord(description, amount, timestamp, categoryList);
 
         return new AddFrCommand(record);
     }
