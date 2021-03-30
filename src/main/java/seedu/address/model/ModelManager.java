@@ -282,6 +282,11 @@ public class ModelManager implements Model {
         userPrefs.addAlias(alias);
     }
 
+    @Override
+    public void deleteAlias(String aliasName) {
+        userPrefs.deleteAlias(aliasName);
+    }
+
     //=========== Undo/Redo =============================================================
     @Override
     public boolean canUndoAddressBook() {
