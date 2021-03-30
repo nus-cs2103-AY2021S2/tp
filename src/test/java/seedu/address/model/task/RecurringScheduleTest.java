@@ -4,6 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 public class RecurringScheduleTest {
@@ -47,9 +51,16 @@ public class RecurringScheduleTest {
     }
 
     @Test
-    public void isInvalidRecurringSchedule() {
+    public void isEmptyRecurringScheduleInput() {
         // reject blank space argument since there is input required
         assertFalse(RecurringSchedule.isEmptyRecurringScheduleInput(" "));
+
+        // accept no argument since it is optional for a task to be recurring schedule
+        assertTrue(RecurringSchedule.isEmptyRecurringScheduleInput(""));
+    }
+
+    @Test
+    public void isInvalidRecurringSchedule_missingParameters() {
 
         // missing frequency of week
         assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10/06/2021][Mon]"));
@@ -77,7 +88,10 @@ public class RecurringScheduleTest {
 
         // missing starting date, days of week, week frequency
         assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[][][]"));
+    }
 
+    @Test
+    public void isInvalidRecurringSchedule_invalidInput() {
         // invalid special characters between spaces
         assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10@06r*2021][Mon][biweekly]"));
 
@@ -111,14 +125,8 @@ public class RecurringScheduleTest {
 
     @Test
     public void isValidRecurringSchedule() {
-        // accept no argument since it is optional for a task to be recurring schedule
-        assertTrue(RecurringSchedule.isEmptyRecurringScheduleInput(""));
-
         // valid biweekly recurring schedule, mixture of large and small caps
         assertTrue(RecurringSchedule.isValidRecurringScheduleInput("[10/06/2021][Mon][biWeekly]"));
-
-        // valid biweekly recurring schedule, small caps only
-        assertTrue(RecurringSchedule.isValidRecurringScheduleInput("[10/06/2021][mon][biweekly]"));
 
         // valid biweekly recurring schedule, large caps only
         assertTrue(RecurringSchedule.isValidRecurringScheduleInput("[10/06/2021][MON][BIWEEKLY]"));
@@ -128,8 +136,19 @@ public class RecurringScheduleTest {
 
         // valid weekly recurring schedule, small caps only
         assertTrue(RecurringSchedule.isValidRecurringScheduleInput("[10/06/2021][wed][weekly]"));
+    }
 
-        // valid weekly recurring schedule, large caps only
-        assertTrue(RecurringSchedule.isValidRecurringScheduleInput("[10/06/2021][WED][WEEKLY]"));
+    @Test
+    public void isInRecurringSchedule() {
+        String firstDateString = "10/05/2021";
+        List<String> weekDates = new ArrayList<>(Arrays.asList("10/05/2021" , "17/05/2021", "24/05/2021"));
+
+        // date string found in recurring schedule
+        assertTrue(weekDates.stream().anyMatch(date -> date.equals(firstDateString)));
+
+        // date string not found in recurring schedule
+        String secondDateString = "31/05/2021";
+        assertFalse(weekDates.stream().anyMatch(date -> date.equals(secondDateString)));
+
     }
 }

@@ -1,9 +1,10 @@
-package seedu.address.model.task;
+package seedu.address.model.task.predicates;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.task.Task;
 
 /**
  * Tests that a {@code Task}'s {@code Description} matches any of the keywords given.

@@ -117,6 +117,11 @@ public class Task {
         return date.over();
     }
 
+    /**
+     * Checks if the Recurring schedule end date given by the user has expired.
+     *
+     * @return true if the end date is before the current system date.
+     */
     public boolean hasExpired() {
         return recurringSchedule.isExpired();
     }
@@ -139,7 +144,7 @@ public class Task {
      * @return Boolean indicating if the provided date is in the schedule.
      */
     public boolean isOnRecurringScheduleDate(String dateString) {
-        return this.recurringSchedule.isInSchedule(dateString);
+        return this.recurringSchedule.isInRecurringSchedule(dateString);
     }
 
     /**
@@ -154,7 +159,7 @@ public class Task {
     /**
      * Checks if the Duration attribute contains any data.
      *
-     * @return true if the String of Duration isEmpty, false otherwise.
+     * @return true if the String of Duration is Empty, false otherwise.
      */
     public boolean isDurationEmpty() {
         return duration.isEmptyValue();
@@ -163,7 +168,7 @@ public class Task {
     /**
      * Checks if the RecurringSchedule attribute contains any data.
      *
-     * @return true if the String of RecurringSchedule isEmpty, false otherwise.
+     * @return true if the String of RecurringSchedule is Empty, false otherwise.
      */
     public boolean isRecurringScheduleEmpty() {
         return recurringSchedule.isEmptyValue();

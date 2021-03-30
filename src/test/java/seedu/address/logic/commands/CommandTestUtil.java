@@ -20,7 +20,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.Planner;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.TitleContainsKeywordsPredicate;
+import seedu.address.model.task.predicates.TitleContainsKeywordsPredicate;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
 
 /**

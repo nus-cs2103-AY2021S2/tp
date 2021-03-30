@@ -10,9 +10,9 @@ import java.util.HashSet;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindCommand;
-import seedu.address.model.task.DescriptionContainsKeywordsPredicate;
-import seedu.address.model.task.TagContainsKeywordsPredicate;
-import seedu.address.model.task.TitleContainsKeywordsPredicate;
+import seedu.address.model.task.predicates.DescriptionContainsKeywordsPredicate;
+import seedu.address.model.task.predicates.TagContainsKeywordsPredicate;
+import seedu.address.model.task.predicates.TitleContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 

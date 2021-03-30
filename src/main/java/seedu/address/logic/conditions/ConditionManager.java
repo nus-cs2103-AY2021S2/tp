@@ -11,11 +11,9 @@ import seedu.address.model.task.Task;
  */
 public class ConditionManager {
 
-    public static final String MESSAGE_DEADLINE_EVENT_CONFLICT = "Task cannot have (Date) as well as "
-            + "(RecurringSchedule and Duration) at the same time!\nPlease choose either when adding a task.";
-    public static final String MESSAGE_DEADLINE_DURATION_CONFLICT = "Task cannot have (Date) as well as "
-            + "(Duration) at the same time!\nPlease choose either when adding a task.";
-    public static final String MESSAGE_DEADLINE_RECURRING_SCHEDULE_CONFLICT = "Task cannot have (Date) as well as "
+    public static final String MESSAGE_DURATION_STANDALONE_ERROR = "Task cannot have Duration on its own.\n"
+            + "Duration must have a Date or RecurringSchedule.";
+    public static final String MESSAGE_DATE_RECURRING_SCHEDULE_CONFLICT = "Task cannot have (Date) as well as "
             + "(RecurringSchedule) at the same time!\nPlease choose either when adding a task.";
 
     private static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -27,21 +25,18 @@ public class ConditionManager {
      * @throws CommandException If a task has both Date as well as Duration or RecurringSchedule.
      */
     public static void enforceAttributeConstraints(Task task) throws CommandException {
-        boolean hasDeadlineValue = !task.isDateEmpty();
+        boolean hasDateValue = !task.isDateEmpty();
         boolean hasDurationValue = !task.isDurationEmpty();
         boolean hasRecurringScheduleValue = !task.isRecurringScheduleEmpty();
 
-        if (hasDeadlineValue && hasDurationValue && hasRecurringScheduleValue) {
-            logger.log(Level.INFO, MESSAGE_DEADLINE_EVENT_CONFLICT);
-            throw new CommandException(MESSAGE_DEADLINE_EVENT_CONFLICT);
+        if (hasDurationValue && !(hasRecurringScheduleValue || hasDateValue)) {
+            logger.log(Level.INFO, MESSAGE_DURATION_STANDALONE_ERROR);
+            throw new CommandException(MESSAGE_DURATION_STANDALONE_ERROR);
         }
-        if (hasDeadlineValue && hasDurationValue) {
-            logger.log(Level.INFO, MESSAGE_DEADLINE_DURATION_CONFLICT);
-            throw new CommandException(MESSAGE_DEADLINE_DURATION_CONFLICT);
-        }
-        if (hasDeadlineValue & hasRecurringScheduleValue) {
-            logger.log(Level.INFO, MESSAGE_DEADLINE_RECURRING_SCHEDULE_CONFLICT);
-            throw new CommandException(MESSAGE_DEADLINE_RECURRING_SCHEDULE_CONFLICT);
+
+        if (hasDateValue && hasRecurringScheduleValue) {
+            logger.log(Level.INFO, MESSAGE_DATE_RECURRING_SCHEDULE_CONFLICT);
+            throw new CommandException(MESSAGE_DATE_RECURRING_SCHEDULE_CONFLICT);
         }
     }
 

@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DURATION_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECURRINGSCHEDULE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
@@ -72,32 +71,6 @@ public class AddCommandTest {
 
         assertThrows(CommandException.class,
                 AddCommand.MESSAGE_DATE_RECURRING_SCHEDULE_CONFLICT, () -> addCommand.execute(modelStub));
-    }
-
-    @Test
-    public void execute_dateAndDuration_throwsCommandException() {
-        Task invalidTask = new TaskBuilder().withTitle(VALID_TITLE_AMY)
-                .withDate(VALID_DATE_AMY).withDuration(VALID_DURATION_AMY)
-                .withDescription(VALID_DESCRIPTION_AMY).withStatus(VALID_STATUS_AMY).withTags(VALID_TAG_FRIEND).build();
-
-        AddCommand addCommand = new AddCommand(invalidTask);
-        ModelStub modelStub = new ModelStubAcceptingTaskAdded();
-
-        assertThrows(CommandException.class,
-                AddCommand.MESSAGE_DATE_DURATION_CONFLICT, () -> addCommand.execute(modelStub));
-    }
-
-    @Test
-    public void execute_dateAndEvent_throwsCommandException() {
-        Task invalidTask = new TaskBuilder()
-                .withTitle(VALID_TITLE_AMY).withDate(VALID_DATE_AMY)
-                .withDuration(VALID_DURATION_AMY).withRecurringSchedule(VALID_RECURRINGSCHEDULE_AMY)
-                .withDescription(VALID_DESCRIPTION_AMY).withStatus(VALID_STATUS_AMY).withTags(VALID_TAG_FRIEND).build();
-        AddCommand addCommand = new AddCommand(invalidTask);
-        ModelStub modelStub = new ModelStubAcceptingTaskAdded();
-
-        assertThrows(CommandException.class,
-                AddCommand.MESSAGE_DATE_EVENT_CONFLICT, () -> addCommand.execute(modelStub));
     }
 
     @Test
