@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="personDetails" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="459.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="personDetails" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="459.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="name" alignment="CENTER" prefHeight="62.0" prefWidth="600.0" styleClass="cell_big_label" text="\$studentName" VBox.vgrow="ALWAYS" />
       <GridPane prefHeight="460.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
