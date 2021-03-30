@@ -1,8 +1,5 @@
 package seedu.address.logic.filters;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import seedu.address.model.customer.Customer;
 
 
@@ -33,6 +30,7 @@ public class NameFilter extends AbstractFilter {
         }
         return false;
     }
+
     //@@author nighoggDatatype-reused
     //Reused from https://stackoverflow.com/a/13564498/11358676
     private static int levenshteinDistance(String s1, String s2) {
