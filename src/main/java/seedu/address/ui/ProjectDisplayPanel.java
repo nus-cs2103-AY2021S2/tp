@@ -35,7 +35,7 @@ public class ProjectDisplayPanel extends UiPart<Region> {
 
     private static final String FXML = "ProjectDisplayPanel.fxml";
 
-    private static final int SAFETY_MARGIN = 5; // Applied to each listview to prevent card from being cut off
+    private static final int SAFETY_MARGIN = 20; // Applied to each listview to prevent card from being cut off
     private static final int EVENTS_CARD_HEIGHT = 45;
     private static final int DEADLINES_CARD_HEIGHT = 45;
     private static final int GROUPMATES_CARD_HEIGHT = 55;
