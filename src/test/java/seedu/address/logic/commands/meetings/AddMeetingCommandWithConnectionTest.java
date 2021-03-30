@@ -49,12 +49,12 @@ public class AddMeetingCommandWithConnectionTest {
 
         MeetingModelStubAcceptingAdded modelStub = new MeetingModelStubAcceptingAdded();
         Person validPerson = new PersonBuilder().build();
-        Meeting validMeeting = new MeetingBuilder().build().setConnectionToPerson(connections);
+        Meeting validMeeting = new MeetingBuilder().build();
         Meeting validMeeting2 = new MeetingBuilder().withName("Important Conference").withStart("2222-01-01 19:00")
-            .withTerminate("2222-01-01 20:00").build().setConnectionToPerson(connections);
+            .withTerminate("2222-01-01 20:00").build();
 
         CommandResult commandResult2 = new AddPersonCommand(validPerson).execute(modelStub);
-        CommandResult commandResult1 = new AddMeetingCommand(validMeeting).execute(modelStub);
+        CommandResult commandResult1 = new AddMeetingCommand(validMeeting).setConnectionToPerson(connections).execute(modelStub);
 
         assertEquals(String.format(AddMeetingCommand.MESSAGE_SUCCESS, validMeeting),
             commandResult1.getFeedbackToUser());
@@ -75,7 +75,7 @@ public class AddMeetingCommandWithConnectionTest {
 
         // Check more complex connections (2 meetings points to the same person)
         expectedMeetings.add(validMeeting2);
-        CommandResult commandResult3 = new AddMeetingCommand(validMeeting2).execute(modelStub);
+        CommandResult commandResult3 = new AddMeetingCommand(validMeeting2).setConnectionToPerson(connections).execute(modelStub);
         assertEquals(expectedMeetings.asUnmodifiableObservableList(),
             modelStub.getFilteredMeetingListByPersonConnection(validPerson));
         assertEquals(expectedPersons.asUnmodifiableObservableList(),

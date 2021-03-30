@@ -1,8 +1,5 @@
 package seedu.address.ui;
 
-import java.time.LocalDateTime;
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -10,6 +7,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.logic.parser.DateTimeUtil;
 import seedu.address.model.meeting.Meeting;
+
+import java.time.LocalDateTime;
+import java.util.Comparator;
 
 /**
  * An UI component that displays information of a {@code Meeting}.
@@ -36,6 +36,8 @@ public class MeetingCard extends UiPart<Region> {
     private Label priority;
     @FXML
     private FlowPane tags;
+    @FXML
+    private FlowPane personsRelated;
 
     /**
      * Creates a {@code meetingCard} with the given {@code meeting} and index to display.
@@ -54,6 +56,14 @@ public class MeetingCard extends UiPart<Region> {
         meeting.getGroups().stream()
                 .sorted(Comparator.comparing(tag -> tag.groupName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.groupName)));
+
+        // Only when the person meeting connection exist then it will be shown on the meeting card.
+        if (!meeting.getConnectionToPerson().isEmpty()) {
+            personsRelated.getChildren().add(new Label("Contacts Related:"));
+            meeting.getConnectionToPerson().stream()
+                    .sorted(Comparator.comparing(person -> person.getName().fullName))
+                    .forEach(person -> personsRelated.getChildren().add(new Label("[" + person.getName().fullName + "]")));
+        }
     }
 
     @Override

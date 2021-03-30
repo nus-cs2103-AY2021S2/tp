@@ -45,7 +45,8 @@ public class ModelManager implements Model {
     private final SortedList<Person> sortedBeforeFilterPersons;
     private final FilteredList<Person> filteredPersons;
 
-    // TODO: Modify the signature of ModelManager so that we can add meetings inside it.
+    // TODO: Modify the signature of ModelManager so that we c
+    //  an add meetings inside it.
     private final MeetingBook meetingBook;
     private final SortedList<Meeting> sortedBeforeFilterMeetings;
     private final FilteredList<Meeting> filteredMeetings;
@@ -253,7 +254,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedMeeting);
         meetingBook.setMeeting(target, editedMeeting);
     }
-
+    @Override
     public void updateMeeting(Meeting target, Meeting editedMeeting) {
         requireAllNonNull(target, editedMeeting);
         meetingBook.updateMeeting(target, editedMeeting);
