@@ -41,6 +41,15 @@ public class Date {
     }
 
     /**
+     * Constructs a {@code Date}.
+     *
+     * @param date A valid LocalDate object.
+     */
+    public Date(LocalDate date) {
+        value = date;
+    }
+
+    /**
      * Returns true if a given string is a valid date number.
      */
     public static boolean isValidDate(String test) {

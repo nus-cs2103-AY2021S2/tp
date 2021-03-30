@@ -20,6 +20,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SnoozeCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.StatsCommand;
 import seedu.address.logic.commands.ViewDayCommand;
@@ -87,6 +88,8 @@ public class PlannerParser {
             return new HelpCommand();
         case DoneCommand.COMMAND_WORD:
             return new DoneCommandParser().parse(arguments);
+        case SnoozeCommand.COMMAND_WORD:
+            return new SnoozeCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
