@@ -192,6 +192,15 @@ public class Task {
     }
 
     /**
+     * Returns true if the deadline is later than the current time.
+     */
+    public boolean isUpToDate() {
+        assert this.isRecurring();
+        Time currTime = Time.makeDeadlineWithTime(LocalDateTime.now());
+        return deadline.compareTo(currTime) >= 0;
+    }
+
+    /**
      * Returns a new valid Deadline for the recurring task if previous recurring deadline has expired.
      *
      * @param task the task need to be updated.

@@ -21,6 +21,7 @@ import seedu.module.logic.commands.HelpCommand;
 import seedu.module.logic.commands.ListCommand;
 import seedu.module.logic.commands.NotDoneCommand;
 import seedu.module.logic.commands.RecurCommand;
+import seedu.module.logic.commands.RefreshCommand;
 import seedu.module.logic.commands.SortCommand;
 import seedu.module.logic.commands.TagCommand;
 import seedu.module.logic.parser.exceptions.ParseException;
@@ -99,6 +100,9 @@ public class ModuleBookParser {
 
         case RecurCommand.COMMAND_WORD:
             return new RecurCommandParser().parse(arguments);
+
+        case RefreshCommand.COMMAND_WORD:
+            return new RefreshCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
