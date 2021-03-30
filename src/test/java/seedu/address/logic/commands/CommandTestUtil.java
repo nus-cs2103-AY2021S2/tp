@@ -37,12 +37,6 @@ public class CommandTestUtil {
     public static final EventStatus VALID_STATUS_CS2030 = EventStatus.DONE;
     public static final EventStatus VALID_STATUS_CS2107 = EventStatus.IN_PROGRESS;
     public static final EventStatus VALID_STATUS_CS2100 = EventStatus.IN_PROGRESS;
-    public static final String VALID_TIME_START_CS2030 = "12/12/2021 12:00";
-    public static final String VALID_TIME_END_CS2030 = "10/01/2020 10:00";
-    public static final String VALID_TIME_START_CS2107 = "10/03/2021 10:00";
-    public static final String VALID_TIME_END_CS2107 = "30/01/2022 12:00";
-    public static final String VALID_TIME_START_CS2100 = "23/03/2021 09:00";
-    public static final String VALID_TIME_END_CS2100 = "10/04/2022 15:00";
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";

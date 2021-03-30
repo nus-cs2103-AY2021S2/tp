@@ -34,17 +34,17 @@ public class TestUtil {
     }
 
     /**
-     * Returns the middle identifier of the person in the {@code model}'s person list.
+     * Returns the middle identifier of the event in the {@code model}'s event list.
      */
     public static Identifier getMidIdentifier(Model model) {
-        return Identifier.fromIdentifier(model.getFilteredPersonList().size() / 2);
+        return Identifier.fromIdentifier(model.getFilteredEventList().size() / 2);
     }
 
     /**
-     * Returns the last identifier of the person in the {@code model}'s person list.
+     * Returns the last identifier of the event in the {@code model}'s event list.
      */
     public static Identifier getLastIdentifier(Model model) {
-        return Identifier.fromIdentifier(model.getFilteredPersonList().size());
+        return Identifier.fromIdentifier(model.getFilteredEventList().size());
     }
 
     /**
