@@ -5,7 +5,7 @@ title: User Guide
 
 TimeForWheels is an app for delivery drivers to manage their orders efficiently. It is optimized for use via a Command
 Line Interface while still having the benefits of a Graphical User Interface(GUI). Overall, TimeForWheels aims to
-increase work productivity for drivers by assisting them with their delivery task management.
+increase work productivity for delivery drivers by simplifying the delivery management and planning process.
 
 * **Table of Contents**
     * Quick Start
@@ -40,10 +40,10 @@ increase work productivity for drivers by assisting them with their delivery tas
 
     * **`list`** : Lists all delivery points
 
-    * **`add`**`n/Mark p/92841234 a/20 Watten Estate e/mark1998@gmail.com d/2021-02-02` : Adds a delivery task to the
+    * **`add`**`a/John street, block 123, #01-01` : Adds a delivery point called `John street, block 123, #01-01` to the
       Delivery list.
 
-    * **`delete`**`3` : Deletes the 3rd delivery task shown in the current list.
+    * **`delete`**`3` : Deletes the 3rd delivery point shown in the current list.
 
     * **`done`**`3` : Marks the 3rd delivery task as done.
 
@@ -89,7 +89,8 @@ increase work productivity for drivers by assisting them with their delivery tas
 
 **Examples:**
 
-* `help` - Returns a help message containing an url to the user guide.
+* `help` - Help returns Adding a delivery task: add Deleting a delivery task: delete Listing the delivery task: list
+  Finding a delivery task: find Seeking for tech-support: help
 
 ![Ui](images/HelpCommand.png)
 
@@ -101,7 +102,7 @@ increase work productivity for drivers by assisting them with their delivery tas
 
 **Examples:**
 
-* `list` - Lists all the delivery tasks
+* `list` - Lists all the delivery points
 
 ![Ui](images/ListCommand.png)
 
@@ -120,34 +121,33 @@ increase work productivity for drivers by assisting them with their delivery tas
 
 ### Deleting a delivery task : `delete`
 
-**Purpose:** Deletes the specified delivery task from the delivery list.
+**Purpose:** Deletes the specified delivery location from the delivery list.
 
 **Format:** `delete INDEX`
 
-* Deletes the delivery task
-* The index refers to the number shown in the displayed delivery list.
+* Deletes the delivery at the specified INDEX.
+* The index refers to the index number shown in the displayed delivery list.
 * The index must be a positive integer 1, 2, 3,
 
 **Examples:**
 
-* `delete 2` - delete 2 will delete the second delivery task in the delivery list.
+* `delete 2` - delete 2 will delete the second delivery location in the delivery list.
   
 ![Ui](images/DeleteCommand.png)
 
 ### Mark a delivery as done : `done`
 
-**Purpose:** Set a delivery task in the delivery list to done [✓]
+**Purpose:** Set a delivery task in the delivery list to done
 
 **Format:** `done INDEX`
 
-* Sets a delivery task to done [✓].
-* The index refers to the number shown in the displayed delivery list.
-* The index must be a positive integer 1, 2, 3.
-* If the delivery task is already set to done [✓], `done INDEX` will change the task to [X] 
+* Sets the delivery at the specified INDEX to done.
+* The index refers to the index number shown in the displayed delivery list.
+* The index must be a positive integer 1, 2, 3,
 
 **Example:**
 
-* `done 2` - done 2 will set the second delivery tasks in the delivery list as done [✓].
+* `done 2` - done 2 will set the second delivery location in the delivery list as done.
 
 ![Ui](images/DoneCommand.png)
 
@@ -187,9 +187,9 @@ increase work productivity for drivers by assisting them with their delivery tas
    ![Ui](images/FindDate.png)
 
 
-### Statistics of delivery tasks : `stats`
+### Statistics of delivery workflow : `stats`
 
-**Purpose:** Get a summary of your current delivery tasks
+**Purpose:** Get a summary of your current delivery workflow
 
 **Format:** `stats`
 
