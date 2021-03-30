@@ -3,6 +3,7 @@ package seedu.student.model.appointment;
 import static java.util.Objects.requireNonNull;
 import static seedu.student.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
