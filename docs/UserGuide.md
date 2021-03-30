@@ -171,18 +171,18 @@ Examples:
 * `filter RVRC` 
 
 
-### Deleting a student : `deleteStud`
+### Deleting a student by their matriculation number: `delete`
 
 Deletes the student specified by his/her matriculation number from Vax@NUS records.
 
-Format: `deleteStud MATRICULATION_NUMBER`
+Format: `delete MATRICULATION NUMBER`
 
 * If the matriculation number does not exist in the records, an error message will be displayed to inform users that 
   the matriculation number is not found.
   
 
 Examples:
-* `deleteStud A7654321J` deletes Betsy Crowe from the records.
+* `delete A7654321J` deletes Betsy Crowe from the records.
 
 ### Deleting an appointment by the student's matriculation number: `deleteAppt`
 
@@ -296,11 +296,12 @@ Action | Format, Examples
 --------|------------------
 **Add Student** | `add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS r/SCHOOL_RESIDENCE[optional] m/MEDICAL_DETAILS` <br> e.g., `add n/John Doe i/A1234567X f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated r/RVRC m/peanut allergy`
 **Edit Student** | `edit INDEX [n/NAME] [i/MATRICULATION_NUMBER] [f/FACULTY] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/VACCINATION_STATUS] [m/MEDICAL_DETAILS] [r/SCHOOL_RESIDENCE]` <br> e.g., `edit 1 p/91234567 f/MED`
-**List Students** | `list students`
+**List Students and Appointments** | `list`
 **Find** | `find MATRICULATION_NUMBER` e.g., `find A1234567X`
 **Filter Students** | `filter VACCINATION_STATUS`  e.g., `filter VACCINATED` <br> `filter FACULTY ` e.g., `filter COM` <br> `filter SCHOOL_RESIDENCE` e.g., `filter RVRC` 
-**Delete Student** | `deleteStud MATRICULATION_NUMBER` e.g., `deleteStud A1234567X`
+**Delete Student** | `delete MATRICULATION_NUMBER` e.g., `deleteStud A1234567X`
 **Add Appointment** | `addAppt i/MATRICULATION_NUMBER d/DATE ts/START_TIME` e.g., `addAppt i/A1234567X d/2021-12-13 ts/13:00`
 **Delete Appointment** | `deleteAppt MATRICULATION_NUMBER` e.g., `deleteAppt A1234567X`
 **View Student Statistics** | `stats FACULTY` e.g., `stats COM` <br> `stats SCHOOL_RESIDENCE` e.g., `stats RC4` <br> `stats NUS` <br> `stats all` 
 **View Appointment Statistics** | `statsAppt`
+
