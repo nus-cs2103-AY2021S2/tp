@@ -233,6 +233,8 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return targetIndexes.containsAll(e.targetIndexes)
+                && isSpecialIndex == ((EditCommand) other).isSpecialIndex
+                && targetIndexes.containsAll(((EditCommand) other).targetIndexes)
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
 
