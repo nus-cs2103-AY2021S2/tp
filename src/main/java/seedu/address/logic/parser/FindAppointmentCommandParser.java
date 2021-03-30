@@ -57,9 +57,9 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
         List<String> keywords = Arrays.asList(optionArgs.split("\\s+"));
         if (option.equals(OPTION_NAME)) { // find by name
             return new FindAppointmentCommand(new ApptNameContainsKeywordsPredicate(keywords));
-        } else if (option.equals(OPTION_ADDRESS)) { // find by name
+        } else if (option.equals(OPTION_ADDRESS)) { // find by address
             return new FindAppointmentCommand(new ApptAddressContainsKeywordsPredicate(keywords));
-        } else if (option.equals(OPTION_DATE)) { // find by name
+        } else if (option.equals(OPTION_DATE)) { // find by date
             return new FindAppointmentCommand(new ApptDateContainsKeywordsPredicate(keywords));
         } else {
             throw new ParseException(
