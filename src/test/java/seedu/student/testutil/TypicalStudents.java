@@ -73,6 +73,7 @@ public class TypicalStudents {
             .withVacStatus(VALID_STATUS_BOB).withMedDetails(VALID_DETAILS_BOB).withMatric(VALID_MATRIC_BOB)
             .withSchoolRes(VALID_RESIDENCE_BOB).build();
 
+
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalStudents() {} // prevents instantiation
