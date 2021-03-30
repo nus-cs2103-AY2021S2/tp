@@ -12,7 +12,7 @@ activate UI UI_COLOR
 UI -> Logic : execute("blist 1")
 activate Logic LOGIC_COLOR
 
-Logic -> Model : setPerson(personToEdit, editedPerson)
+Logic -> Model : toggleBlacklist(personToEdit)
 activate Model MODEL_COLOR
 
 Model --> Logic

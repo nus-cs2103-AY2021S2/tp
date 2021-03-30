@@ -2,8 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DIRECTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_CRITERIA;
 
 import java.util.NoSuchElementException;
 
@@ -20,12 +18,9 @@ public class SortCommandParser implements Parser<SortCommand> {
      */
     public SortCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                PREFIX_SORT_CRITERIA, PREFIX_DIRECTION);
         try {
-            String sortCriteria = ParserUtil.parseCriteria(argMultimap.getValue(PREFIX_SORT_CRITERIA).get());
-            boolean reverse = ParserUtil.parseIsAscending(argMultimap.getValue(PREFIX_DIRECTION).get());
-            return new SortCommand(sortCriteria, reverse);
+            boolean isAscending = ParserUtil.parseIsAscending(args);
+            return new SortCommand(isAscending);
         } catch (NoSuchElementException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     SortCommand.MESSAGE_USAGE), ive);
