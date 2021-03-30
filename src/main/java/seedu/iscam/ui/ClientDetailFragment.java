@@ -93,7 +93,7 @@ public class ClientDetailFragment extends UiPart<Region> {
             profileImageRef.setText(imageRes);
             return new Image(is);
         } catch (FileNotFoundException e) {
-            profileImageRef.setText("image not found");
+            profileImageRef.setText(imageRes + " (image not found)");
             return placeholderImage;
         }
     }
