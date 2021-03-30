@@ -5,55 +5,52 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
 
-<img src="images/johndoe.png" width="200px">
+### Loo Yeou Tzer
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/yeoutzer.png" width="200px">
 
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/yeoutzer)]
+[[portfolio](team/yeoutzer.md)]
 
 * Role: Developer
-* Responsibilities: Data
 
-### Jean Doe
+### Nguyen Son Linh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/linhns.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/linhns)]
+[[portfolio](team/linhns.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Git + CI + Developer
+* Responsibilities: Manage team repository
 
-### James Doe
+### Vu Minh Hieu
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/vuminhhieunus2019.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/vuminhhieunus2019)] [[portfolio](team/vuminhhieu.md)]
 
 * Role: Developer
 * Responsibilities: UI
+
+### Lim Zi Qiang, Marcus
+
+<img src="images/marc-97.png" width="200px">
+
+[[github](https://github.com/marc-97)]
+[[portfolio](team/marcus.md)]
+
+* Role: Developer
+
+### Zen Lee
+
+<img src="images/zenlyj.png" width="200px">
+
+[[github](https://github.com/zenlyj)]
+[[portfolio](team/zenlee.md)]
+
+* Role: Developer
+

@@ -4,11 +4,12 @@ import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.ReadOnlyFlashBack;
+import seedu.address.model.flashcard.Flashcard;
 
 /**
  * API of the Logic component
@@ -24,19 +25,28 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Executes a given command and returns the result.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @param command The command to execute.
+     * @return the result of the command execution.
+     * @throws CommandException If an error occurs during command execution.
      */
-    ReadOnlyAddressBook getAddressBook();
+    CommandResult execute(Command command) throws CommandException;
+
+    /**
+     * Returns Flashback.
+     *
+     * @see seedu.address.model.Model#getFlashBack()
+     */
+    ReadOnlyFlashBack getFlashBack();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Flashcard> getFilteredFlashcardList();
 
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getFlashBackFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

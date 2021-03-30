@@ -1,0 +1,81 @@
+{
+  "_comment": "FlashBack save file which contains the same Flashcard values as in TypicalFlashcards#getTypicalFlashBack()",
+  "flashcards" : [ {
+    "question" : "Pythagorean theorem",
+    "answer" : "a^2 + b^2 = c^2",
+    "category" : "Maths",
+    "priority" : "Low",
+    "remark" : "",
+    "tagged" : [ "Equation", "Common", "Easy" ],
+    "stats" : {
+      "reviewCount" : 0,
+      "correctCount" : 0
+    }
+  }, {
+    "question": "Einstein's Equation",
+    "answer": "e = mc^2",
+    "category": "Physics",
+    "priority": "Mid",
+    "remark" : "",
+    "tagged" : [ "Equation", "Common", "Famous" ],
+    "stats" : {
+      "reviewCount" : 0,
+      "correctCount" : 0
+    }
+  }, {
+    "question": "Newton's Second Law of Motion",
+    "answer": "Force = Mass * Acceleration",
+    "category": "Physics",
+    "priority": "Low",
+    "remark" : "",
+    "tagged" : ["Famous", "Common"],
+    "stats" : {
+      "reviewCount" : 0,
+      "correctCount" : 0
+    }
+  }, {
+    "question": "What is ATP?",
+    "answer": "Adenosine Triphosphate",
+    "category": "Biology",
+    "priority": "Low",
+    "remark" : "",
+    "tagged" : [ "Acronym", "Biology" ],
+    "stats" : {
+      "reviewCount" : 0,
+      "correctCount" : 0
+    }
+  }, {
+    "question": "What is the time complexity of merge sort?",
+    "answer": "O(nlogn)",
+    "category": "Computer Science",
+    "priority": "High",
+    "remark" : "",
+    "tagged" : ["Runtime", "Sort"],
+    "stats" : {
+      "reviewCount" : 0,
+      "correctCount" : 0
+    }
+  }, {
+    "question": "What is recursion?",
+    "answer": "recursion",
+    "category": "Computer Science",
+    "priority": "Low",
+    "remark" : "",
+    "tagged" : ["Random", "Fun"],
+    "stats" : {
+      "reviewCount" : 0,
+      "correctCount" : 0
+    }
+  }, {
+    "question": "What is the formula for hydrochloric acid?",
+    "answer": "HCl",
+    "category": "Chemistry",
+    "priority": "High",
+    "remark" : "",
+    "tagged" : ["Formula", "Acid"],
+    "stats" : {
+      "reviewCount" : 0,
+      "correctCount" : 0
+    }
+  } ]
+}

@@ -1,5 +1,8 @@
 package seedu.address.ui;
 
+import static seedu.address.ui.ReviewMode.EXIT_REVIEW_MODE;
+
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -8,14 +11,20 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.flashcard.Flashcard;
+import seedu.address.model.flashcard.Question;
+import seedu.address.model.flashcard.Statistics;
+
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -31,7 +40,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private FlashcardListPanel flashcardListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,13 +51,22 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane flashcardListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
+    private StackPane flashcardViewCardPlaceholder;
+
+    @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private GridPane commandModePane;
+
+    @FXML
+    private StackPane reviewModePlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -110,17 +128,22 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
+        flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getFlashBackFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        commandModePane.managedProperty().bind(commandModePane.visibleProperty());
+
+        reviewModePlaceholder.setVisible(false);
+        reviewModePlaceholder.managedProperty().bind(reviewModePlaceholder.visibleProperty());
     }
 
     /**
@@ -163,8 +186,52 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    private void handleView(int index) {
+        clearViewArea();
+        FlashbackViewCard flashbackViewCard = new FlashbackViewCard(logic.getFilteredFlashcardList().get(index));
+        flashcardViewCardPlaceholder.getChildren().add(flashbackViewCard.getRoot());
+    }
+
+    /**
+     * Handles the case when the user has requested to view flashcard(s) statistics.
+     *
+     * @param stats Statistics of the flashcard(s).
+     * @param statsIndex Index of the flashcard, if any.
+     */
+    private void handleStats(Statistics stats, Optional<Index> statsIndex) {
+        clearViewArea();
+        Optional<Question> question = Optional.empty();
+        if (statsIndex.isPresent()) {
+            int idx = statsIndex.get().getZeroBased();
+            assert(idx >= 0);
+            Flashcard flashcard = logic.getFilteredFlashcardList().get(idx);
+            question = Optional.of(flashcard.getQuestion());
+        }
+        FlashbackStats flashbackStats = new FlashbackStats(stats, question);
+        flashcardViewCardPlaceholder.getChildren().add(flashbackStats.getRoot());
+    }
+
+    private void enterReviewMode(ReviewMode reviewMode) {
+        commandModePane.setVisible(false);
+        commandBoxPlaceholder.setVisible(false);
+        reviewModePlaceholder.getChildren().add(reviewMode.getRoot());
+        reviewModePlaceholder.setVisible(true);
+    }
+
+    protected void exitReviewMode() {
+        commandModePane.setVisible(true);
+        commandBoxPlaceholder.setVisible(true);
+        reviewModePlaceholder.setVisible(false);
+        reviewModePlaceholder.getChildren().clear();
+        resultDisplay.setFeedbackToUser(EXIT_REVIEW_MODE);
+    }
+
+    private void clearViewArea() {
+        flashcardViewCardPlaceholder.getChildren().clear();
+    }
+
+    public FlashcardListPanel getFlashcardListPanel() {
+        return flashcardListPanel;
     }
 
     /**
@@ -178,12 +245,26 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
+            clearViewArea();
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowView()) {
+                handleView(commandResult.getIndex());
+            }
+
+            if (commandResult.isReviewMode()) {
+                enterReviewMode(new ReviewMode(logic, this));
+            }
+
+            if (commandResult.isShowStats()) {
+                handleStats(commandResult.getStats(), commandResult.getStatsIndex());
             }
 
             return commandResult;

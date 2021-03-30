@@ -1,0 +1,18 @@
+@startuml
+!include style.puml
+skinparam classBackgroundColor UI_COLOR
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+package UI <<Rectangle>>{
+class MainWindow
+class ReviewMode
+}
+
+package Logic <<Rectangle>> {
+class ReviewManager #3333C4
+}
+
+MainWindow <.down.> ReviewMode
+ReviewMode *-right-> ReviewManager
+
+@enduml

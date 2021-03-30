@@ -2,17 +2,20 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.flashcard.Answer;
+import seedu.address.model.flashcard.Category;
+import seedu.address.model.flashcard.Priority;
+import seedu.address.model.flashcard.Question;
+import seedu.address.model.flashcard.SortOptions;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,6 +24,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_KEYWORDS = "Keywords you wish to filter by should not be empty.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -36,63 +40,64 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
+     * Parses a {@code String question} into a {@code Question}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code name} is invalid.
+     * @throws ParseException if the given {@code question} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
-        requireNonNull(name);
-        String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+    public static Question parseQuestion(String question) throws ParseException {
+        requireNonNull(question);
+        String trimmedQuestion = question.trim();
+        if (!Question.isValidQuestion(trimmedQuestion)) {
+            throw new ParseException(Question.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new Question(trimmedQuestion);
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Parses a {@code String answer} into a {@code Answer}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @throws ParseException if the given {@code answer} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+    public static Answer parseAnswer(String answer) throws ParseException {
+        requireNonNull(answer);
+        String trimmedAnswer = answer.trim();
+        if (!Answer.isValidAnswer(trimmedAnswer)) {
+            throw new ParseException(Answer.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+
+        return new Answer(trimmedAnswer);
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String priority} into an {@code Priority}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code priority} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static Priority parsePriority(String priority) throws ParseException {
+        requireNonNull(priority);
+        String trimmedPriority = priority.trim();
+        if (!Priority.isValidPriority(trimmedPriority)) {
+            throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new Priority(trimmedPriority);
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String category} into an {@code Category}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code category} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+    public static Category parseCategory(String category) throws ParseException {
+        requireNonNull(category);
+        String trimmedCategory = category.trim();
+        if (!Category.isValidCategory(trimmedCategory)) {
+            throw new ParseException(Category.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        return new Category(trimmedCategory);
     }
 
     /**
@@ -120,5 +125,53 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String keywords} into a {@code List<String>}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code keywords} is invalid.
+     */
+    public static List<String> parseKeywordsToStringList(String keywords) throws ParseException {
+        requireNonNull(keywords);
+        String trimmedKeywords = keywords.trim();
+        if (keywords.isEmpty()) {
+            throw new ParseException(MESSAGE_INVALID_KEYWORDS);
+        }
+        String[] keywordsArray = trimmedKeywords.split("\\s+");
+        List<String> keywordsList = Arrays.asList(keywordsArray);
+        return keywordsList;
+    }
+
+    /**
+     * Checks the validity of flag values.
+     * @param flagValueList the supplied flag list
+     * @param validFlagValues valid flag values
+     * @return a boolean indicating whether flag values are valid
+     */
+    public static boolean areValidFlagValues(List<String> flagValueList, String... validFlagValues) {
+        List<String> validFlagValueList = Arrays.asList(validFlagValues);
+        boolean allValid = flagValueList.stream()
+                .allMatch(flagValue -> validFlagValueList.stream()
+                .anyMatch(validFlagValue -> validFlagValue.equals(flagValue)));
+        return allValid;
+    }
+
+    /**
+     * Parses a {@code String option} and a {@code String order} into a {@code SortOptions}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code option} or {@code order} is invalid.
+     */
+    public static SortOptions parseSortOptions(String option, String order) throws ParseException {
+        requireNonNull(option, order);
+        String trimmedOption = option.trim();
+        String trimmedOrder = order.trim();
+        String sortOption = trimmedOption + " " + trimmedOrder;
+        if (!SortOptions.isValidOption(sortOption)) {
+            throw new ParseException(SortOptions.MESSAGE_INVALID_SORT_OPTIONS);
+        }
+        return SortOptions.getOption(sortOption);
     }
 }
