@@ -3,11 +3,12 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Locale;
 /**
  * Represents a Student's school in TutorsPet.
  * Guarantees: immutable; is valid as declared in {@link #isValidSchool(String)}
  */
-public class School {
+public class School implements Comparable<School> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Schools should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -42,6 +43,13 @@ public class School {
     @Override
     public String toString() {
         return fullSchoolName;
+    }
+
+    @Override
+    public int compareTo(School other) {
+        String thisSchool = this.fullSchoolName.toLowerCase(Locale.ROOT);
+        String otherSchool = other.fullSchoolName.toLowerCase(Locale.ROOT);
+        return thisSchool.compareTo(otherSchool);
     }
 
     @Override

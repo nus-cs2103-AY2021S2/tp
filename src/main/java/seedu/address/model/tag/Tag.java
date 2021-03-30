@@ -3,11 +3,12 @@ package seedu.address.model.tag;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Locale;
 /**
  * Represents a Tag in TutorsPet.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
-public class Tag {
+public class Tag implements Comparable<Tag> {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
@@ -30,6 +31,11 @@ public class Tag {
      */
     public static boolean isValidTagName(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    @Override
+    public int compareTo(Tag other) {
+        return this.tagName.toLowerCase(Locale.ROOT).compareTo(other.tagName.toLowerCase(Locale.ROOT));
     }
 
     @Override
