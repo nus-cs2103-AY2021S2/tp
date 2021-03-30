@@ -29,6 +29,8 @@ public class EventCard extends UiPart<Region> {
         super(FXML);
         this.event = event;
         description.setText(event.getDescription());
+
+        // TODO: Refactor this
         String timeString = (event.hasTime() ? String.format(", %s", TimeUtil.toUi(event.getTime())) : "");
         datetime.setText(DateUtil.toUi(event.getDate()) + timeString);
     }
