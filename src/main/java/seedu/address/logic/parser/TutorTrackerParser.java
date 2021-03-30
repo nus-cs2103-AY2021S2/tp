@@ -43,6 +43,7 @@ import seedu.address.logic.commands.tutorcommands.EditCommand;
 import seedu.address.logic.commands.tutorcommands.EditNoteCommand;
 import seedu.address.logic.commands.tutorcommands.FindCommand;
 import seedu.address.logic.commands.tutorcommands.ListCommand;
+import seedu.address.logic.commands.tutorcommands.ListNoteCommand;
 import seedu.address.logic.commands.tutorcommands.ViewCommand;
 import seedu.address.logic.parser.appointmentparser.AddAppointmentCommandParser;
 import seedu.address.logic.parser.appointmentparser.DeleteAppointmentCommandParser;
@@ -122,6 +123,9 @@ public class TutorTrackerParser {
 
         case EditNoteCommand.COMMAND_WORD:
             return new EditNoteCommandParser().parse(arguments);
+
+        case ListNoteCommand.COMMAND_WORD:
+            return new ListNoteCommand();
 
         case FavouriteCommand.COMMAND_WORD:
             return new FavouriteCommandParser().parse(arguments);
