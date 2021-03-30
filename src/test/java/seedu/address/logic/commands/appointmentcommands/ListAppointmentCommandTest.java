@@ -4,10 +4,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showAppointmentAtIndex;
 import static seedu.address.testutil.ModelManagerBuilder.ModelType.APPOINTMENTBOOK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-<<<<<<< HEAD
 import static seedu.address.testutil.TypicalTutors.getTypicalTutorBook;
-=======
->>>>>>> ea5229aed0439b3402fac8ee538d20297d6b4b00
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,16 +22,8 @@ public class ListAppointmentCommandTest {
 
     @BeforeEach
     public void setUp() {
-<<<<<<< HEAD
-        model = new ModelManager(getTypicalTutorBook(), new UserPrefs(),
-                getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook());
-        expectedModel = new ModelManager(model.getTutorBook(), new UserPrefs(),
-                model.getAppointmentBook(), model.getBudgetBook(), model.getGradeBook());
-
-=======
         model = ModelManagerBuilder.getModelManager();
         expectedModel = ModelManagerBuilder.getModelManager(model, APPOINTMENTBOOK);
->>>>>>> ea5229aed0439b3402fac8ee538d20297d6b4b00
     }
 
     @Test

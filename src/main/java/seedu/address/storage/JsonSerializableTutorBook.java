@@ -9,9 +9,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.TutorBook;
 import seedu.address.model.ReadOnlyTutorBook;
+import seedu.address.model.TutorBook;
 import seedu.address.model.tutor.Tutor;
+
 
 /**
  * An Immutable TutorBook that is serializable to JSON format.

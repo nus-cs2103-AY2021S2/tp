@@ -12,10 +12,10 @@ import seedu.address.model.event.Event;
 import seedu.address.model.filter.AppointmentFilter;
 import seedu.address.model.filter.TutorFilter;
 import seedu.address.model.grade.Grade;
-import seedu.address.model.tutor.Name;
-import seedu.address.model.tutor.Tutor;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
+import seedu.address.model.tutor.Name;
+import seedu.address.model.tutor.Tutor;
 
 /**
  * The API of the Model component.

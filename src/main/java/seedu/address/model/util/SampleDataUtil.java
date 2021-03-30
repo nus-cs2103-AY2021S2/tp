@@ -4,12 +4,12 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.TutorBook;
 import seedu.address.model.AppointmentBook;
 import seedu.address.model.GradeBook;
-import seedu.address.model.ReadOnlyTutorBook;
 import seedu.address.model.ReadOnlyAppointmentBook;
 import seedu.address.model.ReadOnlyGradeBook;
+import seedu.address.model.ReadOnlyTutorBook;
+import seedu.address.model.TutorBook;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.common.Description;
@@ -17,13 +17,6 @@ import seedu.address.model.common.Title;
 import seedu.address.model.grade.Grade;
 import seedu.address.model.grade.GradeEnum;
 import seedu.address.model.grade.GradedItem;
-import seedu.address.model.tutor.Address;
-import seedu.address.model.tutor.Email;
-import seedu.address.model.tutor.Gender;
-import seedu.address.model.tutor.Name;
-import seedu.address.model.tutor.Notes;
-import seedu.address.model.tutor.Tutor;
-import seedu.address.model.tutor.Phone;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.model.schedule.ScheduleTracker;
@@ -35,6 +28,13 @@ import seedu.address.model.subject.SubjectQualification;
 import seedu.address.model.subject.SubjectRate;
 import seedu.address.model.subject.TutorSubject;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tutor.Address;
+import seedu.address.model.tutor.Email;
+import seedu.address.model.tutor.Gender;
+import seedu.address.model.tutor.Name;
+import seedu.address.model.tutor.Notes;
+import seedu.address.model.tutor.Phone;
+import seedu.address.model.tutor.Tutor;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.

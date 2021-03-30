@@ -20,11 +20,11 @@ import seedu.address.model.event.EventTracker;
 import seedu.address.model.filter.AppointmentFilter;
 import seedu.address.model.filter.TutorFilter;
 import seedu.address.model.grade.Grade;
-import seedu.address.model.tutor.Name;
-import seedu.address.model.tutor.Tutor;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.model.schedule.ScheduleTracker;
+import seedu.address.model.tutor.Name;
+import seedu.address.model.tutor.Tutor;
 
 /**
  * Represents the in-memory model of the tutor book data.

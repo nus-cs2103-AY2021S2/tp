@@ -6,9 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
+import seedu.address.model.subject.SubjectName;
 import seedu.address.model.tutor.Address;
 import seedu.address.model.tutor.Name;
-import seedu.address.model.subject.SubjectName;
 
 
 public class JsonAdaptedAppointment {

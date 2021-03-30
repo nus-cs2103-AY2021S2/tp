@@ -7,9 +7,9 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.common.Description;
 import seedu.address.model.common.Title;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Name;
 import seedu.address.model.schedule.Schedule;
+import seedu.address.model.tutor.Address;
+import seedu.address.model.tutor.Name;
 
 
 public class JsonAdaptedSchedule {

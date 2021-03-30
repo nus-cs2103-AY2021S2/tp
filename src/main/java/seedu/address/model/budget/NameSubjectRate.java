@@ -4,13 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import seedu.address.model.ReadOnlyTutorBook;
-import seedu.address.model.tutor.Name;
-import seedu.address.model.tutor.Tutor;
 import seedu.address.model.subject.SubjectName;
 import seedu.address.model.subject.SubjectRate;
 import seedu.address.model.subject.TutorSubject;
-
-
+import seedu.address.model.tutor.Name;
+import seedu.address.model.tutor.Tutor;
 
 public class NameSubjectRate {
 

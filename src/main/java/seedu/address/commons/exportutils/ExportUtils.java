@@ -5,9 +5,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import seedu.address.commons.exportutils.exceptions.ExportException;
-import seedu.address.model.tutor.Tutor;
 import seedu.address.model.subject.TutorSubject;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tutor.Tutor;
 
 /**
  * Export utilities to help export tutor details
