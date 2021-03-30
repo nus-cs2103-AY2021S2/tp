@@ -1,6 +1,5 @@
 package fooddiary.logic.commands;
 
-import static fooddiary.commons.core.Messages.MESSAGE_ENTRIES_LISTED_OVERVIEW;
 import static fooddiary.commons.core.Messages.MESSAGE_ENTRIES_LISTED_OVERVIEW_WITH_SUGGESTION;
 import static fooddiary.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static fooddiary.testutil.TypicalEntries.ENTRY_C;

@@ -18,9 +18,9 @@ public class Messages {
             + "can be from 0 to 5 both inclusive.";
     public static final String SUGGESTION_MESSAGE_FOR_PRICE = "Suggestion: One or more of the keywords provided "
             + "closely resembles a search for prices. Prices need to be of the form '$INTEGER' or '$INTEGER-INTEGER', "
-            + "where the integers can be from 0 to 999 inclusive";
+            + "where the integers can be from 0 to 999 inclusive.";
     public static final String SUGGESTION_MESSAGE_FOR_RATING_AND_PRICE = "Suggestion: Two or more of the keywords "
             + "provided closely resembles searches for ratings and prices. Ratings need to be of the form 'INTEGER/5', "
             + "where the integer can be from 0 to 5 both inclusive. Prices need to be of the form '$INTEGER' or "
-            + "'$INTEGER-INTEGER', where the integers can be from 0 to 999 inclusive";
+            + "'$INTEGER-INTEGER', where the integers can be from 0 to 999 inclusive.";
 }

@@ -1,6 +1,9 @@
 package fooddiary.model.entry;
 
-import static fooddiary.commons.core.Messages.*;
+import static fooddiary.commons.core.Messages.SUGGESTION_MESSAGE_EMPTY;
+import static fooddiary.commons.core.Messages.SUGGESTION_MESSAGE_FOR_PRICE;
+import static fooddiary.commons.core.Messages.SUGGESTION_MESSAGE_FOR_RATING;
+import static fooddiary.commons.core.Messages.SUGGESTION_MESSAGE_FOR_RATING_AND_PRICE;
 import static fooddiary.model.entry.Price.PRICE_DOLLAR_SIGN;
 import static fooddiary.model.entry.Price.PRICE_RANGE_DASH;
 import static fooddiary.model.entry.Rating.RATING_OUT_OF_FIVE;
