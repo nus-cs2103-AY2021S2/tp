@@ -55,7 +55,7 @@ public class InputCommandStorage {
      * Increments current pointer within inputCommandList
      */
     public static void incrementCurrentPointer() {
-        if (currentPointer < inputCommandList.size() - 1) {
+        if (currentPointer < inputCommandList.size()) {
             currentPointer++;
         }
     }
@@ -73,8 +73,9 @@ public class InputCommandStorage {
      * Returns input at currentPointer index
      */
     public static String getCurrentPointerInput() {
-        return inputCommandList.get(currentPointer);
+        return (currentPointer == inputCommandList.size())
+                ? ""
+                : inputCommandList.get(currentPointer);
     }
-    
 
 }
