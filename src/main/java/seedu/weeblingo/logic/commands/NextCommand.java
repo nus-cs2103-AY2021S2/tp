@@ -17,6 +17,8 @@ public class NextCommand extends Command {
             + "Enter \"end\" to end the quiz, \"check\" to check the answer, "
             + "and \"next\" to move to the next question.";
 
+    public static final String MESSAGE_SCORE_ADDED = "Your score has been recorded:\n";
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -25,9 +27,9 @@ public class NextCommand extends Command {
         }
 
         if (model.getNextFlashcard() == null) {
-            String quizSessionTime = model.getQuizInstance().getQuizSessionDuration();
-            String endOfQuizSessionMessage = "Your quiz session duration is " + quizSessionTime;
-            return new CommandResult(Messages.QUIZ_END_MESSAGE + endOfQuizSessionMessage);
+            String quizStatistics = model.getQuizStatisticString();
+            model.addScore();
+            return new CommandResult(Messages.QUIZ_END_MESSAGE + MESSAGE_SCORE_ADDED + quizStatistics);
         }
 
         model.switchModeQuizSession();
