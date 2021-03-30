@@ -225,7 +225,7 @@ Example:
 
 Adds an issue to the housing management system.
 
-Format: `iadd r/ROOM_NO d/DESCRIPTION [t/TIMESTAMP] [s/STATUS] [c/CATEGORY]`
+Format: `iadd r/ROOM_NO d/DESCRIPTION [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]`
 
 Example:
 * `iadd r/10-100 d/Broken light c/Furniture` Creates an issue for room number `10-100` with description `Broken light` under the category `Furniture`.
@@ -256,7 +256,7 @@ Examples:
 
 Edits the existing issue record at a specified index.
 
-Format: `iedit INDEX [r/ROOM] [d/DESCRIPTION] [t/TIMESTAMP] [s/STATUS] [c/CATEGORY]`
+Format: `iedit INDEX [r/ROOM] [d/DESCRIPTION] [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]`
 * `INDEX` refers to the index number shown in the displayed issue list. `INDEX` **must be a positive integer 1, 2, 3, …**.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -265,15 +265,15 @@ Example:
 * `iedit 1 r/20-109 s/Closed` Edits the room number and status of the 1st issue to be `20-109` and `Closed` respectively.
 
 
-### Close an issue : `iclose`
+### Close an issue : `icol`
 
 Marks as closed the issue at a specified index.
 
-Format: `iclose INDEX`
+Format: `icol INDEX`
 * `INDEX` refers to the index number shown in the displayed issue list. `INDEX` **must be a positive integer 1, 2, 3, …**.
 
 Example:
-* `iclose 1` Closes the 1st issue.
+* `icol 1` Closes the 1st issue.
 
 
 ### Delete an issue : `idel`
@@ -327,11 +327,17 @@ Example usage:
 
 ### Save the data
 
-SunRez data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+SunRez main application data and command history are saved in the hard disk automatically after any command 
+that changes the data. There is no need to save manually.
 
-### Edit the data file
+### Edit the data files
 
-SunRez data is saved as a JSON file `[JAR file location]/data/sunrez.json`. Advanced users are welcome to update data directly by editing that data file.
+* SunRez main application data is saved as a JSON file `[JAR_file_location]/data/sunrez.json`.
+* SunRez command history is saved as a plain-text file `[JAR_file_location]/data/commandhistory.txt`.
+    * Each command history entry is a single line in the file.
+    * The entire command history can be cleared by simply deleting the contents of the command history file. 
+
+Advanced users are welcome to edit these files directly.
 
 <div markdown="span" class="alert alert-warning">
 **Caution**: <br>
@@ -343,7 +349,8 @@ If your changes to the data file makes its format invalid, SunRez will discard a
 ## FAQ
 
 **Q**: How do I transfer my data to another computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **SunRez** home folder.
+**A**: Install the app on the other computer and overwrite the empty data files it creates with the files 
+from your previous **SunRez** home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -365,11 +372,11 @@ Action | Format, Examples
 **Delete a room** | `odel INDEX` <br> e.g. `odel 1`
 **Allocate a Resident to Room** | `alloc n/NAME r/ROOM_NO` <br> e.g. `alloc n/John Tan r/03-100` 
 **Deallocate a Resident from Room** | `dealloc n/NAME r/ROOM_NO` <br> e.g. `dealloc n/John Tan r/03-100`
-**Add an open issue** | `iadd r/ROOM_NO d/DESCRIPTION [t/TIMESTAMP] [s/STATUS] [c/CATEGORY]` <br> e.g. `iadd r/10-100 d/Broken light c/Furniture`
+**Add an open issue** | `iadd r/ROOM_NO d/DESCRIPTION [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]` <br> e.g. `iadd r/10-100 d/Broken light c/Furniture g/HIGH`
 **List all issues** | `ilist`
 **Find issues** | `ifind KEYWORD [MORE_KEYWORDS]` <br> e.g. `ifind wardrobe table`
-**Edit an issue record** | `iedit INDEX [r/ROOM] [d/DESCRIPTION] [t/TIMESTAMP] [s/STATUS] [c/CATEGORY]` <br> e.g. `iedit 1 r/20-109 s/Closed`
-**Close an issue** | `iclose INDEX` <br> e.g. `iclose 1`
+**Edit an issue record** | `iedit INDEX [r/ROOM] [d/DESCRIPTION] [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]` <br> e.g. `iedit 1 r/20-109 s/Closed`
+**Close an issue** | `icol INDEX` <br> e.g. `icol 1`
 **Delete an issue** | `idel INDEX` <br> e.g. `idel 1`
 **View command history** | `history [COUNT]` <br> e.g. `history 5`
 **Add alias** | `alias a/ALIAS_NAME cmd/COMMAND` <br> e.g. `alias a/il cmd/ilist`

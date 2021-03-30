@@ -5,11 +5,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESTAMP;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ISSUES;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -24,6 +28,7 @@ import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.RoomNumber;
 import seedu.address.model.issue.Status;
 import seedu.address.model.issue.Timestamp;
+import seedu.address.model.tag.Tag;
 
 /**
  * Edits the details of an existing issue in the address book.
@@ -40,7 +45,8 @@ public class EditIssueCommand extends Command {
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_TIMESTAMP + "TIMESTAMP] "
             + "[" + PREFIX_STATUS + "STATUS] "
-            + "[" + PREFIX_CATEGORY + "CATEGORY]\n"
+            + "[" + PREFIX_CATEGORY + "CATEGORY]"
+            + "[" + PREFIX_TAG + "TAG]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DESCRIPTION + "Broken window "
             + PREFIX_CATEGORY + "Window";
@@ -94,8 +100,10 @@ public class EditIssueCommand extends Command {
         Timestamp updatedTimestamp = editIssueDescriptor.getTimestamp().orElse(issueToEdit.getTimestamp());
         Status updatedStatus = editIssueDescriptor.getStatus().orElse(issueToEdit.getStatus());
         Category updatedCategory = editIssueDescriptor.getCategory().orElse(issueToEdit.getCategory());
+        Set<Tag> updatedTags = editIssueDescriptor.getTags().orElse(issueToEdit.getTags());
 
-        return new Issue(updatedRoomNumber, updatedDescription, updatedTimestamp, updatedStatus, updatedCategory);
+        return new Issue(updatedRoomNumber, updatedDescription, updatedTimestamp, updatedStatus, updatedCategory,
+                updatedTags);
     }
 
     @Override
@@ -126,6 +134,7 @@ public class EditIssueCommand extends Command {
         private Timestamp timestamp;
         private Status status;
         private Category category;
+        private Set<Tag> tags;
 
         public EditIssueDescriptor() {
         }
@@ -140,13 +149,14 @@ public class EditIssueCommand extends Command {
             setTimestamp(toCopy.timestamp);
             setStatus(toCopy.status);
             setCategory(toCopy.category);
+            setTags(toCopy.tags);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(roomNumber, description, timestamp, status, category);
+            return CollectionUtil.isAnyNonNull(roomNumber, description, timestamp, status, category, tags);
         }
 
         public void setRoomNumber(RoomNumber name) {
@@ -198,6 +208,23 @@ public class EditIssueCommand extends Command {
             return Optional.ofNullable(category);
         }
 
+        /**
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public Optional<Set<Tag>> getTags() {
+            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -217,7 +244,8 @@ public class EditIssueCommand extends Command {
                     && getDescription().equals(e.getDescription())
                     && getTimestamp().equals(e.getTimestamp())
                     && getStatus().equals(e.getStatus())
-                    && getCategory().equals(e.getCategory());
+                    && getCategory().equals(e.getCategory())
+                    && getTags().equals(e.getTags());
         }
     }
 }

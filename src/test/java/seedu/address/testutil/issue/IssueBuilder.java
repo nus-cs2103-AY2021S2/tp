@@ -1,11 +1,15 @@
 package seedu.address.testutil.issue;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import seedu.address.model.issue.Category;
 import seedu.address.model.issue.Description;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.RoomNumber;
 import seedu.address.model.issue.Status;
 import seedu.address.model.issue.Timestamp;
+import seedu.address.model.tag.Tag;
 
 /**
  * A utility class to help with building Issue objects.
@@ -22,6 +26,7 @@ public class IssueBuilder {
     private Timestamp timestamp;
     private Status status;
     private Category category;
+    private Set<Tag> tags = new HashSet<>();
 
     /**
      * Creates a {@code IssueBuilder} with the default details.
@@ -43,6 +48,7 @@ public class IssueBuilder {
         this.timestamp = issueToCopy.getTimestamp();
         this.status = issueToCopy.getStatus();
         this.category = issueToCopy.getCategory();
+        this.tags = new HashSet<>();
     }
 
     /**
@@ -91,7 +97,7 @@ public class IssueBuilder {
      * @return Issue with properties issued through the various methods of the {@code IssueBuilder} class
      */
     public Issue build() {
-        return new Issue(roomNumber, description, timestamp, status, category);
+        return new Issue(roomNumber, description, timestamp, status, category, tags);
     }
 
 }

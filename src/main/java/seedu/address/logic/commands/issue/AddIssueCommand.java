@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESTAMP;
 
 import seedu.address.logic.commands.Command;
@@ -26,13 +27,15 @@ public class AddIssueCommand extends Command {
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + "[" + PREFIX_TIMESTAMP + "TIMESTAMP] "
             + "[" + PREFIX_STATUS + "STATUS] "
-            + "[" + PREFIX_CATEGORY + "CATEGORY]\n"
+            + "[" + PREFIX_CATEGORY + "CATEGORY] "
+            + "[" + PREFIX_TAG + "TAG] \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ROOM_NUMBER + "10-100 "
             + PREFIX_DESCRIPTION + "Broken light "
             + PREFIX_TIMESTAMP + "2020/01/12 3:30pm "
             + PREFIX_STATUS + "pending "
-            + PREFIX_CATEGORY + "furniture";
+            + PREFIX_CATEGORY + "furniture "
+            + PREFIX_TAG + "HIGH";
 
     public static final String MESSAGE_SUCCESS = "New issue added: %1$s";
 
