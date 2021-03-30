@@ -5,8 +5,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INSURANCE;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.AddPlanCommand;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.PlanCommand;
 import seedu.address.logic.commands.RemovePlanCommand;
 import seedu.address.logic.parser.exceptions.ParseException;

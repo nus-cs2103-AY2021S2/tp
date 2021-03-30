@@ -142,14 +142,14 @@ public class JsonAdaptedPersonTest {
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
-//    @Test
-//    public void toModelType_invalidBirthdate_throwsIllegalValueException() {
-//        JsonAdaptedPerson person =
-//                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_GENDER,
-//                        INVALID_BIRTHDATE,VALID_TAGS, VALID_MEETING, VALID_PLANS);
-//        String expectedMessage = Birthdate.MESSAGE_CONSTRAINTS;
-//        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-//    }
+    //    @Test
+    //    public void toModelType_invalidBirthdate_throwsIllegalValueException() {
+    //        JsonAdaptedPerson person =
+    //                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_GENDER,
+    //                        INVALID_BIRTHDATE, VALID_TAGS, VALID_MEETING, VALID_PLANS);
+    //        String expectedMessage = Birthdate.MESSAGE_CONSTRAINTS;
+    //        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    //    }
 
     @Test
     public void toModelType_nullBirthdate_throwsIllegalValueException() {
@@ -180,26 +180,26 @@ public class JsonAdaptedPersonTest {
         assertThrows(IllegalArgumentException.class, person::toModelType);
     }
 
-        @Test
-        public void toModelType_nullMeeting_success() throws Exception {
-            List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
-            invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
-            Person person;
-            person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_GENDER,
-                    VALID_BIRTHDATE, VALID_TAGS, null, VALID_PLANS)
-                    .toModelType();
-            assertEquals(BENSON, person);
-        }
+    @Test
+    public void toModelType_nullMeeting_success() throws Exception {
+        List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
+        invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
+        Person person;
+        person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_GENDER,
+                VALID_BIRTHDATE, VALID_TAGS, null, VALID_PLANS)
+                .toModelType();
+        assertEquals(BENSON, person);
+    }
 
-        @Test
-        public void toModelType_validMeeting_success() throws Exception {
-            List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
-            invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
-            Person person;
-            person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_GENDER,
-                    VALID_BIRTHDATE, VALID_TAGS, VALID_MEETING, VALID_PLANS)
-                    .toModelType();
-            assertEquals(BENSON.setMeeting(Optional.ofNullable(MEETING_PRANK)), person);
-        }
+    @Test
+    public void toModelType_validMeeting_success() throws Exception {
+        List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
+        invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
+        Person person;
+        person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_GENDER,
+                VALID_BIRTHDATE, VALID_TAGS, VALID_MEETING, VALID_PLANS)
+                .toModelType();
+        assertEquals(BENSON.setMeeting(Optional.ofNullable(MEETING_PRANK)), person);
+    }
 
 }
