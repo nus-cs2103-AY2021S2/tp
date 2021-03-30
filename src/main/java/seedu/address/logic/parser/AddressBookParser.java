@@ -12,8 +12,11 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.alias.AliasCommand;
+import seedu.address.logic.commands.alias.ListAliasCommand;
+import seedu.address.logic.commands.alias.UnaliasCommand;
 import seedu.address.logic.commands.commandhistory.ViewHistoryCommand;
 import seedu.address.logic.commands.issue.AddIssueCommand;
+import seedu.address.logic.commands.issue.CloseIssueCommand;
 import seedu.address.logic.commands.issue.DeleteIssueCommand;
 import seedu.address.logic.commands.issue.EditIssueCommand;
 import seedu.address.logic.commands.issue.FindIssueCommand;
@@ -31,9 +34,14 @@ import seedu.address.logic.commands.room.DeleteRoomCommand;
 import seedu.address.logic.commands.room.EditRoomCommand;
 import seedu.address.logic.commands.room.FindRoomCommand;
 import seedu.address.logic.commands.room.ListRoomCommand;
+import seedu.address.logic.commands.undoredo.RedoCommand;
+import seedu.address.logic.commands.undoredo.UndoCommand;
+import seedu.address.logic.parser.alias.AliasCommandParser;
+import seedu.address.logic.parser.alias.UnaliasCommandParser;
 import seedu.address.logic.parser.commandhistory.ViewHistoryCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.issue.AddIssueCommandParser;
+import seedu.address.logic.parser.issue.CloseIssueCommandParser;
 import seedu.address.logic.parser.issue.DeleteIssueCommandParser;
 import seedu.address.logic.parser.issue.EditIssueCommandParser;
 import seedu.address.logic.parser.issue.FindIssueCommandParser;
@@ -135,6 +143,9 @@ public class AddressBookParser {
         case DeleteIssueCommand.COMMAND_WORD:
             return new DeleteIssueCommandParser().parse(arguments);
 
+        case CloseIssueCommand.COMMAND_WORD:
+            return new CloseIssueCommandParser().parse(arguments);
+
         // ====== System Commands ======
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -145,11 +156,24 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+        case ViewHistoryCommand.COMMAND_WORD:
+            return new ViewHistoryCommandParser().parse(arguments);
+
+        // ====== Alias Commands ======
         case AliasCommand.COMMAND_WORD:
             return new AliasCommandParser().parse(arguments);
 
-        case ViewHistoryCommand.COMMAND_WORD:
-            return new ViewHistoryCommandParser().parse(arguments);
+        case UnaliasCommand.COMMAND_WORD:
+            return new UnaliasCommandParser().parse(arguments);
+
+        case ListAliasCommand.COMMAND_WORD:
+            return new ListAliasCommand();
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
+
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
 
         default:
             if (readOnlyUserPrefs.containsAlias(commandWord)) {

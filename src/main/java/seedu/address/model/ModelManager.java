@@ -24,6 +24,7 @@ import seedu.address.model.resident.Resident;
 import seedu.address.model.residentroom.ResidentRoom;
 import seedu.address.model.room.Room;
 import seedu.address.model.room.RoomNumber;
+import seedu.address.model.undoredo.StatefulAddressBook;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -31,7 +32,7 @@ import seedu.address.model.room.RoomNumber;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final StatefulAddressBook statefulAddressBook;
     private final UserPrefs userPrefs;
     private final CommandHistory commandHistory;
     private final FilteredList<Resident> filteredResidents;
@@ -50,12 +51,14 @@ public class ModelManager implements Model {
         logger.fine("Initializing with address book: " + addressBook + ", user prefs " + userPrefs
                 + " and command history " + commandHistory);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.statefulAddressBook = new StatefulAddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredResidents = new FilteredList<>(this.addressBook.getResidentList());
-        filteredRooms = new FilteredList<>(this.addressBook.getRoomList());
-        filteredResidentRooms = new FilteredList<>(this.addressBook.getResidentRoomList());
-        filteredIssues = new FilteredList<>(this.addressBook.getIssueList());
+
+        filteredResidents = new FilteredList<>(this.statefulAddressBook.getResidentList());
+        filteredRooms = new FilteredList<>(this.statefulAddressBook.getRoomList());
+        filteredResidentRooms = new FilteredList<>(this.statefulAddressBook.getResidentRoomList());
+        filteredIssues = new FilteredList<>(this.statefulAddressBook.getIssueList());
+
         this.commandHistory = new CommandHistory(commandHistory);
     }
 
@@ -109,12 +112,12 @@ public class ModelManager implements Model {
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+        this.statefulAddressBook.resetData(addressBook);
     }
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+        return statefulAddressBook;
     }
 
     // =========== Resident =============================================================
@@ -122,23 +125,23 @@ public class ModelManager implements Model {
     @Override
     public boolean hasResident(Resident resident) {
         requireNonNull(resident);
-        return addressBook.hasResident(resident);
+        return statefulAddressBook.hasResident(resident);
     }
 
     @Override
     public boolean hasResident(Name name) {
         requireNonNull(name);
-        return addressBook.hasResident(name);
+        return statefulAddressBook.hasResident(name);
     }
 
     @Override
     public void deleteResident(Resident target) {
-        addressBook.removeResident(target);
+        statefulAddressBook.removeResident(target);
     }
 
     @Override
     public void addResident(Resident resident) {
-        addressBook.addResident(resident);
+        statefulAddressBook.addResident(resident);
         updateFilteredResidentList(PREDICATE_SHOW_ALL_RESIDENTS);
     }
 
@@ -146,7 +149,7 @@ public class ModelManager implements Model {
     public void setResident(Resident target, Resident editedResident) {
         requireAllNonNull(target, editedResident);
 
-        addressBook.setResident(target, editedResident);
+        statefulAddressBook.setResident(target, editedResident);
     }
 
     @Override
@@ -189,31 +192,31 @@ public class ModelManager implements Model {
     @Override
     public boolean hasRoom(Room room) {
         requireNonNull(room);
-        return addressBook.hasRoom(room);
+        return statefulAddressBook.hasRoom(room);
     }
 
     @Override
     public boolean hasRoom(RoomNumber roomNumber) {
         requireNonNull(roomNumber);
-        return addressBook.hasRoom(roomNumber);
+        return statefulAddressBook.hasRoom(roomNumber);
     }
 
     @Override
     public void addRoom(Room room) {
-        addressBook.addRoom(room);
+        statefulAddressBook.addRoom(room);
         updateFilteredRoomList(PREDICATE_SHOW_ALL_ROOMS);
     }
 
     @Override
     public void deleteRoom(Room target) {
-        addressBook.removeRoom(target);
+        statefulAddressBook.removeRoom(target);
     }
 
     @Override
     public void setRoom(Room target, Room editedRoom) {
         requireAllNonNull(target, editedRoom);
 
-        addressBook.setRoom(target, editedRoom);
+        statefulAddressBook.setRoom(target, editedRoom);
     }
 
     @Override
@@ -257,31 +260,31 @@ public class ModelManager implements Model {
     @Override
     public boolean hasEitherResidentRoom(ResidentRoom residentRoom) {
         requireNonNull(residentRoom);
-        return addressBook.hasEitherResidentRoom(residentRoom);
+        return statefulAddressBook.hasEitherResidentRoom(residentRoom);
     }
 
     @Override
     public boolean hasBothResidentRoom(ResidentRoom residentRoom) {
         requireNonNull(residentRoom);
-        return addressBook.hasBothResidentRoom(residentRoom);
+        return statefulAddressBook.hasBothResidentRoom(residentRoom);
     }
 
     @Override
     public void addResidentRoom(ResidentRoom residentRoom) {
-        addressBook.addResidentRoom(residentRoom);
+        statefulAddressBook.addResidentRoom(residentRoom);
         updateFilteredResidentRoomList(PREDICATE_SHOW_ALL_RESIDENTROOMS);
     }
 
     @Override
     public void deleteResidentRoom(ResidentRoom target) {
-        addressBook.removeResidentRoom(target);
+        statefulAddressBook.removeResidentRoom(target);
     }
 
     @Override
     public void setResidentRoom(ResidentRoom target, ResidentRoom editedResidentRoom) {
         requireAllNonNull(target, editedResidentRoom);
 
-        addressBook.setResidentRoom(target, editedResidentRoom);
+        statefulAddressBook.setResidentRoom(target, editedResidentRoom);
     }
 
     // =========== Filtered ResidentRoom List Accessors =============================================================
@@ -315,12 +318,12 @@ public class ModelManager implements Model {
     // =========== Issues =====================================================================================
     @Override
     public void deleteIssue(Issue target) {
-        addressBook.removeIssue(target);
+        statefulAddressBook.removeIssue(target);
     }
 
     @Override
     public void addIssue(Issue issue) {
-        addressBook.addIssue(issue);
+        statefulAddressBook.addIssue(issue);
         updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);
     }
 
@@ -328,7 +331,7 @@ public class ModelManager implements Model {
     public void setIssue(Issue target, Issue editedIssue) {
         requireAllNonNull(target, editedIssue);
 
-        addressBook.setIssue(target, editedIssue);
+        statefulAddressBook.setIssue(target, editedIssue);
     }
 
     // =========== Filtered Issue List Accessors =============================================================
@@ -363,7 +366,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return statefulAddressBook.equals(other.statefulAddressBook)
                 && userPrefs.equals(other.userPrefs)
                 && commandHistory.equals(other.commandHistory)
                 && filteredResidents.equals(other.filteredResidents)
@@ -371,7 +374,7 @@ public class ModelManager implements Model {
                 && filteredIssues.equals(other.filteredIssues);
     }
 
-    //=========== Alias =============================================================
+    // =========== Alias =============================================================
     @Override
     public AliasMapping getAliasMapping() {
         return userPrefs.getAliasMapping();
@@ -386,5 +389,36 @@ public class ModelManager implements Model {
     @Override
     public void addAlias(Alias alias) {
         userPrefs.addAlias(alias);
+    }
+
+    @Override
+    public void deleteAlias(String aliasName) {
+        userPrefs.deleteAlias(aliasName);
+    }
+
+    //=========== Undo/Redo =============================================================
+    @Override
+    public boolean canUndoAddressBook() {
+        return statefulAddressBook.canUndo();
+    }
+
+    @Override
+    public void undoAddressBook() {
+        statefulAddressBook.undo();
+    }
+
+    @Override
+    public void commitAddressBook() {
+        statefulAddressBook.commit();
+    }
+
+    @Override
+    public boolean canRedoAddressBook() {
+        return statefulAddressBook.canRedo();
+    }
+
+    @Override
+    public void redoAddressBook() {
+        statefulAddressBook.redo();
     }
 }

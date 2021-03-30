@@ -5,8 +5,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESTAMP;
 
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.issue.AddIssueCommand;
@@ -23,6 +25,7 @@ import seedu.address.model.issue.IssueStatus;
 import seedu.address.model.issue.RoomNumber;
 import seedu.address.model.issue.Status;
 import seedu.address.model.issue.Timestamp;
+import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddIssueCommand object
@@ -37,7 +40,7 @@ public class AddIssueCommandParser implements Parser<AddIssueCommand> {
      */
     public AddIssueCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ROOM_NUMBER, PREFIX_DESCRIPTION,
-                PREFIX_TIMESTAMP, PREFIX_STATUS, PREFIX_CATEGORY);
+                PREFIX_TIMESTAMP, PREFIX_STATUS, PREFIX_CATEGORY, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_ROOM_NUMBER, PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -52,8 +55,9 @@ public class AddIssueCommandParser implements Parser<AddIssueCommand> {
                 .parseStatus(argMultimap.getValue(PREFIX_STATUS).orElse(IssueStatus.Pending.toString()));
         Category category = ParserUtil
                 .parseCategory(argMultimap.getValue(PREFIX_CATEGORY).orElse(Category.NO_CATEGORY_NAME));
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Issue issue = new Issue(roomNumber, description, timestamp, status, category);
+        Issue issue = new Issue(roomNumber, description, timestamp, status, category, tagList);
 
         return new AddIssueCommand(issue);
     }

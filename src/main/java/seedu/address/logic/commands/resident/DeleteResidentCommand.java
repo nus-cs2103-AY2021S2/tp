@@ -51,6 +51,7 @@ public class DeleteResidentCommand extends Command {
         }
 
         model.deleteResident(residentToDelete);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_DELETE_RESIDENT_SUCCESS, residentToDelete)).setResidentCommand();
     }
 

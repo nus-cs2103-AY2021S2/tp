@@ -1,7 +1,10 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.issue.Issue;
@@ -37,6 +40,8 @@ public class IssueCard extends UiPart<Region> {
     private Label status;
     @FXML
     private Label category;
+    @FXML
+    private FlowPane tags;
 
     /**
      * Creates a {@code IssueCode} with the given {@code Issue} and index to display.
@@ -50,6 +55,9 @@ public class IssueCard extends UiPart<Region> {
         timestamp.setText(issue.getTimestamp().toString());
         status.setText(issue.getStatus().value.toString());
         category.setText(issue.getCategory().value);
+        issue.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override

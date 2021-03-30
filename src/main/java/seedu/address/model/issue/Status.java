@@ -34,6 +34,16 @@ public class Status {
     }
 
     /**
+     * Constructs a {@code Status}.
+     *
+     * @param status A valid status.
+     */
+    public Status(IssueStatus status) {
+        requireNonNull(status);
+        this.value = status;
+    }
+
+    /**
      * Returns true if a given string is a valid status.
      */
     public static boolean isValidStatus(String test) {

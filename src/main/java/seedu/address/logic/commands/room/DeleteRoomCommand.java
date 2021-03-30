@@ -50,6 +50,7 @@ public class DeleteRoomCommand extends Command {
         }
 
         model.deleteRoom(roomToDelete);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_DELETE_ROOM_SUCCESS, roomToDelete));
     }
 

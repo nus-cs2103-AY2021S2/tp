@@ -2,7 +2,6 @@ package seedu.address;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Locale;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -22,6 +21,8 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.commandhistory.CommandHistory;
+import seedu.address.model.commandhistory.ReadOnlyCommandHistory;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
@@ -29,6 +30,8 @@ import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.commandhistory.CommandHistoryStorage;
+import seedu.address.storage.commandhistory.PlainTextCommandHistoryStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -52,16 +55,15 @@ public class MainApp extends Application {
         logger.info("=============================[ Initializing AddressBook ]===========================");
         super.init();
 
-        Locale sgLocale = new Locale("en", "SG");
-        Locale.setDefault(sgLocale);
-
         AppParameters appParameters = AppParameters.parse(getParameters());
         config = initConfig(appParameters.getConfigPath());
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        CommandHistoryStorage commandHistoryStorage = new PlainTextCommandHistoryStorage(
+                userPrefs.getCommandHistoryFilePath());
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, commandHistoryStorage);
 
         initLogging(config);
 
@@ -73,9 +75,14 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
+     * Returns a {@code ModelManager} with the data from {@code storage}'s address book, {@code storage}'s
+     * command history, and {@code userPrefs}. <br>
+     *
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book. <br>
+     *
+     * An empty command history will be used if {@code storage}'s command history is not found or if errors occur
+     * when reading {@code storage}'s command history.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
@@ -94,7 +101,20 @@ public class MainApp extends Application {
             initialData = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        ReadOnlyCommandHistory initialCommandHistory;
+        try {
+            Optional<ReadOnlyCommandHistory> commandHistoryOptional = storage.readCommandHistory();
+            if (commandHistoryOptional.isEmpty()) {
+                logger.info("Command history file not found. Will be starting with an empty CommandHistory.");
+            }
+            initialCommandHistory = commandHistoryOptional.orElse(new CommandHistory());
+        } catch (IOException e) {
+            logger.warning("Problem while reading from command history file. "
+                    + "Will be starting with an empty CommandHistory.");
+            initialCommandHistory = new CommandHistory();
+        }
+
+        return new ModelManager(initialData, userPrefs, initialCommandHistory);
     }
 
     private void initLogging(Config config) {
