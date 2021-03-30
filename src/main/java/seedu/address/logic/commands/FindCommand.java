@@ -30,9 +30,9 @@ public class FindCommand extends Command {
             + "Use '&' to find for multiple search terms.\n"
             + "Specify attributes by typing '-[ATTRIBUTE] after keywords\n"
             + "Keywords cannot be empty.\n"
-            + "Parameters: FLAG/KEYWORD [& MORE_KEYWORDS]... [-ATTRIBUTE]... (attributes must be policy, "
-            + "phone or email)\n"
-            + "Example: " + COMMAND_WORD + " e/alice@mail.com & bob@mail.com -address -policy";
+            + "Parameters: FLAG/KEYWORD [& MORE_KEYWORDS]... [-ATTRIBUTE]... (attributes must be i for policy, p for phone, e for email or"
+            + " a for address)\n"
+            + "Example: " + COMMAND_WORD + " e/alice@mail.com & bob@mail.com -a -i";
 
     private final Predicate<Person> predicate;
 

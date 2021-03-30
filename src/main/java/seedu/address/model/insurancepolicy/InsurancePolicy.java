@@ -13,7 +13,7 @@ public class InsurancePolicy {
 
     public static final String MESSAGE_CONSTRAINTS = "PolicyIDs should not contain '>'!. URLs should be "
             + "preceded by '>' after the PolicyID.";
-
+    public static final String MESSAGE_NO_POLICY = "Currently does not have an active policy";
     public final String policyId;
     private String policyUrl;
 
