@@ -2,6 +2,9 @@ package seedu.address.logic.commands.tutorcommands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -9,9 +12,9 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ViewTutorPredicate;
 
-import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * List all Tutors with notes
+ */
 public class ListNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "list_note";

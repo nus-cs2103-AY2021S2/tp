@@ -1,5 +1,12 @@
 package seedu.address.logic.commands.tutorcommands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.tutorcommands.EditCommand.EditPersonDescriptor;
+import static seedu.address.logic.commands.tutorcommands.EditCommand.createEditedPerson;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -7,13 +14,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.commands.tutorcommands.EditCommand.createEditedPerson;
-import static seedu.address.logic.commands.tutorcommands.EditCommand.EditPersonDescriptor;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
+/**
+ * Deletes a note from a Tutor in the TutorBook
+ */
 public class DeleteNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete_note";
@@ -30,6 +33,10 @@ public class DeleteNoteCommand extends Command {
 
     private final EditPersonDescriptor editPersonDescriptor;
 
+    /**
+     * @param targetIndex of the Tutor
+     * @param editPersonDescriptor with a descriptor of an empty note
+     */
     public DeleteNoteCommand (Index targetIndex, EditPersonDescriptor editPersonDescriptor) {
         this.targetIndex = targetIndex;
         this.editPersonDescriptor = editPersonDescriptor;
