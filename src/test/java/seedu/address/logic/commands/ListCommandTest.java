@@ -4,6 +4,8 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_SESSIONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TUTORS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -42,4 +44,21 @@ public class ListCommandTest {
                 PREDICATE_SHOW_ALL_SESSIONS, "persons"), model,
                 ListCommand.MESSAGE_SUCCESS_PERSONS, expectedModel);
     }
+
+    @Test
+    public void execute_showAllStudents_success() {
+        expectedModel.updateFilteredPersonList(PREDICATE_SHOW_ALL_STUDENTS);
+        assertCommandSuccess(new ListCommand(PREDICATE_SHOW_ALL_STUDENTS,
+                        PREDICATE_SHOW_ALL_SESSIONS, "students"),
+                model, ListCommand.MESSAGE_SUCCESS_STUDENTS, expectedModel);
+    }
+
+    @Test
+    public void execute_showAllTutors_emptyList() {
+        expectedModel.updateFilteredPersonList(PREDICATE_SHOW_ALL_TUTORS);
+        assertCommandSuccess(new ListCommand(PREDICATE_SHOW_ALL_TUTORS,
+                        PREDICATE_SHOW_ALL_SESSIONS, "tutors"),
+                model, ListCommand.MESSAGE_EMPTY_TUTOR_LIST, expectedModel);
+    }
+
 }
