@@ -334,33 +334,35 @@ Want to see which items you are running out of or which items you have to consum
 
 You can use this command in 3 different ways.
 
-* #### 3.8.1. Sorting items by ascending quantity
-  Format: `sort quantity asc`
+* #### 3.8.1. Sorting items by quantity
 
-  <div markdown="block" class="alert alert-info">
+    * ##### 3.8.1.1. Ascending quantity
+      Format: `sort quantity asc`
 
-  **:information_source: Note about the sort by ascending quantity command:**
+      <div markdown="block" class="alert alert-info">
 
-    * `quantity` is case-insensitive. Keying in `sort QUANTITY asc` is also a valid command.
-  </div>
+      **:information_source: Note about the sort by ascending quantity command:**
 
-  Example:
-    * `sort quantity asc` sorts the items in the displayed list in ascending order of quantity.
+        * `quantity` is case-insensitive. Keying in `sort QUANTITY asc` is also a valid command.
+      </div>
 
-* #### 3.8.2. Sorting items by descending quantity
-  Format: `sort quantity desc`
+      Example:
+        * `sort quantity asc` sorts the items in the displayed list in ascending order of quantity.
 
-  <div markdown="block" class="alert alert-info">
+    * ##### 3.8.1.2 Descending quantity
+      Format: `sort quantity desc`
 
-  **:information_source: Note about the sort by descending quantity command:**
+      <div markdown="block" class="alert alert-info">
 
-    * `quantity` is case-insensitive. Keying in `sort QUANTITY desc` is also a valid command.
-  </div>
+      **:information_source: Note about the sort by descending quantity command:**
 
-  Example:
-    * `sort quantity desc` sorts the items in the displayed list in descending order of quantity.
+        * `quantity` is case-insensitive. Keying in `sort QUANTITY desc` is also a valid command.
+      </div>
 
-* #### 3.8.3. Sorting items by expiry date
+      Example:
+        * `sort quantity desc` sorts the items in the displayed list in descending order of quantity.
+
+* #### 3.8.2. Sorting items by expiry date
   Format: `sort expirydate`
 
   <div markdown="block" class="alert alert-info">
