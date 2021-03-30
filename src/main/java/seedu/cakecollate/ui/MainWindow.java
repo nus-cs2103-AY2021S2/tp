@@ -5,11 +5,13 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.cakecollate.commons.core.GuiSettings;
@@ -38,7 +40,9 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private Panel orderPanel;
     private Panel helpPanel;
+    private OrderItemListTable orderItemTable;
     private Button helpPanelToMain;
+    private Node models;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -50,10 +54,16 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane listPanelPlaceholder;
 
     @FXML
+    private StackPane orderItemTablePlaceholder;
+
+    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private HBox modelBox;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -123,6 +133,13 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        orderPanel = new OrderListPanel(logic.getFilteredOrderList());
+        listPanelPlaceholder.getChildren().add(orderPanel.getRoot());
+
+        // add wherever you're getting the orderItem filteredOrderList here
+        // orderItemTable = new OrderItemListTable(*filtered order list*);
+        orderItemTablePlaceholder.getChildren().add(orderItemTable.getRoot());
     }
 
     void updateDeliveryStatuses() throws ParseException, CommandException {
@@ -130,11 +147,6 @@ public class MainWindow extends UiPart<Stage> {
         if (!deliveryStatus.isEmpty()) {
             executeCommand(logic.updateDeliveryStatus());
         }
-    }
-
-    void fillOrderListPanel() {
-        orderPanel = new OrderListPanel(logic.getFilteredOrderList());
-        listPanelPlaceholder.getChildren().add(orderPanel.getRoot());
     }
 
     void initialiseHelpPanelAndButton() {
@@ -149,15 +161,22 @@ public class MainWindow extends UiPart<Stage> {
      * Transitions from the help window to the the main order list.
      */
     public void resetMainWindow() {
-        listPanelPlaceholder.getChildren().remove(0);
-        fillOrderListPanel();
-
-        resultDisplayPlaceholder.getChildren().remove(1);
+        replaceHelpPanelWithModels();
+        removeHelpButtonFromDisplay();
 
         logger.info("Result: " + HelpCommand.SHOWING_RETURN_MESSAGE);
         resultDisplay.setFeedbackToUser(HelpCommand.SHOWING_RETURN_MESSAGE);
 
         inHelp = false;
+    }
+
+    void replaceHelpPanelWithModels() {
+        modelBox.getChildren().remove(0);
+        modelBox.getChildren().add(models);
+    }
+
+    void removeHelpButtonFromDisplay() {
+        resultDisplayPlaceholder.getChildren().remove(1);
     }
 
     /**
@@ -179,14 +198,26 @@ public class MainWindow extends UiPart<Stage> {
     public void handleHelp() {
         if (!inHelp) {
             inHelp = true;
-
-            listPanelPlaceholder.getChildren().remove(0);
-            listPanelPlaceholder.getChildren().add(helpPanel.getRoot());
-
-            helpPanelToMain.setPrefWidth(resultDisplayPlaceholder.getWidth());
-            resultDisplayPlaceholder.getChildren().add(helpPanelToMain);
-            StackPane.setAlignment(helpPanelToMain, Pos.BOTTOM_CENTER);
+            removeModelsFromDisplay();
+            replaceModelsWithHelpPanel();
+            addHelpButtonToDisplay();
         }
+    }
+
+    private void removeModelsFromDisplay() {
+        models = modelBox.getChildren().get(0);
+        modelBox.getChildren().remove(0);
+    }
+
+    private void replaceModelsWithHelpPanel() {
+        helpPanel.getRoot().setPrefWidth(modelBox.getWidth());
+        modelBox.getChildren().add(helpPanel.getRoot());
+    }
+
+    private void addHelpButtonToDisplay() {
+        helpPanelToMain.setPrefWidth(resultDisplayPlaceholder.getWidth());
+        resultDisplayPlaceholder.getChildren().add(helpPanelToMain);
+        StackPane.setAlignment(helpPanelToMain, Pos.BOTTOM_CENTER);
     }
 
     void show() {
