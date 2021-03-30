@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.cakecollate.commons.core.GuiSettings;
 import seedu.cakecollate.commons.core.LogsCenter;
 import seedu.cakecollate.model.order.Order;
+import seedu.cakecollate.model.orderitem.OrderItem;
 
 /**
  * Represents the in-memory model of the cakecollate data.
@@ -22,24 +23,27 @@ public class ModelManager implements Model {
     private final CakeCollate cakeCollate;
     private final UserPrefs userPrefs;
     private final FilteredList<Order> filteredOrders;
+    private final OrderItems orderItems;
 
     /**
      * Initializes a ModelManager with the given cakeCollate and userPrefs.
      */
-    public ModelManager(ReadOnlyCakeCollate cakeCollate, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyCakeCollate cakeCollate, ReadOnlyUserPrefs userPrefs, ReadOnlyOrderItems orderItems) {
         super();
         requireAllNonNull(cakeCollate, userPrefs);
 
-        logger.fine("Initializing with cakecollate: " + cakeCollate + " and user prefs " + userPrefs);
+        logger.fine("Initializing with cakecollate: " + cakeCollate + " and user prefs "
+                + userPrefs + "and orderitems " + orderItems);
 
         this.cakeCollate = new CakeCollate(cakeCollate);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredOrders = new FilteredList<>(this.cakeCollate.getOrderList());
+        this.orderItems = new OrderItems(orderItems);
         sortFilteredOrderList();
     }
 
     public ModelManager() {
-        this(new CakeCollate(), new UserPrefs());
+        this(new CakeCollate(), new UserPrefs(), new OrderItems());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -155,7 +159,24 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return cakeCollate.equals(other.cakeCollate)
                 && userPrefs.equals(other.userPrefs)
-                && filteredOrders.equals(other.filteredOrders);
+                && filteredOrders.equals(other.filteredOrders)
+                && orderItems.equals(other.orderItems);
     }
 
+    //=========== OrderItems ================================================================================
+    @Override
+    public ReadOnlyOrderItems getOrderItems() {
+        return orderItems;
+    }
+
+    @Override
+    public void deleteOrderItem(OrderItem target) {
+        orderItems.removeOrderItem(target);
+    }
+
+    @Override
+    public void addOrderItem(OrderItem orderItem) {
+        orderItems.addOrderItem(orderItem);
+    }
 }
+
