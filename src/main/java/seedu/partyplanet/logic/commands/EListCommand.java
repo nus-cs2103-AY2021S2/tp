@@ -17,7 +17,7 @@ public class EListCommand extends Command {
 
     public static final String COMMAND_WORD = "elist";
 
-    public static final String MESSAGE_SUCCESS = "Listed all events";
+    public static final String MESSAGE_SUCCESS = "Listed all events! ";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists event in PartyPlanet "
             + "according to specified prefix combinations, with optional sort order.\n"
@@ -55,6 +55,7 @@ public class EListCommand extends Command {
     private final Comparator<Event> comparator;
     private final Predicate<Event> predicate;
     private String parseArguments;
+    private String parseCriteria;
 
     /**
      * Default empty EListCommand.
@@ -90,15 +91,16 @@ public class EListCommand extends Command {
         model.sortEventList(comparator);
         model.updateFilteredEventList(predicate);
         if (model.getEventListCopy().size() == model.getFilteredEventList().size()) {
-            return new CommandResult(EListCommand.MESSAGE_SUCCESS + "\n" + parseArguments); // No event filtered out
+            return new CommandResult(EListCommand.MESSAGE_SUCCESS + parseArguments); // No event
+            // filtered out
         }
         if (model.getFilteredEventList().size() == 0) {
             return new CommandResult(String.format(Messages.MESSAGE_EVENTS_LISTED_OVERVIEW,
-                model.getFilteredEventList().size()) + " No events met the requirements.");
+                model.getFilteredEventList().size()) + "No events met the requirements.");
         }
         return new CommandResult(
                 String.format(Messages.MESSAGE_EVENTS_LISTED_OVERVIEW, model.getFilteredEventList().size())
-                    + "\n" + parseArguments);
+                    + parseArguments);
     }
 
     @Override

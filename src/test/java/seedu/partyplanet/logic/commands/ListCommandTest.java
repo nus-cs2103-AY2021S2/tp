@@ -67,20 +67,20 @@ public class ListCommandTest {
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS
-                + String.format(MESSAGE_PERSONS_LISTED_TAGS, "friends (3), owesMoney (1)\n"), expectedModel);
+                + String.format(MESSAGE_PERSONS_LISTED_TAGS, "friends (3), owesMoney (1)"), expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS
-                + String.format(MESSAGE_PERSONS_LISTED_TAGS, "friends (3), owesMoney (1)\n"), expectedModel);
+                + String.format(MESSAGE_PERSONS_LISTED_TAGS, "friends (3), owesMoney (1)"), expectedModel);
     }
 
     @Test
     public void execute_allPartialMultipleNames_notFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0)
-                + String.format(MESSAGE_PERSONS_LISTED_TAGS, "") + "\nNobody met the requirements.";
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0) + "Nobody met the requirements."
+                + String.format(MESSAGE_PERSONS_LISTED_TAGS, "") ;
         Predicate<Person> predicate = predicateKurz.and(predicateElle.and(predicateKunz));
         ListCommand command = new ListCommand(predicate);
 
@@ -92,7 +92,7 @@ public class ListCommandTest {
     @Test
     public void execute_anyPartialMultipleNames_found() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3)
-                + String.format(MESSAGE_PERSONS_LISTED_TAGS, "\n");
+                + String.format(MESSAGE_PERSONS_LISTED_TAGS, "");
         Predicate<Person> predicate = predicateKurz.or(predicateElle.or(predicateKunz));
         ListCommand command = new ListCommand(predicate);
 
@@ -103,8 +103,8 @@ public class ListCommandTest {
 
     @Test
     public void execute_allExactMultipleNames_notFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0)
-                + String.format(MESSAGE_PERSONS_LISTED_TAGS, "") + "\nNobody met the requirements.";
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0) + "Nobody met the requirements."
+                + String.format(MESSAGE_PERSONS_LISTED_TAGS, "");
         Predicate<Person> predicate = predicateExactKurz.and(predicateExactElle.and(predicateExactKunz));
         ListCommand command = new ListCommand(predicate);
 
@@ -115,8 +115,8 @@ public class ListCommandTest {
 
     @Test
     public void execute_anyExactMultipleNames_notFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0)
-                + String.format(MESSAGE_PERSONS_LISTED_TAGS, "") + "\nNobody met the requirements.";
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0) + "Nobody met the requirements."
+                + String.format(MESSAGE_PERSONS_LISTED_TAGS, "") ;
         Predicate<Person> predicate = predicateExactKurz.or(predicateExactElle.or(predicateExactKunz));
         ListCommand command = new ListCommand(predicate);
 
@@ -128,7 +128,7 @@ public class ListCommandTest {
     @Test
     public void execute_anyExactMultipleNames_found() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1)
-                + String.format(MESSAGE_PERSONS_LISTED_TAGS, "\n");
+                + String.format(MESSAGE_PERSONS_LISTED_TAGS, "");
         NameContainsExactKeywordsPredicate predicateExactFullElle = prepareExactPredicate("Elle Meyer");
         Predicate<Person> predicate = predicateExactKurz.or(predicateExactFullElle.or(predicateExactKunz));
         ListCommand command = new ListCommand(predicate);
@@ -141,7 +141,7 @@ public class ListCommandTest {
     @Test
     public void execute_allPartialWhitespace_multiplePersonsFound() {
         String expectedMessage = ListCommand.MESSAGE_SUCCESS
-                + String.format(MESSAGE_PERSONS_LISTED_TAGS, "friends (3), owesMoney (1)\n");
+                + String.format(MESSAGE_PERSONS_LISTED_TAGS, "friends (3), owesMoney (1)");
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         ListCommand command = new ListCommand(predicate);
 
@@ -153,7 +153,7 @@ public class ListCommandTest {
     @Test
     public void execute_allExactTags_found() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1)
-                + String.format(MESSAGE_PERSONS_LISTED_TAGS, "friends (1), owesMoney (1)\n");
+                + String.format(MESSAGE_PERSONS_LISTED_TAGS, "friends (1), owesMoney (1)");
         TagsContainsExactTagPredicate predicateOwesMoney = new TagsContainsExactTagPredicate("owesMoney");
         TagsContainsExactTagPredicate predicateFriends = new TagsContainsExactTagPredicate("friends");
         Predicate<Person> predicate = predicateOwesMoney.and(predicateFriends);
@@ -167,7 +167,7 @@ public class ListCommandTest {
     @Test
     public void execute_allPartialTagName_found() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3)
-                + String.format(MESSAGE_PERSONS_LISTED_TAGS, "friends (3), owesMoney (1)\n"); // Alice, Benson, Daniel
+                + String.format(MESSAGE_PERSONS_LISTED_TAGS, "friends (3), owesMoney (1)"); // Alice, Benson, Daniel
         TagsContainsTagPredicate predicateTag = new TagsContainsTagPredicate("friend");
         NameContainsKeywordsPredicate predicateName = new NameContainsKeywordsPredicate("e");
         Predicate<Person> predicate = predicateTag.and(predicateName);
