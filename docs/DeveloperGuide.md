@@ -162,6 +162,41 @@ The following sequence diagram shows how the Quiz command works:
 
 ![QuizSequenceDiagram](images/QuizSequenceDiagram.png)
 
+### \[Proposed\] Quiz Scoring
+*{To be updated}*
+
+### View Past Quiz Attempts
+
+The view quiz history mechanism allows users to view their past attempts of quizzes. Each entry of quiz history is
+represented in a way similar how the flashcards are represented in the Weeblingo application. 
+
+Below is the class diagram
+for how `Score` is represented in *Model* component.
+
+![HistoryModelDiagram](images/HistoryModelDiagram.png)
+
+The *UI* component, which originally only handles the display of flashcards,
+now needs to handle the display for scoring history as well.
+
+The following sequence diagram shows how the UI switches display from flashcards to score history and vice versa.
+
+![HistoryUiSequenceDiagram](images/HistoryUiSequenceDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How to represent `Score` in the application
+
+* **Alternative 1 (current choice):** Make `Score` and `Flashcard` two separate classes.
+    * Pros: Easy to implement.
+    * Cons: 
+      * May have the overhead of writing similar code. For instance, `JsonAdaptedFlashcard` and `JsonAdaptedScore`.
+      * Changing the UI display from flashcards to score history may be cumbersome. 
+* **Alternative 2:** Let `Score` have inheritance relationship with `Flashcard`.
+    * Pros: Changing UI display is easy.
+    * Cons:
+      * The design choice is not intuitive (`Score` does not seem to be a `Flashcard` and vice versa).
+      * The overhead of maintaining the inheritance is non-trivial.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
