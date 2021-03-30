@@ -40,6 +40,8 @@ public class MeetingCard extends UiPart<Region> {
     @FXML
     private Label description;
     @FXML
+    private Label isDone;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -51,9 +53,15 @@ public class MeetingCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         meetingName.setText(meeting.getClientName().fullName);
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("E, MMM dd yyyy HH:mm:ss");
-        dateTime.setText(dateTimeFormatter.format(meeting.getDateTime().get()));
+        String dateTimeString = dateTimeFormatter.format(meeting.getDateTime().get());
+        dateTime.setText(dateTimeString.substring(0, dateTimeString.length() - 3));
         meetingLocation.setText(meeting.getLocation().value);
         description.setText(meeting.getDescription().value);
+        if (meeting.getIsDone()) {
+            isDone.setText("Completed");
+        } else {
+            isDone.setText("Not Completed");
+        }
         meeting.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
