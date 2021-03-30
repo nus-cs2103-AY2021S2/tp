@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.issue.exceptions.DuplicateIssueException;
 import seedu.address.model.issue.exceptions.IssueNotFoundException;
 
 /**
@@ -26,7 +27,7 @@ public class IssueList implements Iterable<Issue> {
      */
     public boolean contains(Issue toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameIssue);
+        return internalList.stream().anyMatch(toCheck::equals);
     }
 
     /**
@@ -35,6 +36,11 @@ public class IssueList implements Iterable<Issue> {
      */
     public void add(Issue toAdd) {
         requireNonNull(toAdd);
+
+        if (contains(toAdd)) {
+            throw new DuplicateIssueException();
+        }
+
         internalList.add(toAdd);
         FXCollections.sort(internalList);
     }
@@ -51,6 +57,10 @@ public class IssueList implements Iterable<Issue> {
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new IssueNotFoundException();
+        }
+
+        if (!target.equals(editedIssue) && internalList.contains(editedIssue)) {
+            throw new DuplicateIssueException();
         }
 
         internalList.set(index, editedIssue);
@@ -81,6 +91,10 @@ public class IssueList implements Iterable<Issue> {
     public void setIssues(List<Issue> issues) {
         requireAllNonNull(issues);
 
+        if (!issuesAreUnique(issues)) {
+            throw new DuplicateIssueException();
+        }
+
         internalList.setAll(issues);
         FXCollections.sort(internalList);
     }
@@ -107,6 +121,20 @@ public class IssueList implements Iterable<Issue> {
     @Override
     public int hashCode() {
         return internalList.hashCode();
+    }
+
+    /**
+     * Returns true if {@code issues} contains only unique issues.
+     */
+    private boolean issuesAreUnique(List<Issue> issues) {
+        for (int i = 0; i < issues.size() - 1; i++) {
+            for (int j = i + 1; j < issues.size(); j++) {
+                if (issues.get(i).equals(issues.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
 }

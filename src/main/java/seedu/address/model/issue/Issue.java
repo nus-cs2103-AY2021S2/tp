@@ -1,9 +1,14 @@
 package seedu.address.model.issue;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
-import java.util.UUID;
+import java.util.Set;
+
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Issue in the address book. Guarantees: details are present and
@@ -11,32 +16,43 @@ import java.util.UUID;
  */
 public class Issue implements Comparable<Issue> {
 
-    // Identity fields
-    private final String id;
-
     // Data fields
     private final RoomNumber roomNumber;
     private final Description description;
     private final Timestamp timestamp;
     private final Status status;
     private final Category category;
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Issue(RoomNumber roomNumber, Description description, Timestamp timestamp, Status status,
-            Category category) {
+            Category category, Set<Tag> tags) {
         requireAllNonNull(roomNumber, description, timestamp, status, category);
-        this.id = UUID.randomUUID().toString();
         this.roomNumber = roomNumber;
         this.description = description;
         this.timestamp = timestamp;
         this.status = status;
         this.category = category;
+        this.tags.addAll(tags);
     }
 
-    public String getId() {
-        return this.id;
+    /**
+     * Takes in an issue and returns an issue with the same values except for Status being closed.
+     *
+     * @param issue to be closed
+     * @return the same issue but the status set to closed
+     */
+    public static Issue closeIssue(Issue issue) {
+        requireNonNull(issue);
+        return new Issue(
+                issue.getRoomNumber(),
+                issue.getDescription(),
+                issue.getTimestamp(),
+                new Status(IssueStatus.Closed),
+                issue.getCategory(),
+                new HashSet<Tag>());
     }
 
     public RoomNumber getRoomNumber() {
@@ -63,16 +79,8 @@ public class Issue implements Comparable<Issue> {
         return this.category;
     }
 
-    /**
-     * Returns true if both issues have the same name. This defines a weaker notion
-     * of equality between two issues.
-     */
-    public boolean isSameIssue(Issue otherIssue) {
-        if (otherIssue == this) {
-            return true;
-        }
-
-        return otherIssue != null && otherIssue.getId().equals(getId());
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
     }
 
     /**
@@ -90,10 +98,11 @@ public class Issue implements Comparable<Issue> {
         }
 
         Issue otherIssue = (Issue) other;
-        return otherIssue.getId().equals(getId()) && otherIssue.getRoomNumber().equals(getRoomNumber())
+        return otherIssue.getRoomNumber().equals(getRoomNumber())
                 && otherIssue.getDescription().equals(getDescription())
                 && otherIssue.getTimestamp().equals(getTimestamp()) && otherIssue.getStatus().equals(getStatus())
-                && otherIssue.getCategory().equals(getCategory());
+                && otherIssue.getCategory().equals(getCategory())
+                && otherIssue.getTags().equals(getTags());
     }
 
     @Override
@@ -110,6 +119,12 @@ public class Issue implements Comparable<Issue> {
                 .append("; Timestamp: ").append(getTimestamp())
                 .append("; Status: ").append(getStatus())
                 .append("; Category: ").append(getCategory());
+
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("; Tags: ");
+            tags.forEach(builder::append);
+        }
 
         return builder.toString();
     }

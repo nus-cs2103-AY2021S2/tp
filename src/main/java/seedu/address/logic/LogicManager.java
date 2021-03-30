@@ -41,7 +41,8 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         addressBookParser = new AddressBookParser();
-        this.commandHistorySelector = new SuppliedCommandHistorySelector(this::getCommandHistory);
+        commandHistorySelector = new SuppliedCommandHistorySelector(this::getCommandHistory);
+        commandHistorySelector.selectLast();
     }
 
     @Override
@@ -58,6 +59,7 @@ public class LogicManager implements Logic {
         try {
             storage.saveAddressBook(model.getAddressBook());
             storage.saveUserPrefs(model.getUserPrefs());
+            storage.saveCommandHistory(model.getCommandHistory());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }

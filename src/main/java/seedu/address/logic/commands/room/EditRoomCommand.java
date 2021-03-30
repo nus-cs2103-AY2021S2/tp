@@ -2,7 +2,6 @@ package seedu.address.logic.commands.room;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_NUMBER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_OCCUPANCY_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_TYPE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ROOMS;
@@ -39,11 +38,9 @@ public class EditRoomCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_ROOM_NUMBER + "NAME] "
             + "[" + PREFIX_ROOM_TYPE + "TYPE] "
-            + "[" + PREFIX_ROOM_OCCUPANCY_STATUS + "OCCUPANCY STATUS] "
             + "[" + PREFIX_ROOM_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_ROOM_NUMBER + "12-100 "
-            + PREFIX_ROOM_OCCUPANCY_STATUS + "y";
+            + PREFIX_ROOM_NUMBER + "12-100 ";
 
     public static final String MESSAGE_EDIT_ROOM_SUCCESS = "Edited Room: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -70,7 +67,7 @@ public class EditRoomCommand extends Command {
         List<Room> lastShownList = model.getFilteredRoomList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX);
         }
 
         Room roomToEdit = lastShownList.get(index.getZeroBased());
@@ -83,7 +80,7 @@ public class EditRoomCommand extends Command {
         model.setRoom(roomToEdit, editedRoom);
         model.updateFilteredRoomList(PREDICATE_SHOW_ALL_ROOMS);
         model.commitAddressBook();
-        return new CommandResult(String.format(MESSAGE_EDIT_ROOM_SUCCESS, editedRoom)).setRoomCommand();
+        return new CommandResult(String.format(MESSAGE_EDIT_ROOM_SUCCESS, editedRoom));
     }
 
     /**
@@ -95,7 +92,7 @@ public class EditRoomCommand extends Command {
 
         RoomNumber updatedRoomNumber = editRoomDescriptor.getRoomNumber().orElse(roomToEdit.getRoomNumber());
         RoomType updatedRoomType = editRoomDescriptor.getRoomType().orElse(roomToEdit.getRoomType());
-        IsOccupied updatedIsOccupied = editRoomDescriptor.getIsOccupied().orElse(roomToEdit.isOccupied());
+        IsOccupied updatedIsOccupied = roomToEdit.isOccupied();
         Set<Tag> updatedTags = editRoomDescriptor.getTags().orElse(roomToEdit.getTags());
 
         return new Room(updatedRoomNumber, updatedRoomType, updatedIsOccupied, updatedTags);
@@ -147,7 +144,7 @@ public class EditRoomCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(roomNumber, roomType, isOccupied, tags);
+            return CollectionUtil.isAnyNonNull(roomNumber, roomType, tags);
         }
 
         public void setRoomNumber(RoomNumber roomNumber) {
