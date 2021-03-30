@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.Optional;
 
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.tag.Tag;
@@ -18,27 +19,28 @@ public class Person {
 
     // Identity fields
     private final Name name;
-    private final School school;
     private final Phone phone;
-    private final Email email;
-    private final Name guardianName;
-    private final Phone guardianPhone;
 
     // Data fields
-    private final Address address;
+    private final Optional<School> school;
+    private final Optional<Email> email;
+    private final Optional<Name> guardianName;
+    private final Optional<Phone> guardianPhone;
+    private final Optional<Address> address;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Lesson> lessons = new HashSet<>();
 
 
     /**
-     * Every field must be present and not null.
+     * Student's name and phone number must be present.
      */
-    public Person(Name name, School school, Phone phone, Email email, Address address, Name guardianName,
-                  Phone guardianPhone, Set<Tag> tags, Set<Lesson> lessons) {
-        requireAllNonNull(name, phone, email, address, tags, lessons);
+    public Person(Name name, Phone phone, Optional<School> school, Optional<Email> email, Optional<Address> address,
+                  Optional<Name> guardianName, Optional<Phone> guardianPhone, Set<Tag> tags, Set<Lesson> lessons) {
+        requireAllNonNull(name, phone, school, email, address, guardianName,
+                guardianPhone, tags, lessons);
         this.name = name;
-        this.school = school;
         this.phone = phone;
+        this.school = school;
         this.email = email;
         this.address = address;
         this.guardianName = guardianName;
@@ -51,27 +53,27 @@ public class Person {
         return name;
     }
 
-    public School getSchool() {
-        return school;
-    }
-
     public Phone getPhone() {
         return phone;
     }
 
-    public Email getEmail() {
+    public Optional<School> getSchool() {
+        return school;
+    }
+
+    public Optional<Email> getEmail() {
         return email;
     }
 
-    public Address getAddress() {
+    public Optional<Address> getAddress() {
         return address;
     }
 
-    public Name getGuardianName() {
+    public Optional<Name> getGuardianName() {
         return guardianName;
     }
 
-    public Phone getGuardianPhone() {
+    public Optional<Phone> getGuardianPhone() {
         return guardianPhone;
     }
 
@@ -116,8 +118,8 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
-                && otherPerson.getSchool().equals(getSchool())
                 && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getSchool().equals(getSchool())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getGuardianName().equals(getGuardianName())
@@ -129,25 +131,46 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, school, phone, email, address, guardianName, guardianPhone, tags, lessons);
+        return Objects.hash(name, phone, school, email, address, guardianName, guardianPhone, tags, lessons);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; School: ")
-                .append(getSchool())
+        builder.append("Name: ")
+                .append(getName())
                 .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress())
-                .append("; Guardian's Name: ")
-                .append(getGuardianName())
-                .append("; Guardian's Phone: ")
-                .append(getGuardianPhone());
+                .append(getPhone());
+
+        Optional<School> school = getSchool();
+        if (!school.isPresent()) {
+            builder.append("; School: ")
+                    .append(school);
+        }
+
+        Optional<Email> email = getEmail();
+        if (!email.isPresent()) {
+            builder.append("; Email: ")
+                    .append(email);
+        }
+
+        Optional<Address> address = getAddress();
+        if (!address.isPresent()) {
+            builder.append("; Address: ")
+                    .append(address);
+        }
+
+        Optional<Name> guardianName = getGuardianName();
+        if (!guardianName.isPresent()) {
+            builder.append("; Guardian's Name: ")
+                    .append(guardianName);
+        }
+
+        Optional<Phone> guardianPhone = getGuardianPhone();
+        if (!guardianPhone.isPresent()) {
+            builder.append("; Guardian's Phone: ")
+                    .append(guardianPhone);
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

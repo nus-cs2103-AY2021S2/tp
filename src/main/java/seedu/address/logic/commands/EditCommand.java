@@ -40,7 +40,8 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the student identified "
             + "by the index number used in the displayed student list. "
-            + "Existing values will be overwritten by the input values.\n"
+            + "Missing details will be added in.\n"
+            + "Existing details will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
@@ -102,16 +103,16 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        School updatedSchool = editPersonDescriptor.getSchool().orElse(personToEdit.getSchool());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Name updatedGuardianName = editPersonDescriptor.getGuardianName().orElse(personToEdit.getGuardianName());
-        Phone updatedGuardianPhone = editPersonDescriptor.getGuardianPhone().orElse(personToEdit.getGuardianPhone());
+        Optional<School> updatedSchool = editPersonDescriptor.getSchool();
+        Optional<Email> updatedEmail = editPersonDescriptor.getEmail();
+        Optional<Address> updatedAddress = editPersonDescriptor.getAddress();
+        Optional<Name> updatedGuardianName = editPersonDescriptor.getGuardianName();
+        Optional<Phone> updatedGuardianPhone = editPersonDescriptor.getGuardianPhone();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<Lesson> updatedLessons = editPersonDescriptor.getLessons().orElse(personToEdit.getLessons());
 
-        return new Person(updatedName, updatedSchool, updatedPhone, updatedEmail, updatedAddress,
+        return new Person(updatedName, updatedPhone, updatedSchool, updatedEmail, updatedAddress,
                 updatedGuardianName, updatedGuardianPhone, updatedTags, updatedLessons);
     }
 
@@ -139,12 +140,12 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
-        private School school;
         private Phone phone;
-        private Email email;
-        private Address address;
-        private Name guardianName;
-        private Phone guardianPhone;
+        private Optional<School> school = Optional.empty();
+        private Optional<Email> email = Optional.empty();
+        private Optional<Address> address = Optional.empty();
+        private Optional<Name> guardianName = Optional.empty();
+        private Optional<Phone> guardianPhone = Optional.empty();
         private Set<Tag> tags;
         private Set<Lesson> lessons;
 
@@ -156,8 +157,8 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
-            setSchool(toCopy.school);
             setPhone(toCopy.phone);
+            setSchool(toCopy.school);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setGuardianName(toCopy.guardianName);
@@ -182,14 +183,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setSchool(School school) {
-            this.school = school;
-        }
-
-        public Optional<School> getSchool() {
-            return Optional.ofNullable(school);
-        }
-
         public void setPhone(Phone phone) {
             this.phone = phone;
         }
@@ -198,36 +191,44 @@ public class EditCommand extends Command {
             return Optional.ofNullable(phone);
         }
 
-        public void setEmail(Email email) {
+        public void setSchool(Optional<School> school) {
+            this.school = school;
+        }
+
+        public Optional<School> getSchool() {
+            return school;
+        }
+
+        public void setEmail(Optional<Email> email) {
             this.email = email;
         }
 
         public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+            return email;
         }
 
-        public void setAddress(Address address) {
+        public void setAddress(Optional<Address> address) {
             this.address = address;
         }
 
         public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+            return address;
         }
 
-        public void setGuardianName(Name guardianName) {
+        public void setGuardianName(Optional<Name> guardianName) {
             this.guardianName = guardianName;
         }
 
         public Optional<Name> getGuardianName() {
-            return Optional.ofNullable(guardianName);
+            return guardianName;
         }
 
-        public void setGuardianPhone(Phone guardianPhone) {
+        public void setGuardianPhone(Optional<Phone> guardianPhone) {
             this.guardianPhone = guardianPhone;
         }
 
         public Optional<Phone> getGuardianPhone() {
-            return Optional.ofNullable(guardianPhone);
+            return guardianPhone;
         }
 
         /**
