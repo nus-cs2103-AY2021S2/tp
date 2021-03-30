@@ -22,7 +22,7 @@ public class DetailsCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_validInputsUnfilteredList() {
+    public void execute_validInputsUnfilteredList_success() {
         Person personToDisplay = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
         String expectedMessage = String.format(DetailsCommand.MESSAGE_DETAILS_SUCCESS, personToDisplay.getName());
@@ -37,7 +37,7 @@ public class DetailsCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexUnfilteredList() {
+    public void execute_invalidIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         DetailsCommand detailsCommand = new DetailsCommand(outOfBoundIndex);
 
@@ -45,7 +45,7 @@ public class DetailsCommandTest {
     }
 
     @Test
-    public void execute_validInputsFilteredList() {
+    public void execute_validInputsFilteredList_success() {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
         Person personToDisplay = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
@@ -63,7 +63,7 @@ public class DetailsCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexFilteredList() {
+    public void execute_invalidIndexFilteredList_failure() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         DetailsCommand detailsCommand = new DetailsCommand(INDEX_SECOND_PERSON);
 
