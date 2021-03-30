@@ -28,15 +28,14 @@ public class SuppliedCommandHistorySelector implements CommandHistorySelector {
     }
 
     /**
-     * Selects the most recent command text and returns it, if any. This is stateful.
-     *
-     * @return The most recent command text, if any.
+     * Sets the currently 'selected' command text to one past the most recent entry.
+     * A subsequent call to {@code selectPrevious} will select the last entry. This is stateful.
      */
     @Override
-    public Optional<String> selectLast() {
+    public void navigateToOnePastLast() {
         assert commandHistorySupplier != null && commandHistorySupplier.get() != null;
-        final int last = commandHistorySupplier.get().size();
-        return selectAt(last);
+        final int onePastLast = commandHistorySupplier.get().size();
+        selectAt(onePastLast);
     }
 
     /**
