@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ARCHIVED_PERSONS;
 
 import java.util.List;
 
@@ -14,7 +13,7 @@ import seedu.address.model.person.Person;
 /**
  * Archives a Person in DocBob.
  */
-public class ArchiveCommand extends Command{
+public class ArchiveCommand extends Command {
 
     public static final String COMMAND_WORD = "archive";
 

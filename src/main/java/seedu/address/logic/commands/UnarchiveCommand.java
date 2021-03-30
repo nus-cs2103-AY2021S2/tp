@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_MAIN_PERSONS;
 
 import java.util.List;
 
@@ -14,7 +13,7 @@ import seedu.address.model.person.Person;
 /**
  * Unarchives a Person in DocBob.
  */
-public class UnarchiveCommand extends Command{
+public class UnarchiveCommand extends Command {
     public static final String COMMAND_WORD = "unarchive";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -38,7 +37,7 @@ public class UnarchiveCommand extends Command{
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
-        
+
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }

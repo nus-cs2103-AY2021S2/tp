@@ -118,6 +118,9 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Builds the {@code Person} using the information given.
+     */
     public Person build() {
         Person builtPerson = new Person(name, phone, email, address, height, weight, tags);
         builtPerson.setArchived(isArchived);
