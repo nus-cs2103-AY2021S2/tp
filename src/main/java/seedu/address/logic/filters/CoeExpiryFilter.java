@@ -11,7 +11,7 @@ import seedu.address.model.customer.Customer;
 
 public class CoeExpiryFilter extends AbstractFilter {
     public static final String MESSAGE_CONSTRAINTS = "COE Expiry Filter can only accept 'exp' or a non negative number";
-    private final LocalDate coeMinimumDeadline;
+    private final LocalDate coeExpiryThreshold;
 
     /**
      * Create a filter for COE Expiry, checking whether a COE
@@ -35,7 +35,7 @@ public class CoeExpiryFilter extends AbstractFilter {
         if (!expiredOnly) {
             years = Integer.parseInt(filterString);
         }
-        this.coeMinimumDeadline = currentDate.plusYears(years);
+        this.coeExpiryThreshold = currentDate.plusYears(years);
     }
     /**
      * Returns true if a given string is a valid filter.
@@ -51,8 +51,8 @@ public class CoeExpiryFilter extends AbstractFilter {
         }
     }
 
-    private boolean testCoeExpiry(CoeExpiry coeExpiry) {
-        return !coeMinimumDeadline.isAfter(coeExpiry.toDate());
+    private boolean isCoeExpiryExpiringSoon(CoeExpiry coeExpiry) {
+        return !coeExpiryThreshold.isAfter(coeExpiry.toDate());
     }
 
     @Override
@@ -60,7 +60,7 @@ public class CoeExpiryFilter extends AbstractFilter {
         return customer.getCarsOwned()
                        .values()
                        .parallelStream()
-                       .anyMatch(this::testCoeExpiry);
+                       .anyMatch(this::isCoeExpiryExpiringSoon);
     }
 
     @Override
