@@ -15,5 +15,7 @@ public class Messages {
     public static final String MESSAGE_TASKS_LISTED_OVERVIEW = "%1$d task(s) listed!";
     public static final String MESSAGE_END_DATETIME_BEFORE_START_DATETIME = "The event end date and time "
             + "is before start date and time!";
+    public static final String MESSAGE_INVALID_DATE = "The date format is invalid! "
+            + "Date should be in the format of YYYY-MM-DD!";
 
 }

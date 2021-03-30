@@ -173,6 +173,11 @@ public class UniqueEventList implements Iterable<Event> {
                     for (int j = startTimeCount; j < 1440; j++) {
                         timeStatus[j] = 1;
                     }
+                } else {
+                    //event starts before the day and ends in the future
+                    for (int j = 0; j < 1440; j++) {
+                        timeStatus[j] = 1;
+                    }
                 }
             }
         }
@@ -238,6 +243,57 @@ public class UniqueEventList implements Iterable<Event> {
     }
 
     /**
+     * Adds time slot string to ArrayList.
+     */
+    public void addTimeSlot(int firstBound, int secondBound, ArrayList<String> freeTimeSlots) {
+        Time firstTime = getTimeFromCount(firstBound);
+        Time secondTime = getTimeFromCount(secondBound);
+        String timeSlotStr;
+        if (firstBound == secondBound) {
+            timeSlotStr = firstTime.toString();
+        } else {
+            timeSlotStr = firstTime.toString() + " to " + secondTime.toString();
+        }
+        freeTimeSlots.add(timeSlotStr);
+    }
+
+    /**
+     * Adds a list of free time slots in for loop when start status is free.
+     */
+    public void loopTimeSlotsFree(ArrayList<Integer> timeIndex, ArrayList<String> freeTimeSlots, int len) {
+        int firstBound = 0;
+        int secondBound = timeIndex.get(0) - 1;
+        addTimeSlot(firstBound, secondBound, freeTimeSlots);
+        for (int i = 1; i < timeIndex.size() - 1; i = i + 2) {
+            firstBound = timeIndex.get(i);
+            secondBound = timeIndex.get(i + 1) - 1;
+            addTimeSlot(firstBound, secondBound, freeTimeSlots);
+        }
+        if (timeIndex.size() % 2 == 0) {
+            firstBound = timeIndex.get(timeIndex.size() - 1);
+            secondBound = len - 1;
+            addTimeSlot(firstBound, secondBound, freeTimeSlots);
+        }
+    }
+
+    /**
+     * Adds a list of free time slots in for loop when start status is busy.
+     */
+    public void loopTimeSlotsBusy(ArrayList<Integer> timeIndex, ArrayList<String> freeTimeSlots, int len) {
+        for (int i = 0; i < timeIndex.size() - 1; i = i + 2) {
+            int firstBound = timeIndex.get(i);
+            int secondBound = timeIndex.get(i + 1) - 1;
+            addTimeSlot(firstBound, secondBound, freeTimeSlots);
+        }
+        if (timeIndex.size() % 2 == 1) {
+            int firstBound = timeIndex.get(timeIndex.size() - 1);
+            int secondBound = len - 1;
+            addTimeSlot(firstBound, secondBound, freeTimeSlots);
+        }
+    }
+
+
+    /**
      * Returns a list of free time slots.
      */
     public ArrayList<String> getFreeTimeSlots(Date date) {
@@ -245,57 +301,15 @@ public class UniqueEventList implements Iterable<Event> {
         int len = getTimeStatus(date).length;
         ArrayList<Integer> timeIndex = getFreeTimeIndex(getTimeStatus(date));
         ArrayList<String> freeTimeSlots = new ArrayList<>();
-        if (startStatus == 0) {
-            int firstBound = 0;
-            int secondBound = timeIndex.get(0) - 1;
-            Time firstTime = getTimeFromCount(firstBound);
-            Time secondTime = getTimeFromCount(secondBound);
-            String timeSlotStr = firstTime.toString() + " to " + secondTime.toString();
-            freeTimeSlots.add(timeSlotStr);
-            for (int i = 1; i < timeIndex.size() - 1; i = i + 2) {
-                firstBound = timeIndex.get(i);
-                secondBound = timeIndex.get(i + 1) - 1;
-                firstTime = getTimeFromCount(firstBound);
-                secondTime = getTimeFromCount(secondBound);
-                if (firstBound == secondBound) {
-                    timeSlotStr = firstTime.toString();
-                } else {
-                    timeSlotStr = firstTime.toString() + " to " + secondTime.toString();
-                }
-                freeTimeSlots.add(timeSlotStr);
-            }
-            if (timeIndex.size() % 2 == 0) {
-                firstBound = timeIndex.get(timeIndex.size() - 1);
-                secondBound = len - 1;
-                firstTime = getTimeFromCount(firstBound);
-                secondTime = getTimeFromCount(secondBound);
-                if (firstBound == secondBound) {
-                    timeSlotStr = firstTime.toString();
-                } else {
-                    timeSlotStr = firstTime.toString() + " to " + secondTime.toString();
-                }
-                freeTimeSlots.add(timeSlotStr);
+        if (timeIndex.size() != 0) {
+            if (startStatus == 0) {
+                loopTimeSlotsFree(timeIndex, freeTimeSlots, len);
+            } else {
+                loopTimeSlotsBusy(timeIndex, freeTimeSlots, len);
             }
         } else {
-            for (int i = 0; i < timeIndex.size() - 1; i = i + 2) {
-                int firstBound = timeIndex.get(i);
-                int secondBound = timeIndex.get(i + 1) - 1;
-                Time firstTime = getTimeFromCount(firstBound);
-                Time secondTime = getTimeFromCount(secondBound);
-                String timeSlotStr = firstTime.toString() + " to " + secondTime.toString();
-                freeTimeSlots.add(timeSlotStr);
-            }
-            if (timeIndex.size() % 2 == 1) {
-                int firstBound = timeIndex.get(timeIndex.size() - 1);
-                int secondBound = len - 1;
-                Time firstTime = getTimeFromCount(firstBound);
-                Time secondTime = getTimeFromCount(secondBound);
-                String timeSlotStr;
-                if (firstBound == secondBound) {
-                    timeSlotStr = firstTime.toString();
-                } else {
-                    timeSlotStr = firstTime.toString() + " to " + secondTime.toString();
-                }
+            if (startStatus == 0) {
+                String timeSlotStr = "The entire day is free!";
                 freeTimeSlots.add(timeSlotStr);
             }
         }

@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE;
 
 import seedu.address.logic.commands.FindFreeTimeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -24,9 +25,13 @@ public class FindFreeTimeCommandParser implements Parser<FindFreeTimeCommand> {
         }
 
         String dateStr = trimmedArgs.split(" ")[0];
+        if (Date.isValidDate(dateStr)) {
+            Date date = new Date(dateStr);
+            return new FindFreeTimeCommand(date);
+        } else {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_DATE));
+        }
 
-        Date date = new Date(dateStr);
-
-        return new FindFreeTimeCommand(date);
     }
 }
