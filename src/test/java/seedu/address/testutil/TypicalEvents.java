@@ -11,4 +11,9 @@ public class TypicalEvents {
             .withTime(LocalTime.of(12, 0))
             .withDescription("We went to eat lunch together")
             .build();
+
+    public static final Event DATE_ONE = new EventBuilder()
+            .withDate(LocalDate.of(2019, 10, 10))
+            .withDescription("Anniversary")
+            .build();
 }
