@@ -33,8 +33,8 @@ public class AddEventCommand extends Command {
             + PREFIX_EVENT_WEEKLY + "REPEATS WEEKLY\n"
             + "Example:\n" + COMMAND_WORD + " 1 "
             + PREFIX_DESCRIPTION + "Project meeting "
-            + PREFIX_EVENT_DATE + "24-04-2021"
-            + PREFIX_EVENT_TIME + "1730"
+            + PREFIX_EVENT_DATE + "24-04-2021 "
+            + PREFIX_EVENT_TIME + "1730 "
             + PREFIX_EVENT_WEEKLY + "Y";
 
     private final Index index;

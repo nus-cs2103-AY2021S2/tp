@@ -1,6 +1,6 @@
 package seedu.address.ui;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -8,13 +8,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.commons.util.DateUtil;
 import seedu.address.model.task.CompletableDeadline;
+import seedu.address.model.task.deadline.DeadlineWithProject;
 
 /**
- * An UI component that displays information of a {@code CompletableDeadline}.
+ * An UI component that displays information of a {@code DeadlineWithProject}.
  */
-public class CompletableDeadlineCard extends UiPart<Region> {
+public class TodayDeadlineCard extends UiPart<Region> {
 
-    private static final String FXML = "CompletableDeadlineListCard.fxml";
+    private static final String FXML = "TodayDeadlineCard.fxml";
 
     public final CompletableDeadline deadline;
 
@@ -30,20 +31,23 @@ public class CompletableDeadlineCard extends UiPart<Region> {
     private Label day;
     @FXML
     private Label completedLabel;
+    @FXML
+    private Label projectName;
 
     /**
-     * Creates a {@code CompletableDeadlineCard} with the given {@code CompletableDeadline} and index to display.
+     * Creates a {@code TodayDeadlineCard} with the given {@code DeadlineWithProject}.
      */
-    public CompletableDeadlineCard(CompletableDeadline deadline, int displayedIndex) {
+    public TodayDeadlineCard(DeadlineWithProject deadline) {
         super(FXML);
-        requireAllNonNull(deadline, displayedIndex);
+        requireNonNull(deadline);
 
         this.deadline = deadline;
-        id.setText(displayedIndex + ". ");
+        id.setText("");
         description.setText(deadline.getDescription());
         date.setText(DateUtil.decodeDate(deadline.getBy()));
         day.setText(DateUtil.decodeDateIntoDay(deadline.getBy()));
         completedLabel.setText(getTextToDisplay(deadline.getIsDone()));
+        projectName.setText(deadline.getProjectName().toString());
     }
 
     /**
@@ -63,12 +67,12 @@ public class CompletableDeadlineCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof CompletableDeadlineCard)) {
+        if (!(other instanceof TodayDeadlineCard)) {
             return false;
         }
 
         // state check
-        CompletableDeadlineCard card = (CompletableDeadlineCard) other;
+        TodayDeadlineCard card = (TodayDeadlineCard) other;
         return id.getText().equals(card.id.getText())
                 && deadline.equals(card.deadline);
     }

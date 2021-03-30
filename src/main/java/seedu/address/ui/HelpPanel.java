@@ -18,7 +18,7 @@ import javafx.scene.layout.Region;
  */
 public class HelpPanel extends UiPart<Region> {
     public static final String USERGUIDE_URL = "https://ay2021s2-cs2103t-t11-2.github.io/tp/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String HELP_MESSAGE = "The detailed user guide can be found at: " + USERGUIDE_URL;
     public static final String URL_COPIED = "URL has been copied.";
 
     private static final int ROW_HEIGHT = 30;

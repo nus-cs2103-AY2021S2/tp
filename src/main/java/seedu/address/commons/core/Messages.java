@@ -32,7 +32,6 @@ public class Messages {
     public static final String MESSAGE_DELETE_TODO_SUCCESS = "Deleted Todo: %1$s";
 
     public static final String MESSAGE_MARK_DEADLINE_SUCCESS = "Marked Deadline as done: %1$s";
-    public static final String MESSAGE_MARK_EVENT_SUCCESS = "Marked Event as done: %1$s";
     public static final String MESSAGE_MARK_TODO_SUCCESS = "Marked Todo as done: %1$s";
 
     public static final String MESSAGE_UI_PROJECT_NOT_DISPLAYED = "No project displayed. Display a project using the "
@@ -56,7 +55,11 @@ public class Messages {
                     + "\t- HH:mm\t(e.g. 17:30)\n"
                     + "\t- HHmm\t(e.g. 1730)";
 
-    public static final String MESSAGE_NO_EVENTS_TO_DISPLAY = "You have no events today!";
-    public static final String MESSAGE_NO_DEADLINES_TO_DISPLAY = "You have no deadlines today!";
+    public static final String MESSAGE_NO_EVENTS_TO_DISPLAY_TODAY = "You have no events today!";
+    public static final String MESSAGE_NO_DEADLINES_TO_DISPLAY_TODAY = "You have no deadlines today!";
+    public static final String MESSAGE_NO_TODOS_TO_DISPLAY = "You have no todos in this project!";
+    public static final String MESSAGE_NO_GROUPMATES_TO_DISPLAY = "You have no groupmates in this project!";
+    public static final String MESSAGE_NO_DEADLINES_TO_DISPLAY = "You have no events in this project!";
+    public static final String MESSAGE_NO_EVENTS_TO_DISPLAY = "You have no deadlines in this project!";
 
 }

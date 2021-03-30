@@ -1,12 +1,10 @@
 package seedu.address.ui;
 
-import java.util.logging.Logger;
-
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.project.Project;
 
@@ -15,13 +13,17 @@ import seedu.address.model.project.Project;
  */
 public class SidePanel extends UiPart<Region> {
     private static final String FXML = "SidePanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(SidePanel.class);
+    private static final String SELECTED_STYLE_CLASS = "selected";
 
     private ProjectListPanel projectListPanel;
     private MainWindow mainWindow;
 
     @FXML
     private StackPane projectsListPanelPlaceholder;
+    @FXML
+    private Button todayButton;
+    @FXML
+    private Button contactsButton;
 
     /**
      * Creates a {@code ProjectDisplayPanel} with the given {@code project} and {@code displayedIndex}.
@@ -29,6 +31,7 @@ public class SidePanel extends UiPart<Region> {
     public SidePanel(ObservableList<Project> projectList, MainWindow mainWindow) {
         super(FXML);
 
+        addTodayButtonStyle();
         this.projectListPanel = new ProjectListPanel(projectList, mainWindow);
         this.mainWindow = mainWindow;
         this.projectsListPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
@@ -48,6 +51,8 @@ public class SidePanel extends UiPart<Region> {
      */
     @FXML
     public void openContactsPanel() {
+        clearButtonStyles();
+        addContactButtonStyle();
         mainWindow.displayContacts();
     }
 
@@ -56,6 +61,8 @@ public class SidePanel extends UiPart<Region> {
      */
     @FXML
     public void openTodayPanel() {
+        clearButtonStyles();
+        addTodayButtonStyle();
         mainWindow.displayToday();
     }
 
@@ -64,5 +71,27 @@ public class SidePanel extends UiPart<Region> {
      */
     public void clearSelection() {
         projectListPanel.clearSelection();
+    }
+
+    /**
+     * Resets all button styles to default.
+     */
+    public void clearButtonStyles() {
+        todayButton.getStyleClass().remove(SELECTED_STYLE_CLASS);
+        contactsButton.getStyleClass().remove(SELECTED_STYLE_CLASS);
+    }
+
+    /**
+     * Change the background colour of today button to the current accent color value.
+     */
+    public void addTodayButtonStyle() {
+        todayButton.getStyleClass().add(SELECTED_STYLE_CLASS);
+    }
+
+    /**
+     * Change the background colour of contacts button to the current accent color value.
+     */
+    public void addContactButtonStyle() {
+        contactsButton.getStyleClass().add(SELECTED_STYLE_CLASS);
     }
 }

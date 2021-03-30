@@ -22,11 +22,14 @@
         <Label fx:id="description" styleClass="cell_big_label" text="\$first"/>
         <Label fx:id="completedLabel" styleClass="cell_big_label" minWidth="-Infinity"/>
       </HBox>
-      <Label fx:id="date" styleClass="cell_big_label" text="\$date">
-        <padding>
-          <Insets bottom="0" left="20" right="0" top="0"/>
-        </padding>
-      </Label>
+      <HBox>
+        <Label fx:id="date" styleClass="cell_small_label" text="\$date">
+          <padding>
+            <Insets bottom="0" left="20" right="5" top="0"/>
+          </padding>
+        </Label>
+        <Label fx:id="day" styleClass="cell_small_label" text="\$day"/>
+      </HBox>
     </VBox>
     <rowConstraints>
       <RowConstraints/>

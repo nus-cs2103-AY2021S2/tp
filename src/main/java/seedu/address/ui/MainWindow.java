@@ -49,19 +49,14 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane commandBoxPlaceholder;
-
     @FXML
     private MenuItem helpMenuItem;
-
     @FXML
     private StackPane sidePanelPlaceholder;
-
     @FXML
     private StackPane resultDisplayPlaceholder;
-
     @FXML
     private StackPane statusbarPlaceholder;
-
     @FXML
     private StackPane infoDisplayPlaceholder;
 
@@ -285,6 +280,10 @@ public class MainWindow extends UiPart<Stage> {
      */
     public void selectProject(Index index) {
         sidePanel.selectProject(index);
+    }
+
+    public void clearButtonStyles() {
+        sidePanel.clearButtonStyles();
     }
 
     // UI Handlers when button is clicked
