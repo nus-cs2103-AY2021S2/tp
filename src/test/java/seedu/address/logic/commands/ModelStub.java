@@ -160,6 +160,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void deleteAlias(String aliasName) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public AliasMapping getAliasMapping() {
         throw new AssertionError("This method should not be called.");
     }
