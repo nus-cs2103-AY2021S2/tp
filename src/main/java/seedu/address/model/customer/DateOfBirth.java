@@ -8,13 +8,13 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * Represents a Customer's DateOfBirth in the customer list.
- * Guarantees: immutable; is valid as declared in {@link #isValidDateOfBirth(String)}
+ * Represents a Customer's DateOfBirth in the customer list. Guarantees: immutable; is valid as declared in {@link
+ * #isValidDateOfBirth(String)}
  */
 public class DateOfBirth {
 
     public static final String MESSAGE_CONSTRAINTS = "Birth date should be of the format yyyy MM dd "
-            + "EG:(2011 07 06 for 6th July, 2011)";
+        + "EG:(2011 07 06 for 6th July, 2011)";
 
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy MM dd");
 
@@ -51,13 +51,17 @@ public class DateOfBirth {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DateOfBirth // instanceof handles nulls
-                && birthDate.equals(((DateOfBirth) other).birthDate)); // state check
+            || (other instanceof DateOfBirth // instanceof handles nulls
+            && birthDate.equals(((DateOfBirth) other).birthDate)); // state check
     }
 
     @Override
     public int hashCode() {
         return birthDate.hashCode();
+    }
+
+    public String getBirthDate() {
+        return this.birthDate;
     }
 
 }
