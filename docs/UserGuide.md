@@ -216,6 +216,7 @@ Format: `dealloc n/NAME r/ROOM_NO`
 * `NAME` is case-sensitive.
 * The allocation must already exist. 
 * Both fields must be provided.
+* Ensure that the resident to be deallocated is visible by using `rlist`.
 
 Example:
 * `dealloc r/John Tan n/03-100` Deallocates resident named John Tan from room 03-100.
