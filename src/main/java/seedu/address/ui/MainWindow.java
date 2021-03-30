@@ -9,6 +9,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -204,33 +205,29 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.type() == CommandResult.CRtype.PERSON) {
-                personList.getChildren().clear();
-                personListPanelPlaceholder.getChildren().clear();
-                personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-                personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-                personList.getChildren().add(personListPanelPlaceholder);
+            switch (commandResult.type()) {
+            case PERSON : updateCompList(personList, personListPanel,
+                        new PersonListPanel(logic.getFilteredPersonList()), personListPanelPlaceholder);
+                break;
 
-            } else if (commandResult.type() == CommandResult.CRtype.DISH) {
-                componentList.getChildren().clear();
-                menuListPanelPlaceholder.getChildren().clear();
-                menuListPanel = new MenuListPanel(logic.getFilteredDishList());
-                menuListPanelPlaceholder.getChildren().add(menuListPanel.getRoot());
-                componentList.getChildren().add(menuListPanelPlaceholder);
+            case DISH : updateCompList(componentList, menuListPanel,
+                        new MenuListPanel(logic.getFilteredDishList()), menuListPanelPlaceholder);
+                break;
 
-            } else if (commandResult.type() == CommandResult.CRtype.INGREDIENT) {
-                componentList.getChildren().clear();
-                inventoryListPanelPlaceholder.getChildren().clear();
-                inventoryListPanel = new InventoryListPanel(logic.getFilteredInventoryList());
-                inventoryListPanelPlaceholder.getChildren().add(inventoryListPanel.getRoot());
-                componentList.getChildren().add(inventoryListPanelPlaceholder);
+            case INGREDIENT : updateCompList(componentList, inventoryListPanel,
+                        new InventoryListPanel(logic.getFilteredInventoryList()), inventoryListPanelPlaceholder);
+                break;
 
-            } else if (commandResult.type() == CommandResult.CRtype.ORDER) {
-                componentList.getChildren().clear();
-                orderListPanelPlaceholder.getChildren().clear();
-                orderListPanel = getSortedFilteredOrderListPanel();
-                orderListPanelPlaceholder.getChildren().add(orderListPanel.getRoot());
-                componentList.getChildren().add(orderListPanelPlaceholder);
+            case ORDER : updateCompList(componentList, orderListPanel,
+                        getSortedFilteredOrderListPanel(), orderListPanelPlaceholder);
+                break;
+
+            case ORDERHISTORY : updateCompList(componentList, orderListPanel,
+                    getSortedFilteredOrderHistoryPanel(), orderListPanelPlaceholder);
+                break;
+
+            default:
+                break;
             }
 
             if (commandResult.isShowHelp()) {
@@ -249,9 +246,20 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    public OrderListPanel getSortedFilteredOrderListPanel() {
+    private void updateCompList(VBox list, UiPart<Region> panel, UiPart<Region> newPanel, StackPane panelPlaceholder) {
+        list.getChildren().clear();
+        panelPlaceholder.getChildren().clear();
+        panel = newPanel;
+        panelPlaceholder.getChildren().add(panel.getRoot());
+        list.getChildren().add(panelPlaceholder);
+    }
+
+    private OrderListPanel getSortedFilteredOrderListPanel() {
         Comparator<Order> comparator = (first, second) ->
                 first.getDatetime().isAfter(second.getDatetime()) ? 1 : 0;
         return new OrderListPanel(logic.getFilteredOrderList(comparator, Order.State.UNCOMPLETED));
+    }
+    private OrderListPanel getSortedFilteredOrderHistoryPanel() {
+        return new OrderListPanel(logic.getFilteredOrderList(Order.State.COMPLETED, Order.State.CANCELLED));
     }
 }

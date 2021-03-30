@@ -92,6 +92,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Order> getFilteredOrderList(Order.State firstState, Order.State secState) {
+        return model.getFilteredOrderList(firstState, secState);
+    }
+
+    @Override
     public ObservableList<Order> getFilteredOrderList(Comparator<Order> comparator, Order.State state) {
         return model.getFilteredOrderList(comparator, state);
     }

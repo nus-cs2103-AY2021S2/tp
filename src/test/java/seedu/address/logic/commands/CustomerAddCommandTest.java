@@ -288,6 +288,17 @@ public class CustomerAddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        /**
+         * Returns an unmodifiable view of the filtered order list
+         *
+         * @param firstState
+         * @param secState
+         */
+        @Override
+        public ObservableList<Order> getFilteredOrderList(Order.State firstState, Order.State secState) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public ObservableList<Order> getFilteredOrderList(Comparator<Order> comparator, Order.State state) {
             throw new AssertionError("This method should not be called.");
