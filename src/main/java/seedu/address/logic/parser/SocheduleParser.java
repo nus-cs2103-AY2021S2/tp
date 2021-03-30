@@ -20,6 +20,7 @@ import seedu.address.logic.commands.EditEventCommand;
 import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindEventCommand;
+import seedu.address.logic.commands.FindFreeTimeCommand;
 import seedu.address.logic.commands.FindTaskCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListEventCommand;
@@ -113,6 +114,10 @@ public class SocheduleParser {
 
         case ClearExpiredEventCommand.COMMAND_WORD:
             return new ClearExpiredEventCommand();
+
+        case FindFreeTimeCommand
+                .COMMAND_WORD:
+            return new FindFreeTimeCommandParser().parse(arguments);
 
         case ListTaskCommand.COMMAND_WORD:
             return new ListTaskCommand();

@@ -17,6 +17,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlySochedule;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.Sochedule;
+import seedu.address.model.common.Date;
 import seedu.address.model.event.Event;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
@@ -178,6 +179,11 @@ public class AddTaskCommandTest {
 
         @Override
         public int getNumIncomingEvents() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ArrayList<String> getFreeTimeSlots(Date date) {
             throw new AssertionError("This method should not be called.");
         }
     }
