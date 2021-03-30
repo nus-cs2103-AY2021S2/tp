@@ -40,13 +40,8 @@ public class NameFilter extends AbstractFilter {
                        .filter(this::test)
                        .collect(Collectors.toUnmodifiableList());
     }
-
-    //All code below taken from https://stackoverflow.com/a/13564498/11358676
-    //TODO: Follow this:
-    // https://nus-cs2103-ay2021s2.github.io/website/admin/appendixB-policies.html#policy-on-reuse
-    // Figure out whether I can even copy straight from the code or
-    // if I need to use the apache library. See: https://stackoverflow.com/a/35402823/11358676
-
+    //@@author nighoggDatatype-reused
+    //Reused from https://stackoverflow.com/a/13564498/11358676
     private static int levenshteinDistance(String s1, String s2) {
         return dist(s1.toCharArray(), s2.toCharArray());
     }
@@ -78,4 +73,5 @@ public class NameFilter extends AbstractFilter {
         }
         return prev[s2.length];
     }
+    //@@author
 }
