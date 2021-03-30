@@ -126,6 +126,31 @@ public class Person {
     }
 
     /**
+     * Creates a Person object that is identical to the original, but has an added InsurancePlan.
+     */
+    public Person addPlan(InsurancePlan plan) {
+        List<InsurancePlan> plansCopy = new ArrayList<>(plans);
+        plansCopy.add(plan);
+        return new Person(name, phone, email, address, gender, birthdate, tags, meeting, plansCopy);
+    }
+
+    /**
+     * Creates a Person object that is identical to the original, but with the InsurancePlan at index removed.
+     */
+    public Person removePlan(int zeroBasedIndex) {
+        List<InsurancePlan> plansCopy = new ArrayList<>(plans);
+        plansCopy.remove(zeroBasedIndex);
+        return new Person(name, phone, email, address, gender, birthdate, tags, meeting, plansCopy);
+    }
+
+    /**
+     * Returns the string representation of the InsurancePlan at the given index in the List of insurance plans.
+     */
+    public String getPlanString (int zeroBasedIndex) {
+        return plans.get(zeroBasedIndex).toString();
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
