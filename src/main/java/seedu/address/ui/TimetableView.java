@@ -1,89 +1,192 @@
 package seedu.address.ui;
 
-import javafx.beans.binding.Bindings;
-import javafx.beans.value.ObservableValue;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
+
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
-import javafx.scene.control.*;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.scheduler.DaySchedule;
 
-import java.util.logging.Logger;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
+
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.schedule.Schedulable;
+
+/**
+ * Renders a timetable onto the UI. note that a timetable consists of columns which represent a day in the
+ * schedule.
+ */
 
 public class TimetableView extends UiPart<Region> {
+
+    public static final int NUMBER_OF_COLUMNS = 7;
+
     private static final String FXML = "TimetableWindow.fxml";
+
     private final Logger logger = LogsCenter.getLogger(TimetableView.class);
+    private final ListChangeListener<Schedulable> listener = change -> {
+        while (change.next()) {
+            if (change.wasAdded() || change.wasRemoved()) {
+                this.populateWithData(change.getList());
+            }
+        }
+    };
+
 
     @FXML
-    private TableView<DaySchedule> timetableView;
+    private GridPane timetableGrid;
 
-    private ObservableList<DaySchedule> timetableList;
+    @FXML
+    private AnchorPane dayScheduleOne;
+
+    @FXML
+    private AnchorPane dayScheduleTwo;
+
+    @FXML
+    private AnchorPane dayScheduleThree;
+
+    @FXML
+    private AnchorPane dayScheduleFour;
+
+    @FXML
+    private AnchorPane dayScheduleFive;
+
+    @FXML
+    private AnchorPane dayScheduleSix;
+
+    @FXML
+    private AnchorPane dayScheduleSeven;
+
 
     /**
-     * Renders an observable list of daySchedules in each row onto the UI,
-     * with the column being the timeslots.
-     * @param timetableList
+     * Using strategy pattern. Logic for implementing timetable.
+     * Used to determine node placement of a Schedulable object in the timetable UI.
+     * it should also provide method to check if it can be scheduled or not.
      */
+    private TimetablePlacementPolicy timetablePlacementPolicy;
 
-    public TimetableView(ObservableList<DaySchedule> timetableList) {
+    private ObservableList<? extends Schedulable> timetableSlots;
+
+    private LocalDate firstDayOfTimetable;
+
+
+    /**
+     * Renders an empty timetable.
+     */
+    public TimetableView() {
         super(FXML);
-        this.timetableList = timetableList;
-        timetableView.setItems(timetableList);
-        applyTableStyle(timetableView);
+    }
 
-        //set all 48 columns of the table
+    /**
+     * Given an observable list, does the following
+     * -Filters out relevant meetings to be displayed
+     * -Finds the meeting position and column to slot in given the timeTablePlacementPolicy.
+     * -Puts it into the timetable.
+     * @param timetableSlots
+     */
 
-        for (int i = 0; i < DaySchedule.NUMBER_OF_PERIODS; i++) {
-            String columnName = timetableList.get(0).getTimeDisplayString(i);
-            TableColumn<DaySchedule, String> currentCol = new TableColumn<DaySchedule, String>(columnName);
-            applyStyle(currentCol);
-            //rowItem.getValue() returns the DaySchedule instance for particular row
-            int finalI = i; //get around variable must be effectively final
-            currentCol.setCellValueFactory(rowItem -> rowItem.getValue().getStringProperty(finalI));
-            //currentCol.setCellFactory(tc -> {
+    public TimetableView(ObservableList<? extends Schedulable> timetableSlots, LocalDate firstDayOfTimetable) {
+        super(FXML);
+        this.timetableSlots = timetableSlots;
+        this.firstDayOfTimetable = firstDayOfTimetable;
+        this.timetablePlacementPolicy = new TimetablePlacementPolicy(firstDayOfTimetable);
+        populateWithData(timetableSlots);
+        //add Listener
+        timetableSlots.addListener(this.listener);
+    }
 
-            //});
-            timetableView.getColumns().add(currentCol);
+    public void setTimetablePlacementPolicy(TimetablePlacementPolicy policy) {
+        this.timetablePlacementPolicy = policy;
+    }
+
+    /**
+     * Clears old data and populates the view with new da
+     * @param obsList
+     */
+
+    public void populateWithData(ObservableList<? extends Schedulable> obsList) {
+        reset();
+        List<? extends Schedulable> processedList = obsList.stream()
+                .filter(timetablePlacementPolicy :: test)
+                .flatMap(timetablePlacementPolicy :: breakIntoUnits)
+                .collect(Collectors.toList());
+        for (Schedulable schedulable : processedList) {
+            double slotLength = timetablePlacementPolicy.getLengthOfSlot(schedulable);
+            String name = schedulable.getNameString();
+            Column col = timetablePlacementPolicy.getColumnPlacement(schedulable);
+            double position = timetablePlacementPolicy.getVerticalPosition(schedulable);
+            TimetableSlot slotToAdd = new TimetableSlot(slotLength, name);
+            putIntoSlot(slotToAdd, col, position);
         }
-
-
     }
 
     /**
-     * Solve the case where column headers are not displaying the text by wrapping properly. Credits to
-     * @jewelsea for his code TableWrappedHeaders.java. Do check out his work.
-     * https://gist.github.com/jewelsea/2898196
-     * @param column
+     * Enum representing an assigned column in the timetable.
      */
 
-    public void applyStyle(TableColumn<DaySchedule, String> column) {
-        column.setPrefWidth(100);
-        Label label = new Label(column.getText());
-        label.setWrapText(true);
-        label.setAlignment(Pos.CENTER);
-        label.setStyle("-fx-padding: 6px;-fx-font: 15 arial;");
+    public static enum Column {
+        ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN
+    }
 
-        StackPane stack = new StackPane();
-        stack.prefWidthProperty().bind(column.widthProperty().subtract(5));
-        label.prefWidthProperty().bind(stack.prefWidthProperty());
-        stack.getChildren().add(label);
-        column.setText(null);
-        column.setGraphic(stack);
+
+
+    /**
+     * Puts a timetableSlot into the timetable to render, given the column to place it in
+     * and the position from the top we are supposed to place it. Note that the timetableSlots must be
+     * non clashing.
+     * @param timetableSlot
+     * @param col
+     * @param position
+     */
+
+    public void putIntoSlot(TimetableSlot timetableSlot, Column col, double position) {
+
+        AnchorPane scheduleToPut = null;
+        switch(col) {
+        case ONE:
+            scheduleToPut = dayScheduleOne;
+            break;
+        case TWO:
+            scheduleToPut = dayScheduleTwo;
+            break;
+        case THREE:
+            scheduleToPut = dayScheduleThree;
+            break;
+        case FOUR:
+            scheduleToPut = dayScheduleFour;
+            break;
+        case FIVE:
+            scheduleToPut = dayScheduleFive;
+            break;
+        case SIX:
+            scheduleToPut = dayScheduleSix;
+            break;
+        case SEVEN:
+            scheduleToPut = dayScheduleSeven;
+            break;
+        }
+        scheduleToPut.setTopAnchor(timetableSlot.getRoot(), position);
+        scheduleToPut.setLeftAnchor(timetableSlot.getRoot(), 0.0);
+        scheduleToPut.setRightAnchor(timetableSlot.getRoot(), 0.0);
+
+        scheduleToPut.getChildren().addAll(timetableSlot.getRoot());
     }
 
     /**
-     * Adjusts the cell size of the table so that the timetable is displayed.
-     * @param table
+     * resets to an empty timetable.
      */
-    public void applyTableStyle(TableView<DaySchedule> table) {
-        //Ensures table matches the bottom of the screen in fullscreen when displaying tabs.
-        table.setFixedCellSize(92);
-        table.prefHeightProperty().bind(Bindings.size(table.getItems()).multiply(table.getFixedCellSize()).add(30));
+    public void reset() {
+        dayScheduleOne.getChildren().clear();
+        dayScheduleTwo.getChildren().clear();
+        dayScheduleThree.getChildren().clear();
+        dayScheduleFour.getChildren().clear();
+        dayScheduleFive.getChildren().clear();
+        dayScheduleSix.getChildren().clear();
+        dayScheduleSeven.getChildren().clear();
     }
 
 }

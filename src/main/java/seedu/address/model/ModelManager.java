@@ -242,6 +242,13 @@ public class ModelManager implements Model {
         meetingBook.updateMeeting(target, editedMeeting);
     }
 
+    /**
+     * Returns the unmodifiable list of all meetings
+     */
+    public ObservableList<Meeting> getUnmodifiableMeetingList() {
+        return this.meetingBook.getMeetingList();
+    }
+
     //TODO: Set MeetingBook file path in userPrefs? low priority feature(nice to have)
 
     //========= Clashing Meetings ================================================================
