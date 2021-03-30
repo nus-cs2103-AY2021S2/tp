@@ -90,7 +90,7 @@ public class Issue implements Comparable<Issue> {
         }
 
         Issue otherIssue = (Issue) other;
-        return otherIssue.getId().equals(getId()) && otherIssue.getRoomNumber().equals(getRoomNumber())
+        return otherIssue.getRoomNumber().equals(getRoomNumber())
                 && otherIssue.getDescription().equals(getDescription())
                 && otherIssue.getTimestamp().equals(getTimestamp()) && otherIssue.getStatus().equals(getStatus())
                 && otherIssue.getCategory().equals(getCategory());
