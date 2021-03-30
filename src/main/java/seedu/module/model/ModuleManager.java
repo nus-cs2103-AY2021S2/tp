@@ -79,7 +79,7 @@ public class ModuleManager {
             mappingOfModulesToTasks.put(module, newList);
             moduleWorkLoadDistribution.put(module, task.getWorkload().getWorkloadLevel());
         }
-        putIntoCorrectWorkloadDistribution(module, task);
+        increaseCorrectWorkloadDistribution(module, task);
         setExistingModuleList();
         setModulePieChartData();
     }
@@ -90,7 +90,7 @@ public class ModuleManager {
      * @param module the corresponding module of the task
      * @param task the task that need to be inserted into mapping book.
      */
-    public static void putIntoCorrectWorkloadDistribution(Module module, Task task) {
+    public static void increaseCorrectWorkloadDistribution(Module module, Task task) {
         int workloadLevel = task.getWorkload().getWorkloadLevel();
         moduleWorkLoadDistribution.put(module,
             moduleWorkLoadDistribution.get(module) + workloadLevel);
@@ -106,6 +106,32 @@ public class ModuleManager {
         case HIGH_LEVEL:
             moduleHighWorkLoadDistribution.put(module,
                 moduleHighWorkLoadDistribution.getOrDefault(module, 0) + 1);
+            break;
+        default:
+            assert false;
+        }
+    }
+
+    /**
+     * Modifies the workload distribution after deleting the task.
+     *
+     * @param module the corresponding module of the task
+     * @param task the task that need to be inserted into mapping book.
+     */
+    public static void decreaseCorrectWorkloadDistribution(Module module, Task task) {
+        int workloadLevel = task.getWorkload().getWorkloadLevel();
+        switch(workloadLevel) {
+        case LOW_LEVEL:
+            moduleLowWorkLoadDistribution.put(module,
+                moduleLowWorkLoadDistribution.getOrDefault(module, 1) - 1);
+            break;
+        case MEDIUM_LEVEL:
+            moduleMediumWorkLoadDistribution.put(module,
+                moduleMediumWorkLoadDistribution.getOrDefault(module, 1) - 1);
+            break;
+        case HIGH_LEVEL:
+            moduleHighWorkLoadDistribution.put(module,
+                moduleHighWorkLoadDistribution.getOrDefault(module, 1) - 1);
             break;
         default:
             assert false;
@@ -149,6 +175,7 @@ public class ModuleManager {
         } else {
             mappingOfModulesToTasks.put(module, newList);
         }
+        decreaseCorrectWorkloadDistribution(module, task);
         setExistingModuleList();
         setModulePieChartData();
     }
