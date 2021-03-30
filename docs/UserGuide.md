@@ -16,7 +16,7 @@ TutorsPet is a **desktop app designed for private tutors to manage students’ i
 
 1. Download the latest `tutorspet.jar` from [here](https://github.com/AY2021S2-CS2103T-T11-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your TutorsPet.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -224,6 +224,37 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd student in TutorsPet.
 * `search n/Betsy` followed by `delete 1` deletes the 1st student in the results of the `search` command.
 
+### Adding an important date: `add-date`
+
+Adds an important date to TutorsPet.
+
+Format: `add-date d/DESCRIPTION dt/DETAILS`
+
+* `DETAILS` must be in the **yyyy-mm-dd HHmm format** e.g. `2021-11-03 0800`
+
+
+Examples:
+* `add-date d/math exam dt/2021-11-03 0800`
+
+### Listing all important dates : `list-date`
+
+Shows a list of all important dates in TutorsPet.
+
+Format: `list-date`
+
+### Deleting an important date : `delete-date`
+
+Permanently deletes the specified important date from TutorsPet.
+
+Format: `delete-date INDEX`
+
+* Deletes the important date at the specified `INDEX`.
+* The index refers to the index number shown in the displayed important dates list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list-date` followed by `delete-date 2` deletes the 2nd important date in TutorsPet.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from TutorsPet.
@@ -271,5 +302,9 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [s/SCHOOL] [p/PHONE] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/TAG]…​ [l/LESSON]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Search** | `search [n/KEYWORDS] [s/KEYWORDS] [t/KEYWORDS] [MORE_KEYWORDS]`<br> e.g., `search n/James Jake s/woodlands t/science`
 **Schedule** | `schedule`
+**Detail** | `detail INDEX` <br> e.g., `detail 1`
 **List** | `list`
+**Add dates** | `add-date d/DESCRIPTION dt/DETAILS`<br> e.g, `add-date d/math exam dt/2021-11-05 1300`
+**Delete dates** | `delete-date INDEX`<br> e.g., `delete-date 3`
+**List dates** | `list-date`
 **Help** | `help`

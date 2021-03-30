@@ -5,7 +5,12 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.DatesBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyDatesBook;
+import seedu.address.model.date.Description;
+import seedu.address.model.date.Details;
+import seedu.address.model.date.ImportantDate;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -72,6 +77,21 @@ public class SampleDataUtil {
         return Arrays.stream(strings)
                 .map(Lesson::new)
                 .collect(Collectors.toSet());
+    }
+
+    public static ImportantDate[] getSampleImportantDates() {
+        return new ImportantDate[] {
+            new ImportantDate(new Description("A-Levels Mathematics Paper 1"), new Details("2021-11-03 0800")),
+            new ImportantDate(new Description("A-Levels Mathematics Paper 2"), new Details("2021-11-06 0800"))
+        };
+    }
+
+    public static ReadOnlyDatesBook getSampleDatesBook() {
+        DatesBook sampleDb = new DatesBook();
+        for (ImportantDate sampleImportantDate : getSampleImportantDates()) {
+            sampleDb.addImportantDate(sampleImportantDate);
+        }
+        return sampleDb;
     }
 
 }

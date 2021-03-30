@@ -9,6 +9,8 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.date.Description;
+import seedu.address.model.date.Details;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -23,6 +25,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String INPUT_FORMAT = "yyyy-MM-dd HHmm";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -198,4 +201,36 @@ public class ParserUtil {
         }
         return lessonSet;
     }
+
+    /**
+     * Parses a {@code String details} into a {@code Details}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code details} is invalid.
+     */
+    public static Details parseDetails(String details) throws ParseException {
+        requireNonNull(details);
+        String trimmedDetails = details.trim();
+        if (!Details.isValidDetails(trimmedDetails)) {
+            throw new ParseException(Details.MESSAGE_CONSTRAINTS);
+        } else {
+            return new Details(trimmedDetails);
+        }
+    }
+
+    /**
+     * Parses a {@code String description} into a {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static Description parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(trimmedDescription);
+    }
+
 }

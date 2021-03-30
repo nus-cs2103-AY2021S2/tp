@@ -20,7 +20,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyDatesBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.date.ImportantDate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -110,6 +112,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public Path getDatesBookFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setDatesBookFilePath(Path datesBookFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
@@ -182,6 +194,61 @@ public class AddCommandTest {
 
         @Override
         public void filterThenSortPersonList(Predicate<Person> predicate, Comparator<Person> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setDatesBook(ReadOnlyDatesBook datesBook) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyDatesBook getDatesBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasImportantDate(ImportantDate importantDate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteImportantDate(ImportantDate target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addImportantDate(ImportantDate importantDate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void filterImportantDates(Predicate<ImportantDate> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<ImportantDate> getFilteredImportantDatesList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredImportantDatesList(Predicate<ImportantDate> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<ImportantDate> getSortedImportantDatesList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortedImportantDatesList(Comparator<ImportantDate> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<ImportantDate> getTransformedImportantDatesList() {
             throw new AssertionError("This method should not be called.");
         }
     }

@@ -15,5 +15,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_GUARDIAN_PHONE = new Prefix("gp/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_LESSON = new Prefix("l/");
+    public static final Prefix PREFIX_DESCRIPTION = new Prefix("d/");
+    public static final Prefix PREFIX_DETAILS = new Prefix("dt/");
 
 }
