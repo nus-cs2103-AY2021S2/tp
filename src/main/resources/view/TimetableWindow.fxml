@@ -99,13 +99,13 @@
                         </Label>
                      </children>
                   </VBox>
-                  <AnchorPane fx:id="dayScheduleOne" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
-                  <AnchorPane fx:id="dayScheduleTwo" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
-                  <AnchorPane fx:id="dayScheduleThree" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
-                  <AnchorPane fx:id="dayScheduleFour" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
-                  <AnchorPane fx:id="dayScheduleFive" GridPane.columnIndex="4" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
-                  <AnchorPane fx:id="dayScheduleSix" GridPane.columnIndex="5" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
-                  <AnchorPane fx:id="dayScheduleSeven" GridPane.columnIndex="6" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
+                  <AnchorPane fx:id="dayScheduleOne" styleClass="even-timetable-row" stylesheets="@Extensions.css" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
+                  <AnchorPane fx:id="dayScheduleTwo" styleClass="odd-timetable-row" stylesheets="@Extensions.css" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
+                  <AnchorPane fx:id="dayScheduleThree" styleClass="even-timetable-row" stylesheets="@Extensions.css" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
+                  <AnchorPane fx:id="dayScheduleFour" styleClass="odd-timetable-row" stylesheets="@Extensions.css" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
+                  <AnchorPane fx:id="dayScheduleFive" styleClass="even-timetable-row" stylesheets="@Extensions.css" GridPane.columnIndex="4" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
+                  <AnchorPane fx:id="dayScheduleSix" styleClass="odd-timetable-row" stylesheets="@Extensions.css" GridPane.columnIndex="5" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
+                  <AnchorPane fx:id="dayScheduleSeven" styleClass="even-timetable-row" stylesheets="@Extensions.css" GridPane.columnIndex="6" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
                </children>
             </GridPane>
          </content>

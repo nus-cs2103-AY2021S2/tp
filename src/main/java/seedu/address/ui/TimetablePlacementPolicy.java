@@ -33,7 +33,7 @@ public class TimetablePlacementPolicy {
     private static final int MINUTES_IN_AN_HOUR = 60;
     private static final int MINUTES_IN_DAY = 2400;
 
-    public static final double TIMETABLE_DISPLAY_SIZE = 1600;
+    public static final double TIMETABLE_DISPLAY_SIZE = 5760;
 
 
     private LocalDateTime startDateTime;
