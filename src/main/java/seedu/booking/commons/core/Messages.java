@@ -25,13 +25,12 @@ public class Messages {
     public static final String MESSAGE_INVALID_DATE_FORMAT = "Invalid date format, date "
             + "should be yyyy-mm-dd HH:mm:ss\n";
 
-    //public static final String MESSAGE_EXIT_PROMPT = "(Enter exit to quit prompting)\n";
     public static final String MESSAGE_INVALID_EMAIL_FORMAT = "Invalid email address format, please try again.\n";
     public static final String MESSAGE_PROMPT_TRYAGAIN = "Please try again or enter exit_prompt to quit prompting.\n";
 
     public static final String PROMPT_EMAIL_MESSAGE = "What's your email?\n";
     public static final String PROMPT_VENUE_MESSAGE = "Which venue would you like to book?\n";
-    public static final String PROMPT_DESC_MESSAGE = "What is your booking about?\n";
+    public static final String PROMPT_DESC_MESSAGE = "Please give a booking description.(optional)\n";
     public static final String PROMPT_START_MESSAGE = "When does the booking start? "
             + "Please enter in yyyy-mm-dd HH:MM:ss format\n";
     public static final String PROMPT_END_MESSAGE = "When does the booking end? "

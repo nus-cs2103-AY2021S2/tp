@@ -24,14 +24,8 @@ public class BookingEndPromptCommand extends Command {
 
         CommandResult result;
 
-        try {
-            Booking booking = (Booking) ModelManager.create();
-            result = new AddBookingCommand(booking).execute(model);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            ModelManager.setStateInactive();
-            throw new CommandException("Failed to create booking, please try again.\n");
-        }
+        Booking booking = (Booking) ModelManager.create();
+        result = new AddBookingCommand(booking).execute(model);
 
         ModelManager.setStateInactive();
 

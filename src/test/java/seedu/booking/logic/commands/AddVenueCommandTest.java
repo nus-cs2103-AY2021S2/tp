@@ -28,7 +28,7 @@ import seedu.booking.model.venue.Venue;
 import seedu.booking.model.venue.VenueName;
 import seedu.booking.testutil.VenueBuilder;
 
-public class CreateVenueCommandTest {
+public class AddVenueCommandTest {
 
     @Test
     public void constructor_nullVenue_throwsNullPointerException() {
@@ -127,6 +127,21 @@ public class CreateVenueCommandTest {
         @Override
         public void setBooking(Booking target, Booking editedBooking) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateVenueInBookings(VenueName oldVenueName, VenueName newVenueName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updatePersonInBookings(Email oldEmail, Email newEmail) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasOverlappedBooking(Booking toAdd) {
+            return false;
         }
 
         @Override

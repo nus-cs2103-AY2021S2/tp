@@ -17,6 +17,6 @@ public class ExitPromptCommand extends Command {
     public CommandResult execute(Model model) {
 
         ModelManager.setStateInactive();
-        return new CommandResult("Prompting exited;");
+        return new CommandResult("Prompting exited.");
     }
 }

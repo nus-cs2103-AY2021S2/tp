@@ -21,7 +21,7 @@ import seedu.booking.model.venue.VenueName;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class CreateBookingCommandParser implements Parser<AddBookingCommand> {
+public class AddBookingCommandParser implements Parser<AddBookingCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddBookingCommand
@@ -45,6 +45,7 @@ public class CreateBookingCommandParser implements Parser<AddBookingCommand> {
         Description description = ParserUtil.parseBookingDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         StartTime bookingStart = ParserUtil.parseBookingStart(argMultimap.getValue(PREFIX_BOOKING_START).get());
         EndTime bookingEnd = ParserUtil.parseBookingEnd(argMultimap.getValue(PREFIX_BOOKING_END).get());
+
 
         Booking booking = new Booking(bookerEmail, venueName, description,
                 bookingStart, bookingEnd);

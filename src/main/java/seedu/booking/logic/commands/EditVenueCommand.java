@@ -5,6 +5,7 @@ import static seedu.booking.logic.parser.CliSyntax.PREFIX_CAPACITY;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
+import static seedu.booking.model.Model.PREDICATE_SHOW_ALL_BOOKINGS;
 import static seedu.booking.model.Model.PREDICATE_SHOW_ALL_VENUES;
 
 import java.util.Collections;
@@ -79,13 +80,14 @@ public class EditVenueCommand extends Command {
         }
 
         model.setVenue(venueToEdit, editedVenue);
+        model.updateVenueInBookings(venueToEdit.getVenueName(), editedVenue.getVenueName());
+        model.updateFilteredBookingList(PREDICATE_SHOW_ALL_BOOKINGS);
         model.updateFilteredVenueList(PREDICATE_SHOW_ALL_VENUES);
         return new CommandResult(String.format(MESSAGE_EDIT_VENUE_SUCCESS, editedVenue));
     }
 
     private static Venue getVenueByVenueName(VenueName venueName, List<Venue> venueList) {
-        return venueList.stream()
-                .filter(venueName::isSameVenueName).findFirst().orElse(null);
+        return venueList.stream().filter(venueName::isSameVenueName).findFirst().orElse(null);
     }
 
     /**

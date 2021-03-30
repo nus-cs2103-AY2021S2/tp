@@ -25,7 +25,7 @@ public class AddVenueCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_VENUE + "Victoria Hall "
             + PREFIX_CAPACITY + "50 "
-            + PREFIX_DESCRIPTION + "Classic concert hall"
+            + PREFIX_DESCRIPTION + "Classic concert hall "
             + PREFIX_TAG + "Central";
 
     public static final String MESSAGE_SUCCESS = "New venue added: %1$s";

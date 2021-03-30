@@ -1,6 +1,7 @@
 package seedu.booking.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.booking.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
@@ -226,7 +227,6 @@ public class BookingSystem implements ReadOnlyBookingSystem {
     }
 
 
-
     /**
      * Returns true if a person with the same email as {@code email} exists in the system.
      */
@@ -254,4 +254,28 @@ public class BookingSystem implements ReadOnlyBookingSystem {
         bookings.setBooking(target, editedBooking);
     }
 
+    /**
+     * Replaces the old venue name {@code oldVenueName} in the booking with {@code newVenueName}.
+     * {@code oldVenueName} must exist in the booking system.
+     */
+    public void updateVenueInBookings(VenueName oldVenueName, VenueName newVenueName) {
+        requireAllNonNull(oldVenueName, newVenueName);
+        bookings.updateVenueInBookings(oldVenueName, newVenueName);
+    }
+
+    /**
+     * Replaces the old person email {@code oldEmail} in the booking with {@code newEmail}.
+     * {@code oldEmail} must exist in the booking system.
+     */
+    public void updatePersonInBookings(Email oldEmail, Email newEmail) {
+        requireAllNonNull(oldEmail, newEmail);
+        bookings.updatePersonInBookings(oldEmail, newEmail);
+    }
+
+    /**
+     * Returns true if a booking with the overlapped duration as {@code toAdd} exists in the system.
+     */
+    public boolean hasOverlappedBooking(Booking toAdd) {
+        return bookings.overlaps(toAdd);
+    }
 }

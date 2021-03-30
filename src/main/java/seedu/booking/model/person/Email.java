@@ -75,6 +75,7 @@ public class Email {
                 && StringUtil.containsWordIgnoreCase(this.removeSpacesInEmail(),
                 person.getEmail().removeSpacesInEmail());
     }
+
     public String removeSpacesInEmail() {
         return this.value.replace(" ", "");
     }
