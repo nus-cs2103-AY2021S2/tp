@@ -32,6 +32,7 @@ class JsonAdaptedClient {
     private final String insurancePlan;
     private final String location;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String imageRes;
 
     /**
      * Constructs a {@code JsonAdaptedClient} with the given client details.
@@ -39,7 +40,8 @@ class JsonAdaptedClient {
     @JsonCreator
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("location") String location,
-            @JsonProperty("plan") String insurancePlan, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("plan") String insurancePlan, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("image") String imageRes) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -49,6 +51,8 @@ class JsonAdaptedClient {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+
+        this.imageRes = imageRes;
     }
 
     /**
@@ -63,6 +67,7 @@ class JsonAdaptedClient {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        imageRes = source.getImageRes().value;
     }
 
     /**
@@ -121,9 +126,9 @@ class JsonAdaptedClient {
 
         final Set<Tag> modelTags = new HashSet<>(clientTags);
 
-        // TODO: Modify storage to handle generating Clients with imageRes
-        final Image imageRes = new Image("default.png");
-        return new Client(modelName, modelPhone, modelEmail, modelLocation, modelPlan, modelTags, imageRes);
+        final Image modelImage = new Image(imageRes);
+
+        return new Client(modelName, modelPhone, modelEmail, modelLocation, modelPlan, modelTags, modelImage);
     }
 
 }

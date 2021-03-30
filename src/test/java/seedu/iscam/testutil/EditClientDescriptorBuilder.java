@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import seedu.iscam.logic.commands.EditCommand.EditClientDescriptor;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.client.Email;
+import seedu.iscam.model.client.Image;
 import seedu.iscam.model.client.InsurancePlan;
 import seedu.iscam.model.client.Phone;
 import seedu.iscam.model.commons.Location;
@@ -39,6 +40,7 @@ public class EditClientDescriptorBuilder {
         descriptor.setPlan(client.getPlan());
         descriptor.setLocation(client.getLocation());
         descriptor.setTags(client.getTags());
+        descriptor.setImageRes(client.getImageRes());
     }
 
     /**
@@ -88,6 +90,14 @@ public class EditClientDescriptorBuilder {
     public EditClientDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Image} of the {@code EditClientDescriptor} that we are building.
+     */
+    public EditClientDescriptorBuilder withImage(String imageRes) {
+        descriptor.setImageRes(new Image(imageRes));
         return this;
     }
 
