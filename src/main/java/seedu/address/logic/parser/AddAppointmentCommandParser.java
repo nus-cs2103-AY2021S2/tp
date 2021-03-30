@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CHILD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -16,6 +17,7 @@ import seedu.address.model.Name;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.DateTime;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand> {
     /**
@@ -28,7 +30,7 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
     public AddAppointmentCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_DATE,
-                        PREFIX_CONTACT);
+                        PREFIX_CHILD, PREFIX_CONTACT);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_DATE)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -40,11 +42,10 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         DateTime date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
 
+        Set<Tag> childrenList = ParserUtil.parseChildTags(argMultimap.getAllValues(PREFIX_CHILD));
         Set<Person> contactList = ParserUtil.parseContacts(argMultimap.getAllValues(PREFIX_CONTACT));
 
-        contactList.addAll(contactList);
-
-        Appointment appointment = new Appointment(name, address, date, contactList);
+        Appointment appointment = new Appointment(name, address, date, contactList, childrenList);
 
         return new AddAppointmentCommand(appointment);
     }

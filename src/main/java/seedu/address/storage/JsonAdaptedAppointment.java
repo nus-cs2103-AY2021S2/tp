@@ -1,6 +1,8 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -13,6 +15,7 @@ import seedu.address.model.Name;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.DateTime;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 public class JsonAdaptedAppointment {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Appointment's %s field is missing!";
@@ -21,6 +24,7 @@ public class JsonAdaptedAppointment {
     private final String address;
     private final DateTime date;
     private final Set<JsonAdaptedPerson> contacts = new HashSet<>();
+    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedAppointment} with the given appointment details.
@@ -28,11 +32,15 @@ public class JsonAdaptedAppointment {
     @JsonCreator
     public JsonAdaptedAppointment(@JsonProperty("name") String name, @JsonProperty("address") String address,
                                   @JsonProperty("date") DateTime date,
+                                  @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                                   @JsonProperty("contacts") Set<JsonAdaptedPerson> contacts) {
         this.name = name;
         this.address = address;
         this.date = date;
 
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
         if (contacts != null) {
             this.contacts.addAll(contacts);
         }
@@ -49,6 +57,9 @@ public class JsonAdaptedAppointment {
         contacts.addAll(source.getContacts().stream()
                 .map(JsonAdaptedPerson::new)
                 .collect(Collectors.toList()));
+        tagged.addAll(source.getTags().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -61,6 +72,11 @@ public class JsonAdaptedAppointment {
 
         for (JsonAdaptedPerson person : contacts) {
             appointmentContacts.add(person.toModelType());
+        }
+
+        final List<Tag> appointmentTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : tagged) {
+            appointmentTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -86,7 +102,7 @@ public class JsonAdaptedAppointment {
         final DateTime modelDate = date;
 
         final Set<Person> modelContacts = new HashSet<>(appointmentContacts);
-
-        return new Appointment(modelName, modelAddress, modelDate, modelContacts);
+        final Set<Tag> modelTags = new HashSet<>(appointmentTags);
+        return new Appointment(modelName, modelAddress, modelDate, modelContacts, modelTags);
     }
 }
