@@ -237,6 +237,36 @@ Format: `delete_session c/ID`
 Examples:
 * `delete_session c/2` deletes the session with session ID c/2 in the address book.
 
+### Assigning people to a session : `assign`
+
+Assigns the specified people to a session.
+
+Format: `assign [s/ID]... [t/ID] c/ID`
+
+* Assigns students with the specified `s/ID` to the session with the specified `c/ID`
+* Assigns the tutor with the specified `t/ID` to the session with the specified `c/ID`
+* At least one of the optional fields must be provided.
+* Any number of students can be assigned at the same time (including 0)
+
+Examples:
+* `assign s/1 s/2 t/1 c/1` assigns students with student IDs s/1 and s/2, and tutor with tutor ID t/1 to the session with session ID c/1.
+
+### Unassigning people from a session : `assign`
+
+Unassigns the specified people from a session.
+
+Format: `unassign [s/ID]… [t/ID] c/ID`
+
+* Unassigns students with the specified `s/ID` from the session with the specified `c/ID`
+* Unassigns the tutor with the specified `t/ID` from the session with the specified `c/ID`
+* At least one of the optional fields must be provided.
+* Any number of students can be unassigned at the same time (including 0)
+
+Examples:
+* `unassign s/1 c/1` unassigns the student with student ID s/1 from the session with session ID c/1.
+* `unassign c/1 t/1` unassigns the tutor with tutor ID t/1 from the session with session ID c/1.
+* `unassign s/1 s/2 t/1 c/1` unassigns students with student IDs s/1 and s/2, and the tutor with tutor ID t/1 from the session with session ID c/1.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the list of students, tutors and classes.
@@ -281,6 +311,8 @@ Action | Format, Examples
 **Add** | For Person:`add_person tp/ROLE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add_person tp/student n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`<br> For Class: `add_session d/Saturday t/1300 to 1500 l/Upper Secondary s/A Math` <br> e.g. `add_session d/Saturday t/1300 to 1500 l/Upper Secondary s/A Math` 
 **Clear** | `clear`
 **Delete** | Tutor <br> `delete_person t/ID`<br> e.g., `delete_person t/8`<br><br> Student <br> `delete_person s/ID`<br> e.g., `delete_person s/22` <br><br> Class<br>`delete_session c/ID` <br> e.g., `delete_session c/9`
+**Assign** | `assign [s/ID]… [t/ID] c/ID`<br> e.g., `assign s/1 s/2 t/1 c/1`
+**Unassign** | `unassign [s/ID]… [t/ID] c/ID`<br> e.g., `unassign s/1 s/2 t/1 c/1`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
