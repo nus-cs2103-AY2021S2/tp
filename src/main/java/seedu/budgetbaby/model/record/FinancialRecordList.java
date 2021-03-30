@@ -3,6 +3,7 @@ package seedu.budgetbaby.model.record;
 import static java.util.Objects.requireNonNull;
 import static seedu.budgetbaby.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -27,6 +28,7 @@ public class FinancialRecordList implements Iterable<FinancialRecord> {
     public void add(FinancialRecord toAdd) {
         requireNonNull(toAdd);
         internalList.add(toAdd);
+        sort();
     }
 
     /**
@@ -43,6 +45,7 @@ public class FinancialRecordList implements Iterable<FinancialRecord> {
         }
 
         internalList.set(index, editedFinancialRecord);
+        sort();
     }
 
     /**
@@ -56,9 +59,17 @@ public class FinancialRecordList implements Iterable<FinancialRecord> {
         }
     }
 
+    /**
+     * Sorts the financial record list.
+     */
+    public void sort() {
+        FXCollections.sort(internalList, Comparator.comparing(FinancialRecord::getTimestamp));
+    }
+
     public void setFinancialRecords(FinancialRecordList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        sort();
     }
 
     /**
@@ -68,6 +79,7 @@ public class FinancialRecordList implements Iterable<FinancialRecord> {
         requireAllNonNull(records);
 
         internalList.setAll(records);
+        sort();
     }
 
     /**
@@ -83,8 +95,8 @@ public class FinancialRecordList implements Iterable<FinancialRecord> {
      */
     public Double getTotalExpenses() {
         return internalList.stream()
-                .mapToDouble(fr -> fr.getAmount().getValue())
-                .reduce(0.0, Double::sum);
+            .mapToDouble(fr -> fr.getAmount().getValue())
+            .reduce(0.0, Double::sum);
     }
 
     /**

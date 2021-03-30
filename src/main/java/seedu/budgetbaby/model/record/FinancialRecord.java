@@ -89,7 +89,6 @@ public class FinancialRecord {
      * Valid format example: 01-01-2021
      */
     public static boolean isValidTimestamp(String test) {
-        System.out.println(test);
         boolean isValid;
         try {
             formatter.parse(test);
