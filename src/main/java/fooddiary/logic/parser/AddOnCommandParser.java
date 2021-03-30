@@ -13,6 +13,7 @@ import fooddiary.commons.core.index.Index;
 import fooddiary.logic.commands.AddOnCommand;
 import fooddiary.logic.commands.AddOnCommand.AddOnToEntryDescriptor;
 import fooddiary.logic.parser.exceptions.ParseException;
+import fooddiary.model.entry.Price;
 import fooddiary.model.entry.Review;
 
 
@@ -44,7 +45,12 @@ public class AddOnCommandParser implements Parser<AddOnCommand> {
         parseReviewsForAddOn(argMultimap.getAllValues(PREFIX_REVIEW)).ifPresent(addOnToEntryDescriptor::setReviews);
 
         if (argMultimap.getValue(PREFIX_PRICE).isPresent()) {
-            addOnToEntryDescriptor.setPrice(ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get()));
+            if (isSinglePriceValue(argMultimap.getValue(PREFIX_PRICE).get())) {
+                addOnToEntryDescriptor.setPrice(ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get()));
+            } else {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOnCommand.MESSAGE_USAGE));
+            }
+
         }
 
         if (!addOnToEntryDescriptor.isAnyFieldAddedOn()) {
@@ -67,6 +73,15 @@ public class AddOnCommandParser implements Parser<AddOnCommand> {
         }
         Collection<String> reviewList = reviews;
         return Optional.of(ParserUtil.parseReviews(reviewList));
+    }
+
+    /**
+     * Checks is the input price is a single price value or a price range
+     * @param price the price to be checked
+     * @return a boolean value stating is the input price is a single price value
+     */
+    private boolean isSinglePriceValue(String price) {
+        return !price.contains(Price.PRICE_RANGE_DASH);
     }
 
 }
