@@ -11,14 +11,12 @@ import static seedu.student.model.Model.PREDICATE_SHOW_ALL_APPOINTMENT_LISTS;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.List;
 import java.util.Optional;
 
 import seedu.student.commons.util.CollectionUtil;
 import seedu.student.logic.commands.exceptions.CommandException;
 import seedu.student.model.Model;
 import seedu.student.model.appointment.Appointment;
-import seedu.student.model.appointment.SameDateAppointmentList;
 import seedu.student.model.student.MatriculationNumber;
 
 public class EditAppointmentCommand extends Command {

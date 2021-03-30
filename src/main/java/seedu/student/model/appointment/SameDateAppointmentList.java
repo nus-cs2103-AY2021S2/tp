@@ -1,7 +1,6 @@
 package seedu.student.model.appointment;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.student.commons.core.Messages.MESSAGE_NONEXISTENT_APPOINTMENT;
 import static seedu.student.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
@@ -11,7 +10,6 @@ import java.util.function.Predicate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import seedu.student.logic.commands.exceptions.CommandException;
 import seedu.student.model.appointment.exceptions.DifferentDateAppointmentException;
 import seedu.student.model.appointment.exceptions.DuplicateAppointmentException;
 import seedu.student.model.appointment.exceptions.OverlappingAppointmentException;
