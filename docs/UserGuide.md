@@ -246,6 +246,12 @@ Constraints:
 Prompts:
 * Adding a module without prerequisites fulfilled results in a warning
 
+#### Example output for add module command:
+![AddModuleCommandDemo](images/AddModuleCommandDemo.png)
+
+#### Example output for deleting a module:
+![DeleteModuleCommandDemo](images/DeleteModuleCommandDemo.png)
+
 ### View module info: `info`
 Format: `info m/MODULE_CODE`
 

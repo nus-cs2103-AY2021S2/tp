@@ -1,0 +1,40 @@
+@startuml
+!include style.puml
+
+Actor User as user USER_COLOR
+Participant ":UI" as ui UI_COLOR
+Participant ":Logic" as logic LOGIC_COLOR
+Participant ":Command" as command LOGIC_COLOR_T2
+Participant ":Model" as model MODEL_COLOR
+Participant ":ModulePlanner" as modulePlanner MODEL_COLOR_T2
+
+user -> ui : "addm p/planNumber s/semNumber m/moduleCode g/grade"
+activate ui
+
+ui -> logic : execute("addm p/planNumber s/semNumber m/moduleCode g/grade")
+activate logic
+
+logic -> command : execute(model)
+activate command
+
+command -> model : addModule(planNumber, semNumber, moduleCode, grade)
+activate model
+
+model -> modulePlanner : addModule(planNumber, semNumber, moduleCode, grade)
+activate modulePlanner
+
+model <-- modulePlanner
+deactivate modulePlanner
+
+command <-- model
+deactivate model
+
+logic <-- command
+deactivate command
+
+ui <-- logic
+deactivate logic
+
+user <-- ui
+deactivate ui
+@enduml

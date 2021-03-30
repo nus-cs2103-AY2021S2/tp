@@ -142,6 +142,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ## **Implementation**
 This section describes some noteworthy details on how certain features are implemented.
 
+<<<<<<< HEAD
+### Add Module to Semester Feature
+#### Implementation
+![ModuleConstructionDiagram](images/ModuleObjectDiagram.puml.png)
+
+The addm command makes use of the Module class to add a module to the user's choice of plan and semester.
+The user must provide a valid Plan Number, Semester Number and Module Code, otherwise they will be prompted to do so.
+Here, if the user input the module with grade behind, model will note down the grade and use the grade to calculate user's CAP
+Otherwise, the module will be mark as undone.
+
+Constructor: Plan#new(String ModuleCode, String ModuleTitle, int MCs, <optional> String grade)
+Creates a module object with the given module code, module title, MCs and grade if provided.
+
+#### Overview: Add Plan command
+The following presents a final overview of how the addm command is used:
+![AddModuleArchitectureSequenceDiagram](images/AddModuleArchitectureSequenceDiagram.png)
+=======
 ### Add Plan feature
 
 #### Implementation
