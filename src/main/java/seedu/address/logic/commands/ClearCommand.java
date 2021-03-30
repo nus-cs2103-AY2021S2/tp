@@ -12,7 +12,8 @@ import seedu.address.model.Planner;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "The planner has been cleared.\n";
+    public static final String MESSAGE_SUCCESS = "The planner has been cleared.\n"
+            + Messages.MESSAGE_CALENDAR_SHOWING_CURRENT_MONTH;
     public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + "\n";
 
     @Override
@@ -20,6 +21,6 @@ public class ClearCommand extends Command {
         requireNonNull(model);
         model.setPlanner(new Planner());
         model.resetCalendarDate();
-        return new CommandResult(MESSAGE_SUCCESS + Messages.MESSAGE_CALENDAR_SHOWING_CURRENT_MONTH);
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 }
