@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * A utility class for test cases.
@@ -51,5 +52,26 @@ public class TestUtil {
      */
     public static Person getPerson(Model model, Index index) {
         return model.getFilteredPersonList().get(index.getZeroBased());
+    }
+
+    /**
+     * Returns the middle index of the task in the {@code model}'s task list.
+     */
+    public static Index getTaskMidIndex(Model model) {
+        return Index.fromOneBased(model.getFilteredTaskList().size() / 2);
+    }
+
+    /**
+     * Returns the last index of the task in the {@code model}'s task list.
+     */
+    public static Index getTaskLastIndex(Model model) {
+        return Index.fromOneBased(model.getFilteredTaskList().size());
+    }
+
+    /**
+     * Returns the task in the {@code model}'s task list at {@code index}.
+     */
+    public static Task getTask(Model model, Index index) {
+        return model.getFilteredTaskList().get(index.getZeroBased());
     }
 }

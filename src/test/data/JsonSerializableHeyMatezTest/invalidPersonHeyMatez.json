@@ -1,0 +1,13 @@
+{
+  "persons": [ {
+    "name": "Hans Muster",
+    "phone": "9482424",
+    "email": "invalid@email!3e",
+    "role" : "Member"
+  } ],
+  "tasks": [
+    {
+      "title": "Plan meeting",
+      "description": "Draft agenda for board meeting"
+    } ]
+}

@@ -2,12 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
-
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
@@ -19,21 +14,39 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
-
-    // Data fields
-    private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Role role;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Role role) {
+        requireAllNonNull(name, phone, email);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
+        this.role = role;
+    }
+
+    /**
+     * Overloaded constructor which sets role to member as default.
+     */
+    public Person(Name name, Phone phone, Email email) {
+        requireAllNonNull(name, phone, email);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.role = new Role("Member");
+    }
+
+    /**
+     * Overloaded constructor which sets phone, email and role of member as null.
+     */
+    public Person(Name name) {
+        requireAllNonNull(name);
+        this.name = name;
+        this.phone = null;
+        this.email = null;
+        this.role = null;
     }
 
     public Name getName() {
@@ -48,16 +61,18 @@ public class Person {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public Role getRole() {
+        return role;
     }
 
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public String getAllFields() {
+        StringBuilder builder = new StringBuilder();
+        builder.append(name.fullName).append(" ")
+                .append(phone.value).append(" ")
+                .append(email.value).append(" ")
+                .append(role.memberRole);
+
+        return builder.toString();
     }
 
     /**
@@ -91,14 +106,13 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getRole().equals(getRole());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, role);
     }
 
     @Override
@@ -109,15 +123,9 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+                .append("; Role:")
+                .append(getRole());
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
         return builder.toString();
     }
-
 }

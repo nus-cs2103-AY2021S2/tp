@@ -4,57 +4,88 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Address;
+import seedu.address.model.HeyMatez;
+import seedu.address.model.ReadOnlyHeyMatez;
+import seedu.address.model.assignee.Assignee;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Role;
+import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.Priority;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskStatus;
+import seedu.address.model.task.Title;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code HeyMatez} with sample data.
  */
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
+                    new Role("Member")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
+                    new Role("Member")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
+                    new Role("Member")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
+                    new Role("Member")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
+                    new Role("Member")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+                    new Role("Member")),
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static Task[] getSampleTasks() {
+        return new Task[] {
+            new Task(new Title("End of Year Club Performance Review"),
+                    new Description("End of Year Club Performance Review with the other EXCO member"),
+                    new Deadline("2020-12-13"), TaskStatus.valueOf("COMPLETED"), Priority.valueOf("MEDIUM"),
+                    getAssigneeSet("Alex Yeoh")),
+            new Task(new Title("Meeting with EXCO"), new Description("Meeting to discuss about club budget"),
+                    new Deadline("2021-04-01"), TaskStatus.valueOf("UNCOMPLETED"), Priority.valueOf("HIGH"),
+                    getAssigneeSet("Bernice Yu")),
+            new Task(new Title("Meeting with MINDS stakeholders"),
+                    new Description("Meeting with stakeholders to discuss about planning of charity event"),
+                    new Deadline("2021-02-23"), TaskStatus.valueOf("COMPLETED"), Priority.valueOf("MEDIUM"),
+                    getAssigneeSet("Alex Yeoh")),
+            new Task(new Title("Cohesion Planning"),
+                    new Description("Plan for Club cohesion. Decide on logistic and games"),
+                    new Deadline("2021-08-30"), TaskStatus.valueOf("UNCOMPLETED"), Priority.valueOf("LOW"),
+                    getAssigneeSet("Alex Yeoh")),
+            new Task(new Title("Buy materials for upcoming Cohesion"),
+                    new Description("Buy N95 masks, alcohol wipes for participants to use"),
+                    new Deadline("2021-05-15"), TaskStatus.valueOf("UNCOMPLETED"), Priority.valueOf("UNASSIGNED"),
+                    getAssigneeSet("Bernice Yu")),
+            new Task(new Title("NUSSU Hackathon"),
+                    new Description("Hackathon event day"),
+                    new Deadline("2021-09-01"), TaskStatus.valueOf("UNCOMPLETED"), Priority.valueOf("HIGH"),
+                    getAssigneeSet("Bernice Yu")),
+        };
+    }
+
+    public static ReadOnlyHeyMatez getSampleHeyMatez() {
+        HeyMatez sampleHm = new HeyMatez();
         for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+            sampleHm.addPerson(samplePerson);
         }
-        return sampleAb;
+
+        for (Task sampleTask : getSampleTasks()) {
+            sampleHm.addTask(sampleTask);
+        }
+        return sampleHm;
     }
 
     /**
-     * Returns a tag set containing the list of strings given.
+     * Returns an assignee set containing the list of strings given.
      */
-    public static Set<Tag> getTagSet(String... strings) {
+    public static Set<Assignee> getAssigneeSet(String... strings) {
         return Arrays.stream(strings)
-                .map(Tag::new)
+                .map(Assignee::new)
                 .collect(Collectors.toSet());
     }
-
 }
