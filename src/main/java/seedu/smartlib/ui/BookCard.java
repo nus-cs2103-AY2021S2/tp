@@ -1,5 +1,8 @@
 package seedu.smartlib.ui;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -64,8 +67,12 @@ public class BookCard extends UiPart<Region> {
         isbn.setText("ISBN: " + book.getIsbn().toString());
         barcode.setText("Barcode: " + book.getBarcode().toString());
         genre.setText("Genre: " + book.getGenre().toString());
-        borrowerName.setText(book.isBorrowed() ? "Borrowed by "
-                + book.getBorrowerName().toString() + " on: " + book.getDateBorrowed().toString() : "Available");
+        borrowerName.setText(book.isBorrowed()
+                ? "Borrowed by " + book.getBorrowerName().toString() + " on: " + LocalDateTime
+                    .parse(book.getDateBorrowed().toString())
+                    .format(DateTimeFormatter.ofPattern("d MMM yyyy"))
+                : "Available"
+        );
     }
 
     /**

@@ -1,5 +1,8 @@
 package seedu.smartlib.ui;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -53,8 +56,16 @@ public class RecordCard extends UiPart<Region> {
         bookName.setText(record.getBookName().toString());
         barcode.setText("Barcode: " + record.getBookBarcode().toString());
         readerName.setText("Borrower: " + record.getReaderName().toString());
-        dateBorrowed.setText("Borrowed on: " + record.getDateBorrowed().toString());
-        dateReturned.setText(record.isReturned() ? "Returned on " + record.getDateReturned() : "Not returned yet");
+        dateBorrowed.setText("Borrowed on: "
+                + LocalDateTime
+                    .parse(record.getDateBorrowed().toString())
+                    .format(DateTimeFormatter.ofPattern("d MMM yyyy (h.mm a)"))
+        );
+        dateReturned.setText(record.isReturned()
+                ? "Returned on " + LocalDateTime
+                    .parse(record.getDateReturned().toString())
+                    .format(DateTimeFormatter.ofPattern("d MMM yyyy (h.mm a)"))
+                : "Not returned yet");
     }
 
     /**
