@@ -30,6 +30,7 @@ public class CalendarView extends UiPart<Region> {
     private static final String FXML = "CalendarView.fxml";
 
     private Logic logic;
+    private ObservableList<Student> studentObservableList;
     private ObservableList<Tuition> tuitionList;
 
     // Must be a monday, change through setStartDate() method.
@@ -58,9 +59,9 @@ public class CalendarView extends UiPart<Region> {
     /**
      * Creates a {@code CalendarView} with the given {@code Logic}.
      */
-    public CalendarView(Logic logic) {
+    public CalendarView(ObservableList<Student> studentObservableList) {
         super(FXML);
-        this.logic = logic;
+        this.studentObservableList = studentObservableList;
 
         tuitionList = FXCollections.observableArrayList();
         LocalDateTime currentMonday = LocalDateTime.now().with(DayOfWeek.MONDAY);
@@ -146,7 +147,6 @@ public class CalendarView extends UiPart<Region> {
      */
     private void populateTuitions() {
         tuitionList.clear();
-        ObservableList<Student> studentObservableList = logic.getAddressBook().getStudentList();
         for (int i = 0; i < studentObservableList.size(); i++) {
             for (int j = 0; j < studentObservableList.get(i).getListOfSessions().size(); j++) {
                 Student currStudent = studentObservableList.get(i);
@@ -160,7 +160,6 @@ public class CalendarView extends UiPart<Region> {
      * Invokes listener method to update calendar's tuition list upon new updates.
      */
     private void setStudentListListener() {
-        ObservableList<Student> studentObservableList = logic.getAddressBook().getStudentList();
         studentObservableList.addListener((ListChangeListener<Student>) change -> {
             while (change.next()) {
                 populateTuitions();

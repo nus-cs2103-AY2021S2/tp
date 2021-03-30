@@ -91,7 +91,6 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        calendarView = new CalendarView(logic);
 
         // Make application window fit to entire screen
         primaryStage.setMaximized(true);
@@ -157,7 +156,7 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        calendarView = new CalendarView(logic);
+        calendarView = new CalendarView(logic.getFullStudentList());
         calendarViewPlaceholder.getChildren().add(calendarView.getRoot());
 
         displayDateAndTime();
