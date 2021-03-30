@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -34,6 +36,7 @@ public class ModuleCard extends UiPart<Region> {
      */
     public ModuleCard(Module module) {
         super(FXML);
+        requireNonNull(module);
         this.module = module;
         title.setText(module.getTitle().modTitle + ": ");
         assignments.setWrapText(true);

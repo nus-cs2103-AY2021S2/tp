@@ -18,6 +18,8 @@ import seedu.address.storage.CalendarStorage;
 import seedu.address.ui.UiPart;
 import seedu.address.ui.calendar.schedule.UpcomingSchedule;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 /**
  * Represents the calendar window for the GUI.
  */
@@ -75,6 +77,7 @@ public class CalendarWindow extends UiPart<Stage> {
      */
     public CalendarWindow(CalendarStorage calendarStorage, UpcomingSchedule upcomingSchedule) {
         super(FXML);
+        requireAllNonNull(calendarStorage, upcomingSchedule);
         this.todayDate = LocalDate.now();
         this.day = todayDate.getDayOfMonth();
         this.month = todayDate.getMonthValue();

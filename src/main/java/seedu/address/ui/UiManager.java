@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
 import java.net.URISyntaxException;
 import java.util.logging.Logger;
 
@@ -36,6 +38,7 @@ public class UiManager implements Ui {
      */
     public UiManager(Logic logic) {
         super();
+        requireNonNull(logic);
         this.logic = logic;
     }
 

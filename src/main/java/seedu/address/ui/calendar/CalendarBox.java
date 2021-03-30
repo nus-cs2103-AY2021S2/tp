@@ -18,6 +18,8 @@ import seedu.address.model.person.Birthday;
 import seedu.address.ui.UiPart;
 import seedu.address.ui.calendar.schedule.UpcomingSchedule;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 /**
  * Represents a box for a date in the calendar.
  */
@@ -48,6 +50,7 @@ public class CalendarBox extends UiPart<Region> {
      */
     public CalendarBox(LocalDate dateTime, EventList events) {
         super(FXML);
+        requireAllNonNull(dateTime, events);
         this.dateTime = dateTime;
         this.events = events;
         initializeCalenderBoxInfo(dateTime);

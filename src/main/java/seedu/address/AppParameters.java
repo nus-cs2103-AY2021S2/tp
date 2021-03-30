@@ -1,5 +1,7 @@
 package seedu.address;
 
+import static java.util.Objects.requireNonNull;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
@@ -23,6 +25,7 @@ public class AppParameters {
     }
 
     public void setConfigPath(Path configPath) {
+        requireNonNull(configPath);
         this.configPath = configPath;
     }
 
