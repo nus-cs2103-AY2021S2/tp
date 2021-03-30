@@ -50,7 +50,7 @@ public class NameSchoolAndTagContainsKeywordsPredicate implements Predicate<Pers
         if (person == null) {
             return false;
         }
-        if (!person.getSchool().isPresent()){
+        if (!person.getSchool().isPresent()) {
             return false;
         }
         return schoolKeywords.stream()

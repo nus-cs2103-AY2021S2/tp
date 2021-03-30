@@ -1,9 +1,9 @@
 package seedu.address.model.util;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.Optional;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.DatesBook;

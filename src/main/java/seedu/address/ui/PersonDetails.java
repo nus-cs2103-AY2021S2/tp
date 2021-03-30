@@ -59,19 +59,19 @@ public class PersonDetails extends UiPart<Region> {
         this.person = person;
         name.setText(person.getName().fullName);
         studentPhone.setText(person.getPhone().value);
-        if(person.getSchool().isPresent()) {
+        if (person.getSchool().isPresent()) {
             school.setText(person.getSchool().get().fullSchoolName);
         }
-        if(person.getAddress().isPresent()) {
+        if (person.getAddress().isPresent()) {
             address.setText(person.getAddress().get().value);
         }
-        if(person.getGuardianName().isPresent()) {
+        if (person.getGuardianName().isPresent()) {
             guardianName.setText(person.getGuardianName().get().fullName);
         }
-        if(person.getGuardianPhone().isPresent()) {
+        if (person.getGuardianPhone().isPresent()) {
             guardianPhone.setText(person.getGuardianPhone().get().value);
         }
-        if(person.getEmail().isPresent()) {
+        if (person.getEmail().isPresent()) {
             studentEmail.setText(person.getEmail().get().value);
         }
     }

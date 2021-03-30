@@ -1,6 +1,10 @@
 package seedu.address.storage;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -65,21 +69,31 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
-        if(source.getSchool().isPresent()) {
+        if (source.getSchool().isPresent()) {
             school = source.getSchool().get().fullSchoolName;
-        } else {school = "";}
-        if(source.getEmail().isPresent()) {
+        } else {
+            school = "";
+        }
+        if (source.getEmail().isPresent()) {
             email = source.getEmail().get().value;
-        } else {email = "";}
-        if(source.getAddress().isPresent()){
+        } else {
+            email = "";
+        }
+        if (source.getAddress().isPresent()) {
             address = source.getAddress().get().value;
-        } else {address = "";}
-        if(source.getGuardianName().isPresent()){
-            guardianName  = source.getGuardianName().get().fullName;
-        } else {guardianName = "";}
-        if(source.getGuardianPhone().isPresent()){
+        } else {
+            address = "";
+        }
+        if (source.getGuardianName().isPresent()) {
+            guardianName = source.getGuardianName().get().fullName;
+        } else {
+            guardianName = "";
+        }
+        if (source.getGuardianPhone().isPresent()) {
             guardianPhone = source.getGuardianPhone().get().value;
-        } else {guardianPhone = "";}
+        } else {
+            guardianPhone = "";
+        }
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -119,32 +133,32 @@ class JsonAdaptedPerson {
         }
         final Phone modelPhone = new Phone(phone);
 
-        if (school != "" && !School.isValidSchool(school)) {
+        if (!school.equals("") && !School.isValidSchool(school)) {
             throw new IllegalValueException(School.MESSAGE_CONSTRAINTS);
         }
-        final Optional<School> modelSchool = school == "" ? Optional.empty() : Optional.of(new School(school));
+        final Optional<School> modelSchool = school.equals("") ? Optional.empty() : Optional.of(new School(school));
 
-        if (email != "" && !Email.isValidEmail(email)) {
+        if (!email.equals("") && !Email.isValidEmail(email)) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
-        final Optional<Email> modelEmail = email == "" ? Optional.empty() : Optional.of(new Email(email));
+        final Optional<Email> modelEmail = email.equals("") ? Optional.empty() : Optional.of(new Email(email));
 
-        if (address != "" && !Address.isValidAddress(address)) {
+        if (!address.equals("") && !Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
-        final Optional<Address> modelAddress = address == "" ? Optional.empty()
+        final Optional<Address> modelAddress = address.equals("") ? Optional.empty()
                 : Optional.of(new Address(address));
 
-        if (guardianName!= "" && !Name.isValidName(guardianName)) {
+        if (!guardianName.equals("") && !Name.isValidName(guardianName)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        final Optional<Name> modelGuardianName = guardianName == "" ? Optional.empty()
+        final Optional<Name> modelGuardianName = guardianName.equals("") ? Optional.empty()
                 : Optional.of(new Name(guardianName));
 
-        if (guardianPhone!= "" && !Phone.isValidPhone(guardianPhone)) {
+        if (!guardianPhone.equals("") && !Phone.isValidPhone(guardianPhone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
-        final Optional<Phone> modelGuardianPhone = guardianPhone == "" ? Optional.empty()
+        final Optional<Phone> modelGuardianPhone = guardianPhone.equals("") ? Optional.empty()
                 : Optional.of(new Phone(guardianPhone));
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
