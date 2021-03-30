@@ -175,7 +175,7 @@ public class Meeting implements Schedulable {
 
         Set<Person> personSet = getConnectionToPerson();
         if (!personSet.isEmpty()) {
-            builder.append("; Person Related Indices: ");
+            builder.append("; Person Related: ");
             for (Person person : personSet) {
                 builder.append("[" + person.getName() + "]");
             }

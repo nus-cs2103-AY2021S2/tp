@@ -1,19 +1,5 @@
 package seedu.address.logic.parser.meetings;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
-
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.meetings.EditMeetingCommand;
 import seedu.address.logic.commands.meetings.EditMeetingCommand.EditMeetingDescriptor;
@@ -23,6 +9,15 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.group.Group;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Optional;
+import java.util.Set;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * Parses input arguments and creates a new EditMeetingCommand object
@@ -37,7 +32,8 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
     public EditMeetingCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_START_TIME, PREFIX_END_TIME, PREFIX_PRIORITY, PREFIX_DESCRIPTION, PREFIX_GROUP);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_START_TIME, PREFIX_END_TIME, PREFIX_PRIORITY,
+                        PREFIX_DESCRIPTION, PREFIX_GROUP, PREFIX_PERSON_CONNECTION);
 
         Index index;
 
@@ -64,13 +60,13 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             editMeetingDescriptor.setDescription(ParserUtil.parseMeetingDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         }
+        Set<Index> personConnectionSet = ParserUtil.parsePersonsConnection(argMultimap.getAllValues(PREFIX_PERSON_CONNECTION));
         parseGroupsForEdit(argMultimap.getAllValues(PREFIX_GROUP)).ifPresent(editMeetingDescriptor::setGroups);
-
-        if (!editMeetingDescriptor.isAnyFieldEdited()) {
+        if (!editMeetingDescriptor.isAnyFieldEdited() && personConnectionSet.isEmpty()) {
             throw new ParseException(EditMeetingCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditMeetingCommand(index, editMeetingDescriptor);
+        return new EditMeetingCommand(index, editMeetingDescriptor).setConnectionToPerson(personConnectionSet);
     }
 
     /**
