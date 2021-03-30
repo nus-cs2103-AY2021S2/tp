@@ -34,7 +34,7 @@ public class CustomerBuilder {
     private DateOfBirth dateOfBirth;
     private Set<Tag> tags;
     private Map<Car, CoeExpiry> carsOwned;
-
+    private Set<Car> carsPreferred;
 
     /**
      * Creates a {@code CustomerBuilder} with the default details.
@@ -47,6 +47,7 @@ public class CustomerBuilder {
         dateOfBirth = new DateOfBirth(DEFAULT_DATE_OF_BIRTH);
         tags = new HashSet<>();
         carsOwned = new HashMap<>();
+        carsPreferred = new HashSet<>();
     }
 
     /**
@@ -60,6 +61,7 @@ public class CustomerBuilder {
         dateOfBirth = customerToCopy.getDateOfBirth();
         tags = new HashSet<>(customerToCopy.getTags());
         carsOwned = new HashMap<>(customerToCopy.getCarsOwned());
+        carsPreferred = new HashSet<>(customerToCopy.getCarsPreferred());
     }
 
     /**
@@ -122,8 +124,16 @@ public class CustomerBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code cars} into a {@code Set<Car>} and set it to the {@code Customer} that we are building.
+     */
+    public CustomerBuilder withCarsPreferred(String... cars) {
+        this.carsPreferred = SampleDataUtil.getCarSet(cars);
+        return this;
+    }
+
     public Customer build() {
-        return new Customer(name, phone, email, address, dateOfBirth, tags, carsOwned);
+        return new Customer(name, phone, email, address, dateOfBirth, tags, carsOwned, carsPreferred);
     }
 
 }
