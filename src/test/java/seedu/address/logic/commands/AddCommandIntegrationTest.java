@@ -1,6 +1,6 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECURRINGSCHEDULE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_AMY;
@@ -43,13 +43,13 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_taskWithDeadlineAndRecurringSchedule_throwsCommandException() {
+    public void execute_taskWithDateAndRecurringSchedule_throwsCommandException() {
         Task invalidTask = new TaskBuilder().withTitle(VALID_TITLE_AMY)
-                .withDeadline(VALID_DEADLINE_AMY).withRecurringSchedule(VALID_RECURRINGSCHEDULE_AMY)
+                .withDate(VALID_DATE_AMY).withRecurringSchedule(VALID_RECURRINGSCHEDULE_AMY)
                 .withDescription(VALID_DESCRIPTION_AMY).withStatus(VALID_STATUS_AMY).withTags(VALID_TAG_FRIEND).build();
 
         assertCommandFailure(new AddCommand(invalidTask), model,
-                AddCommand.MESSAGE_DEADLINE_RECURRING_SCHEDULE_CONFLICT);
+                AddCommand.MESSAGE_DATE_RECURRING_SCHEDULE_CONFLICT);
     }
 
     @Test

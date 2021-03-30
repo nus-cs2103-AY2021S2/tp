@@ -2,36 +2,36 @@ package seedu.address.model.task.predicates;
 
 import java.util.function.Predicate;
 
-import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Date;
 import seedu.address.model.task.Task;
 
 /**
  * Predicate testing whether the task being tested falls on the date provided. Uses
- * {@code TaskScheduledOnDatePredicate} and {@code TaskDeadlineOnDatePredicate} to checks the date with the task's
- * deadline and recurring schedule.
+ * {@code TaskScheduledOnDatePredicate} and {@code TaskDateOnDatePredicate} to checks the date with the task's
+ * date and recurring schedule.
  */
 public class TaskOnDatePredicate implements Predicate<Task> {
     private final String dateString;
-    private final TaskDeadlineOnDatePredicate taskDeadlineOnDatePredicate;
+    private final TaskDateOnDatePredicate taskDateOnDatePredicate;
     private final TaskScheduledOnDatePredicate taskScheduledOnDatePredicate;
 
     /**
-     * Constructs this predicate that tests if a given task has its deadline or schedule on the provided deadline date.
-     * Uses deadline as the parameter to construct this predicate so as to ensure that the date has been parsed
+     * Constructs this predicate that tests if a given task has its date or schedule on the provided date date.
+     * Uses date as the parameter to construct this predicate so as to ensure that the date has been parsed
      * correctly.
      *
-     * @param deadline Deadline with date to test tasks' deadline and schedule with.
+     * @param date Date with date to test tasks' date and schedule with.
      */
-    public TaskOnDatePredicate(Deadline deadline) {
-        this.dateString = deadline.toString();
-        this.taskDeadlineOnDatePredicate = new TaskDeadlineOnDatePredicate(deadline);
+    public TaskOnDatePredicate(Date date) {
+        this.dateString = date.toString();
+        this.taskDateOnDatePredicate = new TaskDateOnDatePredicate(date);
         this.taskScheduledOnDatePredicate = new TaskScheduledOnDatePredicate(dateString);
     }
 
     @Override
     public boolean test(Task task) {
-        boolean isTaskOnDeadlineDate = taskDeadlineOnDatePredicate.test(task);
+        boolean isTaskOnDate = taskDateOnDatePredicate.test(task);
         boolean isTaskScheduledOnDate = taskScheduledOnDatePredicate.test(task);
-        return isTaskOnDeadlineDate || isTaskScheduledOnDate;
+        return isTaskOnDate || isTaskScheduledOnDate;
     }
 }

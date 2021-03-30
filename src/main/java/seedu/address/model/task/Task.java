@@ -19,7 +19,7 @@ public class Task {
 
     // Identity fields
     private final Title title;
-    private final Deadline deadline;
+    private final Date date;
     private final Duration duration;
 
     // Data fields
@@ -31,12 +31,12 @@ public class Task {
     /**
      * Every field must be present and not null.
      */
-    public Task(Title title, Deadline deadline, Duration duration, RecurringSchedule recurringSchedule,
+    public Task(Title title, Date date, Duration duration, RecurringSchedule recurringSchedule,
                 Description description, Status status, Set<Tag> tags) {
         // All fields are not null even if its value is blank.
-        requireAllNonNull(title, deadline, duration, recurringSchedule, description, status, tags);
+        requireAllNonNull(title, date, duration, recurringSchedule, description, status, tags);
         this.title = title;
-        this.deadline = deadline;
+        this.date = date;
         this.duration = duration;
         this.recurringSchedule = recurringSchedule;
         this.description = description;
@@ -48,8 +48,8 @@ public class Task {
         return title;
     }
 
-    public Deadline getDeadline() {
-        return deadline;
+    public Date getDate() {
+        return date;
     }
 
     public Duration getDuration() {
@@ -80,7 +80,7 @@ public class Task {
      * Replaces the task with a new Task with the set of tags provided.
      */
     public Task setTags(Set<Tag> tagSet) {
-        return new Task(title, deadline, duration, recurringSchedule, description, status, tagSet);
+        return new Task(title, date, duration, recurringSchedule, description, status, tagSet);
     }
 
     /**
@@ -94,7 +94,7 @@ public class Task {
         optionalFieldMap.put(Title.FIELD_NAME, title.toString());
         optionalFieldMap.put(Duration.FIELD_NAME, duration.toString());
         optionalFieldMap.put(Status.FIELD_NAME, status.toString());
-        optionalFieldMap.put(Deadline.FIELD_NAME, deadline.toString());
+        optionalFieldMap.put(Date.FIELD_NAME, date.toString());
         optionalFieldMap.put(Description.FIELD_NAME, description.toString());
         optionalFieldMap.put(RecurringSchedule.FIELD_NAME, recurringSchedule.toString());
         return optionalFieldMap;
@@ -114,7 +114,7 @@ public class Task {
     }
 
     public boolean dateOver() {
-        return deadline.over();
+        return date.over();
     }
 
     /**
@@ -127,13 +127,13 @@ public class Task {
     }
 
     /**
-     * Checks if the provided deadline has the same date as this task's deadline.
+     * Checks if the provided date has the same date as this task's date.
      *
-     * @param deadline Deadline to check this task's deadline with.
-     * @return Boolean indicating whether the provided deadline is on the same day as this task's deadline.
+     * @param date Date to check this task's date with.
+     * @return Boolean indicating whether the provided date is on the same day as this task's date.
      */
-    public boolean hasSameDeadlineDate(Deadline deadline) {
-        return this.deadline.value != null && this.deadline.equals(deadline);
+    public boolean hasSameDate(Date date) {
+        return this.date.value != null && this.date.equals(date);
     }
 
     /**
@@ -148,12 +148,12 @@ public class Task {
     }
 
     /**
-     * Checks if the Deadline attribute contains any data.
+     * Checks if the Date attribute contains any data.
      *
-     * @return true if the String of Deadline is Empty, false otherwise.
+     * @return true if the String of Date isEmpty, false otherwise.
      */
-    public boolean isDeadlineEmpty() {
-        return deadline.isEmptyValue();
+    public boolean isDateEmpty() {
+        return date.isEmptyValue();
     }
 
     /**
@@ -182,7 +182,7 @@ public class Task {
     }
 
     public boolean isWithinSevenDays(LocalDate currentDate) {
-        return deadline.isWithinSevenDays(currentDate);
+        return date.isWithinSevenDays(currentDate);
     }
 
     /**
@@ -201,7 +201,7 @@ public class Task {
 
         Task otherTask = (Task) other;
         return otherTask.getTitle().equals(getTitle())
-                && otherTask.getDeadline().equals(getDeadline())
+                && otherTask.getDate().equals(getDate())
                 && otherTask.getDuration().equals(getDuration())
                 && otherTask.getRecurringSchedule().equals(getRecurringSchedule())
                 && otherTask.getDescription().equals(getDescription())
@@ -212,15 +212,15 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, deadline, duration, recurringSchedule, description, status, tags);
+        return Objects.hash(title, date, duration, recurringSchedule, description, status, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTitle())
-                .append("; \n").append(Deadline.FIELD_NAME).append(": ")
-                .append(getDeadline())
+                .append("; \n").append(Date.FIELD_NAME).append(": ")
+                .append(getDate())
                 .append("; \n").append(Duration.FIELD_NAME).append(": ")
                 .append(getDuration())
                 .append("; \n").append(RecurringSchedule.FIELD_NAME).append(": ")
