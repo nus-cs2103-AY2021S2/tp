@@ -171,7 +171,7 @@ public class NextCommandTest {
         }
 
         @Override
-        public Quiz getQuizInstance() {
+        public Quiz getQuizInstance() throws CommandException {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -221,7 +221,7 @@ public class NextCommandTest {
      */
     private class ModelStubNextSuccessful extends ModelStub {
         @Override
-        public Quiz getQuizInstance() {
+        public Quiz getQuizInstance() throws CommandException {
             return new QuizBuilder().build();
         }
 

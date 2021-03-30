@@ -10,6 +10,8 @@ import java.util.Optional;
 import java.util.Queue;
 import java.util.Set;
 
+import seedu.weeblingo.logic.commands.StartCommand;
+import seedu.weeblingo.logic.commands.exceptions.CommandException;
 import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.flashcard.Flashcard;
 import seedu.weeblingo.model.score.Score;
@@ -42,7 +44,7 @@ public class Quiz {
      * @param numberOfQuestions The length to limit the quiz to.
      * @param tags The specified tags by which to filter the questions.
      */
-    public Quiz(List<Flashcard> flashcards, int numberOfQuestions, Set<Tag> tags) {
+    public Quiz(List<Flashcard> flashcards, int numberOfQuestions, Set<Tag> tags) throws CommandException {
         Flashcard[] flashcardsReadFromDB = flashcards.stream().toArray(Flashcard[]::new);
         quizSessionQueue = getRandomizedQueue(flashcardsReadFromDB, numberOfQuestions, tags);
         initStatistics();
@@ -118,7 +120,7 @@ public class Quiz {
      * @return A queue of flashcards with randomized order.
      */
     private Queue<Flashcard> getRandomizedQueue(Flashcard[] flashcardsReadFromDB,
-            int numberOfQuestions, Set<Tag> tags) {
+            int numberOfQuestions, Set<Tag> tags) throws CommandException {
         List<Flashcard> flashcardsToProcess = Arrays.asList(flashcardsReadFromDB);
         Collections.shuffle(flashcardsToProcess);
         Queue<Flashcard> randomizedQueue = new LinkedList<>();
@@ -128,6 +130,10 @@ public class Quiz {
             if (f.getWeeblingoTags().containsAll(tags) || f.getUserTags().containsAll(tags)) {
                 randomizedQueue.offer(f);
             }
+        }
+
+        if (randomizedQueue.isEmpty()) {
+            throw new CommandException(StartCommand.MESSAGE_TAG_NOT_FOUND);
         }
 
         // Shorten to numberOfQuestions if needed

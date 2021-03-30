@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.weeblingo.commons.core.GuiSettings;
+import seedu.weeblingo.logic.commands.exceptions.CommandException;
 import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.flashcard.Flashcard;
 import seedu.weeblingo.model.score.Score;
@@ -105,7 +106,7 @@ public interface Model {
      * @param numberOfQuestions The specified length of the quiz.
      * @param tags The specified tags by which to filter the questions.
      * */
-    void startQuiz(int numberOfQuestions, Set<Tag> tags);
+    void startQuiz(int numberOfQuestions, Set<Tag> tags) throws CommandException;
 
     /** Shows the next question in the Quiz */
     Flashcard getNextFlashcard();
@@ -131,7 +132,7 @@ public interface Model {
     void tagFlashcard(Flashcard target, String tag);
 
     /** Gets the quiz instance, which is this quiz session */
-    Quiz getQuizInstance();
+    Quiz getQuizInstance() throws CommandException;
 
     void switchModeQuiz();
 
