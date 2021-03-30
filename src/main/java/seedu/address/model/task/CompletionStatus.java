@@ -61,10 +61,16 @@ public class CompletionStatus implements Comparable<CompletionStatus> {
 
     /**
      * Updates the completion status of the task to COMPLETE;
-     * Guarantees: task is currently incomplete.
      */
     public void markAsDone() {
         completionStatus = Status.COMPLETE;
+    }
+
+    /**
+     * Updates the completion status of the task to INCOMPLETE;
+     */
+    public void markAsUndone() {
+        completionStatus = Status.INCOMPLETE;
     }
 
     /**

@@ -2,12 +2,15 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.Arrays;
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DoneTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new DoneTaskCommand object
+ * Parses input arguments and creates a new DoneTaskCommand object.
  */
 public class DoneTaskCommandParser implements Parser<DoneTaskCommand> {
 
@@ -17,12 +20,21 @@ public class DoneTaskCommandParser implements Parser<DoneTaskCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public DoneTaskCommand parse(String args) throws ParseException {
+        // checks if args are empty
+        String trimmedArgs = args.trim();
+        if (trimmedArgs.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DoneTaskCommand.MESSAGE_USAGE));
+        }
+
+        // parses given arguments into indexes
+        String[] indexes = trimmedArgs.split("\\s+");
         try {
-            Index index = SocheduleParserUtil.parseIndex(args);
-            return new DoneTaskCommand(index);
+            List<Index> targetIndexes = SocheduleParserUtil.parseIndexes(Arrays.asList(indexes));
+            return new DoneTaskCommand(targetIndexes);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DoneTaskCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, pe.getMessage() + DoneTaskCommand.MESSAGE_USAGE), pe);
         }
     }
 }
