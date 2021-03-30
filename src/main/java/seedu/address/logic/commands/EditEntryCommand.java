@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_ENTRY;
+import static seedu.address.commons.core.Messages.MESSAGE_EDIT_ENTRY_SUCCESS;
 import static seedu.address.commons.core.Messages.MESSAGE_ENTRY_DOES_NOT_EXIST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -39,10 +41,6 @@ public class EditEntryCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " Meeting "
             + PREFIX_NAME + "Meeting with group ";
-
-    public static final String MESSAGE_EDIT_ENTRY_SUCCESS = "Edited entry: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_ENTRY = "This entry already exists in the address book.";
 
     private final EntryName entryName;
     private final EditEntryDescriptor editEntryDescriptor;
