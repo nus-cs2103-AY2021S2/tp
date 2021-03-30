@@ -1,10 +1,11 @@
-package seedu.address.model.task;
+package seedu.address.model.task.predicates;
 
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.function.Predicate;
 
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 
 /**
  * Tests that a {@code Task}'s tags matches all of the keywords given.

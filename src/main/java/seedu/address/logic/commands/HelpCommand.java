@@ -34,7 +34,7 @@ public class HelpCommand extends Command {
 
 
     public static final String SHOWING_HELP_MESSAGE = "Here is a list of possible instructions:\n\n"
-            + HELP_MESSAGE_ADD + "\n"
+            + HELP_MESSAGE_ADD + "\n\n"
             + HELP_MESSAGE_LIST + "\n"
             + HELP_MESSAGE_EDIT + "\n"
             + HELP_MESSAGE_FIND + "\n"
