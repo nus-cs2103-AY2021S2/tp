@@ -273,25 +273,25 @@ Formats:
 * `find property [KEYWORD]... [OPTION]...`
 
 Description:
-* There can be 0 or more keywords and 0 or more options, but keywords and options cannot be both empty. All text are case insensitive. 
+* There can be 0 or more keywords and 0 or more options, but keywords and options cannot be both empty. All text are case insensitive.
 
 Options:
 * `[t/PROPERTY_TYPE]`
 
-    Search for properties whose property type field contain patterns specified in `[t/PROPERTY_TYPE]`. 
-    
-    The following property types are supported: 
+    Search for properties whose property type field contain patterns specified in `[t/PROPERTY_TYPE]`.
+  
+    The following property types are supported:
     * hdb
     * condo
     * landed
 
 * `[pm/PRICE_UPPER_LIMIT]`
 
-    Search for properties with prices more than `[PRICE_UPPER_LIMIT]`. 
+    Search for properties with prices more than `[PRICE_UPPER_LIMIT]`.
 
 * `[pl/PRICE_LOWER_LIMIT]`
 
-    Search for properties with prices less than `[PRICE_LOWER_LIMIT]`. 
+    Search for properties with prices less than `[PRICE_LOWER_LIMIT]`.
 
 Examples:
 * `find property jurong west`
@@ -306,7 +306,7 @@ Formats:
 * `find appointment [KEYWORD]...`
 
 Description:
-* There can be 0 or more keywords. Keywords are case insensitive. 
+* There can be 0 or more keywords. Keywords are case insensitive.
 
 Examples:
 * `find appointment bob`
@@ -314,13 +314,13 @@ Examples:
 
 #### 3.8.3 Searching clients: `find client`
 
-Finds appointments that matches the keywords and properties whose clients matches the same keywords. Both are done at the same time. 
+Finds appointments that matches the keywords and properties whose clients matches the same keywords. Both are done at the same time.
 
 Formats:
 * `find client [KEYWORD]...`
 
 Description:
-* There can be 0 or more keywords. Keywords are case insensitive. 
+* There can be 0 or more keywords. Keywords are case insensitive.
 
 ### 3.9 Clearing
 
@@ -344,7 +344,7 @@ PocketEstate data are saved in the hard disk automatically after any command tha
 
 The default storage data file paths used are:
 
-* Property storage data file: `[JAR file location]/data/propertybook.json`. 
+* Property storage data file: `[JAR file location]/data/propertybook.json`.
 * Appointment storage data file: `[JAR file location]/data/appointmentbook.json`.
 
 #### 4.2 Editing the data files
