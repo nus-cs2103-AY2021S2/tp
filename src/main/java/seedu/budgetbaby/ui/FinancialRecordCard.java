@@ -48,10 +48,10 @@ public class FinancialRecordCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         description.setText(financialRecord.getDescription().toString());
         amount.setText("$" + financialRecord.getAmount().toString());
-        timestamp.setText(financialRecord.getTimestamp().toString());
-        financialRecord.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.getCategory()))
-                .forEach(tag -> categories.getChildren().add(new Label(tag.getCategory())));
+        timestamp.setText(financialRecord.getTimestampStr());
+        financialRecord.getCategories().stream()
+            .sorted(Comparator.comparing(tag -> tag.getCategory()))
+            .forEach(tag -> categories.getChildren().add(new Label(tag.getCategory())));
     }
 
     @Override
@@ -69,6 +69,6 @@ public class FinancialRecordCard extends UiPart<Region> {
         // state check
         FinancialRecordCard card = (FinancialRecordCard) other;
         return id.getText().equals(card.id.getText())
-                && financialRecord.equals(card.financialRecord);
+            && financialRecord.equals(card.financialRecord);
     }
 }

@@ -25,5 +25,4 @@ public class YearMonthParser {
         DateTimeFormatter f = DateTimeFormatter.ofPattern("M-yyyy");
         return YearMonth.parse(yearMonthStr, f);
     }
-
 }

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.YearMonth;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,6 +19,7 @@ import seedu.budgetbaby.model.month.Month;
 import seedu.budgetbaby.model.record.Amount;
 import seedu.budgetbaby.model.record.Category;
 import seedu.budgetbaby.model.record.Description;
+import seedu.budgetbaby.model.record.FinancialRecord;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -53,6 +55,21 @@ public class ParserUtil {
             throw new ParseException(Month.MESSAGE_CONSTRAINTS);
         }
         return YearMonthParser.getYearMonth(trimmedMonthStr);
+    }
+
+    /**
+     * Parses a {@code String dateStr} into a {@code Date}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code monthStr} is invalid.
+     */
+    public static Date parseDate(String dateStr) throws ParseException {
+        requireNonNull(dateStr);
+        String trimmedDateStr = dateStr.trim();
+        if (!FinancialRecord.isValidTimestamp(dateStr)) {
+            throw new ParseException(FinancialRecord.TIMESTAMP_CONSTRAINTS);
+        }
+        return FinancialRecord.getValidTimeStamp(trimmedDateStr);
     }
 
     /**

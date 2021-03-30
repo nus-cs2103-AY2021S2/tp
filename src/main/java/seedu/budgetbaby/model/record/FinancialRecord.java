@@ -1,5 +1,7 @@
 package seedu.budgetbaby.model.record;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.YearMonth;
 import java.util.Collections;
 import java.util.Date;
@@ -15,7 +17,10 @@ import seedu.budgetbaby.logic.parser.YearMonthParser;
  */
 public class FinancialRecord {
 
+    public static final String TIMESTAMP_CONSTRAINTS =
+        "Timestamp should follow the format of dd-mm-yyyy. Example: 31-12-2020.";
     private static final String FINANCIAL_RECORD_DETAILS_DELIMITER = " | ";
+    private static final SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 
     // Data fields
     private final Description description;
@@ -63,6 +68,10 @@ public class FinancialRecord {
         return timestamp;
     }
 
+    public String getTimestampStr() {
+        return formatter.format(timestamp);
+    }
+
     public YearMonth getMonth() {
         return YearMonthParser.getYearMonth(this.timestamp);
     }
@@ -71,8 +80,34 @@ public class FinancialRecord {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Category> getTags() {
+    public Set<Category> getCategories() {
         return Collections.unmodifiableSet(categories);
+    }
+
+    /**
+     * Check if {@code test} is of the valid format.
+     * Valid format example: 01-01-2021
+     */
+    public static boolean isValidTimestamp(String test) {
+        boolean isValid;
+        try {
+            formatter.parse(test);
+            isValid = true;
+        } catch (ParseException e) {
+            isValid = false;
+        }
+        return isValid;
+    }
+
+    /**
+     * Converts a valid dateStr string to Date.
+     */
+    public static Date getValidTimeStamp(String dateStr) {
+        try {
+            return formatter.parse(dateStr);
+        } catch (ParseException e) {
+            return null;
+        }
     }
 
     @Override
@@ -84,13 +119,13 @@ public class FinancialRecord {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getTimestamp())
+        builder.append(getTimestampStr())
             .append(FINANCIAL_RECORD_DETAILS_DELIMITER)
             .append(getDescription())
             .append(FINANCIAL_RECORD_DETAILS_DELIMITER)
             .append(getAmount());
 
-        Set<Category> categories = getTags();
+        Set<Category> categories = getCategories();
         if (!categories.isEmpty()) {
             builder.append("; Categories: ");
             categories.forEach(builder::append);
