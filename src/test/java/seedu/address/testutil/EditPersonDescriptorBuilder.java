@@ -41,7 +41,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setAddress(person.getAddress().get());
         descriptor.setTags(person.getTags());
         descriptor.setPolicies(person.getPolicies());
-        descriptor.setMeeting(person.getMeetings());
+        descriptor.setMeetings(person.getMeetings());
     }
 
     /**
@@ -97,11 +97,12 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     * Parses the {@code meetings} into the {@code List<Meeting>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
      */
-    public EditPersonDescriptorBuilder withMeeting(String meeting) {
-        List<Meeting> meet = Stream.of(meeting).map(Meeting::newMeeting).collect(Collectors.toList());
-        descriptor.setMeeting(meet);
+    public EditPersonDescriptorBuilder withMeeting(String... meetings) {
+        List<Meeting> meetingList = Stream.of(meetings).map(Meeting::newMeeting).collect(Collectors.toList());
+        descriptor.setMeetings(meetingList);
         return this;
     }
 

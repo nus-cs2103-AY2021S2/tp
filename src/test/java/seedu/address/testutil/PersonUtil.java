@@ -76,8 +76,8 @@ public class PersonUtil {
                 policies.forEach(s -> sb.append(PREFIX_INSURANCE_POLICY).append(s.policyId).append(" "));
             }
         }
-        if (descriptor.getMeeting().isPresent()) {
-            List<Meeting> meeting = descriptor.getMeeting().get();
+        if (descriptor.getMeetings().isPresent()) {
+            List<Meeting> meeting = descriptor.getMeetings().get();
             if (meeting.isEmpty()) {
                 sb.append(PREFIX_MEETING);
             } else {

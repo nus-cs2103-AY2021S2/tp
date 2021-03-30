@@ -28,26 +28,40 @@ public class MeetCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_addMeeting_success() {
-        Person personToMeet = model.getFilteredPersonList().get(0);
+    public void execute_addMeetingNoClashes_success() {
+        Person person = model.getFilteredPersonList().get(0);
         Meeting meeting = new Meeting(MEETING_DATE, MEETING_START, MEETING_END, MEETING_PLACE);
-        Person meetPerson = MeetCommand.addMeeting(personToMeet, meeting);
+        Person newPerson = MeetCommand.addMeeting(person, meeting);
         MeetCommand meetCommand = new MeetCommand(INDEX_FIRST_PERSON, ADD_MEETING,
                 MEETING_DATE, MEETING_START, MEETING_END, MEETING_PLACE);
 
         String expectedMessage = String.format(MeetCommand.MESSAGE_ADD_MEETING, meeting);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), meetPerson);
+        expectedModel.setPerson(model.getFilteredPersonList().get(0), newPerson);
+
+        assertCommandSuccess(meetCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_addMeetingHasClashes_success() {
+        Person person = model.getFilteredPersonList().get(0);
+        Meeting clashedMeeting = person.getMeetings().get(0);
+        MeetCommand meetCommand = new MeetCommand(INDEX_FIRST_PERSON, ADD_MEETING,
+                clashedMeeting.date, MEETING_START, MEETING_END, MEETING_PLACE);
+
+        String expectedMessage = String.format(MeetCommand.MESSAGE_CLASHING_MEETING, clashedMeeting);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
         assertCommandSuccess(meetCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_deleteMeeting_success() {
-        Person personToMeet = model.getFilteredPersonList().get(0);
+        Person person = model.getFilteredPersonList().get(0);
         Meeting meeting = new Meeting(MEETING_DATE, MEETING_START, MEETING_END, MEETING_PLACE);
-        Person meetPerson = MeetCommand.addMeeting(personToMeet, meeting);
+        Person newPerson = MeetCommand.addMeeting(person, meeting);
         MeetCommand meetCommand = new MeetCommand(INDEX_FIRST_PERSON, DELETE_MEETING,
                 MEETING_DATE, MEETING_START, MEETING_END, MEETING_PLACE);
 
@@ -59,23 +73,23 @@ public class MeetCommandTest {
             assert true;
         }
 
-        Person noMeetingPerson = MeetCommand.deleteMeeting(meetPerson, meeting);
+        Person newerPerson = MeetCommand.deleteMeeting(newPerson, meeting);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), noMeetingPerson);
+        expectedModel.setPerson(model.getFilteredPersonList().get(0), newerPerson);
 
         assertCommandSuccess(meetCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_clearMeeting_success() {
-        Person personToMeet = model.getFilteredPersonList().get(0);
-        Person meetPerson = MeetCommand.clearMeeting(personToMeet);
+        Person person = model.getFilteredPersonList().get(0);
+        Person newPerson = MeetCommand.clearMeeting(person);
         MeetCommand meetCommand = new MeetCommand(INDEX_FIRST_PERSON, CLEAR_MEETING,
                 MEETING_EMPTY, MEETING_START, MEETING_END, MEETING_PLACE);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), meetPerson);
+        expectedModel.setPerson(model.getFilteredPersonList().get(0), newPerson);
 
         assertCommandSuccess(meetCommand, model, MeetCommand.MESSAGE_CLEAR_MEETING, expectedModel);
     }

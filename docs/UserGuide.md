@@ -245,7 +245,7 @@ A person can have any number of tags and insurance policies (including 0).
 
 **Purpose**: Edits an existing client contact in the ClientBook.
 
-**Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER]…​ [t/TAG]…​`
+**Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER]…​ [t/TAG]…​ [m/MEETING]…​`
 
 * Edits the client at the specified `INDEX`.
     * `INDEX` refers to the index number shown in the displayed client list.
@@ -273,7 +273,7 @@ A person can have any number of tags and insurance policies (including 0).
 
 **Purpose**: Shows a list of all clients in ClientBook. Optional identifiers can be specified to show a list with only the desired attributes.
 
-**Format**: `list [-n] [-p] [-e] [-a] [-i] [-t]`
+**Format**: `list [-n] [-p] [-e] [-a] [-i] [-t] [-m]`
 
 **Examples**: 
 *  `list` without any specified identifiers shows a list of all clients and all their information.
@@ -375,11 +375,11 @@ Optional identifiers can be added to show the list of matched clients with only 
 **Format**: `sort -IDENTIFIER -DIRECTION`
 
 * Sorts the list of clients according to the specified `IDENTIFIER` and `DIRECTION`.
-* The specified `IDENTIFIER` can be `-n` to sort by name alphabetically or `-i` to sort by number of insurance policies, but not both.
-* The specified `DIRECTION` can be `-asc` for ascending order or `-des` for descending order, but not both.
+* `IDENTIFIER` can be `n` to sort by name alphabetically or `i` to sort by number of insurance policies, but not both.
+* `DIRECTION` can be `asc` for ascending order or `des` for descending order, but not both.
 
 **Examples**:
-* Sort the current list of clients by name in **descending** number of insurance policies.
+* Sort the current list of clients by number of insurance policies in **descending** order.
     * `sort -i -des`
 
 * Sort the current list of clients by name in **descending** alphabetical order.
@@ -393,22 +393,37 @@ Optional identifiers can be added to show the list of matched clients with only 
 
 ### `meet`: Schedule a meeting with a client
 
-**Purpose**: Schedules a meeting with a client in the ClientBook
+**Purpose**: Schedules a meeting on a particular date, start time, end time and place with a client in ClientBook.
 
-**Format**: `meet INDEX ACTION PLACE;DATE;TIME`
+**Format**: `meet INDEX [-ACTION] DATE START END PLACE`
 
 * Schedules a meeting with the client at the specified `INDEX`.
-* The index refers to the index number shown in the displayed client list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* The meeting will be scheduled according to the specified `ACTION`.
-* The `ACTION` can be `-check` to check for clashes, `-ignore` to ignore clashes, `-delete` to delete the meeting.
-* The meeting with the client will be at the specified `PLACE;DATE;TIME`.
-* The `DATE` must be in the `DD:MM:YYYY` format.
-* The `TIME` must be in the `HH:MM` format.
+* `INDEX` refers to the index number shown in the displayed client list.
+* `INDEX` must be more than 1, and less than or equal to the index of the last item in the displayed list.
+* `ACTION` can be `add` to add a meeting, `delete` to delete a meeting, `clear` to clear all meetings.
+* If `-ACTION` is empty, the default action is to add a meeting.
+* `DATE` must be in the `DD:MM:YYYY` format.
+* `START` and `END` must be in the `HH:MM` format.
+* `END` must be after `START` on the same `DATE`.
+* `PLACE` cannot be empty.
+* There is a check for clashes between meetings when adding a new meeting.
 
 **Examples**:
-* Check for clashes and then schedules a meeting at MRT 12/08/2021 14:30 if there are no clashes.
-    *`meet 3 -check MRT;12:08:2021;14:30`
+* Add a meeting and there are no clashes.
+    * `meet 1 20.05.2021 15:00 16:00 MRT`
+
+      ![meet-add](images/meet-add.png)
+
+* Add a meeting but there are clashes.
+    * `meet 2 -add 20.05.2021 15:30 18:30 KENT RIDGE MRT`
+
+      ![meet-clash](images/meet-clash.png)
+
+* Delete a meeting.
+    * `meet 1 -delete 20.05.2021 15:00 16:00 MRT`
+
+* Clear all meetings.
+    * `meet 2 -clear`
 
 [Return to Table of Contents](#table-of-contents)
 <br><br>
@@ -541,7 +556,7 @@ If you get an error message (`Java command not found`), it means that Java is no
 [**Policy**](#display-policies-associated-with-selected-client-policy) | `policy INDEX` | `policy 4` |
 [**Delete**](#delete-client-delete) | `delete INDEX` | `delete 3` |
 [**Sort**](#sort-list-of-clients-sort) | `sort -IDENTIFIER -DIRECTION` | `sort -n -d` |
-[**Meet**](#schedule-a-meeting-with-a-client-meet) | `meet INDEX ACTION PLACE;DATE;TIME` | `meet 5 -check Mall;28:06:2021;17:00` |
+[**Meet**](#schedule-a-meeting-with-a-client-meet) | `meet INDEX [-ACTION] DATE START END PLACE` | `meet 1 20.05.2021 15:00 16:00 MRT` |
 [**Lock**](#lock-clientbook-with-a-user-selected-password-lock) | `lock [CURRENT_PASSWORD] NEW_PASSWORD` | `lock 123 456` |
 [**Unlock**](#unlock-clientbook--unlock) | `unlock [CURRENT_PASSWORD]` | `unlock 456` |
 [**Exit**](#exiting-the-program--exit) | `exit` | `exit` |

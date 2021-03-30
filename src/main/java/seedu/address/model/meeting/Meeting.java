@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Objects;
 
 import seedu.address.logic.parser.ParserUtil;
@@ -81,7 +82,7 @@ public class Meeting {
      */
     public static boolean checkDate(String date) {
         try {
-            LocalDate.parse(date, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+            LocalDate.parse(date, DateTimeFormatter.ofPattern("dd.MM.uuuu").withResolverStyle(ResolverStyle.STRICT));
             return true;
         } catch (DateTimeParseException ex) {
             return false;

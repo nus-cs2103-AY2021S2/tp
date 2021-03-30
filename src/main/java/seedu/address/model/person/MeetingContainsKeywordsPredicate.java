@@ -21,9 +21,7 @@ public class MeetingContainsKeywordsPredicate implements Predicate<Person> {
     static boolean checkMeeting(List<Meeting> meetings, String keyword) {
         boolean containsKeyword = false;
         for (Meeting meeting : meetings) {
-            if (meeting.date.toLowerCase().contains(keyword.toLowerCase())
-                    || meeting.place.toLowerCase().contains(keyword.toLowerCase())
-                    || meeting.meeting.toLowerCase().contains(keyword.toLowerCase())) {
+            if (meeting.meeting.toLowerCase().contains(keyword.toLowerCase())) {
                 containsKeyword = true;
                 break;
             }
@@ -32,8 +30,7 @@ public class MeetingContainsKeywordsPredicate implements Predicate<Person> {
                 LocalTime keyTime = LocalTime.parse(keyword, DateTimeFormatter.ofPattern("HH:mm"));
                 LocalTime meetingStart = LocalTime.parse(meeting.start, DateTimeFormatter.ofPattern("HH:mm"));
                 LocalTime meetingEnd = LocalTime.parse(meeting.end, DateTimeFormatter.ofPattern("HH:mm"));
-                if ((keyTime.isAfter(meetingStart) && keyTime.isBefore(meetingEnd))
-                        || keyTime.equals(meetingStart) || keyTime.equals(meetingEnd)) {
+                if ((keyTime.isAfter(meetingStart) && keyTime.isBefore(meetingEnd))) {
                     containsKeyword = true;
                     break;
                 }

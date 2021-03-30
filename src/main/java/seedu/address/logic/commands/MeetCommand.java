@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -33,11 +32,10 @@ public class MeetCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Schedule a meeting with a client.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "ACTION (-add, -delete) "
+            + "[-ACTION] (add, delete, clear) "
             + "DATE (DD.MM.YYYY) START (HH:MM) END (HH:MM) PLACE\n"
-            + "or INDEX ACTION (-clear) or INDEX DATE START END PLACE\n"
-            + "END time must be after START time on the same DATE.\n"
-            + "Example: " + COMMAND_WORD + " 3 -add 18.05.2021 16:30 17:30 MRT";
+            + "END must be after START on the same DATE.\n"
+            + "Example: " + COMMAND_WORD + " 3 -add 18.05.2021 15:00 18:00 MRT";
 
     public static final String MESSAGE_CLASHING_MEETING = "The meeting clashes with \n%1$s";
     public static final String MESSAGE_ADD_MEETING = "The meeting is added to the client %1$s";
@@ -80,48 +78,40 @@ public class MeetCommand extends Command {
 
         Person personToMeet = lastShownList.get(index.getZeroBased());
         if (action.equals(CLEAR_MEETING)) {
-            Person meetPerson = clearMeeting(personToMeet);
-            model.setPerson(personToMeet, meetPerson);
-            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            Person newPerson = clearMeeting(personToMeet);
+            model.setPerson(personToMeet, newPerson);
             return new CommandResult(MESSAGE_CLEAR_MEETING);
         }
 
         Meeting meeting = new Meeting(date, start, end, place);
         if (action.equals(DELETE_MEETING)) {
-            Person meetPerson = deleteMeeting(personToMeet, meeting);
-            model.setPerson(personToMeet, meetPerson);
-            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            Person newPerson = deleteMeeting(personToMeet, meeting);
+            model.setPerson(personToMeet, newPerson);
             return new CommandResult(String.format(MESSAGE_DELETE_MEETING, meeting));
         }
 
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        List<Person> personList = model.getFilteredPersonList();
-        List<Meeting> clashes = checkMeeting(personList, meeting);
+        List<Person> personList = model.getWholePersonList();
+        String clashes = checkMeeting(personList, meeting);
         if (!clashes.isEmpty()) {
-            StringBuilder builder = new StringBuilder();
-            for (Meeting clash : clashes) {
-                builder.append(clash.toString()).append("\n");
-            }
-            builder.deleteCharAt(builder.length() - 1);
-            return new CommandResult(String.format(MESSAGE_CLASHING_MEETING, builder.toString()));
+            return new CommandResult(String.format(MESSAGE_CLASHING_MEETING, clashes));
         }
 
-        Person meetPerson = addMeeting(personToMeet, meeting);
-        model.setPerson(personToMeet, meetPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        Person newPerson = addMeeting(personToMeet, meeting);
+        model.setPerson(personToMeet, newPerson);
         return new CommandResult(String.format(MESSAGE_ADD_MEETING, meeting));
     }
 
     @Override
     public boolean equals(Object other) {
+        MeetCommand meetCommand = (MeetCommand) other;
         return other == this // short circuit if same object
                 || (other instanceof MeetCommand // instanceof handles nulls
-                && index.equals(((MeetCommand) other).index) // state check
-                && action.equals(((MeetCommand) other).action) // state check
-                && date.equals(((MeetCommand) other).date) // state check
-                && start.equals(((MeetCommand) other).start) // state check
-                && end.equals(((MeetCommand) other).end) // state check
-                && place.equals(((MeetCommand) other).place)); // state check
+                && index.equals(meetCommand.index) // state check
+                && action.equals(meetCommand.action) // state check
+                && date.equals(meetCommand.date) // state check
+                && start.equals(meetCommand.start) // state check
+                && end.equals(meetCommand.end) // state check
+                && place.equals(meetCommand.place)); // state check
     }
 
     /**
@@ -190,30 +180,35 @@ public class MeetCommand extends Command {
      *
      * @param personList meetings of all clients
      * @param meeting details of the meeting
-     * @return List of clashed meetings
+     * @return String of the list of clashed meetings
      */
-    public static List<Meeting> checkMeeting(List<Person> personList, Meeting meeting) {
-        List<Meeting> clashes = new ArrayList<>();
-
+    public static String checkMeeting(List<Person> personList, Meeting meeting) {
+        StringBuilder builder = new StringBuilder();
         for (Person person : personList) {
             for (Meeting meet : person.getMeetings()) {
-                LocalTime meetingStart = LocalTime.parse(meeting.start, DateTimeFormatter.ofPattern("HH:mm"));
-                LocalTime meetingEnd = LocalTime.parse(meeting.end, DateTimeFormatter.ofPattern("HH:mm"));
+                if (meet.date.equals(meeting.date)) {
+                    LocalTime meetingStart = LocalTime.parse(meeting.start, DateTimeFormatter.ofPattern("HH:mm"));
+                    LocalTime meetingEnd = LocalTime.parse(meeting.end, DateTimeFormatter.ofPattern("HH:mm"));
 
-                LocalTime meetStart = LocalTime.parse(meet.start, DateTimeFormatter.ofPattern("HH:mm"));
-                LocalTime meetEnd = LocalTime.parse(meet.end, DateTimeFormatter.ofPattern("HH:mm"));
+                    LocalTime meetStart = LocalTime.parse(meet.start, DateTimeFormatter.ofPattern("HH:mm"));
+                    LocalTime meetEnd = LocalTime.parse(meet.end, DateTimeFormatter.ofPattern("HH:mm"));
 
-                boolean startClashed = (meetingStart.isAfter(meetStart) && meetingStart.isBefore(meetEnd))
-                        || meetingStart.equals(meetStart) || meetingStart.equals(meetEnd);
-                boolean endClashed = (meetingEnd.isAfter(meetStart) && meetingEnd.isBefore(meetEnd))
-                        || meetingEnd.equals(meetStart) || meetingEnd.equals(meetEnd);
+                    boolean sameStart = meetingStart.equals(meetStart) || meetingStart.equals(meetEnd);
+                    boolean sameEnd = meetingEnd.equals(meetStart) || meetingEnd.equals(meetEnd);
+                    boolean betweenStart = (meetingStart.isAfter(meetStart) && meetingStart.isBefore(meetEnd));
+                    boolean betweenEnd = (meetingEnd.isAfter(meetStart) && meetingEnd.isBefore(meetEnd));
+                    boolean startEnd = (meetingStart.isBefore(meetStart) && meetingEnd.isAfter(meetEnd));
 
-                if (meet.date.equals(meeting.date) && (startClashed || endClashed)) {
-                    clashes.add(meet);
+                    if (sameStart || sameEnd || betweenStart || betweenEnd || startEnd) {
+                        builder.append(meet.toString()).append("\n");
+                    }
                 }
             }
         }
-        return clashes;
+        if (builder.length() > 0) {
+            builder.deleteCharAt(builder.length() - 1);
+        }
+        return builder.toString();
     }
 
 }

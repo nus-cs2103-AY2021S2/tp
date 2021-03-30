@@ -105,10 +105,10 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress().get());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         List<InsurancePolicy> updatedPolicies = editPersonDescriptor.getPolicies().orElse(personToEdit.getPolicies());
-        List<Meeting> updatedMeeting = editPersonDescriptor.getMeeting().orElse(personToEdit.getMeetings());
+        List<Meeting> updatedMeetings = editPersonDescriptor.getMeetings().orElse(personToEdit.getMeetings());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedTags, updatedPolicies, updatedMeeting);
+                updatedTags, updatedPolicies, updatedMeetings);
     }
 
     @Override
@@ -140,7 +140,7 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
         private List<InsurancePolicy> policies;
-        private List<Meeting> meeting;
+        private List<Meeting> meetings;
 
         public EditPersonDescriptor() {}
 
@@ -155,14 +155,14 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setPolicies(toCopy.policies);
-            setMeeting(toCopy.meeting);
+            setMeetings(toCopy.meetings);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, policies, meeting);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, policies, meetings);
         }
 
         public void setName(Name name) {
@@ -222,12 +222,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(policies);
         }
 
-        public void setMeeting(List<Meeting> meeting) {
-            this.meeting = meeting;
+        public void setMeetings(List<Meeting> meetings) {
+            this.meetings = meetings;
         }
 
-        public Optional<List<Meeting>> getMeeting() {
-            return Optional.ofNullable(meeting);
+        public Optional<List<Meeting>> getMeetings() {
+            return Optional.ofNullable(meetings);
         }
 
         @Override
@@ -251,7 +251,7 @@ public class EditCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags())
                     && getPolicies().equals(e.getPolicies())
-                    && getMeeting().equals(e.getMeeting());
+                    && getMeetings().equals(e.getMeetings());
         }
     }
 }

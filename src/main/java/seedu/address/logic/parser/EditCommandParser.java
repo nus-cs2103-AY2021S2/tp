@@ -68,7 +68,7 @@ public class EditCommandParser implements Parser<EditCommand> {
                 .ifPresent(editPersonDescriptor::setPolicies);
 
         parseMeetingForEdit(argMultimap.getAllValues(PREFIX_MEETING))
-                .ifPresent(editPersonDescriptor::setMeeting);
+                .ifPresent(editPersonDescriptor::setMeetings);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
