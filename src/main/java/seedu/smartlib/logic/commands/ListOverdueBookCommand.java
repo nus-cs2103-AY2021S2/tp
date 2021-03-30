@@ -1,7 +1,6 @@
 package seedu.smartlib.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.smartlib.model.Model.PREDICATE_SHOW_ALL_READERS;
 
 import seedu.smartlib.model.Model;
 
