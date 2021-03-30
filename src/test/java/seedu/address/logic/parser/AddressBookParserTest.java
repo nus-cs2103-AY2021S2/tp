@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -29,6 +30,8 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.AddressContainsKeywordsPredicate;
+import seedu.address.model.person.Blacklist;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonTagContainsKeywordsPredicate;
@@ -95,12 +98,15 @@ public class AddressBookParserTest {
     public void parseCommand_find() throws Exception {
         List<String> nameKeywords = Arrays.asList("foo", "bar", "baz");
         List<String> tagKeywords = Arrays.asList("tagOne", "tagTwo");
+        List<String> addressKeywords = Arrays.asList("address1", "address2");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " "
                         + PREFIX_NAME + nameKeywords.stream().collect(Collectors.joining(" ")) + " "
-                        + PREFIX_TAG + tagKeywords.stream().collect(Collectors.joining(" ")));
+                        + PREFIX_TAG + tagKeywords.stream().collect(Collectors.joining(" ")) + " "
+                        + PREFIX_ADDRESS + addressKeywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(nameKeywords),
-                new PersonTagContainsKeywordsPredicate(tagKeywords)),
+                        new PersonTagContainsKeywordsPredicate(tagKeywords),
+                        new AddressContainsKeywordsPredicate(addressKeywords)),
                 command);
     }
 

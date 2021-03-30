@@ -147,6 +147,15 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Changes to light mode
+     */
+    @FXML
+    public void handleLightChange() {
+        loadFxmlFile(getFxmlFileUrl("MainWindowLight.fxml"), primaryStage);
+        fillInnerParts();
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -161,6 +170,16 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
+    }
+
+    /**
+     * Changes to dark mode
+     */
+    @FXML
+    private void handleDarkChange() {
+        loadFxmlFile(getFxmlFileUrl("MainWindow.fxml"), primaryStage);
+        fillInnerParts();
+
     }
 
     public PersonListPanel getPersonListPanel() {
@@ -184,6 +203,17 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isLight()) {
+                handleLightChange();
+                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            }
+
+            if (commandResult.isDark()) {
+                handleDarkChange();
+                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
             }
 
             return commandResult;
