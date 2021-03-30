@@ -25,7 +25,7 @@ public class FilterEntryCommand extends Command {
         requireNonNull(model);
         model.updateFilteredEntryList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_ENTRIES_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_ENTRIES_LISTED_OVERVIEW, model.getFilteredEntryList().size()));
     }
 
     @Override
