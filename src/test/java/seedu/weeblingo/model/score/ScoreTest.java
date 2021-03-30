@@ -44,6 +44,7 @@ public class ScoreTest {
         assertDoesNotThrow(() -> Score.of(1, 1, "0:03:04"));
         assertDoesNotThrow(() -> Score.of(1, 0, "0:03:04"));
         assertDoesNotThrow(() -> Score.of(1000, 1000, "0:03:04"));
+        assertDoesNotThrow(() -> Score.of(0, 0, "0:03:04"));
     }
 
     @Test

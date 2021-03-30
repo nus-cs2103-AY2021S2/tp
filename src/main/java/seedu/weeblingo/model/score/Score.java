@@ -30,7 +30,7 @@ public class Score implements Comparable<Score> {
         if (questionAttempted == null || questionCorrect == null || durationString == null) {
             throw new NullInputException("Null value supplied to Score object");
         }
-        if (questionAttempted <= 0 || questionCorrect < 0) {
+        if (questionAttempted < 0 || questionCorrect < 0) {
             throw new NullInputException("Non-positive value supplied to the number of questions attempted, or "
                     + "negative value supplied to number of questions attempted correctly.");
         }
@@ -87,7 +87,11 @@ public class Score implements Comparable<Score> {
         assert questionAttempted > 0;
         assert questionCorrect != null;
         assert questionCorrect >= 0;
-        return questionCorrect * 1.0 / questionAttempted;
+        if (questionAttempted == 0) {
+            return 0.0;
+        } else {
+            return questionCorrect * 1.0 / questionAttempted;
+        }
     }
 
     /**
