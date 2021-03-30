@@ -27,7 +27,7 @@ public interface Logic {
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
-    ObservableList<Lesson> getLessonsForDay(String keyword);
+    ObservableList<Lesson> getSortedLessonsForDay(String keyword);
 
     ObservableList<String> getLessonsForDayInString(String keyword);
 

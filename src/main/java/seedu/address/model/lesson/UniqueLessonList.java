@@ -54,6 +54,7 @@ public class UniqueLessonList implements Iterable<Lesson> {
      * {@code target} must exist in the list.
      * The lesson day and time of {@code editedLesson} must not be the same as another existing lesson in the list.
      */
+    /*
     public void setLesson(Lesson target, Lesson editedLesson) {
         requireAllNonNull(target, editedLesson);
         int index = internalList.indexOf(target);
@@ -67,6 +68,8 @@ public class UniqueLessonList implements Iterable<Lesson> {
 
         internalList.set(index, editedLesson);
     }
+
+    */
 
     /**
      * Add a person {@code person} to the lesson {@code target} in the list.

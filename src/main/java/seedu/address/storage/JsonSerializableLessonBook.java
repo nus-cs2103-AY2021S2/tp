@@ -9,12 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.LessonBook;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyLessonBook;
 import seedu.address.model.lesson.Lesson;
-import seedu.address.model.person.Person;
 
 /**
  * An Immutable LessonBook that is serializable to JSON format.
@@ -24,13 +21,13 @@ class JsonSerializableLessonBook {
 
     public static final String MESSAGE_DUPLICATE_LESSON = "Lessons list contains duplicate lesson(s).";
 
-    private final List<JsonAdaptedLesson> lessons = new ArrayList<>();
+    private final List<JsonAdaptedLessonInSchedule> lessons = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableLessonBook} with the given lessons.
      */
     @JsonCreator
-    public JsonSerializableLessonBook(@JsonProperty("lessons") List<JsonAdaptedLesson> lessons) {
+    public JsonSerializableLessonBook(@JsonProperty("lessons") List<JsonAdaptedLessonInSchedule> lessons) {
         this.lessons.addAll(lessons);
     }
 
@@ -40,7 +37,7 @@ class JsonSerializableLessonBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableLessonBook}.
      */
     public JsonSerializableLessonBook(ReadOnlyLessonBook source) {
-        lessons.addAll(source.getLessonList().stream().map(JsonAdaptedLesson::new).collect(Collectors.toList()));
+        lessons.addAll(source.getLessonList().stream().map(JsonAdaptedLessonInSchedule::new).collect(Collectors.toList()));
     }
 
     /**
@@ -50,8 +47,8 @@ class JsonSerializableLessonBook {
      */
     public LessonBook toModelType() throws IllegalValueException {
         LessonBook lessonBook = new LessonBook();
-        for (JsonAdaptedLesson jsonAdaptedLesson : lessons) {
-            Lesson lesson = jsonAdaptedLesson.toModelType();
+        for (JsonAdaptedLessonInSchedule jsonAdaptedLessonInSchedule : lessons) {
+            Lesson lesson = jsonAdaptedLessonInSchedule.toModelType();
             if (lessonBook.hasLesson(lesson)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_LESSON);
             }

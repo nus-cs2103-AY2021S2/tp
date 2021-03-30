@@ -57,10 +57,8 @@ public class SampleDataUtil {
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
-        LessonBook sampleLb = new LessonBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
-            sampleLb.addPersonToLesson(samplePerson);
         }
         return sampleAb;
     }
@@ -98,20 +96,9 @@ public class SampleDataUtil {
         return sampleDb;
     }
 
-    public static Lesson[] getSampleLessons() {
-        return new Lesson[] {
-                new Lesson("Monday 1000"),
-                new Lesson("Friday 1300"),
-                new Lesson("Sunday 0800"),
-                new Lesson("Saturday 1800"),
-        };
-    }
-
     public static ReadOnlyLessonBook getSampleLessonBook() {
-        AddressBook sampleAb = new AddressBook();
         LessonBook sampleLb = new LessonBook();
         for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
             sampleLb.addPersonToLesson(samplePerson);
         }
         return sampleLb;

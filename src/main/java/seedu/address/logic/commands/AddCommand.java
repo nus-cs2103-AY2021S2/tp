@@ -53,7 +53,6 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in TutorsPet";
-    public static final String MESSAGE_DUPLICATE_LESSON = "You already have a lesson at: %1$s, %2$s";
 
     private final Person toAdd;
 

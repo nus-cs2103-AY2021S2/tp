@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -38,6 +39,7 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private ScheduleWindow scheduleWindow;
     private DateListPanel dateListPanel;
+    //private CommandBox commandBox;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -211,6 +213,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            //commandBox.
             if (logic.getSelectedPerson() != null) {
                 personDetails.setPerson(logic.getSelectedPerson());
             }

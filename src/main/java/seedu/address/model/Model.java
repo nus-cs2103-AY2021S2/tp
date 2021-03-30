@@ -198,4 +198,10 @@ public interface Model {
 
     /** Returns an unmodifiable view of the transformed lesson list */
     ObservableList<Lesson> getTransformedLessonList();
+
+    /** Filters the transformed lesson list by the given {@code predicate} then sorts the
+     * transformed lesson list by the given {@code comparator}.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void filterThenSortLessonList(Predicate<Lesson> predicate, Comparator<Lesson> comparator);
 }

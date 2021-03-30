@@ -45,7 +45,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyDatesBook datesBook
     , ReadOnlyLessonBook lessonBook) {
         super();
-        requireAllNonNull(addressBook, userPrefs, datesBook);
+        requireAllNonNull(addressBook, userPrefs, datesBook, lessonBook);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
@@ -53,12 +53,15 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.datesBook = new DatesBook(datesBook);
         this.lessonBook = new LessonBook(lessonBook);
+
         filteredImportantDates = new FilteredList<>(this.datesBook.getImportantDatesList());
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredLessons = new FilteredList<>(this.lessonBook.getLessonList());
+
         sortedImportantDates = new SortedList<>(this.datesBook.getImportantDatesList());
         sortedPersons = new SortedList<>(this.addressBook.getPersonList());
         sortedLessons = new SortedList<>(this.lessonBook.getLessonList());
+
         transformedImportantDates = FXCollections.observableArrayList(this.datesBook.getImportantDatesList());
         transformedPersons = FXCollections.observableArrayList(this.addressBook.getPersonList());
         transformedLessons = FXCollections.observableArrayList(this.lessonBook.getLessonList());
@@ -398,5 +401,16 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Lesson> getTransformedLessonList() {
         return transformedLessons;
+    }
+
+    @Override
+    public void filterThenSortLessonList(Predicate<Lesson> predicate, Comparator<Lesson> comparator)
+            throws NullPointerException {
+        requireNonNull(comparator);
+        filteredLessons.setPredicate(predicate);
+        transformedLessons.setAll(filteredLessons);
+        SortedList<Lesson> newSortedLessons = transformedLessons.sorted(comparator);
+        newSortedLessons.setComparator(comparator);
+        transformedLessons.setAll(newSortedLessons);
     }
 }
