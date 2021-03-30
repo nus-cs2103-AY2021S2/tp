@@ -66,14 +66,14 @@ Please note the following symbols used in the User Guide which may serve as poin
 
 ### 2.2. StoreMando's layout
 
-#### Main Panel <br>
+#### Main Panel
 The main panel is the display window of items stored in StoreMando. Depending on which command you key in, the main 
 panel will display the corresponding items.
    
-#### Command Box <br>
+#### Command Box
 The command box is where you will be entering commands to be executed by StoreMando.
 
-#### Result Display Box <br>
+#### Result Display Box
 The result display box is where StoreMando’s server replies to every command that you key in. Any success, error or 
 warning messages will be displayed in this box.
    
@@ -83,10 +83,9 @@ warning messages will be displayed in this box.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**:information_source: Notes about the command format:**
 
-
-* Every item is made up of item name, location and quantity. Expiry date and tags are optional.<br>
+* Every item is made up of item name, location and quantity. Expiry date and tags are optional.
 
 * Words in `UPPER_CASE` are the inputs to be supplied by the user.<br>
   e.g. in `add n/ITEM_NAME`, `ITEM_NAME` is an input which can be used as `add n/Chocolate Milk`.
@@ -100,14 +99,13 @@ warning messages will be displayed in this box.
 * Inputs can be specified in any order.<br>
   e.g. `n/ITEM_NAME l/LOCATION` and `l/LOCATION n/ITEM_NAME` are both acceptable.
 
-* With the exception of tags, if you specified an input field multiple times, only the last occurrence of
+* Except for tags, if you specified an input field multiple times, only the last occurrence of
   the input will be taken.<br>
   e.g. if you specify `e/2020-10-10 e/2020-08-08`, only `e/2020-08-08` will be taken.
 
 * Additional inputs specified for commands that do not take in any input (such as `help` and `exit`) will be
   ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
 </div>
 
 ### 3.1. Viewing help : `help`
@@ -126,12 +124,14 @@ Do you have an item to add to the inventory? This command is the right one for y
 
 Format: `add n/ITEM_NAME l/LOCATION q/QUANTITY [e/EXPIRY_DATE] [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An item can have any number of tags (including 0)
+<div markdown="span" class="alert alert-primary">
+
+:bulb:**Tip:** An item can have any number of tags (including 0)
 </div>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Expiry date of an item is optional.
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** Expiry date of an item is optional.
 </div>
 
 Examples:
@@ -148,7 +148,7 @@ Format: `edit INDEX [n/ITEM_NAME] [l/LOCATION] [q/QUANTITY] [e/EXPIRY_DATE] [t/T
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the edit command:**<br>
+**:information_source: Notes about the edit command:**
 
 * Edits the item at the specified `INDEX`. The index refers to the index number shown in the displayed item list. The
   index **must be a positive integer** 1, 2, 3, …​
@@ -184,15 +184,15 @@ You can use this command in 3 different ways.
   This command allows you to view all items at a specific location.
   <br>
   Format: `list l/LOCATION`
+  
   <div markdown="block" class="alert alert-info">
 
-  **:information_source: Notes about the command:**<br>
+  **:information_source: Notes about the command:**
   
   * The search is case-insensitive. e.g 'room' will match 'Room'.
   * Only full words will be matched e.g. 'Room' will not match 'Bedroom'.
   * The order of keywords for location search does not matter. e.g. 'Room Living' will match 'Living Room'.
   * Location matching uses each word in the String to do 'AND' search e.g. 'Room' will match 'Living room' but 'Living room 1' will not match 'Living room'<br>
-    
   </div>
   
   Example:
@@ -202,10 +202,12 @@ You can use this command in 3 different ways.
   This command allows you to view all items containing a specific tag.
   <br>
   Format: `list t/TAG`
+  
   <div markdown="block" class="alert alert-info">
 
-  **:information_source: Notes about the command:**<br>
-  * Tag keyword must be a single word. <br>
+  **:information_source: Notes about the command:**
+  
+  * Tag keyword must be a single word.
   </div>
   
   Example:
@@ -222,7 +224,7 @@ You can use this command in 2 different ways.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the find command:**<br>
+**:information_source: Notes about the find command:**
 
 * The search is case-insensitive. e.g. `milk` will match `Milk`
 * The order of the keywords does not matter. e.g. `Bread Chocolate` will match `Chocolate Bread`
@@ -230,15 +232,14 @@ You can use this command in 2 different ways.
 * Items matching at least one keyword will be returned. For example, `find Chocolate Milk` will
   return `Cadbury Chocolate` and `Almond Milk`.
 * Items displayed are not in order of relevance.
-
-
 </div>
 
 * #### 3.5.1. Find items with complete name match
   Format: `find KEYWORD [MORE_KEYWORDS]`
+  
   <div markdown="block" class="alert alert-info">
 
-  **:information_source: Notes about the command:**<br>
+  **:information_source: Notes about the command:**
 
   * Only full words will be matched e.g. `Chocolate` will not match `Chocolates`<br>
   </div>
@@ -249,12 +250,12 @@ You can use this command in 2 different ways.
 
 * #### 3.5.2 Find items with partial name match
   Format: `find */KEYWORD [MORE_KEYWORDS]`
+  
   <div markdown="block" class="alert alert-info">
 
-  **:information_source: Notes about the command:**<br>
+  **:information_source: Notes about the command:**
 
   * Partial words will be matched e.g. `Choco` will match `Chocolates`<br>
-
   </div>
 
   Examples:
@@ -269,12 +270,11 @@ Format: `delete INDEX`
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the delete command:**<br>
+**:information_source: Notes about the delete command:**
 
 * Deletes the item at the specified `INDEX`.
 * The index refers to the index number shown in the currently displayed item list.
 * The index **must be a positive integer** 1, 2, 3, …​
-
 </div>
 
 Examples:
@@ -287,15 +287,15 @@ Examples:
 Want to know which items of yours are expiring soon? Then, this is the right command for you.<br>
 
 Format: `reminder NUMBER TIME_UNIT`
+
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the reminder command:**<br>
+**:information_source: Notes about the reminder command:**
 
 * `NUMBER` refers to the number of days/weeks and **can be any integer** …​, -7, -3, 0, 3, 7, …​
 * `TIME_UNIT` is either `days` or `weeks`.
 * `day` or `week` will only be accepted when `NUMBER` is either **-1, 0 or 1**
 *  Items without expiry date will not be shown.
-
 </div>
 
 Examples:
@@ -323,13 +323,12 @@ You can use this command in 3 different ways.
 
 * #### 3.8.1. Sorting items by ascending quantity
   Format: `sort quantity asc`
+  
   <div markdown="block" class="alert alert-info">
 
-  **:information_source: Note about the sort by ascending quantity command:**<br>
+  **:information_source: Note about the sort by ascending quantity command:**
 
   * `quantity` is case-insensitive. Keying in `sort QUANTITY asc` is also a valid command.
-    <br>
-
   </div>
   
   Example:
@@ -337,13 +336,12 @@ You can use this command in 3 different ways.
 
 * #### 3.8.2. Sorting items by descending quantity
   Format: `sort quantity desc`
+  
   <div markdown="block" class="alert alert-info">
 
-  **:information_source: Note about the sort by descending quantity command:**<br>
+  **:information_source: Note about the sort by descending quantity command:**
 
   * `quantity` is case-insensitive. Keying in `sort QUANTITY desc` is also a valid command.
-    <br>
-
   </div>
 
   Example:
@@ -351,14 +349,13 @@ You can use this command in 3 different ways.
   
 * #### 3.8.3. Sorting items by expiry date
   Format: `sort expirydate`
+  
   <div markdown="block" class="alert alert-info">
 
-  **:information_source: Note about the sort by expiry date command:**<br>
+  **:information_source: Note about the sort by expiry date command:**
   
   * Items without expiry date will be pushed to the back of the sorted list.
   * `expirydate` is case-insensitive. Keying in `sort EXPIRYDATE` is also a valid command.
-  <br>
-  
   </div>
   
   Example: 
@@ -379,15 +376,15 @@ You can use this command in 2 different ways.
   
 * #### 3.9.2. Clear all items in a specific location
   Format 2: `clear l/LOCATION`
+  
   <div markdown="block" class="alert alert-info">
-
-  **:information_source: Notes about the clear command:**<br>
+  
+  **:information_source: Notes about the clear command:**
   
   * The search is case-sensitive. e.g 'room' will not match 'Room'.
 
   * The location input will be matched exactly e.g. 'Room' will not match 'Bedroom'. 'Bed' will not match 'Bed room'. 
-    'Living room' will not match 'Room living'.<br>
-
+    'Living room' will not match 'Room living'.
   </div>
 
   Example:
@@ -411,9 +408,12 @@ for you to save your data manually.
 StoreMando saves your data into a JSON file at `[JAR file location]/data/storemando.json`. For our adventurous and 
 advanced users, feel free to update the data by directly editing that file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:**
 Please be reminded that if your changes to the data file makes its format invalid, StoreMando will discard all data 
 and restart with an empty data file at the next run. Proceed with caution!!
+
 </div>
 
 ----
