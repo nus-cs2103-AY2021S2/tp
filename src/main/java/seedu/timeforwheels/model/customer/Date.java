@@ -65,10 +65,4 @@ public class Date {
     public int hashCode() {
         return value.hashCode();
     }
-
-    public int compareTo(Date other) {
-        LocalDate thisDate = getLocalDate();
-        LocalDate otherDate = other.getLocalDate();
-        return thisDate.compareTo(otherDate);
-    }
 }
