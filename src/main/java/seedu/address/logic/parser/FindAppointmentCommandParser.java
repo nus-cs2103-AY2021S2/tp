@@ -51,17 +51,9 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
      * @return {@code FindCommand}
      */
     public FindAppointmentCommand parseFindOptions(Option option, String optionArgs) throws ParseException {
+        List<String> keywords = Arrays.asList(optionArgs.split("\\s+"));
         if (option.equals(OPTION_NAME)) { // find by name
-            List<String> names;
-
-            if (optionArgs.contains(PREFIX_NAME.getPrefix())) {
-                ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(optionArgs, PREFIX_NAME);
-                names = argMultimap.getAllValues(PREFIX_NAME);
-            } else {
-                names = Arrays.asList(optionArgs.split("\\s+"));
-            }
-
-            return new FindAppointmentCommand(new ApptNameContainsKeywordsPredicate(names));
+            return new FindAppointmentCommand(new ApptNameContainsKeywordsPredicate(keywords));
         } else {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
