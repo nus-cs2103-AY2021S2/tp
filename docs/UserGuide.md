@@ -22,6 +22,7 @@ SOChedule is a one-stop solution for managing tasks and events, optimized for us
 * Clearing expired tasks: `clear_expired_task`
 * Adding an event: `add_event`
 * Deleting an event: `delete_event`
+* Editing a task: `edit_event`
 * Listing all events: `list_event`
 * Getting today's events: `today_event`
 * Finding events: `find_event`
@@ -199,13 +200,15 @@ Format: `add_event n/TASKNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [c
 * `n/` is followed by the task name, it is case-sensitive.
 * `sd/` is followed by the starting date, it has to be a **valid date** and in the format of **YYYY-MM-DD**. Here, Y is the year, M is the month, D is the day and all has to be integers.
 * `st/` is followed by the time in 24-hour format and in the format of **hh:mm** Here, h is the hour, m is the minute and all has to be integers.
-* `ed/` is followed by the end date, it has to be a **valid date** and in the format of **YYYY-MM-DD**, end date cannot be a past date.
-* `et/` is followed by the time in 24-hour format and in the format of **hh:mm**. If end date is today, then end time cannot be past time.
+* `ed/` is followed by the end date, it has to be a **valid date** and in the format of **YYYY-MM-DD**.
+* `et/` is followed by the time in 24-hour format and in the format of **hh:mm**.
+* The STARTDATE and STARTTIME provided should be earlier than ENDDATE and ENDTIME.
+* The ENDDATE and ENDTIME provided cannot be a past date time.
 * `c/` is followed by the category. It is optional.
 * `t/` is followed by the tag. It is optional.
 
 Examples:
-* `add_event n/CS2103 meeting sd/2021-05-27 st/15:00 ed/2021-02-27 et/17:00` adds an event with name `CS2103` and its respective attributes to the SOChedule Event Scheduler.
+* `add_event n/CS2103 meeting sd/2021-05-27 st/15:00 ed/2022-02-27 et/17:00` adds an event with name `CS2103` and its respective attributes to the SOChedule Event Scheduler.
 
 ### Deleting an event: `delete_event`
 Deletes an event from the SOChedule Event Scheduler.
@@ -217,6 +220,24 @@ Format: `delete_event INDEX`
 
 Examples:
 * `delete_event 3` deletes the third event from the Event Scheduler.
+
+### Editing a event: `edit_event`
+Edits an **existing and uncompleted** event in SOChedule.
+
+Format: `edit_event INDEX [n/EVENTNAME] [sd/STARTDATE] [st/STARTTIME] [ed/ENDDATE] [et/ENDTIME] [c/CATEGORY]... [t/TAG]...`
+* Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed event list. The index **must be a positive integer** 1, 2, 3, …​
+* You can only edit the details of an unexpired event.
+* At least one of the optional fields must be provided.
+* The STARTDATE and STARTTIME provided should be earlier than ENDDATE and ENDTIME.
+* The ENDDATE and ENDTIME provided cannot be a past date time.
+* Existing values will be updated to the input values.
+* When editing tags/categories, the existing tags/categories of the event will be removed i.e adding of tags/categories is not cumulative.
+* You can remove all the event’s tags by typing `t/` without specifying any tags after it. 
+  Similarly, you can remove all the event’s categories by typing `c/` without specifying any categories after it.
+
+Examples:
+* `edit_event 1 n/editedEventName` edits the name of the first event (if present in SOChedule) to be `editedEventName`.
+* `edit_event 2 sd/2021-03-18 t/` edits the start date of the second event (if present in SOChedule) to be `2021-03-18` and clears all existing tags.
 
 ### Listing all events: `list_event`
 Lists all events from SOChedule Event Scheduler.
