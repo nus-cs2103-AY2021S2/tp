@@ -1,14 +1,19 @@
 package seedu.address.logic.filters;
 
 import org.junit.jupiter.api.Test;
+import seedu.address.model.customer.CoeExpiry;
+import seedu.address.model.customer.Customer;
 import seedu.address.testutil.CustomerBuilder;
+
+import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.testutil.Assert.assertThrows;
 
 public class CoeExpiryFilterTest { //TODO: Complete this test collection
+    LocalDate now = LocalDate.now();
+
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new CoeExpiryFilter(null));
@@ -50,7 +55,13 @@ public class CoeExpiryFilterTest { //TODO: Complete this test collection
     @Test
     public void test_expiredCustomer_true() {
         CoeExpiryFilter filter = new CoeExpiryFilter("exp");
-        fail(); //TODO: Finish this code
+        String yesterdayString = now.minusDays(1).format(CoeExpiry.DATE_TIME_FORMATTER);
+        String oneYearString = now.plusYears(1).format(CoeExpiry.DATE_TIME_FORMATTER);
+        Customer alice = new CustomerBuilder()
+                .withAdditionalCar("Civic+Honda", yesterdayString)
+                .withAdditionalCar("Civic+Honda", oneYearString)
+                .build();
+        assertTrue(filter.test(alice));
     } //TODO: Add more test cases testing the function test
 
     @Test

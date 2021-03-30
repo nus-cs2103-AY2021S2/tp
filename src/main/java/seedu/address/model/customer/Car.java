@@ -44,9 +44,7 @@ public class Car {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Car // instanceof handles nulls
-                && carId.equals(((Car) other).carId)); // state check
+        return other == this; // Not checking carId since it shouldn't be unique
     }
 
     @Override

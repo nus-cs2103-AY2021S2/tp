@@ -53,7 +53,7 @@ public class CoeExpiryFilter extends AbstractFilter {
     }
 
     private boolean isCoeExpiryExpiringSoon(CoeExpiry coeExpiry) {
-        return !coeExpiryThreshold.isAfter(coeExpiry.toDate());
+        return coeExpiryThreshold.isAfter(coeExpiry.toDate());
     }
 
     @Override

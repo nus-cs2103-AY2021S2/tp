@@ -109,16 +109,12 @@ public class CustomerBuilder {
         this.dateOfBirth = new DateOfBirth(dateOfBirth);
         return this;
     }
-
     /**
-     * Parses the {@code carsOwned} into a {@code Map<Car, CoeExpiry>} and set it to the {@code Customer} that we are
-     * building.
-     *
-     * @param carsOwned
-     * @return
+     * Adds a new pairing of {@code Car} and {@code CoeExpiry} to the
+     * {@code Customer} that we are building.
      */
-    public CustomerBuilder withCarsOwned(Map<Car, CoeExpiry> carsOwned) {
-        this.carsOwned = new HashMap<>(carsOwned);
+    public CustomerBuilder withAdditionalCar(String car, String coeExpiry) {
+        this.carsOwned.put(new Car(car), new CoeExpiry(coeExpiry));
         return this;
     }
 
