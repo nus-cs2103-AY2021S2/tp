@@ -22,7 +22,7 @@ public class DeleteBookingCommand extends Command {
             + "Parameters: Booking ID (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " bid/1234567890 ";
 
-    public static final String MESSAGE_DELETE_BOOKING_SUCCESS = "Deleted booking: %1$d";
+    public static final String MESSAGE_DELETE_BOOKING_SUCCESS = "Deleted booking: %1$s";
 
     private final Id bookingId;
 
@@ -40,7 +40,14 @@ public class DeleteBookingCommand extends Command {
         }
 
         model.deleteBooking(bookingId);
-        return new CommandResult(String.format(MESSAGE_DELETE_BOOKING_SUCCESS, bookingId));
+        return new CommandResult(String.format(MESSAGE_DELETE_BOOKING_SUCCESS, bookingId.toString()));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeleteBookingCommand // instanceof handles nulls
+                && bookingId.equals(((DeleteBookingCommand) other).bookingId)); // state check
     }
 }
 
