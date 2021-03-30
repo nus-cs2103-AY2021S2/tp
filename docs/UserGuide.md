@@ -49,48 +49,57 @@ PartyPlanet can get the planning of your birthday celebrations done faster than 
 
 </div>
 
-## List of parameters
+## Glossary of parameters
 
 `ADDRESS`
-* Addresses can take any values
+* Addresses can take any values (excluding specific syntax that denote a prefix).
 
 `BIRTHDAY`
-* Birthdays must be in a valid date format, with or without year, and must be in the past if the year is specified
-* e.g. `13 Jan`, `13 Mar 1997`
+* Birthdays must be in a valid date format, with or without a year.
+* If the year is specified, the birthday must be in the past, and the year must be non-negative.
+* If the date is incompatible with the year, e.g. `29 Feb 2021`, the closest date will be matched.
+* Accepted date formats are listed below, case-insensitive:
+  * ISO format: `--01-09` / `1997-01-09` (number of digits must match)
+  * Dot delimited: `9.1` / `9.1.1997`
+  * Slash delimited: `9/1` / `9/1/1997`
+  * Long DMY format: `9 Jan` / `9 Jan 1997`
+  * Full DMY format: `9 January` / `9 January 1997`
+  * Long YMD format: `Jan 9` / `Jan 9 1997`
+  * Full YMD format: `January 9` / `January 9 1997`
 
 `COMMAND`
 * Can be any valid command [below](#Party-Planet-Commands)
 
 `DATE`
-* The date must be in a valid date format with year
-* e.g. `2022-05-07`, `2 feb 2021`
+* Dates must be in a valid date format with a year.
+* No additional date constraints beyond requiring the year be non-negative.
+* See `BIRTHDAY` parameter above for available date formats.
 
 `DETAIL`
-* Details can take any values
+* Details can take any values (excluding specific syntax that denote a prefix).
 
 `EMAIL`
-* Emails should be of the format local-part@domain and adhere to the following constraints:
-  1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (!#$%&'*+/=?`{|}~^.-) .
+* Emails should be of the format `local-part@domain` and adhere to the following constraints:
+  1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, `(!#$%&'*+/=?\`{|}~^.-)` .
   2. This is followed by a '@' and then a domain name. The domain name must:
     * be at least 2 characters long
     * start and end with alphanumeric characters
     * consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.
 
 `INDEX`
-* Index must be a positive integer that is a valid number in the list.
+* Index must be a positive integer that is a valid number in the filtered list.
 
 `NAME`
-* Names can only contain alphanumeric characters and spaces
+* Names can only contain alphanumeric characters and spaces.
 
 `PHONE`
-* Phone numbers should only contain numbers
-* It should be at least 3 digits long
+* Phone numbers should only contain numbers, and be at least 3 digits long.
 
 `REMARK`
-* Remarks can take any values
+* Details can take any values (excluding specific syntax that denote a prefix).
 
 `SORT_FIELD`
-* Can be any valid character, specified by `list`/ `elist`
+* Can be any valid character, specified by `list`/ `elist`.
 
 `SORT_ORDER`
 * Can only be any of the following
@@ -98,7 +107,7 @@ PartyPlanet can get the planning of your birthday celebrations done faster than 
   * `d`, `desc`, `descending` represents descending order
 
 `TAG`
-* Tags should be alphanumeric
+* Tags can only contain alphanumeric characters (without spaces).
 
 ## Party Planet Commands
 
