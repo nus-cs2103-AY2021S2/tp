@@ -31,7 +31,7 @@ public interface Model {
     Predicate<Grade> PREDICATE_SHOW_ALL_GRADE = unused -> true;
     Predicate<Schedule> PREDICATE_SHOW_ALL_SCHEDULE = unused -> true;
     Predicate<Event> PREDICATE_SHOW_ALL_EVENT = unused -> true;
-    Predicate<Event> PREDICATE_SHOW_ALL_REMINDER = unused -> true;
+    Predicate<Reminder> PREDICATE_SHOW_ALL_REMINDER = unused -> true;
 
     /**
      * Returns the user prefs.
