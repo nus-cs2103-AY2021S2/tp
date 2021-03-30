@@ -8,5 +8,6 @@
     }
   },
   "patientRecordsFilePath" : "PatientRecords.json",
+  "doctorRecordsFilePath" : "DoctorRecords.json",
   "appointmentScheduleFilePath" : "AppointmentSchedule.json"
 }

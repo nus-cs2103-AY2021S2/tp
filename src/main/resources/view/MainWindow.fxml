@@ -91,7 +91,9 @@
           </SplitPane>
             <VBox VBox.vgrow="NEVER">
               <children>
-                <StackPane fx:id="statusbarPlaceholder" />
+                <StackPane fx:id="patientStatusBarPlaceholder" />
+                <StackPane fx:id="doctorStatusBarPlaceholder" />
+                <StackPane fx:id="appointmentStatusBarPlaceholder" />
               </children>
             </VBox>
         </children>

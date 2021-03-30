@@ -108,9 +108,11 @@ public class ModelManagerTest {
     @Test
     public void equals() {
         AppointmentSchedule appointmentSchedule = new AppointmentScheduleBuilder().build();
-        AddressBook<Patient> patientRecords = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        AddressBook<Patient> patientRecords = new AddressBookBuilder<Patient>()
+                .withPerson(ALICE).withPerson(BENSON).build();
         AddressBook<Patient> differentPatientRecords = new AddressBook<>();
-        AddressBook<Doctor> doctorRecords = new AddressBookBuilder().withPerson(DR_GREY).withPerson(DR_WHO).build();
+        AddressBook<Doctor> doctorRecords = new AddressBookBuilder<Doctor>()
+                .withPerson(DR_GREY).withPerson(DR_WHO).build();
         AddressBook<Doctor> differentDoctorRecords = new AddressBook<>();
         UserPrefs userPrefs = new UserPrefs();
         UserPrefs differentUserPrefs = new UserPrefs();

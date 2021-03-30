@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -84,10 +85,11 @@ public class EditDoctorCommand extends Command {
     private static Doctor createEditedDoctor(Doctor doctorToEdit, EditDoctorDescriptor editDoctorDescriptor) {
         assert doctorToEdit != null;
 
+        UUID doctorUuid = doctorToEdit.getUuid();
         Name updatedName = editDoctorDescriptor.getName().orElse(doctorToEdit.getName());
         Set<Tag> updatedTags = editDoctorDescriptor.getTags().orElse(doctorToEdit.getTags());
 
-        return new Doctor(updatedName, updatedTags);
+        return new Doctor(doctorUuid, updatedName, updatedTags);
     }
 
     @Override
@@ -129,6 +131,8 @@ public class EditDoctorCommand extends Command {
 
         /**
          * Returns true if at least one field is edited.
+         * UUID is not checked since an edited doctor can have a different UUID,
+         * since it may be automatically generated.
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, tags);

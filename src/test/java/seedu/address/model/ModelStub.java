@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.UUID;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -54,7 +55,13 @@ public class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
+    @Override
     public ReadOnlyAddressBook<Patient> getPatientRecords() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean hasConflictingUuid(UUID uuid) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -180,12 +187,12 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void deletePatientAppointments(Patient patient) {
+    public void deletePatientAppointments(UUID patientUuid) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void deleteDoctorAppointments(Doctor doctor) {
+    public void deleteDoctorAppointments(UUID doctorUuid) {
         throw new AssertionError("This method should not be called");
     }
 

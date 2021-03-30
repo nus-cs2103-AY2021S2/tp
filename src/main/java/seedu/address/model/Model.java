@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.UUID;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -58,7 +59,13 @@ public interface Model {
     ReadOnlyAddressBook<Patient> getPatientRecords();
 
     /**
-     * Returns true if a patient with the same identity as {@code patient} exists in the PatientRecords.
+     * Returns true if model contains a conflicting UUID.
+     * (which is not likely to happen, but just in case)
+     */
+    boolean hasConflictingUuid(UUID uuid);
+
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPatient(Patient patient);
 
@@ -193,12 +200,12 @@ public interface Model {
     /**
      * Deletes all appointments associated with the input {@code patient} from the appointment schedule.
      */
-    void deletePatientAppointments(Patient patient);
+    void deletePatientAppointments(UUID patientUuid);
 
     /**
      * Deletes all appointments associated with the input {@code doctor} from the appointment schedule.
      */
-    void deleteDoctorAppointments(Doctor doctor);
+    void deleteDoctorAppointments(UUID doctorUuid);
 
     /**
      * Adds the given appointment.

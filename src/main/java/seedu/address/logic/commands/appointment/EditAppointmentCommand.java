@@ -14,6 +14,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -86,8 +87,8 @@ public class EditAppointmentCommand extends Command {
 
         //get appointment to be edited
         Appointment appointmentToEdit = appointmentList.get(index.getZeroBased());
-        Patient patient;
-        Doctor doctor;
+        UUID patientUuid;
+        UUID doctorUuid;
 
         // check if patient index is present
         if (editAppointmentDescriptor.getPatientIndex().isPresent()) {
@@ -96,10 +97,10 @@ public class EditAppointmentCommand extends Command {
                 throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
             }
             // assign patient
-            patient = displayedPatientRecords.get(editAppointmentDescriptor.patientIndex.getZeroBased());
+            patientUuid = displayedPatientRecords.get(editAppointmentDescriptor.patientIndex.getZeroBased()).getUuid();
             // if patient index is not present
         } else {
-            patient = appointmentToEdit.getPatient();
+            patientUuid = appointmentToEdit.getPatientUuid();
         }
 
         // check if doctor index is present
@@ -109,13 +110,13 @@ public class EditAppointmentCommand extends Command {
                 throw new CommandException(Messages.MESSAGE_INVALID_DOCTOR_DISPLAYED_INDEX);
             }
             // assign doctor
-            doctor = displayedDoctorRecords.get(editAppointmentDescriptor.doctorIndex.getZeroBased());
+            doctorUuid = displayedDoctorRecords.get(editAppointmentDescriptor.doctorIndex.getZeroBased()).getUuid();
             // if doctor index is not present
         } else {
-            doctor = appointmentToEdit.getDoctor();
+            doctorUuid = appointmentToEdit.getDoctorUuid();
         }
 
-        Appointment editedAppointment = createEditedAppointment(patient, doctor, appointmentToEdit,
+        Appointment editedAppointment = createEditedAppointment(patientUuid, doctorUuid, appointmentToEdit,
                 editAppointmentDescriptor);
 
         if (model.hasConflictingAppointmentExcludingTarget(appointmentToEdit, editedAppointment)) {
@@ -131,13 +132,13 @@ public class EditAppointmentCommand extends Command {
      * Creates and returns a {@code Appointment} with the details of {@code appointmentToEdit}
      * edited with {@code editAppointmentDescriptor}.
      */
-    private static Appointment createEditedAppointment(Patient patient, Doctor doctor, Appointment appointmentToEdit,
+    private static Appointment createEditedAppointment(UUID patientUuid, UUID doctorUuid, Appointment appointmentToEdit,
                                                        EditAppointmentDescriptor editAppointmentDescriptor) {
         assert appointmentToEdit != null;
         Timeslot updatedTimeslot = editAppointmentDescriptor.getTimeslot().orElse(appointmentToEdit.getTimeslot());
         Set<Tag> updatedTags = editAppointmentDescriptor.getTags().orElse(appointmentToEdit.getTags());
 
-        return new Appointment(patient, doctor, updatedTimeslot, updatedTags);
+        return new Appointment(patientUuid, doctorUuid, updatedTimeslot, updatedTags);
     }
 
     @Override

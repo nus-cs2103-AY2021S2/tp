@@ -37,7 +37,6 @@ public class PatientListPanel extends UiPart<Region> {
         @Override
         protected void updateItem(Patient patient, boolean empty) {
             super.updateItem(patient, empty);
-
             if (empty || patient == null) {
                 setGraphic(null);
                 setText(null);

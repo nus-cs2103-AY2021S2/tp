@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -18,6 +19,7 @@ import seedu.address.model.tag.Tag;
 
 public class JsonAdaptedPatient extends JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Patient's %s field is missing!";
+    public static final String UUID_MESSAGE_CONSTRAINTS = "This is not a valid UUID field";
 
     private final String phone;
     private final String email;
@@ -27,10 +29,11 @@ public class JsonAdaptedPatient extends JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPatient} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPatient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+    public JsonAdaptedPatient(@JsonProperty("uuid") String uuid, @JsonProperty("name") String name,
+                             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
+                             @JsonProperty("address") String address,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
-        super(name, tagged);
+        super(uuid, name, tagged);
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -56,6 +59,16 @@ public class JsonAdaptedPatient extends JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+
+        if (uuid == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, UUID.class.getSimpleName()));
+        }
+        final UUID modelUuid;
+        try {
+            modelUuid = UUID.fromString(uuid);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalValueException(UUID_MESSAGE_CONSTRAINTS);
         }
 
         if (name == null) {
@@ -91,6 +104,6 @@ public class JsonAdaptedPatient extends JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Patient(modelUuid, modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
 }

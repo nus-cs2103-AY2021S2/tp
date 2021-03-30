@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Timeslot;
@@ -19,8 +20,8 @@ public class AppointmentBuilder {
     public static final Doctor DEFAULT_DOCTOR = new DoctorBuilder().build();
     public static final Timeslot DEFAULT_TIMESLOT = new TimeslotBuilder().build();
 
-    private Patient patient;
-    private Doctor doctor;
+    private UUID patientUuid;
+    private UUID doctorUuid;
     private Timeslot timeslot;
     private Set<Tag> tags;
 
@@ -28,8 +29,8 @@ public class AppointmentBuilder {
      * Creates a {@code AppointmentBuilder} with the default details.
      */
     public AppointmentBuilder() {
-        patient = new PatientBuilder(DEFAULT_PATIENT).build();
-        doctor = DEFAULT_DOCTOR;
+        patientUuid = new PatientBuilder(DEFAULT_PATIENT).build().getUuid();
+        doctorUuid = new DoctorBuilder(DEFAULT_DOCTOR).build().getUuid();
         timeslot = new TimeslotBuilder(DEFAULT_TIMESLOT).build();
         tags = new HashSet<>();
     }
@@ -38,8 +39,8 @@ public class AppointmentBuilder {
      * Initializes the AppointmentBuilder with the data of {@code appointmentToCopy}.
      */
     public AppointmentBuilder(Appointment appointmentToCopy) {
-        patient = new PatientBuilder(appointmentToCopy.getPatient()).build();
-        doctor = appointmentToCopy.getDoctor();
+        patientUuid = appointmentToCopy.getPatientUuid();
+        doctorUuid = appointmentToCopy.getDoctorUuid();
         timeslot = new TimeslotBuilder(appointmentToCopy.getTimeslot()).build();
         tags = new HashSet<>(appointmentToCopy.getTags());
     }
@@ -48,7 +49,7 @@ public class AppointmentBuilder {
      * Sets the {@code patient} of the {@code Appointment} that we are building.
      */
     public AppointmentBuilder withPatient(Patient patient) {
-        this.patient = new PatientBuilder(patient).build();
+        this.patientUuid = new PatientBuilder(patient).build().getUuid();
         return this;
     }
 
@@ -56,7 +57,7 @@ public class AppointmentBuilder {
      * Sets the {@code doctor} of the {@code Appointment} that we are building.
      */
     public AppointmentBuilder withDoctor(Doctor doctor) {
-        this.doctor = doctor;
+        this.doctorUuid = new DoctorBuilder(doctor).build().getUuid();
         return this;
     }
 
@@ -78,7 +79,7 @@ public class AppointmentBuilder {
 
 
     public Appointment build() {
-        return new Appointment(patient, doctor, timeslot, tags);
+        return new Appointment(patientUuid, doctorUuid, timeslot, tags);
     }
 
 }
