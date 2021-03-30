@@ -50,15 +50,6 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_taskWithDeadlineAndDuration_throwsComandException() {
-        Task invalidTask = new TaskBuilder().withTitle(VALID_TITLE_AMY)
-                .withDeadline(VALID_DEADLINE_AMY).withDuration(VALID_DURATION_AMY)
-                .withDescription(VALID_DESCRIPTION_AMY).withStatus(VALID_STATUS_AMY).withTags(VALID_TAG_FRIEND).build();
-
-        assertCommandFailure(new AddCommand(invalidTask), model, AddCommand.MESSAGE_DEADLINE_DURATION_CONFLICT);
-    }
-
-    @Test
     public void execute_taskWithDeadlineAndRecurringSchedule_throwsComandException() {
         Task invalidTask = new TaskBuilder().withTitle(VALID_TITLE_AMY)
                 .withDeadline(VALID_DEADLINE_AMY).withRecurringSchedule(VALID_RECURRINGSCHEDULE_AMY)
@@ -66,16 +57,6 @@ public class AddCommandIntegrationTest {
 
         assertCommandFailure(new AddCommand(invalidTask), model,
                 AddCommand.MESSAGE_DEADLINE_RECURRING_SCHEDULE_CONFLICT);
-    }
-
-    @Test
-    public void execute_taskWithDeadlineAndEvent_throwsComandException() {
-        Task invalidTask = new TaskBuilder().withTitle(VALID_TITLE_BOB).withDuration(VALID_DURATION_BOB)
-                .withDeadline(VALID_DEADLINE_BOB).withRecurringSchedule(VALID_RECURRINGSCHEDULE_BOB)
-                .withDescription(VALID_DESCRIPTION_BOB).withStatus(VALID_STATUS_BOB).withTags(VALID_TAG_FRIEND).build();
-
-        assertCommandFailure(new AddCommand(invalidTask), model,
-                AddCommand.MESSAGE_DEADLINE_EVENT_CONFLICT);
     }
 
     @Test

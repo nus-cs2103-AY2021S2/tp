@@ -115,7 +115,7 @@ public class RecurringSchedule implements RecurringDates {
     }
 
     public boolean isEmptyValue() {
-        return isEmptyRecurringSchedule;
+        return value.equals("") || value.equals("***Optional***");
     }
 
     @Override
