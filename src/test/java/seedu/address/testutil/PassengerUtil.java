@@ -13,7 +13,6 @@ import java.util.Set;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPassengerDescriptor;
 import seedu.address.model.person.passenger.Passenger;
-import seedu.address.model.person.passenger.Price;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,8 +20,7 @@ import seedu.address.model.tag.Tag;
  */
 public class PassengerUtil {
 
-    //todo remove STUB declaration
-    private static final Price STUB_VALID_PRICE = new Price("1.69");
+    public static final String EMPTY_PRICE = "";
 
     /**
      * Returns an add command string for adding the {@code passenger}.
@@ -39,10 +37,16 @@ public class PassengerUtil {
         sb.append(PREFIX_NAME + passenger.getName().fullName + " ");
         sb.append(PREFIX_PHONE + passenger.getPhone().value + " ");
         sb.append(PREFIX_ADDRESS + passenger.getAddress().value + " ");
-        sb.append(PREFIX_TRIPDAY + passenger.getTripDay().value + " ");
-        sb.append(PREFIX_TRIPTIME + passenger.getTripTime().value + " ");
-        //todo remove STUB price usage
-        sb.append(PREFIX_PRICE + STUB_VALID_PRICE.value + " ");
+        sb.append(PREFIX_TRIPDAY + passenger.getTripDayAsStr() + " ");
+        sb.append(PREFIX_TRIPTIME + passenger.getTripTimeAsStr() + " ");
+
+        // TODO tidy up hacky method
+        // law of demeter might be violated
+        if (passenger.getPrice().isEmpty()) {
+            sb.append(EMPTY_PRICE + " ");
+        } else {
+            sb.append(PREFIX_PRICE + passenger.priceToString() + " ");
+        }
 
         passenger.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")

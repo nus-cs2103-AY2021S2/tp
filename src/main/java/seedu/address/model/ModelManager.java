@@ -11,10 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.driver.Driver;
-import seedu.address.model.person.passenger.IsAssignedDriverPredicate;
-import seedu.address.model.person.passenger.IsSpecifiedDriverPredicate;
 import seedu.address.model.person.passenger.Passenger;
+import seedu.address.model.pool.Pool;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -25,7 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Passenger> filteredPassengers;
-    private final FilteredList<Passenger> hasDriverPassengers;
+    private final FilteredList<Pool> filteredPools;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -39,8 +37,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredPassengers = new FilteredList<>(this.addressBook.getPassengerList());
-        this.hasDriverPassengers = new FilteredList<>(this.addressBook.getPassengerList())
-                .filtered(new IsAssignedDriverPredicate(true));
+        this.filteredPools = new FilteredList<>(this.addressBook.getPoolList());
     }
 
     public ModelManager() {
@@ -101,8 +98,19 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deletePassenger(Passenger passenger) {
-        addressBook.removePassenger(passenger);
+    public boolean hasPool(Pool pool) {
+        requireNonNull(pool);
+        return addressBook.hasPool(pool);
+    }
+
+    @Override
+    public boolean deletePassenger(Passenger passenger) {
+        return addressBook.removePassenger(passenger);
+    }
+
+    @Override
+    public void deletePool(Pool pool) {
+        addressBook.removePool(pool);
     }
 
     @Override
@@ -130,19 +138,32 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Passenger> getPassengerListByHasDriver() {
-        return hasDriverPassengers;
-    }
-
-    @Override
-    public ObservableList<Passenger> getFilteredPassengerListByDriver(Driver driver) {
-        return filteredPassengers.filtered(new IsSpecifiedDriverPredicate(driver));
-    }
-
-    @Override
     public void updateFilteredPassengerList(Predicate<Passenger> predicate) {
         requireNonNull(predicate);
         filteredPassengers.setPredicate(predicate);
+    }
+
+    //=========== Filtered Pool List Accessors =============================================================
+
+    @Override
+    public void addPool(Pool pool) {
+        addressBook.addPool(pool);
+        updateFilteredPoolList(PREDICATE_SHOW_ALL_POOLS);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Pool} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Pool> getFilteredPoolList() {
+        return filteredPools;
+    }
+
+    @Override
+    public void updateFilteredPoolList(Predicate<Pool> predicate) {
+        requireNonNull(predicate);
+        filteredPools.setPredicate(predicate);
     }
 
     @Override
@@ -161,7 +182,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPassengers.equals(other.filteredPassengers);
+                && filteredPassengers.equals(other.filteredPassengers)
+                && filteredPools.equals(other.filteredPools);
     }
 
 }

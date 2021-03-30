@@ -4,10 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMUTER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PASSENGERS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPDAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPTIME;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_POOLS;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.StringJoiner;
 
@@ -15,14 +18,11 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
 import seedu.address.model.person.driver.Driver;
-import seedu.address.model.person.passenger.Address;
 import seedu.address.model.person.passenger.Passenger;
-import seedu.address.model.person.passenger.Price;
-import seedu.address.model.person.passenger.TripDay;
-import seedu.address.model.person.passenger.TripTime;
+import seedu.address.model.pool.Pool;
+import seedu.address.model.pool.TripDay;
+import seedu.address.model.pool.TripTime;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -35,28 +35,48 @@ public class PoolCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "DRIVER NAME "
             + PREFIX_PHONE + "DRIVER PHONE "
+            + PREFIX_TRIPDAY + "TRIP DAY "
+            + PREFIX_TRIPTIME + "TRIP TIME "
             + PREFIX_COMMUTER + "COMMUTER "
-            + "[" + PREFIX_COMMUTER + "COMMUTER]...\n"
+            + "[" + PREFIX_COMMUTER + "COMMUTER]... "
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
+            + PREFIX_NAME + "Florence Lee "
             + PREFIX_PHONE + "98765432 "
+            + PREFIX_TRIPDAY + "monday "
+            + PREFIX_TRIPTIME + "1930 "
             + PREFIX_COMMUTER + "1 "
-            + PREFIX_COMMUTER + "4 ";
+            + PREFIX_COMMUTER + "4 "
+            + PREFIX_TAG + "female";
 
     public static final String MESSAGE_NO_COMMUTERS = "No commuters were selected.";
-    public static final String MESSAGE_POOL_SUCCESS = "%s successfully pooled: %s";
+    public static final String MESSAGE_POOL_SUCCESS = "Successfully created pool: %s";
+    public static final String MESSAGE_DUPLICATE_POOL = "This pool already exists in the GME Terminal";
 
     private final Driver driver;
+    private final TripDay tripDay;
+    private final TripTime tripTime;
     private final Set<Index> passengers;
+    private final Set<Tag> tags;
 
     /**
-     * Creates a PoolCommand to add the specified {@code Passenger}
+     * //TODO edit java docs
+     * @param driver
+     * @param passengers
+     * @param tripDay
+     * @param tripTime
+     * @param tags
      */
-    public PoolCommand(Driver driver, Set<Index> passengers) {
+    public PoolCommand(Driver driver, Set<Index> passengers, TripDay tripDay, TripTime tripTime, Set<Tag> tags) {
         requireNonNull(driver);
         requireNonNull(passengers);
+        requireNonNull(tripDay);
+        requireNonNull(tripTime);
         this.driver = driver;
         this.passengers = passengers;
+        this.tripDay = tripDay;
+        this.tripTime = tripTime;
+        this.tags = tags;
     }
 
     @Override
@@ -76,38 +96,26 @@ public class PoolCommand extends Command {
             }
         }
 
+        // obtain passengers from indices
+        List<Passenger> passengersToPool = new ArrayList<>();
+
         for (Index idx : passengers) {
-            Passenger passengerToEdit = lastShownList.get(idx.getZeroBased());
-            Passenger editedPassenger = assignDriverToPassenger(passengerToEdit, driver);
-            joiner.add(editedPassenger.getName().toString());
-            model.setPassenger(passengerToEdit, editedPassenger);
+            Passenger passenger = lastShownList.get(idx.getZeroBased());
+            assert passenger != null : "passenger should not be null";
+            passengersToPool.add(passenger);
         }
 
-        model.updateFilteredPassengerList(PREDICATE_SHOW_ALL_PASSENGERS);
+        //since passengers in list are unique, passenger fetched from idx should also be unique, so as hashset from list
+        Pool toAdd = new Pool(driver, tripDay, tripTime, passengersToPool, tags);
 
-        return new CommandResult(String.format(MESSAGE_POOL_SUCCESS, driver.toString(), joiner.toString()));
-    }
+        if (model.hasPool(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_POOL);
+        }
 
-    /**
-     * Assigns the given {@code Driver} to the given {@code Passenger}.
-     * @param passengerToEdit the {@code Passenger} to add the {@code Driver} to.
-     * @param driver the {@code Driver} to add to the {@code Passenger}.
-     * @return a new {@code Passenger}, with the given driver assigned.
-     */
-    private static Passenger assignDriverToPassenger(Passenger passengerToEdit, Driver driver) {
-        requireNonNull(passengerToEdit);
-        requireNonNull(driver);
+        model.addPool(toAdd);
+        model.updateFilteredPoolList(PREDICATE_SHOW_ALL_POOLS);
 
-        Name updatedName = passengerToEdit.getName();
-        Phone updatedPhone = passengerToEdit.getPhone();
-        Address updatedAddress = passengerToEdit.getAddress();
-        Set<Tag> updatedTags = passengerToEdit.getTags();
-        TripDay updatedTripDay = passengerToEdit.getTripDay();
-        TripTime updatedTripTime = passengerToEdit.getTripTime();
-        Optional<Price> price = passengerToEdit.getPrice();
-
-        return new Passenger(updatedName, updatedPhone, updatedAddress, updatedTripDay, updatedTripTime, price, driver,
-                updatedTags);
+        return new CommandResult(String.format(MESSAGE_POOL_SUCCESS, toAdd));
     }
 
     @Override

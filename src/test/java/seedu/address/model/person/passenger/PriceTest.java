@@ -9,13 +9,8 @@ import org.junit.jupiter.api.Test;
 public class PriceTest {
 
     @Test
-    public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Price(null));
-    }
-
-    @Test
     public void constructor_invalidPrice_throwsIllegalArgumentException() {
-        String invalidPrice = "";
+        double invalidPrice = -12.01;
         assertThrows(IllegalArgumentException.class, () -> new Price(invalidPrice));
     }
 
@@ -24,7 +19,7 @@ public class PriceTest {
         // null phone number
         assertThrows(NullPointerException.class, () -> Price.isValidPrice(null));
 
-        // invalid phone numbers
+        // invalid Price
         assertFalse(Price.isValidPrice("")); // empty string
         assertFalse(Price.isValidPrice(" ")); // spaces only
         assertFalse(Price.isValidPrice("-1")); // negative numbers
