@@ -370,6 +370,7 @@ public class ModelManager implements Model {
         }
     }
 
+
     /**
      * Adds the given order.
      * {@code order} must not already exist
@@ -387,6 +388,20 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedOrder);
 
         orderBook.setOrder(target, editedOrder);
+    }
+
+    /**
+     * Sets the state of the order to complete
+     */
+    public void completeOrder(Order target){
+        orderBook.completeOrder(target);
+    }
+
+    /**
+     * Sets the state of the order to cancelled
+     */
+    public void cancelOrder(Order order){
+        order.setState(Order.State.CANCELLED);
     }
 
     /**

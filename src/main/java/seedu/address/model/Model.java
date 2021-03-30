@@ -241,4 +241,6 @@ public interface Model {
 
     /** Returns an list of the orders belonging to a particular customer */
     List<Order> getOrdersFromPerson(Person target);
+
+    void completeOrder(Order orderToComplete);
 }

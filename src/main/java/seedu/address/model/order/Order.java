@@ -14,30 +14,35 @@ import seedu.address.model.person.Person;
 
 
 public class Order implements Item {
-    private LocalDateTime datetime;
+    public enum State{
+        UNCOMPLETED, COMPLETED, CANCELLED
+    }
+
+    private LocalDateTime dateTime;
     private Person customer;
     private List<Pair<Dish, Integer>> dishQuantityList;
+    private State state = State.UNCOMPLETED;
 
     /**
      * Order constructor
-     * @param datetime
+     * @param dateTime
      * @param customer
      * @param dishQuantityList
      */
     @JsonCreator
-    public Order(@JsonProperty("datetime") LocalDateTime datetime, @JsonProperty("customer") Person customer,
+    public Order(@JsonProperty("datetime") LocalDateTime dateTime, @JsonProperty("customer") Person customer,
                  @JsonProperty("dishQuantityList") List<Pair<Dish, Integer>> dishQuantityList) {
-        this.datetime = datetime;
+        this.dateTime = dateTime;
         this.customer = customer;
         this.dishQuantityList = dishQuantityList;
     }
 
     public String getStrDatetime() {
-        return datetime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm"));
+        return dateTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm"));
     }
 
     public LocalDateTime getDatetime() {
-        return datetime;
+        return dateTime;
     }
 
     public Person getCustomer() {
@@ -69,6 +74,14 @@ public class Order implements Item {
             }
         }
         return builder.toString();
+    }
+
+    public State getState(){
+        return state;
+    }
+
+    public void setState(State newState){
+        state = newState;
     }
 
     @Override

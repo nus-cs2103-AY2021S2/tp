@@ -47,7 +47,7 @@ public class OrderAddCommand extends Command {
     public static final String MESSAGE_CUSTOMER_NOT_FOUND = "This customer doesn't exist in the address book";
     public static final String MESSAGE_DISH_NOT_FOUND = "This dish doesn't exist on the menu";
 
-    private final LocalDateTime datetime;
+    private final LocalDateTime dateTime;
     private final String customerName;
     private final List<Pair<Integer, Integer>> dishNumberQuantityList;
 
@@ -56,7 +56,7 @@ public class OrderAddCommand extends Command {
      */
     public OrderAddCommand(LocalDateTime datetime, String customerName,
                            List<Pair<Integer, Integer>> dishNumberQuantityList) {
-        this.datetime = datetime;
+        this.dateTime = datetime;
         this.customerName = customerName;
         this.dishNumberQuantityList = dishNumberQuantityList;
     }
@@ -97,7 +97,7 @@ public class OrderAddCommand extends Command {
             dishQuantityList.add(dishQuantPair);
         }
 
-        Order toAdd = new Order(datetime, customer, dishQuantityList);
+        Order toAdd = new Order(dateTime, customer, dishQuantityList);
 
         if (model.hasOrder(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_ORDER);
@@ -111,7 +111,7 @@ public class OrderAddCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof OrderAddCommand // instanceof handles nulls
-                && datetime.equals(((OrderAddCommand) other).datetime)
+                && dateTime.equals(((OrderAddCommand) other).dateTime)
                 && customerName.equals(((OrderAddCommand) other).customerName)
                 && dishNumberQuantityList.equals(((OrderAddCommand) other).dishNumberQuantityList));
     }
