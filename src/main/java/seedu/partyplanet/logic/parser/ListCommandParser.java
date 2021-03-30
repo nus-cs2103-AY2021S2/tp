@@ -162,7 +162,7 @@ public class ListCommandParser implements Parser<ListCommand> {
                 return SORT_BIRTHDAY;
             case "u": // fallthrough
             case "upcoming":
-                stringSort += "Sorted on upcoming birthdays. ";
+                stringSort += "Sorted by upcoming birthdays. ";
                 return SORT_BIRTHDAY_UPCOMING;
             default:
                 throw new ParseException(
