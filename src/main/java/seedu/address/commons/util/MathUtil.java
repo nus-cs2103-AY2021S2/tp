@@ -20,8 +20,13 @@ public class MathUtil {
      * @param min The inclusive lower bound.
      * @param max The inclusive upper bound.
      * @return The clamped value.
+     * @throws IllegalArgumentException If min > max.
      */
-    public static int clamp(int value, int min, int max) {
+    public static int clamp(int value, int min, int max) throws IllegalArgumentException {
+        if (min > max) {
+            throw new IllegalArgumentException();
+        }
+
         if (value < min) {
             return min;
         }
