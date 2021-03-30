@@ -35,6 +35,14 @@ public class Entry {
         return entryName;
     }
 
+    public EntryDate getOriginalStartDate() {
+        return startDate;
+    }
+
+    public EntryDate getOriginalEndDate() {
+        return endDate;
+    }
+
     public LocalDateTime getStartDate() {
         return startDate.getDate();
     }
@@ -102,9 +110,9 @@ public class Entry {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getEntryName())
-                .append(haveDifferentDates() ? new StringBuilder("; Start Date: ").append(getStartDate()) : "")
+                .append(haveDifferentDates() ? new StringBuilder("; Start Date: ").append(startTimestamp()) : "")
                 .append("; End Date: ")
-                .append(getEndDate());
+                .append(endTimestamp());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
