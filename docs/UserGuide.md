@@ -33,6 +33,7 @@ title: User Guide
   * [4. Progress report](#4-progress-report)
      * [4.1 Generate progress report](#41-generate-progress-report)
 * [Command summary](#command-summary)
+* [Glossary](#glossary)
 <!--te-->
 
 --------------------------------------------------------------------------------------------------------------------
@@ -85,7 +86,7 @@ DietLAH! is a **desktop app with a Command-Line Interface (CLI) that allows user
 On the application's first launch, the user is prompted to enter his/her height, weight and ideal weight.
 Other commands will be unavailable until this command is first input.
 
-**Format:** `bmi g/GENDER a/AGE h/HEIGHT(CM) w/WEIGHT(KG) i/IDEAL_WEIGHT(KG)`
+**Command Format:** `bmi g/GENDER a/AGE h/HEIGHT(CM) w/WEIGHT(KG) i/IDEAL_WEIGHT(KG)`
 
 **Example:** `bmi g/M a/43 h/170 w/70 i/80`
 
@@ -99,7 +100,7 @@ Other commands will be unavailable until this command is first input.
 
 The user can query their weight and height everyday to see their progress.
 
-**Format:** `bmi_query`
+**Command Format:** `bmi_query`
 
 **Expected output:**
 
@@ -112,7 +113,7 @@ The user can query their weight and height everyday to see their progress.
 The user can update their weight and height everyday to track their progress. 
 This is recommended, so the user will have a more accurate view of their BMI status.
 
-**Format:** `bmi_update g/GENDER a/AGE h/HEIGHT(CM) w/WEIGHT(KG) i/IDEAL_WEIGHT(KG)`
+**Command Format:** `bmi_update g/GENDER a/AGE h/HEIGHT(CM) w/WEIGHT(KG) i/IDEAL_WEIGHT(KG)`
 
 **Example:** `bmi_update g/M a/43 h/170 w/70 i/80`
 
@@ -128,7 +129,7 @@ This is recommended, so the user will have a more accurate view of their BMI sta
 
 The user can get a recommended diet plan based on the their current BMI stored in the system.
 
-**Format:** `plan_recommend`
+**Command Format:** `plan_recommend`
 
 **Expected output:**
 
@@ -140,7 +141,7 @@ The user can get a recommended diet plan based on the their current BMI stored i
 
 Shows the current active diet plan previously selected by the user.
 
-**Format:** `plan_current`
+**Command Format:** `plan_current`
 
 **Expected output:**
 
@@ -152,7 +153,7 @@ Shows the current active diet plan previously selected by the user.
 
 Changes the current active diet plan to the newly specified plan.
 
-**Format:** `plan_set p/ID`
+**Command Format:** `plan_set p/ID`
 
 **Example:** `plan_set p/1`
 
@@ -166,7 +167,7 @@ Changes the current active diet plan to the newly specified plan.
 
 Displays a list of available diet plans.
 
-**Format:** `plan_list`
+**Command Format:** `plan_list`
 
 **Expected output:**
 
@@ -178,7 +179,7 @@ Displays a list of available diet plans.
 
 Displays information about a particular diet plan.
 
-**Format:** `plan p/ID`
+**Command Format:** `plan p/ID`
 
 **Example:** `plan p/1`
 
@@ -193,7 +194,7 @@ Displays information about a particular diet plan.
 
 Adds a new food item with their nutrients value and stores them in the food list. Food items are used as shortcuts to add food intake items without having to type out the values.
 
-**Format:** `food_add n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS`
+**Command Format:** `food_add n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)`
 
 **Example:** `food_add n/tomato c/10 f/10 p/10`
 
@@ -209,7 +210,7 @@ Adds a new food item with their nutrients value and stores them in the food list
 
 Updates existing food items with their new nutrients value(s).
 
-**Format:** `food_update n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS`
+**Command Format:** `food_update n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)`
 
 **Example:** `food_update n/tomato c/20 f/30 p/40`
 
@@ -225,7 +226,7 @@ Updates existing food items with their new nutrients value(s).
 
 Lists all food items that are stored in the application.
 
-**Format:** `food_list`
+**Command Format:** `food_list`
 
 **Example:** `food_list`
 
@@ -239,7 +240,7 @@ Lists all food items that are stored in the application.
 
 Deletes the particular food item stored in the application.
 
-**Format:** `food_delete n/name`
+**Command Format:** `food_delete n/name`
 
 **Example:** `food_delete n/tomato`
 
@@ -262,7 +263,7 @@ For tracking the user's diet plan progress, the user is encouraged to track thei
 
 Records a food intake for the given date and stores the food in the food list for easy future reuse.
 
-**Format:** `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS`
+**Command Format:** `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)`
 
 **Example:** `food_intake_add d/31 Mar 2021 n/tomato c/10 f/10 p/10`
 
@@ -279,7 +280,7 @@ Records a food intake for the given date and stores the food in the food list fo
 
 Records a food intake for the given date using an existing food item. The nutrient values will be retrieved from the corresponding food item stored in the application.
 
-**Format:** `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME`
+**Command Format:** `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME`
 
 **Example:** `food_intake_add d/31 Mar 2021 n/tomato`
 
@@ -293,11 +294,11 @@ Records a food intake for the given date using an existing food item. The nutrie
 
 Records a food intake for the given date and updates the existing food item with the new nutrient value(s).
 
-**Format:** `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS`
+**Command Format:** `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)`
 
 **Example:** `food_intake_add d/31 Mar 2021 n/tomato c/20 f/35 p/50`
 
-**Note:** Any nutrient value(s) specified for an existing food item will be overwritten and updated in the food list for future use. Older records associated with the food item will retain their original values and is not affected.
+**Note:** Any nutrient value(s) specified for an existing food item will be overwritten and updated in the food list for future use. Older food intake record(s) associated with the same food item will retain their original values.
 
 **Expected output:**
 
@@ -309,11 +310,11 @@ Records a food intake for the given date and updates the existing food item with
 
 Updates the nutrient value(s) of an existing food intake matching the given date and food name.
 
-**Format:** `food_intake_update d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS`
+**Command Format:** `food_intake_update d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)`
 
 **Example:** `food_intake_update d/31 Mar 2021 n/tomato c/20 f/40 p/50`
 
-**Note**: The given food intake item must exist in order for update to work. Not all nutrient fields are required and only the specified nutrient fields will be updated with the new value while the other vales remain unchanged.
+**Note**: The given food intake item must exist in order for update to work. Not all nutrient fields are required and only the specified nutrient fields will be updated with the new value while the other values remain unchanged. For instance, the original fat value of tomato is 35g and you want to change to 40g, you can run `food_intake_update d/31 Mar 2021 n/tomato f/40`.
 
 **Expected output:**
 
@@ -325,11 +326,11 @@ Updates the nutrient value(s) of an existing food intake matching the given date
 
 Deletes a food intake item for the specified day.
 
-**Format:** `food_intake_delete d/DATE(in d MMM yyyy format) n/FOOD_NAME`
+**Command Format:** `food_intake_delete d/DATE(in d MMM yyyy format) n/FOOD_NAME`
 
 **Example:** `food_intake_delete d/31 Mar 2021 n/tomato`
 
-**Note:** The food item has to exist before it can be deleted.
+**Note:** The food intake item has to exist before it can be deleted.
 
 **Expected output:**
 
@@ -345,7 +346,7 @@ Queries food intake items on either a day or over a period of days. Refer to sub
 
 Queries all the food intake(s) on a certain day.
 
-**Format:** `food_intake_query d/DATE(in d MMM yyyy format)`
+**Command Format:** `food_intake_query d/DATE(in d MMM yyyy format)`
 
 **Example:** `food_intake_query d/31 Mar 2021`
 
@@ -359,7 +360,7 @@ Queries all the food intake(s) on a certain day.
 
 Queries all the existing food intake(s) over a period of days (both inclusive).
 
-**Format:** `food_intake_query df/DATE(in d MMM yyyy format) dt/DATE(in d MMM yyyy format)`
+**Command Format:** `food_intake_query df/DATE_FROM(in d MMM yyyy format) dt/DATE_TO(in d MMM yyyy format)`
 
 **Example:** `food_intake_query df/1 Mar 2021 dt/31 Mar 2021`
 
@@ -374,7 +375,7 @@ Queries all the existing food intake(s) over a period of days (both inclusive).
 
 Generates a progress report based on the active diet plan. This command will calculate the user's food intakes against the daily requirements and report how much the user has adhered to the plan's requirements.
 
-**Format:** `progress`
+**Command Format:** `progress`
 
 **Note:** An active diet plan must be selected before running this command.
 
@@ -398,15 +399,33 @@ Action | Format, Examples
 **Select active diet plan** | `plan active p/plan`<br> e.g., `plan active p/1`
 **List all available diet plans** | `plan list`
 **View information about a particular diet plan** | `plan t/ID​`<br> e.g.,`plan t/1`
-**Add food item** | `food_add n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS` <br> e.g., `food_add n/tomato c/10 f/10 p/10`
-**Update food item** | `food_update n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS` <br> e.g., `food_update n/tomato c/20 f/30 p/40`
+**Add food item** | `food_add n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)` <br> e.g., `food_add n/tomato c/10 f/10 p/10`
+**Update food item** | `food_update n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)` <br> e.g., `food_update n/tomato c/20 f/30 p/40`
 **List food item** | `food_list`
 **Delete food item** | `food_delete n/FOOD_NAME` <br> e.g., `food_delete n/tomato`
-**Input food intake (For new food items that are not created before)** | `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOHYDRATES f/FATS p/PROTEINS` <br> e.g.,`food_intake_add d/31 Mar 2021 n/tomato c/10 f/10 p/10` 
+**Input food intake (For new food items that are not created before)** | `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOHYDRATES(G) f/FATS(G) p/PROTEINS(G)` <br> e.g.,`food_intake_add d/31 Mar 2021 n/tomato c/10 f/10 p/10` 
 **Input food intake (For existing food items)** | `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME` <br> e.g., `food_intake_add d/31 Mar 2021 n/tomato`
-**Input food intake (For existing food items, using different nutrient value(s))** | `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOHYDRATES f/FATS p/PROTEINS` <br> e.g., `food_intake_add d/31 Mar 2021 n/tomato c/20 f/35 p/50`
+**Input food intake (For existing food items, using different nutrient value(s))** | `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOHYDRATES(G) f/FATS(G) p/PROTEINS(G)` <br> e.g., `food_intake_add d/31 Mar 2021 n/tomato c/20 f/35 p/50`
 **Update food intake** | `food_intake_update d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS` <br> e.g., `food_intake_update d/31 Mar 2021 n/tomato c/20 f/40 p/50`
 **Delete food intake** | `food_intake_delete d/DATE(in d MMM yyyy format) n/FOOD_NAME` <br> e.g., `food_intake_delete d/31 Mar 2021 n/tomato`
 **Query food intake on a day** | `food_intake_query d/DATE(in d MMM yyyy format)` <br> e.g., `food_intake_query d/31 Mar 2021`
-**Query food intake over a period of days** | `food_intake_query df/DATE(in d MMM yyyy format) dt/DATE(in d MMM yyyy format)` <br> e.g., `food_intake_query df/1 Mar 2021 dt/31 Mar 2021`
+**Query food intake over a period of days** | `food_intake_query df/DATE_FROM(in d MMM yyyy format) dt/DATE_TO(in d MMM yyyy format)` <br> e.g., `food_intake_query df/1 Mar 2021 dt/31 Mar 2021`
 **Generate progress report** | `progress`
+--------------------------------------------------------------------------------------------------------------------
+
+## Glossary
+
+In this glossary, you can find a list of terms that is used throughout this guide and reference their corresponding meaning.
+
+Technical Terms | Meaning
+--------|------------------
+**Alias** | A term used to represent something. For instance the alias `df/` represents the date from a period.
+**Command-Line Interface (CLI)** | An interface that users send commands to a computer program through the form of lines of text.
+**Graphic User Interface (GUI)** | An interface that displays interactive visual components for a computer program. 
+**Java** | A programming language that is used to build this application.
+
+Health Terms | Meaning
+-------------|------------------
+**Body Mass Index (BMI)** | A value derived from the mass and height of a person, by taking the body mass divided by the square of the body height. 
+**Macronutrients** | Nutrients, such as fats, proteins and carbohydrates that provide us with energy.
+--------------------------------------------------------------------------------------------------------------------
