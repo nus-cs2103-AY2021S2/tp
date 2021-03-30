@@ -2,8 +2,8 @@
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons" : [ {
     "name" : "Alice Pauline",
-    "school" : "Jurong West Secondary School",
     "phone" : "94351253",
+    "school" : "Jurong West Secondary School",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "guardianName" : "Amanda Pauline",
@@ -12,8 +12,8 @@
     "lessons" : [ "Sunday 1000"]
   }, {
     "name" : "Benson Meier",
-    "school" : "Clementi Town Secondary School",
     "phone" : "98765432",
+    "school" : "Clementi Town Secondary School",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "guardianName" : "Jay Maier",
@@ -22,8 +22,8 @@
     "lessons" : [ "Monday 1800" ]
   }, {
     "name" : "Carl Kurz",
-    "school" : "Wall Street Secondary School",
     "phone" : "95352563",
+    "school" : "Wall Street Secondary School",
     "email" : "heinz@example.com",
     "address" : "wall street",
     "guardianName" : "Louis Kurz",
@@ -32,8 +32,8 @@
     "lessons" : [ "Friday 1000" ]
   }, {
     "name" : "Daniel Meier",
-    "school" : "Clementi Town Secondary School",
     "phone" : "87652533",
+    "school" : "Clementi Town Secondary School",
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "guardianName" : "Jay Maier",
@@ -41,8 +41,8 @@
     "tagged" : [ "sec3" ]
   }, {
     "name" : "Elle Meyer",
-    "school" : "Michegan Secondary School",
     "phone" : "9482224",
+    "school" : "Michegan Secondary School",
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "guardianName" : "John Meyer",
@@ -50,8 +50,8 @@
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
-    "school" : "Tokyo Secondary School",
     "phone" : "9482427",
+    "school" : "Tokyo Secondary School",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "guardianName" : "Fay Kunz",
@@ -59,8 +59,8 @@
     "tagged" : [ ]
   }, {
     "name" : "George Best",
-    "school" : "Fourth Secondary School",
     "phone" : "9482442",
+    "school" : "Fourth Secondary School",
     "email" : "anna@example.com",
     "address" : "4th street",
     "guardianName" : "Barbara Best",

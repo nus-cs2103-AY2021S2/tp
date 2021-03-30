@@ -1,6 +1,7 @@
 package seedu.address.model.util;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -28,29 +29,47 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
-            new Person(new Name("Alex Yeoh"), new School("Abc Secondary School"), new Phone("87438807"),
-                new Email("alexyeoh@example.com"), new Address("Blk 30 Geylang Street 29, #06-40"),
-                new Name("Jane Yeoh"), new Phone("87438800"),
+            new Person(new Name("Alex Yeoh"), new Phone("87438807"),
+                Optional.of(new School("Abc Secondary School")),
+                Optional.of(new Email("alexyeoh@example.com")),
+                Optional.of(new Address("Blk 30 Geylang Street 29, #06-40")),
+                Optional.of(new Name("Jane Yeoh")),
+                Optional.of(new Phone("87438800")),
                 getTagSet("math"), getLessonSet("monday 2000")),
-            new Person(new Name("Bernice Yu"), new School("Xyz Secondary School"), new Phone("99272758"),
-                new Email("berniceyu@example.com"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                new Name("Ben Yu"), new Phone("99272758"),
+            new Person(new Name("Bernice Yu"), new Phone("99272758"),
+                Optional.of(new School("Xyz Secondary School")),
+                Optional.of(new Email("berniceyu@example.com")),
+                Optional.of(new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18")),
+                Optional.of(new Name("Ben Yu")),
+                Optional.of(new Phone("99272758")),
                 getTagSet("sec4", "physics"), getLessonSet(" monday 1800")),
-            new Person(new Name("Charlotte Oliveiro"), new School("Cde Secondary School"),
-                new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), new Name("Claire Oliveiro"), new Phone("93210288"),
+            new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"),
+                Optional.of(new School("Cde Secondary School")),
+                Optional.of(new Email("charlotte@example.com")),
+                Optional.of(new Address("Blk 11 Ang Mo Kio Street 74, #11-04")),
+                Optional.of(new Name("Claire Oliveiro")),
+                Optional.of(new Phone("93210288")),
                 getTagSet("classA"), getLessonSet("monday 1500")),
-            new Person(new Name("David Li"), new School("Li Secondary School"), new Phone("91031282"),
-                new Email("lidavid@example.com"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                new Name("Li Li"), new Phone("91031288"), getTagSet("sec1"),
-                getLessonSet("tuesday 1000")),
-            new Person(new Name("Irfan Ibrahim"), new School("Efg Secondary School"), new Phone("92492021"),
-                new Email("irfan@example.com"), new Address("Blk 47 Tampines Street 20, #17-35"),
-                new Name("Frank Ibrahim"), new Phone("92492022"),
+            new Person(new Name("David Li"), new Phone("91031282"),
+                Optional.of(new School("Li Secondary School")),
+                Optional.of(new Email("lidavid@example.com")),
+                Optional.of(new Address("Blk 436 Serangoon Gardens Street 26, #16-43")),
+                Optional.of(new Name("Li Li")),
+                Optional.of(new Phone("91031288")),
+                getTagSet("sec1"), getLessonSet("tuesday 1000")),
+            new Person(new Name("Irfan Ibrahim"), new Phone("92492021"),
+                Optional.of(new School("Efg Secondary School")),
+                Optional.of(new Email("irfan@example.com")),
+                Optional.of(new Address("Blk 47 Tampines Street 20, #17-35")),
+                Optional.of(new Name("Frank Ibrahim")),
+                Optional.of(new Phone("92492022")),
                 getTagSet("sec2"), getLessonSet("wednesday 1400")),
-            new Person(new Name("Roy Balakrishnan"), new School("Efg Secondary School"),
-                new Phone("92624417"), new Email("royb@example.com"), new Address("Blk 45 Aljunied Street 85, #11-31"),
-                new Name("Bob Balakrishnan"), new Phone("92624411"),
+            new Person(new Name("Roy Balakrishnan"), new Phone("92624417"),
+                Optional.of(new School("Efg Secondary School")),
+                Optional.of(new Email("royb@example.com")),
+                Optional.of(new Address("Blk 45 Aljunied Street 85, #11-31")),
+                Optional.of(new Name("Bob Balakrishnan")),
+                Optional.of(new Phone("92624411")),
                 getTagSet("physics"), getLessonSet("wednesday 1200"))
         };
     }

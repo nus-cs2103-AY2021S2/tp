@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -11,7 +12,9 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.date.Description;
 import seedu.address.model.date.Details;
+import seedu.address.model.lesson.Day;
 import seedu.address.model.lesson.Lesson;
+import seedu.address.model.lesson.Time;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -57,21 +60,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String school} into a {@code School}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code school} is invalid.
-     */
-    public static School parseSchool(String school) throws ParseException {
-        requireNonNull(school);
-        String trimmedSchool = school.trim();
-        if (!School.isValidSchool(trimmedSchool)) {
-            throw new ParseException(School.MESSAGE_CONSTRAINTS);
-        }
-        return new School(trimmedSchool);
-    }
-
-    /**
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -87,18 +75,33 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String school} into a {@code School}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code school} is invalid.
+     */
+    public static Optional<School> parseSchool(String school) throws ParseException {
+        requireNonNull(school);
+        String trimmedSchool = school.trim();
+        if (!School.isValidSchool(trimmedSchool)) {
+            throw new ParseException(School.MESSAGE_CONSTRAINTS);
+        }
+        return Optional.of(new School(trimmedSchool));
+    }
+
+    /**
      * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
+    public static Optional<Address> parseAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
         if (!Address.isValidAddress(trimmedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return Optional.of(new Address(trimmedAddress));
     }
 
     /**
@@ -107,13 +110,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
+    public static Optional<Email> parseEmail(String email) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
         if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        return Optional.of(new Email(trimmedEmail));
     }
 
     /**
@@ -122,13 +125,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Name parseGuardianName(String guardianName) throws ParseException {
+    public static Optional<Name> parseGuardianName(String guardianName) throws ParseException {
         requireNonNull(guardianName);
         String trimmedName = guardianName.trim();
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return Optional.of(new Name(trimmedName));
     }
 
     /**
@@ -137,13 +140,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
-    public static Phone parseGuardianPhone(String guardianPhone) throws ParseException {
+    public static Optional<Phone> parseGuardianPhone(String guardianPhone) throws ParseException {
         requireNonNull(guardianPhone);
         String trimmedPhone = guardianPhone.trim();
         if (!Phone.isValidPhone(trimmedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+        return Optional.of(new Phone(trimmedPhone));
     }
 
     /**
@@ -186,6 +189,12 @@ public class ParserUtil {
 
         if (!Lesson.isValidLesson(details)) {
             throw new ParseException(Lesson.MESSAGE_CONSTRAINTS);
+        }
+        if (!Day.isValidDay(details[Lesson.INDEX_OF_DAY])) {
+            throw new ParseException(Day.MESSAGE_CONSTRAINTS);
+        }
+        if (!Time.isValidTime(details[Lesson.INDEX_OF_TIME])) {
+            throw new ParseException(Time.MESSAGE_CONSTRAINTS);
         }
         return new Lesson(trimmedLesson);
     }

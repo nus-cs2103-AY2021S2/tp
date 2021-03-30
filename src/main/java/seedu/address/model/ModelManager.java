@@ -224,6 +224,12 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
         transformedPersons.setAll(filteredPersons);
+        /*
+        requireNonNull(predicate);
+        FilteredList<Person> newFilteredPersons = transformedPersons.filtered(predicate);
+        newFilteredPersons.setPredicate(predicate);
+        transformedPersons.setAll(newFilteredPersons);
+        */
     }
 
     //=========== Sorted Person List Accessors =============================================================
@@ -241,6 +247,12 @@ public class ModelManager implements Model {
         requireNonNull(comparator);
         sortedPersons.setComparator(comparator);
         transformedPersons.setAll(sortedPersons);
+        /*
+        requireNonNull(comparator);
+        SortedList<Person> newSortedPersons = transformedPersons.sorted(comparator);
+        newSortedPersons.setComparator(comparator);
+        transformedPersons.setAll(newSortedPersons);
+         */
     }
 
     //=========== Transformed Person List Accessors =============================================================
@@ -284,12 +296,15 @@ public class ModelManager implements Model {
     @Override
     public void deleteImportantDate(ImportantDate target) {
         datesBook.removeImportantDate(target);
+        // TODO: change switch to model.updateSortedImportantDatesList(); after implementing sorting
+        updateFilteredImportantDatesList(PREDICATE_SHOW_ALL_IMPORTANT_DATES);
     }
 
     @Override
     public void addImportantDate(ImportantDate importantDate) {
         datesBook.addImportantDate(importantDate);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        // TODO: change switch to model.updateSortedImportantDatesList(); after implementing sorting
+        updateFilteredImportantDatesList(PREDICATE_SHOW_ALL_IMPORTANT_DATES);
     }
 
     @Override

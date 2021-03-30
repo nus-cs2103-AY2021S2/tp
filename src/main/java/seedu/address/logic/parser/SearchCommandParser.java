@@ -11,7 +11,7 @@ import java.util.List;
 
 import seedu.address.logic.commands.SearchCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameSchoolAndTagContainsKeywordsPredicate;
+import seedu.address.model.person.predicate.NameSchoolAndTagContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new SearchCommand object

@@ -1,19 +1,20 @@
-package seedu.address.model.person;
+package seedu.address.model.person.predicate;
 
 import java.util.ArrayList;
 import java.util.function.Predicate;
 
-import seedu.address.model.lesson.Lesson;
+import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
-public class HasLessonPredicate implements Predicate<Person> {
+public class HasTagPredicate implements Predicate<Person> {
 
-    public HasLessonPredicate() {
+    public HasTagPredicate() {
     }
 
     @Override
     public boolean test(Person person) {
-        ArrayList<Lesson> lessonList = new ArrayList<>(person.getLessons());
-        return lessonList.isEmpty() ? false : true;
+        ArrayList<Tag> tagList = new ArrayList<>(person.getTags());
+        return tagList.isEmpty() ? false : true;
     }
 
     @Override
@@ -23,4 +24,3 @@ public class HasLessonPredicate implements Predicate<Person> {
     }
 
 }
-

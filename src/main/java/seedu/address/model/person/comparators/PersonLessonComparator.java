@@ -1,21 +1,24 @@
-package seedu.address.model.person;
+package seedu.address.model.person.comparators;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
 import seedu.address.model.lesson.Lesson;
+import seedu.address.model.person.Person;
 
 /**
  * Compares two {@code Person}s according to the order of their {@code Lesson}.
  */
-public class LessonComparator implements Comparator<Person> {
-    public LessonComparator(){}
+public class PersonLessonComparator implements Comparator<Person> {
+    public PersonLessonComparator(){}
     @Override
     public int compare(Person p1, Person p2) {
 
         ArrayList<Lesson> thisLessonList = new ArrayList<>(p1.getLessons());
+        Collections.sort(thisLessonList);
         ArrayList<Lesson> otherLessonList = new ArrayList<>(p2.getLessons());
+        Collections.sort(otherLessonList);
 
         if (thisLessonList.isEmpty() && !otherLessonList.isEmpty()) {
             return 1;

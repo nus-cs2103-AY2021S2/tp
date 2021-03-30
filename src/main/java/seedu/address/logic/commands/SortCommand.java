@@ -1,13 +1,26 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Comparator;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.comparators.PersonLessonComparator;
+import seedu.address.model.person.comparators.PersonNameComparator;
+import seedu.address.model.person.comparators.PersonSchoolComparator;
+import seedu.address.model.person.comparators.PersonTagComparator;
+import seedu.address.model.person.predicate.HasLessonPredicate;
+import seedu.address.model.person.predicate.HasNamePredicate;
+import seedu.address.model.person.predicate.HasSchoolPredicate;
+import seedu.address.model.person.predicate.HasTagPredicate;
 
 /**
  * Sorts all students in TutorsPet by lesson day and time.
@@ -15,26 +28,45 @@ import seedu.address.model.person.Person;
 public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sort students by lesson day and time\n "
-            + "Example: " + COMMAND_WORD;
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Sort students according to specified sorting criteria ie name, school, tag, lesson."
+            + "The first valid sorting criteria listed will be the sorting criteria used. \n "
+            + "Parameters:"
+            + "[" + PREFIX_NAME + "] "
+            + "OR [" + PREFIX_SCHOOL + "] "
+            + "OR [" + PREFIX_TAG + "TAG]... "
+            + "OR [" + PREFIX_LESSON + "LESSON]...\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_SCHOOL;
 
     public static final String MESSAGE_SUCCESS = "Sorted all students by lesson day and time";
 
+    private final Prefix prefix;
     private final Comparator<Person> comparator;
     private final Predicate<Person> predicate;
 
     /**
      * Creates a SortCommand object that has a specific {@code Predicate} and {@code comparator}.
      */
-    public SortCommand(Predicate<Person> predicate, Comparator<Person> comparator) {
-        this.comparator = comparator;
-        this.predicate = predicate;
+    public SortCommand(Prefix prefix) {
+        this.prefix = prefix;
+        if (prefix.equals(PREFIX_NAME)) {
+            this.comparator = new PersonNameComparator();
+            this.predicate = new HasNamePredicate();
+        } else if (prefix.equals(PREFIX_SCHOOL)) {
+            this.comparator = new PersonSchoolComparator();
+            this.predicate = new HasSchoolPredicate();
+        } else if (prefix.equals(PREFIX_TAG)) {
+            this.comparator = new PersonTagComparator();
+            this.predicate = new HasTagPredicate();
+        } else {
+            this.comparator = new PersonLessonComparator();
+            this.predicate = new HasLessonPredicate();
+        }
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        // model.updateSortedPersonList(comparator);
         model.filterThenSortPersonList(predicate, comparator);
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getTransformedPersonList().size()));
