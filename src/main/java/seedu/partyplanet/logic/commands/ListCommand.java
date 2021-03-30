@@ -27,7 +27,7 @@ public class ListCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists people in PartyPlanet "
             + "according to specified prefix combinations, with optional sort order.\n"
             + "Parameters: [--exact] [--any] [-n NAME]... [-t TAG]... [-b MONTH]... [-s SORT_FIELD] [-o SORT_ORDER]\n"
-            + "Sort fields: 'n' (name, default), 'b' (birthday)\n"
+            + "Sort fields: 'n' (name, default), 'b' (birthday), 'u' (upcoming)\n"
             + "Sort orders: 'asc' (ascending, default), 'desc' (descending)\n"
             + "Example: list --exact -n alice -t friend -b 1 -s n -o desc\n";
 
@@ -105,7 +105,7 @@ public class ListCommand extends Command {
                 .sorted((x, y) -> x.getKey().tagName.compareTo(y.getKey().tagName))
                 .map(t -> String.format("%s (%d)", t.getKey(), t.getValue()))
                 .reduce((x, y) -> x + ", " + y)
-                .orElse("");
+                .orElse("None!");
 
         return output;
     }
