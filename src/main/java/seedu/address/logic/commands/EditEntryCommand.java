@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_ENTRY;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATED_ENTRY;
 import static seedu.address.commons.core.Messages.MESSAGE_EDIT_ENTRY_SUCCESS;
 import static seedu.address.commons.core.Messages.MESSAGE_NO_SUCH_ENTRY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
@@ -79,7 +79,7 @@ public class EditEntryCommand extends Command {
         Entry editedEntry = createEditedEntry(entryToEdit, editEntryDescriptor);
 
         if (!entryToEdit.isSameEntry(editedEntry) && model.hasEntry(editedEntry)) {
-            throw new CommandException(MESSAGE_DUPLICATE_ENTRY);
+            throw new CommandException(MESSAGE_DUPLICATED_ENTRY);
         }
 
         model.setEntry(entryToEdit, editedEntry);

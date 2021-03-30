@@ -57,21 +57,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses an {@code String entryName} into a {@code EntryName}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code entryName} is invalid.
-     */
-    public static EntryName parseEntryName(String entryName) throws ParseException {
-        requireNonNull(entryName);
-        String trimmedName = entryName.trim();
-        if (!EntryName.isValidName(trimmedName)) {
-            throw new ParseException(EntryName.NAME_CONSTRAINTS);
-        }
-        return new EntryName(trimmedName);
-    }
-
-    /**
      * Parses a {@code String description} into a {@code ScheduleDescription}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -196,6 +181,7 @@ public class ParserUtil {
         return new DateTime(trimmedDateTime);
     }
 
+    /**
      * Parses a {@code String entryName} into a {@code EntryName}.
      */
     public static EntryName parseEntryName(String entryName) throws ParseException {
