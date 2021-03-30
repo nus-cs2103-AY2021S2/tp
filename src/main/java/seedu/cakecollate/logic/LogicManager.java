@@ -18,6 +18,7 @@ import seedu.cakecollate.model.ReadOnlyCakeCollate;
 import seedu.cakecollate.model.order.DeliveryStatus;
 import seedu.cakecollate.model.order.Order;
 import seedu.cakecollate.model.order.Status;
+import seedu.cakecollate.model.orderitem.OrderItem;
 import seedu.cakecollate.storage.Storage;
 
 /**
@@ -50,6 +51,7 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveCakeCollate(model.getCakeCollate());
+            storage.saveOrderItems(model.getOrderItems());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -107,4 +109,11 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+
+
+    @Override
+    public ObservableList<OrderItem> getFilteredOrderItemsList() {
+        return model.getFilteredOrderItemsList();
+    }
+
 }

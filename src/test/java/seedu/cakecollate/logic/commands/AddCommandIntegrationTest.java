@@ -17,7 +17,6 @@ import org.junit.jupiter.api.Test;
 import seedu.cakecollate.commons.core.Messages;
 import seedu.cakecollate.commons.core.index.IndexList;
 import seedu.cakecollate.logic.commands.exceptions.CommandException;
-import seedu.cakecollate.model.CakeCollate;
 import seedu.cakecollate.model.Model;
 import seedu.cakecollate.model.ModelManager;
 import seedu.cakecollate.model.OrderItems;
@@ -27,6 +26,7 @@ import seedu.cakecollate.model.orderitem.OrderItem;
 import seedu.cakecollate.testutil.AddOrderDescriptorBuilder;
 import seedu.cakecollate.testutil.OrderBuilder;
 import seedu.cakecollate.testutil.OrderItemBuilder;
+import seedu.cakecollate.testutil.TypicalOrderItems;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -39,10 +39,11 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalCakeCollate(), getTypicalOrderItemsModel(), new UserPrefs());
         nonNullIndexList = new IndexList(new ArrayList<>());
         nonNullIndexList.add(INDEX_FIRST_ORDER);
         nonNullIndexList.add(INDEX_THIRD_ORDER);
+        model = new ModelManager(getTypicalCakeCollate(), new UserPrefs(),
+                TypicalOrderItems.getTypicalOrderItemsModel());
     }
 
     @Test
@@ -50,7 +51,7 @@ public class AddCommandIntegrationTest {
         Order validOrder = new OrderBuilder().build();
         AddCommand.AddOrderDescriptor descriptor = new AddOrderDescriptorBuilder(validOrder).build();
 
-        Model expectedModel = new ModelManager(model.getCakeCollate(), getTypicalOrderItemsModel(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getCakeCollate(), new UserPrefs(), model.getOrderItems());
         expectedModel.addOrder(validOrder);
 
         assertCommandSuccess(new AddCommand(null, descriptor), model,
@@ -63,7 +64,6 @@ public class AddCommandIntegrationTest {
         AddCommand.AddOrderDescriptor descriptor = new AddOrderDescriptorBuilder(orderInList).build();
         assertCommandFailure(new AddCommand(null, descriptor), model, AddCommand.MESSAGE_DUPLICATE_ORDER);
     }
-
     // todo index list related
 
     // todo with order index
@@ -104,7 +104,7 @@ public class AddCommandIntegrationTest {
         Order finalOrderToAddToModel = new OrderBuilder(validOrder).withOrderDescriptions(stringify(toAdd)).build();
 
         // construct expected model
-        Model expectedModel = new ModelManager(model.getCakeCollate(), orderItems, new UserPrefs()); // todo change all/most 2nd arg
+        Model expectedModel = new ModelManager(model.getCakeCollate(), new UserPrefs(), model.getOrderItems()); // todo change all/most 2nd arg
         expectedModel.addOrder(finalOrderToAddToModel);
 
         assertCommandSuccess(new AddCommand(indexList, descriptor), model,
@@ -139,12 +139,7 @@ public class AddCommandIntegrationTest {
 
         Command addCommand = new AddCommand(null, descriptor);
 
-        Model expectedModel = new ModelManager(
-                new CakeCollate(model.getCakeCollate()),
-                //new OrderItems(model.getOrderItems()),
-                getTypicalOrderItemsModel(),
-                new UserPrefs()
-        );
+        Model expectedModel = new ModelManager(model.getCakeCollate(), new UserPrefs(), model.getOrderItems());
 
         expectedModel.addOrder(order);
         expectedModel.addOrderItem(existingOrderItem);
@@ -174,12 +169,7 @@ public class AddCommandIntegrationTest {
 
         Command addCommand = new AddCommand(null, descriptor);
 
-        Model expectedModel = new ModelManager(
-                new CakeCollate(model.getCakeCollate()),
-                //new OrderItems(model.getOrderItems()),
-                getTypicalOrderItemsModel(),
-                new UserPrefs()
-        );
+        Model expectedModel = new ModelManager(model.getCakeCollate(), new UserPrefs(), model.getOrderItems());
 
         expectedModel.addOrder(order);
         expectedModel.addOrderItem(newOrderItemToAdd);

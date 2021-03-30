@@ -23,11 +23,13 @@ import seedu.cakecollate.logic.commands.exceptions.CommandException;
 import seedu.cakecollate.model.CakeCollate;
 import seedu.cakecollate.model.Model;
 import seedu.cakecollate.model.ReadOnlyCakeCollate;
+import seedu.cakecollate.model.ReadOnlyOrderItems;
 import seedu.cakecollate.model.ReadOnlyUserPrefs;
 import seedu.cakecollate.model.order.Order;
 import seedu.cakecollate.model.orderitem.OrderItem;
 import seedu.cakecollate.testutil.AddOrderDescriptorBuilder;
 import seedu.cakecollate.testutil.OrderBuilder;
+//<<<<<<< HEAD
 
 
 /**
@@ -52,6 +54,14 @@ public class AddCommandTest {
     public void constructor_nullAddOrderDescriptor_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null, null));
         assertThrows(NullPointerException.class, () -> new AddCommand(nonNullIndexList, null));
+//=======
+//
+//public class AddCommandTest {
+//
+//    @Test
+//    public void constructor_nullOrder_throwsNullPointerException() {
+//        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+//>>>>>>> master
     }
 
     @Test
@@ -200,12 +210,27 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasOrderItem(OrderItem item) {
+        public void deleteOrderItem(OrderItem target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<OrderItem> getFilteredOrderItemsList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void addOrderItem(OrderItem item) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasOrderItem(OrderItem orderItem) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyOrderItems getOrderItems() {
             throw new AssertionError("This method should not be called.");
         }
     }

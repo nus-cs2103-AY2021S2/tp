@@ -21,28 +21,32 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final CakeCollate cakeCollate;
-    private final OrderItems orderItems;
     private final UserPrefs userPrefs;
     private final FilteredList<Order> filteredOrders;
+
+    private final OrderItems orderItems;
+    private final FilteredList<OrderItem> filteredOrderItems;
 
     /**
      * Initializes a ModelManager with the given cakeCollate and userPrefs.
      */
-    public ModelManager(ReadOnlyCakeCollate cakeCollate, ReadOnlyOrderItems orderItems, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyCakeCollate cakeCollate, ReadOnlyUserPrefs userPrefs, ReadOnlyOrderItems orderItems) {
         super();
         requireAllNonNull(cakeCollate, userPrefs);
 
-        logger.fine("Initializing with cakecollate: " + cakeCollate + " and user prefs " + userPrefs);
+        logger.fine("Initializing with cakecollate: " + cakeCollate + " and user prefs "
+                + userPrefs + "and orderitems " + orderItems);
 
         this.cakeCollate = new CakeCollate(cakeCollate);
-        this.orderItems = new OrderItems(orderItems); // test
         this.userPrefs = new UserPrefs(userPrefs);
         filteredOrders = new FilteredList<>(this.cakeCollate.getOrderList());
+        this.orderItems = new OrderItems(orderItems);
+        filteredOrderItems = new FilteredList<>(this.orderItems.getOrderItemList());
         sortFilteredOrderList();
     }
 
     public ModelManager() {
-        this(new CakeCollate(), new OrderItems(), new UserPrefs()); // test
+        this(new CakeCollate(), new UserPrefs(), new OrderItems());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -121,7 +125,7 @@ public class ModelManager implements Model {
     //=========== Filtered Order List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Order} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Orders} backed by the internal list of
      * {@code versionedCakeCollate}
      */
     @Override
@@ -158,24 +162,43 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return cakeCollate.equals(other.cakeCollate)
                 && userPrefs.equals(other.userPrefs)
-                && filteredOrders.equals(other.filteredOrders);
+                && filteredOrders.equals(other.filteredOrders)
+                && orderItems.equals(other.orderItems);
     }
 
-
-    //=========== Order Items ================================================================================
-
+    //=========== OrderItems ================================================================================
     @Override
-    public boolean hasOrderItem(OrderItem item) {
-        requireNonNull(item);
-        return orderItems.hasOrderItem(item);
+    public ReadOnlyOrderItems getOrderItems() {
+        return orderItems;
     }
 
     @Override
-    public void addOrderItem(OrderItem item) {
-        orderItems.addOrderItem(item);
-        // updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS); ?
+    public boolean hasOrderItem(OrderItem orderItem) {
+        requireNonNull(orderItem);
+        return orderItems.hasOrderItem(orderItem);
     }
 
-    //=========== Order Items Accessors ======================================================================
+    @Override
+    public void deleteOrderItem(OrderItem target) {
+        orderItems.removeOrderItem(target);
+    }
+
+
+
+    @Override
+    public void addOrderItem(OrderItem orderItem) {
+        orderItems.addOrderItem(orderItem);
+    }
+
+    //=========== Filtered Order Items List Accessors =============================================================
+    /**
+     * Returns an unmodifiable view of the list of {@code OrderItems} backed by the internal list of
+     * {@code versionedOrderItems}
+     */
+    @Override
+    public ObservableList<OrderItem> getFilteredOrderItemsList() {
+        return filteredOrderItems;
+    }
 
 }
+

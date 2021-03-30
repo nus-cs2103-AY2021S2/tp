@@ -89,11 +89,23 @@ public interface Model {
      */
     void updateFilteredOrderList(Predicate<Order> predicate);
 
+    /** Returns the OrderItems */
+    ReadOnlyOrderItems getOrderItems();
 
+    /**
+     * Adds the given orderItem.
+     * {@code orderItem} must not already exist in the orderItems.
+     */
+    void addOrderItem(OrderItem orderItem);
 
-    //=========== Order Items ================================================================================
+    boolean hasOrderItem(OrderItem orderItem);
 
-    boolean hasOrderItem(OrderItem item);
+    /**
+     * Deletes the given orderItem.
+     * The order must exist in the orderItems.
+     */
+    void deleteOrderItem(OrderItem orderitem);
 
-    void addOrderItem(OrderItem item);
+    /** Returns an unmodifiable view of the filtered order items list */
+    ObservableList<OrderItem> getFilteredOrderItemsList();
 }

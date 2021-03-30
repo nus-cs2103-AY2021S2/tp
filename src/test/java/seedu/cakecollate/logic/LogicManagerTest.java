@@ -10,7 +10,6 @@ import static seedu.cakecollate.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.ORDER_AMY;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.cakecollate.testutil.Assert.assertThrows;
-import static seedu.cakecollate.testutil.TypicalOrderItems.getTypicalOrderItemsModel;
 import static seedu.cakecollate.testutil.TypicalOrders.AMY;
 
 import java.io.IOException;
@@ -31,6 +30,7 @@ import seedu.cakecollate.model.ReadOnlyCakeCollate;
 import seedu.cakecollate.model.UserPrefs;
 import seedu.cakecollate.model.order.Order;
 import seedu.cakecollate.storage.JsonCakeCollateStorage;
+import seedu.cakecollate.storage.JsonOrderItemsStorage;
 import seedu.cakecollate.storage.JsonUserPrefsStorage;
 import seedu.cakecollate.storage.StorageManager;
 import seedu.cakecollate.testutil.OrderBuilder;
@@ -49,7 +49,8 @@ public class LogicManagerTest {
         JsonCakeCollateStorage cakeCollateStorage =
                 new JsonCakeCollateStorage(temporaryFolder.resolve("cakeCollate.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(cakeCollateStorage, userPrefsStorage);
+        JsonOrderItemsStorage orderItemsStorage = new JsonOrderItemsStorage(temporaryFolder.resolve("OrderItems.json"));
+        StorageManager storage = new StorageManager(cakeCollateStorage, userPrefsStorage, orderItemsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -78,7 +79,8 @@ public class LogicManagerTest {
                 new JsonCakeCollateIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionCakeCollate.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(cakeCollateStorage, userPrefsStorage);
+        JsonOrderItemsStorage orderItemsStorage = new JsonOrderItemsStorage(temporaryFolder.resolve("OrderItems.json"));
+        StorageManager storage = new StorageManager(cakeCollateStorage, userPrefsStorage, orderItemsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -132,7 +134,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getCakeCollate(),  getTypicalOrderItemsModel(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getCakeCollate(), new UserPrefs(), model.getOrderItems());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

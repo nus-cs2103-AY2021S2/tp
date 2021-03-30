@@ -12,7 +12,6 @@ import static seedu.cakecollate.logic.commands.CommandTestUtil.assertCommandSucc
 import static seedu.cakecollate.logic.commands.CommandTestUtil.showOrderAtIndex;
 import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
 import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_SECOND_ORDER;
-import static seedu.cakecollate.testutil.TypicalOrderItems.getTypicalOrderItemsModel;
 import static seedu.cakecollate.testutil.TypicalOrders.getTypicalCakeCollate;
 
 import org.junit.jupiter.api.Test;
@@ -27,13 +26,15 @@ import seedu.cakecollate.model.UserPrefs;
 import seedu.cakecollate.model.order.Order;
 import seedu.cakecollate.testutil.EditOrderDescriptorBuilder;
 import seedu.cakecollate.testutil.OrderBuilder;
+import seedu.cakecollate.testutil.TypicalOrderItems;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalCakeCollate(), getTypicalOrderItemsModel(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalCakeCollate(), new UserPrefs(),
+            TypicalOrderItems.getTypicalOrderItemsModel());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -43,8 +44,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
 
-        // expected order items model is still the default/typical model
-        Model expectedModel = new ModelManager(new CakeCollate(model.getCakeCollate()), getTypicalOrderItemsModel(), new UserPrefs());
+        Model expectedModel = new ModelManager(new CakeCollate(model.getCakeCollate()), new UserPrefs(),
+                TypicalOrderItems.getTypicalOrderItemsModel());
         expectedModel.setOrder(model.getFilteredOrderList().get(0), editedOrder);
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -64,8 +65,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
 
-        // ? instead of getTypical, should it be a copy of typical? (like cakecollate?)
-        Model expectedModel = new ModelManager(new CakeCollate(model.getCakeCollate()), getTypicalOrderItemsModel(), new UserPrefs());
+        Model expectedModel = new ModelManager(new CakeCollate(model.getCakeCollate()), new UserPrefs(),
+                TypicalOrderItems.getTypicalOrderItemsModel());
         expectedModel.setOrder(lastOrder, editedOrder);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -78,7 +79,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
 
-        Model expectedModel = new ModelManager(new CakeCollate(model.getCakeCollate()), getTypicalOrderItemsModel(), new UserPrefs());
+        Model expectedModel = new ModelManager(new CakeCollate(model.getCakeCollate()), new UserPrefs(),
+                TypicalOrderItems.getTypicalOrderItemsModel());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -94,7 +96,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
 
-        Model expectedModel = new ModelManager(new CakeCollate(model.getCakeCollate()), getTypicalOrderItemsModel(), new UserPrefs());
+        Model expectedModel = new ModelManager(new CakeCollate(model.getCakeCollate()), new UserPrefs(),
+                TypicalOrderItems.getTypicalOrderItemsModel());
         expectedModel.setOrder(model.getFilteredOrderList().get(0), editedOrder);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
