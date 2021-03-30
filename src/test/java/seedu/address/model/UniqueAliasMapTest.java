@@ -20,6 +20,9 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.alias.Alias;
 import seedu.address.model.alias.CommandAlias;
@@ -92,7 +95,9 @@ public class UniqueAliasMapTest {
 
     @Test
     public void getAliases_modifyAlias_throwsUnsupportedOperationException() {
+        aliases.addAlias(ADD_COMMAND_ALIAS);
         assertThrows(UnsupportedOperationException.class, () -> aliases.getAliases().remove(ADD_ALIAS));
+        assertThrows(UnsupportedOperationException.class, () -> aliases.getAliases().put(ADD_ALIAS, ADD_COMMAND_ALIAS));
     }
 
     @Test
@@ -158,6 +163,27 @@ public class UniqueAliasMapTest {
     }
 
     @Test
+    public void getNumOfAlias_noAlias_returnsZero() {
+        UniqueAliasMap emptyMap = new UniqueAliasMap();
+        assertEquals(emptyMap.getAliases().size(), aliases.getNumOfAlias());
+    }
+
+    @Test
+    public void getNumOfAlias_oneAlias_returnsOne() {
+        aliases.addAlias(ADD_COMMAND_ALIAS);
+        UniqueAliasMap testMap = new UniqueAliasMap();
+        testMap.addAlias(ADD_COMMAND_ALIAS);
+        assertEquals(testMap.getAliases().size(), aliases.getNumOfAlias());
+    }
+
+    @Test
+    public void getObservableStringAliases_modifyStringAlias_throwsUnsupportedOperationException() {
+        aliases.addAlias(ADD_COMMAND_ALIAS);
+        assertThrows(UnsupportedOperationException.class, () -> aliases.getObservableStringAliases().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> aliases.getObservableStringAliases().add("error"));
+    }
+
+    @Test
     public void equals() {
         // same empty aliases
         assertEquals(new UniqueAliasMap(), aliases);
@@ -174,20 +200,35 @@ public class UniqueAliasMapTest {
      * A stub ReadOnlyUniqueAliasMap whose aliases can violate interface constraints.
      */
     private static class UniqueAliasMapStub implements ReadOnlyUniqueAliasMap {
-        private final HashMap<Alias, CommandAlias> aliases = new HashMap<>();
+        private final ObservableMap<Alias, CommandAlias> internalList = FXCollections.observableMap(new HashMap<>());
+        private final ObservableMap<Alias, CommandAlias> internalUnmodifiableList =
+                FXCollections.unmodifiableObservableMap(internalList);
+        private final ObservableList<String> internalStringList = FXCollections.emptyObservableList();
+        private final ObservableList<String> internalUnmodifiableStringList =
+                FXCollections.unmodifiableObservableList(internalStringList);
 
         UniqueAliasMapStub(Map<Alias, CommandAlias> aliases) {
-            this.aliases.putAll(aliases);
+            internalList.putAll(aliases);
         }
 
         @Override
-        public Map<Alias, CommandAlias> getAliases() {
-            return Collections.unmodifiableMap(aliases);
+        public ObservableMap<Alias, CommandAlias> getAliases() {
+            return internalUnmodifiableList;
         }
 
         @Override
         public String parseAliasToCommand(String userInput) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int getNumOfAlias() {
+            return internalList.size();
+        }
+
+        @Override
+        public ObservableList<String> getObservableStringAliases() {
+            return internalUnmodifiableStringList;
         }
     }
 

@@ -72,6 +72,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         if (userInput.trim().isEmpty()) {
             return true;
         }
+        assert !userInput.trim().isEmpty();
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
                 userInput, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
