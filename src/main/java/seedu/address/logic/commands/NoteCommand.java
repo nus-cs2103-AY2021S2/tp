@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_CLEAR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_RECORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_VIEW;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
@@ -22,9 +23,7 @@ public class NoteCommand extends Command {
 
     public static final String COMMAND_WORD = "note";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Records, displays or clears notes for client specified by index .\n"
-            + COMMAND_WORD + " INDEX " + PREFIX_NOTE_RECORD + "NOTE"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " INDEX " + PREFIX_NOTE_RECORD + "NOTE"
             + ": Records note for specified client. " + "New note will be added to list of notes.\n"
             + COMMAND_WORD + " INDEX " + PREFIX_NOTE_VIEW
             + ": Displays all notes for specified client.\n"
@@ -68,12 +67,14 @@ public class NoteCommand extends Command {
         Person personToNote = lastShownList.get(index.getZeroBased());
         if (action.equals(PREFIX_NOTE_RECORD)) {
             personToNote.addNote(note);
-            return new CommandResult(String.format(MESSAGE_RECORD_SUCCESS, personToNote, note));
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            return new CommandResult(String.format(MESSAGE_RECORD_SUCCESS, personToNote.getName(), note));
         } else if (action.equals(PREFIX_NOTE_VIEW)) {
-            return new CommandResult(String.format(MESSAGE_VIEW_SUCCESS, personToNote), false, false, index, false);
+            return new CommandResult(String.format(MESSAGE_VIEW_SUCCESS, personToNote.getName()), false, false, index, false);
         } else if (action.equals(PREFIX_NOTE_CLEAR)) {
             personToNote.clearNotes();
-            return new CommandResult(String.format(MESSAGE_CLEAR_SUCCESS, personToNote));
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            return new CommandResult(String.format(MESSAGE_CLEAR_SUCCESS, personToNote.getName()));
         } else {
             assert false : "Unexpected execution";
             throw new CommandException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);

@@ -1,6 +1,5 @@
 package seedu.address.storage;
 
-//import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -10,8 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
-//import seedu.address.model.AddressBook;
-//import seedu.address.testutil.TypicalPersons;
 
 public class JsonSerializableAddressBookTest {
 
@@ -36,11 +33,11 @@ public class JsonSerializableAddressBookTest {
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
-    //    @Test
-    //    public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
-    //        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
-    //                JsonSerializableAddressBook.class).get();
-    //        assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_DUPLICATE_PERSON,
-    //                dataFromFile::toModelType);
-    //    }
+    @Test
+    public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
+                JsonSerializableAddressBook.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_DUPLICATE_PERSON,
+                dataFromFile::toModelType);
+    }
 }
