@@ -184,4 +184,41 @@ public class ParserUtil {
         }
         return carsOwned;
     }
+
+    /**
+     * Parses a {@code String car} into a {@code Car}. Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code car} is invalid.
+     */
+    public static Car parseCarPreferred(String car) throws ParseException {
+        String trimmedCar = car.trim();
+        String[] carDetails = trimmedCar.split("\\+");
+        String carBrand = carDetails[0].trim();
+        String carType = carDetails[1].trim();
+        if (!Car.isValidCar(carBrand, carType)) {
+            throw new ParseException(Car.MESSAGE_CONSTRAINTS);
+        }
+
+        if (carDetails.length != 2) {
+            throw new ParseException(Car.MESSAGE_CONSTRAINTS);
+        }
+
+        try {
+            return new Car(carBrand, carType);
+        } catch (Exception e) {
+            throw new ParseException(Car.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses {@code Collection<String> cars} into a {@code Set<Car>}.
+     */
+    public static Set<Car> parseCarsPreferred(Collection<String> cars) throws ParseException {
+        requireNonNull(cars);
+        final Set<Car> carsPreferred = new HashSet<>();
+        for (String carPreferred : cars) {
+            carsPreferred.add(parseCarPreferred(carPreferred));
+        }
+        return carsPreferred;
+    }
 }

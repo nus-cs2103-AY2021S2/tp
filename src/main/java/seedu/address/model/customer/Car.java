@@ -67,6 +67,7 @@ public class Car {
     @Override
     public boolean equals(Object other) {
         return other == this; // Not checking carBrand or CarType since it shouldn't be unique
+
     }
 
     /**
