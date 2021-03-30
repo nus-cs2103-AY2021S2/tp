@@ -25,7 +25,7 @@ public class InProgressCommand extends Command {
     private final Event toAdd;
 
     /**
-     * Creates an TodoCommand to add the specified Todo Event {@code Event}
+     * Creates an InProgressCommand to add the specified In-Progress Event {@code Event}
      */
     public InProgressCommand(Event event) {
         requireNonNull(event);

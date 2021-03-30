@@ -34,6 +34,7 @@ public class BackLogCommandParser implements Parser<BackLogCommand> {
 
         EventName eventName = ParserUtil.parseEventName(argMultimap.getValue(PREFIX_NAME).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+
         Event event;
 
         if (arePrefixesPresent(argMultimap, PREFIX_PRIORITY)) {

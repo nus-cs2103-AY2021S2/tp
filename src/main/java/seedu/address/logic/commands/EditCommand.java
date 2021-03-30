@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
 import java.util.Optional;
@@ -20,7 +21,7 @@ import seedu.address.model.event.EventPriority;
 import seedu.address.model.event.EventStatus;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing event in Focuris.
  */
 public class EditCommand extends Command {
 
@@ -29,18 +30,16 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the event identified "
             + "by the identifier used in the displayed event list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: IDENTIFIER (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]...\n"
+            + "[" + PREFIX_PRIORITY + "PRIORITY] \n"
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]\n"
+            + "[" + PREFIX_STATUS + "STATUS] \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Finish CS2030S Lab 1 "
             + PREFIX_PRIORITY + "high";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
-
-    //Event
     public static final String MESSAGE_EDIT_EVENT_SUCCESS = "Edited Event: %1$s";
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the event book.";
 
@@ -48,8 +47,8 @@ public class EditCommand extends Command {
     private final EditEventDescriptor editEventDescriptor;
 
     /**
-     * @param identifier of the person in the filtered person list to edit
-     * @param editEventDescriptor details to edit the person with
+     * @param identifier of the event in the filtered event list to edit
+     * @param editEventDescriptor details to edit the event with
      */
     public EditCommand(Identifier identifier, EditEventDescriptor editEventDescriptor) {
         requireNonNull(identifier);
@@ -91,7 +90,7 @@ public class EditCommand extends Command {
 
     /**
      * Creates and returns a {@code Event} with the details of {@code eventToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * edited with {@code editEventDescriptor}.
      */
     private static Event createEditedEvent(Event eventToEdit, EditEventDescriptor editEventDescriptor) {
         assert eventToEdit != null;
@@ -100,9 +99,6 @@ public class EditCommand extends Command {
         EventStatus updatedEventStatus = editEventDescriptor.getEventStatus().orElse(eventToEdit.getStatus());
         Description updatedDescription = editEventDescriptor.getDescription().orElse(eventToEdit.getDescription());
         EventPriority updatedEventPriority = editEventDescriptor.getEventPriority().orElse(eventToEdit.getPriority());
-        // commented out for v1.2
-        // Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(eventToEdit.getTags());
-        // Set<Person> updatedPersons = editPersonDescriptor.getPersons().orElse(eventToEdit.getPersons());
 
         return new Event(updatedName, updatedEventStatus, updatedEventPriority,
                 updatedDescription, eventToEdit.getIdentifier());
@@ -127,32 +123,25 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the even t with. Each non-empty field value will replace the
+     * corresponding field value of the event.
      */
     public static class EditEventDescriptor {
         private EventName eventName;
         private EventStatus eventStatus;
         private EventPriority eventPriority;
         private Description description;
-        // private EventTime timeStart; // commented out for v1.2
-        // private EventTime timeEnd; // commented out for v1.2
-        // private Set<Tag> tags; // commented out for v1.2
-        // private Set<Person> persons; // commented out for v1.2
 
         public EditEventDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
          */
         public EditEventDescriptor(EditEventDescriptor toCopy) {
             setEventName(toCopy.eventName);
             setDescription(toCopy.description);
             setEventStatus(toCopy.eventStatus);
             setEventPriority(toCopy.eventPriority);
-            // setTags(toCopy.tags); // commented out for v1.2
-            // setPersons(toCopy.persons); // commented out for v1.2
         }
 
         /**
@@ -170,31 +159,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(eventName);
         }
 
-        /*
-        public void setPhone(Phone phone) {
-            this.phone = phone;
-        }
-
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
-        }
-
-        public void setEmail(Email email) {
-            this.email = email;
-        }
-
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
-        }
-
-        public void setAddress(Address address) {
-            this.address = address;
-        }
-
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
-        }
-        */
         public void setEventStatus(EventStatus eventStatus) {
             this.eventStatus = eventStatus;
         }
@@ -216,40 +180,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(description);
         }
 
-        //        // Persons
-        //        /**
-        //         * Sets {@code tags} to this object's {@code tags}.
-        //         * A defensive copy of {@code tags} is used internally.
-        //         */
-        //        public void setPersons(Set<Person> persons) {
-        //            this.persons = (persons != null) ? new HashSet<>(persons) : null;
-        //        }
-        //
-        //        /**
-        //         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-        //         * if modification is attempted.
-        //         * Returns {@code Optional#empty()} if {@code tags} is null.
-        //         */
-        //        public Optional<Set<Person>> getPersons() {
-        //            return (persons != null) ? Optional.of(Collections.unmodifiableSet(persons)) : Optional.empty();
-        //        }
-        //
-        //        /**
-        //         * Sets {@code tags} to this object's {@code tags}.
-        //         * A defensive copy of {@code tags} is used internally.
-        //         */
-        //        public void setTags(Set<Tag> tags) {
-        //            this.tags = (tags != null) ? new HashSet<>(tags) : null;
-        //        }
-        //
-        //        /**
-        //         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-        //         * if modification is attempted.
-        //         * Returns {@code Optional#empty()} if {@code tags} is null.
-        //         */
-        //        public Optional<Set<Tag>> getTags() {
-        //            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        //        }
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -269,8 +199,6 @@ public class EditCommand extends Command {
                     && getDescription().equals(e.getDescription())
                     && getEventStatus().equals(e.getEventStatus())
                     && getEventPriority().equals(e.getEventPriority());
-                    //&& getPersons().equals(e.getPersons())
-                    //&& getTags().equals(e.getTags());
         }
     }
 }

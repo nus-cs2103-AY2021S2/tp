@@ -16,8 +16,6 @@ public class Event {
     // Identity Fields
     private final int identifier;
     private final EventName eventName;
-    // private final EventTime timeStart; // commented out for v1.2
-    // private final EventTime timeEnd; // commented out for v1.2
     private final EventStatus status;
 
     // Data Fields
@@ -32,16 +30,10 @@ public class Event {
         requireAllNonNull(eventName, status, description);
         this.identifier = counter;
         this.eventName = eventName;
-        // this.timeStart = timeStart; // commented out for v1.2
-        // this.timeEnd = timeEnd; // commented out for v1.2
         this.status = status;
         this.description = description;
-        // this.tags.addAll(tags); // commented out for v1.2
-        // this.persons.addAll(persons); // commented out for v1.2
         counter += 1;
     }
-
-    /* for editing events, counter should not increase */
 
     /**
      * Every field must be filled. Used for edit events where the identifier should not increase.
@@ -62,18 +54,6 @@ public class Event {
     public EventName getName() {
         return this.eventName;
     }
-
-    /* Commented out for v1.2
-    public EventTime getTimeStart() {
-        return this.timeStart;
-    }
-     */
-
-    /* Commented out for v1.2
-    public EventTime getTimeEnd() {
-        return this.timeEnd;
-    }
-     */
 
     public EventStatus getStatus() {
         return this.status;

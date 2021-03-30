@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.event.Event;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a event identified using it's displayed identifier from Focuris.
  */
 public class DeleteCommand extends Command {
 
