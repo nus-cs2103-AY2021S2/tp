@@ -418,9 +418,22 @@ JSON is short for JavaScript Object Notation and is a common lightweight format 
 
 ### 8.5 Sample Endpoints
 
-| Method      | URL                                                     | Data (JSON)                                       |
-| ----------- | ----------------------------------------------------------------------------------------------------------- |
-| **GET**     | http://imposter-dev.tk:6000/api/v1/resources/books/all  | N/A                                               |
-| **GET**     | http://imposter-dev.tk:6000/api/v1/resources/books?id=1 | N/A                                               |
-| **GET**     | https://project-billboard.herokuapp.com/laugh           | N/A                                               |
-| **POST**    | https://jsonplaceholder.typicode.com/posts              | title, body, userId                               |
+| Method      | URL                                                           | Data (JSON)                                       |
+|-------------|---------------------------------------------------------------|---------------------------------------------------|
+| **GET**     | http://imposter-dev.tk:6000/api/v1/resources/books/all        | N/A                                               |
+| **GET**     | http://imposter-dev.tk:6000/api/v1/resources/books?id=1       | N/A                                               |
+| **GET**     | https://project-billboard.herokuapp.com/laugh                 | N/A                                               |
+| **GET**     | https://api.data.gov.sg/v1/environment/psi                    | N/A                                               |
+| **GET**     | https://api.data.gov.sg/v1/environment/4-day-weather-forecast | N/A                                               |
+| **GET**     | https://api.data.gov.sg/v1/environment/2-hour-weather-forecast| N/A                                               |
+| **GET**     | https://api.data.gov.sg/v1/environment/rainfall               | N/A                                               |
+| **GET**     | https://api.data.gov.sg/v1/environment/relative-humidity      | N/A                                               |
+| **GET**     | https://api.data.gov.sg/v1/environment/wind-speed             | N/A                                               |
+| **GET**     | https://api.data.gov.sg/v1/environment/wind-direction         | N/A                                               |
+| **GET**     | https://api.data.gov.sg/v1/environment/air-temperature        | N/A                                               |
+| **GET**     | https://api.data.gov.sg/v1/technology/ipos/trademarks         | N/A                                               |
+| **GET**     | https://api.data.gov.sg/v1/technology/ipos/patents            | N/A                                               |
+| **GET**     | https://api.data.gov.sg/v1/technology/ipos/designs            | N/A                                               |
+| **GET**     | https://api.data.gov.sg/v1/transport/taxi-availability        | N/A                                               |
+| **POST**    | https://jsonplaceholder.typicode.com/posts                    | title, body, userId                               |
+
