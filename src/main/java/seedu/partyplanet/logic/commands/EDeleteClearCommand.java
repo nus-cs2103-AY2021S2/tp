@@ -27,7 +27,7 @@ public class EDeleteClearCommand extends EDeleteCommand {
 
         // Only save state if there are changes (event deleted)
         if (!deletedEvents.isEmpty()) {
-            model.addState();
+            model.addState(String.format(MESSAGE_DELETE_EVENT_SUCCESS, displayEvents(deletedEvents)));
         }
         return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, displayEvents(deletedEvents)));
     }

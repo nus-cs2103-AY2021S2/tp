@@ -20,17 +20,17 @@ public class HelpCommand extends Command {
             + "*****ADDRESSBOOK*****\n"
             + "Adding contacts: " + AddCommand.MESSAGE_USAGE_CONCISE + "\n"
             + "Deleting contacts: " + DeleteCommand.MESSAGE_USAGE_CONCISE + "\n"
-            + "Clearing all data: " + ClearCommand.MESSAGE_USAGE_CONCISE + "\n"
             + "Editing contacts: " + EditCommand.MESSAGE_USAGE_CONCISE + "\n"
             + "Listing contacts: " + ListCommand.MESSAGE_USAGE_CONCISE + "\n"
-            + "Finding contacts: " + FindCommand.MESSAGE_USAGE_CONCISE + "\n"
-            + "Finding tags: " + TagsCommand.MESSAGE_USAGE_CONCISE + "\n"
             + "*****EVENTBOOK*****\n"
             + "Adding events: " + EAddCommand.MESSAGE_USAGE_CONCISE + "\n"
             + "Deleting events: " + EDeleteCommand.MESSAGE_USAGE_CONCISE + "\n"
+            + "Editing events: " + EEditCommand.MESSAGE_USAGE_CONCISE + "\n"
             + "Marking events as done: " + EDoneCommand.MESSAGE_USAGE_CONCISE + "\n"
+            + "Listing events: " + EListCommand.MESSAGE_USAGE_CONCISE + "\n"
             + "*****GENERAL*****\n"
             + "Undoing mistakes: " + UndoCommand.MESSAGE_USAGE_CONCISE + "\n"
+            + "Redoing commands: " + RedoCommand.MESSAGE_USAGE_CONCISE + "\n"
             + "Toggle theme: " + ToggleThemeCommand.MESSAGE_USAGE_CONCISE + "\n"
             + "Leaving app: " + ExitCommand.MESSAGE_USAGE_CONCISE;
 
@@ -66,20 +66,12 @@ public class HelpCommand extends Command {
         case DeleteCommand.COMMAND_WORD:
             return new CommandResult(DeleteCommand.MESSAGE_USAGE, false);
 
-        case ClearCommand.COMMAND_WORD:
-            return new CommandResult(ClearCommand.MESSAGE_USAGE, false);
-
         case EditCommand.COMMAND_WORD:
             return new CommandResult(EditCommand.MESSAGE_USAGE, false);
 
         case ListCommand.COMMAND_WORD:
             return new CommandResult(ListCommand.MESSAGE_USAGE, false);
 
-        case FindCommand.COMMAND_WORD:
-            return new CommandResult(FindCommand.MESSAGE_USAGE, false);
-
-        case TagsCommand.COMMAND_WORD:
-            return new CommandResult(TagsCommand.MESSAGE_USAGE, false);
 
         // EventBook Commands
 
@@ -88,6 +80,9 @@ public class HelpCommand extends Command {
 
         case EDeleteCommand.COMMAND_WORD:
             return new CommandResult(EDeleteCommand.MESSAGE_USAGE, false);
+
+        case EEditCommand.COMMAND_WORD:
+            return new CommandResult(EEditCommand.MESSAGE_USAGE, false);
 
         case EDoneCommand.COMMAND_WORD:
             return new CommandResult(EDoneCommand.MESSAGE_USAGE, false);
@@ -99,6 +94,9 @@ public class HelpCommand extends Command {
 
         case UndoCommand.COMMAND_WORD:
             return new CommandResult(UndoCommand.MESSAGE_USAGE, false);
+
+        case RedoCommand.COMMAND_WORD:
+            return new CommandResult(RedoCommand.MESSAGE_USAGE, false);
 
         case ToggleThemeCommand.COMMAND_WORD:
             return new CommandResult(ToggleThemeCommand.MESSAGE_USAGE, false);

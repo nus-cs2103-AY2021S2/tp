@@ -3,7 +3,7 @@ package seedu.partyplanet.ui;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import seedu.partyplanet.commons.util.InputHistory;
 import seedu.partyplanet.logic.commands.CommandResult;
@@ -19,6 +19,7 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
+    private final AutoCompleter autoCompleter;
 
     @FXML
     private TextField commandTextField;
@@ -28,14 +29,16 @@ public class CommandBox extends UiPart<Region> {
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
      */
-    public CommandBox(CommandExecutor commandExecutor) {
+    public CommandBox(CommandExecutor commandExecutor, AutoCompleter autoCompleter) {
         super(FXML);
         this.commandExecutor = commandExecutor;
+        this.autoCompleter = autoCompleter;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
-        commandTextField.setOnKeyPressed(e -> handleUserKey(e.getCode()));
+        commandTextField.setOnKeyPressed(e -> handleUserKey(e));
         history = new InputHistory();
     }
+
 
     /**
      * Handles the Enter button pressed event.
@@ -57,8 +60,10 @@ public class CommandBox extends UiPart<Region> {
         }
     }
 
-    private void handleUserKey(KeyCode key) {
-        switch(key) {
+
+    private void handleUserKey(KeyEvent event) {
+
+        switch(event.getCode()) {
         case UP:
             commandTextField.setText(history.getPrevious());
             commandTextField.end();
@@ -69,6 +74,40 @@ public class CommandBox extends UiPart<Region> {
             break;
         case ESCAPE:
             commandTextField.clear();
+            break;
+        case TAB:
+            String command = commandTextField.getText();
+            try {
+                String output = autoCompleter.autoComplete(command);
+                commandTextField.setText(output);
+            } catch (CommandException | ParseException e) {
+                setStyleToIndicateCommandFailure();
+            }
+            commandTextField.requestFocus();
+            commandTextField.end();
+            break;
+        case Z:
+            try {
+                if (event.isShiftDown() && event.isShortcutDown()) {
+                    commandTextField.clear();
+                    commandExecutor.execute("redo");
+                } else if (event.isShortcutDown()) {
+                    commandTextField.clear();
+                    commandExecutor.execute("undo");
+                }
+            } catch (CommandException | ParseException e) {
+                setStyleToIndicateCommandFailure();
+            }
+            break;
+        case Y:
+            try {
+                if (event.isShortcutDown()) {
+                    commandTextField.clear();
+                    commandExecutor.execute("redo");
+                }
+            } catch (CommandException | ParseException e) {
+                setStyleToIndicateCommandFailure();
+            }
             break;
         default:
             break;
@@ -106,6 +145,19 @@ public class CommandBox extends UiPart<Region> {
          * @see seedu.partyplanet.logic.Logic#execute(String)
          */
         CommandResult execute(String commandText) throws CommandException, ParseException;
+    }
+
+    /**
+     * Represents a function that can parse input and return autocompletes.
+     */
+    @FunctionalInterface
+    public interface AutoCompleter {
+        /**
+         * Parses the command and returns the autocompleted result.
+         *
+         * @see seedu.partyplanet.logic.Logic#execute(String)
+         */
+        String autoComplete(String commandText) throws CommandException, ParseException;
     }
 
 }

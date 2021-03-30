@@ -29,13 +29,15 @@ public class EEditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the event identified "
             + "by the index number used in the displayed event list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX "
             + "[" + PREFIX_NAME + " NAME] "
             + "[" + PREFIX_DATE + " DATE] "
             + "[" + PREFIX_REMARK + " DETAIL]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DATE + " 01 Apr 2019 "
             + PREFIX_REMARK + " Prank the april babies ;)";
+
+    public static final String MESSAGE_USAGE_CONCISE = COMMAND_WORD + " INDEX [-n NAME] [-d DATE] [-r DETAIL]";
 
     public static final String MESSAGE_EDIT_EVENT_SUCCESS = "Edited event: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -75,7 +77,7 @@ public class EEditCommand extends Command {
         }
 
         model.setEvent(eventToEdit, editedEvent);
-        model.addState();
+        model.addState(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedEvent));
         model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedEvent));
     }

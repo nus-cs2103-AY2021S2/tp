@@ -46,7 +46,7 @@ public class EventCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(getTitle(event));
         if (!EventDate.isEmptyDate(event.getEventDate())) {
-            addDetail(event.getEventDate().displayValue);
+            addDetail(event.getEventDate().value);
         }
         if (!Remark.isEmptyRemark(event.getDetails())) {
             addDetail(event.getDetails().value);
@@ -63,7 +63,8 @@ public class EventCard extends UiPart<Region> {
      */
     private void addDetail(String detail) {
         Label label = new Label();
-        label.setText(detail);
+        label.setText("\u2022 " + detail);
+        label.setWrapText(true);
         label.getStyleClass().add("cell_small_label");
         details.getChildren().add(label);
     }

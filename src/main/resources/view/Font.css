@@ -1,0 +1,68 @@
+@font-face {
+    font-family: 'Tisa Sans Pro';
+    src: url('../fonts/TisaSansPro-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Tisa Sans Pro';
+    src: url('../fonts/TisaSansPro-Medium.ttf');
+}
+
+@font-face {
+    font-family: 'Tisa Sans Pro';
+    src: url('../fonts/TisaSansPro-Light.ttf');
+}
+
+.label {
+    -fx-font-family: "Tisa Sans Pro Medium";
+}
+
+.label-bright {
+    -fx-font-family: "Tisa Sans Pro Medium";
+}
+
+.label-header {
+    -fx-font-family: "Tisa Sans Pro Light";
+}
+
+.text-field {
+    -fx-font-family: "Tisa Sans Pro Medium";
+}
+
+.table-view .column-header .label {
+    -fx-font-family: "Tisa Sans Pro Light";
+}
+
+.cell_big_label {
+    -fx-font-family: "Tisa Sans Pro Medium";
+}
+
+.cell_small_label {
+    -fx-font-family: "Tisa Sans Pro Regular";
+}
+
+.result-display {
+    -fx-font-family: "Tisa Sans Pro Light";
+}
+
+.status-bar .label {
+    -fx-font-family: "Tisa Sans Pro Light";
+}
+
+.menu-bar .label {
+    -fx-font-family: "Tisa Sans Pro Light";
+}
+
+/*
+ * Metro style Push Button
+ * Author: Pedro Duque Vieira
+ * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
+ */
+.button {
+    -fx-font-family: "Tisa Sans Pro Regular", Helvetica, Arial, sans-serif;
+}
+
+#commandTextField {
+    -fx-font-family: "Tisa Sans Pro Light";
+}
+
