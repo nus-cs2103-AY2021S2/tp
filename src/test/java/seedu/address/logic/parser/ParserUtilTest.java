@@ -5,11 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INVALID_INDEX_STRING;
 import static seedu.address.testutil.TypicalIndexes.OUT_OF_RANGE_INDEX_STRING;
 import static seedu.address.testutil.TypicalIndexes.VALID_INDEXES;
+import static seedu.address.testutil.TypicalIndexes.VALID_INDEXES_STRING;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -80,13 +79,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndexes_validInput_success() throws Exception {
-        List<Index> inputIndexes = Arrays
-                .asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON, INDEX_THIRD_PERSON);
-        String inputString = inputIndexes.stream()
-                .map(Index::getOneBased).map(String::valueOf)
-                .collect(Collectors.joining(" "));
-        List<Index> parsedIndexes = ParserUtil.parseIndexes(inputString);
-        assertEquals(inputIndexes, parsedIndexes);
+        List<Index> parsedIndexes = ParserUtil.parseIndexes(VALID_INDEXES_STRING);
+        assertEquals(VALID_INDEXES, parsedIndexes);
     }
 
     @Test

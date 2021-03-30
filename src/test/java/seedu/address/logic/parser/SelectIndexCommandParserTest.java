@@ -4,12 +4,10 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INVALID_INDEX_STRING;
 import static seedu.address.testutil.TypicalIndexes.VALID_INDEXES;
-
-import java.util.stream.Collectors;
+import static seedu.address.testutil.TypicalIndexes.VALID_INDEXES_STRING;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.SelectIndexCommand;
 
@@ -27,10 +25,7 @@ public class SelectIndexCommandParserTest {
     @Test
     public void parse_validIndexes_success() {
         SelectCommand selectIndexCommand = new SelectIndexCommand(VALID_INDEXES);
-        String inputIndexes = VALID_INDEXES.stream()
-                .map(Index::getOneBased).map(String::valueOf)
-                .collect(Collectors.joining(" "));
-        assertParseSuccess(parser, inputIndexes, selectIndexCommand);
+        assertParseSuccess(parser, VALID_INDEXES_STRING, selectIndexCommand);
     }
 
     @Test

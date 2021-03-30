@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
 
@@ -15,6 +16,9 @@ public class TypicalIndexes {
     public static final Index INDEX_THIRD_PERSON = Index.fromOneBased(3);
     public static final List<Index> VALID_INDEXES = Arrays
             .asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON, INDEX_THIRD_PERSON);
+    public static final String VALID_INDEXES_STRING = VALID_INDEXES.stream()
+            .map(Index::getOneBased).map(String::valueOf)
+            .collect(Collectors.joining(" "));
     public static final String NEGATIVE_INDEX_STRING = "-5";
     public static final String OUT_OF_RANGE_INDEX_STRING = Long.toString(Integer.MAX_VALUE + 1);
     public static final String ZERO_INDEX_STRING = "0";

@@ -9,8 +9,12 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertValidComman
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INVALID_INDEX_STRING;
 import static seedu.address.testutil.TypicalIndexes.NEGATIVE_INDEX_STRING;
+import static seedu.address.testutil.TypicalIndexes.VALID_INDEXES;
+import static seedu.address.testutil.TypicalIndexes.VALID_INDEXES_STRING;
 import static seedu.address.testutil.TypicalIndexes.VALID_INDEX_STRING;
 import static seedu.address.testutil.TypicalIndexes.ZERO_INDEX_STRING;
+
+import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,8 +32,14 @@ public class DeleteCommandParserTest {
     private DeleteCommandParser parser = new DeleteCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_PERSON));
+    public void parse_validArgsSingleIndex_returnsDeleteCommand() {
+        assertParseSuccess(parser, VALID_INDEX_STRING,
+                new DeleteCommand(Collections.singletonList(INDEX_FIRST_PERSON)));
+    }
+
+    @Test
+    public void parse_validArgsMultipleIndex_returnsDeleteCommand() {
+        assertParseSuccess(parser, VALID_INDEXES_STRING, new DeleteCommand(VALID_INDEXES));
     }
 
     @Test

@@ -10,13 +10,11 @@ import static seedu.address.testutil.TypicalIndexes.INVALID_INDEX_STRING;
 import static seedu.address.testutil.TypicalIndexes.NEGATIVE_INDEX_STRING;
 import static seedu.address.testutil.TypicalIndexes.OUT_OF_RANGE_INDEX_STRING;
 import static seedu.address.testutil.TypicalIndexes.VALID_INDEXES;
+import static seedu.address.testutil.TypicalIndexes.VALID_INDEXES_STRING;
 import static seedu.address.testutil.TypicalIndexes.ZERO_INDEX_STRING;
-
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.SelectClearCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.SelectIndexCommand;
@@ -36,10 +34,7 @@ public class SelectCommandParserTest {
     @Test
     public void parse_selectIndexes_success() {
         SelectCommand selectIndexCommand = new SelectIndexCommand(VALID_INDEXES);
-        String inputIndexes = VALID_INDEXES.stream()
-                .map(Index::getOneBased).map(String::valueOf)
-                .collect(Collectors.joining(" "));
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + inputIndexes, selectIndexCommand);
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + VALID_INDEXES_STRING, selectIndexCommand);
     }
 
     @Test
@@ -79,13 +74,9 @@ public class SelectCommandParserTest {
         assertValidCommandToAliasSuccess(parser,
                 PREAMBLE_WHITESPACE + SelectIndexCommandParser.SPECIAL_INDEX);
 
-        String inputIndexes = VALID_INDEXES.stream()
-                .map(Index::getOneBased).map(String::valueOf)
-                .collect(Collectors.joining(" "));
-
         // indexes
         assertValidCommandToAliasSuccess(parser,
-                PREAMBLE_WHITESPACE + inputIndexes);
+                PREAMBLE_WHITESPACE + VALID_INDEXES_STRING);
     }
 
     @Test

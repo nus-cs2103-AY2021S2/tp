@@ -10,15 +10,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAliases.getTypicalAlias;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.VALID_INDEXES;
+import static seedu.address.testutil.TypicalIndexes.VALID_INDEXES_STRING;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddAliasCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
@@ -71,7 +71,11 @@ public class AddressBookParserTest {
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased(), emptyAliases);
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+        assertEquals(new DeleteCommand(Collections.singletonList(INDEX_FIRST_PERSON)), command);
+
+        DeleteCommand commandMultipleIndexes = (DeleteCommand) parser.parseCommand(
+                DeleteCommand.COMMAND_WORD + " " + VALID_INDEXES_STRING, emptyAliases);
+        assertEquals(new DeleteCommand(Collections.singletonList(INDEX_FIRST_PERSON)), command);
     }
 
     @Test
@@ -150,14 +154,11 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_select() throws Exception {
-        String inputIndexes = VALID_INDEXES.stream()
-                .map(Index::getOneBased).map(String::valueOf)
-                .collect(Collectors.joining(" "));
         assertTrue(parser.parseCommand(
                 SelectCommand.COMMAND_WORD + " " + SelectIndexCommandParser.SPECIAL_INDEX,
                 emptyAliases) instanceof SelectIndexCommand);
         assertTrue(parser.parseCommand(
-                SelectCommand.COMMAND_WORD + " " + inputIndexes,
+                SelectCommand.COMMAND_WORD + " " + VALID_INDEXES_STRING,
                 emptyAliases) instanceof SelectIndexCommand);
         assertTrue(parser.parseCommand(
                 SelectCommand.COMMAND_WORD + " " + SelectCommand.CLEAR_SUB_COMMAND_WORD,
