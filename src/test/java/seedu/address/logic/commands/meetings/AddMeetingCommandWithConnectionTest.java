@@ -1,5 +1,6 @@
 package seedu.address.logic.commands.meetings;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import org.junit.jupiter.api.Test;
@@ -22,10 +23,12 @@ import seedu.address.model.person.ReadOnlyAddressBook;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.reminder.ReadOnlyReminderBook;
 import seedu.address.model.reminder.ReminderBook;
+import seedu.address.model.schedule.TimetablePrefs;
 import seedu.address.testutil.MeetingBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.HashSet;
@@ -125,6 +128,8 @@ public class AddMeetingCommandWithConnectionTest {
         // TODO: Modify the signature of ModelManager so that we can add connection inside it.
         private final PersonMeetingConnection connection;
 
+        private final TimetablePrefs timetablePrefs;
+
 
         /**
          * Initializes a ModelManager with the given addressBook, meetingBOok and userPrefs
@@ -141,6 +146,7 @@ public class AddMeetingCommandWithConnectionTest {
             filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
             // TODO: Modify the signature of ModelManager so that we can add connection inside it.
             this.connection = new PersonMeetingConnection();
+            this.timetablePrefs = new TimetablePrefs(LocalDate.of(2020,10,10));
         }
 
 
@@ -424,10 +430,23 @@ public class AddMeetingCommandWithConnectionTest {
 
         }
 
+        //======================= Timetable methods ========================================
+
+        @Override
+        public void setTimetableStartDate(LocalDate localDate) {
+            timetablePrefs.setTimetableStartDate(localDate);
+        }
+
+        @Override
+        public ObservableValue<LocalDate> getReadOnlyTimetableStartDate() {
+            return timetablePrefs.getReadOnlyStartDate();
+        }
+
         @Override
         public ObservableList<Meeting> getUnmodifiableMeetingList() {
             return meetingBook.getMeetingList();
         }
+
 
     }
 }
