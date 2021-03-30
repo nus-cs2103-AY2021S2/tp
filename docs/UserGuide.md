@@ -32,7 +32,7 @@ title: User Guide
 
     * **`rlist`** : Lists all residents.
 
-    * **`radd`**`n/Joseph Tan p/84666774 e/e0103994@u.nus.edu y/2 r/01-234` : Adds a resident named `Joseph Tan` with phone number `84666774`, email `e0103994@u.nus.edu`, a 2nd year student, allocated to room `01-234`.
+    * **`radd`**`n/Joseph Tan p/84666774 e/e0103994@u.nus.edu y/2` : Adds a resident named `Joseph Tan` with phone number `84666774`, email `e0103994@u.nus.edu`, a 2nd year student.
 
     * **`rdel`**`3` : Deletes the 3rd resident shown in the current resident list.
 
@@ -76,10 +76,9 @@ Format: `help`
 
 Adds a resident to the housing management system.
 
-Format: `radd n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR [r/ROOM]`
+Format: `radd n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR`
 
 Examples:
-* `radd n/Joseph Tan p/84666774 e/e0103994@u.nus.edu y/2 r/01-234` Adds a resident named `Joseph Tan` with phone number `84666774`, email `e0103994@u.nus.edu`, and as a 2nd year student, allocated to room `01-234`.
 * `radd n/John Doe p/91234567 e/e0123456@u.nus.edu y/3` Adds a resident named `John Doe` with phone number `91234567`, email `e0123456@u.nus.edu`, and as a 3rd year student, without any room allocated.
 
 
@@ -110,10 +109,12 @@ Examples:
 
 Edits the existing resident record at a specified index.
 
-Format: `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROOM]`
+Format: `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]`
 * `INDEX` refers to the index number shown in the displayed resident list. `INDEX` **must be a positive integer: 1, 2, 3, …**.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* `redit` will be blocked if the resident has an active room allocation. Run `dealloc` before making further edits.
+e.g. `dealloc n/John Tan r/03-100`.
 
 Example:
 * `redit 1 p/91234567 e/e0123456@u.nus.edu` Edits the phone number and email address of the 1st resident to be `91234567` and `e0123456@u.nus.edu` respectively.
@@ -125,7 +126,9 @@ Deletes the resident record at a specified index.
 
 Format: `rdel INDEX`
 * `INDEX` refers to the index number shown in the displayed resident list. `INDEX` **must be a positive integer 1,2,3, ...**.
-
+*  A resident allocated to a room cannot be deleted until it is first deallocated. Run `dealloc` commmand before deletion.
+e.g. `dealloc n/John Tan r/03-100`.
+   
 Example:
 * `rdel 1` deletes the 1st resident in the resident list.
 
@@ -186,12 +189,32 @@ Format: `odel INDEX`
 Example:
 * `odel 1` Deletes the 1st room in the room list.
 
+### Allocate resident to room 
+Allocates an existing resident to an existing room. 
+
+Format: `alloc n/NAME r/ROOM_NO`
+* `NAME` and `ROOM_NO` must already exist. 
+*  Both fields must be provided. 
+
+Example:
+* `alloc r/John Tan n/03-100` Allocates resident named John Tan to room 03-100. 
+
+### Deallocate resident from room
+Deallocates an existing resident from an existing room.
+
+Format: `dealloc n/NAME r/ROOM_NO`
+* `NAME` and `ROOM_NO` must already exist.
+* The allocation must already exist. 
+*  Both fields must be provided.
+
+Example:
+* `dealloc r/John Tan n/03-100` Deallocates resident named John Tan from room 03-100.
 
 ### Add an open issue : `iadd`
 
 Adds an issue to the housing management system.
 
-Format: `iadd r/ROOM_NO d/DESCRIPTION [t/TIMESTAMP] [s/STATUS] [c/CATEGORY]`
+Format: `iadd r/ROOM_NO d/DESCRIPTION [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]`
 
 Example:
 * `iadd r/10-100 d/Broken light c/Furniture` Creates an issue for room number `10-100` with description `Broken light` under the category `Furniture`.
@@ -222,7 +245,7 @@ Examples:
 
 Edits the existing issue record at a specified index.
 
-Format: `iedit INDEX [r/ROOM] [d/DESCRIPTION] [t/TIMESTAMP] [s/STATUS] [c/CATEGORY]`
+Format: `iedit INDEX [r/ROOM] [d/DESCRIPTION] [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]`
 * `INDEX` refers to the index number shown in the displayed issue list. `INDEX` **must be a positive integer 1, 2, 3, …**.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -231,15 +254,15 @@ Example:
 * `iedit 1 r/20-109 s/Closed` Edits the room number and status of the 1st issue to be `20-109` and `Closed` respectively.
 
 
-### Close an issue : `iclose`
+### Close an issue : `icol`
 
 Marks as closed the issue at a specified index.
 
-Format: `iclose INDEX`
+Format: `icol INDEX`
 * `INDEX` refers to the index number shown in the displayed issue list. `INDEX` **must be a positive integer 1, 2, 3, …**.
 
 Example:
-* `iclose 1` Closes the 1st issue.
+* `icol 1` Closes the 1st issue.
 
 
 ### Delete an issue : `idel`
@@ -252,7 +275,7 @@ Format: `idel INDEX`
 Example:
 * `idel 1` Deletes the 1st issue.
 
-### View Command History : `history`
+### View command history : `history`
 
 Displays the user's valid command history, sorted from most to least recent.
 
@@ -279,7 +302,7 @@ Exits the program.
 
 Format: `exit`
 
-### Access Command History
+### Access command history
 
 Previous successful commands can be accessed via the UP and DOWN arrow keys on the keyboard. UP selects the previous command. DOWN selects the next command.
 
@@ -293,11 +316,17 @@ Example usage:
 
 ### Save the data
 
-SunRez data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+SunRez main application data and command history are saved in the hard disk automatically after any command 
+that changes the data. There is no need to save manually.
 
-### Edit the data file
+### Edit the data files
 
-SunRez data is saved as a JSON file `[JAR file location]/data/sunrez.json`. Advanced users are welcome to update data directly by editing that data file.
+* SunRez main application data is saved as a JSON file `[JAR_file_location]/data/sunrez.json`.
+* SunRez command history is saved as a plain-text file `[JAR_file_location]/data/commandhistory.txt`.
+    * Each command history entry is a single line in the file.
+    * The entire command history can be cleared by simply deleting the contents of the command history file. 
+
+Advanced users are welcome to edit these files directly.
 
 <div markdown="span" class="alert alert-warning">
 **Caution**: <br>
@@ -309,7 +338,8 @@ If your changes to the data file makes its format invalid, SunRez will discard a
 ## FAQ
 
 **Q**: How do I transfer my data to another computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **SunRez** home folder.
+**A**: Install the app on the other computer and overwrite the empty data files it creates with the files 
+from your previous **SunRez** home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -328,11 +358,13 @@ Action | Format, Examples
 **Find rooms** |  `ofind KEYWORD [MORE_KEYWORDS]` <br> e.g. `ofind 10- 15-`
 **Edit a room record** |  `oedit INDEX [r/ROOM_NO] [t/TYPE] [g/TAG] [o/OCCUPATION_STATUS]` <br> e.g. `oedit 1 o/Y`
 **Delete a room** | `odel INDEX` <br> e.g. `odel 1`
-**Add an open issue** | `iadd r/ROOM_NO d/DESCRIPTION [t/TIMESTAMP] [s/STATUS] [c/CATEGORY]` <br> e.g. `iadd r/10-100 d/Broken light c/Furniture`
+**Allocate a Resident to Room** | `alloc n/NAME r/ROOM_NO` <br> e.g. `alloc n/John Tan r/03-100` 
+**Deallocate a Resident from Room** | `dealloc n/NAME r/ROOM_NO` <br> e.g. `dealloc n/John Tan r/03-100`
+**Add an open issue** | `iadd r/ROOM_NO d/DESCRIPTION [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]` <br> e.g. `iadd r/10-100 d/Broken light c/Furniture g/HIGH`
 **List all issues** | `ilist`
 **Find issues** | `ifind KEYWORD [MORE_KEYWORDS]` <br> e.g. `ifind wardrobe table`
-**Edit an issue record** | `iedit INDEX [r/ROOM] [d/DESCRIPTION] [t/TIMESTAMP] [s/STATUS] [c/CATEGORY]` <br> e.g. `iedit 1 r/20-109 s/Closed`
-**Close an issue** | `iclose INDEX` <br> e.g. `iclose 1`
+**Edit an issue record** | `iedit INDEX [r/ROOM] [d/DESCRIPTION] [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]` <br> e.g. `iedit 1 r/20-109 s/Closed`
+**Close an issue** | `icol INDEX` <br> e.g. `icol 1`
 **Delete an issue** | `idel INDEX` <br> e.g. `idel 1`
 **View command history** | `history [COUNT]` <br> e.g. `history 5`
 **Add alias** | `alias a/ALIAS_NAME cmd/COMMAND` <br> e.g. `alias a/il cmd/ilist`

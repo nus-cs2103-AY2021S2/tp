@@ -16,6 +16,7 @@ import seedu.address.logic.commands.alias.ListAliasCommand;
 import seedu.address.logic.commands.alias.UnaliasCommand;
 import seedu.address.logic.commands.commandhistory.ViewHistoryCommand;
 import seedu.address.logic.commands.issue.AddIssueCommand;
+import seedu.address.logic.commands.issue.CloseIssueCommand;
 import seedu.address.logic.commands.issue.DeleteIssueCommand;
 import seedu.address.logic.commands.issue.EditIssueCommand;
 import seedu.address.logic.commands.issue.FindIssueCommand;
@@ -35,6 +36,7 @@ import seedu.address.logic.parser.alias.UnaliasCommandParser;
 import seedu.address.logic.parser.commandhistory.ViewHistoryCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.issue.AddIssueCommandParser;
+import seedu.address.logic.parser.issue.CloseIssueCommandParser;
 import seedu.address.logic.parser.issue.DeleteIssueCommandParser;
 import seedu.address.logic.parser.issue.EditIssueCommandParser;
 import seedu.address.logic.parser.issue.FindIssueCommandParser;
@@ -123,6 +125,9 @@ public class AddressBookParser {
 
         case DeleteIssueCommand.COMMAND_WORD:
             return new DeleteIssueCommandParser().parse(arguments);
+
+        case CloseIssueCommand.COMMAND_WORD:
+            return new CloseIssueCommandParser().parse(arguments);
 
         // ====== System Commands ======
         case ClearCommand.COMMAND_WORD:

@@ -3,7 +3,6 @@ package seedu.address.logic.parser.room;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_NUMBER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_OCCUPANCY_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_TYPE;
 
@@ -36,8 +35,7 @@ public class EditRoomCommandParser implements Parser<EditRoomCommand> {
     public EditRoomCommand parse(String userInput) throws ParseException {
         requireNonNull(userInput);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(userInput, PREFIX_ROOM_NUMBER, PREFIX_ROOM_TYPE,
-                        PREFIX_ROOM_OCCUPANCY_STATUS, PREFIX_ROOM_TAG);
+                ArgumentTokenizer.tokenize(userInput, PREFIX_ROOM_NUMBER, PREFIX_ROOM_TYPE, PREFIX_ROOM_TAG);
 
         Index index;
 
@@ -55,10 +53,6 @@ public class EditRoomCommandParser implements Parser<EditRoomCommand> {
         if (argMultimap.getValue(PREFIX_ROOM_TYPE).isPresent()) {
             editRoomDescriptor
                     .setRoomType(ParserUtil.parseRoomType(argMultimap.getValue(PREFIX_ROOM_TYPE).get()));
-        }
-        if (argMultimap.getValue(PREFIX_ROOM_OCCUPANCY_STATUS).isPresent()) {
-            editRoomDescriptor.setIsOccupied(ParserUtil.parseRoomOccupancyStatus(argMultimap
-                            .getValue(PREFIX_ROOM_OCCUPANCY_STATUS).get()));
         }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_ROOM_TAG)).ifPresent(editRoomDescriptor::setTags);

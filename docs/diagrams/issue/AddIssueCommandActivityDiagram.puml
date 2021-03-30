@@ -1,0 +1,25 @@
+@startuml
+!include ../style.puml
+start
+:User enters command adding a issue;
+:Parse command text;
+if () then ([all parameters are valid])
+:Construct Issue
+with given parameters;
+:Add issue to model;
+note left
+Adding to the model
+involves updating
+storage too. This
+process has been
+omitted for brevity.
+end note
+:Show success message to user;
+else ([else])
+:Show invalid usage
+error to user;
+stop
+endif
+
+stop
+@enduml

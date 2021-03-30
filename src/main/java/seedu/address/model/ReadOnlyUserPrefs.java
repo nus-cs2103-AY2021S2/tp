@@ -61,4 +61,11 @@ public interface ReadOnlyUserPrefs {
      * @return whether the command word is recursive.
      */
     boolean isRecursiveKeyword(String commandWord);
+
+    //=========== CommandHistory ====================================================
+
+    /**
+     * Returns file path to command history data.
+     */
+    Path getCommandHistoryFilePath();
 }

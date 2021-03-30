@@ -7,11 +7,11 @@ import java.util.Optional;
  */
 public interface CommandHistorySelector {
     /**
-     * Selects the previous command text and returns it, if any. This is stateful.
+     * Selects the most recent command text and returns it, if any. This is stateful.
      *
-     * @return The previous command text, if any.
+     * @return The most recent command text, if any.
      */
-    Optional<String> selectPrevious();
+    Optional<String> selectLast();
 
     /**
      * Selects the next command text and returns it, if any. This is stateful.
@@ -21,9 +21,9 @@ public interface CommandHistorySelector {
     Optional<String> selectNext();
 
     /**
-     * Selects the most recent command text and returns it, if any. This is stateful.
+     * Selects the previous command text and returns it, if any. This is stateful.
      *
-     * @return The most recent command text, if any.
+     * @return The previous command text, if any.
      */
-    Optional<String> selectLast();
+    Optional<String> selectPrevious();
 }

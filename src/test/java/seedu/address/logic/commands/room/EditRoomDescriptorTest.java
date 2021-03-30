@@ -45,12 +45,6 @@ public class EditRoomDescriptorTest {
                 .build();
         assertFalse(VALID_ROOM_DESCRIPTOR_ONE.equals(editedOne));
 
-        // different occupancy -> return false
-        editedOne = new EditRoomDescriptorBuilder(VALID_ROOM_DESCRIPTOR_ONE)
-                .withOccupancyStatus("n")
-                .build();
-        assertFalse(VALID_ROOM_DESCRIPTOR_ONE.equals(editedOne));
-
         // different tags -> return false
         editedOne = new EditRoomDescriptorBuilder(VALID_ROOM_DESCRIPTOR_ONE)
                 .withTags(VALID_ROOM_TAGS)
