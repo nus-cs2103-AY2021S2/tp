@@ -50,4 +50,7 @@ public class Phone {
         return value.hashCode();
     }
 
+    public String getPhoneNumber() {
+        return value;
+    }
 }
