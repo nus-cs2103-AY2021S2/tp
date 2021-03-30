@@ -30,6 +30,16 @@ public class EmailCommandParser implements Parser<EmailCommand> {
         if (args.trim().isEmpty()) {
             return true;
         }
-        return args.trim().equals(SPECIAL_INDEX);
+
+        if (args.trim().equals(SPECIAL_INDEX)) {
+            return true;
+        }
+
+        try {
+            ParserUtil.parseIndexes(args);
+            return true;
+        } catch (ParseException ex) {
+            return false;
+        }
     }
 }
