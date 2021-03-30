@@ -1,8 +1,8 @@
 {
   "persons": [ {
     "name": "Person with invalid name field: Ha!ns Mu@ster",
-    "school": "Hans Secondary School",
     "phone": "9482424",
+    "school": "Hans Secondary School",
     "email": "hans@example.com",
     "address": "4th street",
     "guardianName" : "Aileen Muster",

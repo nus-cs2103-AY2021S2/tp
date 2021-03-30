@@ -9,6 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.testutil.TypicalDates.getTypicalDatesBook;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.CARL;
@@ -35,8 +36,8 @@ import seedu.address.model.person.predicate.NameSchoolAndTagContainsKeywordsPred
  * Contains integration tests (interaction with the Model) for {@code SearchCommand}.
  */
 public class SearchCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalDatesBook());
+    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalDatesBook());
 
     @Test
     public void equals() {

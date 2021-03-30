@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.date.ImportantDate;
 import seedu.address.model.person.Person;
 
 /**
@@ -14,6 +15,8 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+
+    Predicate<ImportantDate> PREDICATE_SHOW_ALL_IMPORTANT_DATES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -44,6 +47,10 @@ public interface Model {
      * Sets the user prefs' address book file path.
      */
     void setAddressBookFilePath(Path addressBookFilePath);
+
+    Path getDatesBookFilePath();
+
+    void setDatesBookFilePath(Path datesBookFilePath);
 
     /**
      * Replaces address book data with the data in {@code addressBook}.
@@ -114,6 +121,30 @@ public interface Model {
      * @throws NullPointerException if {@code comparator} is null.
      */
     void filterThenSortPersonList(Predicate<Person> predicate, Comparator<Person> comparator);
+
+    void setDatesBook(ReadOnlyDatesBook datesBook);
+
+    ReadOnlyDatesBook getDatesBook();
+
+    boolean hasImportantDate(ImportantDate importantDate);
+
+    void deleteImportantDate(ImportantDate target);
+
+    void addImportantDate(ImportantDate importantDate);
+
+    void filterImportantDates(Predicate<ImportantDate> predicate);
+
+    ObservableList<ImportantDate> getFilteredImportantDatesList();
+
+    void updateFilteredImportantDatesList(Predicate<ImportantDate> predicate);
+
+    ObservableList<ImportantDate> getSortedImportantDatesList();
+
+    void updateSortedImportantDatesList(Comparator<ImportantDate> comparator);
+
+    ObservableList<ImportantDate> getTransformedImportantDatesList();
+
+
 
 
 }

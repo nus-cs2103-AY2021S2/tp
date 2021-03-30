@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -37,26 +38,58 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SCHOOL, PREFIX_PHONE, PREFIX_EMAIL,
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_SCHOOL, PREFIX_EMAIL,
                         PREFIX_ADDRESS, PREFIX_GUARDIAN_NAME, PREFIX_GUARDIAN_PHONE, PREFIX_TAG, PREFIX_LESSON);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_SCHOOL, PREFIX_ADDRESS, PREFIX_PHONE,
-                PREFIX_EMAIL, PREFIX_GUARDIAN_NAME, PREFIX_GUARDIAN_PHONE)
-                || !argMultimap.getPreamble().isEmpty()) {
+        //name and phone must be present when adding in a new student
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
+        //compulsory details
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        School school = ParserUtil.parseSchool(argMultimap.getValue(PREFIX_SCHOOL).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Name guardianName = ParserUtil.parseGuardianName(argMultimap.getValue(PREFIX_GUARDIAN_NAME).get());
-        Phone guardianPhone = ParserUtil.parseGuardianPhone(argMultimap.getValue(PREFIX_GUARDIAN_PHONE).get());
+
+        //optional details
+        Optional<School> school;
+        if (argMultimap.getValue(PREFIX_SCHOOL).isPresent()) {
+            school = ParserUtil.parseSchool(argMultimap.getValue(PREFIX_SCHOOL).get());
+        } else {
+            school = Optional.empty();
+        }
+
+        Optional<Email> email;
+        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+            email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        } else {
+            email = Optional.empty();
+        }
+
+        Optional<Address> address;
+        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
+            address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        } else {
+            address = Optional.empty();
+        }
+
+        Optional<Name> guardianName;
+        if (argMultimap.getValue(PREFIX_GUARDIAN_NAME).isPresent()) {
+            guardianName = ParserUtil.parseGuardianName(argMultimap.getValue(PREFIX_GUARDIAN_NAME).get());
+        } else {
+            guardianName = Optional.empty();
+        }
+
+        Optional<Phone> guardianPhone;
+        if (argMultimap.getValue(PREFIX_GUARDIAN_PHONE).isPresent()) {
+            guardianPhone = ParserUtil.parseGuardianPhone(argMultimap.getValue(PREFIX_GUARDIAN_PHONE).get());
+        } else {
+            guardianPhone = Optional.empty();
+        }
+
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Set<Lesson> lessonsList = ParserUtil.parseLessons(argMultimap.getAllValues(PREFIX_LESSON));
 
-        Person person = new Person(name, school, phone, email, address, guardianName, guardianPhone, tagList,
+        Person person = new Person(name, phone, school, email, address, guardianName, guardianPhone, tagList,
                 lessonsList);
 
         return new AddCommand(person);

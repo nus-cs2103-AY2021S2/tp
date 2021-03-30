@@ -16,7 +16,7 @@ TutorsPet is a **desktop app designed for private tutors to manage students’ i
 
 1. Download the latest `tutorspet.jar` from [here](https://github.com/AY2021S2-CS2103T-T11-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your TutorsPet.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -25,6 +25,8 @@ TutorsPet is a **desktop app designed for private tutors to manage students’ i
    Some example commands you can try:
 
    * **`list`** : Lists all contacts.
+     
+   * **`schedule`** : Opens a window that shows the weekly schedule.
 
    * **`add`**`n/Alice Tan s/Abc Secondary School p/98765432 e/alicet@example.com a/John street, block 123, #01-01 gn/Mary Tan gp/23456789` : Adds a student's contact named `Alice Tan` to TutorsPet.
 
@@ -72,6 +74,14 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+### Viewing schedule : `schedule`
+
+Shows a weekly schedule that displays lessons for the week.
+
+![schedule popup](images/scheduleWindow.png)
+
+Format: `schedule`
+
 ### Adding a contact: `add`
 
 Adds a student’s contact to TutorsPet.
@@ -118,6 +128,8 @@ Searches for a student’s contact whose details contain any of the given keywor
 
 Format: `search [n/KEYWORDS] [s/KEYWORDS] [t/KEYWORDS] [MORE_KEYWORDS]`
 
+* At least one prefix must be used.
+* Any number of prefixes can be used concurrently.
 * The search is case-insensitive. E.g. `TAN` will match `Tan` .
 * The order of the keywords does not matter. E.g. `Tan Alice` will match `Alice Tan`.
 * Name, school and tags can be searched according to the prefix.
@@ -137,18 +149,14 @@ Searches for a student’s contact whose contact name contains any of the given 
 
 Format: `search n/KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive.
-
+* The search is case-insensitive. <br/>
   E.g. `TAN` will match `Tan`
-* The order of the keywords does not matter.
-
+* The order of the keywords does not matter. <br/>
   E.g. `Tan Alice` will match `Alice Tan`
 * Only the name is searched.
-* Only full words will be matched.
-
+* Only full words will be matched. <br/>
   E.g. `Ta` will not match `Tan`
-* Contacts matching at least one keyword will be returned.
-
+* Contacts matching at least one keyword will be returned. <br/>
   E.g. `Alice Tan` will return `Alice Ng` and `Bob Tan`
 
 Examples:
@@ -172,6 +180,19 @@ Format: `search s/KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `search s/woodlands` returns students studying in `woodlands primary school` and `woodlands secondary school`
 * `search s/raffles hwa` returns students studying in `Raffles Institution` and `Hwa chong institution`
+
+### Searching for a contact by tag: `search t/...`
+Searches for a student's contact with a specific tag using keywords
+
+Format: `search t/KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. <br/>
+  e.g `MATH` will match students with tag `math`
+* Only the stated keyword is searched.
+* Only full words will be matched e.g. `Math` will not match `Maths`
+
+Examples:
+* `search t/science` returns students with the tag `SCIENCE` and `science`
 
 ### Viewing a contact details: `detail`
 
@@ -202,6 +223,37 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd student in TutorsPet.
 * `search n/Betsy` followed by `delete 1` deletes the 1st student in the results of the `search` command.
+
+### Adding an important date: `add-date`
+
+Adds an important date to TutorsPet.
+
+Format: `add-date d/DESCRIPTION dt/DETAILS`
+
+* `DETAILS` must be in the **yyyy-mm-dd HHmm format** e.g. `2021-11-03 0800`
+
+
+Examples:
+* `add-date d/math exam dt/2021-11-03 0800`
+
+### Listing all important dates : `list-date`
+
+Shows a list of all important dates in TutorsPet.
+
+Format: `list-date`
+
+### Deleting an important date : `delete-date`
+
+Permanently deletes the specified important date from TutorsPet.
+
+Format: `delete-date INDEX`
+
+* Deletes the important date at the specified `INDEX`.
+* The index refers to the index number shown in the displayed important dates list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list-date` followed by `delete-date 2` deletes the 2nd important date in TutorsPet.
 
 ### Clearing all entries : `clear`
 
@@ -248,6 +300,11 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [s/SCHOOL] [p/PHONE] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/TAG]…​ [l/LESSON]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Search** | `search KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Search** | `search [n/KEYWORDS] [s/KEYWORDS] [t/KEYWORDS] [MORE_KEYWORDS]`<br> e.g., `search n/James Jake s/woodlands t/science`
+**Schedule** | `schedule`
+**Detail** | `detail INDEX` <br> e.g., `detail 1`
 **List** | `list`
+**Add dates** | `add-date d/DESCRIPTION dt/DETAILS`<br> e.g, `add-date d/math exam dt/2021-11-05 1300`
+**Delete dates** | `delete-date INDEX`<br> e.g., `delete-date 3`
+**List dates** | `list-date`
 **Help** | `help`

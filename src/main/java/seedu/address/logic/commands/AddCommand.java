@@ -23,10 +23,11 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to TutorsPet. "
-            + "Parameters: "
+            + "Compulsory Details: "
             + PREFIX_NAME + "NAME "
+            + PREFIX_PHONE + "PHONE \n"
+            + "Optional Details: "
             + PREFIX_SCHOOL + "SCHOOL "
-            + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_GUARDIAN_NAME + "GUARDIAN_NAME "
@@ -35,8 +36,8 @@ public class AddCommand extends Command {
             + "[" + PREFIX_LESSON + "LESSON]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
-            + PREFIX_SCHOOL + "Clementi Secondary School "
             + PREFIX_PHONE + "98765432 "
+            + PREFIX_SCHOOL + "Clementi Secondary School "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_GUARDIAN_NAME + "Helen Doe "

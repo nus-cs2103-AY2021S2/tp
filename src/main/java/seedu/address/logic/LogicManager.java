@@ -16,6 +16,8 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyDatesBook;
+import seedu.address.model.date.ImportantDate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.predicate.LessonDayPredicate;
 import seedu.address.storage.Storage;
@@ -50,6 +52,7 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveAddressBook(model.getAddressBook());
+            storage.saveDatesBook(model.getDatesBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -99,6 +102,31 @@ public class LogicManager implements Logic {
     @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
+    }
+
+    @Override
+    public ReadOnlyDatesBook getDatesBook() {
+        return model.getDatesBook();
+    }
+
+    @Override
+    public ObservableList<ImportantDate> getFilteredImportantDatesList() {
+        return model.getFilteredImportantDatesList();
+    }
+
+    @Override
+    public ObservableList<ImportantDate> getSortedImportantDatesList() {
+        return model.getSortedImportantDatesList();
+    }
+
+    @Override
+    public ObservableList<ImportantDate> getTransformedImportantDatesList() {
+        return model.getTransformedImportantDatesList();
+    }
+
+    @Override
+    public Path getDatesBookFilePath() {
+        return model.getDatesBookFilePath();
     }
 
     @Override

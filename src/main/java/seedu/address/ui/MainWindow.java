@@ -36,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private ScheduleWindow scheduleWindow;
+    private ImportantDatesWindow importantDatesWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -70,6 +71,9 @@ public class MainWindow extends UiPart<Stage> {
 
         setAccelerators();
 
+
+        scheduleWindow = new ScheduleWindow(logic);
+        importantDatesWindow = new ImportantDatesWindow(logic);
         helpWindow = new HelpWindow();
     }
 
@@ -134,9 +138,6 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-
-        scheduleWindow = new ScheduleWindow(logic);
-
     }
 
     /**
@@ -175,6 +176,18 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the important dates window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleImportantDates() {
+        if (!importantDatesWindow.isShowing()) {
+            importantDatesWindow.show();
+        } else {
+            importantDatesWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -188,6 +201,8 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        scheduleWindow.hide();
+        importantDatesWindow.hide();
         primaryStage.hide();
     }
 
@@ -215,6 +230,14 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowSchedule()) {
+                handleSchedule();
+            }
+
+            if (commandResult.isShowImportantDates()) {
+                handleImportantDates();
             }
 
             return commandResult;

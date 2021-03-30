@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -35,8 +36,8 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder(Person person) {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
-        descriptor.setSchool(person.getSchool());
         descriptor.setPhone(person.getPhone());
+        descriptor.setSchool(person.getSchool());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setGuardianName(person.getGuardianName());
@@ -54,14 +55,6 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code School} of the {@code EditPersonDescriptor} that we are building.
-     */
-    public EditPersonDescriptorBuilder withSchool(String school) {
-        descriptor.setSchool(new School(school));
-        return this;
-    }
-
-    /**
      * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withPhone(String phone) {
@@ -70,10 +63,18 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
+     * Sets the {@code School} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withSchool(String school) {
+        descriptor.setSchool(Optional.of(new School(school)));
+        return this;
+    }
+
+    /**
      * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
+        descriptor.setEmail(Optional.of(new Email(email)));
         return this;
     }
 
@@ -81,7 +82,7 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+        descriptor.setAddress(Optional.of(new Address(address)));
         return this;
     }
 
@@ -89,7 +90,7 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code GuardianName} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withGuardianName(String name) {
-        descriptor.setGuardianName(new Name(name));
+        descriptor.setGuardianName(Optional.of(new Name(name)));
         return this;
     }
 
@@ -97,7 +98,7 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code GuardianPhone} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withGuardianPhone(String phone) {
-        descriptor.setGuardianPhone(new Phone(phone));
+        descriptor.setGuardianPhone(Optional.of(new Phone(phone)));
         return this;
     }
 

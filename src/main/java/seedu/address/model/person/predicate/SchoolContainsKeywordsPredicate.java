@@ -18,8 +18,14 @@ public class SchoolContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
+        String schoolName;
+        if (person.getSchool().isPresent()) {
+            schoolName = person.getSchool().get().fullSchoolName;
+        } else {
+            schoolName = "";
+        }
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getSchool().fullSchoolName, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(schoolName, keyword));
     }
 
     @Override
