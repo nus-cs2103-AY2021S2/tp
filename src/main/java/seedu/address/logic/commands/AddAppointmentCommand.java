@@ -1,10 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -18,7 +15,8 @@ public class AddAppointmentCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_DATE + "DATE "
-            + "[" + PREFIX_CONTACT + "CONTACT INDEX]...\n"
+            + "[" + PREFIX_CONTACT + "CONTACT INDEX]... "
+            + "[" + PREFIX_CHILD + "CHILDTAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
