@@ -7,7 +7,7 @@ import java.util.Arrays;
 import seedu.address.logic.commands.room.FindRoomCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.room.RoomNumberContainsKeywordsPredicate;
+import seedu.address.model.room.RoomNumberOrTagsContainsKeywordsPredicate;
 
 public class FindRoomCommandParser implements Parser<FindRoomCommand> {
 
@@ -26,6 +26,6 @@ public class FindRoomCommandParser implements Parser<FindRoomCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new FindRoomCommand(new RoomNumberContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindRoomCommand(new RoomNumberOrTagsContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 }

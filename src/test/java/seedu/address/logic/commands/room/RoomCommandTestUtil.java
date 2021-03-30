@@ -11,7 +11,7 @@ import java.util.Random;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.room.Room;
-import seedu.address.model.room.RoomNumberContainsKeywordsPredicate;
+import seedu.address.model.room.RoomNumberOrTagsContainsKeywordsPredicate;
 import seedu.address.testutil.room.EditRoomDescriptorBuilder;
 
 public class RoomCommandTestUtil {
@@ -64,7 +64,7 @@ public class RoomCommandTestUtil {
 
         Room room = model.getFilteredRoomList().get(targetIndex.getZeroBased());
         final String[] splitName = room.getRoomNumber().roomNumber.split("\\s+");
-        model.updateFilteredRoomList(new RoomNumberContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredRoomList(new RoomNumberOrTagsContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredRoomList().size());
     }
