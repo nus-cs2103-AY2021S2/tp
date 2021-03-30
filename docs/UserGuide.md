@@ -208,14 +208,14 @@ Finds persons whose field(s) contain any of the given keywords.
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: Refer to [Field Summary table](#field-summary) for a full list prefixes.
+:information_source: Refer to [Field Summary table](#field-summary) for a full list prefixes.<br>
 **Currently Searchable fields:** Name, Email, Tag, Remark
 
 </div>
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: You can only search 1 field at a time.
+:information_source: You can only search 1 field at a time.<br>
 `find -n Alice -t HR` is an invalid command
 
 </div>
