@@ -17,7 +17,6 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -84,28 +83,11 @@ public class MainWindow extends UiPart<Stage> {
                 String currentlyInBox = commandBox.getTextFieldText();
                 String command = currentlyInBox.split("-")[0];
 
-                if (command.startsWith(AddCommand.COMMAND_WORD)) {
+                if (command.equals(AddCommand.COMMAND_WORD + " ") || command.equals(AddCommand.COMMAND_WORD + "  ")) {
                     // Get possible flags for "ADD" command
                     List<String> availFlags = logic.processAutocompleteFlags(currentlyInBox, AddCommand.COMMAND_WORD);
-                    if (availFlags.size() != 0) {
-                        commandBox.setAndAppendFlag(availFlags.get(0));
-                    }
-                }
-
-                else if (command.startsWith(EditCommand.COMMAND_WORD)) {
-                    try {
-                        // Check if Edit command already has index
-                        Integer.parseInt(command.split("-")[0].replaceAll("\\D+",""));
-                        List<String> availFlags = logic.processAutocompleteFlags(currentlyInBox, EditCommand.COMMAND_WORD);
-                        if (availFlags.size() != 0) {
-                            commandBox.setAndAppendFlag(availFlags.get(0));
-                        }
-                    } catch (NumberFormatException e) {
-                        logger.info("Edit Command does not have an index. Autocomplete flags failed...");
-                    }
-                }
-
-                else {
+                    commandBox.setAndAppendFlag(availFlags);
+                } else {
                     autocompleteListPanel.processTabKey((value) -> {
                         commandBox.setTextValue(value);
                     });

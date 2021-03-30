@@ -79,14 +79,15 @@ public interface Logic {
      * Gets a List of flags of a provided command.
      *
      * @param command command to retrieve flags from
-     * @return
+     * @return Returns a list of flags for a specified command
      */
     List<String> getAutocompleteFlags(String command);
 
     /**
-     * TODO:
-     * @param command
-     * @return
+     * Returns a list of flags that is not inside the provided current strings
+     *
+     * @param command currentStrings
+     * @return Returns a list of unused flags for a specified command
      */
     List<String> processAutocompleteFlags(String currentStrings, String command);
 }

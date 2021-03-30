@@ -144,7 +144,6 @@ public class LogicManager implements Logic {
         }
     }
 
-    // TODO: Add Tests
     @Override
     public List<String> getAutocompleteFlags(String command) {
         if (command.equals(AddCommand.COMMAND_WORD) || command.equals(EditCommand.COMMAND_WORD)) {
