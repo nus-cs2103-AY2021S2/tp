@@ -3,8 +3,10 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -24,7 +26,10 @@ import seedu.address.model.task.TaskComparator;
  */
 public class SocheduleParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.\n";
+    public static final String MESSAGE_INVALID_INDEXES =
+            "Some of the given index(es) are not non-zero unsigned integers.\n";
+    public static final String MESSAGE_DUPLICATE_INDEXES = "Some of the given index(es) contain duplicates.\n";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -32,11 +37,40 @@ public class SocheduleParserUtil {
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
+        requireNonNull(oneBasedIndex);
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses a list of {@code oneBasedIndex} into an list of {@code Index} and returns the parsed list of Index.
+     * @throws ParseException if any of the specified indexes is invalid or there is any duplicate index.
+     */
+    public static List<Index> parseIndexes(List<String> oneBasedIndexes) throws ParseException {
+        requireNonNull(oneBasedIndexes);
+        List<Index> parsedIndexes = new ArrayList<>();
+
+        for (String oneBasedIndex : oneBasedIndexes) {
+            try {
+                parsedIndexes.add(parseIndex(oneBasedIndex));
+            } catch (ParseException pe) {
+                throw new ParseException(MESSAGE_INVALID_INDEXES);
+            }
+        }
+
+        if (areIndexesDuplicate(parsedIndexes)) {
+            throw new ParseException(MESSAGE_DUPLICATE_INDEXES);
+        }
+
+        return parsedIndexes;
+    }
+
+    private static boolean areIndexesDuplicate(List<Index> parsedIndexes) {
+        HashSet<Index> indexSet = new HashSet<>(parsedIndexes);
+        return indexSet.size() != parsedIndexes.size();
     }
 
     /**
