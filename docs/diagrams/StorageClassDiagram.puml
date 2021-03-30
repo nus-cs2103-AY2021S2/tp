@@ -18,6 +18,7 @@ StorageManager o-right-> UserPrefsStorage
 StorageManager o--> FlashcardBookStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
+
 JsonFlashcardBookStorage .left.|> FlashcardBookStorage
 JsonFlashcardBookStorage .down.> JsonSerializableFlashcardBook
 JsonSerializableFlashcardBook .right.> JsonAdaptedFlashcard

@@ -2,6 +2,7 @@
 layout: page
 title: Developer Guide
 ---
+Weeblingo is a desktop app for managing flashcards, **optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). With a nice and friendly interface, users can learn Japanese at a comfortable pace with this application.
 * Table of Contents
 {:toc}
 
@@ -91,7 +92,7 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("start 3")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("learn")` API call.
 
 ![Interactions Inside the Logic Component for the `learn` Command](images/LearnSequenceDiagram.png)
 
