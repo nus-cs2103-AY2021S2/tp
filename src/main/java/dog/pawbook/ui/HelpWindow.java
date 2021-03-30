@@ -2,7 +2,6 @@ package dog.pawbook.ui;
 
 import java.util.logging.Logger;
 
-import dog.pawbook.commons.core.GuiSettings;
 import dog.pawbook.commons.core.LogsCenter;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
