@@ -1,0 +1,74 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ListCheesesCommand" as ListCheesesCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+end box
+
+box Commons #777777
+participant ":GuiSettings" as GuiSettings #111111
+end box
+
+[-> MainWindow : executeCommand("listcheeses")
+activate MainWindow
+
+MainWindow -> LogicManager : execute("listcheeses")
+activate LogicManager
+
+LogicManager -> ListCheesesCommand : execute()
+activate ListCheesesCommand
+
+ListCheesesCommand -> ModelManager : setPanelToCheeseList()
+activate ModelManager
+
+ModelManager -> GuiSettings : setPanelToCheeseList()
+activate GuiSettings
+
+GuiSettings --> ModelManager
+deactivate GuiSettings
+
+ModelManager --> ListCheesesCommand
+deactivate ModelManager
+
+ListCheesesCommand --> LogicManager
+deactivate ListCheesesCommand
+
+LogicManager --> MainWindow
+deactivate LogicManager
+
+MainWindow -> MainWindow : setPanel()
+activate MainWindow
+
+MainWindow -> LogicManager : getGuiSettings()
+activate LogicManager
+
+LogicManager -> ModelManager : getGuiSettings()
+activate ModelManager
+
+ModelManager -> GuiSettings : getPanel()
+activate GuiSettings
+
+GuiSettings --> ModelManager
+deactivate GuiSettings
+
+ModelManager --> LogicManager
+deactivate ModelManager
+
+LogicManager --> MainWindow
+deactivate LogicManager
+
+MainWindow --> MainWindow
+deactivate MainWindow
+
+[<--MainWindow
+deactivate MainWindow
+@enduml

@@ -53,6 +53,37 @@ relationships with other classes.
 
 ## **Implementation** [In Progress]
 
+This section describes some noteworthy details on how certain features are implemented.
+
+### Automatic Toggling of UI List Panels
+
+#### Implementation
+
+The application's user-interface shows, at any one time, **only one** of the following three lists:
+
+1. Customer List
+2. Cheese List
+3. Order List
+
+The UI automatically toggles between the three lists with respect to the user's latest command.
+For example: 
+- After running the `ListCheeseCommand`, the UI switches to showing the cheese list.
+- After running the `AddCustomerCommand`, the UI switches to showing the customer list.
+- After running the `FindOrderCommand`, the UI switches to showing the order list.
+
+To enable the toggling, `GuiSettings` (of the `commons` package) stores an enumerable property to control which list 
+to show.
+
+When the user keys in a valid input:
+1. The `Command` object corresponding to the input, when executed, updates the enum in `GuiSettings`; the enum records 
+   which list is to be shown. This is done through the `ModelManager`.
+2. The `UI` component then checks the `GuiSettings` and renders the desired list.
+
+To better illustrate the idea - take, for instance, when the user inputs `listcheeses` which executes the 
+`ListCheesesCommand`:
+
+![ListPanelTogglingSequenceDiagram](images/ListPanelTogglingSequenceDiagram.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops** [In Progress]
@@ -348,14 +379,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 1a. User provides an index which does not exist.
   * 1a1. CHIM displays an error message.
-    
+
     Use case resumes at step 1.
-    
+
 * 1b. User provides an index in which order is already completed.
   * 1b1. CHIM responds that the order is already completed.
 
     Use case resumes at step 1.
-    
+
 * 1c. User provides an index of an order that cannot be completed due to lack of cheeses in inventory.
   * 1c1. CHIM responds that there are insufficient cheeses to complete the order.
 
