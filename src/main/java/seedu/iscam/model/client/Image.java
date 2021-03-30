@@ -3,17 +3,20 @@ package seedu.iscam.model.client;
 import static java.util.Objects.requireNonNull;
 import static seedu.iscam.commons.util.AppUtil.checkArgument;
 
-import java.util.Objects;
-
 /**
  * Represents a Client's image link in the iscam book.
  */
 public class Image {
     public static final String MESSAGE_CONSTRAINTS = "Images should refer to a jpg, jpeg or png file in the \"data\" "
             + "folder";
-    public final String value;
     public static final String VALIDATION_REGEX = "^\\w+\\.(gif|png|jpg|jpeg)$"; // Must not contain spaces
+    public final String value;
 
+    /**
+     * Constructs an {@code Image}.
+     *
+     * @param imageRes name of the image file, including the file type extension.
+     */
     public Image(String imageRes) {
         requireNonNull(imageRes);
         checkArgument(isValidImageRes(imageRes), MESSAGE_CONSTRAINTS);

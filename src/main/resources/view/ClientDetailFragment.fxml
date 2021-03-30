@@ -10,7 +10,10 @@
 
 <VBox xmlns:fx="http://javafx.com/fxml/1" id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8">
         <HBox alignment="TOP_LEFT" minHeight="140" VBox.vgrow="NEVER">
-            <ImageView fx:id="profileImage" fitHeight="120"/>
+            <VBox alignment="TOP_LEFT" maxWidth="120" >
+                <ImageView fx:id="profileImage" fitHeight="120" />
+                <Label fx:id="profileImageRef" styleClass="details_small_label" />
+            </VBox>
             <VBox alignment="TOP_LEFT" >
                 <padding>
                     <Insets top="10" right="10" bottom="10" left="10"/>

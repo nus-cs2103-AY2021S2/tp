@@ -2,7 +2,6 @@ package seedu.iscam.testutil;
 
 import static seedu.iscam.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.iscam.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.iscam.logic.commands.CommandTestUtil.VALID_IMAGE;
 import static seedu.iscam.logic.commands.CommandTestUtil.VALID_LOCATION_AMY;
 import static seedu.iscam.logic.commands.CommandTestUtil.VALID_LOCATION_BOB;
 import static seedu.iscam.logic.commands.CommandTestUtil.VALID_NAME_AMY;
