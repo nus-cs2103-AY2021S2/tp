@@ -11,7 +11,7 @@ public class HasSchoolPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return person.getSchool() == null ? false : true;
+        return person.getSchool().isPresent() ? true : false;
     }
 
     @Override
