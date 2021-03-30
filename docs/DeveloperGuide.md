@@ -205,7 +205,7 @@ with the attached message.
 
 Below is the sequence diagram:
 
-<img src="images/FindBeforeSequenceDiagram.png" width="450" />
+![#Interactions Inside the Logic Component for the `findBefore 2021-04-04` Command](images/FindBeforeSequenceDiagram.png)
 
 ### Delete a Task feature
 
@@ -242,7 +242,7 @@ new Command Result with the attached message.
 
 Below is the sequence diagram: 
 
-<img src="images/DeleteTaskSequenceDiagram.png" width="450" />
+![#Interactions Inside the Logic Component for the `deleteTask 1` Command](images/DeleteTaskSequenceDiagram.png)
 
 ### Clear all Assignee of a Task feature
 
@@ -283,7 +283,7 @@ with the attached message.
 
 Below is the sequence diagram:
 
-<img src="images/ClearAssigneesSequenceDiagram.png" width="450" />
+![#Interactions Inside the Logic Component for the `clearAssignees 1` Command](images/ClearAssigneeSequenceDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
