@@ -30,7 +30,7 @@ public class EditEntryCommand extends Command {
     public static final String COMMAND_WORD = "eedit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the entry identified "
-            + "by the index number used in the displayed person list. "
+            + "by the entry name used in the displayed entries list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: ENTRY_NAME "
             + "[" + PREFIX_NAME + "NAME] "
