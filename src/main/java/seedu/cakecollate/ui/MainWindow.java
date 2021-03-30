@@ -138,7 +138,7 @@ public class MainWindow extends UiPart<Stage> {
         listPanelPlaceholder.getChildren().add(orderPanel.getRoot());
 
         // add wherever you're getting the orderItem filteredOrderList here
-        // orderItemTable = new OrderItemListTable(*filtered order list*);
+        orderItemTable = new OrderItemListTable(logic.getFilteredOrderItemsList());
         orderItemTablePlaceholder.getChildren().add(orderItemTable.getRoot());
     }
 
