@@ -7,9 +7,9 @@ import seedu.address.commons.util.StringUtil;
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
-public class ApptNameContainsKeywordsPredicate extends ApptFieldContainsKeywordsPredicate {
+public class ApptDateContainsKeywordsPredicate extends ApptFieldContainsKeywordsPredicate {
 
-    public ApptNameContainsKeywordsPredicate(List<String> keywords) {
+    public ApptDateContainsKeywordsPredicate(List<String> keywords) {
         super(keywords);
     }
 
@@ -17,6 +17,7 @@ public class ApptNameContainsKeywordsPredicate extends ApptFieldContainsKeywords
     public boolean test(Appointment appointment) {
         return super.getKeywords().stream()
                 .anyMatch(keyword ->
-                        StringUtil.containsWordIgnoreCase(appointment.getName().fullName, keyword));
+                        StringUtil.containsWordIgnoreCase(appointment.getDateTime().toString(), keyword));
     }
+
 }
