@@ -338,8 +338,17 @@ Examples: `edit_appointment e/andrewng@example.com l/Clementi`
 ### Adding Budget : `add_budget`
 
 Adds a budget with an amount specified by user. Stores budget in user system.
+Budget must not already exist in user system, otherwise use edit_budget instead.
 
 Format: `add_budget [b/BUDGET]`
+
+Example:
+`add_budget b/500`
+
+Example Output:
+```
+Budget of 500 is sucessfully added
+```
 
 * BUDGET must be a positive integer inclusive of zero
 
@@ -349,6 +358,15 @@ Edits an already existing budget with an amount specified by user.
 
 Format : `edit_budget [b/BUDGET]`
 
+Example:
+`edit_budget b/600`
+
+Example Output
+```
+Budget of 600 is sucessfully updated.
+```
+
+
 * BUDGET must be a positive integer inclusive of zero
 
 ### Deleting a budget : `delete_budget`
@@ -357,11 +375,32 @@ Deletes an already existing budget.
 
 Format : `delete_budget`
 
+Example:
+`delete_budget`
+
+Example Output:
+```
+Budget of 600 is sucessfully deleted.
+```
+
 ### Viewing a budget : `view_budget`
 
 Views an already existing budget.
 
 Format : `view_budget`
+
+Example:
+`view_budget`
+
+Example Output:
+```
+1) Budget does not already exist. Please ensure there is a budget. You can use the 
+add_budget function to add a budget.
+2) Here is your budget.
+Budget: 600
+Total Cost of Appointments: 100.
+```
+
 
 ### Exiting `exit`
 
