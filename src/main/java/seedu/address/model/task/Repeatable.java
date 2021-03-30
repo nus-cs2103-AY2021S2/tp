@@ -4,6 +4,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public abstract class Repeatable {
 
@@ -17,35 +18,39 @@ public abstract class Repeatable {
     public static final String DESCRIPTION_VALIDATION_REGEX = "[^\\s].*";
 
     protected String description;
-    protected Boolean isDone;
-    protected Interval interval;
-    protected LocalDate at;
+    protected Boolean isWeekly;
+    protected LocalDate date;
+    protected LocalTime time;
 
     /**
      * Constructor for Repeatable.
      * @param description Description of the Repeatable.
+     * @param date Date of the Repeatable.
+     * @param time Time of the Repeatable.
      */
-    public Repeatable(String description, Interval interval, LocalDate at) {
-        requireAllNonNull(description, interval, at);
+    public Repeatable(String description, LocalDate date, LocalTime time) {
+        requireAllNonNull(description, date, time);
         checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS_DESCRIPTION);
         this.description = description;
-        this.interval = interval;
-        this.at = at;
-        this.isDone = false;
+        this.date = date;
+        this.time = time;
+        this.isWeekly = false;
     }
 
     /**
      * Constructor for Repeatable.
      * @param description Description of the Repeatable.
-     * @param isDone Marks whether the Repeatable is Done.
+     * @param date Date of the Repeatable.
+     * @param time Time of the Repeatable.
+     * @param isWeekly isWeekly Status of the Repeatable
      */
-    public Repeatable(String description, Interval interval, LocalDate at, Boolean isDone) {
-        requireAllNonNull(description, interval, at, isDone);
+    public Repeatable(String description, LocalDate date, LocalTime time, Boolean isWeekly) {
+        requireAllNonNull(description, date, time, isWeekly);
         checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS_DESCRIPTION);
         this.description = description;
-        this.interval = interval;
-        this.at = at;
-        this.isDone = isDone;
+        this.date = date;
+        this.time = time;
+        this.isWeekly = isWeekly;
     }
 
     /**
@@ -58,41 +63,28 @@ public abstract class Repeatable {
     }
 
     /**
-     * Returns the status of the Repeatable.
-     * @return A Boolean representing the Repeatable's status.
-     */
-    public Boolean getIsDone() {
-        assert this.isDone != null;
-        return this.isDone;
-    }
-
-    /**
      * Returns the date of the Repeatable.
      * @return A LocalDate representing the Repeatable's date.
      */
-    public LocalDate getAt() {
-        assert this.at != null : "at should not be null!";
-        return this.at;
+    public LocalDate getDate() {
+        assert this.date != null : "date should not be null!";
+        return this.date;
     }
 
     /**
-     * Marks the task as done.
+     * Returns the time of the Repeatable.
+     * @return A LocalTime representing the Repeatable's time.
      */
-    public void markAsDone() {
-        this.isDone = true;
+    public LocalTime getTime() {
+        assert this.time != null : "time should not be null!";
+        return this.time;
     }
 
     /**
-     * Returns the Repeatable's interval.
-     * @return Interval interval.
+     * Returns the isWeekly status of the Repeatable.
+     * @return A Boolean representing the Repeatable's isWeekly status.
      */
-    public abstract Interval getRecurrence();
-
-    /**
-     * Sets the Repeatable's interval to specified level.
-     * @param interval Level of Interval.
-     */
-    public abstract void setRecurrence(Interval interval);
+    public abstract Boolean getIsWeekly();
 
     /**
      * Returns true if a given string is a valid description.

@@ -14,10 +14,10 @@
   "projects" : [ {
     "projectName" : "CS2103T Team Project",
     "eventList" : [ {
-      "description" : "Weekly Project Meeting",
-      "interval" : "WEEKLY",
-      "isDone" : false,
-      "at" : "31-01-2021"
+      "description" : "Test Event",
+      "date" : "31-01-2021",
+      "time" : "17:30",
+      "isWeekly" : false
     } ],
     "todoList" : [ {
       "description" : "Update documentation",
@@ -49,38 +49,26 @@
       "isDone" : false,
       "by" : "12-04-2021"
     } ],
-    "participantsList" : [ {
+    "groupmates" : [ {
       "name" : "Danh",
-      "phone" : "91234561",
-      "email" : "danh@colab.com",
-      "address" : "1 CoLAB Road",
-      "tagged" : [ ]
+      "roles" : [ ]
     }, {
       "name" : "Ruochen",
-      "phone" : "91234562",
-      "email" : "ruochen@colab.com",
-      "address" : "1 CoLAB Road",
-      "tagged" : [ ]
+      "roles" : [ ]
     }, {
       "name" : "Samuel",
-      "phone" : "91234563",
-      "email" : "samuel@colab.com",
-      "address" : "1 CoLAB Road",
-      "tagged" : [ ]
+      "roles" : [ ]
     }, {
       "name" : "Vevek",
-      "phone" : "91234564",
-      "email" : "vevek@colab.com",
-      "address" : "1 CoLAB Road",
-      "tagged" : [ ]
+      "roles" : [ ]
     } ]
   }, {
     "projectName" : "CS2101 OP2",
     "eventList" : [ {
-      "description" : "OP2 Planning Meeting",
-      "interval" : "NONE",
-      "isDone" : false,
-      "at" : "17-03-2021"
+      "description" : "Test Event",
+      "date" : "31-01-2021",
+      "time" : "17:30",
+      "isWeekly" : false
     }, {
       "description" : "OP2 Consultation",
       "interval" : "NONE",
@@ -116,30 +104,18 @@
       "isDone" : false,
       "by" : "08-04-2021"
     } ],
-    "participantsList" : [ {
+    "groupmates" : [ {
       "name" : "Danh",
-      "phone" : "91234561",
-      "email" : "danh@colab.com",
-      "address" : "1 CoLAB Road",
-      "tagged" : [ ]
+      "roles" : [ ]
     }, {
       "name" : "Ruochen",
-      "phone" : "91234562",
-      "email" : "ruochen@colab.com",
-      "address" : "1 CoLAB Road",
-      "tagged" : [ ]
+      "roles" : [ ]
     }, {
       "name" : "Samuel",
-      "phone" : "91234563",
-      "email" : "samuel@colab.com",
-      "address" : "1 CoLAB Road",
-      "tagged" : [ ]
+      "roles" : [ ]
     }, {
       "name" : "Vevek",
-      "phone" : "91234564",
-      "email" : "vevek@colab.com",
-      "address" : "1 CoLAB Road",
-      "tagged" : [ ]
+      "roles" : [ ]
     } ]
   } ]
 }

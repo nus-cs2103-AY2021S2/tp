@@ -37,7 +37,7 @@
               </VBox>
               <VBox styleClass="project-display-panel-section" VBox.vgrow="NEVER">
                 <Label styleClass="label-header" text="Groupmates" />
-                <ListView fx:id="participantListView" maxHeight="-Infinity" minHeight="-Infinity" VBox.vgrow="NEVER" />
+                <ListView fx:id="groupmateListView" maxHeight="-Infinity" minHeight="-Infinity" VBox.vgrow="NEVER" />
               </VBox>
             </VBox>
           </ScrollPane>
