@@ -138,7 +138,7 @@ Lists all persons in the address book.
 
 Edits an existing person in the address book.
 
-**Format**: `edit INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-r REMARK] [-t TAG]…`
+**Format**: `edit INDEX [INDEX…] [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-r REMARK] [-t TAG]…`
 
 <div markdown="block" class="alert alert-info">
 
@@ -163,6 +163,15 @@ Edits an existing person in the address book.
 | `edit 1 -p 91234567 -e johndoe@example.com` | Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively. |
 | `edit 2 -n Betsy Crower -t `                | Edits the name of the 2nd person to be `Betsy Crower` and clears all of her existing tags.                                 |
 | `edit 3 -r `                                | Clears any existing remark of the 3rd person.                                                                      |
+
+<div markdown="block" class="alert alert-info">
+
+**:bulb: Bulk Edit**
+
+To bulk edit, either do `edit 1 2 3` to edit indexes 1, 2 and 3
+or `edit shown` to edit all the shown person.
+
+</div>
 
 ### Locating persons by name: `find`
 
@@ -199,15 +208,15 @@ Finds persons whose names contain any of the given keywords.
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified person(s) from the address book.
 
-**Format**: `delete INDEX`
+**Format**: `delete INDEX [INDEX…]`
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes on `delete` command:**<br>
 
-* Deletes the person at the specified `INDEX`.
+* Deletes the person at the specified `INDEX` or `[INDEX…]`.
 * The command **operates on the shown list** that may be modified by an earlier command.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer**, i.e 1, 2, 3, …
@@ -223,6 +232,14 @@ Deletes the specified person from the address book.
 | `list`<br>`delete 2`       | `list` displays all entries.<br>`delete 2` deletes the second entry in the list shown.                               |
 | `find Betsy`<br>`delete 1` | `find Betsy` filters entries to the find result.<br> `delete 1` deletes the first entry in the filtered results list.|
 
+<div markdown="block" class="alert alert-info">
+
+**:bulb: Bulk Delete**
+
+To bulk delete, either do `delete 1 2 3` to delete indexes 1, 2 and 3
+or `delete shown` to delete all the shown person.
+
+</div>
 
 ### Selecting persons : `select`
 
@@ -234,9 +251,9 @@ Sub Command Format:
 * `select show`
 * `select clear`
 * `select shown`
-* `select INDEX`
+* `select INDEX [INDEX…]`
 
-Selected person will have a highlighted index number to indicate selection status.
+The selected person will have a highlighted index number to indicate selection status.
 
 ![Select UI Example](images/select_ui_example.png)
 
