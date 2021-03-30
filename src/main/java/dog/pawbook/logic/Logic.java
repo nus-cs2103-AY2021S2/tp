@@ -25,7 +25,7 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the Database.
      *
      * @see dog.pawbook.model.Model#getDatabase()
      */
@@ -37,7 +37,7 @@ public interface Logic {
     ObservableList<Pair<Integer, Entity>> getFilteredEntityList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' database file path.
      */
     Path getDatabaseFilePath();
 

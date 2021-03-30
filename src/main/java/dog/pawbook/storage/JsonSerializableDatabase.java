@@ -65,7 +65,7 @@ class JsonSerializableDatabase {
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this database into the model's {@code Database} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

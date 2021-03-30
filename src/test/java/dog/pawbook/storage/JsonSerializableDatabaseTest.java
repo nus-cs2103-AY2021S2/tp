@@ -24,9 +24,9 @@ public class JsonSerializableDatabaseTest {
     public void toModelType_typicalOwnersFile_success() throws Exception {
         JsonSerializableDatabase dataFromFile = JsonUtil.readJsonFile(TYPICAL_OWNERS_FILE,
                 JsonSerializableDatabase.class).get();
-        Database addressBookFromFile = dataFromFile.toModelType();
-        Database typicalOwnersAddressBook = TypicalOwners.getTypicalDatabase();
-        assertEquals(addressBookFromFile, typicalOwnersAddressBook);
+        Database databaseFromFile = dataFromFile.toModelType();
+        Database typicalOwnersDatabase = TypicalOwners.getTypicalDatabase();
+        assertEquals(databaseFromFile, typicalOwnersDatabase);
     }
 
     @Test

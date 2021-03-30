@@ -12,7 +12,7 @@ import dog.pawbook.model.ReadOnlyUserPrefs;
 import dog.pawbook.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of Database data in local storage.
  */
 public class StorageManager implements Storage {
 
@@ -47,7 +47,7 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ Database methods ==============================
 
     @Override
     public Path getDatabaseFilePath() {
@@ -66,8 +66,8 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveDatabase(ReadOnlyDatabase addressBook) throws IOException {
-        saveDatabase(addressBook, databaseStorage.getDatabaseFilePath());
+    public void saveDatabase(ReadOnlyDatabase database) throws IOException {
+        saveDatabase(database, databaseStorage.getDatabaseFilePath());
     }
 
     @Override

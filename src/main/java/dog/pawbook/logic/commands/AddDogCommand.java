@@ -20,7 +20,7 @@ import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.owner.Owner;
 
 /**
- * Adds a dog to the address book.
+ * Adds a dog to the database.
  */
 public class AddDogCommand extends AddCommand<Dog> {
 

@@ -78,7 +78,7 @@ public class ModelManager implements Model {
     }
 
 
-    //=========== AddressBook ================================================================================
+    //=========== Database ================================================================================
     @Override
     public void setDatabase(ReadOnlyDatabase database) {
         this.database.resetData(database);
@@ -126,7 +126,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Entity} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedDatabase}
      */
     @Override
     public ObservableList<Pair<Integer, Entity>> getFilteredEntityList() {
