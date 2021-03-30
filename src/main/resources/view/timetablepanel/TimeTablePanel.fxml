@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11">
+    <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308"
+           minWidth="-Infinity" prefHeight="25.0" style="-fx-text-fill: white;" styleClass="cell_big_label"
+           text="Showing Timetable" VBox.vgrow="ALWAYS">
+        <VBox.margin>
+            <Insets/>
+        </VBox.margin>
+    </Label>
+
+    <ScrollPane fx:id="scrollPane" vbarPolicy="NEVER" VBox.vgrow="ALWAYS"
+                fitToHeight="true" style="-fx-background-color: #383838;">
+        <VBox>
+            <GridPane fx:id="timeGridPane" styleClass="timetable-container"/>
+            <GridPane fx:id="gridPane" styleClass="timetable-container">
+                <padding>
+                    <Insets bottom="4.0" left="2.0" right="2.0" top="4.0"/>
+                </padding>
+            </GridPane>
+        </VBox>
+    </ScrollPane>
+</VBox>

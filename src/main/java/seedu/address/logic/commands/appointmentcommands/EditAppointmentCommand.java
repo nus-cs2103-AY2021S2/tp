@@ -2,8 +2,8 @@ package seedu.address.logic.commands.appointmentcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_FROM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_TO;
@@ -36,14 +36,14 @@ public class EditAppointmentCommand extends Command {
             + "by the index number used in the displayed appointment list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_SUBJECT_NAME + "SUBJECT] "
             + "[" + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_TIME_FROM + "TIME FROM] "
             + "[" + PREFIX_TIME_TO + "TIME TO] "
             + "[" + PREFIX_LOCATION + "LOCATION]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_EMAIL + "chloelim@example.com "
+            + PREFIX_NAME + "chloelim@example.com "
             + PREFIX_SUBJECT_NAME + "Science";
 
     public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Edited Appointment: %1$s";

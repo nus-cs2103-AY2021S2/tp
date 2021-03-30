@@ -22,6 +22,11 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Notes;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.schedule.Description;
+import seedu.address.model.schedule.ReadOnlyScheduleTracker;
+import seedu.address.model.schedule.Schedule;
+import seedu.address.model.schedule.ScheduleTracker;
+import seedu.address.model.schedule.Title;
 import seedu.address.model.subject.SubjectExperience;
 import seedu.address.model.subject.SubjectLevel;
 import seedu.address.model.subject.SubjectList;
@@ -101,6 +106,28 @@ public class SampleDataUtil {
                     new GradedItem("Midterm"),
                         GradeEnum.valueOf("C"))
         };
+    }
+    public static Schedule[] getSampleSchedule() {
+        return new Schedule[] {
+            new Schedule(new Title("Math Tuition Homework"),
+                    new AppointmentDateTime("2021-03-24 2:00PM"),
+                    new AppointmentDateTime("2021-03-24 3:00PM"),
+                    new Description("Chapter 5")),
+            new Schedule(new Title("Science Tuition Homework"),
+                    new AppointmentDateTime("2021-03-25 3:00PM"),
+                    new AppointmentDateTime("2021-03-25 5:00PM"),
+                    new Description("Chapter 6"))
+        };
+    }
+
+
+
+    public static ReadOnlyScheduleTracker getSampleScheduleTracker() {
+        ScheduleTracker sampleSt = new ScheduleTracker();
+        for (Schedule sampleSchedule : getSampleSchedule()) {
+            sampleSt.addSchedule(sampleSchedule);
+        }
+        return sampleSt;
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {

@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.tutorcommands.AddCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.BudgetBook;
 import seedu.address.model.Model;
@@ -25,8 +26,11 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.budget.Budget;
+import seedu.address.model.event.Event;
+import seedu.address.model.filter.AppointmentFilter;
 import seedu.address.model.filter.PersonFilter;
 import seedu.address.model.grade.Grade;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
@@ -118,6 +122,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasTutorByName(Name name) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
@@ -139,6 +148,11 @@ public class AddCommandTest {
 
         @Override
         public void setAppointmentBook(ReadOnlyAppointmentBook readOnlyAppointmentBook) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasAppointmentContainingTutor(Name name) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -316,6 +330,31 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<String> getPersonFilterStringList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasAppointmentFilter(AppointmentFilter appointmentFilter) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addAppointmentFilter(AppointmentFilter appointmentFilter) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeAppointmentFilter(AppointmentFilter appointmentFilter) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<String> getAppointmentFilterStringList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ReadOnlyScheduleTracker getScheduleTracker() {
             throw new AssertionError("This method should not be called.");
         }
@@ -350,16 +389,12 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
-        public void deleteSchedule(int indexToRemove) {
-            throw new AssertionError("This method should not be called.");
-        }
-
         public void setSchedule(Schedule target, Schedule editedSchedule) {
             throw new AssertionError("This method should not be called.");
         }
 
-        public boolean hasScheduleDateTime(AppointmentDateTime appointmentDateTime) {
+        @Override
+        public ObservableList<Event> getFilteredEventList() {
             throw new AssertionError("This method should not be called.");
         }
     }
