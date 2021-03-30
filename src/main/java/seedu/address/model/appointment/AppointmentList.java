@@ -106,6 +106,13 @@ public class AppointmentList implements Iterable<Appointment> {
         return internalUnmodifiableList;
     }
 
+    /**
+     * @return An unmodifiable view of all the appointments.
+     */
+    public ObservableList<Appointment> getInternalUnmodifiableList() {
+        return internalUnmodifiableList;
+    }
+
     @Override
     public Iterator<Appointment> iterator() {
         return internalList.iterator();

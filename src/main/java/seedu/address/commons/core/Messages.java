@@ -24,4 +24,8 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the list";
     public static final String MESSAGE_DELETE_APPOINTMENT_FAILURE = "Appointment does"
             + " not exists in appointment list.";
+    public static final String MESSAGE_APPOINTMENT_LIST_HAS_TUTOR = "Failed to delete tutor"
+            + " because at least one existing appointment has been booked with the"
+            + " tutor in question. Please ensure that tutor to be deleted does not"
+            + " have any existing appointments.";
 }

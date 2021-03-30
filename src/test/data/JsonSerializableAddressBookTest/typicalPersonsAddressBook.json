@@ -1,6 +1,6 @@
 {
   "persons" : [ {
-    "name" : "Alice Pauline",
+    "name" : "Alice Tan",
     "gender" : "Female",
     "phone" : "94351253",
     "email" : "alice@example.com",
@@ -96,10 +96,10 @@
       "subjectQualification" : "A-Level"
     } ]
   }, {
-    "name" : "George Best",
+    "name" : "John Doe",
     "gender" : "Male",
     "phone" : "9482442",
-    "email" : "anna@example.com",
+    "email" : "johndoe@example.com",
     "address" : "4th street",
     "tagged" : [ ],
     "tutorSubjects" : [ {

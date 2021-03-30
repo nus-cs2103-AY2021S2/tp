@@ -2,6 +2,10 @@ package seedu.address.logic.commands.appointmentcommands;
 
 import static seedu.address.commons.core.Messages.MESSAGE_DELETE_APPOINTMENT_FAILURE;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
+import static seedu.address.testutil.TypicalBudgets.getTypicalBudgetBook;
+import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -10,10 +14,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
-import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
-import static seedu.address.testutil.TypicalBudgets.getTypicalBudgetBook;
-import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 public class DeleteAppointmentCommandTest {
 

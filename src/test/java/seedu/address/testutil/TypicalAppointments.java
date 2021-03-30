@@ -17,7 +17,7 @@ public class TypicalAppointments {
             .withSubject("Mathematics").withTimeFrom("2021-03-24 10:00AM").withTimeTo("2021-03-24 12:00PM")
             .withAddress("Jurong West").build();
     public static final Appointment SCIENCE_APPOINTMENT = new AppointmentBuilder()
-            .withName("Benson Meier")
+            .withName("John Doe")
             .withSubject("Science").withTimeFrom("2021-03-27 12:00PM").withTimeTo("2021-03-27 2:00PM")
             .withAddress("Clementi").build();
 
