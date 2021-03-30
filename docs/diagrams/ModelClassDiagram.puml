@@ -51,7 +51,6 @@ Task *--> "1" Description
 Task *--> "1" Workload
 Task *--> "1" DoneStatus
 Task *--> "*" Tag
-Module ..> Workload
 
 Name -[hidden]right-> Deadline
 Deadline -[hidden]right-> Description
