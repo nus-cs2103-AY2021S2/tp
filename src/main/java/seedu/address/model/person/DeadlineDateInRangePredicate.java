@@ -2,54 +2,53 @@ package seedu.address.model.person;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Optional;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Task}'s {@code DeadlineDate} in range of the given deadlines.
+ * Tests that a {@code Task}'s {@code DeadlineDate} within the range of the given days/weeks.
  */
 public class DeadlineDateInRangePredicate implements Predicate<Task> {
     private static final DateTimeFormatter dateDateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    private static DeadlineDate minDate = new DeadlineDate("01-01-2020"); // Earliest date allowed
-    private static DeadlineDate maxDate = new DeadlineDate("12-12-2099"); // Latest date allowed
-    private static String nextWeekStart = LocalDate.now().plusDays(7).format(dateDateFormatter); // next week
-    private static String nextWeekEnd = LocalDate.now().plusDays(13).format(dateDateFormatter); // next 2 week
+    private static DeadlineDate maxDate = new DeadlineDate("31-12-2099"); // Latest date allowed
+    private static DeadlineDate today = new DeadlineDate(LocalDate.now().format(dateDateFormatter));
 
-    private final DeadlineDate startDate;
     private final DeadlineDate endDate;
 
     /**
      * A predicate to check deadlinedate of a task
-     * @param startDate start date specified by the user if any
-     * @param endDate end date specified by the user if any
+     * @param numberOfDays number of days ahead from today's date
      */
-    public DeadlineDateInRangePredicate(Optional<DeadlineDate> startDate,
-                                                       Optional<DeadlineDate> endDate) {
-        if (startDate.isEmpty() && endDate.isEmpty()) {
-            this.startDate = new DeadlineDate(nextWeekStart);
-            this.endDate = new DeadlineDate(nextWeekEnd);
-        } else if (startDate.isEmpty()) {
-            this.startDate = minDate;
-            this.endDate = endDate.get();
-        } else if (endDate.isEmpty()) {
-            this.startDate = startDate.get();
-            this.endDate = maxDate;
+    public DeadlineDateInRangePredicate(long numberOfDays) {
+        DeadlineDate dateSpecifiedByUser = new DeadlineDate(
+                LocalDate.now().plusDays(numberOfDays).format(dateDateFormatter));
+        this.endDate = minimumOf(dateSpecifiedByUser, maxDate);
+    }
+
+    /**
+     * Compare 2 deadlineDate and returns the minimum
+     * @param firstDeadlineDate
+     * @param secondDeadlineDate
+     * @return DeadlineDate with smaller date
+     */
+
+    private DeadlineDate minimumOf(DeadlineDate firstDeadlineDate, DeadlineDate secondDeadlineDate) {
+        if (firstDeadlineDate.compareTo(secondDeadlineDate) < 0) {
+            return firstDeadlineDate;
         } else {
-            this.startDate = startDate.get();
-            this.endDate = endDate.get();
+            return secondDeadlineDate;
         }
     }
 
     @Override
     public boolean test(Task task) {
-        return task.getDeadlineDate().compareTo(startDate) >= 0 && task.getDeadlineDate().compareTo(endDate) <= 0;
+        return task.getDeadlineDate().compareTo(endDate) <= 0
+                && task.getDeadlineDate().compareTo(today) >= 0;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeadlineDateInRangePredicate // instanceof handles nulls
-                && startDate.equals(((DeadlineDateInRangePredicate) other).startDate)
-                && endDate.equals(((DeadlineDateInRangePredicate) other).endDate)); // startDate
+                && endDate.equals(((DeadlineDateInRangePredicate) other).endDate)); // task's deadline within range
     }
 }
