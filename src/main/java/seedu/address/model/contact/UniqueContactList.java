@@ -83,7 +83,7 @@ public class UniqueContactList implements Iterable<Contact> {
         }
     }
 
-    public void setContacts(seedu.address.model.contact.UniqueContactList replacement) {
+    public void setContacts(UniqueContactList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
