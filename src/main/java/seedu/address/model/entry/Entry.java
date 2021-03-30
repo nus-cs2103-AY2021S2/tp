@@ -75,12 +75,19 @@ public class Entry {
                 || (secondStart.isBefore(firstStart) && firstStart.isBefore(secondEnd));
     }
 
+    /**
+     * Returns true if both start date and end date are the same
+     */
+    public boolean haveDifferentDates() {
+        return !getStartDate().isEqual(getEndDate());
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getEntryName())
-                .append("; Start Date: ")
-                .append(getStartDate())
+                .append(haveDifferentDates() ? "; Start Date: " : "")
+                .append(haveDifferentDates() ? getStartDate() : "")
                 .append("; End Date: ")
                 .append(getEndDate());
 
