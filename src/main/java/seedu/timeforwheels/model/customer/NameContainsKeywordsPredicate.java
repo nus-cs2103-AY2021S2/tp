@@ -32,18 +32,23 @@ public class NameContainsKeywordsPredicate implements Predicate<Customer> {
 
     /**
      * Returns true if keyword matches a certain tag
+     *
      * @param keyword
      * @param tags
      * @return if a match is found
      */
     public boolean helper(String keyword, Set<Tag> tags) {
         boolean result = false;
-        for (Tag tag : tags) {
-            if (StringUtil.containsWordIgnoreCase(tag.tagName, keyword)) {
-                result = true;
+        if (tags.isEmpty()) {
+            return false;
+        } else {
+            for (Tag tag : tags) {
+                if (StringUtil.containsWordIgnoreCase(tag.tagName, keyword)) {
+                    result = true;
+                }
             }
+            return result;
         }
-        return result;
     }
 
     @Override
