@@ -110,6 +110,7 @@ public class ModelManager implements Model {
         return bookingSystem.hasPersonWithEmail(email);
     }
 
+
     @Override
     public boolean hasBooking(Booking booking) {
         requireNonNull(booking);
@@ -137,6 +138,24 @@ public class ModelManager implements Model {
     public void setBooking(Booking target, Booking editedBooking) {
         requireAllNonNull(target, editedBooking);
         bookingSystem.setBooking(target, editedBooking);
+    }
+
+    @Override
+    public void updateVenueInBookings(VenueName oldVenueName, VenueName newVenueName) {
+        requireAllNonNull(oldVenueName, newVenueName);
+        bookingSystem.updateVenueInBookings(oldVenueName, newVenueName);
+    }
+
+    @Override
+    public void updatePersonInBookings(Email oldEmail, Email newEmail) {
+        requireAllNonNull(oldEmail, newEmail);
+        bookingSystem.updatePersonInBookings(oldEmail, newEmail);
+    }
+
+    @Override
+    public boolean hasOverlappedBooking(Booking toAdd) {
+        requireAllNonNull(toAdd);
+        return bookingSystem.hasOverlappedBooking(toAdd);
     }
 
     @Override
@@ -262,4 +281,6 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredBookings.setPredicate(predicate);
     }
+
+
 }

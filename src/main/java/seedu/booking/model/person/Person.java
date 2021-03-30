@@ -26,6 +26,7 @@ public class Person {
     }
 
 
+
     public Name getName() {
         return name;
     }
@@ -90,5 +91,6 @@ public class Person {
                 .append(getEmail());
         return builder.toString();
     }
+
 
 }

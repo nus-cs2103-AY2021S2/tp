@@ -111,10 +111,10 @@ public class BookingSystemParser {
             return new HelpCommand();
 
         case AddBookingCommand.COMMAND_WORD:
-            return new CreateBookingCommandParser().parse(arguments);
+            return new AddBookingCommandParser().parse(arguments);
 
         case AddVenueCommand.COMMAND_WORD:
-            return new CreateVenueCommandParser().parse(arguments);
+            return new AddVenueCommandParser().parse(arguments);
 
         case DeleteBookingCommand.COMMAND_WORD:
             return new DeleteBookingCommandParser().parse(arguments);

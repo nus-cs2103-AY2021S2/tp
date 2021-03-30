@@ -24,7 +24,7 @@ import seedu.booking.model.venue.Venue;
 import seedu.booking.testutil.VenueBuilder;
 
 public class CreateVenueCommandParserTest {
-    private CreateVenueCommandParser parser = new CreateVenueCommandParser();
+    private AddVenueCommandParser parser = new AddVenueCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
