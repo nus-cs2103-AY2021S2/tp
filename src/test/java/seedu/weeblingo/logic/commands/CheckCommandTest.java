@@ -28,7 +28,8 @@ public class CheckCommandTest {
         Answer attempt = new FlashcardBuilder().build().getAnswer();
         ModelStubCheckSuccessful modelStub = new ModelStubCheckSuccessful();
         CommandResult commandResult = new CheckCommand(attempt).execute(modelStub);
-        assertEquals(CheckCommand.CORRECT_ATTEMPT + CheckCommand.MESSAGE_HELPER, commandResult.getFeedbackToUser());
+        assertEquals(CheckCommand.CORRECT_ATTEMPT + "\n"
+                + CheckCommand.MESSAGE_HELPER, commandResult.getFeedbackToUser());
     }
 
     @Test
@@ -248,6 +249,11 @@ public class CheckCommandTest {
             return "";
         }
 
+        @Override
+        public int getCurrentMode() {
+            return Mode.MODE_QUIZ;
+        }
+
     }
 
     /**
@@ -273,5 +279,9 @@ public class CheckCommandTest {
             return "";
         }
 
+        @Override
+        public int getCurrentMode() {
+            return Mode.MODE_QUIZ;
+        }
     }
 }
