@@ -6,8 +6,7 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents a Dog's breed in the database.
@@ -17,10 +16,6 @@ public class DateOfBirth {
     public static final String DATE_FORMAT = "d-M-yyyy";
     public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern(DATE_FORMAT);
     public static final String MESSAGE_CONSTRAINTS = "Date Of Birth should be in the " + DATE_FORMAT + " format.";
-    public static final String VALIDATION_REGEX = "^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)"
-            + "(?:0?[1,3-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)0?2\\3"
-            + "(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))"
-            + "$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$";
 
     public final LocalDate date;
     public final String value;
@@ -50,9 +45,13 @@ public class DateOfBirth {
      * Returns true if a given string is a valid date.
      */
     public static boolean isValidDob(String value) {
-        Pattern pattern = Pattern.compile(VALIDATION_REGEX);
-        Matcher matcher = pattern.matcher(value);
-        return matcher.matches();
+        try {
+            LocalDate.parse(value);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+
+        return true;
     }
 
     public LocalDate getDate() {
