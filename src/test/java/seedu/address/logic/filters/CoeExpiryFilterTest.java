@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
-public class CoeExpiryFilterTest { //TODO: Complete this test collection
+public class CoeExpiryFilterTest { //TODO: Add test cases for filterAllCustomers
     LocalDate now = LocalDate.now();
 
     @Test
@@ -54,15 +54,40 @@ public class CoeExpiryFilterTest { //TODO: Complete this test collection
 
     @Test
     public void test_expiredCustomer_true() {
-        CoeExpiryFilter filter = new CoeExpiryFilter("exp");
+        CoeExpiryFilter filterToday = new CoeExpiryFilter("exp");
         String yesterdayString = now.minusDays(1).format(CoeExpiry.DATE_TIME_FORMATTER);
         String oneYearString = now.plusYears(1).format(CoeExpiry.DATE_TIME_FORMATTER);
         Customer alice = new CustomerBuilder()
                 .withAdditionalCar("Civic+Honda", yesterdayString)
                 .withAdditionalCar("Civic+Honda", oneYearString)
                 .build();
-        assertTrue(filter.test(alice));
-    } //TODO: Add more test cases testing the function test
+        assertTrue(filterToday.test(alice));
+
+        CoeExpiryFilter filterOneYear = new CoeExpiryFilter("2");
+        Customer bob = new CustomerBuilder()
+                .withAdditionalCar("Civic+Honda", oneYearString)
+                .build();
+        assertTrue(filterOneYear.test(bob));
+    }
+
+    @Test
+    public void test_freshCustomer_false() {
+        CoeExpiryFilter filter = new CoeExpiryFilter("1");
+        String twoYearString = now.plusYears(2).format(CoeExpiry.DATE_TIME_FORMATTER);
+        String oneYearString = now.plusYears(1).format(CoeExpiry.DATE_TIME_FORMATTER);
+        Customer alice = new CustomerBuilder()
+                .withAdditionalCar("Civic+Honda", twoYearString)
+                .withAdditionalCar("Civic+Honda", oneYearString)
+                .build();
+        assertFalse(filter.test(alice));
+    }
+
+    @Test
+    public void test_noCarCustomer_false() {
+        CoeExpiryFilter filter = new CoeExpiryFilter("exp");
+        Customer alice = new CustomerBuilder().build();
+        assertFalse(filter.test(alice));
+    }
 
     @Test
     public void equals() {
