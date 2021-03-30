@@ -50,7 +50,7 @@ public class EventTracker {
     /**
      * Returns true if a person with the same identity as {@code appointment} exists in the appointment book.
      */
-    public boolean hasExistingDate(Event event) {
+    public boolean hasClashingDateTime(Event event) {
         requireNonNull(event);
         return events.containsDate(event);
     }

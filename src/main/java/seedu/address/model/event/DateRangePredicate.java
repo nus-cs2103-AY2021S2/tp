@@ -3,11 +3,9 @@ package seedu.address.model.event;
 import java.time.LocalDateTime;
 import java.util.function.Predicate;
 
-import seedu.address.model.appointment.Appointment;
-
 /**
- * Tests that an {@code Appointment}'s {@code dateTime} matches the date given.
- * This primarily to support the Calendar's Filtering.
+ * Tests that an {@code Event}'s {@code dateTime} range filtering.
+ * This primarily to detect date and time clashes between new and old Appointment and Schedule.
  */
 public class DateRangePredicate implements Predicate<Event> {
     private final Event toCheck;
@@ -24,10 +22,9 @@ public class DateRangePredicate implements Predicate<Event> {
         LocalDateTime timeFrom = event.getTimeFrom().value;
         LocalDateTime timeTo = event.getTimeTo().value;
 
-        boolean isInRange = timeFrom.isAfter(timeToCheck) && timeTo.isBefore(timeFromCheck);
-        boolean overlapRange = timeFromCheck.isBefore(timeFrom) && timeToCheck.isAfter(timeTo);
+        boolean hasOverlapRange = (timeFromCheck.isBefore(timeTo)) && (timeToCheck.isAfter(timeFrom));
         boolean isExactRange = timeFrom.isEqual(timeFromCheck) || timeTo.isEqual(timeToCheck);
-        return isInRange || overlapRange || isExactRange;
+        return hasOverlapRange || isExactRange;
     }
 
     @Override

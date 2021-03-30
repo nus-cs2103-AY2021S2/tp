@@ -7,7 +7,6 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -15,7 +14,6 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.appointment.DateViewPredicate;
-import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventTracker;
@@ -44,7 +42,7 @@ public class ModelManager implements Model {
     private final FilteredList<Appointment> filteredAppointment;
     private final FilteredList<Grade> filteredGrades;
     private final FilteredList<Schedule> filteredSchedules;
-    private final FilteredList<Event> filteredEvents;
+    private FilteredList<Event> filteredEvents;
 
     private final BudgetBook budgetBook;
 
@@ -236,9 +234,7 @@ public class ModelManager implements Model {
      */
     @Override
     public void addAppointment(Appointment appointment) {
-        if (!eventTracker.hasExistingDate(appointment)) {
-            appointmentBook.addAppointment(appointment);
-        }
+        appointmentBook.addAppointment(appointment);
         reset();
     }
 
@@ -250,6 +246,7 @@ public class ModelManager implements Model {
     @Override
     public void removeAppointment(Appointment appointment) {
         appointmentBook.removeAppointment(appointment);
+        reset();
     }
 
     @Override
@@ -257,6 +254,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedAppointment);
 
         appointmentBook.setAppointment(target, editedAppointment);
+        reset();
     }
 
     /**
@@ -267,6 +265,7 @@ public class ModelManager implements Model {
     @Override
     public void removeAppointmentIndex(int indexToRemove) {
         appointmentBook.removeAppointment(indexToRemove);
+        reset();
     }
 
     /**
@@ -475,6 +474,7 @@ public class ModelManager implements Model {
                 && scheduleTracker.equals(other.scheduleTracker);
     }
 
+    /* Schedule Methods */
     @Override
     public ReadOnlyScheduleTracker getScheduleTracker() {
         return scheduleTracker;
@@ -504,16 +504,24 @@ public class ModelManager implements Model {
     @Override
     public void addSchedule(Schedule schedule) {
         scheduleTracker.addSchedule(schedule);
+        reset();
     }
 
     @Override
     public void deleteSchedule(Schedule schedule) {
         scheduleTracker.removeSchedule(schedule);
+        reset();
     }
 
     @Override
     public void setSchedule(Schedule target, Schedule editedSchedule) {
         scheduleTracker.setSchedule(target, editedSchedule);
+        reset();
+    }
+
+    @Override
+    public boolean hasClashingDateTime(Event event) {
+        return eventTracker.hasClashingDateTime(event);
     }
 
     @Override
@@ -526,6 +534,6 @@ public class ModelManager implements Model {
      */
     private void reset() {
         eventTracker.resetData(appointmentBook, scheduleTracker);
-        filteredEvents.setAll(this.eventTracker.getEventList());
+        filteredEvents = new FilteredList<>(this.eventTracker.getEventList());
     }
 }
