@@ -65,7 +65,7 @@ public class ReminderList implements Iterable<Reminder> {
      * Removes the equivalent reminder from the list. (By reminder)
      * The reminder must exist in the list.
      */
-    public void remove(Schedule toRemove) {
+    public void remove(Reminder toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new ReminderNotFoundException();
