@@ -73,6 +73,7 @@ public class ResidentRoom {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
+                .append("; Room Number: ")
                 .append(getRoomNumber());
 
         return builder.toString();
