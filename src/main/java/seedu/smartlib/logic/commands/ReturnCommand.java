@@ -49,10 +49,6 @@ public class ReturnCommand extends Command {
 
     private void verifyNameRegistration(Model model) throws CommandException {
 
-        if(!model.isBookWithBarcodeBorrowed(incompleteRecord.getBookBarcode())) {
-            throw new CommandException(MESSAGE_NO_SUCH_RECORD_FOUND);
-        }
-
         if (!model.hasBookWithBarcode(incompleteRecord.getBookBarcode())) {
             throw new CommandException(NO_BOOK_FOUND);
         }
@@ -60,6 +56,10 @@ public class ReturnCommand extends Command {
         if (!model.hasBookWithBarcode(incompleteRecord.getBookBarcode()) &&
                 !model.hasReader(model.getReaderNameForReturn(incompleteRecord.getBookBarcode()))) {
             throw new CommandException(NO_READER_AND_BOOK_FOUND);
+        }
+
+        if(!model.isBookWithBarcodeBorrowed(incompleteRecord.getBookBarcode())) {
+            throw new CommandException(MESSAGE_NO_SUCH_RECORD_FOUND);
         }
     }
 
