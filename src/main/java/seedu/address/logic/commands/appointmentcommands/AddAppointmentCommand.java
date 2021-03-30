@@ -1,6 +1,8 @@
 package seedu.address.logic.commands.appointmentcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_APPOINTMENT;
+import static seedu.address.commons.core.Messages.MESSAGE_TUTOR_DOES_NOT_EXIST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -38,10 +40,6 @@ public class AddAppointmentCommand extends Command {
             + PREFIX_LOCATION + "Bedok";
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
-    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the list";
-    public static final String MESSAGE_TUTOR_DOES_NOT_EXIST = "Tutor of this "
-            + "appointment does not exist in the user system. Please ensure tutor "
-            + "exists or use the add_tutor function to add a tutor.";
 
     private final Appointment toAdd;
 

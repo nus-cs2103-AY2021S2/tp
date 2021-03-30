@@ -30,7 +30,8 @@ import seedu.address.model.person.Person;
  */
 public class TypicalPersons {
 
-    public static final Person ALICE = new PersonBuilder().withName("Alice Pauline").withGender("Female")
+    public static final Person ALICE =
+            new PersonBuilder().withName("Alice Tan").withGender("Female")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
             .withSubject("Mathematics", "Secondary 4", "60", "5", "A-Level")

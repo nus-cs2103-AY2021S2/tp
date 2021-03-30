@@ -15,5 +15,13 @@ public class Messages {
     public static final String MESSAGE_APPOINTMENT_LISTED_OVERVIEW = "%1$d appointments listed!";
     public static final String MESSAGE_INVALID_GRADE_DISPLAYED_INDEX =
             "The grade index provided is invalid";
-            //public static final String MESSAGE_GRADE_LISTED_OVERVIEW = "%1$d grades listed!";
+    public static final String MESSAGE_TIME_FROM_GREATER_THAN = "Time from has to be "
+            + "smaller than time to. Please check your input for time from and time to "
+            + "again.";
+    public static final String MESSAGE_TUTOR_DOES_NOT_EXIST = "Tutor of this "
+            + "appointment does not exist in the user system. Please ensure tutor "
+            + "exists or use the add_tutor function to add a tutor.";
+    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the list";
+    public static final String MESSAGE_DELETE_APPOINTMENT_FAILURE = "Appointment does"
+            + " not exists in appointment list.";
 }
