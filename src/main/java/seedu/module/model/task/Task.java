@@ -2,6 +2,7 @@ package seedu.module.model.task;
 
 import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE;
 import static seedu.module.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.module.model.task.Recurrence.isValidRecurrence;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -214,7 +215,6 @@ public class Task {
         }
 
         if (oldTime.compareTo(currTime) < 0) {
-            // deadline is expired
             switch (taskRecurrence.getRecurrenceType()) {
             case daily:
                 //change date to day + 1
@@ -232,7 +232,7 @@ public class Task {
                         .format(formatter);
                 break;
             default:
-                // throw new CommandException(MESSAGE_INVALID_RECURRENCE);
+                 assert isValidRecurrence(taskRecurrence.value);
             }
             return new Time(nextRecurringDeadlineStr);
         } else {
@@ -240,6 +240,7 @@ public class Task {
             return oldTime;
         }
     }
+
 
     /**
      * Overloaded getRecurringTime method for optional time.

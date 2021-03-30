@@ -30,6 +30,7 @@ public class RecurCommandParser implements Parser<Command> {
         requireNonNull(args);
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TASK_NAME,
                 PREFIX_DEADLINE, PREFIX_MODULE, PREFIX_DESCRIPTION, PREFIX_RECURRENCE, PREFIX_TAG);
+
         Index index;
         RecurCommand recurCommand;
 

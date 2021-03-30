@@ -20,12 +20,14 @@ import seedu.module.model.task.Task;
 public class RecurCommand extends Command {
     public static final String COMMAND_WORD = "recur";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Make a task recur either daily, weekly or monthly "
-            + "to the task identified by the index number used in the last person listing. "
-            + "If recurrence specified, it is overwritten by the input.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "r/ RECURRENCE (must be daily, weekly or monthly)\n"
-            + "Example: " + COMMAND_WORD + " 1 r/ monthly";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Make a task not recur daily, weekly or monthly "
+            + "or remove a tasks recurrence identified by the INDEX.\n"
+            + "Parameters: INDEX, RECURRENCE \n"
+            + "If RECURRENCE specified, it is overwritten by the RECURRENCE. "
+            + "If RECURRENCE is not specified, recurrence of task removed.\n"
+            + "r/RECURRENCE ('', 'daily', 'weekly' or 'monthly')\n"
+            + "Example for adding recurrence: " + COMMAND_WORD + " 1 r/monthly\n"
+            + "Example for removal: " + COMMAND_WORD + " 2 r/";
 
     public static final String MESSAGE_ADD_RECURRENCE_SUCCESS = "New recurrence to task added successfully.\n%1$s";
     public static final String MESSAGE_INVALID_RECURRENCE = "Recurrence can only be daily, weekly or monthly.";
@@ -50,7 +52,7 @@ public class RecurCommand extends Command {
         this.recurrence = recurrence;
     }
 
-    @SuppressWarnings("checkstyle:Regexp")
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         assert model != null;

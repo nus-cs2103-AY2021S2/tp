@@ -273,7 +273,7 @@ Examples:
 
 ### Recurring tasks: `recur`
 
-Recurs a task either daily, monthly or weekly in the module book.
+Recurs a task either daily, monthly or weekly or removes the recurrence of the task.
 
 Format: `recur INDEX r/RECURRENCE`
 
@@ -281,12 +281,14 @@ Format: `recur INDEX r/RECURRENCE`
 * `INDEX` refers to the index number displayed in ModuleBook3.5.
    It must be a positive integer.
 * `RECURRENCE` refers to the regularity of the task that recurs periodically.
-* `RECURRENCE` can only be `daily`, `weekly` or `monthly`. It is case-sensitive.
+* `RECURRENCE` can only be `daily`, `weekly` or `monthly` if a task needs to be recurred.
+* `RECURRENCE` should be left empty if the recurrence of a task needs to be removed.
 
 Examples:
 * `recur 1 r/monthly` Recurs the 1st task in ModuleBook3.5 every month.
 * `recur 2 r/weekly` Recurs the 4th task in ModuleBook3.5 every week.
 * `recur 3 r/daily` Recurs the 3rd task in ModuleBook3.5 every day.
+* `recur 4 r/` Removes the recurrence of the 4th task in ModuleBook3.5.
 
 <div style="page-break-after: always;"></div>
 
