@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -30,13 +32,6 @@ public class TimetableView extends UiPart<Region> {
     private static final String FXML = "TimetableWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(TimetableView.class);
-    private final ListChangeListener<Schedulable> meetingsListener = change -> {
-        while (change.next()) {
-            if (change.wasAdded() || change.wasRemoved()) {
-                this.populateWithData(change.getList());
-            }
-        }
-    };
 
 
     @FXML
@@ -73,7 +68,21 @@ public class TimetableView extends UiPart<Region> {
 
     private ObservableList<? extends Schedulable> timetableSlots;
 
-    private LocalDate firstDayOfTimetable;
+    private ObservableValue<LocalDate> firstDayOfTimetable;
+
+    private final ListChangeListener<Schedulable> meetingsListener = change -> {
+        while (change.next()) {
+            if (change.wasAdded() || change.wasRemoved()) {
+                this.populateWithData(change.getList());
+            }
+        }
+    };
+
+    private final ChangeListener<LocalDate> dateListener = (observable, oldValue, newValue) -> {
+        reset();
+        timetablePlacementPolicy = new TimetablePlacementPolicy(newValue);
+        populateWithData(timetableSlots);
+    };
 
 
     /**
@@ -91,14 +100,16 @@ public class TimetableView extends UiPart<Region> {
      * @param timetableSlots
      */
 
-    public TimetableView(ObservableList<? extends Schedulable> timetableSlots, LocalDate firstDayOfTimetable) {
+    public TimetableView(ObservableList<? extends Schedulable> timetableSlots,
+                         ObservableValue<LocalDate> firstDayOfTimetable) {
         super(FXML);
         this.timetableSlots = timetableSlots;
         this.firstDayOfTimetable = firstDayOfTimetable;
-        this.timetablePlacementPolicy = new TimetablePlacementPolicy(firstDayOfTimetable);
+        this.timetablePlacementPolicy = new TimetablePlacementPolicy(firstDayOfTimetable.getValue());
         populateWithData(timetableSlots);
         //add Listener
         timetableSlots.addListener(this.meetingsListener);
+        firstDayOfTimetable.addListener(this.dateListener);
     }
 
     public void setTimetablePlacementPolicy(TimetablePlacementPolicy policy) {
@@ -208,5 +219,7 @@ public class TimetableView extends UiPart<Region> {
         dayScheduleSix.getChildren().clear();
         dayScheduleSeven.getChildren().clear();
     }
+
+
 
 }

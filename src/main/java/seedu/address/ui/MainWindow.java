@@ -150,7 +150,7 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         ObservableList<Meeting> meetingObservableList = logic.getAllMeetingList();
-        TimetableView timetableView = new TimetableView(meetingObservableList, LocalDate.now());
+        TimetableView timetableView = new TimetableView(meetingObservableList, logic.getTimeTableStartDate());
         timetableHolder.getChildren().add(timetableView.getRoot());
 
         // Yuheng To Maurice: I made my modification to the logic so now you can add meetings into the UI.
