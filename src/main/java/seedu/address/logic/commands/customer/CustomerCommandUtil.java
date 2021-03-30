@@ -8,11 +8,11 @@ public class CustomerCommandUtil {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
     /**
-     * Checks whether the customer is a valid entry.
-     * @param customer
-     * @param model
-     * @return
-     * @throws CommandException
+     * Checks whether the Customer is a valid entry.
+     * @param customer Candidate Customer to be added.
+     * @param model The model object.
+     * @return true if the Customer is a valid entry.
+     * @throws CommandException If the Customer is an invalid entry.
      */
     public static boolean isValidCustomer(Person customer, Model model) throws CommandException {
         if (model.hasPerson(customer)) {

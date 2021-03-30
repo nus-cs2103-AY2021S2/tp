@@ -13,8 +13,8 @@ import seedu.address.model.exceptions.DuplicateItemException;
 import seedu.address.model.exceptions.ItemNotFoundException;
 
 public class UniqueItemList<T extends Item> implements Iterable<T> {
-    private final ObservableList<T> internalList = FXCollections.observableArrayList();
-    private final ObservableList<T> internalUnmodifiableList =
+    private ObservableList<T> internalList = FXCollections.observableArrayList();
+    private ObservableList<T> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
@@ -90,6 +90,14 @@ public class UniqueItemList<T extends Item> implements Iterable<T> {
         }
 
         internalList.setAll(list);
+    }
+
+    /**
+     * Get items in the list
+     * @return
+     */
+    public ObservableList<T> getItems() {
+        return internalList;
     }
 
     /**

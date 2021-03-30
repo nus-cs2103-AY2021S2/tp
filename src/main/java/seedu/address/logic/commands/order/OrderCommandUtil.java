@@ -1,5 +1,9 @@
 package seedu.address.logic.commands.order;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 import seedu.address.commons.core.Pair;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -8,16 +12,21 @@ import seedu.address.model.dish.Dish;
 import seedu.address.model.order.Order;
 import seedu.address.model.person.Person;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
 public class OrderCommandUtil {
     public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in the order list";
     public static final String MESSAGE_CUSTOMER_INDEX_INVALID = "Invalid customer index!";
     public static final String MESSAGE_DISH_NOT_FOUND = "Dish in order not found on the menu";
 
-    public static Order constructValidOrder(LocalDateTime datetime, Integer customerOneIndex,
+    /**
+     * Constructs a valid Order from the given parameters.
+     * @param dateTime Date and time the order is to be delivered at.
+     * @param customerOneIndex Customer's ID number
+     * @param dishNumberQuantityList List of pairs of the form (dish index, dish quantity).
+     * @param model The model object.
+     * @return Constructed Order object.
+     * @throws CommandException If any parameters are invalid.
+     */
+    public static Order constructValidOrder(LocalDateTime dateTime, Integer customerOneIndex,
                                             List<Pair<Integer, Integer>> dishNumberQuantityList,
                                             Model model) throws CommandException {
 
@@ -51,7 +60,7 @@ public class OrderCommandUtil {
             dishQuantityList.add(dishQuantPair);
         }
 
-        Order toAdd = new Order(datetime, customer, dishQuantityList);
+        Order toAdd = new Order(dateTime, customer, dishQuantityList);
 
         if (model.hasOrder(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_ORDER);

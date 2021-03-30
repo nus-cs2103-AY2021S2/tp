@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.Pair;
@@ -15,9 +14,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.dish.Dish;
 import seedu.address.model.order.Order;
-import seedu.address.model.person.Person;
 
 /**
  * Adds a person to the address book.
@@ -44,16 +41,16 @@ public class OrderAddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New order added: %1$s";
 
-    private final LocalDateTime datetime;
+    private final LocalDateTime dateTime;
     private final Integer customerId;
     private final List<Pair<Integer, Integer>> dishNumberQuantityList;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public OrderAddCommand(LocalDateTime datetime, Integer customerId,
+    public OrderAddCommand(LocalDateTime dateTime, Integer customerId,
                            List<Pair<Integer, Integer>> dishNumberQuantityList) {
-        this.datetime = datetime;
+        this.dateTime = dateTime;
         this.customerId = customerId;
         this.dishNumberQuantityList = dishNumberQuantityList;
     }
@@ -62,7 +59,7 @@ public class OrderAddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Order toAdd = OrderCommandUtil.constructValidOrder(datetime, customerId,
+        Order toAdd = OrderCommandUtil.constructValidOrder(dateTime, customerId,
                 dishNumberQuantityList, model);
 
         model.addOrder(toAdd);
@@ -73,7 +70,7 @@ public class OrderAddCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof OrderAddCommand // instanceof handles nulls
-                && datetime.equals(((OrderAddCommand) other).datetime)
+                && dateTime.equals(((OrderAddCommand) other).dateTime)
                 && customerId.equals(((OrderAddCommand) other).customerId)
                 && dishNumberQuantityList.equals(((OrderAddCommand) other).dishNumberQuantityList));
     }
