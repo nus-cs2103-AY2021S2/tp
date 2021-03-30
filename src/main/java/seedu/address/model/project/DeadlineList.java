@@ -175,13 +175,6 @@ public class DeadlineList {
         return deadlines.size();
     }
 
-    /**
-     * Sorts the deadline list.
-     */
-    public void sort() {
-        Collections.sort(deadlines);
-    }
-
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

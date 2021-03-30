@@ -2,11 +2,13 @@ package seedu.address.ui;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.logging.Logger;
 
 import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -92,7 +94,8 @@ public class ProjectDisplayPanel extends UiPart<Region> {
     private void setUpDeadlinesList(ObservableList<CompletableDeadline> deadlines) {
         completableDeadlineListView.prefHeightProperty()
                 .bind(Bindings.size(deadlines).multiply(DEADLINES_CARD_HEIGHT).add(SAFETY_MARGIN));
-        completableDeadlineListView.setItems(new FilteredList<>(deadlines));
+        completableDeadlineListView.setItems(new SortedList<>(deadlines,
+                Comparator.comparing(CompletableDeadline::getBy).thenComparing(CompletableDeadline::getDescription)));
         completableDeadlineListView.setCellFactory(listView ->
                 new ProjectDisplayPanel.CompletableDeadlineListViewCell());
     }

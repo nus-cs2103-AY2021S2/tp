@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 import seedu.address.commons.util.DateUtil;
 
-public abstract class CompletableDeadline implements Comparable<CompletableDeadline> {
+public abstract class CompletableDeadline {
 
     public static final String MESSAGE_CONSTRAINTS_DESCRIPTION = "Description can take any values, and it should "
             + "not be blank";
@@ -126,9 +126,5 @@ public abstract class CompletableDeadline implements Comparable<CompletableDeadl
      */
     @Override
     public abstract String toString();
-
-    @Override
-    public int compareTo(CompletableDeadline o) {
-        return this.by.compareTo(o.by);
-    }
+    
 }
