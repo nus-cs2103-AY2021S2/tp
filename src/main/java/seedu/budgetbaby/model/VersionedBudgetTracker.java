@@ -12,6 +12,9 @@ public class VersionedBudgetTracker extends BudgetTracker {
     private final List<ReadOnlyBudgetTracker> budgetTrackerStateList;
     private int currentStatePointer;
 
+    /**
+     * Initializes a VersionedBudgetTracker with the given {@code initialState}.
+     */
     public VersionedBudgetTracker(ReadOnlyBudgetTracker initialState) {
         super(initialState);
 

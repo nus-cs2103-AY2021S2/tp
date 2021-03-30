@@ -21,11 +21,17 @@ public class FinancialRecordList implements Iterable<FinancialRecord> {
     private final ObservableList<FinancialRecord> internalList;
     private final ObservableList<FinancialRecord> internalUnmodifiableList;
 
+    /**
+     * Initializes a FinancialRecordList.
+     */
     public FinancialRecordList() {
         this.internalList = FXCollections.observableArrayList();
         this.internalUnmodifiableList = FXCollections.unmodifiableObservableList(internalList);
     }
 
+    /**
+     * Initializes a FinancialRecordList with the given {@code frList}.
+     */
     public FinancialRecordList(List<FinancialRecord> frList) {
         this.internalList = FXCollections.observableArrayList(frList);
         this.internalUnmodifiableList = FXCollections.unmodifiableObservableList(internalList);

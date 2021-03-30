@@ -2,7 +2,6 @@ package seedu.budgetbaby.ui;
 
 import java.util.logging.Logger;
 
-import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckMenuItem;
@@ -18,7 +17,6 @@ import seedu.budgetbaby.logic.BudgetBabyLogic;
 import seedu.budgetbaby.logic.commands.CommandResult;
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
-import seedu.budgetbaby.model.record.FinancialRecord;
 
 /**
  * The Main Window. Provides the basic application layout containing
