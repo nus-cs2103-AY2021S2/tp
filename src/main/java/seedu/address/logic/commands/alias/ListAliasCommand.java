@@ -24,7 +24,7 @@ public class ListAliasCommand extends Command {
      * Executes an ListAliasCommand to list all aliases.
      *
      * @param model {@code Model} which the command should operate on.
-     * @return result of command execution.
+     * @return Result of command execution.
      * @throws CommandException if input is invalid.
      * @throws NullPointerException if the input is null.
      */
