@@ -23,7 +23,7 @@ public class NameContainsKeywordsPredicateTest {
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        seedu.address.model.contact.NameContainsKeywordsPredicate firstPredicateCopy =
+        NameContainsKeywordsPredicate firstPredicateCopy =
                  new NameContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
