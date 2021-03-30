@@ -6,6 +6,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.group.Group;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 
@@ -84,6 +85,24 @@ public class AddMeetingCommand extends Command {
             throw new CommandException(String.format(MESSAGE_CLASH_MEETING, formatMeetingListString));
         }
 
+        addConnectionsToPersons(toAdd, model);
+
+        model.addMeeting(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+    }
+
+    private void addConnectionsToPersons(Meeting toAdd, Model model) throws CommandException {
+        // Use set to ensure unique element.
+        HashSet<Person> personsConnection = new HashSet<>();
+
+        if (!toAdd.getGroups().isEmpty()) {
+            for (Group group : toAdd.getGroups()) {
+                Set<Person> personsInGroup = model.findPersonsInGroup(group);
+                // Get the union set.
+                personsConnection.addAll(personsInGroup);
+            }
+        }
+
         if (getConnectionToPerson().size() != 0) {
             toAdd.setPersonMeetingConnection(model.getPersonMeetingConnection());
             List<Person> lastShownList = model.getFilteredPersonList();
@@ -96,12 +115,13 @@ public class AddMeetingCommand extends Command {
             // If we can pass the check, then add connection.
             for (Index index: getConnectionToPerson()) {
                 Person personToAddConnection = lastShownList.get(index.getZeroBased());
-                model.addPersonMeetingConnection(personToAddConnection, toAdd);
+                personsConnection.add(personToAddConnection);
             }
         }
 
-        model.addMeeting(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        for (Person allPersonToAddConnection : personsConnection) {
+            model.addPersonMeetingConnection(allPersonToAddConnection, toAdd);
+        }
     }
 
     @Override
