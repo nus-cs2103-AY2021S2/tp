@@ -44,22 +44,32 @@ public class EditModuleCommandTest {
 
     @Test
     public void execute_duplicateModuleUnfilteredList_failure() {
-        Module firstModule = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
-        EditModuleCommand editModuleCommand = new EditModuleCommand(INDEX_SECOND_MODULE.getOneBased(),
-                                                                    firstModule.getTitle());
+        Title testTitle = new Title("CS Test");
+        Module testModule = new Module(testTitle);
+        Model modelCopy = new ModelManager(new RemindMe(model.getRemindMe()), new UserPrefs());
+        modelCopy.addModule(testModule);
 
-        assertCommandFailure(editModuleCommand, model, EditModuleCommand.MESSAGE_DUPLICATE_MODULE);
+        Module moduleInList = modelCopy.getFilteredModuleList().get(INDEX_SECOND_MODULE.getZeroBased());
+        EditModuleCommand editModuleCommand = new EditModuleCommand(INDEX_FIRST_MODULE.getOneBased(),
+                                                                    testTitle);
+
+        assertCommandFailure(editModuleCommand, modelCopy, EditModuleCommand.MESSAGE_DUPLICATE_MODULE);
     }
 
     @Test
-    public void execute_duplicatePersonFilteredList_failure() {
-        showModuleAtIndex(model, INDEX_FIRST_MODULE);
+    public void execute_duplicateModuleFilteredList_failure() {
+        Title testTitle = new Title("CS Test");
+        Module testModule = new Module(testTitle);
+        Model modelCopy = new ModelManager(new RemindMe(model.getRemindMe()), new UserPrefs());
+        modelCopy.addModule(testModule);
 
-        Module moduleInList = model.getRemindMe().getModuleList().get(INDEX_SECOND_MODULE.getZeroBased());
+        showModuleAtIndex(modelCopy, INDEX_FIRST_MODULE);
+
+        Module moduleInList = modelCopy.getRemindMe().getModuleList().get(INDEX_SECOND_MODULE.getZeroBased());
         EditModuleCommand editModuleCommand = new EditModuleCommand(INDEX_FIRST_MODULE.getOneBased(),
                                                                     moduleInList.getTitle());
 
-        assertCommandFailure(editModuleCommand, model, EditModuleCommand.MESSAGE_DUPLICATE_MODULE);
+        assertCommandFailure(editModuleCommand, modelCopy, EditModuleCommand.MESSAGE_DUPLICATE_MODULE);
     }
 
     @Test
