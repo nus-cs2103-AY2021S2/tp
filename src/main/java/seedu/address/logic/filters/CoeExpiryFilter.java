@@ -1,5 +1,6 @@
 package seedu.address.logic.filters;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
@@ -26,6 +27,7 @@ public class CoeExpiryFilter extends AbstractFilter {
      */
     public CoeExpiryFilter(String filterString) {
         super(filterString);
+        requireNonNull(filterString);
         checkArgument(isValidFilter(filterString), MESSAGE_CONSTRAINTS);
         LocalDate currentDate = LocalDate.now();
         boolean expiredOnly = filterString.equals("exp");
