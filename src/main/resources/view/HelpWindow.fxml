@@ -11,13 +11,13 @@
 <?import javafx.stage.*?>
 <?import seedu.us.among.ui.*?>
 
-<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
   <scene>
     <Scene>
-        <GridPane>
+        <GridPane prefHeight="421.0" prefWidth="589.0">
             <HBox alignment="BASELINE_RIGHT" GridPane.rowIndex="0">
                 <opaqueInsets>
                     <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
@@ -64,35 +64,31 @@
                <font>
                   <Font name="System Bold" size="17.0" />
                </font></Label>
-            <TableView fx:id="tableView" GridPane.rowIndex="3">
+            <TableView fx:id="tableView" prefHeight="315.0" prefWidth="589.0" GridPane.rowIndex="3">
                 <columns>
-                    <TableColumn text="Action">
+                    <TableColumn prefWidth="88.0" text="Action">
                         <cellValueFactory><PropertyValueFactory property="action" />
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn text="Format">
+                    <TableColumn prefWidth="499.0" text="Format">
                         <cellValueFactory><PropertyValueFactory property="format" />
-                        </cellValueFactory>
-                    </TableColumn>
-                    <TableColumn prefWidth="552.6666870117188" text="Example">
-                        <cellValueFactory><PropertyValueFactory property="example" />
                         </cellValueFactory>
                     </TableColumn>
                 </columns>
                 <items>
                     <FXCollections fx:factory="observableArrayList">
-                        <UserGuide action="Help" example="help" format="help" />
-                        <UserGuide action="Toggle" example="toggle light" format="toggle THEME" />
-                        <UserGuide action="Exit" example="exit" format="exit" />
-                        <UserGuide action="Add" example="add -x GET -u https://api.data.gov.sg/v1/environment/pm25 -d {&quot;some&quot;: &quot;data&quot;} -h &quot;key: value1&quot; -t local" format="add -x METHOD -u URL [-d DATA] [-h HEADER]… [-t TAG]…" />
-                        <UserGuide action="Edit" example="edit 1 -x GET -u https://reqres.in/api/users -d {&quot;some&quot;: &quot;data&quot;} -h &quot;key: value1&quot; -t local -t data" format="edit INDEX [-x METHOD] [-u URL] [-d DATA] [-h HEADER]… [-t TAG]…" />
-                        <UserGuide action="Show" example="show 1" format="show INDEX" />
-                        <UserGuide action="Remove" example="remove 3" format="remove INDEX" />
-                        <UserGuide action="Find" example="find github transport" format="find KEYWORD [MORE_KEYWORDS]…" />
-                        <UserGuide action="List" example="list" format="list" />
-                        <UserGuide action="Clear" example="clear" format="clear" />
-                        <UserGuide action="Send" example="send 1" format="send INDEX" />
-                        <UserGuide action="Run" example="run -x GET -u https://api.data.gov.sg/v1/environment/uv-index" format="run -x METHOD -u URL [-d DATA] [-h HEADER]…" />
+                        <UserGuide action="Help" format="help" />
+                        <UserGuide action="Toggle" format="toggle THEME" />
+                        <UserGuide action="Exit" format="exit" />
+                        <UserGuide action="Add" format="add -x METHOD -u URL [-d DATA] [-h HEADER]… [-t TAG]…" />
+                        <UserGuide action="Edit" format="edit INDEX [-x METHOD] [-u URL] [-d DATA] [-h HEADER]… [-t TAG]…" />
+                        <UserGuide action="Show" format="show INDEX" />
+                        <UserGuide action="Remove" format="remove INDEX" />
+                        <UserGuide action="Find" format="find KEYWORD [MORE_KEYWORDS]…" />
+                        <UserGuide action="List" format="list" />
+                        <UserGuide action="Clear" format="clear" />
+                        <UserGuide action="Send" format="send INDEX" />
+                        <UserGuide action="Run" format="run -x METHOD -u URL [-d DATA] [-h HEADER]…" />
                     </FXCollections>
                 </items>
             </TableView>
