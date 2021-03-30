@@ -1,0 +1,17 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title user executes "update 1 u/new 600000" state
+
+
+class Property as "__property1:Property__"
+class Option as "__:Option__"
+class Offer as "__600000:Offer__"
+
+Property -> Option
+Option -> Offer
+
+caption [PropertyBookStates are hidden]
+@end
