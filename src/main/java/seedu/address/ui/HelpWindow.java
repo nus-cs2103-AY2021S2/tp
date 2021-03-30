@@ -1,8 +1,12 @@
 package seedu.address.ui;
 
+import java.awt.*;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
+import java.net.URI;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
@@ -108,6 +112,16 @@ public class HelpWindow extends UiPart<Stage> {
         url.putString(USERGUIDE_URL);
         clipboard.setContent(url);
     }
+
+    /**
+     * opens the URL to the user guide in the default user browser.
+     */
+    @FXML
+    private void openUrl() throws URISyntaxException, IOException {
+        URI userGuideUri = new URI(USERGUIDE_URL);
+        Desktop.getDesktop().browse(userGuideUri);
+    }
+
 
     public void setHelpText(String helpTitle, String helpMsg) {
         // logger.info("helpMsg: " + helpMsg);
