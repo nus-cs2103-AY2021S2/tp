@@ -19,7 +19,7 @@ NUS Module Planner is a **desktop app for NUS students to manage and plan the mo
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/UiLanding.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -77,46 +77,28 @@ Format: `help`
 ## General Commands
 
 ### Check graduation : `validate`
-Format: `validate [p/PLAN_NUMBER]`
-
-If the optional argument `[p/PLAN_NUMBER]` is provided:
+Format: `validate`
 
 - Shows header
     - Shows plan number
+    - Shows description of plan
+    - Shows if the plan is valid compared to master plan
     - Shows how many MCs the plan has
-    - Shows how many MCs completed
-    - Shows how many semesters remaining in plan
-- Shows rows of modules placed in respective semesters
-    - Shows X tables of X semesters
-    - Each table has a header of how many MCs the semester will have
-    - Each table shows module details
-
-Otherwise:
-
-- Shows list of plans that are still valid
-    - Each row is a plan
-        - Each plan has 4 column attributes:
-            - Shows plan number
-            - Shows how many MCs the plan has
-            - Shows how many MCs completed
-            - Shows how many semesters remaining in plan
+    - Shows how many semesters the plan has
 
 > Tip: A plan is valid if the modules contained in its history match those of the current Master Plan.
 > This ensures that any valid plan is a viable option for the user.
 
 ## Plan commands
-### List a summary of all plans: `list plans`
+### List a summary of all plans: `list`
 
-Format: `list plans`
-Tip: A user can view an individual plan to see more details about it. (See show p/PLAN_NUMBER)
-
-Format: `master p/PLAN_NUMBER`
+Format: `list`
 
 This command must be done by the user at least once before they can use other commands.
 Marks the given plan as the master plan, and this plan should contain all the modules that the user has taken (if any).
 
 Example output:
-[IMG]
+![list plans](images/listPlans.png)
 
 ### Create Plan: `addp/deletep`
 
@@ -138,9 +120,6 @@ Format: `master p/PLAN_NUMBER`
 
 This command must be done by the user at least once before they can use other commands.
 Marks the given plan as the master plan, and this plan should contain all the modules that the user has taken (if any).
-
-Example output:
-[IMG]
 
 ## Semester commands
 
@@ -177,8 +156,9 @@ Marks the supplied semester as the current semester of the master plan.
 This indicates that all previous semesters are part of the user’s history and all future semesters have yet to be attempted.
 The user will have to manually update the current semester as time progresses.
 
-Example output:
-[IMG]
+Example output success: `Successfully marked current semester: <SemNumber>`
+
+Example output failure: `The provided SEM_NUMBER does not match any existing semesters in the master plan.`
 
 
 ### Show history: `history`
@@ -189,7 +169,7 @@ The above command takes no arguments and shows the user a list of modules that t
 > Tip: The *current semester* is the semester that was marked using the `current semester` command.
 
 Example output:
-[IMG]
+![example history](images/exampleHistory.png)
 
 
 
