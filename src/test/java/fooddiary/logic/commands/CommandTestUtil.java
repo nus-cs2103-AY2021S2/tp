@@ -20,6 +20,7 @@ import fooddiary.model.FoodDiary;
 import fooddiary.model.Model;
 import fooddiary.model.entry.Entry;
 import fooddiary.model.entry.NameContainsKeywordsPredicate;
+import fooddiary.testutil.AddOnEntryDescriptorBuilder;
 import fooddiary.testutil.EditEntryDescriptorBuilder;
 
 /**
@@ -67,6 +68,8 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditEntryDescriptor DESC_A;
     public static final EditCommand.EditEntryDescriptor DESC_B;
+    public static final AddOnCommand.AddOnToEntryDescriptor DESC_C;
+    public static final AddOnCommand.AddOnToEntryDescriptor DESC_D;
 
     static {
         DESC_A = new EditEntryDescriptorBuilder().withName(VALID_NAME_A).withRating(VALID_RATING_A)
@@ -75,6 +78,13 @@ public class CommandTestUtil {
         DESC_B = new EditEntryDescriptorBuilder().withName(VALID_NAME_B).withRating(VALID_RATING_B)
                 .withPrice(VALID_PRICE_B).withReviews(VALID_REVIEW_B).withAddress(VALID_ADDRESS_B)
                 .withTagCategories(VALID_TAG_WESTERN, VALID_TAG_FASTFOOD).build();
+    }
+
+    static {
+        DESC_C = new AddOnEntryDescriptorBuilder()
+                .withPrice(VALID_PRICE_A).withReviews(VALID_REVIEW_A).build();
+        DESC_D = new AddOnEntryDescriptorBuilder()
+                .withPrice(VALID_PRICE_B).withReviews(VALID_REVIEW_B).build();
     }
 
     /**
