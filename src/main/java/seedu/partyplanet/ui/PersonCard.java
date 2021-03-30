@@ -50,7 +50,7 @@ public class PersonCard extends UiPart<Region> {
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
-        id.setText(displayedIndex + ". ");
+        id.setText("⟨ " + displayedIndex + " ⟩");
         name.setText(person.getName().fullName);
         if (!Phone.isEmptyPhone(person.getPhone())) {
             addDetail(person.getPhone().value);

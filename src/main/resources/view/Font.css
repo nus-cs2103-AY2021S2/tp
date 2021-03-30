@@ -34,11 +34,11 @@
 }
 
 .cell_big_label {
-    -fx-font-family: "Tisa Sans Pro Medium";
+    -fx-font-family: "Tisa Sans Pro";
 }
 
 .cell_small_label {
-    -fx-font-family: "Tisa Sans Pro Regular";
+    -fx-font-family: "Tisa Sans Pro Light";
 }
 
 .result-display {
