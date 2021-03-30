@@ -163,6 +163,13 @@ The following sequence diagram shows how the Quiz command works:
 
 ![QuizSequenceDiagram](images/QuizSequenceDiagram.png)
 
+### Start Command
+
+The start command is used to start a quiz session, enabling users to define the number and type of 
+questions they want to be tested on. The activity diagram below shows the flow of events when a user
+enters the start command.
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
