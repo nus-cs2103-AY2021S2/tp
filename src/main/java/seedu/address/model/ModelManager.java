@@ -25,6 +25,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Session> filteredSessions;
+    private final FilteredList<Person> unfilteredPersons;
+    private final FilteredList<Session> unfilteredSessions;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -39,6 +41,8 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredSessions = new FilteredList<>(this.addressBook.getSessionList());
+        unfilteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        unfilteredSessions = new FilteredList<>(this.addressBook.getSessionList());
     }
 
     public ModelManager() {
@@ -150,6 +154,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Session> getUnfilteredSessionList() {
+        return unfilteredSessions;
+    }
+
+    @Override
     public void updateFilteredSessionList(Predicate<Session> predicate) {
         requireNonNull(predicate);
         filteredSessions.setPredicate(predicate);
@@ -168,6 +177,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
+    }
+
+    @Override
+    public ObservableList<Person> getUnfilteredPersonList() {
+        return unfilteredPersons;
     }
 
     @Override

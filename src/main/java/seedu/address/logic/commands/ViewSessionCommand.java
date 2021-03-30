@@ -36,7 +36,7 @@ public class ViewSessionCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredSessionList(sessionPredicate);
-        List<Session> lastShownList = model.getFilteredSessionList();
+        List<Session> lastShownList = model.getUnfilteredSessionList();
 
         Optional<Session> sessionToView = lastShownList.stream()
                 .filter(x-> x.getClassId().equals(sessionPredicate.getSessionId())).findAny();

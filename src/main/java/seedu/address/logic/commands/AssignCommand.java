@@ -58,7 +58,7 @@ public class AssignCommand extends Command {
 
     private boolean hasClashes(Model model, Person person, Session sessionToCheck) {
         for (SessionId sessionId : person.getSessions()) {
-            List<Session> lastShownSessionsList = model.getFilteredSessionList();
+            List<Session> lastShownSessionsList = model.getUnfilteredSessionList();
             Session currentSession = lastShownSessionsList.stream()
                     .filter(x-> x.getClassId().equals(sessionId)).findAny().get();
 
@@ -98,7 +98,7 @@ public class AssignCommand extends Command {
     }
 
     private Set<Person> getStudents(Model model, Set<PersonId> studentIds, Session session) throws CommandException {
-        List<Person> lastShownPersonsList = model.getFilteredPersonList();
+        List<Person> lastShownPersonsList = model.getUnfilteredPersonList();
         Set<Person> studentsToAssign = new HashSet<>();
         for (PersonId studentId : studentIds) {
             Optional<Person> studentToAssign = lastShownPersonsList.stream()
@@ -118,7 +118,7 @@ public class AssignCommand extends Command {
     }
 
     private Person getTutor(Model model, PersonId tutorId, Session session) throws CommandException {
-        List<Person> lastShownPersonsList = model.getFilteredPersonList();
+        List<Person> lastShownPersonsList = model.getUnfilteredPersonList();
         Optional<Person> tutorToAssign = lastShownPersonsList.stream()
                 .filter(x-> x.getPersonId().equals(tutorId)).findAny();
         if (tutorToAssign.isEmpty()) {
@@ -154,7 +154,7 @@ public class AssignCommand extends Command {
         PersonId tutorId = this.assignment.getTutorId();
         SessionId sessionId = this.assignment.getSessionId();
 
-        List<Session> lastShownSessionsList = model.getFilteredSessionList();
+        List<Session> lastShownSessionsList = model.getUnfilteredSessionList();
         Optional<Session> sessionToAssign = lastShownSessionsList.stream()
                 .filter(x-> x.getClassId().equals(sessionId)).findAny();
         if (sessionToAssign.isEmpty()) {

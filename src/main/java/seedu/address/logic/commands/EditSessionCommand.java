@@ -64,7 +64,7 @@ public class EditSessionCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Session> lastShownList = model.getFilteredSessionList();
+        List<Session> lastShownList = model.getUnfilteredSessionList();
 
         Optional<Session> optSessionToEdit = lastShownList.stream()
                 .filter(x-> x.getClassId().equals(sessionId)).findAny();
