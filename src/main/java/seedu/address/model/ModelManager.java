@@ -22,6 +22,9 @@ import seedu.address.model.filter.PersonFilter;
 import seedu.address.model.grade.Grade;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.ReadOnlyReminderTracker;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.ReminderTracker;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.model.schedule.ScheduleTracker;
@@ -37,6 +40,7 @@ public class ModelManager implements Model {
     private final AppointmentBook appointmentBook;
     private final GradeBook gradeBook;
     private final ScheduleTracker scheduleTracker;
+    private final ReminderTracker reminderTracker;
 
     private final UserPrefs userPrefs;
 
@@ -46,6 +50,7 @@ public class ModelManager implements Model {
     private final FilteredList<Appointment> filteredAppointment;
     private final FilteredList<Grade> filteredGrades;
     private final FilteredList<Schedule> filteredSchedule;
+    private final FilteredList<Reminder> filteredReminders;
 
     private final BudgetBook budgetBook;
 
@@ -66,6 +71,7 @@ public class ModelManager implements Model {
         this.gradeBook = new GradeBook(gradeBook);
         this.budgetBook = new BudgetBook(budgetBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.reminderTracker = new ReminderTracker();
 
         this.personFilter = new PersonFilter();
         this.appointmentFilter = new AppointmentFilter();
@@ -73,6 +79,7 @@ public class ModelManager implements Model {
         filteredAppointment = new FilteredList<>(this.appointmentBook.getAppointmentList());
         filteredGrades = new FilteredList<>(this.gradeBook.getGradeList());
         this.filteredSchedule = new FilteredList<>(this.scheduleTracker.getScheduleList());
+        this.filteredReminders = new FilteredList<>(this.reminderTracker.getReminderList());
     }
 
     /**
@@ -548,6 +555,47 @@ public class ModelManager implements Model {
     @Override
     public void setSchedule(Schedule target, Schedule editedSchedule) {
         scheduleTracker.setSchedule(target, editedSchedule);
+    }
+
+    @Override
+    public ReadOnlyReminderTracker getReminderTracker() {
+        return reminderTracker;
+    }
+
+    @Override
+    public void setReminderTracker(ReadOnlyReminderTracker reminderTracker) {
+        this.reminderTracker.resetData(reminderTracker);
+    }
+
+    @Override
+    public ObservableList<Reminder> getFilteredReminderList() {
+        return filteredReminders;
+    }
+
+    @Override
+    public void updateFilteredReminderList(Predicate<Reminder> predicate) {
+        requireNonNull(predicate);
+        filteredReminders.setPredicate(predicate);
+    }
+
+    @Override
+    public boolean hasReminder(Reminder reminder) {
+        return reminderTracker.hasReminder(reminder);
+    }
+
+    @Override
+    public void addReminder(Reminder reminder) {
+        reminderTracker.addReminder(reminder);
+    }
+
+    @Override
+    public void deleteReminder(Reminder reminder) {
+        reminderTracker.removeReminder(reminder);
+    }
+
+    @Override
+    public void setReminder(Reminder target, Reminder editedReminder) {
+        reminderTracker.setReminder(target, editedReminder);
     }
 
     @Override

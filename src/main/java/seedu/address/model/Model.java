@@ -14,6 +14,8 @@ import seedu.address.model.filter.PersonFilter;
 import seedu.address.model.grade.Grade;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.ReadOnlyReminderTracker;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
 
@@ -29,6 +31,7 @@ public interface Model {
     Predicate<Grade> PREDICATE_SHOW_ALL_GRADE = unused -> true;
     Predicate<Schedule> PREDICATE_SHOW_ALL_SCHEDULE = unused -> true;
     Predicate<Event> PREDICATE_SHOW_ALL_EVENT = unused -> true;
+    Predicate<Event> PREDICATE_SHOW_ALL_REMINDER = unused -> true;
 
     /**
      * Returns the user prefs.
@@ -330,6 +333,11 @@ public interface Model {
     void removeAppointmentFilter(AppointmentFilter appointmentFilter);
 
     /**
+     * Returns an unmodifiable view of the filtered event list
+     */
+    ObservableList<Event> getFilteredEventList();
+
+    /**
      * Returns the AddressBook
      */
     ReadOnlyScheduleTracker getScheduleTracker();
@@ -378,8 +386,54 @@ public interface Model {
      */
     void setSchedule(Schedule target, Schedule editedSchedule);
 
+    /* Reminder Model Methods */
+
     /**
-     * Returns an unmodifiable view of the filtered event list
+     * Returns the ReminderTracker
      */
-    ObservableList<Event> getFilteredEventList();
+    ReadOnlyReminderTracker getReminderTracker();
+
+    /**
+     * Replaces reminder tracker data with the data in {@code reminderTracker}.
+     */
+    void setReminderTracker(ReadOnlyReminderTracker reminderTracker);
+
+    /**
+     * Returns an unmodifiable view of the filtered reminder list
+     */
+    ObservableList<Reminder> getFilteredReminderList();
+
+    /**
+     * Updates the filter of the filtered reminder list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredReminderList(Predicate<Reminder> predicate);
+
+    /**
+     * Checks if Reminder exists in reminder list.
+     *
+     * @param reminder Reminder to check
+     * @return True if reminder is already in reminder list
+     */
+    boolean hasReminder(Reminder reminder);
+
+    /**
+     * @param reminder Reminder to add (reminder must not already exist)
+     */
+    void addReminder(Reminder reminder);
+
+    /**
+     * Removes schedule from schedule list.
+     *
+     * @param reminder Schedule to be removed must be present
+     */
+    void deleteReminder(Reminder reminder);
+
+    /**
+     * Replaces the given schedule {@code target} with {@code editedReminder}.
+     * {@code target} must exist in the schedule tracker.
+     * The {@code editedReminder} must not be the same as another existing reminder in the reminder tracker.
+     */
+    void setReminder(Reminder target, Reminder editedReminder);
 }
