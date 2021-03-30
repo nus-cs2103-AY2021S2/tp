@@ -3,7 +3,6 @@ package seedu.address.logic;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,7 +18,6 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyDatesBook;
 import seedu.address.model.date.ImportantDate;
 import seedu.address.model.lesson.Lesson;
-import seedu.address.model.lesson.exceptions.DuplicateLessonException;
 import seedu.address.model.person.LessonDayPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
@@ -57,17 +55,17 @@ public class LogicManager implements Logic {
             storage.saveDatesBook(model.getDatesBook());
             storage.saveLessonBook(model.getLessonBook());
         } catch (IOException ioe) {
-                throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
         return commandResult;
     }
 
     @Override
     public ObservableList<Lesson> getSortedLessonsForDay(String keyword) {
-        //this.model.filterThenSortLessonList(new LessonDayPredicate(keyword), Lesson::compareTo);
-        //return getTransformedLessonList();
-        this.model.filterLesson(new LessonDayPredicate(keyword));
-        return getFilteredLessonList();
+        this.model.filterThenSortLessonList(new LessonDayPredicate(keyword), Lesson::compareTo);
+        return getTransformedLessonList();
+        //this.model.filterLesson(new LessonDayPredicate(keyword));
+        //return getFilteredLessonList();
     }
 
     @Override

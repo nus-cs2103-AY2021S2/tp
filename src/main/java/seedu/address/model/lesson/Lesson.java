@@ -9,7 +9,6 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 
@@ -25,7 +24,6 @@ public class Lesson implements Comparable<Lesson> {
     public final Time time;
 
     private final Set<Person> persons = new HashSet<>();
-   // private final Set<Name> names = new HashSet<>();
 
     /**
      * Constructs a {@code Lesson}.
@@ -67,17 +65,13 @@ public class Lesson implements Comparable<Lesson> {
         return time.timeOfTuition;
     }
 
+    /**
+     * Adds a person to the lesson.
+     * @param person person to be added.
+     */
     public void addPerson(Person person) {
         if (!containsPerson(person)) {
             persons.add(person);
-        } else {
-            throw new DuplicatePersonException();
-        }
-    }
-
-    public void addPersonName(Person person) {
-        if (!containsPerson(person)) {
-         //   names.add(person.getName());
         } else {
             throw new DuplicatePersonException();
         }
@@ -92,6 +86,11 @@ public class Lesson implements Comparable<Lesson> {
                 .collect(Collectors.joining(", "));
     }
 
+    /**
+     * Returns true if the lesson already stores the given person.
+     * @param person Person to be checked if it already exists.
+     * @return a boolean value indicating if the lesson already stores the given person.
+     */
     public boolean containsPerson(Person person) {
         for (Person p : persons) {
             if (p.isSamePerson(person)) {

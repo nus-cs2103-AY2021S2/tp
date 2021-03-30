@@ -37,7 +37,8 @@ class JsonSerializableLessonBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableLessonBook}.
      */
     public JsonSerializableLessonBook(ReadOnlyLessonBook source) {
-        lessons.addAll(source.getLessonList().stream().map(JsonAdaptedLessonInSchedule::new).collect(Collectors.toList()));
+        lessons.addAll(source.getLessonList().stream().map(JsonAdaptedLessonInSchedule::new)
+                .collect(Collectors.toList()));
     }
 
     /**

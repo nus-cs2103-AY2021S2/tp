@@ -28,7 +28,8 @@
     "address" : "wall street",
     "guardianName" : "Louis Kurz",
     "guardianPhone" : "95352564",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "lessons" : [ "Friday 1000" ]
   }, {
     "name" : "Daniel Meier",
     "school" : "Clementi Town Secondary School",

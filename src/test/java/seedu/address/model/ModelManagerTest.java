@@ -99,10 +99,11 @@ public class ModelManagerTest {
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
         DatesBook datesBook = new DatesBook();
+        LessonBook lessonBook = new LessonBook();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs, datesBook);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs, datesBook);
+        modelManager = new ModelManager(addressBook, userPrefs, datesBook, lessonBook);
+        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs, datesBook, lessonBook);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -115,12 +116,12 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs, datesBook)));
+        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs, datesBook, lessonBook)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs, datesBook)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs, datesBook, lessonBook)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -128,6 +129,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs, datesBook)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs, datesBook, lessonBook)));
     }
 }

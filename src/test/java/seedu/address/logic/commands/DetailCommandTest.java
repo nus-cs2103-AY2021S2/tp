@@ -6,6 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalDates.getTypicalDatesBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalLessonBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +23,8 @@ import seedu.address.model.person.Person;
  */
 public class DetailCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalDatesBook());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalDatesBook(),
+            getTypicalLessonBook());
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
@@ -40,7 +42,8 @@ public class DetailCommandTest {
 
         String expectedMessage = String.format(DetailCommand.MESSAGE_DISPLAY_PERSON_SUCCESS, personToDisplay);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getDatesBook());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getDatesBook(),
+                model.getLessonBook());
         Person expectedPersonToDisplay = expectedModel.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
         assertCommandSuccess(detailCommand, model, expectedMessage, expectedPersonToDisplay);

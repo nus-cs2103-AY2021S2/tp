@@ -42,8 +42,8 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyDatesBook datesBook
-    , ReadOnlyLessonBook lessonBook) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyDatesBook datesBook,
+                        ReadOnlyLessonBook lessonBook) {
         super();
         requireAllNonNull(addressBook, userPrefs, datesBook, lessonBook);
 
