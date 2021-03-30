@@ -2,7 +2,9 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
 import static seedu.address.testutil.TypicalTutors.getTypicalTutorBook;
+import static seedu.address.testutil.TypicalSchedules.getTypicalScheduleTracker;
 
 import java.nio.file.Path;
 
@@ -12,8 +14,12 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.TutorBook;
+import seedu.address.model.AppointmentBook;
 import seedu.address.model.ReadOnlyTutorBook;
+import seedu.address.model.ReadOnlyAppointmentBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.schedule.ReadOnlyScheduleTracker;
+import seedu.address.model.schedule.ScheduleTracker;
 
 public class StorageManagerTest {
 
@@ -29,8 +35,11 @@ public class StorageManagerTest {
         JsonAppointmentBookStorage appointmentBookStorage =
                 new JsonAppointmentBookStorage(getTempFilePath("app"));
         JsonGradeBookStorage gradeBookStorage = new JsonGradeBookStorage(getTempFilePath("gr"));
+
+        JsonScheduleTrackerStorage scheduleTrackerStorage = new JsonScheduleTrackerStorage(getTempFilePath("st"));
+
         storageManager = new StorageManager(tutorBookStorage, userPrefsStorage,
-                appointmentBookStorage, gradeBookStorage);
+                appointmentBookStorage, gradeBookStorage, scheduleTrackerStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -67,6 +76,36 @@ public class StorageManagerTest {
     @Test
     public void getTutorBookFilePath() {
         assertNotNull(storageManager.getTutorBookFilePath());
+    }
+
+    public void appointmentBookReadSave() throws Exception {
+        AppointmentBook original = getTypicalAppointmentBook();
+        storageManager.saveAppointmentBook(original);
+        ReadOnlyAppointmentBook retrieved = storageManager.readAppointmentBook().get();
+        assertEquals(original, new AppointmentBook(retrieved));
+    }
+
+    @Test
+    public void scheduleTrackerReadSave() throws Exception {
+        ScheduleTracker original = getTypicalScheduleTracker();
+        storageManager.saveScheduleTracker(original);
+        ReadOnlyScheduleTracker retrieved = storageManager.readScheduleTracker().get();
+        assertEquals(original, new ScheduleTracker(retrieved));
+    }
+
+    @Test
+    public void getAppointmentBookFilePath() {
+        assertNotNull(storageManager.getAppointmentBookFilePath());
+    }
+
+    @Test
+    public void getGradeBookFilePath() {
+        assertNotNull(storageManager.getGradeBookFilePath());
+    }
+
+    @Test
+    public void getScheduleTrackerFilePath() {
+        assertNotNull(storageManager.getScheduleTrackerFilePath());
     }
 
 }

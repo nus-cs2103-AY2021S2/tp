@@ -6,6 +6,7 @@ import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBo
 import static seedu.address.testutil.TypicalBudgets.getTypicalBudgetBook;
 import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
 import static seedu.address.testutil.TypicalTutors.getTypicalTutorBook;
+import static seedu.address.testutil.TypicalSchedules.getTypicalScheduleTracker;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,8 +28,7 @@ public class AddCommandIntegrationTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalTutorBook(), new UserPrefs(),
-                getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook());
-
+                getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook(), getTypicalScheduleTracker());
     }
 
     @Test
@@ -37,7 +37,7 @@ public class AddCommandIntegrationTest {
 
         Model expectedModel = new ModelManager(model.getTutorBook(),
                 new UserPrefs(), model.getAppointmentBook(), model.getBudgetBook(),
-                model.getGradeBook());
+                model.getGradeBook(), getTypicalScheduleTracker());
 
         expectedModel.addTutor(validTutor);
 

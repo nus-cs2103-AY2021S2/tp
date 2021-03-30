@@ -4,6 +4,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
 import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
 import static seedu.address.testutil.TypicalTutors.getTypicalTutorBook;
+import static seedu.address.testutil.TypicalSchedules.getTypicalScheduleTracker;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -53,10 +54,12 @@ public class DeleteTutorFilterCommandTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalTutorBook(), new UserPrefs(),
-                getTypicalAppointmentBook(), new BudgetBook(), getTypicalGradeBook());
+                getTypicalAppointmentBook(), new BudgetBook(), getTypicalGradeBook(),
+                getTypicalScheduleTracker());
 
         expectedModel = new ModelManager(getTypicalTutorBook(), new UserPrefs(),
-                getTypicalAppointmentBook(), new BudgetBook(), getTypicalGradeBook());
+                getTypicalAppointmentBook(), new BudgetBook(), getTypicalGradeBook(),
+                getTypicalScheduleTracker());
 
         this.nameFilters = new LinkedHashSet<>();
         this.genderFilters = new LinkedHashSet<>();

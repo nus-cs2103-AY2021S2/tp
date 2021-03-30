@@ -1,0 +1,36 @@
+.tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {
+    -fx-alignment: CENTER;
+    -fx-font-weight: bold;
+    -fx-pref-width: 145;
+}
+
+.tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+    -fx-border-width: 0;
+}
+
+.control-buttons-tab {
+     -fx-background-insets: 0;
+     -fx-background-radius: 0;
+     -fx-padding: 0;
+}
+
+.tab-down-button {
+    -fx-padding: 0;
+    -fx-margin: 0;
+}
+
+.tab-down-button .arrow {
+     -fx-background-insets: 0;
+     -fx-background:black;
+     -fx-width:0;
+     -fx-padding: 0;
+     -fx-shape: " ";
+}
+
+.arrow {
+     -fx-background-insets: 0;
+     -fx-background:black;
+     -fx-width:0;
+     -fx-padding: 0;
+     -fx-shape: " ";
+}

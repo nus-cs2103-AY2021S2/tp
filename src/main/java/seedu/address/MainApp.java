@@ -35,12 +35,15 @@ import seedu.address.storage.GradeBookStorage;
 import seedu.address.storage.JsonTutorBookStorage;
 import seedu.address.storage.JsonAppointmentBookStorage;
 import seedu.address.storage.JsonGradeBookStorage;
+import seedu.address.storage.JsonScheduleTrackerStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.ScheduleTrackerStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
+
 /**
  * Runs the application.
  */
@@ -56,6 +59,8 @@ public class MainApp extends Application {
             + "be starting with a sample TutorBook";
     private static final String GRADE_BOOK_NOT_FOUND = "Data file not found. Will "
             + "be starting with a sample GradeBook";
+    private static final String SCHEDULE_TRACKER_NOT_FOUND = "Data file not found. Will "
+            + "be starting with a sample Schedule Tracker";
 
     protected Ui ui;
     protected Logic logic;
@@ -77,7 +82,12 @@ public class MainApp extends Application {
         AppointmentBookStorage appointmentBookStorage =
                 new JsonAppointmentBookStorage(userPrefs.getAppointmentBookFilePath());
         GradeBookStorage gradeBookStorage = new JsonGradeBookStorage(userPrefs.getGradeBookFilePath());
-        storage = new StorageManager(tutorBookStorage, userPrefsStorage, appointmentBookStorage, gradeBookStorage);
+
+        ScheduleTrackerStorage scheduleTrackerStorage =
+                new JsonScheduleTrackerStorage(userPrefs.getScheduleTrackerFilePath());
+
+        storage = new StorageManager(tutorBookStorage, userPrefsStorage, appointmentBookStorage,
+                gradeBookStorage, scheduleTrackerStorage);
 
         initLogging(config);
 
@@ -98,6 +108,8 @@ public class MainApp extends Application {
         Optional<ReadOnlyTutorBook> tutorBookOptional;
         Optional<ReadOnlyAppointmentBook> appointmentBookOptional;
         Optional<ReadOnlyGradeBook> gradeBookOptional;
+        Optional<ReadOnlyScheduleTracker> scheduleTrackerOptional;
+
         ReadOnlyTutorBook initialData;
         ReadOnlyAppointmentBook initialAppointments;
         ReadOnlyGradeBook initialGrades;
@@ -145,9 +157,18 @@ public class MainApp extends Application {
             initialGrades = new GradeBook();
         }
 
-        initialSchedules = new ScheduleTracker(SampleDataUtil.getSampleScheduleTracker());
+        try {
+            scheduleTrackerOptional = storage.readScheduleTracker();
+            if (!scheduleTrackerOptional.isPresent()) {
+                logger.info(SCHEDULE_TRACKER_NOT_FOUND);
+            }
+            initialSchedules = scheduleTrackerOptional.orElseGet(SampleDataUtil::getSampleScheduleTracker);
+        } catch (DataConversionException | IOException e) {
+            initialSchedules = new ScheduleTracker();
+        }
+
         return new ModelManager(initialData, userPrefs, initialAppointments,
-                budgetBook, initialGrades);
+                budgetBook, initialGrades, initialSchedules);
     }
 
     private void initLogging(Config config) {

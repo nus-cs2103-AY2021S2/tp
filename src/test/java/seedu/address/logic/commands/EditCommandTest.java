@@ -16,6 +16,7 @@ import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalTutors.getTypicalTutorBook;
+import static seedu.address.testutil.TypicalSchedules.getTypicalScheduleTracker;
 
 import org.junit.jupiter.api.Test;
 
@@ -37,7 +38,7 @@ import seedu.address.testutil.TutorBuilder;
 public class EditCommandTest {
 
     private Model model = new ModelManager(getTypicalTutorBook(), new UserPrefs(),
-            getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook());
+            getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook(), getTypicalScheduleTracker());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -48,7 +49,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TUTOR_SUCCESS, editedTutor);
 
         Model expectedModel = new ModelManager(new TutorBook(model.getTutorBook()), new UserPrefs(),
-                model.getAppointmentBook(), model.getBudgetBook(), model.getGradeBook());
+                model.getAppointmentBook(), model.getBudgetBook(), model.getGradeBook(), model.getScheduleTracker());
         expectedModel.setTutor(model.getFilteredTutorList().get(0), editedTutor);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -70,7 +71,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TUTOR_SUCCESS, editedTutor);
 
         Model expectedModel = new ModelManager(new TutorBook(model.getTutorBook()), new UserPrefs(),
-                model.getAppointmentBook(), model.getBudgetBook(), model.getGradeBook());
+                model.getAppointmentBook(), model.getBudgetBook(), model.getGradeBook(), model.getScheduleTracker());
         expectedModel.setTutor(lastTutor, editedTutor);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -84,7 +85,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TUTOR_SUCCESS, editedTutor);
 
         Model expectedModel = new ModelManager(new TutorBook(model.getTutorBook()), new UserPrefs(),
-                model.getAppointmentBook(), model.getBudgetBook(), model.getGradeBook());
+                model.getAppointmentBook(), model.getBudgetBook(), model.getGradeBook(), model.getScheduleTracker());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -101,7 +102,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TUTOR_SUCCESS, editedTutor);
 
         Model expectedModel = new ModelManager(new TutorBook(model.getTutorBook()), new UserPrefs(),
-                model.getAppointmentBook(), model.getBudgetBook(), model.getGradeBook());
+                model.getAppointmentBook(), model.getBudgetBook(), model.getGradeBook(), model.getScheduleTracker());
         expectedModel.setTutor(model.getFilteredTutorList().get(0), editedTutor);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);

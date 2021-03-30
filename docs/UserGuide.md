@@ -1,13 +1,13 @@
 ---
-layout: page
-title: User Guide
+User Guide
 ---
-_**Tutor Tracker**_ is a **desktop app designed to help secondary school students manage tutors and tuition appointments, optimised for use via a Command Line Interface** (CLI) for a fast and streamlined experience while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Tutor Tracker can get your contact management tasks done faster than traditional GUI apps.
+_**Tutor Tracker**_ is a **desktop app designed to help secondary school students manage tutors and tuition appointments, optimised for use via a Command Line Interface** (CLI) for a fast and streamlined experience while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Tutor Tracker can get your tuition contact management tasks done faster than traditional GUI apps.
+
 * Table of Contents
-  {:toc}
-
+    * Quick Start
+    * Features
+    * Q&A
 --------------------------------------------------------------------------------------------------------------------
-
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -75,10 +75,10 @@ Details:
     * Qualifications
 
 Format:
-`add_tutor n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS... <s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS>...`
+`add_tutor n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS... <s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS> notes/NOTES`
 
 Example Input:
-`add_tutor n/John Doe p/98765432 e/johnd@example.com g/Male a/John street, block 123, #01-01 s/English r/50 l/Sec 3 y/5 q/A-Level s/Mathematics r/60 l/Sec 4 y/6 q/A-Level`
+`add_tutor n/John Doe p/98765432 e/johnd@example.com g/Male a/John street, block 123, #01-01 s/English r/50 l/Sec 3 y/5 q/A-Level s/Mathematics r/60 l/Sec 4 y/6 q/A-Level notes/cool tutor`
 
 ### List all tutors: `list_tutors`
 
@@ -103,9 +103,9 @@ Example: `delete_tutor 1`
 
 Edit a tutor's information by index. Only the attributes present are changed in the tutor.
 
-Format: `edit_tutor INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [a/ADDRESS] [<s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS>]...`
+Format: `edit_tutor INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [a/ADDRESS] [<s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS>] note/NOTES`
 
-Example: `edit_tutor 1 p/99824314 s/English r/50 l/Secondary 5 y/9 q/A-Level`
+Example: `edit_tutor 1 p/99824314 s/English r/50 l/Secondary 5 y/9 q/A-Level note/efficient`
 
 ### Viewing a tutor: `view_tutor`
 
@@ -128,6 +128,78 @@ Subjects:
     Experience: 6 years
     Qualification: Bacholar of English Literature
 ```
+### Adding a note: `add_note`
+
+Shortcut for adding note to tutor at a particular index
+
+Format: `add_note INDEX NOTE`
+
+Example: `add_note 1 patient tutor`
+
+Example Output:
+on the right of ,<br>
+```
+John Doe 
+98765432
+John street, block 123, #01-01
+johnd@example.com
+Subjects:
+1. English
+    Level: Sec 3                     
+    Rate: SGD60/hr
+    Experience: 6 years
+    Qualification: Bacholar of English Literature
+```
+```
+Notes:
+patient tutor
+```
+### Adding a note: `edit_note`
+
+Shortcut for editing note to tutor at a particular index
+
+Format: `edit_note INDEX NOTE`
+
+Example: `edit_note 1 not patient`
+
+Example Output:
+on the right of ,<br>
+```
+John Doe 
+98765432
+John street, block 123, #01-01
+johnd@example.com
+Subjects:
+1. English
+    Level: Sec 3                     
+    Rate: SGD60/hr
+    Experience: 6 years
+    Qualification: Bacholar of English Literature
+```
+
+```
+Notes:
+not patient
+```
+### Deleting a note `delete_note`
+
+Deletes solely the note to tutor at a particular index
+
+Format: `delete_note INDEX NOTE`
+
+Example: `delete_note 1`
+
+### List tutors with note `list_note`
+Lists all the tutor with note
+
+Format:`list_note`
+
+### List tutors with note `list_note`
+Export the tutor details together with the notes into a text file
+
+Format:`list_note`
+
+Example: `export 1`
 
 ### Adding a favourite: `favourite`
 
@@ -266,8 +338,17 @@ Examples: `edit_appointment e/andrewng@example.com l/Clementi`
 ### Adding Budget : `add_budget`
 
 Adds a budget with an amount specified by user. Stores budget in user system.
+Budget must not already exist in user system, otherwise use edit_budget instead.
 
 Format: `add_budget [b/BUDGET]`
+
+Example:
+`add_budget b/500`
+
+Example Output:
+```
+Budget of 500 is sucessfully added
+```
 
 * BUDGET must be a positive integer inclusive of zero
 
@@ -277,6 +358,15 @@ Edits an already existing budget with an amount specified by user.
 
 Format : `edit_budget [b/BUDGET]`
 
+Example:
+`edit_budget b/600`
+
+Example Output
+```
+Budget of 600 is sucessfully updated.
+```
+
+
 * BUDGET must be a positive integer inclusive of zero
 
 ### Deleting a budget : `delete_budget`
@@ -285,13 +375,102 @@ Deletes an already existing budget.
 
 Format : `delete_budget`
 
+Example:
+`delete_budget`
+
+Example Output:
+```
+Budget of 600 is sucessfully deleted.
+```
+
 ### Viewing a budget : `view_budget`
 
 Views an already existing budget.
 
 Format : `view_budget`
 
+Example:
+`view_budget`
 
+Example Output:
+```
+1) Budget does not already exist. Please ensure there is a budget. You can use the 
+add_budget function to add a budget.
+2) Here is your budget.
+Budget: 600
+Total Cost of Appointments: 100.
+```
+
+
+### Adding a Grade : `add_grade`
+
+Adds a grade with a subject, a graded item and a grade alphabet specified by user. Stores in user system.
+
+Format: `add_grade s/SUBJECT_NAME gi/GRADED_ITEM gr/GRADE_ALPHABET`
+
+* Valid `GRADE_ALPHABET` recognized by the system only include A to F, S and U.
+* `SUBJECT_NAME` is case-insensitive and `GRADE_ALPHABET` must be uppercase.
+
+Example: `add_grade s/Mathematics gi/Final gr/A`
+
+Example Output:
+```
+New grade added: Mathematics (Final): A
+```
+
+### Editing a grade : `edit_grade`
+
+Edits an already existing grade at the specified index. Only the attributes present are changed in the grade.
+
+Format: `edit_grade INDEX [s/SUBJECT_NAME] [gi/GRADED_ITEM] [gr/GRADE_ALPHABET]`
+
+Example: `edit_grade 1 gr/B`
+
+Example Output:
+```
+Edited Grade: Science (Lab 1): B
+```
+
+### Deleting a grade : `delete_grade`
+
+Deletes an already existing grade at the specified index.
+
+Format: `delete_grade INDEX`
+
+Example: `delete_grade 1`
+
+Example Output: 
+```
+Deleted Grade: Science (Lab 1): B
+```
+
+### Listing all grades: `list_grades`
+
+Views a list of all already existing grades in storage.
+
+Format: `list_grades`
+
+Example: `list_grades`
+
+Example Output:
+```
+Listed all grades
+  1. Science
+     Lab 1
+     A
+  2. Mathematics
+     Final
+     B
+  3. English
+     Midterm
+     C
+```
+
+### Exiting `exit`
+
+Closes the app with `bye` message
+
+Q & A
 --------------------------------------------------------------------------------------------------------------------
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Tutor Tracker home folder.
@@ -304,6 +483,11 @@ Action | Format, Examples
 **Delete a tutor** | `delete_tutor INDEX`, <br> e.g. `delete_tutor 1`
 **Edit a tutor** | `edit_tutor INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [a/ADDRESS] [<s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS>]...`, <br> e.g. `edit_tutor 1 p/99824314 s/English r/50 l/Secondary 5 y/9 q/A-Level`
 **View a tutor details** | `view_tutor INDEX`, <br> e.g. `view_tutor 1`
+**Add note to a tutor** | `add_note INDEX NOTE`, <br> e.g. `add_note 1 patient`
+**Edit note of a tutor** | `edit_note INDEX NOTE`, <br> e.g. `edit_note not patient`
+**Delete note of a tutor** | `delete_note INDEX`, <br> e.g. `delete_note 1`
+**List tutors with note** | `list_note`, <br> e.g. `list_note`
+**Export the tutor details**| `export INDEX`, <br> e.g. `export 1`
 **Favourite a tutor** | `favourite INDEX`, <br> e.g. `favourite 1`
 **Unfavourite a tutor** | `unfavourite INDEX`, <br> e.g. `Unfavourite 1`
 **List favourites** | `list_favourites`, <br> e.g. `list_favourites`
@@ -317,4 +501,8 @@ Action | Format, Examples
 **Edit a budget** | `edit_budget` <br> e.g. `edit_budget b/600`
 **Deleting a budget** | `delete_budget` <br> e.g. `delete_budget`
 **Viewing a budget** | `view_budget` <br> e.g. `view_budget`
-
+**Add a grade** | `add_grade s/SUBJECT_NAME gi/GRADED_ITEM gr/GRADE_ALPHABET`, <br> e.g. `add_grade s/Mathematics gi/Final gr/A` 
+**Edit a grade** | `edit_grade INDEX [s/SUBJECT_NAME] [gi/GRADED_ITEM] [gr/GRADE_ALPHABET]`, <br> e.g. `edit_grade 1 gr/B`
+**Delete a grade** | `delete_grade INDEX`, <br> e.g. `delete_grade 1`
+**List grades** | `list_grades`
+**exit** | `bye`

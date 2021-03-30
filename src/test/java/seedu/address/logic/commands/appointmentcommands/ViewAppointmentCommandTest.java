@@ -4,27 +4,40 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showAppointmentAtDate;
-import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
-import static seedu.address.testutil.TypicalBudgets.getTypicalBudgetBook;
+import static seedu.address.testutil.ModelManagerBuilder.ModelType.APPOINTMENTBOOK;
 import static seedu.address.testutil.TypicalDates.APPOINTMENT_FIRST_DATE;
 import static seedu.address.testutil.TypicalDates.APPOINTMENT_SECOND_DATE;
+<<<<<<< HEAD
 import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
 import static seedu.address.testutil.TypicalTutors.getTypicalTutorBook;
+=======
+>>>>>>> ea5229aed0439b3402fac8ee538d20297d6b4b00
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.DateViewPredicate;
+import seedu.address.testutil.ModelManagerBuilder;
 
 public class ViewAppointmentCommandTest {
 
+<<<<<<< HEAD
     private Model model = new ModelManager(getTypicalTutorBook(), new UserPrefs(),
             getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook());
     private Model expectedModel = new ModelManager(getTypicalTutorBook(), new UserPrefs(),
             getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook());
+=======
+    private Model model;
+    private Model expectedModel;
+
+    @BeforeEach
+    public void setUp() {
+        model = ModelManagerBuilder.getModelManager();
+        expectedModel = ModelManagerBuilder.getModelManager(model, APPOINTMENTBOOK);
+    }
+>>>>>>> ea5229aed0439b3402fac8ee538d20297d6b4b00
 
     @Test
     public void execute_validDateUnfilteredList_success() {

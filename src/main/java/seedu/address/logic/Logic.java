@@ -12,6 +12,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.event.Event;
 import seedu.address.model.grade.Grade;
 import seedu.address.model.tutor.Tutor;
+import seedu.address.model.schedule.Schedule;
 
 /**
  * API of the Logic component
@@ -63,6 +64,11 @@ public interface Logic {
      * Returns an unmodifiable view of the appointment filter string list.
      */
     ObservableList<String> getAppointmentFilterStringList();
+
+    /**
+     * Returns an unmodifiable view of the filtered list of schedules
+     */
+    ObservableList<Schedule> getFilteredScheduleList();
 
     /**
      * Returns the user prefs' address book file path.

@@ -12,6 +12,7 @@ import static seedu.address.testutil.TypicalTutors.CARL;
 import static seedu.address.testutil.TypicalTutors.ELLE;
 import static seedu.address.testutil.TypicalTutors.FIONA;
 import static seedu.address.testutil.TypicalTutors.getTypicalTutorBook;
+import static seedu.address.testutil.TypicalSchedules.getTypicalScheduleTracker;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -28,10 +29,14 @@ import seedu.address.model.tutor.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
+
     private Model model = new ModelManager(getTypicalTutorBook(), new UserPrefs(),
-            getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook());
+            getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook(),
+            getTypicalScheduleTracker());
     private Model expectedModel = new ModelManager(getTypicalTutorBook(), new UserPrefs(),
-            getTypicalAppointmentBook(), getTypicalBudgetBook(), model.getGradeBook());
+            getTypicalAppointmentBook(), getTypicalBudgetBook(), model.getGradeBook(),
+            getTypicalScheduleTracker());
+
 
     @Test
     public void equals() {

@@ -12,6 +12,8 @@ import seedu.address.model.ReadOnlyAppointmentBook;
 import seedu.address.model.ReadOnlyGradeBook;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
+import seedu.address.model.common.Description;
+import seedu.address.model.common.Title;
 import seedu.address.model.grade.Grade;
 import seedu.address.model.grade.GradeEnum;
 import seedu.address.model.grade.GradedItem;
@@ -22,11 +24,9 @@ import seedu.address.model.tutor.Name;
 import seedu.address.model.tutor.Notes;
 import seedu.address.model.tutor.Tutor;
 import seedu.address.model.tutor.Phone;
-import seedu.address.model.schedule.Description;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.model.schedule.ScheduleTracker;
-import seedu.address.model.schedule.Title;
 import seedu.address.model.subject.SubjectExperience;
 import seedu.address.model.subject.SubjectLevel;
 import seedu.address.model.subject.SubjectList;
@@ -107,6 +107,7 @@ public class SampleDataUtil {
                         GradeEnum.valueOf("C"))
         };
     }
+
     public static Schedule[] getSampleSchedule() {
         return new Schedule[] {
             new Schedule(new Title("Math Tuition Homework"),
@@ -119,8 +120,6 @@ public class SampleDataUtil {
                     new Description("Chapter 6"))
         };
     }
-
-
 
     public static ReadOnlyScheduleTracker getSampleScheduleTracker() {
         ScheduleTracker sampleSt = new ScheduleTracker();
@@ -184,5 +183,4 @@ public class SampleDataUtil {
                 .map(Tag::new)
                 .collect(Collectors.toSet());
     }
-
 }

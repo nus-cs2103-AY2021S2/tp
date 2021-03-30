@@ -7,10 +7,13 @@ import static seedu.address.commons.core.Messages.MESSAGE_APPOINTMENT_LISTED_OVE
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAppointments.MATHS_APPOINTMENT;
 import static seedu.address.testutil.TypicalAppointments.SCIENCE_APPOINTMENT;
+<<<<<<< HEAD
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
 import static seedu.address.testutil.TypicalBudgets.getTypicalBudgetBook;
 import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
 import static seedu.address.testutil.TypicalTutors.getTypicalTutorBook;
+=======
+>>>>>>> ea5229aed0439b3402fac8ee538d20297d6b4b00
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -18,18 +21,22 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.appointment.NamePredicate;
+import seedu.address.testutil.ModelManagerBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) for {@code FindAppointmentCommandTest}.
  */
 public class FindAppointmentCommandTest {
+<<<<<<< HEAD
     private final Model model = new ModelManager(getTypicalTutorBook(),
             new UserPrefs(), getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook());
     private final Model expectedModel = new ModelManager(getTypicalTutorBook(), new UserPrefs(),
             getTypicalAppointmentBook(), getTypicalBudgetBook(), model.getGradeBook());
+=======
+    private final Model model = ModelManagerBuilder.getModelManager();
+    private final Model expectedModel = ModelManagerBuilder.getModelManager();
+>>>>>>> ea5229aed0439b3402fac8ee538d20297d6b4b00
 
     @Test
     public void equals() {

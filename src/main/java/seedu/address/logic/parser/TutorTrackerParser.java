@@ -20,6 +20,7 @@ import seedu.address.logic.commands.budgetcommands.AddBudgetCommand;
 import seedu.address.logic.commands.budgetcommands.DeleteBudgetCommand;
 import seedu.address.logic.commands.budgetcommands.EditBudgetCommand;
 import seedu.address.logic.commands.budgetcommands.ViewBudgetCommand;
+import seedu.address.logic.commands.eventcommands.ViewEventCommand;
 import seedu.address.logic.commands.eventcommands.ViewTimeTableCommand;
 import seedu.address.logic.commands.favouritecommands.FavouriteCommand;
 import seedu.address.logic.commands.favouritecommands.ListFavouriteCommand;
@@ -55,6 +56,7 @@ import seedu.address.logic.parser.budgetparser.AddBudgetCommandParser;
 import seedu.address.logic.parser.budgetparser.DeleteBudgetCommandParser;
 import seedu.address.logic.parser.budgetparser.EditBudgetCommandParser;
 import seedu.address.logic.parser.budgetparser.ViewBudgetCommandParser;
+import seedu.address.logic.parser.eventparser.ViewEventCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.favouriteparser.FavouriteCommandParser;
 import seedu.address.logic.parser.favouriteparser.UnfavouriteCommandParser;
@@ -223,6 +225,9 @@ public class TutorTrackerParser {
 
         case ViewTimeTableCommand.COMMAND_WORD:
             return new ViewTimeTableCommand();
+
+        case ViewEventCommand.COMMAND_WORD:
+            return new ViewEventCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

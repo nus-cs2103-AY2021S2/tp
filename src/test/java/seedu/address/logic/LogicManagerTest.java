@@ -31,6 +31,7 @@ import seedu.address.model.tutor.Tutor;
 import seedu.address.storage.JsonTutorBookStorage;
 import seedu.address.storage.JsonAppointmentBookStorage;
 import seedu.address.storage.JsonGradeBookStorage;
+import seedu.address.storage.JsonScheduleTrackerStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.TutorBuilder;
@@ -55,8 +56,12 @@ public class LogicManagerTest {
         JsonGradeBookStorage gradeBookStorage =
                 new JsonGradeBookStorage(temporaryFolder.resolve(
                         "gradeBook.json"));
+        JsonScheduleTrackerStorage scheduleTrackerStorage =
+                new JsonScheduleTrackerStorage(temporaryFolder.resolve(
+                        "scheduleTracker.json"));
+
         StorageManager storage = new StorageManager(addressBookStorage,
-                userPrefsStorage, appointmentBookStorage, gradeBookStorage);
+                userPrefsStorage, appointmentBookStorage, gradeBookStorage, scheduleTrackerStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -91,8 +96,12 @@ public class LogicManagerTest {
         JsonGradeBookStorage gradeBookStorage =
                 new JsonGradeBookStorage(temporaryFolder.resolve(
                         "ioExceptionGradeBook.json"));
+        JsonScheduleTrackerStorage scheduleTrackerStorage =
+                new JsonScheduleTrackerStorage(temporaryFolder.resolve(
+                        "ioExceptionScheduleTracker.json"));
+
         StorageManager storage = new StorageManager(addressBookStorage,
-                userPrefsStorage, appointmentBookStorage, gradeBookStorage);
+                userPrefsStorage, appointmentBookStorage, gradeBookStorage, scheduleTrackerStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -148,7 +157,7 @@ public class LogicManagerTest {
             String expectedMessage) {
         Model expectedModel = new ModelManager(model.getTutorBook(),
                 new UserPrefs(), model.getAppointmentBook(), model.getBudgetBook(),
-                model.getGradeBook());
+                model.getGradeBook(), model.getScheduleTracker());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
