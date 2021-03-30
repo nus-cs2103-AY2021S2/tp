@@ -7,7 +7,7 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "tagged" : [ "friends" ],
     "policies" : ["#1111>no_url"],
-    "meeting" : [ "Mall;17:07:2021;17:30" ]
+    "meeting" : [ "17.08.2021 17:30 18:30 Mall" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
@@ -23,7 +23,7 @@
     "address" : "wall street",
     "tagged" : [ ],
     "policies" : [ ],
-    "meeting" : [ "MRT;13:05:2021;19:30" ]
+    "meeting" : [ "13.05.2021 19:30 20:00 MRT" ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
@@ -39,7 +39,7 @@
     "address" : "michegan ave",
     "tagged" : [ ],
     "policies" : [ ],
-    "meeting" : [ "Mall;18:07:2021;15:30" ]
+    "meeting" : [ "18.07.2021 15:30 17:00 Mall" ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
@@ -56,6 +56,6 @@
     "tagged" : [ ],
     "policies" : [ "Policy_4444>no_url", "Policy_4445>www.facebook.com", "Policy_4446>no_url",
       "Policy_4447>www.yahoo.com" ],
-    "meeting" : [ "LRT;12:07:2021;14:30" ]
+    "meeting" : [ "19.09.2021 14:30 15:30 LRT" ]
   } ]
 }

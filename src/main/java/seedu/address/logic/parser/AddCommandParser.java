@@ -51,7 +51,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         List<InsurancePolicy> policyList = ParserUtil.parsePolicies(argMultimap.getAllValues(PREFIX_INSURANCE_POLICY));
-        List<Meeting> meeting = ParserUtil.parseMeeting(argMultimap.getAllValues(PREFIX_MEETING));
+        List<Meeting> meeting = ParserUtil.parseMeetings(argMultimap.getAllValues(PREFIX_MEETING));
 
         Person person = new Person(name, phone, email, address, tagList, policyList, meeting);
 

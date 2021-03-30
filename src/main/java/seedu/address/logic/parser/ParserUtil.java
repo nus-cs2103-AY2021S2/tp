@@ -204,31 +204,31 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code meeting} is invalid.
      */
-    public static Meeting parseMeet(String meeting) throws ParseException {
+    public static Meeting parseMeeting(String meeting) throws ParseException {
         requireNonNull(meeting);
-        String trimmedMeeting = meeting.trim();
-        String[] arguments;
         try {
-            arguments = trimmedMeeting.split(";");
-            if (!Meeting.isValidMeeting(arguments[0], arguments[1], arguments[2])) {
+            String trimmedMeeting = meeting.trim();
+            String[] arguments = trimmedMeeting.split("\\s+", 4);
+            if (Meeting.isValidMeeting(arguments[0], arguments[1], arguments[2], arguments[3])) {
+                return new Meeting(arguments[0], arguments[1], arguments[2], arguments[3]);
+            } else {
                 throw new ParseException(Meeting.MESSAGE_CONSTRAINTS);
             }
         } catch (ArrayIndexOutOfBoundsException ex) {
             throw new ParseException(Meeting.MESSAGE_CONSTRAINTS);
         }
-        return new Meeting(arguments[0], arguments[1], arguments[2]);
     }
 
     /**
      * Parses {@code Collection<String> meeting} into a {@code List<Meeting>}.
      */
-    public static List<Meeting> parseMeeting(Collection<String> meeting) throws ParseException {
+    public static List<Meeting> parseMeetings(Collection<String> meeting) throws ParseException {
         requireNonNull(meeting);
-        final List<Meeting> meetList = new ArrayList<>();
+        final List<Meeting> meetingList = new ArrayList<>();
         for (String meet : meeting) {
             requireNonNull(meet);
-            meetList.add(parseMeet(meet));
+            meetingList.add(parseMeeting(meet));
         }
-        return meetList;
+        return meetingList;
     }
 }

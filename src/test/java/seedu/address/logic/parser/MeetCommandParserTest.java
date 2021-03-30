@@ -1,9 +1,10 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.MeetCommand.CHECK_CLASHES;
+import static seedu.address.logic.commands.MeetCommand.ADD_MEETING;
+import static seedu.address.logic.commands.MeetCommand.CLEAR_MEETING;
 import static seedu.address.logic.commands.MeetCommand.DELETE_MEETING;
-import static seedu.address.logic.commands.MeetCommand.IGNORE_CLASHES;
+import static seedu.address.logic.commands.MeetCommand.MEETING_EMPTY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
@@ -15,9 +16,10 @@ import seedu.address.logic.commands.MeetCommand;
 
 public class MeetCommandParserTest {
 
+    private static final String MEETING_DATE = "15.06.2021";
+    private static final String MEETING_START = "15:00";
+    private static final String MEETING_END = "18:00";
     private static final String MEETING_PLACE = "KENT RIDGE MRT";
-    private static final String MEETING_DATE = "15:06:2021";
-    private static final String MEETING_TIME = "15:00";
 
     private MeetCommandParser parser = new MeetCommandParser();
 
@@ -30,41 +32,46 @@ public class MeetCommandParserTest {
     @Test
     public void parse_invalidArg_throwsParseException() {
         // missing index
-        assertParseFailure(parser, "-ignore KENT RIDGE MRT;15:06:2021;15:00",
-                String.format(MESSAGE_INVALID_INDEX));
-
-        // missing action
-        assertParseFailure(parser, "1 KENT RIDGE MRT;15:06:2021;15:00",
+        assertParseFailure(parser, "15.06.2021 15:00 18:00 KENT RIDGE MRT",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, MeetCommand.MESSAGE_USAGE));
 
         // missing place
-        assertParseFailure(parser, "1 -ignore",
+        assertParseFailure(parser, "1 15.06.2021 15:00 18:00",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, MeetCommand.MESSAGE_USAGE));
 
+        // invalid index
+        assertParseFailure(parser, "0 15.06.2021 15:00 18:00 KENT RIDGE MRT",
+                String.format(MESSAGE_INVALID_INDEX));
+
         // invalid date
-        assertParseFailure(parser, "1 -ignore KENT RIDGE MRT;15/06/2021;15:00",
+        assertParseFailure(parser, "1 15/06/2021 15:00 18:00 KENT RIDGE MRT",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, MeetCommand.MESSAGE_USAGE));
 
         // invalid time
-        assertParseFailure(parser, "1 -ignore KENT RIDGE MRT;15:06:2021;1500",
+        assertParseFailure(parser, "1 15.06.2021 1500 1800 KENT RIDGE MRT",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, MeetCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_validArgs_returnsMeetCommand() {
-        // check for clashes and add meeting
-        assertParseSuccess(parser, "1 -ignore KENT RIDGE MRT;15:06:2021;15:00",
-                new MeetCommand(INDEX_FIRST_PERSON, IGNORE_CLASHES,
-                        MEETING_PLACE, MEETING_DATE, MEETING_TIME));
+        // default add meeting
+        assertParseSuccess(parser, "1 15.06.2021 15:00 18:00 KENT RIDGE MRT",
+                new MeetCommand(INDEX_FIRST_PERSON, ADD_MEETING,
+                        MEETING_DATE, MEETING_START, MEETING_END, MEETING_PLACE));
 
-        // ignore clashes and add meeting
-        assertParseSuccess(parser, "1 -check KENT RIDGE MRT;15:06:2021;15:00",
-                new MeetCommand(INDEX_FIRST_PERSON, CHECK_CLASHES,
-                        MEETING_PLACE, MEETING_DATE, MEETING_TIME));
+        // add meeting
+        assertParseSuccess(parser, "1 -add 15.06.2021 15:00 18:00 KENT RIDGE MRT",
+                new MeetCommand(INDEX_FIRST_PERSON, ADD_MEETING,
+                        MEETING_DATE, MEETING_START, MEETING_END, MEETING_PLACE));
 
         // delete meeting
-        assertParseSuccess(parser, "1 -delete",
-                new MeetCommand(INDEX_FIRST_PERSON, DELETE_MEETING, "", "", ""));
+        assertParseSuccess(parser, "1 -delete 15.06.2021 15:00 18:00 KENT RIDGE MRT",
+                new MeetCommand(INDEX_FIRST_PERSON, DELETE_MEETING,
+                        MEETING_DATE, MEETING_START, MEETING_END, MEETING_PLACE));
 
+        // clear meeting
+        assertParseSuccess(parser, "1 -clear",
+                new MeetCommand(INDEX_FIRST_PERSON, CLEAR_MEETING,
+                        MEETING_EMPTY, MEETING_EMPTY, MEETING_EMPTY, MEETING_EMPTY));
     }
 }

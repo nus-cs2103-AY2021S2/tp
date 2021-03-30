@@ -35,7 +35,7 @@ public class JsonAdaptedPersonTest {
     private static final List<JsonAdaptedInsurancePolicy> VALID_POLICIES = BENSON.getPolicies().stream()
             .map(JsonAdaptedInsurancePolicy::new)
             .collect(Collectors.toList());
-    private static final List<JsonAdaptedMeeting> VALID_MEETING = BENSON.getMeeting().stream()
+    private static final List<JsonAdaptedMeeting> VALID_MEETING = BENSON.getMeetings().stream()
             .map(JsonAdaptedMeeting::new)
             .collect(Collectors.toList());
 

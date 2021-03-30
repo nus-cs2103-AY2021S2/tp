@@ -19,9 +19,10 @@ public class MeetingContainsKeywordsPredicate implements Predicate<Person> {
         boolean containsKeyword = false;
 
         for (Meeting meet : meeting) {
-            if (meet.place.toLowerCase().contains(keyword.toLowerCase())
-                    || meet.date.toLowerCase().contains(keyword.toLowerCase())
-                    || meet.time.toLowerCase().contains(keyword.toLowerCase())
+            if (meet.date.toLowerCase().contains(keyword.toLowerCase())
+                    || meet.start.toLowerCase().contains(keyword.toLowerCase())
+                    || meet.end.toLowerCase().contains(keyword.toLowerCase())
+                    || meet.place.toLowerCase().contains(keyword.toLowerCase())
                     || meet.meeting.toLowerCase().contains(keyword.toLowerCase())) {
                 containsKeyword = true;
                 break;
@@ -33,7 +34,7 @@ public class MeetingContainsKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
         return keywords.stream()
-                .anyMatch(keyword -> checkMeeting(person.getMeeting(), keyword));
+                .anyMatch(keyword -> checkMeeting(person.getMeetings(), keyword));
     }
 
     @Override

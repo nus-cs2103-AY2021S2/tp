@@ -45,7 +45,7 @@ public class PersonUtil {
         person.getPolicies().stream().forEach(
             s -> sb.append(PREFIX_INSURANCE_POLICY + s.policyId + " ")
         );
-        person.getMeeting().stream().forEach(
+        person.getMeetings().stream().forEach(
             s -> sb.append(PREFIX_MEETING + s.meeting + " ")
         );
         return sb.toString();

@@ -39,8 +39,8 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_POLICY_ID = "P#1245";
-    public static final String VALID_MEETING_AMY = "Mall;17:07:2021;17:30";
-    public static final String VALID_MEETING_BOB = "MRT;23:03:2021;12:30";
+    public static final String VALID_MEETING_AMY = "17.7.2021 17:30 20:00 Mall";
+    public static final String VALID_MEETING_BOB = "23.03.2021 12:30 15:30 MRT";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;

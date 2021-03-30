@@ -9,24 +9,27 @@ import org.junit.jupiter.api.Test;
 
 public class MeetingTest {
 
-    private static final String VALID_MEETING = "MRT;16:08:2021;15:30";
-    private static final String INVALID_MEETING = "MRT 16:08:2021 15:30";
-    private static final String VALID_PLACE = "LRT";
+    private static final String INVALID_MEETING = "23.12.2021/1830/2000/KENT RIDGE MRT";
+    private static final String INVALID_DATE = "23/12/2021";
+    private static final String INVALID_START = "1830";
+    private static final String INVALID_END = "25:00";
     private static final String INVALID_PLACE = "      ABC      ";
-    private static final String VALID_DATE = "23:12:2021";
-    private static final String INVALID_DATE = "34/23/2021";
-    private static final String VALID_TIME = "18:29";
-    private static final String INVALID_TIME = "2470";
+
+    private static final String VALID_MEETING = "23.12.2021 18:30 20:00 KENT RIDGE MRT";
+    private static final String VALID_DATE = "23.12.2021";
+    private static final String VALID_START = "18:30";
+    private static final String VALID_END = "20:00";
+    private static final String VALID_PLACE = "KENT RIDGE MRT";
 
     @Test
     public void constructor_newMeeting_equal() {
-        assertEquals(new Meeting(VALID_PLACE, VALID_DATE, VALID_TIME),
-                Meeting.newMeeting(VALID_PLACE + ";" + VALID_DATE + ";" + VALID_TIME));
+        assertEquals(new Meeting(VALID_DATE, VALID_START, VALID_END, VALID_PLACE),
+                Meeting.newMeeting(VALID_MEETING));
     }
 
     @Test
     public void constructor_newMeeting_notEqual() {
-        assertNotEquals(new Meeting(VALID_PLACE, VALID_DATE, VALID_TIME),
+        assertNotEquals(new Meeting(VALID_DATE, VALID_END, VALID_START, VALID_PLACE),
                 Meeting.newMeeting(VALID_MEETING));
     }
 
@@ -39,15 +42,15 @@ public class MeetingTest {
         assertFalse(Meeting.isValidMeeting(INVALID_MEETING));
 
         // valid place date time
-        assertTrue(Meeting.isValidMeeting(VALID_PLACE, VALID_DATE, VALID_TIME));
-
-        // invalid place
-        assertFalse(Meeting.isValidMeeting(INVALID_PLACE, VALID_DATE, VALID_TIME));
+        assertTrue(Meeting.isValidMeeting(VALID_DATE, VALID_START, VALID_END, VALID_PLACE));
 
         // invalid date
-        assertFalse(Meeting.isValidMeeting(VALID_PLACE, INVALID_DATE, VALID_TIME));
+        assertFalse(Meeting.isValidMeeting(INVALID_DATE, VALID_START, VALID_END, VALID_PLACE));
 
         // invalid time
-        assertFalse(Meeting.isValidMeeting(VALID_PLACE, VALID_DATE, INVALID_TIME));
+        assertFalse(Meeting.isValidMeeting(VALID_DATE, INVALID_START, INVALID_END, VALID_PLACE));
+
+        // invalid place
+        assertFalse(Meeting.isValidMeeting(VALID_DATE, VALID_START, VALID_END, INVALID_PLACE));
     }
 }

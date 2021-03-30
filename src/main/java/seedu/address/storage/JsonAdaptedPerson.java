@@ -32,7 +32,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedInsurancePolicy> policies = new ArrayList<>();
-    private final List<JsonAdaptedMeeting> meeting = new ArrayList<>();
+    private final List<JsonAdaptedMeeting> meetings = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -54,7 +54,7 @@ class JsonAdaptedPerson {
             this.policies.addAll(policies);
         }
         if (meeting != null) {
-            this.meeting.addAll(meeting);
+            this.meetings.addAll(meeting);
         }
     }
 
@@ -72,7 +72,7 @@ class JsonAdaptedPerson {
         policies.addAll(source.getPolicies().stream()
                 .map(JsonAdaptedInsurancePolicy::new)
                 .collect(Collectors.toList()));
-        meeting.addAll(source.getMeeting().stream()
+        meetings.addAll(source.getMeetings().stream()
                 .map(JsonAdaptedMeeting::new)
                 .collect(Collectors.toList()));
     }
@@ -93,9 +93,9 @@ class JsonAdaptedPerson {
             personPolicies.add(policy.toModelType());
         }
 
-        final List<Meeting> personMeeting = new ArrayList<>();
-        for (JsonAdaptedMeeting meet : meeting) {
-            personMeeting.add(meet.toModelType());
+        final List<Meeting> personMeetings = new ArrayList<>();
+        for (JsonAdaptedMeeting meeting : meetings) {
+            personMeetings.add(meeting.toModelType());
         }
 
         if (name == null) {
@@ -134,9 +134,9 @@ class JsonAdaptedPerson {
 
         final List<InsurancePolicy> modelPolicies = new ArrayList<>(personPolicies);
 
-        final List<Meeting> modelMeeting = new ArrayList<>(personMeeting);
+        final List<Meeting> modelMeetings = new ArrayList<>(personMeetings);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelPolicies, modelMeeting);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelPolicies, modelMeetings);
     }
 
 }

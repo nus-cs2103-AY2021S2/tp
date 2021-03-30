@@ -24,91 +24,88 @@ public class MeetCommand extends Command {
 
     public static final String COMMAND_WORD = "meet";
 
-    public static final String CHECK_CLASHES = "-check";
-    public static final String IGNORE_CLASHES = "-ignore";
+    public static final String ADD_MEETING = "-add";
+    public static final String CLEAR_MEETING = "-clear";
     public static final String DELETE_MEETING = "-delete";
+    public static final String MEETING_EMPTY = "";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Schedule a meeting with a client.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "ACTION (-check, -ignore, -delete) "
-            + "PLACE;DATE(DD:MM:YYYY);TIME(HH:MM)\n"
-            + "Example: " + COMMAND_WORD + " 3 -check MRT;18:05:2021;16:30";
+            + "ACTION (-add, -delete, -clear) "
+            + "DATE(DD.MM.YYYY) START(HH:MM) END(HH:MM)PLACE\n"
+            + "Example: " + COMMAND_WORD + " 3 -add 18.05.2021 16:30 17:30 MRT";
 
-    public static final String MESSAGE_MEET_PERSON_SUCCESS = "Meet client at %1$s";
-    public static final String MESSAGE_CLASHING_MEETING = "The meeting clashes with another meeting in the ClientBook.";
-    public static final String MESSAGE_DELETE_MEETING = "The meeting is deleted from the client in the ClientBook.";
+    public static final String MESSAGE_CLASHING_MEETING = "The meeting clashes with %1$s";
+    public static final String MESSAGE_ADD_MEETING = "The meeting is added to the client %1$s";
+    public static final String MESSAGE_DELETE_MEETING = "The meeting is deleted from the client %1$s";
+    public static final String MESSAGE_CLEAR_MEETING = "All meetings are cleared from the client.";
 
     private final Index index;
     private final String action;
-    private final String place;
     private final String date;
-    private final String time;
+    private final String start;
+    private final String end;
+    private final String place;
 
     /**
      * Create a MeetCommand to change the meeting to the specified {@code Place} {@code Date} {@code Time}
      *
      * @param index of the client in the list
      * @param action of the command
-     * @param place of the meeting
      * @param date of the meeting
-     * @param time of the meeting
+     * @param start time of the meeting
+     * @param end time of the meeting
+     * @param place of the meeting
      */
-    public MeetCommand(Index index, String action, String place, String date, String time) {
+    public MeetCommand(Index index, String action, String date, String start, String end, String place) {
         this.index = index;
         this.action = action;
-        this.place = place;
         this.date = date;
-        this.time = time;
+        this.start = start;
+        this.end = end;
+        this.place = place;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
-
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Person personToMeet = lastShownList.get(index.getZeroBased());
-
-        if (action.equals(DELETE_MEETING)) {
-            Person meetPerson = deleteMeeting(personToMeet);
+        if (action.equals(CLEAR_MEETING)) {
+            Person meetPerson = clearMeeting(personToMeet);
             model.setPerson(personToMeet, meetPerson);
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-            return new CommandResult(MESSAGE_DELETE_MEETING);
+            return new CommandResult(MESSAGE_CLEAR_MEETING);
         }
 
-        Person meetPerson = createMeeting(personToMeet, place, date, time);
-
-        if (action.equals(IGNORE_CLASHES)) {
+        Meeting meeting = new Meeting(date, start, end, place);
+        if (action.equals(DELETE_MEETING)) {
+            Person meetPerson = deleteMeeting(personToMeet, meeting);
             model.setPerson(personToMeet, meetPerson);
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-            return new CommandResult(String.format(MESSAGE_MEET_PERSON_SUCCESS, meetPerson.getMeeting().get(0)));
+            return new CommandResult(String.format(MESSAGE_DELETE_MEETING, meeting));
         }
 
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        List<Person> wholeList = model.getFilteredPersonList();
-        String checkDate;
-        String checkTime;
-
-        for (Person person : wholeList) {
-            if (!person.getMeeting().isEmpty()) {
-                checkDate = person.getMeeting().get(0).getDate();
-                checkTime = person.getMeeting().get(0).getTime();
-            } else {
-                checkDate = null;
-                checkTime = null;
+        List<Person> personList = model.getFilteredPersonList();
+        List<Meeting> clashes = checkMeeting(personList, meeting);
+        if (!clashes.isEmpty()) {
+            StringBuilder builder = new StringBuilder();
+            for (Meeting clash : clashes) {
+                builder.append(clash.meeting).append(", ");
             }
-
-            if (date.equals(checkDate) && time.equals(checkTime)) {
-                throw new CommandException(MESSAGE_CLASHING_MEETING);
-            }
+            builder.deleteCharAt(builder.length() - 1).deleteCharAt(builder.length() - 1);
+            return new CommandResult(String.format(MESSAGE_CLASHING_MEETING, builder.toString()));
         }
 
+        Person meetPerson = addMeeting(personToMeet, meeting);
         model.setPerson(personToMeet, meetPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_MEET_PERSON_SUCCESS, meetPerson.getMeeting().get(0)));
+        return new CommandResult(String.format(MESSAGE_ADD_MEETING, meeting));
     }
 
     @Override
@@ -117,21 +114,61 @@ public class MeetCommand extends Command {
                 || (other instanceof MeetCommand // instanceof handles nulls
                 && index.equals(((MeetCommand) other).index) // state check
                 && action.equals(((MeetCommand) other).action) // state check
-                && place.equals(((MeetCommand) other).place) // state check
                 && date.equals(((MeetCommand) other).date) // state check
-                && time.equals(((MeetCommand) other).time)); // state check
+                && start.equals(((MeetCommand) other).start) // state check
+                && end.equals(((MeetCommand) other).end) // state check
+                && place.equals(((MeetCommand) other).place)); // state check
     }
 
     /**
-     * Change the meeting of the client.
+     * Add a meeting of the client.
      *
      * @param person of the meeting
-     * @param place of the meeting
-     * @param date of the meeting
-     * @param time of the meeting
-     * @return Person with new meeting
+     * @param meeting details of the meeting
+     * @return Person with the new meeting
      */
-    public static Person createMeeting(Person person, String place, String date, String time) {
+    public static Person addMeeting(Person person, Meeting meeting) {
+        Name updatedName = person.getName();
+        Phone updatedPhone = person.getPhone().get();
+        Email updatedEmail = person.getEmail().get();
+        Address updatedAddress = person.getAddress().get();
+        Set<Tag> updatedTags = person.getTags();
+        List<InsurancePolicy> updatedPolicies = person.getPolicies();
+        List<Meeting> updatedMeeting = new ArrayList<>(person.getMeetings());
+        updatedMeeting.add(meeting);
+
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                updatedTags, updatedPolicies, updatedMeeting);
+    }
+
+    /**
+     * Delete a meeting of the client.
+     *
+     * @param person of the meeting
+     * @param meeting details of the meeting
+     * @return Person without the meeting
+     */
+    public static Person deleteMeeting(Person person, Meeting meeting) {
+        Name updatedName = person.getName();
+        Phone updatedPhone = person.getPhone().get();
+        Email updatedEmail = person.getEmail().get();
+        Address updatedAddress = person.getAddress().get();
+        Set<Tag> updatedTags = person.getTags();
+        List<InsurancePolicy> updatedPolicies = person.getPolicies();
+        List<Meeting> updatedMeeting = new ArrayList<>(person.getMeetings());
+        updatedMeeting.remove(meeting);
+
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                updatedTags, updatedPolicies, updatedMeeting);
+    }
+
+    /**
+     * Clear all the meetings of the client.
+     *
+     * @param person of the meeting
+     * @return Person without any meeting
+     */
+    public static Person clearMeeting(Person person) {
         Name updatedName = person.getName();
         Phone updatedPhone = person.getPhone().get();
         Email updatedEmail = person.getEmail().get();
@@ -139,27 +176,31 @@ public class MeetCommand extends Command {
         Set<Tag> updatedTags = person.getTags();
         List<InsurancePolicy> updatedPolicies = person.getPolicies();
         List<Meeting> updatedMeeting = new ArrayList<>();
-        updatedMeeting.add(new Meeting(place, date, time));
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
                 updatedTags, updatedPolicies, updatedMeeting);
     }
 
     /**
-     * Delete the meeting of the client.
+     * Check for clashes for the meeting.
      *
-     * @param person of the meeting
-     * @return Person without any meeting
+     * @param personList meetings of all clients
+     * @param meeting details of the meeting
+     * @return List of clashed meetings
      */
-    public static Person deleteMeeting(Person person) {
-        Name updatedName = person.getName();
-        Phone updatedPhone = person.getPhone().get();
-        Email updatedEmail = person.getEmail().get();
-        Address updatedAddress = person.getAddress().get();
-        Set<Tag> updatedTags = person.getTags();
-        List<InsurancePolicy> updatedPolicies = person.getPolicies();
+    public static List<Meeting> checkMeeting(List<Person> personList, Meeting meeting) {
+        List<Meeting> clashedMeeting = new ArrayList<>();
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedTags, updatedPolicies);
+        for (Person person : personList) {
+            for (Meeting meet : person.getMeetings()) {
+                if (meeting.date.equals(meet.date) && meeting.start.equals(meet.start)
+                        & meeting.end.equals(meet.end)) {
+                    clashedMeeting.add(meet);
+                }
+            }
+        }
+
+        return clashedMeeting;
     }
+
 }

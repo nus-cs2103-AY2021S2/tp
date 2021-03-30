@@ -41,7 +41,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setAddress(person.getAddress().get());
         descriptor.setTags(person.getTags());
         descriptor.setPolicies(person.getPolicies());
-        descriptor.setMeeting(person.getMeeting());
+        descriptor.setMeeting(person.getMeetings());
     }
 
     /**

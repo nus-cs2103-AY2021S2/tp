@@ -31,7 +31,7 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private List<InsurancePolicy> policies;
-    private List<Meeting> meeting;
+    private List<Meeting> meetings;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -43,7 +43,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         policies = new ArrayList<>();
-        meeting = new ArrayList<>();
+        meetings = new ArrayList<>();
     }
 
     /**
@@ -56,7 +56,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress().get();
         tags = new HashSet<>(personToCopy.getTags());
         policies = new ArrayList<>(personToCopy.getPolicies());
-        meeting = new ArrayList<>(personToCopy.getMeeting());
+        meetings = new ArrayList<>(personToCopy.getMeetings());
     }
 
     /**
@@ -111,12 +111,12 @@ public class PersonBuilder {
      * Sets the {@code Meeting} of the {@code Person} that we are building.
      */
     public PersonBuilder withMeeting(String ... meeting) {
-        this.meeting = SampleDataUtil.getMeetingList(meeting);
+        this.meetings = SampleDataUtil.getMeetingList(meeting);
         return this;
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags, policies, meeting);
+        return new Person(name, phone, email, address, tags, policies, meetings);
     }
 
 }
