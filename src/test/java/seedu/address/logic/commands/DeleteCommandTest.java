@@ -69,6 +69,7 @@ public class DeleteCommandTest {
                 new UserPrefs(), model.getAppointmentBook(), model.getBudgetBook(),
                 model.getGradeBook(), model.getScheduleTracker());
         expectedModel.deleteTutor(tutorToDelete);
+        showNoPerson(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
