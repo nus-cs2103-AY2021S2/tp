@@ -2,14 +2,15 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.model.insurance.InsurancePlanName;
-import seedu.address.model.insurance.InsurancePremium;
+import seedu.address.model.insurance.InsurancePlan;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.tag.Tag;
 
@@ -29,18 +30,19 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private final InsurancePlanName planName;
-    private final InsurancePremium premium;
 
     //Functional fields
     private final Optional<Meeting> meeting;
+
+    //Insurance fields
+    private final List<InsurancePlan> plans = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address,
                   Gender gender, Birthdate birthdate, Set<Tag> tags) {
-        this(name, phone, email, address, gender, birthdate, tags, Optional.empty(), null, null);
+        this(name, phone, email, address, gender, birthdate, tags, Optional.empty(), new ArrayList<>());
 
     }
 
@@ -48,7 +50,7 @@ public class Person {
      * Full Constructor that is only called internally for testing.
      */
     public Person(Name name, Phone phone, Email email, Address address, Gender gender, Birthdate birthdate,
-                  Set<Tag> tags, Optional<Meeting> meeting, InsurancePlanName planName, InsurancePremium premium) {
+                  Set<Tag> tags, Optional<Meeting> meeting, List<InsurancePlan> plans) {
         requireAllNonNull(name, phone, email, address, gender, birthdate, tags);
         this.name = name;
         this.phone = phone;
@@ -58,8 +60,7 @@ public class Person {
         this.birthdate = birthdate;
         this.tags.addAll(tags);
         this.meeting = meeting;
-        this.planName = planName;
-        this.premium = premium;
+        this.plans.addAll(plans);
     }
 
     public Name getName() {
@@ -102,38 +103,62 @@ public class Person {
     }
 
     /**
-     * Returns the person's insurance plan name.
-     */
-    public InsurancePlanName getPlanName() {
-        return planName;
-    }
-
-    /**
-     * Returns the person's insurance premium.
-     */
-    public InsurancePremium getPremium() {
-        return premium;
-    }
-
-    /**
      * Creates a Person object that is identical to the original, but contains a new Meeting.
      */
     public Person setMeeting(Optional<Meeting> meeting) {
-        return new Person(name, phone, email, address, gender, birthdate, tags, meeting, planName, premium);
+        return new Person(name, phone, email, address, gender, birthdate, tags, meeting, plans);
     }
 
     /**
-     * Creates a Person object that is identical to the original, but contains a new InsurancePlanName.
+     * Returns an immutable plan set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
      */
-    public Person addPlanName(InsurancePlanName newPlanName) {
-        return new Person(name, phone, email, address, gender, birthdate, tags, meeting, newPlanName, premium);
+    public List<InsurancePlan> getPlans() {
+        return plans;
     }
 
     /**
-     * Creates a Person object that is identical to the original, but contains a new InsurancePremium.
+     * Creates a Person object that is identical to the original, but has the insurance plans contained in
+     * the Set.
      */
-    public Person addPremium(InsurancePremium newPremium) {
-        return new Person(name, phone, email, address, gender, birthdate, tags, meeting, planName, newPremium);
+    public Person setPlans(List<InsurancePlan> plans) {
+        return new Person(name, phone, email, address, gender, birthdate, tags, meeting, plans);
+    }
+
+    /**
+     * Creates a Person object that is identical to the original, but has an added InsurancePlan.
+     */
+    public Person addPlan(InsurancePlan plan) {
+        List<InsurancePlan> plansCopy = new ArrayList<>(plans);
+        plansCopy.add(plan);
+        return new Person(name, phone, email, address, gender, birthdate, tags, meeting, plansCopy);
+    }
+
+    /**
+     * Creates a Person object that is identical to the original, but with the InsurancePlan at index removed.
+     */
+    public Person removePlan(int zeroBasedIndex) {
+        List<InsurancePlan> plansCopy = new ArrayList<>(plans);
+        plansCopy.remove(zeroBasedIndex);
+        return new Person(name, phone, email, address, gender, birthdate, tags, meeting, plansCopy);
+    }
+
+    /**
+     * Returns the string representation of the InsurancePlan at the given index in the List of insurance plans.
+     */
+    public String getPlanString (int zeroBasedIndex) {
+        return plans.get(zeroBasedIndex).toString();
+    }
+
+    /**
+     * Returns a list of string representations of the person's insurance plans with numbering.
+     */
+    public List<String> getPlanStringsList () {
+        List<String> planStrings = new ArrayList<>();
+        for (int i = 0; i < plans.size(); i++) {
+            planStrings.add((i + 1) + ". " + plans.get(i).toString() + " ");
+        }
+        return planStrings;
     }
 
     /**
@@ -170,18 +195,13 @@ public class Person {
                 && otherPerson.getGender().equals(getGender())
                 && otherPerson.getBirthdate().equals(getBirthdate())
                 && otherPerson.getTags().equals(getTags())
-                && (otherPerson.getPlanName() == null
-                    ? getPlanName() == null
-                    : otherPerson.getPlanName().equals(getPlanName()))
-                && (otherPerson.getPremium() == null
-                    ? getPremium() == null
-                    : otherPerson.getPremium().equals(getPremium()));
+                && otherPerson.getPlans().equals(getPlans());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, gender, birthdate, tags, planName, premium);
+        return Objects.hash(name, phone, email, address, gender, birthdate, tags, meeting, plans);
     }
 
     @Override
@@ -204,11 +224,11 @@ public class Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
-        builder.append("; Plan Name: ")
-                .append(getPlanName())
-                .append("; Yearly Premium: ")
-                .append(getPremium());
+        List<InsurancePlan> plans = getPlans();
+        if (!plans.isEmpty()) {
+            builder.append("; Plans: ");
+            plans.forEach(builder::append);
+        }
         return builder.toString();
     }
-
 }
