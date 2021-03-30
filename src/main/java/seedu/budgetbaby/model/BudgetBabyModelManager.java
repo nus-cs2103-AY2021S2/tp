@@ -131,7 +131,11 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
 
     @Override
     public void addFinancialRecord(FinancialRecord record) {
+        FinancialRecord toAdd = record;
         budgetTracker.addFinancialRecord(record);
+        if (!record.getMonth().equals(filteredMonths.get(0))) {
+            setCurrentDisplayMonth(record.getMonth());
+        }
     }
 
     @Override

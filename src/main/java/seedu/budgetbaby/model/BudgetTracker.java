@@ -118,12 +118,7 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
      * Adds a month to the budget tracker.
      */
     public void addFinancialRecord(FinancialRecord r) {
-        FinancialRecord toAdd = r;
-
-        if (!r.getMonth().equals(currentDisplayMonth)) {
-        }
-
-        monthList.addFinancialRecord(toAdd);
+        monthList.addFinancialRecord(r);
     }
 
     /**
