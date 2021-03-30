@@ -1,11 +1,12 @@
----
+----
 layout: page
 title: User Guide
----
+
 * Table of Contents 
 {:toc}
---------------------------------------------------------------------------------------------------------------------
+----
 ## 1. Introduction
+
 ### 1.1. About StoreMando
 Greetings, and welcome to StoreMando.
 
@@ -42,9 +43,8 @@ Please note the following symbols used in the User Guide which may serve as poin
 
 :bulb: : This symbol indicates tips provided by us.
 
---------------------------------------------------------------------------------------------------------------------
+----
 ## 2. Quick start
-
 
 ### 2.1. Installation
 
@@ -67,17 +67,17 @@ Please note the following symbols used in the User Guide which may serve as poin
 ### 2.2. StoreMando's layout
 
 #### Main Panel <br>
-The main panel is the display window of items stored in StoreMando. Depending on which command you key in, 
-   the main panel will display the corresponding items.
+The main panel is the display window of items stored in StoreMando. Depending on which command you key in, the main 
+panel will display the corresponding items.
    
 #### Command Box <br>
 The command box is where you will be entering commands to be executed by StoreMando.
 
 #### Result Display Box <br>
 The result display box is where StoreMando’s server replies to every command that you key in. Any success, error or 
-   warning messages will be displayed in this box.
+warning messages will be displayed in this box.
    
---------------------------------------------------------------------------------------------------------------------
+----
 
 ## 3. Features
 
@@ -416,7 +416,7 @@ Please be reminded that if your changes to the data file makes its format invali
 and restart with an empty data file at the next run. Proceed with caution!!
 </div>
 
---------------------------------------------------------------------------------------------------------------------
+----
 
 ## 4. FAQ
 
@@ -435,11 +435,11 @@ data files in separate locations. You can have as many inventories as you want u
 **A**: You could view enter help tab by clicking F1, or by keying in `help` in the command box, which will then lead 
 you to this user guide to provide you with the help you need.
 
---------------------------------------------------------------------------------------------------------------------
+----
 ## 5. Command summary
 
-Action | Format, Examples
---------|------------------
+Action | Format, Examples |
+:-----:|------------------|
 **[“Help"](#31-viewing-help--help)** |  `help`
 **[“Add"](#32-adding-an-item--add)** | `add n/ITEM_NAME l/LOCATION q/QUANTITY [e/EXPIRY_DATE] [t/TAG]…​` <br> e.g. `add n/koko krunch l/fridge q/1 e/2021-05-27 t/favourite`
 **[“Edit"](#33-editing-an-item--edit)** | `edit INDEX [n/ITEM_NAME] [e/EXPIRY_DATE] [l/LOCATION] [q/QUANTITY] [t/TAG]…​`<br> e.g.`update 1 l/freezer q/2 `
@@ -452,12 +452,13 @@ Action | Format, Examples
 **[“Exit"](#310-exiting-storemando--exit)** | `exit`
 
 
---------------------------------------------------------------------------------------------------------------------
+----
 
 ## 6. Glossary
+
 * **StoreMando**: Name of the application
 * **CLI**: Command Line Interface
 * **GUI**: Graphical User Interface
 * **Inventory**: List of all items stored in StoreMando
 
---------------------------------------------------------------------------------------------------------------------
+----
