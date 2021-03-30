@@ -1,18 +1,19 @@
 package seedu.address.logic.filters;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.customer.CoeExpiry;
-import seedu.address.model.customer.Customer;
-import seedu.address.testutil.CustomerBuilder;
-
-import java.time.LocalDate;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.LocalDate;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.customer.CoeExpiry;
+import seedu.address.model.customer.Customer;
+import seedu.address.testutil.CustomerBuilder;
+
 public class CoeExpiryFilterTest { //TODO: Add test cases for filterAllCustomers
-    LocalDate now = LocalDate.now();
+    private LocalDate now = LocalDate.now();
 
     @Test
     public void constructor_null_throwsNullPointerException() {
