@@ -2,6 +2,9 @@ package dog.pawbook.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -193,6 +196,22 @@ public class ParserUtil {
             throw new ParseException(Session.MESSAGE_CONSTRAINTS);
         }
         return new Session(trimmedDop);
+    }
+
+    /**
+     * Parses a {@code String dateString} into {@code LocalDate}.
+     *
+     * @throws ParseException if the given {@code dateString} is not in a valid format.
+     */
+    public static LocalDate parseDate(String dateString) throws ParseException {
+        requireNonNull(dateString);
+        LocalDate date;
+        try {
+            date = LocalDate.parse(dateString.trim(), DateTimeFormatter.ofPattern("d-M-yyyy"));
+        } catch (DateTimeParseException d) {
+            throw new ParseException("Date should be in the d-M-yyyy format");
+        }
+        return date;
     }
 
 }
