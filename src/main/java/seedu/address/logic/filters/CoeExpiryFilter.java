@@ -67,9 +67,9 @@ public class CoeExpiryFilter extends AbstractFilter {
 
     @Override
     public List<Customer> filterAllCustomers(List<Customer> customer) {
-        return customer.parallelStream() //TODO: Consider this carefully, do I care about order
+        return customer.stream()
                 .filter(this::test)
-                .collect(Collectors.toUnmodifiableList());
+                .collect(Collectors.toUnmodifiableList()); //defensive coding
     }
 
     @Override
