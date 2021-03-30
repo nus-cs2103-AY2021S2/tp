@@ -4,16 +4,21 @@ import static java.util.Objects.requireNonNull;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.booking.model.Model.PREDICATE_SHOW_ALL_BOOKINGS;
 import static seedu.booking.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.booking.commons.core.Messages;
 import seedu.booking.commons.util.CollectionUtil;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.model.Model;
+import seedu.booking.model.Tag;
 import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Name;
 import seedu.booking.model.person.Person;
@@ -33,6 +38,7 @@ public class EditPersonCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " eo/johndoe@example.com "
             + PREFIX_EMAIL + "doe@example.com";
 
@@ -93,8 +99,9 @@ public class EditPersonCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        Set<Tag> updatedTag = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedTag);
     }
 
     @Override
@@ -123,6 +130,7 @@ public class EditPersonCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
+        private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
 
@@ -134,6 +142,7 @@ public class EditPersonCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setTags(toCopy.tags);
         }
 
         /**
@@ -167,6 +176,22 @@ public class EditPersonCommand extends Command {
             return Optional.ofNullable(email);
         }
 
+        /**
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public Optional<Set<Tag>> getTags() {
+            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
 
         @Override
         public boolean equals(Object other) {
@@ -185,7 +210,8 @@ public class EditPersonCommand extends Command {
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail());
+                    && getEmail().equals(e.getEmail())
+                    && getTags().equals(e.getTags());
         }
     }
 }

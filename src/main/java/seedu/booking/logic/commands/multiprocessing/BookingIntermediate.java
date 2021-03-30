@@ -1,7 +1,10 @@
 package seedu.booking.logic.commands.multiprocessing;
 
+import java.util.Set;
+
 import seedu.booking.logic.commands.AddBookingCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
+import seedu.booking.model.Tag;
 import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.Description;
 import seedu.booking.model.booking.EndTime;
@@ -16,6 +19,7 @@ public class BookingIntermediate implements Intermediate<AddBookingCommand> {
     private Description description;
     private StartTime bookingStart;
     private EndTime bookingEnd;
+    private Set<Tag> tags;
 
     /**
      * Initialised a Booking Intermediate to store tempoary user input
@@ -26,6 +30,7 @@ public class BookingIntermediate implements Intermediate<AddBookingCommand> {
         this.description = null;
         this.bookingStart = null;
         this.bookingEnd = null;
+        this.tags = null;
     }
 
     public void setEmail(Email bookerEmail) {
@@ -53,17 +58,28 @@ public class BookingIntermediate implements Intermediate<AddBookingCommand> {
         System.out.println("Intermediate: " + this.bookingEnd.toString());
     }
 
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
+
+        final StringBuilder builder = new StringBuilder();
+        if (!this.tags.isEmpty()) {
+            this.tags.forEach(builder::append);
+        }
+        System.out.println("Intermediate: " + builder.toString());
+    }
+
     /**
      * Creates a Booking with the existing user input info
      */
     public Booking createBooking() {
-        return new Booking(this.bookerEmail, this.venueName, this.description, this.bookingStart, this.bookingEnd);
+        return new Booking(this.bookerEmail, this.venueName, this.description,
+                this.bookingStart, this.bookingEnd, this.tags);
     }
 
     @Override
     public AddBookingCommand parse() throws ParseException {
         Booking booking = new Booking(bookerEmail, venueName, description,
-                bookingStart, bookingEnd);
+                bookingStart, bookingEnd, tags);
         return new AddBookingCommand(booking);
     }
 

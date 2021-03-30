@@ -5,9 +5,9 @@ import static seedu.booking.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.booking.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +16,7 @@ import seedu.booking.commons.core.index.Index;
 import seedu.booking.commons.util.CollectionUtil;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.model.Model;
+import seedu.booking.model.Tag;
 import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Name;
 import seedu.booking.model.person.Person;
@@ -36,7 +37,6 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -92,7 +92,7 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
 
-        return new Person(updatedName, updatedPhone, updatedEmail);
+        return new Person(updatedName, updatedPhone, updatedEmail, new HashSet<Tag>());
     }
 
     @Override
