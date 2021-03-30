@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.StringJoiner;
 
 import seedu.address.model.person.driver.Driver;
 import seedu.address.model.person.passenger.Passenger;
@@ -126,14 +127,10 @@ public class Pool {
      * @return String of Passenger names
      */
     public String getPassengerNames() {
-        StringBuilder passengerNames = new StringBuilder();
+        StringJoiner passengerNames = new StringJoiner(", ");
 
-        for (int i = 0; i < passengers.size(); i++) {
-            passengerNames.append(passengers.get(i).getName());
-
-            if (i < passengers.size() - 1) {
-                passengerNames.append(", ");
-            }
+        for (Passenger p : passengers) {
+            passengerNames.add(p.getName().toString());
         }
 
         return passengerNames.toString();
