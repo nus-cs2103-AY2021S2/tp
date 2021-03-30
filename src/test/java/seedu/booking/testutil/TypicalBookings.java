@@ -23,7 +23,6 @@ import seedu.booking.model.booking.EndTime;
 import seedu.booking.model.booking.Id;
 import seedu.booking.model.booking.StartTime;
 import seedu.booking.model.person.Email;
-import seedu.booking.model.venue.VenueName;
 
 
 /**
