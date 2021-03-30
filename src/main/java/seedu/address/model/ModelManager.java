@@ -111,6 +111,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePerson(Person target) {
+        selectedPersonList.remove(target);
         addressBook.removePerson(target);
     }
 
@@ -123,7 +124,9 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
+        if (selectedPersonList.remove(target)) {
+            selectedPersonList.add(editedPerson);
+        }
         addressBook.setPerson(target, editedPerson);
     }
 
