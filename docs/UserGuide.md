@@ -15,6 +15,7 @@ Graphical User Interface (GUI).
   - [Viewing help : `help`](#viewing-help--help)
   - [Adding a financial record : `add-fr`](#adding-a-financial-record--add-fr)
   - [Deleting a financial record : `delete-fr`](#deleting-a-financial-record--delete-fr)
+  - [Editing a financial record : `edit-fr`](#editing-a-financial-record--edit-fr)
   - [Setting monthly budget : `set-bg`](#setting-monthly-budget--set-bg)
   - [Viewing a specific month : `view-month`](#viewing-a-specific-month--view-month)
   - [Finding financial records : `find-fr`](#finding-financial-records--find-fr)
@@ -154,7 +155,7 @@ Examples:
 
 If you mistyped the details of a financial record, instead of deleting it completely, you may use the `edit-fr` command to edit an existing financial record in BudgetBaby.
 
-<img src="images/features/delete-fr.png" width="600px">
+<img src="images/features/edit-fr.png" width="600px">
 
 Format: `edit-fr FR_INDEX [d/FR_DESCRIPTION] [a/FR_AMOUNT] [t/DATE] [c/CATEGORY]...`
 
