@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.student.commons.core.GuiSettings;
 import seedu.student.commons.core.LogsCenter;
+import seedu.student.logic.commands.exceptions.CommandException;
 import seedu.student.model.appointment.Appointment;
 import seedu.student.model.appointment.SameDateAppointmentList;
 import seedu.student.model.student.MatriculationNumber;
@@ -140,6 +141,32 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setAppointment(Appointment target, Appointment editedAppointment) throws CommandException {
+        requireAllNonNull(target, editedAppointment);
+        studentBook.setAppointment(target, editedAppointment);
+    }
+
+    @Override
+    public Appointment getAppointment(MatriculationNumber matriculationNumber) {
+        return studentBook.getAppointment(matriculationNumber);
+    }
+
+    @Override
+    public Appointment getAppointmentToEdit(MatriculationNumber matriculationNumber) {
+        Appointment appointmentToEdit = null;
+        List<SameDateAppointmentList> lastShownList = getStudentBook().getAppointmentList();
+        for (SameDateAppointmentList sList : lastShownList) {
+            for (Appointment a : sList) {
+                if (a.getMatriculationNumber().equals(matriculationNumber)) {
+                    appointmentToEdit = a;
+                }
+            }
+        }
+        return appointmentToEdit;
+
+    }
+
+    @Override
     public boolean hasAppointment(Appointment appointment) {
         requireNonNull(appointment);
         return studentBook.hasAppointment(appointment);
@@ -154,6 +181,11 @@ public class ModelManager implements Model {
     @Override
     public void addAppointment(Appointment appointment) {
         studentBook.addAppointment(appointment);
+    }
+
+    @Override
+    public void deleteAppointment(Appointment appointment) {
+        studentBook.removeAppointment(appointment);
     }
 
     //=========== Filtered Student List Accessors =============================================================
@@ -178,6 +210,7 @@ public class ModelManager implements Model {
     /**
      * Returns an unmodifiable view of the list of {@code Appointment} backed by the internal list of
      * {@code versionedstudentBook}
+     * @return
      */
     @Override
     public ObservableList<SameDateAppointmentList> getFilteredAppointmentList() {
@@ -185,9 +218,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredAppointmentList(Predicate<SameDateAppointmentList> predicate) {
-        requireNonNull(predicate);
-        filteredAppointments.setPredicate(predicate);
+    public void updateFilteredAppointmentList(Predicate<SameDateAppointmentList> listPredicate,
+                                              Predicate<Appointment> predicate) {
+        requireAllNonNull(listPredicate, predicate);
+        filteredAppointments.setPredicate(listPredicate);
+        filteredAppointments.stream().forEach(apptFilteredList ->
+                apptFilteredList.updateFilteredAppointmentList(predicate));
     }
 
     @Override

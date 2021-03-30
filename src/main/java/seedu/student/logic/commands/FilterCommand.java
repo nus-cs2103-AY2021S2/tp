@@ -9,15 +9,15 @@ import seedu.student.model.Model;
 import seedu.student.model.student.Student;
 
 /**
- * Finds and lists all persons in address book whose student entries field matches the argument keyword.
+ * Finds and lists all students in student book whose student entries field matches the argument keyword.
  * Keyword matching is case sensitive.
  */
 public class FilterCommand extends Command {
 
     public static final String COMMAND_WORD = "filter";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds student entry with "
-            + "fields that matches the specified keyword (case-sensitive) and displays the student.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Display student records with "
+            + "fields that matches the specified keyword (case-sensitive).\n"
             + "Parameters: KEYWORD...\n"
             + "Example: " + COMMAND_WORD + " vaccinated";
 
@@ -31,8 +31,13 @@ public class FilterCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredStudentList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW, model.getFilteredStudentList().size()));
+        if (model.getFilteredStudentList().size() == 0) {
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_NO_STUDENTS_ARE_LISTED, model.getFilteredStudentList().size()));
+        } else {
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_STUDENTS_ARE_LISTED, model.getFilteredStudentList().size()));
+        }
     }
 
     @Override

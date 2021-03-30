@@ -19,7 +19,7 @@ import seedu.student.testutil.AppointmentBuilder;
 import seedu.student.testutil.TypicalStudents;
 
 public class StatsApptCommandTest {
-
+    // getTypicalStudentBook() called from TypicalStudents, no appointments
     private Model expectedModel = new ModelManager(getTypicalStudentBook(), new UserPrefs());
 
     private LocalDate currDate = LocalDate.now();

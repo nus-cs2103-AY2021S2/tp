@@ -3,18 +3,18 @@ package seedu.student.model.student;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Person}'s {@code Vaccination Status} matches the keyword given.
+ * Tests that a {@code Student}'s {@code Vaccination Status} matches the keyword given.
  */
 public class VaccinationStatusContainsKeywords implements Predicate<Student> {
     private final String keyword;
 
-    public VaccinationStatusContainsKeywords(String keywords) {
-        this.keyword = keywords;
+    public VaccinationStatusContainsKeywords(String vaccinationStatus) {
+        this.keyword = vaccinationStatus.toUpperCase();
     }
 
     @Override
     public boolean test(Student student) {
-        return keyword.equals((student.getVaccinationStatus().toString()));
+        return keyword.equals((student.getVaccinationStatus().toString().toUpperCase()));
     }
 
     @Override

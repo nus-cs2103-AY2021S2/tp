@@ -10,7 +10,7 @@ import seedu.student.model.student.MatriculationNumber;
 
 
 /**
- * Represents a Person in the address book.
+ * Represents an Appointment in the student book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Appointment implements Comparable<Appointment> {
@@ -52,7 +52,7 @@ public class Appointment implements Comparable<Appointment> {
     }
 
     /**
-     * Returns true if both appointments have the matriculation number.
+     * Returns true if both appointments have the same matriculation number.
      * This defines a weaker notion of equality between two appointments.
      */
     public boolean isSameAppointment(Appointment otherAppointment) {
@@ -76,6 +76,10 @@ public class Appointment implements Comparable<Appointment> {
         return otherAppointment.startTime.isBefore(getEndTime()) && otherAppointment.getEndTime().isAfter(startTime);
     }
 
+    public Appointment clone() {
+        return new Appointment(matriculationNumber, date, startTime);
+    }
+
     /**
      * Returns true if both appointments have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
@@ -92,7 +96,7 @@ public class Appointment implements Comparable<Appointment> {
 
         Appointment otherAppointment = (Appointment) other;
         return otherAppointment.date.isEqual(date) && otherAppointment.matriculationNumber.equals(matriculationNumber)
-                && otherAppointment.startTime.equals(startTime) && otherAppointment.getEndTime().equals(getEndTime());
+                && otherAppointment.startTime.equals(startTime);
     }
 
     @Override
