@@ -81,13 +81,20 @@ public class OrderBook implements ReadOnlyOrderBook {
     }
 
     /**
+     * Turns the state of an order to complete
+     * @param key
+     */
+    public void completeOrder(Order key) {
+        key.setState(Order.State.COMPLETED);
+    }
+
+    /**
      * Sorts item with a comparator that compares datetime
      * @param c
      */
     public void sortItemsByDateTime(Comparator<Order> c) {
         orders.sort(c);
     }
-
 
     @Override
     public String toString() {
@@ -106,5 +113,4 @@ public class OrderBook implements ReadOnlyOrderBook {
                 || (other instanceof OrderBook // instanceof handles nulls
                 && orders.equals(((OrderBook) other).orders));
     }
-
 }

@@ -370,6 +370,7 @@ public class ModelManager implements Model {
         }
     }
 
+
     /**
      * Adds the given order.
      * {@code order} must not already exist
@@ -390,16 +391,31 @@ public class ModelManager implements Model {
     }
 
     /**
+     * Sets the state of the order to complete
+     */
+    public void completeOrder(Order target) {
+        orderBook.completeOrder(target);
+    }
+
+    /**
+     * Sets the state of the order to cancelled
+     */
+    public void cancelOrder(Order order) {
+        order.setState(Order.State.CANCELLED);
+    }
+
+    /**
      * Returns an unmodifiable view of the filtered order list
      */
     @Override
-    public ObservableList<Order> getFilteredOrderList() {
-        return null;
+    public ObservableList<Order> getFilteredOrderList(Order.State state) {
+        return filteredOrders.filtered(order -> order.getState() == state);
     }
 
-    /** Returns an unmodifiable view of the filtered person list */
-    public ObservableList<Order> getFilteredOrderList(Comparator<Order> comparator) {
-        return sortOrder(comparator);
+    /** Returns an sorted view of the filtered order list */
+    public ObservableList<Order> getFilteredOrderList(Comparator<Order> comparator, Order.State state) {
+        sortOrder(comparator);
+        return getFilteredOrderList(state);
     }
 
     /**
@@ -407,9 +423,8 @@ public class ModelManager implements Model {
      * @param comparator
      * @return
      */
-    public ObservableList<Order> sortOrder(Comparator<Order> comparator) {
+    public void sortOrder(Comparator<Order> comparator) {
         orderBook.sortItemsByDateTime(comparator);
-        return filteredOrders;
     }
 
     @Override
