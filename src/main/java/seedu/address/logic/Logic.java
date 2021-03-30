@@ -55,6 +55,16 @@ public interface Logic {
     ObservableList<Grade> getFilteredGradeList();
 
     /**
+     * Returns an unmodifiable view of the person filter string list.
+     */
+    ObservableList<String> getPersonFilterStringList();
+
+    /**
+     * Returns an unmodifiable view of the appointment filter string list.
+     */
+    ObservableList<String> getAppointmentFilterStringList();
+
+    /**
      * Returns the user prefs' address book file path.
      */
     Path getAddressBookFilePath();

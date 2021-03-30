@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.tutorcommands.AddCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.BudgetBook;
 import seedu.address.model.Model;
@@ -331,6 +332,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<String> getPersonFilterStringList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasAppointmentFilter(AppointmentFilter appointmentFilter) {
             throw new AssertionError("This method should not be called.");
         }
@@ -342,6 +348,11 @@ public class AddCommandTest {
 
         @Override
         public void removeAppointmentFilter(AppointmentFilter appointmentFilter) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<String> getAppointmentFilterStringList() {
             throw new AssertionError("This method should not be called.");
         }
 

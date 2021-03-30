@@ -84,6 +84,15 @@ public class AppointmentDateTime {
         return durationDifference.toMinutes();
     }
 
+    /**
+     * Checks whether time from to time to is valid.
+     * @return True if time of current {@code AppointmentDateTime} object is smaller
+     * than given {@code AppointmentDateTime} in params
+     */
+    public boolean isTimeFromValid(AppointmentDateTime givenAppointment) {
+        return this.getValue().isBefore(givenAppointment.getValue());
+    }
+
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mma");

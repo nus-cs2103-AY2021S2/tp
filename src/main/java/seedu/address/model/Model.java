@@ -311,6 +311,11 @@ public interface Model {
     void removePersonFilter(PersonFilter personFilter);
 
     /**
+     * Returns an unmodifiable view of the person filter string list.
+     */
+    ObservableList<String> getPersonFilterStringList();
+
+    /**
      * Checks if any of the filters are in appointment filter.
      *
      * @param appointmentFilter Filters to check for inside model's appointment filter.
@@ -333,9 +338,9 @@ public interface Model {
     void removeAppointmentFilter(AppointmentFilter appointmentFilter);
 
     /**
-     * Returns an unmodifiable view of the filtered event list
+     * Returns an unmodifiable view of the appointment filter string list.
      */
-    ObservableList<Event> getFilteredEventList();
+    ObservableList<String> getAppointmentFilterStringList();
 
     /**
      * Returns the AddressBook

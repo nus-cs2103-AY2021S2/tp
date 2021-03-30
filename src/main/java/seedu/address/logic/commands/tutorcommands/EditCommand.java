@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.tutorcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
@@ -23,19 +23,22 @@ import java.util.Set;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Notes;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.subject.SubjectList;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing tutor in the address book.
  */
 public class EditCommand extends Command {
 
@@ -65,9 +68,10 @@ public class EditCommand extends Command {
             + PREFIX_YEAR + "5 "
             + PREFIX_QUALIFICATION + "A-Level>]...";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Tutor: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This tutor already exists "
+            + "in the address book.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -117,11 +121,12 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Notes updatedNotes = editPersonDescriptor.getNotes().orElse(personToEdit.getNotes());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         SubjectList updatedSubjectList = editPersonDescriptor.getSubjectList().orElse(personToEdit.getSubjectList());
 
         return new Person(updatedName, updatedGender, updatedPhone, updatedEmail, updatedAddress,
-                updatedSubjectList, updatedTags);
+                updatedNotes, updatedSubjectList, updatedTags);
     }
 
     @Override
@@ -152,6 +157,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private Notes notes;
         private Set<Tag> tags;
         private SubjectList subjectList;
 
@@ -167,6 +173,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setNotes(toCopy.notes);
             setTags(toCopy.tags);
             setSubjectList(toCopy.subjectList);
         }
@@ -216,6 +223,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setNotes(Notes notes) {
+            this.notes = notes;
+        }
+
+        public Optional<Notes> getNotes() {
+            return Optional.ofNullable(notes);
         }
 
         /**
@@ -276,8 +291,10 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getNotes().equals(e.getNotes())
                     && getTags().equals(e.getTags())
                     && subjectList.equals(otherSubjectList);
         }
     }
 }
+

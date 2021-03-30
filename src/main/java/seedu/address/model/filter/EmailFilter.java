@@ -36,7 +36,7 @@ public class EmailFilter implements Predicate<Email> {
 
     @Override
     public String toString() {
-        return emailFilter;
+        return "Email: " + emailFilter;
     }
 
     @Override

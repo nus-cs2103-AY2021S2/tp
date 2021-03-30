@@ -40,7 +40,7 @@ public class NameFilter implements Predicate<Name> {
 
     @Override
     public String toString() {
-        return nameFilter;
+        return "Name: " + nameFilter;
     }
 
     @Override
