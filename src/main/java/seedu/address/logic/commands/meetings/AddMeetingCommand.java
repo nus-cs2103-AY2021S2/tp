@@ -1,16 +1,5 @@
 package seedu.address.logic.commands.meetings;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_CONNECTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
-
-import java.util.List;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
@@ -19,6 +8,13 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 
 public class AddMeetingCommand extends Command {
@@ -49,6 +45,7 @@ public class AddMeetingCommand extends Command {
     public static final String MESSAGE_CLASH_MEETING = "This meeting clashes with the following existing meetings \n%s";
 
     private final Meeting toAdd;
+    private final Set<Index> connectionToPerson = new HashSet<>();
 
     /**
      * Creates an AddPersonCommand to add the specified {@code Person}
@@ -56,6 +53,21 @@ public class AddMeetingCommand extends Command {
     public AddMeetingCommand(Meeting meeting) {
         requireNonNull(meeting);
         toAdd = meeting;
+    }
+
+    /**
+     * Set the connection indices to meetings.
+     */
+    public AddMeetingCommand setConnectionToPerson(Set<Index> indices) {
+        this.connectionToPerson.addAll(indices);
+        return this;
+    }
+
+    /**
+     * Get the connection indices to meetings.
+     */
+    public Set<Index> getConnectionToPerson() {
+        return this.connectionToPerson;
     }
 
     @Override
@@ -72,16 +84,16 @@ public class AddMeetingCommand extends Command {
             throw new CommandException(String.format(MESSAGE_CLASH_MEETING, formatMeetingListString));
         }
 
-        if (toAdd.getConnectionToPerson().size() != 0) {
+        if (getConnectionToPerson().size() != 0) {
             List<Person> lastShownList = model.getFilteredPersonList();
             // Check whether the index is out of bounds
-            for (Index index : toAdd.getConnectionToPerson()) {
+            for (Index index : getConnectionToPerson()) {
                 if (index.getZeroBased() >= lastShownList.size()) {
-                    throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
+                    throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
                 }
             }
             // If we can pass the check, then add connection.
-            for (Index index: toAdd.getConnectionToPerson()) {
+            for (Index index: getConnectionToPerson()) {
                 Person personToAddConnection = lastShownList.get(index.getZeroBased());
                 model.addPersonMeetingConnection(personToAddConnection, toAdd);
             }
