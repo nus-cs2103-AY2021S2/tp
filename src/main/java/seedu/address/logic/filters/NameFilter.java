@@ -1,10 +1,19 @@
 package seedu.address.logic.filters;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import seedu.address.model.customer.Customer;
 
 
 public class NameFilter extends AbstractFilter {
-    protected static final int MISTAKE_THRESHOLD = 3;
+    public static final String MESSAGE_CONSTRAINTS = "Name Filter must contain at least one valid name to test by";
+    /*
+     * The first character of the search string must not be a whitespace,
+     * otherwise " " (a blank string) becomes a valid input.
+     */
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+
+    private static final int MISTAKE_THRESHOLD = 3;
 
     private final String[] nameList;
 
@@ -13,9 +22,16 @@ public class NameFilter extends AbstractFilter {
      *
      * @param nameListSingleString String with names to search, separated by spaces.
      */
-    public NameFilter(String nameListSingleString) { //TODO: Have good error checking
+    public NameFilter(String nameListSingleString) {
         super(nameListSingleString);
+        checkArgument(isValidFilter(nameListSingleString), MESSAGE_CONSTRAINTS);
         this.nameList = nameListSingleString.split("\\s+");
+    }
+    /**
+     * Returns true if a given string is a valid filter.
+     */
+    public static boolean isValidFilter(String filterString) {
+        return filterString.matches(VALIDATION_REGEX);
     }
 
     @Override
