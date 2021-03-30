@@ -117,12 +117,12 @@ Examples:
 Deletes person(s) from PartyPlanet's Contact List.
 
 Format: `delete [{INDEX [INDEX]... | [--any] -t TAG [-t TAG]...}]`
-* If no parameters `delete`:
+* If no parameters: `delete`
   * Deletes all persons in the displayed person list
-* If provided with index(es) `delete INDEX [INDEX]...`:
+* If provided with index(es): `delete INDEX [INDEX]...`
   * Deletes the person at the specified `INDEX`.
   * All indexes refers to the index number shown in the displayed person list.
-* If provided with tags `delete [--any] -t TAG [-t TAG]...`:
+* If provided with tags: `delete [--any] -t TAG [-t TAG]...`
   * Delete every person who is tagged with all/any (`--any` specified) of the specified tags, in the displayed person list.
 
 Examples:
@@ -138,12 +138,12 @@ Edits an existing person in PartyPlanet's Contact List.
 
 Format: `edit {INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] | --remove -t TAG [-t TAG}…​}`
 
-* Editing specific person `edit INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] `:
+* Editing specific person: `edit INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK]`
   * Edits the person at the specified `INDEX`.
   * Existing values will be updated to the input values.
   * When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
   * You can remove all the person’s tags by typing `-t` without specifying any tags after it.
-* `--remove` flag used `edit --remove -t TAG [-t TAG}…​`
+* `--remove` flag used: `edit --remove -t TAG [-t TAG}…​`
   * All specified tags will be removed from persons in displayed list.
 
 Examples:
@@ -245,9 +245,9 @@ Deletes event(s) from PartyPlanet's Events List. Similar to `delete`.
 
 Format: `edelete [INDEX [INDEX]...]`
 
-* If no parameters `edelete`:
+* If no parameters: `edelete`
   * Deletes all events in the current events list.
-* If provided with index(es) `edelete INDEX [INDEX]...`:
+* If provided with index(es): `edelete INDEX [INDEX]...`
   * Deletes the event(s) at the specified `INDEX`.
   * All indexes must be a positive integer valid in the list.
 
