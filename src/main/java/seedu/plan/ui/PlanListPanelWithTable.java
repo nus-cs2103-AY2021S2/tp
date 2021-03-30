@@ -4,7 +4,6 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -62,23 +61,6 @@ public class PlanListPanelWithTable extends UiPart<Region> {
         numMcCol.setCellValueFactory(new PropertyValueFactory<Plan, Boolean>("numMcs"));
         numSemestersCol.setCellValueFactory(new PropertyValueFactory<Plan, Integer>("numSemester"));
         numModulesCol.setCellValueFactory(new PropertyValueFactory<Plan, Integer>("numModules"));
-    }
-
-    /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Plan} using a {@code PersonCard}.
-     */
-    class PersonListViewCell extends ListCell<Plan> {
-        @Override
-        protected void updateItem(Plan plan, boolean empty) {
-            super.updateItem(plan, empty);
-
-            if (empty || plan == null) {
-                setGraphic(null);
-                setText(null);
-            } else {
-                setGraphic(new PlanCard(plan, getIndex() + 1).getRoot());
-            }
-        }
     }
 
     public class LineNumbersCellFactory<T, E> implements Callback<TableColumn<T, E>, TableCell<T, E>> {
