@@ -63,6 +63,10 @@ public enum Categories {
         return categoryInTitleCase;
     }
 
+    /**
+     * Lists all Categories
+     * @return list of Categories
+     */
     public static String listAll() {
         StringBuilder list = new StringBuilder("");
         for (Categories category : Categories.values()) {

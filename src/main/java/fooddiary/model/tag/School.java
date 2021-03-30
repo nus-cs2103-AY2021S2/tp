@@ -37,11 +37,11 @@ public enum School {
     }
 
     /**
-     * Finds a Category for user to save as,
+     * Finds a School for user to save as,
      * if category is not found, classified as others.
      *
      * @param input
-     * @return a Category based on what user has input
+     * @return a School based on what user has input
      */
     public static School find(String input) {
         for (School school : School.values()) {
@@ -52,10 +52,14 @@ public enum School {
         return School.INVALID;
     }
 
+    /**
+     * Lists all Schools
+     * @return list of school
+     */
     public static String listAll() {
         StringBuilder list = new StringBuilder("");
         for (School school : School.values()) {
-            if(!school.name().equals("INVALID")) {
+            if (!school.name().equals("INVALID")) {
                 list.append(school.name());
                 list.append("\n");
             }
