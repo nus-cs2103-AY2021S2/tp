@@ -24,6 +24,7 @@ import seedu.address.model.student.Student;
 public class MonthlyFeeListPanel extends UiPart<Region> {
     private static final String FXML = "MonthlyFeeListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(MonthlyFeeListPanel.class);
+    private ObservableList<MonthlyFee> monthlyFeeList;
 
     @FXML
     private ListView<MonthlyFee> monthlyFeeListView;
@@ -33,36 +34,40 @@ public class MonthlyFeeListPanel extends UiPart<Region> {
      */
     public MonthlyFeeListPanel(ObservableList<Student> studentList) {
         super(FXML);
-        ObservableList<MonthlyFee> monthlyFeeList = FXCollections.observableArrayList();
+        monthlyFeeList = FXCollections.observableArrayList();
 
-        populateMonthlyFeeList(studentList, monthlyFeeList);
-        System.out.println("Size is: " + monthlyFeeList.size());
+        populateMonthlyFeeList(studentList);
+        setStudentListListener(studentList);
+        populateMonthlyFeeListView();
+    }
 
+    /**
+     * Set the student list to list for changes and update the monthly fee list accordingly.
+     * @param studentList Student list to listen for change.
+     */
+    private void setStudentListListener(ObservableList<Student> studentList) {
         studentList.addListener((ListChangeListener<Student>) change -> {
             while (change.next()) {
                 monthlyFeeList.clear();
-                populateMonthlyFeeList(studentList, monthlyFeeList);
-                populateMonthlyFeeListView(monthlyFeeList);
+                populateMonthlyFeeList(studentList);
+                populateMonthlyFeeListView();
             }
         });
-
-        populateMonthlyFeeListView(monthlyFeeList);
     }
 
     /**
      * Populates the MonthlyFeeListViewCell with the given {@code ObservableList}.
-     * @param monthlyFeeList Represents an observable monthly fee list.
      */
-    private void populateMonthlyFeeListView(ObservableList<MonthlyFee> monthlyFeeList) {
+    private void populateMonthlyFeeListView() {
         monthlyFeeListView.setItems(monthlyFeeList);
         monthlyFeeListView.setCellFactory(listView -> new MonthlyFeeListViewCell());
     }
 
     /**
      * Populates the monthlyFeeList with {@code MonthlyFee} for the current month + previous 2 months.
+     * @param studentList Student list to listen for change.
      */
-    private void populateMonthlyFeeList(ObservableList<Student> studentList,
-        ObservableList<MonthlyFee> monthlyFeeList) {
+    private void populateMonthlyFeeList(ObservableList<Student> studentList) {
         LocalDateTime currMonthYear;
         LocalDateTime nextMonthYear;
 
@@ -72,6 +77,7 @@ public class MonthlyFeeListPanel extends UiPart<Region> {
         currMonthYear = DateUtil.convertToLocalDate(month, year);
         nextMonthYear = currMonthYear.plusMonths(1);
 
+        // Get fees for the current month + previous 2 months.
         for (int i = 0; i < 3; i++) {
             // Get current month value and add the result to the resulting string
             double currMonthlyFee = getCurrMonthFee(studentList, currMonthYear, nextMonthYear);
