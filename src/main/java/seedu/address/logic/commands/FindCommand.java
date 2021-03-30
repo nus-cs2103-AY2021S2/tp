@@ -9,9 +9,7 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.TagsMatchKeywordPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -22,7 +20,7 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "the option " + PREFIX_OPTION + OPTION_TAG + " can be used to find all persons that match at least"
+            + "the Option " + PREFIX_OPTION + OPTION_TAG + " can be used to find all persons that match at least"
             + " one of the tags.\n"
             + "Parameters: [" + PREFIX_OPTION + "OPTION]"
             + " KEYWORD [MORE_KEYWORDS]...\n"
@@ -35,16 +33,9 @@ public class FindCommand extends Command {
     private final Predicate<Person> predicate;
 
     /**
-     * @param predicate Predicate to find the {@code Person} by.
+     * @param predicate Predicate to find the {@code Person} by name.
      */
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
-        this.predicate = predicate;
-    }
-
-    /**
-     * @param predicate Predicate to find the {@code Person} by.
-     */
-    public FindCommand(TagsMatchKeywordPredicate predicate) {
+    public FindCommand(Predicate<Person> predicate) {
         this.predicate = predicate;
     }
 
