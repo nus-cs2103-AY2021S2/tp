@@ -441,4 +441,9 @@ public interface Model {
      * The {@code editedReminder} must not be the same as another existing reminder in the reminder tracker.
      */
     void setReminder(Reminder target, Reminder editedReminder);
+
+    /**
+     * Returns an unmodifiable view of the filtered appointment list
+     */
+    ObservableList<Event> getFilteredEventList();
 }

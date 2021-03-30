@@ -434,11 +434,6 @@ public class AddCommandTest {
         public void setReminder(Reminder target, Reminder editedReminder) {
             throw new AssertionError("This method should not be called.");
         }
-
-        @Override
-        public ObservableList<Event> getFilteredEventList() {
-            throw new AssertionError("This method should not be called.");
-        }
     }
 
     /**
