@@ -7,6 +7,7 @@ import java.util.Objects;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
@@ -42,7 +43,9 @@ public class ViewDayCommand extends Command {
         model.updateFilteredTaskList(predicate);
         model.setCalendarDate(date);
 
+        String calendarMonthText = StringUtil.toSentenceCase(date.getMonth().toString());
         return new CommandResult(
-                String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
+                String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size())
+                + String.format(Messages.MESSAGE_CALENDAR_SHOWING_DATE, calendarMonthText, date.getYear()));
     }
 }

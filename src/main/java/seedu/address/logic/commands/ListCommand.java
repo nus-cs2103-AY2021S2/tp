@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.task.TaskDoneStatusPredicate;
 
@@ -13,9 +14,9 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "ls";
 
-    public static final String MESSAGE_STATUS_TASKS_SUCCESS = "Listed all tasks based specified status.";
+    public static final String MESSAGE_STATUS_TASKS_SUCCESS = "Listed all tasks based specified status.\n";
 
-    public static final String MESSAGE_ALL_TASKS_SUCCESS = "Listed all tasks.";
+    public static final String MESSAGE_ALL_TASKS_SUCCESS = "Listed all tasks.\n";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists out all tasks in the planner.\n\n"
             + "Parameters: "
@@ -53,10 +54,12 @@ public class ListCommand extends Command {
 
         if (this.isListEverything) {
             model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-            return new CommandResult(MESSAGE_ALL_TASKS_SUCCESS);
+            return new CommandResult(MESSAGE_ALL_TASKS_SUCCESS
+                    + Messages.MESSAGE_CALENDAR_SHOWING_CURRENT_MONTH);
         } else {
             model.updateFilteredTaskList(taskDoneStatus);
-            return new CommandResult(MESSAGE_STATUS_TASKS_SUCCESS);
+            return new CommandResult(MESSAGE_STATUS_TASKS_SUCCESS
+                    + Messages.MESSAGE_CALENDAR_SHOWING_CURRENT_MONTH);
         }
     }
 }

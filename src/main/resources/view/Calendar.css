@@ -7,7 +7,7 @@
     -fx-font-size: 13pt;
     -fx-text-fill: white;
     -fx-background-color: transparent;
-    -fx-border-radius: 5;
+    -fx-border-radius: 3;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
 }
 
@@ -20,6 +20,6 @@
 }
 
 #monthYearLabel {
-    -fx-padding: 5 10 5 10;
-    -fx-font-size: 13pt;
+    -fx-padding: 0 10 0 10;
+    -fx-font-size: 18pt;
 }

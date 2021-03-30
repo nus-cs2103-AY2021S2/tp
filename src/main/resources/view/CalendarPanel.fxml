@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox fx:id="calendarPanel" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="calendarPanel" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <HBox style="-fx-padding: 10 10 10 10;">
         <Button fx:id="prevButton" alignment="TOP_LEFT" onAction="#handlePrevMonth" text="PREV" />
         <Region HBox.hgrow="ALWAYS" />

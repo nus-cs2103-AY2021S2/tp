@@ -36,6 +36,7 @@ public class ObservableCalendarDate implements Observable<LocalDate> {
 
     public void reset() {
         this.date = LocalDate.now();
+        notifyAllObservers();
     }
 
     public LocalDate getDate() {

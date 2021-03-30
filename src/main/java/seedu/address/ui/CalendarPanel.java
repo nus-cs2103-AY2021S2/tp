@@ -12,6 +12,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.Observer;
+import seedu.address.commons.util.StringUtil;
 import seedu.address.model.ObservableCalendarDate;
 
 public class CalendarPanel extends UiPart<Region> implements Observer {
@@ -91,18 +92,24 @@ public class CalendarPanel extends UiPart<Region> implements Observer {
         }
         // Change the title of the calendar
         String monthText = dateToView.getMonth().toString();
-        String properCaseMonthText = monthText.charAt(0) + monthText.substring(1).toLowerCase();
+        String properCaseMonthText = StringUtil.toSentenceCase(monthText);
         monthYearLabel.setText(properCaseMonthText + " " + dateToView.getYear());
     }
 
+    /**
+     * Changes the calendar to show next month, relative to the current month shown.
+     */
     @FXML
-    private void handleNextMonth() {
+    public void handleNextMonth() {
         startOfMonth = startOfMonth.plusMonths(1);
         populateCalendarDates(startOfMonth);
     }
 
+    /**
+     * Changes the calendar to show previous month, relative to the current month shown.
+     */
     @FXML
-    private void handlePrevMonth() {
+    public void handlePrevMonth() {
         startOfMonth = startOfMonth.minusMonths(1);
         populateCalendarDates(startOfMonth);
     }
