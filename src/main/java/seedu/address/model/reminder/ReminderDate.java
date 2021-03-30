@@ -26,9 +26,7 @@ public class ReminderDate {
     public static final DateTimeFormatter VALIDATION_PATTERN = new DateTimeFormatterBuilder()
             .appendPattern("[y-M-d]")
             .appendPattern("[d-M-y]")
-            .appendPattern("[y/M/d]")
-            .appendPattern("[d/M/y]")
-            .parseDefaulting(ChronoField.CLOCK_HOUR_OF_AMPM, 12)
+            .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
             .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
             .toFormatter(Locale.ENGLISH);
 
