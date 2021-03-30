@@ -9,6 +9,7 @@ import static seedu.booking.logic.commands.CommandTestUtil.BOOKING_END_DESC_FIEL
 import static seedu.booking.logic.commands.CommandTestUtil.BOOKING_END_DESC_HALL;
 import static seedu.booking.logic.commands.CommandTestUtil.BOOKING_START_DESC_FIELD;
 import static seedu.booking.logic.commands.CommandTestUtil.BOOKING_START_DESC_HALL;
+import static seedu.booking.logic.commands.CommandTestUtil.BOOKING_TAGS_DESC_HALL;
 import static seedu.booking.logic.commands.CommandTestUtil.BOOKING_VENUE_NAME_DESC_FIELD;
 import static seedu.booking.logic.commands.CommandTestUtil.BOOKING_VENUE_NAME_DESC_HALL;
 import static seedu.booking.logic.commands.CommandTestUtil.INVALID_BOOKER_EMAIL;
@@ -17,12 +18,11 @@ import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_BOOKER_
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_DESCRIPTION_HALL;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_END_HALL;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_START_HALL;
-import static seedu.booking.logic.commands.CommandTestUtil.BOOKING_TAGS_DESC_HALL;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_VENUE_NAME_HALL;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.booking.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.booking.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.booking.testutil.TypicalBookings.BOOKING_FIELD;
+import static seedu.booking.testutil.TypicalBookings.BOOKING_HALL;
 
 import org.junit.jupiter.api.Test;
 
@@ -36,7 +36,7 @@ class AddBookingCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Booking expectedBooking = new BookingBuilder(BOOKING_FIELD).build();
+        Booking expectedBooking = new BookingBuilder(BOOKING_HALL).build();
 
         // whitespace only preamble
         assertParseSuccess(parser,
