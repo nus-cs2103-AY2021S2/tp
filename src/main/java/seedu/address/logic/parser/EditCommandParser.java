@@ -72,7 +72,7 @@ public class EditCommandParser implements Parser<EditCommand> {
                     .parseRemark(argMultimap.getValue(PREFIX_REMARK).get()));
         }
 
-        if(argMultimap.getValue(PREFIX_PRIORITYTAG).isPresent()) {
+        if (argMultimap.getValue(PREFIX_PRIORITYTAG).isPresent()) {
             editTaskDescriptor.setPriorityTag(ParserUtil
                     .parsePriorityTag(argMultimap.getValue(PREFIX_PRIORITYTAG).get()));
 

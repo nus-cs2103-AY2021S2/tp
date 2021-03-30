@@ -148,6 +148,11 @@ public class ParserUtil {
         return new Tag(trimmedTag);
     }
 
+    /**
+     * method to parse and return priorityTag
+     * @param priorityTag String value of ptag
+     * @return correct string value of ptag
+     */
     public static PriorityTag parsePriorityTag(String priorityTag) {
         requireNonNull(priorityTag);
 
