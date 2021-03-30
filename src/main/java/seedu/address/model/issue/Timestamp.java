@@ -1,13 +1,13 @@
 package seedu.address.model.issue;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Config.DEFAULT_LOCALE;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.logging.Logger;
-import java.util.Locale;
 
 import seedu.address.commons.core.LogsCenter;
 
@@ -17,17 +17,14 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class Timestamp implements Comparable<Timestamp> {
 
-    private static final Logger logger = LogsCenter.getLogger(Timestamp.class);
-
-    private static final Locale default_locale = new Locale("en", "SG");
-
     public static final String TIMESTAMP_PATTERN = "yyyy/M/d h:mma";
 
-    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(TIMESTAMP_PATTERN,
-            default_locale);
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(TIMESTAMP_PATTERN, DEFAULT_LOCALE);
 
     public static final String MESSAGE_CONSTRAINTS = "Timestamps should be in the format "
             + TIMESTAMP_PATTERN + ", and it should not be blank";
+
+    private static final Logger logger = LogsCenter.getLogger(Timestamp.class);
 
     public final LocalDateTime value;
 
