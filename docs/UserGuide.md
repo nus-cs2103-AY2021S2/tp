@@ -75,10 +75,10 @@ Details:
     * Qualifications
 
 Format:
-`add_tutor n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS... <s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS> notes/NOTES`
+`add_tutor n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS... <s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS> note/NOTE`
 
 Example Input:
-`add_tutor n/John Doe p/98765432 e/johnd@example.com g/Male a/John street, block 123, #01-01 s/English r/50 l/Sec 3 y/5 q/A-Level s/Mathematics r/60 l/Sec 4 y/6 q/A-Level notes/cool tutor`
+`add_tutor n/John Doe p/98765432 e/johnd@example.com g/Male a/John street, block 123, #01-01 s/English r/50 l/Sec 3 y/5 q/A-Level s/Mathematics r/60 l/Sec 4 y/6 q/A-Level note/Patient`
 
 ### List all tutors: `list_tutors`
 
@@ -105,7 +105,7 @@ Edit a tutor's information by index. Only the attributes present are changed in 
 
 Format: `edit_tutor INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [a/ADDRESS] [<s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS>] note/NOTES`
 
-Example: `edit_tutor 1 p/99824314 s/English r/50 l/Secondary 5 y/9 q/A-Level note/efficient`
+Example: `edit_tutor 1 p/99824314 s/English r/50 l/Secondary 5 y/9 q/A-Level note/Impatient`
 
 ### Viewing a tutor: `view_tutor`
 
@@ -194,10 +194,12 @@ Lists all the tutor with note
 
 Format:`list_note`
 
-### List tutors with note `list_note`
-Export the tutor details together with the notes into a text file
+### Export tutor details with note `export`
+Export the tutor details of that index together with the notes and subject list into a text file 
+in the directory you saved
+TutorTracker in /export/TUTORNAME
 
-Format:`list_note`
+Format:`export INDEX`
 
 Example: `export 1`
 
@@ -375,25 +377,25 @@ Q & A
 
 Action | Format, Examples
 --------|------------------
-**Add a new tutor** | `add_tutor n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS... <s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS>...` <br> e.g., `add_tutor n/John Doe p/98765432 e/johnd@example.com g/Male a/John street, block 123, #01-01 s/English r/50 l/Sec 3 y/5 q/A-Level s/Mathematics r/60 l/Sec 4 y/6 q/A-Level`
+**Add a new tutor** | `add_tutor n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS... <s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS> note/NOTE` <br> e.g., `add_tutor n/John Doe p/98765432 e/johnd@example.com g/Male a/John street, block 123, #01-01 s/English r/50 l/Sec 3 y/5 q/A-Level s/Mathematics r/60 l/Sec 4 y/6 q/A-Level note/Patient`
 **List tutors** | `list_tutors`
 **Delete a tutor** | `delete_tutor INDEX`, <br> e.g. `delete_tutor 1`
-**Edit a tutor** | `edit_tutor INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [a/ADDRESS] [<s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS>]...`, <br> e.g. `edit_tutor 1 p/99824314 s/English r/50 l/Secondary 5 y/9 q/A-Level`
+**Edit a tutor** | `edit_tutor INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [a/ADDRESS] [<s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS> note/NOTE`, <br> e.g. `edit_tutor 1 p/99824314 s/English r/50 l/Secondary 5 y/9 q/A-Level note/Impatient`
 **View a tutor details** | `view_tutor INDEX`, <br> e.g. `view_tutor 1`
 **Add note to a tutor** | `add_note INDEX NOTE`, <br> e.g. `add_note 1 patient`
-**Edit note of a tutor** | `edit_note INDEX NOTE`, <br> e.g. `edit_note not patient`
+**Edit note of a tutor** | `edit_note INDEX NOTE`, <br> e.g. `edit_note impatient`
 **Delete note of a tutor** | `delete_note INDEX`, <br> e.g. `delete_note 1`
 **List tutors with note** | `list_note`, <br> e.g. `list_note`
 **Export the tutor details**| `export INDEX`, <br> e.g. `export 1`
 **Favourite a tutor** | `favourite INDEX`, <br> e.g. `favourite 1`
 **Unfavourite a tutor** | `unfavourite INDEX`, <br> e.g. `Unfavourite 1`
 **List favourites** | `list_favourites`, <br> e.g. `list_favourites`
-**Add a new appointment** | `add_appointment e/EMAIL s/SUBJECT d/DATE fr/TIME_FROM l/LOCATION` <br> e.g., `appointment e/chloe.lim@example.com s/English d/2021-4-20 fr/2:00pm l/Bedok`
+**Add a new appointment** | `add_appointment e/EMAIL s/SUBJECT d/DATE fr/TIME_FROM l/LOCATION` <br> e.g., `add_appointment e/chloe.lim@example.com s/English d/2021-4-20 fr/2:00pm l/Bedok`
 **List tuition appointments** | `list_appointments`
 **View a tuition appointment details** | `view_appointment` <br> e.g. `view_appointment 2020-03-24`
 **Find tuition appointments** | `find_appointment` <br> e.g. `find_appointment John`
 **Delete a tuition appointment** | `delete_appointment` <br> e.g. `delete_appointment 1`
-**Edit a tuition appointment** | `edit_appointment [e/EMAIL] [s/SUBJECT_NAME] [d/DATE] [fr/TIME_FROM] [l/LOCATION]` <br> e.g. `edit_appointment e/andrewng@example.com l/Clementi`
+**Edit a tuition appointment** | `n/NAME s/SUBJECT d/DATE fr/TIME FROM to/TIME TO l/LOCATION` <br> e.g. `add_appointment n/Chloe Lim s/English d/2021-3-1 fr/10:00am to/12:00pm l/Bedok`
 **Add a budget** | `add_budget` <br> e.g.`add_budget b/500`
 **Edit a budget** | `edit_budget` <br> e.g. `edit_budget b/600`
 **Deleting a budget** | `delete_budget` <br> e.g. `delete_budget`
