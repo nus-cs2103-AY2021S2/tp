@@ -298,12 +298,12 @@ Restores FlashBack to the state before the previous command was undo.
 Format: `redo`
 
 Examples:
-`delete 3` <br><br>
-![UiDeleteBeforeUndo](./images/UiDeleteBeforeUndo.png) <br><br>
-`undo` will reverse the `delete 3` command. <br><br>
-![UiDeleteAfterUndo](./images/UiDeleteAfterUndo.png) <br><br>
+`clear` <br><br>
+![UiClearBeforeUndoBeforeRedo](./images/UiClearBeforeUndoBeforeRedo.png) <br><br>
+`undo` will reverse the `clear` command. <br><br>
+![UiClearAfterUndoBeforeRedo](./images/UiClearAfterUndoBeforeRedo.png) <br><br>
 `redo` will reverse the `undo` command. <br><br>
-![UiAfterRedo](./images/UiAfterRedo.png) <br><br>
+![UiClearAfterUndoAfterRedo](./images/UiClearAfterUndoAfterRedo.png) <br><br>
 
 ### Sorting all flashcards: `sort`
 Sorts all flashcards according to a given option.
