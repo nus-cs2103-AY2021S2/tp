@@ -1,6 +1,7 @@
 package fooddiary.logic.commands;
 
 import static fooddiary.commons.core.Messages.MESSAGE_ENTRIES_LISTED_OVERVIEW;
+import static fooddiary.commons.core.Messages.MESSAGE_ENTRIES_LISTED_OVERVIEW_WITH_SUGGESTION;
 import static fooddiary.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static fooddiary.testutil.TypicalEntries.ENTRY_C;
 import static fooddiary.testutil.TypicalEntries.ENTRY_E;
@@ -58,7 +59,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_zeroKeywords_noEntryFound() {
-        String expectedMessage = String.format(MESSAGE_ENTRIES_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_ENTRIES_LISTED_OVERVIEW_WITH_SUGGESTION, 0, "");
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredEntryList(predicate);
@@ -68,7 +69,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleKeywords_multipleEntriesFound() {
-        String expectedMessage = String.format(MESSAGE_ENTRIES_LISTED_OVERVIEW, 3);
+        String expectedMessage = String.format(MESSAGE_ENTRIES_LISTED_OVERVIEW_WITH_SUGGESTION, 3, "");
         NameContainsKeywordsPredicate predicate = preparePredicate("C E F");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredEntryList(predicate);

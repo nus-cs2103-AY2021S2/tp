@@ -1,5 +1,6 @@
 package fooddiary.model.entry;
 
+import static fooddiary.commons.core.Messages.*;
 import static fooddiary.model.entry.Price.PRICE_DOLLAR_SIGN;
 import static fooddiary.model.entry.Price.PRICE_RANGE_DASH;
 import static fooddiary.model.entry.Rating.RATING_OUT_OF_FIVE;
@@ -94,4 +95,32 @@ public class NameContainsKeywordsPredicate implements Predicate<Entry> {
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(sb.toString(), keyword));
     }
 
+    public String getSuggestionMessage() {
+        String ratingResemblingRegex = "^[0-9]?[/][0-9]?$";
+        String priceResemblingRegex = "^[$][0-9]{0,3}?[-]?[0-9]{0,3}?";
+        String ratingRegex = "^[0-5]{1}[/][5]$";
+
+        boolean containsRatingResemblingKeywords = false;
+        boolean containsPriceResemblingKeywords = false;
+
+        if (keywords.stream().anyMatch(keyword
+                -> keyword.matches(ratingResemblingRegex) && !keyword.matches(ratingRegex))) {
+            containsRatingResemblingKeywords = true;
+        }
+        if (keywords.stream().anyMatch(keyword
+                -> keyword.length() > 1 && keyword.matches(priceResemblingRegex)
+                && !Price.isValidPrice(keyword.substring(1)))) {
+            containsPriceResemblingKeywords = true;
+        }
+
+        String suggestionMessage = SUGGESTION_MESSAGE_EMPTY;
+        if (containsRatingResemblingKeywords && containsPriceResemblingKeywords) {
+            suggestionMessage = SUGGESTION_MESSAGE_FOR_RATING_AND_PRICE;
+        } else if (containsRatingResemblingKeywords) {
+            suggestionMessage = SUGGESTION_MESSAGE_FOR_RATING;
+        } else if (containsPriceResemblingKeywords) {
+            suggestionMessage = SUGGESTION_MESSAGE_FOR_PRICE;
+        }
+        return suggestionMessage;
+    }
 }
