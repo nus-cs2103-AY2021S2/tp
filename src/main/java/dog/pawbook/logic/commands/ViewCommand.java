@@ -11,8 +11,8 @@ import dog.pawbook.commons.core.Messages;
 import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.managedentity.Entity;
-import dog.pawbook.model.managedentity.ViewCommandComparator;
 import dog.pawbook.model.managedentity.IdMatchPredicate;
+import dog.pawbook.model.managedentity.ViewCommandComparator;
 import dog.pawbook.model.managedentity.program.Program;
 
 /**

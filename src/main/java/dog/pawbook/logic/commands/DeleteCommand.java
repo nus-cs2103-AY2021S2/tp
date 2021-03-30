@@ -50,6 +50,11 @@ public abstract class DeleteCommand extends Command {
         return entityToDelete;
     }
 
+    /**
+     * Updates the filtered list and sorts it in the desired order.
+     * @param model Model instance.
+     * @throws CommandException if command cannot be executed.
+     */
     public void updateFilteredList(Model model) throws CommandException {
         model.updateFilteredEntityList(Model.PREDICATE_SHOW_ALL_ENTITIES);
         model.sortEntities(model.COMPARATOR_ID_ASCENDING_ORDER);

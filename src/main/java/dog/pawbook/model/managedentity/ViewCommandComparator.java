@@ -13,6 +13,10 @@ public class ViewCommandComparator implements Comparator<Pair<Integer, Entity>> 
     private final Class<? extends Entity> secondClass;
     private final Class<? extends Entity> thirdClass;
 
+    /**
+     * Constructs a View Command Comparator.
+     * @param targetEntityClass class of target entity.
+     */
     public ViewCommandComparator(Class<? extends Entity> targetEntityClass) {
         this.firstClass = targetEntityClass;
         if (targetEntityClass.equals(Dog.class)) {
@@ -28,7 +32,7 @@ public class ViewCommandComparator implements Comparator<Pair<Integer, Entity>> 
     }
 
     @Override
-    public int compare(Pair<Integer, Entity> firstPair, Pair<Integer, Entity> secondPair ) {
+    public int compare(Pair<Integer, Entity> firstPair, Pair<Integer, Entity> secondPair) {
 
         Class firstEntityClass = firstPair.getValue().getClass();
         Class secondEntityClass = secondPair.getValue().getClass();
