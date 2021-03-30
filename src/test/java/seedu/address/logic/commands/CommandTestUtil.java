@@ -37,6 +37,16 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
+    /*
+    public static final Name VALID_NAME_OBJECT_ALICE = new Name("Alice Pauline");
+    public static final Name VALID_NAME_OBJECT_GEORGE = new Name("George Best");
+    public static final Name VALID_NAME_OBJECT_BENSON = new Name("Benson Meier");
+    public static final Name BLANK_NAME = new Name(" ");
+
+    public static final Name INVALID_NAME_OBJECT_JOHN = new Name("John Doe");
+    public static final Name VALID_NAME_OBJECT_AMY = new Name("Amy Bee");
+     */
+
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
