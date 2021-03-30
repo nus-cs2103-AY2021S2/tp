@@ -52,4 +52,15 @@ public enum School {
         return School.INVALID;
     }
 
+    public static String listAll() {
+        StringBuilder list = new StringBuilder("");
+        for (School school : School.values()) {
+            if(!school.name().equals("INVALID")) {
+                list.append(school.name());
+                list.append("\n");
+            }
+        }
+        return list.toString();
+    }
+
 }

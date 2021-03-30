@@ -6,7 +6,8 @@ import fooddiary.commons.util.AppUtil;
 
 public class TagSchool extends Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be of displayed schools.";
+    public static final String MESSAGE_CONSTRAINTS = "School(s) should be of displayed schools.\n"
+                                                        + School.listAll();
 
     private School school;
     private String tag;
