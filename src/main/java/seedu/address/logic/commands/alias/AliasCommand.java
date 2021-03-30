@@ -31,7 +31,7 @@ public class AliasCommand extends Command {
      * All field must not be null.
      *
      * @param alias Alias object.
-     * @throws NullPointerException if the input is null.
+     * @throws NullPointerException If the input is null.
      */
     public AliasCommand(Alias alias) {
         requireAllNonNull(alias);
@@ -43,8 +43,8 @@ public class AliasCommand extends Command {
      *
      * @param model {@code Model} which the command should operate on.
      * @return Result of command execution.
-     * @throws CommandException if input is invalid.
-     * @throws NullPointerException if the input is null.
+     * @throws CommandException If input is invalid.
+     * @throws NullPointerException If the input is null.
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
