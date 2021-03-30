@@ -6,13 +6,14 @@ import seedu.partyplanet.logic.commands.exceptions.CommandException;
 import seedu.partyplanet.model.Model;
 
 /**
- * Redoes the previous command that changes the AddressBook
+ * Redoes the previous command that changes the address or event books
  */
 public class RedoCommand extends Command {
 
     public static final String COMMAND_WORD = "redo";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Redoes the last command that changes the AddressBook.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Redoes the last command that changes the address or event books.";
 
     public static final String MESSAGE_USAGE_CONCISE = COMMAND_WORD;
 
@@ -22,7 +23,7 @@ public class RedoCommand extends Command {
 
 
     /**
-     * Creates a RedoCommand to redo the last command that changes the AddressBook
+     * Creates a RedoCommand to redo the last command that changes the address or event books
      */
     public RedoCommand() {
     }

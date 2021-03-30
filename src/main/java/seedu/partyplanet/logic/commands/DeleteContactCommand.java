@@ -59,10 +59,9 @@ public class DeleteContactCommand extends DeleteCommand {
             model.addState(String.format(MESSAGE_DELETE_PERSON_SUCCESS + "\n" + MESSAGE_INVALID_PERSON_INDEX,
                     displayPersons(deletedPersons),
                     String.join(", ", invalidIndexes)));
-            return new CommandResult(
-                String.format(MESSAGE_DELETE_PERSON_SUCCESS + "\n" + MESSAGE_INVALID_PERSON_INDEX,
-                        displayPersons(deletedPersons),
-                        String.join(", ", invalidIndexes)));
+            return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS + "\n" + MESSAGE_INVALID_PERSON_INDEX,
+                    displayPersons(deletedPersons),
+                    String.join(", ", invalidIndexes)));
         }
     }
 
