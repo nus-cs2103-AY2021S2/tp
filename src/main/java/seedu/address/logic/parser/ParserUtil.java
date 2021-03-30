@@ -15,6 +15,7 @@ import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.TaskName;
 import seedu.address.model.person.Weightage;
+import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -145,6 +146,17 @@ public class ParserUtil {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
         return new Tag(trimmedTag);
+    }
+
+    /**
+     * method to parse and return priorityTag
+     * @param priorityTag String value of ptag
+     * @return correct string value of ptag
+     */
+    public static PriorityTag parsePriorityTag(String priorityTag) {
+        requireNonNull(priorityTag);
+
+        return new PriorityTag(priorityTag);
     }
 
     /**
