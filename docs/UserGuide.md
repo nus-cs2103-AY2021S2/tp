@@ -402,6 +402,70 @@ Total Cost of Appointments: 100.
 ```
 
 
+### Adding a Grade : `add_grade`
+
+Adds a grade with a subject, a graded item and a grade alphabet specified by user. Stores in user system.
+
+Format: `add_grade s/SUBJECT_NAME gi/GRADED_ITEM gr/GRADE_ALPHABET`
+
+* Valid `GRADE_ALPHABET` recognized by the system only include A to F, S and U.
+* `SUBJECT_NAME` is case-insensitive and `GRADE_ALPHABET` must be uppercase.
+
+Example: `add_grade s/Mathematics gi/Final gr/A`
+
+Example Output:
+```
+New grade added: Mathematics (Final): A
+```
+
+### Editing a grade : `edit_grade`
+
+Edits an already existing grade at the specified index. Only the attributes present are changed in the grade.
+
+Format: `edit_grade INDEX [s/SUBJECT_NAME] [gi/GRADED_ITEM] [gr/GRADE_ALPHABET]`
+
+Example: `edit_grade 1 gr/B`
+
+Example Output:
+```
+Edited Grade: Science (Lab 1): B
+```
+
+### Deleting a grade : `delete_grade`
+
+Deletes an already existing grade at the specified index.
+
+Format: `delete_grade INDEX`
+
+Example: `delete_grade 1`
+
+Example Output: 
+```
+Deleted Grade: Science (Lab 1): B
+```
+
+### Listing all grades: `list_grades`
+
+Views a list of all already existing grades in storage.
+
+Format: `list_grades`
+
+Example: `list_grades`
+
+Example Output:
+```
+Listed all grades
+  1. Science
+     Lab 1
+     A
+  2. Mathematics
+     Final
+     B
+  3. English
+     Midterm
+     C
+```
+
 ### Exiting `exit`
 
 Closes the app with `bye` message
@@ -437,3 +501,8 @@ Action | Format, Examples
 **Edit a budget** | `edit_budget` <br> e.g. `edit_budget b/600`
 **Deleting a budget** | `delete_budget` <br> e.g. `delete_budget`
 **Viewing a budget** | `view_budget` <br> e.g. `view_budget`
+**Add a grade** | `add_grade s/SUBJECT_NAME gi/GRADED_ITEM gr/GRADE_ALPHABET`, <br> e.g. `add_grade s/Mathematics gi/Final gr/A` 
+**Edit a grade** | `edit_grade INDEX [s/SUBJECT_NAME] [gi/GRADED_ITEM] [gr/GRADE_ALPHABET]`, <br> e.g. `edit_grade 1 gr/B`
+**Delete a grade** | `delete_grade INDEX`, <br> e.g. `delete_grade 1`
+**List grades** | `list_grades`
+**exit** | `bye`
