@@ -285,6 +285,8 @@ Format:  `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/` or `sort 
 *  `sort m/` Sorts the tasks by module code alphabetically in descending order.
 *  `sort t/` Sorts the tasks by number of tags in descending order.
 
+![add message](images/sortCommand.png)
+
 Examples:
 * `sort w/`
 
