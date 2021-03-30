@@ -35,7 +35,7 @@ public class CommandBox extends UiPart<Region> {
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
         getRoot().addEventFilter(KeyEvent.KEY_PRESSED, ke-> {
-            KeyboardShortcuts.matchAndSet(this.commandTextField, ke);
+            KeyboardCommands.matchAndSet(this.commandTextField, ke);
         });
     }
 
@@ -90,7 +90,7 @@ public class CommandBox extends UiPart<Region> {
         CommandResult execute(String commandText) throws CommandException, ParseException;
     }
 
-    private static class KeyboardShortcuts {
+    private static class KeyboardCommands {
 
         private static final KeyCombination CTRL_F = new KeyCodeCombination(KeyCode.F,
                 KeyCombination.CONTROL_DOWN);
