@@ -46,10 +46,12 @@ public class EditEntryCommandParser implements Parser<EditEntryCommand> {
             editEntryDescriptor.setEntryName(ParserUtil.parseEntryName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_START_DATE).isPresent()) {
-            editEntryDescriptor.setEntryStartDate(ParserUtil.parseEntryDate(argMultimap.getValue(PREFIX_START_DATE).get()));
+            editEntryDescriptor.setEntryStartDate(ParserUtil
+                    .parseEntryDate(argMultimap.getValue(PREFIX_START_DATE).get()));
         }
         if (argMultimap.getValue(PREFIX_END_DATE).isPresent()) {
-            editEntryDescriptor.setEntryEndDate(ParserUtil.parseEntryDate(argMultimap.getValue(PREFIX_START_DATE).get()));
+            editEntryDescriptor.setEntryEndDate(ParserUtil
+                    .parseEntryDate(argMultimap.getValue(PREFIX_START_DATE).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editEntryDescriptor::setTags);
 
