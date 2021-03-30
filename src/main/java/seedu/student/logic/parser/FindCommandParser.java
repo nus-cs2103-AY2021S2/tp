@@ -3,7 +3,7 @@ import java.util.logging.Logger;
 
 import seedu.student.commons.core.LogsCenter;
 import seedu.student.logic.LogicManager;
-import seedu.student.logic.commands.findcommands.FindStudentAndAppointmentCommand;
+import seedu.student.logic.commands.FindCommand;
 import seedu.student.logic.parser.exceptions.ParseException;
 import seedu.student.model.appointment.AppointmentContainsMatriculationNumberPredicate;
 import seedu.student.model.appointment.AppointmentListContainsMatriculationNumberPredicate;
@@ -14,7 +14,7 @@ import seedu.student.model.student.StudentContainsMatriculationNumberPredicate;
 /**
  * Parses input arguments and creates a new FindCommand object
  */
-public class FindCommandParser implements Parser<FindStudentAndAppointmentCommand> {
+public class FindCommandParser implements Parser<FindCommand> {
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     /**
@@ -22,7 +22,7 @@ public class FindCommandParser implements Parser<FindStudentAndAppointmentComman
      * and returns a FindCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public FindStudentAndAppointmentCommand parse(String args) throws ParseException {
+    public FindCommand parse(String args) throws ParseException {
 
         logger.info("----------------[MATRIC NUMBER TO BE SEARCHED:][" + args.trim() + "]");
 
@@ -31,7 +31,7 @@ public class FindCommandParser implements Parser<FindStudentAndAppointmentComman
 
         assert matriculationNumber.toString().equals(matriculationNumber.toString().toUpperCase());
 
-        return new FindStudentAndAppointmentCommand(new StudentContainsMatriculationNumberPredicate(matriculationNumber),
+        return new FindCommand(new StudentContainsMatriculationNumberPredicate(matriculationNumber),
                 new AppointmentListContainsMatriculationNumberPredicate(matriculationNumber),
                 new AppointmentContainsMatriculationNumberPredicate(matriculationNumber));
     }

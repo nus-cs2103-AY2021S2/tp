@@ -24,7 +24,7 @@ import seedu.student.model.student.StudentContainsMatriculationNumberPredicate;
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
-public class FindStudentCommandTest {
+public class FindCommandTest {
     private Model model = new ModelManager(getTypicalStudentBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalStudentBook(), new UserPrefs());
 
