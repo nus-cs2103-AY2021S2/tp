@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRINGSCHEDULE;
@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Date;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Duration;
 import seedu.address.model.task.RecurringSchedule;
@@ -36,7 +36,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DEADLINE, PREFIX_DURATION,
+                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DATE, PREFIX_DURATION,
                         PREFIX_RECURRINGSCHEDULE, PREFIX_DESCRIPTION, PREFIX_STATUS, PREFIX_TAG);
 
         try {
@@ -61,7 +61,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         assert argMultimap.getValue(PREFIX_TITLE).isPresent();
 
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
-        Deadline deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).orElse(""));
+        Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).orElse(""));
         RecurringSchedule recurringSchedule = ParserUtil.parseRecurringSchedule(
                 argMultimap.getValue(PREFIX_RECURRINGSCHEDULE).orElse(""));
         Duration duration = ParserUtil.parseDuration(argMultimap
@@ -70,7 +70,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).orElse("not done"));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        return new Task(title, deadline, duration, recurringSchedule, description, status, tagList);
+        return new Task(title, date, duration, recurringSchedule, description, status, tagList);
     }
 
     /**

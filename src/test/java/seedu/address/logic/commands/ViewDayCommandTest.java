@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Date;
 import seedu.address.model.task.predicates.TaskOnDatePredicate;
 
 class ViewDayCommandTest {
@@ -25,9 +25,9 @@ class ViewDayCommandTest {
     @Test
     public void execute_viewDayWithTasks_multipleTasksFound() {
         String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 2);
-        Deadline deadline = new Deadline("27/05/2021");
-        TaskOnDatePredicate predicate = new TaskOnDatePredicate(deadline);
-        ViewDayCommand command = new ViewDayCommand(predicate, deadline.getDate());
+        Date date = new Date("27/05/2021");
+        TaskOnDatePredicate predicate = new TaskOnDatePredicate(date);
+        ViewDayCommand command = new ViewDayCommand(predicate, date.getDate());
         expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(DANIEL, GEORGE), expectedModel.getFilteredTaskList());
@@ -36,9 +36,9 @@ class ViewDayCommandTest {
     @Test
     public void execute_viewDayWithoutTasks_noTasksFound() {
         String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 0);
-        Deadline deadline = new Deadline("24/04/2021");
-        TaskOnDatePredicate predicate = new TaskOnDatePredicate(deadline);
-        ViewDayCommand command = new ViewDayCommand(predicate, deadline.getDate());
+        Date date = new Date("24/04/2021");
+        TaskOnDatePredicate predicate = new TaskOnDatePredicate(date);
+        ViewDayCommand command = new ViewDayCommand(predicate, date.getDate());
         expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), expectedModel.getFilteredTaskList());

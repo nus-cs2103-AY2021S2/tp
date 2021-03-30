@@ -372,7 +372,7 @@ This approach was chosen as it is easy to implement, and not too much of refacto
 * Manage tasks faster than a typical mouse/GUI driven app
 * A quick way to view all tasks due on a specified day
 * Able to quickly search for an available timing for a particular task
-* Organising tasks according to projects/modules/deadline so that users can view these tasks with different filters
+* Organising tasks according to projects/modules/date so that users can view these tasks with different filters
 * Able to adjust and edit task according to user needs
 
 
@@ -383,7 +383,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​ | I want to …​ | So that I can…​ |
 | -------- | ---------- | --------------- | ------------------ |
 | `* * *`  | new user | see usage instructions | refer to instructions when I forget how to use the App  |
-| `* * *`  | user | add a deadline to a task | know when to complete it by |
+| `* * *`  | user | add a date to a task | know when to complete it by |
 | `* * *`  | user | mark a task as done | remove tasks from the list after completing them |
 | `* * *`  | user | view when a task is due | understand how much time I have to complete it |
 | `* * *`  | returning user | view all the tasks previously set | avoid resetting all the tasks |
@@ -446,14 +446,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-#### **Use case: Add a deadline to a task**
+#### **Use case: Add a date to a task**
 
 **MSS**
 1. User _adds a task_ to the list.
 2. PlanIt shows task added to the list and updates list.
-3. User enters command to add a deadline to a specified task.
-4. PlanIt shows task with updated deadline and updates list.
-5. This task can be viewed in the Calendar User Interface on the day of the deadline.
+3. User enters command to add a date to a specified task.
+4. PlanIt shows task with updated date and updates list.
+5. This task can be viewed in the Calendar User Interface on the day of the date.
 
 **Extensions**
 * 4a. The given index is invalid.
@@ -478,7 +478,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
 #### **Use case: Add a recurring schedule to the task**
 
-**Precondition: The task does not have a deadline, only repeats in weekly or biweekly basis.**
+**Precondition: The task does not have a date, only repeats in weekly or biweekly basis.**
 
 **MSS**
 1. User enters command to _adds a task with recurring schedule_ to the list.
@@ -507,7 +507,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 3.
 
-#### **Use case: Sort tasks according to deadline**
+#### **Use case: Sort tasks according to date**
 
 **MSS**
 1. User _adds a task with a deadline_ to the list.

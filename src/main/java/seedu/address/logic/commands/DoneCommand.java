@@ -11,7 +11,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Date;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Duration;
 import seedu.address.model.task.RecurringSchedule;
@@ -87,14 +87,14 @@ public class DoneCommand extends Command {
         assert taskToBeDone != null;
 
         Title previousTitle = taskToBeDone.getTitle();
-        Deadline previousDeadline = taskToBeDone.getDeadline();
+        Date previousDate = taskToBeDone.getDate();
         RecurringSchedule previousRecurringSchedule = taskToBeDone.getRecurringSchedule();
         Description previousDescription = taskToBeDone.getDescription();
         Duration previousDuration = taskToBeDone.getDuration();
         Status doneStatus = new Status("done");
         Set<Tag> previousTags = taskToBeDone.getTags();
 
-        return new Task(previousTitle, previousDeadline, previousDuration, previousRecurringSchedule,
+        return new Task(previousTitle, previousDate, previousDuration, previousRecurringSchedule,
                 previousDescription, doneStatus, previousTags);
     }
 
