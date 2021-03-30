@@ -79,6 +79,7 @@ public class DeleteCommand extends Command {
             }
             outputString.append(String.format(MESSAGE_DELETE_PERSON_APPOINTMENT_FAILURE,
                     personListToStringBuilder(personCannotBeDeletedList)));
+            throw new CommandException(outputString.toString());
         }
 
         return new CommandResult(outputString.toString());
