@@ -35,6 +35,7 @@ public class RedoCommand extends Command {
      * @param model {@code Model} which the command should operate on.
      * @return A {@code CommandResult} with a success message.
      * @throws CommandException If the redo fails for whatever reason (e.g. no next state).
+     * @throws NullPointerException If model is null.
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
