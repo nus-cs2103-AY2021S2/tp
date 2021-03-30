@@ -46,7 +46,7 @@ public abstract class Event implements Comparable<Event> {
     }
 
     public int getDuration() {
-        return 120;
+        return 0;
     }
 
     @Override
