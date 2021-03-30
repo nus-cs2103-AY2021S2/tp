@@ -22,8 +22,8 @@ import seedu.address.model.filter.AppointmentDateTimeFilter;
 import seedu.address.model.filter.AppointmentFilter;
 import seedu.address.model.filter.NameFilter;
 import seedu.address.model.filter.SubjectNameFilter;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Name;
+import seedu.address.model.tutor.Address;
+import seedu.address.model.tutor.Name;
 import seedu.address.model.subject.SubjectName;
 
 /**

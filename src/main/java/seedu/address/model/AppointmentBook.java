@@ -7,7 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentList;
-import seedu.address.model.person.Name;
+import seedu.address.model.tutor.Name;
 
 /**
  * Wraps all data at the appointment-book level

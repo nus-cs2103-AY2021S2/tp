@@ -13,11 +13,11 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.TutorTrackerParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTutorBook;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.event.Event;
 import seedu.address.model.grade.Grade;
-import seedu.address.model.person.Person;
+import seedu.address.model.tutor.Tutor;
 import seedu.address.storage.Storage;
 
 /**
@@ -49,7 +49,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveTutorBook(model.getTutorBook());
             storage.saveAppointmentBook(model.getAppointmentBook());
             storage.saveBudgetBook(model.getBudgetBook());
         } catch (IOException ioe) {
@@ -60,13 +60,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyTutorBook getAddressBook() {
+        return model.getTutorBook();
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Tutor> getFilteredPersonList() {
+        return model.getFilteredTutorList();
     }
 
     @Override
@@ -81,7 +81,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ObservableList<String> getPersonFilterStringList() {
-        return model.getPersonFilterStringList();
+        return model.getTutorFilterStringList();
     }
 
     @Override
@@ -96,7 +96,7 @@ public class LogicManager implements Logic {
 
     @Override
     public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+        return model.getTutorBookFilePath();
     }
 
     @Override

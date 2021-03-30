@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.function.Predicate;
 
-import seedu.address.model.person.Address;
+import seedu.address.model.tutor.Address;
 
 public class AddressFilter implements Predicate<Address> {
     public static final String MESSAGE_CONSTRAINTS =

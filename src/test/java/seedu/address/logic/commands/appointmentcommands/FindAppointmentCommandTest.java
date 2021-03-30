@@ -10,7 +10,7 @@ import static seedu.address.testutil.TypicalAppointments.SCIENCE_APPOINTMENT;
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
 import static seedu.address.testutil.TypicalBudgets.getTypicalBudgetBook;
 import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTutors.getTypicalTutorBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -26,9 +26,9 @@ import seedu.address.model.appointment.NamePredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindAppointmentCommandTest {
-    private final Model model = new ModelManager(getTypicalAddressBook(),
+    private final Model model = new ModelManager(getTypicalTutorBook(),
             new UserPrefs(), getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook());
-    private final Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
+    private final Model expectedModel = new ModelManager(getTypicalTutorBook(), new UserPrefs(),
             getTypicalAppointmentBook(), getTypicalBudgetBook(), model.getGradeBook());
 
     @Test

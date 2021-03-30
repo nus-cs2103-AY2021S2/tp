@@ -9,7 +9,7 @@ import static seedu.address.testutil.TypicalBudgets.getTypicalBudgetBook;
 import static seedu.address.testutil.TypicalDates.APPOINTMENT_FIRST_DATE;
 import static seedu.address.testutil.TypicalDates.APPOINTMENT_SECOND_DATE;
 import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTutors.getTypicalTutorBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,9 +21,9 @@ import seedu.address.model.appointment.DateViewPredicate;
 
 public class ViewAppointmentCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
+    private Model model = new ModelManager(getTypicalTutorBook(), new UserPrefs(),
             getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
+    private Model expectedModel = new ModelManager(getTypicalTutorBook(), new UserPrefs(),
             getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook());
 
     @Test

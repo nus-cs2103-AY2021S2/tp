@@ -3,9 +3,9 @@ package seedu.address.model.budget;
 import java.nio.file.Path;
 import java.util.Optional;
 
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTutorBook;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonTutorBookStorage;
 
 
 /**
@@ -14,7 +14,7 @@ import seedu.address.storage.JsonAddressBookStorage;
  */
 public class GetAddressBook {
 
-    private ReadOnlyAddressBook addressBook;
+    private ReadOnlyTutorBook addressBook;
 
     /**
      * Primary constructor.
@@ -23,18 +23,18 @@ public class GetAddressBook {
     public GetAddressBook(String relativeFilePath) {
         try {
             Path path = Path.of(relativeFilePath);
-            JsonAddressBookStorage jsonAddressBookStorage =
-                    new JsonAddressBookStorage(path);
+            JsonTutorBookStorage jsonAddressBookStorage =
+                    new JsonTutorBookStorage(path);
 
-            Optional<ReadOnlyAddressBook> optionalAddressBook =
-                    jsonAddressBookStorage.readAddressBook(path);
+            Optional<ReadOnlyTutorBook> optionalAddressBook =
+                    jsonAddressBookStorage.readTutorBook(path);
 
             this.addressBook =
-                    optionalAddressBook.orElseGet(SampleDataUtil::getSampleAddressBook);
+                    optionalAddressBook.orElseGet(SampleDataUtil::getSampleTutorBook);
 
         } catch (Exception e) {
             // To use sample data book if address not found
-            this.addressBook = SampleDataUtil.getSampleAddressBook();
+            this.addressBook = SampleDataUtil.getSampleTutorBook();
         }
 
     }
@@ -42,7 +42,7 @@ public class GetAddressBook {
     /**
      * Getter method that retrieves the {@code ReadOnlyAddressBook}
      */
-    public ReadOnlyAddressBook getAddressBook() {
+    public ReadOnlyTutorBook getAddressBook() {
         return addressBook;
     }
 

@@ -2,8 +2,8 @@ package seedu.address.testutil;
 
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Name;
+import seedu.address.model.tutor.Address;
+import seedu.address.model.tutor.Name;
 import seedu.address.model.subject.SubjectName;
 
 /**
