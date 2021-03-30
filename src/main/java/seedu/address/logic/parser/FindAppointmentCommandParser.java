@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.logic.commands.FindAppointmentCommand;
-import seedu.address.logic.commands.FindPropertyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
@@ -40,7 +39,7 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
 
         if (args.strip().equals("") || !checkMultiMap(argMultimap)) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPropertyCommand.MESSAGE_USAGE)
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindAppointmentCommand.MESSAGE_USAGE)
             );
         }
 
@@ -79,7 +78,7 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
                 throw new ParseException("Wrong date format! \n"
                         + e.getMessage()
                         + "\n"
-                        + FindPropertyCommand.MESSAGE_USAGE);
+                        + FindAppointmentCommand.MESSAGE_USAGE);
             }
         }
 
@@ -95,7 +94,7 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
                 throw new ParseException("Wrong time format! \n"
                         + e.getMessage()
                         + "\n"
-                        + FindPropertyCommand.MESSAGE_USAGE);
+                        + FindAppointmentCommand.MESSAGE_USAGE);
             }
         }
         return new FindAppointmentCommand(new AppointmentPredicateList(predicates));
