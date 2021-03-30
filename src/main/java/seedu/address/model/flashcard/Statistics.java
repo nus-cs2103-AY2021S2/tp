@@ -9,8 +9,8 @@ import java.util.Objects;
 public class Statistics {
     public static final String MESSAGE_CONSTRAINT = "Flash card(s) review count and correct count should be "
             + "positive integers, the correct count should be less than or equal to the review count";
-    private int reviewCount;
-    private int correctCount;
+    private final int reviewCount;
+    private final int correctCount;
 
     /**
      * Constructs a {@code Statistics}.
@@ -41,10 +41,14 @@ public class Statistics {
      * @param flashcards A list of flashcards
      */
     public Statistics(List<Flashcard> flashcards) {
+        int reviewCount = 0;
+        int correctCount = 0;
         for (Flashcard card : flashcards) {
             reviewCount += card.getStats().getReviewCount();
             correctCount += card.getStats().getCorrectCount();
         }
+        this.reviewCount = reviewCount;
+        this.correctCount = correctCount;
     }
 
     /**
