@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTOR_ID;
 import static seedu.address.logic.parser.ListType.PERSON_TYPE_LIST;
@@ -241,7 +242,7 @@ public class ParserUtil {
                 || trimmedListType.equals(STUDENT_TYPE_LIST) || trimmedListType.equals(TUTOR_TYPE_LIST)) {
             return trimmedListType;
         } else {
-            throw new ParseException(ListCommand.MESSAGE_USAGE);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
     }
 
