@@ -226,7 +226,7 @@ public class MainWindow extends UiPart<Stage> {
             } else if (commandResult.type() == CommandResult.CRtype.ORDER) {
                 componentList.getChildren().clear();
                 orderListPanelPlaceholder.getChildren().clear();
-                orderListPanel = new OrderListPanel(logic.getFilteredOrderList());
+                orderListPanel = getSortedOrderListPanel();
                 orderListPanelPlaceholder.getChildren().add(orderListPanel.getRoot());
                 componentList.getChildren().add(orderListPanelPlaceholder);
             }
@@ -245,5 +245,10 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    public OrderListPanel getSortedOrderListPanel() {
+        return new OrderListPanel(logic.getFilteredOrderList((first, second) ->
+                first.getDatetime().isAfter(second.getDatetime()) ? 1 : 0));
     }
 }
