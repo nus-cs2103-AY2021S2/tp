@@ -5,8 +5,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import seedu.address.logic.commands.FindScheduleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.common.Date;
-import seedu.address.model.event.EventStartDateByDatePredicate;
-import seedu.address.model.task.TaskDeadlineByDatePredicate;
+import seedu.address.model.event.EventFindSchedulePredicate;
+import seedu.address.model.task.TaskFindSchedulePredicate;
 
 /**
  * Parses input arguments and creates a new FindScheduleCommand object.
@@ -27,7 +27,7 @@ public class FindScheduleCommandParser {
 
         Date byDate = SocheduleParserUtil.parseDate(trimmedArgs);
 
-        return new FindScheduleCommand(new TaskDeadlineByDatePredicate(byDate),
-                new EventStartDateByDatePredicate(byDate));
+        return new FindScheduleCommand(new TaskFindSchedulePredicate(byDate),
+                new EventFindSchedulePredicate(byDate));
     }
 }

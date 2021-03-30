@@ -226,9 +226,12 @@ Clear tasks with past end date time.
 Format: `clear_expired_event`
 
 ### Finding tasks and events before or on a given date: `find_schedule`
-Finds all existing tasks with deadline and all existing events with start date before or on the specified date in SOChedule.
+Finds ongoing tasks and events before or on the specified date in SOChedule.
 
 Format: `find_schedule DATE`
+* **Ongoing tasks** refer to **uncompleted tasks** with deadline before or on the specified date
+* **Ongoing events** refer to events with start date before or on the specified date and end date after or on the specified date, 
+  i.e., `event start date <= given date <= event end date`
 * Date entered must be a valid date and in the format of `YYYY-MM-DD`, e.g. `2021-04-01`
 * Only one single date can be entered. If more than one dates are supplied, program will return an error message
   indicating invalid date.

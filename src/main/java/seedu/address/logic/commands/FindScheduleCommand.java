@@ -5,34 +5,36 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.event.EventStartDateByDatePredicate;
-import seedu.address.model.task.TaskDeadlineByDatePredicate;
+import seedu.address.model.event.EventFindSchedulePredicate;
+import seedu.address.model.task.TaskFindSchedulePredicate;
 
 /**
- * Finds and displays all tasks with deadline and all events with start date
- * before or on the specified date in SOChedule.
+ * Finds and displays uncompleted tasks with deadline before or on the specified date
+ * and events with start date before or on the specified date and end date after or on the specified date.
  */
 public class FindScheduleCommand extends Command {
     public static final String COMMAND_WORD = "find_schedule";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Finds and displays all tasks with deadline "
-            + "and all events with start date before or on the specified date.\n"
+            + ": Finds and displays ongoing tasks and events before or on the specified date.\n"
+            + "Ongoing tasks refer to uncompleted tasks with deadline before or on the specified date.\n"
+            + "Ongoing events refer to events with start date before or on the specified date "
+            + "and end date after or on the specified date.\n"
             + "Parameters: DATE (one single valid date in YYYY-MM-DD format)\n"
             + "Example: " + COMMAND_WORD + " 2021-03-29";
 
     public static final String MESSAGE_FIND_SCHEDULE_SUCCESS = "Displayed the required tasks and events\n";
 
-    private final TaskDeadlineByDatePredicate taskPredicate;
-    private final EventStartDateByDatePredicate eventPredicate;
+    private final TaskFindSchedulePredicate taskPredicate;
+    private final EventFindSchedulePredicate eventPredicate;
 
     /**
      * Creates a FindScheduleCommand to find the desired tasks and events.
      * @param taskPredicate a predicate that tests a Task's deadline is before or on the by date given.
      * @param eventPredicate a predicate that tests a Event's start date is before or on the by date given.
      */
-    public FindScheduleCommand(TaskDeadlineByDatePredicate taskPredicate,
-                               EventStartDateByDatePredicate eventPredicate) {
+    public FindScheduleCommand(TaskFindSchedulePredicate taskPredicate,
+                               EventFindSchedulePredicate eventPredicate) {
         this.taskPredicate = taskPredicate;
         this.eventPredicate = eventPredicate;
     }
