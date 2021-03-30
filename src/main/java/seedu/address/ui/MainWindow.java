@@ -86,6 +86,8 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        updateUndoRedoMenus();
     }
 
     public Stage getPrimaryStage() {
@@ -239,11 +241,21 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            updateUndoRedoMenus();
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    /**
+     * Enables or disables the undo and redo menu items based on the logic's state.
+     */
+    private void updateUndoRedoMenus() {
+        undoMenuItem.setDisable(!logic.canUndoAddressBook());
+        redoMenuItem.setDisable(!logic.canRedoAddressBook());
     }
 }

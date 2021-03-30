@@ -111,4 +111,14 @@ public class LogicManager implements Logic {
     public CommandHistorySelector getCommandHistorySelector() {
         return commandHistorySelector;
     }
+
+    @Override
+    public boolean canRedoAddressBook() {
+        return model.canRedoAddressBook();
+    }
+
+    @Override
+    public boolean canUndoAddressBook() {
+        return model.canUndoAddressBook();
+    }
 }
