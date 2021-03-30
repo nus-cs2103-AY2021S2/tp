@@ -441,7 +441,7 @@ Action | Format, Examples
 **Find residents** | `rfind KEYWORD [MORE_KEYWORDS]` <br> e.g. `rfind bob bobby`
 **Edit a resident record** | `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROOM]` <br> e.g. `redit 1 p/91234567 e/e0123456@u.nus.edu`
 **Delete a resident** |  `rdel INDEX` <br> e.g. `rdel 1`
-**Add a room** |  `oadd r/ROOM_NO t/TYPE [g/TAG]` <br> e.g. `oadd n/17-101 t/corridor_ac o/Y g/SHN`
+**Add a room** |  `oadd r/ROOM_NO t/TYPE [g/TAG]` <br> e.g. `oadd n/17-101 t/corridor_ac g/SHN`
 **List all rooms** |  `olist`
 **Find rooms** |  `ofind KEYWORD [MORE_KEYWORDS]` <br> e.g. `ofind 10- 15-`
 **Edit a room record** |  `oedit INDEX [r/ROOM_NO] [t/TYPE] [g/TAG]` <br> e.g. `oedit 1 g/SHN`
