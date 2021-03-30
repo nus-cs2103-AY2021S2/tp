@@ -51,7 +51,7 @@ public class CheckCommand extends Command {
             return new CommandResult(CORRECT_ATTEMPT + quizStatistics + MESSAGE_HELPER,
                     false, false);
         } else {
-            String quizStatistics = model.getQuizStatisticString();
+            String quizStatistics = model.getQuizStatisticString() + "\n";
             return new CommandResult(attempt + WRONG_ATTEMPT + quizStatistics + MESSAGE_HELPER,
                     false, false);
         }

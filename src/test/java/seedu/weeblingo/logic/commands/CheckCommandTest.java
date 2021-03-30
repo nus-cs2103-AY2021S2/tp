@@ -37,7 +37,7 @@ public class CheckCommandTest {
         Answer attempt = new FlashcardBuilder().build().getAnswer();
         ModelStubCheckFailure modelStub = new ModelStubCheckFailure();
         CommandResult commandResult = new CheckCommand(attempt).execute(modelStub);
-        assertEquals(attempt + CheckCommand.WRONG_ATTEMPT + CheckCommand.MESSAGE_HELPER,
+        assertEquals(attempt + CheckCommand.WRONG_ATTEMPT + "\n" + CheckCommand.MESSAGE_HELPER,
                 commandResult.getFeedbackToUser());
     }
 

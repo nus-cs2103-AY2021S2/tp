@@ -26,11 +26,16 @@ public class ScoreTest {
 
     @Test
     public void of_invalidValue_throwsRuntimeException() {
-        assertThrows(RuntimeException.class, () -> Score.of(0, 1, "0:03:04"));
-        assertThrows(RuntimeException.class, () -> Score.of(-1, 1, "0:03:04"));
-        assertThrows(RuntimeException.class, () -> Score.of(-100000, 1, "0:03:04"));
-        assertThrows(RuntimeException.class, () -> Score.of(1, -1, "0:03:04"));
-        assertThrows(RuntimeException.class, () -> Score.of(1, -10000, "0:03:04"));
+        assertThrows(RuntimeException.class, () -> Score
+                .of(0, 1, "0:03:04"));
+        assertThrows(RuntimeException.class, () -> Score
+                .of(-1, 1, "0:03:04"));
+        assertThrows(RuntimeException.class, () -> Score
+                .of(-100000, 1, "0:03:04"));
+        assertThrows(RuntimeException.class, () -> Score
+                .of(1, -1, "0:03:04"));
+        assertThrows(RuntimeException.class, () -> Score
+                .of(1, -10000, "0:03:04"));
     }
 
     @Test
@@ -44,6 +49,7 @@ public class ScoreTest {
         assertDoesNotThrow(() -> Score.of(1, 1, "0:03:04"));
         assertDoesNotThrow(() -> Score.of(1, 0, "0:03:04"));
         assertDoesNotThrow(() -> Score.of(1000, 1000, "0:03:04"));
+        assertDoesNotThrow(() -> Score.of(0, 0, "0:03:04"));
     }
 
     @Test
@@ -58,7 +64,8 @@ public class ScoreTest {
 
     @Test
     public void compareTo_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> Score.of(1, 1, "0:03:04").compareTo(null));
+        assertThrows(NullPointerException.class, () -> Score.of(1, 1,
+                "0:03:04").compareTo(null));
     }
 
     @Test
