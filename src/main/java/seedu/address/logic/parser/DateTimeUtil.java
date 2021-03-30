@@ -12,9 +12,11 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * A utility class for parsing/formatting LocalDateTimes into ISO format.
  */
 public class DateTimeUtil {
-    public static final String MESSAGE_INVALID_DATE_FORMAT =
+    public static final String MESSAGE_INVALID_DATETIME_FORMAT =
             "The date should be of the following format : YYYY-MM-DD HH:MM";
 
+    public static final String MESSAGE_INVALID_DATE_FORMAT =
+            "The date should be of the folloing format : YYYY-MM-DD";
     public static final DateTimeFormatter ISO_DATE_FORMATTER_NO_SECONDS =
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
@@ -30,6 +32,8 @@ public class DateTimeUtil {
     public static final DateTimeFormatter PRETTY_DATE_FORMATTER =
             DateTimeFormatter.ofPattern("dd MMM yyyy");
 
+    public static final DateTimeFormatter ISO_DATE_FORMATTER =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd");
     /**
      * Formats a LocalDateTime object into the appropriate ISO string, with the seconds
      * stripped.
@@ -51,6 +55,14 @@ public class DateTimeUtil {
         try {
             return LocalDateTime.parse(dateTime, ISO_DATE_FORMATTER_NO_SECONDS);
         } catch (Exception e) {
+            throw new ParseException(MESSAGE_INVALID_DATETIME_FORMAT);
+        }
+    }
+
+    public static LocalDate parseIsoDate(String date) throws ParseException {
+        try {
+            return LocalDate.parse(date, ISO_DATE_FORMATTER);
+        } catch (Exception e) {
             throw new ParseException(MESSAGE_INVALID_DATE_FORMAT);
         }
     }
@@ -71,7 +83,7 @@ public class DateTimeUtil {
     public static String prettyPrintFormatLocalTime(LocalTime localTime) {
         return localTime.format(PRETTY_TIME_FORMATTER);
     }
-    public static String prettuPrintFormatLocalDate(LocalDate localDate) {
+    public static String prettyPrintFormatLocalDate(LocalDate localDate) {
         return localDate.format(PRETTY_DATE_FORMATTER);
     }
 

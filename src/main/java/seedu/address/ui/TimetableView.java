@@ -265,7 +265,7 @@ public class TimetableView extends UiPart<Region> {
      */
 
     public String generateDayLabel(LocalDate date) {
-        return DateTimeUtil.prettuPrintFormatLocalDate(date)
+        return DateTimeUtil.prettyPrintFormatLocalDate(date)
                 + "\n"
                 + date.getDayOfWeek().name();
     }
