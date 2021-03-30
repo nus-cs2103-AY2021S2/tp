@@ -37,12 +37,12 @@ import seedu.address.logic.commands.DeleteTodoCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindContactCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListContactsCommand;
-import seedu.address.logic.commands.ShowOverviewTabCommand;
-import seedu.address.logic.commands.ShowTodayCommand;
-import seedu.address.logic.commands.ShowTodosTabCommand;
 import seedu.address.logic.commands.UpdateContactCommand;
 import seedu.address.logic.commands.UpdateContactCommand.UpdateContactDescriptor;
+import seedu.address.logic.commands.ViewContactsCommand;
+import seedu.address.logic.commands.ViewOverviewCommand;
+import seedu.address.logic.commands.ViewTodayCommand;
+import seedu.address.logic.commands.ViewTodosCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.NameContainsKeywordsPredicate;
@@ -217,28 +217,28 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListContactsCommand.COMMAND_WORD) instanceof ListContactsCommand);
-        assertTrue(parser.parseCommand(ListContactsCommand.COMMAND_WORD + " 3") instanceof ListContactsCommand);
+        assertTrue(parser.parseCommand(ViewContactsCommand.COMMAND_WORD) instanceof ViewContactsCommand);
+        assertTrue(parser.parseCommand(ViewContactsCommand.COMMAND_WORD + " 3") instanceof ViewContactsCommand);
     }
 
     @Test
     public void parseCommand_today() throws Exception {
-        assertTrue(parser.parseCommand(ShowTodayCommand.COMMAND_WORD) instanceof ShowTodayCommand);
-        assertTrue(parser.parseCommand(ShowTodayCommand.COMMAND_WORD + " 3") instanceof ShowTodayCommand);
+        assertTrue(parser.parseCommand(ViewTodayCommand.COMMAND_WORD) instanceof ViewTodayCommand);
+        assertTrue(parser.parseCommand(ViewTodayCommand.COMMAND_WORD + " 3") instanceof ViewTodayCommand);
     }
 
     @Test
     public void parseCommand_tabO() throws Exception {
-        assertTrue(parser.parseCommand(ShowOverviewTabCommand.COMMAND_WORD) instanceof ShowOverviewTabCommand);
-        assertTrue(parser.parseCommand(ShowOverviewTabCommand.COMMAND_WORD + " 3")
-                instanceof ShowOverviewTabCommand);
+        assertTrue(parser.parseCommand(ViewOverviewCommand.COMMAND_WORD) instanceof ViewOverviewCommand);
+        assertTrue(parser.parseCommand(ViewOverviewCommand.COMMAND_WORD + " 3")
+                instanceof ViewOverviewCommand);
     }
 
     @Test
     public void parseCommand_tabT() throws Exception {
-        assertTrue(parser.parseCommand(ShowTodosTabCommand.COMMAND_WORD) instanceof ShowTodosTabCommand);
-        assertTrue(parser.parseCommand(ShowTodosTabCommand.COMMAND_WORD + " 3")
-                instanceof ShowTodosTabCommand);
+        assertTrue(parser.parseCommand(ViewTodosCommand.COMMAND_WORD) instanceof ViewTodosCommand);
+        assertTrue(parser.parseCommand(ViewTodosCommand.COMMAND_WORD + " 3")
+                instanceof ViewTodosCommand);
     }
 
     @Test

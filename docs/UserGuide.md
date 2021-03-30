@@ -190,16 +190,16 @@ This subsection serves to list out the parameters used in this document. We have
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`listC`** and pressing Enter will list all contacts.<br>
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`contacts`** and pressing Enter will list all contacts.<br>
    Some example commands you can try:
 
-   * **`viewP 1`** : Displays the first project.
+   * **`project 1`** : Displays the first project.
 
    * **`addP`**`n/My Project` : Adds a new project named `My Project` to CoLAB.
 
-   * **`tabT`** : Displays the todos tab.
+   * **`todos`** : Displays the todos of the currently displayed project.
 
-   * **`addTto`**`1 d/My Task` : Adds a todo with the description `My Task` to the first project.
+   * **`addT`**`1 d/My Task` : Adds a todo with the description `My Task` to the first project.
 
    * **`deleteP`**`3` : Deletes the third project in the list.
 
@@ -485,39 +485,39 @@ Format: `clear`
 
 Although most of the buttons you see on the screen are clickable, the UI has been designed primarily to be navigated using the command line interface.
 
-#### Listing all contacts : `listC`
+#### Listing all contacts : `contacts`
 
 Shows a list of all contacts in CoLAB.
 
-Format: `listC`
+Format: `contacts`
 
-#### Viewing a project: `viewP`
+#### Viewing a project: `project`
 
 Displays a panel with details of a specified project.
 
-Format: `viewP PROJECT_INDEX`
+Format: `project PROJECT_INDEX`
 
 * Displays a panel with details of the project at the specified `PROJECT_INDEX`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `viewP 1` Displays the first project.
-* `viewP 2` Displays the second project.
+* `project 1` Displays the first project.
+* `project 2` Displays the second project.
 
-#### Viewing the overview tab: `tabO`
+#### Viewing the overview of a project: `overview`
 
-Switches to the overview tab of the project that is currently displayed.
+Views the overview of the project that is currently displayed.
 
-Format: `tabO`
+Format: `overview`
 
 * This command can only be used when a project is currently being displayed.
 
-#### Viewing the todos tab: `tabT`
+#### Viewing the todos of a project: `todos`
 
-Switches to the todos tab of the project that is currently displayed.
+Views the todos of the project that is currently displayed.
 
-Format: `tabT`
+Format: `todos`
 
 * This command can only be used when a project is currently being displayed.
 
@@ -596,15 +596,15 @@ Action | Format, Examples
 **Clear Contacts** | `clear`
 **Edit Contact** | `edit CONTACT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find Contact** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List Contacts** | `listC`
 
 ### Navigating the UI
 
 Action | Format, Examples
 --------|------------------
-**View Project** | `viewP PROJECT_INDEX`
-**View Overview Tab** | `tabO`
-**View Todos Tab** | `tabT`
+**View Contacts** | `contacts`
+**View Project** | `project PROJECT_INDEX`
+**View Overview** | `overview`
+**View Todos** | `todos`
 **View Today Panel** | `today`
 **Help** | `help`
 

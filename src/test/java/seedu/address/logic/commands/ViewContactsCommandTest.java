@@ -14,9 +14,9 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ListContactsCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for ViewContactsCommand.
  */
-public class ListContactsCommandTest {
+public class ViewContactsCommandTest {
 
     private Model model;
     private Model expectedModel;
@@ -29,14 +29,14 @@ public class ListContactsCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListContactsCommand(), model, ListContactsCommand.MESSAGE_SUCCESS,
+        assertCommandSuccess(new ViewContactsCommand(), model, ViewContactsCommand.MESSAGE_SUCCESS,
                 new ShowContactsUiCommand(), expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showContactAtIndex(model, INDEX_FIRST);
-        assertCommandSuccess(new ListContactsCommand(), model, ListContactsCommand.MESSAGE_SUCCESS,
+        assertCommandSuccess(new ViewContactsCommand(), model, ViewContactsCommand.MESSAGE_SUCCESS,
                 new ShowContactsUiCommand(), expectedModel);
     }
 }
