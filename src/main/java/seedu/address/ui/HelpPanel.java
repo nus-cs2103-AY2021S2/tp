@@ -30,13 +30,18 @@ public class HelpPanel extends UiPart<Region> {
 
     @FXML
     private Button copyButton;
-
     @FXML
     private Label helpMessage;
-
     @FXML
     private TableView<CommandSyntax> projectsTableView;
-
+    @FXML
+    private TableView<CommandSyntax> todosTableView;
+    @FXML
+    private TableView<CommandSyntax> deadlinesTableView;
+    @FXML
+    private TableView<CommandSyntax> eventsTableView;
+    @FXML
+    private TableView<CommandSyntax> groupmatesTableView;
     @FXML
     private TableView<CommandSyntax> contactsTableView;
 
@@ -49,6 +54,10 @@ public class HelpPanel extends UiPart<Region> {
         this.mainWindow = mainWindow;
 
         setUpTable(projectsTableView, getProjectCommands());
+        setUpTable(todosTableView, getTodoCommands());
+        setUpTable(deadlinesTableView, getDeadlineCommands());
+        setUpTable(eventsTableView, getEventCommands());
+        setUpTable(groupmatesTableView, getGroupmateCommands());
         setUpTable(contactsTableView, getContactCommands());
     }
 
@@ -95,26 +104,47 @@ public class HelpPanel extends UiPart<Region> {
     private static ObservableList<CommandSyntax> getProjectCommands() {
         return FXCollections.observableArrayList(
                 new CommandSyntax("addP", "addP n/PROJECT_NAME"),
-                new CommandSyntax("addEto", "addEto PROJECT_INDEX d/DESCRIPTION i/INTERVAL at/DATE"),
-                new CommandSyntax("addDto", "addDto PROJECT_INDEX d/DESCRIPTION by/DATE"),
-                new CommandSyntax("addTto", "addTto PROJECT_INDEX d/DESCRIPTION"),
-                new CommandSyntax("addCto",
-                        "addCto PROJECT_INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]..."),
-                new CommandSyntax("deleteP", "deleteP PROJECT_INDEX"),
-                new CommandSyntax("deleteE", "deleteE PROJECT_INDEX r/EVENT_INDEX"),
-                new CommandSyntax("deleteD", "deleteD PROJECT_INDEX r/DEADLINE_INDEX"),
-                new CommandSyntax("deleteT", "deleteT PROJECT_INDEX r/TODO_INDEX"),
-                new CommandSyntax("deleteCfrom", "deleteCfrom PROJECT_INDEX r/CONTACT_INDEX")
+                new CommandSyntax("updateP", "updateP 1 n/PROJECT_NAME"),
+                new CommandSyntax("deleteP", "deleteP PROJECT_INDEX")
+        );
+    }
+
+    private static ObservableList<CommandSyntax> getTodoCommands() {
+        return FXCollections.observableArrayList(
+                new CommandSyntax("addT", "addT PROJECT_INDEX d/DESCRIPTION"),
+                new CommandSyntax("deleteT", "deleteT PROJECT_INDEX r/TODO_INDEX")
+        );
+    }
+
+    private static ObservableList<CommandSyntax> getDeadlineCommands() {
+        return FXCollections.observableArrayList(
+                new CommandSyntax("addD", "addD PROJECT_INDEX d/DESCRIPTION by/DATE"),
+                new CommandSyntax("deleteD", "deleteD PROJECT_INDEX r/DEADLINE_INDEX")
+        );
+    }
+
+    private static ObservableList<CommandSyntax> getEventCommands() {
+        return FXCollections.observableArrayList(
+                new CommandSyntax("addE",
+                        "addE PROJECT_INDEX d/DESCRIPTION on/DATE at/TIME w/REPEAT_WEEKLY"),
+                new CommandSyntax("deleteE", "deleteE PROJECT_INDEX r/EVENT_INDEX")
+        );
+    }
+
+    private static ObservableList<CommandSyntax> getGroupmateCommands() {
+        return FXCollections.observableArrayList(
+                new CommandSyntax("addG", "addG PROJECT_INDEX n/NAME [r/ROLE]..."),
+                new CommandSyntax("deleteC", "deleteC PROJECT_INDEX r/GROUPMATE_INDEX")
         );
     }
 
     private static ObservableList<CommandSyntax> getContactCommands() {
         return FXCollections.observableArrayList(
-                new CommandSyntax("add", "add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]..."),
+                new CommandSyntax("addC", "addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]..."),
                 new CommandSyntax("find", "find KEYWORD [MORE_KEYWORDS]"),
-                new CommandSyntax("edit",
-                        "edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]..."),
-                new CommandSyntax("delete", "delete INDEX")
+                new CommandSyntax("updateC",
+                        "updateC INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]..."),
+                new CommandSyntax("deleteC", "deleteC INDEX")
         );
     }
 }
