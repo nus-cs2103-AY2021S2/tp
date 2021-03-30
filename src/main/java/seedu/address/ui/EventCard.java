@@ -9,9 +9,9 @@ import seedu.address.model.person.Event;
 
 public class EventCard extends UiPart<Region> {
 
-    private static final String FXML = "EventCard.fxml";
-
     public static final int HEIGHT = 41;
+
+    private static final String FXML = "EventCard.fxml";
 
     public final Event event;
 
