@@ -31,7 +31,7 @@ public class ViewPersonCommandTest {
     }
 
     @Test
-    public void execute_viewPerson_NotFound_showMessage() {
+    public void execute_viewPerson_showNotFoundMessage() {
         expectedModel.updateFilteredPersonList(new PersonIdPredicate(new PersonId("t/-1")));
         assertCommandSuccess(new ViewPersonCommand(new PersonIdPredicate(new PersonId("t/-1"))),
                 model, ViewPersonCommand.MESSAGE_NO_PERSON_FOUND, expectedModel);
