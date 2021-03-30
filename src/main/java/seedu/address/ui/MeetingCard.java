@@ -57,6 +57,7 @@ public class MeetingCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.groupName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.groupName)));
 
+        // Only when the person meeting connection exist then it will be shown on the meeting card.
         if (!meeting.getConnectionToPerson().isEmpty()) {
             personsRelated.getChildren().add(new Label("Contacts Related:"));
             meeting.getConnectionToPerson().stream()
