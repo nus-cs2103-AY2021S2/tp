@@ -35,7 +35,9 @@ public class BookingCard extends UiPart<Region> {
     @FXML
     private Label booker;
     @FXML
-    private Label time;
+    private Label startTime;
+    @FXML
+    private Label endTime;
     @FXML
     private Label description;
     @FXML
@@ -50,8 +52,8 @@ public class BookingCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         title.setText(booking.getDescription().value);
         booker.setText(booking.getBookerEmail().value);
-        //time.setText(booking.getBookingStart().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-        time.setText(booking.getBookingStart().toString());
+        startTime.setText(booking.getBookingStart().toString());
+        endTime.setText(booking.getBookingEnd().toString());
         description.setText(booking.getDescription().value);
         booking.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
