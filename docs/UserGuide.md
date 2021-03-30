@@ -392,7 +392,7 @@ If your changes to the data files makes its format invalid, App-Ointment will di
 | **edit-doctor** | `edit-doctor INDEX [n/NAME] [t/TAG]…​` | `edit-doctor 1 n/Dr Amy`<br>`edit-doctor 2 n/Dr Betsy Crower t/` |
 | **find-doctor** | `find-doctor KEYWORD [MORE_KEYWORDS]` | `find Amy`<br>`find Amy Betsy` |
 | **list-doctor** | `list-doctor` | |
-| **add-appt** | `add-appt pt/PATIENT_INDEX dr/DOCTOR_INDEX at/TIMESLOT_START [to/TIMESLOT_END] [dur/TIMESLOT_DURATION] [t/TAG]…​` | `add-appt pt/1 dr/Dr. Grey at/2021-01-01 00:00 to/2021-01-01 01:30 t/severe t/brainDamage`<br>`add-appt pt/2 dr/Dr. Who at/2021-01-01 00:00 dur/1H 30M t/exhaustion`<br>`add-appt pt/3 dr/Dr. Strange at/NEXT MONDAY dur/1H 30M` |
+| **add-appt** | `add-appt pt/PATIENT_INDEX dr/DOCTOR_INDEX at/TIMESLOT_START [to/TIMESLOT_END] [dur/TIMESLOT_DURATION] [t/TAG]…​` | `add-appt pt/1 dr/1 at/2021-01-01 00:00 to/2021-01-01 01:30 t/severe t/brainDamage`<br>`add-appt pt/2 dr/2 at/2021-01-01 00:00 dur/1H 30M t/exhaustion`<br>`add-appt pt/3 dr/3 at/NEXT MONDAY dur/1H 30M` |
 | **clear-appt** | `clear-appt` | |
 | **delete-appt** | `delete-appt INDEX` | `delete-appt 2` |
 | **edit-appt** | `edit-appt APPOINTMENT_INDEX [pt/PATIENT_INDEX] [dr/DOCTOR_INDEX] [at/TIMESLOT_START] [to/TIMESLOT_END] [dur/TIMESLOT_DURATION] [t/TAG]…​` | `edit-appt 1 pt/1 dr/1`<br>`edit-appt 2 at/2021-05-08 09:00 dur/1H t/severe t/fever` |
