@@ -24,13 +24,13 @@ App-Ointment is a desktop app for for managing and scheduling patient appointmen
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : [Coming Soon]
+   * **`list=appt`** : Lists all appointments in the appointment schedule.
 
    * **`add-patient`** `n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a patient.
 
-   * **`delete`** `3` : [Coming Soon]
+   * **`delete-appt`** `3` : Deletes the 3rd displayed appointment.
 
-   * **`clear`** : [Coming Soon]
+   * **`clear-appt`** : Clears all appointments in the appointment schedule
 
    * **`exit`** : Exits the app.
 
@@ -64,6 +64,8 @@ App-Ointment is a desktop app for for managing and scheduling patient appointmen
 
 </div>
 
+<br>
+
 ### *Patient Commands*:
 
 ### Adding a patient: `add-patient`
@@ -82,19 +84,29 @@ Examples:
 
 * `add-patient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 
-### Listing all patients : `list-patient`
+### Cleaning all entries in patient records: `clear-patient`
+Clears all entries from the patient records. <br>
+If appointments containing the patient to be deleted exists in the appointment schedule, then `--force` will have to be specified, to delete the relevant appointments as well.
 
-Changes the displayed patient records to show all patients in the patient records.<br>
+Format: `clear-patient [--force]`
 
-Format: `list-patient`
+### Deleting a patient : `delete-patient`
+Deletes the specified patient from the patient records.
 
+Format: `delete-patient INDEX`
+
+* Deletes the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed patient records.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list-patient` followed by `delete 2` deletes the 2nd patient in the patient records.
+* `find-patient Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 
 ### Editing a patient : `edit-patient`
-[Coming Soon]
-
 Edits an existing patient in the schedule.<br>
 
-Format: `edit-patient INDEX [n/PATIENT] [dr/DOCTOR] [d/DATETIME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit-patient INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 * Edits the patient at the specified INDEX. The index refers to the index number shown in the displayed appointment schedule list. The index must be a <strong>positive integer</strong> 1, 2, 3, …​<br>
 
@@ -110,14 +122,98 @@ Format: `edit-patient INDEX [n/PATIENT] [dr/DOCTOR] [d/DATETIME] [p/PHONE] [e/EM
 
 Examples:
 
-* `edit-patient 1 dr/Who d/2021-01-01 1200` Edits the assigned doctor and appointment datetime under the 1st appointment to dr.Who and 01 Jan 2021 12pm respectively.
+* `edit-patient 1 e/newEmail@example.com` Edits the 1st patient's email to newEmail@example.com.
 
 * `edit-patient 2 n/Betsy Crower t/` Edits the name of patient under the 2nd appointment to be Betsy Crower and clears all existing tags.
 
-### Cleaning all entries in patient records: `clear-patient`
-Clears all entries from the patient records. <br>
+### Locating patients by name: `find-patient`
 
-Format: `clear-patient`
+Finds patients whose names contain any of the given keywords.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the name is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Persons matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+Examples:
+* `find John` returns `john` and `John Doe`
+* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+  ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+
+### Listing all patients : `list-patient`
+
+Changes the displayed patient records to show all patients in the patient records.<br>
+
+Format: `list-patient`
+
+<br>
+
+### *Doctor Commands*:
+
+### Adding a doctor: `add-doctor`
+
+Adds a doctor to the doctor records.<br>
+
+Format: `add-patient n/NAME [t/TAG]…​`
+
+<div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
+
+* The doctor can have any number of tags (including 0).<br>
+
+</div><br>
+
+Examples:
+
+* `add-doctor n/Dr John Doe`
+
+
+### Cleaning all entries in doctor records: `clear-doctor`
+Clears all entries from the doctor records. <br>
+If appointments containing the doctor to be deleted exists in the appointment schedule, then `--force` will have to be specified, to delete the relevant appointments as well.
+
+Format: `clear-doctor [--force]`
+
+### Deleting a doctor : `delete-doctor`
+Deletes the specified doctor from the doctor records.
+
+Format: `delete INDEX`
+
+Similar to `delete-patient`
+
+### Editing a doctor : `edit-doctor`
+Edits an existing doctor in the doctor records.<br>
+
+Format: `edit-doctor INDEX [n/NAME] [t/TAG]…​`
+
+* Edits the doctor at the specified INDEX. The index refers to the index number shown in the displayed doctor records. The index must be a <strong>positive integer</strong> 1, 2, 3, …​<br>
+
+Similar to `edit-patient`, except that there are less fields that are editable.
+
+Examples:
+
+* `edit-doctor 1 n/Dr Amy` Edits the 1st doctor's name to Dr Amy.
+
+* `edit-doctor 2 n/Dr Betsy Crower t/` Edits the name of doctor under the 2nd displayed doctor record to be Betsy Crower and clears all existing tags.
+
+### Locating doctors by name: `find-doctor`
+
+Finds doctors in the doctor records whose names contain any of the given keywords.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+Similar to `find-patient`
+
+### Listing all doctors : `list-doctor`
+Changes the displayed doctor records to show all doctors in the doctor records.<br>
+
+Format: `list-doctor`
+
+<br>
 
 ### *Appointment Commands*:
 
@@ -149,11 +245,31 @@ Examples:
 
 * `add-appt pt/2 dr/Dr. Who at/2021-01-01 00:00 dur/1H 30M t/exhaustion`
 
-### Listing all appointments : `list-appt`
+### Cleaning all entries in appointment schedule: `clear-appt`
+Clears all entries from the appointment schedule.<br>
 
-Changes the displayed appointment list to show all appointments in the appointment schedule.<br>
+Format: `clear-appt`
 
-Format: `list-appt`
+
+### Deleting an appointment : `delete=appt`
+[Coming Soon]
+
+Deletes the specified appointment from the schedule.
+
+Format: `delete INDEX`
+
+* Deletes the appointment at the specified INDEX.
+
+* The index refers to the index number shown in the displayed appointment list.
+
+* The index must be a <strong>positive integer</strong> 1, 2, 3, …​
+
+Examples:
+
+* `list-appt` followed by `delete 2` deletes the 2nd appointment in the entire appointment schedule.
+
+* `find Betsy` followed by `delete 1 ` deletes the 1st appointment in the results of the `find` command.
+
 
 ### Editing an appointment : `edit-appt`
 [Coming Soon]
@@ -164,7 +280,7 @@ Format: `edit-appt [pt/PATIENTINDEX] [dr/DOCTOR] [at/TIMESLOT START] [to/TIMESLO
 
 * Edits the appointment for the patient specified by the `PATIENTINDEX`.  The `PATIENTINDEX` refers to the index number shown in the displayed patient list. The index must be a <strong>positive integer</strong> 1, 2, 3, …​<br>
 
-* The `PATIENTINDEX` and at least one of the rest optional fields must be provided <br>
+* The `INDEX` and at least one of the optional fields must be provided <br>
 
 * Existing values will be updated to the input values.<br>
 
@@ -181,7 +297,7 @@ Examples:
 * `edit-appt pt/2 dr/Dr.Phon t/` Edits the assigned doctor for patient with index 2 to Dr.Phon, and all the tags for the patient is removed.
 
 
-### Locating appointments by fields : `find-patient`
+### Locating appointments by fields : `find-appt`
 [Coming Soon]
 
 Format: `find [n/PATIENT KEYWORDS] [dr/DOCTOR_KEYWORDS] [d/DATETIME] [p/PHONE] [e/EMAIL] [a/ADDRESS_KEYWORDS] [t/TAG KEYWORDS]`
@@ -204,32 +320,14 @@ Examples:
 
 * `find n/john alex` returns appointments with patients `john`, `John`, `John Doe`, `alex`, `Alex` and `Alex Anderson`.
 
-* `find dr/Grey Who t/brain surgery` returns appointments with doctors `grey` or `who` and are tagged as `brain surgery`.
+* `find dr/Grey Who t/BrainSurgery` returns appointments with doctors `grey` or `who` and are tagged as `BrainSurgery`.
 
-### Cleaning all entries in appointment schedule: `clear-appt`
-Clears all entries from the appointment schedule.<br>
 
-Format: `clear-patient`
+### Listing all appointments : `list-appt`
 
-### Deleting an appointment : `delete`
-[Coming Soon]
+Changes the displayed appointment list to show all appointments in the appointment schedule.<br>
 
-Deletes the specified appointment from the schedule.
-
-Format: `delete INDEX`
-
-* Deletes the appointment at the specified INDEX.
-
-* The index refers to the index number shown in the displayed appointment list.
-
-* The index must be a <strong>positive integer</strong> 1, 2, 3, …​
-
-Examples:
-
-* `list` followed by `delete 2` deletes the 2nd appointment in the entire appointment schedule.
-
-* `find Betsy` followed by `delete 1 ` deletes the 1st appointment in the results of the `find` command.
-
+Format: `list-appt`
 
 
 ### *Overall Commands*
@@ -253,10 +351,15 @@ App-Ointment data are saved in the hard disk automatically after any command tha
 
 ### Editing the data file
 
-App-Ointment data are saved as a JSON file `[JAR file location]/data/PatientAddressBook.json`. Advanced users are welcome to update data directly by editing that data file.
+App-Ointment data are saved as 3 JSON files: 
+`[JAR file location]/data/PatientRecords.json`
+`[JAR file location]/data/DoctorRecords.json`
+`[JAR file location]/data/AppointmentSchedule.json`
+Advanced users are welcome to update data directly by editing the data files.
+Do note that adding entries into the patient and doctor records will require a UUID Version 4 generator.
 
 <div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
-If your changes to the data file makes its format invalid, App-Ointment will discard all data and start with an empty data file at the next run.
+If your changes to the data files makes its format invalid, App-Ointment will discard the data file that is invalid and start with an empty data file at the next run.
 </div><br>
 
 --------------------------------------------------------------------------------------------------------------------
