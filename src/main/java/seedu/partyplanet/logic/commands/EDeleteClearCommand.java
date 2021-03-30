@@ -25,11 +25,12 @@ public class EDeleteClearCommand extends EDeleteCommand {
             model.deleteEvent(e);
         }
 
+        String output = String.format(MESSAGE_DELETE_EVENT_SUCCESS, displayEvents(deletedEvents));
         // Only save state if there are changes (event deleted)
         if (!deletedEvents.isEmpty()) {
-            model.addState(String.format(MESSAGE_DELETE_EVENT_SUCCESS, displayEvents(deletedEvents)));
+            model.addState(output);
         }
-        return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, displayEvents(deletedEvents)));
+        return new CommandResult(output);
     }
 
     /**
@@ -37,15 +38,15 @@ public class EDeleteClearCommand extends EDeleteCommand {
      */
     private String displayEvents(List<Event> deletedEvents) {
         return deletedEvents.stream()
-            .map(e -> e.getName().toString())
-            .reduce((a, b) -> a + ", " + b)
-            .orElse("None!");
+                .map(e -> e.getName().toString())
+                .reduce((a, b) -> a + ", " + b)
+                .orElse("None!");
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof EDeleteClearCommand); // instanceof handles nulls
+                || (other instanceof EDeleteClearCommand); // instanceof handles nulls
     }
 }
 
