@@ -2,16 +2,11 @@ package seedu.address.logic.commands.editcommand;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EXAM_DATETIME_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EXAM_DATETIME_2;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ASSIGNMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EXAM;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ASSIGNMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EXAM;
-import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_ASSIGNMENT;
 import static seedu.address.testutil.TypicalRemindMe.getTypicalRemindMeWithFilledModules;
 
 import java.time.LocalDateTime;
@@ -23,8 +18,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.RemindMe;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.module.Assignment;
-import seedu.address.model.module.Description;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
 import seedu.address.testutil.typicalmodules.ModuleBuilder;
