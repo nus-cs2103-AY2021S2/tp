@@ -63,7 +63,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     /**
      * Returns the current alias mapping.
      *
-     * @return the mapping.
+     * @return The mapping.
      */
     public AliasMapping getAliasMapping() {
         return aliasMapping;
@@ -73,7 +73,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     /**
      * Sets the current mapping to the specified mapping.
      *
-     * @param aliasMappings the mapping.
+     * @param aliasMappings The mapping.
      * @throws NullPointerException if the input is null.
      */
     public void setAliasMapping(AliasMapping aliasMappings) {
@@ -84,7 +84,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     /**
      * Adds an user-defined alias to the current mapping.
      *
-     * @param alias the alias to be added.
+     * @param alias The alias to be added.
      * @throws NullPointerException if the input is null.
      */
     public void addAlias(Alias alias) {
@@ -105,8 +105,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     /**
      * Returns an Alias based on name.
      *
-     * @param aliasName name of the alias.
-     * @return the alias with the specified name.
+     * @param aliasName Name of the alias.
+     * @return The alias with the specified name.
      * @throws NullPointerException if the input is null.
      */
     public Alias getAlias(String aliasName) {
@@ -117,8 +117,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     /**
      * Checks if the current mapping contains an alias based on name.
      *
-     * @param aliasName name of the alias.
-     * @return whether the mapping contains the alias.
+     * @param aliasName Name of the alias.
+     * @return Whether the mapping contains the alias.
      */
     @Override
     public boolean containsAlias(String aliasName) {
@@ -128,8 +128,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     /**
      * Checks if the alias name is a reserved keyword.
      *
-     * @param aliasName name of the alias.
-     * @return whether the name is reserved.
+     * @param aliasName Name of the alias.
+     * @return Whether the name is reserved.
      */
     public boolean isReservedKeyword(String aliasName) {
         requireNonNull(aliasName);
@@ -139,8 +139,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     /**
      * Checks if the command word is recursive.
      *
-     * @param commandWord the command word.
-     * @return whether the command word is recursive.
+     * @param commandWord The command word.
+     * @return Whether the command word is recursive.
      */
     public boolean isRecursiveKeyword(String commandWord) {
         requireNonNull(commandWord);
