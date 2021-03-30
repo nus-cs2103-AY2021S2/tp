@@ -118,13 +118,18 @@
 }
 
 .cell_big_label {
-    -fx-font-size: 16px;
+    -fx-font-size: 15px;
     -fx-text-fill: #010504;
 }
 
+.cell_id_name_box {
+    -fx-padding: 0 0 4 0;
+}
+
 .cell_small_label {
-    -fx-font-size: 13px;
+    -fx-font-size: 14px;
     -fx-text-fill: #010504;
+    -fx-padding: 2 0 0 0;
 }
 
 .stack-pane {
@@ -305,6 +310,7 @@
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;
+    -fx-padding: 1 0 3 0;
 }
 
 #commandTypeLabel {
@@ -334,6 +340,7 @@
 #tags {
     -fx-hgap: 7;
     -fx-vgap: 3;
+    -fx-padding: 2 0 4 0;
 }
 
 #tags .label {

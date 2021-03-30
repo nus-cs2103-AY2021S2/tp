@@ -107,14 +107,23 @@ public class ListCommandParser implements Parser<ListCommand> {
         for (String month : allMonths) {
             predicates.add(new BirthdayContainsMonthPredicate(month));
         }
+        if (isExactSearch && predicates.isEmpty()) {
+            throw new ParseException(
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+        }
         return predicates;
     }
 
     /**
      * Returns combines a list of filtering predicates depending on whether search is performed for any predicate.
      */
-    private Predicate<Person> mergePredicates(List<Predicate<Person>> predicates, ArgumentMultimap argMap) {
+    private Predicate<Person> mergePredicates(List<Predicate<Person>> predicates, ArgumentMultimap argMap)
+        throws ParseException {
         boolean isAnySearch = argMap.contains(FLAG_ANY);
+        if (isAnySearch && predicates.isEmpty()) {
+            throw new ParseException(
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+        }
         Predicate<Person> overallPredicate;
         if (predicates.isEmpty()) {
             overallPredicate = PREDICATE_SHOW_ALL_PERSONS;
