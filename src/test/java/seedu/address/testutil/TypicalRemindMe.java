@@ -106,6 +106,21 @@ public class TypicalRemindMe {
         return mp;
     }
 
+    /**
+     * Returns an {@code RemindMe} with all the typical persons.
+     */
+    public static RemindMe getTypicalRemindMeWithFilledModules() {
+        RemindMe mp = new RemindMe();
+        mp.addModule(new ModuleBuilder(MOD_1_WITH_ASSIGNMENTS).build());
+        mp.addModule(new ModuleBuilder(MOD_2).build());
+
+        for (Person person : getTypicalPersons()) {
+            mp.addPerson(person);
+        }
+
+        return mp;
+    }
+
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
