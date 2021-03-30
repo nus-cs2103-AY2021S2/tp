@@ -165,8 +165,8 @@ Examples:
 * `ofind 10-` returns `10-100`, `10-101`, and `10-102`.
 * `ofind 10- 15-` returns `10-100`, `10-101`, `15-100`, and`15-101`.
 * `ofind 10` returns `09-100`, `09-110`, `10-100`, and `10-101`.
-* `ofind s` returns `SHN` and `smellyroom`
-* `ofind 1 s` returns `10-100` and `SHN`
+* `ofind s` returns `SHN` and `smellyroom`.
+* `ofind 1 s` returns `10-100` and `SHN`.
 
 
 ### Edit a room record : `oedit`

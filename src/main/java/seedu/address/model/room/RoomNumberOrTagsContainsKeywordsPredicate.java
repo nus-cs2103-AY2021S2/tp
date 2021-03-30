@@ -17,7 +17,7 @@ public class RoomNumberOrTagsContainsKeywordsPredicate implements Predicate<Room
     /**
      * Tests if any of the keywords are contained in either the room's number or any of its tags.
      *
-     * @param room Room whose number and tags need to be checked to see if they contain any of the given keywords
+     * @param room Room whose number and tags need to be checked to see if they contain any of the given keywords.
      * @return True if keyword is contained in the room's number or tags.
      */
     @Override
