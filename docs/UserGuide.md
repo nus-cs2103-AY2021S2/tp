@@ -272,6 +272,17 @@ Examples:
 * `help` lists all available commands.
 * `help list` shows the syntax and description for the `list` command.
 
+### Autocomplete: `TAB`
+
+The Autocomplete function helps autocomplete when editing a Person or an Event to save the user time from retyping details. Currently, the feature only works for commands `edit` and `eedit`.
+
+For any valid and empty prefix that the user inputs, the relevant details will be autocompleted on `TAB` keypress down.
+
+Format: 
+
+Edit: `edit {INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] TAB` 
+
+EEdit: `eedit INDEX [-n NAME] [-d DATE] [-r DETAIL] TAB`
 
 ### Undoing actions : `undo`
 
