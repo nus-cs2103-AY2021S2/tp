@@ -12,6 +12,7 @@ SOChedule is a one-stop solution for managing tasks and events, optimized for us
 * Listing all tasks: `list_task`
 * Marking a task as done : `done_task`
 * Finding tasks: `find_task`
+* Getting today's tasks: `today_task`
 * Sorting all tasks: `sort_task`
 * Pinning a task: `pin_task`
 * Unpinning a task: `unpin_task`
@@ -20,6 +21,7 @@ SOChedule is a one-stop solution for managing tasks and events, optimized for us
 * Adding an event: `add_event`
 * Deleting an event: `delete_event`
 * Listing all events: `list_event`
+* Getting today's events: `today_event`
 * Finding events: `find_event`
 * Clearing completed tasks: `clear_expired_event`
 
@@ -95,12 +97,17 @@ Format: `done_task INDEX`
 Examples:
 * `done_task 1` marks the first task in the task list as completed.
 
+### Listing all tasks today: `today_task`
+Lists all tasks that have deadline on today from SOChedule Task List.
+
+Format: `today_task`
+
 ### Finding all matching tasks: `find_task`
 Finds matching tasks from Task List.
 
-Format: `find_task KEYWORD`
-* Finds the tasks whose names contain a given keyword.
-* The keyword is case-insensitive.
+Format: `find_task KEYWORDS`
+* Finds the tasks whose names contain the given keywords.
+* The keywords are case-insensitive.
 * A list of matching tasks will be displayed with their indexes.
 
 ### Sorting all tasks: `sort_task`
@@ -181,12 +188,17 @@ Examples:
 Lists all events from SOChedule Event Scheduler.
 Format: `list_event`
 
+### Listing all events today: `today_event`
+Lists all events that happen on today or is happening today from the Event Scheduler. 
+
+Format: `today_event`
+
 ### Finding all matching events: `find_event`
 Finds matching events from Event Scheduler.
 
-Format: `find_event KEYWORD`
-* Finds the events whose names contain a given keyword.
-* The keyword is case-insensitive.
+Format: `find_event KEYWORDS`
+* Finds the events whose names contain given keywords.
+* The keywords are case-insensitive.
 * A list of matching events will be displayed with their indexes.
 
 
@@ -223,6 +235,8 @@ Action | Format, Examples
 **Delete** | `delete_task INDEX`<br>e.g., `delete_task 1`
 **Done** | `done_task INDEX`<br>e.g., `done_task 1`
 **List** | `list_task`
+**Today** | `today_task`
+**Find** | `find_task KEYWORDS`<br>e.g., `find_task homework`
 **Sort** | `sort_task ARGUMENT`<br>e.g., `sort_task name`
 **Pin** | `pin_task INDEX`<br>e.g., `pin_task 1`
 **Unpin** | `unpin_task INDEX`<br>e.g., `unpin_task 1`
@@ -235,4 +249,6 @@ Action | Format, Examples
 **Add** | `add_event n/TASKNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [c/CATEGORY]... [t/TAG]...`<br> e.g., `add_event n/CS2103 meeting sd/2021-02-27 st/15:00 ed/2021-02-27 et/17:00`
 **Delete** | `delete_event INDEX`<br>e.g., `delete_event 3`
 **List** | `list_event`
+**Today** | `today_event`
+**Find** | `find_event KEYWORDS`<br>e.g., `find_event meeting`
 **Clear completed** | `clear_completed_task`
