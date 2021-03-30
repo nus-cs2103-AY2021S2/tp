@@ -119,13 +119,13 @@ public class ListCommandParser implements Parser<ListCommand> {
         if (predicates.isEmpty()) {
             overallPredicate = PREDICATE_SHOW_ALL_PERSONS;
         } else if (isAnySearch) {
-            stringFind += "\nAt least 1 requirement above met. ";
+            stringFind += "\nResults meet at least 1 requirement above. ";
             overallPredicate = x -> false;
             for (Predicate<Person> predicate : predicates) {
                 overallPredicate = overallPredicate.or(predicate);
             }
         } else {
-            stringFind += "\nAll requirements above met. ";
+            stringFind += "\nResults meet all requirements above. ";
             overallPredicate = x -> true;
             for (Predicate<Person> predicate : predicates) {
                 overallPredicate = overallPredicate.and(predicate);

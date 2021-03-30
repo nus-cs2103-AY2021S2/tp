@@ -115,13 +115,13 @@ public class EListCommandParser implements Parser<EListCommand> {
         if (predicates.isEmpty()) {
             overallPredicate = PREDICATE_SHOW_ALL_EVENTS;
         } else if (isAnySearch) {
-            stringFind += "\nAt least 1 requirement above met. ";
+            stringFind += "\nResults meet at least 1 requirement above. ";
             overallPredicate = x -> false;
             for (Predicate<Event> predicate : predicates) {
                 overallPredicate = overallPredicate.or(predicate);
             }
         } else {
-            stringFind += "\nAll requirements above met. ";
+            stringFind += "\nResults meet all requirements above. ";
             overallPredicate = x -> true;
             for (Predicate<Event> predicate : predicates) {
                 overallPredicate = overallPredicate.and(predicate);
