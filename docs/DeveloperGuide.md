@@ -34,7 +34,7 @@ DietLAH! is a desktop app with a Command-Line Interface (CLI) that allows users 
 
 This developer guide serves as a documentation and manual of how the existing system was designed, and provides information on how certain important features were implemented.
 
-### Understanding the Developer Guide
+## Understanding the Developer Guide
 To make the Developer Guide more comprehensible, certain labelling and highlights are used in the guide. Familiarising yourself with these syntaxes may help you get the most out of the Developer Guide.
 Legend | Description
 --------|------------------
