@@ -23,12 +23,10 @@ public class StartCommand extends Command {
             + "and \"next\" to move to the next question.";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": starts a new quiz with the specified number of "
-            + "questions or a new quiz with only questions that have the specified tag(s).\n"
-            + "Parameters: QUIZ_SIZE\n"
-            + "Example: " + COMMAND_WORD + " 5\n"
-            + "or\n"
-            + "Parameters: TAGS\n"
-            + "Example: " + COMMAND_WORD + " hiragana gojuon";
+            + "questions, filtered to have only questions that have the specified tag(s). All parameters are"
+            + "optional. \n"
+            + "Parameters: QUIZ_SIZE, TAGS\n"
+            + "Example: " + COMMAND_WORD + " n/5 t/hiragana t/gojuon";
 
     public static final String MESSAGE_INVALID_NUMBER_OF_QUESTIONS = "Oops! Number of questions must "
             + "be a positive integer!";
