@@ -62,5 +62,4 @@ public class Messages {
     public static final String MESSAGE_NO_DEADLINES_TO_DISPLAY = "You have no events in this project!";
     public static final String MESSAGE_NO_EVENTS_TO_DISPLAY = "You have no deadlines in this project!";
 
-
 }
