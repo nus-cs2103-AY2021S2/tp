@@ -36,7 +36,7 @@ public class DeleteSessionCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Session> lastShownList = model.getFilteredSessionList();
+        List<Session> lastShownList = model.getUnfilteredSessionList();
 
         Optional<Session> sessionToDelete = lastShownList.stream()
                 .filter(x-> x.getClassId().equals(targetClassId)).findAny();
