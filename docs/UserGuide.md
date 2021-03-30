@@ -201,37 +201,64 @@ Format: `find d/KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find d/write user guide` returns matching tasks with description of following words `user`, `guide`, `write`
 
-### Deleting a task : `rmt`
+### Removing a task : `rmt`
 
-Deletes an existing task from the task list.
+Removes an existing task from the task list.
 
 Format: `rmt INDEX`
 
-* Deletes the task at the specified `INDEX`.
+* Removes the task at the specified `INDEX`.
 * The index refers to the index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `ls` followed by `rmt 2` deletes the 2nd task in the task list.
-* `find Work` followed by `rmt 1` deletes the 1st task in the result of the `find` command.
+* `ls` followed by `rmt 2` removes the 2nd task in the task list.
+* `find Work` followed by `rmt 1` removes the 1st task in the result of the `find` command.
 
-### Deleting a field from a task : `rmf`
+### Removing a field from a task : `rmf`
 
-Deletes an existing field from a task in the task list.
+Removes an existing field from a task in the task list.
 
 Format: `rmf INDEX FIELD`
 
-* Deletes the specified field of task at `INDEX`.
+* Removes the specified field of task at `INDEX`.
 * The index refers to the index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * Fields are specified in the format of `d/` `t/`.
 * Exactly one field must be specified.
-* Title field cannot be deleted.
+* Title field cannot be removed.
 
 Examples:
-* `ls` followed by `rmf 2 d/` deletes the description from the 2nd task in the task list.
-* `find Cat` followed by `rmf 1 t/` deletes all the tags from the 1st task in the result of the
+* `ls` followed by `rmf 2 d/` removes the description from the 2nd task in the task list.
+* `find Cat` followed by `rmf 1 t/` removes all the tags from the 1st task in the result of the
   `find` command.
+  
+### Counting down to a task : `count`
+
+Displays the number of days left to a task's date if it exists.
+
+Format: `count INDEX`
+
+* Counts the number of days until the date of the task at `INDEX`.
+* The index refers to the index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The task at index must have a date, otherwise countdown cannot be done.
+
+Examples: 
+* `ls` followed by `count 4` displays the number of days left to the 4th task in the task list.
+* `find Wool` followed by `count 1` displays the number of days left to the 1st task in the result
+of the `find` command.
+
+### Displaying statistics : `stat`
+
+Displays the statistics of the planner. Statistics include:
+1) The total number of tasks in the planner.
+2) The percentage of tasks completed (marked as done).
+3) The number of tasks due in the next 7 days from the system's current time.
+
+Format: `stat`
+
+* Planner must consist of at least one task.
 
 
 ### Clearing all entries : `clear`
@@ -281,5 +308,7 @@ Action | Format, Examples
 **Delete Field** | `rmf INDEX FIELD`<br> e.g., `rmf 1 d/`
 **Edit** | `edit INDEX [n/TITLE] [set/DEADLINE] [s/START TIME] [d/DESCRIPTION] [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`<br>e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`e.g., `find CS2103 team project` <br>`find [t/TAG] `e.g., `find t/CS2103` <br> `find [d/DESCRIPTION] `e.g., `find d/CS2103 milestone postmortem`
+**Countdown** | `count INDEX` <br> e.g., `count 2`
+**Statistics** | `stat`
 **List** | `ls`
 **Help** | `help`

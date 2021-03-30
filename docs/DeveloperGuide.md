@@ -391,10 +391,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user | search using keywords from the tag(s) of task|  find matching tasks from the same category quickly when I only can remember the tag(s).|
 | `* * *`  | user | search using keywords from the task description | find matching tasks quickly when I only can remember the description |
 | `* * *`  | user | view all my tasks in a list | track tasks I have not done |
-| `* * *`  | user | delete tasks from the list | reduce clutter or remove a mistakenly added task |
-| `* * *`  | user | delete specific fields from a task in the list | manage the details in a task |
-| `* * *`  | user | schedule recurring tasks at a specified frequency | easily set tasks for the future at one go.
-
+| `* * *`  | user | remove tasks from the list | reduce clutter or remove a mistakenly added task |
+| `* * *`  | user | remove specific fields from a task in the list | manage the details in a task |
+| `* * *`  | user | schedule recurring tasks at a specified frequency | easily set tasks for the future at one go |
+| `* * *`  | user | see how many days I have left until a specific task is due/happening | know how much time I have left to work on the task |
+| `* * *`  | user | see all the statistics for the tasks | track my progress |
 
 *{Updated for v1.2}*
 
@@ -493,13 +494,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       
       Use case ends.   
     
-#### **Use case: Delete a task**
+#### **Use case: Remove a task**
 
 **MSS**
 1. User _adds a task_ to the list.
 2. PlanIt shows task added to the list and updates list.
-3. User enters command to delete a specified task.
-4. PlanIt shows task that was deleted and updates list.
+3. User enters command to remove a specified task.
+4. PlanIt shows task that was removed and updates list.
 
 **Extensions**
 * 4a. The given index is invalid.
