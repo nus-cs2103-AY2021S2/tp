@@ -79,8 +79,8 @@ public class Entry {
         LocalDateTime secondStart = otherEntry.getStartDate();
         LocalDateTime secondEnd = otherEntry.getEndDate();
 
-        return (firstStart.isBefore(secondStart) && secondStart.isBefore(firstEnd))
-                || (secondStart.isBefore(firstStart) && firstStart.isBefore(secondEnd));
+
+        return (firstStart.isBefore(secondEnd) && secondStart.isBefore(firstEnd));
     }
 
     /**
