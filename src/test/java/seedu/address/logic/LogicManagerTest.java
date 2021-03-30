@@ -25,10 +25,14 @@ import org.junit.jupiter.api.io.TempDir;
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.CliSyntax;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -138,6 +142,71 @@ public class LogicManagerTest {
         for (int i = 0; i < testList.size() - 1; i++) {
             assertTrue(testList.get(i).compareTo(testList.get(i + 1)) <= 0);
         }
+    }
+
+    @Test
+    public void getAutocompleteFlags_invalidCommand() {
+        // null
+        List<String> whiteSpaceTest = logic.getAutocompleteFlags(" ");
+        List<String> emptyTest = logic.getAutocompleteFlags("");
+        List<String> spellingErrorTest = logic.getAutocompleteFlags("addd");
+        List<String> unhandledCommandTest = logic.getAutocompleteFlags(FilterCommand.COMMAND_WORD);
+
+        List<String> emptyList = new ArrayList<>();
+        assertEquals(whiteSpaceTest, emptyList);
+        assertEquals(emptyTest, emptyList);
+        assertEquals(spellingErrorTest, emptyList);
+        assertEquals(unhandledCommandTest, emptyList);
+    }
+
+    @Test
+    public void getAutocompleteFlags_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> logic.getAutocompleteFlags(null));
+    }
+
+    @Test
+    public void processAutoCompleteFlags_emptyAndWhiteSpace() {
+        String emptyString = "";
+        String whiteSpace = " ";
+
+        List<String> addFlags = logic.getAutocompleteCommands(AddCommand.COMMAND_WORD);
+        List<String> editFlags = logic.getAutocompleteCommands(AddCommand.COMMAND_WORD);
+
+        assertEquals(addFlags, logic.processAutocompleteFlags(emptyString, AddCommand.COMMAND_WORD));
+        assertEquals(editFlags, logic.processAutocompleteFlags(emptyString, EditCommand.COMMAND_WORD));
+        assertEquals(addFlags, logic.processAutocompleteFlags(whiteSpace, AddCommand.COMMAND_WORD));
+        assertEquals(editFlags, logic.processAutocompleteFlags(whiteSpace, EditCommand.COMMAND_WORD));
+    }
+
+    @Test
+    public void processAutoCompleteFlags_validCommand() {
+        List<String> editFlags = logic.getAutocompleteFlags(AddCommand.COMMAND_WORD);
+        List<String> addFlags = logic.getAutocompleteFlags(AddCommand.COMMAND_WORD);
+
+        String editString = "edit 3 -n John Doe -e john@doe.com";
+        String addString = "add -n Jane Doe -p 99998888 -e jane@doe.com -a National University of Singapore";
+
+        editFlags.remove(CliSyntax.PREFIX_NAME.getPrefix());
+        editFlags.remove(CliSyntax.PREFIX_EMAIL.getPrefix());
+        assertEquals(editFlags, logic.processAutocompleteFlags(editString, EditCommand.COMMAND_WORD));
+
+        addFlags.remove(CliSyntax.PREFIX_NAME.getPrefix());
+        addFlags.remove(CliSyntax.PREFIX_PHONE.getPrefix());
+        addFlags.remove(CliSyntax.PREFIX_EMAIL.getPrefix());
+        addFlags.remove(CliSyntax.PREFIX_ADDRESS.getPrefix());
+        assertEquals(addFlags, logic.processAutocompleteFlags(addString, AddCommand.COMMAND_WORD));
+    }
+
+    @Test
+    public void processAutoCompleteFlags_invalidCommand() {
+        String validString = "edit 3 -n John Doe -e john@doe.com";
+        String invalidString = "delete 3";
+        String invalidCommand = DeleteCommand.COMMAND_WORD;
+
+        List<String> emptyFlags = new ArrayList<>();
+
+        assertEquals(emptyFlags, logic.processAutocompleteFlags(validString, invalidCommand));
+        assertEquals(emptyFlags, logic.processAutocompleteFlags(invalidString, invalidCommand));
     }
 
     /**
