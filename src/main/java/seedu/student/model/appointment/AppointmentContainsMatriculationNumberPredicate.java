@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 import seedu.student.model.student.MatriculationNumber;
 
 /**
- * Tests that a {@code Appointment}'s {@code Matriculation Number} matches any of the keywords given.
+ * Tests that an {@code Appointment}'s {@code MatriculationNumber} matches any of the keywords given.
  */
 public class AppointmentContainsMatriculationNumberPredicate implements Predicate<Appointment> {
     private final MatriculationNumber keyword;

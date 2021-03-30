@@ -15,7 +15,7 @@ import seedu.student.model.student.Student;
 import seedu.student.model.student.UniqueStudentList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the student-book level
  * Duplicates are not allowed (by .isSameStudent comparison)
  */
 public class StudentBook implements ReadOnlyStudentBook {
@@ -38,7 +38,7 @@ public class StudentBook implements ReadOnlyStudentBook {
     public StudentBook() {}
 
     /**
-     * Creates an AddressBook using the Students in the {@code toBeCopied}
+     * Creates an StudentBook using the Students in the {@code toBeCopied}
      */
     public StudentBook(ReadOnlyStudentBook toBeCopied) {
         this();
@@ -60,7 +60,7 @@ public class StudentBook implements ReadOnlyStudentBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code StudentBook} with {@code newData}.
      */
     public void resetData(ReadOnlyStudentBook newData) {
         requireNonNull(newData);
@@ -72,7 +72,7 @@ public class StudentBook implements ReadOnlyStudentBook {
     //// student-level operations
 
     /**
-     * Returns true if a student with the same identity as {@code student} exists in the address book.
+     * Returns true if a student with the same identity as {@code student} exists in the student book.
      */
     public boolean hasStudent(Student student) {
         requireNonNull(student);
@@ -80,8 +80,8 @@ public class StudentBook implements ReadOnlyStudentBook {
     }
 
     /**
-     * Adds a student to the address book.
-     * The student must not already exist in the address book.
+     * Adds a student to the student book.
+     * The student must not already exist in the student book.
      */
     public void addStudent(Student p) {
         students.add(p);
@@ -89,9 +89,9 @@ public class StudentBook implements ReadOnlyStudentBook {
 
     /**
      * Replaces the given student {@code target} in the list with {@code editedStudent}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the student book.
      * The student identity of {@code editedStudent} must not be the same as another existing student in
-     * the address book.
+     * the student book.
      */
     public void setStudent(Student target, Student editedStudent) {
         requireNonNull(editedStudent);
@@ -100,8 +100,8 @@ public class StudentBook implements ReadOnlyStudentBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code StudentBook}.
+     * {@code key} must exist in the student book.
      */
     public void removeStudent(Student key) {
         students.remove(key);
@@ -111,7 +111,7 @@ public class StudentBook implements ReadOnlyStudentBook {
     //// appointment-level operations
 
     /**
-     * Returns true if an appointment with the same identity as {@code appointment} exists in the address book.
+     * Returns true if an appointment with the same identity as {@code appointment} exists in the student book.
      */
     public boolean hasAppointment(Appointment appointment) {
         requireNonNull(appointment);
@@ -119,7 +119,7 @@ public class StudentBook implements ReadOnlyStudentBook {
     }
 
     /**
-     * Returns true if an appointment with overlapping time with {@code appointment} exists in the address book.
+     * Returns true if an appointment with overlapping time with {@code appointment} exists in the student book.
      */
     public boolean hasOverlappingAppointment(Appointment appointment) {
         requireNonNull(appointment);
@@ -127,8 +127,8 @@ public class StudentBook implements ReadOnlyStudentBook {
     }
 
     /**
-     * Adds an appointment to the address book.
-     * The appointment must not already exist in the address book.
+     * Adds an appointment to the student book.
+     * The appointment must not already exist in the student book.
      */
     public void addAppointment(Appointment a) {
         appointments.add(a);
@@ -140,9 +140,9 @@ public class StudentBook implements ReadOnlyStudentBook {
 
     /**
      * Replaces the given appointment {@code target} in the list with {@code editedAppointment}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the student book.
      * The appointment identity of {@code editedAppointment} must not be the same as another existing
-     * appointment in the address book.
+     * appointment in the student book.
      */
     public void setAppointment(Appointment target, Appointment editedAppointment) throws CommandException {
         requireNonNull(editedAppointment);
