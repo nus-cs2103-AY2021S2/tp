@@ -29,7 +29,6 @@ import seedu.booking.model.booking.EndTime;
 import seedu.booking.model.booking.Id;
 import seedu.booking.model.booking.StartTime;
 import seedu.booking.model.person.Email;
-import seedu.booking.model.person.Person;
 
 /**
  * A utility class containing a list of {@code Booking} objects to be used in tests.
