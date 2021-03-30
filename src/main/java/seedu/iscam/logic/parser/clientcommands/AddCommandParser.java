@@ -2,6 +2,7 @@ package seedu.iscam.logic.parser.clientcommands;
 
 import static seedu.iscam.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.iscam.logic.parser.CliSyntax.PREFIX_IMAGE;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -21,6 +22,7 @@ import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.logic.parser.exceptions.ParseFormatException;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.client.Email;
+import seedu.iscam.model.client.Image;
 import seedu.iscam.model.client.InsurancePlan;
 import seedu.iscam.model.client.Phone;
 import seedu.iscam.model.commons.Location;
@@ -48,8 +50,8 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(
-                        args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_LOCATION, PREFIX_PLAN, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_LOCATION, PREFIX_PLAN,
+                        PREFIX_TAG, PREFIX_IMAGE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_LOCATION, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -62,8 +64,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         InsurancePlan plan = ParserUtil.parsePlan(argMultimap.getValue(PREFIX_PLAN).orElse("No plans yet"));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
+        // TODO: Set a better place to refer default.png to
+        Image imageRes = ParserUtil.parseImageRes(argMultimap.getValue(PREFIX_IMAGE).orElse("default.png"));
 
-        Client client = new Client(name, phone, email, location, plan, tagList);
+        Client client = new Client(name, phone, email, location, plan, tagList, imageRes);
 
         return new AddCommand(client);
     }
