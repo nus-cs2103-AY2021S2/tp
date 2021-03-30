@@ -32,16 +32,16 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_DATE,
                         PREFIX_CHILD, PREFIX_CONTACT);
 
-        //        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_DATE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddAppointmentCommand.MESSAGE_USAGE));
         }
+
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         DateTime date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
-        // LocalDateTime date = LocalDateTime.now(); // to edit
+
         Set<Tag> childrenList = ParserUtil.parseChildTags(argMultimap.getAllValues(PREFIX_CHILD));
         Set<Person> contactList = ParserUtil.parseContacts(argMultimap.getAllValues(PREFIX_CONTACT));
 

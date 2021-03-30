@@ -51,6 +51,7 @@ public class LogicManagerTest {
                 temporaryFolder.resolve("appointmentBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, appointmentBookStorage, userPrefsStorage);
+
         logic = new LogicManager(model, storage);
     }
 
