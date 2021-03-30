@@ -20,6 +20,7 @@ import fooddiary.model.FoodDiary;
 import fooddiary.model.Model;
 import fooddiary.model.entry.Entry;
 import fooddiary.model.entry.NameContainsKeywordsPredicate;
+import fooddiary.testutil.AddOnEntryDescriptorBuilder;
 import fooddiary.testutil.EditEntryDescriptorBuilder;
 
 /**
@@ -39,8 +40,9 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_A = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_B = "Block 123, Bobby Street 3";
 
-    public static final String VALID_TAG_WESTERN = "WESTERN";
-    public static final String VALID_TAG_FASTFOOD = "fastfood";
+    public static final String VALID_TAG_CATEGORY_WESTERN = "WESTERN";
+    public static final String VALID_TAG_CATEGORY_FASTFOOD = "fastfood";
+    public static final String VALID_TAG_SCHOOL_SOC = "SOC";
 
     public static final String NAME_DESC_A = " " + PREFIX_NAME + VALID_NAME_A;
     public static final String NAME_DESC_B = " " + PREFIX_NAME + VALID_NAME_B;
@@ -52,29 +54,39 @@ public class CommandTestUtil {
     public static final String REVIEW_DESC_B = " " + PREFIX_REVIEW + VALID_REVIEW_B;
     public static final String ADDRESS_DESC_A = " " + PREFIX_ADDRESS + VALID_ADDRESS_A;
     public static final String ADDRESS_DESC_B = " " + PREFIX_ADDRESS + VALID_ADDRESS_B;
-    public static final String TAG_DESC_FASTFOOD = " " + PREFIX_TAG_CATEGORY + VALID_TAG_FASTFOOD;
-    public static final String TAG_DESC_WESTERN = " " + PREFIX_TAG_CATEGORY + VALID_TAG_WESTERN;
+    public static final String TAG_DESC_FASTFOOD = " " + PREFIX_TAG_CATEGORY + VALID_TAG_CATEGORY_FASTFOOD;
+    public static final String TAG_DESC_WESTERN = " " + PREFIX_TAG_CATEGORY + VALID_TAG_CATEGORY_WESTERN;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_RATING_DESC = " " + PREFIX_RATING + "911a"; // 'a' not allowed in ratings
     public static final String INVALID_PRICE_DESC = " " + PREFIX_PRICE + "18a"; // 'a' not allowed in ratings
     public static final String INVALID_REVIEW_DESC = " " + PREFIX_REVIEW; // empty string not allowed for review
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG_CATEGORY + "western*"; // '*' not allowed in tags
+    // '*' not allowed in tags
+    public static final String INVALID_TAG_CATEGORY_DESC = " " + PREFIX_TAG_CATEGORY + "western*";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     public static final EditCommand.EditEntryDescriptor DESC_A;
     public static final EditCommand.EditEntryDescriptor DESC_B;
+    public static final AddOnCommand.AddOnToEntryDescriptor DESC_C;
+    public static final AddOnCommand.AddOnToEntryDescriptor DESC_D;
 
     static {
         DESC_A = new EditEntryDescriptorBuilder().withName(VALID_NAME_A).withRating(VALID_RATING_A)
                 .withPrice(VALID_PRICE_A).withReviews(VALID_REVIEW_A).withAddress(VALID_ADDRESS_A)
-                .withTagCategories(VALID_TAG_FASTFOOD).build();
+                .withTagCategories(VALID_TAG_CATEGORY_FASTFOOD).build();
         DESC_B = new EditEntryDescriptorBuilder().withName(VALID_NAME_B).withRating(VALID_RATING_B)
                 .withPrice(VALID_PRICE_B).withReviews(VALID_REVIEW_B).withAddress(VALID_ADDRESS_B)
-                .withTagCategories(VALID_TAG_WESTERN, VALID_TAG_FASTFOOD).build();
+                .withTagCategories(VALID_TAG_CATEGORY_WESTERN, VALID_TAG_CATEGORY_FASTFOOD).build();
+    }
+
+    static {
+        DESC_C = new AddOnEntryDescriptorBuilder()
+                .withPrice(VALID_PRICE_A).withReviews(VALID_REVIEW_A).build();
+        DESC_D = new AddOnEntryDescriptorBuilder()
+                .withPrice(VALID_PRICE_B).withReviews(VALID_REVIEW_B).build();
     }
 
     /**

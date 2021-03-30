@@ -15,7 +15,7 @@ public class JsonAdaptedTagSchool {
      */
     @JsonCreator
     public JsonAdaptedTagSchool(String tagName) {
-        this.tag = new TagSchool(tagName).getTag();
+        this.tag = tagName;
     }
 
     /**

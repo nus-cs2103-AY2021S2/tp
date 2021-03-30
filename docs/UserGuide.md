@@ -51,9 +51,9 @@ Parameter: none
 Example:
 (Refer to mockup)
 
-### Add a food review: `add`
+### Add an entry: `add`
 
-Adds a food review to the Food Diary.
+Adds an entry to the Food Diary.
 
 Format: `add n/<RESTAURANT NAME> ra/RATING re/REVIEW a/ADDRESS c/CATEGORIES`
 
@@ -69,10 +69,29 @@ Example:
 
     add  n/Al Amaan Restaurant ra/5 re/best for Butter Chicken a/12 Clementi Rd, Singapore 129742 c/Indian Muslim
 
+### Addon a review or a price to an entry: `addon`
+Adds-on a review and/or a price to an entry of the Food Diary.
 
-### Delete a food review: `delete`
+Format: `addon INDEX [re/REVIEW] [p/PRICE]` or `addon INDEX [p/PRICE] [re/REVIEW]` 
 
-Deletes a food review from the Food Diary.
+- Adds on a review and/or a price to an entry at the specified `INDEX`. The index
+refers to the index number shown in the displayed entry list. The index must be a
+  positive integer (e.g. 1,2,3,...)
+- At least one of the optional fields must be provided
+- Existing reviews in the entry (at the specified `INDEX`) will be added on to the input reviews
+- Existing price/price range in the entry (at the specified `INDEX`) will be updated according the 
+input price
+
+Examples:
+
+    addon 1 re/I like the way the rice is cooked p/6
+    addon 2 re/I like the way the rice is cooked
+    addon 3 p/6
+    addon 3 p/6 re/I like the way the rice is cooked
+
+### Delete an entry: `delete`
+
+Deletes an entry from the Food Diary.
 
 Format: `delete n/NAME` or `delete i/INDEX`
 
@@ -82,9 +101,9 @@ Example:
 
     delete n/McDonald’s Clementi Mall
 
-### Find for any food reviews
+### Find for any entries
 
-Finds for food reviews whose names, ratings, address and categories match any of the provided keywords.
+Finds for entries whose names, ratings, address and categories match any of the provided keywords.
 
 Format: `find KEYWORDS`
 
@@ -98,9 +117,9 @@ Example:
 
     find clementi 5/5
 
-### Find for specific food reviews
+### Find for specific entries
 
-Finds for food reviews whose names, ratings, address and categories match all of the provided keywords.
+Finds for entries whose names, ratings, address and categories match all of the provided keywords.
 
 Format: `findall KEYWORDS`
 
@@ -143,6 +162,7 @@ Example:
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/<RESTAURANT NAME> ra/5 re/REVIEW a/ADDRESS c/CATEGORIES` <br> e.g., `add  n/Al Amaan Restaurant ra/4 re/best for Butter Chicken a/12 Clementi Rd, Singapore 129742 c/Indian Muslim`
+**AddOn** |`addon INDEX [re/REVIEW] [p/PRICE]` or `addon INDEX [p/PRICE] [re/REVIEW]` <br>e.g,`addon 1 re/I like this food a lot p/5`
 **Delete** | `delete n/NAME or delete i/INDEX` <br> e.g., `delete n/Al Amaan Restaurant or delete i/1`
 **List** | `list`
 **Find** | `find kfc`

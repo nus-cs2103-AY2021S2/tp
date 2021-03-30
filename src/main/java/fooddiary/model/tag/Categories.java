@@ -62,4 +62,19 @@ public enum Categories {
         String categoryInTitleCase = firstLetter + remainingLetters;
         return categoryInTitleCase;
     }
+
+    /**
+     * Lists all Categories
+     * @return list of Categories
+     */
+    public static String listAll() {
+        StringBuilder list = new StringBuilder("");
+        for (Categories category : Categories.values()) {
+            if (!category.name().equals("INVALID")) {
+                list.append(category.titleCase());
+                list.append("\n");
+            }
+        }
+        return list.toString();
+    }
 }
