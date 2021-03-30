@@ -20,8 +20,8 @@ public class UnaliasCommandParser implements Parser<UnaliasCommand> {
      *
      * @param args Arguments string.
      * @return An Unalias Command object.
-     * @throws ParseException if the user input does not conform the expected format.
-     * @throws NullPointerException if the argument is null.
+     * @throws ParseException If the user input does not conform the expected format.
+     * @throws NullPointerException If the argument is null.
      */
     public UnaliasCommand parse(String args) throws ParseException {
         requireAllNonNull(args);
