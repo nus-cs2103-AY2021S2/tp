@@ -80,7 +80,7 @@ public class ListCommandTest {
     @Test
     public void execute_allPartialMultipleNames_notFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0) + "Nobody met the requirements."
-                + String.format(MESSAGE_PERSONS_LISTED_TAGS, "") ;
+                + String.format(MESSAGE_PERSONS_LISTED_TAGS, "");
         Predicate<Person> predicate = predicateKurz.and(predicateElle.and(predicateKunz));
         ListCommand command = new ListCommand(predicate);
 
@@ -116,7 +116,7 @@ public class ListCommandTest {
     @Test
     public void execute_anyExactMultipleNames_notFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0) + "Nobody met the requirements."
-                + String.format(MESSAGE_PERSONS_LISTED_TAGS, "") ;
+                + String.format(MESSAGE_PERSONS_LISTED_TAGS, "");
         Predicate<Person> predicate = predicateExactKurz.or(predicateExactElle.or(predicateExactKunz));
         ListCommand command = new ListCommand(predicate);
 
