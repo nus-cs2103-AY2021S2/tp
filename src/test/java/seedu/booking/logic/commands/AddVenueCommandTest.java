@@ -28,7 +28,7 @@ import seedu.booking.model.venue.Venue;
 import seedu.booking.model.venue.VenueName;
 import seedu.booking.testutil.VenueBuilder;
 
-public class CreateVenueCommandTest {
+public class AddVenueCommandTest {
 
     @Test
     public void constructor_nullVenue_throwsNullPointerException() {

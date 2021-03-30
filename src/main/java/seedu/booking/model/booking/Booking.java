@@ -186,6 +186,18 @@ public class Booking {
                 && otherBooking.getId().equals(getId());
     }
 
+    /**
+     * Returns true if both bookings have same fields.
+     * This defines a weaker notion of equality between two bookings.
+     */
+    public boolean isExactlySameBooking(Booking otherBooking) {
+        return otherBooking.getBookerEmail().equals(getBookerEmail())
+                && otherBooking.getVenueName().equals(getVenueName())
+                && otherBooking.getBookingStart().equals(getBookingStart())
+                && otherBooking.getBookingEnd().equals(getBookingEnd())
+                && otherBooking.getDescription().equals(getDescription());
+    }
+
     public void setVenueName(VenueName venueName) {
         this.venueName = venueName;
     }

@@ -23,7 +23,7 @@ import seedu.booking.logic.commands.AddVenueCommand;
 import seedu.booking.model.venue.Venue;
 import seedu.booking.testutil.VenueBuilder;
 
-public class CreateVenueCommandParserTest {
+public class AddVenueCommandParserTest {
     private AddVenueCommandParser parser = new AddVenueCommandParser();
 
     @Test
