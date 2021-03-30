@@ -21,19 +21,25 @@ public class NameContainsKeywordsPredicate implements Predicate<Customer> {
     public boolean test(Customer customer) {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(customer.getName().fullName, keyword)
-                || StringUtil.containsWordIgnoreCase(customer.getAddress().value, keyword)
-                || StringUtil.containsWordIgnoreCase(customer.getPhone().value, keyword)
-                || StringUtil.containsWordIgnoreCase(customer.getDate().value, keyword)
-                || StringUtil.containsWordIgnoreCase(customer.getDone().value, keyword)
-                || StringUtil.containsWordIgnoreCase(customer.getEmail().value, keyword)
-                || StringUtil.containsWordIgnoreCase(customer.getRemark().value, keyword)
-                || helper(keyword, customer.getTag()));
+                        || StringUtil.containsWordIgnoreCase(customer.getAddress().value, keyword)
+                        || StringUtil.containsWordIgnoreCase(customer.getPhone().value, keyword)
+                        || StringUtil.containsWordIgnoreCase(customer.getDate().value, keyword)
+                        || StringUtil.containsWordIgnoreCase(customer.getDone().value, keyword)
+                        || StringUtil.containsWordIgnoreCase(customer.getEmail().value, keyword)
+                        || StringUtil.containsWordIgnoreCase(customer.getRemark().value, keyword)
+                        || helper(keyword, customer.getTag()));
     }
 
-    public boolean helper(String keyword, Set<Tag> tags){
+    /**
+     * Returns true if keyword matches a certain tag
+     * @param keyword
+     * @param tags
+     * @return if a match is found
+     */
+    public boolean helper(String keyword, Set<Tag> tags) {
         boolean result = false;
-        for(Tag tag : tags){
-            if(StringUtil.containsWordIgnoreCase(tag.tagName, keyword)){
+        for (Tag tag : tags) {
+            if (StringUtil.containsWordIgnoreCase(tag.tagName, keyword)) {
                 result = true;
             }
         }
