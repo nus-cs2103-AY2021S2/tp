@@ -25,7 +25,7 @@ public class TimetablePrefs {
     }
 
     /**
-     * Returns the Read-Only timetable start date wrapped in Observable value wrapper.
+     * Returns the timetable start date wrapped in Observable value wrapper.
      */
     public ObservableValue<LocalDate> getReadOnlyStartDate() {
         return timetableStartDate;
