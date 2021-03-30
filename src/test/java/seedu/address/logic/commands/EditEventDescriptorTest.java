@@ -46,9 +46,5 @@ public class EditEventDescriptorTest {
         editedCS2030 = new EditEventDescriptorBuilder(DESC_CS2030).withEventStatus(VALID_STATUS_CS2107).build();
         assertFalse(DESC_CS2030.equals(editedCS2030));
 
-        // Commented out for v1.2
-        //        // different tags -> returns false
-        //        editedAmy = new EditEventDescriptorBuilder(DESC_CS2030).withTags(VALID_TAG_HUSBAND).build();
-        //        assertFalse(DESC_CS2030.equals(editedAmy));
     }
 }

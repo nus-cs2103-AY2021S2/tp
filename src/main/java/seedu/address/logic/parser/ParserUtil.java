@@ -11,7 +11,6 @@ import seedu.address.model.event.Description;
 import seedu.address.model.event.EventName;
 import seedu.address.model.event.EventPriority;
 import seedu.address.model.event.EventStatus;
-import seedu.address.model.person.Name;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -42,7 +41,7 @@ public class ParserUtil {
     public static EventName parseEventName(String eventName) throws ParseException {
         requireNonNull(eventName);
         String trimmedEventName = eventName.trim();
-        if (!Name.isValidName(trimmedEventName)) {
+        if (!EventName.isValidName(trimmedEventName)) {
             throw new ParseException(EventName.MESSAGE_CONSTRAINTS);
         }
         return new EventName(trimmedEventName);
