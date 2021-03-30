@@ -60,7 +60,7 @@ public class DeleteCommandTest {
         Model expectedModel = new ModelManager(model.getFlashBack(), new UserPrefs());
         expectedModel.deleteFlashcard(flashcardToDelete);
         expectedModel.commitFlashBack();
-        showNoPerson(expectedModel);
+        showNoFlashcard(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -103,7 +103,7 @@ public class DeleteCommandTest {
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
-    private void showNoPerson(Model model) {
+    private void showNoFlashcard(Model model) {
         model.updateFilteredFlashcardList(p -> false);
 
         assertTrue(model.getFilteredFlashcardList().isEmpty());

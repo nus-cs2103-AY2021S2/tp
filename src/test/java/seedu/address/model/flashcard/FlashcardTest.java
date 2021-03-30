@@ -24,7 +24,7 @@ public class FlashcardTest {
     }
 
     @Test
-    public void isSamePerson() {
+    public void isSameFlashcard() {
         // same object -> returns true
         assertTrue(PYTHAGOREAN.isSameCard(PYTHAGOREAN));
 
