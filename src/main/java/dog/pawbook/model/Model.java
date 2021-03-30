@@ -1,6 +1,7 @@
 package dog.pawbook.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import dog.pawbook.commons.core.GuiSettings;
@@ -103,4 +104,12 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEntityList(Predicate<Pair<Integer, Entity>> predicate);
+
+    /**
+     * Sort he filtered entity list to filter by the given {@code comparator}.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void sortEntities(Comparator<Pair<Integer, Entity>> comparator);
+
+
 }

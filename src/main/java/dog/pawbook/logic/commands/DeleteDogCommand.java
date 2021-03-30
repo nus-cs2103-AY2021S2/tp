@@ -54,6 +54,7 @@ public class DeleteDogCommand extends DeleteCommand {
 
         // then actually delete the dog
         model.deleteEntity(targetId);
+        super.updateDeletedList(model);
         return new CommandResult(MESSAGE_SUCCESS + dogToDelete);
     }
 

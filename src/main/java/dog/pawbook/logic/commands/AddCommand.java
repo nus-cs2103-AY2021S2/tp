@@ -14,6 +14,7 @@ import static java.util.Objects.requireNonNull;
 
 import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.model.Model;
+import dog.pawbook.model.managedentity.AddCommandPredicate;
 import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.owner.Owner;
@@ -61,6 +62,7 @@ public abstract class AddCommand<T extends Entity> extends Command {
         requireNonNull(model);
 
         executeAdd(model);
+
         return new CommandResult(getSuccessMessage());
     }
 
@@ -74,7 +76,7 @@ public abstract class AddCommand<T extends Entity> extends Command {
         if (model.hasEntity(toAdd)) {
             throw new CommandException(getDuplicateMessage());
         }
-
+        model.updateFilteredEntityList(new AddCommandPredicate(toAdd));
         return model.addEntity(toAdd);
     }
 

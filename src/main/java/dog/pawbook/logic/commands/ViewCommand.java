@@ -11,7 +11,8 @@ import dog.pawbook.commons.core.Messages;
 import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.managedentity.Entity;
-import dog.pawbook.model.managedentity.RelatedEntityPredicate;
+import dog.pawbook.model.managedentity.ViewCommandComparator;
+import dog.pawbook.model.managedentity.ViewCommandPredicate;
 import dog.pawbook.model.managedentity.program.Program;
 
 /**
@@ -55,8 +56,8 @@ public class ViewCommand extends Command {
                 .map(x -> x.getKey())
                 .collect(Collectors.toList());
         targetIdList.addAll(enrolledPrograms);
-        model.updateFilteredEntityList(new RelatedEntityPredicate(targetIdList));
-
+        model.updateFilteredEntityList(new ViewCommandPredicate(targetIdList));
+        model.sortEntities(new ViewCommandComparator(model.getEntity(targetEntityId).getClass()));
         return new CommandResult(
                 String.format(Messages.MESSAGE_ENTITIES_LISTED_OVERVIEW, model.getFilteredEntityList().size()));
     }
