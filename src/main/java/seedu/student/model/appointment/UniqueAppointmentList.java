@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.student.logic.commands.exceptions.CommandException;
 
 /**
  * A nested list of appointments grouped by dates to facilitate UI display.

@@ -2,7 +2,6 @@ package seedu.student.logic.parser;
 
 import static seedu.student.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.student.logic.parser.CliSyntax.PREFIX_MATRICULATION_NUMBER;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_START_TIME;
 
 import java.util.stream.Stream;
@@ -13,7 +12,7 @@ import seedu.student.logic.parser.exceptions.ParseException;
 import seedu.student.model.student.MatriculationNumber;
 
 public class EditAppointmentCommandParser implements Parser<EditAppointmentCommand> {
-    private static int INDEX_OF_MATRIC = 1;
+    private static final int INDEX_OF_MATRIC = 0;
 
     @Override
     public EditAppointmentCommand parse(String args) throws ParseException {
@@ -27,7 +26,7 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
         MatriculationNumber matriculationNumber;
 
         try {
-            matriculationNumber = ParserUtil.parseMatric(args.split(" ")[INDEX_OF_MATRIC]);
+            matriculationNumber = ParserUtil.parseMatric(args.trim().split(" ")[INDEX_OF_MATRIC]);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditAppointmentCommand.MESSAGE_USAGE), pe);
