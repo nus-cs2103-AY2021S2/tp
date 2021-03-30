@@ -57,11 +57,6 @@ public class BookingIntermediate implements Intermediate<AddBookingCommand> {
      * Creates a Booking with the existing user input info
      */
     public Booking createBooking() {
-        System.out.println("Intermediate: " + this.bookingEnd.toString());
-        System.out.println("Intermediate: " + this.bookingStart.toString());
-        System.out.println("Intermediate: " + this.bookerEmail.toString());
-        System.out.println("Intermediate: " + this.venueName.toString());
-        System.out.println("Intermediate: " + this.description.toString());
         return new Booking(this.bookerEmail, this.venueName, this.description, this.bookingStart, this.bookingEnd);
     }
 
