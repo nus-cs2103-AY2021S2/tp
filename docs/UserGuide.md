@@ -144,6 +144,8 @@ Example:
 Adds a room to the housing management system.
 
 Format: `oadd r/ROOM_NO t/TYPE [g/TAG]`
+* Room is initialised with default occupancy status of "No"
+* Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or deallocated. The occupancy status cannot be defaulted to "Yes" during room addition.
 
 Example:
 * `oadd r/10-112 t/corridor_ac g/SHN` Adds a room numbered `10-112` of type `corridor_ac` with the tag `SHN`.
@@ -183,6 +185,7 @@ Format: `oedit INDEX [r/ROOM_NO] [t/TYPE] [g/TAG]`
 * `INDEX` refers to the index number shown in the displayed room list. `INDEX` **must be a positive integer 1, 2, 3, …**.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or deallocated. The occupancy status is not controllable through the `oedit` command. 
 * `oedit` will be blocked if the room is occupied. Run `dealloc` to deallocate the room before making further edits.
 
 Example:
