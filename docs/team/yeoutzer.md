@@ -4,8 +4,7 @@ layout: page title: Loo Yeou Tzer's Project Portfolio Page
 
 ## Project: FlashBack
 
-FlashBack - This application will improve the performance of students via improved accessibility and organisation of
-notes, together with interactive sessions that enhance memory retention.
+FlashBack is a desktop flashcard application. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 

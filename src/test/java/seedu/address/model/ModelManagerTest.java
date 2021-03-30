@@ -61,29 +61,29 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setFlashBackFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setFlashBackFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setFlashBackFilePath_validPath_setsFlashBackFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setFlashBackFilePath(path);
         assertEquals(path, modelManager.getFlashBackFilePath());
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    public void hasFlashcard_nullFlashcard_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasFlashcard(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasFlashcard_flashcardNotInFlashBack_returnsFalse() {
         assertFalse(modelManager.hasFlashcard(PYTHAGOREAN));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasFlashcard_flashcardInFlashBack_returnsTrue() {
         modelManager.addFlashcard(PYTHAGOREAN);
         assertTrue(modelManager.hasFlashcard(PYTHAGOREAN));
     }
