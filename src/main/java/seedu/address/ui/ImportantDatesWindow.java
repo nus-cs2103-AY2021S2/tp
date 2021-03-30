@@ -12,7 +12,7 @@ import seedu.address.logic.Logic;
  * Controller for a schedule page
  */
 public class ImportantDatesWindow extends UiPart<Stage> {
-    private static final Logger logger = LogsCenter.getLogger(ScheduleWindow.class);
+    private static final Logger logger = LogsCenter.getLogger(ImportantDatesWindow.class);
     private static final String FXML = "ImportantDatesWindow.fxml";
     private Logic logic;
     private DateListPanel dateListPanel;
@@ -22,9 +22,9 @@ public class ImportantDatesWindow extends UiPart<Stage> {
     private StackPane dateListPanelPlaceholder;
 
     /**
-     * Creates a new ScheduleWindow.
+     * Creates a new ImportantDatesWindow.
      *
-     * @param root Stage to use as the root of the ScheduleWindow.
+     * @param root Stage to use as the root of the ImportantDatesWindow.
      */
     public ImportantDatesWindow(Stage root, Logic logic) {
         super(FXML, root);
@@ -32,14 +32,14 @@ public class ImportantDatesWindow extends UiPart<Stage> {
     }
 
     /**
-     * Creates a new HelpWindow.
+     * Creates a new ImportantDatesWindow.
      */
     public ImportantDatesWindow(Logic logic) {
         this(new Stage(), logic);
     }
 
     /**
-     * Shows the schedule window.
+     * Shows the important dates window.
      * @throws IllegalStateException
      * <ul>
      *     <li>
@@ -57,7 +57,7 @@ public class ImportantDatesWindow extends UiPart<Stage> {
      * </ul>
      */
     public void show() {
-        logger.fine("Showing schedule window.");
+        logger.fine("Showing important dates window.");
         dateListPanel = new DateListPanel(logic.getTransformedImportantDatesList());
         dateListPanelPlaceholder.getChildren().add(dateListPanel.getRoot());
         getRoot().show();
@@ -65,21 +65,21 @@ public class ImportantDatesWindow extends UiPart<Stage> {
     }
 
     /**
-     * Returns true if the schedule window is currently being shown.
+     * Returns true if the important dates window is currently being shown.
      */
     public boolean isShowing() {
         return getRoot().isShowing();
     }
 
     /**
-     * Hides the schedule window.
+     * Hides the important dates window.
      */
     public void hide() {
         getRoot().hide();
     }
 
     /**
-     * Focuses on the schedule window.
+     * Focuses on the important dates window.
      */
     public void focus() {
         getRoot().requestFocus();

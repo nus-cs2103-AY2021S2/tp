@@ -202,6 +202,7 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         scheduleWindow.hide();
+        importantDatesWindow.hide();
         primaryStage.hide();
     }
 

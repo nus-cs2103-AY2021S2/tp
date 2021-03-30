@@ -18,7 +18,6 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ImportantDatesCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.ListDateCommand;
 import seedu.address.logic.commands.ScheduleCommand;
 import seedu.address.logic.commands.SearchCommand;
 import seedu.address.logic.commands.SortCommand;
@@ -89,9 +88,6 @@ public class AddressBookParser {
 
         case AddDateCommand.COMMAND_WORD:
             return new AddDateCommandParser().parse(arguments);
-
-        case ListDateCommand.COMMAND_WORD:
-            return new ListDateCommand();
 
         case DeleteDateCommand.COMMAND_WORD:
             return new DeleteDateCommandParser().parse(arguments);

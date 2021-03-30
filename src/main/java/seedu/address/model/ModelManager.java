@@ -234,12 +234,15 @@ public class ModelManager implements Model {
     @Override
     public void deleteImportantDate(ImportantDate target) {
         datesBook.removeImportantDate(target);
+        // TODO: change switch to model.updateSortedImportantDatesList(); after implementing sorting
+        updateFilteredImportantDatesList(PREDICATE_SHOW_ALL_IMPORTANT_DATES);
     }
 
     @Override
     public void addImportantDate(ImportantDate importantDate) {
         datesBook.addImportantDate(importantDate);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        // TODO: change switch to model.updateSortedImportantDatesList(); after implementing sorting
+        updateFilteredImportantDatesList(PREDICATE_SHOW_ALL_IMPORTANT_DATES);
     }
 
     @Override
