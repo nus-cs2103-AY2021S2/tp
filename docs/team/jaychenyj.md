@@ -23,7 +23,7 @@ Given below are my contributions to the project.
     * Standardised Intellij setting with the team. (Pull
       requests [\#4](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/4))
 
-* **Enhancements to existing features**:
+* **Features**:
     * Modified `Find` v1. (Pull request [\#74](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/74))
     * Modified `Help` v1. (Pull request [\#81](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/81))
     * Modified `Find` v2. (Pull request [\#82](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/82))
