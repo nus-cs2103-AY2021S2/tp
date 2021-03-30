@@ -221,9 +221,9 @@ public class ModelManager implements Model {
 
     @Override
     public Index getIndexOfRoomWithSameRoomNumber(RoomNumber roomNumber) {
-        List<Room> lastShownList = getFilteredRoomList();
-        for (int i = 0; i < lastShownList.size(); i++) {
-            if (lastShownList.get(i).getRoomNumber().equals(roomNumber)) {
+        List<Room> roomList = getAddressBook().getRoomList();
+        for (int i = 0; i < roomList.size(); i++) {
+            if (roomList.get(i).getRoomNumber().equals(roomNumber)) {
                 return Index.fromZeroBased(i);
             }
         }
@@ -231,9 +231,9 @@ public class ModelManager implements Model {
     }
 
     public Room getRoomWithSameRoomNumber(RoomNumber roomNumber) {
-        List<Room> lastShownList = getFilteredRoomList();
+        List<Room> roomList = getAddressBook().getRoomList();
         Index index = getIndexOfRoomWithSameRoomNumber(roomNumber);
-        Room room = lastShownList.get(index.getZeroBased());
+        Room room = roomList.get(index.getZeroBased());
         return room;
     }
 
