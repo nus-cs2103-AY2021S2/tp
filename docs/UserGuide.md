@@ -19,6 +19,7 @@ Donavan Lim, Marcus Lee Eugene, Chong Sidney, Dinesh S/O Magesvaran, Prabhakaran
         * find
         * findall
         * view
+        * revise
     * Command Summary
     * UI mock-up
 
@@ -128,17 +129,31 @@ Example:
 
     find clementi fastfood 5/5
 
-### View specific entries
+### View a specific entry
 
-Opens up a window, showing the details of a specified entry in a full expanded view.
+Opens up a window, showing the details of a specified entry in a full expanded view. Allows the user to read through 
+reviews that are too lengthy to be shown in the main UI window.
 
 Format: `view <INDEX>`
 
-Parameter: `Index of food review`
+Parameter: `Index of entry`
 
 Example:
 
     view 1
+
+### Revise a specific entry
+
+Opens up a window, showing the existing details of an entry and allowing for quick corrections and updates without 
+requiring the use of prefixes and command syntax in the UI.
+
+Format: `revise <INDEX>`
+
+Parameter: `Index of entry`
+
+Example:
+
+    revise 1
 
 -------------------------------------------------------------------------------------
 
@@ -147,12 +162,13 @@ Example:
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/<RESTAURANT NAME> ra/5 re/REVIEW a/ADDRESS c/CATEGORIES` <br> e.g., `add  n/Al Amaan Restaurant ra/4 re/best for Butter Chicken a/12 Clementi Rd, Singapore 129742 c/Indian Muslim`
+**AddOn** |`addon INDEX [re/REVIEW] [p/PRICE]` or `addon INDEX [p/PRICE] [re/REVIEW]` <br>e.g,`addon 1 re/I like this food a lot p/5`
 **Delete** | `delete n/NAME or delete i/INDEX` <br> e.g., `delete n/Al Amaan Restaurant or delete i/1`
 **List** | `list`
 **Find** | `find kfc`
 **FindAll** |`findall clementi fastfood 5/5`
 **View** |`view 1`
-**AddOn** |`addon INDEX [re/REVIEW] [p/PRICE]` or `addon INDEX [p/PRICE] [re/REVIEW]` <br>e.g,`addon 1 re/I like this food a lot p/5`
+**Revise** |`revise 1`
 
 ## <center> Appendix </center>
 

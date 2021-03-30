@@ -133,6 +133,13 @@
     -fx-text-fill: #11698E;
 }
 
+.view_label {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 16px;
+    -fx-text-fill: white;
+    -fx-padding: 6px;
+}
+
 .stack-pane {
      -fx-background-color: derive(#62959C, 20%);
 }
@@ -339,18 +346,18 @@
     -fx-background-radius: 0;
 }
 
-#tagCategory {
+#tagCategories {
     -fx-hgap: 0;
     -fx-vgap: 4;
     -fx-padding: 2 5 2 3;
 }
-#tagSchool {
+#tagSchools {
     -fx-hgap: 0;
     -fx-vgap: 4;
     -fx-padding: 0 5 1 3;
 }
 
-#tagCategory .label {
+#tagCategories .label {
     -fx-text-fill: #FFF3E6;
     -fx-background-color: #11698E;
     -fx-padding: 2 14 2 14;
@@ -359,7 +366,7 @@
     -fx-font-size: 11;
 }
 
-#tagSchool .label {
+#tagSchools .label {
     -fx-text-fill: black;
     -fx-background-color: #F88F01;
     -fx-padding: 2 14 2 14;
@@ -367,4 +374,3 @@
     -fx-background-radius: 10;
     -fx-font-size: 11;
 }
-

@@ -17,6 +17,7 @@ import fooddiary.logic.commands.FindAllCommand;
 import fooddiary.logic.commands.FindCommand;
 import fooddiary.logic.commands.HelpCommand;
 import fooddiary.logic.commands.ListCommand;
+import fooddiary.logic.commands.ReviseCommand;
 import fooddiary.logic.commands.ViewCommand;
 import fooddiary.logic.parser.exceptions.ParseException;
 
@@ -59,6 +60,9 @@ public class FoodDiaryParser {
 
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
+
+        case ReviseCommand.COMMAND_WORD:
+            return new ReviseCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
