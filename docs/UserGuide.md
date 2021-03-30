@@ -98,15 +98,16 @@ Examples:
 * `done_task 1` marks the first task in the task list as completed.
 
 ### Editing a task: `edit_task`
-Edits an existing task in SOChedule.
+Edits an **existing and uncompleted** task in SOChedule.
 
 Format: `edit_task INDEX [n/TASKNAME] [d/DEADLINE] [p/PRIORITY] [c/CATEGORY]... [t/TAG]...`
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
+* You can only edit the details of an uncompleted task.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the task will be removed i.e adding of tags is not cumulative.
-* You can remove all the task’s tags by typing `t/` without
-  specifying any tags after it.
+* When editing tags/categories, the existing tags/categories of the task will be removed i.e adding of tags/categories is not cumulative.
+* You can remove all the task’s tags by typing `t/` without specifying any tags after it. 
+  Similarly, you can remove all the task’s categories by typing `c/` without specifying any categories after it.
 
 Examples:
 * `edit_task 1 n/editedTaskName` edits the name of the first task (if present in SOChedule) to be `editedTaskName`.
