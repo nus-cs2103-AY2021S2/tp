@@ -345,20 +345,24 @@ Format: `exit`
 
 ### Styling the application : `theme`
 
-Format `theme THEME_PATH`
+Applies a colorscheme to the application based on the supplied theme.
 
-* Applies the theme specified in `THEME_PATH`.
-* The current applied theme will be saved and applied on subsequent sessions. 
+Format `theme THEME`
+
+* Applies the theme specified by the argument `THEME`.
+* FriendDex is shipped with the following preinstalled themes:
+  * `monokai`
+  * `sweetlove`
+  * `pulp`
+  * `paraiso-light`
+* To apply a preinstalled theme, prepend it with an `@`.
+* Applied themes will persist for subsequent sessions. 
 
 Example:
-* `theme theme/solarized.dark.json` applies the theme `solarized.dark.json` located at `./theme/`.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If the theme supplied is not found or unreadable, then the default theme will be applied.
-</div>
+* `theme @monokai` applies the `monokai` theme to the application.
 
 See also:
-* [Theme](#theme)
+* [Defining your own Theme](#defining-your-own-theme)
 
 ### Setting meeting goal: `set-goal`
 
@@ -387,7 +391,10 @@ Advanced users are welcome to update the data directly by making edits to these 
 If your changes to the data file makes its format invalid, FriendDex will discard all data and start with an empty data file at the next run.
 </div>
 
-## Theme
+## Defining your own theme
+
+FriendDex allows advanced users to customize and apply their own theme. This can be done by supplying the path to a `json` file specifying the theme.
+
 ### Theme format
 
 A valid theme is a JSON object containing the following fields:
@@ -402,27 +409,26 @@ A sample theme (Monokai Dark)
 ```
 {
   "color": [
-    "#272822",
-    "#f92672",
-    "#a6e22e",
-    "#f4bf75",
-    "#66d9ef",
-    "#ae81ff",
-    "#a1efe4",
-    "#f8f8f2",
-    "#75715e",
-    "#f92672",
-    "#a6e22e",
-    "#f4bf75",
-    "#66d9ef",
-    "#ae81ff",
-    "#a1efe4",
-    "#f9f8f5"
+    "#272822", "#f92672", "#a6e22e", "#f4bf75",
+    "#66d9ef", "#ae81ff", "#a1efe4", "#f8f8f2",
+    "#75715e", "#f92672", "#a6e22e", "#f4bf75",
+    "#66d9ef", "#ae81ff", "#a1efe4", "#f9f8f5"
   ],
   "foreground": "#f8f8f2",
   "background": "#272822"
 }
 ```
+
+### Applying the theme
+
+Instead of providing a preinstalled `THEME` as an argument, simply supply the file path instead.
+
+Example:
+* `theme sample-theme.json` applies the theme defined in the file `sample-theme.json`.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If the previous theme file supplied is not found or unreadable, then the default theme will be applied.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -430,6 +436,9 @@ A sample theme (Monokai Dark)
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the files it creates with the files in your previous FriendDex home folder.
+
+**Q**: Where can I find more themes?<br>
+**A**: Certain online tools such as [terminal.sexy](https://terminal.sexy) can be used to generate the required `json` file.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -451,7 +460,7 @@ Action | Format, Examples
 **Add debt** | `add-debt INDEX DEBT_AMOUNT`<br> e.g. `add-debt 1 100`
 **Subtract debt** | `subtract-debt INDEX DEBT_AMOUNT`<br> e.g. `subtract-debt 1 100`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
-**Theme** | `theme THEME_PATH`<br> e.g. `theme theme/solarized.dark.json`
-**List** | `list [n\GROUP_NAME]` <br> e.g. `list n\Close Friends`
+**Theme** | `theme THEME`<br> e.g. `theme theme/solarized.dark.json`
+**List** | `list [n/GROUP_NAME]` <br> e.g. `list n/Close Friends`
 **Set goal** | `set-goal INDEX f/FREQUENCY` <br> e.g., `set-goal 1 f/w`
 **Help** | `help`

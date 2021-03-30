@@ -18,8 +18,9 @@ public class ThemeCommand extends Command {
 
     public static final String COMMAND_WORD = "theme";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Selects and apply a theme to the application. "
-        + "Parameters: THEME_FILE";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Selects and apply a theme to the application.\n"
+        + "Parameters: THEME\n"
+        + "Example: " + COMMAND_WORD + " @monokai";
 
     public static final String MESSAGE_SUCCESS = "Theme \"%1$s\" applied";
     public static final String MESSAGE_INVALID_THEME = "Invalid theme \"%1$s\" given";
