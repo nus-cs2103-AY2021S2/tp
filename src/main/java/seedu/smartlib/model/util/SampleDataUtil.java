@@ -1,5 +1,7 @@
 package seedu.smartlib.model.util;
 
+import static seedu.smartlib.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -28,6 +30,8 @@ import seedu.smartlib.model.tag.Tag;
  */
 public class SampleDataUtil {
 
+    // books
+
     private static final Book OLDMAN = new Book(
             new Name("The Old Man And The Sea"),
             new Author(new Name("Harmingway")),
@@ -35,7 +39,7 @@ public class SampleDataUtil {
             new Isbn("1234567890123"),
             new Barcode(Barcode.MIN_VALUE),
             new Genre(new Name("Novel")),
-            new Name("Bernice Yu"),
+            new Name("Bernice"),
             new DateBorrowed("2021-03-02T13:45:00")
     );
 
@@ -45,7 +49,7 @@ public class SampleDataUtil {
             new Publisher(new Name("Pearson")),
             new Isbn("1234567890124"), new Barcode(Barcode.MIN_VALUE + 1),
             new Genre(new Name("Fantasy")),
-            new Name("Bernice Yu"),
+            new Name("Bernice"),
             new DateBorrowed("2021-01-22T23:30:00")
     );
 
@@ -56,7 +60,7 @@ public class SampleDataUtil {
             new Isbn("1234567890125"),
             new Barcode(Barcode.MAX_VALUE),
             new Genre(new Name("SciFi")),
-            new Name("Alex Yeoh"),
+            new Name("Alex"),
             new DateBorrowed("2020-11-23T08:30:00")
     );
 
@@ -78,39 +82,128 @@ public class SampleDataUtil {
             new Genre(new Name("Comic"))
     );
 
+    private static final Book LILAC = new Book(
+            new Name("Lilac"),
+            new Author(new Name("IU")),
+            new Publisher(new Name("Scientific")),
+            new Isbn("1234567890130"),
+            new Barcode(Barcode.MAX_VALUE - 3),
+            new Genre(new Name("Lyrics")),
+            new Name("Alice"),
+            new DateBorrowed("2021-03-30T08:30:00")
+    );
+
+    private static final Book HELLO = new Book(
+            new Name("Hello"),
+            new Author(new Name("Me")),
+            new Publisher(new Name("NUS")),
+            new Isbn("1234567890987"),
+            new Barcode(Barcode.MAX_VALUE - 4),
+            new Genre(new Name("Greetings")),
+            new Name("Bob"),
+            new DateBorrowed("2021-03-29T08:30:00")
+    );
+
+    private static final Book HELLOWORLD = new Book(
+            new Name("Helloworld"),
+            new Author(new Name("You")),
+            new Publisher(new Name("NUS")),
+            new Isbn("1234567890986"),
+            new Barcode(Barcode.MAX_VALUE - 5),
+            new Genre(new Name("Greetings"))
+    );
+
+    // records
+
+    private static final Record ALEX_RECORD = new Record(
+            CLOUDATLAS.getName(),
+            CLOUDATLAS.getBarcode(),
+            CLOUDATLAS.getBorrowerName(),
+            CLOUDATLAS.getDateBorrowed()
+    );
+
+    private static final Record BERNICE_RECORD_1 = new Record(
+            HOBBIT.getName(),
+            HOBBIT.getBarcode(),
+            HOBBIT.getBorrowerName(),
+            HOBBIT.getDateBorrowed()
+    );
+
+    private static final Record BERNICE_RECORD_2 = new Record(
+            OLDMAN.getName(),
+            OLDMAN.getBarcode(),
+            OLDMAN.getBorrowerName(),
+            OLDMAN.getDateBorrowed()
+    );
+
+    private static final Record ALICE_RECORD = new Record(
+            LILAC.getName(),
+            LILAC.getBarcode(),
+            LILAC.getBorrowerName(),
+            LILAC.getDateBorrowed()
+    );
+
+    private static final Record BOB_RECORD = new Record(
+            HELLO.getName(),
+            HELLO.getBarcode(),
+            HELLO.getBorrowerName(),
+            HELLO.getDateBorrowed()
+    );
+
+    // init
+
+    @SafeVarargs
+    private static Reader[] getReaderList(HashMap<Book, DateBorrowed> ... maps) {
+        requireAllNonNull((Object) maps);
+
+        return new Reader[] {
+            new Reader(new Name("Alex"), new Phone("87438807"), new Email("alexyeoh@example.com"),
+                    new Address("Blk 30 Geylang Street 29, #06-40"),
+                    getTagSet("VIP"), maps[0]),
+            new Reader(new Name("Bernice"), new Phone("99272758"), new Email("berniceyu@example.com"),
+                    new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+                    getTagSet("VIP", "TopBorrower"), maps[2]),
+            new Reader(new Name("Charlotte"), new Phone("93210283"), new Email("charlotte@example.com"),
+                    new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+                    getTagSet("VIP"), getBorrowMap(new HashMap<>())),
+            new Reader(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
+                    new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
+                    getTagSet(), getBorrowMap(new HashMap<>())),
+            new Reader(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
+                    new Address("Blk 47 Tampines Street 20, #17-35"),
+                    getTagSet(), getBorrowMap(new HashMap<>())),
+            new Reader(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
+                    new Address("Blk 45 Aljunied Street 85, #11-31"),
+                    getTagSet("VIP"), getBorrowMap(new HashMap<>())),
+            new Reader(new Name("Bob"), new Phone("98765432"), new Email("bob@hi.com"),
+                    new Address("1 Bukit Timah Road"),
+                    getTagSet("VIP"), maps[3]),
+            new Reader(new Name("Alice"), new Phone("91234567"), new Email("alice@hello.com"),
+                    new Address("2 Bukit Timah Road"),
+                    getTagSet(), maps[1])
+        };
+    }
+
     /**
      * Gets an array of sample readers.
      *
      * @return an array of sample readers.
      */
     public static Reader[] getSampleReaders() {
-        HashMap<Book, DateBorrowed> berniceMap = new HashMap<>();
-        berniceMap.put(HOBBIT, new DateBorrowed("2021-01-22T23:30:00"));
-        berniceMap.put(OLDMAN, new DateBorrowed("2021-03-02T13:45:00"));
-
         HashMap<Book, DateBorrowed> alexMap = new HashMap<>();
-        alexMap.put(CLOUDATLAS, new DateBorrowed("2020-11-23T08:30:00"));
+        alexMap.put(CLOUDATLAS, ALEX_RECORD.getDateBorrowed());
 
-        return new Reader[] {
-            new Reader(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("VIP"), alexMap),
-            new Reader(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("VIP", "TopBorrower"), berniceMap),
-            new Reader(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("VIP"), getBorrowMap(new HashMap<>())),
-            new Reader(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet(), getBorrowMap(new HashMap<>())),
-            new Reader(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet(), getBorrowMap(new HashMap<>())),
-            new Reader(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("VIP"), getBorrowMap(new HashMap<>()))
-        };
+        HashMap<Book, DateBorrowed> aliceMap = new HashMap<>();
+        aliceMap.put(LILAC, ALICE_RECORD.getDateBorrowed());
+
+        HashMap<Book, DateBorrowed> berniceMap = new HashMap<>();
+        berniceMap.put(HOBBIT, BERNICE_RECORD_1.getDateBorrowed());
+        berniceMap.put(OLDMAN, BERNICE_RECORD_2.getDateBorrowed());
+
+        HashMap<Book, DateBorrowed> bobMap = new HashMap<>();
+        bobMap.put(HELLO, BOB_RECORD.getDateBorrowed());
+
+        return getReaderList(alexMap, aliceMap, berniceMap, bobMap);
     }
 
     /**
@@ -120,12 +213,7 @@ public class SampleDataUtil {
      */
     public static Record[] getSampleRecords() {
         return new Record[] {
-            new Record(CLOUDATLAS.getName(), CLOUDATLAS.getBarcode(), CLOUDATLAS.getBorrowerName(),
-                    new DateBorrowed("2020-11-23T08:30:00")),
-            new Record(HOBBIT.getName(), HOBBIT.getBarcode(), HOBBIT.getBorrowerName(),
-                    new DateBorrowed("2021-01-22T23:30:00")),
-            new Record(OLDMAN.getName(), OLDMAN.getBarcode(), OLDMAN.getBorrowerName(),
-                    new DateBorrowed("2021-03-02T13:45:00"))
+            ALEX_RECORD, BERNICE_RECORD_1, BERNICE_RECORD_2, ALICE_RECORD, BOB_RECORD
         };
     }
 
@@ -135,7 +223,9 @@ public class SampleDataUtil {
      * @return an array of sample books.
      */
     public static Book[] getSampleBooks() {
-        return new Book[] { OLDMAN, HOBBIT, CLOUDATLAS, CLOUDNINE, AVENGERS };
+        return new Book[] {
+            OLDMAN, HOBBIT, CLOUDATLAS, CLOUDNINE, AVENGERS, LILAC, HELLO, HELLOWORLD
+        };
     }
 
     /**
