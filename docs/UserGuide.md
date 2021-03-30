@@ -2,9 +2,9 @@
   <img width="341" height="381" src="https://user-images.githubusercontent.com/48408342/112603571-29845b80-8e50-11eb-8dee-bb88603fffb8.png">
 </p>
 
-**DocBob** is a **desktop app for managing your patient's information, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). The purpose of DocBob is so that doctors and nurses like, yourself, patient's **medical information** and **scheduled appointments** faster than any other patient's information management app in the market.  DocBob is especially beneficial for those who have fast fingers and even faster typing speed.  For those of you with short memories, no worries as Bob will serve you dilligently and make sure you never forget an appointment with a patient ever again!
+**DocBob** is a **desktop app for managing patient medical information and appointments, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). DocBob is targeted at Doctors and Nurses like you! If you can type fast, DocBob can help you keep track of your patient's **medical information** and **scheduled appointments** more efficiently than any other patient information management app in the market. With DocBob, you will never have to go through the hassle of manually keeping track of your patients' medical information and appointments ever again.
 
-The **purpose of this User Guide(UG)** is to help new users(doctors and or nurses) understand how to get the app running.  After they have set Bob up, we hope that this UG will help them learn the basic commands and their usages.  To navigate this UG, there is a content list which have been hyperlinked to the appropriate location.  So what can be expexted from this UG? We start off with a **Quick Start** to explain how to set up Bob.  This is followed by **Features** which explain what commands are available and how to use them.  This is followed by a **FAQ** and **Command Summary** section to give either a quick overview or refresher course.  We hope this will ease your usage of the UG and in the event of any issues, there is an email address below that can be used to contact the team.
+The **purpose of this User Guide(UG)** is to help new users understand how to get the app running by following the **Quick Start** guide. The **Features** section will help you learn the basic commands, their formatting and usages. You can easily navigate through this guide with the provided **Table of Contents** below.
 
 * Table of Contents
 {:toc}
@@ -15,12 +15,11 @@ The **purpose of this User Guide(UG)** is to help new users(doctors and or nurse
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-
 1. Download the latest `bob.jar` from [here](https://github.com/AY2021S2-CS2103T-W12-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for Doc Bob.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI similar to the mock-up below should appear in a few seconds. Note how the app contains some sample data. To learn how to use the Command Line Interface (CLI), try out the example commands given below with the sample data. Once you are familiar with the CLI, you can use the `clear` command to remove all sample data and start adding your own data!<br>
    ![Ui](images/Ui.png)
    
 1. This should work for you regardless of your operating system (OS).
@@ -32,7 +31,7 @@ The **purpose of this User Guide(UG)** is to help new users(doctors and or nurse
 
    * **`add n/Shrek p/66666666 e/shrek@swampmail.com a/Swamp h/243cm w/94kg`** : Adds a patient named `Shrek` to DocBob's contact list.
 
-   * **`appt`** : Adds a scheduled upcoming appointment with a patient in DocBob's contact list.
+   * **`appt 1 d/010120301200`** : Adds a scheduled upcoming appointment with the patient at index 1 in DocBob's contact list, on 1st January 2030 12pm.
 
 1. Refer to the [Features](#features) below for details of each command.
 

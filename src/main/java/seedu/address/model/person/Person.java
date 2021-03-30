@@ -18,7 +18,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Person in DocBob.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Person implements Comparable<Person> {
 
     // Identity fields
     private final Name name;
@@ -200,5 +200,10 @@ public class Person {
 
     public void addMedicalRecord(MedicalRecord record) {
         this.records.add(record);
+    }
+
+    @Override
+    public int compareTo(Person p) {
+        return this.name.fullName.compareTo(p.name.fullName);
     }
 }
