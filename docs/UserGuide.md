@@ -307,7 +307,7 @@ Example Output:
 New grade added: Mathematics (Final): A
 ```
 
-### Editing a Grade : `edit_grade`
+### Editing a grade : `edit_grade`
 
 Edits an already existing grade at the specified index. Only the attributes present are changed in the grade.
 
@@ -320,7 +320,7 @@ Example Output:
 Edited Grade: Science (Lab 1): B
 ```
 
-### Deleting a Grade : `delete_grade`
+### Deleting a grade : `delete_grade`
 
 Deletes an already existing grade at the specified index.
 
@@ -333,8 +333,27 @@ Example Output:
 Deleted Grade: Science (Lab 1): B
 ```
 
+### Listing all grades: `list_grades`
 
+Views a list of all already existing grades in storage.
 
+Format: `list_grades`
+
+Example: `list_grades`
+
+Example Output:
+```
+Listed all grades
+  1. Science
+     Lab 1
+     A
+  2. Mathematics
+     Final
+     B
+  3. English
+     Midterm
+     C
+```
 
 --------------------------------------------------------------------------------------------------------------------
 **Q**: How do I transfer my data to another Computer?<br>
@@ -361,7 +380,7 @@ Action | Format, Examples
 **Edit a budget** | `edit_budget` <br> e.g. `edit_budget b/600`
 **Deleting a budget** | `delete_budget` <br> e.g. `delete_budget`
 **Viewing a budget** | `view_budget` <br> e.g. `view_budget`
-**Adding a grade** | `add_grade s/SUBJECT_NAME gi/GRADED_ITEM gr/GRADE_ALPHABET` <br> e.g. `add_grade s/Mathematics gi/Final gr/A` 
-**Editing a grade** | `edit_grade INDEX [s/SUBJECT_NAME] [gi/GRADED_ITEM] [gr/GRADE_ALPHABET]` <br> e.g. `edit_grade 1 gr/B`
-**Deleting a grade** | `delete_grade INDEX` <br> e.g. `delete_grade 1`
-
+**Add a grade** | `add_grade s/SUBJECT_NAME gi/GRADED_ITEM gr/GRADE_ALPHABET`, <br> e.g. `add_grade s/Mathematics gi/Final gr/A` 
+**Edit a grade** | `edit_grade INDEX [s/SUBJECT_NAME] [gi/GRADED_ITEM] [gr/GRADE_ALPHABET]`, <br> e.g. `edit_grade 1 gr/B`
+**Delete a grade** | `delete_grade INDEX`, <br> e.g. `delete_grade 1`
+**List grades** | `list_grades`
