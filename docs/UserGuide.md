@@ -224,6 +224,34 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd student in TutorsPet.
 * `search n/Betsy` followed by `delete 1` deletes the 1st student in the results of the `search` command.
 
+### Adding an important date: `important`
+
+Adds an important date to TutorsPet.
+
+Format: `important d/DESCRIPTION dt/DETAILS`
+
+Examples:
+* `important d/math exam dt/2021-11-03 0800`
+
+### Listing all important dates : `dates`
+
+Shows a list of all important dates in TutorsPet.
+
+Format: `dates`
+
+### Deleting an important date : `delete-date`
+
+Permanently deletes the specified important date from TutorsPet.
+
+Format: `delete-date INDEX`
+
+* Deletes the important date at the specified `INDEX`.
+* The index refers to the index number shown in the displayed important dates list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delete-date 2` deletes the 2nd important date in TutorsPet.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from TutorsPet.
