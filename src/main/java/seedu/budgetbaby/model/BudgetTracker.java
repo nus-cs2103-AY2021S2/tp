@@ -158,6 +158,30 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
     }
 
     //// util methods
+    @Override
+    public BudgetTracker getDeepClone() {
+        BudgetTracker clone = new BudgetTracker();
+
+        List<Month> cloneMthList = monthList.asUnmodifiableObservableList();
+        clone.setMonthList(cloneMthList);
+
+        boolean foundCurrentMonth = false;
+        for (Month cloneMth : cloneMthList) {
+            Month tmpMth = new Month(cloneMth.getFinancialRecords().getDeepClone(),
+                    cloneMth.getBudget(), cloneMth.getMonth());
+            clone.setMonth(cloneMth, tmpMth);
+            if (!foundCurrentMonth && tmpMth.equals(currentDisplayMonth)) {
+                clone.currentDisplayMonth = tmpMth;
+                foundCurrentMonth = true;
+            }
+        }
+
+        if (!foundCurrentMonth) {
+            clone.currentDisplayMonth = currentDisplayMonth;
+        }
+
+        return clone;
+    }
 
     @Override
     public String toString() {

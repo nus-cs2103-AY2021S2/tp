@@ -13,4 +13,8 @@ public interface ReadOnlyBudgetTracker {
      */
     ObservableList<Month> getMonthList();
 
+    /**
+     * Returns a read-only, deep copy of BudgetTracker.
+     */
+    ReadOnlyBudgetTracker getDeepClone();
 }
