@@ -172,10 +172,10 @@ public class EListCommandParser implements Parser<EListCommand> {
     private Comparator<Event> applySortDirection(
             Comparator<Event> comparator, ArgumentMultimap argMap) throws ParseException {
         Optional<String> orderType = argMap.getValue(PREFIX_ORDER);
-        if (stringSort.equals("") || comparator == SORT_EVENTDATE_UPCOMING) {
-            return comparator; // default
-        } else if (orderType.isEmpty()) {
-            stringSort += "in ascending order. ";
+        if (orderType.isEmpty() || comparator == SORT_EVENTDATE_UPCOMING) {
+            if (!stringSort.isEmpty() && comparator != SORT_EVENTDATE_UPCOMING) {
+                stringSort += "in ascending order. ";
+            }
             return comparator; // default
         } else {
             switch (orderType.get().toLowerCase()) {
