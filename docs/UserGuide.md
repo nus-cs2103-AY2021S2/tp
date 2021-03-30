@@ -191,7 +191,6 @@ Format: `tag INDEX t/TAG [t/MORETAGS]`
 ![add message](images/tagCommand.png)
 
 Examples:
-
 * `tag 1 t/SoftwareEng`
 
 
@@ -204,7 +203,6 @@ Format: `find KEYWORD`
 * Searches through ModuleBook3.5 for tasks whose names contain `KEYWORD`.
 
 Examples:
-
 * `find revise`
 
 
@@ -217,7 +215,6 @@ Format: `findTag KEYWORD`
 * Searches through ModuleBook3.5 for tasks which have a tag named `KEYWORD`.
 
 Examples:
-
 * `findTag homework`
 
 
@@ -232,7 +229,6 @@ Format: `mod MODULE`
 ![add message](images/findModuleCommand.png)
 
 Examples:
-
 * `mod CS3243`
 
 
@@ -247,7 +243,6 @@ Format: `deleteTag INDEX [t/TAG]`
   The index must be a positive integer 1, 2, 3, …​
 
 Examples:
-
 * `deleteTag 1 t/homework`
 
 
@@ -289,7 +284,6 @@ Format:  `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/` or `sort 
 
 Examples:
 * `sort w/`
-
 
 ### Recur tasks: `recur`
 
