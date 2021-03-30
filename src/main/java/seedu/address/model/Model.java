@@ -1,10 +1,12 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.common.Date;
 import seedu.address.model.event.Event;
 import seedu.address.model.task.Task;
 
@@ -191,6 +193,11 @@ public interface Model {
      * Returns number of events happening in the next 7 days.
      */
     int getNumIncomingEvents();
+
+    /**
+     * Returns a list of free time slots.
+     */
+    ArrayList<String> getFreeTimeSlots(Date date);
 
     /**
      * Clear expired events (end date time past).
