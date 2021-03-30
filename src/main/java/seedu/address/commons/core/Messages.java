@@ -21,7 +21,6 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
     public static final String MESSAGE_NAME_DOES_NOT_EXIST = "The name provided does not exist!";
     public static final String MESSAGE_EDIT_ENTRY_SUCCESS = "Edited entry: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_FREE = "You're free!";
     public static final String MESSAGE_NOT_FREE = "Sorry, you're not free. Schedules occupying that time interval "
             + "listed below!";
