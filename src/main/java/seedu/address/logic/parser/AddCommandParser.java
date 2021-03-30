@@ -2,7 +2,8 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CARS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CARSPREFERRED;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CARSOWNED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -47,7 +48,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_DOB,
-                PREFIX_TAG, PREFIX_CARS);
+                PREFIX_TAG, PREFIX_CARSOWNED, PREFIX_CARSPREFERRED);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DOB)
             || !argMultimap.getPreamble().isEmpty()) {
@@ -60,9 +61,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         DateOfBirth dateOfBirth = ParserUtil.parseDateOfBirth(argMultimap.getValue(PREFIX_DOB).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Map<Car, CoeExpiry> carsOwned = ParserUtil.parseCarsOwned(argMultimap.getAllValues(PREFIX_CARS));
+        Map<Car, CoeExpiry> carsOwned = ParserUtil.parseCarsOwned(argMultimap.getAllValues(PREFIX_CARSOWNED));
+        Set<Car> carsPreferred = ParserUtil.parseCarsPreferred(argMultimap.getAllValues(PREFIX_CARSPREFERRED));
 
-        Customer customer = new Customer(name, phone, email, address, dateOfBirth, tagList, carsOwned);
+        Customer customer = new Customer(name, phone, email, address, dateOfBirth, tagList, carsOwned, carsPreferred);
 
         return new AddCommand(customer);
     }

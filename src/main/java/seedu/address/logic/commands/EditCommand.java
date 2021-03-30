@@ -7,6 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CARSOWNED;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CARSPREFERRED;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 
 import java.util.Collections;
@@ -49,7 +51,9 @@ public class EditCommand extends Command {
         + "[" + PREFIX_ADDRESS + "ADDRESS] "
         + "[" + PREFIX_DOB + "DATE_OF_BIRTH] "
         + "[" + PREFIX_TAG + "TAG]...\n"
-        // TODO
+        + "[" + PREFIX_CARSOWNED + "TAG]...\n"
+        + "[" + PREFIX_CARSPREFERRED + "TAG]...\n"
+            // TODO
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_PHONE + "91234567 "
         + PREFIX_EMAIL + "johndoe@example.com";
@@ -90,9 +94,10 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editCustomerDescriptor.getTags().orElse(customerToEdit.getTags());
         Map<Car, CoeExpiry> updatedCarsOwned =
             editCustomerDescriptor.getCarsOwned().orElse(customerToEdit.getCarsOwned());
+        Set<Car> updatedCarsPreferred = editCustomerDescriptor.getCarsPreferred().orElse(customerToEdit.getCarsPreferred());
 
         return new Customer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedDateOfBirth,
-                updatedTags, updatedCarsOwned);
+                updatedTags, updatedCarsOwned, updatedCarsPreferred);
     }
 
     @Override
@@ -146,6 +151,7 @@ public class EditCommand extends Command {
         private DateOfBirth dateOfBirth;
         private Set<Tag> tags;
         private Map<Car, CoeExpiry> carsOwned;
+        private Set<Car> carsPreferred;
 
         public EditCustomerDescriptor() {
         }
@@ -161,13 +167,14 @@ public class EditCommand extends Command {
             setDateOfBirth(toCopy.dateOfBirth);
             setTags(toCopy.tags);
             setCarsOwned(toCopy.carsOwned);
+            setCarsPreferred(toCopy.carsPreferred);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, dateOfBirth, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, dateOfBirth, tags, carsPreferred);
         }
 
         public Optional<Name> getName() {
@@ -209,7 +216,6 @@ public class EditCommand extends Command {
         public void setDateOfBirth(DateOfBirth dateOfBirth) {
             this.dateOfBirth = dateOfBirth;
         }
-
         /**
          * Returns an unmodifiable carsOwned map, which throws {@code UnsupportedOperationException} if modification is
          * attempted. Returns {@code Optional#empty()} if {@code carsOwned} is null.
@@ -239,6 +245,20 @@ public class EditCommand extends Command {
          */
         public void setTags(Set<Tag> tags) {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        /**
+         * Returns {@code Optional#empty()} if {@code carsPreferred} is null.
+         */
+        public Optional<Set<Car>> getCarsPreferred() {
+            return Optional.ofNullable(carsPreferred);
+        }
+        /**
+         * Sets {@code carsPreferred} to this object's {@code carsPreferred}.
+         * A defensive copy of {@code carsPreferred} is used internally.
+         */
+        public void setCarsPreferred(Set<Car> carsPreferred) {
+            this.carsPreferred = (carsPreferred != null) ? new HashSet<>(carsPreferred) : null;
         }
 
         @Override
