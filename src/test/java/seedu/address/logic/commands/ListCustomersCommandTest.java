@@ -29,12 +29,20 @@ public class ListCustomersCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCustomersCommand(), model, ListCustomersCommand.MESSAGE_SUCCESS, expectedModel);
+        String expectedMessage = String.format(
+                ListCustomersCommand.SUMMARY_MESSAGE,
+                expectedModel.getFilteredCustomerList().size()
+        );
+        assertCommandSuccess(new ListCustomersCommand(), model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showCustomerAtIndex(model, INDEX_FIRST_CUSTOMER);
-        assertCommandSuccess(new ListCustomersCommand(), model, ListCustomersCommand.MESSAGE_SUCCESS, expectedModel);
+        String expectedMessage = String.format(
+                ListCustomersCommand.SUMMARY_MESSAGE,
+                expectedModel.getFilteredCustomerList().size()
+        );
+        assertCommandSuccess(new ListCustomersCommand(), model, expectedMessage, expectedModel);
     }
 }

@@ -192,9 +192,19 @@ public interface Model {
     ObservableList<Order> getFilteredOrderList();
 
     /**
+     * Returns a summary of the filtered order list
+     */
+    int getFilteredOrderListIncompleteCount();
+
+    /**
      * Returns an unmodifiable view of the filtered cheese list
      */
     ObservableList<Cheese> getFilteredCheeseList();
+
+    /**
+     * Returns a summary of the filtered cheese list
+     */
+    int getFilteredCheeseListUnassignedCount();
 
     /**
      * Updates the filter of the filtered customer list to filter by the given {@code predicate}.

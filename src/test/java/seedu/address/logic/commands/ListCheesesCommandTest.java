@@ -27,11 +27,27 @@ public class ListCheesesCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCheesesCommand(), model, ListCheesesCommand.MESSAGE_SUCCESS, expectedModel);
+        int unassignedCount = expectedModel.getFilteredCheeseListUnassignedCount();
+        int totalCheese = expectedModel.getFilteredCheeseList().size();
+        String expectedMessage = String.format(
+                ListCheesesCommand.SUMMARY_MESSAGE,
+                totalCheese,
+                totalCheese - unassignedCount,
+                unassignedCount
+        );
+        assertCommandSuccess(new ListCheesesCommand(), model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_listIsNotFiltered_showsEverything() {
-        assertCommandSuccess(new ListCheesesCommand(), model, ListCheesesCommand.MESSAGE_SUCCESS, expectedModel);
+        int unassignedCount = expectedModel.getFilteredCheeseListUnassignedCount();
+        int totalCheese = expectedModel.getFilteredCheeseList().size();
+        String expectedMessage = String.format(
+                ListCheesesCommand.SUMMARY_MESSAGE,
+                totalCheese,
+                totalCheese - unassignedCount,
+                unassignedCount
+        );
+        assertCommandSuccess(new ListCheesesCommand(), model, expectedMessage, expectedModel);
     }
 }
