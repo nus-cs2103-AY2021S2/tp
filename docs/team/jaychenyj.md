@@ -59,12 +59,12 @@ Given below are my contributions to the project.
         * Updated config file to match StoreMando. (Pull
           requests [\#30](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/30))
 
-* **Hotfix**:
+* **Hotfixes**:
     * Hotfix release details for v1.3.trail (Pull
       request [\#145](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/145))
     * Hotfix on clear location feature. (Pull request [\#199](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/199))
 
-* **Test**:
+* **Tests**:
     * Updated all tests in logic.parser. (Pull request [\#167](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/167))
 
 * **Refactoring**:
