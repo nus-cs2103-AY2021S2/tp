@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <HBox id="cardPane" fx:id="cardPane" style="-fx-background-radius: 20; -fx-border-radius: 20;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
- <VBox alignment="CENTER_LEFT" fillWidth="false" prefHeight="80.0" prefWidth="292.0" style="-fx-background-radius: 20; -fx-border-radius: 20;">
+   <VBox alignment="CENTER_LEFT" fillWidth="false" prefHeight="80.0" prefWidth="292.0" style="-fx-background-radius: 20; -fx-border-radius: 20;">
    <padding>
      <Insets bottom="5" left="15" right="5" top="5" />
    </padding>
@@ -25,5 +25,5 @@
    <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
    <Label fx:id="status" styleClass="status" text="\$status" />
    <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
- </VBox>
+   </VBox>
 </HBox>
