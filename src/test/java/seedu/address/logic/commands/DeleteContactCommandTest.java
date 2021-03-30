@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.uicommands.ShowContactsUiCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -36,7 +37,7 @@ public class DeleteContactCommandTest {
         ModelManager expectedModel = new ModelManager(model.getColabFolder(), new UserPrefs());
         expectedModel.deleteContact(contactToDelete);
 
-        assertCommandSuccess(deleteContactCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteContactCommand, model, expectedMessage, new ShowContactsUiCommand(), expectedModel);
     }
 
     @Test
@@ -60,7 +61,7 @@ public class DeleteContactCommandTest {
         expectedModel.deleteContact(contactToDelete);
         showNoContact(expectedModel);
 
-        assertCommandSuccess(deleteContactCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteContactCommand, model, expectedMessage, new ShowContactsUiCommand(), expectedModel);
     }
 
     @Test

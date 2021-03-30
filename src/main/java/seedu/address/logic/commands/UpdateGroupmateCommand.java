@@ -16,6 +16,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.uicommands.ViewProjectAndOverviewUiCommand;
 import seedu.address.model.Model;
 import seedu.address.model.groupmate.Groupmate;
 import seedu.address.model.groupmate.Name;
@@ -89,7 +90,8 @@ public class UpdateGroupmateCommand extends Command {
 
         projectToUpdate.setGroupmate(targetGroupmateIndex.getZeroBased(), updatedGroupmate);
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
-        return new CommandResult(String.format(MESSAGE_UPDATE_GROUPMATE_SUCCESS, updatedGroupmate));
+        return new CommandResult(String.format(MESSAGE_UPDATE_GROUPMATE_SUCCESS, updatedGroupmate),
+                new ViewProjectAndOverviewUiCommand(projectIndex));
     }
 
     /**

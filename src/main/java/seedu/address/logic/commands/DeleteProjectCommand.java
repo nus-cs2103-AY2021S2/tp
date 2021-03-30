@@ -7,6 +7,7 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.uicommands.ShowTodayUiCommand;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
 
@@ -40,7 +41,8 @@ public class DeleteProjectCommand extends Command {
 
         Project projectToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteProject(projectToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS, projectToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS, projectToDelete),
+                new ShowTodayUiCommand());
     }
 
     @Override

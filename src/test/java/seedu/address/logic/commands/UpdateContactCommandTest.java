@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.UpdateContactCommand.UpdateContactDescriptor;
+import seedu.address.logic.uicommands.ShowContactsUiCommand;
 import seedu.address.model.ColabFolder;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -45,7 +46,7 @@ public class UpdateContactCommandTest {
         Model expectedModel = new ModelManager(new ColabFolder(model.getColabFolder()), new UserPrefs());
         expectedModel.setContact(model.getFilteredContactList().get(0), editedContact);
 
-        assertCommandSuccess(updateContactCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(updateContactCommand, model, expectedMessage, new ShowContactsUiCommand(), expectedModel);
     }
 
     @Test
@@ -66,7 +67,7 @@ public class UpdateContactCommandTest {
         Model expectedModel = new ModelManager(new ColabFolder(model.getColabFolder()), new UserPrefs());
         expectedModel.setContact(lastContact, editedContact);
 
-        assertCommandSuccess(updateContactCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(updateContactCommand, model, expectedMessage, new ShowContactsUiCommand(), expectedModel);
     }
 
     @Test
@@ -79,7 +80,7 @@ public class UpdateContactCommandTest {
 
         Model expectedModel = new ModelManager(new ColabFolder(model.getColabFolder()), new UserPrefs());
 
-        assertCommandSuccess(updateContactCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(updateContactCommand, model, expectedMessage, new ShowContactsUiCommand(), expectedModel);
     }
 
     @Test
@@ -96,7 +97,7 @@ public class UpdateContactCommandTest {
         Model expectedModel = new ModelManager(new ColabFolder(model.getColabFolder()), new UserPrefs());
         expectedModel.setContact(model.getFilteredContactList().get(0), editedContact);
 
-        assertCommandSuccess(updateContactCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(updateContactCommand, model, expectedMessage, new ShowContactsUiCommand(), expectedModel);
     }
 
     @Test
