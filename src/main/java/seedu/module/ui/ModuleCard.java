@@ -18,8 +18,6 @@ public class ModuleCard extends UiPart<Region> {
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
-     *
-     * @see <a href="https://github.com/se-edu/modulebook-level4/issues/336">The issue on ModuleBook level 4</a>
      */
 
     public final Module module;
