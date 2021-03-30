@@ -161,10 +161,6 @@ The sequence for the example scenerio can be found below:
 
 ![AddSessionSequenceDiagram](images/AddSessionSequenceDiagram.png)
 
-### Unassign feature.
-
-The unassign 
-
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -306,6 +302,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+
 ### Use cases
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
@@ -347,44 +344,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case ends.
 
-**Use case: View a tutor**
+**Use case: View an individual person**
 
 **MSS**
 
-1.  User requests to list tutors
-2.  AddressBook shows a list of tutors
-3.  User requests to view a specific tutor in the list
-4.  AddressBook shows the specific tutor's details
+1.  User requests to view a specific tutor/student in the list according to person ID
+2.  AddressBook shows the person's details and the classes assigned to the person
 
     Use case ends.
 
 **Extensions**
 
-* 3a. The given index is invalid.
+* 1a. The given index is in the wrong format.
 
-    * 3a1. AddressBook shows an error message.
+    * 1a1. AddressBook shows an error message and show the proper usage of the command.
 
       Use case resumes at step 2.
-
-**Use case: Delete a student**
-
-
-**MSS**
-
-1.  User requests to unassign specified students and a specified tutor from a specified session.
-2.  AddressBook unassigns the students and the tutor from the class
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. Any of the given IDs are invalid.
-
-    * 1a1. AddressBook shows an error message.
     
-    Use case ends.
+* 1b. The given index cannot be found in the address book.
+    * 1a1. AddressBook shows a message stating no person found.
+
+      Use case ends.
     
 *{More to be added}*
+
 
 ### Non-Functional Requirements
 
