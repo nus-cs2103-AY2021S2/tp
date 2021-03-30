@@ -422,6 +422,7 @@ Technical Terms | Meaning
 **Alias** | A term used to represent something. For instance the alias `df/` represents the date from a period.
 **Command-Line Interface (CLI)** | An interface that users send commands to a computer program through the form of lines of text.
 **Graphic User Interface (GUI)** | An interface that displays interactive visual components for a computer program. 
+**Java** | A programming language that is used to build this application.
 
 Health Terms | Meaning
 -------------|------------------
