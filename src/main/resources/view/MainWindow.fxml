@@ -154,6 +154,9 @@
                                         </image>
                                     </ImageView>
                                     <Label alignment="CENTER" prefHeight="25.0" style="-fx-text-fill: white;" styleClass="cell_big_label" text="Your Information">
+                                        <HBox.margin>
+                                            <Insets left="4.0" />
+                                        </HBox.margin>
                                     </Label>
                                 </children>
                                 <VBox.margin>
