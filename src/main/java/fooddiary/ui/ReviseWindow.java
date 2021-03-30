@@ -180,13 +180,17 @@ public class ReviseWindow extends UiPart<Stage> {
         String[] categoriesArr = categoriesText.getText().split(" ");
         String categoriesStr = "";
         for (String category : categoriesArr) {
-            categoriesStr += String.format(" %s%s", CliSyntax.PREFIX_TAG_CATEGORY, category);
+            if (!category.isEmpty()) {
+                categoriesStr += String.format(" %s%s", CliSyntax.PREFIX_TAG_CATEGORY, category);
+            }
         }
 
         String[] schoolsArr = schoolsText.getText().split(" ");
         String schoolsStr = "";
         for (String school : schoolsArr) {
-            schoolsStr += String.format(" %s%s", CliSyntax.PREFIX_TAG_SCHOOL, school);
+            if (!school.isEmpty()) {
+                schoolsStr += String.format(" %s%s", CliSyntax.PREFIX_TAG_SCHOOL, school);
+            }
         }
 
         String commandToSend = String.format("%s %d %s %s %s %s%s%s", EditCommand.COMMAND_WORD, index.getOneBased(),

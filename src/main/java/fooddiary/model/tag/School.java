@@ -17,6 +17,7 @@ public enum School {
     SDE,
     MED,
     DENT,
+    VENTUS,
     INVALID;
 
     private static ArrayList<String> schools = new ArrayList<>();
