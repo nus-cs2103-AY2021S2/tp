@@ -271,7 +271,7 @@ If you wish to generate a set of sample endpoints, you may delete the **imposter
 
 #### 4.2.8 Call a saved API endpoint: `send`
 
-**Description:** Call an API endpoint from the API endpoint list **(an ongoing call can be cancelled with <kbd>ctrl</kbd> + <kbd>d</kbd>)**.
+**Description:** [Call](#7-glossary) an API endpoint from the API endpoint list **(an ongoing call can be cancelled with <kbd>ctrl</kbd> + <kbd>d</kbd>)**.
 
 **Format** <span class="main-command">send</span> <span class="compulsory-param">INDEX</span>
 
@@ -283,7 +283,7 @@ If you wish to generate a set of sample endpoints, you may delete the **imposter
 
 #### 4.2.9 Call an API endpoint directly without saving: `run`
 
-**Description:** Call an API endpoint directly (without saving) **(an ongoing call can be cancelled with <kbd>ctrl</kbd> + <kbd>d</kbd>)**.
+**Description:** [Call](#7-glossary) an API endpoint directly (without saving) **(an ongoing call can be cancelled with <kbd>ctrl</kbd> + <kbd>d</kbd>)**.
 
 **Format:** <span class="main-command">run</span> <span class="compulsory-param">-x METHOD</span> <span class="compulsory-param">-u URL</span> <span class="optional-param">-d DATA</span> <span class="optional-param">[-h HEADER]</span>
 
