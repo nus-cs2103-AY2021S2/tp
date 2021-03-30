@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -17,6 +18,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.order.Order;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -226,7 +228,7 @@ public class MainWindow extends UiPart<Stage> {
             } else if (commandResult.type() == CommandResult.CRtype.ORDER) {
                 componentList.getChildren().clear();
                 orderListPanelPlaceholder.getChildren().clear();
-                orderListPanel = new OrderListPanel(logic.getFilteredOrderList());
+                orderListPanel = getSortedFilteredOrderListPanel();
                 orderListPanelPlaceholder.getChildren().add(orderListPanel.getRoot());
                 componentList.getChildren().add(orderListPanelPlaceholder);
             }
@@ -245,5 +247,11 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    public OrderListPanel getSortedFilteredOrderListPanel() {
+        Comparator<Order> comparator = (first, second) ->
+                first.getDatetime().isAfter(second.getDatetime()) ? 1 : 0;
+        return new OrderListPanel(logic.getFilteredOrderList(comparator, Order.State.UNCOMPLETED));
     }
 }

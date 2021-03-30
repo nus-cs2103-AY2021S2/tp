@@ -8,7 +8,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.dish.Dish;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of dishes.
  */
 public class MenuListPanel extends UiPart<Region> {
     private static final String FXML = "MenuListPanel.fxml";

@@ -2,6 +2,7 @@ package seedu.address.model.order;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -79,6 +80,22 @@ public class OrderBook implements ReadOnlyOrderBook {
         orders.remove(key);
     }
 
+    /**
+     * Turns the state of an order to complete
+     * @param key
+     */
+    public void completeOrder(Order key) {
+        key.setState(Order.State.COMPLETED);
+    }
+
+    /**
+     * Sorts item with a comparator that compares datetime
+     * @param c
+     */
+    public void sortItemsByDateTime(Comparator<Order> c) {
+        orders.sort(c);
+    }
+
     @Override
     public String toString() {
         return orders.asUnmodifiableObservableList().size() + " orders";
@@ -96,5 +113,4 @@ public class OrderBook implements ReadOnlyOrderBook {
                 || (other instanceof OrderBook // instanceof handles nulls
                 && orders.equals(((OrderBook) other).orders));
     }
-
 }

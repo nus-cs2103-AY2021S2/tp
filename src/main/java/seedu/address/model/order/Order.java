@@ -1,5 +1,7 @@
 package seedu.address.model.order;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -10,27 +12,37 @@ import seedu.address.model.Item;
 import seedu.address.model.dish.Dish;
 import seedu.address.model.person.Person;
 
+
 public class Order implements Item {
-    private String datetime;
+    public enum State {
+        UNCOMPLETED, COMPLETED, CANCELLED
+    }
+
+    private LocalDateTime dateTime;
     private Person customer;
     private List<Pair<Dish, Integer>> dishQuantityList;
+    private State state = State.UNCOMPLETED;
 
     /**
      * Order constructor
-     * @param datetime
+     * @param dateTime
      * @param customer
      * @param dishQuantityList
      */
     @JsonCreator
-    public Order(@JsonProperty("datetime") String datetime, @JsonProperty("customer") Person customer,
+    public Order(@JsonProperty("datetime") LocalDateTime dateTime, @JsonProperty("customer") Person customer,
                  @JsonProperty("dishQuantityList") List<Pair<Dish, Integer>> dishQuantityList) {
-        this.datetime = datetime;
+        this.dateTime = dateTime;
         this.customer = customer;
         this.dishQuantityList = dishQuantityList;
     }
 
-    public String getDatetime() {
-        return datetime;
+    public String getStrDatetime() {
+        return dateTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm"));
+    }
+
+    public LocalDateTime getDatetime() {
+        return dateTime;
     }
 
     public Person getCustomer() {
@@ -48,7 +60,7 @@ public class Order implements Item {
     public String getDetails() {
         final StringBuilder builder = new StringBuilder();
         builder.append("Datetime: ")
-                .append(getDatetime())
+                .append(getStrDatetime())
                 .append("\nCustomer: ")
                 .append(getCustomer());
 
@@ -64,6 +76,14 @@ public class Order implements Item {
         return builder.toString();
     }
 
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State newState) {
+        state = newState;
+    }
+
     @Override
     public boolean isSame(Item other) {
         if (other == this) {
@@ -76,7 +96,7 @@ public class Order implements Item {
 
         Order otherOrder = (Order) other;
         return otherOrder != null
-                && this.getDatetime().equals(otherOrder.getDatetime());
+                && this.getStrDatetime().equals(otherOrder.getStrDatetime());
     }
 
     @Override
@@ -90,7 +110,7 @@ public class Order implements Item {
         }
 
         Order otherOrder = (Order) other;
-        return otherOrder.getDatetime().equals(getDatetime())
+        return otherOrder.getStrDatetime().equals(getStrDatetime())
                 && otherOrder.getCustomer().equals(getCustomer())
                 && listEquals(otherOrder.getDishQuantityList());
     }
@@ -114,7 +134,7 @@ public class Order implements Item {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append("Datetime: ")
-                .append(getDatetime())
+                .append(getStrDatetime())
                 .append("; Customer: ")
                 .append(getCustomer());
 

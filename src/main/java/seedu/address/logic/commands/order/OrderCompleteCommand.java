@@ -15,21 +15,21 @@ import seedu.address.model.order.Order;
 /**
  * Deletes a person identified using it's displayed index from the address book.
  */
-public class OrderDeleteCommand extends Command {
+public class OrderCompleteCommand extends Command {
 
     public static final String COMPONENT_WORD = "order";
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "complete";
 
     public static final String MESSAGE_USAGE = COMPONENT_WORD + " " + COMMAND_WORD
-            + ": Deletes the order identified by the index number used in the displayed order list.\n"
+            + ": Completes the order identified by the index number used in the displayed order list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_ORDER_SUCCESS = "Deleted order: %1$s";
+    public static final String MESSAGE_COMPLETE_ORDER_SUCCESS = "Completed order: %1$s";
 
     private final Index targetIndex;
 
-    public OrderDeleteCommand(Index targetIndex) {
+    public OrderCompleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -38,22 +38,23 @@ public class OrderDeleteCommand extends Command {
         requireNonNull(model);
 
         List<Order> lastShownList = model.getFilteredOrderList(Order.State.UNCOMPLETED);
+
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(
                     String.format(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX, Messages.ITEM_ORDER));
         }
 
-        Order orderToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteOrder(orderToDelete);
+        Order orderToComplete = lastShownList.get(targetIndex.getZeroBased());
+        model.completeOrder(orderToComplete);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete),
+        return new CommandResult(String.format(MESSAGE_COMPLETE_ORDER_SUCCESS, orderToComplete),
                 CommandResult.CRtype.ORDER);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof OrderDeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((OrderDeleteCommand) other).targetIndex)); // state check
+                || (other instanceof OrderCompleteCommand // instanceof handles nulls
+                && targetIndex.equals(((OrderCompleteCommand) other).targetIndex)); // state check
     }
 }

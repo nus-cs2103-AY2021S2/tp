@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -40,7 +41,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Dish> filteredDishes;
     private final FilteredList<Ingredient> filteredIngredients;
-    private final FilteredList<Order> filteredOrders;
+    private FilteredList<Order> filteredOrders;
 
     /**
      * Initializes a ModelManager with the given books and userPrefs.
@@ -369,6 +370,7 @@ public class ModelManager implements Model {
         }
     }
 
+
     /**
      * Adds the given order.
      * {@code order} must not already exist
@@ -388,9 +390,41 @@ public class ModelManager implements Model {
         orderBook.setOrder(target, editedOrder);
     }
 
-    /** Returns an unmodifiable view of the filtered person list */
-    public ObservableList<Order> getFilteredOrderList() {
-        return filteredOrders;
+    /**
+     * Sets the state of the order to complete
+     */
+    public void completeOrder(Order target) {
+        orderBook.completeOrder(target);
+    }
+
+    /**
+     * Sets the state of the order to cancelled
+     */
+    public void cancelOrder(Order order) {
+        order.setState(Order.State.CANCELLED);
+    }
+
+    /**
+     * Returns an unmodifiable view of the filtered order list
+     */
+    @Override
+    public ObservableList<Order> getFilteredOrderList(Order.State state) {
+        return filteredOrders.filtered(order -> order.getState() == state);
+    }
+
+    /** Returns an sorted view of the filtered order list */
+    public ObservableList<Order> getFilteredOrderList(Comparator<Order> comparator, Order.State state) {
+        sortOrder(comparator);
+        return getFilteredOrderList(state);
+    }
+
+    /**
+     *  Returns a sorted view of the filtered Order List
+     * @param comparator
+     * @return
+     */
+    public void sortOrder(Comparator<Order> comparator) {
+        orderBook.sortItemsByDateTime(comparator);
     }
 
     @Override

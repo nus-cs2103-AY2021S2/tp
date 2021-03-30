@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DISH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,35 +28,35 @@ public class OrderAddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMPONENT_WORD + " " + COMMAND_WORD
-            + " Adds an order to the order list. "
-            + "Parameters: "
-            + PREFIX_NAME + "CUSTOMER_NAME "
-            + PREFIX_DATETIME + "DELIVERY_DATETIME (DD-MM-YYYY HH:MM) "
-            + "[" + PREFIX_DISH + "DISH "
-            + PREFIX_QUANTITY + " QUANTITY]...\n"
-            + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_DATETIME + "14-02-2021 18:30 "
-            + PREFIX_DISH + "1 "
-            + PREFIX_QUANTITY + "1 "
-            + PREFIX_DISH + "3 "
-            + PREFIX_QUANTITY + "1";
+        + " Adds an order to the order list. "
+        + "Parameters: "
+        + PREFIX_NAME + "CUSTOMER_NAME "
+        + PREFIX_DATETIME + "DELIVERY_DATETIME (DD-MM-YYYY HH:MM) "
+        + "[" + PREFIX_DISH + "DISH "
+        + PREFIX_QUANTITY + " QUANTITY]...\n"
+        + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " "
+        + PREFIX_NAME + "John Doe "
+        + PREFIX_DATETIME + "14-02-2021 18:30 "
+        + PREFIX_DISH + "1 "
+        + PREFIX_QUANTITY + "1 "
+        + PREFIX_DISH + "3 "
+        + PREFIX_QUANTITY + "1";
 
     public static final String MESSAGE_SUCCESS = "New order added: %1$s";
     public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in the order list";
     public static final String MESSAGE_CUSTOMER_NOT_FOUND = "This customer doesn't exist in the address book";
     public static final String MESSAGE_DISH_NOT_FOUND = "This dish doesn't exist on the menu";
 
-    private final String datetime;
+    private final LocalDateTime dateTime;
     private final String customerName;
     private final List<Pair<Integer, Integer>> dishNumberQuantityList;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public OrderAddCommand(String datetime, String customerName,
+    public OrderAddCommand(LocalDateTime datetime, String customerName,
                            List<Pair<Integer, Integer>> dishNumberQuantityList) {
-        this.datetime = datetime;
+        this.dateTime = datetime;
         this.customerName = customerName;
         this.dishNumberQuantityList = dishNumberQuantityList;
     }
@@ -96,7 +97,7 @@ public class OrderAddCommand extends Command {
             dishQuantityList.add(dishQuantPair);
         }
 
-        Order toAdd = new Order(datetime, customer, dishQuantityList);
+        Order toAdd = new Order(dateTime, customer, dishQuantityList);
 
         if (model.hasOrder(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_ORDER);
@@ -110,7 +111,7 @@ public class OrderAddCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof OrderAddCommand // instanceof handles nulls
-                && datetime.equals(((OrderAddCommand) other).datetime)
+                && dateTime.equals(((OrderAddCommand) other).dateTime)
                 && customerName.equals(((OrderAddCommand) other).customerName)
                 && dishNumberQuantityList.equals(((OrderAddCommand) other).dishNumberQuantityList));
     }

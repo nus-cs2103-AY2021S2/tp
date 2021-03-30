@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -228,7 +229,11 @@ public interface Model {
     void setOrder(Order target, Order editedOrder);
 
     /** Returns an unmodifiable view of the filtered order list */
-    ObservableList<Order> getFilteredOrderList();
+    ObservableList<Order> getFilteredOrderList(Order.State state);
+
+    /** Sorts and filters and then returns an unmodifiable view of the filtered order list */
+    ObservableList<Order> getFilteredOrderList(Comparator<Order> comparator, Order.State state);
+
 
     /**
      * Updates the filter of the filtered ingredient list to filter by the given {@code predicate}.
@@ -238,4 +243,6 @@ public interface Model {
 
     /** Returns an list of the orders belonging to a particular customer */
     List<Order> getOrdersFromPerson(Person target);
+
+    void completeOrder(Order orderToComplete);
 }

@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -283,7 +284,12 @@ public class CustomerAddCommandTest {
         }
 
         @Override
-        public ObservableList<Order> getFilteredOrderList() {
+        public ObservableList<Order> getFilteredOrderList(Order.State state) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Order> getFilteredOrderList(Comparator<Order> comparator, Order.State state) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -294,6 +300,11 @@ public class CustomerAddCommandTest {
 
         @Override
         public List<Order> getOrdersFromPerson(Person target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void completeOrder(Order orderToComplete) {
             throw new AssertionError("This method should not be called.");
         }
     }
