@@ -15,7 +15,7 @@ public class FindMembersCommand extends Command {
     public static final String COMMAND_WORD = "findMembers";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all members whose details contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+            + "the specified keywords (case-insensitive) and displays them as a list.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice 97574218 rachel@example.com";
 

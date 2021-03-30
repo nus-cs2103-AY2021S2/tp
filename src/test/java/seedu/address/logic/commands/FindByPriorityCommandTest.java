@@ -18,7 +18,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.task.PriorityContainsKeywordPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindByPriorityCommand}.
+ * Contains integration tests (interaction with the Model) and unit tests for {@code FindByPriorityCommand}.
  */
 public class FindByPriorityCommandTest {
     private Model model = new ModelManager(getTypicalHeyMatez(), new UserPrefs());

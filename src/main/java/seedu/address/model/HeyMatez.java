@@ -11,8 +11,13 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 
 /**
+<<<<<<< HEAD
  * Wraps all data at the hey-matez level
  * Duplicates are not allowed (by .isSamePerson comparison)
+=======
+ * Wraps all data at Hey Matez level.
+ * Duplicates are not allowed (by .isSamePerson comparison).
+>>>>>>> e08c226eaee665158993702a28ea274ed87637d3
  */
 public class HeyMatez implements ReadOnlyHeyMatez {
 
@@ -34,7 +39,7 @@ public class HeyMatez implements ReadOnlyHeyMatez {
     public HeyMatez() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates HeyMatez using the Persons in the {@code toBeCopied}.
      */
     public HeyMatez(ReadOnlyHeyMatez toBeCopied) {
         this();
@@ -52,7 +57,7 @@ public class HeyMatez implements ReadOnlyHeyMatez {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of {@code HeyMatez} with {@code newData}.
      */
     public void resetData(ReadOnlyHeyMatez newData) {
         requireNonNull(newData);
@@ -64,7 +69,7 @@ public class HeyMatez implements ReadOnlyHeyMatez {
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in HEY MATEz.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -72,8 +77,8 @@ public class HeyMatez implements ReadOnlyHeyMatez {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a person to HEY MATEz.
+     * The person must not already exist in HEY MATEz.
      */
     public void addPerson(Person p) {
         persons.add(p);
@@ -81,8 +86,8 @@ public class HeyMatez implements ReadOnlyHeyMatez {
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in HEY MATEz.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in HEY MATEz.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
@@ -91,8 +96,8 @@ public class HeyMatez implements ReadOnlyHeyMatez {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from HEY MATEz.
+     * {@code key} must exist in HEY MATEz.
      */
     public void removePerson(Person key) {
         persons.remove(key);

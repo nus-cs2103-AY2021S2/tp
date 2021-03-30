@@ -38,7 +38,6 @@ public class Title {
         return test.matches(VALIDATION_REGEX);
     }
 
-
     @Override
     public String toString() {
         return taskTitle;
@@ -55,5 +54,4 @@ public class Title {
     public int hashCode() {
         return taskTitle.hashCode();
     }
-
 }

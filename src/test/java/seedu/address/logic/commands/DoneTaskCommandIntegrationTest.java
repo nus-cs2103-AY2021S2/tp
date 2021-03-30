@@ -17,6 +17,9 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
 
+/**
+ * Contains integration tests (interaction with the Model) for {@code DoneTaskCommand}.
+ */
 public class DoneTaskCommandIntegrationTest {
 
     private Model model;

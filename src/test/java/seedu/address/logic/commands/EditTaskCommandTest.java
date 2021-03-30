@@ -29,7 +29,9 @@ import seedu.address.model.task.Task;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
 import seedu.address.testutil.TaskBuilder;
 
-
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for EditTaskCommand.
+ */
 public class EditTaskCommandTest {
 
     private Model model = new ModelManager(getTypicalHeyMatez(), new UserPrefs());

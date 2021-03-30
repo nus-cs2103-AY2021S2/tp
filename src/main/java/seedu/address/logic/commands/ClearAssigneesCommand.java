@@ -26,8 +26,8 @@ public class ClearAssigneesCommand extends Command {
     public static final String COMMAND_WORD = "removeAssignees";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Removes all members assigned to a task, identified by the task's index "
-            + " in the displayed task list.\n"
+            + ": Removes all members assigned to a task, identified by the task's index number "
+            + " used in the displayed task list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 

@@ -168,6 +168,45 @@ Below is the sequence diagram:
 
 ![#Interactions Inside the Logic Component for the `done 1` Command](images/DoneTaskSequenceDiagram.png)
 
+### Find Tasks with deadline before a selected date feature
+
+The implementation of the finding of tasks with deadline before a selected date is facilitated by the `FindTasksBeforeCommand`
+class, from the Command abstract class.
+
+It is also facilitated by the following Parser Class:
+* `FindTasksBeforeCommandParser`
+
+The above mentioned Parser class inherits the `#parse` method from the Parser interface.
+
+* `FindTasksBeforeParser#parse` - checks if the deadline passed to the current FindTasksBeforeCommand is in the correct format and is valid, then creates a FindTasksBeforeCommand instance if they are.
+
+
+Subsequently, the created `FindTasksBeforeCommand` object contains an `#execute` method which is responsible for
+updating the task list to contain the tasks with deadlines before the selected date. This is achieved by calling on `Model#updateFilteredTaskList`
+with the DeadlineBeforeDatePredicate which updates the task list with tasks that match the given predicate.
+
+Below is the usage scenario and how the finding of tasks due before a selected date mechanism behaves.
+
+Assumptions:
+1. User has already launched the app
+2. HEY MATEz application has existing tasks with their corresponding deadlines
+
+Step 1. User executes the `findBefore 2021-04-04` command to show the tasks in the task list of HEY MATEz with deadline before 2021-04-04.  A
+`FindTasksBeforeCommandParser` is created and it calls `FindTasksBeforeParser#parse` on the arguments
+
+Step 2. `FindTasksBeforeCommandParser#parse` method will check on the validity of the deadline argument for a `FindTasksBeforeCommand`. If is is
+valid,  it will create a new `FindTasksBeforeCommand` by calling the constructor with the DeadlineBeforeDatePredicate.
+
+Step 3. The `FindTasksBeforeCommand#execute` is then called by the `LogicManager`. The tasks with deadline before 2021-04-04 are selected by the 
+DeadlineBeforeDatePredicate.
+
+Step 4. Once the execution is completed, the message `MESSAGE_TASKS_LISTED_OVERVIEW,` is used to return a new Command Result
+with the attached message.
+
+Below is the sequence diagram:
+
+<img src="images/FindBeforeSequenceDiagram.png" width="450" />
+
 ### Delete a Task feature
 
 The implementation of the deleting a Task feature is facilitated by the DeleteTaskCommand, which extends from the Command abstract class.

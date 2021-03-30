@@ -14,7 +14,9 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.task.Task;
 
-
+/**
+ * Contains integration tests (interaction with the Model) for {@code DeleteTaskCommand}.
+ */
 public class DeleteTaskCommandIntegrationTest {
 
     private Model model;
