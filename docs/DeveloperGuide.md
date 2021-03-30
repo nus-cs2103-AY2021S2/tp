@@ -29,6 +29,11 @@ title: Developer Guide
 * [Glossary](#glossary) 
 <!--te-->
 
+## **Introduction**
+DietLAH! is a desktop app with a Command-Line Interface (CLI) that allows users to easily track and maintain their meals so that they are able to maintain their ideal body weight. The application also stores all the application data in a JSON (JavaScript Object Notation) storage file so that the user's progress and records will remain when they re-open the application.
+
+This developer guide serves as a documentation and manual of how the existing system was designed, and provides information on how certain important features were implemented.
+
 ## **Design**
 
 ### Architecture
