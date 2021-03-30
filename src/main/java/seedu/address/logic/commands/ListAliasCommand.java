@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.model.Model;
 
 /**
@@ -7,10 +9,13 @@ import seedu.address.model.Model;
  */
 public class ListAliasCommand extends AliasCommand {
 
-    public static final String SHOWING_ALIASES_MESSAGE = "Opened aliases window.";
+    public static final String SHOWING_ALIASES_MESSAGE = "You have %d aliases.";
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_ALIASES_MESSAGE, false, true, false);
+        requireNonNull(model);
+        int numOfAlias = model.getNumOfAlias();
+        return new CommandResult(String.format(SHOWING_ALIASES_MESSAGE, numOfAlias),
+                false, true, false);
     }
 }
