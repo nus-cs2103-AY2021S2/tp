@@ -18,4 +18,8 @@ public class CliSyntax {
 
     /* Options Definition for PREFIX_OPTION */
     public static final Option OPTION_TAG = new Option("tag");
+    public static final Option OPTION_NAME = new Option("name");
+    public static final Option OPTION_DATE = new Option("date");
+    public static final Option OPTION_ADDRESS = new Option("address");
+
 }
