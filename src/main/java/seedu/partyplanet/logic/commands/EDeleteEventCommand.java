@@ -50,18 +50,16 @@ public class EDeleteEventCommand extends EDeleteCommand {
         }
         if (invalidIndexes.isEmpty()) {
             model.addState(String.format(MESSAGE_DELETE_EVENT_SUCCESS, displayEvents(deletedEvents)));
-            return new CommandResult(
-                String.format(MESSAGE_DELETE_EVENT_SUCCESS, displayEvents(deletedEvents)));
+            return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, displayEvents(deletedEvents)));
         } else if (deletedEvents.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_NONE_INDEX_VALID);
         } else {
             model.addState(String.format(MESSAGE_DELETE_EVENT_SUCCESS + "\n" + MESSAGE_INVALID_EVENT_INDEX,
                     displayEvents(deletedEvents),
                     String.join(", ", invalidIndexes)));
-            return new CommandResult(
-                String.format(MESSAGE_DELETE_EVENT_SUCCESS + "\n" + MESSAGE_INVALID_EVENT_INDEX,
-                        displayEvents(deletedEvents),
-                        String.join(", ", invalidIndexes)));
+            return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS + "\n" + MESSAGE_INVALID_EVENT_INDEX,
+                    displayEvents(deletedEvents),
+                    String.join(", ", invalidIndexes)));
         }
     }
 
