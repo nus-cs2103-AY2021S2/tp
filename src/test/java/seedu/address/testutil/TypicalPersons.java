@@ -33,7 +33,7 @@ public class TypicalPersons {
             .withPhone("94351253")
             .withTags("friends")
             .withPolicies("#1111>no_url")
-            .withMeeting("17.08.2021 17:30 18:30 Mall")
+            .withMeetings("17.08.2021 17:30 18:30 Mall")
             .build();
     public static final Person BENSON = new PersonBuilder()
             .withName("Benson Meier")
@@ -47,7 +47,7 @@ public class TypicalPersons {
             .withPhone("95352563")
             .withEmail("heinz@example.com")
             .withAddress("wall street")
-            .withMeeting("13.05.2021 19:30 20:00 MRT")
+            .withMeetings("13.05.2021 19:30 20:00 MRT")
             .build();
     public static final Person DANIEL = new PersonBuilder()
             .withName("Daniel Meier")
@@ -62,7 +62,7 @@ public class TypicalPersons {
             .withPhone("9482224")
             .withEmail("werner@example.com")
             .withAddress("michegan ave")
-            .withMeeting("18.07.2021 15:30 17:00 Mall")
+            .withMeetings("18.07.2021 15:30 17:00 Mall")
             .build();
     public static final Person FIONA = new PersonBuilder()
             .withName("Fiona Kunz")
@@ -77,7 +77,7 @@ public class TypicalPersons {
             .withAddress("4th street")
             .withPolicies("Policy_4444>no_url", "Policy_4445>www.facebook.com", "Policy_4446>no_url",
                     "Policy_4447>www.yahoo.com")
-            .withMeeting("19.09.2021 14:30 15:30 LRT")
+            .withMeetings("19.09.2021 14:30 15:30 LRT")
             .build();
 
     // Manually added
@@ -102,7 +102,7 @@ public class TypicalPersons {
             .withAddress(VALID_ADDRESS_AMY)
             .withTags(VALID_TAG_FRIEND)
             .withPolicies(VALID_POLICY_ID)
-            .withMeeting(VALID_MEETING_AMY)
+            .withMeetings(VALID_MEETING_AMY)
             .build();
     public static final Person BOB = new PersonBuilder()
             .withName(VALID_NAME_BOB)
@@ -110,7 +110,7 @@ public class TypicalPersons {
             .withEmail(VALID_EMAIL_BOB)
             .withAddress(VALID_ADDRESS_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-            .withMeeting(VALID_MEETING_BOB)
+            .withMeetings(VALID_MEETING_BOB)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

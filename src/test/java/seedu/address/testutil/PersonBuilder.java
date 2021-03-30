@@ -110,8 +110,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code Meeting} of the {@code Person} that we are building.
      */
-    public PersonBuilder withMeeting(String ... meeting) {
-        this.meetings = SampleDataUtil.getMeetingList(meeting);
+    public PersonBuilder withMeetings(String ... meetings) {
+        this.meetings = SampleDataUtil.getMeetingList(meetings);
         return this;
     }
 

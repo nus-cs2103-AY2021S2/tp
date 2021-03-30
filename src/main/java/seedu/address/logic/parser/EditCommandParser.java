@@ -67,7 +67,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         parsePoliciesForEdit(argMultimap.getAllValues(PREFIX_INSURANCE_POLICY))
                 .ifPresent(editPersonDescriptor::setPolicies);
 
-        parseMeetingForEdit(argMultimap.getAllValues(PREFIX_MEETING))
+        parseMeetingsForEdit(argMultimap.getAllValues(PREFIX_MEETING))
                 .ifPresent(editPersonDescriptor::setMeetings);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
@@ -111,20 +111,20 @@ public class EditCommandParser implements Parser<EditCommand> {
     }
 
     /**
-     * Parses {@code Collection<String> meeting} into a {@code List<Meeting>} if {@code meeting} is non-empty.
-     * If {@code meeting} contain only one element which is an empty string, it will be parsed into a
-     * {@code List<Meeting>} containing zero meeting.
+     * Parses {@code Collection<String> meetings} into a {@code List<Meeting>} if {@code meetings} is non-empty.
+     * If {@code meetings} contain only one element which is an empty string, it will be parsed into a
+     * {@code List<Meeting>} containing zero meetings.
      */
-    private Optional<List<Meeting>> parseMeetingForEdit(Collection<String> meeting) throws ParseException {
-        assert meeting != null;
+    private Optional<List<Meeting>> parseMeetingsForEdit(Collection<String> meetings) throws ParseException {
+        assert meetings != null;
 
-        if (meeting.isEmpty()) {
+        if (meetings.isEmpty()) {
             return Optional.empty();
         }
 
-        Collection<String> meetingList = meeting.size() == 1 && meeting.contains("")
+        Collection<String> meetingList = meetings.size() == 1 && meetings.contains("")
                 ? Collections.emptySet()
-                : meeting;
+                : meetings;
         return Optional.of(ParserUtil.parseMeetings(meetingList));
     }
 
