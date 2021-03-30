@@ -291,6 +291,21 @@ Views an already existing budget.
 
 Format : `view_budget`
 
+### Adding a grade : `add_grade`
+
+Adds a grade with a subject, a graded item and a grade alphabet specified by user. Stores in user system.
+
+Format: `add_grade s/SUBJECT gi/GRADED_ITEM gr/GRADE_ALPHABET`
+
+* Valid `GRADE_ALPHABET` recognized by the system only include A to F, S and U.
+* `SUBJECT` is case-insensitive and `GRADE_ALPHABET` must be uppercase.
+
+Example: `add_grade s/Mathematics gi/Final gr/A`
+
+Example Output:
+```
+New grade added: Mathematics (Final): A
+```
 
 --------------------------------------------------------------------------------------------------------------------
 **Q**: How do I transfer my data to another Computer?<br>
