@@ -34,26 +34,6 @@ public class EventCard extends UiPart<Region> {
     private Label time;
 
     /**
-     * Creates an {@code EventCard} with the given {@code Event} without an index to display.
-     */
-    public EventCard(Event event) {
-        super(FXML);
-        requireNonNull(event);
-
-        this.event = event;
-        id.setText("");
-        eventDescription.setText(event.getDescription());
-        day.setText(DateUtil.decodeDateIntoDay(event.getDate()));
-        time.setText(TimeUtil.decodeTime(event.getTime()));
-
-        if (event.getIsWeekly()) {
-            date.setText("every");
-        } else {
-            date.setText(DateUtil.decodeDate(event.getDate()));
-        }
-    }
-
-    /**
      * Creates an {@code EventCard} with the given {@code Event} and index to display.
      */
     public EventCard(Event event, int displayedIndex) {

@@ -21,6 +21,7 @@ import seedu.address.model.project.Project;
 import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.CompletableTodo;
 import seedu.address.model.task.repeatable.Event;
+import seedu.address.model.task.repeatable.RepeatableComparator;
 
 /**
  * Panel containing a project.
@@ -81,7 +82,7 @@ public class ProjectDisplayPanel extends UiPart<Region> {
 
     private void setUpTodoList(ObservableList<CompletableTodo> todos) {
         completableTodoListView.setItems(new FilteredList<>(todos));
-        completableTodoListView.setCellFactory(listView -> new ProjectDisplayPanel.CompletableTodoListViewCell());
+        completableTodoListView.setCellFactory(listView -> new CompletableTodoListViewCell());
     }
 
     private void setUpGroupmatesList(ObservableList<Groupmate> groupmates) {
@@ -97,14 +98,14 @@ public class ProjectDisplayPanel extends UiPart<Region> {
         completableDeadlineListView.setItems(new SortedList<>(deadlines,
                 Comparator.comparing(CompletableDeadline::getBy).thenComparing(CompletableDeadline::getDescription)));
         completableDeadlineListView.setCellFactory(listView ->
-                new ProjectDisplayPanel.CompletableDeadlineListViewCell());
+                new CompletableDeadlineListViewCell());
     }
 
     private void setUpEventList(ObservableList<Event> events) {
         eventListView.prefHeightProperty()
                 .bind(Bindings.size(events).multiply(EVENTS_CARD_HEIGHT).add(SAFETY_MARGIN));
-        eventListView.setItems(new FilteredList<>(events));
-        eventListView.setCellFactory(listView -> new ProjectDisplayPanel.EventListViewCell());
+        eventListView.setItems(new SortedList<>(events, new RepeatableComparator()));
+        eventListView.setCellFactory(listView -> new EventListViewCell());
     }
 
     /**
@@ -124,7 +125,7 @@ public class ProjectDisplayPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of an {@code Event} using an {@code EventCard}.
      */
-    class EventListViewCell extends ListCell<Event> {
+    static class EventListViewCell extends ListCell<Event> {
         @Override
         protected void updateItem(Event event, boolean empty) {
             super.updateItem(event, empty);
@@ -142,7 +143,7 @@ public class ProjectDisplayPanel extends UiPart<Region> {
      * Custom {@code ListCell} that displays the graphics of a {@code CompletableDeadline} using
      * a {@code CompletableDeadlineCard}.
      */
-    class CompletableDeadlineListViewCell extends ListCell<CompletableDeadline> {
+    static class CompletableDeadlineListViewCell extends ListCell<CompletableDeadline> {
         @Override
         protected void updateItem(CompletableDeadline completableDeadline, boolean empty) {
             super.updateItem(completableDeadline, empty);
@@ -160,7 +161,7 @@ public class ProjectDisplayPanel extends UiPart<Region> {
      * Custom {@code ListCell} that displays the graphics of a {@code CompletableTodo} using
      * a {@code CompletableTodoCard}.
      */
-    class CompletableTodoListViewCell extends ListCell<CompletableTodo> {
+    static class CompletableTodoListViewCell extends ListCell<CompletableTodo> {
         @Override
         protected void updateItem(CompletableTodo completableTodo, boolean empty) {
             super.updateItem(completableTodo, empty);
@@ -177,7 +178,7 @@ public class ProjectDisplayPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Groupmate} using a {@code GroupmateCard}.
      */
-    class GroupmateListViewCell extends ListCell<Groupmate> {
+    static class GroupmateListViewCell extends ListCell<Groupmate> {
         @Override
         protected void updateItem(Groupmate groupmate, boolean empty) {
             super.updateItem(groupmate, empty);

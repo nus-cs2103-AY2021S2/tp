@@ -15,7 +15,7 @@ import seedu.address.model.task.deadline.DeadlineWithProject;
  */
 public class TodayDeadlineCard extends UiPart<Region> {
 
-    private static final String FXML = "TodayDeadlineListCard.fxml";
+    private static final String FXML = "TodayDeadlineCard.fxml";
 
     public final CompletableDeadline deadline;
 

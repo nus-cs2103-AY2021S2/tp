@@ -69,18 +69,18 @@ public class DateUtil {
      */
     public static String decodeDateWithDay(LocalDate date) {
         requireNonNull(date);
-        return date.format(DateTimeFormatter.ofPattern("EEE"));
+        return date.format(DateTimeFormatter.ofPattern("EEE, dd MMM uuuu"));
     }
 
     /**
-     * Decodes a date passed as a LocalDate into a String in the EEE format.
+     * Decodes a date passed as a LocalDate into a String in the EEEE format.
      *
      * @param date A LocalDate object.
-     * @return A date String in the EEE format.
+     * @return A date String in the EEEE format.
      */
     public static String decodeDateIntoDay(LocalDate date) {
         requireNonNull(date);
-        return date.format(DateTimeFormatter.ofPattern("EEE"));
+        return date.format(DateTimeFormatter.ofPattern("EEEE"));
     }
 
     /**
