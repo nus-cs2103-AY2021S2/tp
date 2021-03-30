@@ -25,7 +25,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.TitleContainsKeywordsPredicate;
+import seedu.address.model.task.predicates.TitleContainsKeywordsPredicate;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
 import seedu.address.testutil.TaskBuilder;
 import seedu.address.testutil.TaskUtil;

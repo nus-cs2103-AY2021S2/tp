@@ -49,11 +49,11 @@ public class RecurringSchedule implements RecurringDates {
     public RecurringSchedule(String recurringSchedule) {
         requireNonNull(recurringSchedule);
         checkArgument(isValidRecurringScheduleInput(recurringSchedule), MESSAGE_CONSTRAINTS);
+
         isEmptyRecurringSchedule = isEmptyRecurringScheduleInput(recurringSchedule);
         weekDates = new ArrayList<>();
         value = recurringSchedule;
-        output = isEmptyRecurringSchedule ? "***Optional***"
-                : generateRecurringDates(recurringSchedule);
+        output = isEmptyRecurringSchedule ? "" : generateRecurringDates(recurringSchedule);
     }
 
     /**
@@ -85,7 +85,8 @@ public class RecurringSchedule implements RecurringDates {
 
     /**
      * Returns if the given end date within the recurring schedule have not expired
-     * Date is considered expired when end date is before current system date
+     * Date is being checked using checkExpiryDate method in RecurringDatesUtil
+     * And considered expired when end date is before current system date
      * Or less than a week after current system date without any matching days
      *
      * @return State of whether date in recurring schedule has expired
@@ -100,17 +101,18 @@ public class RecurringSchedule implements RecurringDates {
     /**
      * Used to generate the output of the dates of the recurring schedule
      * When the recurring schedule is present (not an empty string input)
+     * Using methods formatRecurringSchedule, calculateNumWeeksBetweenDates, findWeekDates in RecurringDatesUtil
      *
      * @param recurringSchedule Input string of recurring schedule requirements given by the user
      * @return Output string of recurring dates in the PlanIt application
      */
     @Override
     public String generateRecurringDates(String recurringSchedule) {
-        RecurringDatesUtil.formatRecurringScheduleInput(recurringSchedule);
-        int numWeeks = RecurringDatesUtil.calculateNumberOfWeeksBetweenDates();
+        String recurringScheduleDetail = RecurringDatesUtil.formatRecurringSchedule(recurringSchedule);
+        int numWeeks = RecurringDatesUtil.calculateNumWeeksBetweenDates();
         weekDates = RecurringDatesUtil.findWeekDates(numWeeks);
 
-        String recurringScheduleOutput = recurringSchedule + "\n\nRecurring Sessions:\n"
+        String recurringScheduleOutput = recurringScheduleDetail + "\n\nHere are the Recurring Sessions:\n"
                 + weekDates.stream().collect(Collectors.joining("\n"));
         return recurringScheduleOutput;
     }
@@ -122,12 +124,17 @@ public class RecurringSchedule implements RecurringDates {
      * @param dateString Date to be checked.
      * @return Boolean indicating if the date is in this schedule.
      */
-    public boolean isInSchedule(String dateString) {
+    public boolean isInRecurringSchedule(String dateString) {
         return weekDates.stream().anyMatch(date -> date.equals(dateString));
     }
 
+    /**
+     * Checks if the Recurring Schedule input is empty string.
+     *
+     * @return Boolean if the String of Recurring Schedule is empty.
+     */
     public boolean isEmptyValue() {
-        return isEmptyRecurringSchedule;
+        return value.equals("") || value.equals("***Optional***");
     }
 
     @Override

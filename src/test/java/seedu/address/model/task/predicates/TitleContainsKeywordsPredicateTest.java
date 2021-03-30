@@ -1,4 +1,4 @@
-package seedu.address.model.task;
+package seedu.address.model.task.predicates;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -69,9 +69,9 @@ public class TitleContainsKeywordsPredicateTest {
         predicate = new TitleContainsKeywordsPredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new TaskBuilder().withTitle("Alice Bob").build()));
 
-        // Keywords match deadline and description but does not match title
+        // Keywords match date and description but does not match title
         predicate = new TitleContainsKeywordsPredicate(Arrays.asList("12/12/2021", "Main", "Street"));
-        assertFalse(predicate.test(new TaskBuilder().withTitle("Alice").withDeadline("12/12/2021")
+        assertFalse(predicate.test(new TaskBuilder().withTitle("Alice").withDate("12/12/2021")
                 .withDescription("Main Street").build()));
     }
 }

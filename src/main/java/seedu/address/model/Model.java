@@ -21,6 +21,8 @@ public interface Model {
      */
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
 
+    Predicate<Task> PREDICATE_SHOW_UNDONE_TASKS = task -> !task.getStatus().isDone();
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */

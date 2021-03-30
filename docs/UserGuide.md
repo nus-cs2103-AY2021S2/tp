@@ -87,7 +87,7 @@ Format: `mk n/TITLE [set/DEADLINE] [s/START TIME] [d/DESCRIPTION]
 * Start time should be numeric and should be in 24 hours format with a colon like `22:30`.
 * Description (can be optional) can have multiple lines by adding a line break using <kbd>shift</kbd>+<kbd>enter</kbd>.
 * Recurring schedule (can be optional) should have 3 conditions which consist of:
-  * An end date when the task stops recurring, in the same format as a deadline where
+  * An end date when the task stops recurring, in the same format as a date where
     it cannot be older than the current date or less than a week away from current date.
   * A day of the week that the task recurs on which is case-insensitive can be
     represented in the form of the first 3 letters of the day.
@@ -116,9 +116,9 @@ Shows a list of all tasks in the planner.
 
 Format: `ls`
 
-### Adding deadline to a task : `mk`
+### Adding date to a task : `mk`
 
-Adds a deadline to an existing task in the list.
+Adds a date to an existing task in the list.
 
 Format: `mk INDEX [set/DATE]…​`
 
@@ -127,11 +127,11 @@ Format: `mk INDEX [set/DATE]…​`
 * Existing values will be updated to the input values.
 * When editing dateline, the existing dates of the task will be removed i.e adding of dateline is not cumulative.
 * You can remove all the task’s dateline by typing `set/` without
-  specifying any deadline after it.
+  specifying any date after it.
 
 Examples:
-*  `mk 1 set/2021-05-13` Adds a deadline to the 1st task on the list which is to be `13 May 2021`.
-*  `mk 2 set/` Clears the existing deadline of 2nd task on the list.
+*  `mk 1 set/2021-05-13` Adds a date to the 1st task on the list which is to be `13 May 2021`.
+*  `mk 2 set/` Clears the existing date of 2nd task on the list.
 
 ### Editing a task : `edit`
 
@@ -149,10 +149,10 @@ Format: `edit INDEX [n/TITLE] [set/DEADLINE] [s/START TIME] [d/DESCRIPTION]
     specifying anything after it.
 
 Examples:
-*  `edit 1 set/10-10-2021 d/Remember to update User Guide` Edits the deadline and description of the 1st task to be
+*  `edit 1 set/10-10-2021 d/Remember to update User Guide` Edits the date and description of the 1st task to be
    `10-10-2021` and `Remember to update User Guide` respectively.
 *  `edit 2 n/Buy textbook t/ set/` Edits the title of the 2nd task to be `Buy textbook` and clears all existing tags
-   and the deadline.
+   and the date.
 
 ### Searching a task by title: `find`
 

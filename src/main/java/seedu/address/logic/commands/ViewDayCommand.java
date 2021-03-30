@@ -28,7 +28,7 @@ public class ViewDayCommand extends Command {
     /**
      * Creates a ViewDayCommand with a predicate to filter the task list with, and a date to update the calendar with.
      *
-     * @param predicate Predicate determining whether a task's deadline or schedule falls on the given date.
+     * @param predicate Predicate determining whether a task's date or schedule falls on the given date.
      * @param date LocalDate object to update the calendar with.
      */
     public ViewDayCommand(Predicate<Task> predicate, LocalDate date) {

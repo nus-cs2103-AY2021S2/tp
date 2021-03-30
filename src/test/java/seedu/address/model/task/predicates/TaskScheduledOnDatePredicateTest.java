@@ -27,9 +27,9 @@ class TaskScheduledOnDatePredicateTest {
         predicate = new TaskScheduledOnDatePredicate("08/05/2021");
         assertFalse(predicate.test(new TaskBuilder().withRecurringSchedule("[08/04/2021][sat][weekly]").build()));
 
-        // no schedule and on deadline
+        // no schedule and on date
         predicate = new TaskScheduledOnDatePredicate("08/05/2021");
-        assertFalse(predicate.test(new TaskBuilder().withDeadline("08/05/2021").build()));
+        assertFalse(predicate.test(new TaskBuilder().withDate("08/05/2021").build()));
 
         // no schedule
         predicate = new TaskScheduledOnDatePredicate("08/05/2021");
