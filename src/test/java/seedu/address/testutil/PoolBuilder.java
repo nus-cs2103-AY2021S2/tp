@@ -45,11 +45,7 @@ public class PoolBuilder {
         driver = new DriverBuilder().build();
         tripDay = new TripDay(DEFAULT_TRIPDAY);
         tripTime = new TripTime(DEFAULT_TRIPTIME);
-<<<<<<< HEAD
-        passengers = new HashSet<>();
-=======
-        passengers = new PassengerListBuilder().withDefaultPassengers().build();
->>>>>>> master
+        passengers = new ArrayList<>();
         tags = new HashSet<>();
     }
 
@@ -68,7 +64,7 @@ public class PoolBuilder {
      * Sets the passengers of the Pool to a default set of passengers.
      */
     public PoolBuilder withDefaultPassengers() {
-        passengers = new PassengerSetBuilder().withDefaultPassengers().build();
+        passengers = new PassengerListBuilder().withDefaultPassengers().build();
         return this;
     }
 

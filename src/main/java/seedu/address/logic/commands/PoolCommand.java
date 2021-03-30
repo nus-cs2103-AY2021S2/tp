@@ -115,7 +115,7 @@ public class PoolCommand extends Command {
         model.addPool(toAdd);
         model.updateFilteredPoolList(PREDICATE_SHOW_ALL_POOLS);
 
-        return new CommandResult(String.format(MESSAGE_POOL_SUCCESS, driver, toAdd));
+        return new CommandResult(String.format(MESSAGE_POOL_SUCCESS, toAdd));
     }
 
     @Override

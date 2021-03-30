@@ -2,17 +2,25 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PASSENGERS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.TypicalPools.getTypicalAddressBookPools;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.pool.Pool;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -35,8 +43,7 @@ public class UnpoolCommandTest {
         assertCommandSuccess(unpoolCommand, model, expectedMessage, expectedModel);
     }
 
-    //TODO: Implement once list filtering is added
-    /*@Test
+    @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPoolList().size() + 1);
         UnpoolCommand unpoolCommand = new UnpoolCommand(outOfBoundIndex);
@@ -45,15 +52,18 @@ public class UnpoolCommandTest {
     }
 
     @Test
-    public void execute_validIndexFilteredList_success() {
+    public void execute_validIndexFilteredList_success() throws Exception{
+        Model expectedModel = new ModelManager(getTypicalAddressBookPools(), new UserPrefs());
+        List<String> searchString = new ArrayList<>();
+        searchString.add("Alice");
+
+        model.updateFilteredPassengerList(new NameContainsKeywordsPredicate(searchString));
         Pool poolToRemove = model.getFilteredPoolList().get(INDEX_FIRST.getZeroBased());
         UnpoolCommand unpoolCommand = new UnpoolCommand(INDEX_FIRST);
-
         String expectedMessage = String.format(UnpoolCommand.MESSAGE_UNPOOL_SUCCESS, poolToRemove);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePool(poolToRemove);
-        showNoPassenger(expectedModel);
+        expectedModel.updateFilteredPassengerList(PREDICATE_SHOW_ALL_PASSENGERS);
 
         assertCommandSuccess(unpoolCommand, model, expectedMessage, expectedModel);
     }
@@ -67,7 +77,7 @@ public class UnpoolCommandTest {
         UnpoolCommand unpoolCommand = new UnpoolCommand(outOfBoundIndex);
 
         assertCommandFailure(unpoolCommand, model, Messages.MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX);
-    }*/
+    }
 
     @Test
     public void equals() {
