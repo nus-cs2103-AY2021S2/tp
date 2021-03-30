@@ -163,6 +163,11 @@ public class ModelManager implements Model {
         return addressBook.isOverlappingEntry(toAdd);
     }
 
+    @Override
+    public void clearOverdueEntries() {
+        addressBook.clearOverdueEntries();
+    }
+
     // ====== Schedule ======
 
     @Override

@@ -130,6 +130,11 @@ public interface Model {
      */
     boolean isOverlappingEntry(Entry toAdd);
 
+    /**
+     * Removes all entries that are overdue.
+     */
+    void clearOverdueEntries();
+
     /** Returns an unmodifiable view of the filtered entry list. */
     ObservableList<Entry> getFilteredEntryList();
 
