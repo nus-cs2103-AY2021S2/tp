@@ -60,7 +60,7 @@ contacts delete [INDEX]
 #### `find` - Find contact
 Format:
 ```
-contacts find [KEYWORD] [MORE KEYWORDS]
+contacts find n/[KEYWORD] [MORE KEYWORDS]
 ```
 
 ### `menu`
@@ -147,7 +147,7 @@ inventory delete [INDEX]
 #### `find` - Find an item
 Format:
 ```
-inventory find [KEYWORD] [MORE KEYWORDS]
+inventory find n/[KEYWORD] [MORE KEYWORDS] q/[LESS THAN QUANTITY]
 ```
 
 

@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.inventory;
+package seedu.address.logic.commands.menu;
 
 import static java.util.Objects.requireNonNull;
 
@@ -10,26 +10,24 @@ import seedu.address.commons.util.PredicateUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.ingredient.Ingredient;
+import seedu.address.model.dish.Dish;
 
-public class InventoryFindCommand extends Command {
+public class MenuFindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all ingredients whose names contain any of "
-            + "the specified keywords (case-insensitive) or are under a certain quantity \n"
-            + "and displays them as a list with index numbers. \n"
-            + "Parameters: n/[KEYWORD] [MORE_KEYWORDS]... q/[LESS THAN QUANTITY] \n"
-            + "Example: " + COMMAND_WORD + " n/tomato fish q/5";
+            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+            + "Example: " + COMMAND_WORD + " tomato fish lemon";
 
-
-    private final Predicate<Ingredient> predicate;
+    private final Predicate<Dish> predicate;
 
     /**
      * Construct command with a list of predicates to use
      * @param predicates list of predicates to use
      */
-    public InventoryFindCommand(List<Predicate<Ingredient>> predicates) {
+    public MenuFindCommand(List<Predicate<Dish>> predicates) {
         assert predicates != null && predicates.size() > 0;
         this.predicate = PredicateUtil.composePredicates(predicates);
     }
@@ -37,7 +35,7 @@ public class InventoryFindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredIngredientList(predicate);
+        model.updateFilteredDishList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_ITEMS_LISTED_OVERVIEW,
                         model.getFilteredIngredientList().size(),
@@ -48,7 +46,7 @@ public class InventoryFindCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof InventoryFindCommand // instanceof handles nulls
-                && predicate.equals(((InventoryFindCommand) other).predicate)); // state check
+                || (other instanceof MenuFindCommand // instanceof handles nulls
+                && predicate.equals(((MenuFindCommand) other).predicate)); // state check
     }
 }
