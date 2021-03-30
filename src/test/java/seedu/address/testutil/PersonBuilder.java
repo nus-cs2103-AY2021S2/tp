@@ -23,8 +23,6 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_POLICY_1 = "P12345";
-    public static final String DEFAULT_POLICY_2 = "P54321";
 
     private Name name;
     private Phone phone;
@@ -43,8 +41,6 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         policies = new ArrayList<>();
-        policies.add(new InsurancePolicy(DEFAULT_POLICY_1));
-        policies.add(new InsurancePolicy(DEFAULT_POLICY_2));
     }
 
     /**
