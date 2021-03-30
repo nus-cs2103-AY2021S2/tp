@@ -18,8 +18,8 @@ public class EDoneCommand extends Command {
 
     public static final String COMMAND_WORD = "edone";
 
-    public static final String MESSAGE_EVENT_DONE_SUCCESS = "Events marked as completed: %s";
-    public static final String MESSAGE_INVALID_EVENT_INDEX = "Invalid event indexes: %s";
+    public static final String MESSAGE_EVENT_DONE_SUCCESS = "Event(s) marked as completed: %s";
+    public static final String MESSAGE_INVALID_EVENT_INDEX = "Invalid event index(es): %s";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Mark the event identified by the index number as done\n"
             + "Parameters: INDEX [INDEX]...\n"

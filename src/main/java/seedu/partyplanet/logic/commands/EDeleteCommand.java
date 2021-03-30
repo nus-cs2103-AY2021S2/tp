@@ -13,7 +13,7 @@ public abstract class EDeleteCommand extends Command {
         + "Parameters: [INDEX [INDEX]...]\n"
         + "Example: " + COMMAND_WORD + " 1 2 3";
 
-    public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Deleted the following events: %s";
-    public static final String MESSAGE_INVALID_EVENT_INDEX = "Invalid event indexes: %s";
+    public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Deleted the following event(s): %s";
+    public static final String MESSAGE_INVALID_EVENT_INDEX = "Invalid event index(es): %s";
     public static final String MESSAGE_USAGE_CONCISE = COMMAND_WORD + " [INDEX [INDEX]...]";
 }
