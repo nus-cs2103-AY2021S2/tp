@@ -2,13 +2,21 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS_STRING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALL_STRING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME_STRING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE_STRING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE_STRING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_STRING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPDAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPDAY_STRING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPTIME_STRING;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -131,32 +139,32 @@ public class FindCommandParser implements Parser<FindCommand> {
         for (String s : argumentMultimap.getAllValues(prefix)) {
             String argument = "";
             switch (prefix.toString()) {
-            case "n/":
+            case PREFIX_NAME_STRING:
                 argument = ParserUtil.parseName(s).toString();
                 break;
-            case "a/":
+            case PREFIX_ADDRESS_STRING:
                 argument = ParserUtil.parseAddress(s).toString();
                 break;
-            case "p/":
+            case PREFIX_PHONE_STRING:
                 argument = ParserUtil.parsePhone(s).toString();
                 break;
-            case "tag/":
+            case PREFIX_TAG_STRING:
                 argument = ParserUtil.parseTag(s).toString();
                 break;
-            case "pr/":
+            case PREFIX_PRICE_STRING:
                 argument = ParserUtil.parsePrice(s).toString();
                 break;
-            case "all/":
+            case PREFIX_ALL_STRING:
                 argument = s;
                 break;
-            case "d/":
+            case PREFIX_TRIPDAY_STRING:
                 argument = ParserUtil.parseTripDay(s).toString();
                 break;
-            case "t/":
+            case PREFIX_TRIPTIME_STRING:
                 argument = ParserUtil.parseTripTime(s).toString();
                 break;
             default:
-                break;
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
             }
 
             if (argument.length() > 0) {
@@ -174,22 +182,22 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     private static Predicate<Passenger> parsePredicate(Prefix prefix, List<String> arguments) throws ParseException {
         switch (prefix.toString()) {
-        case "n/":
+        case PREFIX_NAME_STRING:
             return new NameContainsKeywordsPredicate(arguments);
-        case "a/":
+        case PREFIX_ADDRESS_STRING:
             return new AddressContainsKeywordsPredicate(arguments);
-        case "p/":
+        case PREFIX_PHONE_STRING:
             return new PhoneContainsKeywordsPredicate(arguments);
-        case "tag/":
+        case PREFIX_TAG_STRING:
             return new TagContainsKeywordsPredicate(arguments);
-        case "pr/":
+        case PREFIX_PRICE_STRING:
             Double price = Double.parseDouble(arguments.get(0));
             return new PriceContainsKeywordsPredicate(price);
-        case "all/":
+        case PREFIX_ALL_STRING:
             return new AttributeContainsKeywordsPredicate(arguments);
-        case "d/":
+        case PREFIX_TRIPDAY_STRING:
             return new TripDayContainsKeywordsPredicate(arguments);
-        case "t/":
+        case PREFIX_TRIPTIME_STRING:
             return new TripTimeContainsKeywordsPredicate(arguments);
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
