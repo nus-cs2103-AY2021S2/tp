@@ -11,7 +11,7 @@ https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2
   {:toc}
 </div>
 
-## **1.Introduction**
+## **1. Introduction**
 
 <div align="center">
   <img alt="logo" src="images/logo.png">
@@ -27,7 +27,7 @@ CoLAB (Collaboration Lab) is a **desktop app for students currently enrolled in 
 
 With CoLAB, you can efficiently manage all your school projects through our comprehensive project management tools. We have put in a lot of time and effort into designing a user-friendly User Interface (UI) such that CoLAB remains intuitive to both first-time users and seasoned ones. We look forward to seeing what you accomplish with CoLAB with a clean and inviting UI. What are you waiting for? Get your journey started with the [Quick Start section](#3quick-start)!
 
-## **2.About**
+## **2. About**
 
 This section serves to familiarise you with information and terms that would help you make the best use of this user guide.
 
@@ -134,6 +134,16 @@ This subsection serves to list out the parameters used in this document. We have
     * `TODO_INDEX` refers to the number shown beside the todo in the Main Panel when a project is displayed.
 * Indexes **must be a positive integer** 1, 2, 3, …​
 
+##### `REPEAT_WEEKLY`
+
+* The weekly repetition status of an event.
+* Weekly repetition can be only be entered in one of these formats:
+    * Y
+    * y
+    * N
+    * n
+* `Y` being Yes & `N` being No w.r.t to the Repeat Weekly status.
+
 ##### `KEYWORD`
 
 * The keyword used to seach for contacts.
@@ -158,9 +168,18 @@ This subsection serves to list out the parameters used in this document. We have
 * The tag associated with a contact.
 * Tags should consist of alphanumeric characters.
 
+##### `TIME`
+
+* The time of an event.
+* Time can be only be entered in one of these formats:
+    * 1730
+    * 17:30
+* The Hour Field (First 2 digits) should be a non-negative number between 00 and 23 (inclusive).
+* The Minute Field (Last 2 digits) should be a non-negative number between 00 and 59 (inclusive).
+
 --------------------------------------------------------------------------------------------------------------------
 
-## **3.Quick start**
+## **3. Quick start**
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -190,17 +209,23 @@ This subsection serves to list out the parameters used in this document. We have
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **4.Features**
+## **4. Features**
 
 This section contains documentation on CoLAB's features and commands.
 
 It is split into 4 subsections,
 * [Projects](#projects)
+    * [Todos](#todos)
+    * [Deadlines](#deadlines)
+    * [Events](#events)
+    * [Groupmates](#groupmates)
 * [Contacts](#contacts)
 * [Navigating the UI](#navigating-the-ui)
 * [Others](#others)
 
-### Projects
+### **4.1 Projects**
+
+Each Project may have `Todos`, `Deadlines`, `Events` & `Groupmates` that are relevant and specific to it. Commands related to Projects will be discussed first followed by sections on `Todos`, `Deadlines`, `Events` & `Groupmates`.
 
 #### Adding a project: `addP`
 
@@ -212,28 +237,60 @@ Examples:
 * `addP n/CS2103T Team Project`
 * `addP n/CS2101 OP2`
 
-#### Adding an event to a project: `addEto`
+#### Deleting a project: `deleteP`
 
-Adds an event to a specified project.
+Deletes a specified project from CoLAB.
 
-Format: `addEto PROJECT_INDEX d/DESCRIPTION i/INTERVAL at/DATE`
+Format: `deleteP PROJECT_INDEX`
 
-* Adds an event to the project at the specified `PROJECT_INDEX`.
+* Deletes a project at the specified `PROJECT_INDEX`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
 * The index **must be a positive integer** 1, 2, 3, …​
-* `INTERVAL` must be one of the following values:
-    * `NONE`
-    * `DAILY`
-    * `WEEKLY`
-    * `FORTNIGHTLY`
-    * `MONTHLY`
-    * `YEARLY`
-* `DATE` must be in `dd-MM-yyyy`, `ddMMyyyy`, `dd/MM/yyyy` or `dd.MM.yyyy` format.
-* `DATE` is limited to the `yyyy` range of 0000 to 9999.
 
 Examples:
-* `addEto 1 d/Project Meeting i/WEEKLY at/24-04-2021`
-* `addEto 2 d/CS2101 Presentation i/NONE at/24-04-2021`
+* `deleteP 1`
+* `deleteP 2`
+
+### _**4.1.1 Todos**_
+
+`Todos` contain a `DESCRIPTION` field and are useful for tasks that have no due date.
+
+Each `Project` may have `Todos`. Hence, each of the commands related to `Todos` are done w.r.t the `Project` identified by `PROJECT_INDEX`.
+
+#### Adding a todo to a project: `addTto`
+
+Adds a todo to a specified project.
+
+Format: `addTto PROJECT_INDEX d/DESCRIPTION`
+
+* Adds a todo to the project at the specified `PROJECT_INDEX`.
+* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `addTto 1 d/Add unit tests`
+* `addTto 2 d/Finish slides for presentation`
+
+#### Deleting a todo from a project: `deleteT`
+
+Deletes a specified todo from a specified project.
+
+Format: `deleteT PROJECT_INDEX r/TODO_INDEX`
+
+* Deletes the todo at the specified `TODO_INDEX` from the project at the specified `PROJECT_INDEX`.
+* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
+* The `TODO_INDEX` refers to the number shown beside the todo when viewing the project.
+* Both indexes **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `deleteT 1 r/1`
+* `deleteT 2 r/2`
+
+### _**4.1.2 Deadlines**_
+
+`Deadlines` contain `DESCRIPTION` & `DATE` field and are useful for tasks that have a due date.
+
+Each `Project` may have `Deadlines`. Hence, each of the commands related to `Deadlines` are done w.r.t the `Project` identified by `PROJECT_INDEX`.
 
 #### Adding a deadline to a project: `addDto`
 
@@ -251,21 +308,74 @@ Examples:
 * `addDto 1 d/Milestone v1.2 by/01-03-2021`
 * `addDto 2 d/CS2101 Project Submission by/15-03-2021`
 
-#### Adding a todo to a project: `addTto`
+#### Deleting a deadline from a project: `deleteD`
 
-Adds a todo to a specified project.
+Deletes a specified deadline from a specified project.
 
-Format: `addTto PROJECT_INDEX d/DESCRIPTION`
+Format: `deleteD PROJECT_INDEX r/DEADLINE_INDEX`
 
-* Adds a deadline to the project at the specified `PROJECT_INDEX`.
+* Deletes the deadline at the specified `DEADLINE_INDEX` from the project at the specified `PROJECT_INDEX`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The `DEADLINE_INDEX` refers to the number shown beside the deadline when viewing the project.
+* Both indexes **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `addTto 1 d/Add unit tests`
-* `addTto 2 d/Finish slides for presentation`
+* `deleteD 1 r/1`
+* `deleteD 2 r/2`
 
-#### Add a contact to a project: `addCto`
+### _**4.1.3 Events**_
+
+`Events` contain `DESCRIPTION`, `DATE`, `TIME` & `REPEAT_WEEKLY` field and are useful for events that occur on a `DATE` at a `TIME` that may be set to `REPEAT_WEEKLY`.
+
+Each `Project` may have `Events`. Hence, each of the commands related to `Events` are done w.r.t the `Project` identified by `PROJECT_INDEX`.
+
+#### Adding an event to a project: `addEto`
+
+Adds an event to a specified project.
+
+Format: `addEto PROJECT_INDEX d/DESCRIPTION on/DATE at/TIME w/REPEAT_WEEKLY`
+
+* Adds an event to the project at the specified `PROJECT_INDEX`.
+* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
+* The index **must be a positive integer** 1, 2, 3, …​
+* `DATE` must be in `dd-MM-yyyy`, `ddMMyyyy`, `dd/MM/yyyy` or `dd.MM.yyyy` format.
+* `DATE` is limited to the `yyyy` range of 0000 to 9999.
+* `TIME` must be in `HHmm` or `HH:mm` format.
+* `TIME` is limited to the `yyyy` range of 0000 to 9999.
+* `REPEAT_WEEKLY` must be one of the following values:
+    * `Y`
+    * `N`
+    * `y`
+    * `n`
+* `Y` being Yes & `N` being No w.r.t to the Repeat Weekly status.
+
+
+Examples:
+* `addEto 1 d/Project Meeting on/24-04-2021 at/2000 w/Y`
+* `addEto 2 d/CS2101 Presentation on/14-04-2021 at/1015 w/n`
+
+#### Deleting an event from a project: `deleteE`
+
+Deletes a specified event from a specified project.
+
+Format: `deleteE PROJECT_INDEX r/EVENT_INDEX`
+
+* Deletes the event at the specified `EVENT_INDEX` from the project at the specified `PROJECT_INDEX`.
+* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
+* The `EVENT_INDEX` refers to the number shown beside the event when viewing the project.
+* Both indexes **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `deleteE 1 r/1`
+* `deleteE 2 r/2`
+
+### _**4.1.4 Groupmates**_
+
+`Groupmates` contain `NAME` & `ROLE` field and are useful to keep track of `Groupmates` involved in a `Project` with their `ROLE` for the `Project`.
+
+Each `Project` may have `Groupmates`. Hence, each of the commands related to `Groupmates` are done w.r.t the `Project` identified by `PROJECT_INDEX`.
+
+#### Add a groupmate to a project: `addCto`
 
 Adds a contact to a specified project.
 
@@ -283,66 +393,7 @@ Examples:
 * `addCto 1 n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `addCto 2 n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-#### Deleting a project: `deleteP`
-
-Deletes a specified project from CoLAB.
-
-Format: `deleteP PROJECT_INDEX`
-
-* Deletes a project at the specified `PROJECT_INDEX`.
-* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `deleteP 1`
-* `deleteP 2`
-
-#### Deleting an event from a project: `deleteE`
-
-Deletes a specified event from a specified project.
-
-Format: `deleteE PROJECT_INDEX r/EVENT_INDEX`
-
-* Deletes the event at the specified `EVENT_INDEX` from the project at the specified `PROJECT_INDEX`.
-* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
-* The `EVENT_INDEX` refers to the number shown beside the event when viewing the project.
-* Both indexes **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `deleteE 1 r/1`
-* `deleteE 2 r/2`
-
-#### Deleting a deadline from a project: `deleteD`
-
-Deletes a specified deadline from a specified project.
-
-Format: `deleteD PROJECT_INDEX r/DEADLINE_INDEX`
-
-* Deletes the deadline at the specified `DEADLINE_INDEX` from the project at the specified `PROJECT_INDEX`.
-* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
-* The `DEADLINE_INDEX` refers to the number shown beside the deadline when viewing the project.
-* Both indexes **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `deleteD 1 r/1`
-* `deleteD 2 r/2`
-
-#### Deleting a todo from a project: `deleteT`
-
-Deletes a specified todo from a specified project.
-
-Format: `deleteT PROJECT_INDEX r/TODO_INDEX`
-
-* Deletes the todo at the specified `TODO_INDEX` from the project at the specified `PROJECT_INDEX`.
-* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
-* The `TODO_INDEX` refers to the number shown beside the todo when viewing the project.
-* Both indexes **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `deleteT 1 r/1`
-* `deleteT 2 r/2`
-
-#### Deleting a contact from a project: `deleteCfrom`
+#### Deleting a groupmate from a project: `deleteCfrom`
 
 Deletes a specified contact from a specified project.
 
@@ -357,7 +408,9 @@ Examples:
 * `deleteCfrom 1 r/1`
 * `deleteCfrom 2 r/2`
 
-### Contacts
+### **4.2 Contacts**
+
+Each Contact may have a `NAME`, `PHONE_NUMBER`, `EMAIL`, `ADDRESS` & multiple `TAGS`. 
 
 #### Adding a contact: `add`
 
@@ -372,6 +425,37 @@ A contact can have any number of tags (including 0)
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+
+#### Deleting a contact : `delete`
+
+Deletes the specified contact from the address book.
+
+Format: `delete CONTACT_INDEX`
+
+* Deletes the contact at the specified `CONTACT_INDEX`.
+* The index refers to the index number shown in the displayed contact list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd contact in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
+
+#### Editing a contact : `edit`
+
+Edits an existing contact in CoLAB.
+
+Format: `edit CONTACT_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+
+* Edits the contact at the specified `CONTACT_INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the contact will be removed i.e. adding of tags is not cumulative.
+* You can remove all the contact’s tags by typing `t/` without
+  specifying any tags after it.
+
+Examples:
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
 
 #### Locating contacts by name: `find`
 
@@ -391,44 +475,13 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-#### Editing a contact : `edit`
-
-Edits an existing contact in CoLAB.
-
-Format: `edit CONTACT_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the contact at the specified `CONTACT_INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the contact will be removed i.e. adding of tags is not cumulative.
-* You can remove all the contact’s tags by typing `t/` without
-  specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
-
-#### Deleting a contact : `delete`
-
-Deletes the specified contact from the address book.
-
-Format: `delete CONTACT_INDEX`
-
-* Deletes the contact at the specified `CONTACT_INDEX`.
-* The index refers to the index number shown in the displayed contact list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd contact in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
-
 #### Clearing all entries : `clear`
 
 Clears all entries from CoLAB.
 
 Format: `clear`
 
-### Navigating the UI
+### **4.3 Navigating the UI**
 
 Although most of the buttons you see on the screen are clickable, the UI has been designed primarily to be navigated using the command line interface.
 
@@ -488,7 +541,7 @@ Exits the program.
 
 Format: `exit`
 
-### Others
+### **4.4 Others**
 
 #### Saving the data
 
@@ -502,7 +555,7 @@ CoLAB's data is saved as a JSON file `[JAR file location]/data/colab.json`. Adva
 If your changes to the data file makes its format invalid, CoLAB will discard all data and start with an empty data file at the next run.
 </div>
 
-### Coming soon
+### **4.5 Coming soon**
 
 #### Undo/Redo `[coming soon]`
 
@@ -525,7 +578,7 @@ Action | Format, Examples
 --------|------------------
 **Add Project** | `addP n/PROJECT_NAME`
 **Add Deadline to Project** | `addDto PROJECT_INDEX d/DESCRIPTION by/DATE`
-**Add Event to Project** | `addEto PROJECT_INDEX d/DESCRIPTION i/INTERVAL at/DATE`
+**Add Event to Project** | `addEto PROJECT_INDEX d/DESCRIPTION on/DATE at/TIME w/REPEAT_WEEKLY`
 **Add Participant to Project** | `addCto PROJECT_INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 **Add Todo to Project** | `addTto PROJECT_INDEX d/DESCRIPTION`
 **Delete Project** | `deleteP PROJECT_INDEX`
