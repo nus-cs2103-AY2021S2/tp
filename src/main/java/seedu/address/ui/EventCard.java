@@ -43,7 +43,8 @@ public class EventCard extends UiPart<Region> {
         this.event = event;
         id.setText("");
         eventDescription.setText(event.getDescription());
-        date.setText(DateUtil.decodeDateWithDay(event.getDate()));
+        day.setText(DateUtil.decodeDateIntoDay(event.getDate()));
+        date.setText(DateUtil.decodeDate(event.getDate()));
         time.setText(TimeUtil.decodeTime(event.getTime()));
     }
 

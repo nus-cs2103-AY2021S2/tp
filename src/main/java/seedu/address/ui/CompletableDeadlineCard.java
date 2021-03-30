@@ -28,6 +28,8 @@ public class CompletableDeadlineCard extends UiPart<Region> {
     @FXML
     private Label date;
     @FXML
+    private Label day;
+    @FXML
     private Label completedLabel;
 
     /**
@@ -40,7 +42,8 @@ public class CompletableDeadlineCard extends UiPart<Region> {
         this.deadline = deadline;
         id.setText("");
         description.setText(deadline.getDescription());
-        date.setText(DateUtil.decodeDateWithDay(deadline.getBy()));
+        date.setText(DateUtil.decodeDate(deadline.getBy()));
+        day.setText(DateUtil.decodeDateIntoDay(deadline.getBy()));
         completedLabel.setText(deadline.getIsDone() ? "✔" : "");
     }
 
@@ -54,7 +57,8 @@ public class CompletableDeadlineCard extends UiPart<Region> {
         this.deadline = deadline;
         id.setText(displayedIndex + ". ");
         description.setText(deadline.getDescription());
-        date.setText(DateUtil.decodeDateWithDay(deadline.getBy()));
+        date.setText(DateUtil.decodeDate(deadline.getBy()));
+        day.setText(DateUtil.decodeDateIntoDay(deadline.getBy()));
         completedLabel.setText(getTextToDisplay(deadline.getIsDone()));
     }
 
