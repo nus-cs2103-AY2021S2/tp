@@ -146,11 +146,11 @@ public class ProjectTest {
 
     @Test void addDeadline_success() {
         Project project = new ProjectBuilder().withName(CS1101S_NAME.toString()).build();
-        assertEquals(0, project.getDeadlines().getDeadlines().size());
+        assertEquals(0, project.getDeadlines().getSortedDeadlineList().size());
         Deadline deadline = new Deadline("deadline", LocalDate.now());
         project.addDeadline(deadline);
-        assertEquals(1, project.getDeadlines().getDeadlines().size());
-        assertEquals(deadline, project.getDeadlines().getDeadlines().get(INDEX_FIRST.getZeroBased()));
+        assertEquals(1, project.getDeadlines().getSortedDeadlineList().size());
+        assertEquals(deadline, project.getDeadlines().getSortedDeadlineList().get(INDEX_FIRST.getZeroBased()));
     }
 
     @Test void addEvent_success() {
@@ -175,9 +175,9 @@ public class ProjectTest {
         DeadlineList deadlineList = new DeadlineList();
         deadlineList.addDeadline(new Deadline("deadline", LocalDate.now()));
         Project project = new ProjectBuilder().withName(CS1101S_NAME.toString()).withDeadlineList(deadlineList).build();
-        assertEquals(1, project.getDeadlines().getDeadlines().size());
+        assertEquals(1, project.getDeadlines().getSortedDeadlineList().size());
         project.deleteDeadline(INDEX_FIRST.getZeroBased());
-        assertEquals(0, project.getDeadlines().getDeadlines().size());
+        assertEquals(0, project.getDeadlines().getSortedDeadlineList().size());
     }
 
     @Test void deleteEvent_success() {
@@ -202,10 +202,10 @@ public class ProjectTest {
         DeadlineList deadlineList = new DeadlineList();
         deadlineList.addDeadline(new Deadline("deadline", LocalDate.now()));
         Project project = new ProjectBuilder().withName(CS1101S_NAME.toString()).withDeadlineList(deadlineList).build();
-        assertEquals(1, project.getDeadlines().getDeadlines().size());
-        assertEquals(false, project.getDeadlines().getDeadlines().get(0).getIsDone());
+        assertEquals(1, project.getDeadlines().getSortedDeadlineList().size());
+        assertEquals(false, project.getDeadlines().getSortedDeadlineList().get(0).getIsDone());
         project.markDeadline(INDEX_FIRST.getZeroBased());
-        assertEquals(true, project.getDeadlines().getDeadlines().get(0).getIsDone());
+        assertEquals(true, project.getDeadlines().getSortedDeadlineList().get(0).getIsDone());
     }
 
     @Test void markTodo_success() {
@@ -268,7 +268,7 @@ public class ProjectTest {
         builder.append("; Todos: ");
         builder.append(todoList.getTodos().get(0).toString());
         builder.append("; Deadlines: ");
-        builder.append(deadlineList.getDeadlines().get(0).toString());
+        builder.append(deadlineList.getSortedDeadlineList().get(0).toString());
         builder.append("; Groupmates: ");
         builder.append(groupmateList.get(0).toString());
         String project2String = builder.toString();

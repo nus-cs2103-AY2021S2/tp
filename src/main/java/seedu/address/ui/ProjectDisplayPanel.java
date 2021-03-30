@@ -6,8 +6,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_NO_EVENTS_TO_DISPLAY;
 import static seedu.address.commons.core.Messages.MESSAGE_NO_GROUPMATES_TO_DISPLAY;
 import static seedu.address.commons.core.Messages.MESSAGE_NO_TODOS_TO_DISPLAY;
 
-import java.util.Comparator;
-
 import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -76,7 +74,7 @@ public class ProjectDisplayPanel extends UiPart<Region> {
         this.projectName.setText(project.getProjectName().toString());
 
         setUpEventList(project.getEvents().getEvents());
-        setUpDeadlinesList(project.getDeadlines().getDeadlines());
+        setUpDeadlinesList(project.getSortedDeadlines());
         setUpTodoList(project.getTodos().getTodos());
         setUpGroupmatesList(project.getGroupmates().getGroupmates());
     }
@@ -111,11 +109,10 @@ public class ProjectDisplayPanel extends UiPart<Region> {
         }
     }
 
-    private void setUpDeadlinesList(ObservableList<CompletableDeadline> deadlines) {
+    private void setUpDeadlinesList(SortedList<CompletableDeadline> deadlines) {
         completableDeadlineListView.prefHeightProperty()
                 .bind(Bindings.size(deadlines).multiply(DEADLINES_CARD_HEIGHT).add(SAFETY_MARGIN));
-        completableDeadlineListView.setItems(new SortedList<>(deadlines,
-                Comparator.comparing(CompletableDeadline::getBy).thenComparing(CompletableDeadline::getDescription)));
+        completableDeadlineListView.setItems(deadlines);
         completableDeadlineListView.setCellFactory(listView ->
                 new CompletableDeadlineListViewCell());
 

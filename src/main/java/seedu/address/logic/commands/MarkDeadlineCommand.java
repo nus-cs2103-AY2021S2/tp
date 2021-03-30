@@ -50,7 +50,7 @@ public class MarkDeadlineCommand extends Command {
         }
 
         if (targetDeadlineIndex.getZeroBased() >= lastShownList.get(projectIndex.getZeroBased())
-                .getDeadlines().getDeadlines().size()) {
+                .getDeadlines().getSortedDeadlineList().size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_DEADLINE_DISPLAYED_INDEX);
         }
 

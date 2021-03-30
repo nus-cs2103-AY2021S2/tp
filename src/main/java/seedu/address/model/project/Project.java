@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.model.groupmate.Groupmate;
 import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.CompletableTodo;
@@ -280,6 +281,15 @@ public class Project {
     }
 
     /**
+     * Returns {@code deadlines} as an {@code SortedList<CompletableDeadline>}
+     *
+     * @return A {@code SortedList<CompletableDeadline>}
+     */
+    public SortedList<CompletableDeadline> getSortedDeadlines() {
+        return deadlines.getSortedDeadlineList();
+    }
+
+    /**
      * Returns true if both projects have the same identity and data fields.
      * This defines a stronger notion of equality between two projects.
      */
@@ -323,7 +333,7 @@ public class Project {
             todos.forEach(builder::append);
         }
 
-        List<CompletableDeadline> deadlines = getDeadlines().getDeadlines();
+        List<CompletableDeadline> deadlines = getDeadlines().getSortedDeadlineList();
         if (!deadlines.isEmpty()) {
             builder.append("; Deadlines: ");
             deadlines.forEach(builder::append);
