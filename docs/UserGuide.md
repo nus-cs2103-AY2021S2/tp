@@ -309,7 +309,7 @@ New grade added: Mathematics (Final): A
 
 ### Editing a Grade : `edit_grade`
 
-Edits an already existing grade with a specific index. Only the attributes present are changed in the grade.
+Edits an already existing grade at the specified index. Only the attributes present are changed in the grade.
 
 Format: `edit_grade INDEX [s/SUBJECT_NAME] [gi/GRADED_ITEM] [gr/GRADE_ALPHABET]`
 
@@ -318,6 +318,19 @@ Example: `edit_grade 1 gr/B`
 Example Output:
 ```
 Edited Grade: Science (Lab 1): B
+```
+
+### Deleting a Grade : `delete_grade`
+
+Deletes an already existing grade at the specified index.
+
+Format: `delete_grade INDEX`
+
+Example: `delete_grade 1`
+
+Example Output: 
+```
+Deleted Grade: Science (Lab 1): B
 ```
 
 
@@ -350,4 +363,5 @@ Action | Format, Examples
 **Viewing a budget** | `view_budget` <br> e.g. `view_budget`
 **Adding a grade** | `add_grade s/SUBJECT_NAME gi/GRADED_ITEM gr/GRADE_ALPHABET` <br> e.g. `add_grade s/Mathematics gi/Final gr/A` 
 **Editing a grade** | `edit_grade INDEX [s/SUBJECT_NAME] [gi/GRADED_ITEM] [gr/GRADE_ALPHABET]` <br> e.g. `edit_grade 1 gr/B`
+**Deleting a grade** | `delete_grade INDEX` <br> e.g. `delete_grade 1`
 
