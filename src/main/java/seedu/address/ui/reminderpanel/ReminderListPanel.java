@@ -12,7 +12,7 @@ import seedu.address.ui.UiPart;
  * Panel containing the list of reminders.
  */
 public class ReminderListPanel extends UiPart<Region> {
-    private static final String FXML = "ReminderListPanel.fxml";
+    private static final String FXML = "reminderpanel/ReminderListPanel.fxml";
 
     @FXML
     private ListView<Reminder> reminderListView;

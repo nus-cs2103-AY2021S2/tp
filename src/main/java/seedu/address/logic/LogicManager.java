@@ -19,6 +19,7 @@ import seedu.address.model.event.Event;
 import seedu.address.model.grade.Grade;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.model.tutor.Tutor;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.storage.Storage;
 
 /**
@@ -100,6 +101,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<String> getAppointmentFilterStringList() {
         return model.getAppointmentFilterStringList();
+    }
+
+    @Override
+    public ObservableList<Reminder> getFilteredReminderList() {
+        return model.getFilteredReminderList();
     }
 
     @Override

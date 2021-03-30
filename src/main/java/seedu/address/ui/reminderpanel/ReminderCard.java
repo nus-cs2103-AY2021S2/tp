@@ -12,7 +12,7 @@ import seedu.address.ui.UiPart;
  */
 public class ReminderCard extends UiPart<Region> {
 
-    private static final String FXML = "ReminderListCard.fxml";
+    private static final String FXML = "reminderpanel/ReminderListCard.fxml";
 
     public final Reminder reminder;
 
