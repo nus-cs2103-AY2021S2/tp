@@ -122,6 +122,24 @@ public class Pool {
     }
 
     /**
+     * Presents Passenger names in a single string
+     * @return String of Passenger names
+     */
+    public String getPassengerNames() {
+        StringBuilder passengerNames = new StringBuilder();
+
+        for (int i = 0; i < passengers.size(); i++) {
+            passengerNames.append(passengers.get(i).getName());
+
+            if (i < passengers.size() - 1) {
+                passengerNames.append(", ");
+            }
+        }
+
+        return passengerNames.toString();
+    }
+
+    /**
      * Returns true if both passengers have the same identity and data fields.
      * This defines a stronger notion of equality between two passengers.
      */

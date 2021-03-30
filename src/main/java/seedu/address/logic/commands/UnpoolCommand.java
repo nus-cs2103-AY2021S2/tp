@@ -44,7 +44,8 @@ public class UnpoolCommand extends Command {
 
         Pool poolToRemove = lastShownList.get(targetIndex.getZeroBased());
         model.deletePool(poolToRemove);
-        return new CommandResult(String.format(MESSAGE_UNPOOL_SUCCESS, poolToRemove));
+
+        return new CommandResult(String.format(MESSAGE_UNPOOL_SUCCESS, poolToRemove.getPassengerNames()));
     }
 
     @Override
