@@ -24,22 +24,16 @@ public class ViewPersonCommandTest {
     }
 
     @Test
-    public void execute_viewStudent() {
+    public void execute_viewPerson_success() {
         expectedModel.updateFilteredPersonList(new PersonIdPredicate(FIRST_PERSON_ID));
         assertCommandSuccess(new ViewPersonCommand(new PersonIdPredicate(FIRST_PERSON_ID)),
                 model, ViewPersonCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
-    public void execute_viewTutor_NotFound_showMessage() {
-        expectedModel.updateFilteredPersonList(new PersonIdPredicate(new PersonId("t/1000")));
-        assertCommandSuccess(new ViewPersonCommand(new PersonIdPredicate(new PersonId("t/1000"))),
+    public void execute_viewPerson_NotFound_showMessage() {
+        expectedModel.updateFilteredPersonList(new PersonIdPredicate(new PersonId("t/-1")));
+        assertCommandSuccess(new ViewPersonCommand(new PersonIdPredicate(new PersonId("t/-1"))),
                 model, ViewPersonCommand.MESSAGE_NO_PERSON_FOUND, expectedModel);
-
-    }
-
-    @Test
-    public void execute_invalidCommand_throwError() {
-        
     }
 }
