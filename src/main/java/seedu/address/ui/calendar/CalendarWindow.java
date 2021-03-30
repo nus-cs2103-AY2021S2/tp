@@ -1,5 +1,7 @@
 package seedu.address.ui.calendar;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.time.LocalDate;
 import java.time.Year;
 import java.time.YearMonth;
@@ -17,8 +19,6 @@ import seedu.address.model.EventList;
 import seedu.address.storage.CalendarStorage;
 import seedu.address.ui.UiPart;
 import seedu.address.ui.calendar.schedule.UpcomingSchedule;
-
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents the calendar window for the GUI.

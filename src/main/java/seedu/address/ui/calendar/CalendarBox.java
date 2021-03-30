@@ -1,5 +1,7 @@
 package seedu.address.ui.calendar;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.time.LocalDate;
 import java.util.logging.Logger;
 
@@ -17,8 +19,6 @@ import seedu.address.model.module.Exam;
 import seedu.address.model.person.Birthday;
 import seedu.address.ui.UiPart;
 import seedu.address.ui.calendar.schedule.UpcomingSchedule;
-
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a box for a date in the calendar.
