@@ -2,8 +2,13 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertValidCommandToAliasFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertValidCommandToAliasSuccess;
 import static seedu.address.testutil.TypicalIndexes.INVALID_INDEX_STRING;
+import static seedu.address.testutil.TypicalIndexes.NEGATIVE_INDEX_STRING;
 import static seedu.address.testutil.TypicalIndexes.VALID_INDEXES;
+import static seedu.address.testutil.TypicalIndexes.VALID_INDEX_STRING;
+import static seedu.address.testutil.TypicalIndexes.ZERO_INDEX_STRING;
 
 import java.util.stream.Collectors;
 
@@ -39,5 +44,24 @@ public class EmailCommandParserTest {
     @Test
     public void parse_emptyArgs_failure() {
         assertParseFailure(parser, "", EmailCommand.MESSAGE_USAGE);
+    }
+
+    @Test
+    public void parse_validEmailCommandAlias_returnsTrue() {
+        // whitespace only
+        assertValidCommandToAliasSuccess(parser, "");
+
+        // valid index
+        assertValidCommandToAliasSuccess(parser, VALID_INDEX_STRING);
+
+        // shown
+        assertValidCommandToAliasSuccess(parser, EmailCommandParser.SPECIAL_INDEX);
+    }
+
+    @Test
+    public void parse_invalidEmailCommandAlias_returnsFalse() {
+        assertValidCommandToAliasFailure(parser, NEGATIVE_INDEX_STRING);
+        assertValidCommandToAliasFailure(parser, ZERO_INDEX_STRING);
+        assertValidCommandToAliasFailure(parser, INVALID_INDEX_STRING);
     }
 }
