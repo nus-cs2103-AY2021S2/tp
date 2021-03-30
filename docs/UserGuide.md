@@ -407,6 +407,7 @@ Action | Format
 --------|------------------
 **Add** | 1. `add dog n/DOGNAME b/BREED d/DATE OF BIRTH s/SEX o/OWNERID t/TAG`<br> 2. `add owner n/OWNERNAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...`<br> 3. `add  program n/NAME [s/DATE OF SESSION]... [t/tag]...`
 **Delete** | 1. `delete dog d/DOGID`<br> 2. `delete owner o/OWNERID`<br> 3. `delete program p/PROGRAMID`
+**Edit** | 1. `edit dog d/[DOG ID] n/[NAME] b/[BREED] d/[DATEOFBIRTH] s/[SEX] o/[OWNERID] [t/TAGS]...`<br> 2. `edit owner o/[OWNER ID] n/[NAME] p/[PHONE] e/[EMAIL] a/[ADDRESS] [t/TAGS]...`<br> 3. `edit program o/[PROGRAM ID] n/[NAME] [s/SESSION]... [t/TAGS]...`
 **Enrol** | `enrol d/[DOG ID] p/[PROGRAM ID]`
 **Drop** | `drop d/[DOG ID] p/[PROGRAM ID]`
 **List** | `list [dog/owner/program]`
