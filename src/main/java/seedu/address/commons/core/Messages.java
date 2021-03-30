@@ -13,4 +13,5 @@ public class Messages {
     public static final String MESSAGE_TASKS_LISTED_OVERVIEW = "%1$d tasks listed!";
     public static final String MESSAGE_TASK_DOES_NOT_EXIST = "The task provided does not exist";
     public static final String MESSAGE_SCHEDULE_DOES_NOT_EXIST = "The schedule provided does not exist!";
+    public static final String MESSAGE_ENTRIES_LISTED_OVERVIEW = "%1$d entries listed";
 }
