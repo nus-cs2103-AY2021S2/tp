@@ -45,7 +45,8 @@ public class ExportUtils {
             FileWriter myWriter = new FileWriter(exportFile);
             myWriter.write(generateText(tutor));
             myWriter.close();
-            feedback += "Successfully wrote to the file at: " + System.getProperty("user.dir") + "\\" + exportFile.toString();
+            feedback += "Successfully wrote to the file at: "
+                    + System.getProperty("user.dir") + "\\" + exportFile.toString();
         } catch (IOException e) {
             throw new ExportException("Unable to write to file");
         }
