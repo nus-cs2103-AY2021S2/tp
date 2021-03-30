@@ -31,6 +31,9 @@ public class GroupListPanel extends UiPart<Region> {
                 groupListView.getItems().removeAll(change.getKey());
                 groupListView.getItems().add(change.getKey());
             }
+            if (change.wasRemoved()) {
+                groupListView.getItems().removeAll(change.getKey());
+            }
             Platform.runLater(() -> {
                 groupListView.getSelectionModel().select(change.getKey());
                 groupListView.scrollTo(change.getKey());

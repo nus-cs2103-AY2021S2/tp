@@ -36,6 +36,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEXES = "One of of the indexes is not a non-zero unsigned integer.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -170,8 +171,12 @@ public class ParserUtil {
         String[] indexStringArray = indexes.trim().split(" ");
         List<Index> indexArray = new ArrayList<>();
 
-        for (String s : indexStringArray) {
-            indexArray.add(parseIndex(s));
+        try {
+            for (String s : indexStringArray) {
+                indexArray.add(parseIndex(s));
+            }
+        } catch (ParseException e) {
+            throw new ParseException(MESSAGE_INVALID_INDEXES);
         }
         return indexArray;
     }
