@@ -11,7 +11,7 @@ import dog.pawbook.commons.core.Messages;
 import dog.pawbook.model.managedentity.owner.Owner;
 
 /**
- * Adds a owner to the address book.
+ * Adds a owner to the database.
  */
 public class AddOwnerCommand extends AddCommand<Owner> {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a owner to the database. "
