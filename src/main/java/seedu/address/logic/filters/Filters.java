@@ -10,11 +10,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.List;
-
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
-import seedu.address.model.customer.Customer;
 
 public class Filters {
     public static AbstractFilter getCorrespondingFilter(String info) {
@@ -30,25 +27,16 @@ public class Filters {
         }
 
         if (argumentMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            return new EmailFilter(argumentMultimap.getValue(PREFIX_PHONE).get());
+            return new PhoneNumberFilter(argumentMultimap.getValue(PREFIX_PHONE).get());
         }
 
         if (argumentMultimap.getValue(PREFIX_COE_EXPIRY).isPresent()) {
-            return new EmailFilter(argumentMultimap.getValue(PREFIX_COE_EXPIRY).get());
+            return new CoeExpiryFilter(argumentMultimap.getValue(PREFIX_COE_EXPIRY).get());
         }
 
-
-        return new AbstractFilter(info) {
-
-            @Override
-            public boolean test(Customer customer) {
-                return false;
-            }
-
-            @Override
-            public List<Customer> filterAllCustomers(List<Customer> customer) {
-                return null;
-            }
-        };
+        if (argumentMultimap.getValue(PREFIX_DOB).isPresent()) {
+            return new DobFilter(argumentMultimap.getValue(PREFIX_DOB).get());
+        }
+        throw new IllegalArgumentException("No appropriate filter for : " + info);
     }
 }
