@@ -113,8 +113,8 @@ public class CustomerBuilder {
      * Adds a new pairing of {@code Car} and {@code CoeExpiry} to the
      * {@code Customer} that we are building.
      */
-    public CustomerBuilder withAdditionalCar(String car, String coeExpiry) {
-        this.carsOwned.put(new Car(car), new CoeExpiry(coeExpiry));
+    public CustomerBuilder withAdditionalCar(String carBrand, String carType, String coeExpiry) {
+        this.carsOwned.put(new Car(carBrand, carType), new CoeExpiry(coeExpiry));
         return this;
     }
 

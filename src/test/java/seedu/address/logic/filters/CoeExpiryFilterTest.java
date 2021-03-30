@@ -59,14 +59,14 @@ public class CoeExpiryFilterTest { //TODO: Add test cases for filterAllCustomers
         String yesterdayString = now.minusDays(1).format(CoeExpiry.DATE_TIME_FORMATTER);
         String oneYearString = now.plusYears(1).format(CoeExpiry.DATE_TIME_FORMATTER);
         Customer alice = new CustomerBuilder()
-                .withAdditionalCar("Civic+Honda", yesterdayString)
-                .withAdditionalCar("Civic+Honda", oneYearString)
+                .withAdditionalCar("Honda", "Civic", yesterdayString)
+                .withAdditionalCar("Honda", "Civic", oneYearString)
                 .build();
         assertTrue(filterToday.test(alice));
 
         CoeExpiryFilter filterOneYear = new CoeExpiryFilter("2");
         Customer bob = new CustomerBuilder()
-                .withAdditionalCar("Civic+Honda", oneYearString)
+                .withAdditionalCar("Honda", "Civic", oneYearString)
                 .build();
         assertTrue(filterOneYear.test(bob));
     }
@@ -77,8 +77,8 @@ public class CoeExpiryFilterTest { //TODO: Add test cases for filterAllCustomers
         String twoYearString = now.plusYears(2).format(CoeExpiry.DATE_TIME_FORMATTER);
         String oneYearString = now.plusYears(1).format(CoeExpiry.DATE_TIME_FORMATTER);
         Customer alice = new CustomerBuilder()
-                .withAdditionalCar("Civic+Honda", twoYearString)
-                .withAdditionalCar("Civic+Honda", oneYearString)
+                .withAdditionalCar("Honda", "Civic", twoYearString)
+                .withAdditionalCar("Honda", "Civic", oneYearString)
                 .build();
         assertFalse(filter.test(alice));
     }
