@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE_RANGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
@@ -39,10 +40,15 @@ public class AddEntryCommandParser implements Parser<AddEntryCommand> {
 
         EntryName entryName = ParserUtil.parseEntryName(argMultimap.getValue(PREFIX_NAME).get());
         EntryDate endDate = ParserUtil.parseEntryDate(argMultimap.getValue(PREFIX_END_DATE).get());
+
         try {
             startDate = ParserUtil.parseEntryDate(argMultimap.getValue(PREFIX_START_DATE).get());
         } catch (NoSuchElementException e) {
             startDate = endDate;
+        }
+
+        if (startDate.isAfter(endDate)) {
+            throw new ParseException(MESSAGE_INVALID_DATE_RANGE);
         }
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 

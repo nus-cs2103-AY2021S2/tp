@@ -76,7 +76,7 @@ public class Entry {
     }
 
     /**
-     * Returns true if both start date and end date are the same
+     * Returns true if start date is different from end date.
      */
     public boolean haveDifferentDates() {
         return !getStartDate().isEqual(getEndDate());

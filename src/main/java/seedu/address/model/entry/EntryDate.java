@@ -44,6 +44,13 @@ public class EntryDate {
         return true;
     }
 
+    /**
+     * Returns true if this entryDate is after the specified entryDate.
+     */
+    public boolean isAfter(EntryDate other) {
+        return value.isAfter(other.getDate());
+    }
+
     public LocalDateTime getDate() {
         return value;
     }
@@ -64,4 +71,5 @@ public class EntryDate {
     public int hashCode() {
         return value.hashCode();
     }
+
 }
