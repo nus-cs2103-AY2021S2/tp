@@ -53,12 +53,12 @@ public class ReturnCommand extends Command {
             throw new CommandException(NO_BOOK_FOUND);
         }
 
-        if (!model.hasBookWithBarcode(incompleteRecord.getBookBarcode()) &&
-                !model.hasReader(model.getReaderNameForReturn(incompleteRecord.getBookBarcode()))) {
+        if (!model.hasBookWithBarcode(incompleteRecord.getBookBarcode())
+                && !model.hasReader(model.getReaderNameForReturn(incompleteRecord.getBookBarcode()))) {
             throw new CommandException(NO_READER_AND_BOOK_FOUND);
         }
 
-        if(!model.isBookWithBarcodeBorrowed(incompleteRecord.getBookBarcode())) {
+        if (!model.isBookWithBarcodeBorrowed(incompleteRecord.getBookBarcode())) {
             throw new CommandException(MESSAGE_NO_SUCH_RECORD_FOUND);
         }
     }

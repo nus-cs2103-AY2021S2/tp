@@ -322,7 +322,7 @@ public class SmartLib implements ReadOnlySmartLib {
         requireNonNull(barcode);
         assert(Barcode.isValidBarcode(barcode.getValue()));
         for (Reader reader : readers) {
-            if(reader.getBorrows().containsKey(getBookByBarcode(barcode))) {
+            if (reader.getBorrows().containsKey(getBookByBarcode(barcode))) {
                 return reader;
             }
         }

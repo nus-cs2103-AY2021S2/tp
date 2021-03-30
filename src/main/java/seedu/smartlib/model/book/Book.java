@@ -16,6 +16,8 @@ import seedu.smartlib.model.record.DateBorrowed;
  */
 public class Book {
 
+    public static final Name TEMP_BOOKNAME = new Name("book");
+
     // Identity fields
     private final Name name;
 
@@ -27,8 +29,6 @@ public class Book {
     private final Name borrowerName;
     private final Barcode barcode;
     private final DateBorrowed dateBorrowed;
-
-    public static final Name TEMP_BOOKNAME = new Name("book");
 
     /**
      * Constructor for the Book class.
