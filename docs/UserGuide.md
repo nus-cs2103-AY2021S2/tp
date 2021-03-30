@@ -152,18 +152,21 @@ Format: `olist`
 
 ### Find rooms : `ofind`
 
-Finds all rooms that contain any of the given keywords.
+Finds all rooms by room number or tag that contain any of the given keywords.
 
 Format: `ofind KEYWORD [MORE_KEYWORDS]`
 * The search matches any part of the room number. e.g. `10` will match `10-111` and `14-101`.
+* The search for tags matches any part of the tag and is NOT case-sensitive. e.g `mell`, `smell`, `smelly` or `room` all work to match `smellyroom`. `s` will match both `smellyroom` and `SHN`. 
 * The order of the keywords does not matter. e.g. `11- 10-` will match `10-100`, `10-101`, `11-100`, and `11-101`.
-* Only the room number is searched.
+* Only the room number and tags are searched.
 * Rooms matching at least one keyword will be returned (i.e. OR search). e.g. `10 20` will return `10-100`, `11-120`.
 
 Examples:
 * `ofind 10-` returns `10-100`, `10-101`, and `10-102`.
 * `ofind 10- 15-` returns `10-100`, `10-101`, `15-100`, and`15-101`.
 * `ofind 10` returns `09-100`, `09-110`, `10-100`, and `10-101`.
+* `ofind s` returns `SHN` and `smellyroom`
+* `ofind 1 s` returns `10-100` and `SHN`
 
 
 ### Edit a room record : `oedit`
