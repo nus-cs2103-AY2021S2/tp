@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.booking.commons.core.GuiSettings;
 import seedu.booking.commons.core.LogsCenter;
+import seedu.booking.logic.commands.states.CommandState;
 import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.Id;
 import seedu.booking.model.person.Email;
@@ -23,6 +24,8 @@ import seedu.booking.model.venue.VenueName;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+
+    private static CommandState commandState = new CommandState();
 
     private final BookingSystem bookingSystem;
     private final UserPrefs userPrefs;
@@ -49,6 +52,52 @@ public class ModelManager implements Model {
 
     public ModelManager() {
         this(new BookingSystem(), new UserPrefs());
+    }
+
+    //=========== CommandStates ==============================================================================
+
+    public static void setCommandState(CommandState newCommandState) {
+        commandState = newCommandState;
+    }
+
+    public static boolean isStateActive() {
+        return commandState.isActive();
+    }
+
+    public static void setStateActive() {
+        commandState.setActive();
+    }
+
+    public static void setStateInactive() {
+        commandState.setInactive();
+    }
+
+    public static String getState() {
+        return commandState.getState();
+    }
+
+    public static String getNextPromptMessage() {
+        return commandState.getNextPromptMessage();
+    }
+
+    public static void setNextPromptMessage(String message) {
+        commandState.setNextPromptMessage(message);
+    }
+
+    public static void setState(String state) {
+        commandState.setState(state);
+    }
+
+    public static void processStateInput(Object value) {
+        commandState.processInput(value);
+    }
+
+    public static void setNextState() {
+        commandState.setNextState();
+    }
+
+    public static Object create() {
+        return commandState.create();
     }
 
     //=========== UserPrefs ==================================================================================

@@ -1,9 +1,16 @@
 package seedu.booking.storage;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.booking.commons.exceptions.IllegalValueException;
+import seedu.booking.model.Tag;
 import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Name;
 import seedu.booking.model.person.Person;
@@ -19,18 +26,20 @@ class JsonAdaptedPerson {
     private final String name;
     private final String phone;
     private final String email;
-
+    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email) {
+            @JsonProperty("email") String email, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
-
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
     }
 
     /**
@@ -40,6 +49,9 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
+        tagged.addAll(source.getTags().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -73,7 +85,13 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        return new Person(modelName, modelPhone, modelEmail);
+        final List<Tag> personTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : tagged) {
+            personTags.add(tag.toModelType());
+        }
+        final Set<Tag> modelTags = new HashSet<>(personTags);
+
+        return new Person(modelName, modelPhone, modelEmail, modelTags);
     }
 
 }

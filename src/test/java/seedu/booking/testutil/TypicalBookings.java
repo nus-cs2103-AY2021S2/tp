@@ -16,6 +16,7 @@ import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_ID_HALL
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_ID_FIELD;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 
 import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.Description;
@@ -34,6 +35,7 @@ public class TypicalBookings {
             new Description("description"),
             new StartTime(LocalDateTime.of(2021, 03, 01, 12, 30, 00)),
             new EndTime(LocalDateTime.of(2021, 03, 01, 13, 30, 00)),
+            new HashSet<>(),
             new Id(0)
     );
 
@@ -41,6 +43,7 @@ public class TypicalBookings {
             new Description("description"),
             new StartTime(LocalDateTime.of(2021, 03, 01, 13, 00, 00)),
             new EndTime(LocalDateTime.of(2021, 03, 01, 14, 00, 00)),
+            new HashSet<>(),
             new Id(1)
     );
 
@@ -48,6 +51,7 @@ public class TypicalBookings {
             new Description("description"),
             new StartTime(LocalDateTime.of(2021, 03, 01, 12, 30, 00)),
             new EndTime(LocalDateTime.of(2021, 03, 01, 13, 30, 00)),
+            new HashSet<>(),
             new Id(2)
     );
 
@@ -56,6 +60,7 @@ public class TypicalBookings {
             new Description("description"),
             new StartTime(LocalDateTime.of(2021, 03, 01, 14, 30, 00)),
             new EndTime(LocalDateTime.of(2021, 03, 01, 15, 30, 00)),
+            new HashSet<>(),
             new Id(3)
     );
 
