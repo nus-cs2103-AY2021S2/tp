@@ -15,6 +15,5 @@ public abstract class EDeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Deleted the following events: %s";
     public static final String MESSAGE_INVALID_EVENT_INDEX = "Invalid event indexes: %s";
-    public static final String MESSAGE_USAGE_CONCISE =
-            COMMAND_WORD + " [INDEX [INDEX]...]";
+    public static final String MESSAGE_USAGE_CONCISE = COMMAND_WORD + " [INDEX [INDEX]...]";
 }

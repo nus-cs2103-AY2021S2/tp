@@ -6,13 +6,14 @@ import seedu.partyplanet.logic.commands.exceptions.CommandException;
 import seedu.partyplanet.model.Model;
 
 /**
- * Undoes the previous command that changes the AddressBook
+ * Undoes the previous command that changes the address or event books
  */
 public class UndoCommand extends Command {
 
     public static final String COMMAND_WORD = "undo";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Undoes the last command that changes the AddressBook.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Undoes the last command that changes the address or event books.";
 
     public static final String MESSAGE_USAGE_CONCISE = COMMAND_WORD;
 
@@ -22,7 +23,7 @@ public class UndoCommand extends Command {
 
 
     /**
-     * Creates an UndoCommand to undo the last command that changes the AddressBook
+     * Creates an UndoCommand to undo the last command that changes the address or event books
      */
     public UndoCommand() {
     }

@@ -10,7 +10,10 @@ public class HelpCommand extends Command {
     public static final String COMMAND_WORD = "help";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
-            + "Example: " + COMMAND_WORD;
+            + "Example: " + COMMAND_WORD + "\n"
+            + "OR Shows program usage instructions for a specified command\n"
+            + "Parameters: COMMAND\n"
+            + "Example: " + COMMAND_WORD + " " + AddCommand.COMMAND_WORD;
 
     public static final String MESSAGE_USAGE_CONCISE = COMMAND_WORD + " [COMMAND]";
 
@@ -20,11 +23,8 @@ public class HelpCommand extends Command {
             + "*****ADDRESSBOOK*****\n"
             + "Adding contacts: " + AddCommand.MESSAGE_USAGE_CONCISE + "\n"
             + "Deleting contacts: " + DeleteCommand.MESSAGE_USAGE_CONCISE + "\n"
-            + "Clearing all data: " + ClearCommand.MESSAGE_USAGE_CONCISE + "\n"
             + "Editing contacts: " + EditCommand.MESSAGE_USAGE_CONCISE + "\n"
             + "Listing contacts: " + ListCommand.MESSAGE_USAGE_CONCISE + "\n"
-            + "Finding contacts: " + FindCommand.MESSAGE_USAGE_CONCISE + "\n"
-            + "Finding tags: " + TagsCommand.MESSAGE_USAGE_CONCISE + "\n"
             + "*****EVENTBOOK*****\n"
             + "Adding events: " + EAddCommand.MESSAGE_USAGE_CONCISE + "\n"
             + "Deleting events: " + EDeleteCommand.MESSAGE_USAGE_CONCISE + "\n"
@@ -69,20 +69,12 @@ public class HelpCommand extends Command {
         case DeleteCommand.COMMAND_WORD:
             return new CommandResult(DeleteCommand.MESSAGE_USAGE, false);
 
-        case ClearCommand.COMMAND_WORD:
-            return new CommandResult(ClearCommand.MESSAGE_USAGE, false);
-
         case EditCommand.COMMAND_WORD:
             return new CommandResult(EditCommand.MESSAGE_USAGE, false);
 
         case ListCommand.COMMAND_WORD:
             return new CommandResult(ListCommand.MESSAGE_USAGE, false);
 
-        case FindCommand.COMMAND_WORD:
-            return new CommandResult(FindCommand.MESSAGE_USAGE, false);
-
-        case TagsCommand.COMMAND_WORD:
-            return new CommandResult(TagsCommand.MESSAGE_USAGE, false);
 
         // EventBook Commands
 
