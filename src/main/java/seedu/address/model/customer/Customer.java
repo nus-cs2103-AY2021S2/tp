@@ -22,19 +22,21 @@ public class Customer {
     private final Phone phone;
     private final Email email;
     private final Address address;
+    private final DateOfBirth dateOfBirth;
     private final Set<Tag> tags = new HashSet<>();
     private final Map<Car, CoeExpiry> carsOwned;
 
     /**
      * Every field must be present and not null.
      */
-    public Customer(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                    Map<Car, CoeExpiry> carsOwned) {
+    public Customer(Name name, Phone phone, Email email, Address address, DateOfBirth dateOfBirth,
+                    Set<Tag> tags, Map<Car, CoeExpiry> carsOwned) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.dateOfBirth = dateOfBirth;
         this.tags.addAll(tags);
         if (carsOwned == null) {
             carsOwned = new HashMap<>();
@@ -56,6 +58,10 @@ public class Customer {
 
     public Address getAddress() {
         return address;
+    }
+
+    public DateOfBirth getDateOfBirth() {
+        return dateOfBirth;
     }
 
     /**
@@ -107,6 +113,7 @@ public class Customer {
             && otherCustomer.getPhone().equals(getPhone())
             && otherCustomer.getEmail().equals(getEmail())
             && otherCustomer.getAddress().equals(getAddress())
+            && otherCustomer.getDateOfBirth().equals(getDateOfBirth())
             && otherCustomer.getTags().equals(getTags());
     }
 
@@ -125,7 +132,9 @@ public class Customer {
             .append("; Email: ")
             .append(getEmail())
             .append("; Address: ")
-            .append(getAddress());
+            .append(getAddress())
+            .append("; Date Of Birth: ")
+            .append(getDateOfBirth());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

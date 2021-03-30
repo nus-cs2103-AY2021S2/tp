@@ -41,6 +41,8 @@ public class CustomerCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label dateOfBirth;
+    @FXML
     private Label cars;
     @FXML
     private FlowPane tags;
@@ -56,6 +58,7 @@ public class CustomerCard extends UiPart<Region> {
         phone.setText(customer.getPhone().value);
         email.setText(customer.getEmail().value);
         address.setText(customer.getAddress().value);
+        dateOfBirth.setText(customer.getDateOfBirth().birthDate);
         customer.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))
             .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
