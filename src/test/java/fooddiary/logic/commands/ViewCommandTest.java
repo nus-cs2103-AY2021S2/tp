@@ -26,6 +26,9 @@ class ViewCommandTest {
 
     private Model model = new ModelManager(getTypicalFoodDiary(), new UserPrefs());
 
+    /**
+     * Checks if given valid index number for unfiltered entry list, correct entry is returned
+     */
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Entry entryToView = model.getFilteredEntryList().get(INDEX_FIRST_ENTRY.getZeroBased());
@@ -38,6 +41,9 @@ class ViewCommandTest {
         assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
     }
 
+    /**
+     * Checks if given invalid index number for unfiltered entry list throws CommandException
+     */
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEntryList().size() + 1);
@@ -46,6 +52,9 @@ class ViewCommandTest {
         assertCommandFailure(viewCommand, model, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
     }
 
+    /**
+     * Checks if given valid index number for filtered entry list, correct entry is returned
+     */
     @Test
     public void execute_validIndexFilteredList_success() {
         showEntryAtIndex(model, INDEX_FIRST_ENTRY);
@@ -61,6 +70,9 @@ class ViewCommandTest {
         assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
     }
 
+    /**
+     * Checks if commandException thrown if given invalid index number for filtered entry list
+     */
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         showEntryAtIndex(model, INDEX_FIRST_ENTRY);

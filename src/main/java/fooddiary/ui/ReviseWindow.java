@@ -40,9 +40,9 @@ public class ReviseWindow extends UiPart<Stage> {
     @FXML
     private Label reviews;
     @FXML
-    private Label tagCategoryLabel;
+    private Label categoriesLabel;
     @FXML
-    private Label tagCategorySchool;
+    private Label schoolsLabel;
     @FXML
     private TextField nameText;
     @FXML
@@ -54,9 +54,9 @@ public class ReviseWindow extends UiPart<Stage> {
     @FXML
     private TextArea reviewsText;
     @FXML
-    private TextField tagCategoryText;
+    private TextField categoriesText;
     @FXML
-    private TextField tagSchoolText;
+    private TextField schoolsText;
     @FXML
     private Button reviseButton;
 
@@ -80,7 +80,7 @@ public class ReviseWindow extends UiPart<Stage> {
     }
 
     /**
-     * Shows the View window.
+     * Shows the Revise window.
      *
      * @throws IllegalStateException <ul>
      *                                   <li>
@@ -130,6 +130,7 @@ public class ReviseWindow extends UiPart<Stage> {
      *
      * @param entry entry
      * @param index index of entry
+     * @param mainWindow main ui window
      */
     public void setEntryContent(Entry entry, Index index, MainWindow mainWindow) {
         this.index = index;
@@ -138,27 +139,31 @@ public class ReviseWindow extends UiPart<Stage> {
         priceText.setText(String.format("%s", entry.getPrice().value));
         ratingText.setText(String.format("%s", entry.getRating().value));
         addressText.setText(entry.getAddress().value);
+
         String reviewsStr = entry.getReviews().stream()
                 .map(review -> review.value + "\n\n")
                 .collect(Collectors.joining());
         reviewsText.setText(reviewsStr);
-        String tagCategories = entry.getTagCategories().stream()
+
+        String categoriesStr = entry.getTagCategories().stream()
                 .sorted(Comparator.comparing(tag -> tag.getTag()))
                 .map(tag -> tag.getTag() + " ")
                 .collect(Collectors.joining());
-        String tagSchools = entry.getTagSchools().stream()
+
+        String schoolsStr = entry.getTagSchools().stream()
                 .sorted(Comparator.comparing(tag -> tag.getTag()))
                 .map(tag -> tag.getTag() + " ")
                 .collect(Collectors.joining());
-        tagCategoryText.setText(tagCategories);
-        tagSchoolText.setText(tagSchools);
+
+        categoriesText.setText(categoriesStr);
+        schoolsText.setText(schoolsStr);
     }
 
     /**
      * Submits revision to edit command for update.
      *
-     * @throws CommandException Invalid command given
-     * @throws ParseException Parsing formatting error occurs
+     * @throws CommandException if invalid command given
+     * @throws ParseException if parsing formatting error occurs
      */
     @FXML
     private void revise() throws CommandException, ParseException {
@@ -172,13 +177,13 @@ public class ReviseWindow extends UiPart<Stage> {
             reviewsStr += String.format(" %s%s", CliSyntax.PREFIX_REVIEW, review);
         }
 
-        String[] categoriesArr = tagCategoryText.getText().split(" ");
+        String[] categoriesArr = categoriesText.getText().split(" ");
         String categoriesStr = "";
         for (String category : categoriesArr) {
             categoriesStr += String.format(" %s%s", CliSyntax.PREFIX_TAG_CATEGORY, category);
         }
 
-        String[] schoolsArr = tagSchoolText.getText().split(" ");
+        String[] schoolsArr = schoolsText.getText().split(" ");
         String schoolsStr = "";
         for (String school : schoolsArr) {
             schoolsStr += String.format(" %s%s", CliSyntax.PREFIX_TAG_SCHOOL, school);

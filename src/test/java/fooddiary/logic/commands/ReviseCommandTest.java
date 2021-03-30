@@ -26,6 +26,9 @@ class ReviseCommandTest {
 
     private Model model = new ModelManager(getTypicalFoodDiary(), new UserPrefs());
 
+    /**
+     * Checks if given valid index number for unfiltered entry list, correct entry is returned
+     */
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Entry entryToRevise = model.getFilteredEntryList().get(INDEX_FIRST_ENTRY.getZeroBased());
@@ -38,6 +41,9 @@ class ReviseCommandTest {
         assertCommandSuccess(reviseCommand, model, expectedMessage, expectedModel);
     }
 
+    /**
+     * Checks if given invalid index number for unfiltered entry list throws CommandException
+     */
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEntryList().size() + 1);
@@ -46,6 +52,9 @@ class ReviseCommandTest {
         assertCommandFailure(reviseCommand, model, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
     }
 
+    /**
+     * Checks if given valid index number for filtered entry list, correct entry is returned
+     */
     @Test
     public void execute_validIndexFilteredList_success() {
         showEntryAtIndex(model, INDEX_FIRST_ENTRY);
@@ -56,11 +65,14 @@ class ReviseCommandTest {
         String expectedMessage = String.format(ReviseCommand.MESSAGE_REVISE_ENTRY_SUCCESS, entryToRevise);
 
         Model expectedModel = new ModelManager(model.getFoodDiary(), new UserPrefs());
-        showEntry(expectedModel, entryToRevise);
+        reviseEntry(expectedModel, entryToRevise);
 
         assertCommandSuccess(reviseCommand, model, expectedMessage, expectedModel);
     }
 
+    /**
+     * Checks if commandException thrown if given invalid index number for filtered entry list
+     */
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         showEntryAtIndex(model, INDEX_FIRST_ENTRY);
@@ -99,7 +111,7 @@ class ReviseCommandTest {
     /**
      * Updates {@code model}'s filtered list to specified entry.
      */
-    private void showEntry(Model model, Entry entry) {
+    private void reviseEntry(Model model, Entry entry) {
         model.updateFilteredEntryList(p -> p.isSameEntry(entry));
 
         assertTrue(!model.getFilteredEntryList().isEmpty());

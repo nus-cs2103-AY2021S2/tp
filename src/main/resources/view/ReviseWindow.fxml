@@ -38,11 +38,11 @@
                          <Font size="15.0" />
                       </font>
                     </TextArea>
-                    <Label fx:id="tagCategoryLabel" styleClass="view_label" text="Categories:" />
-                    <TextField fx:id="tagCategoryText" />
-                    <Label fx:id="tagSchoolLabel" styleClass="view_label" text="Schools:" />
-                    <TextField fx:id="tagSchoolText" />
-                    <Button fx:id="reviseButton" mnemonicParsing="false" onAction="#revise" text="Revise">
+                    <Label fx:id="categoriesLabel" styleClass="view_label" text="Categories:" />
+                    <TextField fx:id="categoriesText" />
+                    <Label fx:id="schoolsLabel" styleClass="view_label" text="Schools:" />
+                    <TextField fx:id="schoolsText" />
+                    <Button fx:id="reviseButton" mnemonicParsing="false" onAction="#revise" text="Revise" >
                         <HBox.margin>
                             <Insets left="5.0" />
                         </HBox.margin>

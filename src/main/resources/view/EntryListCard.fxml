@@ -32,8 +32,8 @@
       <Label fx:id="price" styleClass="cell_small_label" text="\\$price" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
       <Label fx:id="reviews" minHeight="40.0" maxHeight="40.0" styleClass="cell_small_label" text="\$reviews" wrapText="true" />
-      <FlowPane fx:id="tagCategory" />
-      <FlowPane fx:id="tagSchool" />
+      <FlowPane fx:id="tagCategories" />
+      <FlowPane fx:id="tagSchools" />
     </VBox>
       <rowConstraints>
          <RowConstraints />

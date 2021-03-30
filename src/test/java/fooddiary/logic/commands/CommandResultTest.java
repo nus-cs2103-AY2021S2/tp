@@ -7,6 +7,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for
+ * {@code CommandResult}.
+ */
 public class CommandResultTest {
     @Test
     public void equals() {
@@ -28,7 +32,7 @@ public class CommandResultTest {
         // different feedbackToUser value -> returns false
         assertFalse(commandResult.equals(new CommandResult("different")));
 
-        // different viewEntry value -> returns false
+        // different enableView value -> returns false
         assertFalse(commandResult.equals(new CommandResult(null, null, "feedback",
                 false, true, false, false)));
 
@@ -55,7 +59,7 @@ public class CommandResultTest {
         // different feedbackToUser value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("different").hashCode());
 
-        // different viewEntry value -> returns different hashcode
+        // different enableView value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult(null, null, "feedback",
                 false, true, false, false).hashCode());
 

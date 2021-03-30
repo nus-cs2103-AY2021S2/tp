@@ -38,10 +38,10 @@
                          <Font size="15.0" />
                       </font>
                     </TextArea>
-                    <Label fx:id="tagCategoryLabel" styleClass="view_label" text="Categories:" />
-                    <FlowPane fx:id="tagCategory" />
-                    <Label fx:id="tagSchoolLabel" styleClass="view_label" text="Schools:" />
-                    <FlowPane fx:id="tagSchool" />
+                    <Label fx:id="categoriesLabel" styleClass="view_label" text="Categories:" />
+                    <FlowPane fx:id="tagCategories" />
+                    <Label fx:id="schoolsLabel" styleClass="view_label" text="Schools:" />
+                    <FlowPane fx:id="tagSchools" />
                 </VBox>
             </ScrollPane>
         </Scene>
