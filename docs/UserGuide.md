@@ -39,7 +39,7 @@ PartyPlanet can get the planning of your birthday celebrations done faster than 
   e.g. `[-t TAG]…​` can be used as ` ` (i.e. 0 times), `-t friend`, `-t friend -t family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `-n NAME -p PHONE_NUMBER`, the alternative `-p PHONE_NUMBER -n NAME` is also acceptable.
+  e.g. if the command specifies `-n NAME -p PHONE`, the alternative `-p PHONE -n NAME` is also acceptable.
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `-p 12341234 -p 56785678`, only `-p 56785678` will be taken.
@@ -49,14 +49,64 @@ PartyPlanet can get the planning of your birthday celebrations done faster than 
 
 </div>
 
-## Contact List Commands
+## List of parameters
+
+`ADDRESS`
+* Addresses can take any values
+
+`BIRTHDAY`
+* Birthdays must be in a valid date format, with or without year, and must be in the past if the year is specified
+* e.g. `13 Jan`, `13 Mar 1997`
+
+`COMMAND`
+* Can be any valid command [below](#Party-Planet-Commands)
+
+`DATE`
+* The date must be in a valid date format with year
+* e.g. `2022-05-07`, `2 feb 2021`
+
+`DETAIL`
+* Details can take any values
+
+`EMAIL`
+* Emails should be of the format local-part@domain and adhere to the following constraints:
+  1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (!#$%&'*+/=?`{|}~^.-) .
+  2. This is followed by a '@' and then a domain name. The domain name must:
+    * be at least 2 characters long
+    * start and end with alphanumeric characters
+    * consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.
+
+`INDEX`
+* Index must be a positive integer that is a valid number in the list.
+
+`NAME`
+* Names can only contain alphanumeric characters and spaces
+
+`PHONE`
+* Phone numbers should only contain numbers
+* It should be at least 3 digits long
+
+`REMARK`
+* Remarks can take any values
+
+`SORT_FIELD`
+* Can be any valid character, specified by `list`/ `elist`
+
+`SORT_ORDER`
+* Can only be any of the following
+  * `a`, `asc`, `ascending` represents ascending order
+  * `d`, `desc`, `descending` represents descending order
+
+`TAG`
+* Tags should be alphanumeric
+
+## Party Planet Commands
 
 ### Adding contacts : `add`
 
 Adds a person to PartyPlanet's Contacts List.
 
-Format: `add -n NAME [-p PHONE_NUM] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY]​ [-r REMARK]​`<br>
-* The birthday must be in a valid date format, with or without year, and must be in the past if the year is specified, e.g. 13 Jan, 13 Mar 1997
+Format: `add -n NAME [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY]​ [-r REMARK]​`<br>
 
 Examples:
 * `add -n James Ho -p 22224444 -e jamesho@example.com -a 123, Clementi Rd, 1234665 -t friend -t colleague -b 1 Jan
@@ -71,8 +121,7 @@ Format: `delete [{INDEX [INDEX]... | [--any] -t TAG [-t TAG]...}]`
   * Deletes all persons in the displayed person list
 * If provided with index(es)
   * Deletes the person at the specified `INDEX`.
-  * All indexes refers to the index number shown in the displayed person list (without sorting).
-  * All indexes must be a positive integer valid in the list.
+  * All indexes refers to the index number shown in the displayed person list.
 * If provided with tags
   * Delete every person who is tagged with all/any (`--any` specified) of the specified tags, in the displayed person list.
 
@@ -87,10 +136,10 @@ Examples:
 
 Edits an existing person in PartyPlanet's Contact List.
 
-Format: `edit {INDEX [-n NAME] [-p PHONE_NUMBER] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] | --remove -t TAG [-t TAG}…​}`
+Format: `edit {INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] | --remove -t TAG [-t TAG}…​}`
 
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list (not sorted). The index must be a positive integer that is a valid number in the list.
+* Edits the person at the specified `INDEX`.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `-t` without specifying any tags after it.
@@ -134,7 +183,7 @@ Examples:
 
 Adds an event to PartyPlanet's Events list. Similar to `add` for person contacts.
 
-Format: `eadd -n NAME [-d DATE] [-r REMARK]`
+Format: `eadd -n NAME [-d DATE] [-r DETAIL]`
 
 * The date must be in a valid date format with year, e.g. 2022-05-07, 2 feb 2021
 
@@ -145,10 +194,10 @@ Examples:
 
 Edits an existing event in PartyPlanet's Events List. Similar to `edit`.
 
-Format: `eedit INDEX [-n NAME] [-d DATE] [-r REMARK]`
+Format: `eedit INDEX [-n NAME] [-d DATE] [-r DETAIL]`
 
-* Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed events list.
-  The index must be a positive integer that is a valid number in the list.
+* Edits the event at the specified `INDEX`.
+  * The index refers to the index number shown in the displayed events list.
 * Existing values will be updated to the input values.
 
 Examples:
@@ -290,13 +339,13 @@ Retrieves previously entered input.
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add -n NAME [-p PHONE_NUM] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK]` <br> e.g., `add -n James Ho -p 96280000 -t friend -t colleague -r allergic to nuts`
+**Add** | `add -n NAME [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK]` <br> e.g., `add -n James Ho -p 96280000 -t friend -t colleague -r allergic to nuts`
 **EAdd** | `eadd -n NAME [-d DATE] [-r REMARK]` <br> e.g. `eadd -n April Fools -d 2021-04-01 -r Prank the april babies!`
 **Delete** | `delete [{INDEX [INDEX]…​ | [--any] -t TAG [-t TAG]...}]`<br> e.g. `delete` <br> e.g. `delete 3 4 5` <br> e.g., `delete -t colleague`
 **EDelete** | `edelete [INDEX [INDEX]...]` <br> e.g. `edelete 1 2 3`
 **EDone** | `edone INDEX [INDEX]…​` <br> e.g. `edone 2 3 5`
-**Edit** | `edit {INDEX [-n NAME] [-p PHONE_NUMBER] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] | --remove -t TAG [-t TAG}…​}`<br> e.g.,`edit 2 -n James Lee -e jameslee@example.com`<br> e.g., `edit --remove -t colleague`
-**EEdit** | `eedit INDEX [-n NAME] [-d DATE] [-r REMARK]` <br> e.g. `eedit 3 -r Celebrate during first combined practice`
+**Edit** | `edit {INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r DETAIL] | --remove -t TAG [-t TAG}…​}`<br> e.g.,`edit 2 -n James Lee -e jameslee@example.com`<br> e.g., `edit --remove -t colleague`
+**EEdit** | `eedit INDEX [-n NAME] [-d DATE] [-r DETAIL]` <br> e.g. `eedit 3 -r Celebrate during first combined practice`
 **List** | `list [-s SORT_ORDER]`<br> e.g., `list`<br> e.g., `list -s asc`
 **EList** | `elist [--exact] [--any] [-n NAME] [-r DETAIL] ... [-s SORT] [-o ORDER]` <br> e.g. `elist --any -n Christmas -r tarts`
 **Undo** | `undo`
