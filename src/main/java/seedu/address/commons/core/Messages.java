@@ -11,4 +11,6 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d Person(s) listed!";
     public static final String MESSAGE_APPOINTMENTS_LISTED_OVERVIEW = "%1$d Appointment(s) listed!";
     public static final String MESSAGE_INVALID_OPTION = "Invalid option provided: %1$s";
+    public static final String MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX = "The appointment index "
+            + "provided is invalid";
 }

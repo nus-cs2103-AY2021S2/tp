@@ -54,7 +54,7 @@ public interface HeliBookStorage {
     Path getAppointmentBookFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyAddressBook}.
+     * Returns AAppointmentBook data as a {@link ReadOnlyAppointmentBook}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
@@ -79,53 +79,5 @@ public interface HeliBookStorage {
     void saveAppointmentBook(ReadOnlyAppointmentBook appointmentBook, Path filePath) throws IOException;
 
 }
-
-
-//package seedu.address.storage;
-//
-//import java.io.IOException;
-//import java.nio.file.Path;
-//import java.util.Optional;
-//
-//import seedu.address.commons.exceptions.DataConversionException;
-//import seedu.address.model.ReadOnlyAddressBook;
-//
-///**
-// * Represents a storage for {@link seedu.address.model.AddressBook}.
-// */
-//public interface HeliBookStorage<ReadOnlyTBook> {
-//
-//    /**
-//     * Returns the file path of the data file.
-//     */
-//    Path getTBookFilePath();
-//
-//    /**
-//     * Returns TBook data as a ReadOnlyTBook.
-//     *   Returns {@code Optional.empty()} if storage file is not found.
-//     * @throws DataConversionException if the data in storage is not in the expected format.
-//     * @throws IOException if there was any problem when reading from the storage.
-//     */
-//    Optional<ReadOnlyTBook> readTBook() throws DataConversionException, IOException;
-//
-//    /**
-//     * @see #getTBookFilePath()
-//     */
-//    Optional<ReadOnlyTBook> readTBook(Path filePath) throws DataConversionException, IOException;
-//
-//    /**
-//     * Saves the given ReadOnlyTBook to the storage.
-//     * @param tBook cannot be null.
-//     * @throws IOException if there was any problem writing to the file.
-//     */
-//    void saveTBook(ReadOnlyTBook tBook) throws IOException;
-//
-//    /**
-//     * @see #saveTBook(ReadOnlyTBook)
-//     */
-//    void saveTBook(ReadOnlyTBook tBook, Path filePath) throws IOException;
-//
-//}
-
 
 

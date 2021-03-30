@@ -9,7 +9,7 @@ class MarkdownPlainTextParserTest {
 
     @Test
     void formatTitleText_success() {
-        String actualPlainText = parser.formatPlainText("### This is a title", "title");
+        String actualPlainText = parser.formatPlainText("#### This is a title", "title");
         String expectedPlainText = "This is a title";
 
         assertEquals(expectedPlainText, actualPlainText);
