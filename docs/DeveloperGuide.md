@@ -80,7 +80,7 @@ The `UI` component,
 **API** :
 [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `HeyMatezParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -163,17 +163,57 @@ Step 1. User executes the `done 1` command to mark the 1st task in the task list
 Step 2. `DoneTaskCommandParser#parse` method will check on the validity of the arguments for a `DoneTaskCommand`. If it
 is valid,  it will call the create a new `DoneTaskCommand` by calling the constructor.
 
-Step 4. The `DoneTaskCommand#execute` is then called by the `LogicManger`. The task with the same `Index` is retrieved and
+Step 3. The `DoneTaskCommand#execute` is then called by the `LogicManager`. The task with the same `Index` is retrieved and
 a copy of the task is created with the same attribute values. However. the `TaskStatus` value is updated to be 'completed'
 in the `Model`.
 
-Step 5. Once the execution is completed, the message `MESSAGE_DONE_TASK_SUCCESS` is used to return a new Command Result
+Step 4. Once the execution is completed, the message `MESSAGE_DONE_TASK_SUCCESS` is used to return a new Command Result
 with the attached message.
 
 Below is the sequence diagram:
 
 <img src="images/DoneTaskSequenceDiagram.png" width="450" />
 
+<<<<<<< HEAD
+### Find Tasks with deadline before a selected date feature
+
+The implementation of the finding of tasks with deadline before a selected date is facilitated by the `FindTasksBeforeCommand`
+class, from the Command abstract class.
+
+It is also facilitated by the following Parser Class:
+* `FindTasksBeforeCommandParser`
+
+The above mentioned Parser class inherits the `#parse` method from the Parser interface.
+
+* `FindTasksBeforeParser#parse` - checks if the deadline passed to the current FindTasksBeforeCommand is in the correct format and is valid, then creates a FindTasksBeforeCommand instance if they are.
+
+
+Subsequently, the created `FindTasksBeforeCommand` object contains an `#execute` method which is responsible for
+updating the task list to contain the tasks with deadlines before the selected date. This is achieved by calling on `Model#updateFilteredTaskList`
+with the DeadlineBeforeDatePredicate which updates the task list with tasks that match the given predicate.
+
+Below is the usage scenario and how the finding of tasks due before a selected date mechanism behaves.
+
+Assumptions:
+1. User has already launched the app
+2. HEY MATEz application has existing tasks with their corresponding deadlines
+
+Step 1. User executes the `findBefore 2021-04-04` command to show the tasks in the task list of HEY MATEz with deadline before 2021-04-04.  A
+`FindTasksBeforeCommandParser` is created and it calls `FindTasksBeforeParser#parse` on the arguments
+
+Step 2. `FindTasksBeforeCommandParser#parse` method will check on the validity of the deadline argument for a `FindTasksBeforeCommand`. If is is
+valid,  it will create a new `FindTasksBeforeCommand` by calling the constructor with the DeadlineBeforeDatePredicate.
+
+Step 3. The `FindTasksBeforeCommand#execute` is then called by the `LogicManager`. The tasks with deadline before 2021-04-04 are selected by the 
+DeadlineBeforeDatePredicate.
+
+Step 4. Once the execution is completed, the message `MESSAGE_TASKS_LISTED_OVERVIEW,` is used to return a new Command Result
+with the attached message.
+
+Below is the sequence diagram:
+
+<img src="images/FindBeforeSequenceDiagram.png" width="450" />
+=======
 ### Delete a Task feature
 
 The implementation of the deleting a Task feature is facilitated by the DeleteTaskCommand, which extends from the Command abstract class.
@@ -210,6 +250,7 @@ new Command Result with the attached message.
 Below is the sequence diagram: 
 
 <img src="images/DeleteTaskSequenceDiagram.png" width="450" />
+>>>>>>> 2ba23b23a5d63f4160fc5361b8a5fb55ab55c986
 
 --------------------------------------------------------------------------------------------------------------------
 
