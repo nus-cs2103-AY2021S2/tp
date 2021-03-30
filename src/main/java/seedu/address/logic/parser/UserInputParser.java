@@ -40,6 +40,7 @@ import seedu.address.logic.parser.patient.DeletePatientCommandParser;
 import seedu.address.logic.parser.patient.EditPatientCommandParser;
 import seedu.address.logic.parser.patient.FindPatientCommand;
 import seedu.address.logic.parser.patient.FindPatientCommandParser;
+import seedu.address.storage.InputCommandStorage;
 
 /**
  * Parses user input.
@@ -52,6 +53,11 @@ public class UserInputParser {
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
     /**
+     * Used for storing user input in its raw form.
+     */
+    private final InputCommandStorage inputCommandStorage = new InputCommandStorage();
+
+    /**
      * Parses user input into command for execution.
      *
      * @param userInput full user input string
@@ -59,6 +65,9 @@ public class UserInputParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public Command parseCommand(String userInput) throws ParseException {
+        //store userInput in inputCommandStorage
+        inputCommandStorage.newInput(userInput);
+
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
@@ -66,6 +75,7 @@ public class UserInputParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+
         switch (commandWord) {
         // Appointment related commands
         case AddAppointmentCommand.COMMAND_WORD:
