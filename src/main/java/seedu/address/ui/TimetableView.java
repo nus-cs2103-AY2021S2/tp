@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -14,6 +15,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.parser.DateTimeUtil;
 import seedu.address.model.schedule.Schedulable;
 
 /**
@@ -116,13 +118,31 @@ public class TimetableView extends UiPart<Region> {
                 .collect(Collectors.toList());
         for (Schedulable schedulable : processedList) {
             double slotLength = timetablePlacementPolicy.getLengthOfSlot(schedulable);
-            String name = schedulable.getNameString();
+            String header = getHeader(schedulable);
             Column col = timetablePlacementPolicy.getColumnPlacement(schedulable);
             double position = timetablePlacementPolicy.getVerticalPosition(schedulable);
-            TimetableSlot slotToAdd = new TimetableSlot(slotLength, name);
+            TimetableSlot slotToAdd = new TimetableSlot(slotLength, header);
             putIntoSlot(slotToAdd, col, position);
         }
     }
+
+    /**
+     * Given the schedulable object, returns a nice header consisting of the name, followed by the timestamp below
+     * (h:mm a - h:mm a)
+     * @param schedulable
+     * @return
+     */
+
+    public String getHeader(Schedulable schedulable) {
+        LocalTime startTime = schedulable.getStartLocalDateTime().toLocalTime();
+        LocalTime endTime = schedulable.getTerminateLocalDateTime().toLocalTime();
+        return schedulable.getNameString()
+                + "\n"
+                + DateTimeUtil.prettyPrintFormatLocalTime(startTime)
+                + " - "
+                + DateTimeUtil.prettyPrintFormatLocalTime(endTime);
+    }
+
 
     /**
      * Enum representing an assigned column in the timetable.
