@@ -200,6 +200,35 @@ public interface Model {
     void addAlias(Alias alias);
 
     /**
+     * Returns true if the model has any previous states to restore. False otherwise.
+     *
+     * @return True if the model has any previous states to restore. False otherwise.
+     */
+    boolean canUndoAddressBook();
+
+    /**
+     * Restores the model's state to its previous state, if any.
+     */
+    void undoAddressBook();
+
+    /**
+     * Saves the model's state for undo.
+     */
+    void commitAddressBook();
+
+    /**
+     * Returns true if the model has any future states to restore. False otherwise.
+     *
+     * @return True if the model has any future states to restore. False otherwise.
+     */
+    boolean canRedoAddressBook();
+
+    /**
+     * Restores the model's state to its next state, if any.
+     */
+    void redoAddressBook();
+
+    /**
      * Deletes a user-defined alias from the current mapping.
      *
      * @param aliasName The name of the alias to be deleted.
