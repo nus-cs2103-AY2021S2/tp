@@ -18,6 +18,7 @@ public class DeleteGroupCommandParser implements Parser<DeleteGroupCommand> {
         if (!argMultiMap.getValue(PREFIX_NAME).isPresent()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteGroupCommand.MESSAGE_USAGE));
         }
+
         String groupNameString = argMultiMap.getValue(PREFIX_NAME).get();
         Name groupName = ParserUtil.parseName(groupNameString);
 
