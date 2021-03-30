@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.student.logic.commands.AddAppointmentCommand.MESSAGE_OVERLAPPING_APPOINTMENT;
 import static seedu.student.logic.commands.AddAppointmentCommand.MESSAGE_STUDENT_DOES_NOT_EXIST;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.student.logic.parser.CliSyntax.PREFIX_MATRICULATION_NUMBER;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.student.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 import static seedu.student.model.Model.PREDICATE_SHOW_ALL_APPOINTMENT_LISTS;
@@ -26,10 +25,9 @@ public class EditAppointmentCommand extends Command {
             + "by the index number used in the displayed student list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: Matriculation Number "
-            + PREFIX_MATRICULATION_NUMBER + "MATRICULATION NUMBER "
-            + "[" + PREFIX_DATE + "DATE] "
-            + "[" + PREFIX_START_TIME + " START TIME] \n"
-            + "Example: " + PREFIX_MATRICULATION_NUMBER + " A01234567X "
+            + PREFIX_DATE + "DATE "
+            + PREFIX_START_TIME + "START TIME \n"
+            + "Example: " + COMMAND_WORD + " A01234567X "
             + PREFIX_DATE + "2021-03-25 "
             + PREFIX_START_TIME + "11:00 \n";
 
