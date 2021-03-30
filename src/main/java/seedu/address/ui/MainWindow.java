@@ -43,6 +43,7 @@ public class MainWindow extends UiPart<Stage> {
     private UpcomingTuitionListPanel upcomingTuitionListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private CalendarView calendarView;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -67,6 +68,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane feePanelPlaceholder;
+
+    @FXML
+    private StackPane calendarViewPlaceholder;
 
     @FXML
     private Tab time;
@@ -152,6 +156,9 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
+        calendarView = new CalendarView(logic.getFullStudentList());
+        calendarViewPlaceholder.getChildren().add(calendarView.getRoot());
+
         displayDateAndTime();
     }
 
@@ -205,7 +212,7 @@ public class MainWindow extends UiPart<Stage> {
                     event -> {
                         time.setText(
                             LocalDateTime.now().toLocalDate()
-                            .format(DateTimeFormatter.ofPattern("dd-MMM-YYYY")) + "     "
+                            .format(DateTimeFormatter.ofPattern("dd MMM YYYY")) + "     "
                             + LocalDateTime.now().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm")));
 
                     }
