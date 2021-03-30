@@ -17,4 +17,6 @@ public class Messages {
     public static final String MESSAGE_TAG_NOT_IN_LEARN_MODE = "Tagging and deletion of tags "
             + "can only be done in learn mode!";
 
+    public static final String MULTIPLE_CHECKING_AFTER_SUCCESS = "You already got it correct, please enter \"next\" "
+            + "to go to the next question";
 }

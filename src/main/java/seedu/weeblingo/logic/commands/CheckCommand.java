@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.weeblingo.commons.core.Messages;
 import seedu.weeblingo.logic.commands.exceptions.CommandException;
+import seedu.weeblingo.model.Mode;
 import seedu.weeblingo.model.Model;
 import seedu.weeblingo.model.flashcard.Answer;
 
@@ -39,6 +40,9 @@ public class CheckCommand extends Command {
             model.getCurrentFlashcard();
         } catch (NullPointerException e) {
             throw new CommandException(Messages.NO_QUIZ_ERROR_MESSAGE);
+        }
+        if (model.getCurrentMode() == Mode.MODE_CHECK_SUCCESS) {
+            throw new CommandException(Messages.MULTIPLE_CHECKING_AFTER_SUCCESS);
         }
         // Model::isCorrectAttempt() modifies the quiz statistic, FYI
         if (model.isCorrectAttempt(attempt)) {
