@@ -82,7 +82,7 @@ public class ListCommand extends Command {
                 .replace("[", "").replace("]", "");
         if (model.getPersonListCopy().size() == model.getFilteredPersonList().size()) {
             return new CommandResult(ListCommand.MESSAGE_SUCCESS + parseArguments // No person filtered out
-                    + String.format(Messages.MESSAGE_PERSONS_LISTED_TAGS, tagsRepresentation) );
+                    + String.format(Messages.MESSAGE_PERSONS_LISTED_TAGS, tagsRepresentation));
         }
         if (model.getFilteredPersonList().size() == 0) {
             return new CommandResult(String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
