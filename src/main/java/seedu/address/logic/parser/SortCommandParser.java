@@ -1,11 +1,13 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.HasLessonPredicate;
-import seedu.address.model.person.LessonComparator;
 
 
 /**
@@ -19,10 +21,15 @@ public class SortCommandParser implements Parser<SortCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public SortCommand parse(String args) throws ParseException {
-        if (false) {
+        Prefix firstPrefix;
+        try {
+            firstPrefix = ArgumentTokenizer.getFirstPrefix(
+                    args, PREFIX_NAME, PREFIX_SCHOOL, PREFIX_TAG, PREFIX_LESSON);
+        } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE), pe);
         }
-        return new SortCommand(new HasLessonPredicate(), new LessonComparator());
+
+        return new SortCommand(firstPrefix);
     }
 }

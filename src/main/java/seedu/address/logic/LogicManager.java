@@ -18,8 +18,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyDatesBook;
 import seedu.address.model.date.ImportantDate;
-import seedu.address.model.person.LessonDayPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.predicate.LessonDayPredicate;
 import seedu.address.storage.Storage;
 
 /**

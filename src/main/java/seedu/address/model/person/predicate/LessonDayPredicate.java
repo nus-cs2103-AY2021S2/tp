@@ -1,8 +1,9 @@
-package seedu.address.model.person;
+package seedu.address.model.person.predicate;
 
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.person.Person;
 
 /**
  * Tests that a {@code Person}'s {@code Lesson} matches the keyword given.
