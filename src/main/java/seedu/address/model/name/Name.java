@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a name.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}.
  */
-public class Name {
+public class Name implements Comparable<Name> {
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
 
@@ -15,7 +15,7 @@ public class Name {
      * The first character of the name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    private static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String name;
 
@@ -54,7 +54,12 @@ public class Name {
             return false;
         }
         Name otherName = (Name) other;
-        return name.equals(otherName.name);
+        return name.equalsIgnoreCase(otherName.name);
+    }
+
+    @Override
+    public int compareTo(Name another) {
+        return name.compareTo(another.name);
     }
 
     @Override

@@ -31,7 +31,7 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_REMARK, PREFIX_DATE, PREFIX_TIME);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_REMARK, PREFIX_DATE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_REMARK, PREFIX_DATE, PREFIX_TIME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddAppointmentCommand.MESSAGE_USAGE));
@@ -40,7 +40,7 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Remark remark = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get());
         Date date = ParserUtil.parseAppointmentDate(argMultimap.getValue(PREFIX_DATE).get());
-        Time time = ParserUtil.parseAppointmentTime(argMultimap.getValue(PREFIX_TIME).orElse(null));
+        Time time = ParserUtil.parseAppointmentTime(argMultimap.getValue(PREFIX_TIME).get());
 
         Appointment appointment = new Appointment(name, remark, date, time);
 

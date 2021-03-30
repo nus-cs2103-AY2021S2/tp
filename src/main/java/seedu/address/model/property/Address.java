@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Property's address.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}.
  */
-public class Address {
+public class Address implements Comparable<Address> {
     public static final String MESSAGE_CONSTRAINTS = "Addresses can take any value, but it should not be blank";
 
     /*
@@ -54,6 +54,11 @@ public class Address {
         }
         Address otherAddress = (Address) other;
         return propertyAddress.equals(otherAddress.propertyAddress);
+    }
+
+    @Override
+    public int compareTo(Address another) {
+        return this.propertyAddress.compareTo(another.propertyAddress);
     }
 
     @Override

@@ -9,10 +9,26 @@ import seedu.address.model.name.Name;
  * Guarantees: field values are validated, immutable.
  */
 public class Client {
+    public static final String STRING_CLIENT_NAME = "Client Name: ";
+    public static final String STRING_CLIENT_CONTACT = "Client Contact: ";
+    public static final String STRING_CLIENT_EMAIL = "Client Email: ";
+    public static final String STRING_CLIENT_PRICE = "Client Asking Price: ";
+    public static final String DELIMITER = "; ";
+
     private final Name clientName;
     private final Contact clientContact;
     private final Email clientEmail;
     private final AskingPrice clientAskingPrice;
+
+    /**
+     * Constructs a null {@code Client}.
+     */
+    public Client() {
+        this.clientName = null;
+        this.clientContact = null;
+        this.clientEmail = null;
+        this.clientAskingPrice = null;
+    }
 
     /**
      * Constructs a {@code Client}.
@@ -85,25 +101,25 @@ public class Client {
         final StringBuilder builder = new StringBuilder();
 
         if (clientName != null) {
-            builder.append("Client Name: ").append(getClientName());
+            builder.append(STRING_CLIENT_NAME).append(getClientName());
         }
         if (clientContact != null) {
             if (builder.length() != 0) {
-                builder.append("; ");
+                builder.append(DELIMITER);
             }
-            builder.append("Client Contact: ").append(getClientContact());
+            builder.append(STRING_CLIENT_CONTACT).append(getClientContact());
         }
         if (clientEmail != null) {
             if (builder.length() != 0) {
-                builder.append("; ");
+                builder.append(DELIMITER);
             }
-            builder.append("Client Email: ").append(getClientEmail());
+            builder.append(STRING_CLIENT_EMAIL).append(getClientEmail());
         }
         if (clientAskingPrice != null) {
             if (builder.length() != 0) {
-                builder.append("; ");
+                builder.append(DELIMITER);
             }
-            builder.append("Client Asking Price: ").append(getClientAskingPrice());
+            builder.append(STRING_CLIENT_PRICE).append(getClientAskingPrice());
         }
 
         return builder.toString();

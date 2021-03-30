@@ -11,6 +11,10 @@ public class Type {
     public static final String MESSAGE_CONSTRAINTS =
             "Property types should only be either hdb, condo or landed";
 
+    public static final String HDB = "Hdb";
+    public static final String CONDO = "Condo";
+    public static final String LANDED = "Landed";
+
     /*
      * The property types should only be one of three types: hdb, condo, or landed.
      */
@@ -26,7 +30,8 @@ public class Type {
     public Type(String propertyType) {
         requireNonNull(propertyType);
         checkArgument(isValidType(propertyType), MESSAGE_CONSTRAINTS);
-        this.propertyType = propertyType;
+        this.propertyType = propertyType.substring(0, 1).toUpperCase()
+                + propertyType.substring(1).toLowerCase();
     }
 
     /**
@@ -54,7 +59,7 @@ public class Type {
             return false;
         }
         Type otherType = (Type) other;
-        return propertyType.equals(otherType.propertyType);
+        return propertyType.equalsIgnoreCase(otherType.propertyType);
     }
 
     @Override

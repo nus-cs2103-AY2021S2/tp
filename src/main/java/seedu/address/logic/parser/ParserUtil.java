@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,7 +14,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Date;
 import seedu.address.model.appointment.Time;
 import seedu.address.model.name.Name;
-import seedu.address.model.person.Phone;
 import seedu.address.model.property.Address;
 import seedu.address.model.property.Deadline;
 import seedu.address.model.property.PostalCode;
@@ -23,7 +21,11 @@ import seedu.address.model.property.Type;
 import seedu.address.model.property.client.AskingPrice;
 import seedu.address.model.property.client.Contact;
 import seedu.address.model.property.client.Email;
+import seedu.address.model.property.status.Offer;
 import seedu.address.model.remark.Remark;
+import seedu.address.model.sort.descriptor.AppointmentSortingKey;
+import seedu.address.model.sort.descriptor.PropertySortingKey;
+import seedu.address.model.sort.descriptor.SortingOrder;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.DateTimeFormat;
 
@@ -86,6 +88,42 @@ public class ParserUtil {
             throw new ParseException(Remark.MESSAGE_CONSTRAINTS);
         }
         return new Remark(trimmedRemark);
+    }
+
+    /**
+     * Parses a {@code String tag} into a {@code Tag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException If the given {@code tag} is invalid.
+     */
+    public static Tag parseTag(String tag) throws ParseException {
+        requireNonNull(tag);
+        String trimmedTag = tag.trim();
+        if (!Tag.isValidTagName(trimmedTag)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new Tag(trimmedTag);
+    }
+
+    /**
+     * Parses a {@code String tagsString}, with a comma as the delimiter, into a {@code Set<Tag>}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param tagsString The string containing possibly multiple tags to be parsed.
+     * @return A {@code Set<Tag>}.
+     * @throws ParseException If the given {@code tagsString} is invalid.
+     */
+    public static Set<Tag> parseTags(String tagsString) throws ParseException {
+        Set<Tag> tagSet = new HashSet<>();
+        if (tagsString == null || tagsString.isBlank()) {
+            return tagSet;
+        }
+        String trimmedTagsString = tagsString.trim();
+        String[] tagList = trimmedTagsString.split(",");
+        for (String tag: tagList) {
+            tagSet.add(parseTag(tag));
+        }
+        return tagSet;
     }
 
     // =====  Parser methods for property attributes =============================================================
@@ -204,7 +242,7 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      *
      * @param askingPrice The client asking price string to be parsed.
-     * @return A {@code AskingPrice}.
+     * @return An {@code AskingPrice}.
      * @throws ParseException If the given {@code askingPrice} is invalid.
      */
     public static AskingPrice parseClientAskingPrice(String askingPrice) throws ParseException {
@@ -247,9 +285,7 @@ public class ParserUtil {
      * @throws ParseException If the given {@code time} is invalid.
      */
     public static Time parseAppointmentTime(String time) throws ParseException {
-        if (time == null) {
-            return null;
-        }
+        requireNonNull(time);
         String trimmedTime = time.trim();
         try {
             return new Time(LocalTime.parse(trimmedTime, DateTimeFormat.INPUT_TIME_FORMAT));
@@ -258,78 +294,53 @@ public class ParserUtil {
         }
     }
 
-    // ===========================================================================================================
-    // Placeholders for Person object below to handle errors
+    // =====  Parser methods for sorting =========================================================================
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
+     * Parses {@code String sortingKey} into a {@code AppointmentSortingKey}.
      */
-    public static seedu.address.model.person.Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!seedu.address.model.person.Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(seedu.address.model.person.Address.MESSAGE_CONSTRAINTS);
+    public static AppointmentSortingKey parseAppointmentSortingKey(String sortingKey) throws ParseException {
+        requireNonNull(sortingKey);
+        String trimmedSortingKey = sortingKey.trim();
+        if (!AppointmentSortingKey.isValidAppointmentSortingKey(trimmedSortingKey)) {
+            throw new ParseException(AppointmentSortingKey.MESSAGE_CONSTRAINTS);
         }
-        return new seedu.address.model.person.Address(trimmedAddress);
+        return new AppointmentSortingKey(trimmedSortingKey);
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * Parses {@code String sortingKey} into a {@code PropertySortingKey}.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+    public static PropertySortingKey parsePropertySortingKey(String sortingKey) throws ParseException {
+        requireNonNull(sortingKey);
+        String trimmedSortingKey = sortingKey.trim();
+        if (!PropertySortingKey.isValidPropertySortingKey(trimmedSortingKey)) {
+            throw new ParseException(PropertySortingKey.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+        return new PropertySortingKey(trimmedSortingKey);
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code email} is invalid.
+     * Parses {@code String sortingOrder} into a {@code SortingOrder}.
      */
-    public static seedu.address.model.person.Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!seedu.address.model.person.Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(seedu.address.model.person.Email.MESSAGE_CONSTRAINTS);
+    public static SortingOrder parseSortingOrder(String sortingOrder) throws ParseException {
+        requireNonNull(sortingOrder);
+        String trimmedSortingOrder = sortingOrder.trim();
+        if (!SortingOrder.isValidSortingOrder(trimmedSortingOrder)) {
+            throw new ParseException(SortingOrder.MESSAGE_CONSTRAINTS);
         }
-        return new seedu.address.model.person.Email(trimmedEmail);
+        return new SortingOrder(trimmedSortingOrder);
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * Parses {@code String amount} into an {@code Offer}.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    public static Offer parseOffer(String amount) throws ParseException {
+        requireNonNull(amount);
+        String trimmedAmount = amount.trim();
+        if (!Offer.isValidOffer(trimmedAmount)) {
+            throw new ParseException(Offer.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
+        return new Offer(trimmedAmount);
     }
 }

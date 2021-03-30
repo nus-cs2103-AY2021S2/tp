@@ -1,39 +1,47 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalAppointments.getTypicalAppointments;
+import static seedu.address.testutil.TypicalModelManager.getTypicalModelManager;
+import static seedu.address.testutil.TypicalProperties.getTypicalProperties;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
 
-/**
- * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
- */
-public class ListCommandTest {
+class ListCommandTest {
+    private Model model = getTypicalModelManager();
+    private Model expectedModel = getTypicalModelManager();
 
-    private Model model;
-    private Model expectedModel;
+    @Test
+    public void listPropertyTest() {
+        //clear property list
+        model.updateFilteredPropertyList(a -> false);
 
-    @BeforeEach
-    public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        assertCommandSuccess(new ListPropertyCommand(), model, ListPropertyCommand.MESSAGE_SUCCESS, expectedModel);
+        assertEquals(getTypicalProperties(), model.getFilteredPropertyList());
     }
 
     @Test
-    public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+    public void listAppointmentTest() {
+        //clear appointment list
+        model.updateFilteredAppointmentList(a -> false);
+
+        assertCommandSuccess(new ListAppointmentCommand(),
+            model, ListAppointmentCommand.MESSAGE_SUCCESS, expectedModel);
+        assertEquals(getTypicalAppointments(), model.getFilteredAppointmentList());
     }
 
     @Test
-    public void execute_listIsFiltered_showsEverything() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+    public void listAllTest() {
+        //clear all
+        model.updateFilteredAppointmentList(a -> false);
+        model.updateFilteredPropertyList(a -> false);
+
+        assertCommandSuccess(new ListAllCommand(),
+                model, ListAllCommand.MESSAGE_SUCCESS, expectedModel);
+        assertEquals(getTypicalAppointments(), model.getFilteredAppointmentList());
+        assertEquals(getTypicalProperties(), model.getFilteredPropertyList());
     }
 }

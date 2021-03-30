@@ -42,15 +42,10 @@ class JsonAdaptedAppointment {
      * Converts a given {@code Appointment} into this class for Jackson use.
      */
     public JsonAdaptedAppointment(Appointment source) {
-        name = source.getName().name;
-        remark = source.getRemarks().remark;
+        name = source.getName().toString();
+        remark = source.getRemarks().toString();
         date = source.getDate().toString();
-        if (source.getTime() == null) {
-            time = null;
-        } else {
-            time = source.getTime().toString();
-        }
-
+        time = source.getTime().toString();
     }
 
     /**
@@ -71,20 +66,21 @@ class JsonAdaptedAppointment {
         if (remark == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
         }
-
+        if (!Remark.isValidRemark(remark)) {
+            throw new IllegalValueException(Remark.MESSAGE_CONSTRAINTS);
+        }
         final Remark modelRemark = new Remark(remark);
 
         if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
         }
-
         final Date modelDate = new Date(LocalDate.parse(date, DateTimeFormat.OUTPUT_DATE_FORMAT));
 
         if (time == null) {
-            return new Appointment(modelName, modelRemark, modelDate);
-        } else {
-            final Time modelTime = new Time(LocalTime.parse(time, DateTimeFormat.OUTPUT_TIME_FORMAT));
-            return new Appointment(modelName, modelRemark, modelDate, modelTime);
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName()));
         }
+        final Time modelTime = new Time(LocalTime.parse(time, DateTimeFormat.OUTPUT_TIME_FORMAT));
+
+        return new Appointment(modelName, modelRemark, modelDate, modelTime);
     }
 }

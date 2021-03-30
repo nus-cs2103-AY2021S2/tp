@@ -8,6 +8,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -31,8 +32,8 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    //private PersonListPanel personListPanel;
     private AppointmentListPanel appointmentListPanel;
+    private PropertyListPanel propertyListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,13 +44,19 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
+    private HBox listDisplayBox;
+
+    @FXML
     private StackPane appointmentListPanelPlaceholder;
+
+    @FXML
+    private StackPane propertyListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private StackPane statusAppointmentBarPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -112,17 +119,19 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        //personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        propertyListPanel = new PropertyListPanel(logic.getFilteredPropertyList());
+        propertyListPanelPlaceholder.getChildren().add(propertyListPanel.getRoot());
+
         appointmentListPanel = new AppointmentListPanel(logic.getFilteredAppointmentList());
-        //personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        //StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAppointmentBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        // TODO
+        StatusBarFooter statusAppointmentBarFooter = new StatusBarFooter(logic.getAppointmentBookFilePath());
+        //StatusBarFooter statusPropertyBarFooter = new StatusBarFooter(logic.getPropertyBookFilePath());
+        statusAppointmentBarPlaceholder.getChildren().add(statusAppointmentBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
@@ -168,12 +177,12 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    /*public PersonListPanel getPersonListPanel() {
-        return personListPanel;
-    }*/
-
     public AppointmentListPanel getAppointmentListPanel() {
         return appointmentListPanel;
+    }
+
+    public PropertyListPanel getPropertyListPanel() {
+        return propertyListPanel;
     }
 
     /**

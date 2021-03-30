@@ -10,7 +10,7 @@ import seedu.address.model.util.DateTimeFormat;
  * Represents an Appointment's meeting time.
  * Guarantees: immutable.
  */
-public class Time {
+public class Time implements Comparable<Time> {
     public static final String MESSAGE_CONSTRAINTS =
             "Meeting times should be valid times specified in 24-hour clock in the format HHMM";
 
@@ -41,6 +41,11 @@ public class Time {
         }
         Time otherTime = (Time) other;
         return time.equals(otherTime.time);
+    }
+
+    @Override
+    public int compareTo(Time another) {
+        return this.time.compareTo(another.time);
     }
 
     @Override

@@ -23,11 +23,11 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S2-CS2103T-T13-4/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -51,7 +51,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete property 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -61,12 +61,15 @@ The sections below give more details of each component.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Due to the limitation of PlantUML, some triangles that are used to indicate class inheritance and some solid diamonds that are used to denote composition may overlap with each other.
+</div>
+
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PropertyListPanel`, `AppointmentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-T13-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -78,33 +81,42 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
+1. `Logic` uses the `PocketEstateParser` class to parse the user's input command.
+1. Depending on the command string passed in by the user,
+   * a specific command parser (e.g. `AddPropertyCommandParser`) may be created to parse the input arguments to produce the corresponding `Command` object, or
+   * the `Command` object can be directly created for some commands (e.g. `HelpCommand`).
+1. The `Command` object is then executed by the `LogicManager`.
+1. The command execution can affect the `Model` (e.g. adding a property, deleting a property).
+1. The result of the command execution is encapsulated as a `CommandResult` object, which is passed back to the `Ui`. The feedback to the user is then displayed to the user.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("add property n/Mayfair t/Condo a/1 Jurong East Street 32, #08-111 p/609477 d/31-12-2021")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `add property n/Mayfair t/Condo a/1 Jurong East Street 32, #08-111 p/609477 d/31-12-2021` Command](images/AddPropertySequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddPropertyCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Due to the limitation of PlantUML, some multiplicities and association roles may be slightly out of place.
+</div>
 
 The `Model`,
 
-* stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* does not depend on any of the other three components.
+* stores a `UserPrefs` object that represents the user’s preferences, such as
+  * the preferred GUI settings (e.g. window size of the app)
+  * the preferred storage filepath for the property book
+  * the preferred storage filepath for the appointment book
+* stores the property book and appointment book data
+* exposes an unmodifiable `ObservableList<Property>` and an unmodifiable `ObservableList<Appointment>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change
+* does not depend on any of the other three components
 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
@@ -117,11 +129,12 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
-* can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save `UserPrefs` objects in json format and read it back.
+* can save the appointment book data in json format and read it back.
+* can save the property book data in json format and read it back.
 
 ### Common classes
 
@@ -133,42 +146,102 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Property component
+
+![Structure of the Property Component](images/PropertyClassDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Due to the limitation of PlantUML, some solid diamonds that are used to denote composition may overlap with each other.
+</div>
+
+#### Implementation
+
+A `Property` is stored in a `UniquePropertyList`, which ensures that there are no duplicate properties in the `PropertyBook`. Each `Property` is uniquely identified by its `Address` and `PostalCode`.
+
+A `Property consists of the following mandatory attributes,
+  * a `Name`: the name of the property
+  * a `Type`: the housing type of the property (Hdb, Condo, Landed)
+  * an `Address`: the address of the property
+  * a `PostalCode`: the postal code of the property
+  * a `Deadline`: the property's deadline for selling
+  * a `Tag` set: a set of zero or more `Tag` objects
+
+and the following optional attributes,
+  * a `Remark`: a note about the property 
+  * a `Status`: represents the current stage of the selling (Option, Sales Agreement, Completion)
+  * a `Client`: represents the seller of the property 
+
+A `Client` consists of at least one of the following attributes,
+  * a `Name`: the name of the client
+  * a `Contact`: the contact number of the client
+  * an `Email`: the email of the client
+  * an `AskingPrice`: the asking price of the client
+
+#### Design Consideration
+
+##### Aspect: How each attribute of `Property` is stored
+
+* **Current implementation:** Each attribute of `Property` is immutable. When a property is to be edited, a new `Property` containing the updated fields will be created to replace the original `Property` object.
+    * Pros: Prevent accidental modification of a `Property` object (less prone to bugs)
+    * Cons: More code to be written as a separate `Property` object has to be created for each edit operation
+
+* **Alternative:** Allow mutable `Property` objects (provide setter methods to update the attributes of a `Property`)
+    * Pros: Easy to implement
+    * Cons: More prone to bugs
+
+### Appointment component
+
+![Structure of the Appointment Component](images/AppointmentClassDiagram.png)
+
+#### Implementation
+
+An `Appointment` is stored in a `UniqueAppointmentList`, which ensures that there are no duplicate appointments in the `AppointmentBook`. Each `Appointment` is uniquely identified by its `Date` and `Time`.
+
+An `Appointment` consists of the following mandatory attributes,
+* a `Name`: the name of the appointment
+* a `Remark`: a note about the appointment
+* a `Date`: the date of the appointment
+* a `Time`: the time of the appointment
+
+#### Design Consideration
+
+##### Aspect: How each attribute of `Appointment` is stored
+
+Similar design considerations as [how each attribute of `Property` is stored](#aspect-how-each-attribute-of-property-is-stored)
+
+### \[Proposed\] Undo feature
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo mechanism is facilitated by `PocketEstate`. It implements the undo feature with an undo history, stored internally as an `previousAppointmentLists` and `previousPropertyLists`. It implements
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `AppointmentBook#undo()` — Restores the previous appointment book state from its history.
+* `PropertyBook#undo()` — Restores the previous property book state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#undoAppointmentBook()` and `Model#undoPropertyBook()` respectively.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+Given below is an example usage scenario and how the undo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `PocketEstate` will be initialized with the initial appointment book state and property book state, and the currentAppointmentBookStatePointer currentPropertyBookStatePointer pointing to the two initial book states respectively.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+![UndoState0](images/UndoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete appointment 1` command to delete the 1st appointment in the appointment book. The `delete appointment` executes `previousAppointmentLists.push(new ArrayList<>(appointments.asUnmodifiableObservableList()))`, causing the previous state of the appointment book before the `delete appointment 1` command executes to be saved in the `previousAppointmentLists`, and the currentAppointmentBookStatePointer still points to the current appointment book state.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+![UndoState1](images/UndoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add appointment …​` to add a new appointment. The `add appointment` command also executes `previousAppointmentLists.push(new ArrayList<>(appointments.asUnmodifiableObservableList()))`, causing a copy of the current appointment book state to be saved into the `previousAppointmentLists`.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+![UndoState2](images/UndoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not executes `previousAppointmentLists.push(new ArrayList<>(appointments.asUnmodifiableObservableList()))`, so the appointment book state will not be saved into the `previousAppointmentLists`.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the appointment was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAppointmentBook()`, which will shift the `currentAppointmentBookStatePointer` to the most recently saved state, pointing it to the previous appointment book state, and restores the appointment book to that state.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+![UndoState3](images/UndoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `previousAppointmentLists` is empty, then there are no previous AppointmentBook states to restore. The `undo` command uses `commandHistory.empty()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
 
 </div>
 
@@ -176,23 +249,9 @@ The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the appointment book, such as `list`, will usually not executes `previousAppointmentLists.push(new ArrayList<>(appointments.asUnmodifiableObservableList()))`. Thus, the `previousAppointmentLists` remains unchanged.
 
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
+![UndoRedoState4](images/UndoState4.png)
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
@@ -200,18 +259,79 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Design consideration:
 
-##### Aspect: How undo & redo executes
+##### Aspect: How undo executes
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1:** Saves the entire appointment/property book.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+* **Alternative 2 (current choice):** Saves the entire appointment/property list in the appointment/property book.
+  * Pros: Easy to implement.
+  * Cons: May have performance issues in terms of memory usage.
+    
+* **Alternative 3:** Saves only changes made by previous commands (Similar to commit and restore in version control).
+  * Pros: Will use less memory (e.g. for `delete`, may only save the appointment/property being deleted, and the deleted appointment/property is added back if the command is undone).
+  * Cons: Difficult to implement, different implementations are required to restore different changes.
 
 _{more aspects and alternatives to be added}_
+
+### \[Implemented\] Update feature
+
+#### Implementation
+
+The update mechanism is facilitated by `PocketEstate`. It implements the update feature with 3 parts, the `Status` field in `Property`, a `UpdateCommandParser` and `UpdateCommand`.
+
+The `Status` field consists of a `Status` interface with a `next()` method that returns a `Status` representing the next stage of the property selling process. There are 3 classes that implement `Status`, `Option`, `SalesAgreement` and `Completion`. Each class takes in an `Offer` which represents the price that was offered for the property.
+
+* `Option` — Represents the stage where the buyer exercises the Option to Purchase.
+* `SalesAgreement` — Represents the stage where the buyer is considering the Sales and Purchase Agreement.
+* `Completion` — Represents the stage where the property has been sold.
+
+(insert class diagram of status)
+
+The `UpdateCommand` is assisted by 3 subcommands that extend the abstract class `UpdateCommand` which itself extends `Command`. The subcommands are, `UpdateNewCommand`, `UpdateProceedCommand` and `UpdateCancelCommand`. The subcommands help execute on the model when the user calls `u/new`, `u/proceed` or `u/cancel` respectively. 
+
+* `UpdateNewCommand` — Takes in an `Index` and an Amount to create a new `Status` with the given Amount for the property at the given `Index`.
+* `UpdateProceedCommand` — Takes in an `Index` and moves the `Status` of the property at the given `Index` to the next `Status` if applicable.
+* `UpdateNewCommand` — Takes in an `Index` and removes the `Status` of the property at the given `Index` if applicable.
+
+(insert class diagram of UpdateCommand)
+
+Given below is an example usage scenario and how the update mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `PocketEstate` will be initialized with the initial appointment book state and property book state.
+
+Step 2. The user executes `update 1 u/new 600,000` command to add a new status with value 600,000 to the first property.
+
+(some object diagram?)
+
+Step 3. The user executes `update 1 u/proceed` to move the `Status` of the first property to `SalesAgreement`.
+
+(some object diagram?)
+
+Step 4. The user executes `update 1 u/proceed` to move the `Status` of the first property to `Completion`.
+
+(some object diagram?)
+
+Step 5. The user then decides that having the `Completion` status on the first property was a mistake and executes the command `update 1 u/cancel`.
+
+(some object diagram?)
+
+
+#### Design consideration:
+
+##### Aspect: How Update executes
+
+
+The following activity diagram summarizes what happens when a user executes an `UpdateCommand`:
+
+(insert overall update activity diagram here)
+
+(insert UpdateCommandParser activity diagram here)
+
+The following sequence diagram shows how the update operation works:
+
+(insert update new activity diagram here)
 
 ### \[Proposed\] Data archiving
 
@@ -250,20 +370,25 @@ _{Explain here how the data archiving feature will be implemented}_
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                 | I want to …​                                                            | So that I can…​                                                                |
-| -------- | ------------------------------------------ | -------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions                                                     | refer to instructions when I forget how to use the App                            |
-| `* * *`  | user                                       | be able to add a property                                                  | keep track of my clients' properties                                              |
-| `* * *`  | user                                       | be able to add an appointment                                              | keep track of my upcoming schedule                                                |
-| `* * *`  | user                                       | list all properties on sale                                                | know the number of properties that I have to sell                                 |
-| `* * *`  | user                                       | list all properties on sale                                                | know which properties I have to sell                                              |
-| `* * *`  | user                                       | view the client asking price of a property                                 | keep the price in mind when negotiating with the buyer                            |
-| `* * *`  | user                                       | view the properties in the order of nearest deadline                       | prioritize selling properties with a more urgent deadline                         |
-| `* *`    | potential user exploring the app           | see the app populated with sample data                                     | easily see how the app looks like when it is in use                               |
-| `* *`    | careless user                              | be able to categorize housing information based on predefined tags         | prevent typos while keying in information and avoid storing the wrong information |
-| `* *`    | user                                       | update the status of property listings(completed, Option, Sale Agreement)  | follow up with clients on time                                                    |
-| `* *`    | user                                       | edit the deadline of the property listing                                  | extend the time period for selling the property                                   |
-| `* *`    | user                                       | edit the name of the property listing                                      | change the name of the property when I have made a mistake                        |
-| `* *`    | user                                       | edit the address of the property listing                                   | change the address of the property when I have made a mistake                     |
+| -------- | ------------------------------------------ | -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `* * *`  | new user                                   | see usage instructions                                                     | refer to instructions when I forget how to use the App                                    |
+| `* * *`  | user                                       | be able to add a property                                                  | keep track of my clients' properties                                                      |
+| `* * *`  | user                                       | be able to add an appointment                                              | keep track of my upcoming schedule                                                        |
+| `* * *`  | user                                       | list all properties on sale                                                | know the number of properties that I have to sell                                         |
+| `* * *`  | user                                       | list all properties on sale                                                | know which properties I have to sell                                                      |
+| `* * *`  | user                                       | view the client asking price of a property                                 | keep the price in mind when negotiating with the buyer                                    |
+| `* * *`  | user                                       | view the properties in the order of nearest deadline                       | prioritize selling properties with a more urgent deadline                                 |
+| `* *`    | user                                       | edit the address of the property listing                                   | change the address of the property when I have made a mistake                             |
+| `* *`    | user                                       | search for properties based on some criteria                               | easily filter out the properties I want to see                                            |
+| `* *`    | user                                       | search for appointments based on some criteria                             | easily filter out the appointments I want to see                                          |
+| `* *`    | user                                       | search for all appointments and properties related to a client             | easily find out any appointments with a client and what properties they are interested in |
+| `* *`    | potential user exploring the app           | see the app populated with sample data                                     | easily see how the app looks like when it is in use                                       |
+| `* *`    | careless user                              | be able to categorize housing information based on predefined tags         | prevent typos while keying in information and avoid storing the wrong information         |
+| `* *`    | user                                       | update the status of property listings(completed, Option, Sale Agreement)  | follow up with clients on time                                                            |
+| `* *`    | user                                       | edit the deadline of the property listing                                  | extend the time period for selling the property                                           |
+| `* *`    | user                                       | edit the name of the property listing                                      | change the name of the property when I have made a mistake                                |
+| `* *`    | user                                       | edit the address of the property listing                                   | change the address of the property when I have made a mistake                             |
+| `* *`    | user                                       | edit the address of the property listing                                   | change the address of the property when I have made a mistake                             |
 
 *{More to be added}*
 
@@ -409,7 +534,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Property**: A property listing with mandatory attributes: Name, Property type, Address, Postal code and Deadline,
     optional attributes: Client name, Client contact, Client email, Client asking price, Remarks
 * **Appointment**: An appointment listing with mandatory attributes: Name, Remarks, Date,  optional attribute: Time

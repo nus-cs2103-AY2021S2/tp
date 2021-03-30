@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -17,12 +18,10 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAppointmentBook;
 import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Person;
 import seedu.address.model.property.Property;
 import seedu.address.testutil.AppointmentBuilder;
 
@@ -84,6 +83,21 @@ public class AddAppointmentCommandTest {
      */
     private class ModelStub implements Model {
         @Override
+        public void undoAppointmentBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoPropertyBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setPropertyBook(ReadOnlyPropertyBook propertyBook) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
         }
@@ -104,52 +118,12 @@ public class AddAppointmentCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getPropertyBookFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deletePerson(Person target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setPerson(Person target, Person editedPerson) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Person> getFilteredPersonList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void setPropertyBookFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -169,7 +143,7 @@ public class AddAppointmentCommandTest {
         }
 
         @Override
-        public int getPropertySize() {
+        public int getPropertyListSize() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -194,7 +168,17 @@ public class AddAppointmentCommandTest {
         }
 
         @Override
+        public void setProperty(Property target, Property editedProperty) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredPropertyList(Predicate<Property> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortPropertyList(Comparator<Property> comparator) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -244,7 +228,7 @@ public class AddAppointmentCommandTest {
         }
 
         @Override
-        public int getAppointmentSize() {
+        public int getAppointmentListSize() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -255,6 +239,11 @@ public class AddAppointmentCommandTest {
 
         @Override
         public ObservableList<Appointment> getFilteredAppointmentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortAppointmentList(Comparator<Appointment> comparator) {
             throw new AssertionError("This method should not be called.");
         }
     }
