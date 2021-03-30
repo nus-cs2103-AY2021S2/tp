@@ -15,12 +15,12 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Date;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Duration;
 import seedu.address.model.task.RecurringSchedule;
 import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.Date;
 import seedu.address.model.task.Title;
 
 /**
@@ -91,7 +91,7 @@ public class SnoozeCommand extends Command {
         return list.get(index.getZeroBased());
     }
 
-    private void enforceNonEmptyDate(Task taskToSnooze) throws CommandException{
+    private void enforceNonEmptyDate(Task taskToSnooze) throws CommandException {
         if (taskToSnooze.isDateEmpty()) {
             logger.log(Level.INFO, "The task selected has no date attribute.\n" + MESSAGE_USAGE);
 

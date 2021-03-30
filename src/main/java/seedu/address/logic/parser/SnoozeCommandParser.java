@@ -1,11 +1,8 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.DoneCommand;
 import seedu.address.logic.commands.SnoozeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -17,6 +14,14 @@ public class SnoozeCommandParser implements Parser<SnoozeCommand> {
     private static final String MESSAGE_INVALID_ARGUMENT = "Snooze Command can only have a compulsory INDEX"
             + " and an optional NUMBER argument, both of which are positive integers.";
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the SnoozeCommand
+     * and returns an SnoozeCommand object for execution.
+     *
+     * @param args the user's inputted arguments in string form.
+     * @return SnoozeCommand object.
+     * @throws ParseException
+     */
     public SnoozeCommand parse(String args) throws ParseException {
         validateParameter(args);
         Index index = getIndex(args);
@@ -25,7 +30,7 @@ public class SnoozeCommandParser implements Parser<SnoozeCommand> {
         return new SnoozeCommand(index, days);
     }
 
-    private void validateParameter(String parameter) throws ParseException{
+    private void validateParameter(String parameter) throws ParseException {
         String trimmedArgs = parameter.trim();
 
         if (!(Pattern.matches("[0-9]+\\s?[0-9]*", trimmedArgs))) {
@@ -33,7 +38,7 @@ public class SnoozeCommandParser implements Parser<SnoozeCommand> {
         }
     }
 
-    private Index getIndex(String args) throws ParseException{
+    private Index getIndex(String args) throws ParseException {
         String trimmedArgs = args.trim();
         String[] argValues = trimmedArgs.split(" ");
 
