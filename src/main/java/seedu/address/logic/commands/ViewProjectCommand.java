@@ -14,7 +14,7 @@ import seedu.address.model.project.Project;
  */
 public class ViewProjectCommand extends Command {
 
-    public static final String COMMAND_WORD = "viewP";
+    public static final String COMMAND_WORD = "project";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Displays the project identified by the index number used in the displayed projects list.\n"

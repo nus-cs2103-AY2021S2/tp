@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import guitests.guihandles.CommandBoxHandle;
 import javafx.scene.input.KeyCode;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ListContactsCommand;
+import seedu.address.logic.commands.ViewContactsCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 
 /**
@@ -21,7 +21,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
  */
 public class CommandBoxTest extends GuiUnitTest {
 
-    private static final String COMMAND_THAT_SUCCEEDS = ListContactsCommand.COMMAND_WORD;
+    private static final String COMMAND_THAT_SUCCEEDS = ViewContactsCommand.COMMAND_WORD;
     private static final String COMMAND_THAT_FAILS = "invalid command";
 
     private ArrayList<String> defaultStyleOfCommandBox;
