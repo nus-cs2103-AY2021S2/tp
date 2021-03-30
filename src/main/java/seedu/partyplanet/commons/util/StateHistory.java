@@ -16,14 +16,14 @@ public class StateHistory {
     private final Logger logger = LogsCenter.getLogger(StateHistory.class);
 
     /**
-     * Initialise StateHistory with the saved AddressBook
+     * Initialises StateHistory with the saved AddressBook
      */
     public StateHistory(State savedState) {
         this.states = new ArrayList<State>();
         this.states.add(savedState);
         this.currentStatePointer = 0;
         logger.info("Initialised stateHistory." + " Current number of states is: " + states.size()
-            + ". Currently on state: " + currentStatePointer);
+                + ". Currently on state: " + currentStatePointer);
     }
 
     /**
