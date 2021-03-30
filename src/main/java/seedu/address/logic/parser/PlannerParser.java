@@ -7,6 +7,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.CalendarNextCommand;
+import seedu.address.logic.commands.CalendarPrevCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CountdownCommand;
@@ -54,6 +56,10 @@ public class PlannerParser {
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
+        case CalendarNextCommand.COMMAND_WORD:
+            return new CalendarNextCommand();
+        case CalendarPrevCommand.COMMAND_WORD:
+            return new CalendarPrevCommand();
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
         //@@author mesyeux

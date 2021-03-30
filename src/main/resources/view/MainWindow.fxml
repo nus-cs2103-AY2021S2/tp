@@ -20,10 +20,10 @@
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@Calendar.css" />
         <URL value="@TaskDetails.css" />
         <URL value="@DarkTheme.css" />
         <URL value="@Extensions.css" />
+        <URL value="@Calendar.css" />
       </stylesheets>
 
       <VBox>
@@ -43,7 +43,7 @@
             </StackPane>
 
             <HBox prefHeight="600" prefWidth="450" VBox.vgrow="ALWAYS">
-              <VBox styleClass="pane-with-border" HBox.hgrow="ALWAYS" prefWidth="500">
+              <VBox fx:id="calendarPanel" styleClass="pane-with-border" HBox.hgrow="ALWAYS" prefWidth="500">
                 <padding>
                   <Insets top="10" right="10" bottom="10" left="10"/>
                 </padding>
@@ -69,7 +69,7 @@
             <padding>
               <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
-            <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+            <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
           </VBox>
         </HBox>
 

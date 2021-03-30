@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.commons.core.Messages.MESSAGE_TASKS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalTasks.DANIEL;
 import static seedu.address.testutil.TypicalTasks.GEORGE;
@@ -24,7 +23,7 @@ class ViewDayCommandTest {
 
     @Test
     public void execute_viewDayWithTasks_multipleTasksFound() {
-        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 2);
+        String expectedMessage = String.format(ViewDayCommand.MESSAGE_VIEW_DAY_SUCCESS, 2, "May", "2021");
         Date date = new Date("27/05/2021");
         TaskOnDatePredicate predicate = new TaskOnDatePredicate(date);
         ViewDayCommand command = new ViewDayCommand(predicate, date.getDate());
@@ -35,7 +34,7 @@ class ViewDayCommandTest {
 
     @Test
     public void execute_viewDayWithoutTasks_noTasksFound() {
-        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(ViewDayCommand.MESSAGE_VIEW_DAY_SUCCESS, 0, "April", "2021");
         Date date = new Date("24/04/2021");
         TaskOnDatePredicate predicate = new TaskOnDatePredicate(date);
         ViewDayCommand command = new ViewDayCommand(predicate, date.getDate());
