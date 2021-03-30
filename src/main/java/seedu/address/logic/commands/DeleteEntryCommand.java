@@ -19,8 +19,6 @@ public class DeleteEntryCommand extends Command {
             + "Parameters: NAME\n"
             + "Example: " + COMMAND_WORD + " online class";
 
-    public static final String MESSAGE_DELETE_ENTRY_SUCCESS = "Deleted Entry: %1$s";
-
     private final EntryNameContainsKeywordsPredicate predicate;
 
     public DeleteEntryCommand(EntryNameContainsKeywordsPredicate predicate) {
@@ -38,6 +36,6 @@ public class DeleteEntryCommand extends Command {
 
         Entry entryToDelete = lastShownList.stream().filter(predicate).findFirst().get();
         model.deleteEntry(entryToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_ENTRY_SUCCESS, entryToDelete));
+        return new CommandResult(String.format(Messages.MESSAGE_DELETE_ENTRY_SUCCESS, entryToDelete));
     }
 }
