@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.OPTION_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.OPTION_DATE;
 import static seedu.address.logic.parser.CliSyntax.OPTION_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 
@@ -12,6 +14,8 @@ import java.util.Optional;
 import seedu.address.logic.commands.FindAppointmentCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.appointment.ApptAddressContainsKeywordsPredicate;
+import seedu.address.model.appointment.ApptDateContainsKeywordsPredicate;
 import seedu.address.model.appointment.ApptNameContainsKeywordsPredicate;
 
 public class FindAppointmentCommandParser implements Parser<FindAppointmentCommand> {
@@ -53,6 +57,10 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
         List<String> keywords = Arrays.asList(optionArgs.split("\\s+"));
         if (option.equals(OPTION_NAME)) { // find by name
             return new FindAppointmentCommand(new ApptNameContainsKeywordsPredicate(keywords));
+        } else if (option.equals(OPTION_ADDRESS)) { // find by name
+            return new FindAppointmentCommand(new ApptAddressContainsKeywordsPredicate(keywords));
+        } else if (option.equals(OPTION_DATE)) { // find by name
+            return new FindAppointmentCommand(new ApptDateContainsKeywordsPredicate(keywords));
         } else {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));

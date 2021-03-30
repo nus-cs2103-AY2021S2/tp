@@ -21,7 +21,7 @@ public class ApptAnyContainsKeywordsPredicate implements Predicate<Person> {
         return keywords.stream()
                 .anyMatch(keyword ->
                         StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword)
-                        || StringUtil.containsWordIgnoreCase(person.getEmail().getValue(), keyword));
+                        || StringUtil.containsWordIgnoreCase(person.getEmail().toString(), keyword));
     }
 
     @Override
