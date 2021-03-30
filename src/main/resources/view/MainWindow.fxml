@@ -7,6 +7,8 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -14,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="650.0" minWidth="1000.0" onCloseRequest="#handleExit" title="Tutor Tracker" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="650.0" minWidth="1000.0" onCloseRequest="#handleExit" title="Tutor Tracker" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/address_book_32.png" />
     </icons>
@@ -52,7 +54,7 @@
                                                 <Image url="@../images/favorite_icon.png" />
                                             </image>
                                         </ImageView>
-                                        <Label alignment="CENTER" prefHeight="25.0" style="-fx-text-fill: white;" styleClass="cell_big_label" text="Favorites">
+                                        <Label alignment="CENTER" prefHeight="25.0" style="-fx-text-fill: white;" styleClass="cell_big_label" text="Tutors">
                                             <HBox.margin>
                                                 <Insets left="4.0" />
                                             </HBox.margin>
@@ -81,7 +83,8 @@
                                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@../images/calendar_icon.png" />
-                                            </image></ImageView>
+                                            </image>
+                                        </ImageView>
                                         <Label alignment="CENTER" prefHeight="25.0" style="-fx-text-fill: white;" styleClass="cell_big_label" text="Schedule">
                                             <HBox.margin>
                                                 <Insets left="4.0" />
@@ -100,17 +103,47 @@
                                         <Insets bottom="5" left="10" right="10" top="5" />
                                     </padding>
                                 </StackPane>
-                                <VBox fx:id="appointmentList" prefWidth="150.0" styleClass="pane-with-border">
-                                    <padding>
-                                        <Insets bottom="10" left="10" right="10" top="10" />
-                                    </padding>
-                                    <children>
-                                        <StackPane fx:id="appointmentListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-                                    </children>
-                                </VBox>
+                                <TabPane fx:id="tabPanePlaceHolder" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+                                    <stylesheets>
+                                        <URL value="@TabStyle.css" />
+                                    </stylesheets>
+                                    <tabs>
+                                        <Tab closable="false" text="Appointments">
+                                            <content>
+                                                <VBox>
+                                                    <children>
+                                                        <VBox fx:id="appointmentList" prefWidth="150.0" styleClass="pane-with-border">
+                                                            <padding>
+                                                                <Insets bottom="10" left="10" right="10" top="10" />
+                                                            </padding>
+                                                            <children>
+                                                                <StackPane fx:id="appointmentListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                                                            </children>
+                                                        </VBox>
+                                                    </children>
+                                                </VBox>
+                                            </content>
+                                        </Tab>
+                                        <Tab closable="false" text="Schedule">
+                                            <content>
+                                                <VBox>
+                                                    <children>
+                                                        <VBox fx:id="scheduleList" prefWidth="150.0" styleClass="pane-with-border">
+                                                            <padding>
+                                                                <Insets bottom="10" left="10" right="10" top="10" />
+                                                            </padding>
+                                                            <children>
+                                                                <StackPane fx:id="scheduleListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                                                            </children>
+                                                        </VBox>
+                                                    </children>
+                                                </VBox>
+                                            </content>
+                                        </Tab>
+                                    </tabs>
+                                </TabPane>
                             </children>
                         </VBox>
-
                         <VBox HBox.hgrow="ALWAYS">
                             <children>
                                 <HBox style="-fx-background-color: #383838;">

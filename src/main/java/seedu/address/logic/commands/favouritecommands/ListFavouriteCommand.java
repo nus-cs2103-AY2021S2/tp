@@ -13,6 +13,9 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ViewTutorPredicate;
 
+/**
+ * List all Tutors who are favourites
+ */
 public class ListFavouriteCommand extends Command {
 
     public static final String COMMAND_WORD = "list_favourites";

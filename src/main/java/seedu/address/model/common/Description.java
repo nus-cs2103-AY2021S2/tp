@@ -1,4 +1,4 @@
-package seedu.address.model.schedule;
+package seedu.address.model.common;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -6,12 +6,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import seedu.address.model.tag.Filterable;
 
 /**
- * Represents a Schedule's description in the address book.
+ * Represents a {@code String} Description variable.
  * Guarantees: immutable; is valid as declared in {@link #isValidDescription(String)}
  */
 public class Description implements Filterable {
     public static final String MESSAGE_CONSTRAINTS =
-            "Description should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Description can take any values, and it should not be blank";
 
     /*
      * The first character of the description must not be a whitespace,

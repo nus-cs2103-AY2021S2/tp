@@ -36,6 +36,7 @@ public class AddScheduleCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New schedule added: %1$s";
     public static final String MESSAGE_DUPLICATE_SCHEDULE = "This schedule already exists in the list";
+    public static final String MESSAGE_CLASH_SCHEDULE = "This schedule clashes with your existing events!";
 
     private final Schedule toAdd;
 
@@ -62,6 +63,8 @@ public class AddScheduleCommand extends Command {
 
         if (model.hasSchedule(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_SCHEDULE);
+        } else if (model.hasClashingDateTime(toAdd)) {
+            throw new CommandException(MESSAGE_CLASH_SCHEDULE);
         } else {
             model.addSchedule(toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));

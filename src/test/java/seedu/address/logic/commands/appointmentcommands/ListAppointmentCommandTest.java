@@ -2,18 +2,14 @@ package seedu.address.logic.commands.appointmentcommands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showAppointmentAtIndex;
-import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
-import static seedu.address.testutil.TypicalBudgets.getTypicalBudgetBook;
-import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
+import static seedu.address.testutil.ModelManagerBuilder.ModelType.APPOINTMENTBOOK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
+import seedu.address.testutil.ModelManagerBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListAppointmentCommand.
@@ -25,11 +21,8 @@ public class ListAppointmentCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
-                getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
-                model.getAppointmentBook(), model.getBudgetBook(), model.getGradeBook());
-
+        model = ModelManagerBuilder.getModelManager();
+        expectedModel = ModelManagerBuilder.getModelManager(model, APPOINTMENTBOOK);
     }
 
     @Test

@@ -7,7 +7,6 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -17,6 +16,7 @@ import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.appointment.DateViewPredicate;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.EventTracker;
 import seedu.address.model.filter.AppointmentFilter;
 import seedu.address.model.filter.PersonFilter;
 import seedu.address.model.grade.Grade;
@@ -25,7 +25,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.model.schedule.ScheduleTracker;
-import seedu.address.model.util.SampleDataUtil;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -37,7 +36,7 @@ public class ModelManager implements Model {
     private final AppointmentBook appointmentBook;
     private final GradeBook gradeBook;
     private final ScheduleTracker scheduleTracker;
-
+    private final EventTracker eventTracker;
     private final UserPrefs userPrefs;
 
     private final PersonFilter personFilter;
@@ -45,7 +44,8 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Appointment> filteredAppointment;
     private final FilteredList<Grade> filteredGrades;
-    private final FilteredList<Schedule> filteredSchedule;
+    private final FilteredList<Schedule> filteredSchedules;
+    private FilteredList<Event> filteredEvents;
 
     private final BudgetBook budgetBook;
 
@@ -54,25 +54,27 @@ public class ModelManager implements Model {
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
                         ReadOnlyAppointmentBook appointmentBook,
-                        BudgetBook budgetBook, ReadOnlyGradeBook gradeBook) {
+                        BudgetBook budgetBook, ReadOnlyGradeBook gradeBook,
+                        ReadOnlyScheduleTracker scheduleTracker) {
         super();
-        requireAllNonNull(addressBook, appointmentBook, userPrefs, budgetBook);
+        requireAllNonNull(addressBook, appointmentBook, userPrefs, budgetBook, scheduleTracker);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.appointmentBook = new AppointmentBook(appointmentBook);
-        this.scheduleTracker = new ScheduleTracker(SampleDataUtil.getSampleScheduleTracker());
+        this.scheduleTracker = new ScheduleTracker(scheduleTracker);
         this.gradeBook = new GradeBook(gradeBook);
         this.budgetBook = new BudgetBook(budgetBook);
         this.userPrefs = new UserPrefs(userPrefs);
-
+        this.eventTracker = new EventTracker(appointmentBook, scheduleTracker);
         this.personFilter = new PersonFilter();
+        this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.filteredAppointment = new FilteredList<>(this.appointmentBook.getAppointmentList());
+        this.filteredGrades = new FilteredList<>(this.gradeBook.getGradeList());
+        this.filteredSchedules = new FilteredList<>(this.scheduleTracker.getScheduleList());
+        this.filteredEvents = new FilteredList<>(this.eventTracker.getEventList());
         this.appointmentFilter = new AppointmentFilter();
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredAppointment = new FilteredList<>(this.appointmentBook.getAppointmentList());
-        filteredGrades = new FilteredList<>(this.gradeBook.getGradeList());
-        this.filteredSchedule = new FilteredList<>(this.scheduleTracker.getScheduleList());
     }
 
     /**
@@ -80,7 +82,7 @@ public class ModelManager implements Model {
      */
     public ModelManager() {
         this(new AddressBook(), new UserPrefs(), new AppointmentBook(),
-                new BudgetBook(), new GradeBook());
+                new BudgetBook(), new GradeBook(), new ScheduleTracker());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -249,6 +251,7 @@ public class ModelManager implements Model {
     @Override
     public void addAppointment(Appointment appointment) {
         appointmentBook.addAppointment(appointment);
+        reset();
     }
 
     /**
@@ -259,6 +262,7 @@ public class ModelManager implements Model {
     @Override
     public void removeAppointment(Appointment appointment) {
         appointmentBook.removeAppointment(appointment);
+        reset();
     }
 
     @Override
@@ -266,6 +270,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedAppointment);
 
         appointmentBook.setAppointment(target, editedAppointment);
+        reset();
     }
 
     /**
@@ -276,6 +281,7 @@ public class ModelManager implements Model {
     @Override
     public void removeAppointmentIndex(int indexToRemove) {
         appointmentBook.removeAppointment(indexToRemove);
+        reset();
     }
 
     /**
@@ -516,9 +522,11 @@ public class ModelManager implements Model {
                 && personFilter.equals(other.personFilter)
                 && appointmentBook.equals(other.appointmentBook)
                 && budgetBook.equals(other.budgetBook)
-                && filteredSchedule.equals(other.filteredSchedule);
+                && filteredSchedules.equals(other.filteredSchedules)
+                && scheduleTracker.equals(other.scheduleTracker);
     }
 
+    /* Schedule Methods */
     @Override
     public ReadOnlyScheduleTracker getScheduleTracker() {
         return scheduleTracker;
@@ -531,13 +539,13 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Schedule> getFilteredScheduleList() {
-        return filteredSchedule;
+        return filteredSchedules;
     }
 
     @Override
     public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
         requireNonNull(predicate);
-        filteredSchedule.setPredicate(predicate);
+        filteredSchedules.setPredicate(predicate);
     }
 
     @Override
@@ -548,23 +556,36 @@ public class ModelManager implements Model {
     @Override
     public void addSchedule(Schedule schedule) {
         scheduleTracker.addSchedule(schedule);
+        reset();
     }
 
     @Override
     public void deleteSchedule(Schedule schedule) {
         scheduleTracker.removeSchedule(schedule);
+        reset();
     }
 
     @Override
     public void setSchedule(Schedule target, Schedule editedSchedule) {
         scheduleTracker.setSchedule(target, editedSchedule);
+        reset();
+    }
+
+    @Override
+    public boolean hasClashingDateTime(Event event) {
+        return eventTracker.hasClashingDateTime(event);
     }
 
     @Override
     public ObservableList<Event> getFilteredEventList() {
-        ObservableList<Event> filteredEvents = FXCollections.observableArrayList();
-        filteredEvents.addAll(filteredAppointment);
-        filteredEvents.addAll(filteredSchedule);
         return filteredEvents;
+    }
+
+    /**
+     * Resets the EventTracker to retrieve updated values
+     */
+    private void reset() {
+        eventTracker.resetData(appointmentBook, scheduleTracker);
+        filteredEvents = new FilteredList<>(this.eventTracker.getEventList());
     }
 }
