@@ -27,7 +27,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Customer> {
                         || StringUtil.containsWordIgnoreCase(customer.getDone().value, keyword)
                         || StringUtil.containsWordIgnoreCase(customer.getEmail().value, keyword)
                         || StringUtil.containsWordIgnoreCase(customer.getRemark().value, keyword)
-                        || helper(keyword, customer.getTag()));
+                        || matchTags(keyword, customer.getTag()));
     }
 
     /**
@@ -37,7 +37,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Customer> {
      * @param tags
      * @return if a match is found
      */
-    public boolean helper(String keyword, Set<Tag> tags) {
+    public boolean matchTags(String keyword, Set<Tag> tags) {
         boolean result = false;
         if (tags.isEmpty()) {
             return false;
