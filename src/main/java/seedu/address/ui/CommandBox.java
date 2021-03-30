@@ -20,7 +20,7 @@ public class CommandBox extends UiPart<Region> {
 
     private final CommandExecutor commandExecutor;
 
-    private final CommandList commandList = new CommandList();
+    private final CommandList commandList = CommandList.getInstance();
 
     @FXML
     private TextField commandTextField;
