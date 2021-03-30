@@ -14,7 +14,7 @@ public class IsbnTest {
     }
 
     @Test
-    public void constructor_invalidPhone_throwsIllegalArgumentException() {
+    public void constructor_invalidIsbn_throwsIllegalArgumentException() {
         String invalidIsbn = "";
         assertThrows(IllegalArgumentException.class, () -> new Isbn(invalidIsbn));
     }

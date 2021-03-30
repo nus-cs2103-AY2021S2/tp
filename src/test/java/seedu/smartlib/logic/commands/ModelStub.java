@@ -69,7 +69,12 @@ class ModelStub implements Model {
     }
 
     @Override
-    public Barcode getBookBarcodeForReturn(Name bookName, Name readerName) {
+    public Name getBookNameForReturn(Barcode barcode) {
+        return null;
+    }
+
+    @Override
+    public Name getReaderNameForReturn(Barcode barcode) {
         return null;
     }
 
