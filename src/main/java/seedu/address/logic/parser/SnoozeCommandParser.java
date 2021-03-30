@@ -18,27 +18,38 @@ public class SnoozeCommandParser implements Parser<SnoozeCommand> {
             + " and an optional NUMBER argument, both of which are positive integers.";
 
     public SnoozeCommand parse(String args) throws ParseException {
-        try {
-            String trimmedArgs = args.trim();
-            if (!(Pattern.matches("[0-9]+\\s?[0-9]*", trimmedArgs))) {
-                throw new ParseException(MESSAGE_INVALID_ARGUMENT);
-            }
-            String[] argValues = trimmedArgs.split(" ");
+        validateParameter(args);
+        Index index = getIndex(args);
+        int days = getDays(args);
 
-            assert(argValues.length == 1 || argValues.length == 2);
+        return new SnoozeCommand(index, days);
+    }
 
-            Index index = ParserUtil.parseIndex(argValues[0]);
-            int days = 0;
-            if (argValues.length == 2) {
-                days = Integer.parseInt(argValues[1]);
-            } else {
-                days = 1;
-            }
+    private void validateParameter(String parameter) throws ParseException{
+        String trimmedArgs = parameter.trim();
 
-            return new SnoozeCommand(index, days);
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SnoozeCommand.MESSAGE_USAGE), pe);
+        if (!(Pattern.matches("[0-9]+\\s?[0-9]*", trimmedArgs))) {
+            throw new ParseException(MESSAGE_INVALID_ARGUMENT);
+        }
+    }
+
+    private Index getIndex(String args) throws ParseException{
+        String trimmedArgs = args.trim();
+        String[] argValues = trimmedArgs.split(" ");
+
+        assert(argValues.length == 1 || argValues.length == 2);
+
+        return ParserUtil.parseIndex(argValues[0]);
+    }
+
+    private int getDays(String args) {
+        String trimmedArgs = args.trim();
+        String[] argValues = trimmedArgs.split(" ");
+
+        if (argValues.length == 2) {
+            return Integer.parseInt(argValues[1]);
+        } else {
+            return 1;
         }
     }
 }
