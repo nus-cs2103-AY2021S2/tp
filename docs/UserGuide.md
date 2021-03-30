@@ -150,8 +150,11 @@ Format: `edit INDEX [q/NEW QUESTION] [a/NEW ANSWER] [c/NEW CATEGORY] [p/NEW PRIO
 
 * Edits the flashcard at the specified `INDEX`.
 * The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* At least 1 updated flashcard field must be provided for modification.
+* The index **must be a positive integer** 1, 2, 3, …
+* At least 1 updated card field must be provided for modification.
+* If the tag field is specified in the command, all existing tag(s) will be removed and replaced by the new tag(s).
+* New tag(s) should be alphanumeric, and there should not be any spacing between characters.
+* New priority can only be "Low", "Mid" or "High", case-sensitive.
 
 <div style="page-break-after: always;"></div>
 
