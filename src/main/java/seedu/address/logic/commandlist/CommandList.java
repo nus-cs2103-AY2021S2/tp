@@ -6,11 +6,22 @@ package seedu.address.logic.commandlist;
  * they have inputted.
  */
 public class CommandList {
+    private static CommandList commandList = null;
+
     private CommandNode headPointer = new CommandNode("");
     private CommandNode tailPointer = new CommandNode("");
     private CommandNode cursor = tailPointer;
 
     private int size = 0;
+
+    private CommandList() {}
+
+    public static CommandList getInstance() {
+        if (commandList == null) {
+            commandList = new CommandList();
+        }
+        return commandList;
+    }
 
     /**
      * Adds a command into the list.
@@ -87,6 +98,15 @@ public class CommandList {
      */
     public int getSize() {
         return this.size;
+    }
+
+    /**
+     * Clears the {@code CommandList} and returns the cleared list.
+     * @return Empty {@code CommandList}
+     */
+    public CommandList clear() {
+        commandList = new CommandList();
+        return commandList;
     }
 
 
