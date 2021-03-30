@@ -1,7 +1,9 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
@@ -65,4 +67,10 @@ public interface Logic {
      * Gets the internal unmodifiable Observable list of all meetings inside meeting book
      */
     ObservableList<Meeting> getAllMeetingList();
+
+    /**
+     * Gets the observable value of the timetable start date.
+     * @return
+     */
+    public ObservableValue<LocalDate> getTimeTableStartDate();
 }

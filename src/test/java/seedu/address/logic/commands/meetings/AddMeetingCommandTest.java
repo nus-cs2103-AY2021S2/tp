@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,6 +18,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 
+import javafx.beans.value.ObservableValue;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
@@ -265,10 +267,26 @@ class AddMeetingCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        //=======================Timetable methods ================================================
+
         @Override
         public ObservableList<Person> getFilteredPersonListByMeetingConnection(Meeting meeting) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void setTimetableStartDate(LocalDate localDate) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public ObservableValue<LocalDate> getReadOnlyTimetableStartDate() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        //-============================================================================================
+
+
 
         @Override
         public ReadOnlyReminderBook getReminderBook() {

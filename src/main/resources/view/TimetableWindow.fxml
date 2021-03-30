@@ -32,7 +32,7 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="200.0" GridPane.vgrow="ALWAYS">
                      <children>
-                        <Label text="Monday" textAlignment="CENTER" textFill="#6f387c">
+                        <Label fx:id="firstDayLabel" text="Monday" textAlignment="CENTER" textFill="#6f387c">
                            <font>
                               <Font name="Corsiva Hebrew" size="13.0" />
                            </font>
@@ -44,7 +44,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS">
                      <children>
-                        <Label text="Tuesday" textAlignment="CENTER" textFill="#89558a">
+                        <Label fx:id="secondDayLabel" text="Tuesday" textAlignment="CENTER" textFill="#89558a">
                            <effect>
                               <Glow />
                            </effect>
@@ -53,7 +53,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS">
                      <children>
-                        <Label text="Wednesday" textAlignment="CENTER" textFill="#844c90">
+                        <Label fx:id="thirdDayLabel" text="Wednesday" textAlignment="CENTER" textFill="#844c90">
                            <effect>
                               <Glow />
                            </effect>
@@ -62,7 +62,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS">
                      <children>
-                        <Label text="Thursday" textAlignment="CENTER" textFill="#8d4a90">
+                        <Label fx:id="fourthDayLabel" text="Thursday" textAlignment="CENTER" textFill="#8d4a90">
                            <effect>
                               <Glow />
                            </effect>
@@ -71,7 +71,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" GridPane.columnIndex="4" GridPane.hgrow="ALWAYS">
                      <children>
-                        <Label text="Friday" textAlignment="CENTER" textFill="#6e4275">
+                        <Label fx:id="fifthDayLabel" text="Friday" textAlignment="CENTER" textFill="#6e4275">
                            <effect>
                               <Glow />
                            </effect>
@@ -80,7 +80,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" GridPane.columnIndex="5" GridPane.hgrow="ALWAYS">
                      <children>
-                        <Label text="Saturday" textAlignment="CENTER" textFill="#a4499a">
+                        <Label fx:id="sixthDayLabel" text="Saturday" textAlignment="CENTER" textFill="#a4499a">
                            <effect>
                               <Glow />
                            </effect>
@@ -89,7 +89,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" GridPane.columnIndex="6" GridPane.hgrow="ALWAYS">
                      <children>
-                        <Label text="Sunday" textAlignment="CENTER" textFill="#793e72">
+                        <Label fx:id="seventhDayLabel" text="Sunday" textAlignment="CENTER" textFill="#793e72">
                            <effect>
                               <Glow />
                            </effect>
