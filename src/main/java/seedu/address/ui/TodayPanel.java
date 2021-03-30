@@ -1,7 +1,7 @@
 package seedu.address.ui;
 
-import static seedu.address.commons.core.Messages.MESSAGE_NO_DEADLINES_TO_DISPLAY;
-import static seedu.address.commons.core.Messages.MESSAGE_NO_EVENTS_TO_DISPLAY;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_DEADLINES_TO_DISPLAY_TODAY;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_EVENTS_TO_DISPLAY_TODAY;
 
 import java.time.LocalDate;
 import java.util.Comparator;
@@ -32,9 +32,6 @@ public class TodayPanel extends UiPart<Region> {
 
     private final ListView<EventWithProject> eventsListView = new ListView<>();
     private final ListView<DeadlineWithProject> deadlinesListView = new ListView<>();
-
-    private Label noEventsPlaceholder;
-    private Label noDeadlinesPlaceholder;
 
     @FXML
     private Label date;
@@ -77,8 +74,8 @@ public class TodayPanel extends UiPart<Region> {
 
 
         if (observableList.isEmpty()) {
-            noDeadlinesPlaceholder = new Label();
-            noDeadlinesPlaceholder.setText(MESSAGE_NO_DEADLINES_TO_DISPLAY);
+            Label noDeadlinesPlaceholder = new Label();
+            noDeadlinesPlaceholder.setText(MESSAGE_NO_DEADLINES_TO_DISPLAY_TODAY);
             deadlinesListViewPlaceholder.getChildren().add(noDeadlinesPlaceholder);
         } else {
             deadlinesListViewPlaceholder.getChildren().add(deadlinesListView);
@@ -100,8 +97,8 @@ public class TodayPanel extends UiPart<Region> {
         eventsListView.setItems(sortedEventList);
 
         if (observableList.isEmpty()) {
-            noEventsPlaceholder = new Label();
-            noEventsPlaceholder.setText(MESSAGE_NO_EVENTS_TO_DISPLAY);
+            Label noEventsPlaceholder = new Label();
+            noEventsPlaceholder.setText(MESSAGE_NO_EVENTS_TO_DISPLAY_TODAY);
             eventsListViewPlaceholder.getChildren().add(noEventsPlaceholder);
         } else {
             eventsListViewPlaceholder.getChildren().add(eventsListView);
@@ -142,5 +139,4 @@ public class TodayPanel extends UiPart<Region> {
             }
         }
     }
-
 }

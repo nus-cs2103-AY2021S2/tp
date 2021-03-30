@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_TODOS_TO_DISPLAY;
 
 import java.util.Comparator;
 import java.util.logging.Logger;
@@ -15,6 +16,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.groupmate.Groupmate;
 import seedu.address.model.project.Project;
@@ -37,7 +39,7 @@ public class ProjectDisplayPanel extends UiPart<Region> {
     private static final int DEADLINES_CARD_HEIGHT = 45;
     private static final int GROUPMATES_CARD_HEIGHT = 55;
 
-    private final Logger logger = LogsCenter.getLogger(ProjectDisplayPanel.class);
+    private final ListView<CompletableTodo> completableTodoListView = new ListView<>();
 
     @FXML
     private Label projectName;
@@ -52,7 +54,7 @@ public class ProjectDisplayPanel extends UiPart<Region> {
     private ListView<CompletableDeadline> completableDeadlineListView;
 
     @FXML
-    private ListView<CompletableTodo> completableTodoListView;
+    private StackPane todoListViewPlaceholder;
 
     @FXML
     private ListView<Groupmate> groupmateListView;
@@ -83,6 +85,15 @@ public class ProjectDisplayPanel extends UiPart<Region> {
     private void setUpTodoList(ObservableList<CompletableTodo> todos) {
         completableTodoListView.setItems(new FilteredList<>(todos));
         completableTodoListView.setCellFactory(listView -> new CompletableTodoListViewCell());
+
+        todoListViewPlaceholder.getChildren().clear();
+        if (completableTodoListView.getItems().isEmpty()) {
+            Label noTodosPlaceholder = new Label();
+            noTodosPlaceholder.setText(MESSAGE_NO_TODOS_TO_DISPLAY);
+            todoListViewPlaceholder.getChildren().add(noTodosPlaceholder);
+        } else {
+            todoListViewPlaceholder.getChildren().add(completableTodoListView);
+        }
     }
 
     private void setUpGroupmatesList(ObservableList<Groupmate> groupmates) {

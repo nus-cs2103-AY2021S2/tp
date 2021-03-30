@@ -73,6 +73,7 @@ public class ProjectListPanel extends UiPart<Region> {
      */
     public void selectProject(Index index) {
         requireNonNull(index);
+        projectListView.getSelectionModel().clearSelection();
         projectListView.getSelectionModel().select(index.getZeroBased());
     }
 }

@@ -2,14 +2,15 @@
 
 <?import java.lang.String?>
 <?import java.net.URL?>
-<?import javafx.scene.Group?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.control.ScrollPane?>
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <stylesheets>
     <URL value="@ProjectDisplayPanel.css" />
@@ -52,7 +53,7 @@
         <content>
           <VBox styleClass="project-display-panel-section">
             <Label styleClass="label-header" text="Todos" />
-            <ListView fx:id="completableTodoListView" VBox.vgrow="ALWAYS" />
+            <StackPane fx:id="todoListViewPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
         </content>
       </Tab>
