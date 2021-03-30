@@ -7,7 +7,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
-
 import seedu.booking.model.Tag;
 import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.Description;
@@ -48,6 +47,7 @@ public class BookingBuilder {
         description = new Description(DEFAULT_DESCRIPTION);
         bookingStart = new StartTime(LocalDateTime.parse(DEFAULT_BOOKING_START, formatter));
         bookingEnd = new EndTime(LocalDateTime.parse(DEFAULT_BOOKING_END, formatter));
+        tags = new HashSet<>();
         id = new Id(Integer.valueOf(DEFAULT_ID));
     }
 

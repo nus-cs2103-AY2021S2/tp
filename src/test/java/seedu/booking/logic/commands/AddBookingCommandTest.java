@@ -1,11 +1,12 @@
 package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.booking.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
@@ -20,17 +21,12 @@ import seedu.booking.model.Model;
 import seedu.booking.model.ReadOnlyBookingSystem;
 import seedu.booking.model.ReadOnlyUserPrefs;
 import seedu.booking.model.booking.Booking;
-import seedu.booking.model.booking.Description;
-import seedu.booking.model.booking.EndTime;
 import seedu.booking.model.booking.Id;
-import seedu.booking.model.booking.StartTime;
 import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Person;
 import seedu.booking.model.venue.Venue;
 import seedu.booking.model.venue.VenueName;
 import seedu.booking.testutil.BookingBuilder;
-import seedu.booking.testutil.PersonBuilder;
-import seedu.booking.testutil.VenueBuilder;
 
 class AddBookingCommandTest {
 
@@ -41,7 +37,8 @@ class AddBookingCommandTest {
 
     @Test
     public void execute_bookingAcceptedByModel_addSuccessful() throws Exception {
-        AddBookingCommandTest.ModelStubAcceptingBookingAdded modelStub = new AddBookingCommandTest.ModelStubAcceptingBookingAdded();
+        AddBookingCommandTest.ModelStubAcceptingBookingAdded modelStub = new AddBookingCommandTest
+                .ModelStubAcceptingBookingAdded();
         Booking validBooking = new BookingBuilder().build();
 
         CommandResult commandResult = new AddBookingCommand(validBooking).execute(modelStub);
@@ -56,8 +53,8 @@ class AddBookingCommandTest {
         AddBookingCommand createBookingCommand = new AddBookingCommand(validBooking);
         AddBookingCommandTest.ModelStub modelStub = new AddBookingCommandTest.ModelStubWithBooking(validBooking);
 
-        assertThrows(CommandException.class, createBookingCommand.MESSAGE_DUPLICATE_BOOKING, ()
-                -> createBookingCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                createBookingCommand.MESSAGE_DUPLICATE_BOOKING, () -> createBookingCommand.execute(modelStub));
     }
 
     @Test

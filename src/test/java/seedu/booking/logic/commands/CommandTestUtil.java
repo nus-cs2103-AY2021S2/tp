@@ -2,11 +2,22 @@ package seedu.booking.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import static seedu.booking.logic.parser.CliSyntax.*;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKER;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_END;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_ID;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_START;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_CAPACITY;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_ORIGINAL_EMAIL;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE_ORIGINAL;
 import static seedu.booking.testutil.Assert.assertThrows;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,23 +26,13 @@ import seedu.booking.commons.core.index.Index;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.model.BookingSystem;
 import seedu.booking.model.Model;
-import seedu.booking.model.booking.Booking;
-import seedu.booking.model.booking.Description;
-import seedu.booking.model.booking.EndTime;
-import seedu.booking.model.booking.Id;
-import seedu.booking.model.booking.StartTime;
 import seedu.booking.model.booking.VenueNameContainsKeywordsPredicate;
-import seedu.booking.model.person.Email;
 import seedu.booking.model.person.NameContainsKeywordsPredicate;
 import seedu.booking.model.person.Person;
 import seedu.booking.model.venue.Venue;
-import seedu.booking.model.venue.VenueName;
-import seedu.booking.testutil.BookingBuilder;
 import seedu.booking.testutil.EditPersonCommandDescriptorBuilder;
 import seedu.booking.testutil.EditPersonDescriptorBuilder;
 import seedu.booking.testutil.EditVenueDescriptorBuilder;
-import seedu.booking.testutil.PersonBuilder;
-import seedu.booking.testutil.VenueBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -141,20 +142,26 @@ public class CommandTestUtil {
     public static final String VALID_BOOKING_START_FIELD = "2021-02-02 07:00:00";
     public static final String VALID_BOOKING_END_HALL = "2021-02-02 08:00:00";
     public static final String VALID_BOOKING_END_FIELD = "2021-02-02 08:00:00";
+    public static final String VALID_BOOKING_TAGS_HALL = "Indoors";
     public static final String VALID_BOOKING_ID_HALL = "111111111";
     public static final String VALID_BOOKING_ID_FIELD = "222222222";
 
 
     public static final String BOOKING_VENUE_NAME_DESC_HALL = " " + PREFIX_VENUE + VALID_VENUE_NAME_HALL;
     public static final String BOOKING_VENUE_NAME_DESC_FIELD = " " + PREFIX_VENUE + VALID_VENUE_NAME_FIELD;
-    public static final String BOOKING_BOOKER_EMAIL_AMY_DESC_HALL = " " + PREFIX_BOOKER + VALID_BOOKING_BOOKER_EMAIL_AMY;
-    public static final String BOOKING_BOOKER_EMAIL_BOB_DESC_FIELD = " " + PREFIX_BOOKER + VALID_BOOKING_BOOKER_EMAIL_BOB;
-    public static final String BOOKING_DESCRIPTION_DESC_HALL = " " + PREFIX_DESCRIPTION + VALID_BOOKING_DESCRIPTION_HALL;
-    public static final String BOOKING_DESCRIPTION_DESC_FIELD = " " + PREFIX_DESCRIPTION + VALID_BOOKING_DESCRIPTION_FIELD;
+    public static final String BOOKING_BOOKER_EMAIL_AMY_DESC_HALL =
+            " " + PREFIX_BOOKER + VALID_BOOKING_BOOKER_EMAIL_AMY;
+    public static final String BOOKING_BOOKER_EMAIL_BOB_DESC_FIELD =
+            " " + PREFIX_BOOKER + VALID_BOOKING_BOOKER_EMAIL_BOB;
+    public static final String BOOKING_DESCRIPTION_DESC_HALL =
+            " " + PREFIX_DESCRIPTION + VALID_BOOKING_DESCRIPTION_HALL;
+    public static final String BOOKING_DESCRIPTION_DESC_FIELD =
+            " " + PREFIX_DESCRIPTION + VALID_BOOKING_DESCRIPTION_FIELD;
     public static final String BOOKING_START_DESC_HALL = " " + PREFIX_BOOKING_START + VALID_BOOKING_START_HALL;
     public static final String BOOKING_START_DESC_FIELD = " " + PREFIX_BOOKING_START + VALID_BOOKING_START_FIELD;
     public static final String BOOKING_END_DESC_HALL = " " + PREFIX_BOOKING_END + VALID_BOOKING_END_HALL;
     public static final String BOOKING_END_DESC_FIELD = " " + PREFIX_BOOKING_END + VALID_BOOKING_END_FIELD;
+    public static final String BOOKING_TAGS_DESC_HALL = " " +  PREFIX_TAG + VALID_BOOKING_TAGS_HALL;
     public static final String BOOKING_ID_DESC_HALL = " " + PREFIX_BOOKING_ID + VALID_BOOKING_ID_HALL;
     public static final String BOOKING_ID_DESC_FIELD = " " + PREFIX_BOOKING_ID + VALID_BOOKING_ID_FIELD;
     public static final String INVALID_BOOKER_EMAIL = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol

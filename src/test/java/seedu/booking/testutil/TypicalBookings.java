@@ -1,19 +1,8 @@
 package seedu.booking.testutil;
 
+import static seedu.booking.logic.commands.CommandTestUtil.*;
 import static seedu.booking.testutil.TypicalVenues.VENUE1;
 import static seedu.booking.testutil.TypicalVenues.VENUE2;
-import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_VENUE_NAME_HALL;
-import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_VENUE_NAME_FIELD;
-import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_BOOKER_EMAIL_AMY;
-import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_BOOKER_EMAIL_BOB;
-import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_DESCRIPTION_HALL;
-import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_DESCRIPTION_FIELD;
-import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_START_HALL;
-import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_START_FIELD;
-import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_END_HALL;
-import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_END_FIELD;
-import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_ID_HALL;
-import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_ID_FIELD;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -69,6 +58,7 @@ public class TypicalBookings {
             .withDescription(VALID_BOOKING_DESCRIPTION_HALL)
             .withBookingStart(VALID_BOOKING_START_HALL)
             .withBookingEnd(VALID_BOOKING_END_HALL)
+            .withTags(VALID_BOOKING_TAGS_HALL)
             .withId(VALID_BOOKING_ID_HALL)
             .build();
 
@@ -77,6 +67,7 @@ public class TypicalBookings {
             .withDescription(VALID_BOOKING_DESCRIPTION_FIELD)
             .withBookingStart(VALID_BOOKING_START_FIELD)
             .withBookingEnd(VALID_BOOKING_END_FIELD)
+            .withTags(VALID_BOOKING_TAGS_HALL)
             .withId(VALID_BOOKING_ID_FIELD)
             .build();
 

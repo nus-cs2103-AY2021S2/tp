@@ -1,39 +1,37 @@
 package seedu.booking.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.booking.logic.commands.CommandTestUtil.*;
-import static seedu.booking.logic.commands.CommandTestUtil.VENUE_CAPACITY_DESC_HALL;
+import static seedu.booking.logic.commands.CommandTestUtil.BOOKING_BOOKER_EMAIL_AMY_DESC_HALL;
+import static seedu.booking.logic.commands.CommandTestUtil.BOOKING_BOOKER_EMAIL_BOB_DESC_FIELD;
+import static seedu.booking.logic.commands.CommandTestUtil.BOOKING_DESCRIPTION_DESC_FIELD;
+import static seedu.booking.logic.commands.CommandTestUtil.BOOKING_DESCRIPTION_DESC_HALL;
+import static seedu.booking.logic.commands.CommandTestUtil.BOOKING_END_DESC_FIELD;
+import static seedu.booking.logic.commands.CommandTestUtil.BOOKING_END_DESC_HALL;
+import static seedu.booking.logic.commands.CommandTestUtil.BOOKING_START_DESC_FIELD;
+import static seedu.booking.logic.commands.CommandTestUtil.BOOKING_START_DESC_HALL;
+import static seedu.booking.logic.commands.CommandTestUtil.BOOKING_VENUE_NAME_DESC_FIELD;
+import static seedu.booking.logic.commands.CommandTestUtil.BOOKING_VENUE_NAME_DESC_HALL;
+import static seedu.booking.logic.commands.CommandTestUtil.INVALID_BOOKER_EMAIL;
+import static seedu.booking.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_BOOKER_EMAIL_AMY;
+import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_DESCRIPTION_HALL;
+import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_END_HALL;
+import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_START_HALL;
+import static seedu.booking.logic.commands.CommandTestUtil.BOOKING_TAGS_DESC_HALL;
+import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_VENUE_NAME_HALL;
+import static seedu.booking.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.booking.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.booking.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.booking.testutil.TypicalVenues.HALL;
 import static seedu.booking.testutil.TypicalBookings.BOOKING_FIELD;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.booking.logic.commands.AddBookingCommand;
-import seedu.booking.logic.commands.AddVenueCommand;
 import seedu.booking.model.booking.Booking;
-import seedu.booking.model.person.Email;
-import seedu.booking.model.venue.Venue;
 import seedu.booking.testutil.BookingBuilder;
-import seedu.booking.testutil.VenueBuilder;
-
-//public static final String BOOKING_VENUE_NAME_DESC_HALL = " " + PREFIX_VENUE + VALID_VENUE_NAME_HALL;
-//public static final String BOOKING_VENUE_NAME_DESC_FIELD = " " + PREFIX_VENUE + VALID_VENUE_NAME_FIELD;
-//public static final String BOOKING_BOOKER_EMAIL_AMY_DESC_HALL = " " + PREFIX_BOOKER + VALID_BOOKING_BOOKER_EMAIL_AMY;
-//public static final String VALID_BOOKING_BOOKER_EMAIL_BOB_DESC_FIELD = " " + PREFIX_BOOKER + VALID_BOOKING_BOOKER_EMAIL_BOB;
-//public static final String VALID_BOOKING_DESCRIPTION_DESC_HALL = " " + PREFIX_DESCRIPTION + VALID_BOOKING_DESCRIPTION_HALL;
-//public static final String VALID_BOOKING_DESCRIPTION_DESC_FIELD = " " + PREFIX_DESCRIPTION + VALID_BOOKING_DESCRIPTION_FIELD;
-//public static final String VALID_BOOKING_START_DESC_HALL = " " + PREFIX_BOOKING_START + VALID_BOOKING_START_HALL;
-//public static final String VALID_BOOKING_START_DESC_FIELD = " " + PREFIX_BOOKING_START + VALID_BOOKING_START_FIELD;
-//public static final String VALID_BOOKING_END_DESC_HALL = " " + PREFIX_BOOKING_END + VALID_BOOKING_END_HALL;
-//public static final String VALID_BOOKING_END_DESC_FIELD = " " + PREFIX_BOOKING_END + VALID_BOOKING_END_FIELD;
-//public static final String VALID_BOOKING_ID_DESC_HALL = " " + PREFIX_BOOKING_ID + VALID_BOOKING_ID_HALL;
-//public static final String VALID_BOOKING_ID_DESC_FIELD = " " + PREFIX_BOOKING_ID + VALID_BOOKING_ID_FIELD;
-
-
 
 class AddBookingCommandParserTest {
+
     private AddBookingCommandParser parser = new AddBookingCommandParser();
 
     @Test
@@ -43,7 +41,7 @@ class AddBookingCommandParserTest {
         // whitespace only preamble
         assertParseSuccess(parser,
                 PREAMBLE_WHITESPACE + BOOKING_BOOKER_EMAIL_AMY_DESC_HALL
-                        + BOOKING_VENUE_NAME_DESC_HALL+ BOOKING_DESCRIPTION_DESC_HALL
+                        + BOOKING_VENUE_NAME_DESC_HALL + BOOKING_DESCRIPTION_DESC_HALL
                         + BOOKING_START_DESC_HALL + BOOKING_END_DESC_HALL,
                 new AddBookingCommand(expectedBooking));
 
@@ -51,14 +49,14 @@ class AddBookingCommandParserTest {
         assertParseSuccess(parser, BOOKING_BOOKER_EMAIL_AMY_DESC_HALL
                         + BOOKING_VENUE_NAME_DESC_FIELD + BOOKING_VENUE_NAME_DESC_HALL
                         + BOOKING_DESCRIPTION_DESC_HALL
-                        + BOOKING_START_DESC_HALL + BOOKING_END_DESC_HALL,
+                        + BOOKING_START_DESC_HALL + BOOKING_END_DESC_HALL + BOOKING_TAGS_DESC_HALL,
                 new AddBookingCommand(expectedBooking));
 
         // multiple booker emails - last booker email accepted
         assertParseSuccess(parser, BOOKING_BOOKER_EMAIL_BOB_DESC_FIELD + BOOKING_BOOKER_EMAIL_AMY_DESC_HALL
                         + BOOKING_VENUE_NAME_DESC_HALL
                         + BOOKING_DESCRIPTION_DESC_HALL
-                        + BOOKING_START_DESC_HALL + BOOKING_END_DESC_HALL,
+                        + BOOKING_START_DESC_HALL + BOOKING_END_DESC_HALL + BOOKING_TAGS_DESC_HALL,
                 new AddBookingCommand(expectedBooking));
 
         // multiple descriptions - last description accepted
@@ -66,15 +64,15 @@ class AddBookingCommandParserTest {
                         + BOOKING_VENUE_NAME_DESC_HALL
                         + BOOKING_DESCRIPTION_DESC_FIELD
                         + BOOKING_DESCRIPTION_DESC_HALL
-                        + BOOKING_START_DESC_HALL + BOOKING_END_DESC_HALL,
+                        + BOOKING_START_DESC_HALL + BOOKING_END_DESC_HALL + BOOKING_TAGS_DESC_HALL,
                 new AddBookingCommand(expectedBooking));
 
         // multiple start time - last start time accepted
-        assertParseSuccess(parser,BOOKING_BOOKER_EMAIL_AMY_DESC_HALL
+        assertParseSuccess(parser, BOOKING_BOOKER_EMAIL_AMY_DESC_HALL
                         + BOOKING_VENUE_NAME_DESC_HALL
                         + BOOKING_DESCRIPTION_DESC_HALL
                         + BOOKING_START_DESC_FIELD + BOOKING_START_DESC_HALL
-                        + BOOKING_END_DESC_HALL,
+                        + BOOKING_END_DESC_HALL + BOOKING_TAGS_DESC_HALL,
                 new AddBookingCommand(expectedBooking));
 
         // multiple end time - last end time accepted
@@ -82,10 +80,9 @@ class AddBookingCommandParserTest {
                         + BOOKING_VENUE_NAME_DESC_HALL
                         + BOOKING_DESCRIPTION_DESC_HALL
                         + BOOKING_START_DESC_HALL + BOOKING_END_DESC_FIELD
-                        + BOOKING_END_DESC_HALL,
+                        + BOOKING_END_DESC_HALL + BOOKING_TAGS_DESC_HALL,
                 new AddBookingCommand(expectedBooking));
     }
-
 
 
     @Test
@@ -129,7 +126,6 @@ class AddBookingCommandParserTest {
                         + VALID_BOOKING_START_HALL + VALID_BOOKING_END_HALL,
                 expectedMessage);
     }
-
 
 
     @Test
