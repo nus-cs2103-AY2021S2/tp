@@ -10,6 +10,7 @@ import seedu.address.model.group.Group;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonEvent;
+import seedu.address.model.person.PersonStreak;
 
 /**
  * The API of the Model component.
@@ -136,4 +137,9 @@ public interface Model {
      * Updates the person to display the full details for
      */
     void updateDetailedPerson(Person personToDisplay);
+
+    /**
+     * Returns an unmodifiable view of contacts and their streaks
+     */
+    ObservableList<PersonStreak> getPersonStreaks();
 }

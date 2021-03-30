@@ -21,6 +21,7 @@ import seedu.address.commons.util.TimeUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
+import seedu.address.model.person.Debt;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Event;
 import seedu.address.model.person.Goal;
@@ -228,6 +229,17 @@ public class ParserUtil {
         return trimmedDescription;
     }
 
+    /**
+     * Parses a {@code String} as a positive {@code Debt}
+     */
+    public static Debt parsePositiveDebt(String debt) throws ParseException {
+        requireNonNull(debt);
+        String trimmedDebt = debt.trim();
+        if (!Debt.isValidDebt(trimmedDebt)) {
+            throw new ParseException(Debt.MESSAGE_CONSTRAINTS);
+        }
+        return new Debt(debt);
+    }
     /**
      * Parses a {@code String} into a {@code Frequency}
      *

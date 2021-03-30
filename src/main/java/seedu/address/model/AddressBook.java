@@ -16,6 +16,7 @@ import seedu.address.model.group.GroupHashMap;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonEvent;
+import seedu.address.model.person.PersonStreak;
 import seedu.address.model.person.UniquePersonList;
 
 /**
@@ -26,6 +27,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final GroupHashMap groups;
+    private final PersonStreakList personStreaks;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -37,6 +39,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         groups = new GroupHashMap();
+        personStreaks = new PersonStreakList();
     }
 
     public AddressBook() {}
@@ -57,6 +60,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPersons(List<Person> persons) {
         this.persons.setPersons(persons);
+        personStreaks.setPersons(persons);
     }
 
     /**
@@ -93,6 +97,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addPerson(Person p) {
         persons.add(p);
+        personStreaks.add(p);
     }
 
     /**
@@ -104,6 +109,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedPerson);
 
         persons.setPerson(target, editedPerson);
+        personStreaks.setPerson(target, editedPerson);
     }
 
     /**
@@ -112,6 +118,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+        personStreaks.remove(key);
     }
 
     //// group-level operations
@@ -192,6 +199,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         });
 
         return FXCollections.observableArrayList(personEvents);
+    }
+
+    @Override
+    public ObservableList<PersonStreak> getPersonStreaks() {
+        return personStreaks.asUnmodifiableList();
     }
 
     @Override

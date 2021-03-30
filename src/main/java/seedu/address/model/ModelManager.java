@@ -17,6 +17,7 @@ import seedu.address.model.group.Group;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonEvent;
+import seedu.address.model.person.PersonStreak;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -30,6 +31,7 @@ public class ModelManager implements Model {
     private final ObservableMap<Name, Group> groupMap;
     private final ObservableList<PersonEvent> upcomingDates;
     private final ObservableList<Person> detailedPerson;
+    private final ObservableList<PersonStreak> personStreaks;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -46,6 +48,7 @@ public class ModelManager implements Model {
         groupMap = this.addressBook.getGroupMap();
         upcomingDates = this.addressBook.getUpcomingDates();
         detailedPerson = FXCollections.observableArrayList();
+        personStreaks = this.addressBook.getPersonStreaks();
     }
 
     public ModelManager() {
@@ -175,6 +178,8 @@ public class ModelManager implements Model {
         return groupMap;
     }
 
+    //=========== Details Panel =============================================================
+
     @Override
     public ObservableList<PersonEvent> getUpcomingDates() {
         return upcomingDates;
@@ -193,6 +198,11 @@ public class ModelManager implements Model {
     @Override
     public void updateDetailedPerson(Person personToDisplay) {
         detailedPerson.setAll(personToDisplay);
+    }
+
+    @Override
+    public ObservableList<PersonStreak> getPersonStreaks() {
+        return personStreaks;
     }
 
     @Override

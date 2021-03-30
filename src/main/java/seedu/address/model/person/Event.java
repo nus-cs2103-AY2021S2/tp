@@ -41,7 +41,7 @@ public class Event {
      * @param description A description of the event.
      */
     public Event(LocalDate date, LocalTime time, String description) {
-        requireAllNonNull(date, time, description);
+        requireAllNonNull(date, description);
         this.date = date;
         this.time = time;
         this.description = description;
@@ -94,7 +94,7 @@ public class Event {
 
         Event otherEvent = (Event) other;
         return otherEvent.getDate().equals(getDate())
-                && otherEvent.getTime().equals(getTime())
+                && (!otherEvent.hasTime() || otherEvent.getTime().equals(getTime()))
                 && otherEvent.getDescription().equals(getDescription());
     }
 

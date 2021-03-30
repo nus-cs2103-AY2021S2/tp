@@ -1,5 +1,6 @@
 package seedu.address.logic;
 
+import java.io.IOException;
 import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
@@ -10,6 +11,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonEvent;
+import seedu.address.model.person.PersonStreak;
 
 /**
  * API of the Logic component
@@ -23,6 +25,8 @@ public interface Logic {
      * @throws ParseException If an error occurs during parsing.
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
+
+    void saveFiles() throws IOException;
 
     /**
      * Returns the AddressBook.
@@ -45,6 +49,11 @@ public interface Logic {
      * Returns an unmodifiable view of a person to display the full details for
      */
     ObservableList<Person> getDetailedPerson();
+
+    /**
+     * Returns an unmodifiable view of contacts and their streaks
+     */
+    ObservableList<PersonStreak> getPersonStreaks();
 
     /**
      * Returns the user prefs' address book file path.
