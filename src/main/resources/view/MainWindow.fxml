@@ -103,7 +103,7 @@
                                         <Insets bottom="5" left="10" right="10" top="5" />
                                     </padding>
                                 </StackPane>
-                                <TabPane fx:id="tabPanePlaceHolder" styleClass="pane-with-border" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+                                <TabPane fx:id="tabPanePlaceHolder" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
                                     <stylesheets>
                                         <URL value="@TabStyle.css" />
                                     </stylesheets>

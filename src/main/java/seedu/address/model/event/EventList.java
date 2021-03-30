@@ -11,7 +11,6 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.model.schedule.Schedule;
 
 public class EventList implements Iterable<Event> {
@@ -48,11 +47,6 @@ public class EventList implements Iterable<Event> {
     public void setEvents(List<Appointment> appointments, List<Schedule> schedules) {
         requireAllNonNull(appointments);
         requireAllNonNull(schedules);
-
-//        if (!eventsAreUnique(appointments)) {
-//            throw new DuplicateEventException();
-//        }
-
         internalList.addAll(appointments);
         internalList.addAll(schedules);
     }

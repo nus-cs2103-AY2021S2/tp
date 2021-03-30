@@ -131,14 +131,6 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        tabPanePlaceHolder.widthProperty().addListener((observable, oldValue, newValue) ->
-        {
-            int numTabs = tabPanePlaceHolder.getTabs().size();
-            tabPanePlaceHolder.setTabMinWidth(newValue.intValue() / numTabs - (20));
-            tabPanePlaceHolder.setTabMinWidth(newValue.intValue() / numTabs - (20));
-        });
-
-
         tutorListPanel = new TutorListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
 
