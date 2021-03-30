@@ -17,25 +17,24 @@ import seedu.address.model.common.Tag;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
 
-
 /**
- * Marks the status of an uncompleted task as complete.
+ * Marks the status of a completed task as uncompleted.
  */
-public class DoneTaskCommand extends Command {
-    public static final String COMMAND_WORD = "done_task";
+public class UndoneTaskCommand extends Command {
+    public static final String COMMAND_WORD = "undone_task";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the task identified by the index number as complete.\n"
+            + ": Marks the task identified by the index number as uncompleted.\n"
             + "Index number is the index shown in the displayed task list.\n"
             + "Parameters: INDEX (must be a positive integer and a valid index)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DONE_TASK_SUCCESS = "Completed Task: %1$s";
-    public static final String MESSAGE_TASK_ALREADY_COMPLETE = "This task has already been marked as complete.";
+    public static final String MESSAGE_DONE_TASK_SUCCESS = "Undone Task: %1$s";
+    public static final String MESSAGE_TASK_ALREADY_UNCOMPLETED = "This task has already been marked as uncompleted.";
 
     private final Index targetIndex;
 
-    public DoneTaskCommand(Index targetIndex) {
+    public UndoneTaskCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -55,40 +54,40 @@ public class DoneTaskCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        Task taskToComplete = lastShownList.get(targetIndex.getZeroBased());
-        // verify if task is already completed
-        if (taskToComplete.isComplete()) {
-            throw new CommandException(MESSAGE_TASK_ALREADY_COMPLETE);
+        Task taskToUndone = lastShownList.get(targetIndex.getZeroBased());
+        // verify if task is already uncompleted
+        if (!taskToUndone.isComplete()) {
+            throw new CommandException(MESSAGE_TASK_ALREADY_UNCOMPLETED);
         }
 
-        Task completedTask = createCompletedTask(taskToComplete);
+        Task uncompletedTask = createUncompletedTask(taskToUndone);
 
         // replace the old task with the new and completed task and update
-        model.setTask(taskToComplete, completedTask);
+        model.setTask(taskToUndone, uncompletedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-        return new CommandResult(String.format(MESSAGE_DONE_TASK_SUCCESS, taskToComplete));
+        return new CommandResult(String.format(MESSAGE_DONE_TASK_SUCCESS, taskToUndone));
     }
 
     /**
-     * Creates and returns a {@code Task} with the same details of {@code taskToComplete},
-     * but completionStatus as complete.
+     * Creates and returns a {@code Task} with the same details of {@code taskToUndone},
+     * but completionStatus as completed.
      *
-     * @param taskToComplete task to be marked as complete.
-     * @return a completed task.
+     * @param taskToUndone task to be marked as uncompleted.
+     * @return an ucompleted task.
      */
-    private static Task createCompletedTask(Task taskToComplete) {
-        assert taskToComplete != null;
-        assert !taskToComplete.isComplete();
+    private static Task createUncompletedTask(Task taskToUndone) {
+        assert taskToUndone != null;
+        assert taskToUndone.isComplete();
 
-        Task completedTask = copyTask(taskToComplete);
-        completedTask.markTaskAsDone();
-        return completedTask;
+        Task uncompletedTask = copyTask(taskToUndone);
+        uncompletedTask.markTaskAsUndone();
+        return uncompletedTask;
     }
 
     /**
      * Copies the task given and returns a new task with the same details as the given task.
      *
-     * @param taskToCopy task to be copied, here is the task to be completed.
+     * @param taskToCopy task to be copied, here is the task to be uncompleted.
      * @return a copied task.
      */
     private static Task copyTask(Task taskToCopy) {
@@ -98,18 +97,17 @@ public class DoneTaskCommand extends Command {
         Set<Category> categories = taskToCopy.getCategories();
         Set<Tag> tags = taskToCopy.getTags();
 
-        Task completedTask = new Task(taskName, deadline, priority, categories, tags);
+        Task copiedTask = new Task(taskName, deadline, priority, categories, tags);
         if (taskToCopy.isPinned()) {
-            completedTask.pin();
+            copiedTask.pin();
         }
-        return completedTask;
+        return copiedTask;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DoneTaskCommand // instanceof handles nulls
-                && targetIndex.equals(((DoneTaskCommand) other).targetIndex)); // state check
+                || (other instanceof UndoneTaskCommand // instanceof handles nulls
+                && targetIndex.equals(((UndoneTaskCommand) other).targetIndex)); // state check
     }
-
 }
