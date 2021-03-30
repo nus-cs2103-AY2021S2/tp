@@ -23,20 +23,21 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 **API**: `Ui.java`
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StatusBarFooter` etc. 
-All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StatusBarFooter` etc. All
+these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files 
-that are in the `src/main/resources/view` folder. For example, the layout of the `MainWindow` is specified in 
+The `UI` component uses the JavaFX UI framework. The layout of these UI parts are defined in matching `.fxml` files that
+are in the `src/main/resources/view` folder. For example, the layout of the `MainWindow` is specified in
 `MainWindow.fxml`.
 
 The `UI` component:
+
 * Executes users' commands using the `Logic` component.
-* Listens for changes to `Model` data so that the UI can be updated with the modified data. 
+* Listens for changes to `Model` data so that the UI can be updated with the modified data.
 * Any changes in `Model` data, i.e. customers, cheeses or orders data, are reflected through the `Panels` and `Cards`
   sub-components.
-  
-The class diagram below shows in more detail the compositions of the `Panels` and `Cards` components as well as their 
+
+The class diagram below shows in more detail the compositions of the `Panels` and `Cards` components as well as their
 relationships with other classes.
 
 ![Structure of the Panels & Cards Component](images/UiPanelsCardsClassDiagram.png)
@@ -51,7 +52,7 @@ relationships with other classes.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation** [In Progress]
+## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -65,21 +66,22 @@ The application's user-interface shows, at any one time, **only one** of the fol
 2. Cheese List
 3. Order List
 
-The UI automatically toggles between the three lists with respect to the user's latest command.
-For example: 
+The UI automatically toggles between the three lists with respect to the user's latest command. For example:
+
 - After running the `ListCheeseCommand`, the UI switches to showing the cheese list.
 - After running the `AddCustomerCommand`, the UI switches to showing the customer list.
 - After running the `FindOrderCommand`, the UI switches to showing the order list.
 
-To enable the toggling, `GuiSettings` (of the `commons` package) stores an enumerable property to control which list 
-to show.
+To enable the toggling, `GuiSettings` (of the `commons` package) stores an enumerable property to control which list to
+show.
 
 When the user keys in a valid input:
-1. The `Command` object corresponding to the input, when executed, updates the enum in `GuiSettings`; the enum records 
+
+1. The `Command` object corresponding to the input, when executed, updates the enum in `GuiSettings`; the enum records
    which list is to be shown. This is done through the `ModelManager`.
 2. The `UI` component then checks the `GuiSettings` and renders the desired list.
 
-To better illustrate the idea - take, for instance, when the user inputs `listcheeses` which executes the 
+To better illustrate the idea - take, for instance, when the user inputs `listcheeses` which executes the
 `ListCheesesCommand`:
 
 ![ListPanelTogglingSequenceDiagram](images/ListPanelTogglingSequenceDiagram.png)

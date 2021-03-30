@@ -39,12 +39,8 @@ CheeseListPanel --> CheeseCard
 OrderListPanel --> OrderCard
 
 MainWindow --|> UiPart
-CustomerListPanel --|> UiPart
-CheeseListPanel --|> UiPart
-OrderListPanel --|> UiPart
-CustomerCard --|> UiPart
-CheeseCard --|> UiPart
-OrderCard --|> UiPart
+Panels --|> UiPart
+Cards --|> UiPart
 
 CustomerCard ..> Model
 CheeseCard ..> Model
