@@ -9,7 +9,7 @@ import java.util.Objects;
  */
 public class CommandResult {
     public enum CRtype {
-        PERSON, DISH, INGREDIENT, ORDER, SHOPPING, HELPOREXIT, NONE
+        PERSON, DISH, INGREDIENT, ORDER, ORDERHISTORY, SHOPPING, HELPOREXIT, NONE
     }
 
     private final String feedbackToUser;

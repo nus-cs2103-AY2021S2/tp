@@ -241,6 +241,9 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered order list */
     ObservableList<Order> getFilteredOrderList(Order.State state);
 
+    /** Returns an unmodifiable view of the filtered order list */
+    ObservableList<Order> getFilteredOrderList(Order.State firstState, Order.State secState);
+
     /** Sorts and filters and then returns an unmodifiable view of the filtered order list */
     ObservableList<Order> getFilteredOrderList(Comparator<Order> comparator, Order.State state);
 

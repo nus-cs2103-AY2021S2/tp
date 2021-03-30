@@ -59,7 +59,16 @@ public class Order implements Item {
 
     public String getDetails() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("Datetime: ")
+        String state;
+        if (getState() == State.UNCOMPLETED) {
+            state = "";
+        } else if (getState() == State.COMPLETED) {
+            state = "(Completed) ";
+        } else {
+            state = "(Cancelled) ";
+        }
+        builder.append(state)
+                .append("Datetime: ")
                 .append(getStrDatetime())
                 .append("\nCustomer: ")
                 .append(getCustomer());

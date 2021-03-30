@@ -89,6 +89,14 @@ public class OrderBook implements ReadOnlyOrderBook {
     }
 
     /**
+     * Cancel an order
+     * @param key
+     */
+    public void cancelOrder(Order key) {
+        key.setState(Order.State.CANCELLED);
+    }
+
+    /**
      * Sorts item with a comparator that compares datetime
      * @param c
      */
