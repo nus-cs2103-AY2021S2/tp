@@ -84,8 +84,7 @@ public class EditVenueCommand extends Command {
     }
 
     private static Venue getVenueByVenueName(VenueName venueName, List<Venue> venueList) {
-        return venueList.stream()
-                .filter(venueName::isSameVenueName).findFirst().orElse(null);
+        return venueList.stream().filter(venueName::isSameVenueName).findFirst().orElse(null);
     }
 
     /**
