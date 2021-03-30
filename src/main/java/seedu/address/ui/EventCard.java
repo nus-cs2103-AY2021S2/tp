@@ -44,8 +44,13 @@ public class EventCard extends UiPart<Region> {
         id.setText("");
         eventDescription.setText(event.getDescription());
         day.setText(DateUtil.decodeDateIntoDay(event.getDate()));
-        date.setText(DateUtil.decodeDate(event.getDate()));
         time.setText(TimeUtil.decodeTime(event.getTime()));
+
+        if (event.getIsWeekly()) {
+            date.setText("every");
+        } else {
+            date.setText(DateUtil.decodeDate(event.getDate()));
+        }
     }
 
     /**
@@ -59,8 +64,13 @@ public class EventCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         eventDescription.setText(event.getDescription());
         day.setText(DateUtil.decodeDateIntoDay(event.getDate()));
-        date.setText(DateUtil.decodeDate(event.getDate()));
         time.setText(TimeUtil.decodeTime(event.getTime()));
+
+        if (event.getIsWeekly()) {
+            date.setText("every");
+        } else {
+            date.setText(DateUtil.decodeDate(event.getDate()));
+        }
     }
 
     @Override

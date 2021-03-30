@@ -83,9 +83,13 @@ public class GuiTestAssert {
      */
     public static void assertCardDisplaysEvent(Event expectedEvent, EventCardHandle actualCard) {
         assertEquals(expectedEvent.getDescription(), actualCard.getDescription());
-        assertEquals(decodeDate(expectedEvent.getDate()), actualCard.getDate());
         assertEquals(decodeTime(expectedEvent.getTime()), actualCard.getTime());
         assertEquals(decodeDateIntoDay(expectedEvent.getDate()), actualCard.getDay());
+        if (expectedEvent.getIsWeekly()) {
+            assertEquals("every", actualCard.getDate());
+        } else {
+            assertEquals(decodeDate(expectedEvent.getDate()), actualCard.getDate());
+        }
     }
 
     /**
