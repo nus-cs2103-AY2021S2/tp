@@ -2,14 +2,14 @@ package seedu.address.logic.commands.gradecommands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.grade.Grade;
-
-import java.util.List;
 
 /**
  * Deletes a grade identified using it's displayed index from the grade list.
@@ -58,7 +58,7 @@ public class DeleteGradeCommand extends Command {
             model.removeGradeIndex(targetIndex.getZeroBased());
             return new CommandResult(String.format(MESSAGE_DELETE_GRADE_SUCCESS, toDelete));
         } catch (IndexOutOfBoundsException e) {
-                return new CommandResult(MESSAGE_DELETE_GRADE_FAILURE);
+            return new CommandResult(MESSAGE_DELETE_GRADE_FAILURE);
         }
     }
 
