@@ -4,6 +4,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.model.person.Person;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
 /**
@@ -17,12 +18,17 @@ public class ApptContactsContainKeywordsPredicate extends ApptFieldContainsKeywo
 
     @Override
     public boolean test(Appointment appointment) {
-        Stream<Person> contacts = appointment.getContacts().stream();
-        Stream<String> keywords = super.getKeywords().stream();
+        Set<Person> persons = appointment.getContacts();
 
-        return contacts.anyMatch( contact ->
-                keywords.anyMatch(keyword ->
-                StringUtil.containsWordIgnoreCase(contact.getName().fullName, keyword)));
+        for(Person person : persons) {
+            boolean isFound = super.getKeywords().stream().anyMatch(keyword ->
+                    StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
+            if (isFound) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }
