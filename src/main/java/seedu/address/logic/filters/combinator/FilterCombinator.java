@@ -20,7 +20,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NOT;
 
 
 public class FilterCombinator implements Predicate<Customer> {
-    private Node rootNode;
+    private final Node rootNode;
 
     public FilterCombinator(String argument) {
         rootNode = createTree(argument);
