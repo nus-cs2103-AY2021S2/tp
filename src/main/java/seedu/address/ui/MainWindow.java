@@ -37,7 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private ScheduleWindow scheduleWindow;
     private DateListPanel dateListPanel;
-    //private CommandBox commandBox;
+    private CommandBox commandBox;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -137,7 +137,7 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         // dateListPanel = new DateListPanel(logic.getTransformedImportantDatesList());
@@ -211,7 +211,6 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            //commandBox.
             if (logic.getSelectedPerson() != null) {
                 personDetails.setPerson(logic.getSelectedPerson());
             }
