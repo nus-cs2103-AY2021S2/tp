@@ -1,29 +1,23 @@
 @startuml
 !include style.puml
-skinparam arrowThickness 1.1
+skinparam arrowThickness 1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Interface NoteContentConfig <<Interface>>
-Interface DictionaryContentConfig <<Interface>>
-
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 Class ReadOnlyContactsList
 Class ReadOnlyDefinitionBook
+Class ReadOnlyDictionary
 Class ReadOnlyNoteBook
-Class FilteredList<Definition>
 Class DefinitionBook
-Class FilteredList<Content>
 Class Dictionary
-Class FilteredList<Contact>
 Class NoteBook
-Class FilteredList<Note>
 Class UserPrefs
 Class DictionaryBook
 Class ContactsList
@@ -50,8 +44,8 @@ Class UniqueNoteList
 Package Dictionary {
 Class Content
 Class Definition
-Class UniqueContentList
 Class UniqueDefinitionList
+Class UniqueContentList
 }
 }
 Class HiddenOutside #FFFFFF
@@ -60,12 +54,14 @@ HiddenOutside ..> Model
 ContactsList .up.|> ReadOnlyContactsList
 NoteBook .up.|> ReadOnlyNoteBook
 DefinitionBook .up.|> ReadOnlyDefinitionBook
+DictionaryBook .up.|> ReadOnlyDictionary
 
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
 ModelManager o--> "1" ContactsList
 ModelManager o--> "1" NoteBook
+ModelManager o--> "1" DictionaryBook
 ModelManager o--> "1" DefinitionBook
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
@@ -80,10 +76,13 @@ Contact *--> "*" Tag
 
 NoteBook *--> "1" UniqueNoteList
 UniqueNoteList o--> "*" Note
+Note *--> "*" Tag
 
-DictionaryBook *--> "1" UniqueDefinitionList
+
+DictionaryBook *--> "1" UniqueContentList
 UniqueDefinitionList o--> "*" Definition
-UniqueDefinitionList o--> "*" Content
+DefinitionBook *--> "1" UniqueDefinitionList
+UniqueContentList o--> "*" Content
 
 
 Name -[hidden]right-> Phone
@@ -92,6 +91,7 @@ Address -[hidden]right-> Email
 
 ModelManager ----->" ~* filtered list" Contact
 ModelManager ----->" ~* filtered list" Note
-ModelManager ----->" ~* filtered list" Dictionary
+ModelManager ----->" ~* filtered list" Content
+ModelManager ----->" ~* filtered list" Definition
 
 @enduml

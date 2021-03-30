@@ -15,6 +15,7 @@ public class TagsContainKeywordsPredicate implements Predicate<Contact> {
 
     @Override
     public boolean test(Contact contact) {
+
         return keywords.stream()
                 .allMatch(keyword -> contact.getTags()
                         .toString()
