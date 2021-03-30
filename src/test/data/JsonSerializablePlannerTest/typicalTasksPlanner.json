@@ -52,7 +52,7 @@
     "title" : "Get ready for 2101 presentation",
     "deadline" : "",
     "duration": "",
-    "recurringSchedule" : "[18/06/2021][Sun][weekly]",
+    "recurringSchedule" : "[18/06/2021][thu][weekly]",
     "description": "remember to shave",
     "status": "done",
     "tagged" : [ ]

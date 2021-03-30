@@ -53,8 +53,8 @@ public class EditCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() throws CommandException {
-        Index indexLastTask = Index.fromOneBased(model.getFilteredTaskList().size());
-        Task lastTask = model.getFilteredTaskList().get(indexLastTask.getZeroBased());
+        Index indexThirdLastTask = Index.fromOneBased(model.getFilteredTaskList().size() - 2);
+        Task lastTask = model.getFilteredTaskList().get(indexThirdLastTask.getZeroBased());
 
         TaskBuilder taskInList = new TaskBuilder(lastTask);
         Task editedTask = taskInList.withTitle(VALID_TITLE_BOB).withDuration(VALID_DURATION_BOB)
@@ -62,7 +62,7 @@ public class EditCommandTest {
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_BOB)
                 .withDuration(VALID_DURATION_BOB).withTags(VALID_TAG_HUSBAND).build();
-        EditCommand editCommand = new EditCommand(indexLastTask, descriptor);
+        EditCommand editCommand = new EditCommand(indexThirdLastTask, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
