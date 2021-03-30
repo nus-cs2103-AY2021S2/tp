@@ -133,6 +133,38 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Parsing user commands
+
+### Add session feature
+
+#### Current Implementation
+
+The add session feature is facilitated by `SessionList`. It is stored internally in `AddressBook` as `sessions`. It implements the following relevant relavent operations:
+
+* `SessionList#add(Session toAdd)` — Adds the given session to the current list of sessions
+
+This operation is exposed in the `Model` interface as `Model#addSession(Session session)`.
+
+Given below is an example usage scenario and how the add session mechanism behaves at each step.
+
+Step 1: The user executes `add_session d/Saturday …` command to add a new session. The `LogicManager` calls `AddressBookParser#parseCommand(String userInput)`. 
+
+Step 2: The `parseCommand` method passes the user input to `AddSessionCommandParser#parse(String args)` which returns an `AddSessionCommand` object.
+
+Step 3: The `LogicManager` then executes the `AddSessionCommand` which calls the `Model#addSession(Session session)` method.
+
+Step 4: The `Model` adds the new session to `sessions` in `AddressBook` and returns a `CommandResult`.
+
+Step 5: The `CommandResult` is then displayed on the UI.
+
+The sequence for the example scenerio can be found below:
+
+![AddSessionSequenceDiagram](images/AddSessionSequenceDiagram.png)
+
+### Unassign feature.
+
+The unassign 
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -216,7 +248,6 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -316,9 +347,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case ends.
 
-
-*{More to be added}*
-
 **Use case: View a tutor**
 
 **MSS**
@@ -337,7 +365,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Delete a student**
+
+
+**MSS**
+
+1.  User requests to unassign specified students and a specified tutor from a specified session.
+2.  AddressBook unassigns the students and the tutor from the class
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Any of the given IDs are invalid.
+
+    * 1a1. AddressBook shows an error message.
     
+    Use case ends.
+    
+*{More to be added}*
 
 ### Non-Functional Requirements
 
