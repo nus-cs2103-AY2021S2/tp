@@ -38,10 +38,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private EventListPaneKanbanView eventListPaneKanbanView;
     private EventListPaneListView eventListPaneListView;
-    //    private EventListPaneKanbanView kanbanTodoListView;
-    //    private EventListPaneKanbanView kanbanBacklogListView;
-    //    private EventListPaneKanbanView kanbanInProgressListView;
-    //    private EventListPaneKanbanView kanbanDoneListView;
+
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
