@@ -64,4 +64,7 @@ public class Email {
         return value.hashCode();
     }
 
+    public String getEmailIdWithoutDomain() {
+        return this.value.split("\\.")[0];
+    }
 }
