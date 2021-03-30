@@ -239,6 +239,28 @@ public class ModelManager implements Model {
         return filteredAndSortedOrders.getObservableList();
     }
 
+    @Override
+    public int getFilteredOrderListIncompleteCount() {
+        int c = 0;
+        for (Order o : getFilteredOrderList()) {
+            if (o.isComplete()) {
+                c++;
+            }
+        }
+        return c;
+    }
+
+    @Override
+    public int getFilteredCheeseListUnassignedCount() {
+        int c = 0;
+        for (Cheese cheese : getFilteredCheeseList()) {
+            if (cheese.isCheeseAssigned()) {
+                c++;
+            }
+        }
+        return c;
+    }
+
     /**
      * Returns an unmodifiable view of the list of {@code Cheese} backed by the internal list of
      * {@code versionedAddressBook}

@@ -32,4 +32,10 @@ public class CustomerAddressPredicate extends SingleFieldPredicate<Customer> {
         return (other instanceof CustomerAddressPredicate) && super.equals(other); // state check
     }
 
+    @Override
+    public String toString() {
+        return String.format("address containing keyword(s) of %s",
+                super.toString());
+    }
+
 }

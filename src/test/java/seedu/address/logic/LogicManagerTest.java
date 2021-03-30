@@ -66,7 +66,11 @@ public class LogicManagerTest {
     @Test
     public void execute_validCommand_success() throws Exception {
         String listCommand = ListCustomersCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCustomersCommand.MESSAGE_SUCCESS, model);
+        String expectedMessage = String.format(
+                ListCustomersCommand.SUMMARY_MESSAGE,
+                model.getFilteredCustomerList().size()
+        );
+        assertCommandSuccess(listCommand, expectedMessage, model);
     }
 
     @Test

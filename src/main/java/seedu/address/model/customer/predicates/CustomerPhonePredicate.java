@@ -40,4 +40,9 @@ public class CustomerPhonePredicate extends SingleFieldPredicate<Customer> {
         return (other instanceof CustomerPhonePredicate) && super.equals(other); // state check
     }
 
+    @Override
+    public String toString() {
+        return String.format("phone starting with %s",
+                super.toString());
+    }
 }

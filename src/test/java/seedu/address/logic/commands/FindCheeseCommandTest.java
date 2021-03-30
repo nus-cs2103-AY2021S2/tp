@@ -41,7 +41,9 @@ public class FindCheeseCommandTest {
         assertCommandSuccess(
                 new FindCheeseCommand(PREDICATE_SHOW_ALL_CHEESES),
                 model,
-                String.format(Messages.MESSAGE_CHEESES_LISTED_OVERVIEW, expectedModel.getFilteredCheeseList().size()),
+                String.format(Messages.MESSAGE_CHEESES_FOUND_OVERVIEW,
+                        expectedModel.getFilteredCheeseList().size(),
+                        PREDICATE_SHOW_ALL_CHEESES),
                 expectedModel
         );
     }
@@ -54,7 +56,9 @@ public class FindCheeseCommandTest {
         assertCommandSuccess(
                 new FindCheeseCommand(predicate),
                 model,
-                String.format(Messages.MESSAGE_CHEESES_LISTED_OVERVIEW, expectedModel.getFilteredCheeseList().size()),
+                String.format(Messages.MESSAGE_CHEESES_FOUND_OVERVIEW,
+                        expectedModel.getFilteredCheeseList().size(),
+                        predicate),
                 expectedModel
         );
     }
@@ -66,7 +70,9 @@ public class FindCheeseCommandTest {
         assertCommandSuccess(
                 new FindCheeseCommand(predicate),
                 model,
-                String.format(Messages.MESSAGE_CHEESES_LISTED_OVERVIEW, expectedModel.getFilteredCheeseList().size()),
+                String.format(Messages.MESSAGE_CHEESES_FOUND_OVERVIEW,
+                        expectedModel.getFilteredCheeseList().size(),
+                        predicate),
                 expectedModel
         );
     }
@@ -87,7 +93,9 @@ public class FindCheeseCommandTest {
         assertCommandSuccess(
                 new FindCheeseCommand(predicate),
                 model,
-                String.format(Messages.MESSAGE_CHEESES_LISTED_OVERVIEW, expectedModel.getFilteredCheeseList().size()),
+                String.format(Messages.MESSAGE_CHEESES_FOUND_OVERVIEW,
+                        expectedModel.getFilteredCheeseList().size(),
+                        predicate),
                 expectedModel
         );
     }

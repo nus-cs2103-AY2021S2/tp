@@ -27,11 +27,27 @@ public class ListOrdersCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListOrdersCommand(), model, ListOrdersCommand.MESSAGE_SUCCESS, expectedModel);
+        int incompleteCount = expectedModel.getFilteredOrderListIncompleteCount();
+        int totalOrder = expectedModel.getFilteredOrderList().size();
+        String expectedMessage = String.format(
+                ListOrdersCommand.SUMMARY_MESSAGE,
+                expectedModel.getFilteredOrderList().size(),
+                totalOrder - incompleteCount,
+                incompleteCount
+        );
+        assertCommandSuccess(new ListOrdersCommand(), model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        assertCommandSuccess(new ListOrdersCommand(), model, ListOrdersCommand.MESSAGE_SUCCESS, expectedModel);
+        int incompleteCount = expectedModel.getFilteredOrderListIncompleteCount();
+        int totalOrder = expectedModel.getFilteredOrderList().size();
+        String expectedMessage = String.format(
+                ListOrdersCommand.SUMMARY_MESSAGE,
+                expectedModel.getFilteredOrderList().size(),
+                totalOrder - incompleteCount,
+                incompleteCount
+        );
+        assertCommandSuccess(new ListOrdersCommand(), model, expectedMessage, expectedModel);
     }
 }

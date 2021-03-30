@@ -315,16 +315,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User enters the index of the order to be marked as complete.
-1. CHIM marks the order as complete.
+1. CHIM assigns avaliable cheeses to the order and marks the order as complete.
 
    Use case ends.
 
 **Extensions**
 * 1a. User provides an index which does not exist.
   * 1a1. CHIM displays an error message.
+    
+    Use case resumes at step 1.
+    
+* 1b. User provides an index in which order is already completed.
+  * 1b1. CHIM responds that the order is already completed.
 
     Use case resumes at step 1.
+    
+* 1c. User provides an index of an order that cannot be completed due to lack of cheeses in inventory.
+  * 1c1. CHIM responds that there are insufficient cheeses to complete the order.
 
+    Use case resumes at step 1.
 
 #### Use case: Search for a customer
 

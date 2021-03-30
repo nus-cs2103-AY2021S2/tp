@@ -6,13 +6,14 @@ import static seedu.address.commons.util.ListUtil.compareListWithoutOrder;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Class to hold single predicate conditions for fields.
  */
 public abstract class SingleFieldPredicate<U> extends FieldPredicate<U> {
 
-    private final List<String> keywords;
+    protected final List<String> keywords;
 
     /**
      * Creates new {@code SingleFieldPredicate} object by given keywords.
@@ -44,4 +45,8 @@ public abstract class SingleFieldPredicate<U> extends FieldPredicate<U> {
         return hash(keywords);
     }
 
+    @Override
+    public String toString() {
+        return keywords.stream().collect(Collectors.joining(" or "));
+    }
 }

@@ -1,6 +1,7 @@
 package seedu.address.model.util.predicate;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Predicate which contains multiple predicates for fields.
@@ -45,4 +46,8 @@ public class CompositeFieldPredicate<U> extends FieldPredicate<U> {
         return fieldPredicateSet.size();
     }
 
+    @Override
+    public String toString() {
+        return fieldPredicateSet.stream().map(FieldPredicate::toString).collect(Collectors.joining("\nand "));
+    }
 }
