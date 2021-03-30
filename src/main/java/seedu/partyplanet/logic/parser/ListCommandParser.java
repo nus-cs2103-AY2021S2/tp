@@ -176,10 +176,10 @@ public class ListCommandParser implements Parser<ListCommand> {
     private Comparator<Person> applySortDirection(
             Comparator<Person> comparator, ArgumentMultimap argMap) throws ParseException {
         Optional<String> orderType = argMap.getValue(PREFIX_ORDER);
-        if (stringSort.equals("") || comparator == SORT_BIRTHDAY_UPCOMING) {
-            return comparator; // default
-        } else if (orderType.isEmpty()) {
-            stringSort += "in ascending order. ";
+        if (orderType.isEmpty() || comparator == SORT_BIRTHDAY_UPCOMING) {
+            if (!stringSort.isEmpty() && comparator != SORT_BIRTHDAY_UPCOMING) {
+                stringSort += "in ascending order. ";
+            }
             return comparator; // default
         } else {
             switch (orderType.get().toLowerCase()) {
