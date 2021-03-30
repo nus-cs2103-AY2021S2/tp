@@ -66,13 +66,6 @@ public class CoeExpiryFilter extends AbstractFilter {
     }
 
     @Override
-    public List<Customer> filterAllCustomers(List<Customer> customer) {
-        return customer.stream()
-                .filter(this::test)
-                .collect(Collectors.toUnmodifiableList()); //defensive coding
-    }
-
-    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof CoeExpiryFilter // instanceof handles nulls

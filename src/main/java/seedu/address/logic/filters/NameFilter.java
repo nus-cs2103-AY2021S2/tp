@@ -33,13 +33,6 @@ public class NameFilter extends AbstractFilter {
         }
         return false;
     }
-
-    @Override
-    public List<Customer> filterAllCustomers(List<Customer> customer) {
-        return customer.parallelStream() //TODO: Consider this carefully
-                       .filter(this::test)
-                       .collect(Collectors.toUnmodifiableList());
-    }
     //@@author nighoggDatatype-reused
     //Reused from https://stackoverflow.com/a/13564498/11358676
     private static int levenshteinDistance(String s1, String s2) {
