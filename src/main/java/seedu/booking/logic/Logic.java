@@ -45,7 +45,7 @@ public interface Logic {
     ObservableList<Venue> getFilteredVenueList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' booking system file path.
      */
     Path getBookingSystemFilePath();
 

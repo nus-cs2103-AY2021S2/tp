@@ -20,7 +20,7 @@ import seedu.booking.model.venue.Venue;
 import seedu.booking.model.venue.VenueName;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the booking system data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -40,7 +40,7 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(bookingSystem, userPrefs);
 
-        logger.fine("Initializing with address book: " + bookingSystem + " and user prefs " + userPrefs);
+        logger.fine("Initializing with booking system: " + bookingSystem + " and user prefs " + userPrefs);
 
         this.bookingSystem = new BookingSystem(bookingSystem);
         this.userPrefs = new UserPrefs(userPrefs);

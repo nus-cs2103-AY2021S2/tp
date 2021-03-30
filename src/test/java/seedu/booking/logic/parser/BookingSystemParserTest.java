@@ -21,7 +21,7 @@ import seedu.booking.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.booking.logic.commands.ExitCommand;
 import seedu.booking.logic.commands.FindCommand;
 import seedu.booking.logic.commands.HelpCommand;
-import seedu.booking.logic.commands.ListCommand;
+import seedu.booking.logic.commands.ListPersonCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.model.person.NameContainsKeywordsPredicate;
 import seedu.booking.model.person.Person;
@@ -84,8 +84,8 @@ public class BookingSystemParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListPersonCommand.COMMAND_WORD) instanceof ListPersonCommand);
+        assertTrue(parser.parseCommand(ListPersonCommand.COMMAND_WORD + " 3") instanceof ListPersonCommand);
     }
 
     @Test
