@@ -70,7 +70,7 @@ public class StringUtil {
 
     /**
      * Returns the similarity ratio of case insensitive fuzzy search using partial ratio if query is shorter and
-     * using simple ration if data is shorter.
+     * using simple ratio if data is shorter.
      * e.g. query: Sam, data: samantha
      * Will return {@code FuzzySearch.partialRatio("sam", "samantha")}
      * e.g. query: Recruiter, data: IT

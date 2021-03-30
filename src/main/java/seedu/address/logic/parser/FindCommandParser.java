@@ -68,10 +68,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                         new RemarkContainsKeywordsPredicate(Arrays.asList(remarkValue.get().split("\\s+").clone()));
                 return new FindCommand(predicateComparator, predicateComparator);
             }
-
-
         }
-
 
         FieldsContainsKeywordsPredicate predicateComparator =
                 new FieldsContainsKeywordsPredicate(Arrays.asList(trimmedArgs.split("\\s+").clone()));
