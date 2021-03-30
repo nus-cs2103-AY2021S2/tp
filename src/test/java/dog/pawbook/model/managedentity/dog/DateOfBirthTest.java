@@ -4,12 +4,15 @@ import static dog.pawbook.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Test;
 
 class DateOfBirthTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new DateOfBirth(null));
+        assertThrows(NullPointerException.class, () -> new DateOfBirth((String) null));
+        assertThrows(NullPointerException.class, () -> new DateOfBirth((LocalDate) null));
     }
 
     @Test

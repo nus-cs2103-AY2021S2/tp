@@ -116,6 +116,22 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String dateString} into {@code LocalDate}.
+     *
+     * @throws ParseException if the given {@code dateString} is not in a valid format.
+     */
+    public static LocalDate parseDate(String dateString) throws ParseException {
+        requireNonNull(dateString);
+        LocalDate date;
+        try {
+            date = LocalDate.parse(dateString.trim(), DateTimeFormatter.ofPattern("d-M-yyyy"));
+        } catch (DateTimeParseException d) {
+            throw new ParseException("Date should be in the d-M-yyyy format");
+        }
+        return date;
+    }
+
+    /**
      * Parses a {@code String dob} into a {@code DateOfBirth}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -123,11 +139,8 @@ public class ParserUtil {
      */
     public static DateOfBirth parseDob(String dob) throws ParseException {
         requireNonNull(dob);
-        String trimmedDob = dob.trim();
-        if (!DateOfBirth.isValidDob(trimmedDob)) {
-            throw new ParseException(DateOfBirth.MESSAGE_CONSTRAINTS);
-        }
-        return new DateOfBirth(trimmedDob);
+        LocalDate localDate = parseDate(dob.trim());
+        return new DateOfBirth(localDate);
     }
 
     /**
@@ -196,22 +209,6 @@ public class ParserUtil {
             throw new ParseException(Session.MESSAGE_CONSTRAINTS);
         }
         return new Session(trimmedDop);
-    }
-
-    /**
-     * Parses a {@code String dateString} into {@code LocalDate}.
-     *
-     * @throws ParseException if the given {@code dateString} is not in a valid format.
-     */
-    public static LocalDate parseDate(String dateString) throws ParseException {
-        requireNonNull(dateString);
-        LocalDate date;
-        try {
-            date = LocalDate.parse(dateString.trim(), DateTimeFormatter.ofPattern("d-M-yyyy"));
-        } catch (DateTimeParseException d) {
-            throw new ParseException("Date should be in the d-M-yyyy format");
-        }
-        return date;
     }
 
 }

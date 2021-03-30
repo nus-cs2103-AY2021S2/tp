@@ -34,8 +34,16 @@ public class DateOfBirth {
         requireNonNull(value);
         checkArgument(isValidDob(value), MESSAGE_CONSTRAINTS);
         this.value = value;
-        LocalDate date = LocalDate.parse(value, DateTimeFormatter.ofPattern("d-M-yyyy"));
+        this.date = LocalDate.parse(value, DateTimeFormatter.ofPattern("d-M-yyyy"));
+    }
+
+    /**
+     * Construct an {@code DateOfBirth} from a given {@code LocalDate}.
+     */
+    public DateOfBirth(LocalDate date) {
+        requireNonNull(date);
         this.date = date;
+        this.value = date.format(DateTimeFormatter.ofPattern("d-M-yyyy"));
     }
 
     /**
