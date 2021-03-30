@@ -114,9 +114,12 @@ public class EditCommandParser implements Parser<EditCommand> {
             return Optional.empty();
         }
 
-        return Optional.of(recur.getField().equals("")
-                ? new OptionalField<>(null)
-                : new OptionalField<>(ParserUtil.parseRecurrence(recur.getField())));
+        String recurStr = recur.getField();
+        if (recurStr.equals("")) {
+            return Optional.of(new OptionalField<>(null));
+        } else {
+            return Optional.of(new OptionalField<>(ParserUtil.parseRecurrence(recurStr)));
+        }
     }
 
 }
