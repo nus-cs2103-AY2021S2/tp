@@ -173,6 +173,11 @@ public class UniqueEventList implements Iterable<Event> {
                     for (int j = startTimeCount; j < 1440; j++) {
                         timeStatus[j] = 1;
                     }
+                } else {
+                    //event starts before the day and ends in the future
+                    for (int j = 0; j < 1440; j++) {
+                        timeStatus[j] = 1;
+                    }
                 }
             }
         }
@@ -246,8 +251,6 @@ public class UniqueEventList implements Iterable<Event> {
         ArrayList<Integer> timeIndex = getFreeTimeIndex(getTimeStatus(date));
         ArrayList<String> freeTimeSlots = new ArrayList<>();
         if (timeIndex.size() != 0) {
-
-
             if (startStatus == 0) {
                 int firstBound = 0;
                 int secondBound = timeIndex.get(0) - 1;
@@ -303,8 +306,10 @@ public class UniqueEventList implements Iterable<Event> {
                 }
             }
         } else {
-            String timeSlotStr = "The entire day is free!";
-            freeTimeSlots.add(timeSlotStr);
+            if (startStatus == 0) {
+                String timeSlotStr = "The entire day is free!";
+                freeTimeSlots.add(timeSlotStr);
+            }
         }
         return freeTimeSlots;
     }

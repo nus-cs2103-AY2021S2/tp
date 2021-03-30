@@ -7,8 +7,6 @@ import seedu.address.logic.commands.FindFreeTimeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.common.Date;
 
-import java.time.format.DateTimeParseException;
-
 /**
  * Parses input arguments and creates a new FindFreeTimeCommand object
  */
