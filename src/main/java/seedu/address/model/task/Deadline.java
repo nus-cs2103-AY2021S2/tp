@@ -9,10 +9,10 @@ import java.time.format.DateTimeParseException;
  * Guarantees: deadline not empty and in the format YYYY-MM-DD.
  */
 public class Deadline {
-    public static final String MESSAGE_CONSTRAINTS = "Deadlines should be in the format YYYY-MM-DD";
+    public static final String MESSAGE_CONSTRAINTS = "Invalid Date or Date format! Deadlines should be in the format "
+            + "YYYY-MM-DD and should be a valid date";
 
     public final LocalDate date;
-
     public final String dateString;
     public final String unformattedDate;
 
