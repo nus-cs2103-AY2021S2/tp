@@ -18,7 +18,7 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String USERGUIDE_URL = "https://ay2021s2-cs2103t-w10-4.github.io/tp/UserGuide.html";
 
     public static final String DIVIDER = "\n -------------------------------------------------------------------------"
-            + "------------------------------------------------------";
+            + "----------------------------------------------------";
 
     public static final String COMMAND_SUMMARY = " Here is a list of all the commands" + DIVIDER
             + "\n Tips: Words in capital are compulsory while the words in square bracket [ ] are optional."
@@ -55,6 +55,7 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(COMMAND_SUMMARY + HELP_MESSAGE);
+        copyButton.setLayoutX(1000);
     }
 
     /**
