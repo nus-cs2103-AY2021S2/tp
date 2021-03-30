@@ -194,6 +194,13 @@ Lists all the tutor with note
 
 Format:`list_note`
 
+### List tutors with note `list_note`
+Export the tutor details together with the notes into a text file
+
+Format:`list_note`
+
+Example: `export 1`
+
 ### Adding a favourite: `favourite`
 
 Label a tutor as a favourite.
@@ -377,6 +384,7 @@ Action | Format, Examples
 **Edit note of a tutor** | `edit_note INDEX NOTE`, <br> e.g. `edit_note not patient`
 **Delete note of a tutor** | `delete_note INDEX`, <br> e.g. `delete_note 1`
 **List tutors with note** | `list_note`, <br> e.g. `list_note`
+**Export the tutor details**| `export INDEX`, <br> e.g. `export 1`
 **Favourite a tutor** | `favourite INDEX`, <br> e.g. `favourite 1`
 **Unfavourite a tutor** | `unfavourite INDEX`, <br> e.g. `Unfavourite 1`
 **List favourites** | `list_favourites`, <br> e.g. `list_favourites`
