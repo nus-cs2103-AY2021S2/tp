@@ -112,7 +112,7 @@ public class TypicalRemindMe {
     public static RemindMe getTypicalRemindMeWithFilledModules() {
         RemindMe mp = new RemindMe();
         mp.addModule(new ModuleBuilder(MOD_1_WITH_ASSIGNMENTS).build());
-        mp.addModule(new ModuleBuilder(MOD_2).build());
+        mp.addModule(new ModuleBuilder(MOD_2).withExams(VALID_EXAM_DATETIME_1, VALID_EXAM_DATETIME_2).build());
 
         for (Person person : getTypicalPersons()) {
             mp.addPerson(person);

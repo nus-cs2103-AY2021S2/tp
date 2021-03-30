@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -37,6 +39,7 @@ public class EventCard extends UiPart<Region> {
      */
     public EventCard(GeneralEvent generalEvent, int displayedIndex) {
         super(FXML);
+        requireAllNonNull(generalEvent, displayedIndex);
         this.generalEvent = generalEvent;
         id.setText(displayedIndex + ". ");
         description.setText(generalEvent.getDescription().description);

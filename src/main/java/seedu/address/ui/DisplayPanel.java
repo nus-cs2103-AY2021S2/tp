@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -47,6 +49,7 @@ public class DisplayPanel extends UiPart<Region> {
      */
     public DisplayPanel(Logic logic) {
         super(FXML);
+        requireNonNull(logic);
         this.logic = logic;
         fillInnerPart();
         listenerOnChange();

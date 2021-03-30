@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDate;
 
 import javafx.fxml.FXML;
@@ -34,6 +36,7 @@ public class ReminderWindow extends UiPart<Stage> {
      */
     public ReminderWindow(CalendarStorage calendarStorage) {
         super(FXML);
+        requireNonNull(calendarStorage);
         this.todayDate = LocalDate.now();
         this.calendarStorage = calendarStorage;
         calendarStorage.refreshStorage();
