@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import fooddiary.commons.core.LogsCenter;
 import fooddiary.model.entry.Entry;
+import fooddiary.model.entry.Price;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -126,7 +127,7 @@ public class ViewWindow extends UiPart<Stage> {
         tagCategories.getChildren().clear();
         tagSchools.getChildren().clear();
         nameText.setText(entry.getName().fullName);
-        priceText.setText(String.format("$%s", entry.getPrice().value));
+        priceText.setText(String.format("%s%s", Price.PRICE_DOLLAR_SIGN, entry.getPrice().value));
         ratingText.setText(String.format("%s / 5", entry.getRating().value));
         addressText.setText(entry.getAddress().value);
 
