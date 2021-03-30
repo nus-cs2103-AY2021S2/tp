@@ -59,7 +59,8 @@ public class AddPersonFilterCommandTest {
                 getTypicalScheduleTracker());
 
         expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
-                getTypicalAppointmentBook(), new BudgetBook(), getTypicalGradeBook());
+                getTypicalAppointmentBook(), new BudgetBook(), getTypicalGradeBook(),
+                getTypicalScheduleTracker());
 
         this.nameFilters = new LinkedHashSet<>();
         this.genderFilters = new LinkedHashSet<>();

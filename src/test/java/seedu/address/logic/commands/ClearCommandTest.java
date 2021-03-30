@@ -13,7 +13,6 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.testutil.ModelManagerBuilder;
 
 public class ClearCommandTest {
 

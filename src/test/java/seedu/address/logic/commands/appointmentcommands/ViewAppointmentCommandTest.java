@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalDates.APPOINTMENT_SECOND_DATE;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.DateViewPredicate;

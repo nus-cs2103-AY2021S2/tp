@@ -105,7 +105,18 @@ public class SampleDataUtil {
         };
     }
 
-
+    public static Schedule[] getSampleSchedule() {
+        return new Schedule[] {
+            new Schedule(new Title("Math Tuition Homework"),
+                    new AppointmentDateTime("2021-03-24 2:00PM"),
+                    new AppointmentDateTime("2021-03-24 3:00PM"),
+                    new Description("Chapter 5")),
+            new Schedule(new Title("Science Tuition Homework"),
+                    new AppointmentDateTime("2021-03-25 3:00PM"),
+                    new AppointmentDateTime("2021-03-25 5:00PM"),
+                    new Description("Chapter 6"))
+        };
+    }
 
     public static ReadOnlyScheduleTracker getSampleScheduleTracker() {
         ScheduleTracker sampleSt = new ScheduleTracker();

@@ -2,25 +2,15 @@ package seedu.address.model.schedule;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHEDULE_DESCRIPTION_TWO;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHEDULE_TIMEFROM_TWO;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHEDULE_TIMETO_TWO;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHEDULE_TITLE_ONE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHEDULE_TITLE_TWO;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalSchedules.MATHS_HOMEWORK_SCHEDULE;
 import static seedu.address.testutil.TypicalSchedules.SCIENCE_HOMEWORK_SCHEDULE;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+
 import seedu.address.testutil.ScheduleBuilder;
 
 public class ScheduleTest {
@@ -44,7 +34,8 @@ public class ScheduleTest {
         assertFalse(MATHS_HOMEWORK_SCHEDULE.isSameSchedule(editedScheduleOne));
 
         // title differs in case, all other attributes same -> returns true
-        Schedule editedScheduleTwo = new ScheduleBuilder(SCIENCE_HOMEWORK_SCHEDULE).withTitle(VALID_SCHEDULE_TITLE_TWO.toLowerCase()).build();
+        Schedule editedScheduleTwo = new ScheduleBuilder(SCIENCE_HOMEWORK_SCHEDULE)
+                .withTitle(VALID_SCHEDULE_TITLE_TWO.toLowerCase()).build();
         assertTrue(SCIENCE_HOMEWORK_SCHEDULE.isSameSchedule(editedScheduleTwo));
 
         // title has trailing spaces, all other attributes same -> returns false

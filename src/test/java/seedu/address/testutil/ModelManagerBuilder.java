@@ -6,32 +6,19 @@ import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalSchedules.getTypicalScheduleTracker;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.AppointmentBook;
 import seedu.address.model.BudgetBook;
-import seedu.address.model.GradeBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAppointmentBook;
-import seedu.address.model.ReadOnlyBudgetBook;
 import seedu.address.model.ReadOnlyGradeBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
-import seedu.address.model.schedule.ScheduleTracker;
 
 /**
  * A utility class to create new ModelManager.
  */
 public class ModelManagerBuilder {
-
-    public enum ModelType {
-        ADDRESSBOOK,
-        APPOINTMENTBOOK,
-        BUDGETBOOK,
-        GRADEBOOK,
-        SCHEDULETRACKER
-    }
 
     /**
      * Returns an {@code ModelManager} with all the typical books/trackers.
@@ -68,8 +55,18 @@ public class ModelManagerBuilder {
         case SCHEDULETRACKER:
             st = model.getScheduleTracker();
             break;
+        default:
+            break;
         }
 
         return new ModelManager(ab, new UserPrefs(), apb, bb, gb, st);
+    }
+
+    public enum ModelType {
+        ADDRESSBOOK,
+        APPOINTMENTBOOK,
+        BUDGETBOOK,
+        GRADEBOOK,
+        SCHEDULETRACKER
     }
 }

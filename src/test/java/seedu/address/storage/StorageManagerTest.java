@@ -3,7 +3,6 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
-import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalSchedules.getTypicalScheduleTracker;
 
@@ -12,13 +11,12 @@ import java.nio.file.Path;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.AddressBook;
 import seedu.address.model.AppointmentBook;
-import seedu.address.model.GradeBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAppointmentBook;
-import seedu.address.model.ReadOnlyGradeBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.ScheduleTracker;
@@ -80,14 +78,6 @@ public class StorageManagerTest {
         storageManager.saveAppointmentBook(original);
         ReadOnlyAppointmentBook retrieved = storageManager.readAppointmentBook().get();
         assertEquals(original, new AppointmentBook(retrieved));
-    }
-
-    @Test
-    public void gradeBookReadSave() throws Exception {
-        GradeBook original = getTypicalGradeBook();
-        storageManager.saveGradeBook(original);
-        ReadOnlyGradeBook retrieved = storageManager.readGradeBook().get();
-        assertEquals(original, new GradeBook(retrieved));
     }
 
     @Test

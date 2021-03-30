@@ -3,8 +3,6 @@ package seedu.address.model.schedule;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.util.Locale;
-
 import seedu.address.model.tag.Filterable;
 
 /**

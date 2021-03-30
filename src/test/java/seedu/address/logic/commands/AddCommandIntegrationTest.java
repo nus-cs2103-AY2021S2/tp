@@ -15,7 +15,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.ModelManagerBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 /**
@@ -28,8 +27,8 @@ public class AddCommandIntegrationTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
-            getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook(),
-            getTypicalScheduleTracker());
+                getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook(),
+                getTypicalScheduleTracker());
     }
 
     @Test
@@ -37,8 +36,8 @@ public class AddCommandIntegrationTest {
         Person validPerson = new PersonBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
-            getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook(),
-            getTypicalScheduleTracker());
+                getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook(),
+                getTypicalScheduleTracker());
 
         expectedModel.addPerson(validPerson);
 
