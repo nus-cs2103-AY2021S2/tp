@@ -245,7 +245,7 @@ Deletes event(s) from PartyPlanet's Events List. Similar to `delete`.
 
 Format: `edelete [INDEX [INDEX]...]`
 
-* If no parameters: `edelete`:
+* If no parameters `edelete`:
   * Deletes all events in the current events list.
 * If provided with index(es) `edelete INDEX [INDEX]...`:
   * Deletes the event(s) at the specified `INDEX`.
