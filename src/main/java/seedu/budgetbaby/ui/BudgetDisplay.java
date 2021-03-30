@@ -40,7 +40,7 @@ public class BudgetDisplay extends UiPart<Region> {
     private Label budgetPercentage;
 
     @FXML
-    private ListView topCategories;
+    private ListView<String> topCategories;
 
     /**
      * Creates a {@code BudgetDisplay} with the given {@code Month}.
@@ -86,7 +86,7 @@ public class BudgetDisplay extends UiPart<Region> {
         String totalExpensesStr = String.format("%.2f", totalExpenses);
         String expensesPercentageStr = String.format("%.1f%%", expensesPercentage);
 
-        this.budgetMonth.setText("Statistics: " + monthStr);
+        this.budgetMonth.setText(monthStr);
         this.budgetAmount.setText("Budget($): " + totalExpensesStr + "/" + totalBudgetStr);
         this.budgetProgressBar.setProgress(expensesRatio);
         this.budgetPercentage.setText(expensesPercentageStr);

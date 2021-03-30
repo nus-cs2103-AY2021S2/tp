@@ -59,6 +59,8 @@ public class BudgetBabyLogicManager implements BudgetBabyLogic {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
 
+        getBudgetTracker().notifyObservers();
+
         return commandResult;
     }
 
