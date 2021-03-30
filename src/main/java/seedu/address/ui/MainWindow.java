@@ -170,10 +170,6 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.isShowHelp()) {
-                // Need to refactor this to remove this field from everything else...
-            }
-
             if (commandResult.isExit()) {
                 handleExit();
             }

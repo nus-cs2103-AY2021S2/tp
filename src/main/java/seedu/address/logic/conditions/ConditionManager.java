@@ -8,6 +8,9 @@ import seedu.address.model.task.Task;
 
 /**
  * ConditionManager checks that the necessary constraints on the attributes of Tasks are abided by.
+ * Current constraints:
+ * - Duration cannot exist on its own without Deadline or RecurringSchedule.
+ * - Deadline cannot exist together with RecurringSchedule.
  */
 public class ConditionManager {
 
