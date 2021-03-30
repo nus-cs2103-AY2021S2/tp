@@ -16,10 +16,10 @@ end box
 [-> LogicManager : parse(clear)
 activate LogicManager
 
-LogicManager -> SocheduleParser : parseCommand(undo)
+LogicManager -> SocheduleParser : parseCommand(clear)
 activate SocheduleParser
 
-SocheduleParser -> ClearCommandParser: parse(args)
+SocheduleParser -> ClearCommandParser: parse()
 activate ClearCommandParser
 
 create ClearCommand
@@ -38,7 +38,6 @@ LogicManager <-- SocheduleParser : s
 deactivate SocheduleParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 SocheduleParser -[hidden]->[
-destroy SocheduleParser
 
 LogicManager -> ClearCommand : execute()
 activate ClearCommand
@@ -58,7 +57,6 @@ LogicManager <-- ClearCommand
 deactivate ClearCommand
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 ClearCommand -[hidden]->[
-destroy ClearCommand
 
 [<-- LogicManager : CommandResult
 @enduml

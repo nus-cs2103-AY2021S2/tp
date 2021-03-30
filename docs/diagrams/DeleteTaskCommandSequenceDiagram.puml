@@ -13,13 +13,13 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : parse(delete_task)
+[-> LogicManager : parse(delete_task INDEX)
 activate LogicManager
 
-LogicManager -> SocheduleParser : parseCommand(undo)
+LogicManager -> SocheduleParser : parseCommand(delete_task INDEX)
 activate SocheduleParser
 
-SocheduleParser -> DeleteTaskCommandParser: parse(args)
+SocheduleParser -> DeleteTaskCommandParser: parse(INDEX)
 activate DeleteTaskCommandParser
 
 create DeleteTaskCommand
@@ -38,7 +38,6 @@ LogicManager <-- SocheduleParser : s
 deactivate SocheduleParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 SocheduleParser -[hidden]->[
-destroy SocheduleParser
 
 LogicManager -> DeleteTaskCommand : execute()
 activate DeleteTaskCommand
@@ -58,7 +57,6 @@ LogicManager <-- DeleteTaskCommand
 deactivate DeleteTaskCommand
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 DeleteTaskCommand -[hidden]->[
-destroy DeleteTaskCommand
 
 [<-- LogicManager : CommandResult
 @enduml
