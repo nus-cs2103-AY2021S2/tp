@@ -179,6 +179,11 @@ public class AddPersonCommandTest {
         }
 
         @Override
+        public void setModule(Module target, Module editedMod) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
         public boolean hasAssignment(Module module, Assignment assignment) {
             throw new AssertionError("This method should not be called.");
         }
