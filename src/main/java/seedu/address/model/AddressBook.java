@@ -7,6 +7,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.session.RecurringSession;
 import seedu.address.model.session.Session;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
@@ -151,11 +152,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if session {@code Session} overlaps with any session belonging to any student
+     * Returns true if session {@code RecurringSession} overlaps with any session belonging to any student
      * in the unique student list
      */
-    public boolean hasOverlappingRecurringSession(Session session) {
-        return students.hasOverlappingSession(session);
+    public boolean hasOverlappingSession(RecurringSession recurringSession) {
+        return students.hasOverlappingSession(recurringSession);
     }
 
     // util methods

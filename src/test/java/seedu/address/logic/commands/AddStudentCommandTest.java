@@ -175,7 +175,7 @@ public class AddStudentCommandTest {
         }
 
         @Override
-        public boolean hasOverlappingRecurringSession(RecurringSession recurringSession) {
+        public boolean hasOverlappingSession(RecurringSession recurringSession) {
             throw new AssertionError("This method should not be called.");
         }
 

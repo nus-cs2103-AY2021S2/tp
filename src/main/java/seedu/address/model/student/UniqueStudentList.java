@@ -160,12 +160,40 @@ public class UniqueStudentList implements Iterable<Student> {
             for (Session session : sessionList) {
                 if (session instanceof RecurringSession) {
                     RecurringSession recurringSession = (RecurringSession) session;
-                    if (!recurringSession.hasSessionOnDate(target.getSessionDate())) {
-                        continue;
+                    if (recurringSession.isOverlapping(target)) {
+                        return true;
+                    }
+                } else {
+                    if (session.isOverlapping(target)) {
+                        return true;
                     }
                 }
-                if (session.isOverlappingWithSession(target)) {
-                    return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Returns true if target {@code RecurringSession} overlaps with any of the sessions existing in any student
+     * in the unique student list.
+     * This method does not check for equality in end of {@code SessionDate} for sessions.
+     * Use {@link #hasSession(Session)} method instead.
+     */
+    public boolean hasOverlappingSession(RecurringSession target) {
+        requireNonNull(target);
+
+        for (Student student : internalList) {
+            List<Session> sessionList = student.getListOfSessions();
+            for (Session session : sessionList) {
+                if (session instanceof RecurringSession) {
+                    RecurringSession recurringSession = (RecurringSession) session;
+                    if (recurringSession.isOverlapping(target)) {
+                        return true;
+                    }
+                } else {
+                    if (session.isOverlapping(target)) {
+                        return true;
+                    }
                 }
             }
         }

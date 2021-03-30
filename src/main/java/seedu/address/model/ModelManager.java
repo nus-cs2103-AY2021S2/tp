@@ -152,9 +152,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasOverlappingRecurringSession(RecurringSession recurringSession) {
+    public boolean hasOverlappingSession(RecurringSession recurringSession) {
         requireNonNull(recurringSession);
-        return addressBook.hasOverlappingRecurringSession(recurringSession);
+        return addressBook.hasOverlappingSession(recurringSession);
     }
 
     //=========== Filtered Student List Accessors =============================================================

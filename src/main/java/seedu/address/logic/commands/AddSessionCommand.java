@@ -64,7 +64,7 @@ public class AddSessionCommand extends Command {
 
         if (sessionToAdd instanceof RecurringSession) {
             RecurringSession recurringSessionToAdd = (RecurringSession) sessionToAdd;
-            if (model.hasOverlappingRecurringSession(recurringSessionToAdd)) {
+            if (model.hasOverlappingSession(recurringSessionToAdd)) {
                 throw new CommandException(SESSION_OVERLAP);
             }
         } else {
