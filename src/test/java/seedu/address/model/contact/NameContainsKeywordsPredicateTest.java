@@ -17,15 +17,19 @@ public class NameContainsKeywordsPredicateTest {
     public void equals() {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
-
-        seedu.address.model.contact.NameContainsKeywordsPredicate firstPredicate = new seedu.address.model.contact.NameContainsKeywordsPredicate(firstPredicateKeywordList);
-        seedu.address.model.contact.NameContainsKeywordsPredicate secondPredicate = new seedu.address.model.contact.NameContainsKeywordsPredicate(secondPredicateKeywordList);
+        List<String> f = firstPredicateKeywordList;
+        List<String> s = secondPredicateKeywordList;
+        seedu.address.model.contact.NameContainsKeywordsPredicate firstPredicate =
+                new seedu.address.model.contact.NameContainsKeywordsPredicate(f);
+        seedu.address.model.contact.NameContainsKeywordsPredicate secondPredicate =
+                new seedu.address.model.contact.NameContainsKeywordsPredicate(s);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        seedu.address.model.contact.NameContainsKeywordsPredicate firstPredicateCopy = new seedu.address.model.contact.NameContainsKeywordsPredicate(firstPredicateKeywordList);
+        seedu.address.model.contact.NameContainsKeywordsPredicate firstPredicateCopy =
+                 new seedu.address.model.contact.NameContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -41,7 +45,8 @@ public class NameContainsKeywordsPredicateTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        seedu.address.model.contact.NameContainsKeywordsPredicate predicate = new seedu.address.model.contact.NameContainsKeywordsPredicate(Collections.singletonList("Alice"));
+        seedu.address.model.contact.NameContainsKeywordsPredicate predicate =
+                 new seedu.address.model.contact.NameContainsKeywordsPredicate(Collections.singletonList("Alice"));
         assertTrue(predicate.test(new ContactBuilder().withName("Alice Bob").build()));
 
         // Multiple keywords
@@ -60,7 +65,8 @@ public class NameContainsKeywordsPredicateTest {
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        seedu.address.model.contact.NameContainsKeywordsPredicate predicate = new seedu.address.model.contact.NameContainsKeywordsPredicate(Collections.emptyList());
+        seedu.address.model.contact.NameContainsKeywordsPredicate predicate =
+                 new seedu.address.model.contact.NameContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new ContactBuilder().withName("Alice").build()));
 
         // Non-matching keyword
