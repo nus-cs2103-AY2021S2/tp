@@ -30,11 +30,11 @@
             <VBox styleClass="project-display-panel-vbox">
               <VBox styleClass="project-display-panel-section" VBox.vgrow="NEVER">
                 <Label styleClass="label-header" text="Events" />
-                <ListView fx:id="eventListView" maxHeight="-Infinity" minHeight="-Infinity" VBox.vgrow="NEVER" />
+                <StackPane fx:id="eventListViewPlaceholder" maxHeight="-Infinity" minHeight="-Infinity" VBox.vgrow="NEVER"/>
               </VBox>
               <VBox styleClass="project-display-panel-section" VBox.vgrow="NEVER">
                 <Label styleClass="label-header" text="Deadlines" />
-                <ListView fx:id="completableDeadlineListView" maxHeight="-Infinity" minHeight="-Infinity" VBox.vgrow="NEVER" />
+                <StackPane fx:id="deadlineListViewPlaceholder" maxHeight="-Infinity" minHeight="-Infinity" VBox.vgrow="NEVER"/>
               </VBox>
               <VBox styleClass="project-display-panel-section" VBox.vgrow="NEVER">
                 <Label styleClass="label-header" text="Groupmates" />

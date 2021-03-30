@@ -1,11 +1,12 @@
 package seedu.address.ui;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_DEADLINES_TO_DISPLAY;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_EVENTS_TO_DISPLAY;
 import static seedu.address.commons.core.Messages.MESSAGE_NO_GROUPMATES_TO_DISPLAY;
 import static seedu.address.commons.core.Messages.MESSAGE_NO_TODOS_TO_DISPLAY;
 
 import java.util.Comparator;
-import java.util.logging.Logger;
 
 import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
@@ -18,7 +19,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.groupmate.Groupmate;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.CompletableDeadline;
@@ -42,15 +42,17 @@ public class ProjectDisplayPanel extends UiPart<Region> {
 
     private final ListView<CompletableTodo> completableTodoListView = new ListView<>();
     private final ListView<Groupmate> groupmateListView = new ListView<>();
+    private final ListView<Event> eventListView = new ListView<>();
+    private final ListView<CompletableDeadline> completableDeadlineListView = new ListView<>();
 
     @FXML
     private Label projectName;
     @FXML
     private TabPane tabPane;
     @FXML
-    private ListView<Event> eventListView;
+    private StackPane deadlineListViewPlaceholder;
     @FXML
-    private ListView<CompletableDeadline> completableDeadlineListView;
+    private StackPane eventListViewPlaceholder;
     @FXML
     private StackPane todoListViewPlaceholder;
     @FXML
@@ -116,6 +118,15 @@ public class ProjectDisplayPanel extends UiPart<Region> {
                 Comparator.comparing(CompletableDeadline::getBy).thenComparing(CompletableDeadline::getDescription)));
         completableDeadlineListView.setCellFactory(listView ->
                 new CompletableDeadlineListViewCell());
+
+        deadlineListViewPlaceholder.getChildren().clear();
+        if (completableDeadlineListView.getItems().isEmpty()) {
+            Label noDeadlinesPlaceholder = new Label();
+            noDeadlinesPlaceholder.setText(MESSAGE_NO_DEADLINES_TO_DISPLAY);
+            deadlineListViewPlaceholder.getChildren().add(noDeadlinesPlaceholder);
+        } else {
+            deadlineListViewPlaceholder.getChildren().add(completableDeadlineListView);
+        }
     }
 
     private void setUpEventList(ObservableList<Event> events) {
@@ -123,6 +134,15 @@ public class ProjectDisplayPanel extends UiPart<Region> {
                 .bind(Bindings.size(events).multiply(EVENTS_CARD_HEIGHT).add(SAFETY_MARGIN));
         eventListView.setItems(new SortedList<>(events, new RepeatableComparator()));
         eventListView.setCellFactory(listView -> new EventListViewCell());
+
+        eventListViewPlaceholder.getChildren().clear();
+        if (eventListView.getItems().isEmpty()) {
+            Label noDeadlinesPlaceholder = new Label();
+            noDeadlinesPlaceholder.setText(MESSAGE_NO_EVENTS_TO_DISPLAY);
+            eventListViewPlaceholder.getChildren().add(noDeadlinesPlaceholder);
+        } else {
+            eventListViewPlaceholder.getChildren().add(eventListView);
+        }
     }
 
     /**
