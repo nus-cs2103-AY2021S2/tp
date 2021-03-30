@@ -116,7 +116,9 @@ public class CalendarView extends UiPart<Region> {
     /**
      * Advances the calendar till current date (today).
      */
-    public void advanceToday() { setStartDate(LocalDateTime.now().with(DayOfWeek.MONDAY)); }
+    public void advanceToday() {
+        setStartDate(LocalDateTime.now().with(DayOfWeek.MONDAY));
+    }
 
     /**
      * Changes the labels of Calendar based on the current calendar start date.
