@@ -10,7 +10,7 @@ import fooddiary.commons.util.AppUtil;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be of displayed categories.";
+    public static final String MESSAGE_CONSTRAINTS = "Tags invalid.";
     public final String tag;
 
     /**
@@ -26,7 +26,6 @@ public class Tag {
             this.tag = School.find(tag).name();
         } else {
             this.tag = Categories.find(tag).titleCase();
-
         }
 
     }

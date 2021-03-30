@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import fooddiary.logic.commands.AddOnCommand;
 import fooddiary.model.entry.Entry;
+import fooddiary.model.entry.Price;
 import fooddiary.model.entry.Review;
 
 /**
@@ -29,15 +30,24 @@ public class AddOnEntryDescriptorBuilder {
     public AddOnEntryDescriptorBuilder(Entry entry) {
         descriptor = new AddOnCommand.AddOnToEntryDescriptor();
         descriptor.setReviews(entry.getReviews());
+        descriptor.setPrice(entry.getPrice());
     }
 
     /**
-     * Parses the {@code reviews} into a {@code List<Review>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code reviews} into a {@code List<Review>} and set it to the {@code AddOnPersonDescriptor}
      * that we are building.
      */
     public AddOnEntryDescriptorBuilder withReviews(String... reviews) {
         List<Review> reviewList = Stream.of(reviews).map(Review::new).collect(Collectors.toList());
         descriptor.setReviews(reviewList);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Price} of the {@code AddOnPersonDescriptor} that we are building.
+     */
+    public AddOnEntryDescriptorBuilder withPrice(String price) {
+        descriptor.setPrice(new Price(price));
         return this;
     }
 

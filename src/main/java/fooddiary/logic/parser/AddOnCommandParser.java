@@ -1,6 +1,7 @@
 package fooddiary.logic.parser;
 
 import static fooddiary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static fooddiary.logic.parser.CliSyntax.PREFIX_PRICE;
 import static fooddiary.logic.parser.CliSyntax.PREFIX_REVIEW;
 import static java.util.Objects.requireNonNull;
 
@@ -12,6 +13,7 @@ import fooddiary.commons.core.index.Index;
 import fooddiary.logic.commands.AddOnCommand;
 import fooddiary.logic.commands.AddOnCommand.AddOnToEntryDescriptor;
 import fooddiary.logic.parser.exceptions.ParseException;
+import fooddiary.model.entry.Price;
 import fooddiary.model.entry.Review;
 
 
@@ -28,7 +30,7 @@ public class AddOnCommandParser implements Parser<AddOnCommand> {
     public AddOnCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_REVIEW);
+                ArgumentTokenizer.tokenize(args, PREFIX_REVIEW, PREFIX_PRICE);
 
         Index index;
 
@@ -41,6 +43,15 @@ public class AddOnCommandParser implements Parser<AddOnCommand> {
         AddOnToEntryDescriptor addOnToEntryDescriptor = new AddOnToEntryDescriptor();
 
         parseReviewsForAddOn(argMultimap.getAllValues(PREFIX_REVIEW)).ifPresent(addOnToEntryDescriptor::setReviews);
+
+        if (argMultimap.getValue(PREFIX_PRICE).isPresent()) {
+            if (isSinglePriceValue(argMultimap.getValue(PREFIX_PRICE).get())) {
+                addOnToEntryDescriptor.setPrice(ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get()));
+            } else {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOnCommand.MESSAGE_USAGE));
+            }
+
+        }
 
         if (!addOnToEntryDescriptor.isAnyFieldAddedOn()) {
             throw new ParseException(AddOnCommand.MESSAGE_NOT_ADDED_ON);
@@ -62,6 +73,15 @@ public class AddOnCommandParser implements Parser<AddOnCommand> {
         }
         Collection<String> reviewList = reviews;
         return Optional.of(ParserUtil.parseReviews(reviewList));
+    }
+
+    /**
+     * Checks is the input price is a single price value or a price range
+     * @param price the price to be checked
+     * @return a boolean value stating is the input price is a single price value
+     */
+    private boolean isSinglePriceValue(String price) {
+        return !price.contains(Price.PRICE_RANGE_DASH);
     }
 
 }

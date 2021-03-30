@@ -20,9 +20,9 @@ import fooddiary.model.entry.Entry;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code ViewCommand}.
+ * {@code ReviseCommand}.
  */
-class ViewCommandTest {
+class ReviseCommandTest {
 
     private Model model = new ModelManager(getTypicalFoodDiary(), new UserPrefs());
 
@@ -31,14 +31,14 @@ class ViewCommandTest {
      */
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Entry entryToView = model.getFilteredEntryList().get(INDEX_FIRST_ENTRY.getZeroBased());
-        ViewCommand viewCommand = new ViewCommand(INDEX_FIRST_ENTRY);
+        Entry entryToRevise = model.getFilteredEntryList().get(INDEX_FIRST_ENTRY.getZeroBased());
+        ReviseCommand reviseCommand = new ReviseCommand(INDEX_FIRST_ENTRY);
 
-        String expectedMessage = String.format(ViewCommand.MESSAGE_VIEW_ENTRY_SUCCESS, entryToView);
+        String expectedMessage = String.format(ReviseCommand.MESSAGE_REVISE_ENTRY_SUCCESS, entryToRevise);
 
         ModelManager expectedModel = new ModelManager(model.getFoodDiary(), new UserPrefs());
 
-        assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(reviseCommand, model, expectedMessage, expectedModel);
     }
 
     /**
@@ -47,9 +47,9 @@ class ViewCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEntryList().size() + 1);
-        ViewCommand viewCommand = new ViewCommand(outOfBoundIndex);
+        ReviseCommand reviseCommand = new ReviseCommand(outOfBoundIndex);
 
-        assertCommandFailure(viewCommand, model, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
+        assertCommandFailure(reviseCommand, model, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
     }
 
     /**
@@ -59,15 +59,15 @@ class ViewCommandTest {
     public void execute_validIndexFilteredList_success() {
         showEntryAtIndex(model, INDEX_FIRST_ENTRY);
 
-        Entry entryToView = model.getFilteredEntryList().get(INDEX_FIRST_ENTRY.getZeroBased());
-        ViewCommand viewCommand = new ViewCommand(INDEX_FIRST_ENTRY);
+        Entry entryToRevise = model.getFilteredEntryList().get(INDEX_FIRST_ENTRY.getZeroBased());
+        ReviseCommand reviseCommand = new ReviseCommand(INDEX_FIRST_ENTRY);
 
-        String expectedMessage = String.format(ViewCommand.MESSAGE_VIEW_ENTRY_SUCCESS, entryToView);
+        String expectedMessage = String.format(ReviseCommand.MESSAGE_REVISE_ENTRY_SUCCESS, entryToRevise);
 
         Model expectedModel = new ModelManager(model.getFoodDiary(), new UserPrefs());
-        showEntry(expectedModel, entryToView);
+        reviseEntry(expectedModel, entryToRevise);
 
-        assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(reviseCommand, model, expectedMessage, expectedModel);
     }
 
     /**
@@ -81,37 +81,37 @@ class ViewCommandTest {
         // ensures that outOfBoundIndex is still in bounds of food diary list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getFoodDiary().getEntryList().size());
 
-        ViewCommand viewCommand = new ViewCommand(outOfBoundIndex);
+        ReviseCommand reviseCommand = new ReviseCommand(outOfBoundIndex);
 
-        assertCommandFailure(viewCommand, model, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
+        assertCommandFailure(reviseCommand, model, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
     }
 
     @Test
     void equals() {
-        ViewCommand viewFirstCommand = new ViewCommand(INDEX_FIRST_ENTRY);
-        ViewCommand viewSecondCommand = new ViewCommand(INDEX_SECOND_ENTRY);
+        ReviseCommand reviseFirstCommand = new ReviseCommand(INDEX_FIRST_ENTRY);
+        ReviseCommand reviseSecondCommand = new ReviseCommand(INDEX_SECOND_ENTRY);
 
         // same object -> returns true
-        assertTrue(viewFirstCommand.equals(viewFirstCommand));
+        assertTrue(reviseFirstCommand.equals(reviseFirstCommand));
 
         // same values -> returns true
-        ViewCommand viewFirstCommandCopy = new ViewCommand(INDEX_FIRST_ENTRY);
-        assertTrue(viewFirstCommand.equals(viewFirstCommandCopy));
+        ReviseCommand reviseFirstCommandCopy = new ReviseCommand(INDEX_FIRST_ENTRY);
+        assertTrue(reviseFirstCommand.equals(reviseFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(viewFirstCommand.equals(1));
+        assertFalse(reviseFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(viewFirstCommand.equals(null));
+        assertFalse(reviseFirstCommand.equals(null));
 
         // different entry -> returns false
-        assertFalse(viewFirstCommand.equals(viewSecondCommand));
+        assertFalse(reviseFirstCommand.equals(reviseSecondCommand));
     }
 
     /**
      * Updates {@code model}'s filtered list to specified entry.
      */
-    private void showEntry(Model model, Entry entry) {
+    private void reviseEntry(Model model, Entry entry) {
         model.updateFilteredEntryList(p -> p.isSameEntry(entry));
 
         assertTrue(!model.getFilteredEntryList().isEmpty());

@@ -11,25 +11,24 @@ import fooddiary.model.Model;
 import fooddiary.model.entry.Entry;
 
 /**
- * Views the full specified entry in a separate window.
+ * Allows revision of specified entry in a separate window.
  */
-public class ViewCommand extends Command {
-
-    public static final String COMMAND_WORD = "view";
+public class ReviseCommand extends Command {
+    public static final String COMMAND_WORD = "revise";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Views the full entry identified by the index number used in the displayed entry list.\n"
+            + ": Enables revision of entry based on the index number used in the displayed entry list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_VIEW_ENTRY_SUCCESS = "Viewing Entry: %1$s";
+    public static final String MESSAGE_REVISE_ENTRY_SUCCESS = "Revising Entry: %1$s";
 
     private final Index targetIndex;
 
     /**
-     * Creates an ViewCommand to view the specified {@code Entry}
+     * Creates an ReviseCommand to revise the specified {@code Entry}
      */
-    public ViewCommand(Index targetIndex) {
+    public ReviseCommand(Index targetIndex) {
         assert targetIndex.getZeroBased() >= 0 : "Negative integer supplied";
         this.targetIndex = targetIndex;
     }
@@ -47,14 +46,14 @@ public class ViewCommand extends Command {
         assert lastShownList.get(targetIndex.getZeroBased()) != null : "Entry do not exist";
         Entry entry = lastShownList.get(targetIndex.getZeroBased());
 
-        return new CommandResult(entry, null, String.format(MESSAGE_VIEW_ENTRY_SUCCESS, entry),
-                false , true, false, false);
+        return new CommandResult(entry, targetIndex, String.format(MESSAGE_REVISE_ENTRY_SUCCESS, entry),
+                false , false, true, false);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ViewCommand // instanceof handles nulls
-                && targetIndex.equals(((ViewCommand) other).targetIndex)); // state check
+                || (other instanceof ReviseCommand // instanceof handles nulls
+                && targetIndex.equals(((ReviseCommand) other).targetIndex)); // state check
     }
 }
