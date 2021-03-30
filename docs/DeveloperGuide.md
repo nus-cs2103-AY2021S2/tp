@@ -287,7 +287,7 @@ The `Status` field consists of a `Status` interface with a `next()` method that 
 * `SalesAgreement` — Represents the stage where the buyer is considering the Sales and Purchase Agreement.
 * `Completion` — Represents the stage where the property has been sold.
 
-(insert class diagram of status)
+![StatusClassDiagram](images/StatusClassDiagram.png)
 
 The `UpdateCommand` is assisted by 3 subcommands that extend the abstract class `UpdateCommand` which itself extends `Command`. The subcommands are, `UpdateNewCommand`, `UpdateProceedCommand` and `UpdateCancelCommand`. The subcommands help execute on the model when the user calls `u/new`, `u/proceed` or `u/cancel` respectively.
 
@@ -295,27 +295,29 @@ The `UpdateCommand` is assisted by 3 subcommands that extend the abstract class 
 * `UpdateProceedCommand` — Takes in an `Index` and moves the `Status` of the property at the given `Index` to the next `Status` if applicable.
 * `UpdateNewCommand` — Takes in an `Index` and removes the `Status` of the property at the given `Index` if applicable.
 
-(insert class diagram of UpdateCommand)
+![UpdateCommandClassDiagram](images/UpdateCommandClassDiagram.png)
 
 Given below is an example usage scenario and how the update mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `PocketEstate` will be initialized with the initial appointment book state and property book state.
 
+![UpdateStep1Initial](images/UpdateStep1Initial.png)
+
 Step 2. The user executes `update 1 u/new 600,000` command to add a new status with value 600,000 to the first property.
 
-(some object diagram?)
+![UpdateStep2New](images/UpdateStep2New.png)
 
 Step 3. The user executes `update 1 u/proceed` to move the `Status` of the first property to `SalesAgreement`.
 
-(some object diagram?)
+![UpdateStep3Proceed](images/UpdateStep3Proceed.png)
 
 Step 4. The user executes `update 1 u/proceed` to move the `Status` of the first property to `Completion`.
 
-(some object diagram?)
+![UpdateStep4Proceed](images/UpdateStep4Proceed.png)
 
 Step 5. The user then decides that having the `Completion` status on the first property was a mistake and executes the command `update 1 u/cancel`.
 
-(some object diagram?)
+![UpdateStep5Cancel](images/UpdateStep5Cancel.png)
 
 
 #### Design consideration:
@@ -325,13 +327,11 @@ Step 5. The user then decides that having the `Completion` status on the first p
 
 The following activity diagram summarizes what happens when a user executes an `UpdateCommand`:
 
-(insert overall update activity diagram here)
-
-(insert UpdateCommandParser activity diagram here)
+![UpdateActivityDiagram](images/UpdateActivityDiagram.png)
 
 The following sequence diagram shows how the update operation works:
 
-(insert update new activity diagram here)
+![UpdateNewSequenceDiagram](images/UpdateNewSequenceDiagram.png)
 
 ### \[Proposed\] Data archiving
 
