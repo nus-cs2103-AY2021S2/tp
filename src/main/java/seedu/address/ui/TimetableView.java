@@ -249,13 +249,25 @@ public class TimetableView extends UiPart<Region> {
      * on the currentDate.
      */
     public void refreshDayLabels(LocalDate currentDate) {
-        firstDayLabel.setText(currentDate.getDayOfWeek().name());
-        secondDayLabel.setText(currentDate.plusDays(1).getDayOfWeek().name());
-        thirdDayLabel.setText(currentDate.plusDays(2).getDayOfWeek().name());
-        fourthDayLabel.setText(currentDate.plusDays(3).getDayOfWeek().name());
-        fifthDayLabel.setText(currentDate.plusDays(4).getDayOfWeek().name());
-        sixthDayLabel.setText(currentDate.plusDays(5).getDayOfWeek().name());
-        seventhDayLabel.setText(currentDate.plusDays(6).getDayOfWeek().name());
+        firstDayLabel.setText(generateDayLabel(currentDate));
+        secondDayLabel.setText(generateDayLabel(currentDate.plusDays(1)));
+        thirdDayLabel.setText(generateDayLabel(currentDate.plusDays(2)));
+        fourthDayLabel.setText(generateDayLabel(currentDate.plusDays(3)));
+        fifthDayLabel.setText(generateDayLabel(currentDate.plusDays(4)));
+        sixthDayLabel.setText(generateDayLabel(currentDate.plusDays(5)));
+        seventhDayLabel.setText(generateDayLabel(currentDate.plusDays(6)));
+    }
+
+    /**
+     * generate a nicely formatted String to display on the column headers
+     * @param date the date corresponding to the column to generate the header for
+     * @return
+     */
+
+    public String generateDayLabel(LocalDate date) {
+        return DateTimeUtil.prettuPrintFormatLocalDate(date)
+                + "\n"
+                + date.getDayOfWeek().name();
     }
 
 

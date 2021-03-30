@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -17,7 +18,7 @@ public class DateTimeUtil {
     public static final DateTimeFormatter ISO_DATE_FORMATTER_NO_SECONDS =
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
-    public static final DateTimeFormatter PRETTY_DATE_FORMATTER =
+    public static final DateTimeFormatter PRETTY_DATETIME_FORMATTER =
             DateTimeFormatter.ofPattern("dd MMM yyyy, eeee, h:mm a");
 
     public static final DateTimeFormatter ISO_TIME_FORMATTER_NO_SECONDS =
@@ -25,6 +26,9 @@ public class DateTimeUtil {
 
     public static final DateTimeFormatter PRETTY_TIME_FORMATTER =
             DateTimeFormatter.ofPattern("h:mm a");
+
+    public static final DateTimeFormatter PRETTY_DATE_FORMATTER =
+            DateTimeFormatter.ofPattern("dd MMM yyyy");
 
     /**
      * Formats a LocalDateTime object into the appropriate ISO string, with the seconds
@@ -57,7 +61,7 @@ public class DateTimeUtil {
      * @return the formatted string
      */
     public static String prettyPrintFormatDateTime(LocalDateTime dateTime) {
-        return dateTime.format(PRETTY_DATE_FORMATTER);
+        return dateTime.format(PRETTY_DATETIME_FORMATTER);
     }
 
     public static String isoFormatTime(LocalTime localTime) {
@@ -66,6 +70,9 @@ public class DateTimeUtil {
 
     public static String prettyPrintFormatLocalTime(LocalTime localTime) {
         return localTime.format(PRETTY_TIME_FORMATTER);
+    }
+    public static String prettuPrintFormatLocalDate(LocalDate localDate) {
+        return localDate.format(PRETTY_DATE_FORMATTER);
     }
 
 
