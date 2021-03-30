@@ -141,18 +141,14 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Initialise listeners to handle UI behaviour
+     * Initialise listener to handle UI behaviour
      */
     void initEventHandlers() {
-        // Automatically updates UI when changes is detected in FilteredFinancialRecordList
-        logic.getFilteredFinancialRecordList().addListener((ListChangeListener.Change<? extends FinancialRecord> c) -> {
-            while (c.next()) {
-                if (c.wasAdded() || c.wasRemoved() || c.wasUpdated()) {
-                    budgetDisplay.updateBudgetUi(logic.getFilteredMonthList());
-                    budgetDisplay.updateTopCategoriesUi(logic.getTopCategories());
-                    financialRecordListPanel.updateObservableList(logic.getFilteredFinancialRecordList());
-                }
-            }
+        // Automatically updates UI when changes are made to BudgetTracker
+        logic.getBudgetTracker().addListener(observable -> {
+            budgetDisplay.updateBudgetUi(logic.getFilteredMonthList());
+            budgetDisplay.updateTopCategoriesUi(logic.getTopCategories());
+            financialRecordListPanel.updateObservableList(logic.getFilteredFinancialRecordList());
         });
     }
 
@@ -223,12 +219,6 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
-            if (commandResult.isRefreshUi()) {
-                budgetDisplay.updateBudgetUi(logic.getFilteredMonthList());
-                budgetDisplay.updateTopCategoriesUi(logic.getTopCategories());
-                financialRecordListPanel.updateObservableList(logic.getFilteredFinancialRecordList());
-            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
