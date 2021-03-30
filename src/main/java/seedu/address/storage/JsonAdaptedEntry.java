@@ -1,17 +1,18 @@
 package seedu.address.storage;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.entry.Entry;
-import seedu.address.model.entry.EntryDate;
-import seedu.address.model.entry.EntryName;
-import seedu.address.model.tag.Tag;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.entry.Entry;
+import seedu.address.model.entry.EntryDate;
+import seedu.address.model.entry.EntryName;
+import seedu.address.model.tag.Tag;
 
 public class JsonAdaptedEntry {
 
