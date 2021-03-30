@@ -22,31 +22,26 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
     private final EventBook eventBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
     private final FilteredList<Event> filteredEvent;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyEventBook eventBook) {
+    public ModelManager(ReadOnlyUserPrefs userPrefs, ReadOnlyEventBook eventBook) {
         super();
-        requireAllNonNull(addressBook, userPrefs, eventBook);
+        requireAllNonNull(userPrefs, eventBook);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs
-            + "event book: " + eventBook);
+        logger.fine("Initializing with event book: " + eventBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
         this.eventBook = new EventBook(eventBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredEvent = new FilteredList<>(this.eventBook.getEventList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new EventBook());
+        this(new UserPrefs(), new EventBook());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -71,17 +66,6 @@ public class ModelManager implements Model {
     public void setGuiSettings(GuiSettings guiSettings) {
         requireNonNull(guiSettings);
         userPrefs.setGuiSettings(guiSettings);
-    }
-
-    @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
-    }
-
-    @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
     @Override
