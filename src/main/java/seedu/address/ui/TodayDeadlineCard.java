@@ -46,7 +46,7 @@ public class TodayDeadlineCard extends UiPart<Region> {
         description.setText(deadline.getDescription());
         date.setText(DateUtil.decodeDate(deadline.getBy()));
         day.setText(DateUtil.decodeDateIntoDay(deadline.getBy()));
-        completedLabel.setText(deadline.getIsDone() ? "✔" : "");
+        completedLabel.setText(getTextToDisplay(deadline.getIsDone()));
         projectName.setText(deadline.getProjectName().toString());
     }
 
