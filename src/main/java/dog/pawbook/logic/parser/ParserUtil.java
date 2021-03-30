@@ -1,9 +1,10 @@
 package dog.pawbook.logic.parser;
 
+import static dog.pawbook.model.managedentity.dog.DateOfBirth.DATE_FORMAT;
+import static dog.pawbook.model.managedentity.dog.DateOfBirth.DATE_FORMATTER;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
@@ -124,9 +125,9 @@ public class ParserUtil {
         requireNonNull(dateString);
         LocalDate date;
         try {
-            date = LocalDate.parse(dateString.trim(), DateTimeFormatter.ofPattern("d-M-yyyy"));
+            date = LocalDate.parse(dateString.trim(), DATE_FORMATTER);
         } catch (DateTimeParseException d) {
-            throw new ParseException("Date should be in the d-M-yyyy format");
+            throw new ParseException("Date should be in the " + DATE_FORMAT + " format");
         }
         return date;
     }

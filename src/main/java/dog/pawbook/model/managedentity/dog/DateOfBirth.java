@@ -11,12 +11,12 @@ import java.util.regex.Pattern;
 
 /**
  * Represents a Dog's breed in the database.
- * Guarantees: immutable; is valid as declared in {@link #isValidDob(String)}
+ * Guarantees: immutable;
  */
 public class DateOfBirth {
-
-    public static final String MESSAGE_CONSTRAINTS = "Date Of Birth should only "
-            + "contain numbers and should not be blank.";
+    public static final String DATE_FORMAT = "d-M-yyyy";
+    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern(DATE_FORMAT);
+    public static final String MESSAGE_CONSTRAINTS = "Date Of Birth should be in the " + DATE_FORMAT + " format.";
     public static final String VALIDATION_REGEX = "^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)"
             + "(?:0?[1,3-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)0?2\\3"
             + "(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))"
@@ -34,7 +34,7 @@ public class DateOfBirth {
         requireNonNull(value);
         checkArgument(isValidDob(value), MESSAGE_CONSTRAINTS);
         this.value = value;
-        this.date = LocalDate.parse(value, DateTimeFormatter.ofPattern("d-M-yyyy"));
+        this.date = LocalDate.parse(value, DATE_FORMATTER);
     }
 
     /**
@@ -43,7 +43,7 @@ public class DateOfBirth {
     public DateOfBirth(LocalDate date) {
         requireNonNull(date);
         this.date = date;
-        this.value = date.format(DateTimeFormatter.ofPattern("d-M-yyyy"));
+        this.value = date.format(DATE_FORMATTER);
     }
 
     /**
