@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
+import seedu.address.model.appointment.AppointmentPredicateList;
 
 /**
  * Finds and lists all appointments in appointment book containing any of the argument keywords.
@@ -18,16 +18,16 @@ public class FindAppointmentCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " charlie monday";
 
-    private final AppointmentContainsKeywordsPredicate predicate;
+    private final AppointmentPredicateList predicate;
 
-    public FindAppointmentCommand(AppointmentContainsKeywordsPredicate predicate) {
+    public FindAppointmentCommand(AppointmentPredicateList predicate) {
         this.predicate = predicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredAppointmentList(predicate);
+        model.updateFilteredAppointmentList(predicate.combine());
         int appointmentListSize = model.getFilteredAppointmentList().size();
         return new CommandResult(
                 String.format(appointmentListSize > 1
