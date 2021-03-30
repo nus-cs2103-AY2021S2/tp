@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_ENTRY;
 import static seedu.address.commons.core.Messages.MESSAGE_EDIT_ENTRY_SUCCESS;
-import static seedu.address.commons.core.Messages.MESSAGE_ENTRY_DOES_NOT_EXIST;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_SUCH_ENTRY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
@@ -73,7 +73,7 @@ public class EditEntryCommand extends Command {
 
         //Entry with same entryName does not exist
         if (entryToEdit == null) {
-            throw new CommandException(MESSAGE_ENTRY_DOES_NOT_EXIST);
+            throw new CommandException(MESSAGE_NO_SUCH_ENTRY);
         }
 
         Entry editedEntry = createEditedEntry(entryToEdit, editEntryDescriptor);
