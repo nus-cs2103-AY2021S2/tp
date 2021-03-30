@@ -8,6 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import seedu.address.model.session.RecurringSession;
 import seedu.address.model.session.Session;
 import seedu.address.model.student.Student;
 

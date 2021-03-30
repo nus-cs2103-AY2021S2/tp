@@ -49,8 +49,10 @@ public class SessionCard extends UiPart<Region> {
         id.setText(displayedIndex + "");
         if (session instanceof RecurringSession) {
             sessionType.setText("R");
+            sessionType.setStyle("-fx-text-fill: orange");
         } else {
             sessionType.setText("I");
+            sessionType.setStyle("-fx-text-fill: #ADD8E6");
         }
     }
 

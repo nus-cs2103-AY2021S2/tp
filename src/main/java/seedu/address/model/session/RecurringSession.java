@@ -85,25 +85,25 @@ public class RecurringSession extends Session {
         return !endBefore(sessionDate) && isConsistentDatesAndInterval(getSessionDate(), sessionDate, getInterval());
     }
 
-    /**
-     * Builds a session with the same time but with the specified time.
-     */
-    public Session buildSessionOnDate(LocalDate date) {
-        requireNonNull(date);
-        SessionDate sessionDate = new SessionDate(date.toString(), getSessionDate().getTime().toString());
-        return new Session(sessionDate, getDuration(), getSubject(), getFee());
-    }
-
     // THIS METHOD IS FOR SCHEDULE REMINDER TO RETRIEVE INFO ABOUT SESSION HAPPENING ON GIVEN DATE.
     /**
      * Returns a single non-recurring session on the sessionDate.
      * @param sessionDate A valid sessionDate.
      * @return Session of Recurring Session on particular sessionDate.
      */
-    private Session onSessionDate(SessionDate sessionDate) {
+    private Session buildSessionOnDate(SessionDate sessionDate) {
         requireAllNonNull(sessionDate);
         assert(hasSessionOnDate(sessionDate));
         return new Session(sessionDate, getDuration(), getSubject(), getFee());
+    }
+
+    /**
+     * Builds a session with the time of the recurring session the specified {@code LocalDate}.
+     */
+    public Session buildSessionOnDate(LocalDate date) {
+        requireNonNull(date);
+        SessionDate sessionDate = new SessionDate(date.toString(), getSessionDate().getTime().toString());
+        return buildSessionOnDate(sessionDate);
     }
 
     /**
@@ -120,7 +120,7 @@ public class RecurringSession extends Session {
         SessionDate lastSessionDate = new SessionDate(
                 LocalDateTime.of(lastLocalDate, getSessionDate().getTime())
                         .toString());
-        return this.onSessionDate(lastSessionDate);
+        return this.buildSessionOnDate(lastSessionDate);
     }
 
     // THIS METHOD IS EXPECTED TO BE USED IN FEE CALCULATION.

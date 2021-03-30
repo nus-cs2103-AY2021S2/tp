@@ -35,12 +35,9 @@ public class UpcomingTuitionListPanel extends UiPart<Region> {
     public UpcomingTuitionListPanel(ObservableList<Student> studentList) {
         super(FXML);
         ObservableList<Tuition> tuitionList = FXCollections.observableArrayList();
-
         populateTuitionList(studentList, tuitionList);
         sortByDate(tuitionList);
-
         addListener(studentList, tuitionList);
-
         populateUpcomingTuitionListView(tuitionList);
     }
 
@@ -50,7 +47,6 @@ public class UpcomingTuitionListPanel extends UiPart<Region> {
                 tuitionList.clear();
                 populateTuitionList(studentList, tuitionList);
                 sortByDate(tuitionList);
-                populateUpcomingTuitionListView(tuitionList);
             }
         });
     }
