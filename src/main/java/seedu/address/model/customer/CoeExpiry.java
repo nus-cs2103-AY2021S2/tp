@@ -6,6 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Date;
 
 /**
  * Represents a Person's CoeExpiry in the address book.
@@ -16,7 +17,7 @@ public class CoeExpiry {
     public static final String MESSAGE_CONSTRAINTS = "Expiry dates should be of the format yyyy MM dd "
             + "EG:(2011 07 06 for 6th July, 2011)";
 
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy MM dd");
+    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy MM dd");
 
     public final String expiryDate;
 
@@ -41,6 +42,10 @@ public class CoeExpiry {
             return false;
         }
         return true;
+    }
+
+    public LocalDate toDate() {
+        return LocalDate.parse(expiryDate, DATE_TIME_FORMATTER);
     }
 
     @Override
