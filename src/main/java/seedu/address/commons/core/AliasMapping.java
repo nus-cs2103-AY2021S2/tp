@@ -15,6 +15,7 @@ import seedu.address.logic.commands.alias.ListAliasCommand;
 import seedu.address.logic.commands.alias.UnaliasCommand;
 import seedu.address.logic.commands.commandhistory.ViewHistoryCommand;
 import seedu.address.logic.commands.issue.AddIssueCommand;
+import seedu.address.logic.commands.issue.CloseIssueCommand;
 import seedu.address.logic.commands.issue.DeleteIssueCommand;
 import seedu.address.logic.commands.issue.EditIssueCommand;
 import seedu.address.logic.commands.issue.FindIssueCommand;
@@ -128,6 +129,7 @@ public class AliasMapping implements Serializable {
         case FindIssueCommand.COMMAND_WORD:
         case EditIssueCommand.COMMAND_WORD:
         case DeleteIssueCommand.COMMAND_WORD:
+        case CloseIssueCommand.COMMAND_WORD:
 
         //====== Alias Commands ======
         case AliasCommand.COMMAND_WORD:
