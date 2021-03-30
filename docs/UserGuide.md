@@ -191,7 +191,6 @@ Format: `tag INDEX t/TAG [t/MORETAGS]`
 ![add message](images/tagCommand.png)
 
 Examples:
-
 * `tag 1 t/SoftwareEng`
 
 
@@ -204,7 +203,6 @@ Format: `find KEYWORD`
 * Searches through ModuleBook3.5 for tasks whose names contain `KEYWORD`.
 
 Examples:
-
 * `find revise`
 
 
@@ -217,7 +215,6 @@ Format: `findTag KEYWORD`
 * Searches through ModuleBook3.5 for tasks which have a tag named `KEYWORD`.
 
 Examples:
-
 * `findTag homework`
 
 
@@ -232,7 +229,6 @@ Format: `mod MODULE`
 ![add message](images/findModuleCommand.png)
 
 Examples:
-
 * `mod CS3243`
 
 
@@ -247,7 +243,6 @@ Format: `deleteTag INDEX [t/TAG]`
   The index must be a positive integer 1, 2, 3, …​
 
 Examples:
-
 * `deleteTag 1 t/homework`
 
 
@@ -278,7 +273,6 @@ Sorts the list of all tasks by workload/deadline/module.
 
 Format:  `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/` or `sort t/` 
 
-Examples:
 *  `sort n/` Sorts the tasks by name alphabetically in ascending order.
 *  `sort d/` Sorts the tasks by description alphabetically in ascending order.
 *  `sort w/` Sorts the tasks by workload in descending order.
@@ -286,10 +280,14 @@ Examples:
 *  `sort m/` Sorts the tasks by module code alphabetically in descending order.
 *  `sort t/` Sorts the tasks by number of tags in descending order.
 
+![add message](images/sortCommand.png)
+
+Examples:
+* `sort w/`
 
 ### Recur tasks: `recur`
 
-Recurs a task either daily, monthly or weekly in the module book.
+Recurs a task either daily, monthly or weekly or removes the recurrence of the task.
 
 Format: `recur INDEX r/RECURRENCE`
 
@@ -297,14 +295,18 @@ Format: `recur INDEX r/RECURRENCE`
 * `INDEX` refers to the index number displayed in ModuleBook3.5.
    It must be a positive integer.
 * `RECURRENCE` refers to the regularity of the task that recurs periodically.
-* `RECURRENCE` can only be `daily`, `weekly` or `monthly`. It is case-insensitive.
+* `RECURRENCE` can only be `daily`, `weekly` or `monthly` if a task needs to be recurred.
+* `RECURRENCE` should be left empty if the recurrence of a task needs to be removed.
+   The prefix `r/` must still be used.
 
 ![add message](images/recurCommand.png)
+
 
 Examples:
 * `recur 1 r/monthly` Recurs the 1st task in ModuleBook3.5 every month.
 * `recur 2 r/weekly` Recurs the 4th task in ModuleBook3.5 every week.
 * `recur 3 r/daily` Recurs the 3rd task in ModuleBook3.5 every day.
+* `recur 4 r/` Removes the recurrence of the 4th task in ModuleBook3.5.
 
 <div style="page-break-after: always;"></div>
 
