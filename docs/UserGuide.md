@@ -100,8 +100,8 @@ Format: `delete-patient INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list-patient` followed by `delete 2` deletes the 2nd patient in the patient records.
-* `find-patient Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
+* `list-patient` followed by `delete-patient 2` deletes the 2nd patient in the patient records.
+* `find-patient Betsy` followed by `delete-patient 1` deletes the 1st patient in the results of the `find-patient` command.
 
 ### Editing a patient : `edit-patient`
 Edits an existing patient in the schedule.<br>
@@ -130,7 +130,7 @@ Examples:
 
 Finds patients whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find-patient KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -140,8 +140,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find bernice david` returns `Bernice Yu`, `David Li`<br>
+* `find-patient John` returns `john` and `John Doe`
+* `find-patient bernice david` returns `Bernice Yu`, `David Li`<br>
   ![result for 'find bernice david'](images/findPatientBerniceDavidResult.png)
 
 
@@ -159,7 +159,7 @@ Format: `list-patient`
 
 Adds a doctor to the doctor records.<br>
 
-Format: `add-patient n/NAME [t/TAG]…​`
+Format: `add-doctor n/NAME [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
 
@@ -169,7 +169,9 @@ Format: `add-patient n/NAME [t/TAG]…​`
 
 Examples:
 
-* `add-doctor n/Dr John Doe`
+* `add-doctor n/Dr Meredith Grey`
+
+* `add-doctor n/Dr Strange t/Dormammu t/IveComeToBargain`
 
 
 ### Cleaning all entries in doctor records: `clear-doctor`
@@ -181,7 +183,7 @@ Format: `clear-doctor [--force]`
 ### Deleting a doctor : `delete-doctor`
 Deletes the specified doctor from the doctor records.
 
-Format: `delete INDEX`
+Format: `delete-doctor INDEX`
 
 Similar to `delete-patient`
 
@@ -204,7 +206,7 @@ Examples:
 
 Finds doctors in the doctor records whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find-doctor KEYWORD [MORE_KEYWORDS]`
 
 Similar to `find-patient`
 
@@ -221,13 +223,15 @@ Format: `list-doctor`
 
 Adds an appointment to the schedule.<br>
 
-Format: `add-appt pt/PATIENT_INDEX dr/DOCTOR at/TIMESLOT_START [to/TIMESLOT_END] [dur/TIMESLOT_DURATION] [t/TAG]…​`
+Format: `add-appt pt/PATIENT_INDEX dr/DOCTOR_INDEX at/TIMESLOT_START [to/TIMESLOT_END] [dur/TIMESLOT_DURATION] [t/TAG]…​`
 
 * The `PATIENT_INDEX` corresponds to the patient at the index number in the current displayed patient records.<br>
 
-* The `PATIENT_INDEX` must be a <strong>positive integer</strong> 1, 2, 3, …​<br>
+* The `DOCTOR_INDEX` corresponds to the doctor at the index number in the current displayed doctor records.<br>
 
-* The `TIMESLOT_START` and `TIMESLOT_END` must be in the format YYYY-MM-DD HH:mm<br>
+* The `PATIENT_INDEX` and `DOCTOR_INDEX` must be a <strong>positive integer</strong> 1, 2, 3, …​<br>
+
+* The `TIMESLOT_START` and `TIMESLOT_END` must be either in a recognisable datetime format or prefixed with keyword `NEXT` followed by a datetime unit (DAY, MONTH, YEAR) or weekday (MONDAY, TUESDAY …​)<br>
 
 * Either and only one, `TIMESLOT_END` or `TIMESLOT_DURATION`, must be provided.<br>
 
@@ -241,9 +245,11 @@ Format: `add-appt pt/PATIENT_INDEX dr/DOCTOR at/TIMESLOT_START [to/TIMESLOT_END]
 
 Examples:
 
-* `add-appt pt/1 dr/Dr. Grey at/2021-01-01 00:00 to/2021-01-01 01:30 t/severe t/brainDamage`
+* `add-appt pt/1 dr/3 at/2021-01-01 00:00 to/2021-01-01 01:30 t/severe t/brainDamage`
 
-* `add-appt pt/2 dr/Dr. Who at/2021-01-01 00:00 dur/1H 30M t/exhaustion`
+* `add-appt pt/2 dr/2 at/2021-01-01 00:00 dur/1H 30M t/exhaustion`
+
+* `add-appt pt/3 dr/1 at/NEXT MONDAY dur/1H 30M`
 
 ### Cleaning all entries in appointment schedule: `clear-appt`
 Clears all entries from the appointment schedule.<br>
@@ -256,7 +262,7 @@ Format: `clear-appt`
 
 Deletes the specified appointment from the schedule.
 
-Format: `delete INDEX`
+Format: `delete-appt INDEX`
 
 * Deletes the appointment at the specified INDEX.
 
@@ -266,9 +272,9 @@ Format: `delete INDEX`
 
 Examples:
 
-* `list-appt` followed by `delete 2` deletes the 2nd appointment in the entire appointment schedule.
+* `list-appt` followed by `delete-appt 2` deletes the 2nd appointment in the entire appointment schedule.
 
-* `find Betsy` followed by `delete 1 ` deletes the 1st appointment in the results of the `find` command.
+* `find-appt Betsy` followed by `delete-appt 1 ` deletes the 1st appointment in the results of the `find` command.
 
 
 ### Editing an appointment : `edit-appt`
@@ -276,11 +282,11 @@ Examples:
 
 Edits an existing appointment in the appointment schedule.<br>
 
-Format: `edit-appt [pt/PATIENTINDEX] [dr/DOCTOR] [at/TIMESLOT START] [to/TIMESLOT END] [dur/TIMESLOT DURATION] [t/TAG]…​`
+Format: `edit-appt APPOINTMENT_INDEX [pt/PATIENT_INDEX] [dr/DOCTOR_INDEX] [at/TIMESLOT START] [to/TIMESLOT END] [dur/TIMESLOT DURATION] [t/TAG]…​`
 
-* Edits the appointment for the patient specified by the `PATIENTINDEX`.  The `PATIENTINDEX` refers to the index number shown in the displayed patient list. The index must be a <strong>positive integer</strong> 1, 2, 3, …​<br>
+* Edits the appointment for the patient specified by the `APPOINTMENT_INDEX`.  The `APPOINTMENT_INDEX` refers to the index number shown in the displayed appointment schedule. The index must be a <strong>positive integer</strong> 1, 2, 3, …​<br>
 
-* The `INDEX` and at least one of the optional fields must be provided <br>
+* At least one of the optional fields must be provided <br>
 
 * Existing values will be updated to the input values.<br>
 
@@ -292,15 +298,15 @@ Format: `edit-appt [pt/PATIENTINDEX] [dr/DOCTOR] [at/TIMESLOT START] [to/TIMESLO
 
 Examples:
 
-* `edit-appt pt/1 dr/Dr.Chong at/2021-05-08 09:00 dur/1H 00M t/severe t/fever` Edits the assigned doctor, appointment datetime and duration, and tags, for patient with index 1 to Dr.Chong, starting at 2021-05-08 09:00 for 1h 00m, and severe & fever respectively.
+* `edit-appt 1 pt/1 dr/2` Edits the appointment at index 1 to assign the patient at index 1 and doctor at index 2.
 
-* `edit-appt pt/2 dr/Dr.Phon t/` Edits the assigned doctor for patient with index 2 to Dr.Phon, and all the tags for the patient is removed.
+* `edit-appt 2 at/2021-05-08 09:00 dur/1H t/severe t/fever` Edits the appointment at index 2 to assign a timeslot at 8 May 2021 9AM for a duration of 1 hour and tag the appointment with severe and fever tags.
 
 
 ### Locating appointments by fields : `find-appt`
 [Coming Soon]
 
-Format: `find [n/PATIENT KEYWORDS] [dr/DOCTOR_KEYWORDS] [d/DATETIME] [p/PHONE] [e/EMAIL] [a/ADDRESS_KEYWORDS] [t/TAG KEYWORDS]`
+Format: `find-appt [n/PATIENT KEYWORDS] [dr/DOCTOR_KEYWORDS] [d/DATETIME] [p/PHONE] [e/EMAIL] [a/ADDRESS_KEYWORDS] [t/TAG KEYWORDS]`
 
 * At least one of the optional fields must be provided.<br>
 
@@ -318,9 +324,9 @@ Format: `find [n/PATIENT KEYWORDS] [dr/DOCTOR_KEYWORDS] [d/DATETIME] [p/PHONE] [
 
 Examples:
 
-* `find n/john alex` returns appointments with patients `john`, `John`, `John Doe`, `alex`, `Alex` and `Alex Anderson`.
+* `find-appt n/john alex` returns appointments with patients `john`, `John`, `John Doe`, `alex`, `Alex` and `Alex Anderson`.
 
-* `find dr/Grey Who t/BrainSurgery` returns appointments with doctors `grey` or `who` and are tagged as `BrainSurgery`.
+* `find-appt dr/Grey Who t/BrainSurgery` returns appointments with doctors `grey` or `who` and are tagged as `BrainSurgery`.
 
 
 ### Listing all appointments : `list-appt`
@@ -372,16 +378,25 @@ If your changes to the data files makes its format invalid, App-Ointment will di
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
-[Coming Soon]
-Action | Format, Examples
---------|------------------
-**Add** | `add n/PATIENT dr/DOCTOR d/DATETIME [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br>e.g., `add n/John Doe dr/Grey d/2021-01-01 1200 t/brain surgery p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-**Delete** | `delete INDEX`<br>e.g., `delete 2`
-**edit-patient** | `edit-patient INDEX [n/PATIENT] [dr/DOCTOR] [d/DATETIME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br>e.g., `edit-patient 1 dr/Who d/2021-01-01 1200`
-**edit-appt** | `edit-appt [pt/PATIENTINDEX] [dr/DOCTOR] [at/TIMESLOT START] [at/TIMESLOT END] [at/TIMESLOT DURATION] [t/TAG]…​`<br>e.g., `edit-appt pt/1 dr/Dr.Chong at/2021-05-08 09:00 dur/1H 00M t/severe t/fever`
-**List** | `list`
-**exit** | [Coming soon]
-**Find** | [Coming soon]
-**find** | [Coming Soon]
-**help** | [Coming Soon]
-**clear** | [Coming Soon]
+| Action            | Format                                  | Examples                                           |
+|-------------------|-----------------------------------------|----------------------------------------------------|
+| **add-patient** | `add-patient n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]…​` | `add-patient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
+| **clear-patient** | `clear-patient [--force]` | |
+| **delete-patient** | `delete-patient INDEX` | `delete-patient 2` |
+| **edit-patient** | `edit-patient INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` | `edit-patient 1 e/newEmail@example.com`<br> `edit-patient 2 n/Betsy Crower t/` |
+| **find-patient** | `find KEYWORD [MORE_KEYWORDS]` | `find John`<br>`find bernice david` |
+| **list-patient** | `list-patient` | |
+| **add-doctor** | `add-doctor n/NAME [t/TAG]…​` | `add-doctor n/Dr John Doe` |
+| **clear-doctor** | `clear-doctor [--force]` | |
+| **delete-doctor** | `delete-doctor INDEX` | `delete-doctor 2` |
+| **edit-doctor** | `edit-doctor INDEX [n/NAME] [t/TAG]…​` | `edit-doctor 1 n/Dr Amy`<br>`edit-doctor 2 n/Dr Betsy Crower t/` |
+| **find-doctor** | `find-doctor KEYWORD [MORE_KEYWORDS]` | `find Amy`<br>`find Amy Betsy` |
+| **list-doctor** | `list-doctor` | |
+| **add-appt** | `add-appt pt/PATIENT_INDEX dr/DOCTOR_INDEX at/TIMESLOT_START [to/TIMESLOT_END] [dur/TIMESLOT_DURATION] [t/TAG]…​` | `add-appt pt/1 dr/Dr. Grey at/2021-01-01 00:00 to/2021-01-01 01:30 t/severe t/brainDamage`<br>`add-appt pt/2 dr/Dr. Who at/2021-01-01 00:00 dur/1H 30M t/exhaustion`<br>`add-appt pt/3 dr/Dr. Strange at/NEXT MONDAY dur/1H 30M` |
+| **clear-appt** | `clear-appt` | |
+| **delete-appt** | `delete-appt INDEX` | `delete-appt 2` |
+| **edit-appt** | `edit-appt APPOINTMENT_INDEX [pt/PATIENT_INDEX] [dr/DOCTOR_INDEX] [at/TIMESLOT_START] [to/TIMESLOT_END] [dur/TIMESLOT_DURATION] [t/TAG]…​` | `edit-appt 1 pt/1 dr/1`<br>`edit-appt 2 at/2021-05-08 09:00 dur/1H t/severe t/fever` |
+| **find-appt** | `find [n/PATIENT KEYWORDS] [dr/DOCTOR_KEYWORDS] [d/DATETIME] [p/PHONE] [e/EMAIL] [a/ADDRESS_KEYWORDS] [t/TAG KEYWORDS]` | `find n/john alex`<br>`find dr/Grey Who t/BrainSurgery` |
+| **list-appt** | `list-appt` | |
+| **exit** | `exit` | |
+| **help** | `help` | |
