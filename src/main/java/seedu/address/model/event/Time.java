@@ -5,6 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents a Time in SOChedule.
@@ -12,10 +13,9 @@ import java.time.format.DateTimeFormatter;
  */
 public class Time implements Comparable<Time> {
 
-    public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
+    public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ISO_LOCAL_TIME;
     public static final String MESSAGE_CONSTRAINTS =
             "Time should be represented in 24-hour notation, in the format of HH:mm";
-    public static final String VALIDATION_REGEX = "^(2[0-3]|[01]?[0-9]):([0-5]?[0-9])$";
 
     public final LocalTime time;
 
@@ -39,7 +39,12 @@ public class Time implements Comparable<Time> {
      * Returns true if a given string is a valid time.
      */
     public static boolean isValidTime(String test) {
-        return test.matches(VALIDATION_REGEX);
+        try {
+            LocalTime.parse(test, TIME_FORMATTER);
+            return true;
+        } catch (DateTimeParseException ex) {
+            return false;
+        }
     }
 
     @Override
