@@ -31,6 +31,9 @@ public class TimeTest {
         assertFalse(Time.isValidTime(""));
         assertFalse(Time.isValidTime(":00"));
         assertFalse(Time.isValidTime("23:"));
+        assertFalse(Time.isValidTime("1:1"));
+        assertFalse(Time.isValidTime("0:0"));
+        assertFalse(Time.isValidTime("9:9"));
         assertFalse(Time.isValidTime("24:00"));
         assertFalse(Time.isValidTime("23:60"));
 
@@ -38,9 +41,8 @@ public class TimeTest {
         assertTrue(Time.isValidTime("23:59"));
         assertTrue(Time.isValidTime("12:34"));
         assertTrue(Time.isValidTime("00:00"));
-        assertTrue(Time.isValidTime("1:1"));
-        assertTrue(Time.isValidTime("0:0"));
-        assertTrue(Time.isValidTime("9:9"));
+
+
     }
 
     @Test

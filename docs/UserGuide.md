@@ -13,6 +13,7 @@ SOChedule is a one-stop solution for managing tasks and events, optimized for us
 * Editing a task: `edit_task`
 * Finding tasks: `find_task`
 * Listing all tasks: `list_task`
+* Getting today's tasks: `today_task`
 * Sorting all tasks: `sort_task`
 * Pinning a task: `pin_task`
 * Unpinning a task: `unpin_task`
@@ -21,6 +22,7 @@ SOChedule is a one-stop solution for managing tasks and events, optimized for us
 * Adding an event: `add_event`
 * Deleting an event: `delete_event`
 * Listing all events: `list_event`
+* Getting today's events: `today_event`
 * Finding events: `find_event`
 * Clearing expired events: `clear_expired_event`
 * Finding tasks and events before or on a given date: `find_schedule`
@@ -113,12 +115,17 @@ Examples:
 * `edit_task 1 n/editedTaskName` edits the name of the first task (if present in SOChedule) to be `editedTaskName`.
 * `edit_task 2 p/3 t/` edits the priority of the second task (if present in SOChedule) to be `3` and clears all existing tags.
 
+### Listing all tasks today: `today_task`
+Lists all tasks that have deadline on today from SOChedule Task List.
+
+Format: `today_task`
+
 ### Finding all matching tasks: `find_task`
 Finds matching tasks from Task List.
 
-Format: `find_task KEYWORD`
-* Finds the tasks whose names contain a given keyword.
-* The keyword is case-insensitive.
+Format: `find_task KEYWORDS`
+* Finds the tasks whose names contain the given keywords.
+* The keywords are case-insensitive.
 * A list of matching tasks will be displayed with their indexes.
 
 ### Sorting all tasks: `sort_task`
@@ -199,12 +206,17 @@ Examples:
 Lists all events from SOChedule Event Scheduler.
 Format: `list_event`
 
+### Listing all events today: `today_event`
+Lists all events whose duration have overlap with today from the Event Scheduler.
+
+Format: `today_event`
+
 ### Finding all matching events: `find_event`
 Finds matching events from Event Scheduler.
 
-Format: `find_event KEYWORD`
-* Finds the events whose names contain a given keyword.
-* The keyword is case-insensitive.
+Format: `find_event KEYWORDS`
+* Finds the events whose names contain given keywords.
+* The keywords are case-insensitive.
 * A list of matching events will be displayed with their indexes.
 
 
@@ -222,6 +234,10 @@ Format: `find_schedule DATE`
   indicating invalid date.
 * After running `find_schedule`, if you wish to view all existing tasks and all existing events, 
   please use the `list_task` and `list_event` respectively.
+
+Examples:
+* `find_schedule 2021-06-01` finds all existing tasks with deadline and all existing events with start date 
+  before or on `1st June 2021`.
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -250,12 +266,15 @@ Action | Format, Examples
 **Add** | `add_task n/TASKNAME d/DEADLINE p/PRIORITY [c/CATEGORY]... [t/TAG]...` <br> e.g., `add_task n/CS2103 assignment d/2021-02-27 p/1 c/school work t/urgent`
 **Delete** | `delete_task INDEX`<br>e.g., `delete_task 1`
 **Done** | `done_task INDEX`<br>e.g., `done_task 1`
+**Edit** | `edit_task INDEX [n/TASKNAME] [d/DEADLINE] [p/PRIORITY] [c/CATEGORY]... [t/TAG]...` <br> e.g., `edit_task 1 n/editedTaskName`
 **List** | `list_task`
+**Today** | `today_task`
+**Find** | `find_task KEYWORDS`<br>e.g., `find_task homework`
 **Sort** | `sort_task ARGUMENT`<br>e.g., `sort_task name`
 **Pin** | `pin_task INDEX`<br>e.g., `pin_task 1`
 **Unpin** | `unpin_task INDEX`<br>e.g., `unpin_task 1`
-**Clear completed** | `clear_completed_task`
-**Clear expired** | `clear_expired_task`
+**Clear Completed** | `clear_completed_task`
+**Clear Expired** | `clear_expired_task`
 
 ###Event-related commands
 Action | Format, Examples
@@ -263,4 +282,11 @@ Action | Format, Examples
 **Add** | `add_event n/TASKNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [c/CATEGORY]... [t/TAG]...`<br> e.g., `add_event n/CS2103 meeting sd/2021-02-27 st/15:00 ed/2021-02-27 et/17:00`
 **Delete** | `delete_event INDEX`<br>e.g., `delete_event 3`
 **List** | `list_event`
-**Clear completed** | `clear_completed_task`
+**Today** | `today_event`
+**Find** | `find_event KEYWORDS`<br>e.g., `find_event meeting`
+**Clear Completed** | `clear_expired_event`
+
+### Commands related to both task and event
+Action | Format, Examples
+--------|------------------
+**Find Schedule** | `find_schedule DATE` <br>e.g., `find_schedule 2021-06-01`

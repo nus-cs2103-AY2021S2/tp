@@ -73,8 +73,6 @@ public class MainApp extends Application {
      * or an empty sochedule will be used instead if errors occur when reading {@code storage}'s sochedule.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        //Optional<ReadOnlyAddressBook> addressBookOptional;
-        //ReadOnlyAddressBook initialData;
         Optional<ReadOnlySochedule> socheduleOptional;
         ReadOnlySochedule initialData;
         try {
@@ -82,8 +80,6 @@ public class MainApp extends Application {
             if (!socheduleOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample Sochedule");
             }
-            //initialData = socheduleOptional.orElseGet(SampleDataUtil::getSampleSochedule);
-            //^once we have a sample sochedule
             initialData = socheduleOptional.orElseGet(Sochedule::new);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty Sochedule");
