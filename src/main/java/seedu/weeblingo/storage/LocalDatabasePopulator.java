@@ -3,7 +3,6 @@ package seedu.weeblingo.storage;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import org.json.simple.JSONArray;
@@ -14,7 +13,6 @@ import seedu.weeblingo.model.ReadOnlyFlashcardBook;
 import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.flashcard.Flashcard;
 import seedu.weeblingo.model.flashcard.Question;
-import seedu.weeblingo.model.score.Score;
 import seedu.weeblingo.model.tag.Tag;
 
 /**

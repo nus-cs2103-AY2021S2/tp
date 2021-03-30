@@ -1,11 +1,8 @@
 package seedu.weeblingo.model.score;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Logger;
-
-import org.json.simple.JSONObject;
 
 import seedu.weeblingo.MainApp;
 import seedu.weeblingo.commons.core.LogsCenter;
