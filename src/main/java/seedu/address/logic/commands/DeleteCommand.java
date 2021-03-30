@@ -23,14 +23,30 @@ public class DeleteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PASSENGER_SUCCESS = "Deleted %o Passengers";
-    public static final String MESSAGE_DELETE_PASSENGER_FAIL_HAS_POOL = "Failed to delete. One or more Pools contain"
-            + " Passenger: %1$s.";
+    public static final String MESSAGE_DELETE_PASSENGER_SUCCESS = "Deleted Passenger(s): %1$s";
+    public static final String MESSAGE_DELETE_PASSENGER_FAIL_HAS_POOL = "Failed to delete. One or more Pools "
+            + "contain Passenger(s): %1$s.";
+    public static final String MESSAGE_DELETE_PASSENGER_FAIL_HAS_POOL_OTHERS_DELETED = "Deleted Passenger(s): %1$s.\n"
+            + "However failed to delete some passengers as one or more Pools contain Passenger(s): %1$s.";
 
     private final List<Index> targetIndexes;
 
     public DeleteCommand(List<Index> targetIndexes) {
         this.targetIndexes = targetIndexes;
+    }
+
+    private static String printPassengersInList(List<Passenger> passengers) {
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < passengers.size(); i++) {
+            sb.append(passengers.get(i).getName());
+
+            if (i < passengers.size() - 1) {
+                sb.append(", ");
+            }
+        }
+
+        return sb.toString();
     }
 
     @Override
@@ -48,13 +64,33 @@ public class DeleteCommand extends Command {
             targetedPassengers.add(passengerToDelete);
         }
 
+        List<Passenger> passengerWithPools = new ArrayList<>();
+        List<Passenger> deletedPassengers = new ArrayList<>();
+
         for (Passenger p : targetedPassengers) {
             if (!model.deletePassenger(p)) {
-                throw new CommandException(String.format(MESSAGE_DELETE_PASSENGER_FAIL_HAS_POOL, p));
+                passengerWithPools.add(p);
+            } else {
+                deletedPassengers.add(p);
             }
         }
 
-        return new CommandResult(String.format(MESSAGE_DELETE_PASSENGER_SUCCESS, targetedPassengers.size()));
+        if (passengerWithPools.size() > 0) {
+            String passengerNames = printPassengersInList(passengerWithPools);
+
+            if (deletedPassengers.size() == 0) {
+                throw new CommandException(String.format(MESSAGE_DELETE_PASSENGER_FAIL_HAS_POOL, passengerNames));
+            } else {
+                String deletedPassengersNames = printPassengersInList(deletedPassengers);
+
+                throw new CommandException(String.format(MESSAGE_DELETE_PASSENGER_FAIL_HAS_POOL_OTHERS_DELETED,
+                        deletedPassengersNames, passengerNames));
+            }
+        } else {
+            String deletedPassengersNames = printPassengersInList(deletedPassengers);
+
+            return new CommandResult(String.format(MESSAGE_DELETE_PASSENGER_SUCCESS, deletedPassengersNames));
+        }
     }
 
     @Override

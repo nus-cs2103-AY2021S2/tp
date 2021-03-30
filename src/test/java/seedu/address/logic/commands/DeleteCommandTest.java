@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPassengerAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
+import static seedu.address.testutil.TypicalPassengers.ALICE;
 import static seedu.address.testutil.TypicalPassengers.getTypicalAddressBook;
 
 import java.util.Collections;
@@ -33,8 +34,7 @@ public class DeleteCommandTest {
         Passenger passengerToDelete = model.getFilteredPassengerList().get(INDEX_FIRST.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(Collections.singletonList(INDEX_FIRST));
 
-        // 1 as it is 1 passenger
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PASSENGER_SUCCESS, 1);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PASSENGER_SUCCESS, ALICE.getName());
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePassenger(passengerToDelete);
@@ -58,7 +58,7 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(Collections.singletonList(INDEX_FIRST));
 
         // 1 as it is 1 passenger
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PASSENGER_SUCCESS, 1);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PASSENGER_SUCCESS, ALICE.getName());
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePassenger(passengerToDelete);
