@@ -1,7 +1,6 @@
 package seedu.address.model.reminder;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.schedule.Schedule;
 
 /**
  * Unmodifiable view of an Reminder Tracker

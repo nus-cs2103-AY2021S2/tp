@@ -37,6 +37,10 @@ import seedu.address.logic.commands.gradecommands.AddGradeCommand;
 import seedu.address.logic.commands.gradecommands.DeleteGradeCommand;
 import seedu.address.logic.commands.gradecommands.EditGradeCommand;
 import seedu.address.logic.commands.gradecommands.ListGradeCommand;
+import seedu.address.logic.commands.remindercommands.AddReminderCommand;
+import seedu.address.logic.commands.remindercommands.DeleteReminderCommand;
+import seedu.address.logic.commands.remindercommands.EditReminderCommand;
+import seedu.address.logic.commands.remindercommands.ListReminderCommand;
 import seedu.address.logic.commands.schedulecommands.AddScheduleCommand;
 import seedu.address.logic.commands.schedulecommands.DeleteScheduleCommand;
 import seedu.address.logic.commands.schedulecommands.EditScheduleCommand;
@@ -58,6 +62,9 @@ import seedu.address.logic.parser.filterparser.DeletePersonFilterCommandParser;
 import seedu.address.logic.parser.gradeparser.AddGradeCommandParser;
 import seedu.address.logic.parser.gradeparser.DeleteGradeCommandParser;
 import seedu.address.logic.parser.gradeparser.EditGradeCommandParser;
+import seedu.address.logic.parser.reminderparser.AddReminderCommandParser;
+import seedu.address.logic.parser.reminderparser.DeleteReminderCommandParser;
+import seedu.address.logic.parser.reminderparser.EditReminderCommandParser;
 import seedu.address.logic.parser.scheduleparser.AddScheduleCommandParser;
 import seedu.address.logic.parser.scheduleparser.DeleteScheduleCommandParser;
 import seedu.address.logic.parser.scheduleparser.EditScheduleCommandParser;
@@ -193,6 +200,19 @@ public class TutorTrackerParser {
 
         case ViewTimeTableCommand.COMMAND_WORD:
             return new ViewTimeTableCommand();
+
+        /* Reminder Commands */
+        case AddReminderCommand.COMMAND_WORD:
+            return new AddReminderCommandParser().parse(arguments);
+
+        case EditReminderCommand.COMMAND_WORD:
+            return new EditReminderCommandParser().parse(arguments);
+
+        case DeleteReminderCommand.COMMAND_WORD:
+            return new DeleteReminderCommandParser().parse(arguments);
+
+        case ListReminderCommand.COMMAND_WORD:
+            return new ListReminderCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

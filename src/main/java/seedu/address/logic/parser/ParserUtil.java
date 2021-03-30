@@ -19,6 +19,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.reminder.ReminderDate;
 import seedu.address.model.schedule.Description;
 import seedu.address.model.schedule.Title;
 import seedu.address.model.subject.SubjectExperience;
@@ -156,6 +157,7 @@ public class ParserUtil {
 
     /**
      * Parses {@code String budgetValue} into {@code Budget}
+     *
      * @param budgetValue Value to set as budget.
      * @throws ParseException
      */
@@ -368,5 +370,20 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Description(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code ReminderDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static ReminderDate parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim().toUpperCase();
+        if (!ReminderDate.isValidDate(trimmedDate)) {
+            throw new ParseException(ReminderDate.MESSAGE_CONSTRAINTS);
+        }
+        return new ReminderDate(trimmedDate);
     }
 }
