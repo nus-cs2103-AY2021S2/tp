@@ -29,7 +29,7 @@ public class CoeExpiryFilter extends AbstractFilter {
         super(filterString);
         requireNonNull(filterString);
         checkArgument(isValidFilter(filterString), MESSAGE_CONSTRAINTS);
-        LocalDate currentDate = LocalDate.now();
+        LocalDate currentDate = LocalDate.now(); // Should be the date without time
         boolean expiredOnly = filterString.equals("exp");
         int years = 0;
         if (!expiredOnly) {
@@ -57,6 +57,7 @@ public class CoeExpiryFilter extends AbstractFilter {
 
     @Override
     public boolean test(Customer customer) {
+        requireNonNull(customer);
         return customer.getCarsOwned()
                        .values()
                        .parallelStream()
@@ -66,5 +67,12 @@ public class CoeExpiryFilter extends AbstractFilter {
     @Override
     public List<Customer> filterAllCustomers(List<Customer> customer) {
         return null;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof CoeExpiryFilter // instanceof handles nulls
+                && coeExpiryThreshold.equals(((CoeExpiryFilter) other).coeExpiryThreshold)); // state check
     }
 }
