@@ -1,6 +1,7 @@
 package seedu.address.model.issue;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Config.DEFAULT_LOCALE;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
@@ -15,7 +16,7 @@ public class Timestamp implements Comparable<Timestamp> {
 
     public static final String TIMESTAMP_PATTERN = "yyyy/M/d h:mma";
 
-    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(TIMESTAMP_PATTERN);
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(TIMESTAMP_PATTERN, DEFAULT_LOCALE);
 
     public static final String MESSAGE_CONSTRAINTS = "Timestamps should be in the format "
             + TIMESTAMP_PATTERN + ", and it should not be blank";
