@@ -29,6 +29,7 @@ public class FindCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredEntityList(predicate);
+        model.sortEntities(Model.COMPARATOR_ID_ASCENDING_ORDER);
         return new CommandResult(
                 String.format(Messages.MESSAGE_ENTITIES_LISTED_OVERVIEW, model.getFilteredEntityList().size()));
     }

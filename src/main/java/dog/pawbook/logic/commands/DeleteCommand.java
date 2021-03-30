@@ -50,8 +50,9 @@ public abstract class DeleteCommand extends Command {
         return entityToDelete;
     }
 
-    public void updateDeletedList(Model model) throws CommandException {
+    public void updateFilteredList(Model model) throws CommandException {
         model.updateFilteredEntityList(Model.PREDICATE_SHOW_ALL_ENTITIES);
+        model.sortEntities(model.COMPARATOR_ID_ASCENDING_ORDER);
     }
 
     protected abstract String getInvalidIdMessage();

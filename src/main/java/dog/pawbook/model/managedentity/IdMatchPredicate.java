@@ -9,12 +9,16 @@ import javafx.util.Pair;
 /**
  * Tests that an Entity matches a supplied list of IDs.
  */
-public class ViewCommandPredicate implements Predicate<Pair<Integer, Entity>> {
+public class IdMatchPredicate implements Predicate<Pair<Integer, Entity>> {
 
-    private final List<Integer> relatedIds;
+    private final List<Integer> relatedIds = new ArrayList<>();
 
-    public ViewCommandPredicate(ArrayList<Integer> relatedIds) {
-        this.relatedIds = relatedIds;
+    public IdMatchPredicate(ArrayList<Integer> relatedIds) {
+        this.relatedIds.addAll(relatedIds);
+    }
+
+    public IdMatchPredicate(Integer relatedId) {
+        this.relatedIds.add(relatedId);
     }
 
     @Override
@@ -25,8 +29,8 @@ public class ViewCommandPredicate implements Predicate<Pair<Integer, Entity>> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ViewCommandPredicate // instanceof handles nulls
-                        && relatedIds.equals(((ViewCommandPredicate) other).relatedIds)); // state check
+                || (other instanceof IdMatchPredicate // instanceof handles nulls
+                        && relatedIds.equals(((IdMatchPredicate) other).relatedIds)); // state check
     }
 
 }

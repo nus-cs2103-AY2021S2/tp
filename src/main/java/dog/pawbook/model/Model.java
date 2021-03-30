@@ -15,6 +15,7 @@ import javafx.util.Pair;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Pair<Integer, Entity>> PREDICATE_SHOW_ALL_ENTITIES = unused -> true;
+    Comparator<Pair<Integer, Entity>> COMPARATOR_ID_ASCENDING_ORDER = (x, y) -> (x.getKey() - y.getKey());
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.

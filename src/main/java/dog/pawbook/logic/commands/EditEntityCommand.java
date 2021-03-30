@@ -16,8 +16,8 @@ import java.util.Set;
 import dog.pawbook.commons.util.CollectionUtil;
 import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.model.Model;
-import dog.pawbook.model.managedentity.EditCommandPredicate;
 import dog.pawbook.model.managedentity.Entity;
+import dog.pawbook.model.managedentity.IdMatchPredicate;
 import dog.pawbook.model.managedentity.Name;
 import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.owner.Owner;
@@ -82,7 +82,7 @@ public abstract class EditEntityCommand extends Command {
         }
 
         model.setEntity(id, editedEntity);
-        model.updateFilteredEntityList(new EditCommandPredicate(id));
+        model.updateFilteredEntityList(new IdMatchPredicate(id));
         return new CommandResult(getSuccessMessage(editedEntity));
     }
 
