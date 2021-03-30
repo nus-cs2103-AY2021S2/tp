@@ -53,4 +53,9 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Commits the current {@code ColabFolder} state to {@code ColabFolderHistory}.
+     */
+    void commitState(CommandResult commandResult);
 }

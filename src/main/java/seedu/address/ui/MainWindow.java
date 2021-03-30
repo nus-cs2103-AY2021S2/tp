@@ -173,6 +173,8 @@ public class MainWindow extends UiPart<Stage> {
                 executeUiCommand(commandResult.getUiCommand());
             }
 
+            logic.commitState(commandResult);
+
             return commandResult;
         } catch (CommandException | UiCommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

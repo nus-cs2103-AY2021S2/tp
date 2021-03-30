@@ -26,9 +26,11 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListContactsCommand;
 import seedu.address.logic.commands.MarkDeadlineCommand;
 import seedu.address.logic.commands.MarkTodoCommand;
+import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.ShowOverviewTabCommand;
 import seedu.address.logic.commands.ShowTodayCommand;
 import seedu.address.logic.commands.ShowTodosTabCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.UpdateContactCommand;
 import seedu.address.logic.commands.UpdateDeadlineCommand;
 import seedu.address.logic.commands.UpdateEventCommand;
@@ -151,6 +153,12 @@ public class AddressBookParser {
 
         case ShowTodayCommand.COMMAND_WORD:
             return new ShowTodayCommand();
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
+
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

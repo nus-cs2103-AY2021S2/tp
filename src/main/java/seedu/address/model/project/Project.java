@@ -266,6 +266,20 @@ public class Project {
     }
 
     /**
+     * Returns a new copy of this project.
+     *
+     * @return a copy of this project.
+     */
+    public Project getCopy() {
+        EventList eventList = this.events.getCopy();
+        DeadlineList deadlineList = this.deadlines.getCopy();
+        TodoList todoList = this.todos.getCopy();
+        GroupmateList groupmateList = this.groupmates.getCopy();
+
+        return new Project(this.getProjectName(), eventList, todoList, deadlineList, groupmateList);
+    }
+
+    /**
      * Returns true if both projects have the same identity and data fields.
      * This defines a stronger notion of equality between two projects.
      */

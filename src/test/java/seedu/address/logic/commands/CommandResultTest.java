@@ -32,7 +32,6 @@ public class CommandResultTest {
     @Test
     public void constructor_nullValues_throwsException() {
         assertThrows(NullPointerException.class, () -> new CommandResult(null, null));
-        assertThrows(NullPointerException.class, () -> new CommandResult("test", null));
         assertThrows(NullPointerException.class, () -> new CommandResult(null));
     }
 

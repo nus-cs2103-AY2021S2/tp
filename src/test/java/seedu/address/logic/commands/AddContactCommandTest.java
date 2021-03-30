@@ -20,6 +20,9 @@ import seedu.address.model.ColabFolder;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyColabFolder;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.colabfolderhistory.SavedState;
+import seedu.address.model.colabfolderhistory.exceptions.NoRedoableStateException;
+import seedu.address.model.colabfolderhistory.exceptions.NoUndoableStateException;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.project.Project;
 import seedu.address.testutil.ContactBuilder;
@@ -177,6 +180,31 @@ public class AddContactCommandTest {
 
         @Override
         public void updateFilteredProjectList(Predicate<Project> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public SavedState getUndoState() throws NoUndoableStateException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public SavedState getRedoState() throws NoRedoableStateException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public CommandResult undo() throws NoUndoableStateException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public CommandResult redo() throws NoRedoableStateException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void commitState(CommandResult commandResult) {
             throw new AssertionError("This method should not be called.");
         }
     }
