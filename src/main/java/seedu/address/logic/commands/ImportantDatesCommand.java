@@ -5,9 +5,9 @@ import seedu.address.model.Model;
 /**
  * Opens up a schedule window displaying weekly lessons for the user.
  */
-public class ScheduleCommand extends Command {
+public class ImportantDatesCommand extends Command {
 
-    public static final String COMMAND_WORD = "schedule";
+    public static final String COMMAND_WORD = "idates";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows weekly lesson schedule.\n"
             + "Example: " + COMMAND_WORD;
@@ -16,6 +16,6 @@ public class ScheduleCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_HELP_MESSAGE, true, false, false, false);
+        return new CommandResult(SHOWING_HELP_MESSAGE, false, true, false, false);
     }
 }

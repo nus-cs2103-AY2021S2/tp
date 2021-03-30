@@ -3,6 +3,7 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
@@ -17,16 +18,16 @@ public class DateListPanel extends UiPart<Region> {
     private static final String FXML = "DateListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(DateListPanel.class);
 
-    @javafx.fxml.FXML
-    private ListView<ImportantDate> importantDateListView;
+    @FXML
+    private ListView<ImportantDate> dateListView;
 
     /**
      * Creates a {@code DateListPanel} with the given {@code ObservableList}.
      */
     public DateListPanel(ObservableList<ImportantDate> importantDatesList) {
         super(FXML);
-        importantDateListView.setItems(importantDatesList);
-        importantDateListView.setCellFactory(listView -> new DateListPanel.DateListViewCell());
+        dateListView.setItems(importantDatesList);
+        dateListView.setCellFactory(listView -> new DateListViewCell());
     }
 
     /**
