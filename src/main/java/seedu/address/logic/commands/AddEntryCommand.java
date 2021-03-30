@@ -14,13 +14,17 @@ public class AddEntryCommand extends Command {
 
     public static final String COMMAND_WORD = "eadd";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an entry to the list."
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an entry to the list. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + "[" + PREFIX_START_DATE + "START DATE]"
-            + PREFIX_END_DATE + "END DATE"
+            + "[" + PREFIX_START_DATE + "START DATE] "
+            + PREFIX_END_DATE + "END DATE "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " ";
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_NAME + "consultation 1 "
+            + PREFIX_START_DATE + "2021-04-01 17:00 "
+            + PREFIX_END_DATE + "2021-04-01 19:00 "
+            + PREFIX_TAG + "CS2100";
 
     public static final String MESSAGE_SUCCESS = "New entry added: %1$s";
     public static final String MESSAGE_DUPLICATED_ENTRY = "This entry already exists in the list.";

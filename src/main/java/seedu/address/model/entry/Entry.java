@@ -86,8 +86,7 @@ public class Entry {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getEntryName())
-                .append(haveDifferentDates() ? "; Start Date: " : "")
-                .append(haveDifferentDates() ? getStartDate() : "")
+                .append(haveDifferentDates() ? new StringBuilder("; Start Date: ").append(getStartDate()) : "")
                 .append("; End Date: ")
                 .append(getEndDate());
 
