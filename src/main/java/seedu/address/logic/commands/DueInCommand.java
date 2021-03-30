@@ -10,20 +10,21 @@ import seedu.address.model.person.DeadlineDateInRangePredicate;
  * Finds and lists all tasks in address book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class ShowCommand extends Command {
+public class DueInCommand extends Command {
 
-    public static final String COMMAND_WORD = "show";
+    public static final String COMMAND_WORD = "dueIn";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks whose date is "
-            + "in range of the specified dates and displays them as a list with index numbers.\n"
-            + "Parameters: start/START_DATE end/END_DATE\n"
-            + "START_DATE and END_DATE should: \n 1.DD-MM-YYYY format,\n 2.it should exist on calendar, and\n"
-            + " 3.The year is between 2020-2099\n"
-            + "Example: " + COMMAND_WORD + " start/10-10-2020";
+            + "in range of the specified days or weeks.\n"
+            + "Parameters: [days/NUMBER_OF_DAYS] [week/NUMBER_OF_WEEKS]\n"
+            + "NUMBER_OF_DAYS and NUMBER_OF_WEEKS must be a positive integer.\n"
+            + "Example: " + COMMAND_WORD + " days/10\n"
+            + "If no parameters specified, the command will show assignments within the next 7 days.\n"
+            + "If multiple parameters specified, the command will prioritize days/ over week/.";
 
     private final DeadlineDateInRangePredicate predicate;
 
-    public ShowCommand(DeadlineDateInRangePredicate predicate) {
+    public DueInCommand(DeadlineDateInRangePredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -38,12 +39,12 @@ public class ShowCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ShowCommand // instanceof handles nulls
-                && predicate.equals(((ShowCommand) other).predicate)); // state check
+                || (other instanceof DueInCommand // instanceof handles nulls
+                && predicate.equals(((DueInCommand) other).predicate)); // state check
     }
 
     @Override
     public String toString() {
-        return "SHOW";
+        return "DUEIN";
     }
 }

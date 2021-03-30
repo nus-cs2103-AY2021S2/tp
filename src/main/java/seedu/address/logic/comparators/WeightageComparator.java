@@ -11,6 +11,6 @@ public class WeightageComparator implements Comparator<Task> {
 
     @Override
     public int compare(Task firstTask, Task secondTask) {
-        return firstTask.getWeightage().compareTo(secondTask.getWeightage());
+        return secondTask.getWeightage().compareTo(firstTask.getWeightage());
     }
 }
