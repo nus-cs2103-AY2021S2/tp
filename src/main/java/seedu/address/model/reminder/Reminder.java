@@ -5,31 +5,24 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 import seedu.address.model.schedule.Description;
-import seedu.address.model.schedule.Title;
 
 /**
- * Represents a Person in Tutor Tracker.
+ * Represents a Reminder in Tutor Tracker.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Reminder {
 
     // Identity fields
-    private final Title title;
     private final Description description;
     private final ReminderDate reminderDate;
 
     /**
      * Every field must be present and not null.
      */
-    public Reminder(Title title, Description description, ReminderDate reminderDate) {
-        requireAllNonNull(title, description, reminderDate);
-        this.title = title;
+    public Reminder(Description description, ReminderDate reminderDate) {
+        requireAllNonNull(description, reminderDate);
         this.description = description;
         this.reminderDate = reminderDate;
-    }
-
-    public Title getTitle() {
-        return title;
     }
 
     public Description getDescription() {
@@ -41,7 +34,7 @@ public class Reminder {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both reminder have the same description.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSameReminder(Reminder otherReminder) {
@@ -50,7 +43,7 @@ public class Reminder {
         }
 
         return otherReminder != null
-                && otherReminder.getTitle().equals(getTitle());
+                && otherReminder.getDescription().equals(getDescription());
     }
 
     /**
@@ -68,24 +61,21 @@ public class Reminder {
         }
 
         Reminder otherReminder = (Reminder) other;
-        return otherReminder.getTitle().equals(getTitle())
-                && otherReminder.getDescription().equals(getDescription())
+        return otherReminder.getDescription().equals(getDescription())
                 && otherReminder.getReminderDate().equals(getReminderDate());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, description, reminderDate);
+        return Objects.hash(description, reminderDate);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getTitle())
-                .append("; Description: ")
-                .append(getDescription())
-                .append("; Remind On: ")
+        builder.append(getDescription())
+                .append("; Remind on: ")
                 .append(getReminderDate());
 
         return builder.toString();

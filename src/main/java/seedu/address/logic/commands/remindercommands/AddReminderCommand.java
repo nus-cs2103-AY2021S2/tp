@@ -20,12 +20,10 @@ public class AddReminderCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a reminder to the reminder list. "
             + "Parameters: "
-            + PREFIX_TITLE + "TITLE "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_DATE + "REMINDER DATE\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TITLE + "Bring Math Textbook "
-            + PREFIX_DESCRIPTION + "For Ms Chloe Tuition "
+            + PREFIX_DESCRIPTION + "Maths Tuition Payment Due "
             + PREFIX_DATE + "2021-3-31 ";
 
     public static final String MESSAGE_SUCCESS = "New reminder added: %1$s";

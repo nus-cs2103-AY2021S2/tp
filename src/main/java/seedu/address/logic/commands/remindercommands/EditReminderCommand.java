@@ -32,11 +32,10 @@ public class EditReminderCommand extends Command {
             + "by the index number used in the displayed reminder list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
-            + "[" + PREFIX_DATE + "DATE]\n"
+            + "[" + PREFIX_DATE + "REMINDER DATE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_TITLE + "Bring Science Textbook "
+            + PREFIX_DESCRIPTION + "Bring Science Textbook "
             + PREFIX_DATE + "2021-3-30";
 
     public static final String MESSAGE_EDIT_REMINDER_SUCCESS = "Edited Reminder: %1$s";
@@ -58,21 +57,19 @@ public class EditReminderCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Reminder} with the details of {@code reminderToEdit}
+     * edited with {@code editReminderDescriptor}.
      */
     private static Reminder createEditedReminder(Reminder reminderToEdit,
                                                  EditReminderDescriptor editReminderDescriptor) {
         assert reminderToEdit != null;
 
-        Title updatedTitle =
-                editReminderDescriptor.getTitle().orElse(reminderToEdit.getTitle());
         Description updatedDescription =
                 editReminderDescriptor.getDescription().orElse(reminderToEdit.getDescription());
         ReminderDate updatedReminderDate =
                 editReminderDescriptor.getReminderDate().orElse(reminderToEdit.getReminderDate());
 
-        return new Reminder(updatedTitle, updatedDescription, updatedReminderDate);
+        return new Reminder(updatedDescription, updatedReminderDate);
     }
 
     @Override

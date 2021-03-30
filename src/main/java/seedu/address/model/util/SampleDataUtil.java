@@ -21,6 +21,8 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.ReminderDate;
 import seedu.address.model.schedule.Description;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
@@ -104,6 +106,7 @@ public class SampleDataUtil {
                     GradeEnum.valueOf("C"))
         };
     }
+
     public static Schedule[] getSampleSchedule() {
         return new Schedule[] {
             new Schedule(new Title("Math Tuition Homework"),
@@ -117,7 +120,14 @@ public class SampleDataUtil {
         };
     }
 
-
+    public static Reminder[] getSampleReminder() {
+        return new Reminder[] {
+            new Reminder(new Description("Bring Math Textbook for Tuition"),
+                    new ReminderDate("2021-03-31")),
+            new Reminder(new Description("Science Tuition Fee Due"),
+                    new ReminderDate("2021-03-31"))
+        };
+    }
 
     public static ReadOnlyScheduleTracker getSampleScheduleTracker() {
         ScheduleTracker sampleSt = new ScheduleTracker();
