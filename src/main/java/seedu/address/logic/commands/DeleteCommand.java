@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -36,14 +37,10 @@ public class DeleteCommand extends Command {
     }
 
     private static String printPassengersInList(List<Passenger> passengers) {
-        StringBuilder sb = new StringBuilder();
+        StringJoiner sb = new StringJoiner(", ");
 
-        for (int i = 0; i < passengers.size(); i++) {
-            sb.append(passengers.get(i).getName());
-
-            if (i < passengers.size() - 1) {
-                sb.append(", ");
-            }
+        for (Passenger p : passengers) {
+            sb.add(p.getName().toString());
         }
 
         return sb.toString();
