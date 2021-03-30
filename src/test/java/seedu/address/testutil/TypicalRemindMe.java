@@ -96,7 +96,8 @@ public class TypicalRemindMe {
      */
     public static RemindMe getTypicalRemindMe() {
         RemindMe mp = new RemindMe();
-        mp.addModule(MOD_1);
+        mp.addModule(new ModuleBuilder(MOD_1).build());
+        mp.addModule(new ModuleBuilder(MOD_2).build());
 
         for (Person person : getTypicalPersons()) {
             mp.addPerson(person);
