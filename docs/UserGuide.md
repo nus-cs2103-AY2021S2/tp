@@ -103,6 +103,19 @@ Otherwise:
 
 > Tip: A plan is valid if the modules contained in its history match those of the current Master Plan.
 > This ensures that any valid plan is a viable option for the user.
+> 
+> ### Clearing all entries : `clear`
+
+Clears all entries from the address book.
+
+Format: `clear`
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
 
 ## Plan commands
 ### List a summary of all plans: `list plans`
@@ -139,21 +152,20 @@ Example output for deleting plan:
 ![delete_plan](images/DeletePlan.png)
 
 ### Set Plan as Master Plan: `master`
-
 Format: `master p/PLAN_NUMBER`
 
 This command must be done by the user at least once before they can use other commands.
 Marks the given plan as the master plan, and this plan should contain all the modules that the user has taken (if any).
 
 Example output:
-[IMG]
+![masterPlanExample](images/masterPlan.png)
 
 ## Semester commands
-
 ### Show the number of MCs the user is currently taking: `show MCs`
 Format: `show mcs`
 
-Example output: `Current MCs this semester: xxx`
+Example output:
+![showMcsExample](images/showMcsExample.png)
 
 
 ### Calculate and show the current CAP (Cumulative academic points) of the student: `show CAP`
@@ -163,7 +175,9 @@ This command takes in the grades of modules user has marked as completed and ent
 
 ![modular-system](https://user-images.githubusercontent.com/67280376/109455909-9e9f8380-7a92-11eb-9ea1-f49801578a95.png)
 
-Example output `Current CAP is: xxx`
+Example output:
+![showCapExample](images/showCapExample.png)
+
 
 ### Add/Delete Semester to/from Plan: `adds`/`deletes`
 Format for adding: `adds p/PLAN_NUMBER s/SEM_NUMBER`
@@ -190,19 +204,19 @@ This indicates that all previous semesters are part of the user’s history and 
 The user will have to manually update the current semester as time progresses.
 
 Example output:
-[IMG]
+![currentSemesterExample](images/currentSemesterExample.png)
+
 
 
 ### Show history: `history`
 Format: `history`
 
-The above command takes no arguments and shows the user a list of modules that they have completed up until before the *current semester*.
+The above command takes no arguments and shows the user a list of modules that they have completed up until **before** the *current semester*.
 
 > Tip: The *current semester* is the semester that was marked using the `current semester` command.
 
 Example output:
-[IMG]
-
+![historyCommandExample](images/historyCommandExample.png)
 
 
 
@@ -246,17 +260,3 @@ By default, this command takes in one optional argument, `MODULE_CODE` and outpu
 
 Constraints:
 * Module has to exist
-
-## Other commands
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
