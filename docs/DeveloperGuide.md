@@ -683,9 +683,9 @@ Use case ends.
 **Use case: UC11 - Filter flashcards**
 
 Similar to UC05 except:
-* FlashBack filters and shows flashcards according to keywords of specified fields instead of given keywords
+* FlashBack filters and shows flashcards according to given keywords of specified fields instead of given keywords
 in step 1 and 2 of MSS
-* FlashBack shows error message if keywords of specified fields are empty instead of given keywords in 1c of Extensions.
+* FlashBack shows error message if given keywords of specified fields are empty instead of given keywords in 1c of Extensions.
 
 ### Non-Functional Requirements
 
@@ -737,6 +737,15 @@ testers are expected to do more *exploratory* testing.
     
     1. Test case: `exit`<br>
        Expected: The application exits and window closes.
+       
+### Listing flashcards
+
+1. Listing all flashcards stored in FlashBack.
+   
+    1. Prerequisites: There must be at least one flashcard in the list.
+    
+    1. Test case: `list`<br>
+       Expected: FlashBack will display all flashcards stored in FlashBack. The result display will output "Listed all flashcards".
 
 ### Finding flashcards
 
