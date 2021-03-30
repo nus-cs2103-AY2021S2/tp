@@ -30,6 +30,8 @@ public class ReturnCommand extends Command {
             "No such record found. The book has either been returned, or has never been borrowed.";
     public static final String NO_BOOK_FOUND = "Sorry, we can't find the "
             + "book which you have specified. Please check if you have keyed in the correct barcode.";
+    public static final String NO_READER_AND_BOOK_FOUND = "Sorry, we are unable to find "
+            + "the book via the barcode. Please check if you have keyed in the correct barcode.";
     public static final String UNABLE_TO_UPDATE_CODEBASE = "Sorry, an error has occurred with the codebase and we are"
             + " unable to update it.";
 
@@ -46,8 +48,18 @@ public class ReturnCommand extends Command {
     }
 
     private void verifyNameRegistration(Model model) throws CommandException {
+
+        if(!model.isBookWithBarcodeBorrowed(incompleteRecord.getBookBarcode())) {
+            throw new CommandException(MESSAGE_NO_SUCH_RECORD_FOUND);
+        }
+
         if (!model.hasBookWithBarcode(incompleteRecord.getBookBarcode())) {
             throw new CommandException(NO_BOOK_FOUND);
+        }
+
+        if (!model.hasBookWithBarcode(incompleteRecord.getBookBarcode()) &&
+                !model.hasReader(model.getReaderNameForReturn(incompleteRecord.getBookBarcode()))) {
+            throw new CommandException(NO_READER_AND_BOOK_FOUND);
         }
     }
 
