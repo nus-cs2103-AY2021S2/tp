@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
@@ -14,6 +15,8 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.EventStatus;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -44,14 +47,20 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
+        assert commandResult != null : "There must be a command result whenever a command is executed!";
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveEventBook(model.getEventBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
 
         return commandResult;
+    }
+
+    @Override
+    public FilteredList<Event> getFilteredListByStatus(EventStatus status) {
+        return model.getFilteredListByStatus(status);
     }
 
     @Override
@@ -62,6 +71,36 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
+    }
+
+    @Override
+    public ObservableList<Event> getFilteredEventList() {
+        return model.getFilteredEventList();
+    }
+
+    @Override
+    public FilteredList<Event> getFilteredBacklogList() {
+        return model.getFilteredBacklogList();
+    }
+
+    @Override
+    public FilteredList<Event> getFilteredTodoList() {
+        return model.getFilteredTodoList();
+    }
+
+    @Override
+    public FilteredList<Event> getFilteredInProgressList() {
+        return model.getFilteredInProgressList();
+    }
+
+    @Override
+    public FilteredList<Event> getFilteredDoneList() {
+        return model.getFilteredDoneList();
+    }
+
+    @Override
+    public Path getEventBookFilePath() {
+        return model.getEventBookFilePath();
     }
 
     @Override

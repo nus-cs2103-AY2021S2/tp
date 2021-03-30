@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+
+<HBox minWidth="450" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox fx:id="backlogColumn" alignment="CENTER" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
+    <Line/>
+    <VBox fx:id="todoColumn" alignment="CENTER" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
+    <Line/>
+    <VBox fx:id="inProgressColumn" alignment="CENTER" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
+    <Line/>
+    <VBox fx:id="doneColumn" alignment="CENTER" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
+    <Line/>
+</HBox>

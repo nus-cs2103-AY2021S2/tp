@@ -9,5 +9,10 @@ public class Messages {
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
+    public static final String MESSAGE_EVENTS_LISTED_OVERVIEW = "%1$d events listed!";
+
+    //Event
+    public static final String MESSAGE_INVALID_EVENT_DISPLAYED_IDENTIFIER = "The event identifier provided is invalid";
+    public static final String MESSAGE_INVALID_EVENT_INDEX_NO_EVENTS = "There are no events";
 
 }

@@ -5,52 +5,46 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyEventBook <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class EventBook
+Class ReadOnlyEventBook
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Package Person {
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class UniquePersonList
-}
-
-Package Tag {
-Class Tag
-}
+Package Event {
+Class Event
+Class Description
+Class EventName
+enum EventStatus <<Enumeration>>
+enum EventPriority <<Enumeration>>
+Class UniqueEventList
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+EventBook .up.|> ReadOnlyEventBook
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
+ModelManager o-> "1" EventBook
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+EventBook *--> "1" UniqueEventList
+UniqueEventList o--> "*" Event
+Event *--> EventName
+Event *--> Description
+Event *--> EventPriority
+Event *--> EventStatus
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+EventName -[hidden]right-> Description
+Description -[hidden]right-> EventPriority
+EventPriority -[hidden]right-> EventStatus
 
-ModelManager ----->" ~* filtered list" Person
+ModelManager ----->" ~* filtered list" Event
 @enduml

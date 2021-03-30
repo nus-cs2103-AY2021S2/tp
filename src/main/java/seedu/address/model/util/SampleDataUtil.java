@@ -1,11 +1,19 @@
 package seedu.address.model.util;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.EventBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyEventBook;
+import seedu.address.model.event.Description;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.EventName;
+import seedu.address.model.event.EventPriority;
+import seedu.address.model.event.EventStatus;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -40,12 +48,39 @@ public class SampleDataUtil {
         };
     }
 
+    public static Set<Person> getSamplePersonSet() {
+        return new HashSet<>(Arrays.asList(getSamplePersons()));
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }
         return sampleAb;
+    }
+
+    public static ReadOnlyEventBook getSampleEventBook() {
+        EventBook sampleEb = new EventBook();
+        for (Event sampleEvent : getSampleEvents()) {
+            sampleEb.addEvent(sampleEvent);
+        }
+        return sampleEb;
+    }
+
+    public static Event[] getSampleEvents() {
+        return new Event[] {
+            new Event(new EventName("CS2107 Finals"), EventStatus.BACKLOG,
+                    EventPriority.LOW, new Description("Finals on 3rd May 2021")),
+            new Event(new EventName("CS2030 Lab 1"), EventStatus.TODO,
+                    EventPriority.MEDIUM, new Description("Lab 1 to complete")),
+            new Event(new EventName("CS2103T TP"), EventStatus.IN_PROGRESS,
+                    EventPriority.HIGH, new Description("Team Project for CS2103T")),
+            new Event(new EventName("CS2105 Assignment 1"), EventStatus.IN_PROGRESS,
+                    EventPriority.MEDIUM, new Description("Due on 28 Mar 2021")),
+            new Event(new EventName("CS2101 OP1"), EventStatus.DONE,
+                    EventPriority.HIGH, new Description("OP1 Preparations")) };
+
     }
 
     /**
