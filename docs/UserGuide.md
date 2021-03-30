@@ -224,20 +224,23 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd student in TutorsPet.
 * `search n/Betsy` followed by `delete 1` deletes the 1st student in the results of the `search` command.
 
-### Adding an important date: `important`
+### Adding an important date: `add-date`
 
 Adds an important date to TutorsPet.
 
-Format: `important d/DESCRIPTION dt/DETAILS`
+Format: `add-date d/DESCRIPTION dt/DETAILS`
+
+* `DETAILS` must be in the **yyyy-mm-dd HHmm format** e.g. `2021-11-03 0800`
+
 
 Examples:
-* `important d/math exam dt/2021-11-03 0800`
+* `add-date d/math exam dt/2021-11-03 0800`
 
-### Listing all important dates : `dates`
+### Listing all important dates : `list-date`
 
 Shows a list of all important dates in TutorsPet.
 
-Format: `dates`
+Format: `list-date`
 
 ### Deleting an important date : `delete-date`
 
@@ -250,7 +253,7 @@ Format: `delete-date INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete-date 2` deletes the 2nd important date in TutorsPet.
+* `list-date` followed by `delete-date 2` deletes the 2nd important date in TutorsPet.
 
 ### Clearing all entries : `clear`
 
@@ -300,4 +303,8 @@ Action | Format, Examples
 **Search** | `search [n/KEYWORDS] [s/KEYWORDS] [t/KEYWORDS] [MORE_KEYWORDS]`<br> e.g., `search n/James Jake s/woodlands t/science`
 **Schedule** | `schedule`
 **List** | `list`
+**Add dates** | `add-date d/DESCRIPTION dt/DETAILS`<br> e.g, `add-date d/math exam dt/2021-11-05 1300`
+**Delete dates** | `delete-date INDEX`<br> e.g., `delete-date 3`
+**List dates** | `list-date`
+
 **Help** | `help`

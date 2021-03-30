@@ -11,9 +11,9 @@ import seedu.address.model.date.ImportantDate;
 /**
  * Adds an important date to TutorsPet.
  */
-public class ImportantCommand extends Command {
+public class AddDateCommand extends Command {
 
-    public static final String COMMAND_WORD = "important";
+    public static final String COMMAND_WORD = "add-date";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an important date to TutorsPet. "
             + "Parameters: "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
@@ -24,9 +24,9 @@ public class ImportantCommand extends Command {
     private final ImportantDate toAdd;
 
     /**
-     * Creates an ImportantCommand to add important dates.
+     * Creates an AddDateCommand to add important dates.
      */
-    public ImportantCommand(ImportantDate importantDate) {
+    public AddDateCommand(ImportantDate importantDate) {
         requireNonNull(importantDate);
         toAdd = importantDate;
     }
@@ -47,8 +47,8 @@ public class ImportantCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ImportantCommand // instanceof handles nulls
-                && toAdd.equals(((ImportantCommand) other).toAdd));
+                || (other instanceof AddDateCommand // instanceof handles nulls
+                && toAdd.equals(((AddDateCommand) other).toAdd));
     }
 
 
