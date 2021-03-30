@@ -196,6 +196,7 @@ Format:`list_note`
 
 ### Export tutor details with note `export`
 Export the tutor details of that index together with the notes and subject list into a text file 
+exit
 in the directory you saved
 TutorTracker in /export/TUTORNAME
 
@@ -367,7 +368,7 @@ Format : `view_budget`
 
 ### Exiting `exit`
 
-Closes the app with `bye` message
+Closes the app.
 
 Q & A
 --------------------------------------------------------------------------------------------------------------------
