@@ -10,7 +10,7 @@ import javafx.scene.layout.Region;
  */
 public class HelpCard extends UiPart<Region> {
 
-    private static final String FXML = "HelpListCard.fxml";
+    private static final String FXML = "HelpCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.

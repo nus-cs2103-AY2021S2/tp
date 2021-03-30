@@ -14,7 +14,7 @@ import seedu.cakecollate.model.order.Order;
  */
 public class OrderCard extends UiPart<Region> {
 
-    private static final String FXML = "OrderListCard.fxml";
+    private static final String FXML = "OrderCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
