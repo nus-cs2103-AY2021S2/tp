@@ -280,4 +280,9 @@ public class ModelManager implements Model {
     public void addAlias(Alias alias) {
         userPrefs.addAlias(alias);
     }
+
+    @Override
+    public void deleteAlias(String aliasName) {
+        userPrefs.deleteAlias(aliasName);
+    }
 }

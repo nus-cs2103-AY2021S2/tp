@@ -63,13 +63,19 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     /**
      * Returns the current alias mapping.
+     *
+     * @return The mapping.
      */
     public AliasMapping getAliasMapping() {
         return aliasMapping;
     }
 
+
     /**
      * Sets the current mapping to the specified mapping.
+     *
+     * @param aliasMappings The mapping.
+     * @throws NullPointerException If the input is null.
      */
     public void setAliasMapping(AliasMapping aliasMappings) {
         requireNonNull(aliasMappings);
@@ -77,7 +83,10 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     }
 
     /**
-     * Adds an user-defined alias to the current mapping.
+     * Adds a user-defined alias to the current mapping.
+     *
+     * @param alias The alias to be added.
+     * @throws NullPointerException If the input is null.
      */
     public void addAlias(Alias alias) {
         requireNonNull(alias);
@@ -85,7 +94,22 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     }
 
     /**
-     * Returns an Alias object based on alias name.
+     * Deletes a user-defined alias from the current mapping.
+     *
+     * @param aliasName The name of the alias to be deleted.
+     * @throws NullPointerException If the input is null.
+     */
+    public void deleteAlias(String aliasName) {
+        requireNonNull(aliasName);
+        aliasMapping.deleteAlias(aliasName);
+    }
+
+    /**
+     * Returns an Alias based on name.
+     *
+     * @param aliasName Name of the alias.
+     * @return The alias with the specified name.
+     * @throws NullPointerException If the input is null.
      */
     public Alias getAlias(String aliasName) {
         requireNonNull(aliasName);
@@ -93,7 +117,10 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     }
 
     /**
-     * Checks if the current mapping contains an Alias based on alias name.
+     * Checks if the current mapping contains an alias based on name.
+     *
+     * @param aliasName Name of the alias.
+     * @return Whether the mapping contains the alias.
      */
     @Override
     public boolean containsAlias(String aliasName) {
@@ -101,7 +128,11 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     }
 
     /**
-     * Check if the alias name is a reserved keyword.
+     * Checks if the alias name is a reserved keyword.
+     *
+     * @param aliasName Name of the alias.
+     * @return Whether the name is reserved.
+     * @throws NullPointerException If the input is null.
      */
     public boolean isReservedKeyword(String aliasName) {
         requireNonNull(aliasName);
@@ -109,7 +140,11 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     }
 
     /**
-     * Check if the command word is a recursive keyword.
+     * Checks if the command word is recursive.
+     *
+     * @param commandWord The command word.
+     * @return Whether the command word is recursive.
+     * @throws NullPointerException If the input is null.
      */
     public boolean isRecursiveKeyword(String commandWord) {
         requireNonNull(commandWord);
