@@ -3,13 +3,10 @@ package seedu.address.model.appointment;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
-import seedu.address.model.person.Person;
-
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
-public class ApptAnyContainsKeywordsPredicate implements Predicate<Person> {
+public class ApptAnyContainsKeywordsPredicate implements Predicate<Appointment> {
     private final List<String> keywords;
 
     public ApptAnyContainsKeywordsPredicate(List<String> keywords) {
@@ -17,11 +14,13 @@ public class ApptAnyContainsKeywordsPredicate implements Predicate<Person> {
     }
 
     @Override
-    public boolean test(Person person) {
-        return keywords.stream()
-                .anyMatch(keyword ->
-                        StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword)
-                        || StringUtil.containsWordIgnoreCase(person.getEmail().toString(), keyword));
+    public boolean test(Appointment appointment) {
+        ApptNameContainsKeywordsPredicate namePredicate = new ApptNameContainsKeywordsPredicate(keywords);
+        ApptDateContainsKeywordsPredicate datePredicate = new ApptDateContainsKeywordsPredicate(keywords);
+        ApptAddressContainsKeywordsPredicate addressPredicate = new ApptAddressContainsKeywordsPredicate(keywords);
+
+        return namePredicate.test(appointment) || datePredicate.test(appointment)
+                || addressPredicate.test(appointment);
     }
 
     @Override
