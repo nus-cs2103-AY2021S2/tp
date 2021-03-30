@@ -24,6 +24,7 @@ import seedu.address.model.group.Group;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonEvent;
+import seedu.address.model.person.PersonStreak;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
 
@@ -95,6 +96,7 @@ public class AddressBookTest {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableMap<Name, Group> groups = FXCollections.observableMap(new HashMap<>());
         private final ObservableList<PersonEvent> personEvents = FXCollections.observableArrayList();
+        private final ObservableList<PersonStreak> personStreaks = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
@@ -113,6 +115,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<PersonEvent> getUpcomingDates() {
             return personEvents;
+        }
+
+        @Override
+        public ObservableList<PersonStreak> getPersonStreaks() {
+            return personStreaks;
         }
     }
 

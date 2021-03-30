@@ -11,6 +11,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonEvent;
+import seedu.address.model.person.PersonStreak;
 
 /**
  * API of the Logic component
@@ -48,6 +49,11 @@ public interface Logic {
      * Returns an unmodifiable view of a person to display the full details for
      */
     ObservableList<Person> getDetailedPerson();
+
+    /**
+     * Returns an unmodifiable view of contacts and their streaks
+     */
+    ObservableList<PersonStreak> getPersonStreaks();
 
     /**
      * Returns the user prefs' address book file path.
