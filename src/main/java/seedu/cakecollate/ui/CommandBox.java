@@ -117,18 +117,6 @@ public class CommandBox extends UiPart<Region> {
         return next;
     }
 
-    public void setCaretPositionRight() {
-        if (getTextInCommandTextField().length() > getCommandTextField().getCaretPosition()) {
-            getCommandTextField().positionCaret(commandTextField.getCaretPosition() + 1);
-        }
-    }
-
-    public void setCaretPositionLeft() {
-        if (getTextInCommandTextField().length() > 0) {
-            getCommandTextField().positionCaret(commandTextField.getCaretPosition() - 1);
-        }
-    }
-
     private String input() {
         String output = null;
         if (userInputsIndex > -1 && userInputsIndex < userInputs.size()) {

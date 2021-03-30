@@ -159,10 +159,6 @@ public class MainWindow extends UiPart<Stage> {
                 commandBox.setCommandTextField(commandBox.getPreviousInput());
             } else if (event.getCode().equals(KeyCode.DOWN)) {
                 commandBox.setCommandTextField(commandBox.getNextInput());
-            } else if (event.getCode().equals(KeyCode.RIGHT)) {
-                commandBox.setCaretPositionRight();
-            } else if (event.getCode().equals(KeyCode.LEFT)) {
-                commandBox.setCaretPositionLeft();
             }
         });
     }
