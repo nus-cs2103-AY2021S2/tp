@@ -19,15 +19,15 @@ public interface ReadOnlyUserPrefs {
     /**
      * Returns the current alias mapping.
      *
-     * @return the mapping.
+     * @return The mapping.
      */
     AliasMapping getAliasMapping();
 
     /**
      * Returns an Alias based on name.
      *
-     * @param aliasName name of the alias.
-     * @return the alias with the specified name.
+     * @param aliasName Name of the alias.
+     * @return The alias with the specified name.
      */
     Alias getAlias(String aliasName);
 
@@ -41,24 +41,24 @@ public interface ReadOnlyUserPrefs {
     /**
      * Checks if the current mapping contains an alias based on name.
      *
-     * @param aliasName name of the alias.
-     * @return whether the mapping contains the alias.
+     * @param aliasName Name of the alias.
+     * @return Whether the mapping contains the alias.
      */
     boolean containsAlias(String aliasName);
 
     /**
      * Checks if the alias name is a reserved keyword.
      *
-     * @param aliasName name of the alias.
-     * @return whether the name is reserved.
+     * @param aliasName Name of the alias.
+     * @return Whether the name is reserved.
      */
     boolean isReservedKeyword(String aliasName);
 
     /**
      * Checks if the command word is recursive.
      *
-     * @param commandWord the command word.
-     * @return whether the command word is recursive.
+     * @param commandWord The command word.
+     * @return Whether the command word is recursive.
      */
     boolean isRecursiveKeyword(String commandWord);
 }

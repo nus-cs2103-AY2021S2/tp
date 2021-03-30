@@ -18,6 +18,8 @@ public class UnaliasCommandParser implements Parser<UnaliasCommand> {
      * Parses the given {@code String} of arguments in the context of the UnaliasCommand
      * and returns an UnaliasCommand object for execution.
      *
+     * @param args Arguments string.
+     * @return An Unalias Command object.
      * @throws ParseException if the user input does not conform the expected format.
      * @throws NullPointerException if the argument is null.
      */

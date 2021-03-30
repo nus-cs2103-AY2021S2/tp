@@ -180,20 +180,22 @@ public interface Model {
 
     /**
      * Returns the current user's alias mapping.
+     *
+     * @return The alias mapping.
      */
     AliasMapping getAliasMapping();
 
     /**
      * Set the user's alias mapping.
      *
-     * @param aliasMapping the speified mapping.
+     * @param aliasMapping The specified mapping.
      */
     void setAliasMapping(AliasMapping aliasMapping);
 
     /**
      * Add an user-defined alias to the current mapping.
      *
-     * @param alias the Alias to be added.
+     * @param alias The Alias to be added.
      */
     void addAlias(Alias alias);
 
