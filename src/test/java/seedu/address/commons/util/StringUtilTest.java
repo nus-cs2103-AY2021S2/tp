@@ -45,6 +45,31 @@ public class StringUtilTest {
         assertTrue(StringUtil.isNonZeroUnsignedInteger("10"));
     }
 
+    //@@author wongkokian
+    //---------------- Tests for countMatches ------------------------------------------------
+
+    @Test
+    public void countMatches() {
+
+        // empty string and empty substring
+        assertFalse(StringUtil.countMatches("", "") != 0);
+
+        // empty string and non-empty substring
+        assertFalse(StringUtil.countMatches("", "a") != 0);
+
+        // non-empty string and empty substring
+        assertFalse(StringUtil.countMatches("aaa", "") != 0);
+
+        // non-empty string and non-empty substring (with match)
+        assertFalse(StringUtil.countMatches("abca", "a") != 2);
+
+        // non-empty string and non-empty substring (without match)
+        assertFalse(StringUtil.countMatches("abca", "d") != 0);
+
+        // whitespaces
+        assertFalse(StringUtil.countMatches("    ", " ") != 4);
+    }
+    //@@author
 
     //---------------- Tests for containsWordIgnoreCase --------------------------------------
 
