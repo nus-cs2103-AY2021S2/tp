@@ -213,7 +213,8 @@ public class Booking {
                 && otherBooking.getVenueName().equals(getVenueName())
                 && otherBooking.getBookingStart().equals(getBookingStart())
                 && otherBooking.getBookingEnd().equals(getBookingEnd())
-                && otherBooking.getDescription().equals(getDescription());
+                && otherBooking.getDescription().equals(getDescription())
+                && otherBooking.getTags().equals(getTags());
     }
 
     public void setVenueName(VenueName venueName) {
