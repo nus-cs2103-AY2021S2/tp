@@ -19,7 +19,7 @@ public class DeleteGeneralEventCommand extends DeleteCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the event identified by the index number used in the displayed general event list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: INDEX\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_GENERAL_EVENT + "1";
 

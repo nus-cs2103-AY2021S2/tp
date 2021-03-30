@@ -24,7 +24,7 @@ public class DeleteExamCommand extends DeleteCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the exam identified by the index in ExamList of the module\n"
-            + "Parameters: Index (must be a int value)\n"
+            + "Parameters: Index\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MODULE + "CS2103T "
             + PREFIX_EXAM + "1";
