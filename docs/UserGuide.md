@@ -149,20 +149,23 @@ Format: `find PREFIX/KEYWORD` where PREFIX is one of the following: `n`, `a`, `p
 
 Deletes the specific passenger from the GME terminal.
 
-Format: `delete INDEX`
+Format: `delete INDEX [INDEX]`
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the delete command:**<br>
 
 * Deletes the passenger at the specified `INDEX`.
+* Multiple passengers can be deleted by including additional indexes after the first. 
 * The index refers to the index number shown in the displayed passenger list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* `search female` followed by `delete 3` deletes the *1st* passenger in the results of `search female` command
+* `search female` followed by `delete 3` deletes the *1st* passenger in the results of `search female` command.
+* Passengers with a carpool arrangement cannot be deleted, `unpool` must first be done on the pools they are in before deletion.
 </div>
 
 **Examples:**
-* `list` followed by `delete 3` deletes the *3rd* person in the passenger list
+* `list` followed by `delete 3` deletes the *3rd* person in the passenger list.
+* `delete 1 2 5` deletes the 1st, 2nd and 4th person in the passenger list. 
 
 
 ### 3.7 Select passengers to arrange a carpool: `pool`
@@ -183,7 +186,7 @@ Format: `pool n/DRIVER_NAME p/DRIVER_PHONE c/INDEX d/DAY t/TIME [c/INDEX c/INDEX
 </div>
 
 **Examples**:
-* `find tag/female` followed by `pool n/Alice p/91234567 d/MONDAY t/1930 c/2 c/3` selects the *2nd* and *3rd* person in the 
+* `find tag/female` followed by `pool n/Alice p/91234567 d/MONDAY t/1930 c/2 c/3` selects the *2nd* and *3rd* person in the
   results of `find tag/female` command, and assigns *Alice* with number *91234567* to be the driver of the passengers specified by the indices.
 
 
