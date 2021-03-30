@@ -19,7 +19,6 @@ public class ShowTodayCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return new CommandResult(MESSAGE_SUCCESS,
-                new ShowTodayUiCommand());
+        return new CommandResult(MESSAGE_SUCCESS, new ShowTodayUiCommand());
     }
 }

@@ -10,6 +10,7 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.uicommands.ViewProjectAndTodosUiCommand;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.TodoList;
@@ -80,7 +81,8 @@ public class UpdateTodoCommand extends Command {
             todos.setTodo(targetTodoIndex.getZeroBased(), todo);
         }
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
-        return new CommandResult(String.format(MESSAGE_UPDATE_TODO_SUCCESS, todo));
+        return new CommandResult(String.format(MESSAGE_UPDATE_TODO_SUCCESS, todo),
+                new ViewProjectAndTodosUiCommand(projectIndex));
     }
 
     @Override

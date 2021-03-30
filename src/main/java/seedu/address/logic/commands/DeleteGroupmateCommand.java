@@ -8,6 +8,7 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.uicommands.ViewProjectAndOverviewUiCommand;
 import seedu.address.model.Model;
 import seedu.address.model.groupmate.Groupmate;
 import seedu.address.model.project.Project;
@@ -56,7 +57,8 @@ public class DeleteGroupmateCommand extends Command {
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
 
         return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS,
-                groupmateToDelete.getName(), projectToEdit.getProjectName()));
+                groupmateToDelete.getName(), projectToEdit.getProjectName()),
+                new ViewProjectAndOverviewUiCommand(targetProjectIndex));
     }
 
     @Override

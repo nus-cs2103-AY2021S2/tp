@@ -19,7 +19,6 @@ public class ShowTodosTabCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return new CommandResult(MESSAGE_SUCCESS,
-                new ShowTodosTabUiCommand());
+        return new CommandResult(MESSAGE_SUCCESS, new ShowTodosTabUiCommand());
     }
 }
