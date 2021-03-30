@@ -58,6 +58,14 @@ public class AppointmentBuilder {
     }
 
     /**
+     *Sets the {@code date} of the {@code Appointment} that we are building
+     */
+    public AppointmentBuilder withDate(LocalDate date) {
+        this.date = date;
+        return this;
+    }
+
+    /**
      *Sets the {@code startTime} of the {@code Appointment} that we are building
      */
     public AppointmentBuilder withStartTime(String startTime) {
@@ -66,20 +74,30 @@ public class AppointmentBuilder {
     }
 
     /**
-     *Sets the {@code endTime} of the {@code Appointment} that we are building
+     *Sets the {@code startTime} of the {@code Appointment} that we are building
      */
-    public AppointmentBuilder withEndTime(String endTime) {
-        this.endTime = LocalTime.parse(endTime);
+    public AppointmentBuilder withStartTime(LocalTime startTime) {
+        this.startTime = startTime;
         return this;
     }
 
     /**
-     * Builds a new Person object.
+     * Builds a new Appointment object.
      *
-     * @return a person object.
+     * @return a appointment object.
      */
     public Appointment build() {
-        return new Appointment(matriculationNumber, date, startTime, endTime);
+        return new Appointment(matriculationNumber, date, startTime);
+    }
+
+    /**
+     * Builds a new Appointment based on Alice's details.
+     * This is necessary as the editAppt command requires a specific appointment.
+     * @return an appointment object based on Alice's details
+     */
+    public Appointment buildAlice() {
+        return new AppointmentBuilder().withMatric(TypicalStudents.ALICE.getMatriculationNumber().value)
+                .withStartTime("09:00").build();
     }
 
 }

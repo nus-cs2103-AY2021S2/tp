@@ -9,6 +9,9 @@ import seedu.student.logic.commands.exceptions.CommandException;
 import seedu.student.model.Model;
 import seedu.student.model.student.Student;
 
+/**
+ * Calculates percentage of students vaccinated in NUS.
+ */
 public class StatsCommandNus extends StatsCommand {
     public static final String MESSAGE_STATS_SUCCESS = "Percentage NUS vaccinated: %.2f%%";
     public static final String MESSAGE_STATS_FAILURE = "No available data in Vax@NUS";
@@ -16,7 +19,7 @@ public class StatsCommandNus extends StatsCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException { // NUS
         requireNonNull(model);
-        List<Student> studentList = model.getStudentBook().getStudentList();
+        List<Student> studentList = model.getStudentList();
         int totalStudents = studentList.size();
         int counter = 0;
 

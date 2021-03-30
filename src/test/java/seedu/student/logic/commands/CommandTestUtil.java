@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.student.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_FACULTY;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_MATRICULATION_NUMBER;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_MEDICAL_DETAILS;
@@ -56,8 +55,6 @@ public class CommandTestUtil {
     public static final String VALID_DATE_BOB_APPOINTMENT = "2021-01-02";
     public static final String VALID_START_TIME_AMY_APPOINTMENT = "16:00";
     public static final String VALID_START_TIME_BOB_APPOINTMENT = "17:00";
-    public static final String VALID_END_TIME_AMY_APPOINTMENT = "16:30";
-    public static final String VALID_END_TIME_BOB_APPOINTMENT = "17:30";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -84,10 +81,6 @@ public class CommandTestUtil {
             + VALID_START_TIME_AMY_APPOINTMENT;
     public static final String START_TIME_DESC_BOB_APPOINTMENT = " " + PREFIX_START_TIME
             + VALID_START_TIME_BOB_APPOINTMENT;
-    public static final String END_TIME_DESC_AMY_APPOINTMENT = " " + PREFIX_END_TIME
-            + VALID_END_TIME_AMY_APPOINTMENT;
-    public static final String END_TIME_DESC_BOB_APPOINTMENT = " " + PREFIX_END_TIME
-            + VALID_END_TIME_BOB_APPOINTMENT;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_MATRIC_DESC = " " + PREFIX_MATRICULATION_NUMBER
@@ -102,7 +95,6 @@ public class CommandTestUtil {
 
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "next week";
     public static final String INVALID_START_TIME_DESC = " " + PREFIX_START_TIME + "twelve o'clock";
-    public static final String INVALID_END_TIME_DESC = " " + PREFIX_END_TIME + "30min later";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -132,7 +124,6 @@ public class CommandTestUtil {
             Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
-            assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
