@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalResidents.ALICE;
+import static seedu.address.testutil.resident.TypicalResidents.ALICE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,7 +22,7 @@ import seedu.address.model.resident.Resident;
 import seedu.address.model.resident.exceptions.DuplicateResidentException;
 import seedu.address.model.residentroom.ResidentRoom;
 import seedu.address.model.room.Room;
-import seedu.address.testutil.ResidentBuilder;
+import seedu.address.testutil.resident.ResidentBuilder;
 
 public class AddressBookTest {
 

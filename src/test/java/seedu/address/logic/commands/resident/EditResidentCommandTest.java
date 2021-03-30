@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.resident;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -17,15 +17,15 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.resident.EditResidentCommand;
+import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.resident.EditResidentCommand.EditResidentDescriptor;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.resident.Resident;
-import seedu.address.testutil.EditResidentDescriptorBuilder;
-import seedu.address.testutil.ResidentBuilder;
+import seedu.address.testutil.resident.EditResidentDescriptorBuilder;
+import seedu.address.testutil.resident.ResidentBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditResidentCommand.

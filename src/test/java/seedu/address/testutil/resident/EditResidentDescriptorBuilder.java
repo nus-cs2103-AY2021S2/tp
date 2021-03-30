@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.testutil.resident;
 
 import seedu.address.logic.commands.resident.EditResidentCommand;
 import seedu.address.logic.commands.resident.EditResidentCommand.EditResidentDescriptor;
@@ -6,6 +6,7 @@ import seedu.address.model.resident.Email;
 import seedu.address.model.resident.Name;
 import seedu.address.model.resident.Phone;
 import seedu.address.model.resident.Resident;
+import seedu.address.model.resident.Room;
 import seedu.address.model.resident.Year;
 
 /**
@@ -63,6 +64,14 @@ public class EditResidentDescriptorBuilder {
      */
     public EditResidentDescriptorBuilder withYear(String year) {
         descriptor.setYear(new Year(year));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Room} of the {@code EditResidentDescriptor} that we are building.
+     */
+    public EditResidentDescriptorBuilder withRoom(String room) {
+        descriptor.setRoom(new Room(room));
         return this;
     }
 

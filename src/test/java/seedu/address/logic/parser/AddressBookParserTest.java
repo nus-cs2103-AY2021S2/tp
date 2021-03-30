@@ -29,9 +29,9 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.resident.NameContainsKeywordsPredicate;
 import seedu.address.model.resident.Resident;
-import seedu.address.testutil.EditResidentDescriptorBuilder;
-import seedu.address.testutil.ResidentBuilder;
-import seedu.address.testutil.ResidentUtil;
+import seedu.address.testutil.resident.EditResidentDescriptorBuilder;
+import seedu.address.testutil.resident.ResidentBuilder;
+import seedu.address.testutil.resident.ResidentUtil;
 
 public class AddressBookParserTest {
 

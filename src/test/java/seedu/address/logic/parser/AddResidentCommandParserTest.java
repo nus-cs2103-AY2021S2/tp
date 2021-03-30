@@ -21,7 +21,7 @@ import static seedu.address.logic.commands.CommandTestUtil.YEAR_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.YEAR_DESC_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalResidents.BOB;
+import static seedu.address.testutil.resident.TypicalResidents.BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +32,7 @@ import seedu.address.model.resident.Name;
 import seedu.address.model.resident.Phone;
 import seedu.address.model.resident.Resident;
 import seedu.address.model.resident.Year;
-import seedu.address.testutil.ResidentBuilder;
+import seedu.address.testutil.resident.ResidentBuilder;
 
 public class AddResidentCommandParserTest {
     private AddResidentCommandParser parser = new AddResidentCommandParser();

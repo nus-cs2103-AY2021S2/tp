@@ -21,7 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.resident.NameContainsKeywordsPredicate;
 import seedu.address.model.resident.Resident;
 import seedu.address.model.resident.Room;
-import seedu.address.testutil.EditResidentDescriptorBuilder;
+import seedu.address.testutil.resident.EditResidentDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -38,6 +38,8 @@ public class CommandTestUtil {
     public static final String VALID_YEAR_BOB = "2";
     public static final String VALID_ROOM_AMY = Room.UNALLOCATED_REGEX;
     public static final String VALID_ROOM_BOB = Room.UNALLOCATED_REGEX;
+    public static final String VALID_ROOM_NUMBER_AMY = "02-123";
+    public static final String VALID_ROOM_NUMBER_BOB = "03-123";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;

@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.resident;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -10,8 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.resident.EditResidentCommand;
-import seedu.address.testutil.EditResidentDescriptorBuilder;
+import seedu.address.testutil.resident.EditResidentDescriptorBuilder;
 
 public class EditResidentDescriptorTest {
 

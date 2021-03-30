@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.testutil.resident;
 
 import seedu.address.model.resident.Email;
 import seedu.address.model.resident.Name;
@@ -25,7 +25,7 @@ public class ResidentBuilder {
     private Room room;
 
     /**
-     * Creates a {@code ResidentBuilder} with the default details.
+     * Creates a {@code ResidentRoomBuilder} with the default details.
      */
     public ResidentBuilder() {
         name = new Name(DEFAULT_NAME);
@@ -36,7 +36,7 @@ public class ResidentBuilder {
     }
 
     /**
-     * Initializes the ResidentBuilder with the data of {@code residentToCopy}.
+     * Initializes the ResidentRoomBuilder with the data of {@code residentToCopy}.
      */
     public ResidentBuilder(Resident residentToCopy) {
         name = residentToCopy.getName();

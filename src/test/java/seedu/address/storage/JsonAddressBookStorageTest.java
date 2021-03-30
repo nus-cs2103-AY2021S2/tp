@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalResidents.ALICE;
-import static seedu.address.testutil.TypicalResidents.HOON;
-import static seedu.address.testutil.TypicalResidents.IDA;
+import static seedu.address.testutil.resident.TypicalResidents.ALICE;
+import static seedu.address.testutil.resident.TypicalResidents.HOON;
+import static seedu.address.testutil.resident.TypicalResidents.IDA;
 
 import java.io.IOException;
 import java.nio.file.Path;
