@@ -30,7 +30,7 @@ public class CountdownCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Task taskToCountdown = model.getFilteredTaskList().get(INDEX_SECOND_TASK.getZeroBased());
-        long daysLeft = LocalDate.now().until(taskToCountdown.getDeadline().getDate(),
+        long daysLeft = LocalDate.now().until(taskToCountdown.getDate().getDate(),
                 ChronoUnit.DAYS);
 
         CountdownCommand countdownCommand = new CountdownCommand(INDEX_SECOND_TASK);
@@ -57,7 +57,7 @@ public class CountdownCommandTest {
         showTaskAtIndex(model, INDEX_SECOND_TASK);
 
         Task taskToCountdown = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        long daysLeft = LocalDate.now().until(taskToCountdown.getDeadline().getDate(),
+        long daysLeft = LocalDate.now().until(taskToCountdown.getDate().getDate(),
                 ChronoUnit.DAYS);
         CountdownCommand countdownCommand = new CountdownCommand(INDEX_FIRST_TASK);
 

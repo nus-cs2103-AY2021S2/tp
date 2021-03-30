@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRINGSCHEDULE;
@@ -25,7 +25,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.conditions.ConditionManager;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Date;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Duration;
 import seedu.address.model.task.RecurringSchedule;
@@ -44,17 +44,17 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TITLE + "TITLE] "
-            + "[" + PREFIX_DEADLINE + "DEADLINE] "
+            + "[" + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_DURATION + "15:30-18:30] "
             + "[" + PREFIX_RECURRINGSCHEDULE + "RECURRINGSCHEDULE] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_DEADLINE + "91234567 ";
+            + PREFIX_DATE + "91234567 ";
 
     public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + " "
             + "[" + PREFIX_TITLE + "TITLE] "
-            + "[" + PREFIX_DEADLINE + "DEADLINE] "
+            + "[" + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_DURATION + "15:30-18:30] "
             + "[" + PREFIX_RECURRINGSCHEDULE + "RECURRINGSCHEDULE] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
@@ -146,7 +146,7 @@ public class EditCommand extends Command {
         assert taskToEdit != null;
 
         Title updatedTitle = editTaskDescriptor.getTitle().orElse(taskToEdit.getTitle());
-        Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
+        Date updatedDate = editTaskDescriptor.getDate().orElse(taskToEdit.getDate());
         Duration updatedDuration = editTaskDescriptor.getDuration().orElse(taskToEdit.getDuration());
         RecurringSchedule updatedRecurringSchedule = editTaskDescriptor.getRecurringSchedule()
                 .orElse(taskToEdit.getRecurringSchedule());
@@ -154,7 +154,7 @@ public class EditCommand extends Command {
         Status updatedStatus = editTaskDescriptor.getStatus().orElse(taskToEdit.getStatus());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
-        return new Task(updatedTitle, updatedDeadline, updatedDuration, updatedRecurringSchedule, updatedDescription,
+        return new Task(updatedTitle, updatedDate, updatedDuration, updatedRecurringSchedule, updatedDescription,
                 updatedStatus, updatedTags);
     }
 
@@ -182,7 +182,7 @@ public class EditCommand extends Command {
      */
     public static class EditTaskDescriptor {
         private Title title;
-        private Deadline deadline;
+        private Date date;
         private Duration duration;
         private RecurringSchedule recurringSchedule;
         private Description description;
@@ -197,7 +197,7 @@ public class EditCommand extends Command {
          */
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setTitle(toCopy.title);
-            setDeadline(toCopy.deadline);
+            setDate(toCopy.date);
             setDuration(toCopy.duration);
             setRecurringSchedule(toCopy.recurringSchedule);
             setDescription(toCopy.description);
@@ -209,7 +209,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, deadline, duration, recurringSchedule,
+            return CollectionUtil.isAnyNonNull(title, date, duration, recurringSchedule,
                     description, status, tags);
         }
 
@@ -221,12 +221,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(title);
         }
 
-        public void setDeadline(Deadline deadline) {
-            this.deadline = deadline;
+        public void setDate(Date date) {
+            this.date = date;
         }
 
-        public Optional<Deadline> getDeadline() {
-            return Optional.ofNullable(deadline);
+        public Optional<Date> getDate() {
+            return Optional.ofNullable(date);
         }
 
         public void setDuration(Duration duration) {
@@ -294,7 +294,7 @@ public class EditCommand extends Command {
             EditTaskDescriptor e = (EditTaskDescriptor) other;
 
             return getTitle().equals(e.getTitle())
-                    && getDeadline().equals(e.getDeadline())
+                    && getDate().equals(e.getDate())
                     && getRecurringSchedule().equals(e.getRecurringSchedule())
                     && getDescription().equals(e.getDescription())
                     && getStatus().equals(e.getStatus())

@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Date;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Duration;
 import seedu.address.model.task.RecurringSchedule;
@@ -29,7 +29,7 @@ public class JsonAdaptedTaskTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_TITLE = BENSON.getTitle().toString();
-    private static final String VALID_DEADLINE = BENSON.getDeadline().toString();
+    private static final String VALID_DEADLINE = BENSON.getDate().toString();
     private static final String VALID_DURATION = BENSON.getDuration().toString();
     private static final String VALID_RECURRINGSCHEDULE = BENSON.getRecurringSchedule().value;
     private static final String VALID_DESCRIPTION = BENSON.getDescription().toString();
@@ -66,7 +66,7 @@ public class JsonAdaptedTaskTest {
         JsonAdaptedTask task =
                 new JsonAdaptedTask(VALID_TITLE, INVALID_DEADLINE, VALID_DURATION, VALID_RECURRINGSCHEDULE,
                         VALID_DESCRIPTION, VALID_STATUS, VALID_TAGS);
-        String expectedMessage = Deadline.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Date.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
 
@@ -74,7 +74,7 @@ public class JsonAdaptedTaskTest {
     public void toModelType_nullDeadline_throwsIllegalValueException() {
         JsonAdaptedTask task = new JsonAdaptedTask(VALID_TITLE, null, VALID_DURATION, VALID_RECURRINGSCHEDULE,
                 VALID_DESCRIPTION, VALID_STATUS, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Deadline.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
 

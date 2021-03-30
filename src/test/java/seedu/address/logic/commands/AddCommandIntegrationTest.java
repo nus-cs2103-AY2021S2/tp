@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DURATION_AMY;
@@ -50,32 +50,32 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_taskWithDeadlineAndDuration_throwsComandException() {
+    public void execute_taskWithDateAndDuration_throwsComandException() {
         Task invalidTask = new TaskBuilder().withTitle(VALID_TITLE_AMY)
-                .withDeadline(VALID_DEADLINE_AMY).withDuration(VALID_DURATION_AMY)
+                .withDate(VALID_DATE_AMY).withDuration(VALID_DURATION_AMY)
                 .withDescription(VALID_DESCRIPTION_AMY).withStatus(VALID_STATUS_AMY).withTags(VALID_TAG_FRIEND).build();
 
-        assertCommandFailure(new AddCommand(invalidTask), model, AddCommand.MESSAGE_DEADLINE_DURATION_CONFLICT);
+        assertCommandFailure(new AddCommand(invalidTask), model, AddCommand.MESSAGE_DATE_DURATION_CONFLICT);
     }
 
     @Test
-    public void execute_taskWithDeadlineAndRecurringSchedule_throwsComandException() {
+    public void execute_taskWithDateAndRecurringSchedule_throwsComandException() {
         Task invalidTask = new TaskBuilder().withTitle(VALID_TITLE_AMY)
-                .withDeadline(VALID_DEADLINE_AMY).withRecurringSchedule(VALID_RECURRINGSCHEDULE_AMY)
+                .withDate(VALID_DATE_AMY).withRecurringSchedule(VALID_RECURRINGSCHEDULE_AMY)
                 .withDescription(VALID_DESCRIPTION_AMY).withStatus(VALID_STATUS_AMY).withTags(VALID_TAG_FRIEND).build();
 
         assertCommandFailure(new AddCommand(invalidTask), model,
-                AddCommand.MESSAGE_DEADLINE_RECURRING_SCHEDULE_CONFLICT);
+                AddCommand.MESSAGE_DATE_RECURRING_SCHEDULE_CONFLICT);
     }
 
     @Test
-    public void execute_taskWithDeadlineAndEvent_throwsComandException() {
+    public void execute_taskWithDateAndEvent_throwsComandException() {
         Task invalidTask = new TaskBuilder().withTitle(VALID_TITLE_BOB).withDuration(VALID_DURATION_BOB)
-                .withDeadline(VALID_DEADLINE_BOB).withRecurringSchedule(VALID_RECURRINGSCHEDULE_BOB)
+                .withDate(VALID_DATE_BOB).withRecurringSchedule(VALID_RECURRINGSCHEDULE_BOB)
                 .withDescription(VALID_DESCRIPTION_BOB).withStatus(VALID_STATUS_BOB).withTags(VALID_TAG_FRIEND).build();
 
         assertCommandFailure(new AddCommand(invalidTask), model,
-                AddCommand.MESSAGE_DEADLINE_EVENT_CONFLICT);
+                AddCommand.MESSAGE_DATE_EVENT_CONFLICT);
     }
 
     @Test

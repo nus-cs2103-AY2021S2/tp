@@ -11,17 +11,17 @@ import java.util.regex.Pattern;
 
 
 /**
- * Represents a Task's deadline in the planner.
- * Guarantees: immutable; is valid as declared in {@link #isValidDeadline(String)}
+ * Represents a Task's date in the planner.
+ * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
-public class Deadline {
-    public static final String FIELD_NAME = "Deadline";
+public class Date {
+    public static final String FIELD_NAME = "Date";
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Deadline should be in the format dd/mm/yyyy and should be "
+            "Date should be in the format dd/mm/yyyy and should be "
                     + "a valid date after today eg. 12/08/2021";
     public static final String MESSAGE_CONSTRAINTS_INVALID_DATE =
-            "Deadline should not be before today";
+            "Date should not be before today";
 
     public static final String VALIDATION_REGEX = "^((0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/(19|20)\\d\\d)$";
 
@@ -31,46 +31,45 @@ public class Deadline {
     public final LocalDate value;
 
     /**
-     * Constructs a {@code Deadline}.
+     * Constructs a {@code Date}.
      *
-     * @param deadline A valid deadline number.
+     * @param date A valid date number.
      */
-    public Deadline(String deadline) {
-        checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
-        value = parseDeadline(deadline);
+    public Date(String date) {
+        checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
+        value = parseDate(date);
     }
 
     /**
-     * Returns true if a given string is a valid deadline number.
+     * Returns true if a given string is a valid date number.
      */
-    public static boolean isValidDeadline(String test) {
+    public static boolean isValidDate(String test) {
         Pattern p = Pattern.compile(VALIDATION_REGEX);
         Matcher m = p.matcher(test);
         boolean validDate = false;
         if (!test.isEmpty() && m.matches()) {
             LocalDate today = LocalDate.now();
-            LocalDate parsedDeadline = LocalDate.parse(test,
+            LocalDate parsedDate = LocalDate.parse(test,
                 DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-            validDate = parsedDeadline.isAfter(today);
+            validDate = parsedDate.isAfter(today);
         }
-        LOGGER.log(Level.INFO, "Checking for Valid Deadline");
         return (m.matches() && validDate) || test.isEmpty();
 
     }
 
     /**
-     * Returns a deadline in the form of a LocalDate.
-     * @param deadline the specified deadline.
+     * Returns a date in the form of a LocalDate.
+     * @param date the specified date.
      * @return
      */
-    public static LocalDate parseDeadline(String deadline) {
-        LOGGER.log(Level.INFO, "Parsing Deadline");
-        if (deadline.isEmpty()) {
+    public static LocalDate parseDate(String date) {
+
+        if (date.isEmpty()) {
             return null;
         } else {
-            LocalDate parsedDeadline = LocalDate.parse(deadline,
+            LocalDate parsedDate = LocalDate.parse(date,
                     DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-            return parsedDeadline;
+            return parsedDate;
         }
     }
 
@@ -80,8 +79,8 @@ public class Deadline {
     }
 
     /**
-     * Indicates whether the deadline is already over
-     * @return boolean to indicate whether deadline is over
+     * Indicates whether the date is already over
+     * @return boolean to indicate whether date is over
      */
     public boolean over() {
         LOGGER.log(Level.INFO, "Checking if the date is after today");
@@ -90,9 +89,9 @@ public class Deadline {
     }
 
     /**
-     * Returns true if the task has a deadline that is within seven days from the current system date.
+     * Returns true if the task has a date that is within seven days from the current system date.
      * @param currentDate current date of the system
-     * @return true if task's deadline is within seven days from current system date.
+     * @return true if task's date is within seven days from current system date.
      */
     public boolean isWithinSevenDays(LocalDate currentDate) {
         LocalDate sevenDaysFromNow = currentDate.plusDays(7);
@@ -122,9 +121,9 @@ public class Deadline {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Deadline // instanceof handles nulls
-                && ((value == null && ((Deadline) other).value == null)
-                        || value.equals(((Deadline) other).value))); // state check
+                || (other instanceof Date // instanceof handles nulls
+                && ((value == null && ((Date) other).value == null)
+                        || value.equals(((Date) other).value))); // state check
     }
 
     @Override

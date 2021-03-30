@@ -30,7 +30,7 @@ public class CountdownCommand extends Command {
     public static final String MESSAGE_COUNTDOWN_TASK_SUCCESS = "There are %1$s day(s) left until "
             + "the deadline of this task:\n%2$s";
 
-    public static final String MESSAGE_DEADLINE_OVER = "Deadline is already over for this task.";
+    public static final String MESSAGE_DEADLINE_OVER = "Date is already over for this task.";
 
     public static final String MESSAGE_EMPTY_DEADLINE = "There is no deadline in this task.";
 
@@ -62,7 +62,7 @@ public class CountdownCommand extends Command {
 
         Task taskToCountdown = lastShownList.get(targetIndexValue);
 
-        if (taskToCountdown.isDeadlineEmpty()) {
+        if (taskToCountdown.isDateEmpty()) {
             throw new CommandException(MESSAGE_EMPTY_DEADLINE);
         }
 
