@@ -30,4 +30,8 @@ JsonPropertyBookStorage .down.> JsonSerializablePropertyBook
 JsonSerializablePropertyBook .right.> JsonAdaptedProperty
 JsonAdaptedProperty .right.> JsonAdaptedTag
 
+Storage --|> AppointmentBookStorage
+Storage --|> PropertyBookStorage
+Storage --|> UserPrefsStorage
+
 @enduml
