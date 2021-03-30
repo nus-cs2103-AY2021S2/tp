@@ -82,6 +82,22 @@ public class Entry {
         return !getStartDate().isEqual(getEndDate());
     }
 
+    /**
+     * Returns the string representation of the start date and time
+     * formatted with the default formatter.
+     */
+    public String startTimestamp() {
+        return getStartDate().format(EntryDate.DEFAULT_FORMATTER);
+    }
+
+    /**
+     * Returns the string representation of the end date and time
+     * formatted with the default formatter.
+     */
+    public String endTimestamp() {
+        return getEndDate().format(EntryDate.DEFAULT_FORMATTER);
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
