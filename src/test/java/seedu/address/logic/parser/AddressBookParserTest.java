@@ -42,7 +42,7 @@ import seedu.address.logic.commands.ShowOverviewTabCommand;
 import seedu.address.logic.commands.ShowTodayCommand;
 import seedu.address.logic.commands.ShowTodosTabCommand;
 import seedu.address.logic.commands.UpdateContactCommand;
-import seedu.address.logic.commands.UpdateContactCommand.EditContactDescriptor;
+import seedu.address.logic.commands.UpdateContactCommand.UpdateContactDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.NameContainsKeywordsPredicate;
@@ -53,11 +53,11 @@ import seedu.address.model.task.todo.Todo;
 import seedu.address.testutil.ContactBuilder;
 import seedu.address.testutil.ContactUtil;
 import seedu.address.testutil.DeadlineBuilder;
-import seedu.address.testutil.EditContactDescriptorBuilder;
 import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.GroupmateBuilder;
 import seedu.address.testutil.GroupmateUtil;
 import seedu.address.testutil.TodoBuilder;
+import seedu.address.testutil.UpdateContactDescriptorBuilder;
 
 public class AddressBookParserTest {
 
@@ -188,10 +188,10 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_edit() throws Exception {
         Contact contact = new ContactBuilder().build();
-        EditContactDescriptor descriptor = new EditContactDescriptorBuilder(contact).build();
+        UpdateContactDescriptor descriptor = new UpdateContactDescriptorBuilder(contact).build();
         UpdateContactCommand command = (UpdateContactCommand) parser.parseCommand(
                 UpdateContactCommand.COMMAND_WORD + " "
-                + INDEX_FIRST.getOneBased() + " " + ContactUtil.getEditContactDescriptorDetails(descriptor));
+                + INDEX_FIRST.getOneBased() + " " + ContactUtil.getUpdateContactDescriptorDetails(descriptor));
         assertEquals(new UpdateContactCommand(INDEX_FIRST, descriptor), command);
     }
 

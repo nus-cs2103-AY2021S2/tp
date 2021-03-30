@@ -13,7 +13,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new DeleteContactFromCommand object
  */
-public class DeleteContactFromCommandParser implements Parser<DeleteGroupmateCommand> {
+public class DeleteGroupmateCommandParser implements Parser<DeleteGroupmateCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteContactFromCommand

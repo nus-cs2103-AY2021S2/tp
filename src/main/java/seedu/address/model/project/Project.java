@@ -181,6 +181,18 @@ public class Project {
     }
 
     /**
+     * Set the {@code Groupmate} specified by index with a new {@code Groupmate}.
+     *
+     * @param i index number specifies the target {@code Groupmate}.
+     * @param groupmate new {@code Groupmate} for this index.
+     */
+    public void setGroupmate(Integer i, Groupmate groupmate) {
+        requireAllNonNull(groupmate, i);
+
+        this.groupmates.setGroupmate(i, groupmate);
+    }
+
+    /**
      *  Deletes a groupmate from {@code groupmates} field of this {@code Project}.
      *
      * @param i Index of {@code Person} to be deleted.
