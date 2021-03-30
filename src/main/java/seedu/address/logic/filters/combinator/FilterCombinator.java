@@ -36,8 +36,9 @@ public class FilterCombinator implements Predicate<Customer> {
 
     private Node createTree(String description) {
         description = description.trim();
+
         if (description.replace('[', ' ').replace(']', ' ').trim().isEmpty()) {
-            throw new IllegalArgumentException("Incorrect formatting 1");
+            throw new IllegalArgumentException("Incorrect formatting 1 " + description.length());
         }
 
         StringBuilder inPresentScope = new StringBuilder("");
@@ -56,8 +57,15 @@ public class FilterCombinator implements Predicate<Customer> {
 
         for (int i = 0; i < description.length(); i++) {
             char c = description.charAt(i);
+
+            while(!allPositions.isEmpty() && i > allPositions.getFirst().getStartPosition()) {
+                allPositions.removeFirst();
+            }
+
+
+
             // first check if the character is part of a logical operator prefix
-            if (!allPositions.isEmpty() && i == allPositions.getFirst().getStartPosition()) {
+            if (nestingLevel == 0 && !allPositions.isEmpty() && i == allPositions.getFirst().getStartPosition()) {
                 // now we try to form a Node from the previously given filter at this level.
                 // only try to form a node if we have actually got some information
                 if (inPresentScope.toString().trim().length() > 0) {
@@ -90,9 +98,14 @@ public class FilterCombinator implements Predicate<Customer> {
                 } else {
                     Node nextNode = createTree(inSubtreeScope.toString());
                     nodeStack.push(nextNode);
+                    inSubtreeScope = new StringBuilder("");
                 }
             } else {
-                inPresentScope.append(c);
+                if(nestingLevel > 0) {
+                    inSubtreeScope.append(c);
+                } else {
+                    inPresentScope.append(c);
+                }
             }
         }
 
