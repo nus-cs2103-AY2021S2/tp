@@ -306,5 +306,5 @@ Action | Format, Examples
 **List** | `list`
 **Add dates** | `add-date d/DESCRIPTION dt/DETAILS`<br> e.g, `add-date d/math exam dt/2021-11-05 1300`
 **Delete dates** | `delete-date INDEX`<br> e.g., `delete-date 3`
-**List dates** | `idates`
+**List dates** | `list-date`
 **Help** | `help`

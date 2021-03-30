@@ -10,7 +10,7 @@ import seedu.address.model.Model;
  */
 public class ImportantDatesCommand extends Command {
 
-    public static final String COMMAND_WORD = "idates";
+    public static final String COMMAND_WORD = "list-date";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows list of important dates.\n"
             + "Example: " + COMMAND_WORD;
