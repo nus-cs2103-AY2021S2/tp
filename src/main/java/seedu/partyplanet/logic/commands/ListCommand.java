@@ -95,7 +95,7 @@ public class ListCommand extends Command {
                 .sorted((x, y) -> x.getKey().tagName.compareTo(y.getKey().tagName))
                 .map(t -> String.format("%s (%d)", t.getKey(), t.getValue()))
                 .reduce((x, y) -> x + ", " + y)
-                .orElse("");
+                .orElse("None!");
 
         return output;
     }

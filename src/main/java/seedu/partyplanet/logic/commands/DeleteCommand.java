@@ -20,6 +20,6 @@ public abstract class DeleteCommand extends Command {
     public static final String MESSAGE_USAGE_CONCISE =
             COMMAND_WORD + " [{INDEX [INDEX]... | [--any] -t TAG [-t TAG]...}]";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted the following persons: %s";
-    public static final String MESSAGE_INVALID_PERSON_INDEX = "Invalid person indexes: %s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted the following person(s): %s";
+    public static final String MESSAGE_INVALID_PERSON_INDEX = "Invalid person index(es): %s";
 }
