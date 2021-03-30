@@ -225,7 +225,6 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isRefreshUi()) {
-                System.out.println(logic.getFilteredMonthList());
                 budgetDisplay.updateBudgetUi(logic.getFilteredMonthList());
                 budgetDisplay.updateTopCategoriesUi(logic.getTopCategories());
                 financialRecordListPanel.updateObservableList(logic.getFilteredFinancialRecordList());
