@@ -2,6 +2,7 @@ package seedu.address.logic.commands.inventory;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
@@ -16,16 +17,20 @@ public class InventoryFindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all ingredients whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " tomato fish lemon";
+            + "the specified keywords (case-insensitive) or are under a certain quantity \n"
+            + "and displays them as a list with index numbers. \n"
+            + "Parameters: n/[KEYWORD] [MORE_KEYWORDS]... q/[LESS THAN QUANTITY] \n"
+            + "Example: " + COMMAND_WORD + " n/tomato fish q/5";
 
 
     private final Predicate<Ingredient> predicate;
 
-    @SafeVarargs
-    public InventoryFindCommand(Predicate<Ingredient>... predicates) {
-        assert predicates.length > 0;
+    /**
+     * Construct command with a list of predicates to use
+     * @param predicates list of predicates to use
+     */
+    public InventoryFindCommand(List<Predicate<Ingredient>> predicates) {
+        assert predicates != null && predicates.size() > 0;
         this.predicate = PredicateUtil.composePredicates(predicates);
     }
 

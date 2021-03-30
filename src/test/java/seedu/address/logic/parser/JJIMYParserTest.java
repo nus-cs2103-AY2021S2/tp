@@ -81,7 +81,7 @@ public class JJIMYParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         CustomerFindCommand command = (CustomerFindCommand) parser.parseCompo(
                 CustomerParser.COMPONENT_WORD + " " + CustomerFindCommand.COMMAND_WORD + " "
-                        + keywords.stream().collect(Collectors.joining(" ")));
+                        + PersonUtil.getPersonFind(keywords));
         assertEquals(new CustomerFindCommand(new PersonNameContainsWordsPredicate(keywords)), command);
     }
 

@@ -2,6 +2,7 @@ package seedu.address.logic.commands.menu;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
@@ -22,9 +23,12 @@ public class MenuFindCommand extends Command {
 
     private final Predicate<Dish> predicate;
 
-    @SafeVarargs
-    public MenuFindCommand(Predicate<Dish>... predicates) {
-        assert predicates.length > 0;
+    /**
+     * Construct command with a list of predicates to use
+     * @param predicates list of predicates to use
+     */
+    public MenuFindCommand(List<Predicate<Dish>> predicates) {
+        assert predicates != null && predicates.size() > 0;
         this.predicate = PredicateUtil.composePredicates(predicates);
     }
 

@@ -3,8 +3,10 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -16,6 +18,45 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_POSITIVE_INT = "Not a valid positive integer.";
+    public static final String MESSAGE_INVALID_POSITIVE_DOUBLE = "Not a valid positive double.";
+    public static final String MESSAGE_NO_KEYWORDS = "No keywords specified.";
+
+    /**
+     * Parse non-negative integer from String.
+     * @throws ParseException if specified string is not a positive int.
+     */
+    public static Integer parseNonNegativeInt(String toParse) throws ParseException {
+        String trimmedToParse = toParse.trim();
+        if (!StringUtil.isNonNegativeInt(trimmedToParse)) {
+            throw new ParseException(MESSAGE_INVALID_POSITIVE_INT);
+        }
+        return Integer.valueOf(trimmedToParse);
+    }
+
+    /**
+     * Parse non-negative double from String.
+     * @throws ParseException if specified string is not a positive double.
+     */
+    public static Integer parseNonNegativeDouble(String toParse) throws ParseException {
+        String trimmedToParse = toParse.trim();
+        if (!StringUtil.isNonNegativeDouble(trimmedToParse)) {
+            throw new ParseException(MESSAGE_INVALID_POSITIVE_DOUBLE);
+        }
+        return Integer.valueOf(trimmedToParse);
+    }
+
+    /**
+     * Parse space separated keywords
+     * @throws ParseException if specified string is empty.
+     */
+    public static List<String> parseKeywords(String keywords) throws ParseException {
+        String trimmedKeywords = keywords.trim();
+        if (trimmedKeywords.isEmpty()) {
+            throw new ParseException(MESSAGE_NO_KEYWORDS);
+        }
+        return Arrays.asList(trimmedKeywords.split("\\s+"));
+    }
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -96,5 +137,13 @@ public class ParserUtil {
     public static List<String> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
         return new ArrayList<>(tags);
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
