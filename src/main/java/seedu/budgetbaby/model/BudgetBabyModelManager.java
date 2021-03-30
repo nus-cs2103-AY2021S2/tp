@@ -234,6 +234,24 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
         }
     }
 
+    //=========== Undo/Redo ==========================================================================
+
+    @Override
+    public boolean canUndoBudgetTracker() {
+        return versionedBudgetTracker.canUndo();
+    }
+
+    @Override
+    public void undoBudgetTracker() {
+        versionedBudgetTracker.undo();
+        setCurrentDisplayMonth(getBudgetTracker().getCurrentDisplayMonth().getMonth());
+    }
+
+    @Override
+    public void commitBudgetTracker() {
+        versionedBudgetTracker.commit();
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
