@@ -1,14 +1,12 @@
 package seedu.address.model.person;
 
-import me.xdrop.fuzzywuzzy.FuzzySearch;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.util.StringUtil;
-
 import java.util.Comparator;
 import java.util.List;
-import java.util.Locale;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.util.StringUtil;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
@@ -36,14 +34,14 @@ public class TagContainsKeywordsPredicate implements Predicate<Person>, Comparat
     }
 
     private int match(String a, String b) {
-        return StringUtil.oneWayPartialFuzzyMatch(b,a);
+        return StringUtil.oneWayPartialFuzzyMatch(b, a);
     }
 
     private int matchAllTags(Person person, String keyword) {
         return person
             .getTags()
             .stream()
-            .map(tag -> match(tag.tagName,keyword))
+            .map(tag -> match(tag.tagName, keyword))
             .max(Integer::compareTo)
             .orElse(0);
     }

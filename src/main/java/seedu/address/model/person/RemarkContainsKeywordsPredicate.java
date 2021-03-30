@@ -1,13 +1,13 @@
 package seedu.address.model.person;
 
-import me.xdrop.fuzzywuzzy.FuzzySearch;
-import seedu.address.commons.core.LogsCenter;
-
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+
+import me.xdrop.fuzzywuzzy.FuzzySearch;
+import seedu.address.commons.core.LogsCenter;
 
 /**
  * Tests that a {@code Person}'s {@code Remark} matches any of the keywords given.

@@ -4,7 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAliases.getTypicalAlias;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -33,7 +38,12 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.DisplayFilterPredicate;
 import seedu.address.model.UniqueAliasMap;
 import seedu.address.model.alias.CommandAlias;
-import seedu.address.model.person.*;
+import seedu.address.model.person.EmailContainsKeywordsPredicate;
+import seedu.address.model.person.FieldsContainsKeywordsPredicate;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.RemarkContainsKeywordsPredicate;
+import seedu.address.model.person.TagContainsKeywordsPredicate;
 import seedu.address.testutil.CommandAliasBuilder;
 import seedu.address.testutil.CommandAliasUtil;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -86,8 +96,12 @@ public class AddressBookParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                MessageFormat.format("{0} {1}", FindCommand.COMMAND_WORD, keywords.stream().collect(Collectors.joining(" "))), emptyAliases);
-        String s = MessageFormat.format("{0} {1}", FindCommand.COMMAND_WORD, keywords.stream().collect(Collectors.joining(" ")));
+                MessageFormat.format("{0} {1}",
+                        FindCommand.COMMAND_WORD,
+                        keywords.stream().collect(Collectors.joining(" "))), emptyAliases);
+        String s = MessageFormat.format("{0} {1}",
+                FindCommand.COMMAND_WORD,
+                keywords.stream().collect(Collectors.joining(" ")));
         FieldsContainsKeywordsPredicate predicateComparator = new FieldsContainsKeywordsPredicate(keywords);
         assertEquals(new FindCommand(predicateComparator, predicateComparator), command);
     }
@@ -96,7 +110,10 @@ public class AddressBookParserTest {
     public void parseCommand_findName() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                MessageFormat.format("{0} {1} {2}", FindCommand.COMMAND_WORD, PREFIX_NAME, keywords.stream().collect(Collectors.joining(" "))), emptyAliases);
+                MessageFormat.format("{0} {1} {2}",
+                        FindCommand.COMMAND_WORD,
+                        PREFIX_NAME,
+                        keywords.stream().collect(Collectors.joining(" "))), emptyAliases);
         NameContainsKeywordsPredicate predicateComparator = new NameContainsKeywordsPredicate(keywords);
         assertEquals(new FindCommand(predicateComparator, predicateComparator), command);
     }
@@ -105,7 +122,10 @@ public class AddressBookParserTest {
     public void parseCommand_findTag() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                MessageFormat.format("{0} {1} {2}", FindCommand.COMMAND_WORD, PREFIX_TAG, keywords.stream().collect(Collectors.joining(" "))), emptyAliases);
+                MessageFormat.format("{0} {1} {2}",
+                        FindCommand.COMMAND_WORD,
+                        PREFIX_TAG,
+                        keywords.stream().collect(Collectors.joining(" "))), emptyAliases);
         TagContainsKeywordsPredicate predicateComparator = new TagContainsKeywordsPredicate(keywords);
         assertEquals(new FindCommand(predicateComparator, predicateComparator), command);
     }
@@ -114,7 +134,10 @@ public class AddressBookParserTest {
     public void parseCommand_findRemark() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                MessageFormat.format("{0} {1} {2}", FindCommand.COMMAND_WORD, PREFIX_REMARK, keywords.stream().collect(Collectors.joining(" "))), emptyAliases);
+                MessageFormat.format("{0} {1} {2}",
+                        FindCommand.COMMAND_WORD,
+                        PREFIX_REMARK,
+                        keywords.stream().collect(Collectors.joining(" "))), emptyAliases);
         RemarkContainsKeywordsPredicate predicateComparator = new RemarkContainsKeywordsPredicate(keywords);
         assertEquals(new FindCommand(predicateComparator, predicateComparator), command);
     }
@@ -123,7 +146,10 @@ public class AddressBookParserTest {
     public void parseCommand_findEmail() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                MessageFormat.format("{0} {1} {2}", FindCommand.COMMAND_WORD, PREFIX_EMAIL, keywords.stream().collect(Collectors.joining(" "))), emptyAliases);
+                MessageFormat.format("{0} {1} {2}",
+                        FindCommand.COMMAND_WORD,
+                        PREFIX_EMAIL,
+                        keywords.stream().collect(Collectors.joining(" "))), emptyAliases);
         EmailContainsKeywordsPredicate predicateComparator = new EmailContainsKeywordsPredicate(keywords);
         assertEquals(new FindCommand(predicateComparator, predicateComparator), command);
     }

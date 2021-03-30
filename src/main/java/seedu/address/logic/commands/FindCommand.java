@@ -2,12 +2,12 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
+import java.util.function.Predicate;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-
-import java.util.Comparator;
-import java.util.function.Predicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -31,7 +31,11 @@ public class FindCommand extends Command {
     private final Predicate<Person> predicate;
     private final Comparator<Person> comparator;
 
-
+    /**
+     * Constructs a Find command that takes a predicate for filtering and a comparator to sort the filtered results
+     * @param predicate filters the person list
+     * @param comparator sorts the resulting filtered list
+     */
     public FindCommand(Predicate<Person> predicate, Comparator<Person> comparator) {
         this.predicate = predicate;
         this.comparator = comparator;

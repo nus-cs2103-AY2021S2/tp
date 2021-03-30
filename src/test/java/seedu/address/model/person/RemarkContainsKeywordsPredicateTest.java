@@ -1,14 +1,18 @@
 package seedu.address.model.person;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.PersonBuilder;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.PersonBuilder;
 
 public class RemarkContainsKeywordsPredicateTest {
 
@@ -17,14 +21,17 @@ public class RemarkContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        RemarkContainsKeywordsPredicate firstPredicate = new RemarkContainsKeywordsPredicate(firstPredicateKeywordList);
-        RemarkContainsKeywordsPredicate secondPredicate = new RemarkContainsKeywordsPredicate(secondPredicateKeywordList);
+        RemarkContainsKeywordsPredicate firstPredicate =
+                new RemarkContainsKeywordsPredicate(firstPredicateKeywordList);
+        RemarkContainsKeywordsPredicate secondPredicate =
+                new RemarkContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertEquals(firstPredicate, firstPredicate);
 
         // same values -> returns true
-        RemarkContainsKeywordsPredicate firstPredicateCopy = new RemarkContainsKeywordsPredicate(firstPredicateKeywordList);
+        RemarkContainsKeywordsPredicate firstPredicateCopy =
+                new RemarkContainsKeywordsPredicate(firstPredicateKeywordList);
         assertEquals(firstPredicateCopy, firstPredicate);
 
         // different types -> returns false
@@ -40,7 +47,8 @@ public class RemarkContainsKeywordsPredicateTest {
     @Test
     public void test_remarkContainsKeywords_returnsTrue() {
         // One keyword
-        RemarkContainsKeywordsPredicate predicate = new RemarkContainsKeywordsPredicate(Collections.singletonList("External"));
+        RemarkContainsKeywordsPredicate predicate =
+                new RemarkContainsKeywordsPredicate(Collections.singletonList("External"));
         assertTrue(predicate.test(new PersonBuilder().withRemark("External Contractor").build()));
 
         // Multiple keywords
@@ -72,7 +80,8 @@ public class RemarkContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new PersonBuilder().withRemark("External Contractor").build()));
 
         // Keywords match phone, email, name and address, but does not match remark
-        predicate = new RemarkContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street", "Alice", "Gordon"));
+        predicate = new RemarkContainsKeywordsPredicate(
+                Arrays.asList("12345", "alice@email.com", "Main", "Street", "Alice", "Gordon"));
         assertFalse(predicate.test(new PersonBuilder().withRemark("External Contractor").withPhone("12345")
                 .withEmail("alice@email.com").withAddress("Main Street").withName("Alice Gordon").build()));
     }

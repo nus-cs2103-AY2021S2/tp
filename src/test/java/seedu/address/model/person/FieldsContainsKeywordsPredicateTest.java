@@ -1,14 +1,18 @@
 package seedu.address.model.person;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.PersonBuilder;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.PersonBuilder;
 
 public class FieldsContainsKeywordsPredicateTest {
 
@@ -17,14 +21,17 @@ public class FieldsContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        FieldsContainsKeywordsPredicate firstPredicate = new FieldsContainsKeywordsPredicate(firstPredicateKeywordList);
-        FieldsContainsKeywordsPredicate secondPredicate = new FieldsContainsKeywordsPredicate(secondPredicateKeywordList);
+        FieldsContainsKeywordsPredicate firstPredicate =
+                new FieldsContainsKeywordsPredicate(firstPredicateKeywordList);
+        FieldsContainsKeywordsPredicate secondPredicate =
+                new FieldsContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertEquals(firstPredicate, firstPredicate);
 
         // same values -> returns true
-        FieldsContainsKeywordsPredicate firstPredicateCopy = new FieldsContainsKeywordsPredicate(firstPredicateKeywordList);
+        FieldsContainsKeywordsPredicate firstPredicateCopy =
+                new FieldsContainsKeywordsPredicate(firstPredicateKeywordList);
         assertEquals(firstPredicateCopy, firstPredicate);
 
         // different types -> returns false
@@ -44,7 +51,8 @@ public class FieldsContainsKeywordsPredicateTest {
                 .withTags("Marketing", "Manager", "Executive").build();
 
         // One keyword
-        FieldsContainsKeywordsPredicate predicate = new FieldsContainsKeywordsPredicate(Collections.singletonList("Alice"));
+        FieldsContainsKeywordsPredicate predicate =
+                new FieldsContainsKeywordsPredicate(Collections.singletonList("Alice"));
         assertTrue(predicate.test(testPerson));
 
         // Multiple keywords
