@@ -39,6 +39,7 @@ public class ClearCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.clearLocation(predicate);
+        model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
