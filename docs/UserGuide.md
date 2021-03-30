@@ -2,9 +2,9 @@
   <img width="341" height="381" src="https://user-images.githubusercontent.com/48408342/112603571-29845b80-8e50-11eb-8dee-bb88603fffb8.png">
 </p>
 
-**DocBob** is a **desktop app for managing your patient's information, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Bob can get your patient's **medical information** and **scheduled appointments** faster than any other patient's information management app in the market. Bob will serve you dilligently and make sure you will never forget an appointment with a patient ever again!
+**DocBob** is a **desktop app for managing patient medical information and appointments, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). DocBob is targeted at Doctors and Nurses like you! If you can type fast, DocBob can help you keep track of your patient's **medical information** and **scheduled appointments** more efficiently than any other patient information management app in the market. With DocBob, you will never have to go through the hassle of manually keeping track of your patients' medical information and appointments ever again.
 
-The purpose of this User Guide is to help new users(doctors) understand how to get the app running and learn about the basic commands and their usages.
+The **purpose of this User Guide(UG)** is to help new users understand how to get the app running by following the **Quick Start** guide. The **Features** section will help you learn the basic commands, their formatting and usages. You can easily navigate through this guide with the provided **Table of Contents** below.
 
 * Table of Contents
 {:toc}
@@ -17,10 +17,12 @@ The purpose of this User Guide is to help new users(doctors) understand how to g
 
 1. Download the latest `bob.jar` from [here](https://github.com/AY2021S2-CS2103T-W12-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for Doc Bob.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI similar to the mock-up below should appear in a few seconds. Note how the app contains some sample data. To learn how to use the Command Line Interface (CLI), try out the example commands given below with the sample data. Once you are familiar with the CLI, you can use the `clear` command to remove all sample data and start adding your own data!<br>
    ![Ui](images/Ui.png)
+   
+1. This should work for you regardless of your operating system (OS).
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will list out all available commands.<br>
    Some example commands you can try:
@@ -29,7 +31,7 @@ The purpose of this User Guide is to help new users(doctors) understand how to g
 
    * **`add n/Shrek p/66666666 e/shrek@swampmail.com a/Swamp h/243cm w/94kg`** : Adds a patient named `Shrek` to DocBob's contact list.
 
-   * **`appt`** : Adds a scheduled upcoming appointment with a patient in DocBob's contact list.
+   * **`appt 1 d/010120301200`** : Adds a scheduled upcoming appointment with the patient at index 1 in DocBob's contact list, on 1st January 2030 12pm.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -71,17 +73,22 @@ Example: `help`
 
 Output:
 
-DocBob will open up a help window with the help information.
-![image](https://user-images.githubusercontent.com/48408342/112430286-e1463a00-8d78-11eb-87bd-baa45a0b52ba.png)
+DocBob will open up a help window with command information.
+![image](https://user-images.githubusercontent.com/48408342/112743708-35952800-8fcc-11eb-9d1a-a7d5b52aac73.png)
+
 
 ### Adding a patients' contact: `add`
 
 Adds a patient to DocBob's contact list.
 
-Format: `add n/Name p/phoneNumber e/Email a/Address h/Height w/Weight`
+Format: `add n/Name p/phoneNumber e/Email a/Address h/Height w/Weight [t/TAG]`
 
-Examples:
-* `add n/Shrek p/66666666 e/shrek@swampmail.com a/Swamp h/243cm w/94kg`
+Example:
+* `add n/Shrek p/66666666 e/shrek@swampmail.com a/Swamp h/243cm w/94kg t/smelly`
+
+Output:
+
+`New patient added: Shrek; Phone: 66666666; Email: shrek@swampmail.com; Address: Swamp; Height: 243cm; Weight: 94kg; Tags: [smelly]`
 
 ### Deleting a patients' contact : `delete`
 
@@ -90,8 +97,12 @@ Deletes a patient from DocBob's contact list, identified by the index number sho
 Format : `delete INDEX`
 where INDEX must be a positive integer (1,2,3,...)
 
-Examples:
+Example:
 * `delete 1`
+
+Output:
+
+`Deleted Person: Shrek; Phone: 66666666; Email: shrek@swampmail.com; Address: Swamp; Height: 243cm; Weight: 94kg; Tags: [smelly]`
 
 ### Listing out all patients' contacts : `list`
 
@@ -114,8 +125,11 @@ where INDEX must be a positive integer (1,2,3,...)
 and DATE is DDMMYYYYhhmm or DDMMhhmm
 
 Examples:
-* `appt 12 d/200420210930`
 * `appt 3 d/25120800`
+
+Output:
+
+`Appointment added: Sat, 25 Dec, 08:00`
 
 ### Listing out your upcoming appointments : `listappt`
 
@@ -146,6 +160,11 @@ where INDEX must be a positive integer (1,2,3,...)
 Examples:
 * `mrec 3`
 
+Output:
+
+![image](https://user-images.githubusercontent.com/48408342/112743647-aee04b00-8fcb-11eb-8ac4-9ccf999bde49.png)
+
+
 ### View all information regarding a patient : `view`
 
 Shows an overview of all contact information, tags, appointments and medical records of a patient, identified by the index number shown in the displayed patient list.
@@ -167,7 +186,7 @@ Exits the program.
 
 Format: `exit`
 
-### Editing a patient information[Coming soon] : `edit`
+### Editing a patient information : `edit`
 
 Edits an existing person in the list.
 
@@ -184,7 +203,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
 
-### Locating patient by name[Coming soon] : `find`
+### Locating patient by name : `find`
 
 Finds patients whose names contain any of the given keywords.
 
@@ -243,3 +262,7 @@ Action | Format, Examples
 **mrec** | `mrec 3`
 **view** | `view 1`
 **exit** | `exit`
+
+## Issues
+In the event of any issues while using the app and or UG, please contact the team at the emails below <br>
+prerthanmunireternam@yahoo.com

@@ -2,7 +2,7 @@ package seedu.address.logic.commands.medical;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_MAIN_PERSONS;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -36,6 +36,9 @@ public class AddAppointmentCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Appointment added: %s";
 
+    public static final String MESSAGE_ARCHIVED_PERSON = "You cannot add appointments to an archived person.\n"
+            + "Unarchive the person and try again.";
+
     private final Index index;
     private final LocalDateTime date;
 
@@ -61,11 +64,15 @@ public class AddAppointmentCommand extends Command {
         }
 
         Person person = lastShownList.get(index.getZeroBased());
+
+        if (person.isArchived()) {
+            throw new CommandException(MESSAGE_ARCHIVED_PERSON);
+        }
         Appointment appointment = new Appointment(date);
         Person editedPerson = createPersonWithAppointment(person, appointment);
 
         model.setPerson(person, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredPersonList(PREDICATE_SHOW_MAIN_PERSONS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, appointment.getDateDisplay()));
     }
 
@@ -86,6 +93,7 @@ public class AddAppointmentCommand extends Command {
         List<Appointment> updatedAppointments = personToEdit.getAppointments();
         Person p = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedHeight, updatedWeight,
                 updatedTags, updatedAppointments);
+        p.setArchived(personToEdit.isArchived());
         p.addAppointment(appt);
         return p;
     }

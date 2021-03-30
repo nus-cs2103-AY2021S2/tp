@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -46,6 +47,7 @@ public class UniquePersonList implements Iterable<Person> {
             throw new DuplicatePersonException();
         }
         internalList.add(toAdd);
+        Collections.sort(internalList);
     }
 
     /**
@@ -77,6 +79,28 @@ public class UniquePersonList implements Iterable<Person> {
         if (!internalList.remove(toRemove)) {
             throw new PersonNotFoundException();
         }
+    }
+
+    /**
+     * Archives the equivalent person in the list.
+     * The person must exist in the list.
+     */
+    public void archive(Person toArchive) {
+        requireNonNull(toArchive);
+        remove(toArchive);
+        toArchive.setArchived(true);
+        add(toArchive);
+    }
+
+    /**
+     * Unarchives the equivalent person in the list.
+     * The person must exist in the list.
+     */
+    public void unarchive(Person toUnarchive) {
+        requireNonNull(toUnarchive);
+        remove(toUnarchive);
+        toUnarchive.setArchived(false);
+        add(toUnarchive);
     }
 
     public void setPersons(UniquePersonList replacement) {

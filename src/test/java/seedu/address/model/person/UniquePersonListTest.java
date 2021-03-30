@@ -128,6 +128,33 @@ public class UniquePersonListTest {
     }
 
     @Test
+    public void archive_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniquePersonList.archive(null));
+    }
+
+    @Test
+    public void archive_existingPerson_archivesPerson() {
+        Person newAlice = new PersonBuilder(ALICE).build();
+        uniquePersonList.add(newAlice);
+        uniquePersonList.archive(newAlice);
+        assertTrue(newAlice.isArchived());
+    }
+
+    @Test
+    public void unarchive_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniquePersonList.unarchive(null));
+    }
+
+    @Test
+    public void unarchive_existingArchivedPerson_unarchivesPerson() {
+        Person newAlice = new PersonBuilder(ALICE).build();
+        uniquePersonList.add(newAlice);
+        uniquePersonList.archive(newAlice);
+        uniquePersonList.unarchive(newAlice);
+        assertFalse(newAlice.isArchived());
+    }
+
+    @Test
     public void setPersons_nullUniquePersonList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniquePersonList.setPersons((UniquePersonList) null));
     }

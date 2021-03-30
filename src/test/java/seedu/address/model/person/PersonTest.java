@@ -98,5 +98,10 @@ public class PersonTest {
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+
+        // different archive states -> returns false
+        editedAlice = new PersonBuilder(ALICE).build();
+        editedAlice.setArchived(true);
+        assertFalse(ALICE.equals(editedAlice));
     }
 }
