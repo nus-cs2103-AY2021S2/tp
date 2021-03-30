@@ -26,7 +26,7 @@ public class UndoTaskCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Changes the status of a task with the task index "
             + "you specify from completed to uncompleted. \n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX (must be a positive integer) \n"
             + "Example: " + COMMAND_WORD + " 1 ";
 
     public static final String MESSAGE_UNDO_TASK_SUCCESS = "Task: marked as uncompleted!";

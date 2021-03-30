@@ -244,6 +244,47 @@ Below is the sequence diagram:
 
 <img src="images/DeleteTaskSequenceDiagram.png" width="450" />
 
+### Clear all Assignee of a Task feature
+
+The implementation of clearing all `Assignee` of a Task feature is facilitated by the `ClearAssigneeCommand` 
+class which extends from the Command abstract class.
+
+It is also facilitated by the following Parser Classes:
+* `ClearAssigneesCommandParser`
+
+The above mentioned Parser classes all inherit the `#parse` method from the Parser interface.
+
+* `ClearAssigneesCommandParser#parse` - checks if the arguments passed to the current ClearAssigneeCommand is valid. 
+  If the arguments are valid, it creates a ClearAssigneeCommand instance.
+
+Subsequently, the created `ClearAssigneeCommand` object contains an `#execute` method which is responsible for
+clearing all `Assignee` of the Task, with respect to its index. This is achieved by creating a new 
+`Task` object with the same fields and values but setting the Set<Assignee> field as a new empty HashSet. 
+
+Below is the usage scenario of how clear all assignee of a Task mechanism behaves.
+
+Assumptions:
+1. User has already launched the app
+2. HEY MATEz application has an existing task with **assignee**
+
+Step 1. User executes the `clearAssignees 1` command to mark the task with index number 1 in the task list of 
+HEY MATEz to be cleared. A ` ClearAssigneesCommandParser` object is created and it calls `ClearAssigneesCommandParser#parse` 
+on the arguments.
+
+Step 2. `ClearAssigneesCommandParser#parse` method will check on the validity of the arguments for a `ClearAssigneesCommand`. 
+If it is valid,  it will call the create a new `ClearAssigneesCommand` by calling the constructor.
+
+Step 3. The `ClearAssigneesCommand#execute` is then called by the `LogicManager`. The task with the same `Index` 
+is retrieved and a copy of the task is created with the same attribute values. However. the `Set<Assignee>` field is 
+updated to be a new empty HashSet in the `Model`.
+
+Step 4. Once the execution is completed, the message `MESSAGE_CLEARED_ASSIGNEES_SUCCESS` is used to return a new Command Result
+with the attached message.
+
+Below is the sequence diagram:
+
+<img src="images/ClearAssigneesSequenceDiagram.png" width="450" />
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
