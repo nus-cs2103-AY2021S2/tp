@@ -1,11 +1,11 @@
-package seedu.address.logic.util;
+package seedu.address.model.person;
 
 /**
  * Enumeration that represents the three possible types of sorting flags: {@code DATE_TIME, MODULE_CODE,
  * PRIORITY_TAG}. <br>
  * Each type has a string label attached to it.
  */
-public enum SortingType {
+public enum SortingFlagType {
     DATE_TIME (SortingFlag.DATE_TIME_FLAG),
     TASK_NAME (SortingFlag.TASK_NAME_FLAG),
     MODULE_CODE (SortingFlag.MODULE_CODE_FLAG),
@@ -14,7 +14,7 @@ public enum SortingType {
 
     private final String sortingFlag;
 
-    SortingType(String sortingFlag) {
+    SortingFlagType(String sortingFlag) {
         this.sortingFlag = sortingFlag;
     }
 
