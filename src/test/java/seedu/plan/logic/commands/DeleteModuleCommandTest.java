@@ -20,6 +20,7 @@ import seedu.plan.model.plan.Module;
 import seedu.plan.model.plan.Semester;
 
 public class DeleteModuleCommandTest {
+    private static final String INVALID_MODULE_CODE = "abcd";
     private Model model = new ModelManager(getTypicalModulePlanner(), new UserPrefs());
     private final String invalidModuleCode = "abcd";
 
