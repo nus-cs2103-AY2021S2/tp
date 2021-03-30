@@ -52,8 +52,4 @@ public class OrderDescription {
     public String toString() {
         return value;
     }
-
-    public String getValue() {
-        return value;
-    }
 }

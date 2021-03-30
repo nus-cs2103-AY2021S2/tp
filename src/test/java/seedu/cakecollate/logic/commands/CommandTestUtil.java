@@ -45,8 +45,8 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_CHOCOLATE_ORDER = "1 x Amys Chocolate Cakes";
-    public static final String VALID_BERRY_ORDER = "1 x Bobs Berry Cakes";
+    public static final String VALID_CHOCOLATE_ORDER = "1 x Amy's Chocolate Cakes";
+    public static final String VALID_BERRY_ORDER = "1 x Bob's Berry Cakes";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_DELIVERY_DATE_AMY = "01/01/2022";
@@ -132,9 +132,7 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         CakeCollate expectedCakeCollate = new CakeCollate(actualModel.getCakeCollate());
-        // OrderItems expectedOrderItems = new OrderItems(actualModel.getOrderItems());
         List<Order> expectedFilteredList = new ArrayList<>(actualModel.getFilteredOrderList());
-        // todo sounds like something to add here
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedCakeCollate, actualModel.getCakeCollate());

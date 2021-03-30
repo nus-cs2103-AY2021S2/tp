@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.cakecollate.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 import static seedu.cakecollate.testutil.Assert.assertThrows;
-import static seedu.cakecollate.testutil.TypicalOrderItems.getTypicalOrderItemsModel;
 import static seedu.cakecollate.testutil.TypicalOrders.ALICE;
 import static seedu.cakecollate.testutil.TypicalOrders.BENSON;
 import static seedu.cakecollate.testutil.TypicalOrders.ELLE;
@@ -104,13 +103,11 @@ public class ModelManagerTest {
     public void equals() {
         CakeCollate cakeCollate = new CakeCollateBuilder().withOrder(ALICE).withOrder(BENSON).build();
         CakeCollate differentCakeCollate = new CakeCollate();
-
-        OrderItems orderItems = new OrderItems();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(cakeCollate, orderItems, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(cakeCollate, orderItems, userPrefs);
+        modelManager = new ModelManager(cakeCollate, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(cakeCollate, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -123,14 +120,14 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different cakeCollate -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentCakeCollate, orderItems, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentCakeCollate, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         HashMap<Prefix, List<String>> map = new HashMap<>();
         map.put(PREFIX_NAME, Arrays.asList(keywords));
         modelManager.updateFilteredOrderList(new ContainsKeywordsPredicate(map));
-        assertFalse(modelManager.equals(new ModelManager(cakeCollate, orderItems, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(cakeCollate, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
@@ -138,7 +135,7 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setCakeCollateFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(cakeCollate, orderItems, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(cakeCollate, differentUserPrefs)));
     }
 
     /**
@@ -153,10 +150,8 @@ public class ModelManagerTest {
         CakeCollate cakeCollate = new CakeCollateBuilder().withOrder(ELLE).withOrder(GEORGE).build();
         UserPrefs userPrefs = new UserPrefs();
 
-        modelManager = new ModelManager(cakeCollate, getTypicalOrderItemsModel(), userPrefs);
+        modelManager = new ModelManager(cakeCollate, userPrefs);
         assertEquals(modelManager.getFilteredOrderList(),
                 Arrays.asList(GEORGE, ELLE));
     }
-
-    // todo needs update
 }

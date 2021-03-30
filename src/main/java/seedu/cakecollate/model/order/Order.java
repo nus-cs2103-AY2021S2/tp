@@ -24,12 +24,10 @@ public class Order {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<OrderDescription> orderDescriptions = new HashSet<>();
-    // assuming that for current implementation, we don't need to store order item ID
     private final DeliveryDate deliveryDate;
     private final DeliveryStatus deliveryStatus;
     private final Request request;
 
-    // with default status
     /**
      * Every field must be present and not null.
      */
@@ -48,7 +46,6 @@ public class Order {
         this.request = request;
     }
 
-    // with status
     /**
      * Initialises an order.
      * @param name Name of the customer.
@@ -177,9 +174,8 @@ public class Order {
 
         Set<OrderDescription> orderDescriptions = getOrderDescriptions();
         if (!orderDescriptions.isEmpty()) {
-            builder.append("; Order Descriptions:");
-            orderDescriptions.forEach(obj -> builder.append(" ").append(obj).append(","));
-            builder.setLength(builder.length() - 1);
+            builder.append("; Order Descriptions: ");
+            orderDescriptions.forEach(builder::append);
         }
 
 

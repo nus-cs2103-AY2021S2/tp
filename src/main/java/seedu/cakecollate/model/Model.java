@@ -6,7 +6,6 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.cakecollate.commons.core.GuiSettings;
 import seedu.cakecollate.model.order.Order;
-import seedu.cakecollate.model.orderitem.OrderItem;
 
 /**
  * The API of the Model component.
@@ -88,12 +87,4 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredOrderList(Predicate<Order> predicate);
-
-
-
-    //=========== Order Items ================================================================================
-
-    boolean hasOrderItem(OrderItem item);
-
-    void addOrderItem(OrderItem item);
 }

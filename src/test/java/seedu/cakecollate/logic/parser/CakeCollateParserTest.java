@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.cakecollate.commons.core.index.Index;
 import seedu.cakecollate.commons.core.index.IndexList;
+import seedu.cakecollate.logic.commands.AddCommand;
 import seedu.cakecollate.logic.commands.ClearCommand;
 import seedu.cakecollate.logic.commands.DeleteCommand;
 import seedu.cakecollate.logic.commands.EditCommand;
@@ -42,12 +43,12 @@ public class CakeCollateParserTest {
 
     private final CakeCollateParser parser = new CakeCollateParser();
 
-//    @Test
-//    public void parseCommand_add() throws Exception {
-//        Order order = new OrderBuilder().build();
-//        AddCommand command = (AddCommand) parser.parseCommand(OrderUtil.getAddCommand(order));
-//        assertEquals(new AddCommand(order), command);
-//    }
+    @Test
+    public void parseCommand_add() throws Exception {
+        Order order = new OrderBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(OrderUtil.getAddCommand(order));
+        assertEquals(new AddCommand(order), command);
+    }
 
     @Test
     public void parseCommand_clear() throws Exception {

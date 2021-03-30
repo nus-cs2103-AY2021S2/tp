@@ -1,7 +1,6 @@
 package seedu.cakecollate.logic.commands;
 
 import static seedu.cakecollate.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.cakecollate.testutil.TypicalOrderItems.getTypicalOrderItemsModel;
 import static seedu.cakecollate.testutil.TypicalOrders.getTypicalCakeCollate;
 
 import org.junit.jupiter.api.Test;
@@ -23,12 +22,11 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptyCakeCollate_success() {
-        Model model = new ModelManager(getTypicalCakeCollate(), getTypicalOrderItemsModel(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalCakeCollate(), getTypicalOrderItemsModel(), new UserPrefs());
+        Model model = new ModelManager(getTypicalCakeCollate(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalCakeCollate(), new UserPrefs());
         expectedModel.setCakeCollate(new CakeCollate());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
-    // TODO are these tests not clearing anything
 }

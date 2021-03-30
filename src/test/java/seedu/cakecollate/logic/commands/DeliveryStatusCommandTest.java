@@ -7,7 +7,6 @@ import static seedu.cakecollate.logic.commands.CommandTestUtil.assertCommandSucc
 import static seedu.cakecollate.logic.commands.CommandTestUtil.showOrderAtIndex;
 import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
 import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_SECOND_ORDER;
-import static seedu.cakecollate.testutil.TypicalOrderItems.getTypicalOrderItemsModel;
 import static seedu.cakecollate.testutil.TypicalOrders.getTypicalCakeCollate;
 
 import java.util.ArrayList;
@@ -24,7 +23,7 @@ import seedu.cakecollate.model.order.DeliveryStatus;
 import seedu.cakecollate.model.order.Order;
 
 class DeliveryStatusCommandTest {
-    private Model model = new ModelManager(getTypicalCakeCollate(), getTypicalOrderItemsModel(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalCakeCollate(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -37,7 +36,7 @@ class DeliveryStatusCommandTest {
         String expectedMessage = String.format(DeliveryStatusCommand.MESSAGE_DELIVERY_STATUS_ORDER_SUCCESS,
                 String.format("\n%1$s", orderToUpdate));
 
-        ModelManager expectedModel = new ModelManager(model.getCakeCollate(), getTypicalOrderItemsModel(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getCakeCollate(), new UserPrefs());
         expectedModel.setOrder(expectedModel.getFilteredOrderList().get(0), orderToUpdate);
 
         assertCommandSuccess(deliveryStatusCommand, model, expectedMessage, expectedModel);
@@ -67,7 +66,7 @@ class DeliveryStatusCommandTest {
         String expectedMessage = String.format(DeliveryStatusCommand.MESSAGE_DELIVERY_STATUS_ORDER_SUCCESS,
                 String.format("\n%1$s", orderToUpdate));
 
-        ModelManager expectedModel = new ModelManager(model.getCakeCollate(), getTypicalOrderItemsModel(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getCakeCollate(), new UserPrefs());
         expectedModel.setOrder(expectedModel.getFilteredOrderList().get(0), orderToUpdate);
 
         assertCommandSuccess(deliveryStatusCommand, model, expectedMessage, expectedModel);

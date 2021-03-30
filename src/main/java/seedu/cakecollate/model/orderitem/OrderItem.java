@@ -17,20 +17,9 @@ public class OrderItem {
      * Every field must be present and not null.
      */
     public OrderItem(Type type, Cost cost) {
-        // requireAllNonNull(type, cost);
-        requireAllNonNull(type);
+        requireAllNonNull(type, cost);
         this.type = type;
         this.cost = cost;
-    }
-
-    // i'm assuming the above constructor will get deleted
-    /**
-     * Every field must be present and not null.
-     */
-    public OrderItem(Type type) {
-        requireAllNonNull(type);
-        this.type = type;
-        this.cost = null;
     }
 
     public Type getType() {

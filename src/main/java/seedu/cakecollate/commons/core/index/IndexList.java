@@ -23,7 +23,7 @@ public class IndexList {
     }
 
     public List<Index> getIndexList() {
-        return this.indexList; // unmodifiable?
+        return this.indexList;
     }
 
     /** Checks whether two @code IndexList}s are equal.
@@ -32,15 +32,6 @@ public class IndexList {
      */
     public boolean checkIfEqual(IndexList other) {
         boolean equal = true;
-
-        if (other == null) {
-            return this == null;
-        }
-
-        // will this affect anyone else's work
-        this.sortList();
-        other.sortList();
-
         if (this.indexList.size() != other.getIndexList().size()) {
             return false;
         } else {

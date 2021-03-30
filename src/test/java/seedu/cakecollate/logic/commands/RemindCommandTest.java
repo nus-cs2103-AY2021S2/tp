@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.cakecollate.commons.core.Messages.MESSAGE_ORDERS_REMINDER_OVERVIEW;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.cakecollate.testutil.TypicalOrderItems.getTypicalOrderItemsModel;
 import static seedu.cakecollate.testutil.TypicalOrders.getTypicalCakeCollate;
 
 import java.util.Collections;
@@ -20,8 +19,8 @@ import seedu.cakecollate.model.order.ReminderDatePredicate;
  * Contains integration tests (interaction with the Model) for {@code RemindCommand}.
  */
 public class RemindCommandTest {
-    private Model model = new ModelManager(getTypicalCakeCollate(),  getTypicalOrderItemsModel(),  new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalCakeCollate(),  getTypicalOrderItemsModel(),  new UserPrefs());
+    private Model model = new ModelManager(getTypicalCakeCollate(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalCakeCollate(), new UserPrefs());
 
     @Test
     public void equals() {

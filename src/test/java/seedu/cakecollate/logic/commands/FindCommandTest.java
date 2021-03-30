@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.cakecollate.commons.core.Messages.MESSAGE_ORDERS_LISTED_OVERVIEW;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.cakecollate.testutil.TypicalOrderItems.getTypicalOrderItemsModel;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.cakecollate.testutil.TypicalOrders.CARL;
 import static seedu.cakecollate.testutil.TypicalOrders.ELLE;
@@ -29,8 +28,8 @@ import seedu.cakecollate.model.order.ContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalCakeCollate(), getTypicalOrderItemsModel(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalCakeCollate(), getTypicalOrderItemsModel(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalCakeCollate(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalCakeCollate(), new UserPrefs());
 
     @Test
     public void equals() {

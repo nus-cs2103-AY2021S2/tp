@@ -18,9 +18,7 @@ import seedu.cakecollate.logic.LogicManager;
 import seedu.cakecollate.model.CakeCollate;
 import seedu.cakecollate.model.Model;
 import seedu.cakecollate.model.ModelManager;
-import seedu.cakecollate.model.OrderItems;
 import seedu.cakecollate.model.ReadOnlyCakeCollate;
-import seedu.cakecollate.model.ReadOnlyOrderItems;
 import seedu.cakecollate.model.ReadOnlyUserPrefs;
 import seedu.cakecollate.model.UserPrefs;
 import seedu.cakecollate.model.util.SampleDataUtil;
@@ -78,11 +76,6 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyCakeCollate> cakeCollateOptional;
         ReadOnlyCakeCollate initialData;
-        ReadOnlyOrderItems initialOrderItems; // add try catch after storage pr
-
-        // TODO after storage pr
-        initialOrderItems = new OrderItems();
-
         try {
             cakeCollateOptional = storage.readCakeCollate();
             if (!cakeCollateOptional.isPresent()) {
@@ -97,7 +90,7 @@ public class MainApp extends Application {
             initialData = new CakeCollate();
         }
 
-        return new ModelManager(initialData, initialOrderItems, userPrefs);
+        return new ModelManager(initialData, userPrefs);
     }
 
     private void initLogging(Config config) {

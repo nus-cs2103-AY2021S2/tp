@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.cakecollate.model.OrderItems;
 import seedu.cakecollate.model.orderitem.OrderItem;
 
 public class TypicalOrderItems {
@@ -50,18 +49,6 @@ public class TypicalOrderItems {
 
     private TypicalOrderItems() {
     } //prevents instantiation
-
-
-    /**
-     * Returns an {@code CakeCollate} with all the typical orders.
-     */
-    public static OrderItems getTypicalOrderItemsModel() {
-        OrderItems orderItems = new OrderItems();
-        for (OrderItem o : getTypicalOrderItems()) {
-            orderItems.addOrderItem(o);
-        }
-        return orderItems;
-    }
 
     public static List<OrderItem> getTypicalOrderItems() {
         return new ArrayList<>(Arrays.asList(CHOCOLATE, STRAWBERRY,

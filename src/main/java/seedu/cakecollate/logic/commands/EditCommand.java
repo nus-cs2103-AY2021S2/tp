@@ -105,7 +105,7 @@ public class EditCommand extends Command {
         Email updatedEmail = editOrderDescriptor.getEmail().orElse(orderToEdit.getEmail());
         Address updatedAddress = editOrderDescriptor.getAddress().orElse(orderToEdit.getAddress());
         Set<OrderDescription> updatedOrderDescriptions =
-                editOrderDescriptor.getOrderDescriptions().orElse(orderToEdit.getOrderDescriptions());
+                editOrderDescriptor.getOrderDescription().orElse(orderToEdit.getOrderDescriptions());
         Set<Tag> updatedTags = editOrderDescriptor.getTags().orElse(orderToEdit.getTags());
         DeliveryDate updatedDeliveryDate =
                 editOrderDescriptor.getDeliveryDate().orElse(orderToEdit.getDeliveryDate());
@@ -207,7 +207,7 @@ public class EditCommand extends Command {
             this.orderDescriptions = (orderDescriptions != null) ? new HashSet<>(orderDescriptions) : null;
         }
 
-        public Optional<Set<OrderDescription>> getOrderDescriptions() {
+        public Optional<Set<OrderDescription>> getOrderDescription() {
             return (orderDescriptions != null)
                     ? Optional.of(Collections.unmodifiableSet(orderDescriptions))
                     : Optional.empty();
@@ -257,7 +257,7 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getOrderDescriptions().equals(e.getOrderDescriptions())
+                    && getOrderDescription().equals(e.getOrderDescription())
                     && getTags().equals(e.getTags())
                     && getDeliveryDate().equals(e.getDeliveryDate());
         }

@@ -12,7 +12,6 @@ import javafx.collections.transformation.FilteredList;
 import seedu.cakecollate.commons.core.GuiSettings;
 import seedu.cakecollate.commons.core.LogsCenter;
 import seedu.cakecollate.model.order.Order;
-import seedu.cakecollate.model.orderitem.OrderItem;
 
 /**
  * Represents the in-memory model of the cakecollate data.
@@ -21,28 +20,26 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final CakeCollate cakeCollate;
-    private final OrderItems orderItems;
     private final UserPrefs userPrefs;
     private final FilteredList<Order> filteredOrders;
 
     /**
      * Initializes a ModelManager with the given cakeCollate and userPrefs.
      */
-    public ModelManager(ReadOnlyCakeCollate cakeCollate, ReadOnlyOrderItems orderItems, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyCakeCollate cakeCollate, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(cakeCollate, userPrefs);
 
         logger.fine("Initializing with cakecollate: " + cakeCollate + " and user prefs " + userPrefs);
 
         this.cakeCollate = new CakeCollate(cakeCollate);
-        this.orderItems = new OrderItems(orderItems); // test
         this.userPrefs = new UserPrefs(userPrefs);
         filteredOrders = new FilteredList<>(this.cakeCollate.getOrderList());
         sortFilteredOrderList();
     }
 
     public ModelManager() {
-        this(new CakeCollate(), new OrderItems(), new UserPrefs()); // test
+        this(new CakeCollate(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -160,22 +157,5 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredOrders.equals(other.filteredOrders);
     }
-
-
-    //=========== Order Items ================================================================================
-
-    @Override
-    public boolean hasOrderItem(OrderItem item) {
-        requireNonNull(item);
-        return orderItems.hasOrderItem(item);
-    }
-
-    @Override
-    public void addOrderItem(OrderItem item) {
-        orderItems.addOrderItem(item);
-        // updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS); ?
-    }
-
-    //=========== Order Items Accessors ======================================================================
 
 }

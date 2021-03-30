@@ -10,7 +10,6 @@ import static seedu.cakecollate.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.ORDER_AMY;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.cakecollate.testutil.Assert.assertThrows;
-import static seedu.cakecollate.testutil.TypicalOrderItems.getTypicalOrderItemsModel;
 import static seedu.cakecollate.testutil.TypicalOrders.AMY;
 
 import java.io.IOException;
@@ -132,7 +131,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getCakeCollate(),  getTypicalOrderItemsModel(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getCakeCollate(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
