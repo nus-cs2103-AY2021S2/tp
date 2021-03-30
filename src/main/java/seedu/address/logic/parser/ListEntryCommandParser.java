@@ -18,10 +18,8 @@ public class ListEntryCommandParser {
      */
     public ListEntryCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        ListEntryCommand listEntryCommand = new ListEntryCommand(
-                new ListEntryFormatPredicate(trimmedArgs));
         if (trimmedArgs.equals("day") || trimmedArgs.equals("week") || trimmedArgs.isEmpty()) {
-            return listEntryCommand;
+            return new ListEntryCommand(new ListEntryFormatPredicate(trimmedArgs));
         } else {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListEntryCommand.MESSAGE_USAGE));
