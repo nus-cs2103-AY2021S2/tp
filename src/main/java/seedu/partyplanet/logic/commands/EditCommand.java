@@ -36,7 +36,7 @@ public abstract class EditCommand extends Command {
             + "Example: " + COMMAND_WORD + " " + FLAG_REMOVE + " " + PREFIX_TAG + " vegetarian";
 
     public static final String MESSAGE_USAGE_CONCISE =
-            COMMAND_WORD + " {INDEX [-n NAME] [-p PHONE_NUMBER] [-e EMAIL] [-a ADDRESS] [-t TAG]… [-b BIRTHDAY] "
+            COMMAND_WORD + " {INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]… [-b BIRTHDAY] "
             + "| --remove -t TAG [-t TAG]...}";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
