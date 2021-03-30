@@ -1,5 +1,7 @@
 package seedu.address.ui.calendar.schedule;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -29,6 +31,7 @@ public class CurrentTimePointer extends UiPart<Region> {
      */
     public CurrentTimePointer(String time) {
         super(FXML);
+        requireNonNull(time);
         currentTime.setText(time);
         logger.info("successfully initialised current time pointer");
     }

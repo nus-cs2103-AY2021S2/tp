@@ -29,78 +29,83 @@ public class ModuleTest {
 
     @Test
     public void isSameModule() {
+        Module mod1 = new ModuleBuilder(MOD_1).build();
         // same instance -> returns true
-        assertTrue(MOD_1.isSameModule(MOD_1));
+        assertTrue(mod1.isSameModule(mod1));
 
         // null -> returns false
-        assertFalse(MOD_1.isSameModule(null));
+        assertFalse(mod1.isSameModule(null));
 
         // same title, all other attributes are different -> returns true
         Module moduleCompared = new ModuleBuilder(MOD_1)
                 .withAssignments(VALID_ASSIGNMENT_DESCRIPTION_1, VALID_ASSIGNMENT_DESCRIPTION_2)
                 .withExams(VALID_EXAM_DATETIME_1, VALID_EXAM_DATETIME_2).build();
-        assertTrue(MOD_1.isSameModule(moduleCompared));
+        assertTrue(mod1.isSameModule(moduleCompared));
 
         // different title, but all other attributes are similar -> returns false
         moduleCompared = new ModuleBuilder(MOD_1).withTitle(VALID_TITLE_CS2101).build();
-        assertFalse(MOD_1.isSameModule(moduleCompared));
+        assertFalse(mod1.isSameModule(moduleCompared));
 
         // title is lowered case, all other attributes are the same -> returns false
         moduleCompared = new ModuleBuilder(MOD_1)
                 .withTitle(VALID_TITLE_CS2103.toLowerCase()).build();
-        assertFalse(MOD_1.isSameModule(moduleCompared));
+        assertFalse(mod1.isSameModule(moduleCompared));
 
         // title has whitespaces trailing, all other attributes are the same -> returns false
         String titleWithTrailingSpaces = VALID_TITLE_CS2103 + "    ";
         moduleCompared = new ModuleBuilder(MOD_1).withTitle(titleWithTrailingSpaces).build();
-        assertFalse(MOD_1.isSameModule(moduleCompared));
+        assertFalse(mod1.isSameModule(moduleCompared));
     }
 
     @Test
     public void equals() {
+        Module mod1 = new ModuleBuilder(MOD_1).build();
+        Module mod2 = new ModuleBuilder(MOD_2).build();
         // same instance -> returns true
-        assertTrue(MOD_1.equals(MOD_1));
+        assertTrue(mod1.equals(mod1));
 
         // same attributes -> returns true
         Module moduleCompared = new ModuleBuilder(MOD_1).build();
-        assertTrue(MOD_1.equals(moduleCompared));
+        assertTrue(mod1.equals(moduleCompared));
 
         // null -> returns false
-        assertFalse(MOD_1.equals(null));
+        assertFalse(mod1.equals(null));
 
         // different class -> returns false
-        assertFalse(MOD_1.equals("HI"));
+        assertFalse(mod1.equals("HI"));
 
         // different module -> returns false
-        assertFalse(MOD_1.equals(MOD_2));
+        assertFalse(mod1.equals(mod2));
 
         // different title -> returns false
         moduleCompared = new ModuleBuilder(MOD_1).withTitle(VALID_TITLE_CS2101).build();
-        assertFalse(MOD_1.equals(moduleCompared));
+        assertFalse(mod1.equals(moduleCompared));
 
         // different assignments -> return false
         moduleCompared = new ModuleBuilder(MOD_1)
                 .withAssignments(VALID_ASSIGNMENT_DESCRIPTION_1).build();
-        assertFalse(MOD_1.equals(moduleCompared));
+        assertFalse(mod1.equals(moduleCompared));
 
         // different exams -> return false
         moduleCompared = new ModuleBuilder(MOD_1)
                 .withExams(VALID_EXAM_DATETIME_1).build();
-        assertFalse(MOD_1.equals(moduleCompared));
+        assertFalse(mod1.equals(moduleCompared));
     }
 
     @Test
     public void editTitle() {
+        Module mod1 = new ModuleBuilder(MOD_1).build();
+        Module mod2 = new ModuleBuilder(MOD_2).build();
         // same title -> returns true
-        assertTrue(MOD_1.equals(MOD_1));
+        assertTrue(mod1.equals(mod1));
 
         // different title -> returns false
         Module moduleCompared = new ModuleBuilder(MOD_1).build();
         moduleCompared.editTitle(new Title("MOD 2"));
-        assertFalse(MOD_1.equals(moduleCompared));
+        assertFalse(mod1.equals(moduleCompared));
 
         // same title after changing -> returns true
-        assertTrue(MOD_2.equals(moduleCompared));
+        assertTrue(mod2.equals(moduleCompared));
     }
 
     @Test
@@ -231,13 +236,15 @@ public class ModuleTest {
 
     @Test
     public void compareTo() {
+        Module mod1 = new ModuleBuilder(MOD_1).build();
+        Module mod2 = new ModuleBuilder(MOD_2).build();
         // same module -> returns 0
-        assertEquals(0, MOD_1.compareTo(MOD_1));
+        assertEquals(0, mod1.compareTo(mod1));
 
         // different titles -> return -1
-        assertTrue(MOD_1.compareTo(MOD_2) == -1);
+        assertEquals(-1, mod1.compareTo(mod2));
 
         // different titles -> return 1
-        assertTrue(MOD_2.compareTo(MOD_1) == 1);
+        assertEquals(mod2.compareTo(mod1), 1);
     }
 }
