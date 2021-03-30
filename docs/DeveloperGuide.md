@@ -257,6 +257,32 @@ The sequence diagram for `DeleteTaskCommand` can be found below.
 
 ![Sequence Diagram of DeleteTask Command](images/DeleteTaskCommandSequenceDiagram.png)
 
+
+**Implementation of EditTaskCommand**  
+The following is a detailed explanation on how EditTaskCommand is implemented.
+
+**Step 1**: User executes `Edit_task Index` command to Edit the task at the given index.
+An `EditTaskParser` object is created, and the `EditTaskParser#parse(String args)` method is called.
+The method conducts parses the `args` and conducts validation checks to ensure that it complies with the specification.
+An `EditTaskDescriptor` object is created, and it contains all the field an Task needed. 
+If the field is edited, then store the edited one; otherwise, store the original value.
+An `EditTaskCommand` object (with the `EditTaskDescriptor` as a parameter) is returned.
+
+**Step 2**: On `EditTaskCommand#execute()`, `Model#getFilteredTaskList()` and 
+`Model#createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor)` are called.
+These will create the edited Task. Then, `Model#setTask(Task taskToEdit, Task editedTask)` and 
+`Model#updateFilteredTaskList()` are called. These will update the edited Task into the task list.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message `EditTaskCommand#MESSAGE_EDIT_TASK_SUCCESS` will be displayed.
+
+The UI will also update as the underlying task list has been modified.
+
+The sequence diagram for `EditTaskCommand` can be found below.
+
+![Sequence Diagram of EditTask Command](images/EditTaskCommandSequenceDiagram.png)
+
+
 **Implementation of SortTaskCommand**  
 The following is a detailed explanation on how SortTaskCommand is implemented in the Logic component.
 
@@ -307,12 +333,114 @@ It is largely similar to `SortTaskCommand`, with a some minor differences:
 
 ![Sequence Diagram of PinTaskCommand](images/PinTaskSequenceDiagram.png)
 
+**Implementation of ClearCompletedTaskCommand**  
+The following is a detailed explanation on how ClearCompletedTaskCommand is implemented.
+
+**Step 1**: User executes `clear_completed_task` command to clear completed tasks in task list.
+A `ClearCompletedTaskCommand` object is created and returned.
+
+**Step 2**: On `ClearCompletedTaskCommand#execute()`, `Model#clearCompletedTasks()` is called.
+This will delete all ticked tasks (all completed tasks).
+For brevity, lower level implementation of `Model#clearCompletedTasks()` is omitted.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message `ClearCompletedTaskCommand#MESSAGE_CLEAR_COMPLETED_TASK_SUCCESS` will be displayed.
+
+The sequence diagram for `ClearCompletedTaskCommand` can be found below.
+
+![Sequence Diagram of Clear Command](images/ClearCompletedTaskCommandSequenceDiagram.png)
+
+
+**Implementation of ClearExpiredTaskCommand**  
+The following is a detailed explanation on how ClearExpiredTaskCommand is implemented.
+
+**Step 1**: User executes `clear_completed_task` command to clear completed tasks in task list.
+A `ClearExpiredTaskCommand` object is created and returned.
+
+**Step 2**: On `ClearExpiredTaskCommand#execute()`, `Model#clearExpiredTasks()` is called.
+This will delete all expired tasks whose deadline have already past.
+For brevity, lower level implementation of `Model#clearExpiredTasks()` is omitted.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message `ClearExpiredTaskCommand#MESSAGE_CLEAR_EXPIRED_TASK_SUCCESS` will be displayed.
+
+The sequence diagram for `ClearExpiredTaskCommand` can be found below.
+
+![Sequence Diagram of Clear Command](images/ClearExpiredTaskCommandSequenceDiagram.png)
+
+
 
 ### 4.3 Event
 
 #### 4.3.1 Overview
 
 #### 4.3.2 Implementation
+
+**Implementation of AddEventCommand**
+The following is a detailed explanation on how AddEventCommand is implemented.
+
+**Step1**: User executes `add_event n/TASKNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [c/CATEGORY]... [t/TAG]...` 
+command to add the specific event with given arguments. An `AddEventCommandParser` object is created, and the 
+`AddEventParser#parse(String args)` method is called. The method conducts parses the `args` and conducts validation
+checks to ensure that it compiles with the specification. An `AddEventCommand` object is returned.
+
+**Step 2**: On `AddEventCommand#execute()`, `Model#addEvents(Event eventToAdd)` is called.
+This will add the event specified into the event list.
+For brevity, lower level implementation of `Model#addEvents(Event eventToAdd)` is omitted.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message `AddEventCommand#MESSAGE_ADD_EVENT_SUCCES` will be displayed.
+The UI will also update as the underlying event list has been modified.
+
+The sequence diagram for `AddEventCommand` can be found below.
+
+![Sequence Diagram of AddEvent Command](images/AddEventCommandSequenceDiagram.png)
+
+
+**Implementation of DeleteEventCommand**  
+The following is a detailed explanation on how DeleteEventCommand is implemented.
+
+**Step 1**: User executes `delete_event Index` command to delete the event at the given index.
+A `DeleteEventParser` object is created, and the `DeleteEventParser#parse(String args)` method is called.
+The method conducts parses the `args` and conducts validation checks to ensure that it complies with the specification.
+A `DeleteEventCommand` object is returned.
+
+**Step 2**: On `DeleteEventCommand#execute()`, `Model#deleteEvents(Event eventToDelete)` is called.
+This will delete the event at the specified index.
+For brevity, lower level implementation of `Model#deleteEvents(Event eventToDelete)` is omitted.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message `DeleteEventCommand#MESSAGE_DELETE_EVENT_SUCCESS` will be displayed.
+The UI will also update as the underlying event list has been modified.
+
+The sequence diagram for `DeleteEventCommand` can be found below.
+
+![Sequence Diagram of DeleteEvent Command](images/DeleteEventCommandSequenceDiagram.png)
+
+
+**Implementation of EditEventCommand**  
+The following is a detailed explanation on how EditEventCommand is implemented.
+
+**Step 1**: User executes `Edit_event Index` command to Edit the event at the given index.
+An `EditEventParser` object is created, and the `EditEventParser#parse(String args)` method is called.
+The method conducts parses the `args` and conducts validation checks to ensure that it complies with the specification.
+An `EditEventDescriptor` object is created, and it contains all the field an Event needed. 
+If the field is edited, then store the edited one; otherwise, store the original value.
+An `EditEventCommand` object (with the `EditEventDescriptor` as a parameter) is returned.
+
+**Step 2**: On `EditEventCommand#execute()`, `Model#getFilteredEventList()` and 
+`Model#createEditedEvent(Event eventToEdit, EditEventDescriptor editEventDescriptor)` are called.
+These will create the edited Event. Then, `Model#setEvent(Event eventToEdit, Event editedEvent)` and 
+`Model#updateFilteredEventList()` are called. These will update the edited Event into the event list.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message `EditEventCommand#MESSAGE_EDIT_TASK_SUCCESS` will be displayed.
+The UI will also update as the underlying event list has been modified.
+
+The sequence diagram for `EditEventCommand` can be found below.
+
+![Sequence Diagram of EditEvent Command](images/EditEventCommandSequenceDiagram.png)
+
 
 **Implementation of FindFreeTimeCommand**  
 The following is a detailed explanation on how FindFreeTaskCommand is implemented.
@@ -332,6 +460,26 @@ A success message will be appended with `CommandResult#MESSAGE_FIND_FREE_TIME_SU
 The sequence diagram for `FindFreeTimeCommand` can be found below.
 
 ![Sequence Diagram of FindFreeTimeCommand](images/FindFreeTimeCommandSequenceDiagram.png)
+
+
+
+**Implementation of ClearExpiredEventCommand**  
+The following is a detailed explanation on how ClearExpiredEventCommand is implemented.
+
+**Step 1**: User executes `clear_completed_event` command to clear completed events in event list.
+A `ClearExpiredEventCommand` object is created and returned.
+
+**Step 2**: On `ClearExpiredEventCommand#execute()`, `Model#clearExpiredEvents()` is called.
+This will delete all expired events whose end date time have already past.
+For brevity, lower level implementation of `Model#clearExpiredEvents()` is omitted.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message `ClearExpiredEventCommand#MESSAGE_CLEAR_COMPLETED_TASK_SUCCESS` will be displayed.
+
+The sequence diagram for `ClearExpiredEventCommand` can be found below.
+
+![Sequence Diagram of Clear Command](images/ClearExpiredEventCommandSequenceDiagram.png)
+
 
 
 --------------------------------------------------------------------------------------------------------------------

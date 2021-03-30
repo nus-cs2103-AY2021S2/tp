@@ -11,13 +11,13 @@ public class ClearExpiredEventCommand extends Command {
 
     public static final String COMMAND_WORD = "clear_expired_event";
 
-    public static final String MESSAGE_SUCCESS = "Expired events (if any) have been cleared!";
+    public static final String MESSAGE_CLEAR_EXPIRED_EVENT_SUCCESS = "Expired events (if any) have been cleared!";
 
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.clearExpiredEvents();
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_CLEAR_EXPIRED_EVENT_SUCCESS);
     }
 }
