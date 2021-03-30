@@ -30,7 +30,7 @@ public interface Logic {
      */
     ReadOnlyAddressBook getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of students */
+    /** Returns an unmodifiable view of the full list of students */
     ObservableList<Student> getFullStudentList();
 
     /** Returns an unmodifiable view of the filtered list of students */
