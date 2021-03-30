@@ -19,7 +19,7 @@ Given below are my contributions to the project.
 
 * **Project management**:
     * Managed milestones `v1.1` - `v1.4` (7 milestones) on GitHub
-    * Managed releases `v1.3.trail - v1.3` (2 releases) on GitHub  
+    * Managed releases `v1.3.trail - v1.3` (2 releases) on GitHub
     * Standardised Intellij setting with the team. (Pull
       requests [\#4](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/4))
 
@@ -35,30 +35,35 @@ Given below are my contributions to the project.
     * User Guide:
         * Updated FAQ as of v1.1. (Pull request [\#32](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/32))
         * Updated Quick Start as of v1.1. (Pull request [\#33](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/33))
-        * Updated Quick Start as of v1.1. (Pull request [\#33](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/33))  
+        * Updated Quick Start as of v1.1. (Pull request [\#33](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/33))
         * Updated the command summary as of v1.1. (Pull
           request [\#34](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/34))
         * Updated the command summary as of v1.1. (Pull
           request [\#34](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/34))
-        * Updated UG hyperlink for smooth and proper navigation. (Pull request [\#181](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/181))
+        * Updated UG hyperlink for smooth and proper navigation. (Pull
+          request [\#181](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/181))
     * Developer Guide:
-        * Updated Design details. (Pull requests [\#121](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/121), [\#155](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/155))
-        * Updated Testing.md, Logging.md, DevOps.md with proper details. (Pull request [\#155](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/155))
+        * Updated Design details. (Pull requests [\#121](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/121)
+          , [\#155](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/155))
+        * Updated Testing.md, Logging.md, DevOps.md with proper details. (Pull
+          request [\#155](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/155))
         * Updated user stories. (Pull request [\#155](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/155))
     * About Us:
         * Updated Jay Chen's part. (Pull request [\#11](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/11))
     * Read Me:
         * Updated content of ReadMe to match StoreMando. (Pull
           request [\#21](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/21))
-        * Updated StoreMando Ui image and project description. (Pull request [\#175](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/175))
+        * Updated StoreMando Ui image and project description. (Pull
+          request [\#175](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/175))
     * Config.yml:
         * Updated config file to match StoreMando. (Pull
           requests [\#30](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/30))
 
 * **Hotfix**:
-    * Hotfix release details for v1.3.trail (Pull request [\#145](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/145))
+    * Hotfix release details for v1.3.trail (Pull
+      request [\#145](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/145))
     * Hotfix on clear location feature. (Pull request [\#199](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/199))
-    
+
 * **Test**:
     * Updated all tests in logic.parser. (Pull request [\#167](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/167))
 
@@ -80,7 +85,12 @@ Given below are my contributions to the project.
       , [\#98](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/98)
       , [\#100](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/100)
       , [\#101](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/101)
-    * Contributed to forum discussions:
+      , [\#113](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/113)
+      , [\#124](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/124)
+      , [\#125](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/125)
+      , [\#159](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/159)
+      , [\#168](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/168)
+      , [\#174](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/174)
     * Reported bugs and suggestions for other teams in the class:
     * Some parts of the history feature I added was adopted by several other classmates:
 
