@@ -15,8 +15,10 @@ public class FindAppointmentCommand extends Command {
     public static final String COMMAND_WORD = "find appointment";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all appointments whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " charlie monday";
+            + "Parameters: [n/NAME] [r/REMARKS] [d/DATE]* [t/TIME]*\n"
+            + "Note that all parameters marked with * are limited to only 1 in each query. "
+            + "Example: " + COMMAND_WORD + " n/charlie\n"
+            + COMMAND_WORD + " r/meet on 25th d/25-11-21";
 
     private final AppointmentPredicateList predicate;
 
