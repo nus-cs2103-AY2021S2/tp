@@ -55,7 +55,6 @@ public class EditModuleCommandTest {
     public void execute_duplicatePersonFilteredList_failure() {
         showModuleAtIndex(model, INDEX_FIRST_MODULE);
 
-        // edit person in filtered list into a duplicate in address book
         Module moduleInList = model.getRemindMe().getModuleList().get(INDEX_SECOND_MODULE.getZeroBased());
         EditModuleCommand editModuleCommand = new EditModuleCommand(INDEX_FIRST_MODULE.getOneBased(),
                                                                     moduleInList.getTitle());
@@ -67,7 +66,7 @@ public class EditModuleCommandTest {
     public void execute_invalidModuleIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredModuleList().size() + 1);
         EditModuleCommand editModuleCommand = new EditModuleCommand(outOfBoundIndex.getOneBased(),
-                                                                    new Title("new Title"));
+                                                                    new Title("Title"));
 
         assertCommandFailure(editModuleCommand, model, editModuleCommand.MESSAGE_NO_MODULE);
     }
