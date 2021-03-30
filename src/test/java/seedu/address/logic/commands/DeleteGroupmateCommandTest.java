@@ -17,6 +17,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.DateConversionException;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.uicommands.ViewProjectAndOverviewUiCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -56,7 +57,8 @@ public class DeleteGroupmateCommandTest {
 
         ModelManager expectedModel = new ModelManager(getTypicalColabFolder(), new UserPrefs());
 
-        assertCommandSuccess(deleteGroupmateCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteGroupmateCommand, model, expectedMessage,
+                new ViewProjectAndOverviewUiCommand(INDEX_FIRST), expectedModel);
     }
 
     @Test
