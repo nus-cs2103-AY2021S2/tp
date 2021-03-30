@@ -215,11 +215,33 @@ The sequence diagram for `SummaryCommand` can be found below.
 
 #### 4.2.2 Implementation
 
+**Implementation of AddTaskCommand**
+The following is a detailed explanation on how AddTaskCommand is implemented.
+
+**Step1**: User executes `add_task n/TASKNAME d/DEADLINE p/PRIORITY [c/CATEGORY]... [t/TAG]...` command to add the 
+specific task with given arguments. An `AddTaskCommandParser` object is created, and the 
+`AddTaskParser#parse(String args)` method is called. The method conducts parses the `args` and conducts validation
+checks to ensure that it compiles with the specification. An `AddTaskCommand` object is returned.
+
+**Step 2**: On `AddTaskCommand#execute()`, `Model#addTasks(Task taskToAdd)` is called.
+This will add the task specified into the task list.
+For brevity, lower level implementation of `Model#addTasks(Task taskToAdd)` is omitted.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message will be appended with `CommandResult#MESSAGE_ADD_TASK_SUCCESS`.
+The UI will also update as the underlying task list has been modified.
+
+The sequence diagram for `AddTaskCommand` can be found below.
+
+![Sequence Diagram of AddTask Command](images/AddTaskCommandSequenceDiagram.png)
+
+
+
 **Implementation of DeleteTaskCommand**  
 The following is a detailed explanation on how DeleteTaskCommand is implemented.
 
 **Step 1**: User executes `delete_task Index` command to delete the task at the given index.
-An `DeleteTaskParser` object is created, and the `DeleteTaskParser#parse(String args)` method is called.
+A `DeleteTaskParser` object is created, and the `DeleteTaskParser#parse(String args)` method is called.
 The method conducts parses the `args` and conducts validation checks to ensure that it complies with the specification.
 A `DeleteTaskCommand` object is returned.
 
@@ -263,7 +285,7 @@ The following is a brief explanation , as shown in a sequence diagram, of how so
 The following is a detailed explanation on how PinTaskCommand is implemented.
 UnpinTaskCommand is largely similar in implementation to PinTaskCommand and will be omitted for brevity.
 
-**Step 1**: User executes `pin_task INDEX` command to delete the task at the given index.
+**Step 1**: User executes `pin_task INDEX` command to pin the task at the given index.
 An `PinTaskParser` object is created, and the `PinTaskParser#parse(String args)` method is called.
 The method conducts parses the `args` and conducts validation checks to ensure that it complies with the specification.
 A `PinTaskCommand` object is returned.
@@ -291,6 +313,25 @@ It is largely similar to `SortTaskCommand`, with a some minor differences:
 #### 4.3.1 Overview
 
 #### 4.3.2 Implementation
+
+**Implementation of FindFreeTimeCommand**  
+The following is a detailed explanation on how FindFreeTaskCommand is implemented.
+
+**Step 1**: User executes `free_time DATE` command to find free time slots in the given day.
+An `FindFreeTimeCommandParser` object is created, and the `FindFreeTimeCommandParser#parse(String args)` method is called.
+The method conducts parses the `args` and conducts validation checks to ensure that it complies with the specification.
+A `FindFreeTimeCommand` object is returned.
+
+**Step 2**: On `FindFreeTimeCommand#execute()`, `Model#getFreeTimeSlots(Date date)` is called.
+This will get free time slots and store in a string arraylist.
+For brevity, lower level implementation of `Model#getFreeTimeSlots(Date date)` is omitted.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message will be appended with `CommandResult#MESSAGE_FIND_FREE_TIME_SUCCESS`.
+
+The sequence diagram for `FindFreeTimeCommand` can be found below.
+
+![Sequence Diagram of FindFreeTimeCommand](images/FindFreeTimeCommandSequenceDiagram.png)
 
 
 --------------------------------------------------------------------------------------------------------------------

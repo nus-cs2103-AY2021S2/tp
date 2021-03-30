@@ -33,6 +33,7 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddEventCommand
      * and returns an AddEventCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddEventCommand parse(String args) throws ParseException {
@@ -84,10 +85,11 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
 
     /**
      * Returns true if startDate and startTime is before endDate and EndTime.
+     *
      * @param startDate the startDate given
      * @param startTime the startTime given
-     * @param endDate the endDate given
-     * @param endTime the endTime given
+     * @param endDate   the endDate given
+     * @param endTime   the endTime given
      * @return a boolean value based on the condition
      */
     private boolean isStartDateTimeBeforeEndDateTime(Date startDate, Time startTime, Date endDate, Time endTime) {
