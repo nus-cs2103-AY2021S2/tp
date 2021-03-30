@@ -21,8 +21,10 @@ public class AliasCommandParser implements Parser<AliasCommand> {
      * Parses the given {@code String} of arguments in the context of the AliasCommand
      * and returns an AliasCommand object for execution.
      *
-     * @throws ParseException if the user input does not conform the expected format.
-     * @throws NullPointerException if the argument is null.
+     * @param args Arguments string.
+     * @return An Alias Command object.
+     * @throws ParseException If the user input does not conform the expected format.
+     * @throws NullPointerException If the argument is null.
      */
     public AliasCommand parse(String args) throws ParseException {
         requireAllNonNull(args);

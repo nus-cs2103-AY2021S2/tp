@@ -26,10 +26,10 @@ public class UnaliasCommand extends Command {
 
     /**
      * Creates an UnaliasCommand with the specified {@code aliasName}.
-     * All fields must not be null.
+     * The field must not be null.
      *
-     * @param aliasName
-     * @throws NullPointerException if the input is null.
+     * @param aliasName Name of the alias.
+     * @throws NullPointerException If the input is null.
      */
     public UnaliasCommand(String aliasName) {
         requireNonNull(aliasName);
@@ -40,9 +40,9 @@ public class UnaliasCommand extends Command {
      * Executes an UnaliasCommand to delete an Alias.
      *
      * @param model {@code Model} which the command should operate on.
-     * @return result of command execution.
-     * @throws CommandException if input is invalid.
-     * @throws NullPointerException if the input is null.
+     * @return Result of command execution.
+     * @throws CommandException If input is invalid.
+     * @throws NullPointerException If the input is null.
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
