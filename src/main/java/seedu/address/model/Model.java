@@ -11,8 +11,11 @@ import seedu.address.model.person.Person;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    /** {@code Predicate} that only shows patients in the main list */
+    Predicate<Person> PREDICATE_SHOW_MAIN_PERSONS = person -> !person.isArchived();
+
+    /** {@code Predicate} that only shows archived patients */
+    Predicate<Person> PREDICATE_SHOW_ARCHIVED_PERSONS = Person::isArchived;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -75,6 +78,18 @@ public interface Model {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
+
+    /**
+     * Archives the given person.
+     * {@code person} must not already exist in the archives of address book.
+     */
+    void archivePerson(Person person);
+
+    /**
+     * Unarchives the given person.
+     * {@code person} must not already exist in the address book.
+     */
+    void unarchivePerson(Person person);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

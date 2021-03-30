@@ -12,6 +12,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -117,6 +118,19 @@ public class EditCommandTest {
                 new EditPersonDescriptorBuilder(personInList).build());
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+    }
+
+    @Test
+    public void execute_archivedPersonFilteredList_failure() {
+        Model newModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Person newAlice = new PersonBuilder(ALICE).build();
+        newModel.addPerson(newAlice);
+        newModel.archivePerson(newAlice);
+        Person personInList = newModel.getAddressBook().getPersonList().get(0);
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
+                new EditPersonDescriptorBuilder(personInList).build());
+
+        assertCommandFailure(editCommand, newModel, EditCommand.MESSAGE_ARCHIVED_PERSON);
     }
 
     @Test
