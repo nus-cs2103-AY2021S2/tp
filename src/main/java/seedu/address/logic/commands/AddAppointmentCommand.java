@@ -19,13 +19,13 @@ public class AddAppointmentCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_DATE + "DATE "
-            + "[" + PREFIX_CONTACT + "CONTACT INDEX]... "
+            + "[" + PREFIX_CONTACT + "CONTACT_INDEX]... "
             + "[" + PREFIX_CHILD + "CHILDTAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_DATE + "09-02-2021 14:00"
-            + PREFIX_CONTACT + "3 "
+            + PREFIX_NAME + "PTM "
+            + PREFIX_ADDRESS + "ABC Primary School "
+            + PREFIX_DATE + "21/03/2021 10:00"
+            + PREFIX_CONTACT + "2 "
             + PREFIX_CHILD + "Alex";
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";

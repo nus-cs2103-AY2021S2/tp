@@ -35,6 +35,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
+
         heliBookParser = new HeliBookParser();
 
         model.orderAppointments();
@@ -60,7 +61,7 @@ public class LogicManager implements Logic {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
 
-        model.orderAppointments();
+        model.orderAppointments(); // ensure that appointments are loaded in increasing date order
 
         return commandResult;
     }
@@ -75,12 +76,10 @@ public class LogicManager implements Logic {
         return model.getFilteredPersonList();
     }
 
-    //**********************Can be removed************************************************************
     @Override
     public ObservableList<Appointment> getFilteredAppointmentList() {
         return model.getFilteredAppointmentList();
     }
-    //************************************************************************************************
 
     @Override
     public Path getAddressBookFilePath() {

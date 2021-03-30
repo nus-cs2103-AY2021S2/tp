@@ -87,6 +87,8 @@ public class SampleDataUtil {
 
 
     public static Appointment[] getSampleAppointments() {
+        Person[] samplePersons = getSamplePersons();
+
         return new Appointment[] {
             new Appointment(new Name("Parent teacher meeting"), new Address("Kovan Secondary School"),
                     new DateTime("21/05/2021 10:00"), getPersonSet("0"),

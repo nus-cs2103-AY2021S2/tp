@@ -82,6 +82,14 @@ public class AppointmentBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     */
+    public AppointmentBuilder withTags(String ... tags) {
+        this.tags = SampleDataUtil.getChildTagSet(tags);
+        return this;
+    }
+
     public Appointment build() {
         return new Appointment(name, address, dateTime, contacts, tags);
     }
