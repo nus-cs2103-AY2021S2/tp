@@ -7,10 +7,11 @@ Weeblingo is a desktop app for managing flashcards, **optimized for use via a Co
 
 * [Quick Start](#quick-start)
 * [Features](#features)
+  * [Entering quiz mode: `quiz`](#entering-quiz-mode-quiz)
   * [Starting a quiz session: `start`](#starting-a-quiz-session-start)
   * [Checking flashcard answers: `check`](#checking-flashcard-answers-check)
   * [Going to next flashcard: `next`](#going-to-next-flashcard-next)
-  * [Listing out all flashcards: `learn`](#listing-out-all-flashcards-learn)
+  * [Entering learn mode: `learn`](#listing-out-all-flashcards-learn)
   * [Ending the session: `end`](#ending-the-session-end)
   * [Viewing past scores: `history`](#viewing-past-scores-history)
   * [Exiting the application: `exit`](#exiting-the-application-exit)
@@ -66,6 +67,11 @@ Weeblingo is a desktop app for managing flashcards, **optimized for use via a Co
 
 </div>
 
+### Entering quiz mode: `quiz`
+
+Enters Learn Mode, where all current flashcards are listed out. Answers to current flashcards are not shown.
+
+
 ### Starting a quiz session: `start`
 
 Starts a quiz session.
@@ -77,19 +83,22 @@ Format: `start [q/NUMBER] [t/TAG]`
 
 ### Checking flashcard answers: `check`
 
-Reveals the answer to the previous shown flashcard.
+Reads in user attempt and check if it matches the answer of currently shown flashcard question.
+If attempt is correct, answer to the current flashcard will be display. Else, the user will be prompted to re-enter an answer.
 
-Format: `check`
+Format: `check ATTEMPT`
+
+e.g. `check a`
 
 ### Going to next flashcard: `next`
 
-Goes to the next flashcard, if any.
+Goes to the next flashcard in the quiz session, if any.
 
 Format: `next`
 
-### Listing out all flashcards: `learn`
+### Entering learn mode: `learn`
 
-Enters Learn Mode, where all current flashcards are listed out.
+Enters Learn Mode, where all current flashcards are listed out. Answer to current flashcards are shown.
 
 Format: `learn`
 
@@ -141,8 +150,9 @@ are advanced and you know how to manipulate the storage files, you can do so if 
 
 Action | Format, Examples |
 -------|------------------|
+**Quiz** | `quiz`
 **Start** | `start`
-**Check** | `check`
+**Check** | `check ATTEMPT` <br> e.g. `check a`
 **Next** | `next`
 **Learn** | `learn`
 **End** | `end`
