@@ -321,9 +321,9 @@ public class SmartLib implements ReadOnlySmartLib {
     public Reader getReaderByBarcode(Barcode barcode) {
         requireNonNull(barcode);
         assert(Barcode.isValidBarcode(barcode.getValue()));
-        for (Record record : records) {
-            if(record.getBookBarcode().equals(barcode) && !record.isReturned()) {
-                return getReaderByName(record.getReaderName());
+        for (Reader reader : readers) {
+            if(reader.getBorrows().containsKey(getBookByBarcode(barcode))) {
+                return reader;
             }
         }
         return null;
