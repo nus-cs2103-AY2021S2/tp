@@ -3,22 +3,22 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox fx:id="calendarPanel" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <HBox style="-fx-padding: 10 10 10 10;">
-        <Button fx:id="prevButton" alignment="TOP_LEFT" onAction="#handlePrevMonth" text="PREV" />
-        <Region HBox.hgrow="ALWAYS" />
-        <Label fx:id="monthYearLabel" text="month year" alignment="CENTER" textAlignment="CENTER" />
-        <Region HBox.hgrow="ALWAYS" />
-        <Button fx:id="nextButton" alignment="TOP_RIGHT" onAction="#handleNextMonth" text="NEXT" />
+<VBox  xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <HBox fx:id="calendarTitlePanel" style="-fx-padding: 8 14 8 14;">
+        <Button fx:id="prevButton" alignment="TOP_LEFT" onAction="#handlePrevMonth" text="PREV"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="monthYearLabel" text="month year" alignment="CENTER" textAlignment="CENTER"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button fx:id="nextButton" alignment="TOP_RIGHT" onAction="#handleNextMonth" text="NEXT"/>
     </HBox>
-    <GridPane prefWidth="300">
-        <Label alignment="CENTER" prefHeight="100" prefWidth="100" text="S" GridPane.columnIndex="0" />
-        <Label alignment="CENTER" prefHeight="100" prefWidth="100" text="M" GridPane.columnIndex="1" />
-        <Label alignment="CENTER" prefHeight="100" prefWidth="100" text="T" GridPane.columnIndex="2" />
-        <Label alignment="CENTER" prefHeight="100" prefWidth="100" text="W" GridPane.columnIndex="3" />
-        <Label alignment="CENTER" prefHeight="100" prefWidth="100" text="T" GridPane.columnIndex="4" />
-        <Label alignment="CENTER" prefHeight="100" prefWidth="100" text="F" GridPane.columnIndex="5" />
-        <Label alignment="CENTER" prefHeight="100" prefWidth="100" text="S" GridPane.columnIndex="6" />
+    <GridPane fx:id="calendarDays" prefWidth="300">
+        <Label alignment="CENTER" prefHeight="80" prefWidth="100" text="S" GridPane.columnIndex="0"/>
+        <Label alignment="CENTER" prefHeight="80" prefWidth="100" text="M" GridPane.columnIndex="1"/>
+        <Label alignment="CENTER" prefHeight="80" prefWidth="100" text="T" GridPane.columnIndex="2"/>
+        <Label alignment="CENTER" prefHeight="80" prefWidth="100" text="W" GridPane.columnIndex="3"/>
+        <Label alignment="CENTER" prefHeight="80" prefWidth="100" text="T" GridPane.columnIndex="4"/>
+        <Label alignment="CENTER" prefHeight="80" prefWidth="100" text="F" GridPane.columnIndex="5"/>
+        <Label alignment="CENTER" prefHeight="80" prefWidth="100" text="S" GridPane.columnIndex="6"/>
     </GridPane>
-    <GridPane fx:id="calendar" prefHeight="450" prefWidth="300" />
+    <GridPane fx:id="calendar" prefHeight="450" prefWidth="300"/>
 </VBox>

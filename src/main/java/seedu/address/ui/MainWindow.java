@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -10,6 +12,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import seedu.address.commons.CalendarDirection;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -34,6 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private TaskListPanel taskListPanel;
     private ResultDisplay resultDisplay;
     private TagListPanel tagListPanel;
+    private CalendarPanel calendarPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -124,7 +128,7 @@ public class MainWindow extends UiPart<Stage> {
         tagListPanel = new TagListPanel(logic.getSortedTagList());
         tagListPanelPlaceholder.getChildren().add(tagListPanel.getRoot());
 
-        CalendarPanel calendarPanel = new CalendarPanel(logic.getCalendarDate());
+        calendarPanel = new CalendarPanel(logic.getCalendarDate());
         calendarPanelPlaceholder.getChildren().add(calendarPanel.getRoot());
     }
 
@@ -159,6 +163,16 @@ public class MainWindow extends UiPart<Stage> {
         return taskListPanel;
     }
 
+    private void handleCalendarNavigation(CalendarDirection direction) throws CommandException {
+        if (direction == CalendarDirection.NEXT) {
+            calendarPanel.handleNextMonth();
+        } else if (direction == CalendarDirection.PREV) {
+            calendarPanel.handlePrevMonth();
+        } else {
+            throw new CommandException(MESSAGE_UNKNOWN_COMMAND);
+        }
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -170,8 +184,8 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.isShowHelp()) {
-                // Need to refactor this to remove this field from everything else...
+            if (commandResult.isCalendarNavigation()) {
+                handleCalendarNavigation(commandResult.getCalendarDirection());
             }
 
             if (commandResult.isExit()) {

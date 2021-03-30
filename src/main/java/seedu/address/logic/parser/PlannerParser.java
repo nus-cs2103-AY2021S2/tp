@@ -7,6 +7,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.CalendarNextCommand;
+import seedu.address.logic.commands.CalendarPrevCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CountdownCommand;
@@ -18,6 +20,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SnoozeCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.StatsCommand;
 import seedu.address.logic.commands.ViewDayCommand;
@@ -53,6 +56,10 @@ public class PlannerParser {
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
+        case CalendarNextCommand.COMMAND_WORD:
+            return new CalendarNextCommand();
+        case CalendarPrevCommand.COMMAND_WORD:
+            return new CalendarPrevCommand();
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
         //@@author mesyeux
@@ -81,6 +88,8 @@ public class PlannerParser {
             return new HelpCommand();
         case DoneCommand.COMMAND_WORD:
             return new DoneCommandParser().parse(arguments);
+        case SnoozeCommand.COMMAND_WORD:
+            return new SnoozeCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

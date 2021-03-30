@@ -7,6 +7,7 @@ import java.util.Objects;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
@@ -22,6 +23,11 @@ public class ViewDayCommand extends Command {
             + "Parameters: DATE\n"
             + "Example: " + COMMAND_WORD + " 01/01/2022";
 
+    public static final String MESSAGE_CALENDAR_SHOWING_DATE = "Calendar is now showing %2$s %3$s.\n";
+
+    public static final String MESSAGE_VIEW_DAY_SUCCESS = Messages.MESSAGE_TASKS_LISTED_OVERVIEW
+            + MESSAGE_CALENDAR_SHOWING_DATE;
+
     private final Predicate<Task> predicate;
     private final LocalDate date;
 
@@ -29,7 +35,7 @@ public class ViewDayCommand extends Command {
      * Creates a ViewDayCommand with a predicate to filter the task list with, and a date to update the calendar with.
      *
      * @param predicate Predicate determining whether a task's date or schedule falls on the given date.
-     * @param date LocalDate object to update the calendar with.
+     * @param date      LocalDate object to update the calendar with.
      */
     public ViewDayCommand(Predicate<Task> predicate, LocalDate date) {
         this.predicate = predicate;
@@ -42,7 +48,8 @@ public class ViewDayCommand extends Command {
         model.updateFilteredTaskList(predicate);
         model.setCalendarDate(date);
 
-        return new CommandResult(
-                String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
+        String calendarMonthText = StringUtil.toSentenceCase(date.getMonth().toString());
+        return new CommandResult(String.format(
+                MESSAGE_VIEW_DAY_SUCCESS, model.getFilteredTaskList().size(), calendarMonthText, date.getYear()));
     }
 }
