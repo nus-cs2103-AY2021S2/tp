@@ -22,7 +22,7 @@ import seedu.address.model.task.repeatable.Event;
  */
 public class AddEventCommand extends Command {
 
-    public static final String COMMAND_WORD = "addEto";
+    public static final String COMMAND_WORD = "addE";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds event to a specified project.\n"
             + "Parameters:\nPROJECT_INDEX\n"

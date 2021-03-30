@@ -15,7 +15,7 @@ import seedu.address.model.task.todo.Todo;
 
 public class AddTodoCommand extends Command {
 
-    public static final String COMMAND_WORD = "addTto";
+    public static final String COMMAND_WORD = "addT";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a Task to CoLAB. "
             + "Parameters:\nPROJECT_INDEX\n"
