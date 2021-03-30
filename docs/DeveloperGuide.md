@@ -19,6 +19,28 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### UI component
 
+![Structure of the UI Component](images/UiClassDiagram.png)
+
+**API**: `Ui.java`
+
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StatusBarFooter` etc. 
+All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files 
+that are in the `src/main/resources/view` folder. For example, the layout of the `MainWindow` is specified in 
+`MainWindow.fxml`.
+
+The `UI` component:
+* Executes users' commands using the `Logic` component.
+* Listens for changes to `Model` data so that the UI can be updated with the modified data. 
+* Any changes in `Model` data, i.e. customers, cheeses or orders data, are reflected through the `Panels` and `Cards`
+  sub-components.
+  
+The class diagram below shows in more detail the compositions of the `Panels` and `Cards` components as well as their 
+relationships with other classes.
+
+![Structure of the Panels & Cards Component](images/UiPanelsCardsClassDiagram.png)
+
 ### Logic component
 
 ### Model component
@@ -27,7 +49,11 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Common classes
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Implementation** [In Progress]
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops** [In Progress]
 
