@@ -118,7 +118,7 @@ Marks the given plan as the master plan, and this plan should contain all the mo
 Example output:
 [IMG]
 
-### Create Plan: `addp/deletep`
+### Create/Delete Plan: `addp`/`deletep`
 
 Format for adding: `addp d/DESCRIPTION [OPTIONAL: t/TAG...]`
 
@@ -131,6 +131,12 @@ Shows 2 rows:
 Constraints:
 - Trying to add a plan that already exist will not be allowed
 - Trying to delete a plan that does not exist will not be allowed
+
+Example output for adding plan:
+![add_plan](images/AddPlan.png)
+
+Example output for deleting plan:
+![delete_plan](images/DeletePlan.png)
 
 ### Set Plan as Master Plan: `master`
 
@@ -159,7 +165,7 @@ This command takes in the grades of modules user has marked as completed and ent
 
 Example output `Current CAP is: xxx`
 
-### Add/Delete Semester to/from Plan: `adds/deletes`
+### Add/Delete Semester to/from Plan: `adds`/`deletes`
 Format for adding: `adds p/PLAN_NUMBER s/SEM_NUMBER`
 
 Format for deleting: `deletes p/PLAN_NUMBER s/SEM_NUMBER`
@@ -169,6 +175,12 @@ The output will show whether the operation was successful and include the semest
 Constraints:
 * Trying to add a semester that already exist will not be allowed
 * Trying to delete a semester that does not exist will not be allowed
+
+Example output for adding semester:
+![add_semester](images/AddSemester.png)
+
+Example output for deleting semester:
+![delete_semester](images/DeleteSemester.png)
 
 ### Set Semester as in-progress: `current semester`
 Format: `current s/SEM_NUMBER`
