@@ -2,6 +2,7 @@ package seedu.address.commons.core;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.logging.Level;
 
@@ -11,6 +12,8 @@ import java.util.logging.Level;
 public class Config {
 
     public static final Path DEFAULT_CONFIG_FILE = Paths.get("config.json");
+
+    public static final Locale DEFAULT_LOCALE = new Locale("en", "SG");
 
     // Config values customizable through config file
     private Level logLevel = Level.INFO;
@@ -37,7 +40,7 @@ public class Config {
         if (other == this) {
             return true;
         }
-        if (!(other instanceof Config)) { //this handles null as well.
+        if (!(other instanceof Config)) { // this handles null as well.
             return false;
         }
 
