@@ -1,0 +1,28 @@
+@startuml
+!include style.puml
+
+participant ":Plan" as Plan LOGIC_COLOR
+participant ":Description" as Description LOGIC_COLOR
+participant ":Tag" as Tag LOGIC_COLOR
+
+[-> Plan : toString()
+activate Plan
+
+Plan -> Description : getDescription()
+activate Description
+
+Plan <-- Description
+deactivate Description
+
+loop tags in plan
+
+Plan -> Tag : toString()
+activate Tag
+
+Plan <-- Tag
+deactivate Tag
+end
+
+[<-- Plan
+deactivate Plan
+@enduml

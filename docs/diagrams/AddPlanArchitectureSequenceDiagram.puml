@@ -1,0 +1,44 @@
+@startuml
+!include style.puml
+
+Actor User as user USER_COLOR
+Participant ":UI" as ui UI_COLOR
+Participant ":Logic" as logic LOGIC_COLOR
+Participant ":Command" as command LOGIC_COLOR_T2
+Participant ":Model" as model MODEL_COLOR
+Participant ":ModulePlanner" as modulePlanner MODEL_COLOR_T2
+
+user -> ui : "addp d/<desc>"
+activate ui
+
+ui -> logic : execute("addp d/<desc>")
+activate logic
+
+logic -> command : execute(model)
+activate command
+
+command -> model : addPlan(plan)
+activate model
+
+model -> modulePlanner : addPlan(plan)
+activate modulePlanner
+
+model <-- modulePlanner
+deactivate modulePlanner
+
+model -> model : updateFilteredPlanList(predicate)
+activate model
+deactivate model
+
+command <-- model
+deactivate model
+
+logic <-- command
+deactivate command
+
+ui <-- logic
+deactivate logic
+
+user <-- ui
+deactivate ui
+@enduml

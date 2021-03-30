@@ -71,7 +71,7 @@ public class MasterPlanCommand extends Command {
             return true;
         } else if (other instanceof MasterPlanCommand) {
             MasterPlanCommand o = (MasterPlanCommand) other;
-            return this.masterPlanIndex == o.masterPlanIndex;
+            return this.masterPlanIndex.equals(o.masterPlanIndex);
         } else {
             return false;
         }
