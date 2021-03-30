@@ -10,7 +10,6 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPolicyMode;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.attribute.Attribute;
@@ -42,6 +41,11 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    /**
+     * Parses {@code edit policy mode} into a {@code an EditPolicyMode enumeration} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the specified mode does not match the required constraints).
+     */
     public static EditPolicyMode parseEditPolicyMode(String editPolicyMode) throws ParseException {
         String trimmedEditPolicyMode = editPolicyMode.trim();
         switch (trimmedEditPolicyMode) {
