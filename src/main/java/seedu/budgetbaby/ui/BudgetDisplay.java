@@ -40,7 +40,7 @@ public class BudgetDisplay extends UiPart<Region> {
     private Label budgetPercentage;
 
     @FXML
-    private ListView topCategories;
+    private ListView<String> topCategories;
 
     /**
      * Creates a {@code BudgetDisplay} with the given {@code Month}.
