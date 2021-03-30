@@ -1,18 +1,15 @@
 package seedu.address.model.issue;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
-import java.util.UUID;
 
 /**
  * Represents a Issue in the address book. Guarantees: details are present and
  * not null, field values are validated, immutable.
  */
 public class Issue implements Comparable<Issue> {
-
-    // Identity fields
-    private final String id;
 
     // Data fields
     private final RoomNumber roomNumber;
@@ -27,7 +24,6 @@ public class Issue implements Comparable<Issue> {
     public Issue(RoomNumber roomNumber, Description description, Timestamp timestamp, Status status,
             Category category) {
         requireAllNonNull(roomNumber, description, timestamp, status, category);
-        this.id = UUID.randomUUID().toString();
         this.roomNumber = roomNumber;
         this.description = description;
         this.timestamp = timestamp;
@@ -35,8 +31,20 @@ public class Issue implements Comparable<Issue> {
         this.category = category;
     }
 
-    public String getId() {
-        return this.id;
+    /**
+     * Takes in an issue and returns an issue with the same values except for Status being closed.
+     *
+     * @param issue to be closed
+     * @return the same issue but the status set to closed
+     */
+    public static Issue closeIssue(Issue issue) {
+        requireNonNull(issue);
+        return new Issue(
+                issue.getRoomNumber(),
+                issue.getDescription(),
+                issue.getTimestamp(),
+                new Status(IssueStatus.Closed),
+                issue.getCategory());
     }
 
     public RoomNumber getRoomNumber() {
@@ -61,18 +69,6 @@ public class Issue implements Comparable<Issue> {
      */
     public Category getCategory() {
         return this.category;
-    }
-
-    /**
-     * Returns true if both issues have the same name. This defines a weaker notion
-     * of equality between two issues.
-     */
-    public boolean isSameIssue(Issue otherIssue) {
-        if (otherIssue == this) {
-            return true;
-        }
-
-        return otherIssue != null && otherIssue.getId().equals(getId());
     }
 
     /**
