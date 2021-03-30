@@ -19,8 +19,10 @@ import seedu.cakecollate.logic.commands.exceptions.CommandException;
 import seedu.cakecollate.model.CakeCollate;
 import seedu.cakecollate.model.Model;
 import seedu.cakecollate.model.ReadOnlyCakeCollate;
+import seedu.cakecollate.model.ReadOnlyOrderItems;
 import seedu.cakecollate.model.ReadOnlyUserPrefs;
 import seedu.cakecollate.model.order.Order;
+import seedu.cakecollate.model.orderitem.OrderItem;
 import seedu.cakecollate.testutil.OrderBuilder;
 
 public class AddCommandTest {
@@ -150,6 +152,21 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredOrderList(Predicate<Order> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteOrderItem(OrderItem target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addOrderItem(OrderItem item) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyOrderItems getOrderItems() {
             throw new AssertionError("This method should not be called.");
         }
     }

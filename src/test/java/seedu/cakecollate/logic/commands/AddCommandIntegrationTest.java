@@ -12,6 +12,7 @@ import seedu.cakecollate.model.ModelManager;
 import seedu.cakecollate.model.UserPrefs;
 import seedu.cakecollate.model.order.Order;
 import seedu.cakecollate.testutil.OrderBuilder;
+import seedu.cakecollate.testutil.TypicalOrderItems;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -22,14 +23,15 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalCakeCollate(), new UserPrefs());
+        model = new ModelManager(getTypicalCakeCollate(), new UserPrefs(),
+                TypicalOrderItems.getTypicalOrderItemsModel());
     }
 
     @Test
     public void execute_newOrder_success() {
         Order validOrder = new OrderBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getCakeCollate(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getCakeCollate(), new UserPrefs(), model.getOrderItems());
         expectedModel.addOrder(validOrder);
 
         assertCommandSuccess(new AddCommand(validOrder), model,

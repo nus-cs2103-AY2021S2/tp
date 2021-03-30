@@ -6,13 +6,14 @@ import java.util.Optional;
 
 import seedu.cakecollate.commons.exceptions.DataConversionException;
 import seedu.cakecollate.model.ReadOnlyCakeCollate;
+import seedu.cakecollate.model.ReadOnlyOrderItems;
 import seedu.cakecollate.model.ReadOnlyUserPrefs;
 import seedu.cakecollate.model.UserPrefs;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends CakeCollateStorage, UserPrefsStorage {
+public interface Storage extends CakeCollateStorage, UserPrefsStorage, OrderItemsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -29,4 +30,14 @@ public interface Storage extends CakeCollateStorage, UserPrefsStorage {
     @Override
     void saveCakeCollate(ReadOnlyCakeCollate cakeCollate) throws IOException;
 
+    @Override
+    Path getOrderItemsFilePath();
+
+    @Override
+    Optional<ReadOnlyOrderItems> readOrderItems() throws DataConversionException, IOException;
+
+    @Override
+    void saveOrderItems(ReadOnlyOrderItems orderItems) throws IOException;
+
 }
+
