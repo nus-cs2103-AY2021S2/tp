@@ -4,6 +4,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Objects;
@@ -21,7 +22,6 @@ public class Meeting {
             "Meetings should only contain date, start time, end time, place and they should not be blank";
 
     public static final String VALIDATION_REGEX = "[^\\s].*";
-    public static final String TIME_REGEX = "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$";
 
     public final String date;
     public final String start;
@@ -62,8 +62,7 @@ public class Meeting {
      * Returns true if the given strings can form a valid meeting.
      */
     public static boolean isValidMeeting(String date, String start, String end, String place) {
-        return checkDate(date) && start.matches(TIME_REGEX)
-                && end.matches(TIME_REGEX) && place.matches(VALIDATION_REGEX);
+        return checkDate(date) && checkTime(start, end) && place.matches(VALIDATION_REGEX);
     }
 
     /**
@@ -89,9 +88,22 @@ public class Meeting {
         }
     }
 
+    /**
+     * Returns true if a given string is a time in the valid format.
+     */
+    public static boolean checkTime(String start, String end) {
+        try {
+            LocalTime startTime = LocalTime.parse(start, DateTimeFormatter.ofPattern("HH:mm"));
+            LocalTime endTime = LocalTime.parse(end, DateTimeFormatter.ofPattern("HH:mm"));
+            return endTime.isAfter(startTime);
+        } catch (DateTimeParseException ex) {
+            return false;
+        }
+    }
+
     @Override
     public String toString() {
-        return meeting;
+        return "Date: " + date + "  Start: " + start + "  End: " + end + "  Place: " + place;
     }
 
     @Override

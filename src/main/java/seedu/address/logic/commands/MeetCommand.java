@@ -3,6 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -31,11 +33,13 @@ public class MeetCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Schedule a meeting with a client.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "ACTION (-add, -delete, -clear) "
-            + "DATE(DD.MM.YYYY) START(HH:MM) END(HH:MM)PLACE\n"
+            + "ACTION (-add, -delete) "
+            + "DATE (DD.MM.YYYY) START (HH:MM) END (HH:MM) PLACE\n"
+            + "or INDEX ACTION (-clear) or INDEX DATE START END PLACE\n"
+            + "END time must be after START time on the same DATE.\n"
             + "Example: " + COMMAND_WORD + " 3 -add 18.05.2021 16:30 17:30 MRT";
 
-    public static final String MESSAGE_CLASHING_MEETING = "The meeting clashes with %1$s";
+    public static final String MESSAGE_CLASHING_MEETING = "The meeting clashes with \n%1$s";
     public static final String MESSAGE_ADD_MEETING = "The meeting is added to the client %1$s";
     public static final String MESSAGE_DELETE_MEETING = "The meeting is deleted from the client %1$s";
     public static final String MESSAGE_CLEAR_MEETING = "All meetings are cleared from the client.";
@@ -96,9 +100,9 @@ public class MeetCommand extends Command {
         if (!clashes.isEmpty()) {
             StringBuilder builder = new StringBuilder();
             for (Meeting clash : clashes) {
-                builder.append(clash.meeting).append(", ");
+                builder.append(clash.toString()).append("\n");
             }
-            builder.deleteCharAt(builder.length() - 1).deleteCharAt(builder.length() - 1);
+            builder.deleteCharAt(builder.length() - 1);
             return new CommandResult(String.format(MESSAGE_CLASHING_MEETING, builder.toString()));
         }
 
@@ -189,18 +193,27 @@ public class MeetCommand extends Command {
      * @return List of clashed meetings
      */
     public static List<Meeting> checkMeeting(List<Person> personList, Meeting meeting) {
-        List<Meeting> clashedMeeting = new ArrayList<>();
+        List<Meeting> clashes = new ArrayList<>();
 
         for (Person person : personList) {
             for (Meeting meet : person.getMeetings()) {
-                if (meeting.date.equals(meet.date) && meeting.start.equals(meet.start)
-                        & meeting.end.equals(meet.end)) {
-                    clashedMeeting.add(meet);
+                LocalTime meetingStart = LocalTime.parse(meeting.start, DateTimeFormatter.ofPattern("HH:mm"));
+                LocalTime meetingEnd = LocalTime.parse(meeting.end, DateTimeFormatter.ofPattern("HH:mm"));
+
+                LocalTime meetStart = LocalTime.parse(meet.start, DateTimeFormatter.ofPattern("HH:mm"));
+                LocalTime meetEnd = LocalTime.parse(meet.end, DateTimeFormatter.ofPattern("HH:mm"));
+
+                boolean startClashed = (meetingStart.isAfter(meetStart) && meetingStart.isBefore(meetEnd))
+                        || meetingStart.equals(meetStart) || meetingStart.equals(meetEnd);
+                boolean endClashed = (meetingEnd.isAfter(meetStart) && meetingEnd.isBefore(meetEnd))
+                        || meetingEnd.equals(meetStart) || meetingEnd.equals(meetEnd);
+
+                if (meet.date.equals(meeting.date) && (startClashed || endClashed)) {
+                    clashes.add(meet);
                 }
             }
         }
-
-        return clashedMeeting;
+        return clashes;
     }
 
 }

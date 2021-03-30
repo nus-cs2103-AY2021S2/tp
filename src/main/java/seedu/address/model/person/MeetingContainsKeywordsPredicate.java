@@ -1,5 +1,8 @@
 package seedu.address.model.person;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -15,17 +18,27 @@ public class MeetingContainsKeywordsPredicate implements Predicate<Person> {
         this.keywords = keywords;
     }
 
-    static boolean checkMeeting(List<Meeting> meeting, String keyword) {
+    static boolean checkMeeting(List<Meeting> meetings, String keyword) {
         boolean containsKeyword = false;
-
-        for (Meeting meet : meeting) {
-            if (meet.date.toLowerCase().contains(keyword.toLowerCase())
-                    || meet.start.toLowerCase().contains(keyword.toLowerCase())
-                    || meet.end.toLowerCase().contains(keyword.toLowerCase())
-                    || meet.place.toLowerCase().contains(keyword.toLowerCase())
-                    || meet.meeting.toLowerCase().contains(keyword.toLowerCase())) {
+        for (Meeting meeting : meetings) {
+            if (meeting.date.toLowerCase().contains(keyword.toLowerCase())
+                    || meeting.place.toLowerCase().contains(keyword.toLowerCase())
+                    || meeting.meeting.toLowerCase().contains(keyword.toLowerCase())) {
                 containsKeyword = true;
                 break;
+            }
+
+            try {
+                LocalTime keyTime = LocalTime.parse(keyword, DateTimeFormatter.ofPattern("HH:mm"));
+                LocalTime meetingStart = LocalTime.parse(meeting.start, DateTimeFormatter.ofPattern("HH:mm"));
+                LocalTime meetingEnd = LocalTime.parse(meeting.end, DateTimeFormatter.ofPattern("HH:mm"));
+                if ((keyTime.isAfter(meetingStart) && keyTime.isBefore(meetingEnd))
+                        || keyTime.equals(meetingStart) || keyTime.equals(meetingEnd)) {
+                    containsKeyword = true;
+                    break;
+                }
+            } catch (DateTimeParseException ex) {
+                continue;
             }
         }
         return containsKeyword;

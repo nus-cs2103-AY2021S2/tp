@@ -10,6 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.insurancepolicy.InsurancePolicy;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 
 /**
@@ -46,7 +47,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label insurancePolicies;
     @FXML
-    private Label meeting;
+    private Label meetings;
     @FXML
     private VBox gridPane;
 
@@ -93,11 +94,11 @@ public class PersonCard extends UiPart<Region> {
         }
 
         if (!person.getMeetings().isEmpty()) {
-            meeting.setText(person.getMeetings().stream()
+            meetings.setText(person.getMeetings().stream()
                     .map(Object::toString)
-                    .collect(Collectors.joining()));
+                    .collect(Collectors.joining("\n")));
         } else {
-            gridPane.getChildren().remove(meeting);
+            gridPane.getChildren().remove(meetings);
             gridPane.setMinHeight(gridPane.getMinHeight() - 20);
         }
     }

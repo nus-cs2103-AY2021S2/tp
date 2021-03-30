@@ -2,7 +2,6 @@ package seedu.address.model.meeting;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -28,27 +27,27 @@ public class MeetingTest {
     }
 
     @Test
-    public void constructor_newMeeting_notEqual() {
-        assertNotEquals(new Meeting(VALID_DATE, VALID_END, VALID_START, VALID_PLACE),
-                Meeting.newMeeting(VALID_MEETING));
-    }
-
-    @Test
-    public void isValidMeeting() {
+    public void isValidMeeting_true() {
         // valid meeting
         assertTrue(Meeting.isValidMeeting(VALID_MEETING));
 
-        // invalid meeting
-        assertFalse(Meeting.isValidMeeting(INVALID_MEETING));
-
         // valid place date time
         assertTrue(Meeting.isValidMeeting(VALID_DATE, VALID_START, VALID_END, VALID_PLACE));
+    }
+
+    @Test
+    public void isValidMeeting_false() {
+        // invalid meeting
+        assertFalse(Meeting.isValidMeeting(INVALID_MEETING));
 
         // invalid date
         assertFalse(Meeting.isValidMeeting(INVALID_DATE, VALID_START, VALID_END, VALID_PLACE));
 
         // invalid time
         assertFalse(Meeting.isValidMeeting(VALID_DATE, INVALID_START, INVALID_END, VALID_PLACE));
+
+        // invalid start end
+        assertFalse(Meeting.isValidMeeting(VALID_DATE, VALID_END, VALID_START, VALID_PLACE));
 
         // invalid place
         assertFalse(Meeting.isValidMeeting(VALID_DATE, VALID_START, VALID_END, INVALID_PLACE));

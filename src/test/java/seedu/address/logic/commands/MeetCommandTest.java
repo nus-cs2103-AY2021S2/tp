@@ -37,14 +37,8 @@ public class MeetCommandTest {
 
         String expectedMessage = String.format(MeetCommand.MESSAGE_ADD_MEETING, meeting);
 
-        System.out.println(expectedMessage);
-        System.out.println(meetPerson);
-        System.out.println(model.getFilteredPersonList().get(0));
-
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), meetPerson);
-
-        System.out.println(expectedModel.getFilteredPersonList().get(0));
 
         assertCommandSuccess(meetCommand, model, expectedMessage, expectedModel);
     }

@@ -62,7 +62,7 @@ public class ParserUtil {
             case "-a":
                 parsedAttributesList.add(Attribute.ADDRESS);
                 break;
-            case "-meeting":
+            case "-m":
                 parsedAttributesList.add(Attribute.MEETING);
                 break;
             default:
