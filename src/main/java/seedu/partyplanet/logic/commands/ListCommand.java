@@ -87,7 +87,7 @@ public class ListCommand extends Command {
             return new CommandResult(String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
                 model.getFilteredPersonList().size())
                 + String.format(Messages.MESSAGE_PERSONS_LISTED_TAGS, tagsRepresentation)
-                + "\nNone of the persons meet the requirements.");
+                + "\nNobody met the requirements.");
         }
         return new CommandResult(
             String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size())
