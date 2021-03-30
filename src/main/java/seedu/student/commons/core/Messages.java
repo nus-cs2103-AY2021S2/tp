@@ -15,4 +15,5 @@ public class Messages {
             " All students and appointments are listed!";
     public static final String MESSAGE_NONEXISTENT_APPOINTMENT = "No appointment is found!";
     public static final String MESSAGE_OUT_OF_INDEX = "The index requested does not exist!";
+    public static final String MESSAGE_STUDENTS_AND_APPOINTMENT_FOUND = "abc" ;
 }

@@ -1,4 +1,4 @@
-package seedu.student.logic.commands;
+/*package seedu.student.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
@@ -8,10 +8,10 @@ import seedu.student.model.appointment.AppointmentContainsMatriculationNumberPre
 import seedu.student.model.appointment.AppointmentListContainsMatriculationNumberPredicate;
 import seedu.student.model.student.StudentContainsMatriculationNumberPredicate;
 
-/**
+
  * Finds and lists all persons in student book whose name contains any of the argument keywords.
  * Keyword matching is case sensitive.
- */
+
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
@@ -29,12 +29,9 @@ public class FindCommand extends Command {
      *  Creates a FindCommand object responsible for deleting a student by matriculation number.
      * @param studentPredicate
      * @param appointmentPredicate
-     */
-    public FindCommand(StudentContainsMatriculationNumberPredicate studentPredicate,
+       public FindCommand(StudentContainsMatriculationNumberPredicate studentPredicate,
                        AppointmentListContainsMatriculationNumberPredicate appointmentListPredicate,
-                       AppointmentContainsMatriculationNumberPredicate appointmentPredicate
-
-    ) {
+                       AppointmentContainsMatriculationNumberPredicate appointmentPredicate) {
         this.predicate = studentPredicate;
         this.appointmentPredicate = appointmentPredicate;
         this.appointmentListPredicate = appointmentListPredicate;
@@ -46,11 +43,9 @@ public class FindCommand extends Command {
         model.updateFilteredStudentList(predicate);
         model.updateFilteredAppointmentList(appointmentListPredicate, appointmentPredicate);
 
-        int filteredStudentListSize = model.getFilteredStudentList().size();
-        int filteredAppointmentListSize = model.getFilteredStudentList().size();
+        //System.out.println("hihi");
 
-        assert (filteredStudentListSize >= 0 && filteredAppointmentListSize >= 0);
-
+<<<<<<< Updated upstream
         if (filteredStudentListSize == 0) {
             return new CommandResult(String.format(Messages.MESSAGE_NONEXISTENT_MATRIC_NUM,
                     model.getFilteredStudentList().size()));
@@ -61,6 +56,8 @@ public class FindCommand extends Command {
             return new CommandResult(String.format(Messages.MESSAGE_STUDENTS_ARE_LISTED
                             + Messages.MESSAGE_APPOINTMENT_IS_LISTED, model.getFilteredStudentList().size()));
         }
+=======
+>>>>>>> Stashed changes
     }
 
     @Override
@@ -70,3 +67,4 @@ public class FindCommand extends Command {
                 && predicate.equals(((FindCommand) other).predicate)); // state check
     }
 }
+*/

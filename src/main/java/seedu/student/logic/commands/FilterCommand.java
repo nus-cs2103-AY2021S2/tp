@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.function.Predicate;
 
 import seedu.student.commons.core.Messages;
+import seedu.student.logic.parser.FindCommandParser;
+import seedu.student.logic.parser.exceptions.ParseException;
 import seedu.student.model.Model;
 import seedu.student.model.student.Student;
 
@@ -28,13 +30,20 @@ public class FilterCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws ParseException {
         requireNonNull(model);
         model.updateFilteredStudentList(predicate);
         if (model.getFilteredStudentList().size() == 0) {
             return new CommandResult(
                     String.format(Messages.MESSAGE_NO_STUDENTS_ARE_LISTED, model.getFilteredStudentList().size()));
         } else {
+            for(int i =0; i<model.getFilteredStudentList().size(); i++){
+                FindCommandParser fc = new FindCommandParser();
+               // FindCommand fc2 = fc.parse(model.getFilteredStudentList().get(i).getMatriculationNumber().toString());
+              //  fc2.execute(model);
+
+
+            }
             return new CommandResult(
                     String.format(Messages.MESSAGE_STUDENTS_ARE_LISTED, model.getFilteredStudentList().size()));
         }
