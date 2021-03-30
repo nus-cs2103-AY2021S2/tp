@@ -1,10 +1,7 @@
 package seedu.address.model.person.comparators;
 
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Optional;
 
-import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.School;
 
