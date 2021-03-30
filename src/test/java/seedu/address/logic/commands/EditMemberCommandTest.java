@@ -30,7 +30,7 @@ import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TypicalPersons;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for EditMemberCommand.
  */
 public class EditMemberCommandTest {
 
@@ -163,8 +163,7 @@ public class EditMemberCommandTest {
     }
 
     /**
-     * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book.
+     * Edit filtered list where the input name is invalid.
      */
     @Test
     public void execute_invalidPersonNameFilteredList_failure() throws ParseException {

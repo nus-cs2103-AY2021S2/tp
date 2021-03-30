@@ -20,7 +20,7 @@ import seedu.address.testutil.TypicalPersons;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
+ * {@code DeleteMemberCommand}.
  */
 public class DeleteMemberCommandTest {
     private Model model = new ModelManager(getTypicalHeyMatez(), new UserPrefs());

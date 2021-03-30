@@ -28,6 +28,9 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.testutil.EditMemberDescriptorBuilder;
 
+/**
+ * Contains unit tests for {@code EditMemberCommandParser}.
+ */
 public class EditMemberCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT =

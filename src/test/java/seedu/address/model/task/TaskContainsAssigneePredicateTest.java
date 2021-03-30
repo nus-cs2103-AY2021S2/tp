@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.TaskBuilder;
 
+/**
+ * Contains unit tests for {@code TaskContainsAssigneePredicate}.
+ */
 public class TaskContainsAssigneePredicateTest {
     @Test
     public void equals() {

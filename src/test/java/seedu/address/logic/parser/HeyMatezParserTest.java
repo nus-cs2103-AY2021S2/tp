@@ -28,6 +28,9 @@ import seedu.address.testutil.EditMemberDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
+/**
+ * Contains unit tests for {@code HeyMatezParser}.
+ */
 public class HeyMatezParserTest {
 
     private final HeyMatezParser parser = new HeyMatezParser();

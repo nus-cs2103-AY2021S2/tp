@@ -15,7 +15,9 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
-
+/**
+ * Contains integration tests (interaction with the Model) for {@code DeleteMemberCommand}.
+ */
 public class DeleteMemberCommandIntegrationTest {
 
     private Model model;

@@ -6,7 +6,7 @@ import seedu.address.model.Model;
 import seedu.address.model.task.TaskContainsAssigneePredicate;
 
 /**
- * Finds and lists all tasks in HeyMatez who contains the assignee with the given name
+ * Finds and lists all tasks in HeyMatez who contains the assignee with the given name.
  */
 public class FindMemberTasksCommand extends Command {
 

@@ -8,8 +8,8 @@ import seedu.address.model.Model;
 import seedu.address.model.task.PriorityContainsKeywordPredicate;
 
 /**
- * Represents a FindByPriorityCommand
- * It displays tasks that are only of the specified priority value
+ * Represents a FindByPriorityCommand.
+ * It displays tasks that are only of the specified priority value.
  */
 public class FindByPriorityCommand extends Command {
 

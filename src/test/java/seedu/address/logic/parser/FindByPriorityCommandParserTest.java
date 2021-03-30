@@ -12,6 +12,9 @@ import seedu.address.logic.commands.FindByPriorityCommand;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.PriorityContainsKeywordPredicate;
 
+/**
+ * Contains unit tests for {@code FindByPriorityCommandParser}.
+ */
 public class FindByPriorityCommandParserTest {
     private FindByPriorityCommandParser parser = new FindByPriorityCommandParser();
 

@@ -42,5 +42,4 @@ public interface HeyMatezStorage {
      * @see #saveHeyMatez(ReadOnlyHeyMatez)
      */
     void saveHeyMatez(ReadOnlyHeyMatez heyMatez, Path filePath) throws IOException;
-
 }
