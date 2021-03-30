@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.entry.Entry;
+import seedu.address.model.entry.NonOverlappingEntryList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.schedule.Schedule;
@@ -18,6 +20,7 @@ import seedu.address.model.task.UniqueTaskList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
+    private final NonOverlappingEntryList entries;
     private final UniquePersonList persons;
     private final UniqueScheduleList schedules;
     private final UniqueTaskList tasks;
@@ -30,6 +33,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
+        entries = new NonOverlappingEntryList();
         tasks = new UniqueTaskList();
         persons = new UniquePersonList();
         schedules = new UniqueScheduleList();
@@ -53,6 +57,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPersons(List<Person> persons) {
         this.persons.setPersons(persons);
+    }
+
+    /**
+     * Replaces the contents of the entry list with {@code entries}.
+     * {@code entries} must not contain overlapping entries.
+     */
+    public void setEntries(List<Entry> entries) {
+        this.entries.setEntries(entries);
     }
 
     /**
@@ -118,6 +130,42 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    //// entry methods
+
+    /**
+     * Returns true if the entry exists in the list.
+     */
+    public boolean hasEntry(Entry entry) {
+        requireNonNull(entry);
+        return entries.contains(entry);
+    }
+
+    /**
+     * Adds an entry to the list.
+     * The entry must not overlap with existing entries in the list.
+     */
+    public void addEntry(Entry entry) {
+        entries.add(entry);
+    }
+
+    /**
+     * Removes an entry {@code key} from the list.
+     * {@code key} must exist in the list.
+     */
+    public void removeEntry(Entry key) {
+        entries.remove(key);
+    }
+
+    /**
+     * Replaces the given entry {@code target} in the list with {@code editedEntry}.
+     * {@code target} must exist in the list.
+     * {@code editedEntry} must not overlap with existing entries in the list.
+     */
+    public void setEntry(Entry target, Entry editedEntry) {
+        requireNonNull(editedEntry);
+        entries.setEntry(target, editedEntry);
+    }
+
     //// schedule methods
 
     /**
@@ -169,6 +217,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removeTask(Task target) {
         tasks.remove(target);
     }
+
     //// util methods
 
     @Override
@@ -182,6 +231,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
+    @Override
+    public ObservableList<Entry> getEntryList() {
+        return entries.asUnmodifiableObservableList();
+    }
+
+    @Override
     public ObservableList<Schedule> getScheduleList() {
         return schedules.asUnmodifiableObservableList();
     }
