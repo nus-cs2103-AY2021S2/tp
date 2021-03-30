@@ -108,6 +108,7 @@ public class TypicalPassengers {
     }
 
     public static List<Passenger> getTypicalPassengers() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, HILARY, JACKSON,
+                KINGSLEY, IRENE));
     }
 }
