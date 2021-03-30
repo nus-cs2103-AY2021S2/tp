@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -22,32 +23,49 @@ public class DeleteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person(s): %1$s";
 
-    private final Index targetIndex;
+    private final List<Index> targetIndexList;
 
-    public DeleteCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    /**
+     * Takes a list of {@code Index} and constructs a DeleteCommand
+     * @param targetIndexList a list of {@code Index}
+     */
+    public DeleteCommand(List<Index> targetIndexList) {
+        this.targetIndexList = targetIndexList;
+        assert targetIndexList.size() > 0 : "No indexes for DeleteCommand";
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
+        final StringBuilder outputString = new StringBuilder();
+        List<Person> personToDeleteList = new ArrayList<>();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        for (Index targetIndex : targetIndexList) {
+            if (targetIndex.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
+            Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+            personToDeleteList.add(personToDelete);
         }
 
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+        for (Person personToDelete : personToDeleteList) {
+            model.deletePerson(personToDelete);
+            if (targetIndexList.size() > 1) {
+                outputString.append("\n");
+            }
+            outputString.append(personToDelete);
+        }
+
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, outputString));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                && targetIndexList.equals(((DeleteCommand) other).targetIndexList)); // state check
     }
 }
