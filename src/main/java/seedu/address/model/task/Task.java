@@ -86,6 +86,10 @@ public class Task {
         completionStatus.markAsDone();
     }
 
+    public void markTaskAsUndone() {
+        completionStatus.markAsUndone();
+    }
+
     /**
      * Returns true if the deadline of the task hasn't past.
      */

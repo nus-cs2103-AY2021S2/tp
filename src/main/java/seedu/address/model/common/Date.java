@@ -69,4 +69,31 @@ public class Date implements Comparable<Date> {
     public int compareTo(Date other) {
         return this.date.compareTo(other.date);
     }
+
+    /**
+     * Returns if the current date is earlier than the given date.
+     * @param other another Date object to compare with
+     * @return if the current date is earlier than the given date.
+     */
+    public boolean isBefore(Date other) {
+        return date.isBefore(other.getDate());
+    }
+
+    /**
+     * Returns if the current date is later than the given date.
+     * @param other another Date object to compare with
+     * @return if the current date is later than the given date.
+     */
+    public boolean isAfter(Date other) {
+        return date.isAfter(other.getDate());
+    }
+
+    /**
+     * Returns if the current date is the same as the given date.
+     * @param other another Date object to compare with
+     * @return if the current date is the same as the given date.
+     */
+    public boolean isEqual(Date other) {
+        return date.isEqual(other.getDate());
+    }
 }

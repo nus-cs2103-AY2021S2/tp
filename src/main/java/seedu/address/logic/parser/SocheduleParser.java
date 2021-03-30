@@ -21,6 +21,7 @@ import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindEventCommand;
 import seedu.address.logic.commands.FindFreeTimeCommand;
+import seedu.address.logic.commands.FindScheduleCommand;
 import seedu.address.logic.commands.FindTaskCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListEventCommand;
@@ -29,6 +30,9 @@ import seedu.address.logic.commands.PinTaskCommand;
 import seedu.address.logic.commands.SortEventCommand;
 import seedu.address.logic.commands.SortTaskCommand;
 import seedu.address.logic.commands.SummaryCommand;
+import seedu.address.logic.commands.TodayEventCommand;
+import seedu.address.logic.commands.TodayTaskCommand;
+import seedu.address.logic.commands.UndoneTaskCommand;
 import seedu.address.logic.commands.UnpinTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -76,11 +80,17 @@ public class SocheduleParser {
         case DoneTaskCommand.COMMAND_WORD:
             return new DoneTaskCommandParser().parse(arguments);
 
+        case UndoneTaskCommand.COMMAND_WORD:
+            return new UndoneTaskCommandParser().parse(arguments);
+
         case FindTaskCommand.COMMAND_WORD:
             return new FindTaskCommandParser().parse(arguments);
 
         case FindEventCommand.COMMAND_WORD:
             return new FindEventCommandParser().parse(arguments);
+
+        case FindScheduleCommand.COMMAND_WORD:
+            return new FindScheduleCommandParser().parse(arguments);
 
         case EditTaskCommand.COMMAND_WORD:
             return new EditTaskCommandParser().parse(arguments);
@@ -115,9 +125,14 @@ public class SocheduleParser {
         case ClearExpiredEventCommand.COMMAND_WORD:
             return new ClearExpiredEventCommand();
 
-        case FindFreeTimeCommand
-                .COMMAND_WORD:
+        case FindFreeTimeCommand.COMMAND_WORD:
             return new FindFreeTimeCommandParser().parse(arguments);
+
+        case TodayTaskCommand.COMMAND_WORD:
+            return new TodayTaskCommand();
+
+        case TodayEventCommand.COMMAND_WORD:
+            return new TodayEventCommand();
 
         case ListTaskCommand.COMMAND_WORD:
             return new ListTaskCommand();
