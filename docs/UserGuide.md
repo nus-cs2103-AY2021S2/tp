@@ -1,13 +1,13 @@
 ---
-layout: page
-title: User Guide
+User Guide
 ---
-_**Tutor Tracker**_ is a **desktop app designed to help secondary school students manage tutors and tuition appointments, optimised for use via a Command Line Interface** (CLI) for a fast and streamlined experience while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Tutor Tracker can get your contact management tasks done faster than traditional GUI apps.
+_**Tutor Tracker**_ is a **desktop app designed to help secondary school students manage tutors and tuition appointments, optimised for use via a Command Line Interface** (CLI) for a fast and streamlined experience while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Tutor Tracker can get your tuition contact management tasks done faster than traditional GUI apps.
+
 * Table of Contents
-  {:toc}
-
+    * Quick Start
+    * Features
+    * Q&A
 --------------------------------------------------------------------------------------------------------------------
-
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -75,10 +75,10 @@ Details:
     * Qualifications
 
 Format:
-`add_tutor n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS... <s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS>...`
+`add_tutor n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS... <s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS> notes/NOTES`
 
 Example Input:
-`add_tutor n/John Doe p/98765432 e/johnd@example.com g/Male a/John street, block 123, #01-01 s/English r/50 l/Sec 3 y/5 q/A-Level s/Mathematics r/60 l/Sec 4 y/6 q/A-Level`
+`add_tutor n/John Doe p/98765432 e/johnd@example.com g/Male a/John street, block 123, #01-01 s/English r/50 l/Sec 3 y/5 q/A-Level s/Mathematics r/60 l/Sec 4 y/6 q/A-Level notes/cool tutor`
 
 ### List all tutors: `list_tutors`
 
@@ -103,9 +103,9 @@ Example: `delete_tutor 1`
 
 Edit a tutor's information by index. Only the attributes present are changed in the tutor.
 
-Format: `edit_tutor INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [a/ADDRESS] [<s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS>]...`
+Format: `edit_tutor INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [a/ADDRESS] [<s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS>] note/NOTES`
 
-Example: `edit_tutor 1 p/99824314 s/English r/50 l/Secondary 5 y/9 q/A-Level`
+Example: `edit_tutor 1 p/99824314 s/English r/50 l/Secondary 5 y/9 q/A-Level note/efficient`
 
 ### Viewing a tutor: `view_tutor`
 
@@ -128,6 +128,71 @@ Subjects:
     Experience: 6 years
     Qualification: Bacholar of English Literature
 ```
+### Adding a note: `add_note`
+
+Shortcut for adding note to tutor at a particular index
+
+Format: `add_note INDEX NOTE`
+
+Example: `add_note 1 patient tutor`
+
+Example Output:
+on the right of ,<br>
+```
+John Doe 
+98765432
+John street, block 123, #01-01
+johnd@example.com
+Subjects:
+1. English
+    Level: Sec 3                     
+    Rate: SGD60/hr
+    Experience: 6 years
+    Qualification: Bacholar of English Literature
+```
+```
+Notes:
+patient tutor
+```
+### Adding a note: `edit_note`
+
+Shortcut for editing note to tutor at a particular index
+
+Format: `edit_note INDEX NOTE`
+
+Example: `edit_note 1 not patient`
+
+Example Output:
+on the right of ,<br>
+```
+John Doe 
+98765432
+John street, block 123, #01-01
+johnd@example.com
+Subjects:
+1. English
+    Level: Sec 3                     
+    Rate: SGD60/hr
+    Experience: 6 years
+    Qualification: Bacholar of English Literature
+```
+
+```
+Notes:
+not patient
+```
+### Deleting a note `delete_note`
+
+Deletes solely the note to tutor at a particular index
+
+Format: `delete_note INDEX NOTE`
+
+Example: `delete_note 1`
+
+### List tutors with note `list_note`
+Lists all the tutor with note
+
+Format:`list_note`
 
 ### Adding a favourite: `favourite`
 
@@ -291,7 +356,11 @@ Views an already existing budget.
 
 Format : `view_budget`
 
+### Exiting `exit`
 
+Closes the app with `bye` message
+
+Q & A
 --------------------------------------------------------------------------------------------------------------------
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Tutor Tracker home folder.
@@ -304,6 +373,10 @@ Action | Format, Examples
 **Delete a tutor** | `delete_tutor INDEX`, <br> e.g. `delete_tutor 1`
 **Edit a tutor** | `edit_tutor INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [a/ADDRESS] [<s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS>]...`, <br> e.g. `edit_tutor 1 p/99824314 s/English r/50 l/Secondary 5 y/9 q/A-Level`
 **View a tutor details** | `view_tutor INDEX`, <br> e.g. `view_tutor 1`
+**Add note to a tutor** | `add_note INDEX NOTE`, <br> e.g. `add_note 1 patient`
+**Edit note of a tutor** | `edit_note INDEX NOTE`, <br> e.g. `edit_note not patient`
+**Delete note of a tutor** | `delete_note INDEX`, <br> e.g. `delete_note 1`
+**List tutors with note** | `list_note`, <br> e.g. `list_note`
 **Favourite a tutor** | `favourite INDEX`, <br> e.g. `favourite 1`
 **Unfavourite a tutor** | `unfavourite INDEX`, <br> e.g. `Unfavourite 1`
 **List favourites** | `list_favourites`, <br> e.g. `list_favourites`
@@ -317,4 +390,3 @@ Action | Format, Examples
 **Edit a budget** | `edit_budget` <br> e.g. `edit_budget b/600`
 **Deleting a budget** | `delete_budget` <br> e.g. `delete_budget`
 **Viewing a budget** | `view_budget` <br> e.g. `view_budget`
-
