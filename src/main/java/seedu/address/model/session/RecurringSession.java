@@ -133,6 +133,10 @@ public class RecurringSession extends Session {
     public int numOfSessionBetween(SessionDate inclusiveStart, SessionDate inclusiveEnd) {
         requireAllNonNull(inclusiveStart, inclusiveEnd);
 
+        if (endBefore(inclusiveStart) || startAfter(inclusiveEnd)) {
+            return 0;
+        }
+
         SessionDate lastInSpan;
         if (endBefore(inclusiveEnd)) {
             lastInSpan = lastSessionDate;
