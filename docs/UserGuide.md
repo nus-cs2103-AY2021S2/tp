@@ -117,12 +117,12 @@ Examples:
 Deletes person(s) from PartyPlanet's Contact List.
 
 Format: `delete [{INDEX [INDEX]... | [--any] -t TAG [-t TAG]...}]`
-* If no parameters:
+* If no parameters `delete`:
   * Deletes all persons in the displayed person list
-* If provided with index(es)
+* If provided with index(es) `delete INDEX [INDEX]...`:
   * Deletes the person at the specified `INDEX`.
   * All indexes refers to the index number shown in the displayed person list.
-* If provided with tags
+* If provided with tags `delete [--any] -t TAG [-t TAG]...`:
   * Delete every person who is tagged with all/any (`--any` specified) of the specified tags, in the displayed person list.
 
 Examples:
@@ -138,16 +138,17 @@ Edits an existing person in PartyPlanet's Contact List.
 
 Format: `edit {INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] | --remove -t TAG [-t TAG}…​}`
 
-
-* Edits the person at the specified `INDEX`.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `-t` without specifying any tags after it.
-* If `--remove` flag is used instead of `INDEX`, all specified tags will be removed from all persons in displayed list.
+* Editing specific person `edit INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] `:
+  * Edits the person at the specified `INDEX`.
+  * Existing values will be updated to the input values.
+  * When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
+  * You can remove all the person’s tags by typing `-t` without specifying any tags after it.
+* `--remove` flag used `edit --remove -t TAG [-t TAG}…​`
+  * All specified tags will be removed from persons in displayed list.
 
 Examples:
-*  `edit 2 -n James Lee -e jameslee@example.com` Edits the contact name to be “James Lee” and email address to be “jameslee@example.com”.
-*  `edit 2 -n Betsy Crower -t` Edits the name of the 2nd person to be Betsy Crower and clears all existing tags.
+* `edit 2 -n James Lee -e jameslee@example.com` Edits the contact name to be “James Lee” and email address to be “jameslee@example.com”.
+* `edit 2 -n Betsy Crower -t` Edits the name of the 2nd person to be Betsy Crower and clears all existing tags.
 * `edit --remove -t friends` Removes the `friends` tag from Alex Yeoh and Charlotte Oliveiro.
 
 ### Listing contacts : `list`
@@ -207,7 +208,7 @@ Examples:
 
 Shows a list of all events in PartyPlanet's Event List. Similar to `list`.
 
-Format: `elist [--exact] [--any] [-n NAME] [-r DETAIL] ... [-s SORT] [-o ORDER]`
+Format: `elist [--exact] [--any] [-n NAME] [-r DETAIL]... [-s SORT] [-o ORDER]`
 
 * List out all events by default if no arguments specified.
 * `-n` and `-r` can be specified to filer the list by name and/or detail.
@@ -316,10 +317,10 @@ Retrieves previously entered input.
 * `CTRL + SHIFT + Z` or `CTRL + Y` key combinations redo the last undone change to the address or event books.
 
 ### Coming Soon (Additional Features)
-* Add/Edit/Delete Modules and Tasks/Deliverables
 * Archiving of Data Files
-* Night Mode
-* Mass Operations (e.g. mass delete, mass edit)
+* Custom fonts
+* Even more themes
+* Mass Operations (e.g. mass edit)
 * Calendar View
 * _and much more!_
 
