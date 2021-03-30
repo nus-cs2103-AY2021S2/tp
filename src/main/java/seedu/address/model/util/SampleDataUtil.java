@@ -1,11 +1,13 @@
 package seedu.address.model.util;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.insurance.InsurancePlan;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthdate;
 import seedu.address.model.person.Email;
@@ -57,6 +59,15 @@ public class SampleDataUtil {
         return Arrays.stream(strings)
                 .map(Tag::new)
                 .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a list of insurance plans containing the plans given.
+     */
+    public static List<InsurancePlan> getPlanList(String... strings) {
+        return Arrays.stream(strings)
+                .map(InsurancePlan::new)
+                .collect(Collectors.toList());
     }
 
 }

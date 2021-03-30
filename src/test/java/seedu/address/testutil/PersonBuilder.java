@@ -134,6 +134,15 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code plans} into a {@code List<InsurancePlan>} and set it to the {@code Person} that we
+     * are building.
+     */
+    public PersonBuilder withPlans(String ... plans) {
+        this.plans = SampleDataUtil.getPlanList(plans);
+        return this;
+    }
+
     public Person build() {
         return new Person(name, phone, email, address, gender, birthdate, tags, meeting, plans);
     }
