@@ -75,16 +75,15 @@ public class ListCommand extends Command {
         requireNonNull(model);
         model.sortPersonList(comparator);
         model.updateFilteredPersonList(predicate);
-        String tagsRepresentation = displayTags(model.getFilteredPersonList());
-
+        String tagsRepresentation = displayTags(model.getFilteredPersonList())
+                .replace("[", "").replace("]", "");
         if (model.getPersonListCopy().size() == model.getFilteredPersonList().size()) {
             return new CommandResult(ListCommand.MESSAGE_SUCCESS // No person filtered out
                     + String.format(Messages.MESSAGE_PERSONS_LISTED_TAGS, tagsRepresentation));
         }
-
-        int numPerson = model.getFilteredPersonList().size();
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, numPerson, numPerson == 1 ? "" : "s")
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
+                    model.getFilteredPersonList().size())
                         + String.format(Messages.MESSAGE_PERSONS_LISTED_TAGS, tagsRepresentation));
     }
 
@@ -97,8 +96,7 @@ public class ListCommand extends Command {
                 .sorted((x, y) -> x.getKey().tagName.compareTo(y.getKey().tagName))
                 .map(t -> String.format("%s (%d)", t.getKey(), t.getValue()))
                 .reduce((x, y) -> x + ", " + y)
-                .orElse("None!")
-                .replace("[", "").replace("]", "");
+                .orElse("");
 
         return output;
     }
