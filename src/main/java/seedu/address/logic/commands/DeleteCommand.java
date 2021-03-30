@@ -27,7 +27,7 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_DELETE_PASSENGER_FAIL_HAS_POOL = "Failed to delete. One or more Pools "
             + "contain Passenger(s): %1$s.";
     public static final String MESSAGE_DELETE_PASSENGER_FAIL_HAS_POOL_OTHERS_DELETED = "Deleted Passenger(s): %1$s.\n"
-            + "However failed to delete some passengers as one or more Pools contain Passenger(s): %1$s.";
+            + "However failed to delete some passengers as one or more Pools contain Passenger(s): %2$s.";
 
     private final List<Index> targetIndexes;
 
