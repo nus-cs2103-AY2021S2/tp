@@ -6,6 +6,8 @@ import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_ORIGINAL_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.booking.logic.parser.ParserUtil.parseTagsForEdit;
 
 import java.util.stream.Stream;
 
@@ -27,7 +29,8 @@ public class EditPersonCommandParser implements Parser<EditPersonCommand> {
     public EditPersonCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ORIGINAL_EMAIL, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL);
+                ArgumentTokenizer.tokenize(args, PREFIX_ORIGINAL_EMAIL, PREFIX_NAME,
+                        PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
 
         Email email;
         if (!arePrefixesPresent(argMultimap, PREFIX_ORIGINAL_EMAIL)
@@ -57,6 +60,7 @@ public class EditPersonCommandParser implements Parser<EditPersonCommand> {
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditPersonCommand.MESSAGE_NOT_EDITED);
         }
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         return new EditPersonCommand(email, editPersonDescriptor);
     }
@@ -68,5 +72,4 @@ public class EditPersonCommandParser implements Parser<EditPersonCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-
 }

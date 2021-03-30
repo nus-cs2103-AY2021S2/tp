@@ -1,5 +1,7 @@
 package seedu.booking.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -46,9 +48,9 @@ public class VenueCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(String.valueOf(venue.getVenueName()));
         capacity.setText(String.valueOf(venue.getCapacity()));
-        /* person.getTags().stream()
+        venue.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName))); */
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override

@@ -1,12 +1,13 @@
 package seedu.booking.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.booking.model.booking.Booking;
-
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -34,7 +35,9 @@ public class BookingCard extends UiPart<Region> {
     @FXML
     private Label booker;
     @FXML
-    private Label time;
+    private Label startTime;
+    @FXML
+    private Label endTime;
     @FXML
     private Label description;
     @FXML
@@ -49,12 +52,12 @@ public class BookingCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         title.setText(booking.getDescription().value);
         booker.setText(booking.getBookerEmail().value);
-        //time.setText(booking.getBookingStart().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-        time.setText(booking.getBookingStart().toString());
+        startTime.setText(booking.getBookingStart().toString());
+        endTime.setText(booking.getBookingEnd().toString());
         description.setText(booking.getDescription().value);
-        /* person.getTags().stream()
+        booking.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName))); */
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override

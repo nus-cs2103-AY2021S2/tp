@@ -5,16 +5,21 @@ import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKER;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_END;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_START;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.booking.model.Model.PREDICATE_SHOW_ALL_BOOKINGS;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.booking.commons.core.Messages;
 import seedu.booking.commons.util.CollectionUtil;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.model.Model;
+import seedu.booking.model.Tag;
 import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.Description;
 import seedu.booking.model.booking.EndTime;
@@ -35,6 +40,7 @@ public class EditBookingCommand extends Command {
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_BOOKING_START + "DATETIME] "
             + "[" + PREFIX_BOOKING_END + "DATETIME] "
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " bid/1234567890 "
             + PREFIX_BOOKER + "example@gmail.com "
             + PREFIX_VENUE + "Hall "
@@ -123,9 +129,10 @@ public class EditBookingCommand extends Command {
         Description updatedDescription = editBookingDescriptor.getDescription().orElse(bookingToEdit.getDescription());
         StartTime updatedBookingStart = editBookingDescriptor.getBookingStart().orElse(bookingToEdit.getBookingStart());
         EndTime updatedBookingEnd = editBookingDescriptor.getBookingEnd().orElse(bookingToEdit.getBookingEnd());
+        Set<Tag> updatedTags = editBookingDescriptor.getTags().orElse(bookingToEdit.getTags());
         Id updatedId = bookingToEdit.getId();
         return new Booking(updatedBooker, updatedVenue, updatedDescription,
-                updatedBookingStart, updatedBookingEnd, updatedId);
+                updatedBookingStart, updatedBookingEnd, updatedTags, updatedId);
     }
 
     @Override
@@ -156,6 +163,7 @@ public class EditBookingCommand extends Command {
         private Description description;
         private StartTime bookingStart;
         private EndTime bookingEnd;
+        private Set<Tag> tags;
         private Id id;
 
         public EditBookingDescriptor() {}
@@ -170,6 +178,7 @@ public class EditBookingCommand extends Command {
             setDescription(toCopy.description);
             setBookingStart(toCopy.bookingStart);
             setBookingEnd(toCopy.bookingEnd);
+            setTags(toCopy.tags);
             setId(toCopy.id);
         }
 
@@ -222,10 +231,27 @@ public class EditBookingCommand extends Command {
         }
 
         /**
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public Optional<Set<Tag>> getTags() {
+            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(bookerEmail, venueName, description, bookingStart, bookingEnd, id);
+            return CollectionUtil.isAnyNonNull(bookerEmail, venueName, description, bookingStart, bookingEnd, tags, id);
         }
 
 
@@ -249,6 +275,7 @@ public class EditBookingCommand extends Command {
                     && getDescription().equals(e.getDescription())
                     && getBookingStart().equals(e.getBookingStart())
                     && getBookingEnd().equals(e.getBookingEnd())
+                    && getTags().equals(e.getTags())
                     && getId().equals(e.getId());
         }
     }

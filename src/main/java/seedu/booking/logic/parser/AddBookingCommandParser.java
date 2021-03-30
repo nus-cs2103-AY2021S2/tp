@@ -5,12 +5,15 @@ import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKER;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_END;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_START;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.booking.logic.commands.AddBookingCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
+import seedu.booking.model.Tag;
 import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.Description;
 import seedu.booking.model.booking.EndTime;
@@ -31,7 +34,7 @@ public class AddBookingCommandParser implements Parser<AddBookingCommand> {
     public AddBookingCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_BOOKER, PREFIX_VENUE,
-                        PREFIX_DESCRIPTION, PREFIX_BOOKING_START, PREFIX_BOOKING_END);
+                        PREFIX_DESCRIPTION, PREFIX_BOOKING_START, PREFIX_BOOKING_END, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_BOOKER, PREFIX_VENUE,
                 PREFIX_DESCRIPTION, PREFIX_BOOKING_START, PREFIX_BOOKING_END)
@@ -45,10 +48,11 @@ public class AddBookingCommandParser implements Parser<AddBookingCommand> {
         Description description = ParserUtil.parseBookingDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         StartTime bookingStart = ParserUtil.parseBookingStart(argMultimap.getValue(PREFIX_BOOKING_START).get());
         EndTime bookingEnd = ParserUtil.parseBookingEnd(argMultimap.getValue(PREFIX_BOOKING_END).get());
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
 
         Booking booking = new Booking(bookerEmail, venueName, description,
-                bookingStart, bookingEnd);
+                bookingStart, bookingEnd, tagList);
 
         return new AddBookingCommand(booking);
     }
