@@ -48,6 +48,7 @@ public class JsonAppointmentBookStorage implements HeliBookStorage {
 
         Optional<JsonSerializableAppointmentBook> jsonAppointmentBook = JsonUtil.readJsonFile(
                 filePath, JsonSerializableAppointmentBook.class);
+
         if (!jsonAppointmentBook.isPresent()) {
             return Optional.empty();
         }
