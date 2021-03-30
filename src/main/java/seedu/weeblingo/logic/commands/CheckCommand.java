@@ -15,8 +15,8 @@ public class CheckCommand extends Command {
     public static final String COMMAND_WORD = "check";
     public static final String CORRECT_ATTEMPT = "You answered correctly!\n";
     public static final String WRONG_ATTEMPT = " is incorrect.\n";
-    public static final String MESSAGE_SUCCESS = "Enter \"end\" to end the quiz "
-            + "and \"next\" to move to the next question.";
+    public static final String MESSAGE_HELPER = "Enter \"end\" to end the quiz "
+            + "and \"next\" to move to the next question.\n";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": checks user answer for displayed flashcard.\n"
             + "Parameters: ATTEMPT\n"
             + "Example: " + COMMAND_WORD + " apple";
@@ -42,9 +42,13 @@ public class CheckCommand extends Command {
         }
         if (model.isCorrectAttempt(attempt)) {
             model.switchModeCheckSuccess();
-            return new CommandResult(CORRECT_ATTEMPT + MESSAGE_SUCCESS, false, false);
+            String quizStatistics = model.getQuizStatisticString();
+            return new CommandResult(CORRECT_ATTEMPT + quizStatistics + MESSAGE_HELPER,
+                    false, false);
         } else {
-            return new CommandResult(attempt + WRONG_ATTEMPT + MESSAGE_SUCCESS, false, false);
+            String quizStatistics = model.getQuizStatisticString();
+            return new CommandResult(attempt + WRONG_ATTEMPT + quizStatistics + MESSAGE_HELPER,
+                    false, false);
         }
 
     }

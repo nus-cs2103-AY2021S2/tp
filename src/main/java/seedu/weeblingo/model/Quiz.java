@@ -11,6 +11,7 @@ import java.util.Set;
 
 import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.flashcard.Flashcard;
+import seedu.weeblingo.model.score.Score;
 import seedu.weeblingo.model.tag.Tag;
 
 /**
@@ -27,13 +28,17 @@ public class Quiz {
     private int currentQuizIndex = 0;
     private Instant startTime;
 
+    // Support for storing the quiz attempt history
+    private int numberOfQuestionsAttempted;
+    private int numberOfQuestionsCorrect;
+
     /**
      * Initializes the quiz session with a queue of all flashcards with randomized order.
      */
     public Quiz(List<Flashcard> flashcards) {
         Flashcard[] flashcardsReadFromDB = flashcards.stream().toArray(Flashcard[]::new);
         quizSessionQueue = getRandomizedQueue(flashcardsReadFromDB);
-        startTime = Instant.now();
+        initStatistics();
     }
 
     /**
@@ -43,7 +48,7 @@ public class Quiz {
     public Quiz(List<Flashcard> flashcards, int numberOfQuestions) {
         Flashcard[] flashcardsReadFromDB = flashcards.stream().toArray(Flashcard[]::new);
         quizSessionQueue = getRandomizedSubsetQueue(flashcardsReadFromDB, numberOfQuestions);
-        startTime = Instant.now();
+        initStatistics();
     }
 
     /**
@@ -53,7 +58,7 @@ public class Quiz {
     public Quiz(List<Flashcard> flashcards, Set<Tag> tags) {
         Flashcard[] flashcardsReadFromDB = flashcards.stream().toArray(Flashcard[]::new);
         quizSessionQueue = getRandomizedSubsetQueue(flashcardsReadFromDB, tags);
-        startTime = Instant.now();
+        initStatistics();
     }
 
     /**
@@ -98,8 +103,19 @@ public class Quiz {
         return currentQuiz;
     }
 
+    /**
+     * Checks whether the attempt is correct with respect to the current flashcard in the quiz.
+     *
+     * @param attempt The answer to check.
+     * @return True if the attempt is correct; false otherwise. Statistics of the quiz will be updated as well.
+     */
     public boolean isCorrectAttempt(Answer attempt) {
-        return currentQuiz.getAnswer().equals(attempt);
+        numberOfQuestionsAttempted++;
+        boolean result = currentQuiz.getAnswer().equals(attempt);
+        if (result) {
+            numberOfQuestionsCorrect++;
+        }
+        return result;
     }
 
     public Queue<Flashcard> getQuizSessionQueue() {
@@ -165,9 +181,38 @@ public class Quiz {
     public String getQuizSessionDuration() {
         Instant endTime = Instant.now();
         Duration duration = Duration.between(startTime, endTime);
-        return String.format("%d:%02d:%02d",
+        return String.format("%d:%02d:%02d\n",
                 duration.toHours(),
                 duration.toMinutesPart(),
                 duration.toSecondsPart());
+    }
+
+    /**
+     * Initializes the state of the quiz statistics.
+     */
+    private void initStatistics() {
+        numberOfQuestionsCorrect = 0;
+        numberOfQuestionsAttempted = 0;
+        startTime = Instant.now();
+    }
+
+    /**
+     * Gets the statistics information of Quiz as a string for display purposes.
+     *
+     * @return The string representation of the quiz statistics.
+     */
+    public String getStatisticString() {
+        return String.format("Number of attempts: %d; Number of correct attempts: %d; Time spent: %s",
+                numberOfQuestionsAttempted,
+                numberOfQuestionsCorrect, getQuizSessionDuration());
+    }
+
+    /**
+     * Gives a score representing the quiz attempt.
+     *
+     * @return The score containing the statistic data of the quiz attempt.
+     */
+    public Score giveScore() {
+        return Score.of(numberOfQuestionsAttempted, numberOfQuestionsCorrect);
     }
 }

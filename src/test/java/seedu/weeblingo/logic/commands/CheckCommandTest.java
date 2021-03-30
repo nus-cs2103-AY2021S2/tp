@@ -28,7 +28,7 @@ public class CheckCommandTest {
         Answer attempt = new FlashcardBuilder().build().getAnswer();
         ModelStubCheckSuccessful modelStub = new ModelStubCheckSuccessful();
         CommandResult commandResult = new CheckCommand(attempt).execute(modelStub);
-        assertEquals(CheckCommand.CORRECT_ATTEMPT + CheckCommand.MESSAGE_SUCCESS, commandResult.getFeedbackToUser());
+        assertEquals(CheckCommand.CORRECT_ATTEMPT + CheckCommand.MESSAGE_HELPER, commandResult.getFeedbackToUser());
     }
 
     @Test
@@ -36,7 +36,7 @@ public class CheckCommandTest {
         Answer attempt = new FlashcardBuilder().build().getAnswer();
         ModelStubCheckFailure modelStub = new ModelStubCheckFailure();
         CommandResult commandResult = new CheckCommand(attempt).execute(modelStub);
-        assertEquals(attempt + CheckCommand.WRONG_ATTEMPT + CheckCommand.MESSAGE_SUCCESS,
+        assertEquals(attempt + CheckCommand.WRONG_ATTEMPT + CheckCommand.MESSAGE_HELPER,
                 commandResult.getFeedbackToUser());
     }
 
@@ -213,6 +213,16 @@ public class CheckCommandTest {
         public void switchModeHistory() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void addScore() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String getQuizStatisticString() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -233,6 +243,11 @@ public class CheckCommandTest {
         public void switchModeCheckSuccess() {
         }
 
+        @Override
+        public String getQuizStatisticString() {
+            return "";
+        }
+
     }
 
     /**
@@ -251,6 +266,11 @@ public class CheckCommandTest {
 
         @Override
         public void switchModeCheckSuccess() {
+        }
+
+        @Override
+        public String getQuizStatisticString() {
+            return "";
         }
 
     }

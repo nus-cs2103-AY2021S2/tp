@@ -213,6 +213,16 @@ public class NextCommandTest {
         public void switchModeHistory() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void addScore() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String getQuizStatisticString() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

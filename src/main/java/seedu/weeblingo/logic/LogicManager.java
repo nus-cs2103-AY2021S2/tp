@@ -53,8 +53,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            //We can deduce that the previous line of code modifies model in some way
-            // since it's being stored here.
+            // Whenever a command is successfully executed, we will store all the content of FlashcardBook.
             storage.saveFlashcardBook(model.getFlashcardBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
