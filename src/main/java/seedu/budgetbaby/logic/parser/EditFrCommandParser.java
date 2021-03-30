@@ -5,6 +5,7 @@ import static seedu.budgetbaby.commons.core.Messages.MESSAGE_INVALID_COMMAND_FOR
 import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -31,7 +32,7 @@ public class EditFrCommandParser implements BudgetBabyCommandParser<EditFrComman
     public EditFrCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_AMOUNT, PREFIX_CATEGORY);
+            ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_AMOUNT, PREFIX_TIME, PREFIX_CATEGORY);
 
         Index index;
 
@@ -48,6 +49,9 @@ public class EditFrCommandParser implements BudgetBabyCommandParser<EditFrComman
         }
         if (argMultimap.getValue(PREFIX_AMOUNT).isPresent()) {
             editedFrDescriptor.setAmount(ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get()));
+        }
+        if (argMultimap.getValue(PREFIX_TIME).isPresent()) {
+            editedFrDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_TIME).get()));
         }
         parseCategoriesForEdit(argMultimap.getAllValues(PREFIX_CATEGORY)).ifPresent(editedFrDescriptor::setCategories);
 
