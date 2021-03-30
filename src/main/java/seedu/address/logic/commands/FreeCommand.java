@@ -16,7 +16,7 @@ import seedu.address.model.entry.ListOccupyingEntryPredicate;
 public class FreeCommand extends Command {
     public static final String COMMAND_WORD = "free";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Indicates if a time interval is free. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Indicates if an interval is free. "
             + "If free, 'free' will be shown. If not, tasks occupying that interval will be shown in "
             + "this result display\n"
             + "Parameters: "
