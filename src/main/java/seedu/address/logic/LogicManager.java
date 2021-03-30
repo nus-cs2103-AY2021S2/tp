@@ -16,6 +16,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonEvent;
+import seedu.address.model.person.PersonStreak;
 import seedu.address.storage.Storage;
 
 /**
@@ -80,6 +81,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Person> getDetailedPerson() {
         return model.getDetailedPerson();
+    }
+
+    @Override
+    public ObservableList<PersonStreak> getPersonStreaks() {
+        return model.getPersonStreaks();
     }
 
     @Override
