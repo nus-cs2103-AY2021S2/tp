@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.inventory;
+package seedu.address.logic.commands.menu;
 
 import static java.util.Objects.requireNonNull;
 
@@ -9,9 +9,9 @@ import seedu.address.commons.util.PredicateUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.ingredient.Ingredient;
+import seedu.address.model.dish.Dish;
 
-public class InventoryFindCommand extends Command {
+public class MenuFindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
@@ -20,11 +20,10 @@ public class InventoryFindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " tomato fish lemon";
 
-
-    private final Predicate<Ingredient> predicate;
+    private final Predicate<Dish> predicate;
 
     @SafeVarargs
-    public InventoryFindCommand(Predicate<Ingredient>... predicates) {
+    public MenuFindCommand(Predicate<Dish>... predicates) {
         assert predicates.length > 0;
         this.predicate = PredicateUtil.composePredicates(predicates);
     }
@@ -32,7 +31,7 @@ public class InventoryFindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredIngredientList(predicate);
+        model.updateFilteredDishList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_ITEMS_LISTED_OVERVIEW,
                         model.getFilteredIngredientList().size(),
@@ -43,7 +42,7 @@ public class InventoryFindCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof InventoryFindCommand // instanceof handles nulls
-                && predicate.equals(((InventoryFindCommand) other).predicate)); // state check
+                || (other instanceof MenuFindCommand // instanceof handles nulls
+                && predicate.equals(((MenuFindCommand) other).predicate)); // state check
     }
 }

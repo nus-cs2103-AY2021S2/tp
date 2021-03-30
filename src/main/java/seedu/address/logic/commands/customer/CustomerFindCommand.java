@@ -2,10 +2,14 @@ package seedu.address.logic.commands.customer;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.util.PredicateUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonNameContainsWordsPredicate;
 
 /**
@@ -21,10 +25,12 @@ public class CustomerFindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final PersonNameContainsWordsPredicate predicate;
+    private final Predicate<Person> predicate;
 
-    public CustomerFindCommand(PersonNameContainsWordsPredicate predicate) {
-        this.predicate = predicate;
+    @SafeVarargs
+    public CustomerFindCommand(Predicate<Person>... predicates) {
+        assert predicates.length > 0;
+        this.predicate = PredicateUtil.composePredicates(predicates);
     }
 
     @Override
