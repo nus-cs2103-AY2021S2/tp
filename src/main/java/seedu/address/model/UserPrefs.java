@@ -82,7 +82,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     }
 
     /**
-     * Adds an user-defined alias to the current mapping.
+     * Adds a user-defined alias to the current mapping.
      *
      * @param alias The alias to be added.
      * @throws NullPointerException If the input is null.
@@ -93,9 +93,10 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     }
 
     /**
-     * Deletes an user-defined alias from the current mapping.
+     * Deletes a user-defined alias from the current mapping.
      *
      * @param aliasName The name of the alias to be deleted.
+     * @throws NullPointerException If the input is null.
      */
     public void deleteAlias(String aliasName) {
         requireNonNull(aliasName);
