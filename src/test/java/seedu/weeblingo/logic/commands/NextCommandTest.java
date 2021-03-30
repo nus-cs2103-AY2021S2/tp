@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.weeblingo.logic.commands.NextCommand.MESSAGE_SUCCESS;
 
 import java.nio.file.Path;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -31,7 +32,7 @@ public class NextCommandTest {
 
     @Test
     public void execute_next_success() throws CommandException {
-        model.startQuiz();
+        model.startQuiz(0, new HashSet<>());
         model.getMode().switchModeQuizSession();
         CommandResult expectedCommandResult = new CommandResult(
                 MESSAGE_SUCCESS, false, false);
@@ -125,7 +126,7 @@ public class NextCommandTest {
         }
 
         @Override
-        public void startQuiz() {
+        public void startQuiz(int numberOfQuestions, Set<Tag> tags) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -161,16 +162,6 @@ public class NextCommandTest {
 
         @Override
         public int getCurrentMode() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setNumOfQnsForQuizSession(int numberOfQuestions) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setTagsForQuizSession(Set<Tag> tags) {
             throw new AssertionError("This method should not be called.");
         }
 

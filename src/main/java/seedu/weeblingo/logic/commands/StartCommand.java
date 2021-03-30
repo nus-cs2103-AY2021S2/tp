@@ -30,29 +30,22 @@ public class StartCommand extends Command {
             + "Parameters: TAGS\n"
             + "Example: " + COMMAND_WORD + " hiragana gojuon";
 
+    public static final String MESSAGE_INVALID_NUMBER_OF_QUESTIONS = "Oops! Number of questions must "
+            + "be a positive integer!";
+
     private int numOfQnsForQuizSession;
 
     private Set<Tag> tags;
 
     /**
-     * Command to start a quiz session with no specified number of questions.
+     * Command to start a quiz session of length specified by numberOfQuestions
+     * and filtered by a specified set of Tags.
+     * @param numberOfQuestions The specified length of the quiz.
+     * @param tagsSet The specified tags by which to filter the questions.
      */
-    public StartCommand() {}
-
-    /**
-     * Command to start a quiz session with a specified number of questions.
-     * @param n The specified number of questions.
-     */
-    public StartCommand(int n) {
-        numOfQnsForQuizSession = n;
-    }
-
-    /**
-     * Command to start a quiz session filtered by a specified set of Tags.
-     * @param tags The specified tags by which to filter the questions.
-     */
-    public StartCommand(Set<Tag> tags) {
-        this.tags = tags;
+    public StartCommand(int numberOfQuestions, Set<Tag> tagsSet) {
+        this.numOfQnsForQuizSession = numberOfQuestions;
+        this.tags = tagsSet;
     }
 
     @Override
@@ -60,9 +53,7 @@ public class StartCommand extends Command {
         requireNonNull(model);
         int currentMode = model.getCurrentMode();
         if (currentMode == Mode.MODE_QUIZ) {
-            model.setNumOfQnsForQuizSession(numOfQnsForQuizSession);
-            model.setTagsForQuizSession(tags);
-            model.startQuiz();
+            model.startQuiz(numOfQnsForQuizSession, tags);
             model.switchModeQuizSession();
             return new CommandResult(MESSAGE_SUCCESS, false, false);
         } else {
@@ -74,13 +65,16 @@ public class StartCommand extends Command {
     public boolean equals(Object other) {
         if (other instanceof StartCommand) {
             StartCommand otherCommand = (StartCommand) other;
-            if (this.tags != null) {
-                return this.tags.equals(otherCommand.tags);
-            } else {
-                return this.numOfQnsForQuizSession == otherCommand.numOfQnsForQuizSession;
-            }
+            return this.numOfQnsForQuizSession == otherCommand.numOfQnsForQuizSession
+                && this.tags.containsAll(otherCommand.tags)
+                && otherCommand.tags.containsAll(this.tags);
         } else {
             return false;
         }
+    }
+
+    @Override
+    public String toString() {
+        return numOfQnsForQuizSession + tags.toString();
     }
 }

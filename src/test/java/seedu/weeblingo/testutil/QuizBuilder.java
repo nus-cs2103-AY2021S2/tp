@@ -1,6 +1,7 @@
 package seedu.weeblingo.testutil;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import seedu.weeblingo.model.Quiz;
 
@@ -11,7 +12,7 @@ public class QuizBuilder {
     private Quiz quiz;
 
     public QuizBuilder() {
-        quiz = new Quiz(new ArrayList<>());
+        quiz = new Quiz(new ArrayList<>(), 0, new HashSet<>());
     }
 
     public Quiz build() {

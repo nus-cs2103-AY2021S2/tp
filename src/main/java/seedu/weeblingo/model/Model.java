@@ -101,8 +101,11 @@ public interface Model {
      */
     void updateFilteredScoreHistory(Predicate<Score> predicate);
 
-    /** Generates a Quiz object and shows the first question */
-    void startQuiz();
+    /** Generates a Quiz object and shows the first question
+     * @param numberOfQuestions The specified length of the quiz.
+     * @param tags The specified tags by which to filter the questions.
+     * */
+    void startQuiz(int numberOfQuestions, Set<Tag> tags);
 
     /** Shows the next question in the Quiz */
     Flashcard getNextFlashcard();
@@ -123,12 +126,6 @@ public interface Model {
 
     /** Returns the current mode of the app */
     int getCurrentMode();
-
-    /** Sets number of questions for the quiz session */
-    void setNumOfQnsForQuizSession(int numberOfQuestions);
-
-    /** Sets tags for the quiz session */
-    void setTagsForQuizSession(Set<Tag> tags);
 
     /** Sets a tag */
     void tagFlashcard(Flashcard target, String tag);
