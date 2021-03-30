@@ -96,13 +96,10 @@ public class SameDateAppointmentList implements Iterable<Appointment>, Comparabl
      * The appointment identity of {@code editedAppointment} must not be the same as another existing appointment
      * in the list.
      */
-    public void setAppointment(Appointment target, Appointment editedAppointment) throws CommandException {
+    public void setAppointment(Appointment target, Appointment editedAppointment) {
         requireAllNonNull(target, editedAppointment);
         int index = internalList.indexOf(target);
-        if (index == -1) {
-            //throw exception here?
-            throw new CommandException(MESSAGE_NONEXISTENT_APPOINTMENT);
-        }
+        assert index != -1;
         if (!target.isSameAppointment(editedAppointment) && contains(editedAppointment)) {
             //if the original appointment is not the same as the edited appointment, AND the list already contains
             //the duplicate appointment

@@ -61,15 +61,7 @@ public class EditAppointmentCommand extends Command {
         requireNonNull(model);
 
 
-        Appointment appointmentToEdit = null;
-        List<SameDateAppointmentList> lastShownList = model.getStudentBook().getAppointmentList();
-        for (SameDateAppointmentList sList : lastShownList) {
-            for (Appointment a : sList) {
-                if (a.getMatriculationNumber().equals(matriculationNumber)) {
-                    appointmentToEdit = a;
-                }
-            }
-        }
+        Appointment appointmentToEdit = model.getAppointmentToEdit(matriculationNumber);
         if (appointmentToEdit == null) {
             throw new CommandException(MESSAGE_APPOINTMENT_DOES_NOT_EXIST);
         }

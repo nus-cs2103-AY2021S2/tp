@@ -152,6 +152,21 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Appointment getAppointmentToEdit(MatriculationNumber matriculationNumber) {
+        Appointment appointmentToEdit = null;
+        List<SameDateAppointmentList> lastShownList = getStudentBook().getAppointmentList();
+        for (SameDateAppointmentList sList : lastShownList) {
+            for (Appointment a : sList) {
+                if (a.getMatriculationNumber().equals(matriculationNumber)) {
+                    appointmentToEdit = a;
+                }
+            }
+        }
+        return appointmentToEdit;
+
+    }
+
+    @Override
     public boolean hasAppointment(Appointment appointment) {
         requireNonNull(appointment);
         return studentBook.hasAppointment(appointment);

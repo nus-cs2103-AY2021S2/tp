@@ -108,6 +108,8 @@ public interface Model {
      */
     Appointment getAppointment(MatriculationNumber matriculationNumber);
 
+    Appointment getAppointmentToEdit(MatriculationNumber matriculationNumber);
+
     /**
      * Updates the filter of the filtered student list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
