@@ -13,6 +13,8 @@ import static seedu.booking.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE_ORIGINAL;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKER;
+
 import static seedu.booking.testutil.Assert.assertThrows;
 
 import java.time.LocalDateTime;
@@ -27,8 +29,10 @@ import seedu.booking.model.Model;
 import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.Description;
 import seedu.booking.model.booking.EndTime;
+import seedu.booking.model.booking.Id;
 import seedu.booking.model.booking.StartTime;
 import seedu.booking.model.booking.VenueNameContainsKeywordsPredicate;
+import seedu.booking.model.person.Email;
 import seedu.booking.model.person.NameContainsKeywordsPredicate;
 import seedu.booking.model.person.Person;
 import seedu.booking.model.venue.Venue;
@@ -133,36 +137,23 @@ public class CommandTestUtil {
     public static final EditVenueCommand.EditVenueDescriptor DESC_COURT;
     public static final EditVenueCommand.EditVenueDescriptor DESC_HALL;
 
-    Venue hall = new VenueBuilder().withName("Victoria Hall").build();
-    Person tom = new PersonBuilder().withName("Tom Holland").withEmail("SpiderMan@gmail.com")
-            .withPhone("11111111").build();
-    Venue field = new VenueBuilder().withName("Town Green").build();
-    Booking bookHall = new BookingBuilder().withVenue(hall.getVenueName()).withBooker(tom.getEmail())
-            .withDescription(new Description("VIP"))
-            .withBookingStart(new StartTime(
-                    LocalDateTime.of(2021, 2, 2, 7, 0, 0)))
-            .withBookingEnd(new EndTime(
-                    LocalDateTime.of(2021, 2, 2, 8, 0, 0)))
-            .build();
-    Booking bookField = new BookingBuilder().withVenue(field.getVenueName()).withBooker(tom.getEmail())
-            .withDescription(new Description("VIP"))
-            .withBookingStart(new StartTime(
-                    LocalDateTime.of(2021, 2, 2, 7, 0, 0)))
-            .withBookingEnd(new EndTime(
-                    LocalDateTime.of(2021, 2, 2, 8, 0, 0)))
-            .build();
-    public static final VenueName VALID_BOOKING_VENUE_NAME_HALL = new VenueName("Victoria Hall");
-    public static final VenueName VALID_BOOKING_VENUE_NAME_FIELD = new VenueName("Town Green");
-    public static final Description VALID_BOOKING_DESCRIPTION_HALL = new Description("For FYP meeting");
-    public static final Description VALID_BOOKING_DESCRIPTION_FIELD = new Description("For sports meeting");
-    public static final StartTime VALID_BOOKING_START_HALL = new StartTime(
-            LocalDateTime.of(2021, 2, 2, 7, 0, 0));
-    public static final StartTime VALID_BOOKING_START_FIELD = new StartTime(
-            LocalDateTime.of(2021, 2, 2, 7, 0, 0));
-    public static final EndTime VALID_BOOKING_END_HALL = new EndTime(
-            LocalDateTime.of(2021, 2, 2, 8, 0, 0));
-    public static final EndTime VALID_BOOKING_END_FIELD = new EndTime(
-            LocalDateTime.of(2021, 2, 2, 8, 0, 0));
+
+    public static final String VALID_BOOKING_VENUE_NAME_HALL = "Victoria Hall";
+    public static final String VALID_BOOKING_VENUE_NAME_FIELD = "Town Green";
+    public static final String VALID_BOOKING_BOOKER_EMAIL_AMY = "amy@example.com";
+    public static final String VALID_BOOKING_BOOKER_EMAIL_BOB = "bob@example.com";
+    public static final String VALID_BOOKING_DESCRIPTION_HALL = "For FYP meeting";
+    public static final String VALID_BOOKING_DESCRIPTION_FIELD = "For sports meeting";
+    public static final String VALID_BOOKING_START_HALL = "2021-02-02 07:00:00";
+    public static final String VALID_BOOKING_START_FIELD = "2021-02-02 07:00:00";
+    public static final String VALID_BOOKING_END_HALL = "2021-02-02 08:00:00";
+    public static final String VALID_BOOKING_END_FIELD = "2021-02-02 08:00:00";
+    public static final String VALID_BOOKING_ID_HALL = "111111111";
+    public static final String VALID_BOOKING_ID_FIELD = "222222222";
+
+
+    public static final String BOOKING_VENUE_NAME_DESC_HALL = " " + PREFIX_VENUE + VALID_VENUE_NAME_HALL;
+
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)

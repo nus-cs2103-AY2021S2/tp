@@ -5,10 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static seedu.booking.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
@@ -35,29 +32,29 @@ import seedu.booking.testutil.BookingBuilder;
 import seedu.booking.testutil.PersonBuilder;
 import seedu.booking.testutil.VenueBuilder;
 
-class CreateBookingCommandTest {
+class AddBookingCommandTest {
 
     @Test
     public void constructor_nullBooking_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new CreateBookingCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddBookingCommand(null));
     }
 
     @Test
     public void execute_bookingAcceptedByModel_addSuccessful() throws Exception {
-        CreateBookingCommandTest.ModelStubAcceptingBookingAdded modelStub = new CreateBookingCommandTest.ModelStubAcceptingBookingAdded();
+        AddBookingCommandTest.ModelStubAcceptingBookingAdded modelStub = new AddBookingCommandTest.ModelStubAcceptingBookingAdded();
         Booking validBooking = new BookingBuilder().build();
 
-        CommandResult commandResult = new CreateBookingCommand(validBooking).execute(modelStub);
+        CommandResult commandResult = new AddBookingCommand(validBooking).execute(modelStub);
 
-        assertEquals(String.format(CreateBookingCommand.MESSAGE_SUCCESS, validBooking), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddBookingCommand.MESSAGE_SUCCESS, validBooking), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validBooking), modelStub.bookingsAdded);
     }
 
     @Test
     public void execute_duplicateBooking_throwsCommandException() {
         Booking validBooking = new BookingBuilder().build();
-        CreateBookingCommand createBookingCommand = new CreateBookingCommand(validBooking);
-        CreateBookingCommandTest.ModelStub modelStub = new CreateBookingCommandTest.ModelStubWithBooking(validBooking);
+        AddBookingCommand createBookingCommand = new AddBookingCommand(validBooking);
+        AddBookingCommandTest.ModelStub modelStub = new AddBookingCommandTest.ModelStubWithBooking(validBooking);
 
         assertThrows(CommandException.class, createBookingCommand.MESSAGE_DUPLICATE_BOOKING, ()
                 -> createBookingCommand.execute(modelStub));
@@ -65,32 +62,24 @@ class CreateBookingCommandTest {
 
     @Test
     public void equals() {
-        Venue hall = new VenueBuilder().withName("Victoria Hall").build();
-        Person tom = new PersonBuilder().withName("Tom Holland").withEmail("SpiderMan@gmail.com")
-                .withPhone("11111111").build();
-        Venue field = new VenueBuilder().withName("Town Green").build();
-        Booking bookHall = new BookingBuilder().withVenue(hall.getVenueName()).withBooker(tom.getEmail())
-                .withDescription(new Description("VIP"))
-                .withBookingStart(new StartTime(
-                        LocalDateTime.of(2021, 2, 2, 7, 0, 0)))
-                .withBookingEnd(new EndTime(
-                        LocalDateTime.of(2021, 2, 2, 8, 0, 0)))
+        Booking bookHall = new BookingBuilder().withVenue("Victoria Hall").withBooker("SpiderMan@gmail.com")
+                .withDescription("VIP")
+                .withBookingStart("2021-02-02 07:00:00")
+                .withBookingEnd("2021-02-02 08:00:00")
                 .build();
-        Booking bookField = new BookingBuilder().withVenue(field.getVenueName()).withBooker(tom.getEmail())
-                .withDescription(new Description("VIP"))
-                .withBookingStart(new StartTime(
-                        LocalDateTime.of(2021, 2, 2, 7, 0, 0)))
-                .withBookingEnd(new EndTime(
-                        LocalDateTime.of(2021, 2, 2, 8, 0, 0)))
+        Booking bookField = new BookingBuilder().withVenue("Town Green").withBooker("SpiderMan@gmail.com")
+                .withDescription("VIP")
+                .withBookingStart("2021-02-02 07:00:00")
+                .withBookingEnd("2021-02-02 08:00:00")
                 .build();
-        CreateBookingCommand addHallCommand = new CreateBookingCommand(bookHall);
-        CreateBookingCommand addFieldCommand = new CreateBookingCommand(bookField);
+        AddBookingCommand addHallCommand = new AddBookingCommand(bookHall);
+        AddBookingCommand addFieldCommand = new AddBookingCommand(bookField);
 
         // same object -> returns true
         assertTrue(addHallCommand.equals(addHallCommand));
 
         // same values -> returns true
-        CreateBookingCommand addHallCommandCopy = new CreateBookingCommand(bookHall);
+        AddBookingCommand addHallCommandCopy = new AddBookingCommand(bookHall);
         assertTrue(addHallCommand.equals(addHallCommandCopy));
 
         // different types -> returns false
@@ -150,6 +139,21 @@ class CreateBookingCommandTest {
         @Override
         public void setBooking(Booking target, Booking editedBooking) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateVenueInBookings(VenueName oldVenueName, VenueName newVenueName) {
+
+        }
+
+        @Override
+        public void updatePersonInBookings(Email oldEmail, Email newEmail) {
+
+        }
+
+        @Override
+        public boolean hasOverlappedBooking(Booking toAdd) {
+            return false;
         }
 
         @Override
@@ -258,7 +262,7 @@ class CreateBookingCommandTest {
     /**
      * A Model stub that contains a single venue.
      */
-    private class ModelStubWithBooking extends CreateBookingCommandTest.ModelStub {
+    private class ModelStubWithBooking extends AddBookingCommandTest.ModelStub {
         private final Booking booking;
 
         ModelStubWithBooking(Booking booking) {
@@ -276,7 +280,7 @@ class CreateBookingCommandTest {
     /**
      * A Model stub that always accept the venue being added.
      */
-    private class ModelStubAcceptingBookingAdded extends CreateBookingCommandTest.ModelStub {
+    private class ModelStubAcceptingBookingAdded extends AddBookingCommandTest.ModelStub {
         final ArrayList<Booking> bookingsAdded = new ArrayList<>();
 
         @Override

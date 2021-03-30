@@ -2,6 +2,18 @@ package seedu.booking.testutil;
 
 import static seedu.booking.testutil.TypicalVenues.VENUE1;
 import static seedu.booking.testutil.TypicalVenues.VENUE2;
+import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_VENUE_NAME_HALL;
+import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_VENUE_NAME_FIELD;
+import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_BOOKER_EMAIL_AMY;
+import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_BOOKER_EMAIL_BOB;
+import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_DESCRIPTION_HALL;
+import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_DESCRIPTION_FIELD;
+import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_START_HALL;
+import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_START_FIELD;
+import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_END_HALL;
+import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_END_FIELD;
+import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_ID_HALL;
+import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_ID_FIELD;
 
 import java.time.LocalDateTime;
 
@@ -11,6 +23,7 @@ import seedu.booking.model.booking.EndTime;
 import seedu.booking.model.booking.Id;
 import seedu.booking.model.booking.StartTime;
 import seedu.booking.model.person.Email;
+import seedu.booking.model.venue.VenueName;
 
 
 /**
@@ -46,6 +59,23 @@ public class TypicalBookings {
             new EndTime(LocalDateTime.of(2021, 03, 01, 15, 30, 00)),
             new Id(3)
     );
+
+    public static final Booking BOOKING_FIELD = new BookingBuilder()
+            .withVenue(VALID_BOOKING_VENUE_NAME_HALL).withBooker(VALID_BOOKING_BOOKER_EMAIL_AMY)
+            .withDescription(VALID_BOOKING_DESCRIPTION_HALL)
+            .withBookingStart(VALID_BOOKING_START_HALL)
+            .withBookingEnd(VALID_BOOKING_END_HALL)
+            .withId(VALID_BOOKING_ID_HALL)
+            .build();
+
+    public static final Booking BOOKING_Field = new BookingBuilder()
+            .withVenue(VALID_BOOKING_VENUE_NAME_FIELD).withBooker(VALID_BOOKING_BOOKER_EMAIL_BOB)
+            .withDescription(VALID_BOOKING_DESCRIPTION_FIELD)
+            .withBookingStart(VALID_BOOKING_START_FIELD)
+            .withBookingEnd(VALID_BOOKING_END_FIELD)
+            .withId(VALID_BOOKING_ID_FIELD)
+            .build();
+
 
     private TypicalBookings() {} // prevents instantiation
 }
