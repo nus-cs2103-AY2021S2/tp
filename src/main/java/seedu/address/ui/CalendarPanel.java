@@ -2,7 +2,6 @@ package seedu.address.ui;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -21,9 +20,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import seedu.address.commons.Observer;
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.ModelManager;
 import seedu.address.model.ObservableCalendarDate;
 
 public class CalendarPanel extends UiPart<Region> implements Observer {
