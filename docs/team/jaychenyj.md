@@ -18,46 +18,58 @@ Given below are my contributions to the project.
   contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&since=2021-02-19&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=JayChenYJ&tabRepo=AY2021S2-CS2103T-W10-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
 
 * **Project management**:
-    * Managed milestones `v.1` - `v1.3` (5 milestones) on GitHub
-    * Managed releases `v1.3.trail` (1 release) on GitHub  
+    * Managed milestones `v1.1` - `v1.4` (7 milestones) on GitHub
+    * Managed releases `v1.3.trail - v1.3` (2 releases) on GitHub  
     * Standardised Intellij setting with the team. (Pull
       requests [\#4](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/4))
 
-* **Refactoring**:
-    * Refactored Address to Location. (Pull requests [\#52](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/52))
-    * Handled Pre-1.2 base refactoring. (Pull requests [\#69](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/69))
-    * Refactored AB3 to StoreMando. (Pull requests [\#70](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/70))
-    * Finalised refactoring stage. (Pull requests [\#72](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/72)
-      , [\#79](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/79))
-    * Removed tutorial folder. (Pull requests [\#94](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/94))
-    * Repackaged some classes. (Pull requests [\#112](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/112))
-
 * **Enhancements to existing features**:
-    * Modified `Find` v1. (Pull requests [\#74](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/74))
-    * Modified `Help` v1. (Pull requests [\#81](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/81))
-    * Modified `Find` v2. (Pull requests [\#82](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/82))
-    * Modified `List` v2. (Pull requests [\#93](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/93))
-    * Updated GUI v2. (Pull requests [\#123](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/123))
+    * Modified `Find` v1. (Pull request [\#74](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/74))
+    * Modified `Help` v1. (Pull request [\#81](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/81))
+    * Modified `Find` v2. (Pull request [\#82](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/82))
+    * Modified `List` v2. (Pull request [\#93](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/93))
+    * Updated GUI v2. (Pull request [\#123](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/123))
+    * Modified `Reminder` v3. (Pull request [\#157](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/157))
 
 * **Documentation**:
     * User Guide:
-        * Updated FAQ as of v1.1. (Pull requests [\#32](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/32))
-        * Updated Quick Start as of v1.1. (Pull requests [\#33](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/33))
+        * Updated FAQ as of v1.1. (Pull request [\#32](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/32))
+        * Updated Quick Start as of v1.1. (Pull request [\#33](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/33))
+        * Updated Quick Start as of v1.1. (Pull request [\#33](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/33))  
         * Updated the command summary as of v1.1. (Pull
-          requests [\#34](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/34))
-        * Updated Quick Start as of v1.1. (Pull requests [\#33](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/33))
+          request [\#34](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/34))
         * Updated the command summary as of v1.1. (Pull
-          requests [\#34](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/34))
+          request [\#34](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/34))
+        * Updated UG hyperlink for smooth and proper navigation. (Pull request [\#181](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/181))
     * Developer Guide:
-        * Updated GD Design details. (Pull requests [\#121](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/121))
+        * Updated Design details. (Pull requests [\#121](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/121), [\#155](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/155))
+        * Updated Testing.md, Logging.md, DevOps.md with proper details. (Pull request [\#155](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/155))
+        * Updated user stories. (Pull request [\#155](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/155))
     * About Us:
-        * Updated Jay Chen's part. (Pull requests [\#11](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/11))
+        * Updated Jay Chen's part. (Pull request [\#11](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/11))
     * Read Me:
         * Updated content of ReadMe to match StoreMando. (Pull
-          requests [\#21](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/21))
+          request [\#21](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/21))
+        * Updated StoreMando Ui image and project description. (Pull request [\#175](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/175))
     * Config.yml:
         * Updated config file to match StoreMando. (Pull
           requests [\#30](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/30))
+
+* **Hotfix**:
+    * Hotfix release details for v1.3.trail (Pull request [\#145](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/145))
+    * Hotfix on clear location feature. (Pull request [\#199](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/199))
+    
+* **Test**:
+    * Updated all tests in logic.parser. (Pull request [\#167](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/167))
+
+* **Refactoring**:
+    * Refactored Address to Location. (Pull request [\#52](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/52))
+    * Handled Pre-1.2 base refactoring. (Pull request [\#69](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/69))
+    * Refactored AB3 to StoreMando. (Pull request [\#70](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/70))
+    * Finalised refactoring stage. (Pull request [\#72](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/72)
+      , [\#79](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/79))
+    * Removed tutorial folder. (Pull request [\#94](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/94))
+    * Repackaged expiry date classes. (Pull request [\#112](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/112))
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#35](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/35)
