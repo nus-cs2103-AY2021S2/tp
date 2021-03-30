@@ -11,6 +11,9 @@ public enum DetailsPanelTab {
         this.label = label;
     }
 
+    /**
+     * Returns the DetailsPanelTab enum representation of the given {@code String}
+     */
     public static DetailsPanelTab fromString(String label) {
         for (DetailsPanelTab tab : DetailsPanelTab.values()) {
             if (tab.label.equalsIgnoreCase(label)) {

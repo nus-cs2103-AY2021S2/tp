@@ -1,25 +1,12 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TAB;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.commons.core.DetailsPanelTab;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class ViewCommandParser implements Parser<ViewCommand> {
-
-    /**
-     * Returns true if the tab provided is accepted by the view command
-     */
-    private boolean canViewTab(DetailsPanelTab tab) {
-        switch (tab) {
-        case UPCOMING_EVENTS:
-        case STREAKS:
-            return true;
-        default:
-            return false;
-        }
-    }
 
     /**
      * Parses the given {@code String} of arguments in the context of the ViewCommand
@@ -30,13 +17,9 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         try {
             DetailsPanelTab tab = DetailsPanelTab.fromString(userInput.trim());
 
-            if (!canViewTab(tab)) {
-                throw new ParseException(String.format(MESSAGE_INVALID_TAB, ViewCommand.MESSAGE_USAGE));
-            }
-
             return new ViewCommand(tab);
         } catch (IllegalArgumentException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_TAB, ViewCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }
     }
 }

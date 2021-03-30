@@ -1,10 +1,11 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TAB;
+
 import seedu.address.commons.core.DetailsPanelTab;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-
-import static java.util.Objects.requireNonNull;
 
 public class ViewCommand extends Command {
 
@@ -15,7 +16,7 @@ public class ViewCommand extends Command {
             + "Parameters: TAB (upcoming events | streaks)\n"
             + "Example: " + COMMAND_WORD + " upcoming events";
 
-    public static String MESSAGE_DETAILS_SUCCESS = "Displaying the %1$s tab on the right panel";
+    public static final String MESSAGE_DETAILS_SUCCESS = "Displaying the %1$s tab on the right panel";
 
     private final DetailsPanelTab tab;
 
@@ -26,6 +27,11 @@ public class ViewCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        // NOTE: replace with switch case if more such tabs are added
+        if (tab == DetailsPanelTab.PERSON_DETAILS) {
+            throw new CommandException(String.format(MESSAGE_INVALID_TAB, DetailsCommand.MESSAGE_USAGE));
+        }
 
         return new CommandResult(String.format(MESSAGE_DETAILS_SUCCESS, tab), tab);
     }

@@ -24,7 +24,8 @@ public class Commands {
                 ListCommand.COMMAND_WORD,
                 ThemeCommand.COMMAND_WORD,
                 ChangeDebtCommand.COMMAND_WORD_SUBTRACT,
-                ChangeDebtCommand.COMMAND_WORD_ADD
+                ChangeDebtCommand.COMMAND_WORD_ADD,
+                ViewCommand.COMMAND_WORD
         };
     }
 }

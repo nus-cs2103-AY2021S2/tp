@@ -23,5 +23,5 @@ public class Messages {
         + "Accepted file extensions: \"%2$s\"";
 
     // Tabs
-    public static final String MESSAGE_INVALID_TAB = "The tab provided is invalid! \n%1$s";
+    public static final String MESSAGE_INVALID_TAB = "To view this tab, use the following command instead: \n%1$s";
 }
