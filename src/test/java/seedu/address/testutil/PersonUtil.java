@@ -35,13 +35,25 @@ public class PersonUtil {
      */
     public static String getPersonDetails(Person person) {
         StringBuilder sb = new StringBuilder();
+        //compulsory details
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(PREFIX_SCHOOL + person.getSchool().fullSchoolName + " ");
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        sb.append(PREFIX_GUARDIAN_NAME + person.getGuardianName().fullName + " ");
-        sb.append(PREFIX_GUARDIAN_PHONE + person.getGuardianPhone().value + " ");
+        //optional details
+        if (person.getSchool().isPresent()) {
+            sb.append(PREFIX_SCHOOL + person.getSchool().get().fullSchoolName + " ");
+        }
+        if (person.getEmail().isPresent()) {
+            sb.append(PREFIX_EMAIL + person.getEmail().get().value + " ");
+        }
+        if (person.getAddress().isPresent()) {
+            sb.append(PREFIX_ADDRESS + person.getAddress().get().value + " ");
+        }
+        if (person.getGuardianName().isPresent()) {
+            sb.append(PREFIX_GUARDIAN_NAME + person.getGuardianName().get().fullName + " ");
+        }
+        if (person.getGuardianPhone().isPresent()) {
+            sb.append(PREFIX_GUARDIAN_PHONE + person.getGuardianPhone().get().value + " ");
+        }
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
