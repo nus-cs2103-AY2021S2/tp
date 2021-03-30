@@ -12,8 +12,8 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.event.Event;
 import seedu.address.model.grade.Grade;
 import seedu.address.model.person.Person;
-import seedu.address.model.schedule.Schedule;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.schedule.Schedule;
 
 /**
  * API of the Logic component
