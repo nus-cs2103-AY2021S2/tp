@@ -20,6 +20,7 @@ import seedu.smartlib.logic.commands.FindReaderCommand;
 import seedu.smartlib.logic.commands.FindRecordCommand;
 import seedu.smartlib.logic.commands.HelpCommand;
 import seedu.smartlib.logic.commands.ListBookCommand;
+import seedu.smartlib.logic.commands.ListOverdueBookCommand;
 import seedu.smartlib.logic.commands.ListReaderCommand;
 import seedu.smartlib.logic.commands.ListRecordCommand;
 import seedu.smartlib.logic.commands.ReturnCommand;
@@ -81,6 +82,9 @@ public class SmartLibParser {
 
         case ListBookCommand.COMMAND_WORD:
             return new ListBookCommand();
+
+        case ListOverdueBookCommand.COMMAND_WORD:
+            return new ListOverdueBookCommand();
 
         case BorrowCommand.COMMAND_WORD:
             return new BorrowCommandParser().parse(arguments);
