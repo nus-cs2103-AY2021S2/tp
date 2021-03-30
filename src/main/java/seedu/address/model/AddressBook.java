@@ -167,6 +167,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         entries.setEntry(target, editedEntry);
     }
 
+    public boolean isOverlappingEntry(Entry entry) {
+        requireNonNull(entry);
+        return entries.overlapsWith(entry);
+    }
     //// schedule methods
 
     /**
