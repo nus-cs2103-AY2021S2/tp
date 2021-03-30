@@ -28,6 +28,8 @@ public class Book {
     private final Barcode barcode;
     private final DateBorrowed dateBorrowed;
 
+    public static final Name TEMP_BOOKNAME = new Name("book");
+
     /**
      * Constructor for the Book class.
      * Every field must be present and not null.

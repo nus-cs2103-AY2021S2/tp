@@ -157,9 +157,14 @@ public interface Model {
     Barcode getBookBarcode(Name bookName);
 
     /**
-     * Returns the barcode of the first copy of the specified book borrowed by the reader in SmartLib.
+     * Returns the book name of the book with the corresponding barcode borrowed by the reader in SmartLib.
      */
-    Barcode getBookBarcodeForReturn(Name bookName, Name readerName);
+    Name getBookNameForReturn(Barcode barcode);
+
+    /**
+     * Returns the reader name of the reader who has borrowed the book with the corresponding barcode in SmartLib.
+     */
+    Name getReaderNameForReturn(Barcode barcode);
 
     /**
      * Replaces the given reader {@code target} with {@code editedReader}.

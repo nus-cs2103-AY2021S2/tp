@@ -30,6 +30,8 @@ public class Reader {
     private final Set<Tag> tags = new HashSet<>();
     private final Map<Book, DateBorrowed> borrows = new HashMap<>();
 
+    public static final Name TEMP_READERNAME = new Name("reader");
+
     /**
      * Constructor for the Reader class.
      * Every field must be present and not null.
