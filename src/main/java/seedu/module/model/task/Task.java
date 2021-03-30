@@ -93,7 +93,7 @@ public class Task {
      * @return the updated task.
      */
     public static Task updateRecurrenceTask(Task task) {
-        DoneStatus defaultDoneStatus = new DoneStatus(false);
+        DoneStatus defaultDoneStatus = task.getDoneStatus();
 
         boolean isUnchanged;
         Time newDeadline = getRecurringTime(task, task.getDeadline());
@@ -102,6 +102,7 @@ public class Task {
         isUnchanged = newDeadline.equals(task.getDeadline());
 
         if (!isUnchanged) {
+            defaultDoneStatus = new DoneStatus(false);
             newStartTime = getRecurringTime(task, task.getStartTimeWrapper());
         }
 

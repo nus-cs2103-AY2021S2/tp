@@ -41,11 +41,13 @@ public class TaskListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else if (task.getDoneStatus().getIsDone()) {
-                setGraphic(new TaskCard(task, getIndex() + 1).getRoot());
-                setStyle("-fx-background-color: #008000; -fx-border-color: #000000");
+                TaskCard addedTaskCard = new TaskCard(task, getIndex() + 1);
+                setGraphic(addedTaskCard.getRoot());
+                addedTaskCard.getRoot().setStyle("-fx-background-color: #008000");
             } else {
-                setGraphic(new TaskCard(task, getIndex() + 1).getRoot());
-                setStyle("-fx-background-color: #FF1493; -fx-border-color: #000000");
+                TaskCard addedTaskCard = new TaskCard(task, getIndex() + 1);
+                setGraphic(addedTaskCard.getRoot());
+                addedTaskCard.getRoot().setStyle("-fx-background-color: #FF1493");
             }
         }
     }

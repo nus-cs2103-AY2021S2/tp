@@ -88,7 +88,7 @@
                            <StackPane fx:id="taskListPanelPlaceholder" style="-fx-border-color: white;" VBox.vgrow="ALWAYS" />
                         </children>
                      </VBox>
-                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+                     <VBox GridPane.rowIndex="1">
                         <children>
                            <StackPane fx:id="statsPlaceholder" style="-fx-border-color: white;" />
                         </children></VBox>
