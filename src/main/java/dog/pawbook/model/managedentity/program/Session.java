@@ -3,44 +3,56 @@ package dog.pawbook.model.managedentity.program;
 import static dog.pawbook.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents a Program's date and time in the database.
- * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(String)}
  */
 public class Session {
+    public static final String DATETIME_FORMAT = "d-M-yyyy HH:mm";
+    public static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern(DATETIME_FORMAT);
+    public static final String MESSAGE_CONSTRAINTS = "The date and time of a Session should be in the "
+            + DATETIME_FORMAT + " format.";
 
-    public static final String MESSAGE_CONSTRAINTS = "Session should only "
-        + "contain numbers and should not be blank.";
-    //Validation regex for dd-mm-yyyy hh:mm or mm-dd-yyyy  hh:mm format
-    public static final String VALIDATION_REGEX = "^([1-9]|([012][0-9])|(3[01]))-([0]{0,1}[1-9]|1[012])-\\d\\d\\d\\d "
-        + "[012]{0,1}[0-9]:[0-6][0-9]$";
     public final LocalDateTime dateTime;
     public final String value;
 
     /**
-     * Construct an {@code Session}.
+     * Construct a {@code Session}.
      *
      * @param value A valid date and time.
      */
     public Session(String value) {
         requireNonNull(value);
-        checkArgument(isValidDate(value), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDateTime(value), MESSAGE_CONSTRAINTS);
         this.value = value;
-        this.dateTime = LocalDateTime.parse(value, DateTimeFormatter.ofPattern("d-M-yyyy HH:mm"));
+        this.dateTime = LocalDateTime.parse(value, DATETIME_FORMATTER);
+    }
+
+    /**
+     * Construct a {@code Session} from a given {@code LocalDateTime}.
+     */
+    public Session(LocalDateTime localDateTime) {
+        requireNonNull(localDateTime);
+        this.dateTime = localDateTime;
+        this.value = localDateTime.format(DATETIME_FORMATTER);
     }
 
     /**
      * Returns true if a given string is a valid date.
      */
-    public static boolean isValidDate(String value) {
-        Pattern pattern = Pattern.compile(VALIDATION_REGEX);
-        Matcher matcher = pattern.matcher(value);
-        return matcher.matches();
+    public static boolean isValidDateTime(String value) {
+        try {
+            LocalDate.parse(value, DATETIME_FORMATTER);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+
+        return true;
     }
 
     public LocalDateTime getDate() {

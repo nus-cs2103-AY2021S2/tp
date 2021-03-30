@@ -15,7 +15,7 @@ import java.time.format.DateTimeParseException;
 public class DateOfBirth {
     public static final String DATE_FORMAT = "d-M-yyyy";
     public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern(DATE_FORMAT);
-    public static final String MESSAGE_CONSTRAINTS = "Date Of Birth should be in the " + DATE_FORMAT + " format.";
+    public static final String MESSAGE_CONSTRAINTS = "Date of Birth should be in the " + DATE_FORMAT + " format.";
 
     public final LocalDate date;
     public final String value;
@@ -46,7 +46,7 @@ public class DateOfBirth {
      */
     public static boolean isValidDob(String value) {
         try {
-            LocalDate.parse(value);
+            LocalDate.parse(value, DATE_FORMATTER);
         } catch (DateTimeParseException e) {
             return false;
         }
