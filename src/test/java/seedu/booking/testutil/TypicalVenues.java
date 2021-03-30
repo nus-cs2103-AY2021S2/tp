@@ -34,7 +34,7 @@ public class TypicalVenues {
     // Manually added - Venue's details found in {@code CommandTestUtil}
     public static final Venue HALL = new VenueBuilder()
             .withName(VALID_VENUE_NAME_HALL).withCapacity(VALID_VENUE_CAPACITY_HALL)
-            .withDescription(VALID_VENUE_DESCRIPTION_HALL)
+            .withDescription(VALID_VENUE_DESCRIPTION_HALL).withTags("Indoors")
             .build();
     public static final Venue FIELD = new VenueBuilder()
             .withName(VALID_VENUE_NAME_FIELD).withCapacity(VALID_VENUE_CAPACITY_FIELD)

@@ -1,7 +1,6 @@
 package seedu.booking.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.booking.commons.exceptions.IllegalValueException;
 import seedu.booking.model.Tag;
@@ -10,6 +9,7 @@ import seedu.booking.model.Tag;
  * Jackson-friendly version of {@link Tag}.
  */
 class JsonAdaptedTag {
+    public static final String INVALID_FIELD_MESSAGE_FORMAT = Tag.MESSAGE_CONSTRAINTS;
 
     private final String tagName;
 
@@ -26,11 +26,6 @@ class JsonAdaptedTag {
      */
     public JsonAdaptedTag(Tag source) {
         tagName = source.tagName;
-    }
-
-    @JsonValue
-    public String getTagName() {
-        return tagName;
     }
 
     /**

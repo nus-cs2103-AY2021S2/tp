@@ -29,13 +29,13 @@ public class EditBookingCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the booking identified "
             + "by the id used in the displayed booking list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: bido/BOOKING_ID "
+            + "Parameters: bid/BOOKING_ID "
             + "[" + PREFIX_BOOKER + "BOOKER EMAIL] "
             + "[" + PREFIX_VENUE + "VENUE NAME] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_BOOKING_START + "DATETIME] "
             + "[" + PREFIX_BOOKING_END + "DATETIME] "
-            + "Example: " + COMMAND_WORD + " bido/1234567890 "
+            + "Example: " + COMMAND_WORD + " bid/1234567890 "
             + PREFIX_BOOKER + "example@gmail.com "
             + PREFIX_VENUE + "Hall "
             + PREFIX_DESCRIPTION + "For FYP meeting. "
@@ -45,7 +45,11 @@ public class EditBookingCommand extends Command {
     public static final String MESSAGE_EDIT_BOOKING_SUCCESS = "Edited Booking: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_BOOKING = "This booking already exists in the booking system.";
-
+    public static final String MESSAGE_SUCCESS = "New booking added: %1$s";
+    public static final String MESSAGE_INVALID_TIME =
+            "This booking's starting time is not earlier than the ending time.";
+    public static final String MESSAGE_INVALID_VENUE = "This venue does not exist in the system.";
+    public static final String MESSAGE_INVALID_PERSON = "This booker does not exist in the system.";
     private final Id id;
     private final EditBookingDescriptor editBookingDescriptor;
 
@@ -77,6 +81,18 @@ public class EditBookingCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_BOOKING);
         }
 
+        if (!editedBooking.isValidTime()) {
+            throw new CommandException(MESSAGE_INVALID_TIME);
+        }
+
+        if (!model.hasPersonWithEmail(editedBooking.getBookerEmail())) {
+            throw new CommandException(MESSAGE_INVALID_PERSON);
+        }
+
+        if (!model.hasVenueWithVenueName(editedBooking.getVenueName())) {
+            throw new CommandException(MESSAGE_INVALID_VENUE);
+        }
+
         model.setBooking(bookingToEdit, editedBooking);
         model.updateFilteredBookingList(PREDICATE_SHOW_ALL_BOOKINGS);
         return new CommandResult(String.format(MESSAGE_EDIT_BOOKING_SUCCESS, editedBooking));
@@ -99,8 +115,9 @@ public class EditBookingCommand extends Command {
         Description updatedDescription = editBookingDescriptor.getDescription().orElse(bookingToEdit.getDescription());
         StartTime updatedBookingStart = editBookingDescriptor.getBookingStart().orElse(bookingToEdit.getBookingStart());
         EndTime updatedBookingEnd = editBookingDescriptor.getBookingEnd().orElse(bookingToEdit.getBookingEnd());
-        //Id updatedId = editBookingDescriptor.getId().orElse(bookingToEdit.getId());
-        return new Booking(updatedBooker, updatedVenue, updatedDescription, updatedBookingStart, updatedBookingEnd);
+        Id updatedId = bookingToEdit.getId();
+        return new Booking(updatedBooker, updatedVenue, updatedDescription,
+                updatedBookingStart, updatedBookingEnd, updatedId);
     }
 
     @Override

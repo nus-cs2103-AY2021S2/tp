@@ -44,4 +44,17 @@ class VenueTest {
         // different venue -> returns false
         assertFalse(VENUE2.equals(VENUE1));
     }
+
+    @Test
+    void hashCodeTest() {
+        // same object -> returns true
+        assertTrue(VENUE1.hashCode() == VENUE1.hashCode());
+
+        // object with same venue name -> returns true
+        assertTrue(VENUE1.hashCode() == VENUE5.hashCode());
+
+        // object with different venue names -> returns false
+        assertFalse(VENUE1.hashCode() == VENUE2.hashCode());
+
+    }
 }

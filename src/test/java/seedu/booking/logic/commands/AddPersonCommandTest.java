@@ -130,6 +130,21 @@ public class AddPersonCommandTest {
         }
 
         @Override
+        public void updateVenueInBookings(VenueName oldVenueName, VenueName newVenueName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updatePersonInBookings(Email oldEmail, Email newEmail) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasOverlappedBooking(Booking toAdd) {
+            return false;
+        }
+
+        @Override
         public void setBookingSystem(ReadOnlyBookingSystem newData) {
             throw new AssertionError("This method should not be called.");
         }

@@ -12,13 +12,13 @@ import seedu.booking.model.Model;
 import seedu.booking.model.booking.Booking;
 
 /**
- * Adds a person to the address book.
+ * Adds a booking to the booking system.
  */
 public class AddBookingCommand extends Command {
 
     public static final String COMMAND_WORD = "add_booking";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a booking to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a booking to the booking system. "
             + "Parameters: "
             + PREFIX_BOOKER + "BOOKER EMAIL "
             + PREFIX_VENUE + "VENUE NAME "
@@ -33,11 +33,12 @@ public class AddBookingCommand extends Command {
             + PREFIX_BOOKING_END + "2012-01-31 23:59:59";
 
     public static final String MESSAGE_SUCCESS = "New booking added: %1$s";
-    public static final String MESSAGE_DUPLICATE_BOOKING = "This booking already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_BOOKING = "This booking already exists in the booking system.";
     public static final String MESSAGE_INVALID_TIME =
-            "This booking's starting time is not earlier than the ending time.";
+            "Invalid timing: The booking's starting time cannot be later than its ending time";
     public static final String MESSAGE_INVALID_VENUE = "This venue does not exist in the system.";
     public static final String MESSAGE_INVALID_PERSON = "This booker does not exist in the system.";
+    public static final String MESSAGE_OVERLAPPING_BOOKING = "This time slot has been booked.";
     private final Booking toAdd;
 
     /**
@@ -67,6 +68,10 @@ public class AddBookingCommand extends Command {
 
         if (!model.hasVenueWithVenueName(toAdd.getVenueName())) {
             throw new CommandException(MESSAGE_INVALID_VENUE);
+        }
+
+        if (model.hasOverlappedBooking(toAdd)) {
+            throw new CommandException(MESSAGE_OVERLAPPING_BOOKING);
         }
 
 
