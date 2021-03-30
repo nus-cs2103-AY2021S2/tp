@@ -22,7 +22,6 @@ import dog.pawbook.model.managedentity.program.Program;
 
 public abstract class AddCommand<T extends Entity> extends Command {
     public static final String COMMAND_WORD = "add";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a owner/dog/program to the database. "
             + "Example for Owner: " + COMMAND_WORD + " " + Owner.ENTITY_WORD + " "
             + PREFIX_NAME + "NAME "
@@ -41,8 +40,6 @@ public abstract class AddCommand<T extends Entity> extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_SESSION + "SESSION "
             + "[" + PREFIX_TAG + "TAG]...";
-
-
     public static final String MESSAGE_SUCCESS_FORMAT = "New %s added: ";
 
     protected final T toAdd;
@@ -53,7 +50,8 @@ public abstract class AddCommand<T extends Entity> extends Command {
     }
 
     /**
-     * Execute the adding of the entity into the model.
+     * Executes the adding of the entity into the model.
+     *
      * @param model {@code Model} which the command should operate on.
      * @throws CommandException if entity already exists in the model.
      */
@@ -65,7 +63,8 @@ public abstract class AddCommand<T extends Entity> extends Command {
     }
 
     /**
-     * Add the new entity into the model.
+     * Adds the new entity into the model.
+     *
      * @param model {@code Model} which the command should operate on.
      * @return ID of the newly added entity.
      * @throws CommandException if entity already exists in the model.
@@ -74,7 +73,6 @@ public abstract class AddCommand<T extends Entity> extends Command {
         if (model.hasEntity(toAdd)) {
             throw new CommandException(getDuplicateMessage());
         }
-
         int addedEntityId = model.addEntity(toAdd);
         model.updateFilteredEntityList(new IdMatchPredicate(addedEntityId));
         return addedEntityId;

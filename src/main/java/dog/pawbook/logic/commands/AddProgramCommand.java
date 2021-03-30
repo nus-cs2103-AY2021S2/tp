@@ -32,7 +32,7 @@ public class AddProgramCommand extends AddCommand<Program> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof AddProgramCommand // instanceof handles nulls
-                    && toAdd.equals(((AddProgramCommand) other).toAdd));
+            && toAdd.equals(((AddProgramCommand) other).toAdd));
     }
 
     @Override

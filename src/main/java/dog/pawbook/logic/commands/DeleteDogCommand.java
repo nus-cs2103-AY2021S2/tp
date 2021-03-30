@@ -86,6 +86,6 @@ public class DeleteDogCommand extends DeleteCommand {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteDogCommand // instanceof handles nulls
-                        && targetId.equals(((DeleteDogCommand) other).targetId)); // state check
+                && targetId.equals(((DeleteDogCommand) other).targetId)); // state check
     }
 }

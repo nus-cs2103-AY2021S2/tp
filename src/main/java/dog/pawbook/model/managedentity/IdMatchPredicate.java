@@ -36,7 +36,7 @@ public class IdMatchPredicate implements Predicate<Pair<Integer, Entity>> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof IdMatchPredicate // instanceof handles nulls
-                        && relatedIds.equals(((IdMatchPredicate) other).relatedIds)); // state check
+                && relatedIds.equals(((IdMatchPredicate) other).relatedIds)); // state check
     }
 
 }

@@ -32,7 +32,6 @@ public abstract class DeleteCommand extends Command {
      */
     public DeleteCommand(Integer id) {
         requireNonNull(id);
-
         this.targetId = id;
     }
 

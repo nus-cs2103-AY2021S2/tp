@@ -45,7 +45,7 @@ public class EditDogCommand extends EditEntityCommand {
     public static final String MESSAGE_EDIT_DOG_SUCCESS = "Edited Dog: %1$s";
 
     /**
-     * @param id                of the dog in the entity list to edit
+     * @param id of the dog in the entity list to edit
      * @param editDogDescriptor details to edit the dog with
      */
     public EditDogCommand(Integer id, EditDogDescriptor editDogDescriptor) {

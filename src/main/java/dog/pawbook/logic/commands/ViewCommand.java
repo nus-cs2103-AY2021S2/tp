@@ -27,7 +27,7 @@ public class ViewCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Views all related entities of one entity based on ID"
             + " and displays them as a list with index numbers.\n"
             + "Allows user to quickly search for e.g. All the owner's dogs or all the dogs in a program.\n"
-            + "Parameters: KEYWORD [ID]...\n"
+            + "Parameters: [Keyword]...\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     private final int targetEntityId;
@@ -68,6 +68,6 @@ public class ViewCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ViewCommand // instanceof handles nulls
-                        && targetEntityId == (((ViewCommand) other).targetEntityId)); // state check
+                && targetEntityId == (((ViewCommand) other).targetEntityId)); // state check
     }
 }

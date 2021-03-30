@@ -38,7 +38,7 @@ public class Database implements ReadOnlyDatabase {
         resetData(toBeCopied);
     }
 
-    //// list overwrite operations
+    // list overwrite operations
 
     /**
      * Replaces the contents of the entity list with {@code owners}.
@@ -124,7 +124,7 @@ public class Database implements ReadOnlyDatabase {
         return entities.validateReferences();
     }
 
-    //// util methods
+    // util methods
 
     @Override
     public String toString() {

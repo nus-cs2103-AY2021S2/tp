@@ -64,6 +64,7 @@ public class DeleteOwnerCommand extends DeleteCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteOwnerCommand && targetId.equals(((DeleteOwnerCommand) other).targetId));
+                || (other instanceof DeleteOwnerCommand
+                && targetId.equals(((DeleteOwnerCommand) other).targetId));
     }
 }
