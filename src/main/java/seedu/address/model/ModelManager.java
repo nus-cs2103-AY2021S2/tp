@@ -71,7 +71,7 @@ public class ModelManager implements Model {
         this.gradeBook = new GradeBook(gradeBook);
         this.budgetBook = new BudgetBook(budgetBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        this.reminderTracker = new ReminderTracker();
+        this.reminderTracker = new ReminderTracker(SampleDataUtil.getSampleReminderTracker());
 
         this.personFilter = new PersonFilter();
         this.appointmentFilter = new AppointmentFilter();

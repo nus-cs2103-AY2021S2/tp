@@ -21,8 +21,10 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.reminder.ReadOnlyReminderTracker;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderDate;
+import seedu.address.model.reminder.ReminderTracker;
 import seedu.address.model.schedule.Description;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
@@ -127,6 +129,14 @@ public class SampleDataUtil {
             new Reminder(new Description("Science Tuition Fee Due"),
                     new ReminderDate("2021-03-31"))
         };
+    }
+
+    public static ReadOnlyReminderTracker getSampleReminderTracker() {
+        ReminderTracker sampleRt = new ReminderTracker();
+        for (Reminder sampleReminder : getSampleReminder()) {
+            sampleRt.addReminder(sampleReminder);
+        }
+        return sampleRt;
     }
 
     public static ReadOnlyScheduleTracker getSampleScheduleTracker() {
