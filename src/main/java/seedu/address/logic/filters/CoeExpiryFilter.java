@@ -5,6 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.model.customer.CoeExpiry;
 import seedu.address.model.customer.Customer;
@@ -66,7 +67,9 @@ public class CoeExpiryFilter extends AbstractFilter {
 
     @Override
     public List<Customer> filterAllCustomers(List<Customer> customer) {
-        return null;
+        return customer.parallelStream() //TODO: Consider this carefully
+                .filter(this::test)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     @Override
