@@ -3,11 +3,19 @@
     "name": "Valid Person",
     "phone": "9482424",
     "email": "hans@example.com",
-    "address": "4th street"
+    "company": "google",
+    "jobTitle": "hr manager",
+    "address": "4th street",
+    "tagged": [ "photoshop" ],
+    "remark": "away from 2-3pm"
   }, {
     "name": "Person With Invalid Phone Field",
     "phone": "948asdf2424",
     "email": "hans@example.com",
-    "address": "4th street"
+    "company": "google",
+    "jobTitle": "hr manager",
+    "address": "4th street",
+    "tagged": [ "photoshop" ],
+    "remark": "away from 2-3pm"
   } ]
 }

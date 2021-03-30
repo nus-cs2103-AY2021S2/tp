@@ -3,6 +3,10 @@
     "name": "Hans Muster",
     "phone": "9482424",
     "email": "invalid@email!3e",
-    "address": "4th street"
+    "company": "google",
+    "jobTitle": "hr manager",
+    "address": "4th street",
+    "tagged": [ "photoshop" ],
+    "remark": "away from 2-3pm"
   } ]
 }

@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
@@ -30,6 +32,8 @@ class DisplayFilterPredicateTest {
         fullMultimap.put(PREFIX_NAME, "");
         fullMultimap.put(PREFIX_ADDRESS, "");
         fullMultimap.put(PREFIX_EMAIL, "");
+        fullMultimap.put(PREFIX_COMPANY, "");
+        fullMultimap.put(PREFIX_JOB_TITLE, "");
         fullMultimap.put(PREFIX_TAG, "");
         fullMultimap.put(PREFIX_PHONE, "");
         fullMultimap.put(PREFIX_REMARK, "");

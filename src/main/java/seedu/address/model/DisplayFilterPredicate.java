@@ -1,7 +1,9 @@
 package seedu.address.model;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
@@ -29,6 +31,8 @@ public class DisplayFilterPredicate implements Predicate<Prefix> {
         map.put(PREFIX_NAME, true);
         map.put(PREFIX_PHONE, true);
         map.put(PREFIX_EMAIL, true);
+        map.put(PREFIX_COMPANY, true);
+        map.put(PREFIX_JOB_TITLE, true);
         map.put(PREFIX_ADDRESS, true);
         map.put(PREFIX_TAG, true);
         map.put(PREFIX_REMARK, true);
@@ -43,6 +47,8 @@ public class DisplayFilterPredicate implements Predicate<Prefix> {
         if (argumentMultimap.getArgumentSize() != 0) {
             map.put(PREFIX_PHONE, argumentMultimap.getValue(PREFIX_PHONE).isPresent());
             map.put(PREFIX_EMAIL, argumentMultimap.getValue(PREFIX_EMAIL).isPresent());
+            map.put(PREFIX_COMPANY, argumentMultimap.getValue(PREFIX_COMPANY).isPresent());
+            map.put(PREFIX_JOB_TITLE, argumentMultimap.getValue(PREFIX_JOB_TITLE).isPresent());
             map.put(PREFIX_ADDRESS, argumentMultimap.getValue(PREFIX_ADDRESS).isPresent());
             map.put(PREFIX_TAG, argumentMultimap.getValue(PREFIX_TAG).isPresent());
             map.put(PREFIX_REMARK, argumentMultimap.getValue(PREFIX_REMARK).isPresent());
