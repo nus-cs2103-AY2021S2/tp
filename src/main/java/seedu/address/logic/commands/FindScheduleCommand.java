@@ -18,7 +18,7 @@ public class FindScheduleCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Finds and displays all tasks with deadline "
             + "and all events with start date before or on the specified date.\n"
-            + "Parameters: DATE \n"
+            + "Parameters: DATE (one single valid date in YYYY-MM-DD format)\n"
             + "Example: " + COMMAND_WORD + " 2021-03-29";
 
     public static final String MESSAGE_FIND_SCHEDULE_SUCCESS = "Displayed the required tasks and events\n";
