@@ -15,7 +15,7 @@ public class FindFreeTimeCommand extends Command {
             + "Example: " + COMMAND_WORD + " 2021-01-07";
 
     public static final String MESSAGE_FIND_FREE_TIME_SUCCESS = "Found Free Time Slots:\n";
-    public static final String MESSAGE_NO_FREE_TIME = "There is not free time in the day!\n";
+    public static final String MESSAGE_NO_FREE_TIME = "There is no free time in the day!\n";
 
     private final Date date;
 
