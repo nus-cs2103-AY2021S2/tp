@@ -4,7 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
-public class ImportantDate {
+public class ImportantDate implements Comparable<ImportantDate> {
 
     private final Description description;
     private final Details details;
@@ -29,6 +29,12 @@ public class ImportantDate {
     public Details getDetails() {
         return details;
     }
+
+    @Override
+    public int compareTo(ImportantDate other) {
+        return this.details.compareTo(other.details);
+    }
+
 
     @Override
     public boolean equals(Object other) {

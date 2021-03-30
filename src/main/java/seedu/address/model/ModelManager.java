@@ -16,6 +16,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.date.ImportantDate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.comparators.ImportantDateDetailsComparator;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -246,23 +247,19 @@ public class ModelManager implements Model {
     @Override
     public void deleteImportantDate(ImportantDate target) {
         datesBook.removeImportantDate(target);
-        // TODO: change switch to model.updateSortedImportantDatesList(); after implementing sorting
-        updateFilteredImportantDatesList(PREDICATE_SHOW_ALL_IMPORTANT_DATES);
+        updateSortedImportantDatesList(new ImportantDateDetailsComparator());
     }
 
     @Override
     public void addImportantDate(ImportantDate importantDate) {
         datesBook.addImportantDate(importantDate);
-        // TODO: change switch to model.updateSortedImportantDatesList(); after implementing sorting
-        updateFilteredImportantDatesList(PREDICATE_SHOW_ALL_IMPORTANT_DATES);
+        updateSortedImportantDatesList(new ImportantDateDetailsComparator());
     }
 
     @Override
     public void filterImportantDates(Predicate<ImportantDate> predicate) {
         updateFilteredImportantDatesList(predicate);
     }
-
-
 
     //=========== Filtered Important Dates List Accessors =============================================================
 
