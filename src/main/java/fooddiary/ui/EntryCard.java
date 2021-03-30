@@ -43,9 +43,9 @@ public class EntryCard extends UiPart<Region> {
     @FXML
     private Label reviews;
     @FXML
-    private FlowPane tagCategory;
+    private FlowPane tagCategories;
     @FXML
-    private FlowPane tagSchool;
+    private FlowPane tagSchools;
 
     /**
      * Creates a {@code EntryCode} with the given {@code Entry} and index to display.
@@ -56,7 +56,7 @@ public class EntryCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(entry.getName().fullName);
         rating.setText(String.format("Rating: %s / 5", entry.getRating().value));
-        price.setText(String.format("Price: $%s", entry.getPrice().value));
+        price.setText(String.format("Price: " + "%s", entry.getPrice().value));
         address.setText(String.format("Address: %s", entry.getAddress().value));
         String reviewStr = "";
         for (int i = 0; i < entry.getReviews().size(); i++) {
@@ -66,11 +66,11 @@ public class EntryCard extends UiPart<Region> {
 
         entry.getTagCategories().stream()
                 .sorted(Comparator.comparing(TagCategory::getTag))
-                .forEach(tag -> tagCategory.getChildren().add(new Label(tag.getTag())));
+                .forEach(tag -> tagCategories.getChildren().add(new Label(tag.getTag())));
 
         entry.getTagSchools().stream()
                 .sorted(Comparator.comparing(TagSchool::getTag))
-                .forEach(tag -> tagSchool.getChildren().add(new Label(tag.getTag())));
+                .forEach(tag -> tagSchools.getChildren().add(new Label(tag.getTag())));
     }
 
     @Override

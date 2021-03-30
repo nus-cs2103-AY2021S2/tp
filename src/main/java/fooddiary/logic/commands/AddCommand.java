@@ -30,7 +30,7 @@ public class AddCommand extends Command {
             + CliSyntax.PREFIX_REVIEW + "I like this food a lot! "
             + CliSyntax.PREFIX_ADDRESS + "3155 Commonwealth Ave W, Singapore 129588 "
             + CliSyntax.PREFIX_TAG_CATEGORY + "FastFood "
-            + CliSyntax.PREFIX_TAG_CATEGORY + "Vegan"
+            + CliSyntax.PREFIX_TAG_CATEGORY + "Vegan "
             + CliSyntax.PREFIX_TAG_SCHOOL + "SOC";
 
     public static final String MESSAGE_SUCCESS = "New entry added: %1$s";

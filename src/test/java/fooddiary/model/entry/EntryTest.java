@@ -5,8 +5,8 @@ import static fooddiary.logic.commands.CommandTestUtil.VALID_NAME_B;
 import static fooddiary.logic.commands.CommandTestUtil.VALID_PRICE_B;
 import static fooddiary.logic.commands.CommandTestUtil.VALID_RATING_B;
 import static fooddiary.logic.commands.CommandTestUtil.VALID_REVIEW_B;
-import static fooddiary.logic.commands.CommandTestUtil.VALID_TAG_FASTFOOD;
-import static fooddiary.logic.commands.CommandTestUtil.VALID_TAG_WESTERN;
+import static fooddiary.logic.commands.CommandTestUtil.VALID_TAG_CATEGORY_FASTFOOD;
+import static fooddiary.logic.commands.CommandTestUtil.VALID_TAG_CATEGORY_WESTERN;
 import static fooddiary.testutil.Assert.assertThrows;
 import static fooddiary.testutil.TypicalEntries.ENTRY_A;
 import static fooddiary.testutil.TypicalEntries.VALID_ENTRY_B;
@@ -36,7 +36,7 @@ public class EntryTest {
         // same name, all other attributes different -> returns true
         Entry editedA = new EntryBuilder(ENTRY_A).withRating(VALID_RATING_B)
                 .withPrice(VALID_PRICE_B).withReviews(VALID_REVIEW_B)
-                .withAddress(VALID_ADDRESS_B).withTagCategories(VALID_TAG_WESTERN).build();
+                .withAddress(VALID_ADDRESS_B).withTagCategories(VALID_TAG_CATEGORY_WESTERN).build();
         assertTrue(ENTRY_A.isSameEntry(editedA));
 
         // different name, all other attributes same -> returns false
@@ -92,7 +92,7 @@ public class EntryTest {
         assertFalse(ENTRY_A.equals(editedA));
 
         // different tags -> returns false
-        editedA = new EntryBuilder(ENTRY_A).withTagCategories(VALID_TAG_FASTFOOD).build();
+        editedA = new EntryBuilder(ENTRY_A).withTagCategories(VALID_TAG_CATEGORY_FASTFOOD).build();
         assertFalse(ENTRY_A.equals(editedA));
     }
 }
