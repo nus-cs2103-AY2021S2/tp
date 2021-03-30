@@ -115,7 +115,6 @@ public class StringUtil {
 
         String[] wordsInPreppedSentence = sentence.split("\\s+");
 
-        return Arrays.stream(wordsInPreppedSentence)
-            .anyMatch(currentWord -> currentWord.contains(preppedWord));
+        return Arrays.stream(wordsInPreppedSentence).anyMatch(preppedWord::equals);
     }
 }
