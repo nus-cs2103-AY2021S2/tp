@@ -165,10 +165,6 @@ public class ModelManager implements Model {
         return filteredTasks;
     }
 
-    @Override
-    public ObservableList<Task> getFinishedTaskList() {
-        return filteredTasks;
-    }
 
     @Override
     public void updateFilteredTaskList(Predicate<Task> predicate) {

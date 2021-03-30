@@ -38,10 +38,6 @@ public interface Logic {
      */
     ObservableList<Task> getFilteredTaskList();
 
-    /**
-     * Returns an unmodifiable view of the list of finished tasks
-     */
-    ObservableList<Task> getFinishedTaskList();
 
     /**
      * Returns the user prefs' address book file path.
