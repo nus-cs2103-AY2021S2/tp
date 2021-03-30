@@ -45,6 +45,8 @@ public class EditBookingCommand extends Command {
     public static final String MESSAGE_EDIT_BOOKING_SUCCESS = "Edited Booking: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_BOOKING = "This booking already exists in the booking system.";
+    public static final String MESSAGE_UNCHANGED_BOOKING = "The information provided has no difference from the records in the system;";
+    public static final String MESSAGE_OVERLAPPING_BOOKING = "This slot has been booked already";
     public static final String MESSAGE_SUCCESS = "New booking added: %1$s";
     public static final String MESSAGE_INVALID_TIME =
             "This booking's starting time is not earlier than the ending time.";
@@ -77,21 +79,26 @@ public class EditBookingCommand extends Command {
         Booking bookingToEdit = getBookingById(id, lastShownList);
         Booking editedBooking = createEditedBooking(bookingToEdit, editBookingDescriptor);
 
+        if (bookingToEdit.isExactlySameBooking(editedBooking)) {
+            throw new CommandException(MESSAGE_UNCHANGED_BOOKING);
+        }
+
         if (!bookingToEdit.isSameBooking(editedBooking) && model.hasBooking(editedBooking)) {
             throw new CommandException(MESSAGE_DUPLICATE_BOOKING);
+        }
+
+        if (!model.hasVenueWithVenueName(editedBooking.getVenueName())) {
+            throw new CommandException(MESSAGE_INVALID_VENUE);
+        }
+
+        if (model.hasOverlappedBooking(editedBooking)) {
+            throw new CommandException(MESSAGE_OVERLAPPING_BOOKING);
         }
 
         if (!editedBooking.isValidTime()) {
             throw new CommandException(MESSAGE_INVALID_TIME);
         }
 
-        if (!model.hasPersonWithEmail(editedBooking.getBookerEmail())) {
-            throw new CommandException(MESSAGE_INVALID_PERSON);
-        }
-
-        if (!model.hasVenueWithVenueName(editedBooking.getVenueName())) {
-            throw new CommandException(MESSAGE_INVALID_VENUE);
-        }
 
         model.setBooking(bookingToEdit, editedBooking);
         model.updateFilteredBookingList(PREDICATE_SHOW_ALL_BOOKINGS);
