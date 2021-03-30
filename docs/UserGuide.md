@@ -166,8 +166,9 @@ table in the form of a pop up window.
 
 **Format:** <span class="main-command">add</span> <span class="compulsory-param">-x METHOD</span> <span class="compulsory-param">-u URL</span> <span class="optional-param">-d DATA</span> <span class="optional-param">[-h HEADER]</span> <span class="optional-param">[-t TAG]</span>
 
-**Example & Output:** <span class="main-command">add</span> <span class="compulsory-param">-x GET</span> <span class="compulsory-param">-u https://api.data.gov.sg/v1/environment/pm25</span>
+**Example & Output:** <span class="main-command">add</span> <span class="compulsory-param">-x POST</span> <span class="compulsory-param">-u https://reqres.in/api/users</span> <span class="optional-param">-d {"name": "tarzan", "job": "the jungle man"}</span> <span class="optional-param">-h "Content-Type: application/json"</span> <span class="optional-param">-t nature</span>
 
+//to-do tanjin update picture
 <p align="center">
   <img width="450px" src="images/commands/add.png" >
 </p>
@@ -283,7 +284,7 @@ If you wish to generate a set of sample endpoints, you may delete the **imposter
 
 #### 4.2.9 Call an API endpoint directly without saving: `run`
 
-**Description:** Call an API endpoint on the fly (without saving) **(an ongoing call can be cancelled with <kbd>ctrl</kbd> + <kbd>d</kbd>)**.
+**Description:** Call an API endpoint directly (without saving) **(an ongoing call can be cancelled with <kbd>ctrl</kbd> + <kbd>d</kbd>)**.
 
 **Format:** <span class="main-command">run</span> <span class="compulsory-param">-x METHOD</span> <span class="compulsory-param">-u URL</span> <span class="optional-param">-d DATA</span> <span class="optional-param">[-h HEADER]</span>
 
@@ -374,6 +375,7 @@ A quick overview of all supported commands, their formats and examples are given
 | **Prefix**   | Characters used to identify the following parameter (e.g. <span class="compulsory-param">-x</span> is the prefix for the parameter <span class="compulsory-param">METHOD</span>) |
 | **JSON (JavaScript Object Notation)** | A lightweight format for data storage (a more detailed explanation can be found [here](#84-json-format)) |
 | **CURL (Client URL)** | A command-line tool used in the transfer of data via different network protocols |
+| **Index** | Index in this guide refers to the position of the endpoint in the endpoint list. It is signified by the number beside the endpoint. |
 
 <div style="page-break-after: always;"></div>
 
