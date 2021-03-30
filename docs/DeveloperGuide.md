@@ -352,6 +352,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | specify preferred mode of contact                    | maximize chance of recipient seeing the information                     |
 | `* * *`  | user                                       | blacklist a contact                                  | reduce dissemination of information to people who do not want it        |
 | `* * *`  | user                                       | undo my operations                                   |                                                                         |
+| `* * *`  | user                                       | collect specified details of all contacts            | avoid individually copying the details for each contact                 |
 | `* *`    | user                                       | hide private contact details                         | minimize chance of someone else seeing them by accident                 |
 | `* *`    | user with many contacts                    | assign each contact an additional optional remark    | remember contacts more accurately                                       |
 | `* *`    | user with many contacts                    | sort contacts by name                                | locate a contact easily                                                 |

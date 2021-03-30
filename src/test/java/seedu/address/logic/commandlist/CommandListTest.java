@@ -11,7 +11,7 @@ public class CommandListTest {
 
     @BeforeEach
     public void clear() {
-        commandList = new CommandList();
+        commandList = CommandList.getInstance().clear();
     }
 
     @Test
