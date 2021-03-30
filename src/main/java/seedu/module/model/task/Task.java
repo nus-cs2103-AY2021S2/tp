@@ -80,7 +80,7 @@ public class Task {
      * @param recurrence new recurrence.
      * @return an edited task object.
      */
-    public static Task setRecurrence(Task task, OptionalField<Recurrence> recurrence) {
+    public static Task makeNextRecurringTask(Task task, OptionalField<Recurrence> recurrence) {
         return new Task(task.name, task.startTime, task.deadline, task.module, task.description, task.workload,
                 task.doneStatus, recurrence, task.tags);
     }

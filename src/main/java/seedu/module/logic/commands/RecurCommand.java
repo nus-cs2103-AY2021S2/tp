@@ -32,7 +32,7 @@ public class RecurCommand extends Command {
     public static final String MESSAGE_DUPLICATE_RECURRENCE = "This task is already recurring: %1$s";
 
     private Index index;
-    private Recurrence recurrence;
+    private OptionalField<Recurrence> recurrence;
 
     /**
      * Constructor for {@code RecurCommand} object.
@@ -44,7 +44,8 @@ public class RecurCommand extends Command {
         this.index = index;
     }
 
-    public void setRecurrence(Recurrence recurrence) {
+    public void setRecurrence(OptionalField<Recurrence> recurrence) throws IllegalArgumentException {
+        assert recurrence != null;
         this.recurrence = recurrence;
     }
 
@@ -59,10 +60,15 @@ public class RecurCommand extends Command {
         }
 
         Task taskToRecur = lastShownList.get(index.getZeroBased());
-        Task nextRecurringTask = makeNextRecurringTask(taskToRecur);
+
+        if (recurrence.isNull()) {
+            throw new CommandException(MESSAGE_INVALID_RECURRENCE);
+        }
+
+        Task nextRecurringTask = Task.makeNextRecurringTask(taskToRecur, recurrence);
 
         if (taskToRecur.equals(nextRecurringTask) && model.hasRecurringTask(nextRecurringTask)) {
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_RECURRENCE, taskToRecur.getRecurrence()));
+            emptyRecurrenceHandler(recurrence);
         }
 
         model.setTask(taskToRecur, nextRecurringTask);
@@ -71,14 +77,16 @@ public class RecurCommand extends Command {
         return new CommandResult(String.format(MESSAGE_ADD_RECURRENCE_SUCCESS, nextRecurringTask));
     }
 
-    private Task makeNextRecurringTask(Task previousRecurringTask) throws CommandException {
-        assert previousRecurringTask != null;
+    private void emptyRecurrenceHandler(OptionalField<Recurrence> recurrenceOptionalField) throws CommandException {
+        assert recurrenceOptionalField != null;
 
-        OptionalField<Recurrence> recurrenceWrapper = new OptionalField<>(recurrence);
-
-        return Task.setRecurrence(previousRecurringTask, recurrenceWrapper);
+        if (recurrenceOptionalField.isNull()) {
+            throw new CommandException(MESSAGE_INVALID_RECURRENCE);
+        } else {
+            throw new CommandException(
+                    String.format(MESSAGE_DUPLICATE_RECURRENCE, recurrenceOptionalField.getField()));
+        }
     }
-
 
     @Override
     public boolean equals(Object other) {
