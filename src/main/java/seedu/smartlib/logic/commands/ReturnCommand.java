@@ -25,7 +25,7 @@ public class ReturnCommand extends Command {
             + "Parameters: " + PREFIX_BOOK + "<book name> " + PREFIX_READER + "<reader name>\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_BOOK + "The Hobbit " + PREFIX_READER + "Alex Yeoh";
     public static final String MESSAGE_SUCCESS = "Record marked as returned.\n";
-    public static final String MESSAGE_COST = "The total cost is $%.2f";
+    public static final String MESSAGE_COST = "The total cost is $%.2f.";
     public static final String MESSAGE_TOTAL_HOURS_DUE = "The book is overdue by %d hours.\n";
     public static final String MESSAGE_NO_SUCH_RECORD_FOUND =
             "No such record found. The book has either been returned, or was never borrowed by the reader.";
@@ -82,7 +82,8 @@ public class ReturnCommand extends Command {
             Duration duration = r.getBorrowDuration();
             int overdueHours = ((int) duration.toHours()) - HOURS_BORROW_ALLOWED;
             Cost cost = new Cost(overdueHours);
-            return MESSAGE_SUCCESS + String.format(MESSAGE_TOTAL_HOURS_DUE, overdueHours)
+            return MESSAGE_SUCCESS
+                    + String.format(MESSAGE_TOTAL_HOURS_DUE, overdueHours)
                     + String.format(MESSAGE_COST, cost.getCost());
         } else {
             return MESSAGE_SUCCESS;

@@ -1,5 +1,7 @@
 package seedu.smartlib.ui;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -64,7 +66,9 @@ public class ReaderCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(Tag::getTagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.getTagName())));
         reader.getBorrows().forEach((key, value) -> borrows.getChildren()
-                .add(new Label(key.getName().toString() + ", borrowed on " + value.toString() + ".")));
+                .add(new Label(key.getName().toString() + ", borrowed: "
+                        + LocalDateTime.parse(value.toString()).format(DateTimeFormatter.ofPattern("d MMM yyyy"))
+                        + ".")));
     }
 
     /**
